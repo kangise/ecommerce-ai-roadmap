@@ -563,7 +563,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [RAG Arch
 |----------|------|
 | OpenClaw Official Docs | [docs.openclaw.com](https://docs.openclaw.com/) |
 | ClawHub Skills Marketplace | [clawhub.ai](https://clawhub.ai/) |
-| ecommerce-ai-roadmap Business Guide | [about.md](../../about.md) |
+| ecommerce-ai-roadmap Business Guide | [about.md](https://github.com/kangise/ecommerce-ai-roadmap) |
 | F4 Automation & Agents | [f4-agent-automation.md](f4-agent-automation.md) |
 
 ---

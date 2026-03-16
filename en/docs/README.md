@@ -11,4 +11,4 @@ This directory contains detailed documentation for the ecommerce-ai-roadmap proj
 
 ## Contributing to Documentation
 
-Please refer to the main project's [Contributing Guide](../CONTRIBUTING.md) for how to contribute documentation.
+Please refer to the main project's [Contributing Guide](../../CONTRIBUTING.md) for how to contribute documentation.

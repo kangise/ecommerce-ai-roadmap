@@ -176,7 +176,7 @@ We are actively seeking real-world cross-border e-commerce AI project cases! If 
 
 **Technical References:**
 -  [Technical Implementation Guide](technical-guidelines.md) — Architecture patterns, performance benchmarks, and best practices
-- 🛠️ [Contributing Guide](../CONTRIBUTING.md) — Detailed contribution process and formatting requirements
+- 🛠️ [Contributing Guide](../../CONTRIBUTING.md) — Detailed contribution process and formatting requirements
 
 **How to Contribute:**
 - **[Submit a Case Study](https://github.com/kangise/ecommerce-ai-roadmap/issues/new?template=case_study_submission.md)** — Use our dedicated template
@@ -206,4 +206,4 @@ We also welcome other forms of contributions:
 
 ---
 
-**Case Study Contributions**: If you have a new case study to share, please use our [Case Study Submission Template](https://github.com/kangise/ecommerce-ai-roadmap/issues/new?template=case_study_submission.md) or refer to the [Contributing Guide](../CONTRIBUTING.md) for the detailed process.
+**Case Study Contributions**: If you have a new case study to share, please use our [Case Study Submission Template](https://github.com/kangise/ecommerce-ai-roadmap/issues/new?template=case_study_submission.md) or refer to the [Contributing Guide](../../CONTRIBUTING.md) for the detailed process.

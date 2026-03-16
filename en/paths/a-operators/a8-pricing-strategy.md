@@ -509,7 +509,7 @@ US 站 → JP 站定价：
 劣势：需要技术能力，需要维护
 ```
 
-> 📎 **Related Reading**: [B1 Python Data Analysis](../b-developers/b1-python-data.md) — Python data analysis fundamentals · [F5 RPA Automation](../0-foundations/f5-rpa-automation.md) — Building automation tools
+> 📎 **Related Reading**: [B1 Python Data Analysis](../b-developers/b1-data-pipeline.md) — Python data analysis fundamentals · [F5 RPA Automation](../0-foundations/f5-rpa-automation.md) — Building automation tools
 
 ---
 
