@@ -40,7 +40,7 @@ A team AI capability assessment report and prioritized implementation plan. Afte
 
 ## 1. AI Implementation Methodology: Think Before You Act
 
-> 📎 **Related Reading**: [AI Application Landscape](../0-foundations/ai-landscape.md) — See the AI Landscape for maturity levels across operational areas · [Platform Comparison](../d-platforms/platform-comparison.md) — See Platform Comparison for AI maturity and prioritization by platform.
+> 📎 **Related Reading**: [AI Application Landscape](../0-foundations/ai-landscape.md#ai-application-landscape-assessment-ai-application-landscape-for-cross-border-e-commerce) — See the AI Landscape for maturity levels across operational areas · [Platform Comparison](../d-platforms/platform-comparison.md#31-ai-application-maturity-by-platform) — See Platform Comparison for AI maturity and prioritization by platform.
 
 ### 1.1 AI Is Not a Silver Bullet
 

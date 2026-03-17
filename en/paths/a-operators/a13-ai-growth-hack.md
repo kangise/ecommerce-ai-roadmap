@@ -89,7 +89,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ## 2. Phase 1: AI Product Selection & Market Validation (0→1)
 
-> 📎 **Detailed Methodology**: [A1 Product Selection & Market Research](a1-product-research.md)
+> 📎 **Detailed Methodology**: [A1 Product Selection & Market Research](a1-product-research.md#1-product-research-methodology-the-fundamentals-before-ai)
 
 ### 2.1 AI Product Selection: Three-Step Method
 
@@ -149,7 +149,7 @@ Step 3: AI 差异化定位（1 天）
 
 ## 3. Phase 2: AI Rapid Listing & Cold Start (1→10)
 
-> 📎 **Detailed Methodology**: [A2 Listing Optimization](a2-listing-optimization.md) · [A7 Visual Content](a7-visual-content.md)
+> 📎 **Detailed Methodology**: [A2 Listing Optimization](a2-listing-optimization.md#1-listing-methodology-the-fundamentals-before-ai) · [A7 Visual Content](a7-visual-content.md#1-why-ai-visual-content-is-essential-in-2026)
 
 ### 3.1 AI Rapid Listing Workflow (From Zero to Live in 1 Day)
 
@@ -196,7 +196,7 @@ Hour 7-8: AI 预埋 Q&A + Review 策略
 
 ## 4. Phase 3: AI Traffic Explosion & Conversion Optimization (10→100)
 
-> 📎 **Detailed Methodology**: [A3 Advertising Optimization](a3-advertising.md) · [A8 Pricing Strategy](a8-pricing-strategy.md) · [A9 SEO/GEO](a9-seo-geo.md)
+> 📎 **Detailed Methodology**: [A3 Advertising Optimization](a3-advertising.md#a3-advertising-optimization) · [A8 Pricing Strategy](a8-pricing-strategy.md#2-dynamic-pricing-methodology) · [A9 SEO/GEO](a9-seo-geo.md#1-from-seo-to-geo)
 
 ### 4.1 AI Advertising Optimization Flywheel
 
@@ -274,7 +274,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ## 5. Phase 4: AI Multi-Platform Replication & Scaling (100→1000)
 
-> 📎 **Detailed Methodology**: [D3 Cross-Platform Strategy](../d-platforms/cross-platform-strategy.md) · [Path D All Platform Guides](../d-platforms/)
+> 📎 **Detailed Methodology**: [D3 Cross-Platform Strategy](../d-platforms/cross-platform-strategy.md#53-cross-platform-retargeting-converting-traffic-across-all-three-platforms) · [Path D All Platform Guides](../d-platforms/)
 
 ### 5.1 AI Multi-Platform Expansion Matrix
 
@@ -335,7 +335,7 @@ Priority 4: 国际市场（EU/JP/拉美/韩国）
 
 ## 6. Phase 5: AI Brand Moat & Long-Term Barriers
 
-> 📎 **Detailed Methodology**: [A10 Brand Building](a10-brand-building.md) · [A12 Intellectual Property](a12-ip-protection.md)
+> 📎 **Detailed Methodology**: [A10 Brand Building](a10-brand-building.md#a10-ai-brand-building) · [A12 Intellectual Property](a12-ip-protection.md#a12-ai-intellectual-property-protection)
 
 ### 6.1 AI Brand Moat: Four-Layer Model
 

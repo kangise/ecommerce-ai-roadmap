@@ -90,7 +90,7 @@ Based on industry best practices ([Trendos](https://www.trendos.io/blog/ecommerc
 
 ### 2.2 AI Search Visibility Intelligence
 
-> 📎 **Detailed Methodology**: [A9 SEO/GEO](../a-operators/a9-seo-geo.md) — See A9 for GEO optimization methodology
+> 📎 **Detailed Methodology**: [A9 SEO/GEO](../a-operators/a9-seo-geo.md#1-from-seo-to-geo) — See A9 for GEO optimization methodology
 
 ```
 AI Search Visibility Competitor Comparison Test:

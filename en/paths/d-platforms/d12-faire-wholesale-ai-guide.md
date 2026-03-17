@@ -99,7 +99,7 @@ Every uncreated Collection = a search result where you can't be found.
 
 ### 2.3 Brand Story AI Generation (Based on Faire Best Practices)
 
-> 📎 **Related Reading**: [D1 Shopify](shopify-ai-guide.md) — Brand building also references D1 Shopify; DTC brand strategy and brand story methodology can be reused.
+> 📎 **Related Reading**: [D1 Shopify](shopify-ai-guide.md#15-shopify-advanced-advertising-ai-driven-full-funnel-strategy) — Brand building also references D1 Shopify; DTC brand strategy and brand story methodology can be reused.
 
 Faire officially recommends brand stories focus on USP (Unique Selling Proposition), not personal experiences. Retailers don't need your founding story — they need to know why your product will sell well in their store.
 
@@ -169,7 +169,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ### 2.5 Wholesale Pricing Deep Strategy
 
-> 📎 **Related Reading**: [A1 Product Research & Market Analysis](../a-operators/a1-product-research.md) — Product selection and pricing methodology from A1; market research framework can help determine wholesale pricing strategy.
+> 📎 **Related Reading**: [A1 Product Research & Market Analysis](../a-operators/a1-product-research.md#1-product-research-methodology-the-fundamentals-before-ai) — Product selection and pricing methodology from A1; market research framework can help determine wholesale pricing strategy.
 
 Faire's fee structure ([B2Bridge](https://b2bridge.io/blog/faire-wholesale-pricing/)):
 

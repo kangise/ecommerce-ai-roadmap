@@ -198,7 +198,7 @@ The Xiaohongshu cover determines 80% of click-through rate:
 
 ## 4. KOL/KOC Collaboration AI Methodology
 
-> 📎 **Related Reading**: [E1 Instagram](e1-instagram-facebook-ai-guide.md) — Refer to E1 for Instagram influencer collaboration methodology. Influencer screening scoring models and Creative Brief templates can be cross-referenced.
+> 📎 **Related Reading**: [E1 Instagram](e1-instagram-facebook-ai-guide.md#influencer-types-and-collaboration-models) — Refer to E1 for Instagram influencer collaboration methodology. Influencer screening scoring models and Creative Brief templates can be cross-referenced.
 
 ### 4.1 Xiaohongshu Influencer Tiers
 
@@ -274,7 +274,7 @@ The Xiaohongshu cover determines 80% of click-through rate:
 
 ### 6.2 Content Localization Strategy
 
-> 📎 **Related Reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md) — Refer to A2 for multi-language localization methodology. Cross-border brand content localization frameworks are reusable.
+> 📎 **Related Reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md#1-listing-methodology-the-fundamentals-before-ai) — Refer to A2 for multi-language localization methodology. Cross-border brand content localization frameworks are reusable.
 
 > **Core Principle**: It's not translation — it's re-creation.
 

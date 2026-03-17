@@ -97,7 +97,7 @@ These scenarios are technically feasible but not production-ready — suitable f
 
 ### Product Selection & Market Research -- Maturity 3/5
 
-> 📎 **Related Reading**: [A1 Product Selection & Market Insights](../a-operators/a1-product-research.md) — See A1 for hands-on product selection with AI
+> 📎 **Related Reading**: [A1 Product Selection & Market Insights](../a-operators/a1-product-research.md#a1-product-research-market-insights) — See A1 for hands-on product selection with AI
 
 Before (Without AI):
 ```
@@ -157,7 +157,7 @@ POV: Don't let AI make the "should we do this product or not" decision for you. 
 
 ### Listing Copywriting -- Maturity 5/5
 
-> 📎 **Related Reading**: [A2 Listing & Content Creation](../a-operators/a2-listing-optimization.md) — See A2 for hands-on Listing optimization
+> 📎 **Related Reading**: [A2 Listing & Content Creation](../a-operators/a2-listing-optimization.md#a2-listing-content-creation) — See A2 for hands-on Listing optimization
 
 Before (Without AI):
 ```
@@ -219,7 +219,7 @@ POV: The most mature AI use case — industry standard. But the biggest risk is 
 
 ### Advertising Management & Optimization -- Maturity 4/5
 
-> 📎 **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md) — See A3 for hands-on ad optimization
+> 📎 **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md#a3-advertising-optimization) — See A3 for hands-on ad optimization
 
 Before (Without AI):
 ```
@@ -284,7 +284,7 @@ POV: AI's biggest value isn't "adjusting bids for you" — it's "helping you dis
 
 ### Customer Service & After-Sales -- Maturity 4/5
 
-> 📎 **Related Reading**: [A4 Customer Service & After-Sales](../a-operators/a4-customer-service.md) — See A4 for hands-on customer service AI
+> 📎 **Related Reading**: [A4 Customer Service & After-Sales](../a-operators/a4-customer-service.md#a4-customer-service-after-sales) — See A4 for hands-on customer service AI
 
 Before (Without AI):
 ```
@@ -605,7 +605,7 @@ POV: Inventory forecasting is a classic case of "high hype but limited real-worl
 
 ### Efficiency Changes Overview
 
-> 📎 **Related Reading**: [Platform Landscape Comparison](../d-platforms/platform-comparison.md) — AI application maturity comparison across platforms
+> 📎 **Related Reading**: [Platform Landscape Comparison](../d-platforms/platform-comparison.md#31-ai-application-maturity-by-platform) — AI application maturity comparison across platforms
 
 | Operational Area | Maturity | Before Time | After Time | Efficiency Gain | AI's Biggest Value |
 |----------|--------|-----------|----------|---------|-------------|

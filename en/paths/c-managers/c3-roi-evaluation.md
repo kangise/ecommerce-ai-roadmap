@@ -46,7 +46,7 @@ After completing this module, you'll be able to:
 
 ## 1. ROI Evaluation Methodology
 
-> 📎 **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md) — See A3 for hands-on ROAS calculation and optimization methodology. · [AI Application Landscape](../0-foundations/ai-landscape.md) — See AI Landscape for the AI tool ROI quantification framework.
+> 📎 **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md#2-ai-tool-landscape-what-to-use-for-ads) — See A3 for hands-on ROAS calculation and optimization methodology. · [AI Application Landscape](../0-foundations/ai-landscape.md#ai-application-landscape-assessment-ai-application-landscape-for-cross-border-e-commerce) — See AI Landscape for the AI tool ROI quantification framework.
 
 ### 1.1 Why Most AI ROI Evaluations Are Unreliable
 

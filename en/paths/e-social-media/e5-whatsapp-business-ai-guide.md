@@ -49,7 +49,7 @@
 
 ### 1.2 Core Market Analysis
 
-> 📎 **Related Reading**: [D7 Mercado Libre](../d-platforms/d7-mercado-libre-ai-guide.md) — Refer to D7 for Latin American e-commerce. WhatsApp is an essential customer service channel in Brazil and Mexico.
+> 📎 **Related Reading**: [D7 Mercado Libre](../d-platforms/d7-mercado-libre-ai-guide.md#d7-mercado-libre-latin-america-e-commerce-ai-guide) — Refer to D7 for Latin American e-commerce. WhatsApp is an essential customer service channel in Brazil and Mexico.
 
 | Market | WhatsApp Penetration | E-commerce Use Case |
 |--------|---------------------|-------------------|
@@ -214,7 +214,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ## 4. After-Sales Automation
 
-> 📎 **Related Reading**: [A4 Customer Service and After-Sales](../a-operators/a4-customer-service.md) — Refer to A4 for general customer service methodology. After-sales automation and customer satisfaction management frameworks are reusable for WhatsApp.
+> 📎 **Related Reading**: [A4 Customer Service and After-Sales](../a-operators/a4-customer-service.md#a4-customer-service-after-sales) — Refer to A4 for general customer service methodology. After-sales automation and customer satisfaction management frameworks are reusable for WhatsApp.
 
 ### 4.1 AI Sentiment Detection and Escalation
 

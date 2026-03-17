@@ -394,7 +394,7 @@ Telling AI "what NOT to do" is just as important as telling it "what to do."
 
 ## 4. Cross-Border E-Commerce Prompt Template Library (20+)
 
-> 📎 **Related Reading**: [A2 Listing & Content Creation](../a-operators/a2-listing-optimization.md) — See A2 for detailed e-commerce Listing prompt templates
+> 📎 **Related Reading**: [A2 Listing & Content Creation](../a-operators/a2-listing-optimization.md#a2-listing-content-creation) — See A2 for detailed e-commerce Listing prompt templates
 
 > The full standardized templates are stored in the [prompts/](../../prompts/) directory. This section provides quick-reference versions.
 
@@ -486,7 +486,7 @@ Telling AI "what NOT to do" is just as important as telling it "what to do."
 
 ### 4.3 Advertising & Marketing (4 Templates)
 
-> 📎 **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md) — See A3 for detailed advertising analysis prompt templates
+> 📎 **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md#3-prompt-template-library-advertising-specific) — See A3 for detailed advertising analysis prompt templates
 
 **Template 11: Search Term Report Analysis**
 ```
@@ -680,7 +680,7 @@ Telling AI "what NOT to do" is just as important as telling it "what to do."
 
 ## 6. Advanced: From Prompt Engineering to Context Engineering
 
-> 📎 **Related Reading**: [D6 Southeast Asia AI Guide](../d-platforms/d6-southeast-asia-ai-guide.md) — See D6 for multi-language prompt applications
+> 📎 **Related Reading**: [D6 Southeast Asia AI Guide](../d-platforms/d6-southeast-asia-ai-guide.md#31-southeast-asia-multi-language-challenge) — See D6 for multi-language prompt applications
 
 ### 6.1 The 2026 Trend: Context Engineering
 

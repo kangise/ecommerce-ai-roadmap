@@ -17,7 +17,7 @@
 
 ### 1.1 AliExpress vs Temu
 
-> 📎 **Related Reading**: [D5 Temu Seller Strategy](d5-temu-seller-guide.md) — Detailed Temu analysis in D5, including fully managed/semi-managed model comparison and onboarding decision framework.
+> 📎 **Related Reading**: [D5 Temu Seller Strategy](d5-temu-seller-guide.md#semi-managed-vs-fully-managed-profit-comparison-model) — Detailed Temu analysis in D5, including fully managed/semi-managed model comparison and onboarding decision framework.
 
 | Dimension | AliExpress | Temu |
 |-----------|-----------|------|
@@ -81,7 +81,7 @@ AliExpress Choice is AliExpress's answer to Temu's fully managed model:
 
 ### 3.2 Multi-Language Listing Optimization
 
-> 📎 **Related Reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md) — Multi-language localization methodology from A2; Listing optimization framework can be adapted for AliExpress multi-language versions.
+> 📎 **Related Reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md#1-listing-methodology-the-fundamentals-before-ai) — Multi-language localization methodology from A2; Listing optimization framework can be adapted for AliExpress multi-language versions.
 
 AliExpress covers the globe — multi-language is a core need. AliExpress ranks among the top in Southern European markets (Spain, France, Portugal) ([Marketplace Universe](https://marketplace-universe.com/aliexpress-europe/)), making these priority optimization targets.
 

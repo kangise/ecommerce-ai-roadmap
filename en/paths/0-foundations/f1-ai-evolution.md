@@ -312,7 +312,7 @@ It's like how Amazon Listing Bullet Points are numbered — Bullet 1 and Bullet 
 
 ## 4. Large Language Models: From GPT to Multimodal
 
-> 📎 **Related Reading**: [F2 Prompt Engineering](f2-prompt-engineering.md) — See F2 for hands-on Prompt Engineering
+> 📎 **Related Reading**: [F2 Prompt Engineering](f2-prompt-engineering.md#6-advanced-from-prompt-engineering-to-context-engineering) — See F2 for hands-on Prompt Engineering
 
 ### 4.1 The GPT Series Evolution
 
@@ -505,7 +505,7 @@ A: Requires multi-step calculation:
 
 ## 6. The Agent Era: From Conversation to Action
 
-> 📎 **Related Reading**: [F4 Agent Automation](f4-agent-automation.md) — See F4 for hands-on Agent implementation
+> 📎 **Related Reading**: [F4 Agent Automation](f4-agent-automation.md#what-youll-learn-in-this-module) — See F4 for hands-on Agent implementation
 
 ### 6.1 What Is an AI Agent
 

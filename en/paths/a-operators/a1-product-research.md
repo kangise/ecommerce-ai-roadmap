@@ -47,7 +47,7 @@ After completing this module, you'll be able to:
 
 ## 1. Product Research Methodology: The Fundamentals Before AI
 
-> 📎 **Related Reading**: [AI Application Landscape](../0-foundations/ai-landscape.md) — AI maturity assessment for product research · [D4 Walmart AI Guide](../d-platforms/d4-walmart-ai-guide.md) — Walmart category opportunity analysis and competition assessment covered in D4 · [E4 Pinterest AI Guide](../e-social-media/e4-pinterest-ai-guide.md) — Pinterest trend data for validating product research directions covered in E4
+> 📎 **Related Reading**: [AI Application Landscape](../0-foundations/ai-landscape.md#ai-application-landscape-assessment-ai-application-landscape-for-cross-border-e-commerce) — AI maturity assessment for product research · [D4 Walmart AI Guide](../d-platforms/d4-walmart-ai-guide.md#61-walmart-category-opportunity-analysis) — Walmart category opportunity analysis and competition assessment covered in D4 · [E4 Pinterest AI Guide](../e-social-media/e4-pinterest-ai-guide.md#77-pinterest-data-analysis-deep-dive) — Pinterest trend data for validating product research directions covered in E4
 
 ### 1.1 First Principles of Product Research
 

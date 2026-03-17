@@ -60,7 +60,7 @@
 
 ## 2. Pinterest SEO Methodology
 
-> 📎 **Related Reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md) — Refer to A2 for general SEO methodology. Keyword research and content optimization frameworks are reusable for Pinterest.
+> 📎 **Related Reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md#1-listing-methodology-the-fundamentals-before-ai) — Refer to A2 for general SEO methodology. Keyword research and content optimization frameworks are reusable for Pinterest.
 
 ### 2.1 Pinterest Search Ranking Factors
 
@@ -180,7 +180,7 @@ Idea Pins are Pinterest's multi-page content format, ideal for tutorials and ste
 
 ## 4. Pinterest Shopping Ads
 
-> 📎 **Related Reading**: [E1 Instagram](e1-instagram-facebook-ai-guide.md) — Refer to E1 for Meta Ads comparison. Pinterest Ads and Meta Ads budget allocation strategies can be cross-referenced.
+> 📎 **Related Reading**: [E1 Instagram](e1-instagram-facebook-ai-guide.md#e1-instagram-facebook-ai-operations-guide-meta-ecosystem-ai-playbook) — Refer to E1 for Meta Ads comparison. Pinterest Ads and Meta Ads budget allocation strategies can be cross-referenced.
 
 ### 4.1 Ad Types
 
@@ -193,7 +193,7 @@ Idea Pins are Pinterest's multi-page content format, ideal for tutorials and ste
 
 ### 4.2 Product Catalog Optimization
 
-> 📎 **Related Reading**: [D1 Shopify](../d-platforms/shopify-ai-guide.md) — Pinterest natively integrates with Shopify. Refer to D1 for Product Catalog syncing and Shopping setup.
+> 📎 **Related Reading**: [D1 Shopify](../d-platforms/shopify-ai-guide.md#10-automating-shopify-operations-with-openclaw) — Pinterest natively integrates with Shopify. Refer to D1 for Product Catalog syncing and Shopping setup.
 
 Pinterest Shopping relies on Product Catalog (natively integrated with Shopify):
 

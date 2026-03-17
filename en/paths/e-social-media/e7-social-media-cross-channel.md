@@ -43,7 +43,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ### 1.1 Core Content → Multi-Platform Variants
 
-> 📎 **Related Reading**: [E1 Instagram](e1-instagram-facebook-ai-guide.md) and [E2 YouTube](e2-youtube-ai-guide.md) — Refer to E1 (Instagram Reels/Carousel) and E2 (YouTube long-form/Shorts) for detailed platform-specific content creation methodology.
+> 📎 **Related Reading**: [E1 Instagram](e1-instagram-facebook-ai-guide.md#3-reels-ai-content-creation-methodology) and [E2 YouTube](e2-youtube-ai-guide.md#3-long-form-video-ai-content-creation) — Refer to E1 (Instagram Reels/Carousel) and E2 (YouTube long-form/Shorts) for detailed platform-specific content creation methodology.
 
 ```
 一个产品评测的核心素材可以变成：
@@ -105,7 +105,7 @@ Reddit：使用体验分享帖
 
 ### 2.1 Attribution Tracking Methods
 
-> 📎 **Related Reading**: [D3 Cross-Platform Strategy](../d-platforms/cross-platform-strategy.md) — Refer to D3 for cross-platform strategy. Multi-platform attribution and data integration methodologies complement each other.
+> 📎 **Related Reading**: [D3 Cross-Platform Strategy](../d-platforms/cross-platform-strategy.md#4-cross-platform-data-synergy) — Refer to D3 for cross-platform strategy. Multi-platform attribution and data integration methodologies complement each other.
 
 | Method | Applicable Platforms | What It Tracks |
 |--------|---------------------|---------------|
@@ -185,7 +185,7 @@ utm_content = 具体内容标识
 
 ## 4. Budget Allocation Framework
 
-> 📎 **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md) — Refer to A3 for advertising budget optimization methodology. ROAS analysis and budget allocation frameworks are reusable for cross-channel budget planning.
+> 📎 **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md#34-ad-budget-allocation-optimization) — Refer to A3 for advertising budget optimization methodology. ROAS analysis and budget allocation frameworks are reusable for cross-channel budget planning.
 
 ### 4.1 CAC Comparison by Channel (Reference Values)
 

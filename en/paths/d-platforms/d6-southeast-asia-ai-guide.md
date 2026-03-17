@@ -152,7 +152,7 @@ Shopee Search Ranking Factors:
 
 ## 3. Multi-Language Listing AI Optimization
 
-> 📎 **Related Reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md) — Multi-language localization general methodology from A2; core optimization framework can be reused across Southeast Asian language versions.
+> 📎 **Related Reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md#1-listing-methodology-the-fundamentals-before-ai) — Multi-language localization general methodology from A2; core optimization framework can be reused across Southeast Asian language versions.
 
 ### 3.1 Southeast Asia Multi-Language Challenge
 
@@ -232,7 +232,7 @@ E. 本地化注意事项
 
 > **COD (Cash on Delivery) Special Reminder**: Indonesia, Vietnam, and the Philippines have extremely high COD rates (40-60%). COD order refusal rates are also high (5-15%). You need to factor COD refusal costs into your pricing.
 
-> 📎 **Related Reading**: [E5 WhatsApp Business](../e-social-media/e5-whatsapp-business-ai-guide.md) — Southeast Asia customer service can be combined with WhatsApp Business, especially for the Indonesian and Philippine markets.
+> 📎 **Related Reading**: [E5 WhatsApp Business](../e-social-media/e5-whatsapp-business-ai-guide.md#e5-whatsapp-business-ai-customer-service-and-marketing-guide) — Southeast Asia customer service can be combined with WhatsApp Business, especially for the Indonesian and Philippine markets.
 
 ---
 
@@ -248,7 +248,7 @@ E. 本地化注意事项
 
 **Shopee Ads Optimization Prompt:**
 
-> 📎 **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md) — General ad optimization methodology from A3; search term analysis framework can be reused for Shopee Ads.
+> 📎 **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md#31-search-term-report-analysis) — General ad optimization methodology from A3; search term analysis framework can be reused for Shopee Ads.
 
 ```
 你是一个 Shopee Ads 优化专家。
@@ -268,7 +268,7 @@ E. 本地化注意事项
 
 ### 4.2 Southeast Asia Livestream Selling Deep Dive
 
-> 📎 **Related Reading**: [D2 TikTok Shop](tiktok-shop-ai-guide.md) — Livestream script methodology from D2 TikTok Shop can be adapted for Shopee Live and Lazada Live.
+> 📎 **Related Reading**: [D2 TikTok Shop](tiktok-shop-ai-guide.md#41-why-live-is-the-primary-gmv-driver-for-tiktok-shop) — Livestream script methodology from D2 TikTok Shop can be adapted for Shopee Live and Lazada Live.
 
 Southeast Asia has much higher livestream penetration than the West — it's a critical sales channel:
 

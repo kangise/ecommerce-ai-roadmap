@@ -106,7 +106,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ## 4. German Listing AI Optimization
 
-> 📎 **Related Reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md) — General Listing optimization methodology from A2; core optimization framework can be adapted for German Listings.
+> 📎 **Related Reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md#42-listing-optimization-sop-improving-existing-listings) — General Listing optimization methodology from A2; core optimization framework can be adapted for German Listings.
 
 ```
 你是一个德国电商本地化专家。
@@ -130,7 +130,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ## 5. European Compliance Requirements (Detailed)
 
-> 📎 **Related Reading**: [A6 Compliance & Risk Management](../a-operators/a6-compliance.md) — Detailed multi-market compliance methodology from A6; CE certification, EPR, VAT, and other general compliance frameworks can be directly reused.
+> 📎 **Related Reading**: [A6 Compliance & Risk Management](../a-operators/a6-compliance.md#a6-compliance-risk-management) — Detailed multi-market compliance methodology from A6; CE certification, EPR, VAT, and other general compliance frameworks can be directly reused.
 
 This is the biggest barrier to entering the European market — must be completed before onboarding:
 

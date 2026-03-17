@@ -104,7 +104,7 @@ Using a "portable neck fan" as an example:
 
 ## 3. Reels AI Content Creation Methodology
 
-> 📎 **Related Reading**: [D2 TikTok Shop](../d-platforms/tiktok-shop-ai-guide.md) — Refer to D2 for TikTok short video methodology. The same footage can be adapted to different platform styles.
+> 📎 **Related Reading**: [D2 TikTok Shop](../d-platforms/tiktok-shop-ai-guide.md#21-the-viral-video-structure-formula-for-tiktok) — Refer to D2 for TikTok short video methodology. The same footage can be adapted to different platform styles.
 
 ### 3.1 Instagram Reels Content Matrix
 
@@ -303,7 +303,7 @@ Carousel (swipeable posts) has the highest save rate of any Instagram content fo
 
 ## 5. Instagram Shopping Deep Dive
 
-> 📎 **Related Reading**: [D1 Shopify](../d-platforms/shopify-ai-guide.md) — Instagram Shopping integrates deeply with Shopify. Refer to D1 for Product Catalog syncing and DTC strategy.
+> 📎 **Related Reading**: [D1 Shopify](../d-platforms/shopify-ai-guide.md#10-automating-shopify-operations-with-openclaw) — Instagram Shopping integrates deeply with Shopify. Refer to D1 for Product Catalog syncing and DTC strategy.
 
 ### 5.1 Instagram Shopping Feature Overview
 
@@ -382,7 +382,7 @@ Shoppable Reels (Reels with product tags) are the highest-converting Instagram e
 
 ## 6. Meta Advantage+ AI Advertising Deep Dive
 
-> 📎 **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md) — Refer to A3 for general advertising optimization methodology. ROAS analysis and budget allocation frameworks can be reused for Meta Ads.
+> 📎 **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md#34-ad-budget-allocation-optimization) — Refer to A3 for general advertising optimization methodology. ROAS analysis and budget allocation frameworks can be reused for Meta Ads.
 
 ### 6.1 Advantage+ Ad Product Matrix
 
@@ -858,7 +858,7 @@ Feed/Reels 推荐算法：
 
 ### Influencer Types and Collaboration Models
 
-> 📎 **Related Reading**: [E3 Xiaohongshu](e3-xiaohongshu-ai-guide.md) — Refer to E3 for Chinese market influencer collaboration (KOL/KOC) methodology. Influencer screening models can be cross-referenced.
+> 📎 **Related Reading**: [E3 Xiaohongshu](e3-xiaohongshu-ai-guide.md#4-kolkoc-collaboration-ai-methodology) — Refer to E3 for Chinese market influencer collaboration (KOL/KOC) methodology. Influencer screening models can be cross-referenced.
 
 | Influencer Type | Followers | Collaboration Cost | Best For | Expected ROI |
 |----------------|----------|-------------------|----------|-------------|

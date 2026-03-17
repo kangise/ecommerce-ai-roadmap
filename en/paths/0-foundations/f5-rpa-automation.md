@@ -196,7 +196,7 @@ Or use n8n Cloud (free 14-day trial): https://n8n.io
 [Gmail] 发送给团队
 ```
 
-> 📎 **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md) — Methodology for search term report analysis, which can serve as a Prompt template for AI analysis.
+> 📎 **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md#31-search-term-report-analysis) — Methodology for search term report analysis, which can serve as a Prompt template for AI analysis.
 
 ---
 

@@ -195,7 +195,7 @@ Layer 3（Agent）：
 
 ## 3. MCP Protocol Deep Dive
 
-> 📎 **Full Toolkit**: [🔌 Awesome MCP & Agent Toolkit](../../docs/awesome-mcp-agents.md) — A complete list of e-commerce MCP Servers, Agent frameworks, and external Awesome Lists. Includes 30+ MCP Servers for Shopify/Amazon/Google Ads/Meta Ads and 7 major Agent frameworks.
+> 📎 **Full Toolkit**: [🔌 Awesome MCP & Agent Toolkit](../../docs/awesome-mcp-agents.md#awesome-mcp-servers-ai-agent-tools-awesome-mcp-agent-tools-for-e-commerce) — A complete list of e-commerce MCP Servers, Agent frameworks, and external Awesome Lists. Includes 30+ MCP Servers for Shopify/Amazon/Google Ads/Meta Ads and 7 major Agent frameworks.
 
 ### 3.1 Core Concepts of MCP
 
@@ -330,7 +330,7 @@ Content rephrased for compliance with licensing restrictions. Source: [MCP vs A2
 
 ### 4.3 LangGraph: The Most Flexible Agent Framework
 
-> 📎 **Related Reading**: [B4 AI Agents & Workflow Automation](../b-developers/b4-agent-workflow.md) — Hands-on Agent system building covered in B4
+> 📎 **Related Reading**: [B4 AI Agents & Workflow Automation](../b-developers/b4-agent-workflow.md#b4-ai-agent-workflow-automation) — Hands-on Agent system building covered in B4
 
 LangGraph is an Agent framework from the LangChain team. Its core idea is modeling Agent behavior as a **State Graph**.
 
@@ -454,7 +454,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [OpenClaw
 
 ## 5. 10 Cross-Border E-commerce Agent Scenarios
 
-> 📎 **Related Reading**: [D2 TikTok Shop AI Guide](../d-platforms/tiktok-shop-ai-guide.md) — TikTok Shop automation operations covered in D2
+> 📎 **Related Reading**: [D2 TikTok Shop AI Guide](../d-platforms/tiktok-shop-ai-guide.md#12-automating-tiktok-shop-operations-with-openclaw) — TikTok Shop automation operations covered in D2
 
 ### 5.1 Scenario Overview
 

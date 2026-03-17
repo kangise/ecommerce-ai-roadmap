@@ -262,7 +262,7 @@ Shopify supports product page A/B testing through apps. AI can:
 
 ## 4. Advertising & Customer Acquisition
 
-> 📎 **Related Reading**: [E1 Instagram/Facebook AI Guide](../e-social-media/e1-instagram-facebook-ai-guide.md) — Instagram Shopping and Shopify integration details in E1 · [D4 Walmart AI Guide](d4-walmart-ai-guide.md) — Amazon→Walmart migration methodology in D4
+> 📎 **Related Reading**: [E1 Instagram/Facebook AI Guide](../e-social-media/e1-instagram-facebook-ai-guide.md#e1-instagram-facebook-ai-operations-guide-meta-ecosystem-ai-playbook) — Instagram Shopping and Shopify integration details in E1 · [D4 Walmart AI Guide](d4-walmart-ai-guide.md#5-amazon-walmart-migration-methodology) — Amazon→Walmart migration methodology in D4
 
 > For Amazon advertising optimization, see [A3 Advertising Optimization](../a-operators/a3-advertising.md). Shopify's advertising ecosystem is completely different — the core is off-platform advertising via Facebook/Google/TikTok.
 
@@ -368,7 +368,7 @@ Please output:
 
 ## 5. Email Marketing Automation
 
-> 📎 **Related Reading**: [D8 Rakuten Japan AI Guide](d8-rakuten-japan-ai-guide.md) — Rakuten R-Mail email marketing comparison in D8
+> 📎 **Related Reading**: [D8 Rakuten Japan AI Guide](d8-rakuten-japan-ai-guide.md#d8-rakuten-japan-e-commerce-ai-guide) — Rakuten R-Mail email marketing comparison in D8
 
 > This is the biggest AI application difference between Shopify and Amazon — Amazon sellers have virtually no ability to do email marketing, while Shopify sellers have full access to customer email data.
 
@@ -845,7 +845,7 @@ After completing the above, you've mastered the core AI operations skills for Sh
 
 ## 14. Shopify SEO Deep Dive (AI-Driven)
 
-> 📎 **Related Reading**: [E4 Pinterest AI Guide](../e-social-media/e4-pinterest-ai-guide.md) — Pinterest SEO and Shopify integration details in E4
+> 📎 **Related Reading**: [E4 Pinterest AI Guide](../e-social-media/e4-pinterest-ai-guide.md#pitfall-1-treating-pinterest-like-social-media) — Pinterest SEO and Shopify integration details in E4
 
 ### 14.1 Shopify SEO vs Amazon SEO
 

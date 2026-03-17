@@ -43,7 +43,7 @@
 
 ### 2.2 Mercado Libre Title Optimization
 
-> 📎 **Related Reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md) — Multi-language localization general methodology from A2; Listing optimization framework can be adapted for Spanish/Portuguese.
+> 📎 **Related Reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md#1-listing-methodology-the-fundamentals-before-ai) — Multi-language localization general methodology from A2; Listing optimization framework can be adapted for Spanish/Portuguese.
 
 Mercado Libre title format differs from Amazon:
 
@@ -113,7 +113,7 @@ Mercado Libre title format differs from Amazon:
 
 ### 3.3 Mercado Ads Advertising System
 
-> 📎 **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md) — General ad optimization methodology from A3; CPC ad optimization framework can be reused for Mercado Ads.
+> 📎 **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md#2-ai-tool-landscape-what-to-use-for-ads) — General ad optimization methodology from A3; CPC ad optimization framework can be reused for Mercado Ads.
 
 | Ad Type | Description | Billing |
 |---------|-------------|---------|
@@ -214,7 +214,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [Mornings
 
 ### 4.3 Latin America Market-Specific Challenges
 
-> 📎 **Related Reading**: [A6 Compliance & Risk Management](../a-operators/a6-compliance.md) — Multi-market compliance methodology from A6; Latin American tax and certification requirements can reference the general compliance framework.
+> 📎 **Related Reading**: [A6 Compliance & Risk Management](../a-operators/a6-compliance.md#1-compliance-methodology-the-fundamentals-before-ai) — Multi-market compliance methodology from A6; Latin American tax and certification requirements can reference the general compliance framework.
 
 | Challenge | Description | Response Strategy |
 |-----------|-------------|-------------------|

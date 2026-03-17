@@ -51,7 +51,7 @@ After completing this module, you'll be able to:
 
 ### 1.1 Amazon Search Algorithm Evolution: From A9 to COSMO + Rufus
 
-> 📎 **Related Reading**: [AI Application Landscape](../0-foundations/ai-landscape.md) — Full landscape analysis of Rufus/COSMO's impact on listings · [D4 Walmart AI Guide](../d-platforms/d4-walmart-ai-guide.md) — Walmart Rich Media (similar to A+) covered in D4
+> 📎 **Related Reading**: [AI Application Landscape](../0-foundations/ai-landscape.md#ai-application-landscape-assessment-ai-application-landscape-for-cross-border-e-commerce) — Full landscape analysis of Rufus/COSMO's impact on listings · [D4 Walmart AI Guide](../d-platforms/d4-walmart-ai-guide.md#23-walmart-rich-media-similar-to-a-content) — Walmart Rich Media (similar to A+) covered in D4
 
 At its core, a listing is about finding the balance between "being discovered" and "being clicked and purchased." But between 2024 and 2026, Amazon's search system went through three major upgrades, and listing optimization strategies had to evolve with them:
 
@@ -295,7 +295,7 @@ If you manage 50+ SKUs or need to optimize listings in bulk, manual work is too 
 
 ### 3.2 Multilingual Localization (Not Literal Translation)
 
-> 📎 **Related Reading**: [D6 Southeast Asia AI Guide](../d-platforms/d6-southeast-asia-ai-guide.md) — 6-language localization for Southeast Asia covered in D6
+> 📎 **Related Reading**: [D6 Southeast Asia AI Guide](../d-platforms/d6-southeast-asia-ai-guide.md#d6-southeast-asia-e-commerce-ai-guide-shopee-lazada) — 6-language localization for Southeast Asia covered in D6
 
 **Why this prompt works:** It explicitly tells AI "this is not word-for-word translation" and requires AI to annotate what localization adjustments were made. Key design points:
 - "Replace with commonly searched keywords in the local market" — Literally translated keywords often aren't what local consumers actually search for

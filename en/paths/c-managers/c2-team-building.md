@@ -45,7 +45,7 @@ After completing this module, you'll have:
 
 ## 1. Training Methodology: Why Most AI Training Fails
 
-> 📎 **Related Reading**: [F2 Prompt Engineering](../0-foundations/f2-prompt-engineering.md) — See F2 for team Prompt engineering training content. · [A2 Listing & Content Creation](../a-operators/a2-listing-optimization.md) — See A2 for Listing AI workflow examples
+> 📎 **Related Reading**: [F2 Prompt Engineering](../0-foundations/f2-prompt-engineering.md#8-using-openclaw-for-prompt-management-optimization) — See F2 for team Prompt engineering training content. · [A2 Listing & Content Creation](../a-operators/a2-listing-optimization.md#a2-listing-content-creation) — See A2 for Listing AI workflow examples
 
 ### 1.1 Three Major Problems with Traditional Training
 

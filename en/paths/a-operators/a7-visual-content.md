@@ -257,7 +257,7 @@ Step 4: 文案+字幕
 └── 批量导出
 ```
 
-> 📎 **Related Reading**: [E1 Instagram Reels](../e-social-media/e1-instagram-facebook-ai-guide.md) — Reels video creation methodology · [E2 YouTube](../e-social-media/e2-youtube-ai-guide.md) — YouTube video scripts and thumbnails · [D2 TikTok Shop](../d-platforms/tiktok-shop-ai-guide.md) — TikTok short video bulk production
+> 📎 **Related Reading**: [E1 Instagram Reels](../e-social-media/e1-instagram-facebook-ai-guide.md#2-instagram-vs-tiktok-vs-youtube-content-strategy-differences) — Reels video creation methodology · [E2 YouTube](../e-social-media/e2-youtube-ai-guide.md#2-youtube-seo-methodology) — YouTube video scripts and thumbnails · [D2 TikTok Shop](../d-platforms/tiktok-shop-ai-guide.md#15-short-video-content-creation-advanced-methodology) — TikTok short video bulk production
 
 ---
 

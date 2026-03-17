@@ -50,7 +50,7 @@ After completing this module, you'll be able to:
 
 ## 1. RAG Methodology
 
-> 📎 **Related Reading**: [A4 Customer Service & After-Sales](../a-operators/a4-customer-service.md) — See A4 for RAG applications in automated customer service FAQ answering. · [F3 Knowledge Base & RAG](../0-foundations/f3-rag-knowledge.md) — See F3 for foundational RAG theory.
+> 📎 **Related Reading**: [A4 Customer Service & After-Sales](../a-operators/a4-customer-service.md#a4-customer-service-after-sales) — See A4 for RAG applications in automated customer service FAQ answering. · [F3 Knowledge Base & RAG](../0-foundations/f3-rag-knowledge.md#9-automate-knowledge-base-management-rag-monitoring-with-openclaw) — See F3 for foundational RAG theory.
 
 ### 1.1 What Is RAG
 

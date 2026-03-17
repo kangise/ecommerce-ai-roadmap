@@ -295,7 +295,7 @@ Integrated analysis reveals patterns invisible at the single-platform level.
 
 ## 5. Cross-Platform Advertising Synergy
 
-> 📎 **Related Reading**: [E7 Cross-Channel Strategy](../e-social-media/e7-social-media-cross-channel.md) — Social media attribution methodology covered in E7 · [Platform Comparison](platform-comparison.md) — Detailed platform comparison available in Platform Comparison
+> 📎 **Related Reading**: [E7 Cross-Channel Strategy](../e-social-media/e7-social-media-cross-channel.md#e7-social-media-cross-channel-strategy) — Social media attribution methodology covered in E7 · [Platform Comparison](platform-comparison.md#cross-border-e-commerce-platform-comprehensive-comparison) — Detailed platform comparison available in Platform Comparison
 
 ### 5.1 First Principles of Ad Budget Allocation
 
@@ -373,7 +373,7 @@ budget allocation will skew heavily toward Amazon, missing growth opportunities.
 
 ## 6. Inventory and Logistics Synergy
 
-> 📎 **Related Reading**: [A5 Inventory & Supply Chain](../a-operators/a5-inventory.md) — General inventory management methodology covered in A5
+> 📎 **Related Reading**: [A5 Inventory & Supply Chain](../a-operators/a5-inventory.md#a5-inventory-supply-chain) — General inventory management methodology covered in A5
 
 ### 6.1 The Core Challenge of Cross-Platform Inventory
 

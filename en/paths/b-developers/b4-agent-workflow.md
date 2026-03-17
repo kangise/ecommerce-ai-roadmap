@@ -50,9 +50,9 @@ After completing this module, you'll be able to:
 
 ## 1. Agent Methodology
 
-> 📎 **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md) — See A3 for business use cases of advertising monitoring automation. · [F4 Automation & Agents](../0-foundations/f4-agent-automation.md) — See F4 for foundational Agent theory
+> 📎 **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md#2-ai-tool-landscape-what-to-use-for-ads) — See A3 for business use cases of advertising monitoring automation. · [F4 Automation & Agents](../0-foundations/f4-agent-automation.md#f4-automation-ai-agents) — See F4 for foundational Agent theory
 >
-> 📎 **Toolbox**: [🔌 Awesome MCP & Agent Toolkit](../../docs/awesome-mcp-agents.md) — Complete list of e-commerce MCP Servers, Agent frameworks, and external resources
+> 📎 **Toolbox**: [🔌 Awesome MCP & Agent Toolkit](../../docs/awesome-mcp-agents.md#awesome-mcp-servers-ai-agent-tools-awesome-mcp-agent-tools-for-e-commerce) — Complete list of e-commerce MCP Servers, Agent frameworks, and external resources
 
 ### 1.1 What Is an AI Agent
 

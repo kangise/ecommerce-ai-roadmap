@@ -281,7 +281,7 @@ AI 基于检索内容回答：
 
 ### 4.3 RAG Use Cases in Cross-Border E-Commerce
 
-> 📎 **Related Reading**: [B3 RAG Knowledge Base System](../b-developers/b3-rag-knowledge-base.md) — See B3 for hands-on RAG system building · [A4 Customer Service & After-Sales](../a-operators/a4-customer-service.md) — See A4 for RAG applications in automated FAQ responses.
+> 📎 **Related Reading**: [B3 RAG Knowledge Base System](../b-developers/b3-rag-knowledge-base.md#42-product-faq-knowledge-base-building-a-qa-system-from-product-manuals) — See B3 for hands-on RAG system building · [A4 Customer Service & After-Sales](../a-operators/a4-customer-service.md#a4-customer-service-after-sales) — See A4 for RAG applications in automated FAQ responses.
 
 | Use Case | Knowledge Base Content | Example User Questions | Value |
 |----------|----------------------|----------------------|-------|

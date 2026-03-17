@@ -49,7 +49,7 @@ After completing this module, you'll be able to:
 
 ## 1. Customer Service Methodology: The Fundamentals Before AI
 
-> 📎 **Related Reading**: [E5 WhatsApp Business AI Guide](../e-social-media/e5-whatsapp-business-ai-guide.md) — WhatsApp AI Chatbot customer service automation covered in E5. · [D9 eBay AI Guide](../d-platforms/d9-ebay-ai-guide.md) — eBay used-item condition description AI generation covered in D9. · [E1 Instagram/Facebook AI Guide](../e-social-media/e1-instagram-facebook-ai-guide.md) — Instagram/Facebook DM and comment auto-reply strategies covered in E1.
+> 📎 **Related Reading**: [E5 WhatsApp Business AI Guide](../e-social-media/e5-whatsapp-business-ai-guide.md#e5-whatsapp-business-ai-customer-service-and-marketing-guide) — WhatsApp AI Chatbot customer service automation covered in E5. · [D9 eBay AI Guide](../d-platforms/d9-ebay-ai-guide.md#22-pre-ownedrefurbished-ai-description-generation-ebay-unique-scenario) — eBay used-item condition description AI generation covered in D9. · [E1 Instagram/Facebook AI Guide](../e-social-media/e1-instagram-facebook-ai-guide.md#e1-instagram-facebook-ai-operations-guide-meta-ecosystem-ai-playbook) — Instagram/Facebook DM and comment auto-reply strategies covered in E1.
 
 ### 1.1 First Principles of Amazon Customer Service
 

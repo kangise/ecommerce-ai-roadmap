@@ -94,7 +94,7 @@ Pre-owned and refurbished items on eBay require detailed condition descriptions 
 
 ### 2.3 eBay Pricing Strategy AI Analysis
 
-> 📎 **Related Reading**: [A1 Product Research & Market Analysis](../a-operators/a1-product-research.md) — Market research and pricing methodology from A1; competitive analysis framework can be reused for eBay pricing.
+> 📎 **Related Reading**: [A1 Product Research & Market Analysis](../a-operators/a1-product-research.md#1-product-research-methodology-the-fundamentals-before-ai) — Market research and pricing methodology from A1; competitive analysis framework can be reused for eBay pricing.
 
 eBay pricing is more complex than Amazon because of three modes: Auction, Fixed Price, and Best Offer:
 
@@ -106,7 +106,7 @@ eBay pricing is more complex than Amazon because of three modes: Auction, Fixed 
 
 ### 2.4 Promoted Listings Deep Optimization
 
-> 📎 **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md) — General ad optimization methodology from A3; ROAS analysis and keyword strategies can be reused for eBay Promoted Listings.
+> 📎 **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md#a3-advertising-optimization) — General ad optimization methodology from A3; ROAS analysis and keyword strategies can be reused for eBay Promoted Listings.
 
 eBay's ad system underwent major changes in 2026:
 

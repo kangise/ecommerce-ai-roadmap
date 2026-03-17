@@ -27,7 +27,7 @@
 
 > 💡 **Core Concept**: Product images are the #1 factor in e-commerce conversion rates. The traditional approach is hiring photographers ($500-2,000/product); the AI approach uses ComfyUI/Midjourney ($0-50/product). But AI generation isn't "one-click magic" — you need to build a repeatable, controllable, brand-consistent pipeline.
 
-> 📎 **Related Reading**: [A7 Visual Content](../a-operators/a7-visual-content.md) — Operator-focused AI visual content methodology
+> 📎 **Related Reading**: [A7 Visual Content](../a-operators/a7-visual-content.md#1-why-ai-visual-content-is-essential-in-2026) — Operator-focused AI visual content methodology
 
 ---
 

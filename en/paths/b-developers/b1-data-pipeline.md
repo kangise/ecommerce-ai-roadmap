@@ -51,7 +51,7 @@ After completing this module, you'll be able to:
 
 ## 1. Data Engineering Methodology
 
-> 📎 **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md) — See A3 for advertising report analysis applications · [F4 Automation & Agents](../0-foundations/f4-agent-automation.md) — See F4 for the theoretical foundations of data processing automation with Agents.
+> 📎 **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md#8-automate-ad-optimization-with-openclaw) — See A3 for advertising report analysis applications · [F4 Automation & Agents](../0-foundations/f4-agent-automation.md#f4-automation-ai-agents) — See F4 for the theoretical foundations of data processing automation with Agents.
 
 ### 1.1 First Principles of E-Commerce Data Pipelines
 

@@ -31,7 +31,7 @@
 
 ### 1.1 The "Reddit Before Buying" Trend
 
-> 📎 **Related Reading**: [A1 Product Research and Market Research](../a-operators/a1-product-research.md) — Refer to A1 for product research methodology. User discussions on Reddit are an important data source for product demand and pain points.
+> 📎 **Related Reading**: [A1 Product Research and Market Research](../a-operators/a1-product-research.md#1-product-research-methodology-the-fundamentals-before-ai) — Refer to A1 for product research methodology. User discussions on Reddit are an important data source for product demand and pain points.
 
 More and more consumers search "[product] reddit" before purchasing to get authentic reviews:
 - Google searches for "best [category] reddit" continue to grow
@@ -205,7 +205,7 @@ Reddit launched DPA in 2025, and its value increased significantly after integra
 
 ## 4. Brand Reputation Monitoring
 
-> 📎 **Related Reading**: [A4 Customer Service and After-Sales](../a-operators/a4-customer-service.md) — Refer to A4 for customer feedback analysis methodology. Sentiment analysis and negative review response strategies are reusable for Reddit reputation management.
+> 📎 **Related Reading**: [A4 Customer Service and After-Sales](../a-operators/a4-customer-service.md#a4-customer-service-after-sales) — Refer to A4 for customer feedback analysis methodology. Sentiment analysis and negative review response strategies are reusable for Reddit reputation management.
 
 ### 4.1 AI Monitoring Plan
 
@@ -338,7 +338,7 @@ In 2025-2026, Google significantly increased the weight of Reddit content in sea
 
 ### Reddit's Impact on GEO (AI Search Optimization)
 
-> 📎 **Related Reading**: [A9 SEO/GEO](../a-operators/a9-seo-geo.md) — Refer to A9 for GEO optimization methodology. Reddit content is an important data source for AI search engines.
+> 📎 **Related Reading**: [A9 SEO/GEO](../a-operators/a9-seo-geo.md#1-from-seo-to-geo) — Refer to A9 for GEO optimization methodology. Reddit content is an important data source for AI search engines.
 
 Reddit content doesn't just affect Google search — it directly influences AI search engine recommendations:
 

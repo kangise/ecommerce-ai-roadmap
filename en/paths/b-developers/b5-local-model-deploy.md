@@ -51,7 +51,7 @@ After completing this module, you'll be able to:
 
 ## 1. Local Deployment Methodology
 
-> 📎 **Related Reading**: [B3 RAG Knowledge Base System](b3-rag-knowledge-base.md) — RAG systems can serve as a lightweight alternative to model fine-tuning, see B3. · [F1 The Evolution of AI](../0-foundations/f1-ai-evolution.md) — See F1 for AI model evolution
+> 📎 **Related Reading**: [B3 RAG Knowledge Base System](b3-rag-knowledge-base.md#b3-rag-knowledge-base-system) — RAG systems can serve as a lightweight alternative to model fine-tuning, see B3. · [F1 The Evolution of AI](../0-foundations/f1-ai-evolution.md#f1-the-evolution-of-ai) — See F1 for AI model evolution
 
 ### 1.1 Why Run LLMs Locally
 

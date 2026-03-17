@@ -72,7 +72,7 @@ DTC brands face new challenges and opportunities in 2026 ([Criteo](https://www.c
 
 Content rephrased for compliance with licensing restrictions.
 
-> 📎 **Related Reading**: [A9 SEO/GEO](a9-seo-geo.md) — AI search optimization (GEO) is a key component of brand building in 2026. See A9 for details.
+> 📎 **Related Reading**: [A9 SEO/GEO](a9-seo-geo.md#1-from-seo-to-geo) — AI search optimization (GEO) is a key component of brand building in 2026. See A9 for details.
 
 ---
 
@@ -281,7 +281,7 @@ Content rephrased for compliance with licensing restrictions.
 | YouTube | ✅ Avatar + Banner | ✅ Thumbnails | ✅ Video tone | ✅ Thumbnail style | ✅ About |
 | Packaging | ✅ Logo | ✅ Package colors | ✅ Package copy | ✅ Package design | ✅ Brand card |
 
-> 📎 **Related Reading**: [A7 Visual Content](a7-visual-content.md) — Maintaining brand consistency with AI image/video generation · [E7 Cross-Channel Synergy](../e-social-media/e7-social-media-cross-channel.md) — Cross-platform content consistency
+> 📎 **Related Reading**: [A7 Visual Content](a7-visual-content.md#33-bulk-social-media-video-production-with-ai) — Maintaining brand consistency with AI image/video generation · [E7 Cross-Channel Synergy](../e-social-media/e7-social-media-cross-channel.md#e7-social-media-cross-channel-strategy) — Cross-platform content consistency
 
 ### 6.2 AI Brand Consistency Automation
 

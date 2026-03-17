@@ -495,7 +495,7 @@ $100+ 组合适合：
 └── 6. 敏感数据分析用本地部署的模型（如 Ollama + Llama）
 ```
 
-> 📎 **Related Reading**: [A6 Compliance & Risk](../a-operators/a6-compliance.md) — AI applications in e-commerce compliance management
+> 📎 **Related Reading**: [A6 Compliance & Risk](../a-operators/a6-compliance.md#a6-compliance-risk-management) — AI applications in e-commerce compliance management
 
 ---
 

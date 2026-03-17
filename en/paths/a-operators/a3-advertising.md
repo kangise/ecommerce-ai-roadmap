@@ -49,7 +49,7 @@ After completing this module, you'll be able to:
 
 ## 1. Ad Methodology: The Fundamentals Before AI
 
-> 📎 **Related Reading**: [D4 Walmart AI Guide](../d-platforms/d4-walmart-ai-guide.md) — Walmart Connect advertising (first-price auction) covered in D4 · [E1 Instagram/Facebook AI Guide](../e-social-media/e1-instagram-facebook-ai-guide.md) — Meta Advantage+ AI ad creative generation and optimization covered in E1. · [E7 Cross-Channel Strategy](../e-social-media/e7-social-media-cross-channel.md) — Cross-channel ad attribution and budget allocation framework covered in E7.
+> 📎 **Related Reading**: [D4 Walmart AI Guide](../d-platforms/d4-walmart-ai-guide.md#3-walmart-connect-advertising) — Walmart Connect advertising (first-price auction) covered in D4 · [E1 Instagram/Facebook AI Guide](../e-social-media/e1-instagram-facebook-ai-guide.md#e1-instagram-facebook-ai-operations-guide-meta-ecosystem-ai-playbook) — Meta Advantage+ AI ad creative generation and optimization covered in E1. · [E7 Cross-Channel Strategy](../e-social-media/e7-social-media-cross-channel.md#e7-social-media-cross-channel-strategy) — Cross-channel ad attribution and budget allocation framework covered in E7.
 
 ### 1.1 First Principles of Amazon Advertising
 

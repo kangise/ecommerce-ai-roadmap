@@ -51,7 +51,7 @@
 
 ## 3. Korean Listing AI Optimization (Enhanced)
 
-> 📎 **Related Reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md) — General Listing optimization methodology from A2; core optimization framework can be adapted for Korean Listings.
+> 📎 **Related Reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md#42-listing-optimization-sop-improving-existing-listings) — General Listing optimization methodology from A2; core optimization framework can be adapted for Korean Listings.
 
 ```
 你是一个韩国电商 Listing 优化专家，精通韩语电商文案。
@@ -139,7 +139,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ### 4.4 KC Certification Requirements
 
-> 📎 **Related Reading**: [A6 Compliance & Risk Management](../a-operators/a6-compliance.md) — Multi-market compliance methodology from A6; certification and compliance framework can be reused for Korean KC certification.
+> 📎 **Related Reading**: [A6 Compliance & Risk Management](../a-operators/a6-compliance.md#a6-compliance-risk-management) — Multi-market compliance methodology from A6; certification and compliance framework can be reused for Korean KC certification.
 
 Korea has strict certification requirements for imported products:
 

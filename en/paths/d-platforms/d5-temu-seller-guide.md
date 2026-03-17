@@ -154,7 +154,7 @@ Your competitiveness = Your cost advantage + Product quality.
 
 Since Temu gives sellers limited operational autonomy, AI applications mainly focus on pre-onboarding decisions and supply chain optimization:
 
-> 📎 **Related Reading**: [A1 Product Research & Market Analysis](../a-operators/a1-product-research.md) — Product research methodology from A1 can be used to evaluate which products are suitable for Temu.
+> 📎 **Related Reading**: [A1 Product Research & Market Analysis](../a-operators/a1-product-research.md#1-product-research-methodology-the-fundamentals-before-ai) — Product research methodology from A1 can be used to evaluate which products are suitable for Temu.
 
 ### 3.1 Product Selection Data Analysis
 
@@ -224,7 +224,7 @@ Temu 要求的供货价：$[X]
 
 ## 4. Temu's Impact on the Cross-Border E-Commerce Landscape
 
-> 📎 **Related Reading**: [D4 Walmart](d4-walmart-ai-guide.md) — Walmart is a more suitable second platform for brand sellers, with a healthier competitive environment than Temu.
+> 📎 **Related Reading**: [D4 Walmart](d4-walmart-ai-guide.md#d4-walmart-marketplace-ai-guide) — Walmart is a more suitable second platform for brand sellers, with a healthier competitive environment than Temu.
 
 ### 4.1 Detailed Impact Analysis on Amazon Sellers
 
@@ -445,7 +445,7 @@ Step 5: After-Sales
 
 ## 4.6 Multi-Platform Synergy Strategy: Temu with Amazon/Shopify
 
-> 📎 **Related Reading**: [D3 Cross-Platform Synergy Strategy](cross-platform-strategy.md) — Cross-platform product line tiering and synergy strategies in D3.
+> 📎 **Related Reading**: [D3 Cross-Platform Synergy Strategy](cross-platform-strategy.md#d3-cross-platform-ai-synergy-strategy-cross-platform-ai-strategy) — Cross-platform product line tiering and synergy strategies in D3.
 
 ### Product Line Tiering Strategy
 

@@ -24,7 +24,7 @@
 
 ## 1. Platform Landscape Matrix
 
-> 📎 **Related Reading**: [AI Application Landscape Assessment](../0-foundations/ai-landscape.md) — 
+> 📎 **Related Reading**: [AI Application Landscape Assessment](../0-foundations/ai-landscape.md#ai-application-landscape-assessment-ai-application-landscape-for-cross-border-e-commerce) — 
 AI maturity across various stages detailed in AI Landscape
 
 ### 1.1 E-Commerce Platforms (Path D)
@@ -63,7 +63,7 @@ AI maturity across various stages detailed in AI Landscape
 
 ## 2. Platform vs Amazon Core Differences Quick Reference
 
-> 📎 **Related Reading**: [Path A Operations Overview](../a-operators/README.md) — Path A operational skills detailed in Path A
+> 📎 **Related Reading**: [Path A Operations Overview](../a-operators/README.md#path-a-operators-ai-powered-operations) — Path A operational skills detailed in Path A
 
 > Below lists only the 3-5 points that are **most different** from Amazon for each platform. Common elements (keyword research, review analysis, competitive analysis) reference Path A.
 
@@ -248,7 +248,7 @@ How much of what you learned in Path A can be directly reused on other platforms
 
 ## 8. Multi-Platform Expansion Roadmap
 
-> 📎 **Related Reading**: [D3 Cross-Platform AI Synergy Strategy](cross-platform-strategy.md) — Cross-platform synergy strategies detailed in D3
+> 📎 **Related Reading**: [D3 Cross-Platform AI Synergy Strategy](cross-platform-strategy.md#d3-cross-platform-ai-synergy-strategy-cross-platform-ai-strategy) — Cross-platform synergy strategies detailed in D3
 
 ### 8.1 Recommended Expansion Sequence
 

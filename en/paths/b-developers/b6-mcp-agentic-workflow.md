@@ -73,7 +73,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ## 2. E-commerce MCP Ecosystem
 
-> 📎 **Full Toolkit**: [🔌 Awesome MCP & Agent Toolkit](../../docs/awesome-mcp-agents.md) — Complete list of e-commerce MCP Servers, Agent frameworks, and external resources
+> 📎 **Full Toolkit**: [🔌 Awesome MCP & Agent Toolkit](../../docs/awesome-mcp-agents.md#awesome-mcp-servers-ai-agent-tools-awesome-mcp-agent-tools-for-e-commerce) — Complete list of e-commerce MCP Servers, Agent frameworks, and external resources
 
 ### 2.1 Existing E-commerce MCP Servers
 

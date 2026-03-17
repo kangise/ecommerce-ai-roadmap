@@ -59,7 +59,7 @@
 
 ## 2. Walmart SEO & Listing Optimization
 
-> 📎 **Related Reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md) — General Amazon Listing optimization methodology from A2 can be referenced, with 70% directly transferable to Walmart.
+> 📎 **Related Reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md#1-listing-methodology-the-fundamentals-before-ai) — General Amazon Listing optimization methodology from A2 can be referenced, with 70% directly transferable to Walmart.
 
 ### 2.1 Listing Quality Score
 
@@ -178,7 +178,7 @@ Walmart's Rich Media feature allows enhanced content in the description area:
 
 ## 3. Walmart Connect Advertising
 
-> 📎 **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md) — The general search term report analysis methodology can be directly reused for Walmart Connect.
+> 📎 **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md#31-search-term-report-analysis) — The general search term report analysis methodology can be directly reused for Walmart Connect.
 
 ### 3.1 Ad Types Explained
 
@@ -283,7 +283,7 @@ Week 4: Scaling
 
 ## 4. WFS Logistics Decisions
 
-> 📎 **Related Reading**: [A5 Inventory Management](../a-operators/a5-inventory.md) — General inventory management and restocking methodology from A5.
+> 📎 **Related Reading**: [A5 Inventory Management](../a-operators/a5-inventory.md#1-inventory-methodology-the-fundamentals-before-ai) — General inventory management and restocking methodology from A5.
 
 ### 4.1 WFS vs FBA Detailed Comparison
 
@@ -479,7 +479,7 @@ Walmart Buy Box Algorithm Factors (ranked by weight):
 └── Violation history
 ```
 
-> 📎 **Related Reading**: [D1 Shopify](shopify-ai-guide.md) — If you also run a DTC store, refer to D1 for Shopify brand building and DTC strategies.
+> 📎 **Related Reading**: [D1 Shopify](shopify-ai-guide.md#13-case-studies-shopify-store-ai-implementation) — If you also run a DTC store, refer to D1 for Shopify brand building and DTC strategies.
 
 ### Buy Box Monitoring & Optimization AI Prompt
 

@@ -57,13 +57,13 @@
 - Google AI Overviews display AI answers at the top of search results
 - Not being recommended by AI = losing an ever-growing share of traffic
 
-> 📎 **Related Reading**: [D1 Shopify](../d-platforms/shopify-ai-guide.md) — See D1 for details on GEO and Agentic Storefronts
+> 📎 **Related Reading**: [D1 Shopify](../d-platforms/shopify-ai-guide.md#212-agentic-storefronts-ucp-protocol-selling-directly-within-ai-platforms) — See D1 for details on GEO and Agentic Storefronts
 
 ---
 
 ## 2. Amazon SEO
 
-> 📎 **Related Reading**: [A2 Listing Optimization](a2-listing-optimization.md) — See A2 for the full A9 → COSMO → Rufus evolution
+> 📎 **Related Reading**: [A2 Listing Optimization](a2-listing-optimization.md#11-amazon-search-algorithm-evolution-from-a9-to-cosmo-rufus) — See A2 for the full A9 → COSMO → Rufus evolution
 
 ### 2.1 2026 Amazon SEO Core Checklist
 

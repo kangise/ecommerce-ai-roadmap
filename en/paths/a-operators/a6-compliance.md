@@ -79,7 +79,7 @@ Losses avoided include:
 
 ### 1.2 Compliance Framework Comparison Across Major Markets
 
-> 📎 **Related Reading**: [D13 European Marketplaces](../d-platforms/d13-europe-marketplaces-guide.md) — European compliance requirements (CE/EPR/VAT/VerpackG/GPSR) covered in D13. · [D11 Coupang Korea](../d-platforms/d11-coupang-korea-ai-guide.md) — Korean KC certification requirements covered in D11. · [E1 Instagram/Facebook AI Guide](../e-social-media/e1-instagram-facebook-ai-guide.md) — Social platform advertising compliance covered in E1
+> 📎 **Related Reading**: [D13 European Marketplaces](../d-platforms/d13-europe-marketplaces-guide.md#5-european-compliance-requirements-detailed) — European compliance requirements (CE/EPR/VAT/VerpackG/GPSR) covered in D13. · [D11 Coupang Korea](../d-platforms/d11-coupang-korea-ai-guide.md#d11-coupang-korea-e-commerce-ai-guide) — Korean KC certification requirements covered in D11. · [E1 Instagram/Facebook AI Guide](../e-social-media/e1-instagram-facebook-ai-guide.md#e1-instagram-facebook-ai-operations-guide-meta-ecosystem-ai-playbook) — Social platform advertising compliance covered in E1
 
 Below is a compliance comparison across the four major cross-border e-commerce markets. This is a **high-level reference** — specific requirements vary by product category.
 

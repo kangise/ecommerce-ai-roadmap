@@ -171,7 +171,7 @@ Layer 4: Training
 | Free AI tools | ⚠️ Check terms | Uncertain | None | 🟡 Medium |
 | Open-source models | ⚠️ Check license | Depends on license | None | 🟡 Medium |
 
-> 📎 **Detailed Methodology**: [A12 IP Protection](../a-operators/a12-ip-protection.md) — See A12 for copyright issues with AI-generated content
+> 📎 **Detailed Methodology**: [A12 IP Protection](../a-operators/a12-ip-protection.md#6-copyright-issues-with-ai-generated-content) — See A12 for copyright issues with AI-generated content
 
 ### 4.2 AI Content Compliance Checklist
 

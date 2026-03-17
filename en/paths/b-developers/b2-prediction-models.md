@@ -49,7 +49,7 @@ After completing this module, you'll be able to:
 
 ## 1. Prediction Methodology
 
-> 📎 **Related Reading**: [A5 Inventory & Supply Chain](../a-operators/a5-inventory.md) — See A5 for how sales forecasting applies to inventory replenishment decisions. · [D3 Cross-Platform AI Collaboration Strategy](../d-platforms/cross-platform-strategy.md) — See D3 for cross-platform demand forecasting.
+> 📎 **Related Reading**: [A5 Inventory & Supply Chain](../a-operators/a5-inventory.md#a5-inventory-supply-chain) — See A5 for how sales forecasting applies to inventory replenishment decisions. · [D3 Cross-Platform AI Collaboration Strategy](../d-platforms/cross-platform-strategy.md#8-cross-platform-pricing-strategy) — See D3 for cross-platform demand forecasting.
 
 ### 1.1 First Principles of Time Series Forecasting
 

@@ -229,7 +229,7 @@ AI 分析 Keepa 数据的方法：
     └── 否 → [Google Sheets] 静默记录
 ```
 
-> 📎 **Related Reading**: [F5 RPA & Low-Code Automation](../0-foundations/f5-rpa-automation.md) — Build automated monitoring workflows with n8n/Browse AI
+> 📎 **Related Reading**: [F5 RPA & Low-Code Automation](../0-foundations/f5-rpa-automation.md#f5-rpa-no-code-automation-in-practice) — Build automated monitoring workflows with n8n/Browse AI
 
 ---
 
@@ -360,7 +360,7 @@ US 站 → JP 站定价：
 └── 建议：参考日本本地竞品定价，而非美国价格换算
 ```
 
-> 📎 **Related Reading**: [D4 Walmart](../d-platforms/d4-walmart-ai-guide.md) — Walmart platform pricing strategy · [D1 Shopify](../d-platforms/shopify-ai-guide.md) — DTC brand pricing
+> 📎 **Related Reading**: [D4 Walmart](../d-platforms/d4-walmart-ai-guide.md#65-walmart-omnichannel-strategy) — Walmart platform pricing strategy · [D1 Shopify](../d-platforms/shopify-ai-guide.md#15-shopify-advanced-advertising-ai-driven-full-funnel-strategy) — DTC brand pricing
 
 ---
 
@@ -509,7 +509,7 @@ US 站 → JP 站定价：
 劣势：需要技术能力，需要维护
 ```
 
-> 📎 **Related Reading**: [B1 Python Data Analysis](../b-developers/b1-data-pipeline.md) — Python data analysis fundamentals · [F5 RPA Automation](../0-foundations/f5-rpa-automation.md) — Building automation tools
+> 📎 **Related Reading**: [B1 Python Data Analysis](../b-developers/b1-data-pipeline.md#7-hands-on-project-building-a-complete-data-pipeline) — Python data analysis fundamentals · [F5 RPA Automation](../0-foundations/f5-rpa-automation.md#6-rpa-tools-browser-automation) — Building automation tools
 
 ---
 

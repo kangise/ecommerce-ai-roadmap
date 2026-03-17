@@ -49,7 +49,7 @@ After completing this module, you'll be able to:
 
 ## 1. Inventory Methodology: The Fundamentals Before AI
 
-> 📎 **Related Reading**: [D4 Walmart AI Guide](../d-platforms/d4-walmart-ai-guide.md) — WFS vs FBA logistics cost comparison and inventory allocation strategies covered in D4. · [D3 Cross-Platform AI Synergy Strategy](../d-platforms/cross-platform-strategy.md) — Cross-platform inventory coordination covered in D3.
+> 📎 **Related Reading**: [D4 Walmart AI Guide](../d-platforms/d4-walmart-ai-guide.md#41-wfs-vs-fba-detailed-comparison) — WFS vs FBA logistics cost comparison and inventory allocation strategies covered in D4. · [D3 Cross-Platform AI Synergy Strategy](../d-platforms/cross-platform-strategy.md#6-inventory-and-logistics-synergy) — Cross-platform inventory coordination covered in D3.
 
 ### 1.1 First Principles of Inventory Management
 

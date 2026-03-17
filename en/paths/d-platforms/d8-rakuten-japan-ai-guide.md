@@ -49,7 +49,7 @@ Rakuten Points is one of Japan's largest points ecosystems:
 
 ### 2.3 R-Mail Email Marketing
 
-> 📎 **Related Reading**: [D1 Shopify](shopify-ai-guide.md) — Shopify's Klaviyo email marketing methodology from D1 can be referenced; email automation and personalization strategies can be reused for R-Mail.
+> 📎 **Related Reading**: [D1 Shopify](shopify-ai-guide.md#23-shopify-email-marketing-deep-methodology-from-klaviyo-to-ai-personalization) — Shopify's Klaviyo email marketing methodology from D1 can be referenced; email automation and personalization strategies can be reused for R-Mail.
 
 Amazon prohibits sellers from directly contacting buyers, but Rakuten encourages it:
 - R-Mail: Sellers can email users who have purchased
@@ -98,7 +98,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ### 2.5 YouTube Shopping × Rakuten (2026 New Feature)
 
-> 📎 **Related Reading**: [E2 YouTube AI Operations](../e-social-media/e2-youtube-ai-guide.md) — YouTube operations methodology from E2; influencer collaboration and video content strategies can be directly reused.
+> 📎 **Related Reading**: [E2 YouTube AI Operations](../e-social-media/e2-youtube-ai-guide.md#e2-youtube-ai-operations-guide-youtube-ai-playbook) — YouTube operations methodology from E2; influencer collaboration and video content strategies can be directly reused.
 
 In February 2026, Rakuten partnered with Google to launch YouTube Shopping in Japan — the first e-commerce platform in Japan to do so.
 
@@ -137,7 +137,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ## 3. Japanese Listing AI Optimization
 
-> 📎 **Related Reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md) — General Listing optimization methodology from A2; core optimization framework can be adapted for Japanese Listings.
+> 📎 **Related Reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md#42-listing-optimization-sop-improving-existing-listings) — General Listing optimization methodology from A2; core optimization framework can be adapted for Japanese Listings.
 
 ### 3.1 Japanese Consumer Copy Preferences
 

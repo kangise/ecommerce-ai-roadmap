@@ -80,7 +80,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [TikTok S
 
 ## 2. AI Short Video Content Creation
 
-> 📎 **Related Reading**: [E1 Instagram/Facebook AI Guide](../e-social-media/e1-instagram-facebook-ai-guide.md) — See E1 for Instagram Reels short video methodology comparison
+> 📎 **Related Reading**: [E1 Instagram/Facebook AI Guide](../e-social-media/e1-instagram-facebook-ai-guide.md#e1-instagram-facebook-ai-operations-guide-meta-ecosystem-ai-playbook) — See E1 for Instagram Reels short video methodology comparison
 
 ### 2.1 The Viral Video Structure Formula for TikTok
 
@@ -192,7 +192,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [ECompose
 
 ## 3. Creator Collaboration & AI Matching
 
-> 📎 **Related Reading**: [E3 Xiaohongshu AI Guide](../e-social-media/e3-xiaohongshu-ai-guide.md) — See E3 for Xiaohongshu KOL/KOC collaboration methodology
+> 📎 **Related Reading**: [E3 Xiaohongshu AI Guide](../e-social-media/e3-xiaohongshu-ai-guide.md#4-kolkoc-collaboration-ai-methodology) — See E3 for Xiaohongshu KOL/KOC collaboration methodology
 
 ### 3.1 Creator Collaboration Models
 
@@ -291,7 +291,7 @@ Good Brief vs. Bad Brief:
 
 ## 4. Live Commerce & AI
 
-> 📎 **Related Reading**: [D6 Southeast Asia AI Guide](d6-southeast-asia-ai-guide.md) — See D6 for Southeast Asia live commerce details
+> 📎 **Related Reading**: [D6 Southeast Asia AI Guide](d6-southeast-asia-ai-guide.md#d6-southeast-asia-e-commerce-ai-guide-shopee-lazada) — See D6 for Southeast Asia live commerce details
 
 ### 4.1 Why LIVE Is the Primary GMV Driver for TikTok Shop
 
@@ -538,7 +538,7 @@ Content rephrased for compliance with licensing restrictions. Source: [Benly Tik
 
 ## 7. Data Analytics & Operations Optimization
 
-> 📎 **Related Reading**: [E7 Cross-Channel Strategy](../e-social-media/e7-social-media-cross-channel.md) — See E7 for cross-channel content repurposing
+> 📎 **Related Reading**: [E7 Cross-Channel Strategy](../e-social-media/e7-social-media-cross-channel.md#e7-social-media-cross-channel-strategy) — See E7 for cross-channel content repurposing
 
 ### 7.1 TikTok Shop Key Metrics
 

@@ -247,7 +247,7 @@ X:XX - [章节名]
 
 ## 4. YouTube Shorts E-commerce Strategy
 
-> 📎 **Related Reading**: [D2 TikTok Shop](../d-platforms/tiktok-shop-ai-guide.md) — Refer to D2 for TikTok short video methodology. Shorts and TikTok content can be adapted for each other.
+> 📎 **Related Reading**: [D2 TikTok Shop](../d-platforms/tiktok-shop-ai-guide.md#15-short-video-content-creation-advanced-methodology) — Refer to D2 for TikTok short video methodology. Shorts and TikTok content can be adapted for each other.
 
 ### 4.1 Shorts vs TikTok vs Reels: Algorithm Differences
 
@@ -290,7 +290,7 @@ X:XX - [章节名]
 
 ## 5. YouTube Shopping and Affiliate
 
-> 📎 **Related Reading**: [D8 Rakuten Japan E-commerce](../d-platforms/d8-rakuten-japan-ai-guide.md) — Refer to D8 for YouTube Shopping × Rakuten partnership details. Japanese market users can purchase Rakuten products directly from YouTube.
+> 📎 **Related Reading**: [D8 Rakuten Japan E-commerce](../d-platforms/d8-rakuten-japan-ai-guide.md#d8-rakuten-japan-e-commerce-ai-guide) — Refer to D8 for YouTube Shopping × Rakuten partnership details. Japanese market users can purchase Rakuten products directly from YouTube.
 
 ### 5.1 YouTube Shopping Features (2026)
 
@@ -301,7 +301,7 @@ X:XX - [章节名]
 
 ### 5.2 YouTube Affiliate Program
 
-> 📎 **Related Reading**: [D1 Shopify](../d-platforms/shopify-ai-guide.md) — Refer to D1 for Shopify Collabs influencer collaboration methodology. Affiliate management and influencer screening strategies are reusable.
+> 📎 **Related Reading**: [D1 Shopify](../d-platforms/shopify-ai-guide.md#28-complete-methodology-for-migrating-from-amazon-to-shopify) — Refer to D1 for Shopify Collabs influencer collaboration methodology. Affiliate management and influencer screening strategies are reusable.
 
 YouTube's Affiliate feature standardizes influencer collaborations:
 
