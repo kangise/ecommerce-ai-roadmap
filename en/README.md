@@ -77,62 +77,62 @@ Please present key data comparisons in table format.
 | # | Category | Scenario | One-Liner | Link |
 |---|----------|----------|-----------|------|
 | | **🔍 Product Research & Market Analysis** | | | |
-| 1 | Research | Competitor review pain point extraction | 50 negative reviews → pain point ranking + improvement directions | [A1 Prompt](paths/a-operators/a1-product-research.md) · [Before/After](paths/0-foundations/ai-landscape.md#选品与市场调研----成熟度-35) |
+| 1 | Research | Competitor review pain point extraction | 50 negative reviews → pain point ranking + improvement directions | [A1 Prompt](paths/a-operators/a1-product-research.md) · [Before/After](paths/0-foundations/ai-landscape.md) |
 | 2 | Research | Market feasibility 5-dimension scoring | Demand/Competition/Profit/Supply Chain/Compliance, Go or No-Go | [A1 Prompt](paths/a-operators/a1-product-research.md) |
 | 3 | Research | Google Trends validation | Cross-validate product direction, avoid false demand | [A1 Methodology](paths/a-operators/a1-product-research.md) |
 | 4 | Research | Supplier evaluation & cost comparison | AI analysis of 1688/Alibaba supplier data | [A1 Methodology](paths/a-operators/a1-product-research.md) |
 | | **✍️ Listing & Content Optimization** | | | |
-| 5 | Listing | Rufus/COSMO semantic optimization | From keyword matching to intent matching — the most important Listing change in 2026 | [A2 Methodology 1.1](paths/a-operators/a2-listing-optimization.md#11-amazon-搜索算法演进从-a9-到-cosmo--rufus) |
-| 6 | Listing | Full Listing one-click generation | Title + Bullet Points + Description + Search Terms, done in 45 minutes | [A2 Prompt](paths/a-operators/a2-listing-optimization.md) · [Before/After](paths/0-foundations/ai-landscape.md#listing-文案创作----成熟度-55) |
-| 7 | Listing | Multi-language localization | Not just translation — cultural adaptation + local keywords + unit conversion | [A2 Prompt](paths/a-operators/a2-listing-optimization.md) · [D1 ch25](paths/d-platforms/shopify-ai-guide.md#25-shopify-多语言本地化方法论-不只是翻译) |
+| 5 | Listing | Rufus/COSMO semantic optimization | From keyword matching to intent matching — the most important Listing change in 2026 | [A2 Methodology 1.1](paths/a-operators/a2-listing-optimization.md) |
+| 6 | Listing | Full Listing one-click generation | Title + Bullet Points + Description + Search Terms, done in 45 minutes | [A2 Prompt](paths/a-operators/a2-listing-optimization.md) · [Before/After](paths/0-foundations/ai-landscape.md) |
+| 7 | Listing | Multi-language localization | Not just translation — cultural adaptation + local keywords + unit conversion | [A2 Prompt](paths/a-operators/a2-listing-optimization.md) · [D1 ch25](paths/d-platforms/shopify-ai-guide.md) |
 | 8 | Listing | A+ Content copywriting | Brand story + product comparison + usage scenario layout | [A2 Methodology](paths/a-operators/a2-listing-optimization.md) |
 | 9 | Listing | Competitor Listing strategy breakdown | Comparative analysis for differentiated positioning and keyword gaps | [A2 Prompt](paths/a-operators/a2-listing-optimization.md) |
 | 10 | Listing | Q&A seeding (Rufus optimization) | Rufus reads Q&A to answer customer questions — seed high-frequency questions | [A2 Advanced](paths/a-operators/a2-listing-optimization.md) |
 | | **📢 Advertising Optimization** | | | |
-| 11 | Ads | Search term report AI analysis | High-ROAS terms / wasted spend / hidden long-tail opportunities, done in 50 min | [A3 Prompt](paths/a-operators/a3-advertising.md) · [Before/After](paths/0-foundations/ai-landscape.md#广告管理与优化----成熟度-45) |
+| 11 | Ads | Search term report AI analysis | High-ROAS terms / wasted spend / hidden long-tail opportunities, done in 50 min | [A3 Prompt](paths/a-operators/a3-advertising.md) · [Before/After](paths/0-foundations/ai-landscape.md) |
 | 12 | Ads | Ad copy A/B testing | Batch-generate 5 headline style variants | [A3 Prompt](paths/a-operators/a3-advertising.md) |
 | 13 | Ads | New product 30-day ad launch plan | Complete Auto → Manual keyword harvesting workflow | [A3 Workflow](paths/a-operators/a3-advertising.md) |
 | 14 | Ads | ACOS/TACOS diagnostics | Ad health assessment and budget reallocation | [A3 Methodology](paths/a-operators/a3-advertising.md) |
 | 15 | Ads | Amazon Canvas AI | New feature (2026.3) — AI real-time data visualization and scenario simulation | [AI Landscape](paths/0-foundations/ai-landscape.md) |
 | | **💬 Customer Service & After-Sales** | | | |
-| 16 | CS | Negative review batch analysis | Categorize issues + frequency stats + improvement plan + priority | [A4 Prompt](paths/a-operators/a4-customer-service.md) · [Before/After](paths/0-foundations/ai-landscape.md#客服与售后----成熟度-45) |
+| 16 | CS | Negative review batch analysis | Categorize issues + frequency stats + improvement plan + priority | [A4 Prompt](paths/a-operators/a4-customer-service.md) · [Before/After](paths/0-foundations/ai-landscape.md) |
 | 17 | CS | Multi-language customer service replies | AI-generated + human-reviewed, 1-2 min per reply | [A4 Prompt](paths/a-operators/a4-customer-service.md) |
-| 18 | CS | Account appeal Plan of Action | Root Cause + Actions + Prevention, first draft in 35 min | [A6 Prompt 3.6](paths/a-operators/a6-compliance.md#36-amazon-政策违规应对) · [A6 SOP 4.3](paths/a-operators/a6-compliance.md#43-合规事件应急响应-sop) |
+| 18 | CS | Account appeal Plan of Action | Root Cause + Actions + Prevention, first draft in 35 min | [A6 Prompt 3.6](paths/a-operators/a6-compliance.md) · [A6 SOP 4.3](paths/a-operators/a6-compliance.md) |
 | 19 | CS | A-to-Z Claim response | Analyze cause + generate reply + prevention measures | [A4 Methodology](paths/a-operators/a4-customer-service.md) |
 | | **🛡️ Compliance & Risk Management** | | | |
-| 20 | Compliance | Multi-market compliance comparison | CE/FCC/PSE/UKCA side-by-side, checklist in 30 min | [A6 Prompt 3.1](paths/a-operators/a6-compliance.md#31-多市场合规对比深化版) · [Before/After](paths/0-foundations/ai-landscape.md#合规文档准备----成熟度-45) |
-| 21 | Compliance | Compliance cost estimation | Certification + testing + labeling + annual maintenance, built into pricing model | [A6 Prompt 3.3](paths/a-operators/a6-compliance.md#33-合规成本估算) |
-| 22 | Compliance | IP risk assessment | Patent/trademark/copyright screening at the product selection stage | [A6 Prompt 3.4](paths/a-operators/a6-compliance.md#34-知识产权风险评估) |
-| 23 | Compliance | BSA AI Agent compliance | New regulation (2026.3) — ensure your AI tools meet Amazon requirements | [A6 Advanced 6.1](paths/a-operators/a6-compliance.md#61-2026-新趋势amazon-ai-agent-合规要求bsa-更新) |
+| 20 | Compliance | Multi-market compliance comparison | CE/FCC/PSE/UKCA side-by-side, checklist in 30 min | [A6 Prompt 3.1](paths/a-operators/a6-compliance.md) · [Before/After](paths/0-foundations/ai-landscape.md) |
+| 21 | Compliance | Compliance cost estimation | Certification + testing + labeling + annual maintenance, built into pricing model | [A6 Prompt 3.3](paths/a-operators/a6-compliance.md) |
+| 22 | Compliance | IP risk assessment | Patent/trademark/copyright screening at the product selection stage | [A6 Prompt 3.4](paths/a-operators/a6-compliance.md) |
+| 23 | Compliance | BSA AI Agent compliance | New regulation (2026.3) — ensure your AI tools meet Amazon requirements | [A6 Advanced 6.1](paths/a-operators/a6-compliance.md) |
 | | **🏪 Shopify (DTC Store)** | | | |
-| 24 | Shopify | GEO optimization | Get your products recommended by ChatGPT/Perplexity — hottest trend in 2026 | [D1 ch21.3](paths/d-platforms/shopify-ai-guide.md#213-geo-优化实操-让-ai-推荐你的产品) |
-| 25 | Shopify | Agentic Storefronts | Sell directly inside ChatGPT/Gemini/Copilot | [D1 ch21.2](paths/d-platforms/shopify-ai-guide.md#212-agentic-storefronts-与-ucp-协议-在-ai-平台内直接卖货) |
-| 26 | Shopify | Shopify Audiences | AI-powered ad audience generation, CAC reduced 20-50% | [D1 ch21.4](paths/d-platforms/shopify-ai-guide.md#214-shopify-audiences-ai-驱动的广告受众工具) |
-| 27 | Shopify | Klaviyo email personalization | Send-time optimization + LTV prediction + churn alerts | [D1 ch23](paths/d-platforms/shopify-ai-guide.md#23-shopify-邮件营销深度方法论-从-klaviyo-到-ai-个性化) · [Before/After](paths/0-foundations/ai-landscape.md#邮件营销shopify---成熟度-45) |
-| 28 | Shopify | Amazon to Shopify migration | 6-phase migration methodology, avoid 5 common mistakes | [D1 ch28](paths/d-platforms/shopify-ai-guide.md#28-从-amazon-迁移到-shopify-的完整方法论) |
-| 29 | Shopify | Conversion funnel diagnostics | Add-to-cart / checkout / payment rate layer-by-layer analysis | [D1 ch24](paths/d-platforms/shopify-ai-guide.md#24-shopify-转化率优化-cro-深度指南) |
-| 30 | Shopify | Schema/FAQ code | Product Schema + FAQ Schema — the foundation of GEO optimization | [D1 ch27](paths/d-platforms/shopify-ai-guide.md#27-shopify-liquid-与技术-seo-实操) |
+| 24 | Shopify | GEO optimization | Get your products recommended by ChatGPT/Perplexity — hottest trend in 2026 | [D1 ch21.3](paths/d-platforms/shopify-ai-guide.md) |
+| 25 | Shopify | Agentic Storefronts | Sell directly inside ChatGPT/Gemini/Copilot | [D1 ch21.2](paths/d-platforms/shopify-ai-guide.md) |
+| 26 | Shopify | Shopify Audiences | AI-powered ad audience generation, CAC reduced 20-50% | [D1 ch21.4](paths/d-platforms/shopify-ai-guide.md) |
+| 27 | Shopify | Klaviyo email personalization | Send-time optimization + LTV prediction + churn alerts | [D1 ch23](paths/d-platforms/shopify-ai-guide.md) · [Before/After](paths/0-foundations/ai-landscape.md) |
+| 28 | Shopify | Amazon to Shopify migration | 6-phase migration methodology, avoid 5 common mistakes | [D1 ch28](paths/d-platforms/shopify-ai-guide.md) |
+| 29 | Shopify | Conversion funnel diagnostics | Add-to-cart / checkout / payment rate layer-by-layer analysis | [D1 ch24](paths/d-platforms/shopify-ai-guide.md) |
+| 30 | Shopify | Schema/FAQ code | Product Schema + FAQ Schema — the foundation of GEO optimization | [D1 ch27](paths/d-platforms/shopify-ai-guide.md) |
 | | **🎵 TikTok Shop** | | | |
-| 31 | TikTok | Hook formula library | Information gap theory-based Hook design methodology | [D2 ch15.2](paths/d-platforms/tiktok-shop-ai-guide.md#152-hook-设计方法论-不是吸引注意力而是制造信息缺口) |
-| 32 | TikTok | 3-act video script structure | Build need → Show solution → Drive action, 3-5x conversion rate | [D2 ch15.3](paths/d-platforms/tiktok-shop-ai-guide.md#153-视频脚本的3-幕结构) |
-| 33 | TikTok | Creator scoring model | 100-point quantitative scoring — no more gut-feeling creator selection | [D2 ch16.2](paths/d-platforms/tiktok-shop-ai-guide.md#162-ai-达人筛选的量化评分模型) |
-| 34 | TikTok | Personalized creator outreach | Customized based on creator's recent content, 3-5x reply rate | [D2 ch16.3](paths/d-platforms/tiktok-shop-ai-guide.md#163-达人邀约的-ai-自动化工作流) |
-| 35 | TikTok | Livestream minute-by-minute script | Retain → Seed → Convert → Engage → Encore rhythm design | [D2 ch17.3](paths/d-platforms/tiktok-shop-ai-guide.md#173-直播脚本的节奏设计) |
-| 36 | TikTok | GMV Max optimization | After mandatory rollout (2025.9): creative/Feed/SPS — 3 controllable variables | [D2 ch14.2](paths/d-platforms/tiktok-shop-ai-guide.md#142-gmv-max-强制化-2025-年-9-月起的重大变化) · [D2 ch6.3](paths/d-platforms/tiktok-shop-ai-guide.md#63-gmv-max-深度解析) |
-| 37 | TikTok | TikTok in-app search SEO | 40%+ Gen Z search for products on TikTok first | [D2 ch19](paths/d-platforms/tiktok-shop-ai-guide.md#19-tiktok-shop-站内搜索-seo) |
-| 38 | TikTok | Spark Ads selection criteria | Watch-through >40% + engagement >5% + product click >3% | [D2 ch23.1](paths/d-platforms/tiktok-shop-ai-guide.md#231-spark-ads-tiktok-最独特的广告形式) |
+| 31 | TikTok | Hook formula library | Information gap theory-based Hook design methodology | [D2 ch15.2](paths/d-platforms/tiktok-shop-ai-guide.md) |
+| 32 | TikTok | 3-act video script structure | Build need → Show solution → Drive action, 3-5x conversion rate | [D2 ch15.3](paths/d-platforms/tiktok-shop-ai-guide.md) |
+| 33 | TikTok | Creator scoring model | 100-point quantitative scoring — no more gut-feeling creator selection | [D2 ch16.2](paths/d-platforms/tiktok-shop-ai-guide.md) |
+| 34 | TikTok | Personalized creator outreach | Customized based on creator's recent content, 3-5x reply rate | [D2 ch16.3](paths/d-platforms/tiktok-shop-ai-guide.md) |
+| 35 | TikTok | Livestream minute-by-minute script | Retain → Seed → Convert → Engage → Encore rhythm design | [D2 ch17.3](paths/d-platforms/tiktok-shop-ai-guide.md) |
+| 36 | TikTok | GMV Max optimization | After mandatory rollout (2025.9): creative/Feed/SPS — 3 controllable variables | [D2 ch14.2](paths/d-platforms/tiktok-shop-ai-guide.md) · [D2 ch6.3](paths/d-platforms/tiktok-shop-ai-guide.md) |
+| 37 | TikTok | TikTok in-app search SEO | 40%+ Gen Z search for products on TikTok first | [D2 ch19](paths/d-platforms/tiktok-shop-ai-guide.md) |
+| 38 | TikTok | Spark Ads selection criteria | Watch-through >40% + engagement >5% + product click >3% | [D2 ch23.1](paths/d-platforms/tiktok-shop-ai-guide.md) |
 | | **🔗 Cross-Platform Synergy** | | | |
-| 39 | Cross-platform | One document, three platforms | One core document → Amazon + Shopify + TikTok content | [D3 ch3](paths/d-platforms/cross-platform-strategy.md#3-跨平台内容协同) |
-| 40 | Cross-platform | Review-driven Hook creation | Amazon negative review pain points → TikTok video Hook inspiration | [D1 ch22.1](paths/d-platforms/shopify-ai-guide.md#221-amazon-review-数据驱动-shopify-优化的具体方法) · [D2 ch20](paths/d-platforms/tiktok-shop-ai-guide.md#20-tiktok-shop-x-amazon-双渠道协同) |
-| 41 | Cross-platform | TikTok seeding attribution | Quantify TikTok's indirect contribution to Amazon branded search volume | [D3 ch4.2](paths/d-platforms/cross-platform-strategy.md#42-跨平台归因-量化-tiktok-种草对-amazon-的影响) |
-| 42 | Cross-platform | Three-platform ad budget allocation | Marginal ROAS equilibrium + indirect effect correction | [D3 ch5](paths/d-platforms/cross-platform-strategy.md#5-跨平台广告协同) |
-| 43 | Cross-platform | Cross-platform inventory MCF/FBT | FBA + FBT + 3PL dynamic allocation strategy | [D3 ch6](paths/d-platforms/cross-platform-strategy.md#6-库存与物流协同) |
+| 39 | Cross-platform | One document, three platforms | One core document → Amazon + Shopify + TikTok content | [D3 ch3](paths/d-platforms/cross-platform-strategy.md) |
+| 40 | Cross-platform | Review-driven Hook creation | Amazon negative review pain points → TikTok video Hook inspiration | [D1 ch22.1](paths/d-platforms/shopify-ai-guide.md) · [D2 ch20](paths/d-platforms/tiktok-shop-ai-guide.md) |
+| 41 | Cross-platform | TikTok seeding attribution | Quantify TikTok's indirect contribution to Amazon branded search volume | [D3 ch4.2](paths/d-platforms/cross-platform-strategy.md) |
+| 42 | Cross-platform | Three-platform ad budget allocation | Marginal ROAS equilibrium + indirect effect correction | [D3 ch5](paths/d-platforms/cross-platform-strategy.md) |
+| 43 | Cross-platform | Cross-platform inventory MCF/FBT | FBA + FBT + 3PL dynamic allocation strategy | [D3 ch6](paths/d-platforms/cross-platform-strategy.md) |
 | | **📊 Data Analysis & AI Trends** | | | |
-| 44 | Data/AI | Auto-generated weekly reports | Anomaly detection + trend analysis + optimization suggestions, 35 min/week | [Before/After](paths/0-foundations/ai-landscape.md#数据分析与决策----成熟度-45) |
+| 44 | Data/AI | Auto-generated weekly reports | Anomaly detection + trend analysis + optimization suggestions, 35 min/week | [Before/After](paths/0-foundations/ai-landscape.md) |
 | 45 | Data/AI | Amazon Canvas AI | New feature (2026.3) — AI data analysis inside Seller Central | [AI Landscape](paths/0-foundations/ai-landscape.md) |
 | 46 | Data/AI | Seller Assistant Agentic | Amazon's official AI assistant upgrade — can execute actions on behalf of sellers | Coming soon |
 | 47 | Data/AI | OpenClaw Agent automation | AI Agent for automating daily operations tasks | [D1 ch10](paths/d-platforms/shopify-ai-guide.md) · [D2 ch12](paths/d-platforms/tiktok-shop-ai-guide.md) |
-| 48 | Data/AI | AI tool ROI calculation | Is $20/month for ChatGPT worth it? A quantification framework | [AI Landscape](paths/0-foundations/ai-landscape.md#效率变化总览)
+| 48 | Data/AI | AI tool ROI calculation | Is $20/month for ChatGPT worth it? A quantification framework | [AI Landscape](paths/0-foundations/ai-landscape.md)
 
 [Back to Table of Contents](#-table-of-contents)
 
