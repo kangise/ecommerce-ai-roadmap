@@ -352,36 +352,36 @@ Pinterest：
 ├── 适合：直接转化的渠道（Meta Ads → Shopify）
 └── 工具：Google Analytics 4
 
-第 2 层：辅助归因（Assisted Conversion）
-├── 用户可能在 Instagram 看到产品 → YouTube 看评测 → Google 搜索购买
-├── GA4 的 Multi-Channel Funnels 报告
-├── 适合：理解各渠道在转化路径中的角色
-└── 工具：GA4 + Amazon Attribution
+Layer 2: Assisted Attribution (Assisted Conversion)
+├── User may see product on Instagram → Watch review on YouTube → Search on Google to purchase
+├── GA4 Multi-Channel Funnels report
+├── Best for: Understanding each channel's role in the conversion path
+└── Tools: GA4 + Amazon Attribution
 
-第 3 层：间接归因（Brand Lift）
-├── 社交媒体活动 → Amazon 品牌搜索量增长
-├── TikTok 种草 → Amazon "[品牌名]" 搜索量变化
-├── 无法直接追踪，但可以通过相关性分析推断
-├── 方法：对比社交媒体活动期间 vs 非活动期间的品牌搜索量
-└── 工具：Amazon Brand Analytics + Google Trends
+Layer 3: Indirect Attribution (Brand Lift)
+├── Social media activity → Amazon branded search volume growth
+├── TikTok seeding → Amazon "[brand name]" search volume changes
+├── Cannot be tracked directly, but can be inferred through correlation analysis
+├── Method: Compare branded search volume during social media campaigns vs. non-campaign periods
+└── Tools: Amazon Brand Analytics + Google Trends
 
-AI 归因分析 Prompt：
+AI Attribution Analysis Prompt:
 ```
-请分析以下数据，帮我理解各社交媒体渠道对 Amazon 销售的间接贡献：
+Please analyze the following data to help me understand each social media channel's indirect contribution to Amazon sales:
 
-Amazon 品牌搜索量（过去 12 周）：
-[粘贴 Brand Analytics 数据]
+Amazon branded search volume (past 12 weeks):
+[Paste Brand Analytics data]
 
-社交媒体活动时间线：
-- Week [X]: Instagram 达人合作（[X] 个达人）
-- Week [X]: YouTube 评测视频发布
-- Week [X]: TikTok 病毒式传播
+Social media activity timeline:
+- Week [X]: Instagram influencer collaboration ([X] influencers)
+- Week [X]: YouTube review video published
+- Week [X]: TikTok viral spread
 
-请分析：
-1. 品牌搜索量与社交媒体活动的相关性
-2. 哪个渠道对品牌搜索量影响最大？
-3. 社交媒体活动的滞后效应（活动后多久搜索量开始增长）
-4. 预估社交媒体对 Amazon 销售的间接贡献比例
+Please analyze:
+1. Correlation between branded search volume and social media activity
+2. Which channel has the greatest impact on branded search volume?
+3. Lag effect of social media activity (how long after the campaign does search volume start growing)
+4. Estimated percentage of social media's indirect contribution to Amazon sales
 ```
 ```
 

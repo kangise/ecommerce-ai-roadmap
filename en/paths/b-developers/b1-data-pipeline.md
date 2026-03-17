@@ -783,8 +783,8 @@ if __name__ == "__main__":
 > 💡 **Production Recommendation**: The `schedule` library is suitable for development and small-scale use. For production environments, system-level cron (macOS/Linux) or Windows Task Scheduler is recommended — more stable and doesn't depend on a continuously running Python process.
 >
 > ```bash
-> # macOS/Linux cron 示例（每天早上 8 点执行）
-> # 编辑 crontab: crontab -e
+> # macOS/Linux cron example (run daily at 8 AM)
+> # Edit crontab: crontab -e
 > 0 8 * * * /usr/bin/python3 /path/to/daily_collection.py >> /path/to/cron.log 2>&1
 > ```
 
@@ -1675,7 +1675,7 @@ Before processing any Amazon report, verify the following:
 - [ ] Column names are standardized (handle multi-language column name differences)
 - [ ] Numeric columns have commas and currency symbols removed
 - [ ] Date columns are converted to datetime type
-- [ ] Summary rows (Total/合計) and blank rows are filtered out
+- [ ] Summary rows (Total) and blank rows are filtered out
 - [ ] Negative values and zeros are handled (filtered or flagged)
 - [ ] Ratio metrics are recalculated from base metrics (never directly sum/avg)
 - [ ] Market identifier column (Market) is added
