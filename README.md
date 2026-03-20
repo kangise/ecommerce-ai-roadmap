@@ -76,7 +76,17 @@
 
 ## 社交媒体
 
-[Instagram/Facebook](paths/e-social-media/e1-instagram-facebook-ai-guide.md) · [YouTube](paths/e-social-media/e2-youtube-ai-guide.md) · [小红书](paths/e-social-media/e3-xiaohongshu-ai-guide.md) · [Pinterest](paths/e-social-media/e4-pinterest-ai-guide.md) · [WhatsApp](paths/e-social-media/e5-whatsapp-business-ai-guide.md) · [Reddit](paths/e-social-media/e6-reddit-ai-guide.md) · [跨渠道策略](paths/e-social-media/e7-social-media-cross-channel.md)
+### 主流平台
+
+[Instagram/Facebook](paths/e-social-media/e1-instagram-facebook-ai-guide.md) · [YouTube](paths/e-social-media/e2-youtube-ai-guide.md) · [小红书](paths/e-social-media/e3-xiaohongshu-ai-guide.md) · [Pinterest](paths/e-social-media/e4-pinterest-ai-guide.md)
+
+### 对话与社区
+
+[WhatsApp](paths/e-social-media/e5-whatsapp-business-ai-guide.md) · [Reddit](paths/e-social-media/e6-reddit-ai-guide.md)
+
+### 跨渠道
+
+[跨渠道策略](paths/e-social-media/e7-social-media-cross-channel.md) — 一个内容多平台适配。
 
 ## 客服
 
@@ -94,23 +104,47 @@
 
 ## 多平台
 
-**货架电商** — [Walmart](paths/d-platforms/d4-walmart-ai-guide.md) · [eBay](paths/d-platforms/d9-ebay-ai-guide.md) · [AliExpress](paths/d-platforms/d10-aliexpress-ai-guide.md) · [Temu](paths/d-platforms/d5-temu-seller-guide.md) · [Faire](paths/d-platforms/d12-faire-wholesale-ai-guide.md)
+### 货架电商
 
-**独立站** — [Shopify AI 指南](paths/d-platforms/shopify-ai-guide.md)，从选品到 GEO 到 Agentic Storefronts 的全链路。
+[Walmart](paths/d-platforms/d4-walmart-ai-guide.md) · [eBay](paths/d-platforms/d9-ebay-ai-guide.md) · [AliExpress](paths/d-platforms/d10-aliexpress-ai-guide.md) · [Temu](paths/d-platforms/d5-temu-seller-guide.md) · [Faire](paths/d-platforms/d12-faire-wholesale-ai-guide.md)
 
-**短视频与直播** — [TikTok Shop](paths/d-platforms/tiktok-shop-ai-guide.md)，Hook 公式、达人评分、直播脚本、GMV Max。
+### 独立站
 
-**亚太** — [东南亚](paths/d-platforms/d6-southeast-asia-ai-guide.md) · [日本 Rakuten](paths/d-platforms/d8-rakuten-japan-ai-guide.md) · [韩国 Coupang](paths/d-platforms/d11-coupang-korea-ai-guide.md)
+[Shopify AI 指南](paths/d-platforms/shopify-ai-guide.md) — 从选品到 GEO 到 Agentic Storefronts 的全链路。
 
-**欧洲与拉美** — [Mercado Libre](paths/d-platforms/d7-mercado-libre-ai-guide.md) · [Otto/Zalando](paths/d-platforms/d13-europe-marketplaces-guide.md)
+### 短视频与直播
 
-**跨平台** — [跨平台协同](paths/d-platforms/cross-platform-strategy.md) · [平台全景对比](paths/d-platforms/platform-comparison.md)
+[TikTok Shop](paths/d-platforms/tiktok-shop-ai-guide.md) — Hook 公式、达人评分、直播脚本、GMV Max。
+
+### 亚太
+
+[东南亚](paths/d-platforms/d6-southeast-asia-ai-guide.md) · [日本 Rakuten](paths/d-platforms/d8-rakuten-japan-ai-guide.md) · [韩国 Coupang](paths/d-platforms/d11-coupang-korea-ai-guide.md)
+
+### 欧洲与拉美
+
+[Mercado Libre](paths/d-platforms/d7-mercado-libre-ai-guide.md) · [Otto/Zalando](paths/d-platforms/d13-europe-marketplaces-guide.md)
+
+### 跨平台策略
+
+[跨平台协同](paths/d-platforms/cross-platform-strategy.md) · [平台全景对比](paths/d-platforms/platform-comparison.md)
 
 ---
 
 ## 技术
 
-给开发者的 9 个模块：[数据管道](paths/b-developers/b1-data-pipeline.md) · [预测模型](paths/b-developers/b2-prediction-models.md) · [RAG 知识库](paths/b-developers/b3-rag-knowledge-base.md) · [Agent 工作流](paths/b-developers/b4-agent-workflow.md) · [本地部署](paths/b-developers/b5-local-model-deploy.md) · [MCP 集成](paths/b-developers/b6-mcp-agentic-workflow.md) · [Review NLP](paths/b-developers/b7-review-nlp-system.md) · [Dashboard](paths/b-developers/b8-ecommerce-dashboard.md) · [AI 图片生成](paths/b-developers/b9-ai-image-pipeline.md)
+给开发者的 9 个模块。
+
+### 数据与预测
+
+[数据管道](paths/b-developers/b1-data-pipeline.md) · [预测模型](paths/b-developers/b2-prediction-models.md)
+
+### 知识库与 Agent
+
+[RAG 知识库](paths/b-developers/b3-rag-knowledge-base.md) · [Agent 工作流](paths/b-developers/b4-agent-workflow.md) · [MCP 集成](paths/b-developers/b6-mcp-agentic-workflow.md)
+
+### 部署与应用
+
+[本地部署](paths/b-developers/b5-local-model-deploy.md) · [Review NLP](paths/b-developers/b7-review-nlp-system.md) · [Dashboard](paths/b-developers/b8-ecommerce-dashboard.md) · [AI 图片生成](paths/b-developers/b9-ai-image-pipeline.md)
 
 ## 管理
 
