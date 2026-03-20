@@ -6,23 +6,39 @@
 
 </div>
 
-# ecommerce-ai-roadmap: AI Prompts & Strategies for Amazon Sellers, Shopify & TikTok Shop
+# ecommerce-ai-roadmap
 
-> 跨境电商 AI 实战知识库 -- Amazon Listing 优化 / Rufus & COSMO 语义 SEO / GEO & Agentic Commerce / PPC 广告分析 / TikTok Shop 视频脚本 / Shopify GEO 优化 / 13 平台 AI 运营 / ChatGPT Prompts for E-Commerce
+> 跨境电商 AI 实战知识库 — AAAI China Chapter 开源项目
 
 [![AAAI China Chapter](https://img.shields.io/badge/AAAI_China_Chapter-Initiative-blue)](https://github.com/kangise/ecommerce-ai-roadmap)
 [![Stars](https://img.shields.io/github/stars/kangise/ecommerce-ai-roadmap?style=social)](https://github.com/kangise/ecommerce-ai-roadmap)
 [![License: CC0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
 
-58 个 AI 实战场景直达 · Amazon / Shopify / TikTok Shop + 13 平台覆盖 · Rufus/COSMO/GEO 优化方法论 · 可直接复制的 Prompt 模板
-
 🇨🇳 中文（当前） | 🇺🇸 [English](en/README.md) | 🇯🇵 [日本語](ja/README.md)（概要のみ） | 🇪🇸 [Español](es/README.md)（resumen）
 
 ---
 
-### 30 秒体验 AI 选品
+## 关于本知识库
 
-复制下面的 Prompt 到 [ChatGPT](https://chat.openai.com/) 或 [Claude](https://claude.ai/)，立即获得市场分析：
+这是一个面向跨境电商从业者的 AI 实战知识库。不是链接聚合，不是工具推荐列表 — 是可以直接拿来用的原创内容：Prompt 模板、Colab Notebook、方法论指南和实战案例。
+
+覆盖范围：Amazon Listing 优化 / Rufus & COSMO 语义 SEO / GEO & Agentic Commerce / PPC 广告分析 / TikTok Shop 视频脚本 / Shopify 独立站 / 13 个电商平台 / 7 个社交媒体渠道。
+
+当前规模：56 篇深度指南 · 30 个 Prompt 模板 · 18 个 Colab Notebook · 8 个实战案例 · 4 种语言。
+
+## 如何使用
+
+这个知识库按「角色」组织成 6 条学习路径，每条路径由若干独立模块组成。你不需要从头读到尾 — 根据你的角色选一条路径，按需挑选模块即可。
+
+**使用流程**：
+
+1. 先看下面的「选择你的路径」，找到适合你的路径
+2. 进入路径后，每个模块都是独立的，可以跳着看
+3. 每个模块包含：方法论 + Prompt 模板 + 实操步骤 + 完成标志
+4. Prompt 模板可以直接复制到 ChatGPT / Claude 使用
+5. Notebook 可以在 Google Colab 一键运行，不需要本地环境
+
+**快速体验** — 复制下面的 Prompt 到 [ChatGPT](https://chat.openai.com/) 或 [Claude](https://claude.ai/)，30 秒得到一份市场分析：
 
 ```
 你是一个资深的跨境电商运营专家，精通 Amazon 平台。
@@ -35,28 +51,16 @@
 请用表格形式呈现关键数据对比。
 ```
 
-你会在 30 秒内得到一份市场分析。更多 Prompt → [Prompt 模板库](prompts/)
-
----
-
-## What's New
-
-- 2026-03-15: 新增 [A13 AI Growth Hack](paths/a-operators/a13-ai-growth-hack.md) AI 全栈增长飞轮（选品→上架→流量→转化→规模化）
-- 2026-03-15: 12 个文件内容深化（基于网络搜索真实数据+案例），Path A 扩展至 13 个模块（A7-A13）
-- 2026-03-14: 新增 [Path E: 社交媒体 AI 运营](paths/e-social-media/)（7 篇指南：Instagram/YouTube/小红书/Pinterest/WhatsApp/Reddit/跨渠道）
-- 2026-03-14: Path D 扩展至 [13 个电商平台](paths/d-platforms/)（新增 Walmart/Temu/Shopee/Mercado Libre/Rakuten/eBay/AliExpress/Coupang/Faire/Otto/Zalando）
-- 2026-03-14: 新增 [平台全景对比页](paths/d-platforms/platform-comparison.md) 14 个平台 + 7 个社交渠道的完整对比
-- 2026-03-14: 多语言支持：[English](en/README.md) · [日本語](ja/README.md) · [Español](es/README.md)
-- 2025-06-20: 新增 [Notebook 实验室](notebooks/) 首个 Notebook: Amazon 报告数据处理 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/b1-data-pipeline.ipynb)
-- 2025-06-20: 新增 2 个实战案例: [AI Listing 生成](docs/case-studies/ai-listing-generation.md)、[自动化 Review 分析](docs/case-studies/automated-review-analysis.md)
+更多 Prompt → [Prompt 模板库](prompts/)
 
 ---
 
 ## 目录
 
-> 找特定内容？用 GitHub 仓库搜索：按 `T` 搜文件名，或在仓库页面按 `/` 全文搜索。
+> 找特定内容？按 `T` 搜文件名，或按 `/` 全文搜索。
 
-- [What's New](#whats-new)
+- [关于本知识库](#关于本知识库)
+- [如何使用](#如何使用)
 - [热门内容直通车](#热门内容直通车)
 - [选择你的路径](#选择你的路径)
 - [Path A: 运营人](#path-a-运营人-ai-提效实战)
