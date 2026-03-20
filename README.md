@@ -44,11 +44,8 @@
 
 ## 🆕 What's New
 
-- 📅 2026-03-15: 🆕 新增 [A13 AI Growth Hack](paths/a-operators/a13-ai-growth-hack.md) — AI 全栈增长飞轮，从选品到规模化的 5 阶段方法论
-- 📅 2026-03-15: 📈 12 个文件内容密度深化（基于网络搜索真实数据+案例），总计 +2000 行
-- 📅 2026-03-15: 📈 Path A 扩展至 13 个模块（A7 视觉→A13 Growth Hack）
 - 📅 2026-03-15: 🆕 新增 [A13 AI Growth Hack](paths/a-operators/a13-ai-growth-hack.md) — AI 全栈增长飞轮（选品→上架→流量→转化→规模化）
-- 📅 2026-03-15: 📈 12 个文件内容深化（基于网络搜索真实数据+案例），Path A 扩展至 13 个模块（A7-A12 + A13）
+- 📅 2026-03-15: 📈 12 个文件内容深化（基于网络搜索真实数据+案例），Path A 扩展至 13 个模块（A7-A13）
 - 📅 2026-03-14: 🆕 新增 [Path E: 社交媒体 AI 运营](paths/e-social-media/)（7 篇指南：Instagram/YouTube/小红书/Pinterest/WhatsApp/Reddit/跨渠道）
 - 📅 2026-03-14: 🆕 Path D 扩展至 [13 个电商平台](paths/d-platforms/)（新增 Walmart/Temu/Shopee/Mercado Libre/Rakuten/eBay/AliExpress/Coupang/Faire/Otto/Zalando）
 - 📅 2026-03-14: 🆕 新增 [平台全景对比页](paths/d-platforms/platform-comparison.md) — 14 个平台 + 7 个社交渠道的完整对比
@@ -358,17 +355,17 @@ flowchart LR
 
 ## Notebook 实验室
 
-可在 Google Colab 直接运行的 Jupyter Notebook，零配置上手。
+可在 Google Colab 直接运行的 Jupyter Notebook，零配置上手。当前已有 18 个 Notebook，覆盖 Path A/B/C/D/E。
 
-📋 计划覆盖以下主题（开发中，欢迎贡献）：
+📖 [查看完整 Notebook 索引 →](notebooks/README.md)
 
-- Amazon 报告自动化处理（入门）
-- Prophet 销量预测（中级）
-- BERTopic Review 主题分析（中级）
-- 产品 FAQ 知识库（中级）
-- 运营日报自动生成 Agent（高级）
-
-> 关注 [路线图](roadmap/README.md) 了解最新进展。
+| 路径 | Notebook 数量 | 覆盖模块 |
+|------|-------------|----------|
+| Path A 运营 | 11 | A1 选品、A2 Listing、A3 广告、A4 差评、A5 库存、A6 合规、A8 定价、A9 GEO、A10 品牌、A11 利润、A12 IP |
+| Path B 技术 | 4 | B1 数据管道、B2 销量预测、B7 Review 分析、B8 Dashboard |
+| Path C 管理 | 1 | C3 ROI 评估 |
+| Path D 平台 | 1 | D3 跨平台内容 |
+| Path E 社交 | 1 | E1 社交内容日历 |
 
 [回到目录](#-目录--table-of-contents)
 
@@ -393,9 +390,7 @@ flowchart LR
 [ ] A10. 品牌：用 AI 生成完整品牌故事和视觉系统
 [ ] A11. 财务：用 AI 计算至少 5 个 SKU 的真实利润
 [ ] A12. IP：完成至少 1 个产品的专利/商标风险排查
-[ ] A13. Growth Hack：建立 AI 驱动的每日运营工作流
-[ ] A12. IP：完成至少 1 个产品的专利/商标风险排查
-[ ] A13. Growth Hack：建立每日 AI 运营工作流并扩展到 2+ 平台
+[ ] A13. Growth Hack：建立 AI 驱动的每日运营工作流并扩展到 2+ 平台
 ```
 
 ### Path B 进度追踪（技术人）

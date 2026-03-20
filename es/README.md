@@ -43,12 +43,25 @@ Presenta las comparaciones de datos clave en formato de tabla.
 
 ## 📋 Tabla de Contenidos
 
+- [Novedades](#-novedades)
 - [Acceso rápido a temas populares](#acceso-rápido-a-temas-populares)
 - [Elige tu camino](#elige-tu-camino)
 - [Path A: Operadores — IA para operaciones diarias](#path-a-operadores)
 - [Path D: Multiplataforma — Más allá de Amazon](#path-d-multiplataforma)
 - [Path E: Redes sociales — IA para marketing](#path-e-redes-sociales)
 - [Licencia](#licencia)
+
+---
+
+## 🆕 Novedades
+
+- 📅 2026-03-15: 🆕 [A13 AI Growth Hack](../paths/a-operators/a13-ai-growth-hack.md) — Sistema de crecimiento AI full-stack (investigación→listado→tráfico→conversión→escala)
+- 📅 2026-03-15: 📈 12 archivos profundizados (datos reales + casos de estudio), Path A ampliado a 13 módulos (A7-A13)
+- 📅 2026-03-15: 📈 Laboratorio de Notebooks ampliado a 18 — Path A(11), B(4), C(1), D(1), E(1)
+- 📅 2026-03-14: 🆕 [Path E: Redes sociales AI](../paths/e-social-media/) (7 guías: Instagram/YouTube/Xiaohongshu/Pinterest/WhatsApp/Reddit/multicanal)
+- 📅 2026-03-14: 🆕 Path D ampliado a [13 plataformas](../paths/d-platforms/) (Walmart/Temu/Shopee/Mercado Libre/Rakuten/eBay/AliExpress/Coupang/Faire/Otto/Zalando)
+- 📅 2026-03-14: 🆕 [Comparación de plataformas](../paths/d-platforms/platform-comparison.md) — 14 plataformas + 7 canales sociales
+- 📅 2025-06-20: [Laboratorio de Notebooks](../notebooks/) — Primer notebook: procesamiento de datos de Amazon
 
 ---
 
@@ -116,6 +129,13 @@ Presenta las comparaciones de datos clave en formato de tabla.
 | [A4. Servicio al cliente](../paths/a-operators/a4-customer-service.md) | Análisis de reseñas negativas, cartas de apelación | Construir una biblioteca de plantillas de CS multilingüe |
 | [A5. Inventario y cadena de suministro](../paths/a-operators/a5-inventory.md) | Predicción de reabastecimiento, stock de seguridad | Construir un modelo de decisión de reabastecimiento con IA |
 | [A6. Cumplimiento normativo](../paths/a-operators/a6-compliance.md) | Cumplimiento multimercado, consulta de certificaciones | Generar una lista de cumplimiento multimercado completa |
+| [A7. Contenido visual](../paths/a-operators/a7-visual-content.md) 🆕 | Imágenes/videos con IA | Imágenes de producto, videos, consistencia visual de marca |
+| [A8. Estrategia de precios](../paths/a-operators/a8-pricing-strategy.md) 🆕 | Precios inteligentes | Monitoreo de precios de competidores, precios dinámicos |
+| [A9. SEO/GEO](../paths/a-operators/a9-seo-geo.md) 🆕 | Optimización de búsqueda | Amazon SEO + GEO (que la IA recomiende tus productos) |
+| [A10. Construcción de marca](../paths/a-operators/a10-brand-building.md) 🆕 | Estrategia de marca | Historia de marca con IA, sistema visual |
+| [A11. Análisis financiero](../paths/a-operators/a11-financial-analysis.md) 🆕 | Gestión financiera | Cálculo de beneficios, previsión de flujo de caja |
+| [A12. Propiedad intelectual](../paths/a-operators/a12-ip-protection.md) 🆕 | Protección IP | Búsqueda de patentes, monitoreo de marcas |
+| [A13. AI Growth Hack](../paths/a-operators/a13-ai-growth-hack.md) 🆕 | Crecimiento full-stack | Flywheel de crecimiento AI, Agentic Commerce |
 
 ---
 

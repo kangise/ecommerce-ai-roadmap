@@ -37,7 +37,7 @@ Please provide a quick market feasibility analysis including:
 Please present key data comparisons in table format.
 ```
 
-👆 You'll get a market analysis in 30 seconds. More prompts → [Prompt Library](../prompts/)
+👆 You'll get a market analysis in 30 seconds. More prompts → [Prompt Library](prompts/)
 
 ---
 
@@ -319,17 +319,17 @@ flowchart LR
 
 ## Prompt Library
 
-All prompt templates are organized in the [`prompts/`](../prompts/) directory by scenario, ready to copy and use.
+All prompt templates are organized in the [`prompts/`](prompts/) directory by scenario, ready to copy and use.
 
-📖 [View full Prompt Library →](../prompts/README.md)
+📖 [View full Prompt Library →](prompts/README.md)
 
 | Template Set | Count | Scenarios |
 |-------------|-------|-----------|
-| [Product Research & Market Analysis](../prompts/product-research.md) | 3 | Competitor review analysis, market assessment, keyword clustering |
-| [Listing Generation & Optimization](../prompts/listing-optimization.md) | 3 | Full Listing generation, multi-language localization, competitor strategy breakdown |
-| [Advertising Analysis & Optimization](../prompts/advertising.md) | 2 | Search term report analysis, ad copy A/B testing |
-| [Customer Service & After-Sales](../prompts/customer-service.md) | 2 | Negative review batch analysis, account appeal letter |
-| [Compliance & Risk Management](../prompts/compliance.md) | 1 | Multi-market compliance comparison |
+| [Product Research & Market Analysis](prompts/product-research.md) | 3 | Competitor review analysis, market assessment, keyword clustering |
+| [Listing Generation & Optimization](prompts/listing-optimization.md) | 3 | Full Listing generation, multi-language localization, competitor strategy breakdown |
+| [Advertising Analysis & Optimization](prompts/advertising.md) | 2 | Search term report analysis, ad copy A/B testing |
+| [Customer Service & After-Sales](prompts/customer-service.md) | 2 | Negative review batch analysis, account appeal letter |
+| [Compliance & Risk Management](prompts/compliance.md) | 1 | Multi-market compliance comparison |
 
 > We welcome contributions of your battle-tested prompt templates! See [Contributing Guide](#contributing-guide).
 

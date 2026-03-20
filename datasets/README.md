@@ -1,30 +1,15 @@
-# 数据集目录
+# 数据集目录 | Datasets
 
-本目录包含跨境电商AI相关的数据集信息和处理脚本。
+本目录包含跨境电商 AI 相关的数据集信息。
 
-## 精选数据集
+## 推荐公开数据集
 
-### 多语言评论数据
-- **MARC** - [AWS Open Data](https://registry.opendata.aws/amazon-reviews-ml/)
-  - 亚马逊多语言评论语料库，包含6种语言的数百万条产品评论数据
-
-### 多模态电商数据
-- **Multimodal E-Commerce** - [Kaggle](https://www.kaggle.com/datasets/ziya07/multimodal-e-commerce-dataset)
-  - 包含9.9万+法语产品的多模态数据集，结合文本描述和产品图像
-
-### 时尚电商数据
-- **European Fashion Store** - [Kaggle](https://www.kaggle.com/datasets/joycemara/european-fashion-store-multitable-dataset)
-  - 模拟欧洲时尚电商的完整关系型数据库，适用于业务分析和建模
-
-### 文本分类数据
-- **E-commerce Text Classification** - [Kaggle](https://www.kaggle.com/datasets/saurabhshahane/ecommerce-text-classification)
-  - 包含5万+英语产品描述的标准化分类数据集
-
-## 数据处理脚本
-
-- `preprocessing/` - 数据预处理脚本
-- `augmentation/` - 数据增强工具
-- `validation/` - 数据验证工具
+| 数据集 | 来源 | 说明 |
+|--------|------|------|
+| MARC | [AWS Open Data](https://registry.opendata.aws/amazon-reviews-ml/) | 亚马逊多语言评论语料库，6 种语言 |
+| Multimodal E-Commerce | [Kaggle](https://www.kaggle.com/datasets/ziya07/multimodal-e-commerce-dataset) | 9.9 万+ 法语产品多模态数据集 |
+| European Fashion Store | [Kaggle](https://www.kaggle.com/datasets/joycemara/european-fashion-store-multitable-dataset) | 欧洲时尚电商关系型数据库 |
+| E-commerce Text Classification | [Kaggle](https://www.kaggle.com/datasets/saurabhshahane/ecommerce-text-classification) | 5 万+ 英语产品描述分类数据集 |
 
 ## 使用注意事项
 

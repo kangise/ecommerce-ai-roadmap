@@ -43,9 +43,15 @@ Amazon USでポータブルネックファン（Neck Fan）を販売したいと
 
 ## 🆕 最新情報
 
+- 📅 2026-03-15: 🆕 [A13 AI Growth Hack](../paths/a-operators/a13-ai-growth-hack.md) 新設 — AI フルスタック成長フライホイール（商品リサーチ→出品→集客→転換→スケール）
+- 📅 2026-03-15: 📈 12 ファイルのコンテンツ深化（実データ+ケーススタディ追加）、Path A を 13 モジュールに拡張（A7-A13）
+- 📅 2026-03-15: 📈 Notebook ラボ 18 個に拡張 — Path A(11), B(4), C(1), D(1), E(1)
+- 📅 2026-03-14: 🆕 [Path E: ソーシャルメディア AI 運営](../paths/e-social-media/) 新設（7 ガイド：Instagram/YouTube/小紅書/Pinterest/WhatsApp/Reddit/クロスチャネル）
+- 📅 2026-03-14: 🆕 Path D を [13 EC プラットフォーム](../paths/d-platforms/) に拡張（Walmart/Temu/Shopee/Mercado Libre/Rakuten/eBay/AliExpress/Coupang/Faire/Otto/Zalando 追加）
+- 📅 2026-03-14: 🆕 [プラットフォーム比較ページ](../paths/d-platforms/platform-comparison.md) — 14 プラットフォーム + 7 SNS チャネルの完全比較
+- 📅 2026-03-14: 🆕 多言語対応：[English](../en/README.md) · [日本語](README.md) · [Español](../es/README.md)
 - 📅 2025-06-20: [Notebook ラボ](../notebooks/) 新設 — 初回 Notebook: Amazon レポートデータ処理 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/b1-data-pipeline.ipynb)
 - 📅 2025-06-20: 実践ケーススタディ 2件追加: [AI リスティング生成](../docs/case-studies/ai-listing-generation.md)、[自動レビュー分析](../docs/case-studies/automated-review-analysis.md)
-- 📅 2025-06-20: [README_EN.md](../README_EN.md) 英語完全版 + コミュニティ基盤（Issue テンプレート、CODEOWNERS、CHANGELOG）追加
 
 ---
 
@@ -170,6 +176,13 @@ Amazon USでポータブルネックファン（Neck Fan）を販売したいと
 | [A4. カスタマーサービス](../paths/a-operators/a4-customer-service.md) | 低評価分析、申立書作成 | 多言語 CS 返信テンプレートライブラリを構築 |
 | [A5. 在庫・サプライチェーン](../paths/a-operators/a5-inventory.md) | 補充予測、安全在庫 | AI で補充意思決定モデルを構築 |
 | [A6. コンプライアンス](../paths/a-operators/a6-compliance.md) | 多市場コンプライアンス | 完全な多市場コンプライアンスチェックリストを生成 |
+| [A7. ビジュアルコンテンツ](../paths/a-operators/a7-visual-content.md) 🆕 | AI 画像/動画生成 | AI 商品画像、動画、ブランドビジュアル一貫性 |
+| [A8. 価格戦略](../paths/a-operators/a8-pricing-strategy.md) 🆕 | スマート価格設定 | AI 競合価格モニタリング、ダイナミックプライシング |
+| [A9. SEO/GEO](../paths/a-operators/a9-seo-geo.md) 🆕 | 検索最適化 | Amazon SEO + GEO（AI に商品を推薦させる） |
+| [A10. ブランド構築](../paths/a-operators/a10-brand-building.md) 🆕 | ブランド戦略 | AI ブランドストーリー、ビジュアルシステム |
+| [A11. 財務分析](../paths/a-operators/a11-financial-analysis.md) 🆕 | 財務管理 | AI 利益計算、キャッシュフロー予測 |
+| [A12. 知的財産](../paths/a-operators/a12-ip-protection.md) 🆕 | IP 保護 | AI 特許検索、商標モニタリング |
+| [A13. AI Growth Hack](../paths/a-operators/a13-ai-growth-hack.md) 🆕 | フルスタック成長 | AI 成長フライホイール、Agentic Commerce |
 
 [目次に戻る](#-目次)
 
