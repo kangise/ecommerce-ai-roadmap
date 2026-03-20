@@ -2,15 +2,15 @@
 
 > **路径**: Path A: 运营人 · **模块**: A12
 > **最后更新**: 2026-03-14
-> **难度**: ⭐⭐ 中级
+> **难度**: 中级
 > **预计时间**: 每天 30 分钟，1 周
 > **前置模块**: [A6 合规与风控](a6-compliance.md)
 
-🏠 [Hub 首页](../../README.md) · 📋 [Path A 总览](README.md)
+[Hub 首页](../../README.md) · [Path A 总览](README.md)
 
 ---
 
-## 📖 章节导航
+## 章节导航
 
 1. [为什么 IP 保护是跨境卖家的生命线](#1-为什么-ip-保护是跨境卖家的生命线)
 2. [AI 专利检索与风险评估](#2-ai-专利检索与风险评估)
@@ -30,7 +30,7 @@
 - 了解 AI 生成内容（图片/文案）的版权归属问题
 - 掌握 Amazon Brand Protection 工具的使用
 
-> 💡 **与 A6 的区别**：A6 覆盖多市场合规（CE/FCC/VAT 等），本模块专注知识产权（专利/商标/版权）。
+> **与 A6 的区别**：A6 覆盖多市场合规（CE/FCC/VAT 等），本模块专注知识产权（专利/商标/版权）。
 
 ---
 
@@ -71,10 +71,10 @@
 
 1. 这个品类常见的专利类型（发明专利/外观专利/实用新型）
 2. 需要排查的关键专利数据库
-   - US: USPTO (patents.google.com)
-   - EU: Espacenet (worldwide.espacenet.com)
-   - JP: J-PlatPat
-   - CN: CNIPA
+- US: USPTO (patents.google.com)
+- EU: Espacenet (worldwide.espacenet.com)
+- JP: J-PlatPat
+- CN: CNIPA
 3. 建议的搜索关键词（英文+中文）
 4. 高风险功能/设计特征（哪些最可能有专利保护）
 5. 规避策略（如何在不侵权的前提下设计产品）
@@ -150,19 +150,19 @@ TRO 是跨境卖家面临的最严重 IP 风险之一。美国法院可以在不
 请帮我设计商标监控方案：
 
 1. 需要监控的内容
-   - Amazon 上是否有人使用我的品牌名
-   - 是否有近似商标被申请注册
-   - 是否有仿冒产品使用我的 Logo
+- Amazon 上是否有人使用我的品牌名
+- 是否有近似商标被申请注册
+- 是否有仿冒产品使用我的 Logo
 
 2. 监控工具推荐
-   - Amazon Brand Protection 工具
-   - 第三方商标监控服务
-   - AI 辅助的定期检查
+- Amazon Brand Protection 工具
+- 第三方商标监控服务
+- AI 辅助的定期检查
 
 3. 发现侵权后的应对流程
-   - Amazon 投诉流程（Report a Violation）
-   - DMCA 投诉流程
-   - 法律途径
+- Amazon 投诉流程（Report a Violation）
+- DMCA 投诉流程
+- 法律途径
 ```
 
 ---
@@ -205,7 +205,7 @@ TRO 是跨境卖家面临的最严重 IP 风险之一。美国法院可以在不
 ## 5. Amazon Brand Protection 工具
 
 > **真实案例：Project Zero 已有 10,000+ 品牌加入**
-> Amazon Project Zero 已有超过 10,000 个品牌加入，包括 Arduino、BMW、LifeProof、OtterBox、Salvatore Ferragamo 和 Veet 等（[MediaDale](http://www.mediadale.com/news/articleView.html?idxno=56862)）。Project Zero 的三大组件——自动保护（每天扫描 50 亿+ Listing）、品牌自助移除工具、产品序列化——共同构成了 Amazon 最强大的品牌保护体系。
+> Amazon Project Zero 已有超过 10,000 个品牌加入，包括 Arduino、BMW、LifeProof、OtterBox、Salvatore Ferragamo 和 Veet 等（[MediaDale](http://www.mediadale.com/news/articleView.html?idxno=56862)）。Project Zero 的三大组件自动保护（每天扫描 50 亿+ Listing）、品牌自助移除工具、产品序列化共同构成了 Amazon 最强大的品牌保护体系。
 
 Content rephrased for compliance with licensing restrictions.
 
@@ -225,8 +225,8 @@ Content rephrased for compliance with licensing restrictions.
 | Report a Violation | 举报侵权 Listing | Brand Registry | 手动举报 |
 | Transparency | 产品防伪码（每件产品唯一码） | Brand Registry + 付费 | 自动验证 |
 | Project Zero | AI 自动移除仿冒（94% 检测率） | Brand Registry + 邀请制 | 神经网络扫描（[BareGold](https://baregold.ca/resources/advanced-ip-protection-strategies-for-amazon-brands-in-2026)） |
-| IP Accelerator | 加速商标注册 | 通过 Amazon 合作律所 | — |
-| Counterfeit Crimes Unit | 刑事打击假货 | 严重侵权案件 | — |
+| IP Accelerator | 加速商标注册 | 通过 Amazon 合作律所 | |
+| Counterfeit Crimes Unit | 刑事打击假货 | 严重侵权案件 | |
 | Brand Registry AI 数据库 | AI 品牌资产识别 | Brand Registry | 自动匹配 |
 
 Content rephrased for compliance with licensing restrictions.
@@ -279,12 +279,12 @@ Content rephrased for compliance with licensing restrictions.
 
 | 工具 | 商业使用许可 | 版权归属 | 风险等级 |
 |------|------------|---------|---------|
-| Midjourney（付费版） | ✅ 允许 | 用户拥有 | 低 |
-| DALL-E（ChatGPT Plus） | ✅ 允许 | 用户拥有 | 低 |
-| Adobe Firefly | ✅ 允许（有赔偿保障） | 用户拥有 | 最低 |
-| Canva AI | ✅ 允许（Pro 版） | 用户拥有 | 低 |
-| 免费 AI 工具 | ⚠️ 需检查条款 | 不确定 | 中 |
-| ChatGPT 生成文案 | ✅ 允许 | 用户拥有 | 低 |
+| Midjourney（付费版） | 允许 | 用户拥有 | 低 |
+| DALL-E（ChatGPT Plus） | 允许 | 用户拥有 | 低 |
+| Adobe Firefly | 允许（有赔偿保障） | 用户拥有 | 最低 |
+| Canva AI | 允许（Pro 版） | 用户拥有 | 低 |
+| 免费 AI 工具 | 需检查条款 | 不确定 | 中 |
+| ChatGPT 生成文案 | 允许 | 用户拥有 | 低 |
 
 > **建议**：商业使用 AI 生成内容时，优先选择明确授予商业许可的付费工具。保留生成记录（Prompt + 输出）作为创作证据。
 
@@ -320,8 +320,8 @@ Content rephrased for compliance with licensing restrictions.
 - [ ] 熟悉 Amazon Brand Protection 工具
 
 ---
-> 🏠 [Hub 首页](../../README.md) · 📋 [Path A 总览](README.md)
-> 
+> [Hub 首页](../../README.md) · [Path A 总览](README.md)
+>
 > **Path A**: [A1 选品](a1-product-research.md) · [A2 Listing](a2-listing-optimization.md) · [A3 广告](a3-advertising.md) · [A4 客服](a4-customer-service.md) · [A5 库存](a5-inventory.md) · [A6 合规](a6-compliance.md) · [A7 视觉](a7-visual-content.md) · [A8 定价](a8-pricing-strategy.md) · [A9 SEO/GEO](a9-seo-geo.md) · [A10 品牌](a10-brand-building.md) · [A11 财务](a11-financial-analysis.md) · [A12 知识产权](a12-ip-protection.md)
-> 
+>
 > **快速跳转**: [Path 0 基础](../0-foundations/) · [Path B 技术](../b-developers/) · [Path C 管理](../c-managers/) · [Path D 多平台](../d-platforms/) · [Path E 社交媒体](../e-social-media/)

@@ -59,9 +59,9 @@
 ## Logo 概念
 
 Logo 由三个元素组成：
-1. 地球/路线图图标 — 代表跨境电商
-2. AI 芯片/神经网络节点 — 代表 AI
-3. 向上箭头 — 代表增长/roadmap
+1. 地球/路线图图标 代表跨境电商
+2. AI 芯片/神经网络节点 代表 AI
+3. 向上箭头 代表增长/roadmap
 
 SVG 文件: [logo.svg](logo.svg) · [logo-dark.svg](logo-dark.svg)
 

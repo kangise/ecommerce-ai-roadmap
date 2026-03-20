@@ -4,31 +4,31 @@
 
 > **Path**: Path 0: AI Foundations · **Module**: F3
 > **Last Updated**: 2026-03-12
-> **Difficulty**: ⭐⭐ Intermediate
+> **Difficulty**: Intermediate
 > **Estimated Time**: 2 hours
 > **Prerequisites**: [F1 The History of AI](f1-ai-evolution.md), [F2 Prompt Engineering](f2-prompt-engineering.md)
 
 ---
 
-🏠 [Hub Home](../../README.md) · 📋 [Path 0 Overview](README.md)
+[Hub Home](../../README.md) · [Path 0 Overview](README.md)
 
 ```mermaid
 flowchart LR
-    F1["F1 The History of AI"]
-    F1 --> F2
-    F2["F2 Prompt Engineering"]
-    F2 --> F3
-    F3["✅ F3 Knowledge Base & RAG<br/>(Current)"]:::current
-    F3 --> F4
-    F4["F4 Automation & Agents"]
-    classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
+F1["F1 The History of AI"]
+F1 --> F2
+F2["F2 Prompt Engineering"]
+F2 --> F3
+F3[" F3 Knowledge Base & RAG<br/>(Current)"]:::current
+F3 --> F4
+F4["F4 Automation & Agents"]
+classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 ```
 
 ---
 
-## 📖 Module Navigation
+## Module Navigation
 
-1. [Why AI Doesn't Know Your Products](#1-why-ai-doesnt-know-your-product-information) · 2. [Embedding Basics](#2-embedding-basics-how-ai-understands-meaning) · 3. [Vector Databases](#3-vector-databases-storing-and-retrieving-semantics) · 4. [RAG Architecture](#4-rag-architecture-the-complete-workflow) · 5. [Hands-On Overview](#5-hands-on-overview-building-a-product-knowledge-base) · 6. [RAG Optimization Tips](#6-rag-optimization-tips) · 7. [FAQ](#7-frequently-asked-questions) · 8. [Learning Resources](#8-learning-resources) · 9. [🦞 OpenClaw Automation](#9-automate-knowledge-base-management--rag-monitoring-with-openclaw) · 10. [Completion Checklist](#10-completion-checklist)
+1. [Why AI Doesn't Know Your Products](#1-why-ai-doesnt-know-your-product-information) · 2. [Embedding Basics](#2-embedding-basics-how-ai-understands-meaning) · 3. [Vector Databases](#3-vector-databases-storing-and-retrieving-semantics) · 4. [RAG Architecture](#4-rag-architecture-the-complete-workflow) · 5. [Hands-On Overview](#5-hands-on-overview-building-a-product-knowledge-base) · 6. [RAG Optimization Tips](#6-rag-optimization-tips) · 7. [FAQ](#7-frequently-asked-questions) · 8. [Learning Resources](#8-learning-resources) · 9. [ OpenClaw Automation](#9-automate-knowledge-base-management--rag-monitoring-with-openclaw) · 10. [Completion Checklist](#10-completion-checklist)
 
 
 ## What You'll Learn in This Module
@@ -43,7 +43,7 @@ After completing this module, you'll be able to:
 - Determine when to use RAG and when you don't need it
 - Know the basic steps for building a product knowledge base (for technical implementation, see [B3 RAG Knowledge Base](../b-developers/b3-rag-knowledge-base.md))
 
-> 💡 **Module Focus**: Build conceptual understanding — no coding required. If you want to build a RAG system hands-on, head to [Path B: B3 RAG Knowledge Base](../b-developers/b3-rag-knowledge-base.md) after completing this module.
+> **Module Focus**: Build conceptual understanding no coding required. If you want to build a RAG system hands-on, head to [Path B: B3 RAG Knowledge Base](../b-developers/b3-rag-knowledge-base.md) after completing this module.
 
 ---
 
@@ -51,7 +51,7 @@ After completing this module, you'll be able to:
 
 ### 1.1 Where AI Gets Its Knowledge
 
-Recall from F1: an LLM's knowledge comes entirely from its training data. That training data consists of publicly available text from the internet — Wikipedia, news articles, forums, code repositories, etc.
+Recall from F1: an LLM's knowledge comes entirely from its training data. That training data consists of publicly available text from the internet Wikipedia, news articles, forums, code repositories, etc.
 
 **What AI knows:**
 - General Amazon platform rules and policies (public information)
@@ -70,7 +70,7 @@ Recall from F1: an LLM's knowledge comes entirely from its training data. That t
 
 | Method | How It Works | Pros | Cons | Best For |
 |--------|-------------|------|------|----------|
-| **Direct Pasting** | Put data directly in the prompt | Simplest, zero cost | Limited by context window (128K–1M tokens) | Small datasets (<50 pages) |
+| **Direct Pasting** | Put data directly in the prompt | Simplest, zero cost | Limited by context window (128K1M tokens) | Small datasets (<50 pages) |
 | **Fine-tuning** | Retrain the model with your data | Model "memorizes" your knowledge | Expensive, slow to update, may forget | Changing model style/format |
 | **RAG** | Retrieve relevant data in real time and inject into prompt | Real-time data updates, low cost, explainable | Requires building a retrieval system | Large datasets, frequent updates |
 
@@ -90,7 +90,7 @@ Recall from F1: an LLM's knowledge comes entirely from its training data. That t
 - Answers are traceable (can be traced back to specific documents)
 - The filing cabinet can be infinitely large
 
-> 💡 **Bottom Line**: For cross-border e-commerce teams, RAG is the most practical approach. Large data volumes, frequent updates, and the need for traceability — these three characteristics perfectly match RAG's strengths.
+> **Bottom Line**: For cross-border e-commerce teams, RAG is the most practical approach. Large data volumes, frequent updates, and the need for traceability these three characteristics perfectly match RAG's strengths.
 
 ---
 
@@ -102,7 +102,7 @@ Embedding (vector embedding) is a technique that converts text into a set of num
 
 **Intuitive Understanding:**
 
-Imagine you need to mark different products on a map. The traditional approach uses keyword matching — "Bluetooth earbuds" can only match documents containing those exact words.
+Imagine you need to mark different products on a map. The traditional approach uses keyword matching "Bluetooth earbuds" can only match documents containing those exact words.
 
 Embedding places each product in a "semantic space":
 - "Bluetooth earbuds" and "wireless earbuds" are close in semantic space (similar meaning)
@@ -112,17 +112,17 @@ Embedding places each product in a "semantic space":
 ```
 语义空间示意（简化为 2D）：
 
-        音频设备
-          ↑
-  蓝牙音箱 ●    ● 无线耳机
-              ● 蓝牙耳机
-  智能手表 ●        ● 有线耳机
-          
-  ← 可穿戴 ─────────── 配件 →
-  
-                    ● 手机壳
-  
-  ● 厨房刀具（很远，不在这个区域）
+音频设备
+↑
+蓝牙音箱 无线耳机
+蓝牙耳机
+智能手表 有线耳机
+
+← 可穿戴 配件 →
+
+手机壳
+
+厨房刀具（很远，不在这个区域）
 ```
 
 In reality, embeddings aren't 2D but 768D or 1536D (hundreds to thousands of dimensions), but the principle is the same: semantically similar text has vectors that are close together.
@@ -133,11 +133,11 @@ In reality, embeddings aren't 2D but 768D or 1536D (hundreds to thousands of dim
 输入文本 → Embedding 模型 → 向量（一组数字）
 
 示例：
-"这款蓝牙耳机降噪效果很好" 
-→ [0.12, -0.34, 0.56, 0.78, -0.23, ..., 0.45]  (1536 个数字)
+"这款蓝牙耳机降噪效果很好"
+→ [0.12, -0.34, 0.56, 0.78, -0.23, ..., 0.45] (1536 个数字)
 
 "这个无线耳机的主动降噪很棒"
-→ [0.11, -0.32, 0.55, 0.79, -0.21, ..., 0.44]  (1536 个数字)
+→ [0.11, -0.32, 0.55, 0.79, -0.21, ..., 0.44] (1536 个数字)
 
 两个向量非常接近 → 语义相似！
 ```
@@ -162,12 +162,12 @@ In reality, embeddings aren't 2D but 768D or 1536D (hundreds to thousands of dim
 | Dimension | Keyword Search | Semantic Search (Embedding) |
 |-----------|---------------|---------------------------|
 | How it works | Exact keyword matching | Semantic similarity matching |
-| Can "wireless earbuds" find "Bluetooth earbuds"? | ❌ No (different keywords) | ✅ Yes (similar meaning) |
-| Can "earphone noise cancel" find Chinese documents? | ❌ No (different language) | ✅ Yes (cross-language semantic matching) |
+| Can "wireless earbuds" find "Bluetooth earbuds"? | No (different keywords) | Yes (similar meaning) |
+| Can "earphone noise cancel" find Chinese documents? | No (different language) | Yes (cross-language semantic matching) |
 | Speed | Extremely fast | Fast (millisecond-level) |
 | Best for | Finding known content precisely | Fuzzy search, cross-language search |
 
-> 💡 **In practice, the best approach is hybrid search**: use keyword search to narrow the scope first, then use semantic search for precise matching. This is the mainstream approach for RAG systems in 2026.
+> **In practice, the best approach is hybrid search**: use keyword search to narrow the scope first, then use semantic search for precise matching. This is the mainstream approach for RAG systems in 2026.
 
 ---
 
@@ -193,7 +193,7 @@ Vector databases are specifically designed for storing and retrieving vectors, c
 | [pgvector](https://github.com/pgvector/pgvector) | PostgreSQL extension | Free | Teams already using PostgreSQL | No additional database needed |
 
 **Recommendations for Cross-Border E-Commerce:**
-- Just getting started: Chroma (simplest — up and running in 10 lines of code)
+- Just getting started: Chroma (simplest up and running in 10 lines of code)
 - Production environment: Pinecone (zero maintenance) or Qdrant (self-hosted)
 - Already using PostgreSQL: pgvector (no additional infrastructure needed)
 
@@ -211,16 +211,16 @@ Content rephrased for compliance with licensing restrictions. Sources: [Vector D
 
 **Chunking Is Key:**
 
-You can't store an entire 50-page product manual as a single vector — it's too large, and the semantics get diluted. You need to split documents into smaller chunks:
+You can't store an entire 50-page product manual as a single vector it's too large, and the semantics get diluted. You need to split documents into smaller chunks:
 
 | Chunking Strategy | Chunk Size | Best For |
 |-------------------|-----------|----------|
-| By paragraph | 100–300 words | Structured documents (FAQs, policies) |
-| Fixed length | 500–1,000 words | Long documents (product manuals) |
+| By paragraph | 100300 words | Structured documents (FAQs, policies) |
+| Fixed length | 5001,000 words | Long documents (product manuals) |
 | By semantics | Auto-detected | Mixed content (reviews, emails) |
 | By heading level | Split by H1/H2/H3 | Markdown/HTML documents |
 
-> 💡 **The Golden Rule of Chunking**: Each chunk should contain one complete unit of information. Too small and you lose context; too large and you introduce noise. 500–1,000 words is usually a good starting point.
+> **The Golden Rule of Chunking**: Each chunk should contain one complete unit of information. Too small and you lose context; too large and you introduce noise. 5001,000 words is usually a good starting point.
 
 ---
 
@@ -229,32 +229,32 @@ You can't store an entire 50-page product manual as a single vector — it's too
 ### 4.1 The Three Stages of RAG
 
 ```
-阶段 1：索引（Indexing）— 一次性准备
-┌─────────────────────────────────────────┐
-│  文档收集 → 文档分块 → 生成 Embedding    │
-│     ↓          ↓           ↓             │
-│  产品手册   500字/块    向量化            │
-│  FAQ 文档                                │
-│  Review 数据  → 存入向量数据库            │
-│  政策文件                                │
-└─────────────────────────────────────────┘
+阶段 1：索引（Indexing） 一次性准备
 
-阶段 2：检索（Retrieval）— 每次提问
-┌─────────────────────────────────────────┐
-│  用户问题 → 生成查询向量 → 向量数据库检索  │
-│     ↓                        ↓           │
-│  "这个产品防水吗？"    返回 Top 5 相关文档块 │
-└─────────────────────────────────────────┘
+文档收集 → 文档分块 → 生成 Embedding
+↓ ↓ ↓
+产品手册 500字/块 向量化
+FAQ 文档
+Review 数据 → 存入向量数据库
+政策文件
 
-阶段 3：生成（Generation）— 每次提问
-┌─────────────────────────────────────────┐
-│  系统 Prompt + 检索到的文档块 + 用户问题   │
-│     ↓                                    │
-│  发送给 LLM                               │
-│     ↓                                    │
-│  LLM 基于检索到的内容生成回答              │
-│  "根据产品手册，本产品支持 IPX5 防水..."    │
-└─────────────────────────────────────────┘
+
+阶段 2：检索（Retrieval） 每次提问
+
+用户问题 → 生成查询向量 → 向量数据库检索
+↓ ↓
+"这个产品防水吗？" 返回 Top 5 相关文档块
+
+
+阶段 3：生成（Generation） 每次提问
+
+系统 Prompt + 检索到的文档块 + 用户问题
+↓
+发送给 LLM
+↓
+LLM 基于检索到的内容生成回答
+"根据产品手册，本产品支持 IPX5 防水..."
+
 ```
 
 ### 4.2 RAG vs Asking AI Directly: A Comparison
@@ -274,14 +274,14 @@ RAG 检索到的文档块：
 连接距离 15 米，支持同时连接 2 台设备。"
 
 AI 基于检索内容回答：
-"我们的 XB-500 蓝牙耳机支持蓝牙 5.3，支持 AAC、SBC 和 LDAC 
+"我们的 XB-500 蓝牙耳机支持蓝牙 5.3，支持 AAC、SBC 和 LDAC
 音频编码，连接距离可达 15 米，并且支持同时连接 2 台设备。"
 → 精确、具体、基于你的产品数据
 ```
 
 ### 4.3 RAG Use Cases in Cross-Border E-Commerce
 
-> 📎 **Related Reading**: [B3 RAG Knowledge Base System](../b-developers/b3-rag-knowledge-base.md#42-product-faq-knowledge-base-building-a-qa-system-from-product-manuals) — See B3 for hands-on RAG system building · [A4 Customer Service & After-Sales](../a-operators/a4-customer-service.md#a4-customer-service-after-sales) — See A4 for RAG applications in automated FAQ responses.
+> **Related Reading**: [B3 RAG Knowledge Base System](../b-developers/b3-rag-knowledge-base.md#42-product-faq-knowledge-base-building-a-qa-system-from-product-manuals) See B3 for hands-on RAG system building · [A4 Customer Service & After-Sales](../a-operators/a4-customer-service.md#a4-customer-service-after-sales) See A4 for RAG applications in automated FAQ responses.
 
 | Use Case | Knowledge Base Content | Example User Questions | Value |
 |----------|----------------------|----------------------|-------|
@@ -344,7 +344,7 @@ After building a RAG system, how do you know if it's working well? You need to e
 
 **A Simple Evaluation Method:**
 
-Prepare 20–30 test questions with expected answers, run them periodically, and track quality changes over time.
+Prepare 2030 test questions with expected answers, run them periodically, and track quality changes over time.
 
 ```
 测试集示例：
@@ -359,10 +359,10 @@ Prepare 20–30 test questions with expected answers, run them periodically, and
 
 | Cost Item | One-Time | Ongoing | Notes |
 |-----------|----------|---------|-------|
-| Embedding generation | $0.01–0.10 | — | Depends on document volume (~$0.05 for 1,000 pages) |
-| Vector database | $0 | $0–50/month | Chroma is free; Pinecone has a free tier |
-| LLM API calls | — | $0.01–0.10/query | LLM cost per query |
-| Development time | 8–40 hours | 2–4 hours/month | Building + maintenance |
+| Embedding generation | $0.010.10 | | Depends on document volume (~$0.05 for 1,000 pages) |
+| Vector database | $0 | $050/month | Chroma is free; Pinecone has a free tier |
+| LLM API calls | | $0.010.10/query | LLM cost per query |
+| Development time | 840 hours | 24 hours/month | Building + maintenance |
 
 **Cost Estimate Example (Small Product Knowledge Base):**
 
@@ -414,28 +414,28 @@ print(response)
 
 ```
 Step 1：收集文档（1-2 小时）
-├── 产品手册（PDF/Word）
-├── FAQ 文档
-├── 客服常见问题和回答
-├── 产品规格参数表
-└── 内部政策文档
+产品手册（PDF/Word）
+FAQ 文档
+客服常见问题和回答
+产品规格参数表
+内部政策文档
 
 Step 2：文档预处理（30 分钟）
-├── 转换为统一格式（文本/Markdown）
-├── 清理格式问题（乱码、多余空行）
-└── 检查内容完整性
+转换为统一格式（文本/Markdown）
+清理格式问题（乱码、多余空行）
+检查内容完整性
 
 Step 3：搭建 RAG 系统（1-2 小时）
-├── 安装依赖（pip install llama-index chromadb）
-├── 配置 Embedding 模型和 LLM
-├── 加载文档并建立索引
-└── 测试查询效果
+安装依赖（pip install llama-index chromadb）
+配置 Embedding 模型和 LLM
+加载文档并建立索引
+测试查询效果
 
 Step 4：优化和部署（持续）
-├── 调整分块策略
-├── 优化检索参数
-├── 添加新文档
-└── 监控回答质量
+调整分块策略
+优化检索参数
+添加新文档
+监控回答质量
 ```
 
 ### 5.3 No-Code RAG Options
@@ -458,7 +458,7 @@ If you don't want to write code, these tools offer out-of-the-box RAG functional
 
 | Factor | Impact | Optimization Direction |
 |--------|--------|----------------------|
-| **Chunking strategy** | Chunks too large → too much noise; too small → lost context | Test different chunk sizes, start with 500–1,000 words |
+| **Chunking strategy** | Chunks too large → too much noise; too small → lost context | Test different chunk sizes, start with 5001,000 words |
 | **Embedding model** | Model quality determines semantic understanding accuracy | Use OpenAI or BGE-M3; avoid outdated models |
 | **Retrieval count (Top-K)** | Too few → may miss key info; too many → introduces noise | Start with Top-5, adjust based on results |
 | **Document quality** | Garbage in, garbage out | Ensure document content is accurate and well-formatted |
@@ -469,21 +469,21 @@ If you don't want to write code, these tools offer out-of-the-box RAG functional
 ```
 基础 RAG（Naive RAG）：
 用户问题 → 检索 → 生成
-└── 简单但有效，适合大多数场景
+简单但有效，适合大多数场景
 
 高级 RAG（Advanced RAG）：
 用户问题 → 查询改写 → 混合检索 → 重排序 → 生成
-├── 查询改写：用 LLM 优化用户问题
-├── 混合检索：关键词 + 语义同时检索
-├── 重排序：用 Cross-Encoder 对检索结果重新排序
-└── 适合对质量要求高的场景
+查询改写：用 LLM 优化用户问题
+混合检索：关键词 + 语义同时检索
+重排序：用 Cross-Encoder 对检索结果重新排序
+适合对质量要求高的场景
 
 模块化 RAG（Modular RAG）：
 用户问题 → 路由 → 选择最佳检索策略 → 多源检索 → 融合 → 生成
-├── 路由：判断问题类型，选择不同的检索策略
-├── 多源检索：同时从多个知识库检索
-├── 融合：合并多个来源的结果
-└── 适合复杂的企业级应用
+路由：判断问题类型，选择不同的检索策略
+多源检索：同时从多个知识库检索
+融合：合并多个来源的结果
+适合复杂的企业级应用
 ```
 
 Content rephrased for compliance with licensing restrictions. Sources: [RAG Architecture Guide 2026](https://ztabs.co/blog/rag-architecture-guide), [RAG Systems Production Guide 2026](https://iterathon.tech/blog/rag-systems-production-guide-2025)
@@ -500,7 +500,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [RAG Arch
 | "My data is very small (<10 documents). Do I need RAG?" | No. Just upload them to ChatGPT/Claude. RAG's value becomes clear when you have a larger dataset (50+ documents). |
 | "Can RAG guarantee 100% accuracy?" | No. RAG reduces hallucinations but can't eliminate them. Retrieval may miss key information, and the LLM may misinterpret retrieved content. Always have humans review critical answers. |
 | "Can I put multilingual documents in the same knowledge base?" | Yes, but use a multilingual Embedding model (like BGE-M3). Alternatively, build separate indexes by language. |
-| "How much does a RAG system cost?" | Minimum cost: Chroma (free) + OpenAI Embedding ($0.02/M tokens) + OpenAI GPT-4o-mini ($0.15/M tokens). About $1–2 for 1,000 queries. |
+| "How much does a RAG system cost?" | Minimum cost: Chroma (free) + OpenAI Embedding ($0.02/M tokens) + OpenAI GPT-4o-mini ($0.15/M tokens). About $12 for 1,000 queries. |
 | "What about data security?" | Use a local Embedding model (BGE-M3) + local LLM (Ollama) + local vector database (Chroma), and your data never leaves your server. |
 
 ### 7.2 When You Don't Need RAG
@@ -539,7 +539,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [RAG Arch
 
 ### Scenario
 
-> You want to automate day-to-day knowledge base maintenance — automatically trigger knowledge base updates when product manuals are updated, FAQs are added, or policies change. At the same time, monitor your RAG pipeline's retrieval quality and get alerts when answer accuracy drops.
+> You want to automate day-to-day knowledge base maintenance automatically trigger knowledge base updates when product manuals are updated, FAQs are added, or policies change. At the same time, monitor your RAG pipeline's retrieval quality and get alerts when answer accuracy drops.
 
 ```
 你是我的知识库管理助手。请帮我：
@@ -580,8 +580,8 @@ Content rephrased for compliance with licensing restrictions. Sources: [RAG Arch
 Once you've checked off all the items above, you understand the core technology for making AI work with private data. Next up: [F4 Automation & Agents](f4-agent-automation.md), where you'll learn how to make AI not just answer questions, but take action.
 
 ---
-> 🏠 [Hub Home](../../README.md) · 📋 [Path 0 Overview](README.md) · 📊 [AI Landscape Assessment](ai-landscape.md)
-> 
+> [Hub Home](../../README.md) · [Path 0 Overview](README.md) · [AI Landscape Assessment](ai-landscape.md)
+>
 > **Path 0**: [F1 AI Evolution](f1-ai-evolution.md) · [F2 Prompt Engineering](f2-prompt-engineering.md) · [F3 RAG & Knowledge Base](f3-rag-knowledge.md) · [F4 Agent Automation](f4-agent-automation.md) · [F5 RPA Automation](f5-rpa-automation.md) · [AI Landscape](ai-landscape.md)
-> 
+>
 > **Quick Jump**: [Path A Operations](../a-operators/) · [Path B Technical](../b-developers/) · [Path C Management](../c-managers/) · [Path D Multi-Platform](../d-platforms/) · [Path E Social Media](../e-social-media/)

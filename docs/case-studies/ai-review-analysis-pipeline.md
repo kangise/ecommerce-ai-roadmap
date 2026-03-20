@@ -2,10 +2,10 @@
 
 > **场景**: Amazon Review 竞品分析与产品改进
 > **工具**: Python + BERTopic + Claude API
-> **难度**: ⭐⭐ 中级
+> **难度**: 中级
 > **预计节省**: 从 2 天人工分析 → 30 分钟自动化
 
-🏠 [Hub 首页](../../README.md) · 📋 [案例列表](README.md)
+[Hub 首页](../../README.md) · [案例列表](README.md)
 
 ---
 
@@ -38,8 +38,8 @@
 pipeline = ReviewAnalysisPipeline()
 
 # Step 1: 加载数据（5 分钟）
-my_reviews = pd.read_csv("my_product_reviews.csv")      # 1,200 条
-comp_reviews = pd.read_csv("competitor_a_reviews.csv")   # 980 条
+my_reviews = pd.read_csv("my_product_reviews.csv") # 1,200 条
+comp_reviews = pd.read_csv("competitor_a_reviews.csv") # 980 条
 
 # Step 2: 情感分析（3 分钟）
 my_results = pipeline.run(my_reviews)
@@ -74,20 +74,20 @@ BERTopic 自动发现了 8 个差评主题，按频率排序：
 AI 分析报告摘要：
 
 1. 最紧急：蓝牙连接问题（23% 差评）
-   → 建议：升级蓝牙芯片到 5.3，竞品 A 已经这样做了
-   → 预期影响：差评率降低 15-20%
+→ 建议：升级蓝牙芯片到 5.3，竞品 A 已经这样做了
+→ 预期影响：差评率降低 15-20%
 
 2. 高优先级：电池续航（19% 差评）
-   → 建议：在 Listing 中明确标注"实际使用时间"而非"理论时间"
-   → 短期：调整 Listing 预期管理；长期：升级电池
+→ 建议：在 Listing 中明确标注"实际使用时间"而非"理论时间"
+→ 短期：调整 Listing 预期管理；长期：升级电池
 
 3. 中优先级：佩戴舒适度（15% 差评）
-   → 建议：增加不同尺寸的耳塞配件（S/M/L/XL）
-   → 竞品 A 已经提供 4 种尺寸
+→ 建议：增加不同尺寸的耳塞配件（S/M/L/XL）
+→ 竞品 A 已经提供 4 种尺寸
 
 4. Listing 优化建议：
-   → 在 Bullet Points 中强调竞品 A 没有的优势
-   → 在 Q&A 中预埋蓝牙连接的使用建议
+→ 在 Bullet Points 中强调竞品 A 没有的优势
+→ 在 Q&A 中预埋蓝牙连接的使用建议
 ```
 
 ## 结果
@@ -98,7 +98,7 @@ AI 分析报告摘要：
 | 覆盖 Review 数 | ~200 条（抽样） | 2,180 条（全量） | +990% |
 | 问题分类一致性 | 主观 | 客观量化 | 质的提升 |
 | 可执行建议 | 模糊 | 具体+优先级排序 | 质的提升 |
-| 执行后评分变化 | — | 4.0 → 4.2（3 个月后） | +0.2 |
+| 执行后评分变化 | | 4.0 → 4.2（3 个月后） | +0.2 |
 
 > **真实数据参考**：基于 BERT 的情感分析在 Amazon Review 数据集上可达 90%+ 准确率（[MDPI](https://www.mdpi.com/1999-5903/18/3/138)）。BERTopic 可以从非结构化 Review 文本中自动提取有意义的主题聚类（[Amalytix](https://www.amalytix.com/en/blog/analyze-reviews-bertopic/)）。
 

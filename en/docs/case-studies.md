@@ -42,7 +42,7 @@ This directory contains real-world case studies from the ecommerce-ai-roadmap, s
 </tr>
 </table>
 
-> **Important Note**: The current case studies are primarily technical blueprints and best practice guides, designed to demonstrate how to use relevant tech stacks to solve cross-border e-commerce AI problems. We are actively seeking real-world project cases — if you have hands-on project experience to share, contributions are welcome!
+> **Important Note**: The current case studies are primarily technical blueprints and best practice guides, designed to demonstrate how to use relevant tech stacks to solve cross-border e-commerce AI problems. We are actively seeking real-world project cases if you have hands-on project experience to share, contributions are welcome!
 
 ## Detailed Cases
 
@@ -73,7 +73,7 @@ This directory contains real-world case studies from the ecommerce-ai-roadmap, s
 
 **Detailed Documentation**: [hs-code-classification.md](case-studies/hs-code-classification.md)
 
->  **Note**: This is a technical blueprint demonstrating the complete workflow for building an HS code classification system.
+> **Note**: This is a technical blueprint demonstrating the complete workflow for building an HS code classification system.
 
 ---
 
@@ -161,27 +161,27 @@ This directory contains real-world case studies from the ecommerce-ai-roadmap, s
 We are actively seeking real-world cross-border e-commerce AI project cases! If you have experience in the following areas, we'd love to hear from you:
 
 **We especially need:**
--  Real project implementation experience and complete solutions
--  Specific performance data and business metrics
--  Challenges encountered and how they were resolved
--  Lessons learned from technology selection
--  Deployment and operations best practices
+- Real project implementation experience and complete solutions
+- Specific performance data and business metrics
+- Challenges encountered and how they were resolved
+- Lessons learned from technology selection
+- Deployment and operations best practices
 
 **Case Study Submission Process:**
-1. **[Submit a Case Study Application](https://github.com/kangise/ecommerce-ai-roadmap/issues/new?template=case_study_submission.md)** — Use the dedicated template to describe your case in detail
-2. **Community Discussion** — Discuss case details and technical approaches with maintainers and the community
-3. **Refine Documentation** — Improve the case study content based on feedback (refer to the [Technical Implementation Guide](technical-guidelines.md))
-4. **Submit PR** — Submit the complete case study document to the `case-studies/` directory
-5. **Review & Publish** — After review, it will be officially published for community learning
+1. **[Submit a Case Study Application](https://github.com/kangise/ecommerce-ai-roadmap/issues/new?template=case_study_submission.md)** Use the dedicated template to describe your case in detail
+2. **Community Discussion** Discuss case details and technical approaches with maintainers and the community
+3. **Refine Documentation** Improve the case study content based on feedback (refer to the [Technical Implementation Guide](technical-guidelines.md))
+4. **Submit PR** Submit the complete case study document to the `case-studies/` directory
+5. **Review & Publish** After review, it will be officially published for community learning
 
 **Technical References:**
--  [Technical Implementation Guide](technical-guidelines.md) — Architecture patterns, performance benchmarks, and best practices
-- 🛠️ [Contributing Guide](../../CONTRIBUTING.md) — Detailed contribution process and formatting requirements
+- [Technical Implementation Guide](technical-guidelines.md) Architecture patterns, performance benchmarks, and best practices
+- [Contributing Guide](../../CONTRIBUTING.md) Detailed contribution process and formatting requirements
 
 **How to Contribute:**
-- **[Submit a Case Study](https://github.com/kangise/ecommerce-ai-roadmap/issues/new?template=case_study_submission.md)** — Use our dedicated template
-- **[Join the Discussion](https://github.com/kangise/ecommerce-ai-roadmap/discussions)** — Share experiences and ideas in the community
-- **[Contact Maintainers](https://github.com/kangise/ecommerce-ai-roadmap/issues)** — For in-depth case interviews
+- **[Submit a Case Study](https://github.com/kangise/ecommerce-ai-roadmap/issues/new?template=case_study_submission.md)** Use our dedicated template
+- **[Join the Discussion](https://github.com/kangise/ecommerce-ai-roadmap/discussions)** Share experiences and ideas in the community
+- **[Contact Maintainers](https://github.com/kangise/ecommerce-ai-roadmap/issues)** For in-depth case interviews
 
 **Privacy Protection:**
 - Company and product information can be anonymized

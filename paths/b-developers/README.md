@@ -1,4 +1,4 @@
-# Path B: 技术人 — AI 系统构建
+# Path B: 技术人 AI 系统构建
 
 > 最后更新: 2026-03-10
 
@@ -13,10 +13,10 @@
 
 ```mermaid
 flowchart LR
-    B1["B1 数据采集\n与处理"] --> B2["B2 预测模型\n与决策"]
-    B2 --> B3["B3 RAG\n知识库"]
-    B3 --> B4["B4 AI Agent\n与自动化"]
-    B4 --> B5["B5 本地模型\n部署微调"]
+B1["B1 数据采集\n与处理"] --> B2["B2 预测模型\n与决策"]
+B2 --> B3["B3 RAG\n知识库"]
+B3 --> B4["B4 AI Agent\n与自动化"]
+B4 --> B5["B5 本地模型\n部署微调"]
 ```
 
 ---
@@ -25,15 +25,15 @@ flowchart LR
 
 | 模块 | 主题 | 难度 | 预计时间 | 说明 |
 |------|------|------|----------|------|
-| [B1. 数据采集与处理自动化](b1-data-pipeline.md) | 数据管道 | ⭐ 入门 | 4-6小时 | 从 Amazon 报告到清洗后的分析数据集 |
-| [B2. 预测模型与智能决策](b2-prediction-models.md) | 预测建模 | ⭐⭐ 中级 | 6-8小时 | 销量预测模型，辅助补货决策 |
-| [B3. RAG 知识库系统](b3-rag-knowledge-base.md) | 知识库 | ⭐⭐ 中级 | 6-8小时 | 基于内部文档的 AI 问答系统 |
-| [B4. AI Agent 与工作流自动化](b4-agent-workflow.md) | Agent | ⭐⭐⭐ 高级 | 8-10小时 | 自动执行多步骤运营任务 |
-| [B5. 本地模型部署与微调](b5-local-model-deploy.md) | 模型部署 | ⭐⭐⭐ 高级 | 4-6小时 | 本地运行 LLM，保护数据隐私 |
-| [B6. MCP 集成与 Agentic 工作流](b6-mcp-agentic-workflow.md) 🆕 | MCP/Agentic | ⭐⭐⭐ 高级 | 2-3周 | 用 MCP 连接 Amazon Ads/Shopify，对话式运营 |
-| [B7. Review 智能分析系统](b7-review-nlp-system.md) 🆕 | NLP/主题建模 | ⭐⭐ 中级 | 2周 | BERTopic 主题建模 + 情感分析 + LLM 洞察 |
-| [B8. 电商数据可视化 Dashboard](b8-ecommerce-dashboard.md) 🆕 | Streamlit/Plotly | ⭐⭐ 中级 | 1-2周 | 多平台运营 Dashboard + AI 异常检测 |
-| [B9. AI 产品图片/视频生成](b9-ai-image-pipeline.md) 🆕 | ComfyUI/DALL-E/Flux | ⭐⭐⭐ 高级 | 2-3周 | 产品图批量生成 Pipeline + 视频生成 |
+| [B1. 数据采集与处理自动化](b1-data-pipeline.md) | 数据管道 | 入门 | 4-6小时 | 从 Amazon 报告到清洗后的分析数据集 |
+| [B2. 预测模型与智能决策](b2-prediction-models.md) | 预测建模 | 中级 | 6-8小时 | 销量预测模型，辅助补货决策 |
+| [B3. RAG 知识库系统](b3-rag-knowledge-base.md) | 知识库 | 中级 | 6-8小时 | 基于内部文档的 AI 问答系统 |
+| [B4. AI Agent 与工作流自动化](b4-agent-workflow.md) | Agent | 高级 | 8-10小时 | 自动执行多步骤运营任务 |
+| [B5. 本地模型部署与微调](b5-local-model-deploy.md) | 模型部署 | 高级 | 4-6小时 | 本地运行 LLM，保护数据隐私 |
+| [B6. MCP 集成与 Agentic 工作流](b6-mcp-agentic-workflow.md) | MCP/Agentic | 高级 | 2-3周 | 用 MCP 连接 Amazon Ads/Shopify，对话式运营 |
+| [B7. Review 智能分析系统](b7-review-nlp-system.md) | NLP/主题建模 | 中级 | 2周 | BERTopic 主题建模 + 情感分析 + LLM 洞察 |
+| [B8. 电商数据可视化 Dashboard](b8-ecommerce-dashboard.md) | Streamlit/Plotly | 中级 | 1-2周 | 多平台运营 Dashboard + AI 异常检测 |
+| [B9. AI 产品图片/视频生成](b9-ai-image-pipeline.md) | ComfyUI/DALL-E/Flux | 高级 | 2-3周 | 产品图批量生成 Pipeline + 视频生成 |
 
 ---
 
@@ -55,4 +55,4 @@ flowchart LR
 
 ---
 
-🏠 [返回 Hub 首页](../../README.md) · 📋 [返回路径总览](../README.md)
+[返回 Hub 首页](../../README.md) · [返回路径总览](../README.md)

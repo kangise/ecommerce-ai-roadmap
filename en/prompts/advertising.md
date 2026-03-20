@@ -1,6 +1,6 @@
 # Advertising Optimization Prompt Templates
 
-> Last updated: 2026-03-10 | Templates: 2 | Status: ✅ Verified
+> Last updated: 2026-03-10 | Templates: 2 | Status: Verified
 
 ---
 
@@ -8,7 +8,7 @@
 
 **Scenario**: Analyze Amazon PPC search term reports to identify waste and optimization opportunities
 **Recommended tools**: ChatGPT / Claude
-**Status**: ✅ Verified
+**Status**: Verified
 **Contributor**: [@kangise](https://github.com/kangise)
 
 ### Prompt
@@ -20,9 +20,9 @@ Here is my search term report data (past 30 days):
 [Paste: Search term, Impressions, Clicks, Spend, Orders, Sales]
 
 Please analyze and output:
-1. Top 10 high-converting keywords (sorted by ROAS) — recommend increasing bids
-2. Top 10 high-spend low-converting keywords — recommend lowering bids or negating
-3. High-impression low-click keywords (CTR < 0.3%) — analyze possible causes
+1. Top 10 high-converting keywords (sorted by ROAS) recommend increasing bids
+2. Top 10 high-spend low-converting keywords recommend lowering bids or negating
+3. High-impression low-click keywords (CTR < 0.3%) analyze possible causes
 4. Suggested negative keyword list (exact match vs. phrase match)
 5. Budget reallocation recommendations
 
@@ -35,13 +35,13 @@ Present in tables, noting the recommended action and priority for each keyword.
 
 ### Tips
 
-- Export CSV data directly from the ad console and paste it — keeping column headers improves results
+- Export CSV data directly from the ad console and paste it keeping column headers improves results
 - Follow up with "If my budget is only $X/day, how should I allocate it?" for more specific recommendations
 
 ---
 
-📎 **Share this template**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/en/prompts/advertising.md#template-1-search-term-report-analysis`
-🏠 **Source**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) — AI × Cross-Border E-Commerce Knowledge Hub
+**Share this template**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/en/prompts/advertising.md#template-1-search-term-report-analysis`
+**Source**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) AI × Cross-Border E-Commerce Knowledge Hub
 
 ---
 
@@ -49,7 +49,7 @@ Present in tables, noting the recommended action and priority for each keyword.
 
 **Scenario**: Generate multiple headline variations in different styles for Sponsored Brands ads
 **Recommended tools**: ChatGPT / Claude / Gemini
-**Status**: ✅ Verified
+**Status**: Verified
 **Contributor**: [@kangise](https://github.com/kangise)
 
 ### Prompt
@@ -78,5 +78,5 @@ For each Headline, note the expected effect and suitable audience.
 
 ---
 
-📎 **Share this template**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/en/prompts/advertising.md#template-2-ad-copy-ab-testing`
-🏠 **Source**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) — AI × Cross-Border E-Commerce Knowledge Hub
+**Share this template**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/en/prompts/advertising.md#template-2-ad-copy-ab-testing`
+**Source**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) AI × Cross-Border E-Commerce Knowledge Hub

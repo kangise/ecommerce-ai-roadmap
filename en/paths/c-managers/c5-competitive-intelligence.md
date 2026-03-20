@@ -4,15 +4,15 @@
 
 > **Path**: Path C: Managers · **Module**: C5
 > **Last Updated**: 2026-03-15
-> **Difficulty**: ⭐⭐ Intermediate
+> **Difficulty**: Intermediate
 > **Estimated Time**: 3-4 hours (intensive)
 > **Prerequisite**: [C1 AI Capability Assessment](c1-ai-assessment.md)
 
-🏠 [Hub Home](../../README.md) · 📋 [Path C Overview](README.md)
+[Hub Home](../../README.md) · [Path C Overview](README.md)
 
 ---
 
-## 📖 Chapter Navigation
+## Chapter Navigation
 
 1. [The New Paradigm of AI Competitive Intelligence](#1-the-new-paradigm-of-ai-competitive-intelligence) · 2. [Five Intelligence Pillars](#2-five-intelligence-pillars) · 3. [AI Tool Matrix](#3-ai-competitive-intelligence-tool-matrix) · 4. [AI Search Visibility Monitoring](#4-ai-search-visibility-monitoring) · 5. [Strategic Decision Framework](#5-ai-driven-strategic-decision-framework) · 6. [Prompt Templates](#6-prompt-templates) · 7. [Completion Checklist](#7-completion-checklist)
 
@@ -25,7 +25,7 @@
 - An AI search visibility benchmark test
 - A data-driven strategic decision recommendation
 
-> 💡 **Core Principle**: Competitive intelligence in 2026 is no longer just about monitoring competitor prices and Listings. AI search visibility (whether your product gets recommended by ChatGPT/Perplexity) has become a new competitive dimension. The competitive intelligence tools market is projected to reach $1.12 billion by 2032, growing at 12.4% annually ([Trendos](https://www.trendos.io/blog/ecommerce-competitive-intelligence-tools-2026)).
+> **Core Principle**: Competitive intelligence in 2026 is no longer just about monitoring competitor prices and Listings. AI search visibility (whether your product gets recommended by ChatGPT/Perplexity) has become a new competitive dimension. The competitive intelligence tools market is projected to reach $1.12 billion by 2032, growing at 12.4% annually ([Trendos](https://www.trendos.io/blog/ecommerce-competitive-intelligence-tools-2026)).
 
 Content rephrased for compliance with licensing restrictions.
 
@@ -41,16 +41,16 @@ Content rephrased for compliance with licensing restrictions.
 | Listing analysis | Manually reading competitor Listings | AI semantic analysis + differentiation discovery |
 | Review monitoring | Occasionally checking competitor reviews | AI sentiment analysis + topic tracking |
 | Market trends | Quarterly reports | AI real-time trend detection |
-| AI search visibility | Didn't exist | 🆕 Monitor ChatGPT/Perplexity recommendations |
+| AI search visibility | Didn't exist | Monitor ChatGPT/Perplexity recommendations |
 | Ad intelligence | Manually searching to see competitor ads | AI tracking competitor ad strategy changes |
 
 ### 1.2 New Dimensions of Competitive Intelligence in 2026
 
-> **Real Data**: Marketers can no longer rely solely on who ranks #1 for Google keywords — they must now monitor "share of answer" in generative search, app store dynamics, and brand visibility in AI-driven agents ([SimilarWeb](https://www.similarweb.com/blog/marketing/marketing-strategy/8-best-competitor-analysis-tools-in-2023/)).
+> **Real Data**: Marketers can no longer rely solely on who ranks #1 for Google keywords they must now monitor "share of answer" in generative search, app store dynamics, and brand visibility in AI-driven agents ([SimilarWeb](https://www.similarweb.com/blog/marketing/marketing-strategy/8-best-competitor-analysis-tools-in-2023/)).
 
 Content rephrased for compliance with licensing restrictions.
 
-> **Real Data**: Sellers face competitors in 68% of deals. Yet the average sales team rates their competitive readiness at just 3.8/10 — Crayon's competitive intelligence report estimates this gap costs organizations $2 million to $10 million annually in winnable deals ([Autobound](https://www.autobound.ai/blog/ai-competitor-analysis-tools-for-sales-teams)).
+> **Real Data**: Sellers face competitors in 68% of deals. Yet the average sales team rates their competitive readiness at just 3.8/10 Crayon's competitive intelligence report estimates this gap costs organizations $2 million to $10 million annually in winnable deals ([Autobound](https://www.autobound.ai/blog/ai-competitor-analysis-tools-for-sales-teams)).
 
 Content rephrased for compliance with licensing restrictions.
 
@@ -66,7 +66,7 @@ Based on industry best practices ([Trendos](https://www.trendos.io/blog/ecommerc
 | Product Intelligence | New product launches, Listing changes, category expansion | Helium 10/Jungle Scout | Daily |
 | Marketing Intelligence | Ad strategies, social media, content strategies | Semrush/SpyFu/SimilarWeb | Weekly |
 | Review Intelligence | Competitor review trends, user pain point changes | VOC.AI/ChatGPT | Weekly |
-| AI Visibility Intelligence 🆕 | Competitor recommendation frequency in AI search | Otterly.ai/manual testing | Monthly |
+| AI Visibility Intelligence | Competitor recommendation frequency in AI search | Otterly.ai/manual testing | Monthly |
 
 ### 2.1 Price Intelligence
 
@@ -90,29 +90,29 @@ Based on industry best practices ([Trendos](https://www.trendos.io/blog/ecommerc
 
 ### 2.2 AI Search Visibility Intelligence
 
-> 📎 **Detailed Methodology**: [A9 SEO/GEO](../a-operators/a9-seo-geo.md#1-from-seo-to-geo) — See A9 for GEO optimization methodology
+> **Detailed Methodology**: [A9 SEO/GEO](../a-operators/a9-seo-geo.md#1-from-seo-to-geo) See A9 for GEO optimization methodology
 
 ```
 AI Search Visibility Competitor Comparison Test:
 
 Step 1: Test across 5 AI platforms
-├── ChatGPT: "best [category] 2026"
-├── Perplexity: "recommend [category] for [scenario]"
-├── Gemini: "[category] buying guide"
-├── Claude: "compare [category] options"
-└── Google AI Overviews: "[category] review"
+ChatGPT: "best [category] 2026"
+Perplexity: "recommend [category] for [scenario]"
+Gemini: "[category] buying guide"
+Claude: "compare [category] options"
+Google AI Overviews: "[category] review"
 
 Step 2: Record results
-├── Number of times my brand is mentioned
-├── Number of times Competitor A/B/C is mentioned
-├── Ranking position when recommended
-└── AI's description of each brand (positive/neutral/negative)
+Number of times my brand is mentioned
+Number of times Competitor A/B/C is mentioned
+Ranking position when recommended
+AI's description of each brand (positive/neutral/negative)
 
 Step 3: Analyze gaps
-├── Who gets recommended most? Why?
-├── What does AI base its recommendations on? (Reviews? Price? Features?)
-├── What signals is my brand missing?
-└── Action plan
+Who gets recommended most? Why?
+What does AI base its recommendations on? (Reviews? Price? Features?)
+What signals is my brand missing?
+Action plan
 ```
 
 ---
@@ -142,7 +142,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ### 4.1 Agentic Commerce Readiness Assessment
 
-> **Real Data**: Gartner predicts that by 2028, AI Agents will handle 90% of B2B procurement — over $15 trillion in annual spending ([OroInc](https://oroinc.com/b2b-ecommerce/blog/agentic-ai-in-commerce/)). 73% of consumers now use AI for shopping ([DataDome](https://datadome.co/agent-trust-management/agentic-commerce-readiness-checklist/)).
+> **Real Data**: Gartner predicts that by 2028, AI Agents will handle 90% of B2B procurement over $15 trillion in annual spending ([OroInc](https://oroinc.com/b2b-ecommerce/blog/agentic-ai-in-commerce/)). 73% of consumers now use AI for shopping ([DataDome](https://datadome.co/agent-trust-management/agentic-commerce-readiness-checklist/)).
 
 Content rephrased for compliance with licensing restrictions.
 
@@ -157,23 +157,23 @@ Content rephrased for compliance with licensing restrictions.
 请评估我和竞品的 Agentic Commerce 准备度：
 
 1. 结构化数据完整度（Product Schema/FAQ Schema）
-   - 我的品牌：[评分 1-10]
-   - 竞品 A/B/C：[评分]
+- 我的品牌：[评分 1-10]
+- 竞品 A/B/C：[评分]
 
 2. AI 搜索可见度
-   - 在 ChatGPT/Perplexity 中谁被推荐更多？
+- 在 ChatGPT/Perplexity 中谁被推荐更多？
 
 3. 可购物性
-   - 谁的产品可以在 AI 渠道内直接购买？
-   - 谁启用了 Shopify UCP 协议？
+- 谁的产品可以在 AI 渠道内直接购买？
+- 谁启用了 Shopify UCP 协议？
 
 4. 品牌权威信号
-   - 第三方评测/媒体报道数量对比
-   - Review 数量和评分对比
+- 第三方评测/媒体报道数量对比
+- Review 数量和评分对比
 
 5. 差距分析和行动计划
-   - 我最大的差距在哪里？
-   - 优先级行动清单（1 周/1 月/3 月）
+- 我最大的差距在哪里？
+- 优先级行动清单（1 周/1 月/3 月）
 ```
 
 ---
@@ -224,27 +224,27 @@ Content rephrased for compliance with licensing restrictions.
 请用以下框架分析：
 
 1. 市场吸引力（1-10）
-   - 市场规模和增长率
-   - 竞争强度
-   - 利润空间
-   - 进入门槛
+- 市场规模和增长率
+- 竞争强度
+- 利润空间
+- 进入门槛
 
 2. 我的竞争力（1-10）
-   - 产品适配度
-   - 供应链能力
-   - 团队能力
-   - 资金充裕度
+- 产品适配度
+- 供应链能力
+- 团队能力
+- 资金充裕度
 
 3. 风险评估
-   - 合规风险
-   - 汇率风险
-   - 运营复杂度
-   - 退出成本
+- 合规风险
+- 汇率风险
+- 运营复杂度
+- 退出成本
 
 4. 建议
-   - Go / No-Go / Wait 决策
-   - 如果 Go：进入路径和时间线
-   - 预估投入和 ROI
+- Go / No-Go / Wait 决策
+- 如果 Go：进入路径和时间线
+- 预估投入和 ROI
 ```
 
 ---
@@ -279,8 +279,8 @@ Content rephrased for compliance with licensing restrictions.
 - [ ] Complete one quarterly strategic review using AI
 
 ---
-> 🏠 [Hub Home](../../README.md) · 📋 [Path C Overview](README.md)
-> 
+> [Hub Home](../../README.md) · [Path C Overview](README.md)
+>
 > **Path C**: [C1 Assessment](c1-ai-assessment.md) · [C2 Upskilling](c2-team-building.md) · [C3 ROI Evaluation](c3-roi-evaluation.md) · [C4 Risk & Governance](c4-ai-risk-governance.md) · [C5 Competitive Intelligence](c5-competitive-intelligence.md)
-> 
+>
 > **Quick Jump**: [Path 0 Foundations](../0-foundations/) · [Path A Operations](../a-operators/) · [Path B Developers](../b-developers/) · [Path D Multi-platform](../d-platforms/) · [Path E Social Media](../e-social-media/)

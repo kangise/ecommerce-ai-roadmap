@@ -2,10 +2,10 @@
 
 > **Scenario**: Amazon PPC Ad Optimization
 > **Tools**: Claude + Amazon Ads MCP Server
-> **Difficulty**: ⭐⭐ Intermediate
+> **Difficulty**: Intermediate
 > **Estimated Savings**: 10+ hours/week, ACOS reduction of 30-50%
 
-🏠 [Hub Home](../../README.md) · 📋 [Case Studies](README.md)
+[Hub Home](../../README.md) · [Case Studies](README.md)
 
 ---
 
@@ -73,7 +73,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ## Key Takeaways
 
-1. MCP doesn't replace human judgment — it replaces repetitive operations
+1. MCP doesn't replace human judgment it replaces repetitive operations
 2. Write operations (bid adjustments, adding negative keywords) should be validated on test Campaigns first
 3. 15 minutes of conversational management per week > 5 hours of manual work per week
 4. The key is establishing a standardized conversation workflow (executed on a fixed weekly schedule)

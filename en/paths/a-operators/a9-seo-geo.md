@@ -4,15 +4,15 @@
 
 > **Path**: Path A: Operators · **Module**: A9
 > **Last Updated**: 2026-03-15
-> **Difficulty**: ⭐⭐⭐ Advanced
-> **Estimated Time**: 30 minutes/day, 2–3 weeks
+> **Difficulty**: Advanced
+> **Estimated Time**: 30 minutes/day, 23 weeks
 > **Prerequisites**: [A2 Listing Optimization](a2-listing-optimization.md)
 
-🏠 [Hub Home](../../README.md) · 📋 [Path A Overview](README.md)
+[Hub Home](../../README.md) · [Path A Overview](README.md)
 
 ---
 
-## 📖 Chapter Navigation
+## Chapter Navigation
 
 1. [From SEO to GEO](#1-from-seo-to-geo) · 2. [Amazon SEO](#2-amazon-seo) · 3. [Google SEO](#3-google-seo-for-shopify) · 4. [GEO in Practice](#4-geo-in-practice) · 5. [Social Platform SEO](#5-social-platform-seo) · 6. [Tools](#6-ai-seo-tool-comparison) · 7. [Prompts](#7-prompt-templates) · 8. [Completion Checklist](#8-completion-checklist)
 
@@ -23,10 +23,10 @@
 - Understand the paradigm shift from SEO → GEO (from Google rankings to AI recommendations)
 - Master the latest Amazon SEO algorithms (COSMO + Rufus)
 - Master Shopify Google SEO methodology
-- Learn GEO optimization — get ChatGPT/Perplexity/Gemini to recommend your products
+- Learn GEO optimization get ChatGPT/Perplexity/Gemini to recommend your products
 - Understand on-platform SEO for major social media channels
 
-> 💡 In 2026, 1/3 of consumers already use AI Agents for product discovery. GEO is the most important new skill of 2026.
+> In 2026, 1/3 of consumers already use AI Agents for product discovery. GEO is the most important new skill of 2026.
 
 ---
 
@@ -36,9 +36,9 @@
 
 | Wave | Era | Core Logic | E-commerce Impact |
 |------|-----|-----------|-------------------|
-| Google Search | 2000s–present | Keywords + links + content | Shopify Google SEO |
-| On-Platform Search | 2010s–present | Platform rules + sales + conversion rate | Amazon A9/COSMO |
-| AI Search / GEO | 2024–present 🆕 | Structured data + brand authority + reviews | Get recommended by ChatGPT/Perplexity |
+| Google Search | 2000spresent | Keywords + links + content | Shopify Google SEO |
+| On-Platform Search | 2010spresent | Platform rules + sales + conversion rate | Amazon A9/COSMO |
+| AI Search / GEO | 2024present | Structured data + brand authority + reviews | Get recommended by ChatGPT/Perplexity |
 
 ### 1.2 GEO vs Traditional SEO
 
@@ -57,13 +57,13 @@
 - Google AI Overviews display AI answers at the top of search results
 - Not being recommended by AI = losing an ever-growing share of traffic
 
-> 📎 **Related Reading**: [D1 Shopify](../d-platforms/shopify-ai-guide.md#212-agentic-storefronts-ucp-protocol-selling-directly-within-ai-platforms) — See D1 for details on GEO and Agentic Storefronts
+> **Related Reading**: [D1 Shopify](../d-platforms/shopify-ai-guide.md#212-agentic-storefronts-ucp-protocol-selling-directly-within-ai-platforms) See D1 for details on GEO and Agentic Storefronts
 
 ---
 
 ## 2. Amazon SEO
 
-> 📎 **Related Reading**: [A2 Listing Optimization](a2-listing-optimization.md#11-amazon-search-algorithm-evolution-from-a9-to-cosmo-rufus) — See A2 for the full A9 → COSMO → Rufus evolution
+> **Related Reading**: [A2 Listing Optimization](a2-listing-optimization.md#11-amazon-search-algorithm-evolution-from-a9-to-cosmo-rufus) See A2 for the full A9 → COSMO → Rufus evolution
 
 ### 2.1 2026 Amazon SEO Core Checklist
 
@@ -103,7 +103,7 @@ A+ Content：COSMO 读取理解产品，含使用场景，图片 Alt Text 含关
 
 | Item | Requirement | Tool |
 |------|-------------|------|
-| SSL | HTTPS (automatic on Shopify) | — |
+| SSL | HTTPS (automatic on Shopify) | |
 | Sitemap | Submit to GSC | Google Search Console |
 | Core Web Vitals | LCP < 2.5s, FID < 100ms, CLS < 0.1 | PageSpeed Insights |
 | Schema | Product / FAQ / Breadcrumb / Review | JSON-LD |
@@ -123,22 +123,22 @@ A+ Content：COSMO 读取理解产品，含使用场景，图片 Alt Text 含关
 
 ```json
 {
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": "产品名称",
-  "brand": {"@type": "Brand", "name": "品牌名"},
-  "description": "产品描述",
-  "offers": {
-    "@type": "Offer",
-    "price": "29.99",
-    "priceCurrency": "USD",
-    "availability": "https://schema.org/InStock"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.7",
-    "reviewCount": "1250"
-  }
+"@context": "https://schema.org",
+"@type": "Product",
+"name": "产品名称",
+"brand": {"@type": "Brand", "name": "品牌名"},
+"description": "产品描述",
+"offers": {
+"@type": "Offer",
+"price": "29.99",
+"priceCurrency": "USD",
+"availability": "https://schema.org/InStock"
+},
+"aggregateRating": {
+"@type": "AggregateRating",
+"ratingValue": "4.7",
+"reviewCount": "1250"
+}
 }
 ```
 
@@ -150,11 +150,11 @@ A+ Content：COSMO 读取理解产品，含使用场景，图片 Alt Text 含关
 
 | Strategy | Description | Difficulty | Impact |
 |----------|-------------|-----------|--------|
-| Structured Data | Product / FAQ Schema | ⭐⭐ | ⭐⭐⭐⭐⭐ |
-| FAQ Optimization | Natural-language Q&A + Schema | ⭐⭐ | ⭐⭐⭐⭐ |
-| Brand Mentions | Get mentioned on third-party sites | ⭐⭐⭐ | ⭐⭐⭐⭐ |
-| Review Coverage | High ratings on Amazon / Trustpilot | ⭐⭐ | ⭐⭐⭐⭐ |
-| Agentic Storefronts | Shopify UCP protocol | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
+| Structured Data | Product / FAQ Schema | | |
+| FAQ Optimization | Natural-language Q&A + Schema | | |
+| Brand Mentions | Get mentioned on third-party sites | | |
+| Review Coverage | High ratings on Amazon / Trustpilot | | |
+| Agentic Storefronts | Shopify UCP protocol | | |
 
 ### 4.2 Core GEO Data (2026 Research)
 
@@ -162,9 +162,9 @@ According to industry research ([Onely](https://www.onely.com/blog/geo-for-ecomm
 
 | Strategy | Impact | Notes |
 |----------|--------|-------|
-| Complete Product Schema | AI citation rate up 40–60% | Structured data is the foundation for AI to understand products |
+| Complete Product Schema | AI citation rate up 4060% | Structured data is the foundation for AI to understand products |
 | 50+ Customer Reviews | AI recommendation probability up 2.5× | Review quantity and quality directly affect AI recommendations |
-| Competitor Comparison Content | AI citation rate up 45–70% | Comparison content is cited most in shopping scenarios |
+| Competitor Comparison Content | AI citation rate up 4570% | Comparison content is cited most in shopping scenarios |
 
 Content rephrased for compliance with licensing restrictions.
 
@@ -184,7 +184,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ### 4.4 Agentic Commerce (AI Agent Shopping)
 
-The most important GEO trend of 2026 is Agentic Commerce — AI agents completing purchases on behalf of users ([Charle Agency](https://www.charleagency.com/articles/agentic-commerce/)):
+The most important GEO trend of 2026 is Agentic Commerce AI agents completing purchases on behalf of users ([Charle Agency](https://www.charleagency.com/articles/agentic-commerce/)):
 
 | Platform | AI Shopping Feature | Status |
 |----------|-------------------|--------|
@@ -219,11 +219,11 @@ Content rephrased for compliance with licensing restrictions.
 每月执行 GEO 审计：
 
 1. AI 搜索测试（5 个平台）
-   - ChatGPT: "best [品类] 2026" → 记录是否被提及
-   - Perplexity: "recommend [品类] for [场景]" → 记录
-   - Gemini: "[品类] buying guide" → 记录
-   - Claude: "compare [品牌] vs [竞品]" → 记录
-   - Google AI Overviews: "[品类] review" → 记录
+- ChatGPT: "best [品类] 2026" → 记录是否被提及
+- Perplexity: "recommend [品类] for [场景]" → 记录
+- Gemini: "[品类] buying guide" → 记录
+- Claude: "compare [品牌] vs [竞品]" → 记录
+- Google AI Overviews: "[品类] review" → 记录
 
 2. 竞品对比：谁被 AI 推荐更多？差距分析
 
@@ -301,8 +301,8 @@ Content rephrased for compliance with licensing restrictions.
 - [ ] Establish a monthly GEO audit process
 
 ---
-> 🏠 [Hub Home](../../README.md) · 📋 [Path A Overview](README.md)
-> 
+> [Hub Home](../../README.md) · [Path A Overview](README.md)
+>
 > **Path A**: [A1 Product Research](a1-product-research.md) · [A2 Listing](a2-listing-optimization.md) · [A3 Advertising](a3-advertising.md) · [A4 Customer Service](a4-customer-service.md) · [A5 Inventory](a5-inventory.md) · [A6 Compliance](a6-compliance.md) · [A7 Visual Content](a7-visual-content.md) · [A8 Pricing](a8-pricing-strategy.md) · [A9 SEO/GEO](a9-seo-geo.md) · [A10 Branding](a10-brand-building.md) · [A11 Finance](a11-financial-analysis.md) · [A12 IP Protection](a12-ip-protection.md)
-> 
+>
 > **Quick Jump**: [Path 0 Foundations](../0-foundations/) · [Path B Developers](../b-developers/) · [Path C Managers](../c-managers/) · [Path D Multi-Platform](../d-platforms/) · [Path E Social Media](../e-social-media/)

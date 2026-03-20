@@ -2,14 +2,14 @@
 
 > **路径**: Path D: 多平台 · **模块**: D11
 > **最后更新**: 2026-03-14
-> **难度**: ⭐⭐ 中级
+> **难度**: 中级
 > **预计时间**: 1 小时
 
-🏠 [Hub 首页](../../README.md) · 📋 [Path D 总览](README.md)
+[Hub 首页](../../README.md) · [Path D 总览](README.md)
 
 ---
 
-> 💡 收入 $36.8B（2025），2460 万活跃用户。韩国电商市场 $230B+，预计 2027 达 $336B。被称为"韩国的 Amazon"，Rocket Delivery（次日达/当日达）是核心竞争力。跨境入驻门槛较高。
+> 收入 $36.8B（2025），2460 万活跃用户。韩国电商市场 $230B+，预计 2027 达 $336B。被称为"韩国的 Amazon"，Rocket Delivery（次日达/当日达）是核心竞争力。跨境入驻门槛较高。
 
 ## 1. Coupang 核心特征
 
@@ -49,7 +49,7 @@
 
 ## 3. 韩语 Listing AI 优化（增强版）
 
-> 📎 **相关阅读**: [A2 Listing 优化](../a-operators/a2-listing-optimization.md) — Listing 优化通用方法论参考 A2，核心优化框架可适配到韩语 Listing。
+> **相关阅读**: [A2 Listing 优化](../a-operators/a2-listing-optimization.md) Listing 优化通用方法论参考 A2，核心优化框架可适配到韩语 Listing。
 
 ```
 你是一个韩国电商 Listing 优化专家，精通韩语电商文案。
@@ -62,28 +62,28 @@
 请生成完整的 Coupang 韩语 Listing：
 
 1. 상품명（商品名，50-100 字符）
-   - 格式：브랜드 + 상품명 + 핵심속성
-   - 包含韩语搜索热词
-   - Coupang 标题不要太长（比 Amazon 短）
+- 格式：브랜드 + 상품명 + 핵심속성
+- 包含韩语搜索热词
+- Coupang 标题不要太长（比 Amazon 短）
 
 2. 상세설명（详细描述，500-800 字）
-   - 使用존댓말（敬语）
-   - 强调品질（品质）和 안전（安全）
-   - 包含详细的使用方法和注意事项
-   - 韩国消费者喜欢看到认证信息（KC 认证等）
+- 使用존댓말（敬语）
+- 强调品질（品质）和 안전（安全）
+- 包含详细的使用方法和注意事项
+- 韩国消费者喜欢看到认证信息（KC 认证等）
 
 3. 주요특징（主要特征，5 个 Bullet Points）
-   - 每个以利益点开头
-   - 包含具体数据（尺寸/重量/材质）
+- 每个以利益点开头
+- 包含具体数据（尺寸/重量/材质）
 
 4. 추천 키워드（推荐关键词，10 个）
-   - 韩语品类词
-   - 韩语功能词
-   - 韩语场景词
+- 韩语品类词
+- 韩语功能词
+- 韩语场景词
 
 5. 이미지 가이드（图片指南）
-   - 韩国消费者偏好的图片风格
-   - 必须包含的信息图（尺寸图、材质说明、认证标志）
+- 韩国消费者偏好的图片风格
+- 必须包含的信息图（尺寸图、材质说明、认证标志）
 
 注意：
 - 韩国消费者重视"정품"（正品）标识
@@ -145,10 +145,10 @@ Content rephrased for compliance with licensing restrictions.
 
 请优化：
 1. 韩语关键词策略
-   - 品类词（카테고리）
-   - 品牌词（브랜드）
-   - 功能词（기능）
-   - 长尾词
+- 品类词（카테고리）
+- 品牌词（브랜드）
+- 功能词（기능）
+- 长尾词
 2. 出价策略（Coupang CPC 竞争程度）
 3. 广告类型组合（搜索+展示的预算分配）
 4. 与 Rocket Delivery 的配合策略
@@ -157,7 +157,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ### 4.3 KC 认证要求
 
-> 📎 **相关阅读**: [A6 合规与风控](../a-operators/a6-compliance.md) — 多市场合规方法论参考 A6，认证和合规框架可复用到韩国 KC 认证。
+> **相关阅读**: [A6 合规与风控](../a-operators/a6-compliance.md) 多市场合规方法论参考 A6，认证和合规框架可复用到韩国 KC 认证。
 
 韩国对进口产品有严格的认证要求：
 
@@ -180,12 +180,12 @@ Content rephrased for compliance with licensing restrictions.
 
 ### 5.2 入驻路径详解
 
-> **真实案例：SOU・SOU——京都品牌通过 Coupang 进入韩国**
+> **真实案例：SOU・SOU京都品牌通过 Coupang 进入韩国**
 > 日本京都的传统纺织品牌 SOU・SOU 通过 Coupang Global Selling 成功进入韩国市场。SOU・SOU 以日本传统图案和现代设计的融合著称，加入 Coupang 后迅速成为韩国消费者喜爱的品牌，证明了植根于传统的风格可以跨越国界（[Coupang Global Sellers](https://globalsellers.coupang.com/en/newsroom/sou%E3%83%BBsou-bringing-kyotos-colorful-seasons-to-korea/)）。
 
 Content rephrased for compliance with licensing restrictions.
 
-> **真实案例：MITSUYA——从汽车出口到日本消费品跨境**
+> **真实案例：MITSUYA从汽车出口到日本消费品跨境**
 > 日本公司 MITSUYA CO., LTD. 最初是一家出口日本汽车和零部件的公司。随着客户需求的变化，公司扩展到日本消费品的国际销售，2007 年启动了全面的海外直购服务。通过 Coupang 平台，MITSUYA 将日本工匠精神的产品带到了韩国市场（[Coupang Global Sellers](https://globalsellers.coupang.com/en/meet-a-seller/delivering-japanese-craftsmanship-to-korea-with-heart/)）。
 
 Content rephrased for compliance with licensing restrictions.
@@ -220,26 +220,26 @@ Content rephrased for compliance with licensing restrictions.
 Rocket Growth 工作流程：
 
 Step 1: 卖家将产品发送到海外仓（中国/美国/日本）
-    ↓
+↓
 Step 2: Coupang 从海外仓调拨到韩国 Coupang 仓库
-    ↓
+↓
 Step 3: 产品获得 Rocket Delivery 标签
-    ↓
+↓
 Step 4: 买家下单后，Coupang 从韩国仓库发货
-    ↓
+↓
 Step 5: 次日达/当日达配送到买家
 
 优势：
-├── 获得 Rocket Delivery 标签（排名大幅提升）
-├── 配送速度与本地卖家相同
-├── 退货由 Coupang 处理
-└── 买家信任度高
+获得 Rocket Delivery 标签（排名大幅提升）
+配送速度与本地卖家相同
+退货由 Coupang 处理
+买家信任度高
 
 劣势：
-├── 需要提前备货到海外仓
-├── 库存管理复杂
-├── 物流成本较高
-└── 滞销库存风险
+需要提前备货到海外仓
+库存管理复杂
+物流成本较高
+滞销库存风险
 ```
 
 ### 5.5 Coupang 战略动态（2026）
@@ -278,23 +278,23 @@ Content rephrased for compliance with licensing restrictions.
 
 1. 渠道优先级（Naver Blog > Instagram > YouTube > KakaoTalk）
 2. KOL/KOC 合作策略
-   - 韩国 KOL 的特点（重视真实性和详细评测）
-   - 推荐的合作模式（产品赠送/付费合作/佣金分成）
-   - 预算分配建议
+- 韩国 KOL 的特点（重视真实性和详细评测）
+- 推荐的合作模式（产品赠送/付费合作/佣金分成）
+- 预算分配建议
 3. Naver SEO 策略
-   - 韩语关键词研究
-   - Naver Blog 内容策略
-   - Naver Shopping 优化
+- 韩语关键词研究
+- Naver Blog 内容策略
+- Naver Shopping 优化
 4. 韩国节日营销日历
-   - 설날（春节，1-2月）
-   - 빼빼로데이（11月11日，类似光棍节）
-   - 크리스마스（圣诞节）
-   - 추석（中秋节）
-   - 어버이날（父母节，5月8日）
+- 설날（春节，1-2月）
+- 빼빼로데이（11月11日，类似光棍节）
+- 크리스마스（圣诞节）
+- 추석（中秋节）
+- 어버이날（父母节，5月8日）
 5. 内容本地化要求
-   - 韩国审美偏好
-   - 韩语文案风格
-   - 韩国消费者信任建设
+- 韩国审美偏好
+- 韩语文案风格
+- 韩国消费者信任建设
 ```
 
 ## 6. 完成标志
@@ -306,8 +306,8 @@ Content rephrased for compliance with licensing restrictions.
 - [ ] 启动 Coupang 搜索广告
 
 ---
-> 🏠 [Hub 首页](../../README.md) · 📋 [Path D 总览](README.md) · 📊 [平台对比](platform-comparison.md)
-> 
+> [Hub 首页](../../README.md) · [Path D 总览](README.md) · [平台对比](platform-comparison.md)
+>
 > **Path D**: [D1 Shopify](shopify-ai-guide.md) · [D2 TikTok](tiktok-shop-ai-guide.md) · [D3 跨平台](cross-platform-strategy.md) · [D4 Walmart](d4-walmart-ai-guide.md) · [D5 Temu](d5-temu-seller-guide.md) · [D6 东南亚](d6-southeast-asia-ai-guide.md) · [D7 拉美](d7-mercado-libre-ai-guide.md) · [D8 日本](d8-rakuten-japan-ai-guide.md) · [D9 eBay](d9-ebay-ai-guide.md) · [D10 AliExpress](d10-aliexpress-ai-guide.md) · [D11 韩国](d11-coupang-korea-ai-guide.md) · [D12 Faire](d12-faire-wholesale-ai-guide.md) · [D13 欧洲](d13-europe-marketplaces-guide.md)
-> 
+>
 > **快速跳转**: [Path 0 基础](../0-foundations/) · [Path A 运营](../a-operators/) · [Path B 技术](../b-developers/) · [Path C 管理](../c-managers/) · [Path E 社交媒体](../e-social-media/)

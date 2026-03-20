@@ -4,15 +4,15 @@
 
 > **Path**: Path E: Social Media · **Module**: E4
 > **Last Updated**: 2026-03-14
-> **Difficulty**: ⭐⭐ Intermediate
+> **Difficulty**: Intermediate
 > **Estimated Time**: 1.5-2 hours
 > **Prerequisites**: [Path 0 Foundations](../0-foundations/)
 
-🏠 [Hub Home](../../README.md) · 📋 [Path E Overview](README.md)
+[Hub Home](../../README.md) · [Path E Overview](README.md)
 
 ---
 
-## 📖 Chapter Navigation
+## Chapter Navigation
 
 1. [Pinterest's Unique Positioning](#1-pinterests-unique-positioning)
 2. [Pinterest SEO Methodology](#2-pinterest-seo-methodology)
@@ -32,7 +32,7 @@
 - A Pinterest Shopping Ads optimization plan
 - A Pinterest-specific Prompt template library
 
-> 💡 **Core Concept**: Pinterest is not social media — it's a visual search engine. 619 million MAU, 80 billion monthly searches. Users come to Pinterest to search for inspiration and products — purchase intent is extremely high. Strongest categories: home, fashion, beauty, DIY, weddings, food. AI's core value on Pinterest is helping you batch-produce high-quality visual content and optimize search rankings.
+> **Core Concept**: Pinterest is not social media it's a visual search engine. 619 million MAU, 80 billion monthly searches. Users come to Pinterest to search for inspiration and products purchase intent is extremely high. Strongest categories: home, fashion, beauty, DIY, weddings, food. AI's core value on Pinterest is helping you batch-produce high-quality visual content and optimize search rankings.
 
 ---
 
@@ -60,34 +60,34 @@
 
 ## 2. Pinterest SEO Methodology
 
-> 📎 **Related Reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md#1-listing-methodology-the-fundamentals-before-ai) — Refer to A2 for general SEO methodology. Keyword research and content optimization frameworks are reusable for Pinterest.
+> **Related Reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md#1-listing-methodology-the-fundamentals-before-ai) Refer to A2 for general SEO methodology. Keyword research and content optimization frameworks are reusable for Pinterest.
 
 ### 2.1 Pinterest Search Ranking Factors
 
 ```
 Pinterest SEO 排名因素：
-├── Pin 质量
-│   ├── 图片质量和尺寸（2:3 竖版最佳）
-│   ├── 标题关键词匹配
-│   ├── 描述关键词密度
-│   └── Rich Pin 数据完整性
-│
-├── 互动信号
-│   ├── Save 数量（最重要）
-│   ├── Click-through 数量
-│   ├── Close-up 数量（放大查看）
-│   └── 评论数量
-│
-├── 账号权重
-│   ├── 账号活跃度（发布频率）
-│   ├── 账号年龄
-│   ├── 粉丝数量
-│   └── 域名验证状态
-│
-└── 新鲜度
-    ├── 新 Pin 有初始推荐加成
-    ├── 同一图片重复发布会被降权
-    └── 定期发布新内容很重要
+Pin 质量
+图片质量和尺寸（2:3 竖版最佳）
+标题关键词匹配
+描述关键词密度
+Rich Pin 数据完整性
+
+互动信号
+Save 数量（最重要）
+Click-through 数量
+Close-up 数量（放大查看）
+评论数量
+
+账号权重
+账号活跃度（发布频率）
+账号年龄
+粉丝数量
+域名验证状态
+
+新鲜度
+新 Pin 有初始推荐加成
+同一图片重复发布会被降权
+定期发布新内容很重要
 ```
 
 ### 2.2 Board Strategy
@@ -102,15 +102,15 @@ Boards are the foundational structure of Pinterest SEO:
 请帮我设计 Pinterest Board 结构：
 
 1. 8-12 个 Board，每个包含：
-   - Board 名称（包含关键词，不超过 30 字符）
-   - Board 描述（包含 3-5 个关键词，不超过 500 字符）
-   - 推荐 Pin 数量（每个 Board 至少 20 个 Pin）
+- Board 名称（包含关键词，不超过 30 字符）
+- Board 描述（包含 3-5 个关键词，不超过 500 字符）
+- 推荐 Pin 数量（每个 Board 至少 20 个 Pin）
 
 2. Board 分类建议：
-   - 产品 Board（按品类/系列分）
-   - 灵感 Board（使用场景/生活方式）
-   - 教程 Board（How-to/Tips）
-   - 季节性 Board（节日/季节）
+- 产品 Board（按品类/系列分）
+- 灵感 Board（使用场景/生活方式）
+- 教程 Board（How-to/Tips）
+- 季节性 Board（节日/季节）
 
 3. 每个 Board 的前 5 个 Pin 选题
 ```
@@ -180,7 +180,7 @@ Idea Pins are Pinterest's multi-page content format, ideal for tutorials and ste
 
 ## 4. Pinterest Shopping Ads
 
-> 📎 **Related Reading**: [E1 Instagram](e1-instagram-facebook-ai-guide.md#e1-instagram-facebook-ai-operations-guide-meta-ecosystem-ai-playbook) — Refer to E1 for Meta Ads comparison. Pinterest Ads and Meta Ads budget allocation strategies can be cross-referenced.
+> **Related Reading**: [E1 Instagram](e1-instagram-facebook-ai-guide.md#e1-instagram-facebook-ai-operations-guide-meta-ecosystem-ai-playbook) Refer to E1 for Meta Ads comparison. Pinterest Ads and Meta Ads budget allocation strategies can be cross-referenced.
 
 ### 4.1 Ad Types
 
@@ -193,7 +193,7 @@ Idea Pins are Pinterest's multi-page content format, ideal for tutorials and ste
 
 ### 4.2 Product Catalog Optimization
 
-> 📎 **Related Reading**: [D1 Shopify](../d-platforms/shopify-ai-guide.md#10-automating-shopify-operations-with-openclaw) — Pinterest natively integrates with Shopify. Refer to D1 for Product Catalog syncing and Shopping setup.
+> **Related Reading**: [D1 Shopify](../d-platforms/shopify-ai-guide.md#10-automating-shopify-operations-with-openclaw) Pinterest natively integrates with Shopify. Refer to D1 for Product Catalog syncing and Shopping setup.
 
 Pinterest Shopping relies on Product Catalog (natively integrated with Shopify):
 
@@ -275,16 +275,16 @@ Pinterest Shopping relies on Product Catalog (natively integrated with Shopify):
 
 ## 7. Common Pitfalls
 
-### ❌ Pitfall 1: Treating Pinterest Like Social Media
+### Pitfall 1: Treating Pinterest Like Social Media
 Pinterest is a search engine. You don't need to post Stories daily or reply to comments. Focus on SEO and content quality.
 
-### ❌ Pitfall 2: Ignoring Seasonal Lead Time
+### Pitfall 2: Ignoring Seasonal Lead Time
 Pinterest users search 3-6 months in advance. Christmas content should start going up in July.
 
-### ❌ Pitfall 3: Reusing the Same Image
+### Pitfall 3: Reusing the Same Image
 Pinterest penalizes duplicate images. Each Pin needs unique visual design.
 
-### ❌ Pitfall 4: Not Setting Up Rich Pins
+### Pitfall 4: Not Setting Up Rich Pins
 Rich Pins automatically sync product price and inventory information, boosting SEO and conversion. Must be set up.
 
 ---
@@ -297,39 +297,39 @@ Rich Pins automatically sync product price and inventory information, boosting S
 Pinterest 推荐算法（与 Instagram/TikTok 完全不同）：
 
 核心逻辑：Pinterest 是搜索引擎，不是社交媒体
-├── 搜索匹配（Search Relevance）
-│   ├── Pin 标题/描述中的关键词与用户搜索词的匹配度
-│   ├── Board 名称和描述的关键词
-│   ├── 图片视觉内容（Pinterest 有图像识别 AI）
-│   └── Rich Pin 的结构化数据
-│
-├── Pin 质量评分（Pin Quality）
-│   ├── 图片质量（分辨率、构图、色彩）
-│   ├── 点击率（CTR）
-│   ├── Save 率（最重要的互动指标）
-│   ├── Close-up 率（用户放大查看）
-│   └── Outbound Click 率（点击到外部网站）
-│
-├── 域名权重（Domain Authority）
-│   ├── 已验证的域名有更高权重
-│   ├── 域名的历史 Pin 表现
-│   └── 域名的内容质量评分
-│
-├── 新鲜度（Freshness）
-│   ├── 新 Pin 有初始推荐加成
-│   ├── 同一图片重复发布会被降权
-│   └── 定期发布新内容很重要
-│
-└── 账号权重（Pinner Quality）
-    ├── 账号活跃度
-    ├── 历史 Pin 的平均表现
-    ├── 粉丝数量和互动率
-    └── 内容一致性
+搜索匹配（Search Relevance）
+Pin 标题/描述中的关键词与用户搜索词的匹配度
+Board 名称和描述的关键词
+图片视觉内容（Pinterest 有图像识别 AI）
+Rich Pin 的结构化数据
+
+Pin 质量评分（Pin Quality）
+图片质量（分辨率、构图、色彩）
+点击率（CTR）
+Save 率（最重要的互动指标）
+Close-up 率（用户放大查看）
+Outbound Click 率（点击到外部网站）
+
+域名权重（Domain Authority）
+已验证的域名有更高权重
+域名的历史 Pin 表现
+域名的内容质量评分
+
+新鲜度（Freshness）
+新 Pin 有初始推荐加成
+同一图片重复发布会被降权
+定期发布新内容很重要
+
+账号权重（Pinner Quality）
+账号活跃度
+历史 Pin 的平均表现
+粉丝数量和互动率
+内容一致性
 ```
 
 ### Pinterest Seasonal Content Strategy (Key Differentiator)
 
-Pinterest users search 3-6 months in advance — this is the biggest difference from all other platforms:
+Pinterest users search 3-6 months in advance this is the biggest difference from all other platforms:
 
 | Holiday/Season | Users Start Searching | Recommended Publish Time | Search Peak |
 |---------------|----------------------|------------------------|-------------|
@@ -376,29 +376,29 @@ Pinterest users search 3-6 months in advance — this is the biggest difference 
 Pinterest Product Catalog 设置流程：
 
 Step 1: 验证域名
-├── 在 Pinterest Business 后台验证你的网站域名
-├── 支持 Shopify 一键验证
-└── 验证后所有从你网站 Pin 的内容都会关联到你的账号
+在 Pinterest Business 后台验证你的网站域名
+支持 Shopify 一键验证
+验证后所有从你网站 Pin 的内容都会关联到你的账号
 
 Step 2: 创建 Product Catalog
-├── 方式 1：Shopify 集成（推荐，自动同步）
-├── 方式 2：手动上传 Data Feed（CSV/XML）
-├── 方式 3：通过 Catalog Manager API
-└── 产品数据要求：标题、描述、价格、图片 URL、产品 URL、库存状态
+方式 1：Shopify 集成（推荐，自动同步）
+方式 2：手动上传 Data Feed（CSV/XML）
+方式 3：通过 Catalog Manager API
+产品数据要求：标题、描述、价格、图片 URL、产品 URL、库存状态
 
 Step 3: 优化 Product Feed
-├── 标题：包含搜索关键词（与 Pinterest 搜索习惯匹配）
-├── 描述：生活方式导向（不是 Amazon 风格的参数罗列）
-├── 图片：竖版 2:3，生活方式场景图优先
-├── 价格：准确、实时更新
-├── 品类分类：选择最精确的 Google Product Category
-└── 自定义标签：用于广告分组（季节性/价格带/利润率）
+标题：包含搜索关键词（与 Pinterest 搜索习惯匹配）
+描述：生活方式导向（不是 Amazon 风格的参数罗列）
+图片：竖版 2:3，生活方式场景图优先
+价格：准确、实时更新
+品类分类：选择最精确的 Google Product Category
+自定义标签：用于广告分组（季节性/价格带/利润率）
 
 Step 4: 设置 Rich Pins
-├── Product Rich Pins：自动显示价格、库存状态、购买链接
-├── 需要在网站添加 Open Graph 或 Schema.org 标记
-├── Shopify 自动支持
-└── 验证：使用 Pinterest Rich Pin Validator
+Product Rich Pins：自动显示价格、库存状态、购买链接
+需要在网站添加 Open Graph 或 Schema.org 标记
+Shopify 自动支持
+验证：使用 Pinterest Rich Pin Validator
 ```
 
 ### Pinterest Shopping Ads Deep Optimization
@@ -413,30 +413,30 @@ Step 4: 设置 Rich Pins
 请设计 Pinterest Shopping Ads 策略：
 
 1. Campaign 结构
-   - 按品类/季节/利润率分组
-   - 每个 Ad Group 的产品数量建议
-   - 预算分配比例
+- 按品类/季节/利润率分组
+- 每个 Ad Group 的产品数量建议
+- 预算分配比例
 
 2. 定向策略
-   - 关键词定向（搜索广告）
-   - 兴趣定向（发现广告）
-   - 受众定向（网站访客再营销）
-   - Actalike 受众（类似 Lookalike）
+- 关键词定向（搜索广告）
+- 兴趣定向（发现广告）
+- 受众定向（网站访客再营销）
+- Actalike 受众（类似 Lookalike）
 
 3. 出价策略
-   - 自动出价 vs 手动出价
-   - 按品类的建议 CPC 范围
-   - 季节性出价调整
+- 自动出价 vs 手动出价
+- 按品类的建议 CPC 范围
+- 季节性出价调整
 
 4. 创意优化
-   - 标准 Shopping Pin vs Collection Ad
-   - 图片风格建议（Pinterest 用户偏好）
-   - 文案优化（标题+描述）
+- 标准 Shopping Pin vs Collection Ad
+- 图片风格建议（Pinterest 用户偏好）
+- 文案优化（标题+描述）
 
 5. 数据分析
-   - 关键指标：ROAS、CPC、CTR、Save Rate
-   - 优化频率：每周检查，每月大调整
-   - A/B 测试计划
+- 关键指标：ROAS、CPC、CTR、Save Rate
+- 优化频率：每周检查，每月大调整
+- A/B 测试计划
 ```
 
 ### Pinterest vs Meta Ads Detailed Comparison
@@ -510,8 +510,8 @@ Bottom 5 Pin 表现：
 - [ ] Run Pinterest Shopping Ads and optimize
 
 ---
-> 🏠 [Hub Home](../../README.md) · 📋 [Path E Overview](README.md)
-> 
+> [Hub Home](../../README.md) · [Path E Overview](README.md)
+>
 > **Path E**: [E1 Instagram](e1-instagram-facebook-ai-guide.md) · [E2 YouTube](e2-youtube-ai-guide.md) · [E3 Xiaohongshu](e3-xiaohongshu-ai-guide.md) · [E4 Pinterest](e4-pinterest-ai-guide.md) · [E5 WhatsApp](e5-whatsapp-business-ai-guide.md) · [E6 Reddit](e6-reddit-ai-guide.md) · [E7 Cross-Channel](e7-social-media-cross-channel.md)
-> 
+>
 > **Quick Jump**: [Path 0 Foundations](../0-foundations/) · [Path A Operations](../a-operators/) · [Path B Technical](../b-developers/) · [Path C Management](../c-managers/) · [Path D Multi-Platform](../d-platforms/)

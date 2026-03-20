@@ -4,14 +4,14 @@
 
 > **Path**: Path D: Multi-Platform · **Module**: D12
 > **Last Updated**: 2026-03-14
-> **Difficulty**: ⭐ Beginner
+> **Difficulty**: Beginner
 > **Estimated Time**: 45 minutes
 
-🏠 [Hub Home](../../README.md) · 📋 [Path D Overview](README.md)
+[Hub Home](../../README.md) · [Path D Overview](README.md)
 
 ---
 
-> 💡 GMV ~$3B (2025), revenue $500M+ (+40% YoY), 700K+ retailers. A B2B wholesale platform connecting brands with independent retailers. A completely different business model from B2C e-commerce.
+> GMV ~$3B (2025), revenue $500M+ (+40% YoY), 700K+ retailers. A B2B wholesale platform connecting brands with independent retailers. A completely different business model from B2C e-commerce.
 
 ## 1. Faire Business Model
 
@@ -43,23 +43,23 @@ Faire's search algorithm determines which brands retailers see. Based on operati
 Faire Search Ranking Factors:
 
 1. Account Settings (Often overlooked by sellers, but huge impact)
-├── MOQ: Set to $0 to appear in all filter results (3x exposure)
-├── Lead Time: 1-3 days is best, >14 days is a red flag
-├── Collections: Faire allows 20 collections, most sellers only use 3-4
-├── Brand Tags: eco-friendly/women-owned/handmade etc. are retailer filter criteria
-└── Product Attributes: Every field must be complete; empty fields = unsearchable
+MOQ: Set to $0 to appear in all filter results (3x exposure)
+Lead Time: 1-3 days is best, >14 days is a red flag
+Collections: Faire allows 20 collections, most sellers only use 3-4
+Brand Tags: eco-friendly/women-owned/handmade etc. are retailer filter criteria
+Product Attributes: Every field must be complete; empty fields = unsearchable
 
 2. Sales Data
-├── Historical order volume
-├── Repeat purchase rate
-├── Review count and rating
-└── Conversion rate (browse → order)
+Historical order volume
+Repeat purchase rate
+Review count and rating
+Conversion rate (browse → order)
 
 3. Content Quality
-├── Product image quality
-├── Brand story completeness
-├── Video (very few brands upload video; those that do get extra exposure)
-└── Product description detail
+Product image quality
+Brand story completeness
+Video (very few brands upload video; those that do get extra exposure)
+Product description detail
 ```
 
 Content rephrased for compliance with licensing restrictions.
@@ -70,15 +70,15 @@ Based on [Smoothed.io](https://www.smoothed.io/blog/faire-account-settings-that-
 
 **Set MOQ to $0 (Highest Leverage)**
 
-Faire retailers can filter by MOQ: $0, $100, $200. If your MOQ is $200, you only appear when retailers select the $200 filter. Set to $0 and you appear in all three — one setting change for 3x exposure.
+Faire retailers can filter by MOQ: $0, $100, $200. If your MOQ is $200, you only appear when retailers select the $200 filter. Set to $0 and you appear in all three one setting change for 3x exposure.
 
-Small orders aren't a problem — they bring reviews, train the algorithm, and eventually convert to large repeat orders.
+Small orders aren't a problem they bring reviews, train the algorithm, and eventually convert to large repeat orders.
 
 **Keep Lead Time at 1-3 Days**
 
-Retailers have been trained by Amazon speed. A 14-day Lead Time feels like a red flag. Exceeding your promised Lead Time is even worse — it lowers algorithm ranking and generates negative reviews.
+Retailers have been trained by Amazon speed. A 14-day Lead Time feels like a red flag. Exceeding your promised Lead Time is even worse it lowers algorithm ranking and generates negative reviews.
 
-> **Critical Reminder**: Never use Holiday Mode / Pause Mode. The algorithm resets, and it takes months to recover rankings. Alternative: Extend Lead Time to 40+ days — orders will decrease but rankings won't be lost.
+> **Critical Reminder**: Never use Holiday Mode / Pause Mode. The algorithm resets, and it takes months to recover rankings. Alternative: Extend Lead Time to 40+ days orders will decrease but rankings won't be lost.
 
 **Use All 20 Collections**
 
@@ -99,9 +99,9 @@ Every uncreated Collection = a search result where you can't be found.
 
 ### 2.3 Brand Story AI Generation (Based on Faire Best Practices)
 
-> 📎 **Related Reading**: [D1 Shopify](shopify-ai-guide.md#15-shopify-advanced-advertising-ai-driven-full-funnel-strategy) — Brand building also references D1 Shopify; DTC brand strategy and brand story methodology can be reused.
+> **Related Reading**: [D1 Shopify](shopify-ai-guide.md#15-shopify-advanced-advertising-ai-driven-full-funnel-strategy) Brand building also references D1 Shopify; DTC brand strategy and brand story methodology can be reused.
 
-Faire officially recommends brand stories focus on USP (Unique Selling Proposition), not personal experiences. Retailers don't need your founding story — they need to know why your product will sell well in their store.
+Faire officially recommends brand stories focus on USP (Unique Selling Proposition), not personal experiences. Retailers don't need your founding story they need to know why your product will sell well in their store.
 
 ```
 你是一个 Faire 品牌页面优化专家，精通 B2B 批发电商。
@@ -111,32 +111,32 @@ Faire officially recommends brand stories focus on USP (Unique Selling Propositi
 - 品类：[X]
 - 核心 USP：[3 个独特卖点]
 - 品牌标签（勾选所有适用的）：
-  □ Eco-friendly  □ Women-owned  □ Handmade
-  □ Gives back  □ Small batch  □ Made in [国家]
+Eco-friendly Women-owned Handmade
+Gives back Small batch Made in [国家]
 - 目标零售商类型：[精品店/礼品店/家居店/美妆店/在线零售商]
 
 请生成完整的 Faire 品牌页面内容：
 
 1. Brand Story（200-300 字）
-   - 聚焦 USP，不是个人故事
-   - 回答零售商最关心的问题："为什么我的顾客会买这个？"
-   - 包含具体数据（如果有）：复购率、平均评分、获奖信息
-   - 语气：专业但有温度，像在 Trade Show 上面对面介绍
+- 聚焦 USP，不是个人故事
+- 回答零售商最关心的问题："为什么我的顾客会买这个？"
+- 包含具体数据（如果有）：复购率、平均评分、获奖信息
+- 语气：专业但有温度，像在 Trade Show 上面对面介绍
 
 2. 产品描述模板（面向零售商，不是消费者）
-   - 零售卖点："这个产品在店里好卖的 3 个理由"
-   - 建议零售价和利润空间（"Wholesale $X → Retail $X = XX% margin"）
-   - 陈列建议（"放在收银台旁边 / 与 XX 品类搭配展示"）
-   - 目标消费者画像（帮零售商理解谁会买）
+- 零售卖点："这个产品在店里好卖的 3 个理由"
+- 建议零售价和利润空间（"Wholesale $X → Retail $X = XX% margin"）
+- 陈列建议（"放在收银台旁边 / 与 XX 品类搭配展示"）
+- 目标消费者画像（帮零售商理解谁会买）
 
 3. 20 个 Collections 建议
-   - 10 个产品导向 Collections（名称+描述）
-   - 10 个零售商导向 Collections（名称+描述）
+- 10 个产品导向 Collections（名称+描述）
+- 10 个零售商导向 Collections（名称+描述）
 
 4. 视频脚本（30-60 秒，虚拟 Trade Show Pitch）
-   - 开头：品牌介绍（5 秒）
-   - 中间：产品展示+USP（20-40 秒）
-   - 结尾：为什么零售商应该进货（10 秒）
+- 开头：品牌介绍（5 秒）
+- 中间：产品展示+USP（20-40 秒）
+- 结尾：为什么零售商应该进货（10 秒）
 ```
 
 ### 2.4 Faire Ads (Promoted Listings)
@@ -147,29 +147,29 @@ Faire's ad system is CPC-based. Based on operational data ([Smoothed.io](https:/
 Faire Ads Best Practices:
 
 1. Budget Setting
-├── Set higher-than-expected monthly budget (Faire ad inventory is limited, won't all be spent)
-├── Start testing with $200-500/month
-├── Gradually increase over 3-4 months
-└── Don't start at $20,000 — first confirm conversion funnel works
+Set higher-than-expected monthly budget (Faire ad inventory is limited, won't all be spent)
+Start testing with $200-500/month
+Gradually increase over 3-4 months
+Don't start at $20,000 first confirm conversion funnel works
 
 2. Optimization Order
-├── First optimize product images and descriptions (ads bring traffic, content converts)
-├── Then optimize pricing and MOQ (ensure retailers are willing to order)
-├── Finally increase ad budget
-└── If ROAS < 2x, fix content before adding budget
+First optimize product images and descriptions (ads bring traffic, content converts)
+Then optimize pricing and MOQ (ensure retailers are willing to order)
+Finally increase ad budget
+If ROAS < 2x, fix content before adding budget
 
 3. Performance Tracking
-├── First-order ROAS (sales directly from ads)
-├── Repeat ROAS (subsequent purchases from first-order customers, 0% commission)
-├── Blended ROAS (first-order + repeat combined return)
-└── Target: First-order ROAS > 3x, Blended ROAS > 5x
+First-order ROAS (sales directly from ads)
+Repeat ROAS (subsequent purchases from first-order customers, 0% commission)
+Blended ROAS (first-order + repeat combined return)
+Target: First-order ROAS > 3x, Blended ROAS > 5x
 ```
 
 Content rephrased for compliance with licensing restrictions.
 
 ### 2.5 Wholesale Pricing Deep Strategy
 
-> 📎 **Related Reading**: [A1 Product Research & Market Analysis](../a-operators/a1-product-research.md#1-product-research-methodology-the-fundamentals-before-ai) — Product selection and pricing methodology from A1; market research framework can help determine wholesale pricing strategy.
+> **Related Reading**: [A1 Product Research & Market Analysis](../a-operators/a1-product-research.md#1-product-research-methodology-the-fundamentals-before-ai) Product selection and pricing methodology from A1; market research framework can help determine wholesale pricing strategy.
 
 Faire's fee structure ([B2Bridge](https://b2bridge.io/blog/faire-wholesale-pricing/)):
 
@@ -181,7 +181,7 @@ Faire's fee structure ([B2Bridge](https://b2bridge.io/blog/faire-wholesale-prici
 | New Customer One-Time Fee | $10 | Per new retailer's first order |
 | Payment Processing | Included in commission | No additional fees |
 
-> **Key Strategy: Faire Direct**. If you have your own retailer customers (met at Trade Shows, self-developed), have them order on Faire through your Faire Direct link — 0% commission. This is Faire's most underrated feature.
+> **Key Strategy: Faire Direct**. If you have your own retailer customers (met at Trade Shows, self-developed), have them order on Faire through your Faire Direct link 0% commission. This is Faire's most underrated feature.
 
 ### 2.6 Retailer Relationship Management (Faire's Core Competitive Advantage)
 
@@ -213,8 +213,8 @@ Content rephrased for compliance with licensing restrictions.
 - [ ] Establish retailer relationship management process
 
 ---
-> 🏠 [Hub Home](../../README.md) · 📋 [Path D Overview](README.md) · 📊 [Platform Comparison](platform-comparison.md)
-> 
+> [Hub Home](../../README.md) · [Path D Overview](README.md) · [Platform Comparison](platform-comparison.md)
+>
 > **Path D**: [D1 Shopify](shopify-ai-guide.md) · [D2 TikTok](tiktok-shop-ai-guide.md) · [D3 Cross-Platform](cross-platform-strategy.md) · [D4 Walmart](d4-walmart-ai-guide.md) · [D5 Temu](d5-temu-seller-guide.md) · [D6 Southeast Asia](d6-southeast-asia-ai-guide.md) · [D7 Latin America](d7-mercado-libre-ai-guide.md) · [D8 Japan](d8-rakuten-japan-ai-guide.md) · [D9 eBay](d9-ebay-ai-guide.md) · [D10 AliExpress](d10-aliexpress-ai-guide.md) · [D11 Korea](d11-coupang-korea-ai-guide.md) · [D12 Faire](d12-faire-wholesale-ai-guide.md) · [D13 Europe](d13-europe-marketplaces-guide.md)
-> 
+>
 > **Quick Jump**: [Path 0 Foundations](../0-foundations/) · [Path A Operations](../a-operators/) · [Path B Technical](../b-developers/) · [Path C Management](../c-managers/) · [Path E Social Media](../e-social-media/)

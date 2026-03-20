@@ -2,10 +2,10 @@
 
 > **Scenario**: Amazon Review Competitive Analysis & Product Improvement
 > **Tools**: Python + BERTopic + Claude API
-> **Difficulty**: ⭐⭐ Intermediate
+> **Difficulty**: Intermediate
 > **Estimated Savings**: From 2 days of manual analysis → 30 minutes automated
 
-🏠 [Hub Home](../../README.md) · 📋 [Case Studies](README.md)
+[Hub Home](../../README.md) · [Case Studies](README.md)
 
 ---
 
@@ -27,7 +27,7 @@ A consumer electronics brand selling Bluetooth earbuds on Amazon US faced the fo
 | **Total** | | **~13 hours (2 days)** |
 
 Problems:
-- Subjective judgment — different people produce different analysis results
+- Subjective judgment different people produce different analysis results
 - Can only review recent reviews, unable to analyze trends
 - Cannot quantify the severity of each issue
 
@@ -38,8 +38,8 @@ Problems:
 pipeline = ReviewAnalysisPipeline()
 
 # Step 1: Load data (5 minutes)
-my_reviews = pd.read_csv("my_product_reviews.csv")      # 1,200 reviews
-comp_reviews = pd.read_csv("competitor_a_reviews.csv")   # 980 reviews
+my_reviews = pd.read_csv("my_product_reviews.csv") # 1,200 reviews
+comp_reviews = pd.read_csv("competitor_a_reviews.csv") # 980 reviews
 
 # Step 2: Sentiment analysis (3 minutes)
 my_results = pipeline.run(my_reviews)
@@ -74,20 +74,20 @@ Competitor A's positive review topic analysis revealed:
 AI Analysis Report Summary:
 
 1. Most Urgent: Bluetooth connection issues (23% of negative reviews)
-   → Recommendation: Upgrade Bluetooth chip to 5.3; Competitor A has already done this
-   → Expected impact: 15-20% reduction in negative review rate
+→ Recommendation: Upgrade Bluetooth chip to 5.3; Competitor A has already done this
+→ Expected impact: 15-20% reduction in negative review rate
 
 2. High Priority: Battery life (19% of negative reviews)
-   → Recommendation: Clearly state "actual usage time" rather than "theoretical time" in the Listing
-   → Short-term: Adjust Listing to manage expectations; Long-term: Upgrade battery
+→ Recommendation: Clearly state "actual usage time" rather than "theoretical time" in the Listing
+→ Short-term: Adjust Listing to manage expectations; Long-term: Upgrade battery
 
 3. Medium Priority: Wearing comfort (15% of negative reviews)
-   → Recommendation: Include different-sized ear tips (S/M/L/XL)
-   → Competitor A already offers 4 sizes
+→ Recommendation: Include different-sized ear tips (S/M/L/XL)
+→ Competitor A already offers 4 sizes
 
 4. Listing Optimization Recommendations:
-   → Emphasize advantages over Competitor A in Bullet Points
-   → Pre-seed Bluetooth connection usage tips in Q&A
+→ Emphasize advantages over Competitor A in Bullet Points
+→ Pre-seed Bluetooth connection usage tips in Q&A
 ```
 
 ## Results
@@ -98,7 +98,7 @@ AI Analysis Report Summary:
 | Reviews covered | ~200 (sampled) | 2,180 (full coverage) | +990% |
 | Issue classification consistency | Subjective | Objectively quantified | Qualitative improvement |
 | Actionable recommendations | Vague | Specific + priority-ranked | Qualitative improvement |
-| Rating change after execution | — | 4.0 → 4.2 (after 3 months) | +0.2 |
+| Rating change after execution | | 4.0 → 4.2 (after 3 months) | +0.2 |
 
 > **Real data reference**: BERT-based sentiment analysis can achieve 90%+ accuracy on Amazon Review datasets ([MDPI](https://www.mdpi.com/1999-5903/18/3/138)). BERTopic can automatically extract meaningful topic clusters from unstructured review text ([Amalytix](https://www.amalytix.com/en/blog/analyze-reviews-bertopic/)).
 

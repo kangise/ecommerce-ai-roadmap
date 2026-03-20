@@ -4,14 +4,14 @@
 
 > **Path**: Path A: Operators · **Module**: A10
 > **Last Updated**: 2026-03-14
-> **Difficulty**: ⭐⭐ Intermediate
-> **Estimated Time**: 30 minutes per day, 1–2 weeks
+> **Difficulty**: Intermediate
+> **Estimated Time**: 30 minutes per day, 12 weeks
 
-🏠 [Hub Home](../../README.md) · 📋 [Path A Overview](README.md)
+[Hub Home](../../README.md) · [Path A Overview](README.md)
 
 ---
 
-## 📖 Chapter Navigation
+## Chapter Navigation
 
 1. [Why Branding Is a Survival Strategy in 2026](#1-why-branding-is-a-survival-strategy-in-2026)
 2. [AI Brand Story Generation](#2-ai-brand-story-generation)
@@ -32,7 +32,7 @@
 - Optimize your Amazon Brand Store and A+ Content
 - Maintain brand consistency across multiple platforms
 
-> 💡 **Core Principle**: The rise of Temu has proven one thing — sellers without a brand are being eliminated. A brand is the only competitive moat that can't be replicated by low prices. AI can help you build a brand efficiently, but the core of branding (differentiated positioning) still requires human decision-making.
+> **Core Principle**: The rise of Temu has proven one thing sellers without a brand are being eliminated. A brand is the only competitive moat that can't be replicated by low prices. AI can help you build a brand efficiently, but the core of branding (differentiated positioning) still requires human decision-making.
 
 ---
 
@@ -52,10 +52,10 @@
 
 | Metric | Unbranded | Branded | Gap |
 |--------|-----------|---------|-----|
-| Amazon Conversion Rate | 8–12% | 15–25% | +50–100% |
-| Repeat Purchase Rate | 5–10% | 20–40% | +200–400% |
-| Ad ROAS | 2–3x | 4–8x | +100–200% |
-| Profit Margin | 10–20% | 25–50% | +100–200% |
+| Amazon Conversion Rate | 812% | 1525% | +50100% |
+| Repeat Purchase Rate | 510% | 2040% | +200400% |
+| Ad ROAS | 23x | 48x | +100200% |
+| Profit Margin | 1020% | 2550% | +100200% |
 | Probability of AI Recommendation | Low | High | Significant gap |
 
 ### 1.3 DTC Brand Trends in 2026
@@ -72,7 +72,7 @@ DTC brands face new challenges and opportunities in 2026 ([Criteo](https://www.c
 
 Content rephrased for compliance with licensing restrictions.
 
-> 📎 **Related Reading**: [A9 SEO/GEO](a9-seo-geo.md#1-from-seo-to-geo) — AI search optimization (GEO) is a key component of brand building in 2026. See A9 for details.
+> **Related Reading**: [A9 SEO/GEO](a9-seo-geo.md#1-from-seo-to-geo) AI search optimization (GEO) is a key component of brand building in 2026. See A9 for details.
 
 ---
 
@@ -83,7 +83,7 @@ Content rephrased for compliance with licensing restrictions.
 
 Content rephrased for compliance with licensing restrictions.
 
-> **Real-World Case: AI Ad Optimization Boosts ROAS by 20–30%**
+> **Real-World Case: AI Ad Optimization Boosts ROAS by 2030%**
 > According to Entrepreneur, AI advertising and personalization tools can boost ROAS (Return on Ad Spend) by 20% to 30%. Predictive tools help sellers prevent stockouts and spot trends early, while unified cross-channel data enhances marketing intelligence ([Entrepreneur](https://www.entrepreneur.com/growing-a-business/how-to-use-ai-to-grow-your-amazon-sales-rankings-and/499421)).
 
 Content rephrased for compliance with licensing restrictions.
@@ -94,22 +94,22 @@ Content rephrased for compliance with licensing restrictions.
 品牌故事的 4 个核心要素：
 
 1. 起源（Origin）：为什么创立这个品牌？
-   ├── 个人经历/痛点
-   ├── 市场空白发现
-   └── 使命驱动
+个人经历/痛点
+市场空白发现
+使命驱动
 
 2. 使命（Mission）：品牌存在的意义
-   ├── 解决什么问题
-   ├── 为谁服务
-   └── 与竞品的本质区别
+解决什么问题
+为谁服务
+与竞品的本质区别
 
 3. 价值观（Values）：品牌坚持什么
-   ├── 品质/创新/环保/社区
-   └── 3-5 个核心价值观
+品质/创新/环保/社区
+3-5 个核心价值观
 
 4. 愿景（Vision）：品牌要去哪里
-   ├── 长期目标
-   └── 对行业/用户的影响
+长期目标
+对行业/用户的影响
 ```
 
 ### 2.2 AI Brand Story Generation Prompt
@@ -129,8 +129,8 @@ Content rephrased for compliance with licensing restrictions.
 请生成：
 
 1. 品牌故事（200-300 字，适合 Amazon Brand Story / Shopify About 页面）
-   - 语气：[专业/温暖/活力/极简]
-   - 包含：起源+使命+价值观+愿景
+- 语气：[专业/温暖/活力/极简]
+- 包含：起源+使命+价值观+愿景
 
 2. 品牌使命声明（1 句话，≤30 字）
 
@@ -141,9 +141,9 @@ Content rephrased for compliance with licensing restrictions.
 5. 电梯演讲（30 秒版本，适合社交媒体 Bio）
 
 6. Amazon A+ Content 品牌故事模块文案
-   - 品牌 Logo 区域文案
-   - 品牌故事区域文案（3 个图文模块）
-   - 品牌承诺区域文案
+- 品牌 Logo 区域文案
+- 品牌故事区域文案（3 个图文模块）
+- 品牌承诺区域文案
 ```
 
 ---
@@ -166,17 +166,17 @@ Content rephrased for compliance with licensing restrictions.
 保持 Midjourney 生成图片风格一致的技巧：
 
 1. 创建风格参考（Style Reference）
-   --sref [参考图片 URL] --sw 100
+--sref [参考图片 URL] --sw 100
 
 2. 固定 Prompt 前缀
-   "Brand style: clean, minimal, warm lighting, [品牌色] accent, 
-   lifestyle photography, shallow depth of field"
+"Brand style: clean, minimal, warm lighting, [品牌色] accent,
+lifestyle photography, shallow depth of field"
 
 3. 使用相同的参数
-   --ar 1:1 --v 6.1 --s 250 --c 10
+--ar 1:1 --v 6.1 --s 250 --c 10
 
 4. 建立 Prompt 模板库
-   每种内容类型（产品图/场景图/社交媒体）有固定模板
+每种内容类型（产品图/场景图/社交媒体）有固定模板
 ```
 
 ---
@@ -195,26 +195,26 @@ Content rephrased for compliance with licensing restrictions.
 请定义品牌声音指南：
 
 1. 语气特征（Tone）
-   - 正式程度：[1-10，1=极随意，10=极正式]
-   - 幽默程度：[1-10]
-   - 技术程度：[1-10]
+- 正式程度：[1-10，1=极随意，10=极正式]
+- 幽默程度：[1-10]
+- 技术程度：[1-10]
 
 2. 用词规范
-   - 常用词汇（品牌偏好的词）
-   - 禁用词汇（品牌避免的词）
-   - Emoji 使用规范
+- 常用词汇（品牌偏好的词）
+- 禁用词汇（品牌避免的词）
+- Emoji 使用规范
 
 3. 各平台语气调整
-   - Amazon Listing：[描述]
-   - Shopify 产品页：[描述]
-   - Instagram：[描述]
-   - TikTok：[描述]
-   - 客服回复：[描述]
-   - 邮件营销：[描述]
+- Amazon Listing：[描述]
+- Shopify 产品页：[描述]
+- Instagram：[描述]
+- TikTok：[描述]
+- 客服回复：[描述]
+- 邮件营销：[描述]
 
 4. 示例对比
-   - ❌ 不符合品牌声音的写法
-   - ✅ 符合品牌声音的写法
+- 不符合品牌声音的写法
+- 符合品牌声音的写法
 ```
 
 ---
@@ -245,25 +245,25 @@ Content rephrased for compliance with licensing restrictions.
 请设计 Brand Store 页面结构：
 
 1. 首页（Homepage）
-   - Hero Banner 文案（品牌 Tagline + CTA）
-   - 品类导航设计
-   - 热销产品推荐
-   - 品牌故事模块
+- Hero Banner 文案（品牌 Tagline + CTA）
+- 品类导航设计
+- 热销产品推荐
+- 品牌故事模块
 
 2. 品类页（每个品类一页）
-   - 品类介绍文案
-   - 产品排列策略
-   - 交叉推荐
+- 品类介绍文案
+- 产品排列策略
+- 交叉推荐
 
 3. 品牌故事页
-   - 品牌起源
-   - 制造过程/品质保证
-   - 用户故事/评价精选
+- 品牌起源
+- 制造过程/品质保证
+- 用户故事/评价精选
 
 4. 促销页（可选）
-   - 当前促销活动
-   - 套装推荐
-   - 限时优惠
+- 当前促销活动
+- 套装推荐
+- 限时优惠
 ```
 
 ---
@@ -274,14 +274,14 @@ Content rephrased for compliance with licensing restrictions.
 
 | Platform | Logo | Colors | Tone | Image Style | Brand Story |
 |----------|------|--------|------|-------------|-------------|
-| Amazon | ✅ Brand Registry | ✅ A+ Content | ✅ Listing | ✅ Product images | ✅ Brand Store |
-| Shopify | ✅ Site logo | ✅ Theme colors | ✅ Product pages | ✅ Product images | ✅ About page |
-| Instagram | ✅ Avatar | ✅ Feed colors | ✅ Captions | ✅ Reels/Stories | ✅ Bio |
-| TikTok | ✅ Avatar | ✅ Video style | ✅ Video tone | ✅ Video style | ✅ Bio |
-| YouTube | ✅ Avatar + Banner | ✅ Thumbnails | ✅ Video tone | ✅ Thumbnail style | ✅ About |
-| Packaging | ✅ Logo | ✅ Package colors | ✅ Package copy | ✅ Package design | ✅ Brand card |
+| Amazon | Brand Registry | A+ Content | Listing | Product images | Brand Store |
+| Shopify | Site logo | Theme colors | Product pages | Product images | About page |
+| Instagram | Avatar | Feed colors | Captions | Reels/Stories | Bio |
+| TikTok | Avatar | Video style | Video tone | Video style | Bio |
+| YouTube | Avatar + Banner | Thumbnails | Video tone | Thumbnail style | About |
+| Packaging | Logo | Package colors | Package copy | Package design | Brand card |
 
-> 📎 **Related Reading**: [A7 Visual Content](a7-visual-content.md#33-bulk-social-media-video-production-with-ai) — Maintaining brand consistency with AI image/video generation · [E7 Cross-Channel Synergy](../e-social-media/e7-social-media-cross-channel.md#e7-social-media-cross-channel-strategy) — Cross-platform content consistency
+> **Related Reading**: [A7 Visual Content](a7-visual-content.md#33-bulk-social-media-video-production-with-ai) Maintaining brand consistency with AI image/video generation · [E7 Cross-Channel Synergy](../e-social-media/e7-social-media-cross-channel.md#e7-social-media-cross-channel-strategy) Cross-platform content consistency
 
 ### 6.2 AI Brand Consistency Automation
 
@@ -318,7 +318,7 @@ Instagram Bio + 最近 3 条 Caption:
 
 | Asset Type | Management Tool | AI Assistance |
 |------------|----------------|---------------|
-| Logo files | Google Drive / Dropbox | — |
+| Logo files | Google Drive / Dropbox | |
 | Brand guidelines doc | Notion / Google Docs | AI-generated brand guidelines |
 | Image asset library | Canva Brand Kit / DAM | AI tagging and search |
 | Copy template library | Notion / Airtable | AI-generated copy for each platform |
@@ -343,34 +343,34 @@ Instagram Bio + 最近 3 条 Caption:
 品牌建设分阶段路线图：
 
 Phase 1: 基础建设（第 1-2 周）
-├── 定义品牌定位（差异化+目标客户）
-├── 创建品牌故事（使命+价值观+Tagline）
-├── 设计视觉系统（Logo+配色+字体）
-├── 定义品牌声音（各平台语气规范）
-└── 产出：品牌指南文档
+定义品牌定位（差异化+目标客户）
+创建品牌故事（使命+价值观+Tagline）
+设计视觉系统（Logo+配色+字体）
+定义品牌声音（各平台语气规范）
+产出：品牌指南文档
 
 Phase 2: 平台落地（第 3-4 周）
-├── Amazon Brand Registry 注册
-├── Amazon Brand Store 设计
-├── A+ Content 创建
-├── Shopify About 页面
-├── 社交媒体 Profile 统一
-└── 产出：所有平台品牌一致
+Amazon Brand Registry 注册
+Amazon Brand Store 设计
+A+ Content 创建
+Shopify About 页面
+社交媒体 Profile 统一
+产出：所有平台品牌一致
 
 Phase 3: 内容建设（第 5-8 周）
-├── 品牌内容日历
-├── 社交媒体内容创作
-├── 邮件营销模板
-├── 包装设计（品牌卡片/包装盒）
-└── 产出：持续的品牌内容输出
+品牌内容日历
+社交媒体内容创作
+邮件营销模板
+包装设计（品牌卡片/包装盒）
+产出：持续的品牌内容输出
 
 Phase 4: 品牌增长（持续）
-├── KOL/KOC 合作
-├── 用户生成内容（UGC）
-├── 品牌社区建设
-├── GEO 优化（AI 搜索可见度）
-├── 品牌口碑监控
-└── 产出：品牌知名度和忠诚度提升
+KOL/KOC 合作
+用户生成内容（UGC）
+品牌社区建设
+GEO 优化（AI 搜索可见度）
+品牌口碑监控
+产出：品牌知名度和忠诚度提升
 ```
 
 ---
@@ -406,8 +406,8 @@ Instagram Bio: [粘贴]
 - [ ] Completed cross-platform brand consistency check
 
 ---
-> 🏠 [Hub Home](../../README.md) · 📋 [Path A Overview](README.md)
-> 
+> [Hub Home](../../README.md) · [Path A Overview](README.md)
+>
 > **Path A**: [A1 Product Research](a1-product-research.md) · [A2 Listing](a2-listing-optimization.md) · [A3 Advertising](a3-advertising.md) · [A4 Customer Service](a4-customer-service.md) · [A5 Inventory](a5-inventory.md) · [A6 Compliance](a6-compliance.md) · [A7 Visual Content](a7-visual-content.md) · [A8 Pricing](a8-pricing-strategy.md) · [A9 SEO/GEO](a9-seo-geo.md) · [A10 Brand Building](a10-brand-building.md)
-> 
+>
 > **Quick Jump**: [Path 0 Foundations](../0-foundations/) · [Path B Developers](../b-developers/) · [Path C Managers](../c-managers/) · [Path D Multi-Platform](../d-platforms/) · [Path E Social Media](../e-social-media/)

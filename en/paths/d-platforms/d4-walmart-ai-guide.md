@@ -4,15 +4,15 @@
 
 > **Path**: Path D: Multi-Platform · **Module**: D4
 > **Last Updated**: 2026-03-14
-> **Difficulty**: ⭐⭐ Intermediate
+> **Difficulty**: Intermediate
 > **Estimated Time**: 2-3 hours
 > **Prerequisites**: [Path A Operations](../a-operators/) (70% of Amazon experience directly transferable)
 
-🏠 [Hub Home](../../README.md) · 📋 [Path D Overview](README.md)
+[Hub Home](../../README.md) · [Path D Overview](README.md)
 
 ---
 
-## 📖 Chapter Navigation
+## Chapter Navigation
 
 1. [Walmart vs Amazon Core Differences](#1-walmart-vs-amazon-core-differences)
 2. [Walmart SEO & Listing Optimization](#2-walmart-seo--listing-optimization)
@@ -30,7 +30,7 @@
 - A Walmart Connect advertising strategy
 - An Amazon → Walmart migration checklist
 
-> 💡 **Core Concept**: Walmart Marketplace is the most natural second platform for Amazon sellers. 250K+ active sellers, GMV $10B+, ad revenue $6.4B (+46% YoY). 70% of AI methodologies from Path A can be directly reused — this guide focuses only on the differences.
+> **Core Concept**: Walmart Marketplace is the most natural second platform for Amazon sellers. 250K+ active sellers, GMV $10B+, ad revenue $6.4B (+46% YoY). 70% of AI methodologies from Path A can be directly reused this guide focuses only on the differences.
 
 ---
 
@@ -59,7 +59,7 @@
 
 ## 2. Walmart SEO & Listing Optimization
 
-> 📎 **Related Reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md#1-listing-methodology-the-fundamentals-before-ai) — General Amazon Listing optimization methodology from A2 can be referenced, with 70% directly transferable to Walmart.
+> **Related Reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md#1-listing-methodology-the-fundamentals-before-ai) General Amazon Listing optimization methodology from A2 can be referenced, with 70% directly transferable to Walmart.
 
 ### 2.1 Listing Quality Score
 
@@ -67,51 +67,51 @@ Walmart has a visible Listing Quality Score (Amazon doesn't), which directly imp
 
 ```
 Listing Quality Score Components:
-├── Content Quality — Highest weight
-│   ├── Title: 50-75 characters optimal, format "Brand + Product Name + Key Attributes (Size/Color/Quantity)"
-│   │   ├── Must be Title Case (capitalize first letter of each major word)
-│   │   ├── No all caps, special characters, or promotional info ("Sale""Free Shipping")
-│   │   ├── No prices in the title
-│   │   └── Difference from Amazon: Amazon allows 200-char keyword-stuffed titles; Walmart requires concise
-│   │
-│   ├── Key Features (Bullet Points): 3-10, each no more than 80 characters
-│   │   ├── First 3 are most important (visible before fold)
-│   │   ├── Start with verbs or benefit points ("Provides...", "Features...")
-│   │   └── Difference from Amazon: Amazon allows 500 chars/bullet; Walmart requires more concise
-│   │
-│   ├── Description: At least 150 words, recommended 300-500 words
-│   │   ├── Supports Rich Media (similar to A+ Content)
-│   │   ├── Can include HTML formatting (bold, lists, tables)
-│   │   └── Recommended structure: Use cases → Core features → Specifications → Brand story
-│   │
-│   └── Attributes: Fill in all optional attributes
-│       ├── Color, size, material, weight, origin, etc.
-│       ├── Attribute completeness directly affects search filter matching
-│       └── Many sellers overlook this — completing all attributes is a low-cost ranking boost
-│
-├── Image Quality
-│   ├── Main image: Pure white background (RGB 255,255,255), ≥1000x1000px
-│   ├── Secondary images: At least 4 (recommended 6-8)
-│   │   ├── Lifestyle images (product in use)
-│   │   ├── Size comparison images (compared to common objects)
-│   │   ├── Detail close-ups
-│   │   ├── What's in the box
-│   │   └── Infographics (selling points overlaid with text)
-│   ├── Video: Strongly recommended (Walmart gives extra weight to listings with video)
-│   ├── 360° view: Bonus
-│   └── Difference from Amazon: Walmart images should be more "authentic" — less heavy editing, making Walmart users feel "real and trustworthy"
-│
-├── Price Competitiveness
-│   ├── Walmart compares prices with Amazon, Target, eBay, etc.
-│   ├── Overpricing lowers Score and may lose Buy Box
-│   ├── Recommendation: Walmart pricing = Amazon price or slightly lower by 5-10%
-│   └── Psychological pricing: End in .88 or .97 (Walmart customer habit)
-│
-└── Inventory & Fulfillment
-    ├── WFS usage (significant boost, similar to FBA's impact on Amazon rankings)
-    ├── Delivery speed: 2-day shipping is baseline, next-day is a bonus
-    ├── Stock availability: Frequent stockouts lower Score
-    └── Return rate: High return rates lead to ranking suppression
+Content Quality Highest weight
+Title: 50-75 characters optimal, format "Brand + Product Name + Key Attributes (Size/Color/Quantity)"
+Must be Title Case (capitalize first letter of each major word)
+No all caps, special characters, or promotional info ("Sale""Free Shipping")
+No prices in the title
+Difference from Amazon: Amazon allows 200-char keyword-stuffed titles; Walmart requires concise
+
+Key Features (Bullet Points): 3-10, each no more than 80 characters
+First 3 are most important (visible before fold)
+Start with verbs or benefit points ("Provides...", "Features...")
+Difference from Amazon: Amazon allows 500 chars/bullet; Walmart requires more concise
+
+Description: At least 150 words, recommended 300-500 words
+Supports Rich Media (similar to A+ Content)
+Can include HTML formatting (bold, lists, tables)
+Recommended structure: Use cases → Core features → Specifications → Brand story
+
+Attributes: Fill in all optional attributes
+Color, size, material, weight, origin, etc.
+Attribute completeness directly affects search filter matching
+Many sellers overlook this completing all attributes is a low-cost ranking boost
+
+Image Quality
+Main image: Pure white background (RGB 255,255,255), ≥1000x1000px
+Secondary images: At least 4 (recommended 6-8)
+Lifestyle images (product in use)
+Size comparison images (compared to common objects)
+Detail close-ups
+What's in the box
+Infographics (selling points overlaid with text)
+Video: Strongly recommended (Walmart gives extra weight to listings with video)
+360° view: Bonus
+Difference from Amazon: Walmart images should be more "authentic" less heavy editing, making Walmart users feel "real and trustworthy"
+
+Price Competitiveness
+Walmart compares prices with Amazon, Target, eBay, etc.
+Overpricing lowers Score and may lose Buy Box
+Recommendation: Walmart pricing = Amazon price or slightly lower by 5-10%
+Psychological pricing: End in .88 or .97 (Walmart customer habit)
+
+Inventory & Fulfillment
+WFS usage (significant boost, similar to FBA's impact on Amazon rankings)
+Delivery speed: 2-day shipping is baseline, next-day is a bonus
+Stock availability: Frequent stockouts lower Score
+Return rate: High return rates lead to ranking suppression
 ```
 
 ### 2.2 Walmart Title Optimization Formula
@@ -145,11 +145,11 @@ Walmart's Rich Media feature allows enhanced content in the description area:
 
 | Feature | Amazon A+ Content | Walmart Rich Media |
 |---------|-------------------|-------------------|
-| Brand Story | ✅ | ✅ |
-| Comparison Table | ✅ | ✅ |
-| Image-Text Modules | ✅ | ✅ |
-| Video Embed | ✅ (Premium A+) | ✅ (All sellers) |
-| 360° View | ❌ | ✅ |
+| Brand Story | | |
+| Comparison Table | | |
+| Image-Text Modules | | |
+| Video Embed | (Premium A+) | (All sellers) |
+| 360° View | | |
 | Technical Requirements | Amazon backend editor | Supports HTML/CSS |
 | Threshold | Requires Brand Registry | Available to all sellers |
 
@@ -178,7 +178,7 @@ Walmart's Rich Media feature allows enhanced content in the description area:
 
 ## 3. Walmart Connect Advertising
 
-> 📎 **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md#31-search-term-report-analysis) — The general search term report analysis methodology can be directly reused for Walmart Connect.
+> **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md#31-search-term-report-analysis) The general search term report analysis methodology can be directly reused for Walmart Connect.
 
 ### 3.1 Ad Types Explained
 
@@ -253,37 +253,37 @@ ROAS: [X]
 
 ```
 Week 1: Data Collection Phase
-├── Launch 1 Automatic Campaign (budget $20/day)
-├── Launch 1 Manual Campaign (5-10 core keywords, budget $15/day)
-├── Bids: 80% of category suggested bid
-└── Goal: Collect search term data, don't chase ROAS
+Launch 1 Automatic Campaign (budget $20/day)
+Launch 1 Manual Campaign (5-10 core keywords, budget $15/day)
+Bids: 80% of category suggested bid
+Goal: Collect search term data, don't chase ROAS
 
 Week 2: Optimization Phase
-├── Analyze search term reports
-├── Extract high-converting terms from Automatic → add to Manual
-├── Negate low-performing terms
-├── Adjust bids (high-converting +15%, low-converting -20%)
-└── Goal: ROAS > 2x
+Analyze search term reports
+Extract high-converting terms from Automatic → add to Manual
+Negate low-performing terms
+Adjust bids (high-converting +15%, low-converting -20%)
+Goal: ROAS > 2x
 
 Week 3: Expansion Phase
-├── Add Sponsored Brands Campaign (if brand registered)
-├── Test Sponsored Videos (if video assets available)
-├── Expand keyword list (add long-tail keywords)
-├── Increase budget for high-converting campaigns
-└── Goal: ROAS > 3x
+Add Sponsored Brands Campaign (if brand registered)
+Test Sponsored Videos (if video assets available)
+Expand keyword list (add long-tail keywords)
+Increase budget for high-converting campaigns
+Goal: ROAS > 3x
 
 Week 4: Scaling
-├── Increase budget 30-50% for stable campaigns
-├── Launch Display Ads (retargeting)
-├── Establish weekly optimization SOP
-└── Goal: ROAS > 4x, ad sales ratio 20-30%
+Increase budget 30-50% for stable campaigns
+Launch Display Ads (retargeting)
+Establish weekly optimization SOP
+Goal: ROAS > 4x, ad sales ratio 20-30%
 ```
 
 ---
 
 ## 4. WFS Logistics Decisions
 
-> 📎 **Related Reading**: [A5 Inventory Management](../a-operators/a5-inventory.md#1-inventory-methodology-the-fundamentals-before-ai) — General inventory management and restocking methodology from A5.
+> **Related Reading**: [A5 Inventory Management](../a-operators/a5-inventory.md#1-inventory-methodology-the-fundamentals-before-ai) General inventory management and restocking methodology from A5.
 
 ### 4.1 WFS vs FBA Detailed Comparison
 
@@ -358,41 +358,41 @@ MCS is Walmart's multi-channel fulfillment service (similar to Amazon MCF), newl
 
 ```
 Phase 1: Preparation (1-2 weeks)
-├── [ ] Register Walmart Marketplace seller account
-│   ├── Required: US business entity (or EIN)
-│   ├── Required: W-9 tax form
-│   ├── Review time: 2-4 weeks
-│   └── Note: Walmart's review is stricter than Amazon; not all applications are approved
-├── [ ] Prepare UPC/GTIN (Walmart requires a unique UPC for each product)
-├── [ ] Prepare product images (adapted to Walmart style, more "authentic")
-└── [ ] Research Walmart category commission rates
+[ ] Register Walmart Marketplace seller account
+Required: US business entity (or EIN)
+Required: W-9 tax form
+Review time: 2-4 weeks
+Note: Walmart's review is stricter than Amazon; not all applications are approved
+[ ] Prepare UPC/GTIN (Walmart requires a unique UPC for each product)
+[ ] Prepare product images (adapted to Walmart style, more "authentic")
+[ ] Research Walmart category commission rates
 
 Phase 2: Listing Upload (1 week)
-├── [ ] Convert title format (50-75 characters, Title Case)
-├── [ ] Rewrite Key Features (each ≤80 characters, more concise)
-├── [ ] Create Rich Media content
-├── [ ] Fill in all product attributes (boost Listing Quality Score)
-├── [ ] Set pricing (recommended = Amazon price or -5~10%)
-└── [ ] Upload images (adapted to Walmart style)
+[ ] Convert title format (50-75 characters, Title Case)
+[ ] Rewrite Key Features (each ≤80 characters, more concise)
+[ ] Create Rich Media content
+[ ] Fill in all product attributes (boost Listing Quality Score)
+[ ] Set pricing (recommended = Amazon price or -5~10%)
+[ ] Upload images (adapted to Walmart style)
 
 Phase 3: Logistics Setup (1 week)
-├── [ ] Register for WFS
-├── [ ] Create inbound shipment plan
-├── [ ] Send initial inventory (recommended 30-day supply)
-└── [ ] Set up self-fulfillment backup option
+[ ] Register for WFS
+[ ] Create inbound shipment plan
+[ ] Send initial inventory (recommended 30-day supply)
+[ ] Set up self-fulfillment backup option
 
 Phase 4: Advertising Launch (2-4 weeks)
-├── [ ] Launch Automatic Campaign
-├── [ ] Launch Manual Campaign (core keywords)
-├── [ ] Analyze search term reports weekly
-└── [ ] Gradually optimize bids and keywords
+[ ] Launch Automatic Campaign
+[ ] Launch Manual Campaign (core keywords)
+[ ] Analyze search term reports weekly
+[ ] Gradually optimize bids and keywords
 
 Phase 5: Ongoing Optimization
-├── [ ] Check Listing Quality Score weekly
-├── [ ] Optimize ads weekly
-├── [ ] Monitor Buy Box status
-├── [ ] Participate in Walmart promotions (Rollbacks, Flash Deals)
-└── [ ] Establish Walmart-specific data tracking
+[ ] Check Listing Quality Score weekly
+[ ] Optimize ads weekly
+[ ] Monitor Buy Box status
+[ ] Participate in Walmart promotions (Rollbacks, Flash Deals)
+[ ] Establish Walmart-specific data tracking
 ```
 
 ### 5.3 Walmart-Specific Promotion Mechanisms
@@ -447,39 +447,39 @@ The core difference between Walmart Buy Box and Amazon Buy Box is that price car
 Walmart Buy Box Algorithm Factors (ranked by weight):
 
 1. Price (Highest Weight)
-├── Product price + shipping total
-├── Price comparison with Amazon/Target/eBay and other platforms
-├── Overpricing directly loses Buy Box
-├── Recommendation: Total price (product + shipping) ≤ Amazon same-product price
-└── Psychological pricing: End in .88 or .97
+Product price + shipping total
+Price comparison with Amazon/Target/eBay and other platforms
+Overpricing directly loses Buy Box
+Recommendation: Total price (product + shipping) ≤ Amazon same-product price
+Psychological pricing: End in .88 or .97
 
 2. Delivery Speed and Method
-├── WFS (Walmart Fulfillment Services) → Highest priority
-├── 2-day shipping → High priority
-├── 3-5 day shipping → Medium priority
-├── 5+ day shipping → Low priority
-└── Walmart+ next-day → Extra bonus
+WFS (Walmart Fulfillment Services) → Highest priority
+2-day shipping → High priority
+3-5 day shipping → Medium priority
+5+ day shipping → Low priority
+Walmart+ next-day → Extra bonus
 
 3. Seller Performance Metrics
-├── On-Time Delivery Rate > 95%
-├── Valid Tracking Rate > 99%
-├── Cancellation Rate < 2%
-├── Return Rate — the lower the better
-└── Customer Satisfaction Score
+On-Time Delivery Rate > 95%
+Valid Tracking Rate > 99%
+Cancellation Rate < 2%
+Return Rate the lower the better
+Customer Satisfaction Score
 
 4. Inventory Depth
-├── Sufficient inventory → Bonus
-├── Frequent stockouts → Ranking suppression
-└── Pre-order/out-of-stock status → Lose Buy Box
+Sufficient inventory → Bonus
+Frequent stockouts → Ranking suppression
+Pre-order/out-of-stock status → Lose Buy Box
 
 5. Seller Account Health
-├── Account age
-├── Historical sales volume
-├── Brand registration status
-└── Violation history
+Account age
+Historical sales volume
+Brand registration status
+Violation history
 ```
 
-> 📎 **Related Reading**: [D1 Shopify](shopify-ai-guide.md#13-case-studies-shopify-store-ai-implementation) — If you also run a DTC store, refer to D1 for Shopify brand building and DTC strategies.
+> **Related Reading**: [D1 Shopify](shopify-ai-guide.md#13-case-studies-shopify-store-ai-implementation) If you also run a DTC store, refer to D1 for Shopify brand building and DTC strategies.
 
 ### Buy Box Monitoring & Optimization AI Prompt
 
@@ -543,41 +543,41 @@ Walmart Buy Box Algorithm Factors (ranked by weight):
 Walmart Seller Center Core Reports:
 
 I. Sales Reports
-├── Item Performance
-│   ├── Page Views
-│   ├── Units Sold
-│   ├── Revenue
-│   ├── Buy Box %
-│   └── Conversion Rate
-│
-├── Sales Trend
-│   ├── Daily/Weekly/Monthly sales trends
-│   ├── YoY/MoM changes
-│   └── Category comparison
-│
-└── Returns Report
-    ├── Return rate
-    ├── Return reason breakdown
-    └── Return cost
+Item Performance
+Page Views
+Units Sold
+Revenue
+Buy Box %
+Conversion Rate
+
+Sales Trend
+Daily/Weekly/Monthly sales trends
+YoY/MoM changes
+Category comparison
+
+Returns Report
+Return rate
+Return reason breakdown
+Return cost
 
 II. Advertising Reports (Walmart Connect)
-├── Campaign Performance
-├── Search Term Report
-├── Keyword Performance
-└── Placement Report
+Campaign Performance
+Search Term Report
+Keyword Performance
+Placement Report
 
 III. Inventory Reports
-├── Inventory Health
-├── WFS Inventory
-├── Stranded Inventory
-└── Restock Recommendations
+Inventory Health
+WFS Inventory
+Stranded Inventory
+Restock Recommendations
 
 IV. Seller Performance
-├── On-Time Delivery Rate
-├── Valid Tracking Rate
-├── Cancellation Rate
-├── Customer Satisfaction Score
-└── Policy Compliance
+On-Time Delivery Rate
+Valid Tracking Rate
+Cancellation Rate
+Customer Satisfaction Score
+Policy Compliance
 ```
 
 ### AI Weekly Report Analysis Prompt
@@ -626,7 +626,7 @@ Top 5 产品表现：
 
 ### Online + Offline Synergy (Walmart's Unique Advantage)
 
-Walmart has 4,700+ physical stores — something Amazon doesn't have:
+Walmart has 4,700+ physical stores something Amazon doesn't have:
 
 | Omnichannel Feature | Description | Impact on Sellers |
 |---------------------|-------------|-------------------|
@@ -654,7 +654,7 @@ Walmart+ is Walmart's membership program (similar to Amazon Prime):
 
 ## 6.6 Common Walmart Pitfalls Deep Dive
 
-### ❌ Pitfall 1: Directly Copying Amazon Listings
+### Pitfall 1: Directly Copying Amazon Listings
 
 **Problem**: Amazon titles allow 200 characters of keyword stuffing; Walmart titles require 50-75 concise characters. Direct copying results in extremely low Listing Quality Scores.
 
@@ -683,7 +683,7 @@ Amazon 描述：[粘贴]
 5. Listing Quality Score 预估和优化建议
 ```
 
-### ❌ Pitfall 2: Ignoring Walmart Customer Profile Differences
+### Pitfall 2: Ignoring Walmart Customer Profile Differences
 
 **Problem**: Walmart and Amazon customers have different profiles; content strategy needs adjustment.
 
@@ -710,7 +710,7 @@ Walmart 用户特征：
 请改写，保持核心信息但调整语气和重点。
 ```
 
-### ❌ Pitfall 3: Overbidding on Ads (First-Price Bidding)
+### Pitfall 3: Overbidding on Ads (First-Price Bidding)
 
 **Problem**: Many sellers transitioning from Amazon are used to bidding high (because Amazon uses second-price bidding, so you don't actually pay that much). On Walmart, bidding high means actually paying high.
 
@@ -733,7 +733,7 @@ Key Principles:
 - Weekends/evenings can have slightly higher bids (higher conversion rates)
 ```
 
-### ❌ Pitfall 4: Not Participating in Walmart Promotions
+### Pitfall 4: Not Participating in Walmart Promotions
 
 **Problem**: Walmart promotions (Rollbacks, Flash Deals) significantly impact rankings and traffic, but many new sellers don't know how to participate.
 
@@ -741,15 +741,15 @@ Key Principles:
 
 | Event Type | How to Participate | Discount Required | Traffic Boost |
 |------------|-------------------|-------------------|---------------|
-| Rollback | Apply via Seller Center backend | Typically 10-25% off | ⭐⭐⭐⭐ |
-| Flash Deal | Requires invitation or application | Typically 20-40% off | ⭐⭐⭐⭐⭐ |
-| Clearance | Manually set clearance price | Deep discount | ⭐⭐⭐ |
-| Walmart+ Weekend | Auto-enrolled (WFS products) | No additional discount required | ⭐⭐⭐ |
-| Holiday Promotions | Apply 4-6 weeks in advance | Depends on event | ⭐⭐⭐⭐⭐ |
+| Rollback | Apply via Seller Center backend | Typically 10-25% off | |
+| Flash Deal | Requires invitation or application | Typically 20-40% off | |
+| Clearance | Manually set clearance price | Deep discount | |
+| Walmart+ Weekend | Auto-enrolled (WFS products) | No additional discount required | |
+| Holiday Promotions | Apply 4-6 weeks in advance | Depends on event | |
 
-### ❌ Pitfall 5: Ignoring Walmart Review Strategy
+### Pitfall 5: Ignoring Walmart Review Strategy
 
-**Problem**: Walmart's review system differs from Amazon — Walmart allows the Spark Reviewer Program (similar to Vine), but many sellers don't know about it.
+**Problem**: Walmart's review system differs from Amazon Walmart allows the Spark Reviewer Program (similar to Vine), but many sellers don't know about it.
 
 **Walmart Review Acquisition Strategies**:
 - Spark Reviewer Program: Walmart's official review program, similar to Amazon Vine
@@ -763,13 +763,13 @@ Key Principles:
 
 | Tool | Purpose | Price | Rating |
 |------|---------|-------|--------|
-| **Walmart Seller Center** | Official backend: Listing/order/ad management | Free | ⭐⭐⭐⭐⭐ |
-| **Aura** | Automated repricing + Buy Box monitoring | From $97/mo | ⭐⭐⭐⭐ |
-| **Helium 10 (Walmart)** | Keyword research + Listing optimization | From $79/mo | ⭐⭐⭐⭐ |
-| **Teikametrics** | AI ad optimization | % of ad spend | ⭐⭐⭐⭐ |
-| **SellerApp** | Data analytics + ad optimization | From $49/mo | ⭐⭐⭐ |
-| **ChatGPT/Claude** | Listing copy + data analysis + strategy planning | $20/mo | ⭐⭐⭐⭐⭐ |
-| **Canva** | Product image design | Free/Pro $13/mo | ⭐⭐⭐⭐ |
+| **Walmart Seller Center** | Official backend: Listing/order/ad management | Free | |
+| **Aura** | Automated repricing + Buy Box monitoring | From $97/mo | |
+| **Helium 10 (Walmart)** | Keyword research + Listing optimization | From $79/mo | |
+| **Teikametrics** | AI ad optimization | % of ad spend | |
+| **SellerApp** | Data analytics + ad optimization | From $49/mo | |
+| **ChatGPT/Claude** | Listing copy + data analysis + strategy planning | $20/mo | |
+| **Canva** | Product image design | Free/Pro $13/mo | |
 
 ---
 
@@ -782,8 +782,8 @@ Key Principles:
 - [ ] Establish Walmart data analysis workflow
 
 ---
-> 🏠 [Hub Home](../../README.md) · 📋 [Path D Overview](README.md) · 📊 [Platform Comparison](platform-comparison.md)
-> 
+> [Hub Home](../../README.md) · [Path D Overview](README.md) · [Platform Comparison](platform-comparison.md)
+>
 > **Path D**: [D1 Shopify](shopify-ai-guide.md) · [D2 TikTok](tiktok-shop-ai-guide.md) · [D3 Cross-Platform](cross-platform-strategy.md) · [D4 Walmart](d4-walmart-ai-guide.md) · [D5 Temu](d5-temu-seller-guide.md) · [D6 Southeast Asia](d6-southeast-asia-ai-guide.md) · [D7 Latin America](d7-mercado-libre-ai-guide.md) · [D8 Japan](d8-rakuten-japan-ai-guide.md) · [D9 eBay](d9-ebay-ai-guide.md) · [D10 AliExpress](d10-aliexpress-ai-guide.md) · [D11 Korea](d11-coupang-korea-ai-guide.md) · [D12 Faire](d12-faire-wholesale-ai-guide.md) · [D13 Europe](d13-europe-marketplaces-guide.md)
-> 
+>
 > **Quick Jump**: [Path 0 Foundations](../0-foundations/) · [Path A Operations](../a-operators/) · [Path B Technical](../b-developers/) · [Path C Management](../c-managers/) · [Path E Social Media](../e-social-media/)

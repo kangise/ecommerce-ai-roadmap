@@ -1,4 +1,4 @@
-# Path C: 管理者 — AI 战略落地
+# Path C: 管理者 AI 战略落地
 
 > 最后更新: 2026-03-11
 
@@ -17,11 +17,11 @@
 
 | 模块 | 主题 | 难度 | 预计时间 | 说明 |
 |------|------|------|----------|------|
-| [C1. AI 能力评估与规划](c1-ai-assessment.md) | 能力评估 | ⭐ 入门 | 1-2小时 | 评估团队 AI 落地优先级 |
-| [C2. 团队 AI 技能建设](c2-team-building.md) | 技能建设 | ⭐ 入门 | 1-2小时 | 让团队快速上手 AI |
-| [C3. AI 项目 ROI 评估](c3-roi-evaluation.md) | ROI 评估 | ⭐⭐ 中级 | 1-2小时 | 衡量 AI 落地效果 |
-| [C4. AI 风险管理与治理](c4-ai-risk-governance.md) 🆕 | 风险治理 | ⭐⭐ 中级 | 3-4小时 | AI 幻觉/隐私/合规/Agentic 安全 |
-| [C5. AI 竞争情报](c5-competitive-intelligence.md) 🆕 | 竞争情报 | ⭐⭐ 中级 | 3-4小时 | AI 竞品监控/AI 搜索可见度/战略决策 |
+| [C1. AI 能力评估与规划](c1-ai-assessment.md) | 能力评估 | 入门 | 1-2小时 | 评估团队 AI 落地优先级 |
+| [C2. 团队 AI 技能建设](c2-team-building.md) | 技能建设 | 入门 | 1-2小时 | 让团队快速上手 AI |
+| [C3. AI 项目 ROI 评估](c3-roi-evaluation.md) | ROI 评估 | 中级 | 1-2小时 | 衡量 AI 落地效果 |
+| [C4. AI 风险管理与治理](c4-ai-risk-governance.md) | 风险治理 | 中级 | 3-4小时 | AI 幻觉/隐私/合规/Agentic 安全 |
+| [C5. AI 竞争情报](c5-competitive-intelligence.md) | 竞争情报 | 中级 | 3-4小时 | AI 竞品监控/AI 搜索可见度/战略决策 |
 
 ---
 
@@ -37,4 +37,4 @@
 
 ---
 
-🏠 [返回 Hub 首页](../../README.md) · 📋 [返回路径总览](../README.md)
+[返回 Hub 首页](../../README.md) · [返回路径总览](../README.md)

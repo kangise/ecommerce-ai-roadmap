@@ -1,6 +1,6 @@
 # 广告优化 Prompt 模板 | Advertising Prompts
 
-> 最后更新: 2026-03-10 | 模板数量: 2 | 验证状态: ✅ 已验证
+> 最后更新: 2026-03-10 | 模板数量: 2 | 验证状态: 已验证
 
 ---
 
@@ -8,7 +8,7 @@
 
 **场景**: 分析 Amazon PPC 搜索词报告，找出浪费和优化机会
 **推荐工具**: ChatGPT / Claude
-**验证状态**: ✅ 已验证
+**验证状态**: 已验证
 **贡献者**: [@kangise](https://github.com/kangise)
 
 ### Prompt
@@ -40,8 +40,8 @@
 
 ---
 
-📎 **分享此模板**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/prompts/advertising.md#模板-1-搜索词报告分析`
-🏠 **来源**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) — AI × 跨境电商实战知识库
+**分享此模板**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/prompts/advertising.md#模板-1-搜索词报告分析`
+**来源**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) AI × 跨境电商实战知识库
 
 ---
 
@@ -49,7 +49,7 @@
 
 **场景**: 为 Sponsored Brands 广告生成多种风格的 Headline 变体
 **推荐工具**: ChatGPT / Claude / Gemini
-**验证状态**: ✅ 已验证
+**验证状态**: 已验证
 **贡献者**: [@kangise](https://github.com/kangise)
 
 ### Prompt
@@ -78,5 +78,5 @@
 
 ---
 
-📎 **分享此模板**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/prompts/advertising.md#模板-2-广告文案-ab-测试`
-🏠 **来源**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) — AI × 跨境电商实战知识库
+**分享此模板**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/prompts/advertising.md#模板-2-广告文案-ab-测试`
+**来源**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) AI × 跨境电商实战知识库

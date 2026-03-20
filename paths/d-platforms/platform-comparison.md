@@ -3,11 +3,11 @@
 > **最后更新**: 2026-03-14
 > **用途**: 快速了解每个平台的核心特征、与 Amazon 的差异、AI 应用重点，帮你决定优先进入哪个平台
 
-🏠 [Hub 首页](../../README.md) · 📋 [Path D 总览](README.md)
+[Hub 首页](../../README.md) · [Path D 总览](README.md)
 
 ---
 
-## 📖 本页导航
+## 本页导航
 
 1. [平台全景矩阵](#1-平台全景矩阵)
 2. [各平台 vs Amazon 核心差异速查](#2-各平台-vs-amazon-核心差异速查)
@@ -22,45 +22,45 @@
 
 ## 1. 平台全景矩阵
 
-> 📎 **相关阅读**: [AI 应用全景评估](../0-foundations/ai-landscape.md) — AI 在各环节的成熟度详见 AI 全景
+> **相关阅读**: [AI 应用全景评估](../0-foundations/ai-landscape.md) AI 在各环节的成熟度详见 AI 全景
 
 ### 1.1 电商平台（Path D）
 
 | 平台 | 2025 GMV/收入 | 增长率 | 覆盖市场 | 卖家数 | 跨境友好度 | 详细指南 |
 |------|-------------|--------|----------|--------|-----------|---------|
-| **Amazon** | GMV $830B | 稳定 | 全球 | 200万+ | ⭐⭐⭐⭐⭐ | Path A-C |
-| **Shopify** | — | 稳定 | 全球（DTC） | — | ⭐⭐⭐⭐⭐ | [D1](shopify-ai-guide.md) |
-| **TikTok Shop** | 快速增长 | 极高 | US/UK/东南亚 | — | ⭐⭐⭐⭐ | [D2](tiktok-shop-ai-guide.md) |
-| **Walmart** | GMV $10B+ | 30%+ | 美国 | 25万+ | ⭐⭐⭐ | [D4](d4-walmart-ai-guide.md) |
-| **Temu** | GMV $90-95B | 50%+ | 90+ 国家 | — | ⭐⭐⭐⭐⭐ | [D5](d5-temu-seller-guide.md) |
-| **Shopee** | GMV $127B | 25-29% | 东南亚 6 国 | — | ⭐⭐⭐⭐ | [D6](d6-southeast-asia-ai-guide.md) |
-| **Lazada** | — | 中等 | 东南亚 6 国 | — | ⭐⭐⭐⭐ | [D6](d6-southeast-asia-ai-guide.md) |
-| **Mercado Libre** | GMV $65B | 35%+ | 拉美 4 国 | — | ⭐⭐⭐ | [D7](d7-mercado-libre-ai-guide.md) |
-| **Rakuten** | GMV ~$31B | 中等 | 日本 | 5万+ | ⭐⭐ | [D8](d8-rakuten-japan-ai-guide.md) |
-| **eBay** | GMV $80B | 6-8% | 全球 | — | ⭐⭐⭐ | [D9](d9-ebay-ai-guide.md) |
-| **AliExpress** | GMV $25B+ | 10-15% | 全球 | — | ⭐⭐⭐⭐⭐ | [D10](d10-aliexpress-ai-guide.md) |
-| **Coupang** | 收入 $36.8B | 14% | 韩国 | — | ⭐⭐ | [D11](d11-coupang-korea-ai-guide.md) |
-| **Faire** | GMV ~$3B | 40%+ | 美/欧（B2B） | — | ⭐⭐⭐ | [D12](d12-faire-wholesale-ai-guide.md) |
-| **Otto** | 收入 $9B | 5-10% | 德国 | — | ⭐⭐ | [D13](d13-europe-marketplaces-guide.md) |
-| **Zalando** | GMV €17.6B | 5-10% | 欧洲 | — | ⭐⭐ | [D13](d13-europe-marketplaces-guide.md) |
+| **Amazon** | GMV $830B | 稳定 | 全球 | 200万+ | | Path A-C |
+| **Shopify** | | 稳定 | 全球（DTC） | | | [D1](shopify-ai-guide.md) |
+| **TikTok Shop** | 快速增长 | 极高 | US/UK/东南亚 | | | [D2](tiktok-shop-ai-guide.md) |
+| **Walmart** | GMV $10B+ | 30%+ | 美国 | 25万+ | | [D4](d4-walmart-ai-guide.md) |
+| **Temu** | GMV $90-95B | 50%+ | 90+ 国家 | | | [D5](d5-temu-seller-guide.md) |
+| **Shopee** | GMV $127B | 25-29% | 东南亚 6 国 | | | [D6](d6-southeast-asia-ai-guide.md) |
+| **Lazada** | | 中等 | 东南亚 6 国 | | | [D6](d6-southeast-asia-ai-guide.md) |
+| **Mercado Libre** | GMV $65B | 35%+ | 拉美 4 国 | | | [D7](d7-mercado-libre-ai-guide.md) |
+| **Rakuten** | GMV ~$31B | 中等 | 日本 | 5万+ | | [D8](d8-rakuten-japan-ai-guide.md) |
+| **eBay** | GMV $80B | 6-8% | 全球 | | | [D9](d9-ebay-ai-guide.md) |
+| **AliExpress** | GMV $25B+ | 10-15% | 全球 | | | [D10](d10-aliexpress-ai-guide.md) |
+| **Coupang** | 收入 $36.8B | 14% | 韩国 | | | [D11](d11-coupang-korea-ai-guide.md) |
+| **Faire** | GMV ~$3B | 40%+ | 美/欧（B2B） | | | [D12](d12-faire-wholesale-ai-guide.md) |
+| **Otto** | 收入 $9B | 5-10% | 德国 | | | [D13](d13-europe-marketplaces-guide.md) |
+| **Zalando** | GMV €17.6B | 5-10% | 欧洲 | | | [D13](d13-europe-marketplaces-guide.md) |
 
 ### 1.2 社交媒体渠道（Path E）
 
 | 渠道 | MAU | 核心用户 | 电商功能 | 对卖家价值 | 详细指南 |
 |------|-----|----------|----------|-----------|---------|
-| **Instagram** | ~30 亿 | 18-34 岁，全球 | Shop/Reels 标签/Checkout | ⭐⭐⭐⭐⭐ | [E1](../e-social-media/e1-instagram-facebook-ai-guide.md) |
-| **Facebook** | ~30 亿 | 25-54 岁，全球 | Shops/Marketplace/Groups | ⭐⭐⭐ | [E1](../e-social-media/e1-instagram-facebook-ai-guide.md) |
-| **YouTube** | ~27 亿 | 全年龄，全球 | Shopping/Affiliate/Shorts | ⭐⭐⭐⭐⭐ | [E2](../e-social-media/e2-youtube-ai-guide.md) |
-| **小红书** | 3-3.5 亿 | 18-35 岁女性，中国 | 店铺/笔记挂链/直播 | ⭐⭐⭐⭐ | [E3](../e-social-media/e3-xiaohongshu-ai-guide.md) |
-| **Pinterest** | 6.19 亿 | 25-44 岁女性，欧美 | Shopping Ads/Rich Pins | ⭐⭐⭐⭐ | [E4](../e-social-media/e4-pinterest-ai-guide.md) |
-| **WhatsApp** | ~30 亿 | 全年龄，拉美/东南亚/中东 | Catalog/支付/Chatbot | ⭐⭐⭐ | [E5](../e-social-media/e5-whatsapp-business-ai-guide.md) |
-| **Reddit** | ~10 亿 | 18-35 岁男性，欧美 | AI 购物搜索（测试中） | ⭐⭐ | [E6](../e-social-media/e6-reddit-ai-guide.md) |
+| **Instagram** | ~30 亿 | 18-34 岁，全球 | Shop/Reels 标签/Checkout | | [E1](../e-social-media/e1-instagram-facebook-ai-guide.md) |
+| **Facebook** | ~30 亿 | 25-54 岁，全球 | Shops/Marketplace/Groups | | [E1](../e-social-media/e1-instagram-facebook-ai-guide.md) |
+| **YouTube** | ~27 亿 | 全年龄，全球 | Shopping/Affiliate/Shorts | | [E2](../e-social-media/e2-youtube-ai-guide.md) |
+| **小红书** | 3-3.5 亿 | 18-35 岁女性，中国 | 店铺/笔记挂链/直播 | | [E3](../e-social-media/e3-xiaohongshu-ai-guide.md) |
+| **Pinterest** | 6.19 亿 | 25-44 岁女性，欧美 | Shopping Ads/Rich Pins | | [E4](../e-social-media/e4-pinterest-ai-guide.md) |
+| **WhatsApp** | ~30 亿 | 全年龄，拉美/东南亚/中东 | Catalog/支付/Chatbot | | [E5](../e-social-media/e5-whatsapp-business-ai-guide.md) |
+| **Reddit** | ~10 亿 | 18-35 岁男性，欧美 | AI 购物搜索（测试中） | | [E6](../e-social-media/e6-reddit-ai-guide.md) |
 
 ---
 
 ## 2. 各平台 vs Amazon 核心差异速查
 
-> 📎 **相关阅读**: [Path A 运营总览](../a-operators/README.md) — Path A 运营技能详见 Path A
+> **相关阅读**: [Path A 运营总览](../a-operators/README.md) Path A 运营技能详见 Path A
 
 > 以下每个平台只列出与 Amazon **最不同**的 3-5 个点。通用的部分（关键词研究、Review 分析、竞品分析）参考 Path A。
 
@@ -205,17 +205,17 @@
 
 | 平台 | Listing AI | 广告 AI | 内容 AI | 客服 AI | 数据分析 AI | 总体成熟度 |
 |------|-----------|---------|---------|---------|------------|-----------|
-| Amazon | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
-| Shopify | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
-| TikTok Shop | ⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐ |
-| Walmart | ⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ |
-| Temu | ⭐ | ❌ | ⭐⭐ | ⭐ | ⭐⭐ | ⭐ |
-| Shopee | ⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ |
-| Mercado Libre | ⭐⭐⭐ | ⭐⭐ | ⭐⭐ | ⭐⭐ | ⭐⭐ | ⭐⭐ |
-| Rakuten | ⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐ | ⭐⭐ | ⭐⭐ | ⭐⭐ |
-| eBay | ⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐ | ⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ |
-| Coupang | ⭐⭐⭐ | ⭐⭐ | ⭐⭐ | ⭐⭐ | ⭐⭐ | ⭐⭐ |
-| Faire | ⭐⭐ | ⭐⭐ | ⭐⭐⭐ | ⭐⭐ | ⭐⭐ | ⭐⭐ |
+| Amazon | | | | | | |
+| Shopify | | | | | | |
+| TikTok Shop | | | | | | |
+| Walmart | | | | | | |
+| Temu | | | | | | |
+| Shopee | | | | | | |
+| Mercado Libre | | | | | | |
+| Rakuten | | | | | | |
+| eBay | | | | | | |
+| Coupang | | | | | | |
+| Faire | | | | | | |
 
 > **说明**：Listing AI = AI 辅助 Listing 创建和优化的空间；广告 AI = 平台广告系统的 AI 自动化程度；内容 AI = AI 生成营销内容（视频/图文/社交）的价值；客服 AI = AI Chatbot/自动回复的应用空间；数据分析 AI = AI 辅助数据分析和决策的价值。
 
@@ -332,14 +332,14 @@
 
 | 平台 | 官方物流 | 配送速度 | 对排名影响 | 成本 |
 |------|---------|----------|-----------|------|
-| Amazon FBA | ✅ | 1-2 天 | 极大 | 中高 |
-| Walmart WFS | ✅ | 2-3 天 | 极大 | 中（无旺季加价） |
-| TikTok 物流 | ✅ | 3-5 天 | 有 | 中 |
-| Shopee SLS | ✅ | 7-15 天（跨境） | 有 | 低 |
-| Lazada Cainiao | ✅ | 5-12 天（跨境） | 有 | 低 |
-| Mercado Envios Full | ✅ | 1-3 天 | 极大 | 中 |
-| Coupang Rocket | ✅ | 当日/次日 | 极大 | 中高 |
-| eBay GSP | ✅ | 因目的地而异 | 无 | 中 |
+| Amazon FBA | | 1-2 天 | 极大 | 中高 |
+| Walmart WFS | | 2-3 天 | 极大 | 中（无旺季加价） |
+| TikTok 物流 | | 3-5 天 | 有 | 中 |
+| Shopee SLS | | 7-15 天（跨境） | 有 | 低 |
+| Lazada Cainiao | | 5-12 天（跨境） | 有 | 低 |
+| Mercado Envios Full | | 1-3 天 | 极大 | 中 |
+| Coupang Rocket | | 当日/次日 | 极大 | 中高 |
+| eBay GSP | | 因目的地而异 | 无 | 中 |
 
 ---
 
@@ -347,22 +347,22 @@
 
 | 平台 | 广告类型 | 竞价模式 | 最低竞价 | AI 自动化程度 | 报告质量 |
 |------|---------|---------|---------|-------------|---------|
-| Amazon PPC | SP/SB/SD/DSP | 第二价格 | $0.02 | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
-| Meta Ads | 多种 | 竞价 | 无固定 | ⭐⭐⭐⭐⭐（Advantage+） | ⭐⭐⭐⭐ |
-| Google Ads | 搜索/展示/视频 | 竞价 | 无固定 | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
-| Walmart Connect | SP/SB/Display | 第一价格 | $0.20 | ⭐⭐⭐ | ⭐⭐⭐ |
-| TikTok Ads | 多种 | 竞价 | 无固定 | ⭐⭐⭐⭐ | ⭐⭐⭐ |
-| Shopee Ads | Search/Discovery | CPC | 因国家而异 | ⭐⭐ | ⭐⭐ |
-| Mercado Ads | Product/Display | CPC | 因国家而异 | ⭐⭐ | ⭐⭐ |
-| Rakuten RPP | 搜索广告 | CPC | ¥25 | ⭐⭐ | ⭐⭐ |
-| eBay PL | Standard/Advanced | 按成交/CPC | 2% ad rate | ⭐⭐ | ⭐⭐ |
-| Pinterest Ads | Shopping/Display | CPC/CPM | $0.10 | ⭐⭐⭐ | ⭐⭐⭐ |
+| Amazon PPC | SP/SB/SD/DSP | 第二价格 | $0.02 | | |
+| Meta Ads | 多种 | 竞价 | 无固定 | （Advantage+） | |
+| Google Ads | 搜索/展示/视频 | 竞价 | 无固定 | | |
+| Walmart Connect | SP/SB/Display | 第一价格 | $0.20 | | |
+| TikTok Ads | 多种 | 竞价 | 无固定 | | |
+| Shopee Ads | Search/Discovery | CPC | 因国家而异 | | |
+| Mercado Ads | Product/Display | CPC | 因国家而异 | | |
+| Rakuten RPP | 搜索广告 | CPC | ¥25 | | |
+| eBay PL | Standard/Advanced | 按成交/CPC | 2% ad rate | | |
+| Pinterest Ads | Shopping/Display | CPC/CPM | $0.10 | | |
 
 ---
 
 ## 8. 多平台扩展路线图
 
-> 📎 **相关阅读**: [D3 跨平台 AI 协同策略](cross-platform-strategy.md) — 跨平台协同策略详见 D3
+> **相关阅读**: [D3 跨平台 AI 协同策略](cross-platform-strategy.md) 跨平台协同策略详见 D3
 
 ### 8.1 推荐扩展顺序
 
@@ -370,40 +370,40 @@
 Amazon 卖家的多平台扩展路线图：
 
 Year 1: 巩固 + 第二平台
-├── Q1-Q2: 巩固 Amazon（优化 Listing/广告/Review）
-├── Q3: 启动 Walmart（最自然的第二平台）
-├── Q4: 启动 Shopify（建立 DTC 渠道）
-└── 同时：开始社交媒体内容建设（Instagram/YouTube）
+Q1-Q2: 巩固 Amazon（优化 Listing/广告/Review）
+Q3: 启动 Walmart（最自然的第二平台）
+Q4: 启动 Shopify（建立 DTC 渠道）
+同时：开始社交媒体内容建设（Instagram/YouTube）
 
 Year 2: 社交电商 + 区域扩展
-├── Q1: 启动 TikTok Shop（如果品类适合）
-├── Q2: 扩展到 1 个新区域市场（东南亚/拉美/日本）
-├── Q3: 加大社交媒体投入（达人合作/广告）
-├── Q4: 评估 Temu/AliExpress（如果有供应链优势）
-└── 同时：建立跨平台数据分析体系
+Q1: 启动 TikTok Shop（如果品类适合）
+Q2: 扩展到 1 个新区域市场（东南亚/拉美/日本）
+Q3: 加大社交媒体投入（达人合作/广告）
+Q4: 评估 Temu/AliExpress（如果有供应链优势）
+同时：建立跨平台数据分析体系
 
 Year 3: 规模化 + 品牌化
-├── 所有平台运营成熟
-├── 品牌在多个渠道有认知度
-├── 跨平台协同策略（内容复用/归因/预算分配）
-└── 考虑 B2B（Faire）或更多区域市场
+所有平台运营成熟
+品牌在多个渠道有认知度
+跨平台协同策略（内容复用/归因/预算分配）
+考虑 B2B（Faire）或更多区域市场
 ```
 
 ### 8.2 多平台运营的资源需求
 
 | 平台数量 | 建议团队规模 | 月运营成本（不含广告） | 管理复杂度 |
 |----------|------------|---------------------|-----------|
-| 1（Amazon） | 1-2 人 | $500-2000 | ⭐ |
-| 2（+Walmart） | 2-3 人 | $1000-3000 | ⭐⭐ |
-| 3（+Shopify） | 3-4 人 | $2000-5000 | ⭐⭐⭐ |
-| 4+（+TikTok/Shopee） | 4-6 人 | $3000-8000 | ⭐⭐⭐⭐ |
-| 全平台 | 6-10 人 | $5000-15000 | ⭐⭐⭐⭐⭐ |
+| 1（Amazon） | 1-2 人 | $500-2000 | |
+| 2（+Walmart） | 2-3 人 | $1000-3000 | |
+| 3（+Shopify） | 3-4 人 | $2000-5000 | |
+| 4+（+TikTok/Shopee） | 4-6 人 | $3000-8000 | |
+| 全平台 | 6-10 人 | $5000-15000 | |
 
 > **AI 的价值**：AI 可以让 2-3 人的团队管理 4-5 个平台。核心是用 AI 自动化 Listing 创建、广告优化、数据分析、内容生成，把人力集中在策略决策和客户关系上。
 
 ---
-> 🏠 [Hub 首页](../../README.md) · 📋 [Path D 总览](README.md) · 📊 [平台对比](platform-comparison.md)
-> 
+> [Hub 首页](../../README.md) · [Path D 总览](README.md) · [平台对比](platform-comparison.md)
+>
 > **Path D**: [D1 Shopify](shopify-ai-guide.md) · [D2 TikTok](tiktok-shop-ai-guide.md) · [D3 跨平台](cross-platform-strategy.md) · [D4 Walmart](d4-walmart-ai-guide.md) · [D5 Temu](d5-temu-seller-guide.md) · [D6 东南亚](d6-southeast-asia-ai-guide.md) · [D7 拉美](d7-mercado-libre-ai-guide.md) · [D8 日本](d8-rakuten-japan-ai-guide.md) · [D9 eBay](d9-ebay-ai-guide.md) · [D10 AliExpress](d10-aliexpress-ai-guide.md) · [D11 韩国](d11-coupang-korea-ai-guide.md) · [D12 Faire](d12-faire-wholesale-ai-guide.md) · [D13 欧洲](d13-europe-marketplaces-guide.md)
-> 
+>
 > **快速跳转**: [Path 0 基础](../0-foundations/) · [Path A 运营](../a-operators/) · [Path B 技术](../b-developers/) · [Path C 管理](../c-managers/) · [Path E 社交媒体](../e-social-media/)

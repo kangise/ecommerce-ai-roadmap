@@ -266,22 +266,22 @@ TikTok Shop 数据（过去 30 天）:
 请分析:
 
 1. 跨平台总览
-   - 总收入和各平台占比
-   - 各平台利润率对比（考虑不同的佣金和成本结构）
-   - 各平台获客效率对比
+- 总收入和各平台占比
+- 各平台利润率对比（考虑不同的佣金和成本结构）
+- 各平台获客效率对比
 
 2. 跨平台协同效果
-   - TikTok 内容发布量与 Amazon 品牌搜索量是否有相关性？
-   - Shopify 邮件中转化率最高的卖点是否也适用于其他平台？
-   - 哪个平台的客户质量最高（LTV/复购率）？
+- TikTok 内容发布量与 Amazon 品牌搜索量是否有相关性？
+- Shopify 邮件中转化率最高的卖点是否也适用于其他平台？
+- 哪个平台的客户质量最高（LTV/复购率）？
 
 3. 数据协同机会
-   - Amazon 的哪些数据可以优化 Shopify/TikTok？
-   - TikTok 的哪些数据可以优化 Amazon/Shopify？
+- Amazon 的哪些数据可以优化 Shopify/TikTok？
+- TikTok 的哪些数据可以优化 Amazon/Shopify？
 
 4. 资源重新分配建议
-   - 当前各平台的投入产出比是否合理？
-   - 应该增加/减少哪个平台的投入？
+- 当前各平台的投入产出比是否合理？
+- 应该增加/减少哪个平台的投入？
 
 为什么这个 Prompt 有效:
 大多数卖家分别看各平台数据，错失了跨平台洞察。
@@ -293,7 +293,7 @@ TikTok Shop 数据（过去 30 天）:
 
 ## 5. 跨平台广告协同
 
-> 📎 **相关阅读**: [E7 跨渠道策略](../e-social-media/e7-social-media-cross-channel.md) — 社交媒体归因方法论详见 E7 · [平台全景对比](platform-comparison.md) — 各平台详细对比详见平台全景对比
+> **相关阅读**: [E7 跨渠道策略](../e-social-media/e7-social-media-cross-channel.md) 社交媒体归因方法论详见 E7 · [平台全景对比](platform-comparison.md) 各平台详细对比详见平台全景对比
 
 ### 5.1 广告预算分配的第一性原理
 
@@ -370,7 +370,7 @@ Shopify 邮件的零成本复购如果不考虑，
 
 ## 6. 库存与物流协同
 
-> 📎 **相关阅读**: [A5 库存与供应链](../a-operators/a5-inventory.md) — 库存管理通用方法论详见 A5
+> **相关阅读**: [A5 库存与供应链](../a-operators/a5-inventory.md) 库存管理通用方法论详见 A5
 
 ### 6.1 跨平台库存的核心挑战
 
@@ -379,10 +379,10 @@ Shopify 邮件的零成本复购如果不考虑，
 ```
 常见的库存灾难场景:
 1. TikTok 达人视频意外爆了 -> TikTok 订单暴增 -> TikTok 断货
-   但 FBA 仓库还有大量库存 -> Amazon 库存积压
-   
+但 FBA 仓库还有大量库存 -> Amazon 库存积压
+
 2. BFCM 期间 Amazon 销量超预期 -> FBA 断货 -> 排名暴跌
-   但第三方仓库还有库存 -> Shopify/TikTok 库存积压
+但第三方仓库还有库存 -> Shopify/TikTok 库存积压
 
 3. 新品上架 -> 三个平台都备了货 -> 产品卖不动 -> 三个仓库都积压
 ```
@@ -515,17 +515,17 @@ Amazon 有价格一致性政策: 如果 Amazon 发现你在其他渠道价格更
 假设: 售价 $40，成本 $12
 
 Amazon:
-  售价 $40 - 成本 $12 - 佣金 15% ($6) - FBA ($5) - PPC ($4) = $13 利润（32.5%）
+售价 $40 - 成本 $12 - 佣金 15% ($6) - FBA ($5) - PPC ($4) = $13 利润（32.5%）
 
 Shopify:
-  售价 $40 - 成本 $12 - 支付 2.9% ($1.16) - 物流 ($5) - 广告 CAC ($8) = $13.84 利润（34.6%）
+售价 $40 - 成本 $12 - 支付 2.9% ($1.16) - 物流 ($5) - 广告 CAC ($8) = $13.84 利润（34.6%）
 
 TikTok Shop:
-  售价 $40 - 成本 $12 - 佣金 6% ($2.40) - 物流 ($5) - 达人佣金 10% ($4) = $16.60 利润（41.5%）
+售价 $40 - 成本 $12 - 佣金 6% ($2.40) - 物流 ($5) - 达人佣金 10% ($4) = $16.60 利润（41.5%）
 
 结论: TikTok Shop 利润率最高（佣金低），但需要持续的内容投入
-      Shopify 利润率取决于 CAC 控制能力
-      Amazon 利润率最稳定但天花板最低
+Shopify 利润率取决于 CAC 控制能力
+Amazon 利润率最稳定但天花板最低
 ```
 
 ---
@@ -683,8 +683,8 @@ TikTok Shop:
 T-6 周: 策略规划
 - 确定三平台的促销产品、折扣力度、库存备货
 - 关键决策: 三平台是否统一折扣？
-  建议: Amazon 用 Coupon/Lightning Deal，Shopify 用优惠码，TikTok 用直播间专属价
-  这样避免 Amazon 价格一致性政策问题
+建议: Amazon 用 Coupon/Lightning Deal，Shopify 用优惠码，TikTok 用直播间专属价
+这样避免 Amazon 价格一致性政策问题
 
 T-4 周: 内容准备
 - AI 生成三平台的促销内容（一个核心文档 -> 三平台适配）
@@ -728,11 +728,11 @@ T+1 周: 收尾
 - 品类: [类型]
 - 参与 BFCM 的 SKU: [X] 个
 - 去年 BFCM 各平台数据:
-  | 平台 | 收入 | vs 平时倍数 | 广告花费 |
-  |------|------|-----------|---------|
-  | Amazon | $[X] | [X]x | $[X] |
-  | Shopify | $[X] | [X]x | $[X] |
-  | TikTok | $[X] | [X]x | $[X] |
+| 平台 | 收入 | vs 平时倍数 | 广告花费 |
+|------|------|-----------|---------|
+| Amazon | $[X] | [X]x | $[X] |
+| Shopify | $[X] | [X]x | $[X] |
+| TikTok | $[X] | [X]x | $[X] |
 - 今年 BFCM 总目标: $[X]
 - 总广告预算: $[X]
 - 邮件列表规模: [X]
@@ -806,14 +806,14 @@ TikTok 运营（1-2 人）-- 视频 + 达人 + 直播
 
 每周（1 小时）:
 - 跨平台周会（30 分钟）:
-  各平台数据回顾 + 协同效果分析 + 下周优先级
+各平台数据回顾 + 协同效果分析 + 下周优先级
 - 内容规划（15 分钟）:
-  确认下周三平台内容日历
+确认下周三平台内容日历
 - 达人/广告复盘（15 分钟）
 
 每月（2 小时）:
 - 跨平台月度复盘（1 小时）:
-  各平台 P&L + 跨平台归因 + 资源分配调整
+各平台 P&L + 跨平台归因 + 资源分配调整
 - 竞品分析更新（1 小时）
 ```
 
@@ -847,8 +847,8 @@ Content rephrased for compliance with licensing restrictions. Source: [eDesk Man
 - [ ] 建立跨平台 Prompt 模板库
 
 ---
-> 🏠 [Hub 首页](../../README.md) · 📋 [Path D 总览](README.md) · 📊 [平台对比](platform-comparison.md)
-> 
+> [Hub 首页](../../README.md) · [Path D 总览](README.md) · [平台对比](platform-comparison.md)
+>
 > **Path D**: [D1 Shopify](shopify-ai-guide.md) · [D2 TikTok](tiktok-shop-ai-guide.md) · [D3 跨平台](cross-platform-strategy.md) · [D4 Walmart](d4-walmart-ai-guide.md) · [D5 Temu](d5-temu-seller-guide.md) · [D6 东南亚](d6-southeast-asia-ai-guide.md) · [D7 拉美](d7-mercado-libre-ai-guide.md) · [D8 日本](d8-rakuten-japan-ai-guide.md) · [D9 eBay](d9-ebay-ai-guide.md) · [D10 AliExpress](d10-aliexpress-ai-guide.md) · [D11 韩国](d11-coupang-korea-ai-guide.md) · [D12 Faire](d12-faire-wholesale-ai-guide.md) · [D13 欧洲](d13-europe-marketplaces-guide.md)
-> 
+>
 > **快速跳转**: [Path 0 基础](../0-foundations/) · [Path A 运营](../a-operators/) · [Path B 技术](../b-developers/) · [Path C 管理](../c-managers/) · [Path E 社交媒体](../e-social-media/)

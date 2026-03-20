@@ -66,14 +66,14 @@
 请输出：
 1. 滞销严重程度评估（轻度/中度/重度）
 2. 处理方案优先级排序：
-   - 降价促销（建议价格和预期清货周期）
-   - Outlet/Warehouse Deals
-   - 移除到海外仓
-   - 销毁（成本对比分析）
+- 降价促销（建议价格和预期清货周期）
+- Outlet/Warehouse Deals
+- 移除到海外仓
+- 销毁（成本对比分析）
 3. 每个方案的成本收益分析
 4. 推荐方案及执行时间线
 ```
 
 ---
 
-⬅️ [返回 Prompt 模板总览](README.md) | 📦 [A5 库存管理模块](../paths/a-operators/a5-inventory.md)
+[返回 Prompt 模板总览](README.md) | [A5 库存管理模块](../paths/a-operators/a5-inventory.md)

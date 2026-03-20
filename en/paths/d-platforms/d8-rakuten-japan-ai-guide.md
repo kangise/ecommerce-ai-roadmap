@@ -4,14 +4,14 @@
 
 > **Path**: Path D: Multi-Platform · **Module**: D8
 > **Last Updated**: 2026-03-14
-> **Difficulty**: ⭐⭐ Intermediate
+> **Difficulty**: Intermediate
 > **Estimated Time**: 1.5 hours
 
-🏠 [Hub Home](../../README.md) · 📋 [Path D Overview](README.md)
+[Hub Home](../../README.md) · [Path D Overview](README.md)
 
 ---
 
-> 💡 Rakuten GMV ~$31B, Japan e-commerce market $258B (2025). Japan's second-largest e-commerce platform (behind Amazon JP). Partnered with YouTube Shopping in 2026. Completely different operational logic from Amazon JP — Rakuten is more like an "online department store" where sellers have high customization control.
+> Rakuten GMV ~$31B, Japan e-commerce market $258B (2025). Japan's second-largest e-commerce platform (behind Amazon JP). Partnered with YouTube Shopping in 2026. Completely different operational logic from Amazon JP Rakuten is more like an "online department store" where sellers have high customization control.
 
 ## 1. Rakuten vs Amazon JP Core Differences
 
@@ -49,7 +49,7 @@ Rakuten Points is one of Japan's largest points ecosystems:
 
 ### 2.3 R-Mail Email Marketing
 
-> 📎 **Related Reading**: [D1 Shopify](shopify-ai-guide.md#23-shopify-email-marketing-deep-methodology-from-klaviyo-to-ai-personalization) — Shopify's Klaviyo email marketing methodology from D1 can be referenced; email automation and personalization strategies can be reused for R-Mail.
+> **Related Reading**: [D1 Shopify](shopify-ai-guide.md#23-shopify-email-marketing-deep-methodology-from-klaviyo-to-ai-personalization) Shopify's Klaviyo email marketing methodology from D1 can be referenced; email automation and personalization strategies can be reused for R-Mail.
 
 Amazon prohibits sellers from directly contacting buyers, but Rakuten encourages it:
 - R-Mail: Sellers can email users who have purchased
@@ -69,9 +69,9 @@ Amazon prohibits sellers from directly contacting buyers, but Rakuten encourages
 请生成 R-Mail 邮件：
 1. 邮件标题（≤50 字符，吸引打开）
 2. 邮件正文（日语，です/ます体）
-   - 开头：感谢+问候
-   - 中间：核心信息（新品/促销/推荐）
-   - 结尾：CTA + 积分提醒
+- 开头：感谢+问候
+- 中间：核心信息（新品/促销/推荐）
+- 结尾：CTA + 积分提醒
 3. 推荐发送时间（日本用户习惯）
 4. 个性化变量建议（用户名、上次购买产品等）
 
@@ -98,9 +98,9 @@ Content rephrased for compliance with licensing restrictions.
 
 ### 2.5 YouTube Shopping × Rakuten (2026 New Feature)
 
-> 📎 **Related Reading**: [E2 YouTube AI Operations](../e-social-media/e2-youtube-ai-guide.md#e2-youtube-ai-operations-guide-youtube-ai-playbook) — YouTube operations methodology from E2; influencer collaboration and video content strategies can be directly reused.
+> **Related Reading**: [E2 YouTube AI Operations](../e-social-media/e2-youtube-ai-guide.md#e2-youtube-ai-operations-guide-youtube-ai-playbook) YouTube operations methodology from E2; influencer collaboration and video content strategies can be directly reused.
 
-In February 2026, Rakuten partnered with Google to launch YouTube Shopping in Japan — the first e-commerce platform in Japan to do so.
+In February 2026, Rakuten partnered with Google to launch YouTube Shopping in Japan the first e-commerce platform in Japan to do so.
 
 Per multiple reports ([Japan Today](https://japantoday.com/category/tech/google-rakuten-to-provide-new-shopping-service-in-japan-on-youtube), [Marketech APAC](https://marketech-apac.com/rakuten-ichiba-taps-google-to-roll-out-youtube-shopping-affiliate-programme-in-japan/), [Krows Digital](https://krows-digital.com/rakuten-youtube-shopping-japan-2026/)):
 
@@ -137,7 +137,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ## 3. Japanese Listing AI Optimization
 
-> 📎 **Related Reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md#42-listing-optimization-sop-improving-existing-listings) — General Listing optimization methodology from A2; core optimization framework can be adapted for Japanese Listings.
+> **Related Reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md#42-listing-optimization-sop-improving-existing-listings) General Listing optimization methodology from A2; core optimization framework can be adapted for Japanese Listings.
 
 ### 3.1 Japanese Consumer Copy Preferences
 
@@ -164,33 +164,33 @@ Content rephrased for compliance with licensing restrictions.
 请生成完整的 Rakuten 日语 Listing：
 
 1. 商品名（日语，80-120 字符）
-   - 格式：【品牌名】产品名 核心属性 | 関連キーワード
-   - Rakuten 标题可以包含【】和 | 分隔符
-   - 包含搜索热词
+- 格式：【品牌名】产品名 核心属性 | 関連キーワード
+- Rakuten 标题可以包含【】和 | 分隔符
+- 包含搜索热词
 
 2. キャッチコピー（宣传语，20-30 字符）
-   - 简短有力，突出核心价值
+- 简短有力，突出核心价值
 
 3. 商品説明（500-1000 字，です/ます体）
-   - 开头：产品概述+核心价值
-   - 中间：详细功能说明+使用场景
-   - 结尾：品質保証+售后承诺
-   - 包含 HTML 格式（Rakuten 支持自定义 HTML）
+- 开头：产品概述+核心价值
+- 中间：详细功能说明+使用场景
+- 结尾：品質保証+售后承诺
+- 包含 HTML 格式（Rakuten 支持自定义 HTML）
 
 4. 商品スペック（规格表，所有技术参数）
 
 5. 推荐キーワード（10-15 个日语搜索词）
 
 6. 店铺页面文案建议
-   - ブランドストーリー（品牌故事）
-   - 選ばれる理由（为什么选择我们）
-   - お客様の声（客户评价精选）
+- ブランドストーリー（品牌故事）
+- 選ばれる理由（为什么选择我们）
+- お客様の声（客户评价精选）
 
 注意：
 - 使用です/ます体，强调品質、安心、保証
 - 日本消费者喜欢详细的使用说明和注意事项
 - 包含"送料無料"标识（如果适用）
-- 提及积分倍率（ポイント○倍）
+- 提及积分倍率（ポイント倍）
 ```
 
 ### 3.3 Rakuten Store Page Design
@@ -201,13 +201,13 @@ Rakuten's biggest differentiator is fully customizable store pages (HTML/CSS):
 Recommended Rakuten Store Page Structure:
 
 Top Page (Homepage)
-├── Header: Brand logo + navigation + search
-├── Main Banner: Current promotions/new arrivals
-├── Categories: Organized by product line
-├── Rankings: Store's Top 5 bestsellers
-├── New Arrivals: Recently listed products
-├── Reviews: Curated positive review screenshots
-└── Footer: Store info + contact + return policy
+Header: Brand logo + navigation + search
+Main Banner: Current promotions/new arrivals
+Categories: Organized by product line
+Rankings: Store's Top 5 bestsellers
+New Arrivals: Recently listed products
+Reviews: Curated positive review screenshots
+Footer: Store info + contact + return policy
 ```
 
 ### 3.4 Rakuten Advertising System
@@ -266,8 +266,8 @@ Top Page (Homepage)
 - [ ] Explore YouTube Shopping × Rakuten collaboration opportunities
 
 ---
-> 🏠 [Hub Home](../../README.md) · 📋 [Path D Overview](README.md) · 📊 [Platform Comparison](platform-comparison.md)
-> 
+> [Hub Home](../../README.md) · [Path D Overview](README.md) · [Platform Comparison](platform-comparison.md)
+>
 > **Path D**: [D1 Shopify](shopify-ai-guide.md) · [D2 TikTok](tiktok-shop-ai-guide.md) · [D3 Cross-Platform](cross-platform-strategy.md) · [D4 Walmart](d4-walmart-ai-guide.md) · [D5 Temu](d5-temu-seller-guide.md) · [D6 Southeast Asia](d6-southeast-asia-ai-guide.md) · [D7 Latin America](d7-mercado-libre-ai-guide.md) · [D8 Japan](d8-rakuten-japan-ai-guide.md) · [D9 eBay](d9-ebay-ai-guide.md) · [D10 AliExpress](d10-aliexpress-ai-guide.md) · [D11 Korea](d11-coupang-korea-ai-guide.md) · [D12 Faire](d12-faire-wholesale-ai-guide.md) · [D13 Europe](d13-europe-marketplaces-guide.md)
-> 
+>
 > **Quick Jump**: [Path 0 Foundations](../0-foundations/) · [Path A Operations](../a-operators/) · [Path B Technical](../b-developers/) · [Path C Management](../c-managers/) · [Path E Social Media](../e-social-media/)

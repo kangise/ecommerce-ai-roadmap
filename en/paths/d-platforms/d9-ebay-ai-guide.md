@@ -4,14 +4,14 @@
 
 > **Path**: Path D: Multi-Platform · **Module**: D9
 > **Last Updated**: 2026-03-14
-> **Difficulty**: ⭐ Beginner
+> **Difficulty**: Beginner
 > **Estimated Time**: 1 hour
 
-🏠 [Hub Home](../../README.md) · 📋 [Path D Overview](README.md)
+[Hub Home](../../README.md) · [Path D Overview](README.md)
 
 ---
 
-> 💡 GMV ~$80B (2025, +6% YoY), 134 million active buyers, revenue $11.5B (+13% YoY). Mature platform with slowing growth, but still uniquely strong in specific categories (collectibles, pre-owned, auto parts, refurbished). Recommerce (pre-owned/refurbished) accounts for 40%+ of GMV. Ad revenue $2B (+22% YoY). eBay is heavily investing in AI tools (Magical Listing, AI Item Specifics, AI pricing suggestions). Data source: [eBay Q4 2025 Earnings](https://investors.ebayinc.com/investor-news/press-release-details/2026/eBay-Inc--Reports-Fourth-Quarter-and-Full-Year-2025-Results/default.aspx). Content rephrased for compliance with licensing restrictions.
+> GMV ~$80B (2025, +6% YoY), 134 million active buyers, revenue $11.5B (+13% YoY). Mature platform with slowing growth, but still uniquely strong in specific categories (collectibles, pre-owned, auto parts, refurbished). Recommerce (pre-owned/refurbished) accounts for 40%+ of GMV. Ad revenue $2B (+22% YoY). eBay is heavily investing in AI tools (Magical Listing, AI Item Specifics, AI pricing suggestions). Data source: [eBay Q4 2025 Earnings](https://investors.ebayinc.com/investor-news/press-release-details/2026/eBay-Inc--Reports-Fourth-Quarter-and-Full-Year-2025-Results/default.aspx). Content rephrased for compliance with licensing restrictions.
 
 ## 1. eBay vs Amazon Core Differences
 
@@ -23,21 +23,21 @@
 | Ad System | Amazon PPC (mature) | Promoted Listings (simpler) |
 | Fulfillment | FBA | Seller self-fulfillment primarily |
 | Customer Profile | All ages | Skews male, 35-55, bargain hunters |
-| International Sales | Requires registration per marketplace | Global Shipping Program — one-stop |
+| International Sales | Requires registration per marketplace | Global Shipping Program one-stop |
 
 ## 2. eBay Differentiated AI Applications
 
 ### 2.1 eBay Magical Listing (2026 New Feature)
 
 > **Real Case: eBay CEO Suggests New Sellers Create Fresh Accounts to Experience AI**
-> In the 2026 Q4 earnings call, CEO Jamie Iannone announced the next-generation Magical Listing. eBay executives even suggested new sellers create fresh accounts to experience the full AI Listing flow ([eCommerce Bytes](https://www.ecommercebytes.com/C/blog/blog.pl?/comments/2026/3/1773172578.html)). This isn't AI bolted onto old code — it's the Listing process rebuilt from scratch with AI. The phone camera acts as an AI agent, guiding sellers to photograph specific products optimally, while backend AI auto-generates titles, categories, and Item Specifics ([Value Added Resource](https://www.valueaddedresource.net/ebay-ai-magical-listing-revisited/)).
+> In the 2026 Q4 earnings call, CEO Jamie Iannone announced the next-generation Magical Listing. eBay executives even suggested new sellers create fresh accounts to experience the full AI Listing flow ([eCommerce Bytes](https://www.ecommercebytes.com/C/blog/blog.pl?/comments/2026/3/1773172578.html)). This isn't AI bolted onto old code it's the Listing process rebuilt from scratch with AI. The phone camera acts as an AI agent, guiding sellers to photograph specific products optimally, while backend AI auto-generates titles, categories, and Item Specifics ([Value Added Resource](https://www.valueaddedresource.net/ebay-ai-magical-listing-revisited/)).
 
 Content rephrased for compliance with licensing restrictions.
 
-eBay launched its next-generation AI Listing tool — Magical Listing — in 2026:
+eBay launched its next-generation AI Listing tool Magical Listing in 2026:
 
 - Auto-generates complete Listings from images (title + description + Item Specifics + category)
-- Not AI bolted onto old code — the Listing process rebuilt from scratch with AI
+- Not AI bolted onto old code the Listing process rebuilt from scratch with AI
 - AI auto-suggests Item Specifics (supports AI suggestions during bulk Relisting, [Value Added Resource](https://www.valueaddedresource.net/ebay-ai-suggested-item-specifics/))
 
 > **Note**: eBay explicitly states sellers remain responsible for Listing content accuracy, even for AI-generated content. AI-suggested Item Specifics may be inaccurate and must be verified before publishing.
@@ -46,7 +46,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ### 2.2 Pre-Owned/Refurbished AI Description Generation (eBay-Unique Scenario)
 
-Pre-owned and refurbished items on eBay require detailed condition descriptions — something Amazon doesn't need:
+Pre-owned and refurbished items on eBay require detailed condition descriptions something Amazon doesn't need:
 
 ```
 你是一个 eBay 二手/翻新品 Listing 专家。
@@ -64,37 +64,37 @@ Pre-owned and refurbished items on eBay require detailed condition descriptions 
 
 请生成 eBay Listing：
 1. 标题（80 字符内）
-   - 格式：品牌 + 型号 + 核心规格 + 品相关键词
-   - 包含搜索热词（如 "Excellent Condition""Like New""Refurbished"）
-   
+- 格式：品牌 + 型号 + 核心规格 + 品相关键词
+- 包含搜索热词（如 "Excellent Condition""Like New""Refurbished"）
+
 2. Item Specifics（所有必填+推荐属性）
-   - Condition
-   - Brand
-   - Model
-   - Color
-   - Storage Capacity（如适用）
-   - 所有品类特定属性
+- Condition
+- Brand
+- Model
+- Color
+- Storage Capacity（如适用）
+- 所有品类特定属性
 
 3. 描述（详细品相说明）
-   - 开头：产品概述+品相总结
-   - 中间：逐项品相描述（外观/功能/电池/配件）
-   - 结尾：退货政策+卖家保证
-   - 语气：诚实透明，建立信任
-   - 包含免责声明（"Photos are of the actual item"）
+- 开头：产品概述+品相总结
+- 中间：逐项品相描述（外观/功能/电池/配件）
+- 结尾：退货政策+卖家保证
+- 语气：诚实透明，建立信任
+- 包含免责声明（"Photos are of the actual item"）
 
 4. 定价建议
-   - 基于 eBay Terapeak 数据的建议价格范围
-   - 固定价格 vs 拍卖 vs Best Offer 的推荐
-   - 如果选择拍卖：建议起拍价和拍卖时长
+- 基于 eBay Terapeak 数据的建议价格范围
+- 固定价格 vs 拍卖 vs Best Offer 的推荐
+- 如果选择拍卖：建议起拍价和拍卖时长
 
 5. 配送建议
-   - 推荐的配送方式和费用
-   - 是否提供免费配送
+- 推荐的配送方式和费用
+- 是否提供免费配送
 ```
 
 ### 2.3 eBay Pricing Strategy AI Analysis
 
-> 📎 **Related Reading**: [A1 Product Research & Market Analysis](../a-operators/a1-product-research.md#1-product-research-methodology-the-fundamentals-before-ai) — Market research and pricing methodology from A1; competitive analysis framework can be reused for eBay pricing.
+> **Related Reading**: [A1 Product Research & Market Analysis](../a-operators/a1-product-research.md#1-product-research-methodology-the-fundamentals-before-ai) Market research and pricing methodology from A1; competitive analysis framework can be reused for eBay pricing.
 
 eBay pricing is more complex than Amazon because of three modes: Auction, Fixed Price, and Best Offer:
 
@@ -106,7 +106,7 @@ eBay pricing is more complex than Amazon because of three modes: Auction, Fixed 
 
 ### 2.4 Promoted Listings Deep Optimization
 
-> 📎 **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md#a3-advertising-optimization) — General ad optimization methodology from A3; ROAS analysis and keyword strategies can be reused for eBay Promoted Listings.
+> **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md#a3-advertising-optimization) General ad optimization methodology from A3; ROAS analysis and keyword strategies can be reused for eBay Promoted Listings.
 
 eBay's ad system underwent major changes in 2026:
 
@@ -199,7 +199,7 @@ eBay has unique advantages in collectibles (eBay Vault, Authenticity Guarantee):
 
 ### 3.2 Refurbished/Recommerce Strategy
 
-Recommerce (pre-owned/refurbished) accounts for 40%+ of eBay's GMV — this is eBay's most unique market:
+Recommerce (pre-owned/refurbished) accounts for 40%+ of eBay's GMV this is eBay's most unique market:
 
 > **Real Case: European Recommerce Market Reaches €120B**
 > According to Cross-Border Commerce Europe, the European Recommerce market is projected to reach €120 billion in 2025, with 75% of pre-owned goods transactions extending beyond apparel to cover electronics, furniture, and automobiles ([UK Entrepreneur](https://uk.entrepreneur.com/technology/refurbished-tech-gains-traction-on-temu-as-recommerce/495821)). eBay emphasized strong C2C marketplace and Recommerce growth in its Q4 2025 earnings ([Bitget](https://www.bitget.com/news/detail/12560605218758)).
@@ -214,30 +214,30 @@ Content rephrased for compliance with licensing restrictions.
 请帮我制定策略：
 
 1. 供应链
-   - 翻新品货源渠道（清仓/退货/翻新工厂）
-   - 质检标准和流程
-   - 品相分级标准（eBay 的 Condition 等级）
+- 翻新品货源渠道（清仓/退货/翻新工厂）
+- 质检标准和流程
+- 品相分级标准（eBay 的 Condition 等级）
 
 2. Listing 优化
-   - 翻新品标题关键词策略
-   - 品相描述最佳实践
-   - 图片要求（必须是实物图）
-   - 保修/售后承诺
+- 翻新品标题关键词策略
+- 品相描述最佳实践
+- 图片要求（必须是实物图）
+- 保修/售后承诺
 
 3. 定价策略
-   - 翻新品 vs 全新品的定价比例
-   - 不同品相的定价差异
-   - 拍卖 vs 固定价格的选择
+- 翻新品 vs 全新品的定价比例
+- 不同品相的定价差异
+- 拍卖 vs 固定价格的选择
 
 4. 信任建设
-   - eBay Seller Ratings 维护
-   - 退货政策设置
-   - 买家沟通策略
+- eBay Seller Ratings 维护
+- 退货政策设置
+- 买家沟通策略
 
 5. 规模化
-   - 批量采购和翻新流程
-   - 库存管理
-   - 多 SKU 管理
+- 批量采购和翻新流程
+- 库存管理
+- 多 SKU 管理
 ```
 
 ## 4. Completion Checklist
@@ -248,8 +248,8 @@ Content rephrased for compliance with licensing restrictions.
 - [ ] Enable Global Shipping Program
 
 ---
-> 🏠 [Hub Home](../../README.md) · 📋 [Path D Overview](README.md) · 📊 [Platform Comparison](platform-comparison.md)
-> 
+> [Hub Home](../../README.md) · [Path D Overview](README.md) · [Platform Comparison](platform-comparison.md)
+>
 > **Path D**: [D1 Shopify](shopify-ai-guide.md) · [D2 TikTok](tiktok-shop-ai-guide.md) · [D3 Cross-Platform](cross-platform-strategy.md) · [D4 Walmart](d4-walmart-ai-guide.md) · [D5 Temu](d5-temu-seller-guide.md) · [D6 Southeast Asia](d6-southeast-asia-ai-guide.md) · [D7 Latin America](d7-mercado-libre-ai-guide.md) · [D8 Japan](d8-rakuten-japan-ai-guide.md) · [D9 eBay](d9-ebay-ai-guide.md) · [D10 AliExpress](d10-aliexpress-ai-guide.md) · [D11 Korea](d11-coupang-korea-ai-guide.md) · [D12 Faire](d12-faire-wholesale-ai-guide.md) · [D13 Europe](d13-europe-marketplaces-guide.md)
-> 
+>
 > **Quick Jump**: [Path 0 Foundations](../0-foundations/) · [Path A Operations](../a-operators/) · [Path B Technical](../b-developers/) · [Path C Management](../c-managers/) · [Path E Social Media](../e-social-media/)

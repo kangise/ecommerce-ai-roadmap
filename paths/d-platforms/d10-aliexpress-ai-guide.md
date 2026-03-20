@@ -2,20 +2,20 @@
 
 > **路径**: Path D: 多平台 · **模块**: D10
 > **最后更新**: 2026-03-14
-> **难度**: ⭐ 入门
+> **难度**: 入门
 > **预计时间**: 1 小时
 
-🏠 [Hub 首页](../../README.md) · 📋 [Path D 总览](README.md)
+[Hub 首页](../../README.md) · [Path D 总览](README.md)
 
 ---
 
-> 💡 GMV $25B+（Top 5 品类），159M MAU。中国卖家原生平台，南欧市场（西班牙、法国、葡萄牙）排名前列。但正被 Temu 分流——跨境份额从 2018 年下降 33%。
+> GMV $25B+（Top 5 品类），159M MAU。中国卖家原生平台，南欧市场（西班牙、法国、葡萄牙）排名前列。但正被 Temu 分流跨境份额从 2018 年下降 33%。
 
 ## 1. AliExpress 现状与定位
 
 ### 1.1 AliExpress vs Temu
 
-> 📎 **相关阅读**: [D5 Temu 卖家策略](d5-temu-seller-guide.md) — Temu 详细分析参考 D5，包括全托管/半托管模式对比和入驻决策框架。
+> **相关阅读**: [D5 Temu 卖家策略](d5-temu-seller-guide.md) Temu 详细分析参考 D5，包括全托管/半托管模式对比和入驻决策框架。
 
 | 维度 | AliExpress | Temu |
 |------|-----------|------|
@@ -85,7 +85,7 @@ AliExpress Choice 是 AliExpress 对标 Temu 的全托管模式：
 
 ### 2.2 多语言 Listing 优化
 
-> 📎 **相关阅读**: [A2 Listing 优化](../a-operators/a2-listing-optimization.md) — 多语言本地化方法论参考 A2，Listing 优化框架可适配到 AliExpress 多语言版本。
+> **相关阅读**: [A2 Listing 优化](../a-operators/a2-listing-optimization.md) 多语言本地化方法论参考 A2，Listing 优化框架可适配到 AliExpress 多语言版本。
 
 AliExpress 覆盖全球，多语言是核心需求。AliExpress 在南欧市场（西班牙、法国、葡萄牙）排名前列（[Marketplace Universe](https://marketplace-universe.com/aliexpress-europe/)），这些市场是重点优化方向。
 
@@ -151,8 +151,8 @@ Temu 上同品类竞品价格比我低 [X]%。
 1. 我应该同时入驻 Temu 吗？（会不会自己打自己）
 2. 如果不入驻 Temu，如何在 AliExpress 上应对 Temu 竞争？
 3. AliExpress Choice 是否值得加入？
-   - Choice 的优势：流量加权、5-10 天配送、平台推广
-   - Choice 的劣势：价格被压低、利润空间小
+- Choice 的优势：流量加权、5-10 天配送、平台推广
+- Choice 的劣势：价格被压低、利润空间小
 4. 是否应该转向品牌化策略（AliExpress 品牌旗舰店）？
 5. 南欧市场（西班牙/法国）的差异化机会
 6. 社交媒体引流策略（TikTok/YouTube → AliExpress）
@@ -231,23 +231,23 @@ AliExpress 在南欧市场（西班牙、法国、葡萄牙）排名前列（[Ma
 
 1. 市场选择（西班牙 vs 法国 vs 葡萄牙，优先级排序）
 2. 定价策略
-   - 考虑当地购买力和竞品价格
-   - 是否需要针对不同国家差异化定价
-   - 包邮门槛设置（南欧消费者对包邮很敏感）
+- 考虑当地购买力和竞品价格
+- 是否需要针对不同国家差异化定价
+- 包邮门槛设置（南欧消费者对包邮很敏感）
 3. 物流方案
-   - 菜鸟直邮 vs 欧洲海外仓
-   - 配送时间对转化率的影响
+- 菜鸟直邮 vs 欧洲海外仓
+- 配送时间对转化率的影响
 4. 本地化要求
-   - 西班牙语/法语/葡萄牙语 Listing
-   - 当地节日促销日历
-   - 当地消费者偏好的支付方式
+- 西班牙语/法语/葡萄牙语 Listing
+- 当地节日促销日历
+- 当地消费者偏好的支付方式
 5. 竞争分析
-   - 与 Temu 在南欧的竞争
-   - 与 Amazon.es / Amazon.fr 的差异化
+- 与 Temu 在南欧的竞争
+- 与 Amazon.es / Amazon.fr 的差异化
 6. 合规要求
-   - 欧盟 CE 认证
-   - EPR（生产者延伸责任）
-   - VAT 注册
+- 欧盟 CE 认证
+- EPR（生产者延伸责任）
+- VAT 注册
 ```
 
 ### 5.3 AliExpress 信任度挑战
@@ -273,8 +273,8 @@ Content rephrased for compliance with licensing restrictions.
 - [ ] 选择物流方案（菜鸟 vs 自发货）
 
 ---
-> 🏠 [Hub 首页](../../README.md) · 📋 [Path D 总览](README.md) · 📊 [平台对比](platform-comparison.md)
-> 
+> [Hub 首页](../../README.md) · [Path D 总览](README.md) · [平台对比](platform-comparison.md)
+>
 > **Path D**: [D1 Shopify](shopify-ai-guide.md) · [D2 TikTok](tiktok-shop-ai-guide.md) · [D3 跨平台](cross-platform-strategy.md) · [D4 Walmart](d4-walmart-ai-guide.md) · [D5 Temu](d5-temu-seller-guide.md) · [D6 东南亚](d6-southeast-asia-ai-guide.md) · [D7 拉美](d7-mercado-libre-ai-guide.md) · [D8 日本](d8-rakuten-japan-ai-guide.md) · [D9 eBay](d9-ebay-ai-guide.md) · [D10 AliExpress](d10-aliexpress-ai-guide.md) · [D11 韩国](d11-coupang-korea-ai-guide.md) · [D12 Faire](d12-faire-wholesale-ai-guide.md) · [D13 欧洲](d13-europe-marketplaces-guide.md)
-> 
+>
 > **快速跳转**: [Path 0 基础](../0-foundations/) · [Path A 运营](../a-operators/) · [Path B 技术](../b-developers/) · [Path C 管理](../c-managers/) · [Path E 社交媒体](../e-social-media/)

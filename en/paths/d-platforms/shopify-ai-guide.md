@@ -2,19 +2,19 @@
 
 # D1. Shopify Store AI Playbook
 
-> **Path**: Path D: Multi-Platform · **Module**: D1  
-> **Last Updated**: 2026-03-12  
-> **Difficulty**: ⭐⭐ Intermediate  
-> **Estimated Time**: 3-4 hours  
+> **Path**: Path D: Multi-Platform · **Module**: D1
+> **Last Updated**: 2026-03-12
+> **Difficulty**: Intermediate
+> **Estimated Time**: 3-4 hours
 > **Prerequisites**: [Path 0 Foundations](../0-foundations/) · [A1 Product Research](../a-operators/a1-product-research.md) · [A2 Listing Optimization](../a-operators/a2-listing-optimization.md)
 
-🏠 [Hub Home](../../README.md) · 📋 [Path D Overview](README.md)
+[Hub Home](../../README.md) · [Path D Overview](README.md)
 
 ---
 
-## 📖 Module Navigation
+## Module Navigation
 
-1. [Shopify vs Amazon](#1-shopify-vs-amazon-key-differences-in-ai-applications) · 2. [Product Research & Market Analysis](#2-product-research--market-analysis) · 3. [Product Page Optimization](#3-product-page-optimization) · 4. [Advertising & Customer Acquisition](#4-advertising--customer-acquisition) · 5. [Email Marketing Automation](#5-email-marketing-automation) · 6. [Customer Service & After-Sales](#6-customer-service--after-sales) · 7. [Data Analysis & Optimization](#7-data-analysis--optimization) · 8. [Prompt Templates](#8-prompt-templates-shopify-specific) · 9. [AI Tool Landscape](#9-ai-tool-landscape-shopify-ecosystem) · 10. [🦞 OpenClaw Automation](#10-automating-shopify-operations-with-openclaw) · 11. [Completion Checklist](#11-completion-checklist) · 12. [Common Pitfalls](#12-common-pitfalls--misconceptions) · 13. [Case Studies](#13-case-studies-shopify-store-ai-implementation) · 14. [SEO Deep Dive](#14-shopify-seo-deep-dive-ai-driven) · 15. [Advanced Advertising](#15-shopify-advanced-advertising-ai-driven-full-funnel-strategy) · 16. [Customer Lifecycle](#16-customer-lifecycle-management-ai-driven) · 17. [Advanced Data Analytics](#17-shopify-advanced-data-analytics) · 18. [Learning Resources](#18-learning-resources) · 19. [Flow Automation](#19-shopify-flow-automation-workflows) · 20. [FAQ](#20-frequently-asked-questions-faq)
+1. [Shopify vs Amazon](#1-shopify-vs-amazon-key-differences-in-ai-applications) · 2. [Product Research & Market Analysis](#2-product-research--market-analysis) · 3. [Product Page Optimization](#3-product-page-optimization) · 4. [Advertising & Customer Acquisition](#4-advertising--customer-acquisition) · 5. [Email Marketing Automation](#5-email-marketing-automation) · 6. [Customer Service & After-Sales](#6-customer-service--after-sales) · 7. [Data Analysis & Optimization](#7-data-analysis--optimization) · 8. [Prompt Templates](#8-prompt-templates-shopify-specific) · 9. [AI Tool Landscape](#9-ai-tool-landscape-shopify-ecosystem) · 10. [ OpenClaw Automation](#10-automating-shopify-operations-with-openclaw) · 11. [Completion Checklist](#11-completion-checklist) · 12. [Common Pitfalls](#12-common-pitfalls--misconceptions) · 13. [Case Studies](#13-case-studies-shopify-store-ai-implementation) · 14. [SEO Deep Dive](#14-shopify-seo-deep-dive-ai-driven) · 15. [Advanced Advertising](#15-shopify-advanced-advertising-ai-driven-full-funnel-strategy) · 16. [Customer Lifecycle](#16-customer-lifecycle-management-ai-driven) · 17. [Advanced Data Analytics](#17-shopify-advanced-data-analytics) · 18. [Learning Resources](#18-learning-resources) · 19. [Flow Automation](#19-shopify-flow-automation-workflows) · 20. [FAQ](#20-frequently-asked-questions-faq)
 
 ---
 
@@ -28,7 +28,7 @@ A complete AI-powered Shopify store operations workflow. By the end, you'll have
 - An AI-driven email marketing automation workflow
 - A Shopify-specific prompt template library
 
-> 💡 **Core Concept**: About 60% of AI applications overlap between Shopify and Amazon (prompt engineering, content generation, data analysis), while 40% are platform-specific (SEO strategy, advertising channels, email marketing). This module focuses on that 40% difference.
+> **Core Concept**: About 60% of AI applications overlap between Shopify and Amazon (prompt engineering, content generation, data analysis), while 40% are platform-specific (SEO strategy, advertising channels, email marketing). This module focuses on that 40% difference.
 
 ---
 
@@ -103,27 +103,27 @@ Content rephrased for compliance with licensing restrictions. Sources: [Shopify 
 
 ```
 Step 1: Trend Discovery (AI-Assisted)
-├── Use AI to analyze Google Trends data and find rising categories
-├── Use AI to monitor social media (TikTok/Instagram) for viral products
-├── Use AI to analyze competitor DTC sites' traffic sources and bestsellers
-└── Output: 10-20 candidate categories/products
+Use AI to analyze Google Trends data and find rising categories
+Use AI to monitor social media (TikTok/Instagram) for viral products
+Use AI to analyze competitor DTC sites' traffic sources and bestsellers
+Output: 10-20 candidate categories/products
 
 Step 2: Niche Validation (AI-Assisted)
-├── Use AI to analyze search volume and competition for candidate categories
-├── Use AI to evaluate competitor sites' SEO strength (DA, keyword rankings)
-├── Use AI to estimate CAC (based on industry benchmarks and competitor ad data)
-└── Output: 3-5 validated niches
+Use AI to analyze search volume and competition for candidate categories
+Use AI to evaluate competitor sites' SEO strength (DA, keyword rankings)
+Use AI to estimate CAC (based on industry benchmarks and competitor ad data)
+Output: 3-5 validated niches
 
 Step 3: Supplier Evaluation (AI-Assisted)
-├── Use AI to analyze 1688/Alibaba supplier reviews and lead times
-├── Use AI to calculate total cost across suppliers (including shipping, tariffs)
-├── Use AI to generate supplier comparison reports
-└── Output: Top 3 suppliers for each niche
+Use AI to analyze 1688/Alibaba supplier reviews and lead times
+Use AI to calculate total cost across suppliers (including shipping, tariffs)
+Use AI to generate supplier comparison reports
+Output: Top 3 suppliers for each niche
 
 Step 4: Financial Modeling (AI-Assisted)
-├── Use AI to build per-unit profit models (including CAC, LTV, repeat rate assumptions)
-├── Use AI for sensitivity analysis (impact of CAC changes on profit)
-└── Output: Go/No-Go decision
+Use AI to build per-unit profit models (including CAC, LTV, repeat rate assumptions)
+Use AI for sensitivity analysis (impact of CAC changes on profit)
+Output: Go/No-Go decision
 ```
 
 ### 2.3 Shopify Product Research Prompt Template
@@ -197,9 +197,9 @@ Please output:
 1. Product title (brand-focused, no keyword stuffing, <70 chars)
 2. Subtitle/Tagline (one-sentence value proposition)
 3. Product description (300-500 words, including):
-   - Opening: Pain point empathy or scene-setting (don't lead with product features)
-   - Middle: 3-5 core selling points (use benefits, not features)
-   - Closing: Social proof + CTA
+- Opening: Pain point empathy or scene-setting (don't lead with product features)
+- Middle: 3-5 core selling points (use benefits, not features)
+- Closing: Social proof + CTA
 4. FAQ (5 common questions, incorporating SEO keywords)
 5. Meta Title and Meta Description (with target keywords)
 ```
@@ -217,7 +217,7 @@ Please output:
 
 Shopify supports multilingual stores (Shopify Markets). AI can:
 - One-click translate all site content (product descriptions, navigation, checkout pages)
-- Localization adaptation (not just translation — cultural differences, measurement units, currency)
+- Localization adaptation (not just translation cultural differences, measurement units, currency)
 - Multilingual SEO (independent Meta tags and URLs for each language version)
 
 **Dimension 5: Conversion Rate Optimization (CRO)**
@@ -262,9 +262,9 @@ Shopify supports product page A/B testing through apps. AI can:
 
 ## 4. Advertising & Customer Acquisition
 
-> 📎 **Related Reading**: [E1 Instagram/Facebook AI Guide](../e-social-media/e1-instagram-facebook-ai-guide.md#e1-instagram-facebook-ai-operations-guide-meta-ecosystem-ai-playbook) — Instagram Shopping and Shopify integration details in E1 · [D4 Walmart AI Guide](d4-walmart-ai-guide.md#5-amazon-walmart-migration-methodology) — Amazon→Walmart migration methodology in D4
+> **Related Reading**: [E1 Instagram/Facebook AI Guide](../e-social-media/e1-instagram-facebook-ai-guide.md#e1-instagram-facebook-ai-operations-guide-meta-ecosystem-ai-playbook) Instagram Shopping and Shopify integration details in E1 · [D4 Walmart AI Guide](d4-walmart-ai-guide.md#5-amazon-walmart-migration-methodology) Amazon→Walmart migration methodology in D4
 
-> For Amazon advertising optimization, see [A3 Advertising Optimization](../a-operators/a3-advertising.md). Shopify's advertising ecosystem is completely different — the core is off-platform advertising via Facebook/Google/TikTok.
+> For Amazon advertising optimization, see [A3 Advertising Optimization](../a-operators/a3-advertising.md). Shopify's advertising ecosystem is completely different the core is off-platform advertising via Facebook/Google/TikTok.
 
 ### 4.1 Shopify Advertising vs Amazon Advertising
 
@@ -281,28 +281,28 @@ Shopify supports product page A/B testing through apps. AI can:
 
 ```
 Step 1: Audience Research (AI-Assisted)
-├── Use AI to analyze existing customer data and generate customer personas
-├── Use AI to suggest seed audiences for Lookalike targeting
-├── Use AI to analyze competitor Facebook ads (Ad Library)
-└── Output: 3-5 test audiences
+Use AI to analyze existing customer data and generate customer personas
+Use AI to suggest seed audiences for Lookalike targeting
+Use AI to analyze competitor Facebook ads (Ad Library)
+Output: 3-5 test audiences
 
 Step 2: Creative Generation (AI Batch)
-├── Use AI to generate 10+ ad copy variants (different angles: pain points/benefits/social proof)
-├── Use AI to generate ad images/videos (product scenes, comparison images, UGC-style)
-├── Use AI to generate format-adapted versions (Feed/Story/Reel)
-└── Output: 20+ creative asset combinations
+Use AI to generate 10+ ad copy variants (different angles: pain points/benefits/social proof)
+Use AI to generate ad images/videos (product scenes, comparison images, UGC-style)
+Use AI to generate format-adapted versions (Feed/Story/Reel)
+Output: 20+ creative asset combinations
 
 Step 3: Testing & Optimization (AI Analysis)
-├── Use AI to analyze ad data (CTR, CPC, ROAS)
-├── Use AI to identify best creative × audience combinations
-├── Use AI to suggest budget reallocation
-└── Output: Optimized ad portfolio
+Use AI to analyze ad data (CTR, CPC, ROAS)
+Use AI to identify best creative × audience combinations
+Use AI to suggest budget reallocation
+Output: Optimized ad portfolio
 
 Step 4: Scaling (AI Automation)
-├── Use AI tools to automate bidding and budget adjustments
-├── Use AI to monitor ad fatigue (creative decay alerts)
-├── Use AI to automatically generate new creatives to replace decaying assets
-└── Output: Continuously optimized advertising engine
+Use AI tools to automate bidding and budget adjustments
+Use AI to monitor ad fatigue (creative decay alerts)
+Use AI to automatically generate new creatives to replace decaying assets
+Output: Continuously optimized advertising engine
 ```
 
 ### 4.3 Google Ads AI Workflow
@@ -368,9 +368,9 @@ Please output:
 
 ## 5. Email Marketing Automation
 
-> 📎 **Related Reading**: [D8 Rakuten Japan AI Guide](d8-rakuten-japan-ai-guide.md#d8-rakuten-japan-e-commerce-ai-guide) — Rakuten R-Mail email marketing comparison in D8
+> **Related Reading**: [D8 Rakuten Japan AI Guide](d8-rakuten-japan-ai-guide.md#d8-rakuten-japan-e-commerce-ai-guide) Rakuten R-Mail email marketing comparison in D8
 
-> This is the biggest AI application difference between Shopify and Amazon — Amazon sellers have virtually no ability to do email marketing, while Shopify sellers have full access to customer email data.
+> This is the biggest AI application difference between Shopify and Amazon Amazon sellers have virtually no ability to do email marketing, while Shopify sellers have full access to customer email data.
 
 ### 5.1 Why Email Marketing Is Shopify's AI Killer App
 
@@ -385,27 +385,27 @@ Please output:
 
 ```
 Sequence 1: Welcome Series (New Subscribers)
-├── Email 1 (Immediately): Welcome + brand story + first-order discount code
-├── Email 2 (+2 days): Product recommendations (based on browsing behavior)
-├── Email 3 (+5 days): Social proof (customer reviews + UGC)
-└── Email 4 (+7 days): Limited-time reminder (discount code expiring soon)
+Email 1 (Immediately): Welcome + brand story + first-order discount code
+Email 2 (+2 days): Product recommendations (based on browsing behavior)
+Email 3 (+5 days): Social proof (customer reviews + UGC)
+Email 4 (+7 days): Limited-time reminder (discount code expiring soon)
 
 Sequence 2: Abandoned Cart Recovery (Added to cart but didn't pay)
-├── Email 1 (+1 hour): Gentle reminder + product image
-├── Email 2 (+24 hours): Address concerns (FAQ + return/exchange guarantee)
-└── Email 3 (+48 hours): Limited-time discount (last chance)
+Email 1 (+1 hour): Gentle reminder + product image
+Email 2 (+24 hours): Address concerns (FAQ + return/exchange guarantee)
+Email 3 (+48 hours): Limited-time discount (last chance)
 
 Sequence 3: Post-Purchase Nurture (Existing Customers)
-├── Email 1 (+1 day): Order confirmation + usage guide
-├── Email 2 (+7 days): Usage tips + related product recommendations
-├── Email 3 (+14 days): Review request + UGC solicitation
-├── Email 4 (+30 days): Repeat purchase reminder + exclusive offer
-└── Email 5 (+60 days): Loyalty program invitation
+Email 1 (+1 day): Order confirmation + usage guide
+Email 2 (+7 days): Usage tips + related product recommendations
+Email 3 (+14 days): Review request + UGC solicitation
+Email 4 (+30 days): Repeat purchase reminder + exclusive offer
+Email 5 (+60 days): Loyalty program invitation
 
 Sequence 4: Win-Back (90 days since last purchase)
-├── Email 1: We miss you + new product recommendations
-├── Email 2 (+7 days): Exclusive comeback offer
-└── Email 3 (+14 days): Last chance + survey
+Email 1: We miss you + new product recommendations
+Email 2 (+7 days): Exclusive comeback offer
+Email 3 (+14 days): Last chance + survey
 ```
 
 ### 5.3 Email Content AI Generation Prompt
@@ -504,24 +504,24 @@ Each scenario should include: trigger conditions, conversation script (3-5 turns
 
 ```
 Daily: AI Auto-Detects Anomalies
-├── Conversion rate suddenly dropped? → Check page load speed, payment issues
-├── Return rate spiking for a product? → Analyze return reasons
-├── Ad CPA suddenly increased? → Check creative fatigue, audience saturation
-└── Output: Daily anomaly report (Slack notification)
+Conversion rate suddenly dropped? → Check page load speed, payment issues
+Return rate spiking for a product? → Analyze return reasons
+Ad CPA suddenly increased? → Check creative fatigue, audience saturation
+Output: Daily anomaly report (Slack notification)
 
 Weekly: AI Generates Weekly Report
-├── Traffic and conversion trends by channel
-├── Top 10 product performance
-├── Ad ROAS changes
-├── Email marketing effectiveness
-└── Output: Weekly analysis report + optimization recommendations
+Traffic and conversion trends by channel
+Top 10 product performance
+Ad ROAS changes
+Email marketing effectiveness
+Output: Weekly analysis report + optimization recommendations
 
 Monthly: AI Deep Analysis
-├── Customer segmentation update (RFM + behavioral clustering)
-├── Product lifecycle analysis (which to promote, which to discontinue)
-├── Competitor activity analysis
-├── LTV/CAC ratio trends
-└── Output: Monthly strategic report
+Customer segmentation update (RFM + behavioral clustering)
+Product lifecycle analysis (which to promote, which to discontinue)
+Competitor activity analysis
+LTV/CAC ratio trends
+Output: Monthly strategic report
 ```
 
 ### 7.3 Data Analysis Prompt Template
@@ -730,7 +730,7 @@ After completing the above, you've mastered the core AI operations skills for Sh
 
 ---
 
-⬅️ [Back to Path D Overview](README.md) | 🏠 [Back to Hub Home](../../README.md) | ➡️ [Next Module: D2 TikTok Shop AI Guide](tiktok-shop-ai-guide.md)
+[Back to Path D Overview](README.md) | [Back to Hub Home](../../README.md) | [Next Module: D2 TikTok Shop AI Guide](tiktok-shop-ai-guide.md)
 
 
 ---
@@ -744,9 +744,9 @@ After completing the above, you've mastered the core AI operations skills for Sh
 | **Traffic won't come on its own** | On Amazon, listing = traffic; on Shopify, listing = 0 visitors | Shopify requires proactive customer acquisition: SEO takes 3-6 months; ads should start from Day 1 |
 | **Copying Amazon Listings directly** | Keyword-stuffed titles, feature-oriented Bullet Points | Shopify needs brand-focused copy, emotional connection, visual storytelling |
 | **Only running PPC without content** | On Amazon, PPC alone can sustain sales; on Shopify, ad-only CAC keeps rising | Content marketing (blog, social, email) is the long-term strategy to reduce CAC |
-| **Ignoring email marketing** | Amazon sellers have no email marketing habits | Email is Shopify's highest-ROI channel — start collecting emails from Day 1 |
+| **Ignoring email marketing** | Amazon sellers have no email marketing habits | Email is Shopify's highest-ROI channel start collecting emails from Day 1 |
 | **Skipping brand building** | Focusing only on single-product sales without building brand awareness | Shopify's core advantage is branding; a brandless DTC site is just an expensive Amazon |
-| **Underestimating acquisition costs** | Assuming Shopify saves money by avoiding Amazon commissions | Facebook/Google ad CAC can be higher than Amazon commissions — do the math |
+| **Underestimating acquisition costs** | Assuming Shopify saves money by avoiding Amazon commissions | Facebook/Google ad CAC can be higher than Amazon commissions do the math |
 
 ### 12.2 Shopify AI Usage Pitfalls
 
@@ -817,8 +817,8 @@ After completing the above, you've mastered the core AI operations skills for Sh
 - Repeat purchase rate: 35% (virtually 0% on Amazon)
 
 **Key Lessons:**
-1. Don't copy Amazon Listings directly to Shopify — they need a complete rewrite
-2. DTC CAC will be high for the first 3 months — have patience and budget
+1. Don't copy Amazon Listings directly to Shopify they need a complete rewrite
+2. DTC CAC will be high for the first 3 months have patience and budget
 3. Email marketing is the biggest differentiating advantage of DTC vs Amazon
 
 ### 13.3 Case Study 3: AI-Driven Multilingual DTC Store
@@ -845,7 +845,7 @@ After completing the above, you've mastered the core AI operations skills for Sh
 
 ## 14. Shopify SEO Deep Dive (AI-Driven)
 
-> 📎 **Related Reading**: [E4 Pinterest AI Guide](../e-social-media/e4-pinterest-ai-guide.md#pitfall-1-treating-pinterest-like-social-media) — Pinterest SEO and Shopify integration details in E4
+> **Related Reading**: [E4 Pinterest AI Guide](../e-social-media/e4-pinterest-ai-guide.md#pitfall-1-treating-pinterest-like-social-media) Pinterest SEO and Shopify integration details in E4
 
 ### 14.1 Shopify SEO vs Amazon SEO
 
@@ -869,36 +869,36 @@ Store URL: [URL]
 Please check the following dimensions and provide fix recommendations:
 
 1. **URL Structure**
-   - Are product URLs clean (/products/product-name)?
-   - Are there duplicate URLs (/collections/all/products/xxx vs /products/xxx)?
-   - Are 301 redirects handling old URLs?
+- Are product URLs clean (/products/product-name)?
+- Are there duplicate URLs (/collections/all/products/xxx vs /products/xxx)?
+- Are 301 redirects handling old URLs?
 
 2. **Meta Tags**
-   - Are homepage Title and Description optimized?
-   - Do product pages have unique Meta tags (not default templates)?
-   - Do collection pages have descriptive Meta tags?
+- Are homepage Title and Description optimized?
+- Do product pages have unique Meta tags (not default templates)?
+- Do collection pages have descriptive Meta tags?
 
 3. **Schema Markup**
-   - Does Product Schema include price, inventory, ratings?
-   - Is BreadcrumbList Schema correct?
-   - Is Organization Schema configured?
+- Does Product Schema include price, inventory, ratings?
+- Is BreadcrumbList Schema correct?
+- Is Organization Schema configured?
 
 4. **Site Speed**
-   - Are images using WebP format?
-   - Are there unused apps slowing things down?
-   - Are there Liquid template performance issues?
+- Are images using WebP format?
+- Are there unused apps slowing things down?
+- Are there Liquid template performance issues?
 
 5. **Mobile**
-   - Does it pass Google Mobile-Friendly test?
-   - Are touch targets large enough?
-   - Is font size readable?
+- Does it pass Google Mobile-Friendly test?
+- Are touch targets large enough?
+- Is font size readable?
 
 6. **Internationalization**
-   - Are hreflang tags correctly configured?
-   - Is the multilingual URL structure sound?
-   - Is currency and language switching smooth?
+- Are hreflang tags correctly configured?
+- Is the multilingual URL structure sound?
+- Is currency and language switching smooth?
 
-For each issue provide: Current status (✅/❌) + fix method + priority (High/Medium/Low)
+For each issue provide: Current status (/) + fix method + priority (High/Medium/Low)
 ```
 
 ### 14.3 Blog Content Strategy (AI Batch Generation)
@@ -960,33 +960,33 @@ Content rephrased for compliance with licensing restrictions. Source: [Shopify G
 ### 15.1 Full-Funnel Advertising Architecture
 
 ```
-Top of Funnel (TOFU) — Brand Awareness
-├── Goal: Make people who don't know you aware of your brand
-├── Channels: Facebook/Instagram video ads, TikTok, YouTube
-├── AI Assistance: Batch-generate short video scripts, interest audience discovery
-├── KPIs: CPM, video view rate, branded search volume
-└── Budget Share: 20-30%
+Top of Funnel (TOFU) Brand Awareness
+Goal: Make people who don't know you aware of your brand
+Channels: Facebook/Instagram video ads, TikTok, YouTube
+AI Assistance: Batch-generate short video scripts, interest audience discovery
+KPIs: CPM, video view rate, branded search volume
+Budget Share: 20-30%
 
-Middle of Funnel (MOFU) — Consideration
-├── Goal: Get people who know you to consider purchasing
-├── Channels: Google Shopping, Facebook retargeting, blog SEO
-├── AI Assistance: Personalized product recommendations, comparison content generation
-├── KPIs: CTR, add-to-cart rate, email subscription rate
-└── Budget Share: 30-40%
+Middle of Funnel (MOFU) Consideration
+Goal: Get people who know you to consider purchasing
+Channels: Google Shopping, Facebook retargeting, blog SEO
+AI Assistance: Personalized product recommendations, comparison content generation
+KPIs: CTR, add-to-cart rate, email subscription rate
+Budget Share: 30-40%
 
-Bottom of Funnel (BOFU) — Conversion
-├── Goal: Get people considering to buy now
-├── Channels: Abandoned cart emails, dynamic retargeting, limited-time offers
-├── AI Assistance: Cart recovery copy, personalized offer strategy
-├── KPIs: Conversion rate, ROAS, AOV
-└── Budget Share: 30-40%
+Bottom of Funnel (BOFU) Conversion
+Goal: Get people considering to buy now
+Channels: Abandoned cart emails, dynamic retargeting, limited-time offers
+AI Assistance: Cart recovery copy, personalized offer strategy
+KPIs: Conversion rate, ROAS, AOV
+Budget Share: 30-40%
 
-Post-Purchase — Repeat & Loyalty
-├── Goal: Get past buyers to buy again
-├── Channels: Email sequences, SMS, loyalty programs
-├── AI Assistance: Repeat purchase prediction, personalized recommendations, churn alerts
-├── KPIs: Repeat purchase rate, LTV, NPS
-└── Budget Share: 10-15%
+Post-Purchase Repeat & Loyalty
+Goal: Get past buyers to buy again
+Channels: Email sequences, SMS, loyalty programs
+AI Assistance: Repeat purchase prediction, personalized recommendations, churn alerts
+KPIs: Repeat purchase rate, LTV, NPS
+Budget Share: 10-15%
 ```
 
 ### 15.2 Facebook Ads Deep Optimization
@@ -1011,19 +1011,19 @@ Current Best ROAS: [X]
 
 Please design:
 1. Week 1 Test Plan (5 creative angles × 3 audiences = 15 ad sets)
-   - Copy for each creative angle (Primary Text + Headline)
-   - Definition for each audience (interests/behaviors/Lookalike)
-   - Budget allocation plan
+- Copy for each creative angle (Primary Text + Headline)
+- Definition for each audience (interests/behaviors/Lookalike)
+- Budget allocation plan
 
 2. Week 2 Optimization Plan
-   - How to determine winning combinations (CPA/ROAS thresholds)
-   - How to kill losers and scale winners
-   - How to generate new test variants
+- How to determine winning combinations (CPA/ROAS thresholds)
+- How to kill losers and scale winners
+- How to generate new test variants
 
 3. Monthly Iteration Cadence
-   - How many new creatives to test per week
-   - Creative fatigue criteria
-   - How to maintain creative freshness
+- How many new creatives to test per week
+- Creative fatigue criteria
+- How to maintain creative freshness
 ```
 
 ### 15.3 Google Ads Deep Optimization
@@ -1043,11 +1043,11 @@ Product Info:
 
 Please optimize:
 1. Product Title (<150 chars, first 70 chars are most important)
-   - Format: Brand + Product Type + Key Attributes + Model
-   - Include high-volume keywords while maintaining readability
+- Format: Brand + Product Type + Key Attributes + Model
+- Include high-volume keywords while maintaining readability
 2. Product Description (<5000 chars)
-   - First 160 chars are most important (shown in ads)
-   - Naturally incorporate keywords
+- First 160 chars are most important (shown in ads)
+- Naturally incorporate keywords
 3. Product Type (product_type) suggestion
 4. Custom Label (custom_label) suggestions (for ad grouping)
 5. Additional attribute suggestions (color, material, size, etc.)
@@ -1096,11 +1096,11 @@ Shopify's biggest advantage is owning complete customer data. AI can automatical
 
 | Customer Segment | RFM Characteristics | AI Strategy | Expected Results |
 |-----------------|-------------------|-------------|-----------------|
-| 🏆 VIP Customers | Recent, frequent, high spend | Exclusive offers + early access to new products + personalized recommendations | LTV +30% |
-| 💎 Loyal Customers | Frequent but mid-range AOV | Cross-sell + spend threshold incentives + tier upgrades | AOV +20% |
-| 🔥 High-Potential Customers | Recent purchase but only once | Post-purchase nurture sequence + related product recommendations | Repeat rate +25% |
-| 😴 Dormant Customers | Haven't purchased in a while | Win-back emails + exclusive discounts | Win-back rate 10-15% |
-| 👋 Churned Customers | 180+ days since last purchase | Last-chance emails + survey | Win-back rate 3-5% |
+| VIP Customers | Recent, frequent, high spend | Exclusive offers + early access to new products + personalized recommendations | LTV +30% |
+| Loyal Customers | Frequent but mid-range AOV | Cross-sell + spend threshold incentives + tier upgrades | AOV +20% |
+| High-Potential Customers | Recent purchase but only once | Post-purchase nurture sequence + related product recommendations | Repeat rate +25% |
+| Dormant Customers | Haven't purchased in a while | Win-back emails + exclusive discounts | Win-back rate 10-15% |
+| Churned Customers | 180+ days since last purchase | Last-chance emails + survey | Win-back rate 3-5% |
 
 **RFM Analysis Prompt:**
 
@@ -1145,19 +1145,19 @@ Store Data:
 
 Please design:
 1. Churn Warning Signals (which behaviors indicate a customer is about to churn)
-   - Email open rate declining
-   - Website visit frequency decreasing
-   - Purchase interval exceeding 1.5x the average
-   
+- Email open rate declining
+- Website visit frequency decreasing
+- Purchase interval exceeding 1.5x the average
+
 2. Tiered Intervention Strategy
-   - Yellow Alert (may churn): [intervention method]
-   - Orange Alert (likely to churn): [intervention method]
-   - Red Alert (about to churn): [intervention method]
+- Yellow Alert (may churn): [intervention method]
+- Orange Alert (likely to churn): [intervention method]
+- Red Alert (about to churn): [intervention method]
 
 3. Automation Implementation Plan
-   - Specific setup steps for Klaviyo/Shopify Flow
-   - Email content templates for each tier
-   - Performance measurement metrics
+- Specific setup steps for Klaviyo/Shopify Flow
+- Email content templates for each tier
+- Performance measurement metrics
 ```
 
 ---
@@ -1269,9 +1269,9 @@ Shopify Flow is Shopify's built-in automation engine (similar to Zapier, but nat
 Trigger: Product inventory changes
 Condition: Stock < product's 30-day average daily sales × 14 (safety stock days)
 Actions:
-  1. Send Slack notification to ops (product name, current stock, estimated stockout date)
-  2. Auto-update reorder list in Google Sheets
-  3. If it's a VIP product (tagged), also email the supplier
+1. Send Slack notification to ops (product name, current stock, estimated stockout date)
+2. Auto-update reorder list in Google Sheets
+3. If it's a VIP product (tagged), also email the supplier
 ```
 
 **Automation Workflow 2: Customer Tiering Automation**
@@ -1280,10 +1280,10 @@ Actions:
 Trigger: Order created
 Condition: Check customer's cumulative spend
 Actions:
-  - Cumulative > $500: Tag "VIP" → trigger VIP welcome email
-  - Cumulative > $200: Tag "Loyal" → trigger loyalty program invitation
-  - First purchase: Tag "New" → trigger post-purchase nurture sequence
-  - 2nd purchase within 30 days: Tag "Repeat" → trigger cross-sell recommendations
+- Cumulative > $500: Tag "VIP" → trigger VIP welcome email
+- Cumulative > $200: Tag "Loyal" → trigger loyalty program invitation
+- First purchase: Tag "New" → trigger post-purchase nurture sequence
+- 2nd purchase within 30 days: Tag "Repeat" → trigger cross-sell recommendations
 ```
 
 **Automation Workflow 3: Review Management**
@@ -1292,10 +1292,10 @@ Actions:
 Trigger: New review received (via Judge.me/Loox Webhook)
 Condition: Rating ≤ 2 stars
 Actions:
-  1. Send urgent Slack notification to #customer-service
-  2. AI analyzes review content, extracts issue type
-  3. AI generates reply suggestion (apology + solution)
-  4. Create customer service ticket (Gorgias/Zendesk)
+1. Send urgent Slack notification to #customer-service
+2. AI analyzes review content, extracts issue type
+3. AI generates reply suggestion (apology + solution)
+4. Create customer service ticket (Gorgias/Zendesk)
 ```
 
 ### 19.3 Shopify Flow Prompt Template
@@ -1315,7 +1315,7 @@ Please output:
 1. Workflow name and description
 2. Trigger condition (Trigger)
 3. Decision conditions (Condition)
-4. Execution actions (Action) — listed in order
+4. Execution actions (Action) listed in order
 5. Required app integrations (if any)
 6. Testing plan (how to verify the workflow runs correctly)
 7. Monitoring metrics (how to measure automation effectiveness)
@@ -1375,7 +1375,7 @@ Sidekick New Capabilities Matrix:
 | Image Processing | Not supported | AI image editing and enhancement | Auto-optimize product image quality |
 | App Creation | Not supported | Create simple apps with natural language | Quickly build custom functionality |
 
-Sidekick Pulse — Proactive Insights Engine:
+Sidekick Pulse Proactive Insights Engine:
 
 Sidekick Pulse is one of the most important new features in RenAIssance. Instead of waiting for you to ask, it proactively discovers issues and pushes recommendations:
 
@@ -1398,7 +1398,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [Shopify 
 
 ### 21.2 Agentic Storefronts & UCP Protocol: Selling Directly Within AI Platforms
 
-This is the most important structural change in e-commerce for 2026. Shopify and Google co-developed the Universal Commerce Protocol (UCP), an open protocol that allows AI Agents (ChatGPT, Gemini, Copilot, Perplexity) to connect directly to merchant systems and complete the full shopping flow — browsing, comparing, ordering, and paying — within a conversation.
+This is the most important structural change in e-commerce for 2026. Shopify and Google co-developed the Universal Commerce Protocol (UCP), an open protocol that allows AI Agents (ChatGPT, Gemini, Copilot, Perplexity) to connect directly to merchant systems and complete the full shopping flow browsing, comparing, ordering, and paying within a conversation.
 
 What this means: Consumers no longer need to visit your website. They say "I need a portable charger for camping" in ChatGPT, and the AI can directly display your products, compare specs, and complete the purchase.
 
@@ -1415,17 +1415,17 @@ Key question: How does AI decide which products to recommend?
 
 Based on Shopify's official GEO Playbook and SixthShop's case study (312% AI visibility growth), AI recommends products primarily based on:
 
-1. Degree of structured product data — Is Schema markup complete? Are attributes clear?
-2. "Citability" of product descriptions — Can AI extract information from your descriptions to answer user questions?
-3. Brand authority — External citations, review quantity and quality, media coverage
-4. Product data freshness — Are prices, inventory, and descriptions updated promptly?
+1. Degree of structured product data Is Schema markup complete? Are attributes clear?
+2. "Citability" of product descriptions Can AI extract information from your descriptions to answer user questions?
+3. Brand authority External citations, review quantity and quality, media coverage
+4. Product data freshness Are prices, inventory, and descriptions updated promptly?
 
 Content rephrased for compliance with licensing restrictions. Sources: [Shopify GEO Playbook](https://www.shopify.com/enterprise/blog/generative-engine-optimization), [Shopify Agentic-Ready Product Data](https://www.shopify.com/enterprise/blog/agentic-ready-product-data), [SixthShop 312% Growth Case Study](https://menafn.com/1110780399/Sixthshop-Releases-Flagship-Case-Study-Showing-312-Percent-Growth-In-AI-Shopping-Visibility)
 
 
 ### 21.3 GEO Optimization in Practice: Getting AI to Recommend Your Products
 
-GEO (Generative Engine Optimization) is not a simple upgrade to SEO — it's an entirely new optimization paradigm. Traditional SEO optimizes for "keyword rankings"; GEO optimizes for "AI citation probability."
+GEO (Generative Engine Optimization) is not a simple upgrade to SEO it's an entirely new optimization paradigm. Traditional SEO optimizes for "keyword rankings"; GEO optimizes for "AI citation probability."
 
 Core Differences Between Traditional SEO and GEO:
 
@@ -1439,43 +1439,43 @@ Core Differences Between Traditional SEO and GEO:
 
 5 Specific Steps for GEO Optimization:
 
-Step 1: Structure Product Data — Complete Schema Markup
+Step 1: Structure Product Data Complete Schema Markup
 
 ```json
 {
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": "Product Name",
-  "description": "Describe the product in natural language, as if answering a question",
-  "brand": {"@type": "Brand", "name": "Brand Name"},
-  "sku": "SKU Number",
-  "gtin13": "Barcode",
-  "material": "Material",
-  "color": "Color",
-  "weight": {"@type": "QuantitativeValue", "value": "Weight", "unitCode": "GRM"},
-  "offers": {
-    "@type": "Offer",
-    "price": "Price",
-    "priceCurrency": "USD",
-    "availability": "https://schema.org/InStock",
-    "shippingDetails": {
-      "@type": "OfferShippingDetails",
-      "deliveryTime": {"@type": "ShippingDeliveryTime", "businessDays": {"minValue": 2, "maxValue": 5}}
-    }
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.8",
-    "reviewCount": "1250"
-  },
-  "review": [
-    {
-      "@type": "Review",
-      "reviewRating": {"@type": "Rating", "ratingValue": "5"},
-      "author": {"@type": "Person", "name": "Customer Name"},
-      "reviewBody": "Actual review content"
-    }
-  ]
+"@context": "https://schema.org",
+"@type": "Product",
+"name": "Product Name",
+"description": "Describe the product in natural language, as if answering a question",
+"brand": {"@type": "Brand", "name": "Brand Name"},
+"sku": "SKU Number",
+"gtin13": "Barcode",
+"material": "Material",
+"color": "Color",
+"weight": {"@type": "QuantitativeValue", "value": "Weight", "unitCode": "GRM"},
+"offers": {
+"@type": "Offer",
+"price": "Price",
+"priceCurrency": "USD",
+"availability": "https://schema.org/InStock",
+"shippingDetails": {
+"@type": "OfferShippingDetails",
+"deliveryTime": {"@type": "ShippingDeliveryTime", "businessDays": {"minValue": 2, "maxValue": 5}}
+}
+},
+"aggregateRating": {
+"@type": "AggregateRating",
+"ratingValue": "4.8",
+"reviewCount": "1250"
+},
+"review": [
+{
+"@type": "Review",
+"reviewRating": {"@type": "Rating", "ratingValue": "5"},
+"author": {"@type": "Person", "name": "Customer Name"},
+"reviewBody": "Actual review content"
+}
+]
 }
 ```
 
@@ -1492,7 +1492,7 @@ What material is this towel made of?
 100% organic bamboo fiber, 3x softer than regular cotton towels.
 
 How absorbent is it?
-Bamboo fiber absorbs 40% more moisture than cotton — dries you off in one pass after a shower.
+Bamboo fiber absorbs 40% more moisture than cotton dries you off in one pass after a shower.
 
 Is it suitable for sensitive skin?
 Bamboo fiber is naturally hypoallergenic and antibacterial, certified by OEKO-TEX Standard 100,
@@ -1501,7 +1501,7 @@ safe for babies and sensitive skin.
 
 Why this works: When a user asks ChatGPT "what towel is good for sensitive skin," the AI can directly extract "bamboo fiber is naturally hypoallergenic and antibacterial, OEKO-TEX certified" from your product page as a recommendation reason. Traditional keyword-stuffed descriptions don't give AI meaningful answers to extract.
 
-Step 3: Enrich FAQs — Cover Questions Users Might Ask AI Shopping Assistants
+Step 3: Enrich FAQs Cover Questions Users Might Ask AI Shopping Assistants
 
 ```
 You are a GEO optimization expert. Generate 15 FAQs for the following product,
@@ -1591,17 +1591,17 @@ Step 1: Export Amazon Review Data
 - Use Helium 10 Review Insights or manually copy the Top 100 reviews
 - Split into positive reviews (4-5 stars) and negative reviews (1-2 stars)
 
-Step 2: AI Analyzes Positive Reviews — Find the Most Effective Selling Points
+Step 2: AI Analyzes Positive Reviews Find the Most Effective Selling Points
 Input positive review data and have AI extract:
 - Top 3 most frequently mentioned advantages (these are your core selling points)
 - Most commonly described use cases (these are your ad angles)
 - Customers' own words/expressions (this is your copywriting language)
 
-Step 3: AI Analyzes Negative Reviews — Find Issues to Address
+Step 3: AI Analyzes Negative Reviews Find Issues to Address
 Input negative review data and have AI extract:
 - Top 3 most common complaints (these are questions your FAQ must answer)
-- Expectation gaps (what customers expected but didn't get — manage expectations on product page)
-- Competitor comparisons (competitors mentioned by customers — your differentiation direction)
+- Expectation gaps (what customers expected but didn't get manage expectations on product page)
+- Competitor comparisons (competitors mentioned by customers your differentiation direction)
 
 Step 4: Apply to Shopify
 - Core selling points from positive reviews → Top 3 selling points in Shopify product description
@@ -1626,22 +1626,22 @@ Negative Review Data (1-2 stars, [X] total):
 Please output:
 
 1. Selling Point Extraction (from positive reviews)
-   - Top 3 most frequently mentioned advantages (with frequency)
-   - Customer quotes for each advantage (3 most persuasive sentences)
-   - Suggested Shopify product description wording (use customer language, not marketing speak)
+- Top 3 most frequently mentioned advantages (with frequency)
+- Customer quotes for each advantage (3 most persuasive sentences)
+- Suggested Shopify product description wording (use customer language, not marketing speak)
 
 2. Use Case Extraction (from positive reviews)
-   - Top 5 use cases (with frequency)
-   - Product image suggestions for each scenario
+- Top 5 use cases (with frequency)
+- Product image suggestions for each scenario
 
 3. Issue Prevention (from negative reviews)
-   - Top 5 complaints/issues (with frequency and severity)
-   - Suggested FAQ answers for each issue
-   - Expectation management points to clarify in product description
+- Top 5 complaints/issues (with frequency and severity)
+- Suggested FAQ answers for each issue
+- Expectation management points to clarify in product description
 
 4. Competitive Insights (from negative reviews)
-   - Competitors mentioned and comparison dimensions
-   - Differentiation opportunities
+- Competitors mentioned and comparison dimensions
+- Differentiation opportunities
 
 Why this Prompt works:
 Amazon reviews are customer feedback verified by actual purchases,
@@ -1672,7 +1672,7 @@ MCF Pros and Cons:
 | Inventory | Shared FBA inventory, no extra stocking needed | If FBA stock runs low, both channels are affected |
 | Shipping Speed | Prime-level delivery speed (1-3 days) | Slightly slower than FBA (MCF has lower priority than FBA) |
 | Cost | No additional warehousing fees | MCF fees are 10-15% higher than FBA |
-| Packaging | — | Default Amazon packaging (can request unbranded packaging) |
+| Packaging | | Default Amazon packaging (can request unbranded packaging) |
 | Integration | Shopify has a native MCF App | Requires installation and configuration |
 
 When to use MCF vs third-party warehouse:
@@ -1689,21 +1689,21 @@ When to use MCF vs third-party warehouse:
 
 ### 23.1 The Underlying Logic of Klaviyo AI
 
-Klaviyo is the de facto standard for email marketing in the Shopify ecosystem (used by over 100K Shopify merchants). Its AI capabilities go beyond simply "helping you write emails" — they're based on your customer data for prediction and personalization.
+Klaviyo is the de facto standard for email marketing in the Shopify ecosystem (used by over 100K Shopify merchants). Its AI capabilities go beyond simply "helping you write emails" they're based on your customer data for prediction and personalization.
 
 Klaviyo AI's Three Capability Layers:
 
-Layer 1 — Content Generation (what all AI email tools can do):
+Layer 1 Content Generation (what all AI email tools can do):
 - Generate email subject line variants
 - Generate email body copy
 - Generate CTA copy
 
-Layer 2 — Send Optimization (Klaviyo's differentiator):
+Layer 2 Send Optimization (Klaviyo's differentiator):
 - Smart Send Time: AI analyzes each customer's historical open times and sends at the moment they're most likely to open. Not "send everything at 9 AM," but "send to Customer A at 7 AM, Customer B at 10 PM"
 - Predictive Analytics: AI predicts each customer's next purchase date, expected LTV, and churn probability
 - Send Frequency Optimization: AI determines the email frequency each customer can tolerate, preventing over-sending that leads to unsubscribes
 
-Layer 3 — Predictive Marketing (the real AI value):
+Layer 3 Predictive Marketing (the real AI value):
 - Expected Date of Next Order: AI predicts when a customer will purchase again, sending a repeat purchase reminder before that date
 - Predicted Customer Lifetime Value: AI predicts each customer's lifetime value; high-LTV customers deserve more investment
 - Churn Risk Prediction: AI identifies customers about to churn, triggering win-back sequences proactively
@@ -1718,22 +1718,22 @@ Abandoned Cart Recovery Sequence (Advanced Version):
 Trigger: Added to cart, no payment after 1 hour
 
 Branch 1: Customer is new (never purchased before)
-  ├── Email 1 (+1h): Gentle reminder + product image + "Need help?"
-  ├── If opened but didn't buy → Email 2 (+24h): Address concerns (FAQ + return guarantee + reviews)
-  ├── If didn't open → Email 2b (+24h): Resend with different subject line (AI generates different angle)
-  └── Email 3 (+48h): Limited-time 10% discount (new customer exclusive)
+Email 1 (+1h): Gentle reminder + product image + "Need help?"
+If opened but didn't buy → Email 2 (+24h): Address concerns (FAQ + return guarantee + reviews)
+If didn't open → Email 2b (+24h): Resend with different subject line (AI generates different angle)
+Email 3 (+48h): Limited-time 10% discount (new customer exclusive)
 
 Branch 2: Customer is returning (purchased once before)
-  ├── Email 1 (+1h): "Welcome back" + product image + recommendations related to last purchase
-  └── Email 2 (+24h): Free shipping offer (no discount needed — returning customers are less price-sensitive)
+Email 1 (+1h): "Welcome back" + product image + recommendations related to last purchase
+Email 2 (+24h): Free shipping offer (no discount needed returning customers are less price-sensitive)
 
 Branch 3: Customer is VIP (purchased 3+ times)
-  └── Email 1 (+1h): Personalized reminder + "Your dedicated support rep can help with anything"
-      (VIP customers don't need discounts — they need a sense of service)
+Email 1 (+1h): Personalized reminder + "Your dedicated support rep can help with anything"
+(VIP customers don't need discounts they need a sense of service)
 
 Branch 4: Cart value > $200
-  ├── Email 1 (+1h): Reminder + installment payment options (Klarna/Afterpay)
-  └── Email 2 (+24h): Phone/WhatsApp follow-up (high cart value justifies human intervention)
+Email 1 (+1h): Reminder + installment payment options (Klarna/Afterpay)
+Email 2 (+24h): Phone/WhatsApp follow-up (high cart value justifies human intervention)
 ```
 
 Why dynamic branching outperforms linear sequences: Linear sequences send the same content to all customers, but new customers need trust-building, returning customers need convenience, and VIPs need respect. Klaviyo's Conditional Split feature can automatically branch based on customer attributes and behavior.
@@ -1787,7 +1787,7 @@ Testing one variable per week, after 4 weeks your email performance can improve 
 
 ### 24.1 The Math Behind Conversion Rate
 
-Shopify's average conversion rate is about 1.4%. That means only 1.4 out of every 100 visitors make a purchase. Improving conversion rate is the highest-ROI optimization — you can increase revenue without additional ad spend.
+Shopify's average conversion rate is about 1.4%. That means only 1.4 out of every 100 visitors make a purchase. Improving conversion rate is the highest-ROI optimization you can increase revenue without additional ad spend.
 
 Conversion rate can be decomposed into a funnel:
 
@@ -1987,7 +1987,7 @@ The iOS 14 App Tracking Transparency (ATT) policy in 2021 significantly reduced 
 |---------|--------|----------|
 | Facebook reported conversion data is inaccurate | ROAS may be underestimated by 30-50% | Use Conversions API (CAPI) for server-side tracking |
 | Attribution window shortened | 7-day click + 1-day view (previously 28 days) | Use UTM + GA4 for supplementary attribution |
-| Cross-device tracking broken | User sees ad on phone, buys on desktop — can't connect | Use Shopify's first-party data for attribution |
+| Cross-device tracking broken | User sees ad on phone, buys on desktop can't connect | Use Shopify's first-party data for attribution |
 | Multi-touch attribution difficulty | User sees TikTok, searches Google, buys from email | Use Triple Whale or Polar Analytics for multi-touch attribution |
 
 ### 26.2 Recommended Attribution Solutions for 2026
@@ -2031,24 +2031,24 @@ Shopify Data:
 Please perform the following analysis (beyond just ROAS):
 
 1. Efficiency Analysis
-   - Which ad set/campaign has the highest marginal ROAS (adding $1 budget yields the most return)
-   - Which ad set has hit diminishing returns (more budget = declining effectiveness)
+- Which ad set/campaign has the highest marginal ROAS (adding $1 budget yields the most return)
+- Which ad set has hit diminishing returns (more budget = declining effectiveness)
 
 2. Creative Fatigue Analysis
-   - Which ad sets have frequency >3 (users seeing it too many times)
-   - Is CTR trending up or down (declining = creative fatigue)
+- Which ad sets have frequency >3 (users seeing it too many times)
+- Is CTR trending up or down (declining = creative fatigue)
 
 3. Funnel Analysis
-   - Which ad sets have high CTR but low conversion (landing page issue)
-   - Which ad sets have low CTR but high conversion (precise audience but weak creative)
+- Which ad sets have high CTR but low conversion (landing page issue)
+- Which ad sets have low CTR but high conversion (precise audience but weak creative)
 
 4. Budget Reallocation Recommendations
-   - Specific budget adjustment plan (where to cut, where to add)
-   - Expected results
+- Specific budget adjustment plan (where to cut, where to add)
+- Expected results
 
 5. New Customer Acquisition vs Returning Customer Ad Strategy
-   - Is the current new/returning customer ad spend ratio appropriate
-   - Recommended adjustments
+- Is the current new/returning customer ad spend ratio appropriate
+- Recommended adjustments
 
 Why this Prompt works:
 Most sellers just rank by ROAS and "add budget to high-ROAS campaigns."
@@ -2069,20 +2069,20 @@ Snippet 1: Multi-Market Dynamic Free Shipping Notice
 ```liquid
 {%- assign free_shipping_threshold = 50 -%}
 {%- case localization.market.handle -%}
-  {%- when 'de' -%}{%- assign free_shipping_threshold = 45 -%}
-  {%- when 'jp' -%}{%- assign free_shipping_threshold = 5000 -%}
-  {%- when 'uk' -%}{%- assign free_shipping_threshold = 40 -%}
+{%- when 'de' -%}{%- assign free_shipping_threshold = 45 -%}
+{%- when 'jp' -%}{%- assign free_shipping_threshold = 5000 -%}
+{%- when 'uk' -%}{%- assign free_shipping_threshold = 40 -%}
 {%- endcase -%}
 
 {%- assign remaining = free_shipping_threshold | minus: cart.total_price | divided_by: 100.0 -%}
 {%- if remaining > 0 -%}
-  <p class="free-shipping-notice">
-    Only {{ remaining | money }} away from free shipping
-  </p>
+<p class="free-shipping-notice">
+Only {{ remaining | money }} away from free shipping
+</p>
 {%- else -%}
-  <p class="free-shipping-notice">
-    Congrats! Your order qualifies for free shipping
-  </p>
+<p class="free-shipping-notice">
+Congrats! Your order qualifies for free shipping
+</p>
 {%- endif -%}
 ```
 
@@ -2093,32 +2093,32 @@ Snippet 2: Enhanced Product Schema (GEO Optimized)
 ```liquid
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": {{ product.title | json }},
-  "description": {{ product.description | strip_html | truncate: 500 | json }},
-  "image": [
-    {%- for image in product.images limit: 5 -%}
-      {{ image | image_url: width: 1200 | json }}{%- unless forloop.last -%},{%- endunless -%}
-    {%- endfor -%}
-  ],
-  "brand": { "@type": "Brand", "name": {{ shop.name | json }} },
-  "sku": {{ product.selected_or_first_available_variant.sku | json }},
-  "offers": {
-    "@type": "Offer",
-    "price": {{ product.selected_or_first_available_variant.price | money_without_currency | json }},
-    "priceCurrency": {{ cart.currency.iso_code | json }},
-    "availability": "{% if product.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
-    "url": {{ request.origin | append: product.url | json }},
-    "priceValidUntil": "{{ 'now' | date: '%Y' | plus: 1 }}-12-31"
-  }
-  {%- if product.metafields.reviews.rating -%}
-  ,"aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": {{ product.metafields.reviews.rating.value | json }},
-    "reviewCount": {{ product.metafields.reviews.rating_count | json }}
-  }
-  {%- endif -%}
+"@context": "https://schema.org",
+"@type": "Product",
+"name": {{ product.title | json }},
+"description": {{ product.description | strip_html | truncate: 500 | json }},
+"image": [
+{%- for image in product.images limit: 5 -%}
+{{ image | image_url: width: 1200 | json }}{%- unless forloop.last -%},{%- endunless -%}
+{%- endfor -%}
+],
+"brand": { "@type": "Brand", "name": {{ shop.name | json }} },
+"sku": {{ product.selected_or_first_available_variant.sku | json }},
+"offers": {
+"@type": "Offer",
+"price": {{ product.selected_or_first_available_variant.price | money_without_currency | json }},
+"priceCurrency": {{ cart.currency.iso_code | json }},
+"availability": "{% if product.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
+"url": {{ request.origin | append: product.url | json }},
+"priceValidUntil": "{{ 'now' | date: '%Y' | plus: 1 }}-12-31"
+}
+{%- if product.metafields.reviews.rating -%}
+,"aggregateRating": {
+"@type": "AggregateRating",
+"ratingValue": {{ product.metafields.reviews.rating.value | json }},
+"reviewCount": {{ product.metafields.reviews.rating_count | json }}
+}
+{%- endif -%}
 }
 </script>
 ```
@@ -2131,20 +2131,20 @@ Snippet 3: Auto-Generated FAQ Schema
 {%- if product.metafields.custom.faq -%}
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {%- for faq in product.metafields.custom.faq.value -%}
-    {
-      "@type": "Question",
-      "name": {{ faq.question | json }},
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": {{ faq.answer | json }}
-      }
-    }{%- unless forloop.last -%},{%- endunless -%}
-    {%- endfor -%}
-  ]
+"@context": "https://schema.org",
+"@type": "FAQPage",
+"mainEntity": [
+{%- for faq in product.metafields.custom.faq.value -%}
+{
+"@type": "Question",
+"name": {{ faq.question | json }},
+"acceptedAnswer": {
+"@type": "Answer",
+"text": {{ faq.answer | json }}
+}
+}{%- unless forloop.last -%},{%- endunless -%}
+{%- endfor -%}
+]
 }
 </script>
 {%- endif -%}
@@ -2174,11 +2174,11 @@ Not every Amazon seller is suited for Shopify. Here's the decision framework:
 ```
 Phase 1: Preparation (Weeks 1-2)
 - Choose Shopify plan (Basic $39/mo is enough to start)
-- Choose theme (Dawn free theme is good enough — no need to spend $300 on a paid theme)
+- Choose theme (Dawn free theme is good enough no need to spend $300 on a paid theme)
 - Register domain (brandname.com)
 - Install essential apps: Klaviyo (email), Judge.me (reviews), GA4
 
-Phase 2: Content Migration (Weeks 2-4) — This is the most critical phase
+Phase 2: Content Migration (Weeks 2-4) This is the most critical phase
 - Do NOT directly copy Amazon Listings to Shopify
 - Use AI to rewrite Amazon style (keyword-dense, feature-oriented) into Shopify style (brand-focused, emotional)
 - Each product page needs: branded title, story-driven description, FAQ, Meta tags, Schema
@@ -2220,8 +2220,8 @@ Phase 6: Optimization & Scaling (Week 8+)
 | Buying too many apps | Each app has a monthly fee; they add up fast | Start with only 3-4 core apps |
 
 ---
-> 🏠 [Hub Home](../../README.md) · 📋 [Path D Overview](README.md) · 📊 [Platform Comparison](platform-comparison.md)
-> 
+> [Hub Home](../../README.md) · [Path D Overview](README.md) · [Platform Comparison](platform-comparison.md)
+>
 > **Path D**: [D1 Shopify](shopify-ai-guide.md) · [D2 TikTok](tiktok-shop-ai-guide.md) · [D3 Cross-Platform](cross-platform-strategy.md) · [D4 Walmart](d4-walmart-ai-guide.md) · [D5 Temu](d5-temu-seller-guide.md) · [D6 Southeast Asia](d6-southeast-asia-ai-guide.md) · [D7 Latin America](d7-mercado-libre-ai-guide.md) · [D8 Japan](d8-rakuten-japan-ai-guide.md) · [D9 eBay](d9-ebay-ai-guide.md) · [D10 AliExpress](d10-aliexpress-ai-guide.md) · [D11 Korea](d11-coupang-korea-ai-guide.md) · [D12 Faire](d12-faire-wholesale-ai-guide.md) · [D13 Europe](d13-europe-marketplaces-guide.md)
-> 
+>
 > **Quick Jump**: [Path 0 Foundations](../0-foundations/) · [Path A Operations](../a-operators/) · [Path B Technical](../b-developers/) · [Path C Management](../c-managers/) · [Path E Social Media](../e-social-media/)

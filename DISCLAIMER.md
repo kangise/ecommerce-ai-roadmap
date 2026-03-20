@@ -32,8 +32,8 @@
 
 所有引用内容均已进行改写以符合版权合规要求，并在文中标注了来源链接。如果您是原始内容的版权持有者，认为本知识库中的引用存在问题，请通过以下方式联系我们，我们将及时处理：
 
-- 📧 提交 [GitHub Issue](https://github.com/kangise/ecommerce-ai-roadmap/issues)
-- 📧 或联系维护者：[@kangise](https://github.com/kangise)
+- 提交 [GitHub Issue](https://github.com/kangise/ecommerce-ai-roadmap/issues)
+- 或联系维护者：[@kangise](https://github.com/kangise)
 
 ### AI 生成内容声明
 
@@ -51,9 +51,9 @@
 
 The information in this repository (ecommerce-ai-roadmap) is provided for reference and educational purposes only. We make no express or implied warranties regarding the completeness, accuracy, or reliability of:
 
-- Platform commission rates, fee structures, and policies, which may change at any time — please refer to each platform's official announcements for the latest information
+- Platform commission rates, fee structures, and policies, which may change at any time please refer to each platform's official announcements for the latest information
 - Market data (GMV, MAU, growth rates, etc.) sourced from public earnings reports, industry reports, and news articles, which may have timeliness differences
-- Advertising cost benchmarks (CPC, CPM, CAC, etc.), which vary significantly by category, region, and season — figures are for reference only
+- Advertising cost benchmarks (CPC, CPM, CAC, etc.), which vary significantly by category, region, and season figures are for reference only
 - AI tool features and pricing, which may be updated at any time
 
 **Any business decisions made based on information in this repository are at the user's own risk.**
@@ -70,8 +70,8 @@ This repository references publicly available data and information from sources 
 
 If you are a copyright holder of original content and believe any reference in this repository is problematic, please contact us and we will address it promptly:
 
-- 📧 Submit a [GitHub Issue](https://github.com/kangise/ecommerce-ai-roadmap/issues)
-- 📧 Or contact the maintainer: [@kangise](https://github.com/kangise)
+- Submit a [GitHub Issue](https://github.com/kangise/ecommerce-ai-roadmap/issues)
+- Or contact the maintainer: [@kangise](https://github.com/kangise)
 
 ### AI-Generated Content Disclosure
 

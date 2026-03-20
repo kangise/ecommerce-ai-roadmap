@@ -1,6 +1,6 @@
 # 选品与市场分析 Prompt 模板 | Product Research Prompts
 
-> 最后更新: 2026-03-10 | 模板数量: 3 | 验证状态: ✅ 已验证
+> 最后更新: 2026-03-10 | 模板数量: 3 | 验证状态: 已验证
 
 ---
 
@@ -8,7 +8,7 @@
 
 **场景**: 分析竞品差评，提取产品改进方向和差异化机会
 **推荐工具**: ChatGPT / Claude
-**验证状态**: ✅ 已验证
+**验证状态**: 已验证
 **贡献者**: [@kangise](https://github.com/kangise)
 
 ### Prompt
@@ -37,8 +37,8 @@
 
 ---
 
-📎 **分享此模板**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/prompts/product-research.md#模板-1-竞品-review-痛点分析`
-🏠 **来源**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) — AI × 跨境电商实战知识库
+**分享此模板**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/prompts/product-research.md#模板-1-竞品-review-痛点分析`
+**来源**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) AI × 跨境电商实战知识库
 
 ---
 
@@ -46,7 +46,7 @@
 
 **场景**: 快速评估一个产品是否值得进入某个市场
 **推荐工具**: ChatGPT / Claude / Gemini
-**验证状态**: ✅ 已验证
+**验证状态**: 已验证
 **贡献者**: [@kangise](https://github.com/kangise)
 
 ### Prompt
@@ -78,8 +78,8 @@
 
 ---
 
-📎 **分享此模板**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/prompts/product-research.md#模板-2-市场可行性快速评估`
-🏠 **来源**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) — AI × 跨境电商实战知识库
+**分享此模板**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/prompts/product-research.md#模板-2-市场可行性快速评估`
+**来源**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) AI × 跨境电商实战知识库
 
 ---
 
@@ -87,7 +87,7 @@
 
 **场景**: 将大量搜索关键词按用户真实购买意图分组，发现产品机会
 **推荐工具**: ChatGPT / Claude
-**验证状态**: ✅ 已验证
+**验证状态**: 已验证
 **贡献者**: [@kangise](https://github.com/kangise)
 
 ### Prompt
@@ -116,5 +116,5 @@
 
 ---
 
-📎 **分享此模板**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/prompts/product-research.md#模板-3-关键词需求聚类`
-🏠 **来源**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) — AI × 跨境电商实战知识库
+**分享此模板**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/prompts/product-research.md#模板-3-关键词需求聚类`
+**来源**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) AI × 跨境电商实战知识库

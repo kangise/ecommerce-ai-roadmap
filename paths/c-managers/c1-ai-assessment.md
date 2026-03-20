@@ -1,25 +1,25 @@
 # C1. AI 能力评估与规划 | AI Capability Assessment & Planning
 
-> **路径**: Path C: 管理者 · **模块**: C1  
-> **最后更新**: 2026-03-12  
-> **难度**: ⭐ 入门  
+> **路径**: Path C: 管理者 · **模块**: C1
+> **最后更新**: 2026-03-12
+> **难度**: 入门
 > **预计时间**: 1-2 小时
 
-🏠 [Hub 首页](../../README.md) · 📋 [Path C 总览](README.md)
+[Hub 首页](../../README.md) · [Path C 总览](README.md)
 
 ```mermaid
 flowchart LR
-    C1["✅ C1 AI 评估规划<br/>（当前）"]:::current
-    C1 --> C2["C2 团队技能建设"]
-    C2 --> C3["C3 ROI 评估"]
-    classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
+C1[" C1 AI 评估规划<br/>（当前）"]:::current
+C1 --> C2["C2 团队技能建设"]
+C2 --> C3["C3 ROI 评估"]
+classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 ```
 
 ---
 
-## 📖 本模块章节导航
+## 本模块章节导航
 
-1. [AI 落地方法论](#1-ai-落地方法论先想清楚再动手) · 2. [优先级矩阵](#2-ai-落地优先级矩阵) · 3. [Prompt 模板](#3-prompt-模板管理者专用) · 4. [评估工具](#4-评估工具) · 5. [实战工作流](#5-实战工作流ai-落地规划-sop) · 6. [常见陷阱](#6-常见陷阱) · 7. [案例分析](#7-案例分析不同规模团队的-ai-落地) · 8. [学习资源](#8-学习资源) · 9. [🦞 OpenClaw 自动化](#9-用-openclaw-辅助-ai-能力评估) · 10. [完成标志](#10-完成标志)
+1. [AI 落地方法论](#1-ai-落地方法论先想清楚再动手) · 2. [优先级矩阵](#2-ai-落地优先级矩阵) · 3. [Prompt 模板](#3-prompt-模板管理者专用) · 4. [评估工具](#4-评估工具) · 5. [实战工作流](#5-实战工作流ai-落地规划-sop) · 6. [常见陷阱](#6-常见陷阱) · 7. [案例分析](#7-案例分析不同规模团队的-ai-落地) · 8. [学习资源](#8-学习资源) · 9. [ OpenClaw 自动化](#9-用-openclaw-辅助-ai-能力评估) · 10. [完成标志](#10-完成标志)
 
 ---
 
@@ -31,14 +31,14 @@ flowchart LR
 - 一份 AI 落地规划书（含阶段目标、时间线、预算估算）
 - 一套变革管理方案（让团队真正用起来，而不是"买了不用"）
 
-> 💡 **核心理念**：AI 落地不是技术问题，是管理问题。
+> **核心理念**：AI 落地不是技术问题，是管理问题。
 
 
 ---
 
 ## 1. AI 落地方法论：先想清楚再动手
 
-> 📎 **相关阅读**: [AI 应用全景评估](../0-foundations/ai-landscape.md) — 各环节 AI 成熟度详见 AI 全景 · [平台全景对比](../d-platforms/platform-comparison.md) — 各平台 AI 应用成熟度和优先级排序详见平台全景对比。
+> **相关阅读**: [AI 应用全景评估](../0-foundations/ai-landscape.md) 各环节 AI 成熟度详见 AI 全景 · [平台全景对比](../d-platforms/platform-comparison.md) 各平台 AI 应用成熟度和优先级排序详见平台全景对比。
 
 ### 1.1 AI 不是万能的
 
@@ -63,7 +63,7 @@ flowchart LR
 | 高风险决策 | 错误代价很大的决策 | 大额采购、市场进入/退出、法律合规 |
 | 需要最新政策 | 平台规则经常变化 | Amazon 最新政策解读、合规要求变更 |
 
-> 💡 **判断标准**：如果一个任务可以写成 SOP，那它大概率可以用 AI 提效。
+> **判断标准**：如果一个任务可以写成 SOP，那它大概率可以用 AI 提效。
 
 ### 1.2 AI 落地的三个阶段
 
@@ -120,7 +120,7 @@ Content rephrased for compliance with licensing restrictions. Source: [McKinsey 
 
 **如何使用：** 和团队讨论每个环节的评分是否符合实际情况 → 调整评分 → 选优先级最高的 2-3 个作为试点 → 用第 3 节的 Prompt 模板生成落地计划。
 
-> 💡 **常见误区**：不要选优先级最高但团队最抵触的环节。试点的目的是"让团队看到效果"。
+> **常见误区**：不要选优先级最高但团队最抵触的环节。试点的目的是"让团队看到效果"。
 
 
 ---
@@ -142,9 +142,9 @@ Content rephrased for compliance with licensing restrictions. Source: [McKinsey 
 - 月度 AI 工具预算：[X] 元/美元
 
 请输出：
-**阶段一：试点期（第 1-2 个月）** — 推荐试点场景、工具、负责人职责、第一周行动清单、衡量标准
-**阶段二：规模化（第 3-6 个月）** — 扩展路径、标准化流程、培训计划、新增工具、KPI
-**阶段三：系统化（第 7-12 个月）** — 自动化集成、技术支持需求、长期架构、预期 ROI
+**阶段一：试点期（第 1-2 个月）** 推荐试点场景、工具、负责人职责、第一周行动清单、衡量标准
+**阶段二：规模化（第 3-6 个月）** 扩展路径、标准化流程、培训计划、新增工具、KPI
+**阶段三：系统化（第 7-12 个月）** 自动化集成、技术支持需求、长期架构、预期 ROI
 每个阶段标注：预算估算、风险提示、关键里程碑。
 ```
 
@@ -228,10 +228,10 @@ Content rephrased for compliance with licensing restrictions. Source: [McKinsey 
 
 | 平均分 | 成熟度等级 | 建议行动 |
 |--------|-----------|----------|
-| 1.0-2.0 | 🔴 初始级 | 从 AI 认知培训开始，选 1 个最简单的场景试点 |
-| 2.1-3.0 | 🟡 探索级 | 找到 Champion，建立 Prompt 库，扩大试点范围 |
-| 3.1-4.0 | 🟢 应用级 | 标准化流程，深化使用场景，开始衡量 ROI |
-| 4.1-5.0 | 🔵 优化级 | 探索自动化集成，建立 AI 驱动的新流程 |
+| 1.0-2.0 | 初始级 | 从 AI 认知培训开始，选 1 个最简单的场景试点 |
+| 2.1-3.0 | 探索级 | 找到 Champion，建立 Prompt 库，扩大试点范围 |
+| 3.1-4.0 | 应用级 | 标准化流程，深化使用场景，开始衡量 ROI |
+| 4.1-5.0 | 优化级 | 探索自动化集成，建立 AI 驱动的新流程 |
 
 ### 4.2 团队 AI 技能评估表
 
@@ -345,7 +345,7 @@ Content rephrased for compliance with licensing restrictions. Source: [McKinsey 
 | 是否需要 AI 治理 | 不需要 | 基础版 | 完整版 |
 | 月度工具成本 | $0-40 | $60-500 | $250-2000+ |
 
-> 💡 团队越大，AI 落地越需要"管理"而不是"技术"。
+> 团队越大，AI 落地越需要"管理"而不是"技术"。
 
 
 ---
@@ -452,8 +452,8 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 | 系统化 | 融入流程 | 6-12 月 | API 集成、自动化、持续优化 | 关键流程自动化 >60% |
 
 ---
-> 🏠 [Hub 首页](../../README.md) · 📋 [Path C 总览](README.md)
-> 
+> [Hub 首页](../../README.md) · [Path C 总览](README.md)
+>
 > **Path C**: [C1 评估](c1-ai-assessment.md) · [C2 建设](c2-team-building.md) · [C3 ROI](c3-roi-evaluation.md)
-> 
+>
 > **快速跳转**: [Path 0 基础](../0-foundations/) · [Path A 运营](../a-operators/) · [Path B 技术](../b-developers/) · [Path D 多平台](../d-platforms/) · [Path E 社交媒体](../e-social-media/)

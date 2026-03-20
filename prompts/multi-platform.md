@@ -132,4 +132,4 @@ Campaign: [名称]
 
 ---
 
-🏠 [返回 Hub 首页](../README.md) · 📋 [Prompt 模板库](README.md)
+[返回 Hub 首页](../README.md) · [Prompt 模板库](README.md)

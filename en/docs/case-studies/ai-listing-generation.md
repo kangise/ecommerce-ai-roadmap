@@ -1,7 +1,7 @@
 # AI-Powered Listing Generation
 
 > **Domain**: Listing Optimization | **Contributor**: [@kangise](https://github.com/kangise) | **Last Updated**: 2025-06-20
-> **Verification Status**: ✅ Verified
+> **Verification Status**: Verified
 
 ---
 
@@ -34,8 +34,8 @@ Introduced an AI Prompt workflow to standardize the listing creation process:
 
 ### Tools
 
-- ChatGPT (GPT-4) — Primary content generation
-- Claude — Long-text analysis and comparative review
+- ChatGPT (GPT-4) Primary content generation
+- Claude Long-text analysis and comparative review
 
 ## Results
 
@@ -56,5 +56,5 @@ Introduced an AI Prompt workflow to standardize the listing creation process:
 
 ---
 
-📎 **Share this case**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/docs/case-studies/ai-listing-generation.md`
-🏠 **Source**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) — AI × Cross-Border E-Commerce Knowledge Base
+**Share this case**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/docs/case-studies/ai-listing-generation.md`
+**Source**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) AI × Cross-Border E-Commerce Knowledge Base

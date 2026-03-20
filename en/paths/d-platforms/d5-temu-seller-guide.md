@@ -4,14 +4,14 @@
 
 > **Path**: Path D: Multi-Platform · **Module**: D5
 > **Last Updated**: 2026-03-14
-> **Difficulty**: ⭐⭐ Intermediate
+> **Difficulty**: Intermediate
 > **Estimated Time**: 1.5 hours
 
-🏠 [Hub Home](../../README.md) · 📋 [Path D Overview](README.md)
+[Hub Home](../../README.md) · [Path D Overview](README.md)
 
 ---
 
-## 📖 Chapter Navigation
+## Chapter Navigation
 
 1. [Temu Business Model Analysis](#1-temu-business-model-analysis)
 2. [Onboarding Decision Framework](#2-onboarding-decision-framework)
@@ -21,7 +21,7 @@
 
 ---
 
-> 💡 **Positioning Note**: Temu is not an "operations optimization" platform — sellers have limited autonomy. This guide is positioned as competitive analysis + onboarding decision-making, helping you determine whether to join Temu and how Temu impacts your existing Amazon/Shopify business.
+> **Positioning Note**: Temu is not an "operations optimization" platform sellers have limited autonomy. This guide is positioned as competitive analysis + onboarding decision-making, helping you determine whether to join Temu and how Temu impacts your existing Amazon/Shopify business.
 
 ---
 
@@ -59,18 +59,18 @@ erational Logic
 Temu's Traffic Distribution Mechanism (Completely Different from Amazon):
 
 Amazon: Search-Driven
-├── User searches keywords → Algorithm matches → Ranked display
-├── Sellers can influence rankings through SEO + PPC
-└── Sellers have significant operational autonomy
+User searches keywords → Algorithm matches → Ranked display
+Sellers can influence rankings through SEO + PPC
+Sellers have significant operational autonomy
 
 Temu: Platform Algorithm-Driven
-├── Platform decides which products appear on homepage/recommendation slots
-├── Core ranking factors: Price (most important) > Sales > Reviews > Image quality
-├── Sellers have almost no way to influence rankings through "operational skills"
-├── No on-site advertising system (unlike Amazon PPC)
-└── Platform actively adjusts your price (fully managed mode)
+Platform decides which products appear on homepage/recommendation slots
+Core ranking factors: Price (most important) > Sales > Reviews > Image quality
+Sellers have almost no way to influence rankings through "operational skills"
+No on-site advertising system (unlike Amazon PPC)
+Platform actively adjusts your price (fully managed mode)
 
-Conclusion: Temu is not an "operations" platform — it's a "supply chain" platform.
+Conclusion: Temu is not an "operations" platform it's a "supply chain" platform.
 Your competitiveness = Your cost advantage + Product quality.
 ```
 
@@ -92,14 +92,14 @@ Your competitiveness = Your cost advantage + Product quality.
 
 | Category | Fit Score | Reason | Estimated Margin |
 |----------|-----------|--------|------------------|
-| Phone Cases/Accessories | ⭐⭐⭐⭐⭐ | Low cost, commodity, high repurchase | 5-15% |
-| Cables/Chargers | ⭐⭐⭐⭐⭐ | Commodity, mature supply chain | 5-10% |
-| Storage/Small Home Items | ⭐⭐⭐⭐⭐ | Low price, lightweight, high demand | 10-20% |
-| Beauty Tools | ⭐⭐⭐⭐ | Low cost, high gross margin | 15-25% |
-| Apparel & Accessories | ⭐⭐⭐⭐ | Temu's largest category (fashion 30%+ of GMV) | 10-20% |
-| Kitchen Gadgets | ⭐⭐⭐⭐ | Practical, low price, impulse purchase | 10-15% |
-| Pet Supplies | ⭐⭐⭐ | Fast growth but increasing competition | 10-15% |
-| Toys | ⭐⭐⭐ | Highly seasonal, requires safety certifications | 10-20% |
+| Phone Cases/Accessories | | Low cost, commodity, high repurchase | 5-15% |
+| Cables/Chargers | | Commodity, mature supply chain | 5-10% |
+| Storage/Small Home Items | | Low price, lightweight, high demand | 10-20% |
+| Beauty Tools | | Low cost, high gross margin | 15-25% |
+| Apparel & Accessories | | Temu's largest category (fashion 30%+ of GMV) | 10-20% |
+| Kitchen Gadgets | | Practical, low price, impulse purchase | 10-15% |
+| Pet Supplies | | Fast growth but increasing competition | 10-15% |
+| Toys | | Highly seasonal, requires safety certifications | 10-20% |
 
 ### 2.2 Categories NOT Suited for Temu (Detailed Analysis)
 
@@ -138,13 +138,13 @@ Your competitiveness = Your cost advantage + Product quality.
 4. 预估 Temu 月销量（基于品类热度）
 5. 预估利润率（全托管 vs 半托管分别计算）
 6. 对现有 Amazon 业务的影响分析：
-   - 是否会导致 Amazon 价格战？
-   - 是否会稀释品牌价值？
-   - 是否会分流 Amazon 客户？
+- 是否会导致 Amazon 价格战？
+- 是否会稀释品牌价值？
+- 是否会分流 Amazon 客户？
 7. 风险评估：
-   - 知识产权风险（Temu 上仿品多）
-   - 价格战风险
-   - 平台政策变化风险（de minimis 规则）
+- 知识产权风险（Temu 上仿品多）
+- 价格战风险
+- 平台政策变化风险（de minimis 规则）
 8. 最终建议：入驻/不入驻/观望，以及具体行动计划
 ```
 
@@ -154,7 +154,7 @@ Your competitiveness = Your cost advantage + Product quality.
 
 Since Temu gives sellers limited operational autonomy, AI applications mainly focus on pre-onboarding decisions and supply chain optimization:
 
-> 📎 **Related Reading**: [A1 Product Research & Market Analysis](../a-operators/a1-product-research.md#1-product-research-methodology-the-fundamentals-before-ai) — Product research methodology from A1 can be used to evaluate which products are suitable for Temu.
+> **Related Reading**: [A1 Product Research & Market Analysis](../a-operators/a1-product-research.md#1-product-research-methodology-the-fundamentals-before-ai) Product research methodology from A1 can be used to evaluate which products are suitable for Temu.
 
 ### 3.1 Product Selection Data Analysis
 
@@ -224,38 +224,38 @@ Temu 要求的供货价：$[X]
 
 ## 4. Temu's Impact on the Cross-Border E-Commerce Landscape
 
-> 📎 **Related Reading**: [D4 Walmart](d4-walmart-ai-guide.md#d4-walmart-marketplace-ai-guide) — Walmart is a more suitable second platform for brand sellers, with a healthier competitive environment than Temu.
+> **Related Reading**: [D4 Walmart](d4-walmart-ai-guide.md#d4-walmart-marketplace-ai-guide) Walmart is a more suitable second platform for brand sellers, with a healthier competitive environment than Temu.
 
 ### 4.1 Detailed Impact Analysis on Amazon Sellers
 
 | Impact Dimension | Specific Manifestation | Severity | Response Strategy |
 |------------------|----------------------|----------|-------------------|
-| Low-price category diversion | Products in the $0-20 price range heavily diverted by Temu | ⭐⭐⭐⭐⭐ | Increase product differentiation, avoid pure price competition |
-| Declining price expectations | Consumers accustomed to Temu's low prices become more price-sensitive on Amazon | ⭐⭐⭐⭐ | Emphasize quality differences and brand value |
-| Rising customer acquisition costs | Some new users go to Temu first instead of Amazon | ⭐⭐⭐ | Strengthen social media brand building |
-| Limited impact on branded products | Products with brand recognition are less affected | ⭐⭐ | Continue investing in brand building |
-| Intensified supply chain competition | Factories supplying both Temu and Amazon sellers | ⭐⭐⭐ | Establish exclusive supplier relationships |
+| Low-price category diversion | Products in the $0-20 price range heavily diverted by Temu | | Increase product differentiation, avoid pure price competition |
+| Declining price expectations | Consumers accustomed to Temu's low prices become more price-sensitive on Amazon | | Emphasize quality differences and brand value |
+| Rising customer acquisition costs | Some new users go to Temu first instead of Amazon | | Strengthen social media brand building |
+| Limited impact on branded products | Products with brand recognition are less affected | | Continue investing in brand building |
+| Intensified supply chain competition | Factories supplying both Temu and Amazon sellers | | Establish exclusive supplier relationships |
 
-### 4.2 De Minimis Rule Changes — Deep Analysis
+### 4.2 De Minimis Rule Changes Deep Analysis
 
 ```
 De Minimis Rule Change Timeline:
 
 Before 2024: Imports under $800 are duty-free
-├── Temu leveraged this rule for duty-free direct mail small parcels
-├── This was one of the core sources of Temu's price advantage
-└── Approximately 1 billion small parcels entered the US annually via de minimis
+Temu leveraged this rule for duty-free direct mail small parcels
+This was one of the core sources of Temu's price advantage
+Approximately 1 billion small parcels entered the US annually via de minimis
 
 2025-2026: Rules tightening
-├── US eliminates de minimis exemption for Chinese goods
-├── Temu logistics costs increase 15-25%
-├── Temu accelerates US local warehouse construction (semi-managed model)
-└── Price advantage narrows but still exists (supply chain efficiency advantage)
+US eliminates de minimis exemption for Chinese goods
+Temu logistics costs increase 15-25%
+Temu accelerates US local warehouse construction (semi-managed model)
+Price advantage narrows but still exists (supply chain efficiency advantage)
 
 Impact on Sellers:
-├── Fully managed: Costs rise, Temu may further squeeze supply prices
-├── Semi-managed: Less impact (already shipping from local warehouses)
-└── Amazon sellers: Competitive pressure slightly eased but won't disappear
+Fully managed: Costs rise, Temu may further squeeze supply prices
+Semi-managed: Less impact (already shipping from local warehouses)
+Amazon sellers: Competitive pressure slightly eased but won't disappear
 ```
 
 ### 4.3 Complete Strategy Framework for Facing Temu Competition
@@ -264,39 +264,39 @@ Impact on Sellers:
 5-Layer Defense Strategy Against Temu Competition:
 
 Layer 1: Branding (Most Important)
-├── Build brand recognition (Temu has no brand space)
-├── Invest in Brand Registry, A+ Content, Brand Store
-├── Social media brand building (Instagram/YouTube/TikTok)
-└── Get users to search for your brand name, not category keywords
+Build brand recognition (Temu has no brand space)
+Invest in Brand Registry, A+ Content, Brand Store
+Social media brand building (Instagram/YouTube/TikTok)
+Get users to search for your brand name, not category keywords
 
 Layer 2: Differentiation
-├── Unique features/design (Temu only has commodity products)
-├── Better materials/craftsmanship (Temu product quality is inconsistent)
-├── Patent protection (prevent Temu sellers from copying)
-└── Unique use-case positioning
+Unique features/design (Temu only has commodity products)
+Better materials/craftsmanship (Temu product quality is inconsistent)
+Patent protection (prevent Temu sellers from copying)
+Unique use-case positioning
 
 Layer 3: Service Advantage
-├── Quality after-sales (Temu after-sales experience is poor)
-├── Fast delivery (FBA 1-2 days vs Temu 7-15 days)
-├── Product warranty/guarantee
-└── Customer relationship management (email/social media)
+Quality after-sales (Temu after-sales experience is poor)
+Fast delivery (FBA 1-2 days vs Temu 7-15 days)
+Product warranty/guarantee
+Customer relationship management (email/social media)
 
 Layer 4: Multi-Channel
-├── Amazon + Shopify + Social Media
-├── Don't depend on a single platform
-├── DTC (Direct to Consumer) to build direct customer relationships
-└── Social media traffic reduces dependence on platform traffic
+Amazon + Shopify + Social Media
+Don't depend on a single platform
+DTC (Direct to Consumer) to build direct customer relationships
+Social media traffic reduces dependence on platform traffic
 
 Layer 5: Supply Chain Moat
-├── Exclusive supplier agreements
-├── Proprietary molds/patents
-├── Shorter supply chain response times
-└── Better quality control systems
+Exclusive supplier agreements
+Proprietary molds/patents
+Shorter supply chain response times
+Better quality control systems
 ```
 
 ---
 
-## 4.4 Temu Semi-Managed Mode — Detailed Operations
+## 4.4 Temu Semi-Managed Mode Detailed Operations
 
 If you decide to join Temu's semi-managed program, here's a detailed operations guide:
 
@@ -304,36 +304,36 @@ If you decide to join Temu's semi-managed program, here's a detailed operations 
 
 ```
 Step 1: Registration
-├── Visit seller.temu.com
-├── Submit company info (supports China/US/Europe companies)
-├── Submit product info (category, quantity, price range)
-├── Review time: 3-7 business days
-└── Note: Temu has higher review standards for semi-managed sellers
+Visit seller.temu.com
+Submit company info (supports China/US/Europe companies)
+Submit product info (category, quantity, price range)
+Review time: 3-7 business days
+Note: Temu has higher review standards for semi-managed sellers
 
 Step 2: Overseas Warehouse Preparation
-├── Own warehouse: Directly connect to Temu system
-├── Third-party warehouse: Choose Temu-approved warehousing providers
-├── Inventory requirement: At least 30 days of sales inventory
-└── Warehouse location: US (priority), Europe, Southeast Asia
+Own warehouse: Directly connect to Temu system
+Third-party warehouse: Choose Temu-approved warehousing providers
+Inventory requirement: At least 30 days of sales inventory
+Warehouse location: US (priority), Europe, Southeast Asia
 
 Step 3: Product Listing
-├── Create product Listing (semi-managed sellers create their own)
-├── Upload product images (≥5, white background + lifestyle)
-├── Set price (Temu provides suggested price, seller can adjust)
-├── Set inventory quantity
-└── Submit for review (1-3 business days)
+Create product Listing (semi-managed sellers create their own)
+Upload product images (≥5, white background + lifestyle)
+Set price (Temu provides suggested price, seller can adjust)
+Set inventory quantity
+Submit for review (1-3 business days)
 
 Step 4: Order Processing
-├── Receive order → Ship within 24 hours
-├── Ship from overseas warehouse to buyer
-├── Delivery time requirement: 2-5 days (US domestic)
-└── Tracking information must be updated promptly
+Receive order → Ship within 24 hours
+Ship from overseas warehouse to buyer
+Delivery time requirement: 2-5 days (US domestic)
+Tracking information must be updated promptly
 
 Step 5: After-Sales
-├── Returns: Seller handles (overseas warehouse receives returns)
-├── Refunds: Per Temu policy
-├── Customer service: Temu handles most CS, complex issues forwarded to seller
-└── Negative reviews: Managed by Temu platform
+Returns: Seller handles (overseas warehouse receives returns)
+Refunds: Per Temu policy
+Customer service: Temu handles most CS, complex issues forwarded to seller
+Negative reviews: Managed by Temu platform
 ```
 
 ### Semi-Managed Listing Optimization
@@ -352,16 +352,16 @@ Step 5: After-Sales
 2. 产品描述（简洁、突出卖点、适合冲动购买场景）
 3. 卖点（5 个，每个 ≤50 字符，以利益点开头）
 4. 图片策略：
-   - 主图：白底，产品占画面 80%+
-   - 辅图 1：使用场景
-   - 辅图 2：尺寸对比
-   - 辅图 3：细节特写
-   - 辅图 4：包装内容
-   - 辅图 5：多角度展示
+- 主图：白底，产品占画面 80%+
+- 辅图 1：使用场景
+- 辅图 2：尺寸对比
+- 辅图 3：细节特写
+- 辅图 4：包装内容
+- 辅图 5：多角度展示
 5. 定价策略：
-   - 建议零售价 vs 促销价
-   - 是否设置优惠券
-   - 与竞品的价格差异化策略
+- 建议零售价 vs 促销价
+- 是否设置优惠券
+- 与竞品的价格差异化策略
 
 注意 Temu 特殊性：
 - Temu 用户是冲动购买型，描述要短、直接、有吸引力
@@ -445,7 +445,7 @@ Step 5: After-Sales
 
 ## 4.6 Multi-Platform Synergy Strategy: Temu with Amazon/Shopify
 
-> 📎 **Related Reading**: [D3 Cross-Platform Synergy Strategy](cross-platform-strategy.md#d3-cross-platform-ai-synergy-strategy-cross-platform-ai-strategy) — Cross-platform product line tiering and synergy strategies in D3.
+> **Related Reading**: [D3 Cross-Platform Synergy Strategy](cross-platform-strategy.md#d3-cross-platform-ai-synergy-strategy-cross-platform-ai-strategy) Cross-platform product line tiering and synergy strategies in D3.
 
 ### Product Line Tiering Strategy
 
@@ -453,22 +453,22 @@ Step 5: After-Sales
 Multi-Platform Product Line Tiering:
 
 Temu (Low-Price Traffic Driver):
-├── Products: Basic models, commodities, low-cost versions
-├── Price: $5-20
-├── Purpose: Volume, market testing, inventory clearance
-└── Profit expectation: 5-15%
+Products: Basic models, commodities, low-cost versions
+Price: $5-20
+Purpose: Volume, market testing, inventory clearance
+Profit expectation: 5-15%
 
 Amazon (Mid-Range Core):
-├── Products: Upgraded models, branded versions, differentiated products
-├── Price: $20-80
-├── Purpose: Primary profit source, brand building
-└── Profit expectation: 20-35%
+Products: Upgraded models, branded versions, differentiated products
+Price: $20-80
+Purpose: Primary profit source, brand building
+Profit expectation: 20-35%
 
 Shopify (Premium Brand):
-├── Products: Flagship models, limited editions, bundles
-├── Price: $30-150
-├── Purpose: Brand premium, DTC customer relationships
-└── Profit expectation: 40-60%
+Products: Flagship models, limited editions, bundles
+Price: $30-150
+Purpose: Brand premium, DTC customer relationships
+Profit expectation: 40-60%
 
 Notes:
 - Don't sell the exact same product on Temu and Amazon (avoid price conflicts)
@@ -486,8 +486,8 @@ Notes:
 - [ ] Establish Temu competitor monitoring process
 
 ---
-> 🏠 [Hub Home](../../README.md) · 📋 [Path D Overview](README.md) · 📊 [Platform Comparison](platform-comparison.md)
-> 
+> [Hub Home](../../README.md) · [Path D Overview](README.md) · [Platform Comparison](platform-comparison.md)
+>
 > **Path D**: [D1 Shopify](shopify-ai-guide.md) · [D2 TikTok](tiktok-shop-ai-guide.md) · [D3 Cross-Platform](cross-platform-strategy.md) · [D4 Walmart](d4-walmart-ai-guide.md) · [D5 Temu](d5-temu-seller-guide.md) · [D6 Southeast Asia](d6-southeast-asia-ai-guide.md) · [D7 Latin America](d7-mercado-libre-ai-guide.md) · [D8 Japan](d8-rakuten-japan-ai-guide.md) · [D9 eBay](d9-ebay-ai-guide.md) · [D10 AliExpress](d10-aliexpress-ai-guide.md) · [D11 Korea](d11-coupang-korea-ai-guide.md) · [D12 Faire](d12-faire-wholesale-ai-guide.md) · [D13 Europe](d13-europe-marketplaces-guide.md)
-> 
+>
 > **Quick Jump**: [Path 0 Foundations](../0-foundations/) · [Path A Operations](../a-operators/) · [Path B Technical](../b-developers/) · [Path C Management](../c-managers/) · [Path E Social Media](../e-social-media/)

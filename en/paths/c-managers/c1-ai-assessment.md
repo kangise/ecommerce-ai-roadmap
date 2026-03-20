@@ -2,26 +2,26 @@
 
 # C1. AI Capability Assessment & Planning
 
-> **Path**: Path C: Managers · **Module**: C1  
-> **Last Updated**: 2026-03-12  
-> **Difficulty**: ⭐ Beginner  
+> **Path**: Path C: Managers · **Module**: C1
+> **Last Updated**: 2026-03-12
+> **Difficulty**: Beginner
 > **Estimated Time**: 1-2 hours
 
-🏠 [Hub Home](../../README.md) · 📋 [Path C Overview](README.md)
+[Hub Home](../../README.md) · [Path C Overview](README.md)
 
 ```mermaid
 flowchart LR
-    C1["✅ C1 AI Assessment & Planning<br/>(Current)"]:::current
-    C1 --> C2["C2 Team Upskilling"]
-    C2 --> C3["C3 ROI Evaluation"]
-    classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
+C1[" C1 AI Assessment & Planning<br/>(Current)"]:::current
+C1 --> C2["C2 Team Upskilling"]
+C2 --> C3["C3 ROI Evaluation"]
+classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 ```
 
 ---
 
-## 📖 Module Navigation
+## Module Navigation
 
-1. [AI Implementation Methodology](#1-ai-implementation-methodology-think-before-you-act) · 2. [Priority Matrix](#2-ai-implementation-priority-matrix) · 3. [Prompt Templates](#3-prompt-templates-for-managers) · 4. [Assessment Tools](#4-assessment-tools) · 5. [Hands-on Workflow](#5-hands-on-workflow-ai-implementation-planning-sop) · 6. [Common Pitfalls](#6-common-pitfalls) · 7. [Case Studies](#7-case-studies-ai-implementation-across-team-sizes) · 8. [Learning Resources](#8-learning-resources) · 9. [🦞 OpenClaw Automation](#9-using-openclaw-for-ai-capability-assessment) · 10. [Completion Checklist](#10-completion-checklist)
+1. [AI Implementation Methodology](#1-ai-implementation-methodology-think-before-you-act) · 2. [Priority Matrix](#2-ai-implementation-priority-matrix) · 3. [Prompt Templates](#3-prompt-templates-for-managers) · 4. [Assessment Tools](#4-assessment-tools) · 5. [Hands-on Workflow](#5-hands-on-workflow-ai-implementation-planning-sop) · 6. [Common Pitfalls](#6-common-pitfalls) · 7. [Case Studies](#7-case-studies-ai-implementation-across-team-sizes) · 8. [Learning Resources](#8-learning-resources) · 9. [ OpenClaw Automation](#9-using-openclaw-for-ai-capability-assessment) · 10. [Completion Checklist](#10-completion-checklist)
 
 ---
 
@@ -33,14 +33,14 @@ A team AI capability assessment report and prioritized implementation plan. Afte
 - An AI implementation roadmap (with phased goals, timeline, and budget estimates)
 - A change management plan (to ensure your team actually adopts AI, not just "buys and shelves it")
 
-> 💡 **Core Principle**: AI implementation is not a technology problem — it's a management problem.
+> **Core Principle**: AI implementation is not a technology problem it's a management problem.
 
 
 ---
 
 ## 1. AI Implementation Methodology: Think Before You Act
 
-> 📎 **Related Reading**: [AI Application Landscape](../0-foundations/ai-landscape.md#ai-application-landscape-assessment-ai-application-landscape-for-cross-border-e-commerce) — See the AI Landscape for maturity levels across operational areas · [Platform Comparison](../d-platforms/platform-comparison.md#31-ai-application-maturity-by-platform) — See Platform Comparison for AI maturity and prioritization by platform.
+> **Related Reading**: [AI Application Landscape](../0-foundations/ai-landscape.md#ai-application-landscape-assessment-ai-application-landscape-for-cross-border-e-commerce) See the AI Landscape for maturity levels across operational areas · [Platform Comparison](../d-platforms/platform-comparison.md#31-ai-application-maturity-by-platform) See Platform Comparison for AI maturity and prioritization by platform.
 
 ### 1.1 AI Is Not a Silver Bullet
 
@@ -65,7 +65,7 @@ A team AI capability assessment report and prioritized implementation plan. Afte
 | High-stakes decisions | Decisions with significant cost of error | Large purchase orders, market entry/exit, legal compliance |
 | Requires latest policies | Platform rules change frequently | Latest Amazon policy interpretation, compliance requirement changes |
 
-> 💡 **Rule of Thumb**: If a task can be written as an SOP, it can most likely be made more efficient with AI.
+> **Rule of Thumb**: If a task can be written as an SOP, it can most likely be made more efficient with AI.
 
 ### 1.2 Three Phases of AI Implementation
 
@@ -122,7 +122,7 @@ Content rephrased for compliance with licensing restrictions. Source: [McKinsey 
 
 **How to Use:** Discuss with your team whether the scores for each area match your reality → adjust scores → select the top 2-3 priorities as pilots → use the Prompt templates in Section 3 to generate an implementation plan.
 
-> 💡 **Common Mistake**: Don't pick the highest-priority area if your team is most resistant to it. The purpose of a pilot is to "show the team it works."
+> **Common Mistake**: Don't pick the highest-priority area if your team is most resistant to it. The purpose of a pilot is to "show the team it works."
 
 
 ---
@@ -144,9 +144,9 @@ Content rephrased for compliance with licensing restrictions. Source: [McKinsey 
 - 月度 AI 工具预算：[X] 元/美元
 
 请输出：
-**阶段一：试点期（第 1-2 个月）** — 推荐试点场景、工具、负责人职责、第一周行动清单、衡量标准
-**阶段二：规模化（第 3-6 个月）** — 扩展路径、标准化流程、培训计划、新增工具、KPI
-**阶段三：系统化（第 7-12 个月）** — 自动化集成、技术支持需求、长期架构、预期 ROI
+**阶段一：试点期（第 1-2 个月）** 推荐试点场景、工具、负责人职责、第一周行动清单、衡量标准
+**阶段二：规模化（第 3-6 个月）** 扩展路径、标准化流程、培训计划、新增工具、KPI
+**阶段三：系统化（第 7-12 个月）** 自动化集成、技术支持需求、长期架构、预期 ROI
 每个阶段标注：预算估算、风险提示、关键里程碑。
 ```
 
@@ -230,10 +230,10 @@ Content rephrased for compliance with licensing restrictions. Source: [McKinsey 
 
 | Average Score | Maturity Level | Recommended Action |
 |--------|-----------|----------|
-| 1.0-2.0 | 🔴 Initial | Start with AI awareness training; pilot the simplest use case |
-| 2.1-3.0 | 🟡 Exploring | Find a Champion, build a Prompt library, expand pilot scope |
-| 3.1-4.0 | 🟢 Applying | Standardize processes, deepen use cases, start measuring ROI |
-| 4.1-5.0 | 🔵 Optimizing | Explore automation integration, build AI-driven new processes |
+| 1.0-2.0 | Initial | Start with AI awareness training; pilot the simplest use case |
+| 2.1-3.0 | Exploring | Find a Champion, build a Prompt library, expand pilot scope |
+| 3.1-4.0 | Applying | Standardize processes, deepen use cases, start measuring ROI |
+| 4.1-5.0 | Optimizing | Explore automation integration, build AI-driven new processes |
 
 ### 4.2 Team AI Skills Assessment
 
@@ -347,7 +347,7 @@ After 12 months: AI maturity 2.5→3.8, Prompt library with 80+ templates, 3 aut
 | AI governance needed? | No | Basic version | Full version |
 | Monthly tool cost | $0-40 | $60-500 | $250-2000+ |
 
-> 💡 The larger the team, the more AI implementation requires "management" rather than "technology."
+> The larger the team, the more AI implementation requires "management" rather than "technology."
 
 
 ---
@@ -454,8 +454,8 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 | Systematization | Embed in processes | Months 6-12 | API integration, automation, continuous optimization | >60% automation of key processes |
 
 ---
-> 🏠 [Hub Home](../../README.md) · 📋 [Path C Overview](README.md)
-> 
+> [Hub Home](../../README.md) · [Path C Overview](README.md)
+>
 > **Path C**: [C1 Assessment](c1-ai-assessment.md) · [C2 Upskilling](c2-team-building.md) · [C3 ROI](c3-roi-evaluation.md)
-> 
+>
 > **Quick Jump**: [Path 0 Foundations](../0-foundations/) · [Path A Operations](../a-operators/) · [Path B Developers](../b-developers/) · [Path D Multi-platform](../d-platforms/) · [Path E Social Media](../e-social-media/)

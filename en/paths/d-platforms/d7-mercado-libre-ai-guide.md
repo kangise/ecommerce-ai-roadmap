@@ -4,14 +4,14 @@
 
 > **Path**: Path D: Multi-Platform · **Module**: D7
 > **Last Updated**: 2026-03-14
-> **Difficulty**: ⭐⭐ Intermediate
+> **Difficulty**: Intermediate
 > **Estimated Time**: 1.5 hours
 
-🏠 [Hub Home](../../README.md) · 📋 [Path D Overview](README.md)
+[Hub Home](../../README.md) · [Path D Overview](README.md)
 
 ---
 
-> 💡 GMV $65B (2025), 120 million annual buyers, revenue +39% YoY. Latin America's largest e-commerce platform and the fastest-growing regional market. Core markets: Brazil (largest), Mexico, Argentina, Colombia.
+> GMV $65B (2025), 120 million annual buyers, revenue +39% YoY. Latin America's largest e-commerce platform and the fastest-growing regional market. Core markets: Brazil (largest), Mexico, Argentina, Colombia.
 
 ## 1. Latin America Market Overview
 
@@ -43,7 +43,7 @@
 
 ### 2.2 Mercado Libre Title Optimization
 
-> 📎 **Related Reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md#1-listing-methodology-the-fundamentals-before-ai) — Multi-language localization general methodology from A2; Listing optimization framework can be adapted for Spanish/Portuguese.
+> **Related Reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md#1-listing-methodology-the-fundamentals-before-ai) Multi-language localization general methodology from A2; Listing optimization framework can be adapted for Spanish/Portuguese.
 
 Mercado Libre title format differs from Amazon:
 
@@ -68,20 +68,20 @@ Mercado Libre title format differs from Amazon:
 请翻译为：
 
 1. 巴西葡语版本
-   - 标题（≤60 字符，巴西葡语，不是葡萄牙葡语）
-   - 描述（300-500 字，口语化，使用 "você"）
-   - 5 个卖点
-   - 价格转换为 R$（按当前汇率）
-   - 10 个巴西葡语搜索关键词
-   - 巴西消费者特别关心的点（如 "frete grátis" 包邮、"parcelamento" 分期）
+- 标题（≤60 字符，巴西葡语，不是葡萄牙葡语）
+- 描述（300-500 字，口语化，使用 "você"）
+- 5 个卖点
+- 价格转换为 R$（按当前汇率）
+- 10 个巴西葡语搜索关键词
+- 巴西消费者特别关心的点（如 "frete grátis" 包邮、"parcelamento" 分期）
 
 2. 拉美西语版本（墨西哥）
-   - 标题（≤60 字符，拉美西语，不是西班牙西语）
-   - 描述（300-500 字，使用 "usted" 或 "tú" 取决于品类）
-   - 5 个卖点
-   - 价格转换为 MXN
-   - 10 个墨西哥西语搜索关键词
-   - 墨西哥消费者特别关心的点（如 "envío gratis" 包邮、"meses sin intereses" 免息分期）
+- 标题（≤60 字符，拉美西语，不是西班牙西语）
+- 描述（300-500 字，使用 "usted" 或 "tú" 取决于品类）
+- 5 个卖点
+- 价格转换为 MXN
+- 10 个墨西哥西语搜索关键词
+- 墨西哥消费者特别关心的点（如 "envío gratis" 包邮、"meses sin intereses" 免息分期）
 
 注意：
 - Mercado Libre 标题格式：品牌+产品+核心属性（≤60 字符）
@@ -96,12 +96,12 @@ Mercado Libre title format differs from Amazon:
 
 | Factor | Weight | Description | AI Application |
 |--------|--------|-------------|----------------|
-| Logistics Tier | ⭐⭐⭐⭐⭐ | Mercado Envios Full (similar to FBA) significantly boosts rankings | Logistics decision-making |
-| Price Competitiveness | ⭐⭐⭐⭐⭐ | LatAm users are extremely price-sensitive | AI competitor price monitoring |
-| Seller Reputation | ⭐⭐⭐⭐ | MercadoLíder tier affects exposure | Maintain positive review rate |
-| Sales Volume | ⭐⭐⭐⭐ | Historical sales affect rankings | May need promotional volume push initially |
-| Listing Quality | ⭐⭐⭐ | Image + description completeness | AI Listing optimization |
-| Installment Plans | ⭐⭐⭐ | Products offering interest-free installments rank higher | Set up installment options |
+| Logistics Tier | | Mercado Envios Full (similar to FBA) significantly boosts rankings | Logistics decision-making |
+| Price Competitiveness | | LatAm users are extremely price-sensitive | AI competitor price monitoring |
+| Seller Reputation | | MercadoLíder tier affects exposure | Maintain positive review rate |
+| Sales Volume | | Historical sales affect rankings | May need promotional volume push initially |
+| Listing Quality | | Image + description completeness | AI Listing optimization |
+| Installment Plans | | Products offering interest-free installments rank higher | Set up installment options |
 
 ### 3.2 Mercado Libre Seller Tiers
 
@@ -113,7 +113,7 @@ Mercado Libre title format differs from Amazon:
 
 ### 3.3 Mercado Ads Advertising System
 
-> 📎 **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md#2-ai-tool-landscape-what-to-use-for-ads) — General ad optimization methodology from A3; CPC ad optimization framework can be reused for Mercado Ads.
+> **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md#2-ai-tool-landscape-what-to-use-for-ads) General ad optimization methodology from A3; CPC ad optimization framework can be reused for Mercado Ads.
 
 | Ad Type | Description | Billing |
 |---------|-------------|---------|
@@ -156,37 +156,37 @@ Mercado Libre's CBT is an onboarding mode designed specifically for cross-border
 CBT Onboarding Process:
 
 Step 1: Registration
-├── Apply through Mercado Libre CBT partners
-├── Supports direct registration for Chinese companies
-├── Required: Business license, legal representative ID, bank account
-└── Review time: 1-2 weeks
+Apply through Mercado Libre CBT partners
+Supports direct registration for Chinese companies
+Required: Business license, legal representative ID, bank account
+Review time: 1-2 weeks
 
 Step 2: Product Listing
-├── Supports bulk upload (API or Excel)
-├── Must provide Spanish/Portuguese Listings (English not accepted)
-├── Image requirements: White background main image + at least 3 secondary images
-└── Pricing: Local currency (R$/MXN/ARS)
+Supports bulk upload (API or Excel)
+Must provide Spanish/Portuguese Listings (English not accepted)
+Image requirements: White background main image + at least 3 secondary images
+Pricing: Local currency (R$/MXN/ARS)
 
 Step 3: Logistics Options
-├── Mercado Envios Full (Recommended)
-│   ├── Similar to FBA: Ship to Mercado Libre warehouse
-│   ├── Delivery speed: 1-3 days (local warehouse shipping)
-│   ├── Significant ranking boost
-│   └── Returns handled by Mercado Libre
-├── Mercado Envios (Standard)
-│   ├── Seller ships, Mercado Libre provides shipping labels
-│   └── Delivery speed: 3-7 days
-└── CBT Cross-Border Direct Mail
-    ├── Direct mail from China to buyer
-    ├── Delivery speed: 15-30 days
-    ├── Lowest ranking weight
-    └── Not recommended (except for testing phase)
+Mercado Envios Full (Recommended)
+Similar to FBA: Ship to Mercado Libre warehouse
+Delivery speed: 1-3 days (local warehouse shipping)
+Significant ranking boost
+Returns handled by Mercado Libre
+Mercado Envios (Standard)
+Seller ships, Mercado Libre provides shipping labels
+Delivery speed: 3-7 days
+CBT Cross-Border Direct Mail
+Direct mail from China to buyer
+Delivery speed: 15-30 days
+Lowest ranking weight
+Not recommended (except for testing phase)
 ```
 
 ### 4.2 Mercado Libre 2025 Q4 Key Data
 
-> **Real Case: Mercado Libre is called "Latin America's Amazon" — but it's much more than that**
-> As of February 2026, Mercado Libre has firmly established itself as indispensable digital infrastructure in Latin America. The "Latin America's Amazon" analogy increasingly fails to capture the full scope of its ecosystem — it's simultaneously a payment platform (Mercado Pago), logistics network (Mercado Envios), credit service (Mercado Credito), and advertising platform ([Financial Content](https://www.financialcontent.com/article/finterra-2026-2-27-the-latin-american-flywheel-a-2026-deep-dive-research-feature-on-mercadolibre-meli)).
+> **Real Case: Mercado Libre is called "Latin America's Amazon" but it's much more than that**
+> As of February 2026, Mercado Libre has firmly established itself as indispensable digital infrastructure in Latin America. The "Latin America's Amazon" analogy increasingly fails to capture the full scope of its ecosystem it's simultaneously a payment platform (Mercado Pago), logistics network (Mercado Envios), credit service (Mercado Credito), and advertising platform ([Financial Content](https://www.financialcontent.com/article/finterra-2026-2-27-the-latin-american-flywheel-a-2026-deep-dive-research-feature-on-mercadolibre-meli)).
 
 Content rephrased for compliance with licensing restrictions.
 
@@ -214,7 +214,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [Mornings
 
 ### 4.3 Latin America Market-Specific Challenges
 
-> 📎 **Related Reading**: [A6 Compliance & Risk Management](../a-operators/a6-compliance.md#1-compliance-methodology-the-fundamentals-before-ai) — Multi-market compliance methodology from A6; Latin American tax and certification requirements can reference the general compliance framework.
+> **Related Reading**: [A6 Compliance & Risk Management](../a-operators/a6-compliance.md#1-compliance-methodology-the-fundamentals-before-ai) Multi-market compliance methodology from A6; Latin American tax and certification requirements can reference the general compliance framework.
 
 | Challenge | Description | Response Strategy |
 |-----------|-------------|-------------------|
@@ -261,20 +261,20 @@ Mercado Envios is Mercado Libre's logistics solution ([Mercado Libre Shipping](h
 Global Selling Logistics Flow:
 
 Seller prepares inventory
-    ↓
+↓
 Ship to designated carrier (DHL/UPS)
-    ↓ Deliver to carrier within 3 business days
+↓ Deliver to carrier within 3 business days
 Carrier transports to destination country
-    ↓ Standard transit time
+↓ Standard transit time
 Last-mile delivery to buyer
-    ↓
+↓
 Buyer receives package
 
 Key Requirements:
-├── Deliver packages to designated carrier within 3 business days
-├── Use Mercado Libre-provided shipping labels
-├── Receive payment in USD; buyers pay in local currency
-└── Returns handled per platform policy
+Deliver packages to designated carrier within 3 business days
+Use Mercado Libre-provided shipping labels
+Receive payment in USD; buyers pay in local currency
+Returns handled per platform policy
 ```
 
 Content rephrased for compliance with licensing restrictions. Source: [Mercado Libre Learning Center](https://global-selling.mercadolibre.com/learning-center/news/how-to-ship-your-products-to-latin-america).
@@ -291,29 +291,29 @@ Content rephrased for compliance with licensing restrictions. Source: [Mercado L
 请帮我分析拉美市场选品机会：
 
 1. 高需求低竞争品类分析
-   - 巴西热门品类（电子、时尚、家居）
-   - 墨西哥热门品类（电子、汽配、家居）
-   - 中国供应链优势品类
+- 巴西热门品类（电子、时尚、家居）
+- 墨西哥热门品类（电子、汽配、家居）
+- 中国供应链优势品类
 
 2. 定价策略
-   - 考虑关税和物流成本后的定价
-   - 分期付款对定价的影响
-   - 与本地卖家的价格竞争力
+- 考虑关税和物流成本后的定价
+- 分期付款对定价的影响
+- 与本地卖家的价格竞争力
 
 3. 季节性分析
-   - 拉美主要购物节日
-   - 南半球季节差异（巴西/阿根廷/智利）
-   - 大促日历（Hot Sale/Buen Fin/Black Friday）
+- 拉美主要购物节日
+- 南半球季节差异（巴西/阿根廷/智利）
+- 大促日历（Hot Sale/Buen Fin/Black Friday）
 
 4. 合规要求
-   - 各国进口限制品类
-   - 认证要求（INMETRO-巴西/NOM-墨西哥）
-   - 税务考虑
+- 各国进口限制品类
+- 认证要求（INMETRO-巴西/NOM-墨西哥）
+- 税务考虑
 
 5. 竞争分析
-   - 中国卖家在拉美的竞争格局
-   - 与 Amazon MX/BR 的差异化
-   - 本地品牌的竞争优势
+- 中国卖家在拉美的竞争格局
+- 与 Amazon MX/BR 的差异化
+- 本地品牌的竞争优势
 ```
 
 ### 5.5 Mercado Libre Data Analysis Tools
@@ -335,8 +335,8 @@ Content rephrased for compliance with licensing restrictions. Source: [Mercado L
 - [ ] Set up Mercado Envios Full
 
 ---
-> 🏠 [Hub Home](../../README.md) · 📋 [Path D Overview](README.md) · 📊 [Platform Comparison](platform-comparison.md)
-> 
+> [Hub Home](../../README.md) · [Path D Overview](README.md) · [Platform Comparison](platform-comparison.md)
+>
 > **Path D**: [D1 Shopify](shopify-ai-guide.md) · [D2 TikTok](tiktok-shop-ai-guide.md) · [D3 Cross-Platform](cross-platform-strategy.md) · [D4 Walmart](d4-walmart-ai-guide.md) · [D5 Temu](d5-temu-seller-guide.md) · [D6 Southeast Asia](d6-southeast-asia-ai-guide.md) · [D7 Latin America](d7-mercado-libre-ai-guide.md) · [D8 Japan](d8-rakuten-japan-ai-guide.md) · [D9 eBay](d9-ebay-ai-guide.md) · [D10 AliExpress](d10-aliexpress-ai-guide.md) · [D11 Korea](d11-coupang-korea-ai-guide.md) · [D12 Faire](d12-faire-wholesale-ai-guide.md) · [D13 Europe](d13-europe-marketplaces-guide.md)
-> 
+>
 > **Quick Jump**: [Path 0 Foundations](../0-foundations/) · [Path A Operations](../a-operators/) · [Path B Technical](../b-developers/) · [Path C Management](../c-managers/) · [Path E Social Media](../e-social-media/)

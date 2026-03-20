@@ -2,35 +2,35 @@
 
 # A3. Advertising Optimization
 
-> **Path**: Path A: Operators · **Module**: A3  
-> **Last Updated**: 2026-03-12  
-> **Difficulty**: ⭐⭐ Intermediate  
-> **Estimated Time**: 30 minutes per day, 1–2 weeks
+> **Path**: Path A: Operators · **Module**: A3
+> **Last Updated**: 2026-03-12
+> **Difficulty**: Intermediate
+> **Estimated Time**: 30 minutes per day, 12 weeks
 ---
 
-🏠 [Hub Home](../../README.md) · 📋 [Path A Overview](README.md)
+[Hub Home](../../README.md) · [Path A Overview](README.md)
 
 ```mermaid
 flowchart LR
-    A1["A1 Product Research"]
-    A1 --> A2
-    A2["A2 Listing Creation"]
-    A2 --> A3
-    A3["✅ A3 Ad Optimization<br/>(Current)"]:::current
-    A3 --> A4
-    A4["A4 Customer Service"]
-    A4 --> A5
-    A5["A5 Inventory & Supply Chain"]
-    A5 --> A6
-    A6["A6 Compliance & Risk"]
-    classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
+A1["A1 Product Research"]
+A1 --> A2
+A2["A2 Listing Creation"]
+A2 --> A3
+A3[" A3 Ad Optimization<br/>(Current)"]:::current
+A3 --> A4
+A4["A4 Customer Service"]
+A4 --> A5
+A5["A5 Inventory & Supply Chain"]
+A5 --> A6
+A6["A6 Compliance & Risk"]
+classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 ```
 
 ---
 
-## 📖 Module Navigation
+## Module Navigation
 
-1. [Ad Methodology](#1-ad-methodology-the-fundamentals-before-ai) · 2. [AI Tool Landscape](#2-ai-tool-landscape-what-to-use-for-ads) · 3. [Prompt Template Library](#3-prompt-template-library-advertising-specific) · 4. [Ad Workflows in Practice](#4-ad-workflows-in-practice) · 5. [Common Pitfalls](#5-common-ad-pitfalls) · 6. [Advanced Techniques](#6-advanced-techniques) · 7. [Learning Resources](#7-learning-resources) · 8. [🦞 OpenClaw Automation](#8-automate-ad-optimization-with-openclaw) · 9. [Completion Checklist](#9-completion-checklist)
+1. [Ad Methodology](#1-ad-methodology-the-fundamentals-before-ai) · 2. [AI Tool Landscape](#2-ai-tool-landscape-what-to-use-for-ads) · 3. [Prompt Template Library](#3-prompt-template-library-advertising-specific) · 4. [Ad Workflows in Practice](#4-ad-workflows-in-practice) · 5. [Common Pitfalls](#5-common-ad-pitfalls) · 6. [Advanced Techniques](#6-advanced-techniques) · 7. [Learning Resources](#7-learning-resources) · 8. [ OpenClaw Automation](#8-automate-ad-optimization-with-openclaw) · 9. [Completion Checklist](#9-completion-checklist)
 
 
 ## What You'll Learn in This Module
@@ -38,7 +38,7 @@ flowchart LR
 Use AI tools to compress hours of ad data analysis into 30 minutes. From search term report analysis to bid optimization, build a reusable AI-assisted advertising management workflow.
 
 After completing this module, you'll be able to:
-- Use ChatGPT/Claude to analyze search term reports — find high-ROAS keywords and wasteful terms in 10 minutes
+- Use ChatGPT/Claude to analyze search term reports find high-ROAS keywords and wasteful terms in 10 minutes
 - Use AI to generate multiple Sponsored Brands ad copy variants for A/B testing
 - Use AI to create a 30-day new product ad launch plan, from Auto to Manual keyword harvesting
 - Understand the relationship between ACOS/TACOS/ROAS and use AI for ad budget allocation optimization
@@ -49,7 +49,7 @@ After completing this module, you'll be able to:
 
 ## 1. Ad Methodology: The Fundamentals Before AI
 
-> 📎 **Related Reading**: [D4 Walmart AI Guide](../d-platforms/d4-walmart-ai-guide.md#3-walmart-connect-advertising) — Walmart Connect advertising (first-price auction) covered in D4 · [E1 Instagram/Facebook AI Guide](../e-social-media/e1-instagram-facebook-ai-guide.md#e1-instagram-facebook-ai-operations-guide-meta-ecosystem-ai-playbook) — Meta Advantage+ AI ad creative generation and optimization covered in E1. · [E7 Cross-Channel Strategy](../e-social-media/e7-social-media-cross-channel.md#e7-social-media-cross-channel-strategy) — Cross-channel ad attribution and budget allocation framework covered in E7.
+> **Related Reading**: [D4 Walmart AI Guide](../d-platforms/d4-walmart-ai-guide.md#3-walmart-connect-advertising) Walmart Connect advertising (first-price auction) covered in D4 · [E1 Instagram/Facebook AI Guide](../e-social-media/e1-instagram-facebook-ai-guide.md#e1-instagram-facebook-ai-operations-guide-meta-ecosystem-ai-playbook) Meta Advantage+ AI ad creative generation and optimization covered in E1. · [E7 Cross-Channel Strategy](../e-social-media/e7-social-media-cross-channel.md#e7-social-media-cross-channel-strategy) Cross-channel ad attribution and budget allocation framework covered in E7.
 
 ### 1.1 First Principles of Amazon Advertising
 
@@ -61,7 +61,7 @@ Amazon's PPC bidding mechanism uses a Second-Price Auction:
 你实际支付的 CPC = 第二高出价 + $0.01
 ```
 
-This means you don't need to bid the highest — just $0.01 more than the second-highest bidder. But ad ranking isn't based on bid alone:
+This means you don't need to bid the highest just $0.01 more than the second-highest bidder. But ad ranking isn't based on bid alone:
 
 ```
 广告排名 = 出价 × 相关性 × 转化率
@@ -71,11 +71,11 @@ This means you don't need to bid the highest — just $0.01 more than the second
 - **Relevance**: How well your keywords and listing match the user's search intent
 - **Conversion Rate**: The percentage of users who actually purchase after clicking your ad
 
-> 💡 **Core Insight**: Many sellers assume "higher bid = better ranking." But if your listing has a high conversion rate, you can rank higher than competitors even with a lower bid. That's why ad optimization can't be separated from listing optimization — see [A2 Listing Module](a2-listing-optimization.md).
+> **Core Insight**: Many sellers assume "higher bid = better ranking." But if your listing has a high conversion rate, you can rank higher than competitors even with a lower bid. That's why ad optimization can't be separated from listing optimization see [A2 Listing Module](a2-listing-optimization.md).
 
 ### 1.2 The Relationship Between ACOS / TACOS / ROAS
 
-These three metrics are the core language of ad optimization — you need to understand them thoroughly:
+These three metrics are the core language of ad optimization you need to understand them thoroughly:
 
 ```
 ACOS (Advertising Cost of Sales) = 广告花费 / 广告销售额 × 100%
@@ -100,7 +100,7 @@ ROAS (Return on Ad Spend) = 广告销售额 / 广告花费
 
 **Why TACOS Matters More Than ACOS**
 
-ACOS only measures ad efficiency in isolation, but the real purpose of advertising isn't just direct sales — it's also driving organic keyword rankings (the organic rank flywheel):
+ACOS only measures ad efficiency in isolation, but the real purpose of advertising isn't just direct sales it's also driving organic keyword rankings (the organic rank flywheel):
 
 ```
 广告带来销量 → 销量提升关键词自然排名 → 自然流量增加 → 总销售额增长 → TACOS 下降
@@ -144,9 +144,9 @@ What AI is not good at:
 - **Real-time bidding**: Requires specialized tools (Helium 10 Adtomic, Perpetua) for automated bidding
 - **Creative design**: SB Video and SD visual creatives require design tools
 - **Brand strategy**: Overall ad strategy (defensive vs. offensive, brand vs. performance) requires human decision-making
-- **Budget decisions**: Total budget depends on business goals and cash flow — not something AI can determine
+- **Budget decisions**: Total budget depends on business goals and cash flow not something AI can determine
 
-> 💡 **Core Principle**: Use tools to pull ad data, AI for analysis and recommendations, and humans for strategy decisions and execution. AI is your ad analyst, not your ad manager.
+> **Core Principle**: Use tools to pull ad data, AI for analysis and recommendations, and humans for strategy decisions and execution. AI is your ad analyst, not your ad manager.
 
 ---
 
@@ -157,7 +157,7 @@ What AI is not good at:
 | Tool | Price | Core Capability | Best For | AI Features |
 |------|-------|----------------|----------|-------------|
 | [Helium 10 Adtomic](https://h10-wp.com/helium-10-adtomic/) | $229/mo (included in Platinum) | AI-driven bid automation, rule engine + AI suggestions | Intermediate sellers who need automated bid management | AI bid suggestions, auto negative keywords, budget optimization |
-| Jungle Scout PPC Manager | $49–84/mo | Simplified ad management, keyword suggestions | Beginners, user-friendly interface | Basic AI keyword suggestions |
+| Jungle Scout PPC Manager | $4984/mo | Simplified ad management, keyword suggestions | Beginners, user-friendly interface | Basic AI keyword suggestions |
 | Perpetua (by Ascential) | % of ad spend | Enterprise-grade AI ad optimization, auto bidding + budget allocation | Sellers with $5,000+/mo ad spend | Fully automated AI bidding, target ACOS optimization |
 | Pacvue | Enterprise pricing | Multi-platform ad management (Amazon + Walmart + Instacart) | Large sellers/agencies | AI budget allocation, cross-platform optimization |
 | [DeepBI](https://www.deepbi.com/blog/13/) | % of ad spend | AI ad management, beginner-friendly, hourly bid adjustments | Small-to-mid sellers who want fully managed ads | Fully automated AI management; case study: ACOS from 55% to 43% |
@@ -170,7 +170,7 @@ What AI is not good at:
 - Download search term reports weekly and analyze them with ChatGPT (see Section 3 prompt templates)
 - Manually adjust bids and negative keywords
 
-**Getting serious ($100–300/mo)**: Helium 10 Adtomic
+**Getting serious ($100300/mo)**: Helium 10 Adtomic
 - Adtomic's AI bid automation saves a ton of time
 - The rule engine lets you set rules like "auto-lower bid when ACOS > 40%"
 - Pair with ChatGPT for deep search term analysis
@@ -180,7 +180,7 @@ What AI is not good at:
 - Perpetua's target ACOS optimization works well for sellers with clear profit goals
 - DeepBI's fully managed mode is ideal for sellers who don't want to spend time managing ads
 
-> 💡 **Key Insight**: The core value of ad tools is automated execution, not strategy. Tools can auto-adjust bids and auto-add negative keywords, but the strategic question of "which keywords should I concentrate budget on" still requires you (or AI analysis) to decide. Best combo: Adtomic/Perpetua for automated execution, ChatGPT/Claude for strategic analysis.
+> **Key Insight**: The core value of ad tools is automated execution, not strategy. Tools can auto-adjust bids and auto-add negative keywords, but the strategic question of "which keywords should I concentrate budget on" still requires you (or AI analysis) to decide. Best combo: Adtomic/Perpetua for automated execution, ChatGPT/Claude for strategic analysis.
 
 Content rephrased for compliance with licensing restrictions. Sources: [deepbi.com AI PPC](https://www.deepbi.com/blog/13/), [aijourn.com PPC optimization](https://aijourn.com/amazon-ppc-optimization-tool/), [algofy.com AI tools 2026](https://www.algofy.com/post/best-ai-tools-for-amazon-sellers-in-2026)
 
@@ -189,14 +189,14 @@ Content rephrased for compliance with licensing restrictions. Sources: [deepbi.c
 | Tool | Use Case | Link |
 |------|----------|------|
 | ChatGPT / Claude | Search term report analysis, negative keyword discovery, copy generation, budget allocation suggestions | [chat.openai.com](https://chat.openai.com/) / [claude.ai](https://claude.ai/) |
-| Amazon Advertising Console | Official free ad management tool — create/manage all ad types | [advertising.amazon.com](https://advertising.amazon.com/) |
+| Amazon Advertising Console | Official free ad management tool create/manage all ad types | [advertising.amazon.com](https://advertising.amazon.com/) |
 | Amazon Brand Analytics | Search term ranking data, market basket analysis, audience demographics | Seller Central → Brand Analytics |
 | Amazon Attribution | Off-Amazon traffic tracking (Google Ads, social media, etc.) | [advertising.amazon.com/attribution](https://advertising.amazon.com/) |
 
 **Free Tool Strategy:**
 
 1. **Amazon Advertising Console is the foundation**: All ad operations happen here. Even if you use third-party tools, you need to understand the official console.
-2. **Search term reports are a goldmine**: Download search term reports weekly (Advertising → Reports → Search Term Report) — this is the most important data source for ad optimization. Analyzing with ChatGPT is 10x faster than doing it manually.
+2. **Search term reports are a goldmine**: Download search term reports weekly (Advertising → Reports → Search Term Report) this is the most important data source for ad optimization. Analyzing with ChatGPT is 10x faster than doing it manually.
 3. **Brand Analytics for competitive intelligence**: Search term ranking data shows which keywords competitors are advertising on; market basket analysis reveals what else shoppers are buying.
 4. **Amazon Attribution for off-Amazon traffic tracking**: If you're running Google Ads or social media ads driving traffic to Amazon, Attribution tracks conversion performance.
 
@@ -227,21 +227,21 @@ If you manage 10+ ad campaigns or need bulk operations, APIs can:
 ### 3.1 Search Term Report Analysis
 
 **Why this prompt works:** It requires AI to sort by ROAS and output in table format, avoiding AI's common tendency to give vague, generic advice. It splits output into 5 clear categories (high-converting, high-waste, high-impression-low-click, negative keywords, budget allocation), each with specific action items. Key design points:
-- "Sort by ROAS" — Forces AI to do quantitative ranking instead of subjective judgment
-- "Label each keyword with a recommended action and priority" — Directly action-oriented
-- "Exact negative vs. phrase negative" — Distinguishes negative types to avoid over-negating
+- "Sort by ROAS" Forces AI to do quantitative ranking instead of subjective judgment
+- "Label each keyword with a recommended action and priority" Directly action-oriented
+- "Exact negative vs. phrase negative" Distinguishes negative types to avoid over-negating
 
 **Common Mistakes:**
-- ❌ Too little data (<7 days) → Ad data has attribution delays (7–14 days); use at least 30 days of data for analysis
-- ❌ Not separating match types → Broad, Phrase, and Exact search terms perform very differently; analyze them separately
-- ❌ Ignoring high-impression zero-click terms → These terms mean your ad showed but nobody clicked — could be a main image or pricing issue
-- ❌ Only looking at ACOS, not TACOS → A high-ACOS keyword might be driving organic rankings; look at the overall picture
+- Too little data (<7 days) → Ad data has attribution delays (714 days); use at least 30 days of data for analysis
+- Not separating match types → Broad, Phrase, and Exact search terms perform very differently; analyze them separately
+- Ignoring high-impression zero-click terms → These terms mean your ad showed but nobody clicked could be a main image or pricing issue
+- Only looking at ACOS, not TACOS → A high-ACOS keyword might be driving organic rankings; look at the overall picture
 
 [Full template → prompts/advertising.md](../../prompts/advertising.md)
 
 **Advanced Variants:**
 
-**Variant A — Analysis by Match Type:**
+**Variant A Analysis by Match Type:**
 
 ```
 以下是我的搜索词报告数据（过去 30 天），请按匹配类型分层分析：
@@ -258,9 +258,9 @@ Exact Match 搜索词：[粘贴数据]
 5. 三种匹配类型的预算分配建议
 ```
 
-> 💡 **Why use this variant**: Broad Match is your "keyword discovery engine," Exact Match is your "profit harvester." Layered analysis helps you build a keyword harvesting pipeline from Broad → Phrase → Exact.
+> **Why use this variant**: Broad Match is your "keyword discovery engine," Exact Match is your "profit harvester." Layered analysis helps you build a keyword harvesting pipeline from Broad → Phrase → Exact.
 
-**Variant B — Time Trend Analysis (Weekly/Monthly Comparison):**
+**Variant B Time Trend Analysis (Weekly/Monthly Comparison):**
 
 ```
 以下是我的广告数据，分为两个时间段：
@@ -275,9 +275,9 @@ Exact Match 搜索词：[粘贴数据]
 5. 基于趋势，下个月的优化重点建议
 ```
 
-> 💡 **Why use this variant**: A single analysis only shows "where things stand now"; trend analysis reveals "whether things are getting better or worse." A sustained CPC increase may signal intensifying competition, requiring a strategy shift.
+> **Why use this variant**: A single analysis only shows "where things stand now"; trend analysis reveals "whether things are getting better or worse." A sustained CPC increase may signal intensifying competition, requiring a strategy shift.
 
-**Variant C — Competitor ASIN Targeting Analysis:**
+**Variant C Competitor ASIN Targeting Analysis:**
 
 ```
 以下是我的 Product Targeting（ASIN 定向）广告数据：
@@ -290,7 +290,7 @@ Exact Match 搜索词：[粘贴数据]
 4. 竞品定向 vs 关键词定向的整体效率对比
 ```
 
-> 💡 **Why use this variant**: ASIN targeting ads place your product on competitor detail pages. Analyzing which competitors' traffic converts best for you reveals which types of competitors you're most competitive against.
+> **Why use this variant**: ASIN targeting ads place your product on competitor detail pages. Analyzing which competitors' traffic converts best for you reveals which types of competitors you're most competitive against.
 
 ---
 
@@ -299,16 +299,16 @@ Exact Match 搜索词：[粘贴数据]
 **Why this prompt works:** The 5 styles force AI to create differentiated variants, preventing it from generating 5 headlines that all look the same. Each style targets a different buyer psychology, letting you test which resonates most with your target audience.
 
 **Common Mistakes:**
-- ❌ Headline exceeds 50 characters → Sponsored Brands headlines are limited to 50 characters; anything longer gets truncated
-- ❌ Not specifying the target audience → Different audiences respond differently to different styles; define your target before testing
-- ❌ Testing too many variants at once → Only test 2 variants at a time (A/B); don't test 5 simultaneously
-- ❌ Test duration too short → Run for at least 2 weeks to accumulate enough click data for statistical significance
+- Headline exceeds 50 characters → Sponsored Brands headlines are limited to 50 characters; anything longer gets truncated
+- Not specifying the target audience → Different audiences respond differently to different styles; define your target before testing
+- Testing too many variants at once → Only test 2 variants at a time (A/B); don't test 5 simultaneously
+- Test duration too short → Run for at least 2 weeks to accumulate enough click data for statistical significance
 
 [Full template → prompts/advertising.md](../../prompts/advertising.md)
 
 **Advanced Variants:**
 
-**Variant A — Sponsored Brands Video Script:**
+**Variant A Sponsored Brands Video Script:**
 
 ```
 我的产品是 [产品描述]，核心卖点是 [卖点]。
@@ -333,9 +333,9 @@ Exact Match 搜索词：[粘贴数据]
 每个脚本标注：画面建议、文字叠加内容、背景音乐风格建议。
 ```
 
-> 💡 **Why use this variant**: SB Video typically has 2–3x higher CTR than static SB ads. The key to a 15-second script is grabbing attention in the first 3 seconds — AI can help you design multiple "hooks."
+> **Why use this variant**: SB Video typically has 23x higher CTR than static SB ads. The key to a 15-second script is grabbing attention in the first 3 seconds AI can help you design multiple "hooks."
 
-**Variant B — Sponsored Display Creative Copy:**
+**Variant B Sponsored Display Creative Copy:**
 
 ```
 我的产品是 [产品描述]，目标是做竞品拦截（在竞品详情页展示我的广告）。
@@ -364,9 +364,9 @@ Exact Match 搜索词：[粘贴数据]
 **Why this prompt matters:** Negative keywords are the fastest way to lower ACOS. A single irrelevant search term spending $2/day adds up to $60/month in waste. AI can quickly identify all terms that need negating from thousands of search term report rows.
 
 **Common Mistakes:**
-- ❌ Over-negating causes a traffic cliff → Negating too many terms causes impressions to plummet. Negate no more than 20 terms at a time, then observe for 3 days before continuing.
-- ❌ Not distinguishing exact negative from phrase negative → Exact negative only blocks the exact search term; phrase negative blocks all searches containing that phrase. Using the wrong type can kill valid traffic.
-- ❌ Only negating non-converting terms, not irrelevant terms → Some terms may have a few conversions but are completely irrelevant (e.g., a phone case ad showing up for "phone" searches). Long-term, these drag down your ad quality score.
+- Over-negating causes a traffic cliff → Negating too many terms causes impressions to plummet. Negate no more than 20 terms at a time, then observe for 3 days before continuing.
+- Not distinguishing exact negative from phrase negative → Exact negative only blocks the exact search term; phrase negative blocks all searches containing that phrase. Using the wrong type can kill valid traffic.
+- Only negating non-converting terms, not irrelevant terms → Some terms may have a few conversions but are completely irrelevant (e.g., a phone case ad showing up for "phone" searches). Long-term, these drag down your ad quality score.
 
 ```
 你是一个 Amazon PPC 否定关键词专家。
@@ -380,20 +380,20 @@ Exact Match 搜索词：[粘贴数据]
 请生成否定关键词列表：
 
 1. **精确否定列表**（Negative Exact）：
-   - 完全不相关的搜索词（与产品无关）
-   - 花费 > $[X] 但零转化的搜索词
+- 完全不相关的搜索词（与产品无关）
+- 花费 > $[X] 但零转化的搜索词
 
 2. **短语否定列表**（Negative Phrase）：
-   - 包含某个词根的一系列不相关搜索词（如所有包含"free"的搜索词）
+- 包含某个词根的一系列不相关搜索词（如所有包含"free"的搜索词）
 
 3. **观察列表**（暂不否定，继续观察）：
-   - 花费中等、有少量转化但 ACOS 偏高的词
-   - 建议观察时间和判断标准
+- 花费中等、有少量转化但 ACOS 偏高的词
+- 建议观察时间和判断标准
 
 每个否定词标注：否定原因、预计节省的月度花费、风险评估（是否可能误伤有效流量）。
 ```
 
-**Advanced Variant — Negative Keyword Audit (Checking for Over-Negation):**
+**Advanced Variant Negative Keyword Audit (Checking for Over-Negation):**
 
 ```
 以下是我当前的否定关键词列表：
@@ -409,7 +409,7 @@ Exact Match 搜索词：[粘贴数据]
 4. 建议将哪些短语否定改为精确否定（缩小否定范围）？
 ```
 
-> 💡 **Core principle of negative keywords**: Better to under-negate than over-negate. Negating a term is easy; recovering the lost traffic is hard. Observe data changes for 3–5 days after each round of negations.
+> **Core principle of negative keywords**: Better to under-negate than over-negate. Negating a term is easy; recovering the lost traffic is hard. Observe data changes for 35 days after each round of negations.
 
 ---
 
@@ -418,10 +418,10 @@ Exact Match 搜索词：[粘贴数据]
 **Why this prompt matters:** 80% of your ad budget should go to the top 20% of high-performing ad groups. But many sellers distribute budget evenly, causing high-performing groups to run out of budget early while low-performing groups waste money. AI can calculate optimal allocation based on historical data.
 
 **Common Mistakes:**
-- ❌ Equal budget across all ad groups → High-ROAS groups may run out of budget by afternoon
-- ❌ Allocating budget based on ACOS alone → New product ads naturally have high ACOS because the goal is ranking, not profit
-- ❌ Not accounting for different ad objectives → Brand defense ads (brand keywords) and offensive ads (competitor keywords) have different budget logic
-- ❌ Not adjusting budget for sales events → During Prime Day/BFCM, traffic surges and daily budgets can be exhausted in hours
+- Equal budget across all ad groups → High-ROAS groups may run out of budget by afternoon
+- Allocating budget based on ACOS alone → New product ads naturally have high ACOS because the goal is ranking, not profit
+- Not accounting for different ad objectives → Brand defense ads (brand keywords) and offensive ads (competitor keywords) have different budget logic
+- Not adjusting budget for sales events → During Prime Day/BFCM, traffic surges and daily budgets can be exhausted in hours
 
 ```
 你是一个 Amazon 广告预算优化专家。
@@ -443,7 +443,7 @@ Exact Match 搜索词：[粘贴数据]
 5. 预计调整后的整体 ACOS 和 ROAS 变化
 ```
 
-**Advanced Variant — Sales Event Budget Strategy:**
+**Advanced Variant Sales Event Budget Strategy:**
 
 ```
 Prime Day / BFCM 大促即将到来。以下是我的日常广告数据：
@@ -467,19 +467,19 @@ Prime Day / BFCM 大促即将到来。以下是我的日常广告数据：
 - 如何分析大促广告效果？
 ```
 
-> 💡 **Core principle of budget allocation**: Budget follows ROAS, but consider the strategic objective of each ad. Brand keyword defense ads shouldn't be paused even if ROAS is mediocre — stopping them lets competitors steal your brand traffic.
+> **Core principle of budget allocation**: Budget follows ROAS, but consider the strategic objective of each ad. Brand keyword defense ads shouldn't be paused even if ROAS is mediocre stopping them lets competitors steal your brand traffic.
 
 ---
 
 ### 3.5 New Product Ad Launch Strategy
 
-**Why this prompt matters:** New product ad strategy is completely different from mature products. New products have no reviews, no sales history, and no keyword rankings — advertising is the only way to get initial traffic. AI can help you design a 30-day launch plan from scratch.
+**Why this prompt matters:** New product ad strategy is completely different from mature products. New products have no reviews, no sales history, and no keyword rankings advertising is the only way to get initial traffic. AI can help you design a 30-day launch plan from scratch.
 
 **Common Mistakes:**
-- ❌ Starting with Manual Exact right away → No data to support it; you don't know which keywords convert well. Start with Auto to collect data.
-- ❌ Chasing low ACOS during launch → The goal during launch is to get sales and reviews; high ACOS is normal
-- ❌ Budget too low → New products need enough impressions to collect data. A daily budget under $10 means data accumulates too slowly.
-- ❌ Not harvesting keywords → High-converting terms discovered in Auto campaigns should be promptly "harvested" into Manual campaigns
+- Starting with Manual Exact right away → No data to support it; you don't know which keywords convert well. Start with Auto to collect data.
+- Chasing low ACOS during launch → The goal during launch is to get sales and reviews; high ACOS is normal
+- Budget too low → New products need enough impressions to collect data. A daily budget under $10 means data accumulates too slowly.
+- Not harvesting keywords → High-converting terms discovered in Auto campaigns should be promptly "harvested" into Manual campaigns
 
 ```
 你是一个 Amazon 新品广告启动专家。
@@ -519,7 +519,7 @@ Week 4（评估期）：
 每周标注：具体操作步骤、预期指标、风险提示。
 ```
 
-**Advanced Variant — Auto → Manual Keyword Harvesting Flow:**
+**Advanced Variant Auto → Manual Keyword Harvesting Flow:**
 
 ```
 以下是我的新品 Auto 广告运行 2 周后的搜索词报告：
@@ -533,7 +533,7 @@ Week 4（评估期）：
 5. 收割后 Auto 广告是否继续运行？预算如何调整？
 ```
 
-> 💡 **Core logic of new product ads**: Auto is the "scout," Manual is the "harvester." Auto discovers which keywords work; Manual precisely targets those keywords. This Auto-to-Manual "harvesting" flow is the core of new product advertising.
+> **Core logic of new product ads**: Auto is the "scout," Manual is the "harvester." Auto discovers which keywords work; Manual precisely targets those keywords. This Auto-to-Manual "harvesting" flow is the core of new product advertising.
 
 ---
 
@@ -542,9 +542,9 @@ Week 4（评估期）：
 **Why this prompt matters:** Understanding which keywords competitors advertise on helps you discover new keyword opportunities and decode their ad strategies. While Amazon doesn't publicly share competitor ad data, you can infer it from search result pages.
 
 **Common Mistakes:**
-- ❌ Drawing conclusions from a single search → Ad display has randomness; search multiple times at different times of day
-- ❌ Not distinguishing SP from SB ads → SP appears within search results; SB appears as a top-of-page banner — different strategies
-- ❌ Ignoring SD ads → Competitors may be running SD ads on your product detail page
+- Drawing conclusions from a single search → Ad display has randomness; search multiple times at different times of day
+- Not distinguishing SP from SB ads → SP appears within search results; SB appears as a top-of-page banner different strategies
+- Ignoring SD ads → Competitors may be running SD ads on your product detail page
 
 ```
 我想分析竞品的广告策略。以下是我在 Amazon 搜索不同关键词时观察到的竞品广告情况：
@@ -567,18 +567,18 @@ Week 4（评估期）：
 5. 我的产品详情页上的竞品 SD 广告如何应对？
 ```
 
-> 💡 **Core value of competitor intelligence**: It's not about copying competitors — it's about finding their blind spots. If a competitor isn't advertising on a high-volume keyword, that's your low-cost acquisition opportunity.
+> **Core value of competitor intelligence**: It's not about copying competitors it's about finding their blind spots. If a competitor isn't advertising on a high-volume keyword, that's your low-cost acquisition opportunity.
 
 ---
 
 ### 3.7 Ad Performance Diagnosis
 
-**Why this prompt matters:** A sudden ACOS spike can have many causes — competitor price drops, seasonal shifts, listing changes, intensifying keyword competition. AI can help you systematically troubleshoot, avoiding the "treat the symptom, not the cause" trap.
+**Why this prompt matters:** A sudden ACOS spike can have many causes competitor price drops, seasonal shifts, listing changes, intensifying keyword competition. AI can help you systematically troubleshoot, avoiding the "treat the symptom, not the cause" trap.
 
 **Common Mistakes:**
-- ❌ Immediately lowering bids when ACOS rises → The cause might be a conversion rate drop; lowering bids will just reduce impressions too
-- ❌ Not considering external factors → Competitor price cuts, new entrants, seasonal changes all affect ad performance
-- ❌ Only looking at aggregate data, not segments → An overall ACOS increase might be caused by one underperforming ad group dragging down the average while others are fine
+- Immediately lowering bids when ACOS rises → The cause might be a conversion rate drop; lowering bids will just reduce impressions too
+- Not considering external factors → Competitor price cuts, new entrants, seasonal changes all affect ad performance
+- Only looking at aggregate data, not segments → An overall ACOS increase might be caused by one underperforming ad group dragging down the average while others are fine
 
 ```
 我的广告效果最近出现异常，请帮我做根因分析：
@@ -604,7 +604,7 @@ Week 4（评估期）：
 对每个可能的原因给出：可能性评估（高/中/低）、验证方法、应对策略。
 ```
 
-**Advanced Variant — Conversion Rate Drop Diagnosis:**
+**Advanced Variant Conversion Rate Drop Diagnosis:**
 
 ```
 我的广告点击量没变，但转化率从 [X]% 下降到 [X]%。
@@ -620,7 +620,7 @@ Week 4（评估期）：
 每个原因标注验证方法和修复建议。
 ```
 
-> 💡 **Core principle of ad diagnosis**: Check internal factors first (listing, price, reviews), then ad factors (bids, budget), and finally external factors (competitors, seasonality). 80% of ad performance declines are caused by internal factors.
+> **Core principle of ad diagnosis**: Check internal factors first (listing, price, reviews), then ad factors (bids, budget), and finally external factors (competitors, seasonality). 80% of ad performance declines are caused by internal factors.
 
 ---
 
@@ -629,10 +629,10 @@ Week 4（评估期）：
 **Why this prompt matters:** CPC, competitive landscape, and consumer behavior vary dramatically across marketplaces. An ad strategy that works on the US site often performs poorly when directly applied to DE or JP. AI can help you develop differentiated strategies for each marketplace.
 
 **Common Mistakes:**
-- ❌ Using the same keywords across all marketplaces → Different languages have different search habits; keywords need localization
-- ❌ Using the same bids across all marketplaces → US CPC can be 2–3x higher than DE; bid strategies need adjustment
-- ❌ Ignoring smaller marketplaces → JP, IT, ES have less competition and lower CPCs — ROI may actually be better than the US
-- ❌ Not accounting for VAT's impact on margins → European VAT (19–22%) significantly affects profit margins and the ACOS you can afford
+- Using the same keywords across all marketplaces → Different languages have different search habits; keywords need localization
+- Using the same bids across all marketplaces → US CPC can be 23x higher than DE; bid strategies need adjustment
+- Ignoring smaller marketplaces → JP, IT, ES have less competition and lower CPCs ROI may actually be better than the US
+- Not accounting for VAT's impact on margins → European VAT (1922%) significantly affects profit margins and the ACOS you can afford
 
 ```
 我的产品目前在 Amazon US 站投放广告，表现如下：
@@ -656,7 +656,7 @@ Week 4（评估期）：
 - [UK] 与 US 类似但市场规模小，CPC 介于 US 和 DE 之间
 ```
 
-> 💡 **Core principle of multi-marketplace ads**: Each marketplace is an independent market requiring its own ad strategy. But you can use US data as a "baseline" to accelerate launches on other sites — high-converting US keywords, once translated, are likely effective on other marketplaces too.
+> **Core principle of multi-marketplace ads**: Each marketplace is an independent market requiring its own ad strategy. But you can use US data as a "baseline" to accelerate launches on other sites high-converting US keywords, once translated, are likely effective on other marketplaces too.
 
 ---
 
@@ -667,46 +667,46 @@ Week 4（评估期）：
 This SOP standardizes the process of taking a new product's ads from zero to stable operation. Each step notes the tools and prompts used.
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│  Week 1: Data Collection Phase                           │
-│  Action: Create SP Auto campaigns (Broad + Close Match)  │
-│  Bids: 1.2x suggested bid (new products need higher      │
-│        bids to win impressions)                          │
-│  Budget: $20–50/day (ensure sufficient data volume)      │
-│  AI: New Product Launch Strategy Prompt (3.5)            │
-│  Monitor: Check spend and impressions daily to confirm   │
-│           ads are running                                │
-│  Output: 7-day search term report                        │
-├─────────────────────────────────────────────────────────┤
-│  Week 2: Keyword Harvesting Phase                        │
-│  Action: Download search term report → AI analysis →     │
-│          Create Manual campaigns                         │
-│  AI: Search Term Report Analysis Prompt (3.1)            │
-│  AI: Auto → Manual Keyword Harvesting Prompt (3.5 var.)  │
-│  Rules: Clicks ≥5 & CVR ≥10% → Exact Match              │
-│         Clicks ≥10 & has conversions → Phrase Match      │
-│         Spend >$5 & zero conversions → Negate            │
-│  Output: Manual SP campaigns + negative keyword list     │
-├─────────────────────────────────────────────────────────┤
-│  Week 3: Optimization Phase                              │
-│  Action: Adjust bids + add negatives + evaluate          │
-│          expanding ad types                              │
-│  AI: Negative Keyword Strategy Prompt (3.3)              │
-│  AI: Budget Allocation Optimization Prompt (3.4)         │
-│  Bid adjustments: ACOS < target → raise bid 10–20%      │
-│                   ACOS > target × 1.5 → lower bid 10–20%│
-│  Expansion: If Brand Registered, consider launching SB   │
-│  Output: Optimized ad structure + bid adjustment log     │
-├─────────────────────────────────────────────────────────┤
-│  Week 4: Evaluation Phase                                │
-│  Action: Comprehensive 30-day ad performance review      │
-│  AI: Ad Performance Diagnosis Prompt (3.7)               │
-│  Evaluate: ACOS trends, keyword ranking changes,         │
-│            TACOS changes                                 │
-│  Decision: Continue current strategy / adjust strategy /  │
-│            expand to more ad types                       │
-│  Output: 30-day ad report + next steps plan              │
-└─────────────────────────────────────────────────────────┘
+
+Week 1: Data Collection Phase
+Action: Create SP Auto campaigns (Broad + Close Match)
+Bids: 1.2x suggested bid (new products need higher
+bids to win impressions)
+Budget: $2050/day (ensure sufficient data volume)
+AI: New Product Launch Strategy Prompt (3.5)
+Monitor: Check spend and impressions daily to confirm
+ads are running
+Output: 7-day search term report
+
+Week 2: Keyword Harvesting Phase
+Action: Download search term report → AI analysis →
+Create Manual campaigns
+AI: Search Term Report Analysis Prompt (3.1)
+AI: Auto → Manual Keyword Harvesting Prompt (3.5 var.)
+Rules: Clicks ≥5 & CVR ≥10% → Exact Match
+Clicks ≥10 & has conversions → Phrase Match
+Spend >$5 & zero conversions → Negate
+Output: Manual SP campaigns + negative keyword list
+
+Week 3: Optimization Phase
+Action: Adjust bids + add negatives + evaluate
+expanding ad types
+AI: Negative Keyword Strategy Prompt (3.3)
+AI: Budget Allocation Optimization Prompt (3.4)
+Bid adjustments: ACOS < target → raise bid 1020%
+ACOS > target × 1.5 → lower bid 1020%
+Expansion: If Brand Registered, consider launching SB
+Output: Optimized ad structure + bid adjustment log
+
+Week 4: Evaluation Phase
+Action: Comprehensive 30-day ad performance review
+AI: Ad Performance Diagnosis Prompt (3.7)
+Evaluate: ACOS trends, keyword ranking changes,
+TACOS changes
+Decision: Continue current strategy / adjust strategy /
+expand to more ad types
+Output: 30-day ad report + next steps plan
+
 ```
 
 ### 4.2 Weekly Ad Optimization SOP (30 Minutes/Week)
@@ -714,47 +714,47 @@ This SOP standardizes the process of taking a new product's ads from zero to sta
 Ads aren't "set it and forget it." A weekly 30-minute optimization routine can continuously lower ACOS and improve ROAS.
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│  Step 1: Download Data (5 min)                           │
-│  Action: Download search term report from Advertising    │
-│          Console (past 7 days)                           │
-│  Format: CSV file                                        │
-├─────────────────────────────────────────────────────────┤
-│  Step 2: AI Analysis (10 min)                            │
-│  AI: Search Term Report Analysis Prompt (3.1)            │
-│  Input: Paste CSV data into ChatGPT/Claude               │
-│  Output: High-converting terms, wasteful terms, negative │
-│          keyword suggestions, bid adjustment suggestions  │
-├─────────────────────────────────────────────────────────┤
-│  Step 3: Execute Adjustments (10 min)                    │
-│  Action: Adjust bids, add negative keywords, reallocate  │
-│          budget based on AI recommendations              │
-│  Principle: Keep each adjustment under 20% to avoid      │
-│             dramatic swings                              │
-├─────────────────────────────────────────────────────────┤
-│  Step 4: Log Changes (5 min)                             │
-│  Action: Record what adjustments were made and why       │
-│  Tool: Simple Excel spreadsheet or notes                 │
-│  Value: Accumulate data; compare results next week       │
-└─────────────────────────────────────────────────────────┘
+
+Step 1: Download Data (5 min)
+Action: Download search term report from Advertising
+Console (past 7 days)
+Format: CSV file
+
+Step 2: AI Analysis (10 min)
+AI: Search Term Report Analysis Prompt (3.1)
+Input: Paste CSV data into ChatGPT/Claude
+Output: High-converting terms, wasteful terms, negative
+keyword suggestions, bid adjustment suggestions
+
+Step 3: Execute Adjustments (10 min)
+Action: Adjust bids, add negative keywords, reallocate
+budget based on AI recommendations
+Principle: Keep each adjustment under 20% to avoid
+dramatic swings
+
+Step 4: Log Changes (5 min)
+Action: Record what adjustments were made and why
+Tool: Simple Excel spreadsheet or notes
+Value: Accumulate data; compare results next week
+
 ```
 
-> 💡 **Core principle of routine optimization**: Small steps, fast iterations. Don't make drastic changes all at once. Weekly micro-adjustments + logging + comparison — after 3 months, your ad efficiency will see a qualitative improvement.
+> **Core principle of routine optimization**: Small steps, fast iterations. Don't make drastic changes all at once. Weekly micro-adjustments + logging + comparison after 3 months, your ad efficiency will see a qualitative improvement.
 
 ### 4.3 Sales Event Ad Strategy (Prime Day / BFCM)
 
 Sales events are when ad spend is highest but ROI potential is also greatest. The strategy breaks into three phases:
 
 **2 Weeks Before: Ramp-Up Phase**
-- Increase daily budget to 2–3x normal (ensure ads don't go offline during the event)
+- Increase daily budget to 23x normal (ensure ads don't go offline during the event)
 - Expand keyword coverage (add more Broad Match keywords)
 - Create event-specific ad campaigns (easier to track event performance separately)
 - Pre-test SB ad copy (no time for testing during the event)
 - Use AI to analyze last year's search term reports from the same period to predict trending event keywords
 
-**During the Event (3–5 Days): Sprint Phase**
-- Increase budget to 3–5x normal
-- Raise bids 30–50% (competition intensifies during events; CPC will rise)
+**During the Event (35 Days): Sprint Phase**
+- Increase budget to 35x normal
+- Raise bids 3050% (competition intensifies during events; CPC will rise)
 - Check budget burn rate daily to avoid going offline early
 - Pause low-performing ad groups; concentrate budget on high-ROAS groups
 - Monitor ACOS in real time; adjust immediately if it exceeds thresholds
@@ -776,13 +776,13 @@ Sales events are when ad spend is highest but ROI potential is also greatest. Th
 | **Bidding too high** | ACOS far exceeds target; overpaying per click | Start at 80% of suggested bid and gradually increase. Use AI to analyze the optimal bid range. |
 | **Bidding too low** | Almost no impressions; budget isn't being spent | Check suggested bid; bid at least 100% of it. New products can go 120%. |
 | **Same bid for all match types** | Broad, Phrase, and Exact all use the same bid | Exact Match gets the highest bid (precise traffic); Broad Match gets the lowest (exploratory traffic). |
-| **Not using dynamic bidding** | Missing out on Amazon's automatic bid optimization | Enable "Dynamic bids – down only" (conservative) or "Up and down" (aggressive). |
+| **Not using dynamic bidding** | Missing out on Amazon's automatic bid optimization | Enable "Dynamic bids down only" (conservative) or "Up and down" (aggressive). |
 
 ### 5.2 Structure Pitfalls
 
 | Pitfall | Symptoms | How to Avoid |
 |---------|----------|--------------|
-| **Too many ad groups** | Management chaos, scattered budget, insufficient data per group | 3–5 campaigns per product is enough (Auto + Manual Exact + Manual Broad + SB). |
+| **Too many ad groups** | Management chaos, scattered budget, insufficient data per group | 35 campaigns per product is enough (Auto + Manual Exact + Manual Broad + SB). |
 | **Too few ad groups** | All keywords lumped together; can't optimize individually | At minimum, separate by match type (Exact in one group, Broad in another). |
 | **Keyword overlap** | Same keyword appears in multiple ad groups, competing against yourself | Use AI to check for keyword overlap; ensure each keyword is in only one ad group. |
 | **Auto and Manual conflict** | Auto and Manual campaigns compete for the same keyword | Exact-negate keywords in Auto that already exist in Manual. |
@@ -793,13 +793,13 @@ Sales events are when ad spend is highest but ROI potential is also greatest. Th
 |---------|----------|--------------|
 | **Budget exhaustion causes early shutoff** | Ads run out of budget by afternoon, missing the evening peak | Check your ad's "budget depletion time"; increase budget if it consistently runs out early. |
 | **Uneven budget allocation** | High-performing groups underfunded; low-performing groups waste budget | Use AI for weekly budget allocation optimization (Prompt 3.4). |
-| **Insufficient event budget** | Event traffic surges but budget wasn't adjusted; ads go offline in hours | Start increasing budget 2 weeks before the event; raise to 3–5x during the event. |
+| **Insufficient event budget** | Event traffic surges but budget wasn't adjusted; ads go offline in hours | Start increasing budget 2 weeks before the event; raise to 35x during the event. |
 
 ### 5.4 Data Pitfalls
 
 | Pitfall | Symptoms | How to Avoid |
 |---------|----------|--------------|
-| **Attribution delay** | Making adjustments based on yesterday's data, but conversions haven't fully attributed yet | Amazon ad data has a 7–14 day attribution window. Look at 7+ days of data before making decisions. |
+| **Attribution delay** | Making adjustments based on yesterday's data, but conversions haven't fully attributed yet | Amazon ad data has a 714 day attribution window. Look at 7+ days of data before making decisions. |
 | **Confusing ACOS and TACOS** | Only looking at ACOS and thinking ads are losing money, while ignoring organic sales driven by ads | Track both ACOS and TACOS. Declining TACOS = ads are driving organic growth. |
 | **Insufficient sample size** | Judging a keyword as "non-converting" after only 5 clicks | At least 20 clicks are needed for statistical significance. Keywords with too few clicks go on the "watch list." |
 | **Not reviewing search term reports** | Only looking at campaign-level data, not individual search terms | Search term reports are the goldmine of ad optimization. Review them weekly. |
@@ -810,7 +810,7 @@ Sales events are when ad spend is highest but ROI potential is also greatest. Th
 
 ### 6.1 Amazon Ads MCP Server (2026 Trend)
 
-In 2026, Amazon launched the Ads MCP Server (Model Context Protocol Server) — Amazon's official AI advertising interface that allows AI Agents to directly manage ad campaigns. This marks a shift from "humans operating tools" to "AI executing autonomously."
+In 2026, Amazon launched the Ads MCP Server (Model Context Protocol Server) Amazon's official AI advertising interface that allows AI Agents to directly manage ad campaigns. This marks a shift from "humans operating tools" to "AI executing autonomously."
 
 **What is an MCP Server?**
 
@@ -822,8 +822,8 @@ MCP (Model Context Protocol) is a standard protocol that lets AI models interact
 
 **What does this mean for sellers?**
 
-1. **Automation upgrade**: In the future, you'll be able to tell AI "lower bids by 15% on all keywords with ACOS above 40%" and AI will execute it directly — no need to log into the console and do it manually.
-2. **Real-time optimization**: AI Agents can monitor ad performance 24/7 and adjust bids and budgets in real time — faster than any human.
+1. **Automation upgrade**: In the future, you'll be able to tell AI "lower bids by 15% on all keywords with ACOS above 40%" and AI will execute it directly no need to log into the console and do it manually.
+2. **Real-time optimization**: AI Agents can monitor ad performance 24/7 and adjust bids and budgets in real time faster than any human.
 3. **Unified strategy and execution**: The current workflow is "AI analyzes → human executes." The future will be "human sets strategy → AI analyzes + executes."
 4. **Lower tool costs**: If AI can manage ads directly through MCP Server, the value proposition of third-party ad management tools will be redefined.
 
@@ -838,12 +838,12 @@ Content rephrased for compliance with licensing restrictions. Source: [futurumgr
 
 ### 6.2 The Flywheel Effect: Advertising and Organic Rankings
 
-The value of advertising isn't just direct sales — more importantly, it drives organic keyword rankings. This "flywheel effect" is the most strategic value of Amazon advertising:
+The value of advertising isn't just direct sales more importantly, it drives organic keyword rankings. This "flywheel effect" is the most strategic value of Amazon advertising:
 
 ```
 广告投放 → 广告带来销量 → 销量提升关键词自然排名
-    ↑                                    ↓
-    ← 降低对广告的依赖 ← 自然流量增加 ←
+↑ ↓
+← 降低对广告的依赖 ← 自然流量增加 ←
 ```
 
 **How to use AI to monitor the flywheel effect:**
@@ -868,7 +868,7 @@ The value of advertising isn't just direct sales — more importantly, it drives
 6. 预计还需要多长时间可以将 TACOS 降到 [X]%？
 ```
 
-> 💡 **The flywheel's key metric**: TACOS. If TACOS is consistently declining, the flywheel is working — ad spend stays flat but total sales are growing because organic traffic is increasing. If TACOS is consistently rising, you're becoming more ad-dependent and need to check listing quality and product competitiveness.
+> **The flywheel's key metric**: TACOS. If TACOS is consistently declining, the flywheel is working ad spend stays flat but total sales are growing because organic traffic is increasing. If TACOS is consistently rising, you're becoming more ad-dependent and need to check listing quality and product competitiveness.
 
 ---
 ### 6.3 Multi-Channel Ad Strategy (Amazon + Google + Social)
@@ -893,23 +893,23 @@ Amazon Attribution is a free tool that tracks off-Amazon traffic conversion perf
 请帮我设计站外引流策略：
 
 1. **Google Ads 策略**：
-   - 应该投放哪些关键词？（品牌词 vs 品类词 vs 竞品词）
-   - 落地页应该指向 Amazon 产品页还是品牌旗舰店？
-   - 预算分配建议
+- 应该投放哪些关键词？（品牌词 vs 品类词 vs 竞品词）
+- 落地页应该指向 Amazon 产品页还是品牌旗舰店？
+- 预算分配建议
 
 2. **Instagram/Meta Ads 策略**：
-   - 目标受众定义
-   - 广告创意方向（图片 vs 视频 vs 轮播）
-   - 预算分配建议
+- 目标受众定义
+- 广告创意方向（图片 vs 视频 vs 轮播）
+- 预算分配建议
 
 3. **Amazon Attribution 设置**：
-   - 如何创建追踪链接
-   - 如何分析各渠道的转化效果
-   - 如何基于数据优化渠道预算分配
+- 如何创建追踪链接
+- 如何分析各渠道的转化效果
+- 如何基于数据优化渠道预算分配
 
 4. **整体预算分配**：
-   - Amazon 站内 vs 站外的预算比例建议
-   - 不同阶段（新品期 vs 成熟期）的比例调整
+- Amazon 站内 vs 站外的预算比例建议
+- 不同阶段（新品期 vs 成熟期）的比例调整
 ```
 
 Content rephrased for compliance with licensing restrictions. Source: [deliveredsocial.com Amazon advertising beyond sponsored products](https://deliveredsocial.com/amazon-advertising-beyond-sponsored-products-dsp-video-and-external-traffic/)
@@ -1003,7 +1003,7 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 
 ## 8.5 Supplement: AI Ad Creative Batch Generation & Cross-Channel Attribution
 
-> 🆕 This section supplements cross-platform ad creative AI generation methodology and attribution systems. For platform-specific applications, see [E1 Meta Ads](../e-social-media/e1-instagram-facebook-ai-guide.md#6-meta-advantage-ai-广告深度指南), [E2 YouTube Ads](../e-social-media/e2-youtube-ai-guide.md#6-youtube-ads-ai-优化), [D4 Walmart Connect](../d-platforms/d4-walmart-ai-guide.md#3-walmart-connect-广告).
+> This section supplements cross-platform ad creative AI generation methodology and attribution systems. For platform-specific applications, see [E1 Meta Ads](../e-social-media/e1-instagram-facebook-ai-guide.md#6-meta-advantage-ai-广告深度指南), [E2 YouTube Ads](../e-social-media/e2-youtube-ai-guide.md#6-youtube-ads-ai-优化), [D4 Walmart Connect](../d-platforms/d4-walmart-ai-guide.md#3-walmart-connect-广告).
 
 ### AI Ad Creative Batch Generation Workflow (Universal)
 
@@ -1011,28 +1011,28 @@ Whether it's Amazon PPC, Meta Ads, Google Ads, or TikTok Ads, the AI creative ge
 
 ```
 Step 1: Asset Library Preparation
-├── Product photos (white background + lifestyle, at least 5)
-├── Product video footage (15–60 sec raw footage)
-├── UGC assets (customer review screenshots, usage videos)
-└── Brand assets (logo, brand colors, fonts)
+Product photos (white background + lifestyle, at least 5)
+Product video footage (1560 sec raw footage)
+UGC assets (customer review screenshots, usage videos)
+Brand assets (logo, brand colors, fonts)
 
 Step 2: AI Copy Variant Generation
-├── 5 pain-point-driven headlines
-├── 5 social proof headlines
-├── 5 limited-time offer headlines
-├── 3 body text lengths for each headline (short/medium/long)
-└── Output format: categorized by platform, ready to paste
+5 pain-point-driven headlines
+5 social proof headlines
+5 limited-time offer headlines
+3 body text lengths for each headline (short/medium/long)
+Output format: categorized by platform, ready to paste
 
 Step 3: AI Visual Asset Generation
-├── Product + scene composites (Midjourney/DALL-E)
-├── Data/selling point infographics (Canva AI)
-├── Video ads (CapCut AI editing)
-└── Adapt to each platform's dimensions (1:1 / 9:16 / 16:9)
+Product + scene composites (Midjourney/DALL-E)
+Data/selling point infographics (Canva AI)
+Video ads (CapCut AI editing)
+Adapt to each platform's dimensions (1:1 / 9:16 / 16:9)
 
 Step 4: Upload and Test
-├── Upload 10–20 creative combinations per platform
-├── Let platform AI auto-test the best combinations
-└── Review after 7 days; retire underperforming creatives
+Upload 1020 creative combinations per platform
+Let platform AI auto-test the best combinations
+Review after 7 days; retire underperforming creatives
 ```
 
 ### AI Ad Creative Batch Generation Prompt
@@ -1071,7 +1071,7 @@ When you're running ads simultaneously on Amazon PPC + Meta Ads + Google Ads, yo
 
 ## 9. Completion Checklist
 - [ ] Use AI to generate at least 3 different styles of Sponsored Brands ad copy
-- [ ] Understand the relationship between ACOS/TACOS/ROAS — can manually calculate and explain each
+- [ ] Understand the relationship between ACOS/TACOS/ROAS can manually calculate and explain each
 - [ ] Use AI to create a 30-day new product ad launch plan
 - [ ] Complete one ad budget allocation optimization (based on each ad group's ROAS data)
 - [ ] Understand the Amazon Ads MCP Server trend and the future of AI-managed advertising
@@ -1117,7 +1117,7 @@ Once you've completed all items above, you've mastered the core skills of AI-ass
 | Multi-platform ad management | Pacvue | Manage each platform independently |
 | Search term ranking data | Amazon Brand Analytics | Brand Analytics (free) |
 | Off-Amazon traffic tracking | Amazon Attribution | Attribution (free) |
-| Keyword reverse lookup | Helium 10 Cerebro | — |
+| Keyword reverse lookup | Helium 10 Cerebro | |
 | Ad report visualization | pandas + matplotlib | Google Sheets charts |
 | AI advertising API | Amazon Ads MCP Server | Not yet public (new in 2026) |
 
@@ -1126,7 +1126,7 @@ Once you've completed all items above, you've mastered the core skills of AI-ass
 | Metric | Formula | Example | Healthy Range |
 |--------|---------|---------|---------------|
 | **ACOS** | Ad Spend ÷ Ad Sales × 100% | $100 ÷ $400 = 25% | < product profit margin |
-| **TACOS** | Ad Spend ÷ Total Sales × 100% | $100 ÷ $1,000 = 10% | 5–15% (mature products) |
+| **TACOS** | Ad Spend ÷ Total Sales × 100% | $100 ÷ $1,000 = 10% | 515% (mature products) |
 | **ROAS** | Ad Sales ÷ Ad Spend | $400 ÷ $100 = 4.0 | > 3.0 (profitable) |
 | **CPC** | Ad Spend ÷ Clicks | $100 ÷ 200 = $0.50 | Varies by category |
 | **CTR** | Clicks ÷ Impressions × 100% | 200 ÷ 50,000 = 0.4% | > 0.3% |
@@ -1134,13 +1134,13 @@ Once you've completed all items above, you've mastered the core skills of AI-ass
 | **Break-even ACOS** | Product profit margin | 30% margin → ACOS < 30% to profit | = profit margin |
 
 **Quick Decision Formula:**
-- ACOS < profit margin → Ads are profitable ✅
-- ACOS = profit margin → Ads are breaking even ⚠️
-- ACOS > profit margin → Ads are losing money (but may be pushing rankings) ❌/🔄
+- ACOS < profit margin → Ads are profitable
+- ACOS = profit margin → Ads are breaking even
+- ACOS > profit margin → Ads are losing money (but may be pushing rankings) /
 
 ---
-> 🏠 [Hub Home](../../README.md) · 📋 [Path A Overview](README.md)
-> 
+> [Hub Home](../../README.md) · [Path A Overview](README.md)
+>
 > **Path A**: [A1 Product Research](a1-product-research.md) · [A2 Listing](a2-listing-optimization.md) · [A3 Advertising](a3-advertising.md) · [A4 Customer Service](a4-customer-service.md) · [A5 Inventory](a5-inventory.md) · [A6 Compliance](a6-compliance.md)
-> 
+>
 > **Quick Jump**: [Path 0 Foundations](../0-foundations/) · [Path B Developers](../b-developers/) · [Path C Managers](../c-managers/) · [Path D Multi-Platform](../d-platforms/) · [Path E Social Media](../e-social-media/)

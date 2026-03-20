@@ -1,18 +1,18 @@
 # D1. Shopify 独立站 AI 实战指南 | Shopify Store AI Playbook
 
-> **路径**: Path D: 多平台 · **模块**: D1  
-> **最后更新**: 2026-03-12  
-> **难度**: ⭐⭐ 中级  
-> **预计时间**: 3-4 小时  
+> **路径**: Path D: 多平台 · **模块**: D1
+> **最后更新**: 2026-03-12
+> **难度**: 中级
+> **预计时间**: 3-4 小时
 > **前置模块**: [Path 0 基础](../0-foundations/) · [A1 选品](../a-operators/a1-product-research.md) · [A2 Listing](../a-operators/a2-listing-optimization.md)
 
-🏠 [Hub 首页](../../README.md) · 📋 [Path D 总览](README.md)
+[Hub 首页](../../README.md) · [Path D 总览](README.md)
 
 ---
 
-## 📖 本模块章节导航
+## 本模块章节导航
 
-1. [Shopify vs Amazon](#1-shopify-vs-amazonai-应用的关键差异) · 2. [选品与市场分析](#2-选品与市场分析) · 3. [产品页面优化](#3-产品页面优化) · 4. [广告与获客](#4-广告与获客) · 5. [邮件营销自动化](#5-邮件营销自动化) · 6. [客服与售后](#6-客服与售后) · 7. [数据分析与优化](#7-数据分析与优化) · 8. [Prompt 模板](#8-prompt-模板shopify-专用) · 9. [AI 工具全景](#9-ai-工具全景shopify-生态) · 10. [🦞 OpenClaw 自动化](#10-用-openclaw-自动化-shopify-运营) · 11. [完成标志](#11-完成标志) · 12. [常见陷阱](#12-常见陷阱与误区) · 13. [案例分析](#13-案例分析shopify-独立站-ai-落地实战) · 14. [SEO 深度指南](#14-shopify-seo-深度指南ai-驱动) · 15. [广告进阶](#15-shopify-广告进阶ai-驱动的全漏斗策略) · 16. [客户生命周期](#16-客户生命周期管理ai-驱动) · 17. [数据分析进阶](#17-shopify-数据分析进阶) · 18. [学习资源](#18-学习资源) · 19. [Flow 自动化](#19-shopify-flow-自动化工作流) · 20. [FAQ](#20-常见问题-faq)
+1. [Shopify vs Amazon](#1-shopify-vs-amazonai-应用的关键差异) · 2. [选品与市场分析](#2-选品与市场分析) · 3. [产品页面优化](#3-产品页面优化) · 4. [广告与获客](#4-广告与获客) · 5. [邮件营销自动化](#5-邮件营销自动化) · 6. [客服与售后](#6-客服与售后) · 7. [数据分析与优化](#7-数据分析与优化) · 8. [Prompt 模板](#8-prompt-模板shopify-专用) · 9. [AI 工具全景](#9-ai-工具全景shopify-生态) · 10. [ OpenClaw 自动化](#10-用-openclaw-自动化-shopify-运营) · 11. [完成标志](#11-完成标志) · 12. [常见陷阱](#12-常见陷阱与误区) · 13. [案例分析](#13-案例分析shopify-独立站-ai-落地实战) · 14. [SEO 深度指南](#14-shopify-seo-深度指南ai-驱动) · 15. [广告进阶](#15-shopify-广告进阶ai-驱动的全漏斗策略) · 16. [客户生命周期](#16-客户生命周期管理ai-驱动) · 17. [数据分析进阶](#17-shopify-数据分析进阶) · 18. [学习资源](#18-学习资源) · 19. [Flow 自动化](#19-shopify-flow-自动化工作流) · 20. [FAQ](#20-常见问题-faq)
 
 ---
 
@@ -26,7 +26,7 @@
 - 一套 AI 驱动的邮件营销自动化流程
 - 一套 Shopify 专用的 Prompt 模板库
 
-> 💡 **核心理念**：Shopify 和 Amazon 的 AI 应用有 60% 是通用的（Prompt 工程、内容生成、数据分析），40% 是平台特有的（SEO 策略、广告渠道、邮件营销）。本模块聚焦那 40% 的差异。
+> **核心理念**：Shopify 和 Amazon 的 AI 应用有 60% 是通用的（Prompt 工程、内容生成、数据分析），40% 是平台特有的（SEO 策略、广告渠道、邮件营销）。本模块聚焦那 40% 的差异。
 
 ---
 
@@ -101,27 +101,27 @@ Content rephrased for compliance with licensing restrictions. Sources: [Shopify 
 
 ```
 Step 1：趋势发现（AI 辅助）
-├── 用 AI 分析 Google Trends 数据，找上升趋势品类
-├── 用 AI 监控社交媒体（TikTok/Instagram）的爆款产品
-├── 用 AI 分析竞品独立站的流量来源和热销产品
-└── 输出：10-20 个候选品类/产品
+用 AI 分析 Google Trends 数据，找上升趋势品类
+用 AI 监控社交媒体（TikTok/Instagram）的爆款产品
+用 AI 分析竞品独立站的流量来源和热销产品
+输出：10-20 个候选品类/产品
 
 Step 2：利基验证（AI 辅助）
-├── 用 AI 分析候选品类的搜索量和竞争度
-├── 用 AI 评估竞品独立站的 SEO 强度（DA、关键词排名）
-├── 用 AI 估算 CAC（基于行业基准和竞品广告数据）
-└── 输出：3-5 个通过验证的利基
+用 AI 分析候选品类的搜索量和竞争度
+用 AI 评估竞品独立站的 SEO 强度（DA、关键词排名）
+用 AI 估算 CAC（基于行业基准和竞品广告数据）
+输出：3-5 个通过验证的利基
 
 Step 3：供应商评估（AI 辅助）
-├── 用 AI 分析 1688/Alibaba 供应商的评价和交期
-├── 用 AI 计算不同供应商的综合成本（含物流、关税）
-├── 用 AI 生成供应商对比报告
-└── 输出：每个利基的 Top 3 供应商
+用 AI 分析 1688/Alibaba 供应商的评价和交期
+用 AI 计算不同供应商的综合成本（含物流、关税）
+用 AI 生成供应商对比报告
+输出：每个利基的 Top 3 供应商
 
 Step 4：财务模型（AI 辅助）
-├── 用 AI 建立单品利润模型（含 CAC、LTV、复购率假设）
-├── 用 AI 做敏感性分析（CAC 变化对利润的影响）
-└── 输出：Go/No-Go 决策
+用 AI 建立单品利润模型（含 CAC、LTV、复购率假设）
+用 AI 做敏感性分析（CAC 变化对利润的影响）
+输出：Go/No-Go 决策
 ```
 
 ### 2.3 Shopify 选品 Prompt 模板
@@ -195,9 +195,9 @@ Amazon 的描述是功能导向的 Bullet Points，Shopify 的描述是品牌故
 1. 产品标题（品牌化，不堆关键词，<70字符）
 2. 副标题/Tagline（一句话价值主张）
 3. 产品描述（300-500字，包含）：
-   - 开头：痛点共鸣或场景描绘（不要直接说产品功能）
-   - 中间：3-5 个核心卖点（用 benefit 而非 feature）
-   - 结尾：社会证明 + CTA
+- 开头：痛点共鸣或场景描绘（不要直接说产品功能）
+- 中间：3-5 个核心卖点（用 benefit 而非 feature）
+- 结尾：社会证明 + CTA
 4. FAQ（5 个常见问题，含 SEO 关键词）
 5. Meta Title 和 Meta Description（含目标关键词）
 ```
@@ -260,9 +260,9 @@ Shopify 支持通过 App 做产品页 A/B 测试。AI 可以：
 
 ## 4. 广告与获客
 
-> 📎 **相关阅读**: [E1 Instagram/Facebook AI 指南](../e-social-media/e1-instagram-facebook-ai-guide.md) — Instagram Shopping 与 Shopify 集成详见 E1 · [D4 Walmart AI 指南](d4-walmart-ai-guide.md) — Amazon→Walmart 迁移方法论详见 D4
+> **相关阅读**: [E1 Instagram/Facebook AI 指南](../e-social-media/e1-instagram-facebook-ai-guide.md) Instagram Shopping 与 Shopify 集成详见 E1 · [D4 Walmart AI 指南](d4-walmart-ai-guide.md) Amazon→Walmart 迁移方法论详见 D4
 
-> Amazon 广告优化见 [A3 广告优化](../a-operators/a3-advertising.md)。Shopify 的广告生态完全不同 — 核心是 Facebook/Google/TikTok 站外广告。
+> Amazon 广告优化见 [A3 广告优化](../a-operators/a3-advertising.md)。Shopify 的广告生态完全不同 核心是 Facebook/Google/TikTok 站外广告。
 
 ### 4.1 Shopify 广告 vs Amazon 广告
 
@@ -279,28 +279,28 @@ Shopify 支持通过 App 做产品页 A/B 测试。AI 可以：
 
 ```
 Step 1：受众研究（AI 辅助）
-├── 用 AI 分析现有客户数据，生成客户画像
-├── 用 AI 建议 Lookalike 受众的种子人群
-├── 用 AI 分析竞品的 Facebook 广告（Ad Library）
-└── 输出：3-5 个测试受众
+用 AI 分析现有客户数据，生成客户画像
+用 AI 建议 Lookalike 受众的种子人群
+用 AI 分析竞品的 Facebook 广告（Ad Library）
+输出：3-5 个测试受众
 
 Step 2：创意生成（AI 批量）
-├── 用 AI 生成 10+ 广告文案变体（不同角度：痛点/好处/社会证明）
-├── 用 AI 生成广告图片/视频（产品场景图、对比图、UGC 风格）
-├── 用 AI 生成不同格式（Feed/Story/Reel）的适配版本
-└── 输出：20+ 创意素材组合
+用 AI 生成 10+ 广告文案变体（不同角度：痛点/好处/社会证明）
+用 AI 生成广告图片/视频（产品场景图、对比图、UGC 风格）
+用 AI 生成不同格式（Feed/Story/Reel）的适配版本
+输出：20+ 创意素材组合
 
 Step 3：测试与优化（AI 分析）
-├── 用 AI 分析广告数据（CTR、CPC、ROAS）
-├── 用 AI 识别最佳创意 × 受众组合
-├── 用 AI 建议预算重新分配
-└── 输出：优化后的广告组合
+用 AI 分析广告数据（CTR、CPC、ROAS）
+用 AI 识别最佳创意 × 受众组合
+用 AI 建议预算重新分配
+输出：优化后的广告组合
 
 Step 4：规模化（AI 自动化）
-├── 用 AI 工具自动化竞价和预算调整
-├── 用 AI 监控广告疲劳（创意衰减预警）
-├── 用 AI 自动生成新创意替换衰减素材
-└── 输出：持续优化的广告引擎
+用 AI 工具自动化竞价和预算调整
+用 AI 监控广告疲劳（创意衰减预警）
+用 AI 自动生成新创意替换衰减素材
+输出：持续优化的广告引擎
 ```
 
 ### 4.3 Google Ads AI 工作流
@@ -366,9 +366,9 @@ Step 4：规模化（AI 自动化）
 
 ## 5. 邮件营销自动化
 
-> 📎 **相关阅读**: [D8 Rakuten 日本 AI 指南](d8-rakuten-japan-ai-guide.md) — Rakuten R-Mail 邮件营销对比详见 D8
+> **相关阅读**: [D8 Rakuten 日本 AI 指南](d8-rakuten-japan-ai-guide.md) Rakuten R-Mail 邮件营销对比详见 D8
 
-> 这是 Shopify 相比 Amazon 最大的 AI 应用差异 — Amazon 卖家几乎无法做邮件营销，Shopify 卖家拥有完整的客户邮箱数据。
+> 这是 Shopify 相比 Amazon 最大的 AI 应用差异 Amazon 卖家几乎无法做邮件营销，Shopify 卖家拥有完整的客户邮箱数据。
 
 ### 5.1 为什么邮件营销是 Shopify 的 AI 杀手级应用
 
@@ -383,27 +383,27 @@ Step 4：规模化（AI 自动化）
 
 ```
 序列 1：欢迎序列（新订阅者）
-├── Email 1（立即）：欢迎 + 品牌故事 + 首单优惠码
-├── Email 2（+2天）：产品推荐（基于浏览行为）
-├── Email 3（+5天）：社会证明（客户评价 + UGC）
-└── Email 4（+7天）：限时提醒（优惠码即将过期）
+Email 1（立即）：欢迎 + 品牌故事 + 首单优惠码
+Email 2（+2天）：产品推荐（基于浏览行为）
+Email 3（+5天）：社会证明（客户评价 + UGC）
+Email 4（+7天）：限时提醒（优惠码即将过期）
 
 序列 2：弃购挽回（加购未付款）
-├── Email 1（+1小时）：温和提醒 + 产品图
-├── Email 2（+24小时）：解决顾虑（FAQ + 退换保障）
-└── Email 3（+48小时）：限时折扣（最后机会）
+Email 1（+1小时）：温和提醒 + 产品图
+Email 2（+24小时）：解决顾虑（FAQ + 退换保障）
+Email 3（+48小时）：限时折扣（最后机会）
 
 序列 3：购后培育（已购客户）
-├── Email 1（+1天）：订单确认 + 使用指南
-├── Email 2（+7天）：使用技巧 + 相关产品推荐
-├── Email 3（+14天）：邀请评价 + UGC 征集
-├── Email 4（+30天）：复购提醒 + 专属优惠
-└── Email 5（+60天）：会员计划邀请
+Email 1（+1天）：订单确认 + 使用指南
+Email 2（+7天）：使用技巧 + 相关产品推荐
+Email 3（+14天）：邀请评价 + UGC 征集
+Email 4（+30天）：复购提醒 + 专属优惠
+Email 5（+60天）：会员计划邀请
 
 序列 4：流失挽回（90天未购买）
-├── Email 1：我们想你了 + 新品推荐
-├── Email 2（+7天）：专属回归优惠
-└── Email 3（+14天）：最后机会 + 调查问卷
+Email 1：我们想你了 + 新品推荐
+Email 2（+7天）：专属回归优惠
+Email 3（+14天）：最后机会 + 调查问卷
 ```
 
 ### 5.3 邮件内容 AI 生成 Prompt
@@ -502,24 +502,24 @@ Content rephrased for compliance with licensing restrictions. Sources: [Omnisend
 
 ```
 每日：AI 自动检测异常
-├── 转化率突然下降？→ 检查页面加载速度、支付问题
-├── 某产品退货率飙升？→ 分析退货原因
-├── 广告 CPA 突然上升？→ 检查创意疲劳、受众饱和
-└── 输出：每日异常报告（Slack 通知）
+转化率突然下降？→ 检查页面加载速度、支付问题
+某产品退货率飙升？→ 分析退货原因
+广告 CPA 突然上升？→ 检查创意疲劳、受众饱和
+输出：每日异常报告（Slack 通知）
 
 每周：AI 生成周报
-├── 各渠道流量和转化趋势
-├── Top 10 产品表现
-├── 广告 ROAS 变化
-├── 邮件营销效果
-└── 输出：周度分析报告 + 优化建议
+各渠道流量和转化趋势
+Top 10 产品表现
+广告 ROAS 变化
+邮件营销效果
+输出：周度分析报告 + 优化建议
 
 每月：AI 深度分析
-├── 客户分群更新（RFM + 行为聚类）
-├── 产品生命周期分析（哪些该推广、哪些该下架）
-├── 竞品动态分析
-├── LTV/CAC 比率趋势
-└── 输出：月度战略报告
+客户分群更新（RFM + 行为聚类）
+产品生命周期分析（哪些该推广、哪些该下架）
+竞品动态分析
+LTV/CAC 比率趋势
+输出：月度战略报告
 ```
 
 ### 7.3 数据分析 Prompt 模板
@@ -728,7 +728,7 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 
 ---
 
-⬅️ [返回 Path D 总览](README.md) | 🏠 [返回 Hub 首页](../../README.md) | ➡️ [下一模块: D2 TikTok Shop AI 指南](tiktok-shop-ai-guide.md)
+[返回 Path D 总览](README.md) | [返回 Hub 首页](../../README.md) | [下一模块: D2 TikTok Shop AI 指南](tiktok-shop-ai-guide.md)
 
 
 ---
@@ -815,7 +815,7 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 - 复购率：35%（Amazon 几乎为 0）
 
 **关键教训：**
-1. 不要把 Amazon Listing 直接搬到 Shopify — 需要完全重写
+1. 不要把 Amazon Listing 直接搬到 Shopify 需要完全重写
 2. 独立站的 CAC 前 3 个月会很高，要有耐心和预算
 3. 邮件营销是独立站 vs Amazon 最大的差异化优势
 
@@ -843,7 +843,7 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 
 ## 14. Shopify SEO 深度指南（AI 驱动）
 
-> 📎 **相关阅读**: [E4 Pinterest AI 指南](../e-social-media/e4-pinterest-ai-guide.md) — Pinterest SEO 与 Shopify 集成详见 E4
+> **相关阅读**: [E4 Pinterest AI 指南](../e-social-media/e4-pinterest-ai-guide.md) Pinterest SEO 与 Shopify 集成详见 E4
 
 ### 14.1 Shopify SEO vs Amazon SEO
 
@@ -867,36 +867,36 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 请检查以下维度并给出修复建议：
 
 1. **URL 结构**
-   - 产品 URL 是否简洁（/products/product-name）
-   - 是否有重复 URL（/collections/all/products/xxx vs /products/xxx）
-   - 是否有 301 重定向处理旧 URL
+- 产品 URL 是否简洁（/products/product-name）
+- 是否有重复 URL（/collections/all/products/xxx vs /products/xxx）
+- 是否有 301 重定向处理旧 URL
 
 2. **Meta 标签**
-   - 首页 Title 和 Description 是否优化
-   - 产品页是否有唯一的 Meta 标签（不是默认模板）
-   - 集合页是否有描述性 Meta 标签
+- 首页 Title 和 Description 是否优化
+- 产品页是否有唯一的 Meta 标签（不是默认模板）
+- 集合页是否有描述性 Meta 标签
 
 3. **Schema 标记**
-   - Product Schema 是否包含价格、库存、评分
-   - BreadcrumbList Schema 是否正确
-   - Organization Schema 是否配置
+- Product Schema 是否包含价格、库存、评分
+- BreadcrumbList Schema 是否正确
+- Organization Schema 是否配置
 
 4. **站点速度**
-   - 图片是否使用 WebP 格式
-   - 是否有未使用的 App 拖慢速度
-   - Liquid 模板是否有性能问题
+- 图片是否使用 WebP 格式
+- 是否有未使用的 App 拖慢速度
+- Liquid 模板是否有性能问题
 
 5. **移动端**
-   - 是否通过 Google Mobile-Friendly 测试
-   - 触摸目标是否足够大
-   - 字体大小是否可读
+- 是否通过 Google Mobile-Friendly 测试
+- 触摸目标是否足够大
+- 字体大小是否可读
 
 6. **国际化**
-   - hreflang 标签是否正确配置
-   - 多语言 URL 结构是否合理
-   - 货币和语言切换是否顺畅
+- hreflang 标签是否正确配置
+- 多语言 URL 结构是否合理
+- 货币和语言切换是否顺畅
 
-每个问题给出：当前状态（✅/❌）+ 修复方法 + 优先级（高/中/低）
+每个问题给出：当前状态（/）+ 修复方法 + 优先级（高/中/低）
 ```
 
 ### 14.3 博客内容策略（AI 批量生成）
@@ -958,33 +958,33 @@ Content rephrased for compliance with licensing restrictions. Source: [Shopify G
 ### 15.1 全漏斗广告架构
 
 ```
-漏斗顶部（TOFU）— 品牌认知
-├── 目标：让不知道你的人知道你
-├── 渠道：Facebook/Instagram 视频广告、TikTok、YouTube
-├── AI 辅助：批量生成短视频脚本、兴趣受众发现
-├── KPI：CPM、视频观看率、品牌搜索量
-└── 预算占比：20-30%
+漏斗顶部（TOFU） 品牌认知
+目标：让不知道你的人知道你
+渠道：Facebook/Instagram 视频广告、TikTok、YouTube
+AI 辅助：批量生成短视频脚本、兴趣受众发现
+KPI：CPM、视频观看率、品牌搜索量
+预算占比：20-30%
 
-漏斗中部（MOFU）— 考虑评估
-├── 目标：让知道你的人考虑购买
-├── 渠道：Google Shopping、Facebook 再营销、博客 SEO
-├── AI 辅助：个性化产品推荐、对比内容生成
-├── KPI：CTR、加购率、邮箱订阅率
-└── 预算占比：30-40%
+漏斗中部（MOFU） 考虑评估
+目标：让知道你的人考虑购买
+渠道：Google Shopping、Facebook 再营销、博客 SEO
+AI 辅助：个性化产品推荐、对比内容生成
+KPI：CTR、加购率、邮箱订阅率
+预算占比：30-40%
 
-漏斗底部（BOFU）— 转化购买
-├── 目标：让考虑的人立即购买
-├── 渠道：弃购邮件、动态再营销、限时优惠
-├── AI 辅助：弃购挽回文案、个性化优惠策略
-├── KPI：转化率、ROAS、客单价
-└── 预算占比：30-40%
+漏斗底部（BOFU） 转化购买
+目标：让考虑的人立即购买
+渠道：弃购邮件、动态再营销、限时优惠
+AI 辅助：弃购挽回文案、个性化优惠策略
+KPI：转化率、ROAS、客单价
+预算占比：30-40%
 
-漏斗后（Post-Purchase）— 复购忠诚
-├── 目标：让买过的人再买
-├── 渠道：邮件序列、SMS、忠诚度计划
-├── AI 辅助：复购预测、个性化推荐、流失预警
-├── KPI：复购率、LTV、NPS
-└── 预算占比：10-15%
+漏斗后（Post-Purchase） 复购忠诚
+目标：让买过的人再买
+渠道：邮件序列、SMS、忠诚度计划
+AI 辅助：复购预测、个性化推荐、流失预警
+KPI：复购率、LTV、NPS
+预算占比：10-15%
 ```
 
 ### 15.2 Facebook Ads 深度优化
@@ -1009,19 +1009,19 @@ Content rephrased for compliance with licensing restrictions. Source: [Shopify G
 
 请设计：
 1. 第 1 周测试计划（5 个创意角度 × 3 个受众 = 15 个广告组）
-   - 每个创意角度的文案（Primary Text + Headline）
-   - 每个受众的定义（兴趣/行为/Lookalike）
-   - 预算分配方案
+- 每个创意角度的文案（Primary Text + Headline）
+- 每个受众的定义（兴趣/行为/Lookalike）
+- 预算分配方案
 
 2. 第 2 周优化计划
-   - 如何判断哪些组合是赢家（CPA/ROAS 阈值）
-   - 如何关闭输家、放量赢家
-   - 如何生成新的测试变体
+- 如何判断哪些组合是赢家（CPA/ROAS 阈值）
+- 如何关闭输家、放量赢家
+- 如何生成新的测试变体
 
 3. 月度迭代节奏
-   - 每周测试多少新创意
-   - 创意疲劳的判断标准
-   - 如何保持创意新鲜度
+- 每周测试多少新创意
+- 创意疲劳的判断标准
+- 如何保持创意新鲜度
 ```
 
 ### 15.3 Google Ads 深度优化
@@ -1041,11 +1041,11 @@ Content rephrased for compliance with licensing restrictions. Source: [Shopify G
 
 请优化：
 1. 产品标题（<150 字符，前 70 字符最重要）
-   - 格式：品牌 + 产品类型 + 关键属性 + 型号
-   - 包含高搜索量关键词但保持可读性
+- 格式：品牌 + 产品类型 + 关键属性 + 型号
+- 包含高搜索量关键词但保持可读性
 2. 产品描述（<5000 字符）
-   - 前 160 字符最重要（会显示在广告中）
-   - 自然融入关键词
+- 前 160 字符最重要（会显示在广告中）
+- 自然融入关键词
 3. 产品类型（product_type）建议
 4. 自定义标签（custom_label）建议（用于广告分组）
 5. 额外属性建议（颜色、材质、尺寸等）
@@ -1094,11 +1094,11 @@ Shopify 最大的优势是拥有完整的客户数据。AI 可以基于 RFM（Re
 
 | 客户分群 | RFM 特征 | AI 策略 | 预期效果 |
 |----------|---------|---------|---------|
-| 🏆 VIP 客户 | 最近买、经常买、花得多 | 专属优惠 + 新品优先体验 + 个性化推荐 | LTV +30% |
-| 💎 忠诚客户 | 经常买但客单价中等 | 交叉销售 + 满减激励 + 会员升级 | 客单价 +20% |
-| 🔥 高潜客户 | 最近买了但只买一次 | 购后培育序列 + 相关产品推荐 | 复购率 +25% |
-| 😴 沉睡客户 | 很久没买了 | 流失挽回邮件 + 专属折扣 | 挽回率 10-15% |
-| 👋 流失客户 | 超过 180 天未购买 | 最后机会邮件 + 调查问卷 | 挽回率 3-5% |
+| VIP 客户 | 最近买、经常买、花得多 | 专属优惠 + 新品优先体验 + 个性化推荐 | LTV +30% |
+| 忠诚客户 | 经常买但客单价中等 | 交叉销售 + 满减激励 + 会员升级 | 客单价 +20% |
+| 高潜客户 | 最近买了但只买一次 | 购后培育序列 + 相关产品推荐 | 复购率 +25% |
+| 沉睡客户 | 很久没买了 | 流失挽回邮件 + 专属折扣 | 挽回率 10-15% |
+| 流失客户 | 超过 180 天未购买 | 最后机会邮件 + 调查问卷 | 挽回率 3-5% |
 
 **RFM 分析 Prompt：**
 
@@ -1143,19 +1143,19 @@ Shopify 最大的优势是拥有完整的客户数据。AI 可以基于 RFM（Re
 
 请设计：
 1. 流失预警信号（哪些行为预示客户即将流失）
-   - 邮件打开率下降
-   - 网站访问频率降低
-   - 购买间隔超过平均值的 1.5 倍
-   
+- 邮件打开率下降
+- 网站访问频率降低
+- 购买间隔超过平均值的 1.5 倍
+
 2. 分级干预策略
-   - 黄色预警（可能流失）：[干预方式]
-   - 橙色预警（很可能流失）：[干预方式]
-   - 红色预警（即将流失）：[干预方式]
+- 黄色预警（可能流失）：[干预方式]
+- 橙色预警（很可能流失）：[干预方式]
+- 红色预警（即将流失）：[干预方式]
 
 3. 自动化实施方案
-   - Klaviyo/Shopify Flow 的具体设置步骤
-   - 每个级别的邮件内容模板
-   - 效果衡量指标
+- Klaviyo/Shopify Flow 的具体设置步骤
+- 每个级别的邮件内容模板
+- 效果衡量指标
 ```
 
 ---
@@ -1267,9 +1267,9 @@ Shopify Flow 是 Shopify 内置的自动化引擎（类似 Zapier，但原生集
 触发：产品库存变化
 条件：库存 < 该产品过去 30 天日均销量 × 14（安全库存天数）
 动作：
-  1. 给运营发 Slack 通知（含产品名、当前库存、预计断货日期）
-  2. 自动在 Google Sheets 更新补货清单
-  3. 如果是 VIP 产品（标签），同时发邮件给供应商
+1. 给运营发 Slack 通知（含产品名、当前库存、预计断货日期）
+2. 自动在 Google Sheets 更新补货清单
+3. 如果是 VIP 产品（标签），同时发邮件给供应商
 ```
 
 **自动化工作流 2：客户分层自动化**
@@ -1278,10 +1278,10 @@ Shopify Flow 是 Shopify 内置的自动化引擎（类似 Zapier，但原生集
 触发：订单创建
 条件：检查客户累计消费金额
 动作：
-  - 累计 > $500：打 "VIP" 标签 → 触发 VIP 欢迎邮件
-  - 累计 > $200：打 "Loyal" 标签 → 触发忠诚度计划邀请
-  - 首次购买：打 "New" 标签 → 触发购后培育序列
-  - 30 天内第 2 次购买：打 "Repeat" 标签 → 触发交叉销售推荐
+- 累计 > $500：打 "VIP" 标签 → 触发 VIP 欢迎邮件
+- 累计 > $200：打 "Loyal" 标签 → 触发忠诚度计划邀请
+- 首次购买：打 "New" 标签 → 触发购后培育序列
+- 30 天内第 2 次购买：打 "Repeat" 标签 → 触发交叉销售推荐
 ```
 
 **自动化工作流 3：Review 管理**
@@ -1290,10 +1290,10 @@ Shopify Flow 是 Shopify 内置的自动化引擎（类似 Zapier，但原生集
 触发：收到新 Review（通过 Judge.me/Loox Webhook）
 条件：评分 ≤ 2 星
 动作：
-  1. 发 Slack 紧急通知到 #customer-service
-  2. AI 分析 Review 内容，提取问题类型
-  3. AI 生成回复建议（道歉 + 解决方案）
-  4. 创建客服工单（Gorgias/Zendesk）
+1. 发 Slack 紧急通知到 #customer-service
+2. AI 分析 Review 内容，提取问题类型
+3. AI 生成回复建议（道歉 + 解决方案）
+4. 创建客服工单（Gorgias/Zendesk）
 ```
 
 ### 19.3 Shopify Flow Prompt 模板
@@ -1313,7 +1313,7 @@ Shopify Flow 是 Shopify 内置的自动化引擎（类似 Zapier，但原生集
 1. 工作流名称和描述
 2. 触发条件（Trigger）
 3. 判断条件（Condition）
-4. 执行动作（Action）— 按顺序列出
+4. 执行动作（Action） 按顺序列出
 5. 需要的 App 集成（如有）
 6. 测试方案（如何验证工作流正常运行）
 7. 监控指标（如何衡量自动化效果）
@@ -1441,39 +1441,39 @@ GEO 优化的 5 个具体步骤:
 
 ```json
 {
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": "产品名称",
-  "description": "用自然语言描述产品，像回答问题一样",
-  "brand": {"@type": "Brand", "name": "品牌名"},
-  "sku": "SKU编号",
-  "gtin13": "条形码",
-  "material": "材质",
-  "color": "颜色",
-  "weight": {"@type": "QuantitativeValue", "value": "重量", "unitCode": "GRM"},
-  "offers": {
-    "@type": "Offer",
-    "price": "价格",
-    "priceCurrency": "USD",
-    "availability": "https://schema.org/InStock",
-    "shippingDetails": {
-      "@type": "OfferShippingDetails",
-      "deliveryTime": {"@type": "ShippingDeliveryTime", "businessDays": {"minValue": 2, "maxValue": 5}}
-    }
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.8",
-    "reviewCount": "1250"
-  },
-  "review": [
-    {
-      "@type": "Review",
-      "reviewRating": {"@type": "Rating", "ratingValue": "5"},
-      "author": {"@type": "Person", "name": "客户名"},
-      "reviewBody": "真实评价内容"
-    }
-  ]
+"@context": "https://schema.org",
+"@type": "Product",
+"name": "产品名称",
+"description": "用自然语言描述产品，像回答问题一样",
+"brand": {"@type": "Brand", "name": "品牌名"},
+"sku": "SKU编号",
+"gtin13": "条形码",
+"material": "材质",
+"color": "颜色",
+"weight": {"@type": "QuantitativeValue", "value": "重量", "unitCode": "GRM"},
+"offers": {
+"@type": "Offer",
+"price": "价格",
+"priceCurrency": "USD",
+"availability": "https://schema.org/InStock",
+"shippingDetails": {
+"@type": "OfferShippingDetails",
+"deliveryTime": {"@type": "ShippingDeliveryTime", "businessDays": {"minValue": 2, "maxValue": 5}}
+}
+},
+"aggregateRating": {
+"@type": "AggregateRating",
+"ratingValue": "4.8",
+"reviewCount": "1250"
+},
+"review": [
+{
+"@type": "Review",
+"reviewRating": {"@type": "Rating", "ratingValue": "5"},
+"author": {"@type": "Person", "name": "客户名"},
+"reviewBody": "真实评价内容"
+}
+]
 }
 ```
 
@@ -1624,22 +1624,22 @@ Review 分析 Prompt:
 请输出:
 
 1. 卖点提取（从好评中）
-   - Top 3 最常被提到的优点（附出现频率）
-   - 每个优点的客户原话（最有说服力的 3 句）
-   - 建议的 Shopify 产品描述写法（用客户的语言而不是营销语言）
+- Top 3 最常被提到的优点（附出现频率）
+- 每个优点的客户原话（最有说服力的 3 句）
+- 建议的 Shopify 产品描述写法（用客户的语言而不是营销语言）
 
 2. 使用场景提取（从好评中）
-   - Top 5 使用场景（附出现频率）
-   - 每个场景的产品图片建议
+- Top 5 使用场景（附出现频率）
+- 每个场景的产品图片建议
 
 3. 问题预防（从差评中）
-   - Top 5 投诉/问题（附出现频率和严重程度）
-   - 每个问题的 FAQ 回答建议
-   - 产品描述中需要明确说明的预期管理点
+- Top 5 投诉/问题（附出现频率和严重程度）
+- 每个问题的 FAQ 回答建议
+- 产品描述中需要明确说明的预期管理点
 
 4. 竞品洞察（从差评中）
-   - 客户提到的竞品及对比维度
-   - 差异化机会
+- 客户提到的竞品及对比维度
+- 差异化机会
 
 为什么这个 Prompt 有效:
 Amazon Review 是经过真实购买验证的客户反馈，
@@ -1670,7 +1670,7 @@ MCF 的优劣势:
 | 库存 | 共享 FBA 库存，不需要额外备货 | FBA 库存不足时两个渠道都受影响 |
 | 配送速度 | Prime 级别的配送速度（1-3 天） | 比 FBA 略慢（MCF 优先级低于 FBA） |
 | 成本 | 不需要额外仓储费 | MCF 费用比 FBA 高 10-15% |
-| 包装 | — | 默认用 Amazon 包装（可以申请无品牌包装） |
+| 包装 | | 默认用 Amazon 包装（可以申请无品牌包装） |
 | 集成 | Shopify 有原生 MCF App | 需要安装和配置 |
 
 什么时候用 MCF vs 第三方仓:
@@ -1716,22 +1716,22 @@ Klaviyo AI 的三层能力:
 触发: 加购后 1 小时未付款
 
 分支 1: 客户是新客（从未购买过）
-  ├── 邮件 1（+1h）: 温和提醒 + 产品图 + "需要帮助吗？"
-  ├── 如果打开但未购买 → 邮件 2（+24h）: 解决顾虑（FAQ + 退换保障 + 客户评价）
-  ├── 如果未打开 → 邮件 2b（+24h）: 换一个主题行重发（AI 生成不同角度）
-  └── 邮件 3（+48h）: 限时 10% 折扣（新客专属）
+邮件 1（+1h）: 温和提醒 + 产品图 + "需要帮助吗？"
+如果打开但未购买 → 邮件 2（+24h）: 解决顾虑（FAQ + 退换保障 + 客户评价）
+如果未打开 → 邮件 2b（+24h）: 换一个主题行重发（AI 生成不同角度）
+邮件 3（+48h）: 限时 10% 折扣（新客专属）
 
 分支 2: 客户是老客（购买过 1 次）
-  ├── 邮件 1（+1h）: "欢迎回来" + 产品图 + 上次购买的相关推荐
-  └── 邮件 2（+24h）: 免运费优惠（不需要折扣，老客对价格不那么敏感）
+邮件 1（+1h）: "欢迎回来" + 产品图 + 上次购买的相关推荐
+邮件 2（+24h）: 免运费优惠（不需要折扣，老客对价格不那么敏感）
 
 分支 3: 客户是 VIP（购买过 3+ 次）
-  └── 邮件 1（+1h）: 个性化提醒 + "您的专属客服可以帮您解决任何问题"
-      （VIP 客户不需要折扣，需要的是服务感）
+邮件 1（+1h）: 个性化提醒 + "您的专属客服可以帮您解决任何问题"
+（VIP 客户不需要折扣，需要的是服务感）
 
 分支 4: 弃购金额 > $200
-  ├── 邮件 1（+1h）: 提醒 + 分期付款选项（Klarna/Afterpay）
-  └── 邮件 2（+24h）: 电话/WhatsApp 跟进（高客单价值得人工介入）
+邮件 1（+1h）: 提醒 + 分期付款选项（Klarna/Afterpay）
+邮件 2（+24h）: 电话/WhatsApp 跟进（高客单价值得人工介入）
 ```
 
 为什么动态分支比线性序列效果好: 线性序列对所有客户发同样的内容，但新客需要建立信任，老客需要便利性，VIP 需要尊重感。Klaviyo 的 Conditional Split 功能可以基于客户属性和行为自动分支。
@@ -2029,24 +2029,24 @@ Shopify 数据:
 请做以下分析（不只是看 ROAS）:
 
 1. 效率分析
-   - 哪个广告组/系列的边际 ROAS 最高（增加 $1 预算能带来最多回报）
-   - 哪个广告组已经到了收益递减点（继续加预算效果会下降）
+- 哪个广告组/系列的边际 ROAS 最高（增加 $1 预算能带来最多回报）
+- 哪个广告组已经到了收益递减点（继续加预算效果会下降）
 
 2. 创意疲劳分析
-   - 哪个广告组的频次 >3（用户看太多次了）
-   - CTR 趋势是上升还是下降（下降说明创意疲劳）
+- 哪个广告组的频次 >3（用户看太多次了）
+- CTR 趋势是上升还是下降（下降说明创意疲劳）
 
 3. 漏斗分析
-   - 哪个广告组 CTR 高但转化率低（说明着陆页有问题）
-   - 哪个广告组 CTR 低但转化率高（说明受众精准但创意不够吸引）
+- 哪个广告组 CTR 高但转化率低（说明着陆页有问题）
+- 哪个广告组 CTR 低但转化率高（说明受众精准但创意不够吸引）
 
 4. 预算重新分配建议
-   - 具体的预算调整方案（从哪里减、加到哪里）
-   - 预期效果
+- 具体的预算调整方案（从哪里减、加到哪里）
+- 预期效果
 
 5. 新客获取 vs 老客复购的广告策略
-   - 当前新客/老客的广告花费比例是否合理
-   - 建议调整
+- 当前新客/老客的广告花费比例是否合理
+- 建议调整
 
 为什么这个 Prompt 有效:
 大多数卖家只看 ROAS 排名然后"给 ROAS 高的加预算"。
@@ -2067,20 +2067,20 @@ Shopify 数据:
 ```liquid
 {%- assign free_shipping_threshold = 50 -%}
 {%- case localization.market.handle -%}
-  {%- when 'de' -%}{%- assign free_shipping_threshold = 45 -%}
-  {%- when 'jp' -%}{%- assign free_shipping_threshold = 5000 -%}
-  {%- when 'uk' -%}{%- assign free_shipping_threshold = 40 -%}
+{%- when 'de' -%}{%- assign free_shipping_threshold = 45 -%}
+{%- when 'jp' -%}{%- assign free_shipping_threshold = 5000 -%}
+{%- when 'uk' -%}{%- assign free_shipping_threshold = 40 -%}
 {%- endcase -%}
 
 {%- assign remaining = free_shipping_threshold | minus: cart.total_price | divided_by: 100.0 -%}
 {%- if remaining > 0 -%}
-  <p class="free-shipping-notice">
-    还差 {{ remaining | money }} 即可享受免运费
-  </p>
+<p class="free-shipping-notice">
+还差 {{ remaining | money }} 即可享受免运费
+</p>
 {%- else -%}
-  <p class="free-shipping-notice">
-    恭喜! 您的订单已享受免运费
-  </p>
+<p class="free-shipping-notice">
+恭喜! 您的订单已享受免运费
+</p>
 {%- endif -%}
 ```
 
@@ -2091,32 +2091,32 @@ Shopify 数据:
 ```liquid
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": {{ product.title | json }},
-  "description": {{ product.description | strip_html | truncate: 500 | json }},
-  "image": [
-    {%- for image in product.images limit: 5 -%}
-      {{ image | image_url: width: 1200 | json }}{%- unless forloop.last -%},{%- endunless -%}
-    {%- endfor -%}
-  ],
-  "brand": { "@type": "Brand", "name": {{ shop.name | json }} },
-  "sku": {{ product.selected_or_first_available_variant.sku | json }},
-  "offers": {
-    "@type": "Offer",
-    "price": {{ product.selected_or_first_available_variant.price | money_without_currency | json }},
-    "priceCurrency": {{ cart.currency.iso_code | json }},
-    "availability": "{% if product.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
-    "url": {{ request.origin | append: product.url | json }},
-    "priceValidUntil": "{{ 'now' | date: '%Y' | plus: 1 }}-12-31"
-  }
-  {%- if product.metafields.reviews.rating -%}
-  ,"aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": {{ product.metafields.reviews.rating.value | json }},
-    "reviewCount": {{ product.metafields.reviews.rating_count | json }}
-  }
-  {%- endif -%}
+"@context": "https://schema.org",
+"@type": "Product",
+"name": {{ product.title | json }},
+"description": {{ product.description | strip_html | truncate: 500 | json }},
+"image": [
+{%- for image in product.images limit: 5 -%}
+{{ image | image_url: width: 1200 | json }}{%- unless forloop.last -%},{%- endunless -%}
+{%- endfor -%}
+],
+"brand": { "@type": "Brand", "name": {{ shop.name | json }} },
+"sku": {{ product.selected_or_first_available_variant.sku | json }},
+"offers": {
+"@type": "Offer",
+"price": {{ product.selected_or_first_available_variant.price | money_without_currency | json }},
+"priceCurrency": {{ cart.currency.iso_code | json }},
+"availability": "{% if product.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
+"url": {{ request.origin | append: product.url | json }},
+"priceValidUntil": "{{ 'now' | date: '%Y' | plus: 1 }}-12-31"
+}
+{%- if product.metafields.reviews.rating -%}
+,"aggregateRating": {
+"@type": "AggregateRating",
+"ratingValue": {{ product.metafields.reviews.rating.value | json }},
+"reviewCount": {{ product.metafields.reviews.rating_count | json }}
+}
+{%- endif -%}
 }
 </script>
 ```
@@ -2129,20 +2129,20 @@ Shopify 数据:
 {%- if product.metafields.custom.faq -%}
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {%- for faq in product.metafields.custom.faq.value -%}
-    {
-      "@type": "Question",
-      "name": {{ faq.question | json }},
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": {{ faq.answer | json }}
-      }
-    }{%- unless forloop.last -%},{%- endunless -%}
-    {%- endfor -%}
-  ]
+"@context": "https://schema.org",
+"@type": "FAQPage",
+"mainEntity": [
+{%- for faq in product.metafields.custom.faq.value -%}
+{
+"@type": "Question",
+"name": {{ faq.question | json }},
+"acceptedAnswer": {
+"@type": "Answer",
+"text": {{ faq.answer | json }}
+}
+}{%- unless forloop.last -%},{%- endunless -%}
+{%- endfor -%}
+]
 }
 </script>
 {%- endif -%}
@@ -2218,8 +2218,8 @@ Shopify 数据:
 | 买太多 App | 每个 App 都有月费，加起来很贵 | 起步只需要 3-4 个核心 App |
 
 ---
-> 🏠 [Hub 首页](../../README.md) · 📋 [Path D 总览](README.md) · 📊 [平台对比](platform-comparison.md)
-> 
+> [Hub 首页](../../README.md) · [Path D 总览](README.md) · [平台对比](platform-comparison.md)
+>
 > **Path D**: [D1 Shopify](shopify-ai-guide.md) · [D2 TikTok](tiktok-shop-ai-guide.md) · [D3 跨平台](cross-platform-strategy.md) · [D4 Walmart](d4-walmart-ai-guide.md) · [D5 Temu](d5-temu-seller-guide.md) · [D6 东南亚](d6-southeast-asia-ai-guide.md) · [D7 拉美](d7-mercado-libre-ai-guide.md) · [D8 日本](d8-rakuten-japan-ai-guide.md) · [D9 eBay](d9-ebay-ai-guide.md) · [D10 AliExpress](d10-aliexpress-ai-guide.md) · [D11 韩国](d11-coupang-korea-ai-guide.md) · [D12 Faire](d12-faire-wholesale-ai-guide.md) · [D13 欧洲](d13-europe-marketplaces-guide.md)
-> 
+>
 > **快速跳转**: [Path 0 基础](../0-foundations/) · [Path A 运营](../a-operators/) · [Path B 技术](../b-developers/) · [Path C 管理](../c-managers/) · [Path E 社交媒体](../e-social-media/)

@@ -4,14 +4,14 @@
 
 > **Path**: Path D: Multi-Platform · **Module**: D13
 > **Last Updated**: 2026-03-14
-> **Difficulty**: ⭐⭐ Intermediate
+> **Difficulty**: Intermediate
 > **Estimated Time**: 1 hour
 
-🏠 [Hub Home](../../README.md) · 📋 [Path D Overview](README.md)
+[Hub Home](../../README.md) · [Path D Overview](README.md)
 
 ---
 
-> 💡 Germany's e-commerce market €92B+ (2026), Europe's second-largest e-commerce market. Otto revenue $9B, Zalando GMV €17.6B (2025). These two platforms are important channels for entering the German market beyond Amazon.de, but localization requirements are extremely high.
+> Germany's e-commerce market €92B+ (2026), Europe's second-largest e-commerce market. Otto revenue $9B, Zalando GMV €17.6B (2025). These two platforms are important channels for entering the German market beyond Amazon.de, but localization requirements are extremely high.
 
 ## 1. German E-Commerce Market Overview
 
@@ -58,7 +58,7 @@ Per Otto Market official requirements ([otto.market](https://www.otto.market/en/
 
 Content rephrased for compliance with licensing restrictions.
 
-> **Cross-Border Seller Note**: Chinese sellers currently cannot directly onboard to Otto — they need a German/Dutch legal entity or agency. This is Otto's biggest difference from Amazon — higher threshold but less competition.
+> **Cross-Border Seller Note**: Chinese sellers currently cannot directly onboard to Otto they need a German/Dutch legal entity or agency. This is Otto's biggest difference from Amazon higher threshold but less competition.
 
 ## 3. Zalando Partner Program
 
@@ -86,7 +86,7 @@ Zalando is investing heavily in AI, leading European fashion e-commerce AI adopt
 | AI Personalized Recommendations | Personalized shopping experience based on user behavior | More complete product attributes = higher recommendation probability |
 | AI Shopping Assistant | Conversational shopping assistant with purchase history integration | Product descriptions need to be structured for AI comprehension |
 | AI Size Recommendations | Reduces returns due to sizing issues | Need to provide precise sizing data |
-| Content Production Efficiency | Campaign production time reduced from 6 weeks to days | — |
+| Content Production Efficiency | Campaign production time reduced from 6 weeks to days | |
 
 > **Key Insight**: Zalando is collaborating with "one of Europe's most ambitious AI labs" ([DefenseWorld](https://www.defenseworld.net/2026/03/14/zalando-q4-earnings-call-highlights.html)) and integrating AI assistant "shoppability" into the platform. This means brands selling on Zalando need to ensure product data is structured and complete for AI systems to correctly understand and recommend.
 
@@ -106,7 +106,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ## 4. German Listing AI Optimization
 
-> 📎 **Related Reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md#42-listing-optimization-sop-improving-existing-listings) — General Listing optimization methodology from A2; core optimization framework can be adapted for German Listings.
+> **Related Reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md#42-listing-optimization-sop-improving-existing-listings) General Listing optimization methodology from A2; core optimization framework can be adapted for German Listings.
 
 ```
 你是一个德国电商本地化专家。
@@ -130,9 +130,9 @@ Content rephrased for compliance with licensing restrictions.
 
 ## 5. European Compliance Requirements (Detailed)
 
-> 📎 **Related Reading**: [A6 Compliance & Risk Management](../a-operators/a6-compliance.md#a6-compliance-risk-management) — Detailed multi-market compliance methodology from A6; CE certification, EPR, VAT, and other general compliance frameworks can be directly reused.
+> **Related Reading**: [A6 Compliance & Risk Management](../a-operators/a6-compliance.md#a6-compliance-risk-management) Detailed multi-market compliance methodology from A6; CE certification, EPR, VAT, and other general compliance frameworks can be directly reused.
 
-This is the biggest barrier to entering the European market — must be completed before onboarding:
+This is the biggest barrier to entering the European market must be completed before onboarding:
 
 | Compliance Item | Description | Est. Cost | Time | Mandatory |
 |----------------|-------------|-----------|------|-----------|
@@ -217,8 +217,8 @@ Starting 2024, all non-EU sellers must designate an EU Authorized Representative
 - [ ] Develop European multi-platform expansion roadmap
 
 ---
-> 🏠 [Hub Home](../../README.md) · 📋 [Path D Overview](README.md) · 📊 [Platform Comparison](platform-comparison.md)
-> 
+> [Hub Home](../../README.md) · [Path D Overview](README.md) · [Platform Comparison](platform-comparison.md)
+>
 > **Path D**: [D1 Shopify](shopify-ai-guide.md) · [D2 TikTok](tiktok-shop-ai-guide.md) · [D3 Cross-Platform](cross-platform-strategy.md) · [D4 Walmart](d4-walmart-ai-guide.md) · [D5 Temu](d5-temu-seller-guide.md) · [D6 Southeast Asia](d6-southeast-asia-ai-guide.md) · [D7 Latin America](d7-mercado-libre-ai-guide.md) · [D8 Japan](d8-rakuten-japan-ai-guide.md) · [D9 eBay](d9-ebay-ai-guide.md) · [D10 AliExpress](d10-aliexpress-ai-guide.md) · [D11 Korea](d11-coupang-korea-ai-guide.md) · [D12 Faire](d12-faire-wholesale-ai-guide.md) · [D13 Europe](d13-europe-marketplaces-guide.md)
-> 
+>
 > **Quick Jump**: [Path 0 Foundations](../0-foundations/) · [Path A Operations](../a-operators/) · [Path B Technical](../b-developers/) · [Path C Management](../c-managers/) · [Path E Social Media](../e-social-media/)

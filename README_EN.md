@@ -13,7 +13,7 @@
 
 ---
 
-### 🚀 Try AI Product Research in 30 Seconds
+### Try AI Product Research in 30 Seconds
 
 Copy the prompt below into [ChatGPT](https://chat.openai.com/) or [Claude](https://claude.ai/) and get instant market analysis:
 
@@ -28,17 +28,17 @@ Please provide a quick market feasibility analysis including:
 Present key data comparisons in table format.
 ```
 
-👆 You'll get a market analysis in 30 seconds. More prompts → [Prompt Library](prompts/)
+You'll get a market analysis in 30 seconds. More prompts → [Prompt Library](prompts/)
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
-- [🔥 Top 10 Prompts (Ready to Use)](#-top-10-prompts-ready-to-use)
+- [ Top 10 Prompts (Ready to Use)](#top-10-prompts-ready-to-use)
 - [Choose Your Path](#choose-your-path)
-- [Path A: Operators — AI-Powered Daily Operations](#path-a-operators--ai-powered-daily-operations)
-- [Path B: Developers — Building AI Systems](#path-b-developers--building-ai-systems)
-- [Path C: Managers — AI Strategy & Execution](#path-c-managers--ai-strategy--execution)
+- [Path A: Operators AI-Powered Daily Operations](#path-a-operators--ai-powered-daily-operations)
+- [Path B: Developers Building AI Systems](#path-b-developers--building-ai-systems)
+- [Path C: Managers AI Strategy & Execution](#path-c-managers--ai-strategy--execution)
 - [Prompt Library](#prompt-library)
 - [Notebook Lab](#notebook-lab)
 - [Progress Tracking](#progress-tracking)
@@ -47,11 +47,11 @@ Present key data comparisons in table format.
 
 ---
 
-## 🔥 Top 10 Prompts (Ready to Use)
+## Top 10 Prompts (Ready to Use)
 
-Hand-picked from the [Prompt Library](prompts/) — copy into ChatGPT / Claude and get results instantly.
+Hand-picked from the [Prompt Library](prompts/) copy into ChatGPT / Claude and get results instantly.
 
-**1. Competitor Review Pain Point Analysis** — Extract product improvement ideas from negative reviews
+**1. Competitor Review Pain Point Analysis** Extract product improvement ideas from negative reviews
 ```
 You are a senior Amazon product manager. I'll give you a set of 1-3 star competitor reviews.
 Analyze and output: Top 5 user pain points (by frequency), representative review quotes, improvement suggestions, and difficulty rating. Present in table format.
@@ -59,25 +59,25 @@ Analyze and output: Top 5 user pain points (by frequency), representative review
 ```
 [Full template → prompts/product-research.md](prompts/product-research.md#模板-1-竞品-review-痛点分析)
 
-**2. Market Feasibility Quick Assessment** — 5-dimension scoring to decide if a product is worth pursuing
+**2. Market Feasibility Quick Assessment** 5-dimension scoring to decide if a product is worth pursuing
 ```
 You are a cross-border e-commerce product research expert. Assess this product:
-Product: [product name]  Target market: Amazon [US/DE/JP]
+Product: [product name] Target market: Amazon [US/DE/JP]
 Analyze across 5 dimensions (score 1-5 each): market demand, competition intensity, profit margin, supply chain difficulty, compliance risk.
 Give a final recommendation: Enter / Proceed with caution / Pass.
 ```
 [Full template → prompts/product-research.md](prompts/product-research.md#模板-2-市场可行性快速评估)
 
-**3. Full Listing Generation** — Generate title, bullet points, description, and search terms in one go
+**3. Full Listing Generation** Generate title, bullet points, description, and search terms in one go
 ```
 You are an Amazon Listing optimization expert for the [target market].
-Product: [name]  Selling points: [point 1/2/3]  Keywords: [keyword list]
+Product: [name] Selling points: [point 1/2/3] Keywords: [keyword list]
 Generate: Title (≤200 chars), 5 Bullet Points, Product Description (≤200 words), Backend Search Terms (5 lines).
 Integrate keywords naturally, highlight differentiation.
 ```
 [Full template → prompts/listing-optimization.md](prompts/listing-optimization.md#模板-1-listing-全套生成)
 
-**4. Multilingual Localization** — Not translation, but market adaptation
+**4. Multilingual Localization** Not translation, but market adaptation
 ```
 You are an Amazon Listing localization expert fluent in [target language].
 [Paste English listing]
@@ -85,7 +85,7 @@ Localize to [target language]: match local search habits, replace with local key
 ```
 [Full template → prompts/listing-optimization.md](prompts/listing-optimization.md#模板-2-多语言本地化)
 
-**5. Competitor Listing Strategy Breakdown** — Compare and find differentiation opportunities
+**5. Competitor Listing Strategy Breakdown** Compare and find differentiation opportunities
 ```
 Analyze these 3 competitor Amazon Listings and compare their strategies:
 [Competitor A/B/C titles and bullet points]
@@ -93,7 +93,7 @@ Output: Each competitor's core positioning, shared selling points, differentiati
 ```
 [Full template → prompts/listing-optimization.md](prompts/listing-optimization.md#模板-3-竞品-listing-策略拆解)
 
-**6. Search Term Report Analysis** — Find ad spend waste and optimization opportunities
+**6. Search Term Report Analysis** Find ad spend waste and optimization opportunities
 ```
 You are an Amazon PPC advertising expert. Here's my search term report (past 30 days):
 [Paste data]
@@ -101,15 +101,15 @@ Output: High-converting keywords TOP 10, high-spend low-conversion TOP 10, low C
 ```
 [Full template → prompts/advertising.md](prompts/advertising.md#模板-1-搜索词报告分析)
 
-**7. Ad Copy A/B Testing** — 5 headline styles for Sponsored Brands
+**7. Ad Copy A/B Testing** 5 headline styles for Sponsored Brands
 ```
-Product: [description]  Key selling point: [main benefit]
+Product: [description] Key selling point: [main benefit]
 Generate 5 Sponsored Brands Headlines (≤50 chars each): feature-driven, scenario-driven, emotion-driven, data-driven, problem-solving.
 Annotate expected impact and target audience for each.
 ```
 [Full template → prompts/advertising.md](prompts/advertising.md#模板-2-广告文案-ab-测试)
 
-**8. Bulk Negative Review Analysis** — Categorize issues and create action plans
+**8. Bulk Negative Review Analysis** Categorize issues and create action plans
 ```
 You are an e-commerce product quality analyst. Here are all 1-3 star reviews from the past 60 days.
 Categorize by type (quality/functionality/shipping/usability/expectation mismatch), calculate frequency %, list 3 representative reviews per category, provide short-term + long-term solutions, and prioritize.
@@ -117,7 +117,7 @@ Categorize by type (quality/functionality/shipping/usability/expectation mismatc
 ```
 [Full template → prompts/customer-service.md](prompts/customer-service.md#模板-1-差评批量分析)
 
-**9. Account Appeal Letter (Plan of Action)** — Professional reinstatement appeal
+**9. Account Appeal Letter (Plan of Action)** Professional reinstatement appeal
 ```
 You are an Amazon account appeal expert. My account was suspended for:
 [Paste violation notice]
@@ -125,7 +125,7 @@ Write a Plan of Action: Root Cause (acknowledge the issue), Immediate Actions (s
 ```
 [Full template → prompts/customer-service.md](prompts/customer-service.md#模板-2-账号申诉信-plan-of-action)
 
-**10. Multi-Market Compliance Comparison** — Generate compliance checklists fast
+**10. Multi-Market Compliance Comparison** Generate compliance checklists fast
 ```
 I want to sell [product type] on Amazon [US/DE/JP].
 Generate a compliance comparison table: required certifications per market, packaging & labeling requirements, special category requirements, estimated costs & timelines, common compliance pitfalls.
@@ -133,9 +133,9 @@ Note information currency and recommend confirming with certification bodies.
 ```
 [Full template → prompts/compliance.md](prompts/compliance.md#模板-1-多市场合规对比)
 
-> 📖 Full templates with expected outputs and usage tips → [Prompt Library](prompts/README.md)
+> Full templates with expected outputs and usage tips → [Prompt Library](prompts/README.md)
 
-[Back to Table of Contents](#-table-of-contents)
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -143,15 +143,15 @@ Note information currency and recommend confirming with certification bodies.
 
 ```mermaid
 flowchart TD
-    START["Who are you?"] --> Q1{"What's your day-to-day role?"}
-    
-    Q1 -->|"Product research / Operations / Ads / CS"| A["Path A: Operators"]
-    Q1 -->|"Coding / Data / Building systems"| B["Path B: Developers"]
-    Q1 -->|"Leading teams / Strategy / Budgets"| C["Path C: Managers"]
-    
-    A --> A_DESC["Goal: Boost daily operations with AI tools\nNo coding required\nTime: 2-4 weeks to get started"]
-    B --> B_DESC["Goal: Build AI-driven e-commerce systems\nPython basics required\nTime: 4-8 weeks for full coverage"]
-    C --> C_DESC["Goal: Create an actionable AI adoption plan\nNo technical background needed\nTime: 3-5 hours focused work"]
+START["Who are you?"] --> Q1{"What's your day-to-day role?"}
+
+Q1 -->|"Product research / Operations / Ads / CS"| A["Path A: Operators"]
+Q1 -->|"Coding / Data / Building systems"| B["Path B: Developers"]
+Q1 -->|"Leading teams / Strategy / Budgets"| C["Path C: Managers"]
+
+A --> A_DESC["Goal: Boost daily operations with AI tools\nNo coding required\nTime: 2-4 weeks to get started"]
+B --> B_DESC["Goal: Build AI-driven e-commerce systems\nPython basics required\nTime: 4-8 weeks for full coverage"]
+C --> C_DESC["Goal: Create an actionable AI adoption plan\nNo technical background needed\nTime: 3-5 hours focused work"]
 ```
 
 | Path | Who It's For | Coding Required? | Time Commitment | Key Outcome |
@@ -162,19 +162,19 @@ flowchart TD
 
 > Not sure which path to pick? All three paths are interconnected. Operators who finish Path A can dive deeper with Path B. Managers can explore Path A modules for hands-on details.
 
-[Back to Table of Contents](#-table-of-contents)
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
-## Path A: Operators — AI-Powered Daily Operations
+## Path A: Operators AI-Powered Daily Operations
 
-> Goal: Boost your daily e-commerce operations 3-10x with AI tools — no coding required
+> Goal: Boost your daily e-commerce operations 3-10x with AI tools no coding required
 >
 > Prerequisites: Basic e-commerce experience (you know what ASINs, PPC, and FBA are)
 >
 > Time: 30 minutes per day, 2-4 weeks to complete all modules
 
-📖 [View Full Path A Content →](paths/a-operators/)
+[View Full Path A Content →](paths/a-operators/)
 
 | Module | Topic | What You'll Learn |
 |--------|-------|-------------------|
@@ -185,26 +185,26 @@ flowchart TD
 | [A5. Inventory & Supply Chain](paths/a-operators/a5-inventory.md) | Restock forecasting, safety stock | Use AI to build a restock decision model |
 | [A6. Compliance & Risk Management](paths/a-operators/a6-compliance.md) | Multi-market compliance, certification lookup | Generate a complete multi-market compliance checklist |
 
-[Back to Table of Contents](#-table-of-contents)
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
-## Path B: Developers — Building AI Systems
+## Path B: Developers Building AI Systems
 
 > Goal: Build AI-driven e-commerce tools and systems, from scripts to production-grade applications
 >
-> Prerequisites: Python basics (or willingness to learn as you go — AI will help you write code)
+> Prerequisites: Python basics (or willingness to learn as you go AI will help you write code)
 >
 > Time: 1 hour per day, 4-8 weeks for full coverage
 
-📖 [View Full Path B Content →](paths/b-developers/)
+[View Full Path B Content →](paths/b-developers/)
 
 ```mermaid
 flowchart LR
-    B1["B1 Data Collection\n& Processing"] --> B2["B2 Prediction\nModels"]
-    B2 --> B3["B3 RAG\nKnowledge Base"]
-    B3 --> B4["B4 AI Agent\nWorkflows"]
-    B4 --> B5["B5 Local Model\nDeployment"]
+B1["B1 Data Collection\n& Processing"] --> B2["B2 Prediction\nModels"]
+B2 --> B3["B3 RAG\nKnowledge Base"]
+B3 --> B4["B4 AI Agent\nWorkflows"]
+B4 --> B5["B5 Local Model\nDeployment"]
 ```
 
 | Module | Topic | What You'll Build |
@@ -217,11 +217,11 @@ flowchart LR
 
 > Complete at least 3 of B1-B4 and you'll have the skills to build AI-powered e-commerce tools. B5 is an advanced elective.
 
-[Back to Table of Contents](#-table-of-contents)
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
-## Path C: Managers — AI Strategy & Execution
+## Path C: Managers AI Strategy & Execution
 
 > Goal: Understand what AI can do for your team and create an actionable AI adoption plan
 >
@@ -229,7 +229,7 @@ flowchart LR
 >
 > Time: 3-5 focused hours to complete assessment and planning
 
-📖 [View Full Path C Content →](paths/c-managers/)
+[View Full Path C Content →](paths/c-managers/)
 
 | Module | Topic | What You'll Produce |
 |--------|-------|---------------------|
@@ -239,7 +239,7 @@ flowchart LR
 
 > Complete all 3 modules to produce a comprehensive AI adoption roadmap for your team (including priorities, timeline, budget, and KPIs).
 
-[Back to Table of Contents](#-table-of-contents)
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -247,7 +247,7 @@ flowchart LR
 
 All prompt templates are organized in the [`prompts/`](prompts/) directory, categorized by use case and ready to copy-paste.
 
-📖 [Browse the Full Prompt Library →](prompts/README.md)
+[Browse the Full Prompt Library →](prompts/README.md)
 
 | Template Collection | Count | Use Cases |
 |---------------------|-------|-----------|
@@ -259,15 +259,15 @@ All prompt templates are organized in the [`prompts/`](prompts/) directory, cate
 
 > We welcome your battle-tested prompts! See [Contributing](#contributing) for details.
 
-[Back to Table of Contents](#-table-of-contents)
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
 ## Notebook Lab
 
-Jupyter Notebooks that run directly on Google Colab — zero setup required.
+Jupyter Notebooks that run directly on Google Colab zero setup required.
 
-📋 Planned topics (in development — contributions welcome):
+Planned topics (in development contributions welcome):
 
 - Amazon report automation with pandas (Beginner)
 - Sales forecasting with Prophet (Intermediate)
@@ -277,7 +277,7 @@ Jupyter Notebooks that run directly on Google Colab — zero setup required.
 
 > Follow the [Roadmap](roadmap/README.md) for the latest progress.
 
-[Back to Table of Contents](#-table-of-contents)
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -314,7 +314,7 @@ Copy the checklists below into your note-taking app to track your learning progr
 [ ] C3. ROI: Complete an ROI evaluation report for at least one AI project
 ```
 
-[Back to Table of Contents](#-table-of-contents)
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -324,11 +324,11 @@ ecommerce-ai-roadmap is an open-source project under the **AAAI China Chapter**.
 
 ### What You Get by Joining
 
-- **Monthly AI Workshops** — Hands-on online sessions where you build a complete AI e-commerce project
-- **Prompt Co-Creation** — Community members collaboratively maintain and improve the prompt library
-- **Case Study Sharing** — Frontline practitioners share real-world AI applications and lessons learned
-- **Technical Q&A** — Get help from the community when you run into problems
-- **Industry Updates** — First-hand information on AI tool releases and platform policy changes
+- **Monthly AI Workshops** Hands-on online sessions where you build a complete AI e-commerce project
+- **Prompt Co-Creation** Community members collaboratively maintain and improve the prompt library
+- **Case Study Sharing** Frontline practitioners share real-world AI applications and lessons learned
+- **Technical Q&A** Get help from the community when you run into problems
+- **Industry Updates** First-hand information on AI tool releases and platform policy changes
 
 ### How to Participate
 
@@ -337,7 +337,7 @@ ecommerce-ai-roadmap is an open-source project under the **AAAI China Chapter**.
 - [Submit a PR](https://github.com/kangise/ecommerce-ai-roadmap/pulls) to contribute prompts, notebooks, or case studies
 - Follow AAAI China Chapter for event announcements
 
-[Back to Table of Contents](#-table-of-contents)
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -345,11 +345,11 @@ ecommerce-ai-roadmap is an open-source project under the **AAAI China Chapter**.
 
 We especially welcome the following types of contributions:
 
-1. **Prompt Templates** — Battle-tested prompts that work well in real business scenarios
-2. **Notebooks** — Hands-on tutorials that run on Google Colab free tier
-3. **Case Studies** — How did you solve an e-commerce problem with AI? What were the results?
-4. **Tool Reviews** — AI tools you've tried — what are the pros and cons?
-5. **Bug Fixes** — Found a broken link or outdated content? Help us fix it
+1. **Prompt Templates** Battle-tested prompts that work well in real business scenarios
+2. **Notebooks** Hands-on tutorials that run on Google Colab free tier
+3. **Case Studies** How did you solve an e-commerce problem with AI? What were the results?
+4. **Tool Reviews** AI tools you've tried what are the pros and cons?
+5. **Bug Fixes** Found a broken link or outdated content? Help us fix it
 
 When contributing, please note:
 - Prefer free or open-source tools and resources
@@ -362,7 +362,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for full details.
 
 ## License
 
-[CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) — Free to use, no attribution required.
+[CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) Free to use, no attribution required.
 
 ---
 

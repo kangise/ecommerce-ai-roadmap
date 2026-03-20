@@ -4,14 +4,14 @@
 
 > **Path**: Path D: Multi-Platform · **Module**: D11
 > **Last Updated**: 2026-03-14
-> **Difficulty**: ⭐⭐ Intermediate
+> **Difficulty**: Intermediate
 > **Estimated Time**: 1 hour
 
-🏠 [Hub Home](../../README.md) · 📋 [Path D Overview](README.md)
+[Hub Home](../../README.md) · [Path D Overview](README.md)
 
 ---
 
-> 💡 Revenue $36.8B (2025), 24.6 million active users. Korea's e-commerce market $230B+, projected to reach $336B by 2027. Known as "Korea's Amazon," Rocket Delivery (next-day/same-day) is its core competitive advantage. Cross-border onboarding threshold is relatively high.
+> Revenue $36.8B (2025), 24.6 million active users. Korea's e-commerce market $230B+, projected to reach $336B by 2027. Known as "Korea's Amazon," Rocket Delivery (next-day/same-day) is its core competitive advantage. Cross-border onboarding threshold is relatively high.
 
 ## 1. Coupang Core Characteristics
 
@@ -51,7 +51,7 @@
 
 ## 3. Korean Listing AI Optimization (Enhanced)
 
-> 📎 **Related Reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md#42-listing-optimization-sop-improving-existing-listings) — General Listing optimization methodology from A2; core optimization framework can be adapted for Korean Listings.
+> **Related Reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md#42-listing-optimization-sop-improving-existing-listings) General Listing optimization methodology from A2; core optimization framework can be adapted for Korean Listings.
 
 ```
 你是一个韩国电商 Listing 优化专家，精通韩语电商文案。
@@ -64,28 +64,28 @@
 请生成完整的 Coupang 韩语 Listing：
 
 1. 상품명（商品名，50-100 字符）
-   - 格式：브랜드 + 상품명 + 핵심속성
-   - 包含韩语搜索热词
-   - Coupang 标题不要太长（比 Amazon 短）
+- 格式：브랜드 + 상품명 + 핵심속성
+- 包含韩语搜索热词
+- Coupang 标题不要太长（比 Amazon 短）
 
 2. 상세설명（详细描述，500-800 字）
-   - 使用존댓말（敬语）
-   - 强调품질（品质）和 안전（安全）
-   - 包含详细的使用方法和注意事项
-   - 韩国消费者喜欢看到认证信息（KC 认证等）
+- 使用존댓말（敬语）
+- 强调품질（品质）和 안전（安全）
+- 包含详细的使用方法和注意事项
+- 韩国消费者喜欢看到认证信息（KC 认证等）
 
 3. 주요특징（主要特征，5 个 Bullet Points）
-   - 每个以利益点开头
-   - 包含具体数据（尺寸/重量/材质）
+- 每个以利益点开头
+- 包含具体数据（尺寸/重量/材质）
 
 4. 추천 키워드（推荐关键词，10 个）
-   - 韩语品类词
-   - 韩语功能词
-   - 韩语场景词
+- 韩语品类词
+- 韩语功能词
+- 韩语场景词
 
 5. 이미지 가이드（图片指南）
-   - 韩国消费者偏好的图片风格
-   - 必须包含的信息图（尺寸图、材质说明、认证标志）
+- 韩国消费者偏好的图片风格
+- 必须包含的信息图（尺寸图、材质说明、认证标志）
 
 注意：
 - 韩国消费者重视"정품"（正品）标识
@@ -139,13 +139,13 @@ Content rephrased for compliance with licensing restrictions.
 
 ### 4.4 KC Certification Requirements
 
-> 📎 **Related Reading**: [A6 Compliance & Risk Management](../a-operators/a6-compliance.md#a6-compliance-risk-management) — Multi-market compliance methodology from A6; certification and compliance framework can be reused for Korean KC certification.
+> **Related Reading**: [A6 Compliance & Risk Management](../a-operators/a6-compliance.md#a6-compliance-risk-management) Multi-market compliance methodology from A6; certification and compliance framework can be reused for Korean KC certification.
 
 Korea has strict certification requirements for imported products:
 
 | Certification | Applicable Categories | Description |
 |--------------|----------------------|-------------|
-| KC Safety Certification | Electronics, children's products, home appliances | Mandatory — cannot sell without it |
+| KC Safety Certification | Electronics, children's products, home appliances | Mandatory cannot sell without it |
 | KC EMC | Electronic/electrical products | Mandatory |
 | Food Certification (식품인증) | Food, health supplements | Requires Korean FDA approval |
 | Cosmetics Certification (화장품인증) | Cosmetics | Requires MFDS registration |
@@ -162,7 +162,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ### 5.2 Onboarding Paths Explained
 
-> **Real Case: SOU・SOU — A Kyoto Brand Entering Korea via Coupang**
+> **Real Case: SOU・SOU A Kyoto Brand Entering Korea via Coupang**
 > Japanese Kyoto traditional textile brand SOU・SOU successfully entered the Korean market through Coupang Global Selling. Known for blending traditional Japanese patterns with modern design, SOU・SOU quickly became a favorite among Korean consumers after joining Coupang, proving that tradition-rooted styles can transcend borders ([Coupang Global Sellers](https://globalsellers.coupang.com/en/newsroom/sou%E3%83%BBsou-bringing-kyotos-colorful-seasons-to-korea/)).
 
 Content rephrased for compliance with licensing restrictions.
@@ -184,26 +184,26 @@ Content rephrased for compliance with licensing restrictions.
 Rocket Growth Workflow:
 
 Step 1: Seller ships products to overseas warehouse (China/US/Japan)
-    ↓
+↓
 Step 2: Coupang transfers from overseas warehouse to Korean Coupang warehouse
-    ↓
+↓
 Step 3: Products receive Rocket Delivery label
-    ↓
+↓
 Step 4: Buyer places order, Coupang ships from Korean warehouse
-    ↓
+↓
 Step 5: Next-day/same-day delivery to buyer
 
 Advantages:
-├── Receive Rocket Delivery label (significant ranking boost)
-├── Delivery speed matches local sellers
-├── Returns handled by Coupang
-└── High buyer trust
+Receive Rocket Delivery label (significant ranking boost)
+Delivery speed matches local sellers
+Returns handled by Coupang
+High buyer trust
 
 Disadvantages:
-├── Need to pre-stock overseas warehouse
-├── Complex inventory management
-├── Higher logistics costs
-└── Slow-moving inventory risk
+Need to pre-stock overseas warehouse
+Complex inventory management
+Higher logistics costs
+Slow-moving inventory risk
 ```
 
 ### 5.4 Korean Market Marketing Channels
@@ -225,8 +225,8 @@ Disadvantages:
 - [ ] Launch Coupang search ads
 
 ---
-> 🏠 [Hub Home](../../README.md) · 📋 [Path D Overview](README.md) · 📊 [Platform Comparison](platform-comparison.md)
-> 
+> [Hub Home](../../README.md) · [Path D Overview](README.md) · [Platform Comparison](platform-comparison.md)
+>
 > **Path D**: [D1 Shopify](shopify-ai-guide.md) · [D2 TikTok](tiktok-shop-ai-guide.md) · [D3 Cross-Platform](cross-platform-strategy.md) · [D4 Walmart](d4-walmart-ai-guide.md) · [D5 Temu](d5-temu-seller-guide.md) · [D6 Southeast Asia](d6-southeast-asia-ai-guide.md) · [D7 Latin America](d7-mercado-libre-ai-guide.md) · [D8 Japan](d8-rakuten-japan-ai-guide.md) · [D9 eBay](d9-ebay-ai-guide.md) · [D10 AliExpress](d10-aliexpress-ai-guide.md) · [D11 Korea](d11-coupang-korea-ai-guide.md) · [D12 Faire](d12-faire-wholesale-ai-guide.md) · [D13 Europe](d13-europe-marketplaces-guide.md)
-> 
+>
 > **Quick Jump**: [Path 0 Foundations](../0-foundations/) · [Path A Operations](../a-operators/) · [Path B Technical](../b-developers/) · [Path C Management](../c-managers/) · [Path E Social Media](../e-social-media/)

@@ -2,35 +2,35 @@
 
 # A1. Product Research & Market Insights
 
-> **Path**: Path A: Operators · **Module**: A1  
-> **Last Updated**: 2026-03-12  
-> **Difficulty**: ⭐ Beginner  
-> **Estimated Time**: 30 minutes per day, 1–2 weeks
+> **Path**: Path A: Operators · **Module**: A1
+> **Last Updated**: 2026-03-12
+> **Difficulty**: Beginner
+> **Estimated Time**: 30 minutes per day, 12 weeks
 ---
 
-🏠 [Hub Home](../../README.md) · 📋 [Path A Overview](README.md)
+[Hub Home](../../README.md) · [Path A Overview](README.md)
 
 ```mermaid
 flowchart LR
-    A1["✅ A1 Product Research<br/>(Current)"]:::current
-    A1 --> A2
-    A2["A2 Listing Creation"]
-    A2 --> A3
-    A3["A3 Ad Optimization"]
-    A3 --> A4
-    A4["A4 Customer Service"]
-    A4 --> A5
-    A5["A5 Inventory & Supply Chain"]
-    A5 --> A6
-    A6["A6 Compliance & Risk"]
-    classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
+A1[" A1 Product Research<br/>(Current)"]:::current
+A1 --> A2
+A2["A2 Listing Creation"]
+A2 --> A3
+A3["A3 Ad Optimization"]
+A3 --> A4
+A4["A4 Customer Service"]
+A4 --> A5
+A5["A5 Inventory & Supply Chain"]
+A5 --> A6
+A6["A6 Compliance & Risk"]
+classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 ```
 
 ---
 
-## 📖 Module Navigation
+## Module Navigation
 
-1. [Product Research Methodology](#1-product-research-methodology-the-fundamentals-before-ai) · 2. [AI Tool Landscape](#2-ai-tool-landscape-what-to-use-for-product-research) · 3. [Prompt Template Library](#3-prompt-template-library-product-research-specific) · 4. [Product Research SOP](#4-product-research-workflow-in-practice) · 5. [Common Pitfalls](#5-common-product-research-pitfalls) · 6. [Advanced Techniques](#6-advanced-techniques) · 7. [Learning Resources](#7-learning-resources) · 8. [🦞 OpenClaw Automation](#8-automate-product-research-with-openclaw) · 9. [Completion Checklist](#9-completion-checklist)
+1. [Product Research Methodology](#1-product-research-methodology-the-fundamentals-before-ai) · 2. [AI Tool Landscape](#2-ai-tool-landscape-what-to-use-for-product-research) · 3. [Prompt Template Library](#3-prompt-template-library-product-research-specific) · 4. [Product Research SOP](#4-product-research-workflow-in-practice) · 5. [Common Pitfalls](#5-common-product-research-pitfalls) · 6. [Advanced Techniques](#6-advanced-techniques) · 7. [Learning Resources](#7-learning-resources) · 8. [ OpenClaw Automation](#8-automate-product-research-with-openclaw) · 9. [Completion Checklist](#9-completion-checklist)
 
 
 ## What You'll Learn in This Module
@@ -47,11 +47,11 @@ After completing this module, you'll be able to:
 
 ## 1. Product Research Methodology: The Fundamentals Before AI
 
-> 📎 **Related Reading**: [AI Application Landscape](../0-foundations/ai-landscape.md#ai-application-landscape-assessment-ai-application-landscape-for-cross-border-e-commerce) — AI maturity assessment for product research · [D4 Walmart AI Guide](../d-platforms/d4-walmart-ai-guide.md#61-walmart-category-opportunity-analysis) — Walmart category opportunity analysis and competition assessment covered in D4 · [E4 Pinterest AI Guide](../e-social-media/e4-pinterest-ai-guide.md#77-pinterest-data-analysis-deep-dive) — Pinterest trend data for validating product research directions covered in E4
+> **Related Reading**: [AI Application Landscape](../0-foundations/ai-landscape.md#ai-application-landscape-assessment-ai-application-landscape-for-cross-border-e-commerce) AI maturity assessment for product research · [D4 Walmart AI Guide](../d-platforms/d4-walmart-ai-guide.md#61-walmart-category-opportunity-analysis) Walmart category opportunity analysis and competition assessment covered in D4 · [E4 Pinterest AI Guide](../e-social-media/e4-pinterest-ai-guide.md#77-pinterest-data-analysis-deep-dive) Pinterest trend data for validating product research directions covered in E4
 
 ### 1.1 First Principles of Product Research
 
-The essence of product research is finding asymmetry between "demand" and "supply" — categories where demand is high but supply is insufficient (or supply quality is poor) represent opportunities.
+The essence of product research is finding asymmetry between "demand" and "supply" categories where demand is high but supply is insufficient (or supply quality is poor) represent opportunities.
 
 AI can't make decisions for you, but it can boost the efficiency of information gathering and analysis by 10x. Before using AI, you need to understand:
 
@@ -82,7 +82,7 @@ What AI is not good at:
 - **Compliance details**: Specific certification requirements need to be checked against official documentation (see [A6 Compliance Module](a6-compliance.md))
 - **Creative product discovery**: Truly blue-ocean categories often come from cross-industry inspiration, not data analysis
 
-> 💡 **Core Principle**: Use tools for data, AI for analysis, and humans for decisions. All three are indispensable.
+> **Core Principle**: Use tools for data, AI for analysis, and humans for decisions. All three are indispensable.
 
 ---
 
@@ -92,11 +92,11 @@ What AI is not good at:
 
 | Tool | Price | Core Capability | Best For | Data Accuracy | AI Features |
 |------|-------|----------------|----------|--------------|-------------|
-| [Helium 10](https://www.helium10.com/) | $29–229/mo | Black Box product finder, Cerebro reverse ASIN lookup, Xray Chrome extension | Intermediate sellers who need deep keyword data | High (child ASIN-level estimates) | Listing Builder AI, AI Review Insights |
-| [Jungle Scout](https://www.junglescout.com/) | $29–84/mo | Product Database, Opportunity Finder, Supplier Database | Beginners, user-friendly interface | Medium-High | AI Assist (natural language queries) |
-| [SellerSprite](https://www.sellersprite.com/) | $0–99/mo | Multi-marketplace data, keyword mining, market analysis | Chinese sellers, great value | Medium | Basic AI features |
+| [Helium 10](https://www.helium10.com/) | $29229/mo | Black Box product finder, Cerebro reverse ASIN lookup, Xray Chrome extension | Intermediate sellers who need deep keyword data | High (child ASIN-level estimates) | Listing Builder AI, AI Review Insights |
+| [Jungle Scout](https://www.junglescout.com/) | $2984/mo | Product Database, Opportunity Finder, Supplier Database | Beginners, user-friendly interface | Medium-High | AI Assist (natural language queries) |
+| [SellerSprite](https://www.sellersprite.com/) | $099/mo | Multi-marketplace data, keyword mining, market analysis | Chinese sellers, great value | Medium | Basic AI features |
 | [Keepa](https://keepa.com/) | $19/mo | Price history, BSR tracking, inventory monitoring | All sellers (essential supplementary tool) | Very High (direct tracking) | None |
-| [SmartScout](https://smartscout.com/) | $29–97/mo | Brand analysis, subcategory discovery, seller mapping | Wholesale/brand sellers | High | AI brand matching |
+| [SmartScout](https://smartscout.com/) | $2997/mo | Brand analysis, subcategory discovery, seller mapping | Wholesale/brand sellers | High | AI brand matching |
 
 **Tool Selection Guide:**
 
@@ -105,15 +105,15 @@ What AI is not good at:
 - Keepa's price history and BSR tracking are irreplaceable
 - ChatGPT's free tier can handle review analysis and market assessments
 
-**Getting serious ($100–200/mo)**: Helium 10 Platinum + Keepa
+**Getting serious ($100200/mo)**: Helium 10 Platinum + Keepa
 - Helium 10's Cerebro (reverse ASIN keyword lookup) and Black Box (product research filter) are the industry standard
 - Pair with Keepa for historical data validation to avoid being misled by short-term data
 
 **Multi-marketplace operations**: SellerSprite + Helium 10
 - SellerSprite has better data coverage for Japan and European marketplaces than Helium 10
-- Use both complementarily — SellerSprite for multi-marketplace initial screening, Helium 10 for deep analysis
+- Use both complementarily SellerSprite for multi-marketplace initial screening, Helium 10 for deep analysis
 
-> 💡 **Key Insight**: Paid tools provide data; AI (ChatGPT/Claude) provides analysis. The combination works best — export data from Helium 10, use ChatGPT for attribution analysis. Using either one alone isn't enough.
+> **Key Insight**: Paid tools provide data; AI (ChatGPT/Claude) provides analysis. The combination works best export data from Helium 10, use ChatGPT for attribution analysis. Using either one alone isn't enough.
 
 ### 2.2 Free Tool Combinations
 
@@ -129,7 +129,7 @@ What AI is not good at:
 **Free Tool Strategy:**
 
 1. **Google Trends for seasonality validation**: Before committing to a category, check the 12-month search trend. If you're researching in November and see high search volume, it might just be the BFCM peak season, not year-round demand.
-2. **Perplexity for quick market research**: Ask directly, "What is the market size of portable neck fans on Amazon US in 2025?" — it gives you cited answers that are more verifiable than ChatGPT's responses.
+2. **Perplexity for quick market research**: Ask directly, "What is the market size of portable neck fans on Amazon US in 2025?" it gives you cited answers that are more verifiable than ChatGPT's responses.
 3. **Gemini for multimodal analysis**: Upload competitor product images and have Gemini analyze design features, materials, and likely cost structures. This is something ChatGPT can't do.
 4. **Amazon Movers & Shakers for trend spotting**: Spend 5 minutes daily browsing and noting categories with consistent upward movement. Products appearing on Movers & Shakers for 3 consecutive days are worth investigating further.
 
@@ -146,7 +146,7 @@ What AI is not good at:
 **When to use open-source tools?**
 
 If you have a technical background (or have a developer on your team), open-source tools can do things paid tools can't:
-- **Custom review analysis**: Use BERTopic for topic modeling — more systematic than ChatGPT's analysis, ideal for large-scale analysis of 1,000+ reviews
+- **Custom review analysis**: Use BERTopic for topic modeling more systematic than ChatGPT's analysis, ideal for large-scale analysis of 1,000+ reviews
 - **Automated data collection**: Use SP-API to periodically pull competitor pricing and inventory changes, building your own database
 - **Quantified sentiment analysis**: Use VADER to score each review's sentiment, then analyze sentiment trends over time
 
@@ -162,22 +162,22 @@ If you have a technical background (or have a developer on your team), open-sour
 ### 3.1 Competitor Review Pain Point Analysis
 
 **Why this prompt works:** It requires AI to rank by frequency and output in table format, avoiding AI's common tendency to give vague, generic answers. The table format forces AI to produce structured, comparable results. Key design points:
-- "Top 5" — Limits output quantity, preventing AI from listing 20 insignificant points
-- "Ranked by mention frequency" — Forces AI to do quantitative analysis rather than subjective judgment
-- "Representative review quotes" — Requires AI to cite evidence, reducing hallucinations
-- "Which are easiest to solve through product design" — Directly action-oriented
+- "Top 5" Limits output quantity, preventing AI from listing 20 insignificant points
+- "Ranked by mention frequency" Forces AI to do quantitative analysis rather than subjective judgment
+- "Representative review quotes" Requires AI to cite evidence, reducing hallucinations
+- "Which are easiest to solve through product design" Directly action-oriented
 
 **Common Mistakes:**
-- ❌ Only pasting 10 negative reviews → Sample too small; AI will over-interpret individual cases. Aim for 50–100.
-- ❌ Mixing positive and negative reviews → AI gets distracted by positive reviews, diluting pain point analysis. Analyze them separately.
-- ❌ Not specifying output format → AI will write long paragraphs that are hard to compare and act on. Table format is key.
-- ❌ Only analyzing one competitor → Can't distinguish "category-wide issues" from "individual product problems." Analyze at least 3 competitors.
+- Only pasting 10 negative reviews → Sample too small; AI will over-interpret individual cases. Aim for 50100.
+- Mixing positive and negative reviews → AI gets distracted by positive reviews, diluting pain point analysis. Analyze them separately.
+- Not specifying output format → AI will write long paragraphs that are hard to compare and act on. Table format is key.
+- Only analyzing one competitor → Can't distinguish "category-wide issues" from "individual product problems." Analyze at least 3 competitors.
 
 [Full template → prompts/product-research.md](../../prompts/product-research.md)
 
 **Advanced Variants:**
 
-**Variant A — Multi-Competitor Comparison:**
+**Variant A Multi-Competitor Comparison:**
 
 ```
 分析以下 3 个竞品的差评，对比它们的痛点差异：
@@ -191,9 +191,9 @@ If you have a technical background (or have a developer on your team), open-sour
 3. 哪些痛点最容易通过产品设计解决
 ```
 
-> 💡 **Why use this variant**: Shared pain points = category-wide issues that your product must solve; unique pain points = competitor weaknesses and your differentiation opportunities.
+> **Why use this variant**: Shared pain points = category-wide issues that your product must solve; unique pain points = competitor weaknesses and your differentiation opportunities.
 
-**Variant B — With Sentiment Intensity Analysis:**
+**Variant B With Sentiment Intensity Analysis:**
 
 ```
 分析以下差评，除了痛点分类外，还要评估每个痛点的"情感强度"（1-5分，5分=极度不满）。
@@ -204,9 +204,9 @@ If you have a technical background (or have a developer on your team), open-sour
 [在此粘贴差评内容]
 ```
 
-> 💡 **Why use this variant**: High-frequency but low-intensity pain points (e.g., "packaging is mediocre") are low priority; medium-frequency but extremely high-intensity pain points (e.g., "broke after one week") are the real product opportunities.
+> **Why use this variant**: High-frequency but low-intensity pain points (e.g., "packaging is mediocre") are low priority; medium-frequency but extremely high-intensity pain points (e.g., "broke after one week") are the real product opportunities.
 
-**Variant C — Positive Review Mining (Finding "Must-Have Features"):**
+**Variant C Positive Review Mining (Finding "Must-Have Features"):**
 
 ```
 分析以下 5 星好评，提取用户最频繁提到的满意点。
@@ -220,9 +220,9 @@ If you have a technical background (or have a developer on your team), open-sour
 [在此粘贴 5 星好评]
 ```
 
-> 💡 **Why use this variant**: Negative reviews tell you "what you can't have"; positive reviews tell you "what you must have." Combining both gives you a complete product definition.
+> **Why use this variant**: Negative reviews tell you "what you can't have"; positive reviews tell you "what you must have." Combining both gives you a complete product definition.
 
-**Variant D — Timeline Trend Analysis:**
+**Variant D Timeline Trend Analysis:**
 
 ```
 以下差评按时间排序（最新在前）。请分析：
@@ -235,24 +235,24 @@ If you have a technical background (or have a developer on your team), open-sour
 [在此粘贴按时间排序的差评]
 ```
 
-> 💡 **Why use this variant**: If a competitor's pain points are decreasing, they're iterating and improving — your entry window is closing. If pain points are increasing or unchanged, the competitor isn't listening to user feedback — the opportunity is still there.
+> **Why use this variant**: If a competitor's pain points are decreasing, they're iterating and improving your entry window is closing. If pain points are increasing or unchanged, the competitor isn't listening to user feedback the opportunity is still there.
 
 ---
 
 ### 3.2 Market Feasibility Quick Assessment
 
-**Why this prompt works:** The 5-dimension scoring framework forces AI to do a comprehensive analysis, preventing it from only seeing the positive side of a market. The 1–5 scoring scale makes different products directly comparable. The "Enter/Proceed with Caution/Pass" three-tier recommendation forces AI to give a clear conclusion.
+**Why this prompt works:** The 5-dimension scoring framework forces AI to do a comprehensive analysis, preventing it from only seeing the positive side of a market. The 15 scoring scale makes different products directly comparable. The "Enter/Proceed with Caution/Pass" three-tier recommendation forces AI to give a clear conclusion.
 
 **Common Mistakes:**
-- ❌ Not providing specific product info → AI can only give generic category analysis. At minimum, provide the product name and target market.
-- ❌ Fully relying on AI's scores → AI doesn't have real-time data; scores are based on general knowledge from training data. Always cross-verify with tool data.
-- ❌ Making decisions after just one assessment → Use AI for initial screening first, then validate with real data from Helium 10/Jungle Scout.
+- Not providing specific product info → AI can only give generic category analysis. At minimum, provide the product name and target market.
+- Fully relying on AI's scores → AI doesn't have real-time data; scores are based on general knowledge from training data. Always cross-verify with tool data.
+- Making decisions after just one assessment → Use AI for initial screening first, then validate with real data from Helium 10/Jungle Scout.
 
 [Full template → prompts/product-research.md](../../prompts/product-research.md)
 
 **Advanced Variants:**
 
-**Variant A — Multi-Product Horizontal Comparison:**
+**Variant A Multi-Product Horizontal Comparison:**
 
 ```
 我在考虑以下 3 个产品，请用同一套评估框架做横向对比，告诉我优先做哪个：
@@ -271,9 +271,9 @@ If you have a technical background (or have a developer on your team), open-sour
 输出：对比表格 + 优先级排序 + 排序理由
 ```
 
-> 💡 **Why use this variant**: Product research isn't about "is this product good?" — it's about "given my resource constraints, which product is most worth pursuing?" Horizontal comparison is more valuable for decision-making than evaluating products individually.
+> **Why use this variant**: Product research isn't about "is this product good?" it's about "given my resource constraints, which product is most worth pursuing?" Horizontal comparison is more valuable for decision-making than evaluating products individually.
 
-**Variant B — Deep Assessment with Competitor Data:**
+**Variant B Deep Assessment with Competitor Data:**
 
 ```
 请对以下产品做深度市场可行性评估：
@@ -292,9 +292,9 @@ If you have a technical background (or have a developer on your team), open-sour
 特别关注：以这些数据为基础，新品进入后 6 个月内能否盈利？
 ```
 
-> 💡 **Why use this variant**: When you give AI real data, its analysis quality improves dramatically. The phrase "reassess based on real data" is critical — it tells AI not to fall back on generic answers.
+> **Why use this variant**: When you give AI real data, its analysis quality improves dramatically. The phrase "reassess based on real data" is critical it tells AI not to fall back on generic answers.
 
-**Variant C — Risk-Focused Assessment:**
+**Variant C Risk-Focused Assessment:**
 
 ```
 我准备进入 [品类名称]，请专门做风险评估：
@@ -308,25 +308,25 @@ If you have a technical background (or have a developer on your team), open-sour
 对每个风险给出：风险等级（高/中/低）、具体说明、规避建议
 ```
 
-> 💡 **Why use this variant**: Most product research failures aren't because "the market is bad" — they're because a risk was overlooked. A dedicated risk assessment helps you spot potential pitfalls before committing capital.
+> **Why use this variant**: Most product research failures aren't because "the market is bad" they're because a risk was overlooked. A dedicated risk assessment helps you spot potential pitfalls before committing capital.
 
 ---
 
 ### 3.3 Keyword Demand Clustering
 
-**Why this prompt works:** A keyword list is direct evidence of "what users are searching for," but raw keyword lists are too long and messy. AI's clustering ability can compress 200 keywords into 5–8 demand themes, each corresponding to a product opportunity.
+**Why this prompt works:** A keyword list is direct evidence of "what users are searching for," but raw keyword lists are too long and messy. AI's clustering ability can compress 200 keywords into 58 demand themes, each corresponding to a product opportunity.
 
 **Common Mistakes:**
-- ❌ Too few keywords (<20) → Clustering results are unreliable; AI will force-fit groups
-- ❌ Too many keywords (>500) → Exceeds AI's context window; process in batches
-- ❌ Mixing keywords from different categories → Clustering results will be chaotic; analyze one category at a time
-- ❌ Not including search volume data → AI can't judge demand strength; always include search volume if available
+- Too few keywords (<20) → Clustering results are unreliable; AI will force-fit groups
+- Too many keywords (>500) → Exceeds AI's context window; process in batches
+- Mixing keywords from different categories → Clustering results will be chaotic; analyze one category at a time
+- Not including search volume data → AI can't judge demand strength; always include search volume if available
 
 [Full template → prompts/product-research.md](../../prompts/product-research.md)
 
 **Advanced Variants:**
 
-**Variant A — Weighted Clustering with Search Volume:**
+**Variant A Weighted Clustering with Search Volume:**
 
 ```
 以下是关键词列表及其月搜索量（来自 Helium 10 Cerebro）。
@@ -343,9 +343,9 @@ If you have a technical background (or have a developer on your team), open-sour
 5. 对应的产品特性建议
 ```
 
-> 💡 **Why use this variant**: Clustering without search volume only tells you "what demands exist"; adding search volume tells you "which demand is the biggest."
+> **Why use this variant**: Clustering without search volume only tells you "what demands exist"; adding search volume tells you "which demand is the biggest."
 
-**Variant B — Competitor Keyword Gap Analysis:**
+**Variant B Competitor Keyword Gap Analysis:**
 
 ```
 以下是两组关键词：
@@ -358,7 +358,7 @@ If you have a technical background (or have a developer on your team), open-sour
 3. 我的产品如何针对这些需求做差异化？
 ```
 
-> 💡 **Why use this variant**: Keywords competitors haven't covered = unmet demand = your differentiation opportunity.
+> **Why use this variant**: Keywords competitors haven't covered = unmet demand = your differentiation opportunity.
 
 ---
 
@@ -367,9 +367,9 @@ If you have a technical background (or have a developer on your team), open-sour
 **Why this prompt works:** It requires AI to cross-analyze multiple data sources (Google Trends, BSR, social media) rather than relying on a single metric. The "growth phase/plateau/decline" three-tier judgment forces AI to give a clear trend direction.
 
 **Common Mistakes:**
-- ❌ Not providing any data → AI can only answer based on general knowledge, with very low accuracy
-- ❌ Only looking at Google Trends → Search trends and purchase trends don't always align; cross-verify with BSR data
-- ❌ Ignoring social media signals → Viral products on TikTok/Instagram often lead Amazon search trends by 2–3 months
+- Not providing any data → AI can only answer based on general knowledge, with very low accuracy
+- Only looking at Google Trends → Search trends and purchase trends don't always align; cross-verify with BSR data
+- Ignoring social media signals → Viral products on TikTok/Instagram often lead Amazon search trends by 23 months
 
 ```
 你是一个电商趋势分析师。基于以下信息，预测这个品类未来 6 个月的趋势：
@@ -386,13 +386,13 @@ If you have a technical background (or have a developer on your team), open-sour
 4. 建议的进入时机和策略
 ```
 
-**Advanced Variant — Multi-Category Trend Comparison:**
+**Advanced Variant Multi-Category Trend Comparison:**
 
 ```
 我在考虑以下 3 个品类，请对比它们的趋势走向：
-品类A：[名称] — Google Trends: [描述]
-品类B：[名称] — Google Trends: [描述]
-品类C：[名称] — Google Trends: [描述]
+品类A：[名称] Google Trends: [描述]
+品类B：[名称] Google Trends: [描述]
+品类C：[名称] Google Trends: [描述]
 
 哪个品类目前处于最佳进入窗口？为什么？
 ```
@@ -404,9 +404,9 @@ If you have a technical background (or have a developer on your team), open-sour
 **Why this prompt works:** It transforms supplier evaluation from "gut feeling" into a structured, multi-dimensional comparison. AI can help you spot risk factors you might overlook (e.g., high MOQ creating cash flow pressure, long lead times affecting peak season inventory).
 
 **Common Mistakes:**
-- ❌ Only comparing price → The cheapest supplier often has the worst quality control; total cost ends up being the highest
-- ❌ Not factoring in shipping and tariffs → Landed cost is the real cost
-- ❌ Only contacting one supplier → Contact at least 3–5 to understand the market price range
+- Only comparing price → The cheapest supplier often has the worst quality control; total cost ends up being the highest
+- Not factoring in shipping and tariffs → Landed cost is the real cost
+- Only contacting one supplier → Contact at least 35 to understand the market price range
 
 ```
 我找到了以下 3 个 1688/Alibaba 供应商，请帮我做对比评估：
@@ -429,13 +429,13 @@ If you have a technical background (or have a developer on your team), open-sour
 
 ### 3.6 Profit Calculator
 
-**Why this prompt works:** It lists all cost items comprehensively (many beginners forget about first-mile shipping, advertising costs, and return losses), and requires AI to calculate the break-even point — the key number for deciding "go or no-go."
+**Why this prompt works:** It lists all cost items comprehensively (many beginners forget about first-mile shipping, advertising costs, and return losses), and requires AI to calculate the break-even point the key number for deciding "go or no-go."
 
 **Common Mistakes:**
-- ❌ Forgetting advertising costs → New product advertising can account for 20–30% of the selling price
-- ❌ Forgetting return losses → Some categories have return rates as high as 15–20%
-- ❌ Calculating profit in RMB → Exchange rate fluctuations affect profit; calculate in the target market's currency
-- ❌ Not calculating the break-even point → Knowing "profit per unit" isn't enough; you also need to know "how many units per day to break even"
+- Forgetting advertising costs → New product advertising can account for 2030% of the selling price
+- Forgetting return losses → Some categories have return rates as high as 1520%
+- Calculating profit in RMB → Exchange rate fluctuations affect profit; calculate in the target market's currency
+- Not calculating the break-even point → Knowing "profit per unit" isn't enough; you also need to know "how many units per day to break even"
 
 ```
 帮我计算以下产品在 Amazon [US/DE/JP] 的利润：
@@ -460,7 +460,7 @@ If you have a technical background (or have a developer on your team), open-sour
 注意：请用当前汇率换算，并标注你使用的汇率。
 ```
 
-**Advanced Variant — Multi-Price-Point Sensitivity Analysis:**
+**Advanced Variant Multi-Price-Point Sensitivity Analysis:**
 
 ```
 基于上面的成本结构，请做价格敏感性分析：
@@ -474,7 +474,7 @@ If you have a technical background (or have a developer on your team), open-sour
 
 ### 3.7 Category Opportunity Discovery
 
-**Why you need this prompt:** The previous templates all assume "I already have a product idea — help me evaluate it." But the first step in product research is "discovering opportunities." This prompt helps you find categories worth investigating from scratch.
+**Why you need this prompt:** The previous templates all assume "I already have a product idea help me evaluate it." But the first step in product research is "discovering opportunities." This prompt helps you find categories worth investigating from scratch.
 
 ```
 你是一个跨境电商选品顾问。请帮我发现 Amazon [US/DE/JP] 上的品类机会。
@@ -499,7 +499,7 @@ If you have a technical background (or have a developer on your team), open-sour
 - 考虑我的资金和经验限制
 ```
 
-> ⚠️ **Important Reminder**: AI-recommended categories are just a starting point, not a conclusion. Every recommendation needs to be validated with real data from Helium 10/Jungle Scout. AI may recommend opportunities that are already outdated.
+> **Important Reminder**: AI-recommended categories are just a starting point, not a conclusion. Every recommendation needs to be validated with real data from Helium 10/Jungle Scout. AI may recommend opportunities that are already outdated.
 
 ---
 
@@ -507,62 +507,62 @@ If you have a technical background (or have a developer on your team), open-sour
 
 ### 4.1 Complete Product Research SOP (7-Step Method)
 
-This SOP compresses the traditional 1–2 week product research process down to roughly 12 hours. Each step is annotated with the tools and prompts used.
+This SOP compresses the traditional 12 week product research process down to roughly 12 hours. Each step is annotated with the tools and prompts used.
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│  Step 1: Trend Discovery (1 hour)                       │
-│  Tools: Google Trends + Amazon Movers & Shakers         │
-│  AI: Trend Forecasting Prompt (3.4)                     │
-│  Output: 5–10 categories worth investigating            │
-├─────────────────────────────────────────────────────────┤
-│  Step 2: Category Screening (2 hours)                   │
-│  Tools: Helium 10 Black Box / Jungle Scout Product DB   │
-│  Filters: Monthly sales >300, Reviews <500,             │
-│           Price $15–50                                   │
-│  AI: Market Feasibility Assessment Prompt (3.2)         │
-│  Output: 3–5 categories that pass initial screening     │
-├─────────────────────────────────────────────────────────┤
-│  Step 3: Deep Competitor Analysis (3 hours)              │
-│  Tools: Helium 10 Xray + Keepa                          │
-│  Data: Select 5–10 competitors, collect reviews         │
-│        (50–100 per competitor)                           │
-│  AI: Review Pain Point Analysis (3.1) +                 │
-│       Positive Review Mining (3.1 Variant C)            │
-│  Output: Category pain point map +                      │
-│          must-have feature checklist                     │
-├─────────────────────────────────────────────────────────┤
-│  Step 4: Keyword Research (2 hours)                     │
-│  Tools: Helium 10 Cerebro / Jungle Scout Keyword Scout  │
-│  AI: Keyword Demand Clustering Prompt (3.3)             │
-│  Output: Demand cluster map + blue-ocean keyword list   │
-├─────────────────────────────────────────────────────────┤
-│  Step 5: Profit Modeling (1 hour)                       │
-│  Tools: Amazon FBA Revenue Calculator                   │
-│  AI: Profit Calculator Prompt (3.6)                     │
-│  Output: Profit model + break-even point                │
-├─────────────────────────────────────────────────────────┤
-│  Step 6: Supplier Screening (2 hours)                   │
-│  Tools: 1688 / Alibaba                                  │
-│  AI: Supplier Evaluation Prompt (3.5)                   │
-│  Output: Supplier comparison table +                    │
-│          negotiation strategy                            │
-├─────────────────────────────────────────────────────────┤
-│  Step 7: Decision Output (1 hour)                       │
-│  AI: Consolidate all analyses into a product            │
-│       research report                                    │
-│  Prompt: "Based on all the above analyses, provide a    │
-│          final Go/No-Go recommendation and a 3-month    │
-│          action plan for post-entry execution"           │
-│  Output: Go/No-Go decision + action plan                │
-└─────────────────────────────────────────────────────────┘
+
+Step 1: Trend Discovery (1 hour)
+Tools: Google Trends + Amazon Movers & Shakers
+AI: Trend Forecasting Prompt (3.4)
+Output: 510 categories worth investigating
+
+Step 2: Category Screening (2 hours)
+Tools: Helium 10 Black Box / Jungle Scout Product DB
+Filters: Monthly sales >300, Reviews <500,
+Price $1550
+AI: Market Feasibility Assessment Prompt (3.2)
+Output: 35 categories that pass initial screening
+
+Step 3: Deep Competitor Analysis (3 hours)
+Tools: Helium 10 Xray + Keepa
+Data: Select 510 competitors, collect reviews
+(50100 per competitor)
+AI: Review Pain Point Analysis (3.1) +
+Positive Review Mining (3.1 Variant C)
+Output: Category pain point map +
+must-have feature checklist
+
+Step 4: Keyword Research (2 hours)
+Tools: Helium 10 Cerebro / Jungle Scout Keyword Scout
+AI: Keyword Demand Clustering Prompt (3.3)
+Output: Demand cluster map + blue-ocean keyword list
+
+Step 5: Profit Modeling (1 hour)
+Tools: Amazon FBA Revenue Calculator
+AI: Profit Calculator Prompt (3.6)
+Output: Profit model + break-even point
+
+Step 6: Supplier Screening (2 hours)
+Tools: 1688 / Alibaba
+AI: Supplier Evaluation Prompt (3.5)
+Output: Supplier comparison table +
+negotiation strategy
+
+Step 7: Decision Output (1 hour)
+AI: Consolidate all analyses into a product
+research report
+Prompt: "Based on all the above analyses, provide a
+final Go/No-Go recommendation and a 3-month
+action plan for post-entry execution"
+Output: Go/No-Go decision + action plan
+
 ```
 
 ### 4.2 Detailed Guide for Each Step
 
 **Step 1: Trend Discovery**
 
-Goal: Find 5–10 directions worth investigating from the vast universe of categories.
+Goal: Find 510 directions worth investigating from the vast universe of categories.
 
 Workflow:
 1. Open [Google Trends](https://trends.google.com/), search for category keywords you're interested in, and check the 12-month trend
@@ -571,23 +571,23 @@ Workflow:
 4. Use the Trend Forecasting Prompt (3.4) to have AI evaluate each category's trend direction
 
 Decision Criteria:
-- ✅ Google Trends shows consistent growth over the past 6 months
-- ✅ Appears on Amazon Movers & Shakers for 3 consecutive days
-- ✅ Social media buzz exists but few competitors on Amazon
-- ❌ Google Trends shows a declining trend
-- ❌ Search volume only spikes in specific months (strong seasonality)
+- Google Trends shows consistent growth over the past 6 months
+- Appears on Amazon Movers & Shakers for 3 consecutive days
+- Social media buzz exists but few competitors on Amazon
+- Google Trends shows a declining trend
+- Search volume only spikes in specific months (strong seasonality)
 
 **Step 2: Category Screening**
 
 Goal: Validate trend discoveries with data tools and filter for categories with real opportunity.
 
 Helium 10 Black Box Filter Settings (recommended starting point):
-- Monthly sales: 300–10,000 (too low = no market; too high = fierce competition)
+- Monthly sales: 30010,000 (too low = no market; too high = fierce competition)
 - Review count: <500 (too many reviews = entrenched top sellers)
-- Price: $15–50 (too low = thin margins; too high = high barrier to entry)
-- Rating: 3.5–4.3 (low ratings = room for improvement in the category)
+- Price: $1550 (too low = thin margins; too high = high barrier to entry)
+- Rating: 3.54.3 (low ratings = room for improvement in the category)
 
-> 💡 These are just starting parameters — adjust based on your capital and experience. With more capital, you can raise the price ceiling; with more experience, you can take on categories with higher review counts.
+> These are just starting parameters adjust based on your capital and experience. With more capital, you can raise the price ceiling; with more experience, you can take on categories with higher review counts.
 
 ---
 **Step 3: Deep Competitor Analysis**
@@ -595,8 +595,8 @@ Helium 10 Black Box Filter Settings (recommended starting point):
 Goal: Understand the category's pain point map and must-have features.
 
 Workflow:
-1. Select the top 5–10 competitors by BSR
-2. Use Helium 10 Review Insights or manually collect 50–100 negative reviews per competitor
+1. Select the top 510 competitors by BSR
+2. Use Helium 10 Review Insights or manually collect 50100 negative reviews per competitor
 3. Use the Review Pain Point Analysis Prompt (3.1) to analyze negative reviews
 4. Use the Positive Review Mining Prompt (3.1 Variant C) to analyze positive reviews
 5. Use Keepa to check competitor price history and BSR trends
@@ -606,15 +606,15 @@ Output Template:
 Category Pain Point Map:
 | Pain Point | Frequency | Sentiment Intensity | Competitor A | Competitor B | Competitor C | Fix Difficulty |
 |------------|-----------|---------------------|-------------|-------------|-------------|---------------|
-| ...        | ...       | ...                 | ✅/❌        | ✅/❌        | ✅/❌        | High/Med/Low  |
+| ... | ... | ... | / | / | / | High/Med/Low |
 
 Must-Have Feature Checklist:
 | Feature | User Mention Frequency | Category Standard? |
 |---------|----------------------|-------------------|
-| ...     | ...                  | Yes/No            |
+| ... | ... | Yes/No |
 ```
 
-**Steps 4–7** follow the tools and prompts outlined in the SOP diagram above. The key is to save the output from each step and consolidate everything into a complete product research report at the end.
+**Steps 47** follow the tools and prompts outlined in the SOP diagram above. The key is to save the output from each step and consolidate everything into a complete product research report at the end.
 
 ### 4.3 Product Research Report Template
 
@@ -667,7 +667,7 @@ Date: [Date]
 | **Survivorship bias** | Only looking at the top 10 BSR success stories, ignoring the many failed sellers | Also analyze products with declining BSR to understand failure reasons |
 | **Seasonality trap** | Researching during peak season and mistaking it for year-round demand | Use Google Trends for 12-month trends; use Keepa for BSR history |
 | **Sample bias** | Drawing conclusions from just 10 reviews | Analyze at least 50 reviews per competitor, covering different time periods |
-| **Tool data variance** | Different tools give very different sales estimates for the same product | Cross-verify with 2–3 tools and use the median value |
+| **Tool data variance** | Different tools give very different sales estimates for the same product | Cross-verify with 23 tools and use the median value |
 
 ### 5.2 Decision-Related Pitfalls
 
@@ -885,17 +885,17 @@ After completing all items above, you've mastered the core skills of AI-assisted
 | Need | Recommended Tool | Free Alternative |
 |------|-----------------|-----------------|
 | Product screening | Helium 10 Black Box | Amazon Best Sellers + AI |
-| Reverse ASIN keyword lookup | Helium 10 Cerebro | — |
-| Price/BSR history | Keepa | — |
+| Reverse ASIN keyword lookup | Helium 10 Cerebro | |
+| Price/BSR history | Keepa | |
 | Review analysis | ChatGPT / Claude | ChatGPT free tier |
 | Trend validation | Google Trends | Google Trends (free by default) |
 | Market research | Perplexity | Perplexity (free by default) |
-| Multi-marketplace data | SellerSprite | — |
+| Multi-marketplace data | SellerSprite | |
 | Supplier search | 1688 / Alibaba | 1688 (free by default) |
 
 ---
-> 🏠 [Hub Home](../../README.md) · 📋 [Path A Overview](README.md)
-> 
+> [Hub Home](../../README.md) · [Path A Overview](README.md)
+>
 > **Path A**: [A1 Product Research](a1-product-research.md) · [A2 Listing](a2-listing-optimization.md) · [A3 Advertising](a3-advertising.md) · [A4 Customer Service](a4-customer-service.md) · [A5 Inventory](a5-inventory.md) · [A6 Compliance](a6-compliance.md)
-> 
+>
 > **Quick Jump**: [Path 0 Foundations](../0-foundations/) · [Path B Developers](../b-developers/) · [Path C Managers](../c-managers/) · [Path D Multi-Platform](../d-platforms/) · [Path E Social Media](../e-social-media/)

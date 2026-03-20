@@ -2,10 +2,10 @@
 
 > **场景**: Amazon PPC 广告优化
 > **工具**: Claude + Amazon Ads MCP Server
-> **难度**: ⭐⭐ 中级
+> **难度**: 中级
 > **预计节省**: 每周 10+ 小时，ACOS 降低 30-50%
 
-🏠 [Hub 首页](../../README.md) · 📋 [案例列表](README.md)
+[Hub 首页](../../README.md) · [案例列表](README.md)
 
 ---
 

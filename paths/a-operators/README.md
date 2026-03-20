@@ -1,4 +1,4 @@
-# Path A: 运营人 — AI 提效实战
+# Path A: 运营人 AI 提效实战
 
 > 最后更新: 2026-03-10
 
@@ -17,19 +17,19 @@
 
 | 模块 | 主题 | 难度 | 预计时间 | 说明 |
 |------|------|------|----------|------|
-| [A1. 选品与市场洞察](a1-product-research.md) | 选品调研 | ⭐ 入门 | 2-3小时 | 批量分析竞品 Review，发现关键词需求 |
-| [A2. Listing 与内容创作](a2-listing-optimization.md) | 内容生成 | ⭐ 入门 | 2-3小时 | 从零生成 Listing 初稿，多语言本地化 |
-| [A3. 广告优化](a3-advertising.md) | 广告分析 | ⭐⭐ 中级 | 2-3小时 | 分析搜索词报告，生成广告文案变体 |
-| [A4. 客服与售后](a4-customer-service.md) | 客服效率 | ⭐ 入门 | 1-2小时 | 多语言客服模板，差评分析，申诉信 |
-| [A5. 库存与供应链](a5-inventory.md) | 库存管理 | ⭐⭐ 中级 | 1-2小时 | 预测补货需求，计算安全库存 |
-| [A6. 合规与风控](a6-compliance.md) | 合规管理 | ⭐⭐ 中级 | 1-2小时 | 多市场合规要求查询，合规清单生成 |
-| [A7. 视觉内容](a7-visual-content.md) | AI 图片/视频 | ⭐⭐ 中级 | 2-3小时 | AI 产品图、视频生成，品牌视觉一致性 |
-| [A8. 定价策略](a8-pricing-strategy.md) | 智能定价 | ⭐⭐ 中级 | 1-2小时 | AI 竞品价格监控，动态定价策略 |
-| [A9. SEO/GEO](a9-seo-geo.md) | 搜索优化 | ⭐⭐⭐ 高级 | 2-3周 | Amazon SEO + Google SEO + AI 搜索优化 |
-| [A10. 品牌建设](a10-brand-building.md) | 品牌策略 | ⭐⭐ 中级 | 1-2周 | AI 品牌故事、视觉系统、跨平台一致性 |
-| [A11. 财务分析](a11-financial-analysis.md) | 财务管理 | ⭐⭐ 中级 | 1周 | AI 利润计算、现金流预测、多平台 ROI |
-| [A12. 知识产权](a12-ip-protection.md) | IP 保护 | ⭐⭐ 中级 | 1周 | AI 专利检索、商标监控、品牌保护 |
-| [A13. AI Growth Hack](a13-ai-growth-hack.md) | 🆕 全栈增长 | ⭐⭐⭐ 高级 | 持续迭代 | AI 全链路增长飞轮、Agentic Commerce |
+| [A1. 选品与市场洞察](a1-product-research.md) | 选品调研 | 入门 | 2-3小时 | 批量分析竞品 Review，发现关键词需求 |
+| [A2. Listing 与内容创作](a2-listing-optimization.md) | 内容生成 | 入门 | 2-3小时 | 从零生成 Listing 初稿，多语言本地化 |
+| [A3. 广告优化](a3-advertising.md) | 广告分析 | 中级 | 2-3小时 | 分析搜索词报告，生成广告文案变体 |
+| [A4. 客服与售后](a4-customer-service.md) | 客服效率 | 入门 | 1-2小时 | 多语言客服模板，差评分析，申诉信 |
+| [A5. 库存与供应链](a5-inventory.md) | 库存管理 | 中级 | 1-2小时 | 预测补货需求，计算安全库存 |
+| [A6. 合规与风控](a6-compliance.md) | 合规管理 | 中级 | 1-2小时 | 多市场合规要求查询，合规清单生成 |
+| [A7. 视觉内容](a7-visual-content.md) | AI 图片/视频 | 中级 | 2-3小时 | AI 产品图、视频生成，品牌视觉一致性 |
+| [A8. 定价策略](a8-pricing-strategy.md) | 智能定价 | 中级 | 1-2小时 | AI 竞品价格监控，动态定价策略 |
+| [A9. SEO/GEO](a9-seo-geo.md) | 搜索优化 | 高级 | 2-3周 | Amazon SEO + Google SEO + AI 搜索优化 |
+| [A10. 品牌建设](a10-brand-building.md) | 品牌策略 | 中级 | 1-2周 | AI 品牌故事、视觉系统、跨平台一致性 |
+| [A11. 财务分析](a11-financial-analysis.md) | 财务管理 | 中级 | 1周 | AI 利润计算、现金流预测、多平台 ROI |
+| [A12. 知识产权](a12-ip-protection.md) | IP 保护 | 中级 | 1周 | AI 专利检索、商标监控、品牌保护 |
+| [A13. AI Growth Hack](a13-ai-growth-hack.md) | 全栈增长 | 高级 | 持续迭代 | AI 全链路增长飞轮、Agentic Commerce |
 
 ---
 
@@ -48,4 +48,4 @@
 
 ---
 
-🏠 [返回 Hub 首页](../../README.md) · 📋 [返回路径总览](../README.md)
+[返回 Hub 首页](../../README.md) · [返回路径总览](../README.md)

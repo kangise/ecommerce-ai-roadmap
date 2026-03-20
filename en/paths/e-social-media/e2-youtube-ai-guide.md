@@ -4,15 +4,15 @@
 
 > **Path**: Path E: Social Media · **Module**: E2
 > **Last Updated**: 2026-03-14
-> **Difficulty**: ⭐⭐ Intermediate
+> **Difficulty**: Intermediate
 > **Estimated Time**: 3-4 hours
 > **Prerequisites**: [Path 0 Foundations](../0-foundations/) · [Path A Operations](../a-operators/)
 
-🏠 [Hub Home](../../README.md) · 📋 [Path E Overview](README.md)
+[Hub Home](../../README.md) · [Path E Overview](README.md)
 
 ---
 
-## 📖 Chapter Navigation
+## Chapter Navigation
 
 1. [YouTube's Unique Value](#1-youtubes-unique-value)
 2. [YouTube SEO Methodology](#2-youtube-seo-methodology)
@@ -36,8 +36,8 @@
 - A YouTube Ads optimization strategy
 - A YouTube-specific Prompt template library
 
-> 💡 **Core Concept**: YouTube is a "trust-driven" e-commerce channel.
-Unlike Instagram's "impulse inspiration" or TikTok's "entertainment impulse," YouTube users are actively researching and learning. A 10-minute product review video builds more trust than 100 fifteen-second short videos. With 2.7 billion MAU, a 2026 partnership with Rakuten for YouTube Shopping, and accelerating Shorts e-commerce features, AI's core value on YouTube is helping you efficiently produce in-depth content — scripts, SEO, thumbnail copy, and chapter markers.
+> **Core Concept**: YouTube is a "trust-driven" e-commerce channel.
+Unlike Instagram's "impulse inspiration" or TikTok's "entertainment impulse," YouTube users are actively researching and learning. A 10-minute product review video builds more trust than 100 fifteen-second short videos. With 2.7 billion MAU, a 2026 partnership with Rakuten for YouTube Shopping, and accelerating Shorts e-commerce features, AI's core value on YouTube is helping you efficiently produce in-depth content scripts, SEO, thumbnail copy, and chapter markers.
 
 ---
 
@@ -56,7 +56,7 @@ Unlike Instagram's "impulse inspiration" or TikTok's "entertainment impulse," Yo
 
 ### 1.2 YouTube Opportunities for Cross-Border E-commerce Sellers
 
-- Product review videos rank extremely high in Google search ("best neck fan 2026" — top 5 results usually include YouTube videos)
+- Product review videos rank extremely high in Google search ("best neck fan 2026" top 5 results usually include YouTube videos)
 - YouTube Shorts competes with TikTok/Reels, but users have higher purchasing power
 - In 2026, YouTube Shopping partnered with Rakuten, enabling direct purchases in the Japanese market
 - YouTube Affiliate Program standardizes influencer collaborations
@@ -71,37 +71,37 @@ YouTube traffic comes from two engines with completely different SEO strategies:
 
 ```
 引擎 1：搜索流量（Search）
-├── 用户主动搜索关键词
-├── 排名因素：标题关键词匹配 + 观看时长 + CTR
-├── 适合：教程、评测、对比、How-to
-└── AI 应用：关键词研究 + 标题/描述优化
+用户主动搜索关键词
+排名因素：标题关键词匹配 + 观看时长 + CTR
+适合：教程、评测、对比、How-to
+AI 应用：关键词研究 + 标题/描述优化
 
 引擎 2：推荐流量（Suggested/Browse）
-├── 算法基于用户兴趣推荐
-├── 排名因素：CTR + 观看时长 + 互动率
-├── 适合：趋势内容、娱乐、故事
-└── AI 应用：缩略图优化 + Hook 设计
+算法基于用户兴趣推荐
+排名因素：CTR + 观看时长 + 互动率
+适合：趋势内容、娱乐、故事
+AI 应用：缩略图优化 + Hook 设计
 ```
 
 ### 2.2 AI Keyword Research Workflow
 
 ```
 Step 1: 种子关键词收集
-├── Amazon 搜索词报告中的高流量词
-├── Google Keyword Planner
-├── YouTube 搜索联想（输入品类词看建议）
-└── 竞品频道的热门视频标题
+Amazon 搜索词报告中的高流量词
+Google Keyword Planner
+YouTube 搜索联想（输入品类词看建议）
+竞品频道的热门视频标题
 
 Step 2: AI 扩展关键词
-├── ChatGPT: "列出 50 个与 [品类] 相关的 YouTube 搜索词"
-├── 分类：产品词/问题词/对比词/教程词
-└── 筛选：搜索量 + 竞争度 + 购买意图
+ChatGPT: "列出 50 个与 [品类] 相关的 YouTube 搜索词"
+分类：产品词/问题词/对比词/教程词
+筛选：搜索量 + 竞争度 + 购买意图
 
 Step 3: 关键词布局
-├── 标题：核心关键词放在前 60 字符
-├── 描述：前 2 行包含关键词（折叠前可见）
-├── 标签：10-15 个，核心词+长尾词+品牌词
-└── 字幕/CC：自动生成的字幕也被索引
+标题：核心关键词放在前 60 字符
+描述：前 2 行包含关键词（折叠前可见）
+标签：10-15 个，核心词+长尾词+品牌词
+字幕/CC：自动生成的字幕也被索引
 ```
 
 **AI Keyword Research Prompt:**
@@ -115,16 +115,16 @@ Step 3: 关键词布局
 请帮我做 YouTube 关键词研究：
 
 1. 列出 30 个高搜索量的 YouTube 关键词，分为：
-   - 产品词（5个）：如 "best [品类] 2026"
-   - 问题词（10个）：如 "how to choose [品类]"
-   - 对比词（5个）：如 "[品牌A] vs [品牌B]"
-   - 教程词（5个）：如 "how to use [产品]"
-   - 长尾词（5个）：如 "[品类] for [特定场景]"
+- 产品词（5个）：如 "best [品类] 2026"
+- 问题词（10个）：如 "how to choose [品类]"
+- 对比词（5个）：如 "[品牌A] vs [品牌B]"
+- 教程词（5个）：如 "how to use [产品]"
+- 长尾词（5个）：如 "[品类] for [特定场景]"
 
 2. 每个关键词标注：
-   - 预估搜索意图（信息/对比/购买）
-   - 推荐视频类型（评测/教程/对比/清单）
-   - 推荐视频时长
+- 预估搜索意图（信息/对比/购买）
+- 推荐视频类型（评测/教程/对比/清单）
+- 推荐视频时长
 
 3. 给出本月的 4 个视频选题建议（每周 1 个），按优先级排序
 ```
@@ -167,10 +167,10 @@ Step 3: 关键词布局
 
 | Type | Duration | Structure | AI Assistance Level | Conversion Effect |
 |------|----------|-----------|-------------------|-------------------|
-| Product Review | 8-15 min | Unboxing → Appearance → Features → Pros/Cons → Verdict | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
-| Comparison Review | 10-20 min | Intro → Dimension comparison → Scenario recommendations → Summary | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
-| Usage Tutorial | 5-10 min | Problem → Steps → Tips → Common mistakes | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ |
-| Category Guide | 15-25 min | Buying factors → Recommendation list → FAQ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
+| Product Review | 8-15 min | Unboxing → Appearance → Features → Pros/Cons → Verdict | | |
+| Comparison Review | 10-20 min | Intro → Dimension comparison → Scenario recommendations → Summary | | |
+| Usage Tutorial | 5-10 min | Problem → Steps → Tips → Common mistakes | | |
+| Category Guide | 15-25 min | Buying factors → Recommendation list → FAQ | | |
 
 ### 3.2 AI-Generated Product Review Script
 
@@ -188,34 +188,34 @@ Step 3: 关键词布局
 请生成一个 10-12 分钟的评测视频脚本，结构如下：
 
 1. Hook（0:00-0:30）
-   - 一句话总结评价（"这是 2026 年最值得买的 [品类] 吗？"）
-   - 快速展示产品亮点画面
-   - 告诉观众为什么要看完（"我用了 2 周，发现了一个大问题..."）
+- 一句话总结评价（"这是 2026 年最值得买的 [品类] 吗？"）
+- 快速展示产品亮点画面
+- 告诉观众为什么要看完（"我用了 2 周，发现了一个大问题..."）
 
 2. 开箱与外观（0:30-2:00）
-   - 包装内容
-   - 外观设计、做工、手感
-   - 与竞品的外观对比
+- 包装内容
+- 外观设计、做工、手感
+- 与竞品的外观对比
 
 3. 功能测试（2:00-6:00）
-   - 逐个测试核心功能
-   - 每个功能给出评分（1-10）
-   - 实际使用场景演示
+- 逐个测试核心功能
+- 每个功能给出评分（1-10）
+- 实际使用场景演示
 
 4. 优缺点总结（6:00-8:00）
-   - 3 个优点（具体、有数据支撑）
-   - 2-3 个缺点（诚实、具体）
-   - 与竞品的关键差异
+- 3 个优点（具体、有数据支撑）
+- 2-3 个缺点（诚实、具体）
+- 与竞品的关键差异
 
 5. 谁适合/不适合（8:00-9:30）
-   - 推荐人群
-   - 不推荐人群
-   - 替代方案建议
+- 推荐人群
+- 不推荐人群
+- 替代方案建议
 
 6. 结论与 CTA（9:30-10:30）
-   - 最终评分
-   - 购买建议
-   - "链接在描述区" + 订阅引导
+- 最终评分
+- 购买建议
+- "链接在描述区" + 订阅引导
 
 每个部分请提供：
 - 口播文字（自然口语化，不像念稿）
@@ -247,7 +247,7 @@ X:XX - [章节名]
 
 ## 4. YouTube Shorts E-commerce Strategy
 
-> 📎 **Related Reading**: [D2 TikTok Shop](../d-platforms/tiktok-shop-ai-guide.md#15-short-video-content-creation-advanced-methodology) — Refer to D2 for TikTok short video methodology. Shorts and TikTok content can be adapted for each other.
+> **Related Reading**: [D2 TikTok Shop](../d-platforms/tiktok-shop-ai-guide.md#15-short-video-content-creation-advanced-methodology) Refer to D2 for TikTok short video methodology. Shorts and TikTok content can be adapted for each other.
 
 ### 4.1 Shorts vs TikTok vs Reels: Algorithm Differences
 
@@ -290,7 +290,7 @@ X:XX - [章节名]
 
 ## 5. YouTube Shopping and Affiliate
 
-> 📎 **Related Reading**: [D8 Rakuten Japan E-commerce](../d-platforms/d8-rakuten-japan-ai-guide.md#d8-rakuten-japan-e-commerce-ai-guide) — Refer to D8 for YouTube Shopping × Rakuten partnership details. Japanese market users can purchase Rakuten products directly from YouTube.
+> **Related Reading**: [D8 Rakuten Japan E-commerce](../d-platforms/d8-rakuten-japan-ai-guide.md#d8-rakuten-japan-e-commerce-ai-guide) Refer to D8 for YouTube Shopping × Rakuten partnership details. Japanese market users can purchase Rakuten products directly from YouTube.
 
 ### 5.1 YouTube Shopping Features (2026)
 
@@ -301,7 +301,7 @@ X:XX - [章节名]
 
 ### 5.2 YouTube Affiliate Program
 
-> 📎 **Related Reading**: [D1 Shopify](../d-platforms/shopify-ai-guide.md#28-complete-methodology-for-migrating-from-amazon-to-shopify) — Refer to D1 for Shopify Collabs influencer collaboration methodology. Affiliate management and influencer screening strategies are reusable.
+> **Related Reading**: [D1 Shopify](../d-platforms/shopify-ai-guide.md#28-complete-methodology-for-migrating-from-amazon-to-shopify) Refer to D1 for Shopify Collabs influencer collaboration methodology. Affiliate management and influencer screening strategies are reusable.
 
 YouTube's Affiliate feature standardizes influencer collaborations:
 
@@ -354,19 +354,19 @@ YouTube's Affiliate feature standardizes influencer collaborations:
 请生成 3 种广告脚本：
 
 1. 6 秒 Bumper Ad
-   - 一个画面 + 一句话 + 品牌 logo
-   - 要求：信息极度精炼，一个核心卖点
+- 一个画面 + 一句话 + 品牌 logo
+- 要求：信息极度精炼，一个核心卖点
 
 2. 15 秒 Non-skippable
-   - 痛点（3秒）→ 产品（7秒）→ CTA（5秒）
-   - 要求：节奏快，信息密度高
+- 痛点（3秒）→ 产品（7秒）→ CTA（5秒）
+- 要求：节奏快，信息密度高
 
 3. 30 秒 Skippable（重点优化前 5 秒）
-   - Hook（0-5秒）：必须让用户不想跳过
-   - 产品展示（5-20秒）
-   - 社会证明（20-25秒）
-   - CTA（25-30秒）
-   - 要求：前 5 秒是生死线，必须抓住注意力
+- Hook（0-5秒）：必须让用户不想跳过
+- 产品展示（5-20秒）
+- 社会证明（20-25秒）
+- CTA（25-30秒）
+- 要求：前 5 秒是生死线，必须抓住注意力
 ```
 
 ---
@@ -379,24 +379,24 @@ YouTube's Affiliate feature standardizes influencer collaborations:
 YouTube 电商频道关键指标：
 
 一、流量指标
-├── Views（观看次数）
-├── Impressions（展示次数）
-├── CTR（点击率）← 缩略图+标题的效果
-├── Traffic Sources（流量来源）：搜索 vs 推荐 vs 外部
-└── Unique Viewers（独立观众）
+Views（观看次数）
+Impressions（展示次数）
+CTR（点击率）← 缩略图+标题的效果
+Traffic Sources（流量来源）：搜索 vs 推荐 vs 外部
+Unique Viewers（独立观众）
 
 二、互动指标
-├── Average View Duration（平均观看时长）← 最重要
-├── Watch Time（总观看时长）
-├── Likes / Comments / Shares
-├── Subscribers Gained（新增订阅）
-└── End Screen CTR（片尾卡片点击率）
+Average View Duration（平均观看时长）← 最重要
+Watch Time（总观看时长）
+Likes / Comments / Shares
+Subscribers Gained（新增订阅）
+End Screen CTR（片尾卡片点击率）
 
 三、转化指标
-├── Description Link Clicks
-├── Shopping Card Clicks
-├── Affiliate Revenue
-└── RPM（每千次观看收入）
+Description Link Clicks
+Shopping Card Clicks
+Affiliate Revenue
+RPM（每千次观看收入）
 ```
 
 ### 7.2 AI Channel Diagnostics Prompt
@@ -491,19 +491,19 @@ Bottom 5 视频表现：
 
 ## 10. Common Pitfalls
 
-### ❌ Pitfall 1: Only Making Shorts, No Long Videos
+### Pitfall 1: Only Making Shorts, No Long Videos
 Shorts bring exposure but don't build deep trust. Long videos are the core of conversion. Recommended ratio: 1 long video + 3-5 Shorts per week.
 
-### ❌ Pitfall 2: Keyword-Stuffing Titles
-"Best Neck Fan 2026 Portable Fan Review Cheap Fan" — this kind of title has extremely low CTR. Use natural language + curiosity.
+### Pitfall 2: Keyword-Stuffing Titles
+"Best Neck Fan 2026 Portable Fan Review Cheap Fan" this kind of title has extremely low CTR. Use natural language + curiosity.
 
-### ❌ Pitfall 3: Ignoring Thumbnails
+### Pitfall 3: Ignoring Thumbnails
 On YouTube, 90% of the decision happens at the thumbnail. Time spent on thumbnails should equal time spent on editing.
 
-### ❌ Pitfall 4: Not Including Affiliate Disclosure
+### Pitfall 4: Not Including Affiliate Disclosure
 FTC requires affiliate relationship disclosure in descriptions. Failure to disclose may result in video flagging or legal risk.
 
-### ❌ Pitfall 5: Long Videos Without Chapter Markers
+### Pitfall 5: Long Videos Without Chapter Markers
 Long videos without chapter markers cause viewers to leave mid-way. Chapter markers improve watch time and SEO.
 
 ---
@@ -514,31 +514,31 @@ Long videos without chapter markers cause viewers to leave mid-way. Chapter mark
 
 ```
 Phase 1: 基础建设（第 1-2 周）
-├── 频道设置：头像、Banner、简介、链接
-├── 关键词研究：找到 10-20 个目标关键词
-├── 内容规划：制定第一个月的 8 个视频选题
-└── 设备准备：手机+三脚架+麦克风（不需要专业设备）
+频道设置：头像、Banner、简介、链接
+关键词研究：找到 10-20 个目标关键词
+内容规划：制定第一个月的 8 个视频选题
+设备准备：手机+三脚架+麦克风（不需要专业设备）
 
 Phase 2: 内容积累（第 3-8 周）
-├── 每周发布 1 个长视频 + 3-5 个 Shorts
-├── 长视频聚焦搜索流量（教程/评测/对比）
-├── Shorts 聚焦推荐流量（快速 Tips/产品展示）
-├── 每个视频优化标题/描述/标签/缩略图
-└── 目标：积累 20+ 个视频，建立内容库
+每周发布 1 个长视频 + 3-5 个 Shorts
+长视频聚焦搜索流量（教程/评测/对比）
+Shorts 聚焦推荐流量（快速 Tips/产品展示）
+每个视频优化标题/描述/标签/缩略图
+目标：积累 20+ 个视频，建立内容库
 
 Phase 3: 优化迭代（第 9-12 周）
-├── 分析数据：哪些视频表现好？为什么？
-├── 加倍投入表现好的内容类型
-├── 优化缩略图（CTR 是增长的关键杠杆）
-├── 开始与小达人互动（评论/合作）
-└── 目标：达到 1000 订阅 + 4000 小时观看（YouTube 合作伙伴门槛）
+分析数据：哪些视频表现好？为什么？
+加倍投入表现好的内容类型
+优化缩略图（CTR 是增长的关键杠杆）
+开始与小达人互动（评论/合作）
+目标：达到 1000 订阅 + 4000 小时观看（YouTube 合作伙伴门槛）
 
 Phase 4: 规模化（第 13 周+）
-├── 申请 YouTube Partner Program（广告分成）
-├── 设置 YouTube Shopping / Affiliate
-├── 开始 YouTube Ads 投放
-├── 与更多达人合作
-└── 建立稳定的内容生产 SOP
+申请 YouTube Partner Program（广告分成）
+设置 YouTube Shopping / Affiliate
+开始 YouTube Ads 投放
+与更多达人合作
+建立稳定的内容生产 SOP
 ```
 
 ### YouTube SEO Advanced: Long-Tail Keyword Strategy
@@ -553,55 +553,55 @@ Phase 4: 规模化（第 13 周+）
 请帮我设计长尾关键词策略：
 
 1. 为什么小频道应该聚焦长尾关键词？
-   - 大词竞争激烈，小频道排不上去
-   - 长尾词搜索量小但竞争低，容易排名
-   - 长尾词的用户购买意图更强
+- 大词竞争激烈，小频道排不上去
+- 长尾词搜索量小但竞争低，容易排名
+- 长尾词的用户购买意图更强
 
 2. 找到 20 个长尾关键词
-   - 格式："best [产品] for [特定场景/人群]"
-   - 每个标注：预估搜索量、竞争度、推荐视频类型
+- 格式："best [产品] for [特定场景/人群]"
+- 每个标注：预估搜索量、竞争度、推荐视频类型
 
 3. 内容集群策略（Topic Cluster）
-   - 1 个核心视频（大词）
-   - 5-8 个支撑视频（长尾词）
-   - 视频之间互相链接（卡片+描述区）
+- 1 个核心视频（大词）
+- 5-8 个支撑视频（长尾词）
+- 视频之间互相链接（卡片+描述区）
 
 4. 第一个月的 4 个视频选题（从最容易排名的长尾词开始）
 ```
 
 ### YouTube Thumbnail Design Methodology
 
-Thumbnails are the biggest growth lever on YouTube — same content, good thumbnail vs bad thumbnail can see a 3-5x CTR difference.
+Thumbnails are the biggest growth lever on YouTube same content, good thumbnail vs bad thumbnail can see a 3-5x CTR difference.
 
 ```
 高 CTR 缩略图的 5 个要素：
 
 1. 对比/冲突（Contrast）
-├── 颜色对比：产品 vs 背景的强烈对比
-├── 情感对比：Before/After、好 vs 坏
-└── 大小对比：产品特写 vs 全景
+颜色对比：产品 vs 背景的强烈对比
+情感对比：Before/After、好 vs 坏
+大小对比：产品特写 vs 全景
 
 2. 人脸表情（如果有人出镜）
-├── 夸张的表情（惊讶/开心/困惑）
-├── 眼神看向产品或文字
-└── 面部占缩略图 30%+ 面积
+夸张的表情（惊讶/开心/困惑）
+眼神看向产品或文字
+面部占缩略图 30%+ 面积
 
 3. 文字（不超过 5 个词）
-├── 大字体，手机上也能看清
-├── 与标题不重复（补充信息）
-├── 使用数字（"5 Best""$19""3x Better"）
-└── 颜色与背景形成对比
+大字体，手机上也能看清
+与标题不重复（补充信息）
+使用数字（"5 Best""$19""3x Better"）
+颜色与背景形成对比
 
 4. 产品展示
-├── 产品清晰可见
-├── 展示产品的核心卖点/使用场景
-└── 如果是对比视频，两个产品并排
+产品清晰可见
+展示产品的核心卖点/使用场景
+如果是对比视频，两个产品并排
 
 5. 品牌一致性
-├── 统一的配色方案
-├── 统一的字体
-├── 统一的布局风格
-└── 让用户一眼认出是你的频道
+统一的配色方案
+统一的字体
+统一的布局风格
+让用户一眼认出是你的频道
 ```
 
 **AI Thumbnail Copy Generation Prompt (Enhanced):**
@@ -638,28 +638,28 @@ Thumbnails are the biggest growth lever on YouTube — same content, good thumbn
 ```
 [视频核心内容的 2 句话总结，包含主要关键词]
 
-⏱️ 章节标记：
+章节标记：
 0:00 - 开场
 X:XX - [章节 1]
 X:XX - [章节 2]
 ...
 
-🛒 产品链接（Affiliate）：
-▸ [产品 1]：[链接]（使用我的链接支持频道）
-▸ [产品 2]：[链接]
+产品链接（Affiliate）：
+[产品 1]：[链接]（使用我的链接支持频道）
+[产品 2]：[链接]
 
-📱 关注我的其他平台：
-▸ Instagram：[链接]
-▸ TikTok：[链接]
-▸ 网站：[链接]
+关注我的其他平台：
+Instagram：[链接]
+TikTok：[链接]
+网站：[链接]
 
-🎬 相关视频推荐：
-▸ [视频 1 标题]：[链接]
-▸ [视频 2 标题]：[链接]
+相关视频推荐：
+[视频 1 标题]：[链接]
+[视频 2 标题]：[链接]
 
-📧 商务合作：[邮箱]
+商务合作：[邮箱]
 
-⚠️ Affiliate Disclosure：
+Affiliate Disclosure：
 Some links above are affiliate links. I may earn a small commission if you purchase through them, at no extra cost to you. I only recommend products I personally use and believe in.
 
 #[关键词1] #[关键词2] #[关键词3] #[品类词] #[品牌词]
@@ -678,8 +678,8 @@ Some links above are affiliate links. I may earn a small commission if you purch
 > **Next Steps**: [E3 Xiaohongshu AI Operations](e3-xiaohongshu-ai-guide.md) or [E7 Cross-Channel Strategy](e7-social-media-cross-channel.md)
 
 ---
-> 🏠 [Hub Home](../../README.md) · 📋 [Path E Overview](README.md)
-> 
+> [Hub Home](../../README.md) · [Path E Overview](README.md)
+>
 > **Path E**: [E1 Instagram](e1-instagram-facebook-ai-guide.md) · [E2 YouTube](e2-youtube-ai-guide.md) · [E3 Xiaohongshu](e3-xiaohongshu-ai-guide.md) · [E4 Pinterest](e4-pinterest-ai-guide.md) · [E5 WhatsApp](e5-whatsapp-business-ai-guide.md) · [E6 Reddit](e6-reddit-ai-guide.md) · [E7 Cross-Channel](e7-social-media-cross-channel.md)
-> 
+>
 > **Quick Jump**: [Path 0 Foundations](../0-foundations/) · [Path A Operations](../a-operators/) · [Path B Technical](../b-developers/) · [Path C Management](../c-managers/) · [Path D Multi-Platform](../d-platforms/)

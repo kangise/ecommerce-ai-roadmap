@@ -3,7 +3,7 @@
 > 覆盖视觉内容、定价、SEO/GEO、品牌、财务、IP、Growth Hack 的 Prompt 模板。
 > 对应 Path A 模块 A7-A13。
 
-🏠 [Hub 首页](../README.md) · 📋 [Prompt 模板库](README.md)
+[Hub 首页](../README.md) · [Prompt 模板库](README.md)
 
 ---
 
@@ -22,7 +22,7 @@
 
 ## 1. AI 产品图片生成（A7）
 
-> 📎 详细方法论: [A7 视觉内容](../paths/a-operators/a7-visual-content.md)
+> 详细方法论: [A7 视觉内容](../paths/a-operators/a7-visual-content.md)
 
 ```
 你是一个电商产品图片策划专家。
@@ -35,26 +35,26 @@
 请为这个产品规划一套完整的图片方案：
 
 1. Amazon 主图（白底，产品占 85%+）
-   - 拍摄角度建议
-   - 光照方案
-   - AI 生成 Prompt（Midjourney/DALL-E 格式）
+- 拍摄角度建议
+- 光照方案
+- AI 生成 Prompt（Midjourney/DALL-E 格式）
 
 2. 场景图 x3
-   - 3 个不同使用场景的描述
-   - 每个场景的 AI 生成 Prompt
+- 3 个不同使用场景的描述
+- 每个场景的 AI 生成 Prompt
 
 3. 信息图 x2
-   - 尺寸对比图的布局建议
-   - 功能亮点图的布局建议
+- 尺寸对比图的布局建议
+- 功能亮点图的布局建议
 
 4. A+ Content 图 x3
-   - 品牌故事图
-   - 产品对比图
-   - 使用教程图
+- 品牌故事图
+- 产品对比图
+- 使用教程图
 
 5. 社交媒体素材
-   - Instagram 正方形图 Prompt
-   - TikTok 竖版图 Prompt
+- Instagram 正方形图 Prompt
+- TikTok 竖版图 Prompt
 
 每个 Prompt 包含正面描述和负面排除词。
 ```
@@ -65,7 +65,7 @@
 
 ## 2. 竞品价格监控与动态定价（A8）
 
-> 📎 详细方法论: [A8 定价策略](../paths/a-operators/a8-pricing-strategy.md)
+> 详细方法论: [A8 定价策略](../paths/a-operators/a8-pricing-strategy.md)
 
 ```
 你是一个电商定价策略专家。
@@ -92,7 +92,7 @@
 
 ## 3. GEO 审计与 AI 搜索优化（A9）
 
-> 📎 详细方法论: [A9 SEO/GEO](../paths/a-operators/a9-seo-geo.md)
+> 详细方法论: [A9 SEO/GEO](../paths/a-operators/a9-seo-geo.md)
 
 ```
 你是一个 GEO（Generative Engine Optimization）专家。
@@ -105,20 +105,20 @@ Amazon ASIN：[X]
 请做 GEO 审计：
 
 1. 结构化数据检查
-   - Product Schema 是否完整？
-   - FAQ Schema 是否存在？
-   - Review Schema 是否存在？
+- Product Schema 是否完整？
+- FAQ Schema 是否存在？
+- Review Schema 是否存在？
 
 2. AI 搜索可见度测试
-   - 在 ChatGPT 搜索 "best [品类] 2026"，我的品牌是否被提及？
-   - 在 Perplexity 搜索，是否被推荐？
-   - 竞品 [A/B/C] 是否被推荐更多？
+- 在 ChatGPT 搜索 "best [品类] 2026"，我的品牌是否被提及？
+- 在 Perplexity 搜索，是否被推荐？
+- 竞品 [A/B/C] 是否被推荐更多？
 
 3. 优化建议
-   - 需要添加/修复的 Schema
-   - 需要创建的 FAQ 内容（10 个问题）
-   - 需要获取的第三方引用/评测
-   - Agentic Commerce 准备度评估
+- 需要添加/修复的 Schema
+- 需要创建的 FAQ 内容（10 个问题）
+- 需要获取的第三方引用/评测
+- Agentic Commerce 准备度评估
 
 4. 优先级行动清单（1 周 / 1 月 / 3 月）
 ```
@@ -127,7 +127,7 @@ Amazon ASIN：[X]
 
 ## 4. 品牌故事与视觉系统生成（A10）
 
-> 📎 详细方法论: [A10 品牌建设](../paths/a-operators/a10-brand-building.md)
+> 详细方法论: [A10 品牌建设](../paths/a-operators/a10-brand-building.md)
 
 ```
 你是一个品牌策略专家，擅长为跨境电商品牌创建品牌体系。
@@ -147,10 +147,10 @@ Amazon ASIN：[X]
 3. 品牌 Tagline（3 个选项，每个 ≤8 词）
 4. 品牌价值观（3-5 个）
 5. 品牌声音指南（各平台语气规范）
-   - Amazon Listing 语气
-   - Shopify 产品页语气
-   - Instagram 语气
-   - TikTok 语气
+- Amazon Listing 语气
+- Shopify 产品页语气
+- Instagram 语气
+- TikTok 语气
 6. 配色方案建议（主色+辅色+功能色，含色号）
 7. Amazon A+ Content 品牌故事模块文案
 ```
@@ -159,7 +159,7 @@ Amazon ASIN：[X]
 
 ## 5. SKU 真实利润计算（A11）
 
-> 📎 详细方法论: [A11 财务分析](../paths/a-operators/a11-financial-analysis.md)
+> 详细方法论: [A11 财务分析](../paths/a-operators/a11-financial-analysis.md)
 
 ```
 你是一个跨境电商财务分析专家。
@@ -191,7 +191,7 @@ Amazon ASIN：[X]
 
 ## 6. IP 风险全面评估（A12）
 
-> 📎 详细方法论: [A12 知识产权](../paths/a-operators/a12-ip-protection.md)
+> 详细方法论: [A12 知识产权](../paths/a-operators/a12-ip-protection.md)
 
 ```
 你是一个知识产权风险评估专家。
@@ -205,32 +205,32 @@ Amazon ASIN：[X]
 请做全面 IP 风险评估：
 
 1. 专利风险（高/中/低）
-   - 这个品类常见的专利类型
-   - 需要排查的关键专利数据库
-   - 高风险功能/设计特征
+- 这个品类常见的专利类型
+- 需要排查的关键专利数据库
+- 高风险功能/设计特征
 
 2. 商标风险（高/中/低）
-   - 品牌名是否可能与已有商标冲突
-   - 建议的商标检索步骤
+- 品牌名是否可能与已有商标冲突
+- 建议的商标检索步骤
 
 3. 版权风险（高/中/低）
-   - 产品图片/文案的版权注意事项
-   - AI 生成内容的版权政策
+- 产品图片/文案的版权注意事项
+- AI 生成内容的版权政策
 
 4. TRO 风险（高/中/低）
-   - 这个品类是否有频繁的 TRO 案件
-   - 预防措施
+- 这个品类是否有频繁的 TRO 案件
+- 预防措施
 
 5. 总体风险评级和建议
-   - Go / Caution / No-Go 决策
-   - 如果 Go：需要先完成的合规步骤
+- Go / Caution / No-Go 决策
+- 如果 Go：需要先完成的合规步骤
 ```
 
 ---
 
 ## 7. AI Growth Hack 选品验证（A13）
 
-> 📎 详细方法论: [A13 AI Growth Hack](../paths/a-operators/a13-ai-growth-hack.md)
+> 详细方法论: [A13 AI Growth Hack](../paths/a-operators/a13-ai-growth-hack.md)
 
 ```
 你是一个跨境电商选品专家，精通 AI 数据分析。
@@ -256,7 +256,7 @@ Amazon ASIN：[X]
 
 ## 8. 每日 AI 运营晨报（A13）
 
-> 📎 详细方法论: [A13 AI Growth Hack](../paths/a-operators/a13-ai-growth-hack.md#7-ai-agent-工作流实战)
+> 详细方法论: [A13 AI Growth Hack](../paths/a-operators/a13-ai-growth-hack.md#7-ai-agent-工作流实战)
 
 ```
 你是我的电商运营 AI 助手。请基于以下数据生成今日运营晨报。
@@ -270,14 +270,14 @@ Amazon ASIN：[X]
 - 新差评：[X] 条
 
 请生成：
-1. 📊 关键指标摘要（收入/订单/ACOS 的日环比和周环比）
-2. ⚠️ 异常告警（哪些指标偏离正常范围）
-3. 📋 今日优先行动清单（按 P0/P1/P2 排序）
-4. 💡 一条优化建议（基于数据趋势）
+1. 关键指标摘要（收入/订单/ACOS 的日环比和周环比）
+2. 异常告警（哪些指标偏离正常范围）
+3. 今日优先行动清单（按 P0/P1/P2 排序）
+4. 一条优化建议（基于数据趋势）
 
 格式简洁，适合 5 分钟内阅读。
 ```
 
 ---
 
-> 🏠 [Hub 首页](../README.md) · 📋 [Prompt 模板库](README.md) · 📖 [Path A 运营](../paths/a-operators/)
+> [Hub 首页](../README.md) · [Prompt 模板库](README.md) · [Path A 运营](../paths/a-operators/)

@@ -4,15 +4,15 @@
 
 > **Path**: Path E: Social Media · **Module**: E5
 > **Last Updated**: 2026-03-14
-> **Difficulty**: ⭐⭐ Intermediate
+> **Difficulty**: Intermediate
 > **Estimated Time**: 1-1.5 hours
 > **Prerequisites**: [A4 Customer Service and After-Sales](../a-operators/a4-customer-service.md)
 
-🏠 [Hub Home](../../README.md) · 📋 [Path E Overview](README.md)
+[Hub Home](../../README.md) · [Path E Overview](README.md)
 
 ---
 
-## 📖 Chapter Navigation
+## Chapter Navigation
 
 1. [WhatsApp's Role in E-commerce](#1-whatsapps-role-in-e-commerce)
 2. [AI Chatbot Development Methodology](#2-ai-chatbot-development-methodology)
@@ -30,7 +30,7 @@
 - A multi-language auto-reply template library
 - A WhatsApp marketing automation plan
 
-> 💡 **Core Concept**: WhatsApp is the core channel for "conversational commerce." 3 billion MAU, $290 billion in conversational commerce spending in 2025. AI Chatbot conversion rate of 12.3% vs regular browsing at 3.1%. Core markets: Latin America, Southeast Asia, Middle East, Southern Europe. If you sell in these markets, WhatsApp isn't optional — it's essential.
+> **Core Concept**: WhatsApp is the core channel for "conversational commerce." 3 billion MAU, $290 billion in conversational commerce spending in 2025. AI Chatbot conversion rate of 12.3% vs regular browsing at 3.1%. Core markets: Latin America, Southeast Asia, Middle East, Southern Europe. If you sell in these markets, WhatsApp isn't optional it's essential.
 
 ---
 
@@ -49,7 +49,7 @@
 
 ### 1.2 Core Market Analysis
 
-> 📎 **Related Reading**: [D7 Mercado Libre](../d-platforms/d7-mercado-libre-ai-guide.md#d7-mercado-libre-latin-america-e-commerce-ai-guide) — Refer to D7 for Latin American e-commerce. WhatsApp is an essential customer service channel in Brazil and Mexico.
+> **Related Reading**: [D7 Mercado Libre](../d-platforms/d7-mercado-libre-ai-guide.md#d7-mercado-libre-latin-america-e-commerce-ai-guide) Refer to D7 for Latin American e-commerce. WhatsApp is an essential customer service channel in Brazil and Mexico.
 
 | Market | WhatsApp Penetration | E-commerce Use Case |
 |--------|---------------------|-------------------|
@@ -85,30 +85,30 @@ Content rephrased for compliance with licensing restrictions.
 WhatsApp AI Chatbot 工作流：
 
 用户发消息
-    ↓
+↓
 AI 意图识别
-    ├── 产品咨询 → 产品推荐流程
-    │   ├── 询问需求（用途/预算/偏好）
-    │   ├── AI 推荐 1-3 个产品
-    │   ├── 发送产品图片+链接
-    │   └── 引导下单
-    │
-    ├── 订单查询 → 订单状态流程
-    │   ├── 请求订单号
-    │   ├── 查询物流系统
-    │   └── 返回物流状态
-    │
-    ├── 售后问题 → 售后流程
-    │   ├── 问题分类（退换/维修/投诉）
-    │   ├── AI 尝试解决
-    │   └── 复杂问题转人工
-    │
-    ├── 复购提醒 → 营销流程
-    │   ├── 基于购买历史推荐
-    │   ├── 发送优惠券
-    │   └── 引导复购
-    │
-    └── 无法识别 → 转人工客服
+产品咨询 → 产品推荐流程
+询问需求（用途/预算/偏好）
+AI 推荐 1-3 个产品
+发送产品图片+链接
+引导下单
+
+订单查询 → 订单状态流程
+请求订单号
+查询物流系统
+返回物流状态
+
+售后问题 → 售后流程
+问题分类（退换/维修/投诉）
+AI 尝试解决
+复杂问题转人工
+
+复购提醒 → 营销流程
+基于购买历史推荐
+发送优惠券
+引导复购
+
+无法识别 → 转人工客服
 ```
 
 ### 2.2 Multi-Language Auto-Reply Templates
@@ -214,16 +214,16 @@ Content rephrased for compliance with licensing restrictions.
 
 ## 4. After-Sales Automation
 
-> 📎 **Related Reading**: [A4 Customer Service and After-Sales](../a-operators/a4-customer-service.md#a4-customer-service-after-sales) — Refer to A4 for general customer service methodology. After-sales automation and customer satisfaction management frameworks are reusable for WhatsApp.
+> **Related Reading**: [A4 Customer Service and After-Sales](../a-operators/a4-customer-service.md#a4-customer-service-after-sales) Refer to A4 for general customer service methodology. After-sales automation and customer satisfaction management frameworks are reusable for WhatsApp.
 
 ### 4.1 AI Sentiment Detection and Escalation
 
 ```
 Chatbot 售后流程：
 用户消息 → AI 情绪分析
-├── 正面/中性 → 继续自动处理
-├── 轻度不满 → 提供解决方案 + 优惠补偿
-└── 强烈不满 → 立即转人工 + 标记优先处理
+正面/中性 → 继续自动处理
+轻度不满 → 提供解决方案 + 优惠补偿
+强烈不满 → 立即转人工 + 标记优先处理
 ```
 
 ### 4.2 Proactive Logistics Status Push
@@ -264,13 +264,13 @@ Chatbot 售后流程：
 
 ## 6. Common Pitfalls
 
-### ❌ Pitfall 1: Message Frequency Too High
+### Pitfall 1: Message Frequency Too High
 WhatsApp is a personal space. More than 2 marketing messages per week will cause mass unsubscribes.
 
-### ❌ Pitfall 2: No Transfer-to-Human Option
+### Pitfall 2: No Transfer-to-Human Option
 AI can't solve everything. You must provide a transfer-to-human option after 2 rounds of unresolved issues.
 
-### ❌ Pitfall 3: Ignoring Opt-in Compliance
+### Pitfall 3: Ignoring Opt-in Compliance
 Sending marketing messages requires explicit user consent (opt-in). Violations will result in account suspension.
 
 ---
@@ -291,21 +291,21 @@ Sending marketing messages requires explicit user consent (opt-in). Violations w
 弃购挽回自动化流程：
 
 用户加购但未付款
-    ↓ 1 小时后
+↓ 1 小时后
 WhatsApp 消息 1：温和提醒
-"Hi [名字]! 😊 We noticed you left something in your cart. 
-Your [产品名] is still waiting for you! 
+"Hi [名字]! We noticed you left something in your cart.
+Your [产品名] is still waiting for you!
 Need any help with your order?"
-    ↓ 如果未回复，24 小时后
+↓ 如果未回复，24 小时后
 WhatsApp 消息 2：提供优惠
-"Hey [名字], just a quick reminder about your cart! 
-Here's a special 10% off code just for you: SAVE10 💝
+"Hey [名字], just a quick reminder about your cart!
+Here's a special 10% off code just for you: SAVE10
 Valid for the next 24 hours."
-    ↓ 如果未回复，48 小时后
+↓ 如果未回复，48 小时后
 WhatsApp 消息 3：最后提醒
-"Last chance! Your cart items are selling fast. 
-Use code SAVE10 before it expires tonight! ⏰"
-    ↓ 如果仍未购买
+"Last chance! Your cart items are selling fast.
+Use code SAVE10 before it expires tonight! "
+↓ 如果仍未购买
 停止发送（避免骚扰）
 ```
 
@@ -321,26 +321,26 @@ Use code SAVE10 before it expires tonight! ⏰"
 请设计复购自动化方案：
 
 1. 复购提醒时间线
-   - 购买后 [X] 天：使用教程/Tips
-   - 购买后 [X] 天：满意度调查
-   - 购买后 [X] 天：复购提醒+专属优惠
-   - 购买后 [X] 天：新品推荐
+- 购买后 [X] 天：使用教程/Tips
+- 购买后 [X] 天：满意度调查
+- 购买后 [X] 天：复购提醒+专属优惠
+- 购买后 [X] 天：新品推荐
 
 2. 每个触点的消息模板（多语言）
-   - 英语
-   - 西班牙语（拉美）
-   - 葡萄牙语（巴西）
+- 英语
+- 西班牙语（拉美）
+- 葡萄牙语（巴西）
 
 3. 个性化策略
-   - 基于购买历史推荐相关产品
-   - 基于浏览行为推荐
-   - VIP 客户专属优惠
+- 基于购买历史推荐相关产品
+- 基于浏览行为推荐
+- VIP 客户专属优惠
 
 4. 效果追踪
-   - 消息打开率
-   - 回复率
-   - 复购转化率
-   - 每条消息的 ROI
+- 消息打开率
+- 回复率
+- 复购转化率
+- 每条消息的 ROI
 ```
 
 ### WhatsApp Catalog Optimization
@@ -351,24 +351,24 @@ WhatsApp Business supports a product catalog feature:
 WhatsApp Catalog 最佳实践：
 
 产品信息：
-├── 产品名：简洁明了（≤50 字符）
-├── 描述：突出核心卖点（≤200 字符）
-├── 价格：当地货币，含税
-├── 图片：正方形，白底或场景图
-├── 链接：指向产品页面
-└── 分类：按品类/用途/价格带分组
+产品名：简洁明了（≤50 字符）
+描述：突出核心卖点（≤200 字符）
+价格：当地货币，含税
+图片：正方形，白底或场景图
+链接：指向产品页面
+分类：按品类/用途/价格带分组
 
 优化技巧：
-├── 热销产品放在目录最前面
-├── 定期更新价格和库存状态
-├── 使用高质量图片（手机拍摄即可但要清晰）
-├── 描述中包含关键卖点和使用场景
-└── 设置"精选"产品（最多 10 个）
+热销产品放在目录最前面
+定期更新价格和库存状态
+使用高质量图片（手机拍摄即可但要清晰）
+描述中包含关键卖点和使用场景
+设置"精选"产品（最多 10 个）
 ```
 
 ### WhatsApp AI Sales Consultant Model (2026 Trend)
 
-In 2026, WhatsApp marketing is shifting from "passive customer service" to "proactive AI sales consultant" ([Qualimero](https://qualimero.com/en/blog/whatsapp-bot-api-guide-ai-sales-service-2025)). AI sales consultants don't just answer questions — they proactively recommend products, guide purchases, and boost conversions.
+In 2026, WhatsApp marketing is shifting from "passive customer service" to "proactive AI sales consultant" ([Qualimero](https://qualimero.com/en/blog/whatsapp-bot-api-guide-ai-sales-service-2025)). AI sales consultants don't just answer questions they proactively recommend products, guide purchases, and boost conversions.
 
 Content rephrased for compliance with licensing restrictions.
 
@@ -393,33 +393,33 @@ Content rephrased for compliance with licensing restrictions.
 请设计 AI 销售顾问方案：
 
 1. 主动触达策略
-   - 新用户欢迎流程（首次添加后的自动对话）
-   - 浏览未购买用户的跟进
-   - 购物车放弃挽回
-   - 复购提醒
+- 新用户欢迎流程（首次添加后的自动对话）
+- 浏览未购买用户的跟进
+- 购物车放弃挽回
+- 复购提醒
 
 2. 对话式销售流程
-   - 需求发现（3 个问题内了解用户需求）
-   - 个性化推荐（基于需求推荐 1-3 个产品）
-   - 异议处理（价格/质量/配送等常见异议）
-   - 下单引导（发送购买链接或直接在 WhatsApp 内完成）
+- 需求发现（3 个问题内了解用户需求）
+- 个性化推荐（基于需求推荐 1-3 个产品）
+- 异议处理（价格/质量/配送等常见异议）
+- 下单引导（发送购买链接或直接在 WhatsApp 内完成）
 
 3. 多语言支持
-   - 自动检测用户语言
-   - 各语言版本的对话模板
-   - 文化差异注意事项
+- 自动检测用户语言
+- 各语言版本的对话模板
+- 文化差异注意事项
 
 4. 效果追踪
-   - 对话→购买转化率
-   - 平均对话轮数
-   - 用户满意度
-   - 每条消息的 ROI
+- 对话→购买转化率
+- 平均对话轮数
+- 用户满意度
+- 每条消息的 ROI
 
 5. 合规要求
-   - opt-in 获取方式
-   - 消息频率限制
-   - 退订机制
-   - 数据隐私（GDPR/LGPD）
+- opt-in 获取方式
+- 消息频率限制
+- 退订机制
+- 数据隐私（GDPR/LGPD）
 ```
 
 ### WhatsApp Flows (2026 New Feature)
@@ -445,8 +445,8 @@ WhatsApp Flows allows creating structured interactive experiences within WhatsAp
 - [ ] Run first Broadcast marketing campaign
 
 ---
-> 🏠 [Hub Home](../../README.md) · 📋 [Path E Overview](README.md)
-> 
+> [Hub Home](../../README.md) · [Path E Overview](README.md)
+>
 > **Path E**: [E1 Instagram](e1-instagram-facebook-ai-guide.md) · [E2 YouTube](e2-youtube-ai-guide.md) · [E3 Xiaohongshu](e3-xiaohongshu-ai-guide.md) · [E4 Pinterest](e4-pinterest-ai-guide.md) · [E5 WhatsApp](e5-whatsapp-business-ai-guide.md) · [E6 Reddit](e6-reddit-ai-guide.md) · [E7 Cross-Channel](e7-social-media-cross-channel.md)
-> 
+>
 > **Quick Jump**: [Path 0 Foundations](../0-foundations/) · [Path A Operations](../a-operators/) · [Path B Technical](../b-developers/) · [Path C Management](../c-managers/) · [Path D Multi-Platform](../d-platforms/)

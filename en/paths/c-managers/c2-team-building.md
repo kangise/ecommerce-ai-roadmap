@@ -2,30 +2,30 @@
 
 # C2. AI Team Upskilling & Enablement
 
-> **Path**: Path C: Managers · **Module**: C2  
-> **Last Updated**: 2026-03-12  
-> **Difficulty**: ⭐ Beginner  
-> **Estimated Time**: 1-2 hours  
+> **Path**: Path C: Managers · **Module**: C2
+> **Last Updated**: 2026-03-12
+> **Difficulty**: Beginner
+> **Estimated Time**: 1-2 hours
 > **Prerequisite**: [C1 AI Capability Assessment & Planning](c1-ai-assessment.md)
 ---
 
-🏠 [Hub Home](../../README.md) · 📋 [Path C Overview](README.md)
+[Hub Home](../../README.md) · [Path C Overview](README.md)
 
 ```mermaid
 flowchart LR
-    C1["C1 AI Assessment & Planning"]
-    C1 --> C2
-    C2["✅ C2 Team Upskilling<br/>(Current)"]:::current
-    C2 --> C3
-    C3["C3 ROI Evaluation"]
-    classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
+C1["C1 AI Assessment & Planning"]
+C1 --> C2
+C2[" C2 Team Upskilling<br/>(Current)"]:::current
+C2 --> C3
+C3["C3 ROI Evaluation"]
+classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 ```
 
 ---
 
-## 📖 Module Navigation
+## Module Navigation
 
-1. [Training Methodology](#1-training-methodology-why-most-ai-training-fails) · 2. [Role-based Training](#2-role-based-customized-training-courses) · 3. [Prompt Library Setup](#3-team-prompt-library-setup) · 4. [Usage Guidelines](#4-ai-usage-guidelines) · 5. [Prompt Templates](#5-prompt-templates-for-team-building) · 6. [Hands-on Workflow](#6-hands-on-workflow-building-team-ai-capability-from-scratch) · 7. [Common Issues](#7-common-issues-and-solutions) · 8. [Case Studies](#8-case-studies-team-ai-upskilling-in-practice) · 9. [Learning Resources](#9-learning-resources) · 10. [🦞 OpenClaw Automation](#10-using-openclaw-for-team-ai-enablement) · 11. [Completion Checklist](#11-completion-checklist)
+1. [Training Methodology](#1-training-methodology-why-most-ai-training-fails) · 2. [Role-based Training](#2-role-based-customized-training-courses) · 3. [Prompt Library Setup](#3-team-prompt-library-setup) · 4. [Usage Guidelines](#4-ai-usage-guidelines) · 5. [Prompt Templates](#5-prompt-templates-for-team-building) · 6. [Hands-on Workflow](#6-hands-on-workflow-building-team-ai-capability-from-scratch) · 7. [Common Issues](#7-common-issues-and-solutions) · 8. [Case Studies](#8-case-studies-team-ai-upskilling-in-practice) · 9. [Learning Resources](#9-learning-resources) · 10. [ OpenClaw Automation](#10-using-openclaw-for-team-ai-enablement) · 11. [Completion Checklist](#11-completion-checklist)
 
 
 ## What You'll Produce in This Module
@@ -39,17 +39,17 @@ After completing this module, you'll have:
 - An AI usage guidelines document (data security, review process, tool management)
 - A continuous learning mechanism (so your team doesn't just "learn once" but "uses AI every day")
 
-> 💡 **Core Principle**: Training is not the goal — behavior change is. A single 2-hour workshop won't change anything. What truly works is "15 minutes of deliberate practice every day + weekly sharing and review."
+> **Core Principle**: Training is not the goal behavior change is. A single 2-hour workshop won't change anything. What truly works is "15 minutes of deliberate practice every day + weekly sharing and review."
 
 ---
 
 ## 1. Training Methodology: Why Most AI Training Fails
 
-> 📎 **Related Reading**: [F2 Prompt Engineering](../0-foundations/f2-prompt-engineering.md#8-using-openclaw-for-prompt-management-optimization) — See F2 for team Prompt engineering training content. · [A2 Listing & Content Creation](../a-operators/a2-listing-optimization.md#a2-listing-content-creation) — See A2 for Listing AI workflow examples
+> **Related Reading**: [F2 Prompt Engineering](../0-foundations/f2-prompt-engineering.md#8-using-openclaw-for-prompt-management-optimization) See F2 for team Prompt engineering training content. · [A2 Listing & Content Creation](../a-operators/a2-listing-optimization.md#a2-listing-content-creation) See A2 for Listing AI workflow examples
 
 ### 1.1 Three Major Problems with Traditional Training
 
-According to PwC's survey, 67% of employees feel they are not ready to use AI technology. But the problem isn't a lack of training — it's that the training approach is wrong.
+According to PwC's survey, 67% of employees feel they are not ready to use AI technology. But the problem isn't a lack of training it's that the training approach is wrong.
 
 | Problem | Symptoms | Root Cause |
 |------|------|----------|
@@ -64,50 +64,50 @@ Content rephrased for compliance with licensing restrictions. Source: [PwC Globa
 Borrowing from adult learning theory's 70-20-10 rule, effective AI upskilling should be:
 
 ```
-70% — Learning by Doing (on the job)
-├── Use AI to complete one real work task every day
-├── Pick a template from the Prompt library and apply it to your own work
-└── Record "before AI" vs "after AI" time comparisons
+70% Learning by Doing (on the job)
+Use AI to complete one real work task every day
+Pick a template from the Prompt library and apply it to your own work
+Record "before AI" vs "after AI" time comparisons
 
-20% — Learning from Others (peer learning)
-├── 15-minute weekly "AI usage sharing" (each person shares one tip)
-├── AI Champion spends 15 minutes daily answering team questions
-└── Build a team Prompt library with mutual contributions and improvements
+20% Learning from Others (peer learning)
+15-minute weekly "AI usage sharing" (each person shares one tip)
+AI Champion spends 15 minutes daily answering team questions
+Build a team Prompt library with mutual contributions and improvements
 
-10% — Formal Training
-├── Onboarding: 2-hour AI basics + Prompt engineering
-├── Monthly: 1-hour new features/techniques
-└── Role-specific deep-dive training
+10% Formal Training
+Onboarding: 2-hour AI basics + Prompt engineering
+Monthly: 1-hour new features/techniques
+Role-specific deep-dive training
 ```
 
-> 💡 **Key Insight**: Most companies put 90% of their effort into "formal training," but it only contributes 10% of learning outcomes. Real skill improvement comes from "using AI in your work every day."
+> **Key Insight**: Most companies put 90% of their effort into "formal training," but it only contributes 10% of learning outcomes. Real skill improvement comes from "using AI in your work every day."
 
 ### 1.3 Four Stages of AI Skill Building
 
 ```
 Stage 1: Awareness (Week 1)
-├── Goal: Team understands what AI can and cannot do
-├── Method: A 2-hour workshop + live demo
-├── Output: Each person writes "3 parts of my work where I could use AI"
-└── Success Criteria: 100% of people can name at least 1 AI use case
+Goal: Team understands what AI can and cannot do
+Method: A 2-hour workshop + live demo
+Output: Each person writes "3 parts of my work where I could use AI"
+Success Criteria: 100% of people can name at least 1 AI use case
 
 Stage 2: Imitation (Weeks 2-4)
-├── Goal: Team can use existing Prompt templates to complete tasks
-├── Method: Distribute Prompt library + one practice task per day
-├── Output: Each person uses at least 5 different Prompt templates
-└── Success Criteria: 80% of people use AI at least 3 times per week
+Goal: Team can use existing Prompt templates to complete tasks
+Method: Distribute Prompt library + one practice task per day
+Output: Each person uses at least 5 different Prompt templates
+Success Criteria: 80% of people use AI at least 3 times per week
 
 Stage 3: Creation (Months 2-3)
-├── Goal: Team can write and improve their own Prompts
-├── Method: Advanced Prompt engineering training + team Prompt library contributions
-├── Output: Each person contributes at least 2 self-created Prompts to the team library
-└── Success Criteria: Team Prompt library reaches 30+ templates
+Goal: Team can write and improve their own Prompts
+Method: Advanced Prompt engineering training + team Prompt library contributions
+Output: Each person contributes at least 2 self-created Prompts to the team library
+Success Criteria: Team Prompt library reaches 30+ templates
 
 Stage 4: Optimization (Months 4-6)
-├── Goal: AI becomes part of daily workflows
-├── Method: Process optimization + ROI measurement + continuous iteration
-├── Output: At least 3 workflows formally incorporate AI assistance
-└── Success Criteria: Team AI maturity score improves by 1.0+ points
+Goal: AI becomes part of daily workflows
+Method: Process optimization + ROI measurement + continuous iteration
+Output: At least 3 workflows formally incorporate AI assistance
+Success Criteria: Team AI maturity score improves by 1.0+ points
 ```
 
 Content rephrased for compliance with licensing restrictions. Source: [Amplework AI Adoption Guide](https://www.amplework.com/blog/train-your-team-for-ai-adoption/)
@@ -118,7 +118,7 @@ Content rephrased for compliance with licensing restrictions. Source: [Amplework
 
 ### 2.1 Required for All: AI Basics & Prompt Engineering (2 hours)
 
-This is the first class everyone must take. The goal isn't to make everyone an AI expert — it's to eliminate fear and build confidence.
+This is the first class everyone must take. The goal isn't to make everyone an AI expert it's to eliminate fear and build confidence.
 
 **Course Outline:**
 
@@ -134,21 +134,21 @@ This is the first class everyone must take. The goal isn't to make everyone an A
 **5 Elements of a Good Prompt (CRISP Framework):**
 
 ```
-C — Context: Tell AI who you are and what you're doing
-R — Role: Give AI an expert role
-I — Instruction: Clearly tell AI what to do
-S — Specifics: Provide specific data, constraints, format requirements
-P — Product: Describe the expected output format
+C Context: Tell AI who you are and what you're doing
+R Role: Give AI an expert role
+I Instruction: Clearly tell AI what to do
+S Specifics: Provide specific data, constraints, format requirements
+P Product: Describe the expected output format
 ```
 
 **Comparison Example:**
 
-❌ Bad Prompt:
+Bad Prompt:
 ```
 帮我分析一下这个产品的市场
 ```
 
-✅ Good Prompt (using CRISP framework):
+Good Prompt (using CRISP framework):
 ```
 [Context] 我是一个 Amazon US 站的运营，正在评估是否进入便携风扇品类。
 [Role] 你是一个资深的跨境电商选品顾问。
@@ -207,35 +207,35 @@ Individuals use AI on inspiration; teams use AI on systems. A Prompt library is 
 
 ```
 Team Prompt Library/
-├── 📁 Product Research & Market
-│   ├── Competitor Review Pain Point Analysis.md
-│   ├── Market Feasibility Assessment.md
-│   ├── Keyword Demand Clustering.md
-│   └── Supplier Evaluation.md
-├── 📁 Listing & Content
-│   ├── Listing Copy Generation (US).md
-│   ├── Listing Copy Generation (EU).md
-│   ├── Listing Copy Generation (JP).md
-│   ├── A+ Content Copy.md
-│   └── Product Description Multilingual Translation.md
-├── 📁 Advertising Optimization
-│   ├── Search Term Report Analysis.md
-│   ├── Ad Headline Generation.md
-│   ├── Promotional Ad Strategy.md
-│   └── Competitor Ad Analysis.md
-├── 📁 Customer Service & After-sales
-│   ├── Customer Reply Template (Returns).md
-│   ├── Customer Reply Template (Negative Reviews).md
-│   ├── Review Response Generation.md
-│   └── Customer Feedback Analysis.md
-├── 📁 Compliance & Risk
-│   ├── Compliance Checklist.md
-│   ├── Appeal Letter Generation.md
-│   └── Policy Change Interpretation.md
-└── 📁 Management & Analysis
-    ├── Weekly/Monthly Report Generation.md
-    ├── Data Analysis Summary.md
-    └── Meeting Minutes Generation.md
+Product Research & Market
+Competitor Review Pain Point Analysis.md
+Market Feasibility Assessment.md
+Keyword Demand Clustering.md
+Supplier Evaluation.md
+Listing & Content
+Listing Copy Generation (US).md
+Listing Copy Generation (EU).md
+Listing Copy Generation (JP).md
+A+ Content Copy.md
+Product Description Multilingual Translation.md
+Advertising Optimization
+Search Term Report Analysis.md
+Ad Headline Generation.md
+Promotional Ad Strategy.md
+Competitor Ad Analysis.md
+Customer Service & After-sales
+Customer Reply Template (Returns).md
+Customer Reply Template (Negative Reviews).md
+Review Response Generation.md
+Customer Feedback Analysis.md
+Compliance & Risk
+Compliance Checklist.md
+Appeal Letter Generation.md
+Policy Change Interpretation.md
+Management & Analysis
+Weekly/Monthly Report Generation.md
+Data Analysis Summary.md
+Meeting Minutes Generation.md
 ```
 
 ### 3.3 Standard Format for Each Prompt Template
@@ -247,7 +247,7 @@ Team Prompt Library/
 - **Use Case**: [Describe specifically when to use this]
 - **Recommended Tool**: ChatGPT / Claude / Gemini
 - **Difficulty**: Beginner / Intermediate / Advanced
-- **Validation Status**: ✅ Validated / 🔄 Pending Validation
+- **Validation Status**: Validated / Pending Validation
 - **Contributor**: [Name]
 - **Last Updated**: [Date]
 
@@ -294,22 +294,22 @@ Team Prompt Library/
 
 ### 4.1 Why You Need Usage Guidelines
 
-AI usage without guidelines is like a road without traffic rules — accidents are inevitable. Most common risks:
+AI usage without guidelines is like a road without traffic rules accidents are inevitable. Most common risks:
 
 | Risk Type | Scenario | Consequence | Severity |
 |----------|----------|------|----------|
-| **Data leak** | Pasting customer personal info into ChatGPT | GDPR/privacy law violation, potential fines | 🔴 Severe |
-| **Trade secret leak** | Sharing internal financial data or pricing strategy with AI | Competitors may access sensitive information | 🔴 Severe |
-| **Content errors** | AI-generated Listing contains false claims | Violates Amazon policy, potential delisting | 🟡 Medium |
-| **Copyright issues** | AI-generated content plagiarizes others' work | Intellectual property disputes | 🟡 Medium |
-| **Over-reliance** | Fully relying on AI output without human review | Errors accumulate, affecting business decisions | 🟡 Medium |
-| **Account security** | Multiple people sharing one AI tool account | Cannot trace who did what | 🟢 Low |
+| **Data leak** | Pasting customer personal info into ChatGPT | GDPR/privacy law violation, potential fines | Severe |
+| **Trade secret leak** | Sharing internal financial data or pricing strategy with AI | Competitors may access sensitive information | Severe |
+| **Content errors** | AI-generated Listing contains false claims | Violates Amazon policy, potential delisting | Medium |
+| **Copyright issues** | AI-generated content plagiarizes others' work | Intellectual property disputes | Medium |
+| **Over-reliance** | Fully relying on AI output without human review | Errors accumulate, affecting business decisions | Medium |
+| **Account security** | Multiple people sharing one AI tool account | Cannot trace who did what | Low |
 
 ### 4.2 Data Classification Standards
 
 Create a clear data classification table so the team knows what data can be shared with AI and what cannot:
 
-**🟢 Data that can be directly shared with AI:**
+** Data that can be directly shared with AI:**
 
 | Data Type | Examples | Notes |
 |----------|------|------|
@@ -319,7 +319,7 @@ Create a clear data classification table so the team knows what data can be shar
 | General business questions | "How to optimize Listing SEO" | General questions not involving specific business data |
 | Templates and frameworks | Prompt templates, analysis frameworks | Methodology-level content |
 
-**🟡 Data that can be shared after anonymization:**
+** Data that can be shared after anonymization:**
 
 | Data Type | Anonymization Method | Example |
 |----------|----------|------|
@@ -328,7 +328,7 @@ Create a clear data classification table so the team knows what data can be shar
 | Supplier info | Remove company names and contacts | "Supplier A quotes ¥XX/unit" instead of specific company name |
 | Internal reports | Remove sensitive fields before use | Keep trends and ratios, remove absolute numbers |
 
-**🔴 Data that must NEVER be shared with AI:**
+** Data that must NEVER be shared with AI:**
 
 | Data Type | Reason |
 |----------|------|
@@ -341,26 +341,26 @@ Create a clear data classification table so the team knows what data can be shar
 
 ### 4.3 AI Output Review Process
 
-AI-generated content cannot be used directly — it must go through human review. Review rigor depends on the content's intended use:
+AI-generated content cannot be used directly it must go through human review. Review rigor depends on the content's intended use:
 
 ```
 Review Level 1: Quick Check (1-2 minutes)
-├── Applies to: Internal analysis reports, meeting minutes
-├── Reviewer: The user themselves
-├── Checklist: Factual accuracy, logical coherence, no obvious errors
-└── Standard: Directionally correct is sufficient
+Applies to: Internal analysis reports, meeting minutes
+Reviewer: The user themselves
+Checklist: Factual accuracy, logical coherence, no obvious errors
+Standard: Directionally correct is sufficient
 
 Review Level 2: Careful Review (5-10 minutes)
-├── Applies to: Customer-facing content (Listings, CS replies, ad copy)
-├── Reviewer: User + peer cross-review
-├── Checklist: Factual accuracy, compliance, brand tone, grammar
-└── Standard: Ready to publish
+Applies to: Customer-facing content (Listings, CS replies, ad copy)
+Reviewer: User + peer cross-review
+Checklist: Factual accuracy, compliance, brand tone, grammar
+Standard: Ready to publish
 
 Review Level 3: Expert Review (30+ minutes)
-├── Applies to: Compliance documents, appeal letters, legal-related content
-├── Reviewer: User + specialist (compliance/legal)
-├── Checklist: Regulatory compliance, policy conformance, risk assessment
-└── Standard: Specialist sign-off required
+Applies to: Compliance documents, appeal letters, legal-related content
+Reviewer: User + specialist (compliance/legal)
+Checklist: Regulatory compliance, policy conformance, risk assessment
+Standard: Specialist sign-off required
 ```
 
 ### 4.4 Tool Management Guidelines
@@ -389,33 +389,33 @@ Use the following Prompt to generate AI usage guidelines tailored to your team:
 请输出一份完整的 AI 使用规范，包含：
 
 1. **总则**
-   - 规范的目的和适用范围
-   - AI 使用的基本原则（辅助而非替代、人工审核、数据安全）
+- 规范的目的和适用范围
+- AI 使用的基本原则（辅助而非替代、人工审核、数据安全）
 
 2. **数据安全规范**
-   - 数据分类标准（可用/脱敏后可用/禁止使用）
-   - 各类数据的具体示例
-   - 违规处理方式
+- 数据分类标准（可用/脱敏后可用/禁止使用）
+- 各类数据的具体示例
+- 违规处理方式
 
 3. **内容审核规范**
-   - 不同用途内容的审核级别
-   - 审核流程和责任人
-   - 审核检查清单
+- 不同用途内容的审核级别
+- 审核流程和责任人
+- 审核检查清单
 
 4. **工具管理规范**
-   - 账号管理要求
-   - 费用管理要求
-   - 工具选择标准
+- 账号管理要求
+- 费用管理要求
+- 工具选择标准
 
 5. **培训要求**
-   - 新人必修培训
-   - 定期更新培训
-   - 培训考核方式
+- 新人必修培训
+- 定期更新培训
+- 培训考核方式
 
 6. **附录**
-   - 常见问题 FAQ
-   - 违规案例和处理方式
-   - 规范更新记录
+- 常见问题 FAQ
+- 违规案例和处理方式
+- 规范更新记录
 
 格式要求：使用清晰的标题层级，每条规范都要有具体的操作指引，不要泛泛而谈。
 ```
@@ -460,7 +460,7 @@ Use the following Prompt to generate AI usage guidelines tailored to your team:
 
 ### 5.2 Workshop Agenda Generator
 
-**Why this Prompt works:** It helps you design a workshop with interaction, demos, and hands-on practice — not a one-way "PPT lecture." The 2-hour time allocation is optimized to take participants from "watching" to "doing" to "sharing."
+**Why this Prompt works:** It helps you design a workshop with interaction, demos, and hands-on practice not a one-way "PPT lecture." The 2-hour time allocation is optimized to take participants from "watching" to "doing" to "sharing."
 
 ```
 你是一个 AI 培训 workshop 设计师。请帮我设计一个 2 小时的团队 AI 入门 workshop。
@@ -475,26 +475,26 @@ Workshop 信息：
 请输出：
 
 1. **Workshop 议程**（精确到分钟）
-   | 时间 | 环节 | 内容 | 形式 | 材料 |
+| 时间 | 环节 | 内容 | 形式 | 材料 |
 
 2. **开场破冰**（5 分钟）
-   - 一个让大家放松的 AI 相关小游戏或互动
+- 一个让大家放松的 AI 相关小游戏或互动
 
 3. **现场演示脚本**（15 分钟）
-   - 选一个最有冲击力的场景做现场演示
-   - 演示的每一步操作和话术
+- 选一个最有冲击力的场景做现场演示
+- 演示的每一步操作和话术
 
 4. **实操练习设计**（30 分钟）
-   - 3 个难度递进的练习任务
-   - 每个任务的 Prompt 模板和预期输出
+- 3 个难度递进的练习任务
+- 每个任务的 Prompt 模板和预期输出
 
 5. **分享环节引导**（15 分钟）
-   - 引导问题清单
-   - 如何让内向的参与者也愿意分享
+- 引导问题清单
+- 如何让内向的参与者也愿意分享
 
 6. **课后作业**
-   - 本周的 3 个 AI 练习任务
-   - 下周分享会的要求
+- 本周的 3 个 AI 练习任务
+- 下周分享会的要求
 ```
 
 ### 5.3 AI Champion Selection & Development
@@ -510,29 +510,29 @@ Workshop 信息：
 请输出：
 
 1. **选拔标准**
-   - 必备条件（3-5 条）
-   - 加分条件（2-3 条）
-   - 不适合做 Champion 的特征
+- 必备条件（3-5 条）
+- 加分条件（2-3 条）
+- 不适合做 Champion 的特征
 
 2. **选拔流程**
-   - 如何发现潜在 Champion
-   - 评估方式（自荐 + 推荐 + 管理者评估）
-   - 选拔时间线
+- 如何发现潜在 Champion
+- 评估方式（自荐 + 推荐 + 管理者评估）
+- 选拔时间线
 
 3. **培养计划**（前 3 个月）
-   - 第 1 周：Champion 专属培训内容
-   - 第 2-4 周：Champion 的日常职责
-   - 第 2-3 月：Champion 如何带动团队
+- 第 1 周：Champion 专属培训内容
+- 第 2-4 周：Champion 的日常职责
+- 第 2-3 月：Champion 如何带动团队
 
 4. **激励机制**
-   - 时间保障（每周固定的 AI 探索时间）
-   - 资源支持（优先获得付费工具账号）
-   - 认可方式（公开表扬、绩效加分）
+- 时间保障（每周固定的 AI 探索时间）
+- 资源支持（优先获得付费工具账号）
+- 认可方式（公开表扬、绩效加分）
 
 5. **考核标准**
-   - 月度考核指标
-   - 如何判断 Champion 是否称职
-   - 如果 Champion 不合适，如何调整
+- 月度考核指标
+- 如何判断 Champion 是否称职
+- 如果 Champion 不合适，如何调整
 ```
 
 ### 5.4 Team AI Usage Weekly Report Template
@@ -548,29 +548,29 @@ Workshop 信息：
 请输出一份周报模板，包含：
 
 1. **本周 AI 使用概况**
-   - 团队使用 AI 的总次数/总时间
-   - 各岗位的使用情况对比
-   - 本周新增的 Prompt 模板数量
+- 团队使用 AI 的总次数/总时间
+- 各岗位的使用情况对比
+- 本周新增的 Prompt 模板数量
 
 2. **本周最佳实践**
-   - 最有效的 Prompt（附具体内容和效果）
-   - 最大的时间节省案例（具体数字）
-   - 值得推广的使用技巧
+- 最有效的 Prompt（附具体内容和效果）
+- 最大的时间节省案例（具体数字）
+- 值得推广的使用技巧
 
 3. **本周遇到的问题**
-   - AI 输出质量问题
-   - 使用流程问题
-   - 工具问题
+- AI 输出质量问题
+- 使用流程问题
+- 工具问题
 
 4. **下周计划**
-   - 要推广的新场景
-   - 要解决的问题
-   - 培训安排
+- 要推广的新场景
+- 要解决的问题
+- 培训安排
 
 5. **数据追踪**
-   - 累计节省时间（小时）
-   - 累计 Prompt 库模板数
-   - 团队 AI 使用率（每天使用 AI 的人数占比）
+- 累计节省时间（小时）
+- 累计 Prompt 库模板数
+- 团队 AI 使用率（每天使用 AI 的人数占比）
 ```
 
 ---
@@ -592,7 +592,7 @@ Before the team workshop, the manager needs to prepare:
 
 Follow the Workshop agenda from 5.2. Key points:
 
-- Don't open with AI history and principles — demo results immediately
+- Don't open with AI history and principles demo results immediately
 - Use real team work scenarios for the demo, not generic examples
 - Give everyone a simple task during hands-on practice to ensure everyone succeeds
 - End by assigning "this week's homework": each person completes one work task using AI
@@ -603,13 +603,13 @@ Follow the Workshop agenda from 5.2. Key points:
 - Manager proactively asks the team "Did you use AI today? Any issues?"
 - Collect team feedback and questions to prepare for next week's training
 
-> 💡 **Week 1 Core Goal**: Get every single person to "try it once." Don't pursue depth — pursue breadth.
+> **Week 1 Core Goal**: Get every single person to "try it once." Don't pursue depth pursue breadth.
 
 ### 6.2 Weeks 2-4: Imitation Stage
 
 **Daily Task (15 minutes):**
 
-Give the team a specific AI task each day — pick a template from the Prompt library and apply it to their own work.
+Give the team a specific AI task each day pick a template from the Prompt library and apply it to their own work.
 
 | Week | Operations Task | Advertising Task | Customer Service Task |
 |----|-----------|-----------|-----------|
@@ -650,13 +650,13 @@ Each person contributes at least 2 self-created Prompts to the team library per 
 
 ```
 1. Discover a useful Prompt during work
-   ↓
+↓
 2. Format it using the standard template (see Section 3.3)
-   ↓
+↓
 3. Submit to AI Champion for review
-   ↓
+↓
 4. Champion validates effectiveness, marks validation status
-   ↓
+↓
 5. Added to team Prompt library, shared at weekly meeting
 ```
 
@@ -664,7 +664,7 @@ Each person contributes at least 2 self-created Prompts to the team library per 
 
 **Embedding AI into Formal Workflows:**
 
-No longer "using AI on the side" — it's now "AI is a required step in the workflow."
+No longer "using AI on the side" it's now "AI is a required step in the workflow."
 
 | Workflow | How AI Is Embedded | Owner | Measurement |
 |----------|-----------|--------|----------|
@@ -703,13 +703,13 @@ This is the most common issue. Root causes are usually one of these:
 **Ready-to-use talking points (managers can use directly):**
 
 For team members who "fear replacement":
-> "AI won't replace you, but people who use AI will replace those who don't. We're introducing AI not to reduce headcount, but to enable everyone to do more and better work. You currently spend 3 hours analyzing Reviews — with AI, it takes 20 minutes. The time you save can go toward higher-value work like deep competitive strategy analysis, which AI can't do."
+> "AI won't replace you, but people who use AI will replace those who don't. We're introducing AI not to reduce headcount, but to enable everyone to do more and better work. You currently spend 3 hours analyzing Reviews with AI, it takes 20 minutes. The time you save can go toward higher-value work like deep competitive strategy analysis, which AI can't do."
 
 For team members who "have no time":
 > "I understand you're busy. But think about it: if you spend 2 hours learning to use AI for Listings, you'll save 2.5 hours per Listing going forward. Write 10 Listings a month, that's 25 hours saved. The 2-hour learning investment pays for itself in a week."
 
 For team members who think "AI isn't reliable":
-> "You're right — AI isn't 100% accurate. But it doesn't need to be. It just needs to give you an 80% first draft, and you spend 20% of the time refining it to 100%. That's much faster than starting from scratch. Our process is: AI generates draft → human reviews and edits → publish. AI is the assistant, not the decision-maker."
+> "You're right AI isn't 100% accurate. But it doesn't need to be. It just needs to give you an 80% first draft, and you spend 20% of the time refining it to 100%. That's much faster than starting from scratch. Our process is: AI generates draft → human reviews and edits → publish. AI is the assistant, not the decision-maker."
 
 ### 7.2 "Champion Fighting Alone"
 
@@ -740,7 +740,7 @@ This is normal. Different roles have different AI use cases and difficulty level
 | Customer Service | Slower | CS replies require high accuracy, reluctant to fully rely on AI | Emphasize the AI generation + human review process |
 | Management | Slowest | Manager work is more about decisions and communication, fewer AI-assisted scenarios | Focus on data analysis and report generation use cases |
 
-> 💡 **Key Principle**: Don't require all roles to progress at the same pace. Let the faster roles be benchmarks, and use their success stories to motivate the slower ones.
+> **Key Principle**: Don't require all roles to progress at the same pace. Let the faster roles be benchmarks, and use their success stories to motivate the slower ones.
 
 ---
 
@@ -750,8 +750,8 @@ This is normal. Different roles have different AI use cases and difficulty level
 
 **Background:**
 - Team: 6 Operations + 2 Advertising + 2 Customer Service
-- Initial AI maturity: 🔴 Initial (average score 1.8)
-- Goal: Reach 🟡 Exploring (average score 2.5+) within 3 months
+- Initial AI maturity: Initial (average score 1.8)
+- Goal: Reach Exploring (average score 2.5+) within 3 months
 - Budget: $100/month (ChatGPT Plus × 5 accounts)
 
 **Execution:**
@@ -766,7 +766,7 @@ This is normal. Different roles have different AI use cases and difficulty level
 | Weeks 9-12 | Team Prompt library reached 25 templates | New hires can use AI from day one |
 
 **Results after 3 months:**
-- AI maturity: 🟡 Exploring (average score 2.9, +1.1 improvement)
+- AI maturity: Exploring (average score 2.9, +1.1 improvement)
 - Team Prompt library: 25 validated templates
 - Listing writing time: Average from 4 hours to 1.5 hours (62% savings)
 - Review analysis time: Average from 3 hours to 25 minutes (86% savings)
@@ -799,9 +799,9 @@ A 15-person team, initial attitude survey showed:
 
 **Key Turning Point:**
 
-The resistant group's transformation typically happens when they witness colleagues saving significant time with AI. The most effective "conversion" method isn't manager lectures — it's colleagues' real success stories.
+The resistant group's transformation typically happens when they witness colleagues saving significant time with AI. The most effective "conversion" method isn't manager lectures it's colleagues' real success stories.
 
-> 💡 **Manager's Role**: Don't force the resistant group to use AI. Create an environment where "people using AI are visibly more relaxed," and let the resistant group develop their own "I want to try too" motivation. Forcing only deepens resistance.
+> **Manager's Role**: Don't force the resistant group to use AI. Create an environment where "people using AI are visibly more relaxed," and let the resistant group develop their own "I want to try too" motivation. Forcing only deepens resistance.
 ---
 ### 8.3 Case 3: Cross-department AI Upskilling
 
@@ -812,21 +812,21 @@ A 30-person company, 5 departments (Operations, Advertising, Customer Service, S
 
 ```
 Layer 1: Company-wide Basics (everyone)
-├── AI awareness + Prompt basics (2-hour workshop)
-├── Data security guidelines training (30 minutes)
-└── Company AI usage policy sign-off
+AI awareness + Prompt basics (2-hour workshop)
+Data security guidelines training (30 minutes)
+Company AI usage policy sign-off
 
 Layer 2: Department-specific (by department)
-├── Operations: Product research + Listing + Review analysis (4 × 1 hour)
-├── Advertising: Search terms + copy + budget optimization (3 × 1 hour)
-├── Customer Service: Reply templates + feedback analysis (2 × 1 hour)
-├── Supply Chain: Supplier evaluation + inventory forecasting support (2 × 1 hour)
-└── Finance: Report analysis + data interpretation (2 × 1 hour)
+Operations: Product research + Listing + Review analysis (4 × 1 hour)
+Advertising: Search terms + copy + budget optimization (3 × 1 hour)
+Customer Service: Reply templates + feedback analysis (2 × 1 hour)
+Supply Chain: Supplier evaluation + inventory forecasting support (2 × 1 hour)
+Finance: Report analysis + data interpretation (2 × 1 hour)
 
 Layer 3: Cross-department Collaboration (Champion group)
-├── Weekly Champion sync meeting (30 minutes)
-├── Cross-department Prompt library co-building
-└── Monthly AI usage report
+Weekly Champion sync meeting (30 minutes)
+Cross-department Prompt library co-building
+Monthly AI usage report
 ```
 
 **Cross-department Prompt Library Organization:**
@@ -871,7 +871,7 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 |------|------|-----------|
 | *Co-Intelligence* | Ethan Mollick | Published 2024, covers how to collaborate with AI; ideal for managers to understand AI's proper role |
 | *The AI-First Company* | Ash Fontana | How to make AI an organizational capability, not just a personal tool |
-| *Team of Teams* | Stanley McChrystal | Not an AI book, but about how large organizations adapt quickly to change — highly relevant for AI change management |
+| *Team of Teams* | Stanley McChrystal | Not an AI book, but about how large organizations adapt quickly to change highly relevant for AI change management |
 | *Atomic Habits* | James Clear | Scientific methods for habit formation, directly applicable to "getting your team to use AI every day" |
 
 ---
@@ -954,15 +954,15 @@ After completing all items above, your team has established foundational AI capa
 
 | Element | Meaning | Example |
 |------|------|------|
-| C — Context | Background | "I'm an Amazon US operations manager" |
-| R — Role | Expert role | "You are a senior product research consultant" |
-| I — Instruction | Task directive | "Please evaluate this category's feasibility" |
-| S — Specifics | Details | "Score across 5 dimensions, 1-5 scale" |
-| P — Product | Output format | "Output as table + overall recommendation" |
+| C Context | Background | "I'm an Amazon US operations manager" |
+| R Role | Expert role | "You are a senior product research consultant" |
+| I Instruction | Task directive | "Please evaluate this category's feasibility" |
+| S Specifics | Details | "Score across 5 dimensions, 1-5 scale" |
+| P Product | Output format | "Output as table + overall recommendation" |
 
 ---
-> 🏠 [Hub Home](../../README.md) · 📋 [Path C Overview](README.md)
-> 
+> [Hub Home](../../README.md) · [Path C Overview](README.md)
+>
 > **Path C**: [C1 Assessment](c1-ai-assessment.md) · [C2 Upskilling](c2-team-building.md) · [C3 ROI](c3-roi-evaluation.md)
-> 
+>
 > **Quick Jump**: [Path 0 Foundations](../0-foundations/) · [Path A Operations](../a-operators/) · [Path B Developers](../b-developers/) · [Path D Multi-platform](../d-platforms/) · [Path E Social Media](../e-social-media/)

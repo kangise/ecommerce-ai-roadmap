@@ -11,35 +11,35 @@ SEO strategy: Subdirectory per language at repo root
 
 ```
 /
-├── README.md                    # Chinese homepage (source of truth)
-├── en/
-│   ├── README.md                # English homepage
-│   └── paths/
-│       ├── 0-foundations/
-│       │   └── ai-landscape.md
-│       ├── a-operators/
-│       │   ├── a1-product-research.md
-│       │   ├── a2-listing-optimization.md
-│       │   ├── a3-advertising.md
-│       │   ├── a4-customer-service.md
-│       │   ├── a5-inventory.md
-│       │   └── a6-compliance.md
-│       └── d-platforms/
-│           ├── shopify-ai-guide.md
-│           ├── tiktok-shop-ai-guide.md
-│           └── cross-platform-strategy.md
-├── ja/
-│   ├── README.md                # Japanese homepage
-│   └── paths/                   # Same structure as en/
-├── es/
-│   ├── README.md                # Spanish homepage
-│   └── paths/                   # Same structure as en/
-├── paths/                       # Chinese content (source)
-├── .translation/
-│   ├── ARCHITECTURE.md          # This file
-│   ├── GLOSSARY.md              # Terminology glossary (all languages)
-│   ├── STYLE_GUIDE.md           # Translation style guide per language
-│   └── STATUS.md                # Translation status tracker
+README.md # Chinese homepage (source of truth)
+en/
+README.md # English homepage
+paths/
+0-foundations/
+ai-landscape.md
+a-operators/
+a1-product-research.md
+a2-listing-optimization.md
+a3-advertising.md
+a4-customer-service.md
+a5-inventory.md
+a6-compliance.md
+d-platforms/
+shopify-ai-guide.md
+tiktok-shop-ai-guide.md
+cross-platform-strategy.md
+ja/
+README.md # Japanese homepage
+paths/ # Same structure as en/
+es/
+README.md # Spanish homepage
+paths/ # Same structure as en/
+paths/ # Chinese content (source)
+.translation/
+ARCHITECTURE.md # This file
+GLOSSARY.md # Terminology glossary (all languages)
+STYLE_GUIDE.md # Translation style guide per language
+STATUS.md # Translation status tracker
 ```
 
 ## Translation Status Tracker (.translation/STATUS.md)
@@ -50,15 +50,15 @@ Format:
 ```
 | Source File (zh) | en Status | en Hash | ja Status | ja Hash | es Status | es Hash |
 |------------------|-----------|---------|-----------|---------|-----------|---------|
-| README.md        | current   | abc123  | pending   | —       | pending   | —       |
-| paths/0-foundations/ai-landscape.md | outdated | def456 | pending | — | pending | — |
+| README.md | current | abc123 | pending | | pending | |
+| paths/0-foundations/ai-landscape.md | outdated | def456 | pending | | pending | |
 ```
 
 Status values:
 - `current` -- translation matches source
 - `outdated` -- source has been updated since last translation
 - `pending` -- not yet translated
-- `—` -- not applicable
+- `` -- not applicable
 
 Hash = first 7 chars of the git commit hash when the translation was last synced.
 
@@ -66,10 +66,10 @@ Hash = first 7 chars of the git commit hash when the translation was last synced
 
 ### Initial Translation (one-time)
 1. Prioritize files by traffic/importance:
-   - Tier 1: README.md, ai-landscape.md (translate first)
-   - Tier 2: a2-listing-optimization.md, a3-advertising.md, a6-compliance.md
-   - Tier 3: d-platforms/ files
-   - Tier 4: remaining a-operators/ files
+- Tier 1: README.md, ai-landscape.md (translate first)
+- Tier 2: a2-listing-optimization.md, a3-advertising.md, a6-compliance.md
+- Tier 3: d-platforms/ files
+- Tier 4: remaining a-operators/ files
 2. Ken tells Kiro: "translate [file] to en/ja/es"
 3. Kiro reads source, translates, writes to en/ja/es directories
 4. Kiro updates STATUS.md with current hash
@@ -135,14 +135,14 @@ Key terms that must be translated consistently across all files:
 - Translate alt text for images
 - Keep markdown formatting intact (headers, tables, lists, links)
 - Each translated file must have a language switcher at the top:
-  `[中文](../../paths/...) | [English](../en/paths/...) | [日本語](../ja/paths/...) | [Espanol](../es/paths/...)`
+`[中文](../../paths/...) | [English](../en/paths/...) | [日本語](../ja/paths/...) | [Espanol](../es/paths/...)`
 
 ## SEO Considerations
 
 - Each language README.md has localized H1 title with target keywords:
-  - en: "AI Prompts & Strategies for Amazon Sellers, Shopify & TikTok Shop"
-  - ja: "越境EC AI 実践ガイド | Amazon セラー・Shopify・TikTok Shop"
-  - es: "Guia de IA para Vendedores de Amazon, Shopify y TikTok Shop"
+- en: "AI Prompts & Strategies for Amazon Sellers, Shopify & TikTok Shop"
+- ja: "越境EC AI 実践ガイド | Amazon セラー・Shopify・TikTok Shop"
+- es: "Guia de IA para Vendedores de Amazon, Shopify y TikTok Shop"
 - Language switcher links at top of every page (helps Google discover all versions)
 - File names stay in English across all languages (URL consistency)
 - Internal links within each language directory are self-contained

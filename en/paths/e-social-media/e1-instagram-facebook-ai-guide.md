@@ -4,15 +4,15 @@
 
 > **Path**: Path E: Social Media · **Module**: E1
 > **Last Updated**: 2026-03-14
-> **Difficulty**: ⭐⭐ Intermediate
+> **Difficulty**: Intermediate
 > **Estimated Time**: 2-3 hours
 > **Prerequisites**: [Path 0 Foundations](../0-foundations/) · [Path A Operations](../a-operators/) (at least A1-A3 completed)
 
-🏠 [Hub Home](../../README.md) · 📋 [Path E Overview](README.md)
+[Hub Home](../../README.md) · [Path E Overview](README.md)
 
 ---
 
-## 📖 Chapter Navigation
+## Chapter Navigation
 
 1. [Why Combine Instagram + Facebook](#1-why-combine-instagram--facebook)
 2. [Instagram vs TikTok vs YouTube: Content Strategy Differences](#2-instagram-vs-tiktok-vs-youtube-content-strategy-differences)
@@ -39,7 +39,7 @@ A complete Meta ecosystem AI operations system. Upon completion, you'll have:
 - A Meta Advantage+ advertising AI optimization strategy
 - A Meta-specific Prompt template library
 
-> 💡 **Core Concept**: Instagram is a "lifestyle-driven" e-commerce channel. Unlike Amazon (search-driven) or TikTok (entertainment-driven), Instagram users aspire to "who I want to become." AI's core value on Instagram is helping you efficiently produce content that matches the platform's aesthetic, while using Meta's AI advertising system to precisely reach your target audience.
+> **Core Concept**: Instagram is a "lifestyle-driven" e-commerce channel. Unlike Amazon (search-driven) or TikTok (entertainment-driven), Instagram users aspire to "who I want to become." AI's core value on Instagram is helping you efficiently produce content that matches the platform's aesthetic, while using Meta's AI advertising system to precisely reach your target audience.
 
 ---
 
@@ -94,7 +94,7 @@ Using a "portable neck fan" as an example:
 
 | Platform | Content Angle | Example |
 |----------|--------------|---------|
-| **Instagram** | Lifestyle scene | Summer outdoor picnic, model elegantly wearing it, lo-fi music, text: "Summer essential ☀️" |
+| **Instagram** | Lifestyle scene | Summer outdoor picnic, model elegantly wearing it, lo-fi music, text: "Summer essential " |
 | **TikTok** | Pain point + solution | "Sweating within 5 minutes of going outside? Try this..." fast-paced demo, comment engagement |
 | **YouTube Shorts** | Product review/comparison | "I tested 5 neck fans, this one has the strongest airflow but only costs $19..." data comparison |
 
@@ -104,37 +104,37 @@ Using a "portable neck fan" as an example:
 
 ## 3. Reels AI Content Creation Methodology
 
-> 📎 **Related Reading**: [D2 TikTok Shop](../d-platforms/tiktok-shop-ai-guide.md#21-the-viral-video-structure-formula-for-tiktok) — Refer to D2 for TikTok short video methodology. The same footage can be adapted to different platform styles.
+> **Related Reading**: [D2 TikTok Shop](../d-platforms/tiktok-shop-ai-guide.md#21-the-viral-video-structure-formula-for-tiktok) Refer to D2 for TikTok short video methodology. The same footage can be adapted to different platform styles.
 
 ### 3.1 Instagram Reels Content Matrix
 
-An effective Reels strategy isn't about posting random videos — it's about planning with a matrix:
+An effective Reels strategy isn't about posting random videos it's about planning with a matrix:
 
 ```
 内容矩阵（建议比例）：
-├── 40% 产品展示型（直接带货）
-│   ├── 使用场景演示
-│   ├── Before/After 对比
-│   ├── 开箱/拆包
-│   └── 产品特写 + 卖点文字
-│
-├── 30% 教育/价值型（建立信任）
-│   ├── "X 个你不知道的 [品类] 小技巧"
-│   ├── "如何选择适合你的 [产品]"
-│   ├── 行业知识科普
-│   └── 常见问题解答
-│
-├── 20% 趋势/娱乐型（获取曝光）
-│   ├── 热门音乐 + 产品植入
-│   ├── 热门挑战参与
-│   ├── Meme 式内容
-│   └── 幕后花絮
-│
-└── 10% UGC/社会证明型（促进转化）
-    ├── 客户使用视频
-    ├── 评价截图合集
-    ├── 达人推荐片段
-    └── 销量/好评数据展示
+40% 产品展示型（直接带货）
+使用场景演示
+Before/After 对比
+开箱/拆包
+产品特写 + 卖点文字
+
+30% 教育/价值型（建立信任）
+"X 个你不知道的 [品类] 小技巧"
+"如何选择适合你的 [产品]"
+行业知识科普
+常见问题解答
+
+20% 趋势/娱乐型（获取曝光）
+热门音乐 + 产品植入
+热门挑战参与
+Meme 式内容
+幕后花絮
+
+10% UGC/社会证明型（促进转化）
+客户使用视频
+评价截图合集
+达人推荐片段
+销量/好评数据展示
 ```
 
 ### 3.2 Reels Script Structure (How It Differs from TikTok)
@@ -143,28 +143,28 @@ Instagram Reels scripts emphasize visual rhythm and aesthetic feel:
 
 ```
 第 1-2 秒：视觉 Hook（不是文字 Hook）
-├── 产品特写 + 光影效果
-├── 场景切换（快速蒙太奇）
-├── 颜色对比（产品 vs 背景）
-└── 动作起始（手拿起产品的瞬间）
+产品特写 + 光影效果
+场景切换（快速蒙太奇）
+颜色对比（产品 vs 背景）
+动作起始（手拿起产品的瞬间）
 
 第 3-10 秒：产品故事（不是功能罗列）
-├── 使用场景（生活方式植入）
-├── 情感连接（"这就是我一直在找的..."）
-├── 视觉变化（至少 3 个镜头切换）
-└── 背景音乐节奏配合
+使用场景（生活方式植入）
+情感连接（"这就是我一直在找的..."）
+视觉变化（至少 3 个镜头切换）
+背景音乐节奏配合
 
 第 11-20 秒：卖点 + 社会证明
-├── 1-2 个核心卖点（文字叠加）
-├── 价格/优惠信息
-├── 评价/销量数据
-└── 品牌标识
+1-2 个核心卖点（文字叠加）
+价格/优惠信息
+评价/销量数据
+品牌标识
 
 第 21-30 秒：CTA
-├── "Shop now — link in bio"
-├── 产品标签（Shoppable Tag）
-├── "Save for later 🔖"（引导保存，提升算法权重）
-└── "Tag someone who needs this"（引导分享）
+"Shop now link in bio"
+产品标签（Shoppable Tag）
+"Save for later "（引导保存，提升算法权重）
+"Tag someone who needs this"（引导分享）
 ```
 
 ### 3.3 AI-Generated Reels Script Prompt
@@ -204,17 +204,17 @@ Instagram Reels scripts emphasize visual rhythm and aesthetic feel:
 
 ```
 Step 1: AI 生成脚本（ChatGPT/Claude）
-    ↓ 每周生成 15-20 个脚本
+↓ 每周生成 15-20 个脚本
 Step 2: 素材拍摄/收集
-    ↓ 产品实拍 + 场景素材 + UGC 收集
+↓ 产品实拍 + 场景素材 + UGC 收集
 Step 3: AI 剪辑（CapCut AI / Canva Video）
-    ↓ 自动匹配音乐、字幕、转场
+↓ 自动匹配音乐、字幕、转场
 Step 4: 文案生成（AI 生成 Caption + Hashtag）
-    ↓ 批量生成，人工微调
+↓ 批量生成，人工微调
 Step 5: 排期发布（Meta Business Suite）
-    ↓ 最佳发布时间 AI 推荐
+↓ 最佳发布时间 AI 推荐
 Step 6: 数据复盘（每周）
-    ↓ AI 分析哪些内容表现好，调整下周策略
+↓ AI 分析哪些内容表现好，调整下周策略
 ```
 
 > **Efficiency Comparison**: Manually creating 1 Reel takes about 2-3 hours. With AI assistance, script 5 min + editing 15 min + copy 5 min = 25 min/Reel. You can consistently produce 10-15 Reels per week.
@@ -294,7 +294,7 @@ Carousel (swipeable posts) has the highest save rate of any Instagram content fo
 - 第 1 页：封面（Hook 标题 + 品牌 logo）
 - 第 2-6 页：5 个误区（每页一个，问题→正确做法）
 - 第 7 页：总结 + 产品推荐（自然植入，不硬推）
-- 第 8 页：CTA（"保存这篇 🔖" + "关注获取更多"）
+- 第 8 页：CTA（"保存这篇 " + "关注获取更多"）
 
 风格：简洁、专业、Instagram 美学（建议配色方案）
 ```
@@ -303,32 +303,32 @@ Carousel (swipeable posts) has the highest save rate of any Instagram content fo
 
 ## 5. Instagram Shopping Deep Dive
 
-> 📎 **Related Reading**: [D1 Shopify](../d-platforms/shopify-ai-guide.md#10-automating-shopify-operations-with-openclaw) — Instagram Shopping integrates deeply with Shopify. Refer to D1 for Product Catalog syncing and DTC strategy.
+> **Related Reading**: [D1 Shopify](../d-platforms/shopify-ai-guide.md#10-automating-shopify-operations-with-openclaw) Instagram Shopping integrates deeply with Shopify. Refer to D1 for Product Catalog syncing and DTC strategy.
 
 ### 5.1 Instagram Shopping Feature Overview
 
 ```
 Instagram Shopping 功能矩阵：
-├── Product Tags（产品标签）
-│   ├── Feed 帖子标签
-│   ├── Reels 标签（互动率 +30%）
-│   ├── Stories 标签
-│   └── Live Shopping 标签
-│
-├── Instagram Shop（店铺页面）
-│   ├── 品牌主页 Shop Tab
-│   ├── 产品详情页
-│   ├── 合集（Collections）
-│   └── 编辑精选（Editorial）
-│
-├── Checkout（站内结账）
-│   ├── 仅限美国（2026 年）
-│   └── 其他地区跳转外部网站
-│
-└── Shopping Ads
-    ├── 自动从 Catalog 生成广告
-    ├── 动态产品广告（DPA）
-    └── Collection Ads
+Product Tags（产品标签）
+Feed 帖子标签
+Reels 标签（互动率 +30%）
+Stories 标签
+Live Shopping 标签
+
+Instagram Shop（店铺页面）
+品牌主页 Shop Tab
+产品详情页
+合集（Collections）
+编辑精选（Editorial）
+
+Checkout（站内结账）
+仅限美国（2026 年）
+其他地区跳转外部网站
+
+Shopping Ads
+自动从 Catalog 生成广告
+动态产品广告（DPA）
+Collection Ads
 ```
 
 ### 5.2 Product Catalog AI Optimization
@@ -382,7 +382,7 @@ Shoppable Reels (Reels with product tags) are the highest-converting Instagram e
 
 ## 6. Meta Advantage+ AI Advertising Deep Dive
 
-> 📎 **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md#34-ad-budget-allocation-optimization) — Refer to A3 for general advertising optimization methodology. ROAS analysis and budget allocation frameworks can be reused for Meta Ads.
+> **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md#34-ad-budget-allocation-optimization) Refer to A3 for general advertising optimization methodology. ROAS analysis and budget allocation frameworks can be reused for Meta Ads.
 
 ### 6.1 Advantage+ Ad Product Matrix
 
@@ -390,31 +390,31 @@ Meta's AI advertising system is currently the most mature social media ad AI:
 
 ```
 Meta Advantage+ AI 广告体系：
-├── Advantage+ Shopping Campaigns (ASC)
-│   ├── 全自动化：AI 控制受众、版位、预算分配
-│   ├── 最适合：电商转化（购买/加购）
-│   └── 卖家只需提供：创意素材 + 产品目录 + 预算
-│
-├── Advantage+ Creative
-│   ├── 自动调整图片亮度/对比度/裁剪
-│   ├── 自动生成多个文案变体
-│   ├── 自动适配不同版位（Feed/Stories/Reels）
-│   └── 动态创意优化（DCO）
-│
-├── Advantage+ Audience
-│   ├── AI 自动扩展受众（基于种子受众）
-│   ├── 不再需要手动设置兴趣定向
-│   └── 建议：提供 Advantage+ Audience Suggestion 而非限制
-│
-├── Advantage+ Placements
-│   ├── AI 自动分配预算到最佳版位
-│   ├── 覆盖：Instagram Feed/Stories/Reels/Explore + Facebook Feed/Reels/Marketplace
-│   └── 建议：始终开启，让 AI 优化
-│
-└── Advantage+ Catalog Ads
-    ├── 动态产品广告（DPA）
-    ├── 自动从 Catalog 选择最佳产品展示
-    └── 个性化推荐（基于用户浏览历史）
+Advantage+ Shopping Campaigns (ASC)
+全自动化：AI 控制受众、版位、预算分配
+最适合：电商转化（购买/加购）
+卖家只需提供：创意素材 + 产品目录 + 预算
+
+Advantage+ Creative
+自动调整图片亮度/对比度/裁剪
+自动生成多个文案变体
+自动适配不同版位（Feed/Stories/Reels）
+动态创意优化（DCO）
+
+Advantage+ Audience
+AI 自动扩展受众（基于种子受众）
+不再需要手动设置兴趣定向
+建议：提供 Advantage+ Audience Suggestion 而非限制
+
+Advantage+ Placements
+AI 自动分配预算到最佳版位
+覆盖：Instagram Feed/Stories/Reels/Explore + Facebook Feed/Reels/Marketplace
+建议：始终开启，让 AI 优化
+
+Advantage+ Catalog Ads
+动态产品广告（DPA）
+自动从 Catalog 选择最佳产品展示
+个性化推荐（基于用户浏览历史）
 ```
 
 ### 6.2 ASC (Advantage+ Shopping Campaigns) Setup Guide
@@ -444,33 +444,33 @@ ASC is Meta's fully automated AI ad solution designed for e-commerce sellers:
 
 ```
 Step 1: 产品素材准备
-├── 产品白底图（3-5 张不同角度）
-├── 场景图（3-5 张使用场景）
-├── UGC 素材（客户实拍/评价截图）
-└── 品牌素材（logo、品牌色、字体）
+产品白底图（3-5 张不同角度）
+场景图（3-5 张使用场景）
+UGC 素材（客户实拍/评价截图）
+品牌素材（logo、品牌色、字体）
 
 Step 2: AI 生成广告文案（ChatGPT/Claude）
-├── 5 个不同角度的主标题（Headline）
-├── 5 个不同风格的正文（Primary Text）
-├── 3 个 CTA 变体
-└── 输出格式：直接可粘贴到 Ads Manager
+5 个不同角度的主标题（Headline）
+5 个不同风格的正文（Primary Text）
+3 个 CTA 变体
+输出格式：直接可粘贴到 Ads Manager
 
 Step 3: AI 生成广告图片（Midjourney/DALL-E → Canva）
-├── 产品 + 生活方式背景合成
-├── Before/After 对比图
-├── 数据/卖点信息图
-└── 适配 3 个尺寸：1:1（Feed）、9:16（Stories/Reels）、1.91:1（横版）
+产品 + 生活方式背景合成
+Before/After 对比图
+数据/卖点信息图
+适配 3 个尺寸：1:1（Feed）、9:16（Stories/Reels）、1.91:1（横版）
 
 Step 4: AI 生成广告视频（CapCut/Canva Video）
-├── 产品展示 15 秒视频
-├── UGC 风格 30 秒视频
-├── 幻灯片式产品合集视频
-└── 适配竖版（Reels/Stories）和方形（Feed）
+产品展示 15 秒视频
+UGC 风格 30 秒视频
+幻灯片式产品合集视频
+适配竖版（Reels/Stories）和方形（Feed）
 
 Step 5: 上传到 Ads Manager
-├── 每个 Campaign 上传 10-20 个素材
-├── 开启 Advantage+ Creative
-└── 让 AI 自动测试最佳组合
+每个 Campaign 上传 10-20 个素材
+开启 Advantage+ Creative
+让 AI 自动测试最佳组合
 ```
 
 **AI Ad Copy Generation Prompt:**
@@ -599,28 +599,28 @@ Facebook Marketplace is suited for specific categories (furniture, electronics, 
 Meta 电商运营关键指标：
 
 一、内容指标（Instagram）
-├── Reach（触达人数）
-├── Impressions（展示次数）
-├── Engagement Rate（互动率）= (点赞+评论+保存+分享) / 触达
-├── Save Rate（保存率）← Instagram 算法最看重的指标
-├── Share Rate（分享率）← 第二重要
-├── Profile Visits（主页访问）
-└── Website Clicks（网站点击）
+Reach（触达人数）
+Impressions（展示次数）
+Engagement Rate（互动率）= (点赞+评论+保存+分享) / 触达
+Save Rate（保存率）← Instagram 算法最看重的指标
+Share Rate（分享率）← 第二重要
+Profile Visits（主页访问）
+Website Clicks（网站点击）
 
 二、Shopping 指标
-├── Product Page Views（产品页浏览）
-├── Add to Cart（加购）
-├── Checkout Initiated（发起结账）
-├── Purchases（购买）
-└── Revenue（收入）
+Product Page Views（产品页浏览）
+Add to Cart（加购）
+Checkout Initiated（发起结账）
+Purchases（购买）
+Revenue（收入）
 
 三、广告指标
-├── ROAS（广告回报率）← 核心指标
-├── CPA（单次获客成本）
-├── CTR（点击率）
-├── CPM（千次展示成本）
-├── Frequency（频次）← >3 需要更换素材
-└── Thumbstop Rate（停留率）← 视频广告核心
+ROAS（广告回报率）← 核心指标
+CPA（单次获客成本）
+CTR（点击率）
+CPM（千次展示成本）
+Frequency（频次）← >3 需要更换素材
+Thumbstop Rate（停留率）← 视频广告核心
 ```
 
 ### 8.2 AI Weekly Report Analysis Prompt
@@ -743,49 +743,49 @@ Shopping 数据：
 
 | Tool | Use Case | Price | Rating |
 |------|----------|-------|--------|
-| **Meta Business Suite** | Content publishing, analytics, messaging | Free | ⭐⭐⭐⭐⭐ |
-| **Meta Ads Manager** | Ad placement and optimization | Free (ad spend separate) | ⭐⭐⭐⭐⭐ |
-| **Canva** | Image/video design, AI generation | Free / Pro $13/mo | ⭐⭐⭐⭐⭐ |
-| **CapCut** | Reels video editing, AI captions | Free / Pro $8/mo | ⭐⭐⭐⭐ |
-| **Later** | Content scheduling, best posting times, Link in bio | $25/mo+ | ⭐⭐⭐⭐ |
-| **ChatGPT / Claude** | Copy generation, data analysis, strategy planning | $20/mo | ⭐⭐⭐⭐⭐ |
-| **Midjourney** | AI-generated product scene images | $10/mo+ | ⭐⭐⭐⭐ |
-| **Meta Ad Library** | Competitor ad creative research | Free | ⭐⭐⭐⭐ |
-| **Manychat** | Instagram DM automation | Free / Pro $15/mo | ⭐⭐⭐ |
+| **Meta Business Suite** | Content publishing, analytics, messaging | Free | |
+| **Meta Ads Manager** | Ad placement and optimization | Free (ad spend separate) | |
+| **Canva** | Image/video design, AI generation | Free / Pro $13/mo | |
+| **CapCut** | Reels video editing, AI captions | Free / Pro $8/mo | |
+| **Later** | Content scheduling, best posting times, Link in bio | $25/mo+ | |
+| **ChatGPT / Claude** | Copy generation, data analysis, strategy planning | $20/mo | |
+| **Midjourney** | AI-generated product scene images | $10/mo+ | |
+| **Meta Ad Library** | Competitor ad creative research | Free | |
+| **Manychat** | Instagram DM automation | Free / Pro $15/mo | |
 
 ---
 
 ## 11. Common Pitfalls and How to Avoid Them
 
-### ❌ Pitfall 1: Using Amazon Listing Images Directly on Instagram
+### Pitfall 1: Using Amazon Listing Images Directly on Instagram
 
 Amazon's white-background product images perform terribly on Instagram. Instagram users expect lifestyle scene imagery.
 
 **Solution**: Use AI (Midjourney/DALL-E) to generate product + scene composite images, or use Canva to add lifestyle backgrounds.
 
-### ❌ Pitfall 2: Over-Relying on Hashtags for Traffic
+### Pitfall 2: Over-Relying on Hashtags for Traffic
 
 In 2026, Instagram's algorithm has significantly reduced the traffic weight of hashtags. The Reels recommendation algorithm is the primary traffic source.
 
 **Solution**: Use hashtags as classification labels (helping the algorithm understand your content), but don't expect them to drive massive traffic. Focus your energy on Reels content quality.
 
-### ❌ Pitfall 3: ASC Budget Too Low
+### Pitfall 3: ASC Budget Too Low
 
 Advantage+ Shopping Campaigns need sufficient data to learn. ASC with daily budgets below $30 typically underperforms.
 
 **Solution**: If budget is limited, use traditional ad structures first to test creatives and audiences, accumulate Pixel data, then switch to ASC.
 
-### ❌ Pitfall 4: Using the Same Content for Instagram and TikTok
+### Pitfall 4: Using the Same Content for Instagram and TikTok
 
 While both are short video platforms, the styles are completely different. TikTok's "authentic feel" content may look rough on Instagram; Instagram's "polished feel" content may seem pretentious on TikTok.
 
 **Solution**: Use AI to generate platform-specific variants from the same core script, adjusting tone and editing style.
 
-### ❌ Pitfall 5: Ignoring Instagram's "Save" Metric
+### Pitfall 5: Ignoring Instagram's "Save" Metric
 
 Many sellers only focus on likes and comments, but the Instagram algorithm values "Saves" most. Content with high save rates gets more recommendations.
 
-**Solution**: Create "save-worthy" content — tutorials, checklists, comparisons, tips. Guide users to save in your CTA ("Save this for later 🔖").
+**Solution**: Create "save-worthy" content tutorials, checklists, comparisons, tips. Guide users to save in your CTA ("Save this for later ").
 
 ---
 
@@ -797,36 +797,36 @@ Many sellers only focus on likes and comments, but the Instagram algorithm value
 Instagram 2026 算法排名因素：
 
 Feed/Reels 推荐算法：
-├── 互动预测（权重最高）
-│   ├── AI 预测用户是否会与这条内容互动
-│   ├── 基于用户历史行为（点赞/评论/保存/分享的内容类型）
-│   ├── 基于内容特征（视觉元素、文字、音乐、话题）
-│   └── 新内容有 200-500 人的初始测试池
-│
-├── 内容质量信号
-│   ├── 完播率（Reels 最重要的指标）
-│   ├── 保存率（Save Rate）← 2026 年权重大幅提升
-│   ├── 分享率（Share Rate）← 第二重要
-│   ├── 评论率（Comment Rate）
-│   ├── 点赞率（Like Rate）← 权重最低
-│   └── 停留时间（Dwell Time）
-│
-├── 账号信号
-│   ├── 账号活跃度（发布频率）
-│   ├── 粉丝互动率
-│   ├── 账号年龄和历史表现
-│   └── 内容一致性（是否持续发布同类内容）
-│
-├── 时效性
-│   ├── 新内容有初始推荐加成
-│   ├── 发布后 30 分钟内的互动率决定后续推荐
-│   └── 最佳发布时间因受众而异
-│
-└── 负面信号
-    ├── 用户隐藏/举报 → 严重降权
-    ├── 取消关注 → 降权
-    ├── 内容被标记为低质量 → 降权
-    └── 违反社区准则 → 限流或封号
+互动预测（权重最高）
+AI 预测用户是否会与这条内容互动
+基于用户历史行为（点赞/评论/保存/分享的内容类型）
+基于内容特征（视觉元素、文字、音乐、话题）
+新内容有 200-500 人的初始测试池
+
+内容质量信号
+完播率（Reels 最重要的指标）
+保存率（Save Rate）← 2026 年权重大幅提升
+分享率（Share Rate）← 第二重要
+评论率（Comment Rate）
+点赞率（Like Rate）← 权重最低
+停留时间（Dwell Time）
+
+账号信号
+账号活跃度（发布频率）
+粉丝互动率
+账号年龄和历史表现
+内容一致性（是否持续发布同类内容）
+
+时效性
+新内容有初始推荐加成
+发布后 30 分钟内的互动率决定后续推荐
+最佳发布时间因受众而异
+
+负面信号
+用户隐藏/举报 → 严重降权
+取消关注 → 降权
+内容被标记为低质量 → 降权
+违反社区准则 → 限流或封号
 ```
 
 ### Algorithm-Friendly Content Strategy
@@ -858,7 +858,7 @@ Feed/Reels 推荐算法：
 
 ### Influencer Types and Collaboration Models
 
-> 📎 **Related Reading**: [E3 Xiaohongshu](e3-xiaohongshu-ai-guide.md#4-kolkoc-collaboration-ai-methodology) — Refer to E3 for Chinese market influencer collaboration (KOL/KOC) methodology. Influencer screening models can be cross-referenced.
+> **Related Reading**: [E3 Xiaohongshu](e3-xiaohongshu-ai-guide.md#4-kolkoc-collaboration-ai-methodology) Refer to E3 for Chinese market influencer collaboration (KOL/KOC) methodology. Influencer screening models can be cross-referenced.
 
 | Influencer Type | Followers | Collaboration Cost | Best For | Expected ROI |
 |----------------|----------|-------------------|----------|-------------|
@@ -880,34 +880,34 @@ Feed/Reels 推荐算法：
 请设计达人合作方案：
 
 1. 达人筛选评分模型（100 分制）
-   - 内容相关性（25 分）：达人内容是否与我的品类相关
-   - 受众匹配度（25 分）：达人粉丝画像是否匹配我的目标客户
-   - 互动质量（20 分）：评论质量（真实 vs 水军）、互动率
-   - 内容质量（15 分）：视觉风格、制作水平
-   - 性价比（15 分）：CPE（Cost Per Engagement）
+- 内容相关性（25 分）：达人内容是否与我的品类相关
+- 受众匹配度（25 分）：达人粉丝画像是否匹配我的目标客户
+- 互动质量（20 分）：评论质量（真实 vs 水军）、互动率
+- 内容质量（15 分）：视觉风格、制作水平
+- 性价比（15 分）：CPE（Cost Per Engagement）
 
 2. 推荐的达人组合（基于预算）
-   - Nano 达人 [X] 个 × $[X] = $[X]
-   - Micro 达人 [X] 个 × $[X] = $[X]
-   - 总预算：$[X]
+- Nano 达人 [X] 个 × $[X] = $[X]
+- Micro 达人 [X] 个 × $[X] = $[X]
+- 总预算：$[X]
 
 3. 达人邀约 DM 模板（英文，Instagram 风格）
-   - 简短、真诚、不像群发
-   - 说明为什么选择这个达人
-   - 明确合作方式和报酬
+- 简短、真诚、不像群发
+- 说明为什么选择这个达人
+- 明确合作方式和报酬
 
 4. Creative Brief 模板
-   - 产品信息和卖点（必须提及）
-   - 内容方向建议（不限制创作自由）
-   - 必须包含的元素（产品标签、CTA、Hashtag）
-   - 禁止事项（竞品提及、虚假宣传）
-   - 发布时间和格式要求
+- 产品信息和卖点（必须提及）
+- 内容方向建议（不限制创作自由）
+- 必须包含的元素（产品标签、CTA、Hashtag）
+- 禁止事项（竞品提及、虚假宣传）
+- 发布时间和格式要求
 
 5. 效果追踪方法
-   - UTM 参数设置
-   - 专属折扣码追踪
-   - 达人内容的 Engagement 数据收集
-   - ROI 计算公式
+- UTM 参数设置
+- 专属折扣码追踪
+- 达人内容的 Engagement 数据收集
+- ROI 计算公式
 ```
 
 ### Repurposing Influencer Content
@@ -951,12 +951,12 @@ Influencer-created content is a valuable asset:
 18-25 秒：CTA + 结尾
 
 剪辑技巧：
-├── 每 2-3 秒切换一次镜头（保持注意力）
-├── 使用 Jump Cut（跳切）加快节奏
-├── 文字叠加与口播同步出现
-├── 关键信息用放大/高亮强调
-├── 结尾留 0.5 秒空白（引导循环播放，提升完播率）
-└── 竖版 9:16，确保关键内容在安全区域内
+每 2-3 秒切换一次镜头（保持注意力）
+使用 Jump Cut（跳切）加快节奏
+文字叠加与口播同步出现
+关键信息用放大/高亮强调
+结尾留 0.5 秒空白（引导循环播放，提升完播率）
+竖版 9:16，确保关键内容在安全区域内
 ```
 
 ### Reels A/B Testing Methodology
@@ -967,26 +967,26 @@ Reels A/B 测试框架：
 每周测试一个变量：
 
 Week 1: 测试 Hook
-├── 同一个产品，5 种不同的 Hook
-├── 其他元素保持一致
-├── 对比完播率和互动率
-└── 找到最有效的 Hook 类型
+同一个产品，5 种不同的 Hook
+其他元素保持一致
+对比完播率和互动率
+找到最有效的 Hook 类型
 
 Week 2: 测试时长
-├── 同一个内容，15秒/30秒/60秒 三个版本
-├── 对比完播率和触达量
-└── 找到最佳时长
+同一个内容，15秒/30秒/60秒 三个版本
+对比完播率和触达量
+找到最佳时长
 
 Week 3: 测试 CTA
-├── 同一个内容，不同的 CTA
-├── "Shop now" vs "Save for later" vs "Tag a friend"
-├── 对比保存率/分享率/点击率
-└── 找到最有效的 CTA
+同一个内容，不同的 CTA
+"Shop now" vs "Save for later" vs "Tag a friend"
+对比保存率/分享率/点击率
+找到最有效的 CTA
 
 Week 4: 测试发布时间
-├── 同类内容在不同时间发布
-├── 对比初始互动率和最终触达量
-└── 找到最佳发布时间
+同类内容在不同时间发布
+对比初始互动率和最终触达量
+找到最佳发布时间
 
 记录模板：
 | 测试变量 | 版本 A | 版本 B | 版本 C | 胜出 | 原因分析 |
@@ -1008,8 +1008,8 @@ After completing this module, you should be able to:
 > **Next Steps**: After completing E1, we recommend continuing to [E2 YouTube AI Operations](e2-youtube-ai-guide.md) to expand your video content capabilities from short-form to long-form. Or jump directly to [E7 Cross-Channel Strategy](e7-social-media-cross-channel.md) to learn how to efficiently repurpose Instagram content across other platforms.
 
 ---
-> 🏠 [Hub Home](../../README.md) · 📋 [Path E Overview](README.md)
-> 
+> [Hub Home](../../README.md) · [Path E Overview](README.md)
+>
 > **Path E**: [E1 Instagram](e1-instagram-facebook-ai-guide.md) · [E2 YouTube](e2-youtube-ai-guide.md) · [E3 Xiaohongshu](e3-xiaohongshu-ai-guide.md) · [E4 Pinterest](e4-pinterest-ai-guide.md) · [E5 WhatsApp](e5-whatsapp-business-ai-guide.md) · [E6 Reddit](e6-reddit-ai-guide.md) · [E7 Cross-Channel](e7-social-media-cross-channel.md)
-> 
+>
 > **Quick Jump**: [Path 0 Foundations](../0-foundations/) · [Path A Operations](../a-operators/) · [Path B Technical](../b-developers/) · [Path C Management](../c-managers/) · [Path D Multi-Platform](../d-platforms/)

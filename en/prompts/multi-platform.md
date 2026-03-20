@@ -100,7 +100,7 @@ Please translate and localize into:
 3. Vietnamese
 
 For each version provide: Product title, Description (300-500 words), 5 selling points, 10 search keywords.
-Note: This is not direct translation — it's localization. Include currency conversion, cultural adaptation, and local search habits.
+Note: This is not direct translation it's localization. Include currency conversion, cultural adaptation, and local search habits.
 ```
 
 ---
@@ -132,4 +132,4 @@ Please recommend the top 3 platforms I should prioritize entering, with the foll
 
 ---
 
-🏠 [Back to Hub Home](../README.md) · 📋 [Prompt Template Library](README.md)
+[Back to Hub Home](../README.md) · [Prompt Template Library](README.md)

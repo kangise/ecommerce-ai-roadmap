@@ -1,28 +1,28 @@
-# 🧠 Awesome AI Skills & Rules | AI IDE Skills and Rule Collections
+# Awesome AI Skills & Rules | AI IDE Skills and Rule Collections
 
 > Collections of Skills, Steering Files, and Rules for AI IDEs (Kiro/Cursor/Windsurf/Claude Code) and AI Agents (OpenClaw).
-> Let AI work according to your standards — no more repeating yourself every time.
+> Let AI work according to your standards no more repeating yourself every time.
 > Last updated: 2026-03-15
 
-🏠 [Hub Home](../README.md) · 🔌 [Awesome MCP & Agent](awesome-mcp-agents.md) · 🔧 [B6 MCP Integration](../paths/b-developers/b6-mcp-agentic-workflow.md) · ⚡ [F4 Agent Automation](../paths/0-foundations/f4-agent-automation.md)
+[Hub Home](../README.md) · [Awesome MCP & Agent](awesome-mcp-agents.md) · [B6 MCP Integration](../paths/b-developers/b6-mcp-agentic-workflow.md) · [F4 Agent Automation](../paths/0-foundations/f4-agent-automation.md)
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
-- [What Are AI Skills / Rules](#-what-are-ai-skills--rules)
-- [External Awesome Lists and Resources](#-external-awesome-lists-and-resources)
-- [OpenClaw Skills & Plugins](#-openclaw-skills--plugins)
-- [Kiro Skills & Steering Files](#-kiro-skills--steering-files)
-- [Cursor Rules](#-cursor-rules)
-- [Claude Code SKILL.md](#-claude-code-skillmd)
-- [Recommended Skills for E-Commerce Development](#-recommended-skills-for-e-commerce-development)
+- [What Are AI Skills / Rules](#what-are-ai-skills--rules)
+- [External Awesome Lists and Resources](#external-awesome-lists-and-resources)
+- [OpenClaw Skills & Plugins](#openclaw-skills--plugins)
+- [Kiro Skills & Steering Files](#kiro-skills--steering-files)
+- [Cursor Rules](#cursor-rules)
+- [Claude Code SKILL.md](#claude-code-skillmd)
+- [Recommended Skills for E-Commerce Development](#recommended-skills-for-e-commerce-development)
 
 ---
 
-## 💡 What Are AI Skills / Rules
+## What Are AI Skills / Rules
 
-AI Skills (skill files) are persistent instructions for AI assistants. Write once, and the AI follows them automatically — no need to repeat yourself in every conversation.
+AI Skills (skill files) are persistent instructions for AI assistants. Write once, and the AI follows them automatically no need to repeat yourself in every conversation.
 
 | Platform | File Name | Location | Description |
 |----------|-----------|----------|-------------|
@@ -34,13 +34,13 @@ AI Skills (skill files) are persistent instructions for AI assistants. Write onc
 
 ---
 
-## 🌐 External Awesome Lists and Resources
+## External Awesome Lists and Resources
 
 ### Cursor Rules Collections
 
 | Name | Stars | Description | Link |
 |------|-------|-------------|------|
-| awesome-cursorrules (PatrickJS) | 23.6K ⭐ | Largest Cursor Rules collection, categorized by language/framework | [GitHub](https://github.com/PatrickJS/awesome-cursorrules) |
+| awesome-cursorrules (PatrickJS) | 23.6K | Largest Cursor Rules collection, categorized by language/framework | [GitHub](https://github.com/PatrickJS/awesome-cursorrules) |
 | awesome-cursor-rules (blefnk) | Popular | Frontend development optimization (Next.js/React/TypeScript/Tailwind) | [GitHub](https://github.com/blefnk/awesome-cursor-rules) |
 | awesome-cursor-rules-mdc (sanjeed5) | Curated | .mdc format Cursor Rules collection | [GitHub](https://github.com/sanjeed5/awesome-cursor-rules-mdc) |
 | Cursor-Rules (UltraInstinct0x) | Practical | Focused on generating executable code | [GitHub](https://github.com/UltraInstinct0x/Cursor-Rules) |
@@ -68,9 +68,9 @@ Content rephrased for compliance with licensing restrictions.
 
 ---
 
-## 🐾 OpenClaw Skills & Plugins
+## OpenClaw Skills & Plugins
 
-OpenClaw is the hottest open-source AI Agent framework of 2026 (180K+ GitHub Stars), and its Skills system is a core competitive advantage. Skills are like npm packages — install and use, no need to build from scratch ([Tencent Cloud](https://www.tencentcloud.com/techpedia/140807)).
+OpenClaw is the hottest open-source AI Agent framework of 2026 (180K+ GitHub Stars), and its Skills system is a core competitive advantage. Skills are like npm packages install and use, no need to build from scratch ([Tencent Cloud](https://www.tencentcloud.com/techpedia/140807)).
 
 Content rephrased for compliance with licensing restrictions.
 
@@ -105,22 +105,22 @@ Content rephrased for compliance with licensing restrictions.
 OpenClaw E-Commerce Automation Examples:
 
 1. WhatsApp Customer Service Agent
-   ├── Install WhatsApp Channel Plugin
-   ├── Configure customer service Skill (Product FAQ/Returns/Shipping tracking)
-   ├── Connect Shopify MCP (query order status)
-   └── 24/7 auto-reply, escalate complex issues to humans
+Install WhatsApp Channel Plugin
+Configure customer service Skill (Product FAQ/Returns/Shipping tracking)
+Connect Shopify MCP (query order status)
+24/7 auto-reply, escalate complex issues to humans
 
 2. Multi-Platform Price Monitoring
-   ├── Install Web Scraper Skill
-   ├── Scheduled competitor price scraping
-   ├── AI analyzes price changes
-   └── Push alerts via Telegram
+Install Web Scraper Skill
+Scheduled competitor price scraping
+AI analyzes price changes
+Push alerts via Telegram
 
 3. Daily Operations Report
-   ├── Install CSV Parser + Gmail Skill
-   ├── Auto-download Amazon reports
-   ├── AI analyzes key metrics
-   └── Send daily report via Slack
+Install CSV Parser + Gmail Skill
+Auto-download Amazon reports
+AI analyzes key metrics
+Send daily report via Slack
 ```
 
 ### OpenClaw Resources
@@ -135,7 +135,7 @@ OpenClaw E-Commerce Automation Examples:
 
 ---
 
-## ⚡ Kiro Skills & Steering Files
+## Kiro Skills & Steering Files
 
 Kiro uses Steering Files to provide persistent project knowledge ([Kiro Docs](https://aws.amazon.com/documentation-overview/kiro/)).
 
@@ -158,7 +158,7 @@ Steering Files used in this project (CBEC-AI-Hub):
 
 ---
 
-## 📐 Cursor Rules
+## Cursor Rules
 
 Cursor Rules define custom rules for AI code generation ([PatrickJS](https://github.com/PatrickJS/awesome-cursorrules)).
 
@@ -173,7 +173,7 @@ Cursor Rules define custom rules for AI code generation ([PatrickJS](https://git
 
 ---
 
-## 📝 Claude Code SKILL.md
+## Claude Code SKILL.md
 
 SKILL.md is a structured instruction file for AI coding agents like Claude Code, Roo Code, OpenAI Codex, and Cursor. Write once, and the Agent automatically reads and applies it ([MTechZilla](https://www.mtechzilla.com/guides/how-to-develop-skill-md-production-guide-engineering-teams)).
 
@@ -199,7 +199,7 @@ Mandatory restrictions (security/performance/style)
 
 ---
 
-## 🛒 Recommended Skills for E-Commerce Development
+## Recommended Skills for E-Commerce Development
 
 ### Recommendations by Role
 
@@ -228,4 +228,4 @@ echo "You are a Python e-commerce development expert..." > .cursorrules
 
 ---
 
-> 🏠 [Hub Home](../README.md) · 🔌 [Awesome MCP & Agent](awesome-mcp-agents.md) · 🔧 [B6 MCP Integration](../paths/b-developers/b6-mcp-agentic-workflow.md) · ⚡ [F4 Agent Automation](../paths/0-foundations/f4-agent-automation.md)
+> [Hub Home](../README.md) · [Awesome MCP & Agent](awesome-mcp-agents.md) · [B6 MCP Integration](../paths/b-developers/b6-mcp-agentic-workflow.md) · [F4 Agent Automation](../paths/0-foundations/f4-agent-automation.md)

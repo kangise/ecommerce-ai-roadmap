@@ -2,21 +2,21 @@
 
 # AI Application Landscape Assessment | AI Application Landscape for Cross-Border E-Commerce
 
-> **Location**: Path 0 Foundations → A global perspective before diving into hands-on paths  
-> **Last Updated**: 2026-03-12  
-> **Difficulty**: ⭐ Beginner  
-> **Estimated Time**: 30 minutes  
+> **Location**: Path 0 Foundations → A global perspective before diving into hands-on paths
+> **Last Updated**: 2026-03-12
+> **Difficulty**: Beginner
+> **Estimated Time**: 30 minutes
 > **Prerequisites**: Recommended to complete [F1 The History of AI](f1-ai-evolution.md) first
 
-🏠 [Hub Home](../../../en/README.md) · 📋 [Path Overview](../README.md)
+[Hub Home](../../../en/README.md) · [Path Overview](../README.md)
 
 ---
 
-> 💡 Before diving into any specific module, spend 30 minutes building a big-picture view: What can AI actually do at each stage of cross-border e-commerce? What should you "start using today" vs. "wait and see"?
+> Before diving into any specific module, spend 30 minutes building a big-picture view: What can AI actually do at each stage of cross-border e-commerce? What should you "start using today" vs. "wait and see"?
 
 ---
 
-## 📊 AI × Cross-Border E-Commerce: Hype vs. Real-World Application Gap Matrix
+## AI × Cross-Border E-Commerce: Hype vs. Real-World Application Gap Matrix
 
 The table below evaluates the AI application status of each operational area across two dimensions:
 - **AI Hype** (market buzz, tool maturity, industry adoption rate)
@@ -26,78 +26,78 @@ The bigger the gap = either overhyped (invest cautiously) or underestimated (opp
 
 | Operational Area | AI Hype | Real Impact | Gap | Priority | Rationale | Module |
 |----------|---------|---------|-----|--------|---------|---------|
-| **Listing Copywriting** | 🔥🔥🔥🔥🔥 | ⭐⭐⭐⭐⭐ | None | 🟢 Use Now | AI-written Listings are industry standard — 60-80% efficiency gain, quality is controllable | [A2](../a-operators/a2-listing-optimization.md) |
-| **Competitor Review Analysis** | 🔥🔥🔥🔥 | ⭐⭐⭐⭐⭐ | None | 🟢 Use Now | 50 reviews from 3 hours → 20 minutes, pain point extraction accuracy 85%+ | [A1](../a-operators/a1-product-research.md) |
-| **Multilingual Translation/Localization** | 🔥🔥🔥🔥 | ⭐⭐⭐⭐ | Small | 🟢 Use Now | Translation quality approaches human level, but cultural adaptation still needs manual review | [A2](../a-operators/a2-listing-optimization.md) |
-| **Customer Service Replies** | 🔥🔥🔥🔥 | ⭐⭐⭐⭐ | Small | 🟢 Use Now | Template-based replies are highly efficient, but complex complaints still need human judgment | [A4](../a-operators/a4-customer-service.md) |
-| **Ad Copy A/B Testing** | 🔥🔥🔥🔥 | ⭐⭐⭐⭐ | Small | 🟢 Use Now | AI batch-generates variants + data-driven selection, ROAS improvement 15-30% | [A3](../a-operators/a3-advertising.md) |
-| **Search Term Report Analysis** | 🔥🔥🔥 | ⭐⭐⭐⭐ | Small | 🟢 Use Now | Requires exporting data to AI, but analysis quality is high, saves 70%+ time | [A3](../a-operators/a3-advertising.md) |
-| **Product Selection & Market Assessment** | 🔥🔥🔥🔥🔥 | ⭐⭐⭐ | Medium | 🟡 Use with Caution | AI can do data analysis and trend assessment, but product selection still heavily relies on experience and intuition | [A1](../a-operators/a1-product-research.md) |
-| **Compliance Documentation** | 🔥🔥🔥 | ⭐⭐⭐⭐ | Small | 🟢 Use Now | Compliance checklists and appeal letters work well, but final legal review is still needed | [A6](../a-operators/a6-compliance.md) |
-| **Inventory Demand Forecasting** | 🔥🔥🔥🔥 | ⭐⭐ | Large | 🟡 Use with Caution | High hype but limited actual prediction accuracy — heavily affected by seasonal, promotional, and supply chain variables | [A5](../a-operators/a5-inventory.md) |
-| **Automated Ad Bidding** | 🔥🔥🔥🔥 | ⭐⭐⭐ | Medium | 🟡 Use with Caution | Mature tools (Adtomic/Perpetua), but need sufficient data volume to be effective | [A3](../a-operators/a3-advertising.md) |
-| **AI Agent Automation** | 🔥🔥🔥🔥🔥 | ⭐⭐ | Large | 🔴 Wait & Watch | Concept is hot but production-grade Agents are still unstable — suitable for tech teams to explore | [B4](../b-developers/b4-agent-workflow.md) |
-| **RAG Knowledge Base** | 🔥🔥🔥🔥 | ⭐⭐⭐ | Medium | 🟡 Use with Caution | Technically feasible but high setup and maintenance costs — suitable for teams of 20+ | [B3](../b-developers/b3-rag-knowledge-base.md) |
-| **Prediction Models (ML)** | 🔥🔥🔥 | ⭐⭐ | Large | 🔴 Wait & Watch | Requires large historical datasets + technical team — ROI is low for small-to-mid sellers | [B2](../b-developers/b2-prediction-models.md) |
-| **Local Model Deployment** | 🔥🔥🔥 | ⭐ | Large | 🔴 Wait & Watch | High technical barrier — unless you have strong data privacy requirements, cloud APIs are more cost-effective | [B5](../b-developers/b5-local-model-deploy.md) |
-| **Data Pipeline Automation** | 🔥🔥🔥 | ⭐⭐⭐ | Medium | 🟡 Use with Caution | Python + API integration works well, but requires technical staff to maintain | [B1](../b-developers/b1-data-pipeline.md) |
+| **Listing Copywriting** | | | None | Use Now | AI-written Listings are industry standard 60-80% efficiency gain, quality is controllable | [A2](../a-operators/a2-listing-optimization.md) |
+| **Competitor Review Analysis** | | | None | Use Now | 50 reviews from 3 hours → 20 minutes, pain point extraction accuracy 85%+ | [A1](../a-operators/a1-product-research.md) |
+| **Multilingual Translation/Localization** | | | Small | Use Now | Translation quality approaches human level, but cultural adaptation still needs manual review | [A2](../a-operators/a2-listing-optimization.md) |
+| **Customer Service Replies** | | | Small | Use Now | Template-based replies are highly efficient, but complex complaints still need human judgment | [A4](../a-operators/a4-customer-service.md) |
+| **Ad Copy A/B Testing** | | | Small | Use Now | AI batch-generates variants + data-driven selection, ROAS improvement 15-30% | [A3](../a-operators/a3-advertising.md) |
+| **Search Term Report Analysis** | | | Small | Use Now | Requires exporting data to AI, but analysis quality is high, saves 70%+ time | [A3](../a-operators/a3-advertising.md) |
+| **Product Selection & Market Assessment** | | | Medium | Use with Caution | AI can do data analysis and trend assessment, but product selection still heavily relies on experience and intuition | [A1](../a-operators/a1-product-research.md) |
+| **Compliance Documentation** | | | Small | Use Now | Compliance checklists and appeal letters work well, but final legal review is still needed | [A6](../a-operators/a6-compliance.md) |
+| **Inventory Demand Forecasting** | | | Large | Use with Caution | High hype but limited actual prediction accuracy heavily affected by seasonal, promotional, and supply chain variables | [A5](../a-operators/a5-inventory.md) |
+| **Automated Ad Bidding** | | | Medium | Use with Caution | Mature tools (Adtomic/Perpetua), but need sufficient data volume to be effective | [A3](../a-operators/a3-advertising.md) |
+| **AI Agent Automation** | | | Large | Wait & Watch | Concept is hot but production-grade Agents are still unstable suitable for tech teams to explore | [B4](../b-developers/b4-agent-workflow.md) |
+| **RAG Knowledge Base** | | | Medium | Use with Caution | Technically feasible but high setup and maintenance costs suitable for teams of 20+ | [B3](../b-developers/b3-rag-knowledge-base.md) |
+| **Prediction Models (ML)** | | | Large | Wait & Watch | Requires large historical datasets + technical team ROI is low for small-to-mid sellers | [B2](../b-developers/b2-prediction-models.md) |
+| **Local Model Deployment** | | | Large | Wait & Watch | High technical barrier unless you have strong data privacy requirements, cloud APIs are more cost-effective | [B5](../b-developers/b5-local-model-deploy.md) |
+| **Data Pipeline Automation** | | | Medium | Use with Caution | Python + API integration works well, but requires technical staff to maintain | [B1](../b-developers/b1-data-pipeline.md) |
 
 ---
 
-## 🎯 Priority Tiers: Where Should You Start?
+## Priority Tiers: Where Should You Start?
 
-### 🟢 Tier 1: Start Using Today (Proven ROI, Low Barrier)
+### Tier 1: Start Using Today (Proven ROI, Low Barrier)
 
-AI is already very mature in these scenarios — not using it is wasting time:
-
-```
-1. Listing Copywriting — 60-80% efficiency gain, quality is controllable, free ChatGPT/Claude works fine
-2. Review Analysis — 50 reviews from 3 hours → 20 minutes, foundation for product selection and competitive analysis
-3. Customer Service Reply Templates — multilingual replies, negative review handling, appeal letters — copy and paste ready
-4. Ad Copy Variants — generate 20+ ad copies per product, A/B testing efficiency doubled
-5. Multilingual Translation — 10x faster than human translation, 90%+ quality (manual review needed for cultural fit)
-6. Search Term Analysis — export reports to AI for automatic clustering and trend analysis
-7. Compliance Checks — compliance checklist generation, appeal letter writing, policy interpretation
-```
-
-> 💡 **Action Item**: If you haven't used AI for any of the above, start with Listing copywriting or Review analysis — you'll see results in 10 minutes.
-
-### 🟡 Tier 2: Worth Investing In, But Manage Expectations (Results Vary by Scenario)
-
-AI can help in these scenarios, but it's not "one-click magic" — requires human judgment and continuous optimization:
+AI is already very mature in these scenarios not using it is wasting time:
 
 ```
-8. Product Selection & Market Assessment — AI can do data analysis, but "what to sell" is still a human call
-9. Inventory Forecasting — AI can provide reference values, but too many variables (promotions/seasons/supply chain) to fully rely on
-10. Automated Ad Bidding — mature tools but need sufficient data volume (monthly ad spend $1000+ to be meaningful)
-11. Data Pipeline Automation — effective but requires Python skills or technical support
-12. RAG Knowledge Base — suitable for teams with large internal document libraries, setup cost is not low
+1. Listing Copywriting 60-80% efficiency gain, quality is controllable, free ChatGPT/Claude works fine
+2. Review Analysis 50 reviews from 3 hours → 20 minutes, foundation for product selection and competitive analysis
+3. Customer Service Reply Templates multilingual replies, negative review handling, appeal letters copy and paste ready
+4. Ad Copy Variants generate 20+ ad copies per product, A/B testing efficiency doubled
+5. Multilingual Translation 10x faster than human translation, 90%+ quality (manual review needed for cultural fit)
+6. Search Term Analysis export reports to AI for automatic clustering and trend analysis
+7. Compliance Checks compliance checklist generation, appeal letter writing, policy interpretation
 ```
 
-> 💡 **Action Item**: Move to this tier after mastering Tier 1. Use AI as an analytical assistant first — don't fully replace human decision-making.
+> **Action Item**: If you haven't used AI for any of the above, start with Listing copywriting or Review analysis you'll see results in 10 minutes.
 
-### 🔴 Tier 3: Watch But Don't Rush (Cutting Edge, Uncertain ROI)
+### Tier 2: Worth Investing In, But Manage Expectations (Results Vary by Scenario)
 
-These scenarios are technically feasible but not production-ready — suitable for tech teams to explore:
+AI can help in these scenarios, but it's not "one-click magic" requires human judgment and continuous optimization:
 
 ```
-13. AI Agent Automation — concept is hot but stability isn't there yet, good for PoC but not production
-14. Prediction Models (ML) — requires large datasets + technical team, low ROI for small-to-mid sellers
-15. Local Model Deployment — unless you have strong data privacy needs, cloud APIs are more cost-effective
+8. Product Selection & Market Assessment AI can do data analysis, but "what to sell" is still a human call
+9. Inventory Forecasting AI can provide reference values, but too many variables (promotions/seasons/supply chain) to fully rely on
+10. Automated Ad Bidding mature tools but need sufficient data volume (monthly ad spend $1000+ to be meaningful)
+11. Data Pipeline Automation effective but requires Python skills or technical support
+12. RAG Knowledge Base suitable for teams with large internal document libraries, setup cost is not low
 ```
 
-> 💡 **Action Item**: Stay informed and wait for maturity to improve before investing. You can start learning [Path B](../b-developers/) to build foundational knowledge.
+> **Action Item**: Move to this tier after mastering Tier 1. Use AI as an analytical assistant first don't fully replace human decision-making.
+
+### Tier 3: Watch But Don't Rush (Cutting Edge, Uncertain ROI)
+
+These scenarios are technically feasible but not production-ready suitable for tech teams to explore:
+
+```
+13. AI Agent Automation concept is hot but stability isn't there yet, good for PoC but not production
+14. Prediction Models (ML) requires large datasets + technical team, low ROI for small-to-mid sellers
+15. Local Model Deployment unless you have strong data privacy needs, cloud APIs are more cost-effective
+```
+
+> **Action Item**: Stay informed and wait for maturity to improve before investing. You can start learning [Path B](../b-developers/) to build foundational knowledge.
 
 
 ---
 
 ## AI Before vs After: Real Changes in Every Operational Area
 
-> This is the most important section on this page. No abstract concepts — just "how you did it without AI" and "how you do it with AI," backed by specific time, steps, and efficiency data.
+> This is the most important section on this page. No abstract concepts just "how you did it without AI" and "how you do it with AI," backed by specific time, steps, and efficiency data.
 
 ### Product Selection & Market Research -- Maturity 3/5
 
-> 📎 **Related Reading**: [A1 Product Selection & Market Insights](../a-operators/a1-product-research.md#a1-product-research-market-insights) — See A1 for hands-on product selection with AI
+> **Related Reading**: [A1 Product Selection & Market Insights](../a-operators/a1-product-research.md#a1-product-research-market-insights) See A1 for hands-on product selection with AI
 
 Before (Without AI):
 ```
@@ -123,41 +123,41 @@ Sample AI Output -- You give AI 50 competitor reviews, and it outputs:
 
 ```
 痛点分析（按频率排序）:
-1. "充电速度慢" — 出现 23 次（46%），集中在 1-2 星 Review
-   典型原话: "advertised as fast charging but takes 4 hours"
-   → 选品启示: 如果你的产品真的快充，这是最大的差异化卖点
+1. "充电速度慢" 出现 23 次（46%），集中在 1-2 星 Review
+典型原话: "advertised as fast charging but takes 4 hours"
+→ 选品启示: 如果你的产品真的快充，这是最大的差异化卖点
 
-2. "体积太大" — 出现 15 次（30%）
-   典型原话: "doesn't fit in my pocket as I expected"
-   → 选品启示: 小体积是第二大需求，但要注意容量和体积的 trade-off
+2. "体积太大" 出现 15 次（30%）
+典型原话: "doesn't fit in my pocket as I expected"
+→ 选品启示: 小体积是第二大需求，但要注意容量和体积的 trade-off
 
-3. "接口不兼容" — 出现 12 次（24%）
-   典型原话: "no USB-C port in 2025, seriously?"
-   → 选品启示: USB-C 是必须的，没有 USB-C 的产品已经被市场淘汰
+3. "接口不兼容" 出现 12 次（24%）
+典型原话: "no USB-C port in 2025, seriously?"
+→ 选品启示: USB-C 是必须的，没有 USB-C 的产品已经被市场淘汰
 
 好评分析（按频率排序）:
-1. "轻便" — 出现 31 次（62%）
-2. "充电快" — 出现 28 次（56%）
-3. "颜值高" — 出现 19 次（38%）
+1. "轻便" 出现 31 次（62%）
+2. "充电快" 出现 28 次（56%）
+3. "颜值高" 出现 19 次（38%）
 ```
 
 What to look for during manual review:
 - Whether the pain points AI extracted match your product's strengths (if your product truly fast-charges, pain point #1 is your opportunity)
-- Whether AI's market size estimates are reasonable (AI doesn't know real-time BSR — you need to verify yourself)
+- Whether AI's market size estimates are reasonable (AI doesn't know real-time BSR you need to verify yourself)
 - Factors AI doesn't consider: supply chain difficulty, patent risks, seasonality, your team's capabilities
 
 | Metric | Before | After | Change |
 |------|--------|-------|------|
 | Time | 7 hours | 50 minutes | -88% |
-| Recommended Tools | — | ChatGPT + Helium 10/Jungle Scout data export | — |
+| Recommended Tools | | ChatGPT + Helium 10/Jungle Scout data export | |
 
-POV: Don't let AI make the "should we do this product or not" decision for you. AI's value is rapidly analyzing data across 100 categories — your value is picking the 3 with the most potential.
+POV: Don't let AI make the "should we do this product or not" decision for you. AI's value is rapidly analyzing data across 100 categories your value is picking the 3 with the most potential.
 
 ---
 
 ### Listing Copywriting -- Maturity 5/5
 
-> 📎 **Related Reading**: [A2 Listing & Content Creation](../a-operators/a2-listing-optimization.md#a2-listing-content-creation) — See A2 for hands-on Listing optimization
+> **Related Reading**: [A2 Listing & Content Creation](../a-operators/a2-listing-optimization.md#a2-listing-content-creation) See A2 for hands-on Listing optimization
 
 Before (Without AI):
 ```
@@ -185,11 +185,11 @@ AI First Draft vs. Human Final Draft -- What you need to change:
 ```
 AI 初稿标题:
 "Portable Charger 10000mAh Power Bank USB-C Fast Charging Slim
- Lightweight Battery Pack for iPhone 16 15 14 Samsung Galaxy Android"
+Lightweight Battery Pack for iPhone 16 15 14 Samsung Galaxy Android"
 
 人工调整后:
 "[品牌名] 10000mAh Portable Charger - USB-C 30W Fast Charging,
- Pocket-Size Power Bank for iPhone & Android | Charges iPhone 16 to 50% in 25 Min"
+Pocket-Size Power Bank for iPhone & Android | Charges iPhone 16 to 50% in 25 Min"
 
 改了什么:
 1. 加了品牌名（AI 不知道你的品牌名）
@@ -211,15 +211,15 @@ Common issues when AI generates multilingual content:
 |------|--------|-------|------|
 | Single language | 5.5 hours | 45 minutes | -86% |
 | Multilingual | +2h/language | +15min/language | -88% |
-| Recommended Tools | — | ChatGPT/Claude, Helium 10 Listing Builder | — |
+| Recommended Tools | | ChatGPT/Claude, Helium 10 Listing Builder | |
 
-POV: The most mature AI use case — industry standard. But the biggest risk is content homogenization — everyone uses AI to write similar copy. You must add brand uniqueness and real product experience (specific specs, real usage data) on top of the AI draft, otherwise your Listing looks identical to competitors.
+POV: The most mature AI use case industry standard. But the biggest risk is content homogenization everyone uses AI to write similar copy. You must add brand uniqueness and real product experience (specific specs, real usage data) on top of the AI draft, otherwise your Listing looks identical to competitors.
 
 ---
 
 ### Advertising Management & Optimization -- Maturity 4/5
 
-> 📎 **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md#a3-advertising-optimization) — See A3 for hands-on ad optimization
+> **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md#a3-advertising-optimization) See A3 for hands-on ad optimization
 
 Before (Without AI):
 ```
@@ -247,24 +247,24 @@ Sample AI Output -- You give AI a search term report, and it outputs:
 
 ```
 高 ROAS 关键词（建议加大投放）:
-1. "portable charger usb c" — 花费 $45, 销售 $380, ROAS 8.4x
-   建议: 当前出价 $0.85，建议提高到 $1.20（仍有利润空间）
-   
-2. "power bank for camping" — 花费 $12, 销售 $95, ROAS 7.9x
-   建议: 这是一个长尾词，竞争低但转化率高，建议单独建一个精准匹配广告组
+1. "portable charger usb c" 花费 $45, 销售 $380, ROAS 8.4x
+建议: 当前出价 $0.85，建议提高到 $1.20（仍有利润空间）
+
+2. "power bank for camping" 花费 $12, 销售 $95, ROAS 7.9x
+建议: 这是一个长尾词，竞争低但转化率高，建议单独建一个精准匹配广告组
 
 浪费关键词（建议否定或降低出价）:
-1. "phone charger cable" — 花费 $67, 销售 $0, ROAS 0x
-   原因: 用户搜索的是充电线不是充电宝，完全不相关
-   建议: 立即添加为否定关键词
+1. "phone charger cable" 花费 $67, 销售 $0, ROAS 0x
+原因: 用户搜索的是充电线不是充电宝，完全不相关
+建议: 立即添加为否定关键词
 
-2. "anker power bank" — 花费 $89, 销售 $45, ROAS 0.5x
-   原因: 用户搜索竞品品牌名，转化率极低
-   建议: 降低出价到 $0.30 或否定（除非你的产品确实比 Anker 有优势）
+2. "anker power bank" 花费 $89, 销售 $45, ROAS 0.5x
+原因: 用户搜索竞品品牌名，转化率极低
+建议: 降低出价到 $0.30 或否定（除非你的产品确实比 Anker 有优势）
 
 隐藏机会:
-- "best portable charger 2026" — 只花了 $3 但有 2 次转化
-  这个词搜索量在上升，建议加大投放测试
+- "best portable charger 2026" 只花了 $3 但有 2 次转化
+这个词搜索量在上升，建议加大投放测试
 ```
 
 What to look for during manual review:
@@ -276,15 +276,15 @@ What to look for during manual review:
 |------|--------|-------|------|
 | Weekly time | 3.5 hours | 50 minutes | -76% |
 | ROAS improvement | Baseline | +15-30% | AI discovers hidden patterns |
-| Recommended Tools | — | ChatGPT (analysis), Adtomic/Perpetua (auto-bidding, monthly ad spend $1000+) | — |
+| Recommended Tools | | ChatGPT (analysis), Adtomic/Perpetua (auto-bidding, monthly ad spend $1000+) | |
 
-POV: AI's biggest value isn't "adjusting bids for you" — it's "helping you discover data patterns you missed." For example, "best portable charger 2026" in the example above — only $3 spent but 2 conversions. When reviewing reports manually, it's easy to overlook these low-spend, high-conversion long-tail keywords.
+POV: AI's biggest value isn't "adjusting bids for you" it's "helping you discover data patterns you missed." For example, "best portable charger 2026" in the example above only $3 spent but 2 conversions. When reviewing reports manually, it's easy to overlook these low-spend, high-conversion long-tail keywords.
 
 ---
 
 ### Customer Service & After-Sales -- Maturity 4/5
 
-> 📎 **Related Reading**: [A4 Customer Service & After-Sales](../a-operators/a4-customer-service.md#a4-customer-service-after-sales) — See A4 for hands-on customer service AI
+> **Related Reading**: [A4 Customer Service & After-Sales](../a-operators/a4-customer-service.md#a4-customer-service-after-sales) See A4 for hands-on customer service AI
 
 Before (Without AI):
 ```
@@ -311,7 +311,7 @@ After (With AI):
 | Regular messages | 5-10 min/each | 1-2 min/each | -80% |
 | Negative review replies | 15-30 min/each | 7 min/each | -75% |
 | Appeal letters | 1-2 hours/each | 30 min/each | -75% |
-| Recommended Tools | — | ChatGPT, Tidio/Gorgias (Shopify), eDesk (multi-platform) | — |
+| Recommended Tools | | ChatGPT, Tidio/Gorgias (Shopify), eDesk (multi-platform) | |
 
 What AI can do: auto-classify, generate reply drafts, multilingual replies, negative review responses, appeal letters
 What AI can't do: emotional judgment for complex complaints, refund/compensation decisions, keeping up with latest policy changes
@@ -347,7 +347,7 @@ After (With AI):
 |------|--------|-------|------|
 | 4-email sequence | 8-12 hours | 2 hours | -80% |
 | Open rate | 15-25% | 25-40% | +60% (AI-optimized send times) |
-| Recommended Tools | — | Klaviyo (Shopify top pick), Omnisend, Shopify Email | — |
+| Recommended Tools | | Klaviyo (Shopify top pick), Omnisend, Shopify Email | |
 
 What AI can do: generate email content, optimize send times, predict customer LTV and churn probability, auto-segmentation
 What AI can't do: replace brand strategy decisions, guarantee emails don't land in spam (depends on domain reputation)
@@ -381,7 +381,7 @@ After (With AI):
 |------|--------|-------|------|
 | Time per video | 3-5 hours | 45-75 minutes | -75% |
 | Daily output | 1 video | 3 videos | 3x |
-| Recommended Tools | — | ChatGPT (scripts), CapCut (editing), ElevenLabs (voiceover) | — |
+| Recommended Tools | | ChatGPT (scripts), CapCut (editing), ElevenLabs (voiceover) | |
 
 What AI can do: generate video scripts, auto-edit, AI voiceover, subtitle generation, trend analysis
 What AI can't do: replace the authenticity of real human filming, guarantee a video goes viral (algorithm is unpredictable)
@@ -418,12 +418,12 @@ After (With AI):
 | Initial screening | 5-6 hours | 30 minutes | -92% |
 | Ongoing management | 5 hours/week | 1 hour/week | -80% |
 | Manageable creator count | 20-30 | 100+ | 3-5x |
-| Recommended Tools | — | ChatGPT (outreach & briefs), KOL Sprite (professional creator management) | — |
+| Recommended Tools | | ChatGPT (outreach & briefs), KOL Sprite (professional creator management) | |
 
 What AI can do: batch-screen creators, generate personalized outreach, generate collaboration briefs, track ROI
 What AI can't do: replace relationship building, guarantee creator content quality, handle partnership disputes
 
-POV: AI enables 1 person to manage 100+ creator partnerships simultaneously — that used to require 3-5 people. But AI can only handle the quantifiable work: screening, outreach, tracking. Relationship maintenance still needs a human touch. Best model: AI manages Nano creators (high volume, standardized), humans maintain Micro+ creators (relationships matter).
+POV: AI enables 1 person to manage 100+ creator partnerships simultaneously that used to require 3-5 people. But AI can only handle the quantifiable work: screening, outreach, tracking. Relationship maintenance still needs a human touch. Best model: AI manages Nano creators (high volume, standardized), humans maintain Micro+ creators (relationships matter).
 
 ---
 
@@ -451,12 +451,12 @@ After (With AI):
 | Metric | Before | After | Change |
 |------|--------|-------|------|
 | Weekly time | 3-4 hours | 35 minutes | -85% |
-| Recommended Tools | — | ChatGPT (analysis), Triple Whale/Polar Analytics (cross-channel) | — |
+| Recommended Tools | | ChatGPT (analysis), Triple Whale/Polar Analytics (cross-channel) | |
 
 What AI can do: auto-generate reports, anomaly detection, trend analysis, optimization suggestions
 What AI can't do: replace business judgment, predict black swan events
 
-POV: Shift from "post-hoc analysis" to "real-time monitoring." AI can automatically check for data anomalies daily and alert you (e.g., a SKU's conversion rate suddenly drops 30%) — manually reviewing reports, you might not notice for days.
+POV: Shift from "post-hoc analysis" to "real-time monitoring." AI can automatically check for data anomalies daily and alert you (e.g., a SKU's conversion rate suddenly drops 30%) manually reviewing reports, you might not notice for days.
 
 ---
 
@@ -523,7 +523,7 @@ Preventive Measures:
 ```
 
 What to look for during manual review:
-- Whether the "Root Cause" AI generated is accurate (AI doesn't know your real situation — you must write this part yourself)
+- Whether the "Root Cause" AI generated is accurate (AI doesn't know your real situation you must write this part yourself)
 - Whether the tone of the appeal letter is appropriate (confident but not arrogant, acknowledging the issue without over-apologizing)
 - Whether the "Preventive Measures" mentioned are ones you'll actually implement (Amazon may follow up to verify)
 
@@ -531,9 +531,9 @@ What to look for during manual review:
 |------|--------|-------|------|
 | Appeal letter writing | 4-5 hours | 35 minutes | -88% |
 | Compliance check/SKU | 1 hour | 10 minutes | -83% |
-| Recommended Tools | — | ChatGPT/Claude (general purpose) | — |
+| Recommended Tools | | ChatGPT/Claude (general purpose) | |
 
-POV: Compliance is a "low-frequency but high-risk" scenario. You don't need it often, but once you receive a deactivation notice, every extra day costs you a day's worth of sales. AI transforms "spending half a day writing an appeal after getting a notice" into "submitting an appeal in 35 minutes." But the Root Cause and factual sections must be written by you — AI doesn't know your real situation.
+POV: Compliance is a "low-frequency but high-risk" scenario. You don't need it often, but once you receive a deactivation notice, every extra day costs you a day's worth of sales. AI transforms "spending half a day writing an appeal after getting a notice" into "submitting an appeal in 35 minutes." But the Root Cause and factual sections must be written by you AI doesn't know your real situation.
 
 ---
 
@@ -597,15 +597,15 @@ Why the maturity is only 2/5 -- Limitations of AI forecasting:
 | Time per forecast | 2.5 hours | 50 minutes | -67% |
 | Forecast accuracy (stable categories) | Human experience 70-80% | AI+Human 75-85% | Slight improvement |
 | Forecast accuracy (promotions/new products) | Human experience 50-60% | AI 40-50% (worse than human) | AI actually performs worse |
-| Recommended Tools | — | ChatGPT (simple), Python+Prophet (complex), Prediko (Shopify) | — |
+| Recommended Tools | | ChatGPT (simple), Python+Prophet (complex), Prediko (Shopify) | |
 
-POV: Inventory forecasting is a classic case of "high hype but limited real-world impact" in AI applications. For daily replenishment of stable categories, AI calculations are faster and less error-prone than manual work. But for the scenarios that truly need "forecasting" — promotional stocking, new product predictions, supply chain risks — AI underperforms experienced operators. Best model: AI does the math (daily averages, safety stock, reorder points), humans make the calls (promotion multipliers, risk buffers, new product expectations).
+POV: Inventory forecasting is a classic case of "high hype but limited real-world impact" in AI applications. For daily replenishment of stable categories, AI calculations are faster and less error-prone than manual work. But for the scenarios that truly need "forecasting" promotional stocking, new product predictions, supply chain risks AI underperforms experienced operators. Best model: AI does the math (daily averages, safety stock, reorder points), humans make the calls (promotion multipliers, risk buffers, new product expectations).
 
 ---
 
 ### Efficiency Changes Overview
 
-> 📎 **Related Reading**: [Platform Landscape Comparison](../d-platforms/platform-comparison.md#31-ai-application-maturity-by-platform) — AI application maturity comparison across platforms
+> **Related Reading**: [Platform Landscape Comparison](../d-platforms/platform-comparison.md#31-ai-application-maturity-by-platform) AI application maturity comparison across platforms
 
 | Operational Area | Maturity | Before Time | After Time | Efficiency Gain | AI's Biggest Value |
 |----------|--------|-----------|----------|---------|-------------|
@@ -618,9 +618,9 @@ POV: Inventory forecasting is a classic case of "high hype but limited real-worl
 | Video Creation | 4/5 | 3-5h/video | 45-75min/video | -75% | 3x output, data-driven hooks |
 | Creator Management | 3/5 | 5-6h initial | 30min initial | -92% | 1 person manages 100+ creators |
 | Data Analysis | 4/5 | 3-4h/week | 35min/week | -85% | Real-time anomaly detection |
-| Compliance Docs | 4/5 | 4-5h/letter | 35min/letter | -88% | Low frequency, high risk — AI drafts instantly |
+| Compliance Docs | 4/5 | 4-5h/letter | 35min/letter | -88% | Low frequency, high risk AI drafts instantly |
 | Inventory Forecasting | 2/5 | 2.5h/session | 50min/session | -67% | Reference only, can't replace human judgment |
-| AI Agent | 1/5 | — | — | Frontier | Watch but don't rush to deploy in production |
+| AI Agent | 1/5 | | | Frontier | Watch but don't rush to deploy in production |
 
 Weekly work hours comparison for an operator before and after AI:
 
@@ -649,13 +649,13 @@ Based on your role and current stage, here's the recommended learning and implem
 
 ```
 第 1 周：Listing 文案 + Review 分析（立竿见影）
-    ↓
+↓
 第 2 周：客服回复 + 多语言翻译（日常提效）
-    ↓
+↓
 第 3-4 周：广告文案 + 搜索词分析（数据驱动）
-    ↓
+↓
 第 2 月：选品评估 + 合规检查（深度应用）
-    ↓
+↓
 第 3 月：库存预测 + 广告自动化（进阶场景）
 ```
 
@@ -663,13 +663,13 @@ Based on your role and current stage, here's the recommended learning and implem
 
 ```
 第 1-2 周：数据管道自动化（Python + API）
-    ↓
+↓
 第 3-4 周：RAG 知识库搭建（内部文档智能化）
-    ↓
+↓
 第 2 月：预测模型（销量/库存/价格）
-    ↓
+↓
 第 3 月：AI Agent 工作流（多步骤自动化）
-    ↓
+↓
 第 4 月：本地模型部署（数据隐私场景）
 ```
 
@@ -677,31 +677,31 @@ Based on your role and current stage, here's the recommended learning and implem
 
 ```
 第 1 天：读完本页，建立全局视角
-    ↓
+↓
 第 2-3 天：C1 AI 能力评估（团队在哪个阶段）
-    ↓
+↓
 第 1 周：C2 团队技能建设（培训计划）
-    ↓
+↓
 第 2 周：选 2 个第一梯队场景做试点
-    ↓
+↓
 第 1 月后：C3 ROI 评估（用数据证明价值）
 ```
 
 ---
 
-## ⚠️ Common Misconceptions
+## Common Misconceptions
 
 | Misconception | Reality | Recommendation |
 |------|------|------|
-| "AI can fully replace operators" | AI is a tool, not a replacement — final decisions still need humans | Position AI as an "efficiency multiplier," not a "replacement" |
+| "AI can fully replace operators" | AI is a tool, not a replacement final decisions still need humans | Position AI as an "efficiency multiplier," not a "replacement" |
 | "More expensive AI tools are better" | ChatGPT Plus ($20/month) covers 80% of use cases | Validate the scenario with general tools first, then consider specialized ones |
-| "AI product selection is more accurate than humans" | AI excels at data analysis, but product selection requires market intuition and experience | AI handles the data side, humans handle the judgment side — the combination is optimal |
+| "AI product selection is more accurate than humans" | AI excels at data analysis, but product selection requires market intuition and experience | AI handles the data side, humans handle the judgment side the combination is optimal |
 | "Agents are the future, go all in now" | Agent technology is still rapidly iterating, production stability isn't there | Stay informed, run small pilots, don't bet core business on it |
-| "No training needed once you have AI" | AI tool effectiveness depends on the user's prompt quality | Invest in prompt engineering training — ROI is higher than buying tools |
+| "No training needed once you have AI" | AI tool effectiveness depends on the user's prompt quality | Invest in prompt engineering training ROI is higher than buying tools |
 
 ---
 
-## 📖 Where to Go Next?
+## Where to Go Next?
 
 | Your Situation | Recommended Next Step |
 |----------|-----------|
@@ -712,8 +712,8 @@ Based on your role and current stage, here's the recommended learning and implem
 | Running a Shopify DTC store | → [D1 Shopify AI Guide](../d-platforms/shopify-ai-guide.md) |
 
 ---
-> 🏠 [Hub Home](../../../en/README.md) · 📋 [Path 0 Overview](README.md) · 📊 [AI Landscape Assessment](ai-landscape.md)
-> 
+> [Hub Home](../../../en/README.md) · [Path 0 Overview](README.md) · [AI Landscape Assessment](ai-landscape.md)
+>
 > **Path 0**: [F1 AI Evolution](f1-ai-evolution.md) · [F2 Prompt Engineering](f2-prompt-engineering.md) · [F3 RAG Knowledge Base](f3-rag-knowledge.md) · [F4 Agent Automation](f4-agent-automation.md) · [F5 RPA Automation](f5-rpa-automation.md) · [AI Landscape](ai-landscape.md)
-> 
+>
 > **Quick Jump**: [Path A Operations](../a-operators/) · [Path B Tech](../b-developers/) · [Path C Management](../c-managers/) · [Path D Multi-Platform](../d-platforms/) · [Path E Social Media](../e-social-media/)

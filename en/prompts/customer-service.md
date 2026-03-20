@@ -1,6 +1,6 @@
 # Customer Service & After-Sales Prompt Templates
 
-> Last updated: 2026-03-10 | Templates: 2 | Status: ✅ Verified
+> Last updated: 2026-03-10 | Templates: 2 | Status: Verified
 
 ---
 
@@ -8,7 +8,7 @@
 
 **Scenario**: Batch analyze product negative reviews, categorize issues, and develop improvement plans
 **Recommended tools**: ChatGPT / Claude
-**Status**: ✅ Verified
+**Status**: Verified
 **Contributor**: [@kangise](https://github.com/kangise)
 
 ### Prompt
@@ -21,8 +21,8 @@ Please complete:
 2. Frequency and percentage for each type (in a table)
 3. The 3 most representative review quotes for each type
 4. For each issue:
-   - Short-term response (Listing adjustments, customer service scripts)
-   - Long-term improvement (product improvements, supplier communication points)
+- Short-term response (Listing adjustments, customer service scripts)
+- Long-term improvement (product improvements, supplier communication points)
 5. Priority ranking: Which issue to address first (considering frequency × severity)
 
 [Paste negative reviews here]
@@ -34,13 +34,13 @@ Please complete:
 
 ### Tips
 
-- Just paste the raw review text — AI will automatically categorize and tally
+- Just paste the raw review text AI will automatically categorize and tally
 - Follow up with "For the #1 ranked issue, help me draft an improvement request email to the supplier"
 
 ---
 
-📎 **Share this template**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/en/prompts/customer-service.md#template-1-negative-review-batch-analysis`
-🏠 **Source**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) — AI × Cross-Border E-Commerce Knowledge Hub
+**Share this template**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/en/prompts/customer-service.md#template-1-negative-review-batch-analysis`
+**Source**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) AI × Cross-Border E-Commerce Knowledge Hub
 
 ---
 
@@ -48,7 +48,7 @@ Please complete:
 
 **Scenario**: Write a professional Plan of Action appeal letter when your account is suspended
 **Recommended tools**: ChatGPT / Claude
-**Status**: ✅ Verified
+**Status**: Verified
 **Contributor**: [@kangise](https://github.com/kangise)
 
 ### Prompt
@@ -58,16 +58,16 @@ You are an Amazon account appeal expert. My account was suspended for the follow
 [Paste violation notice]
 
 Please write a Plan of Action that includes:
-1. Root Cause — acknowledge the issue, no deflecting
-2. Immediate Actions — specific emergency measures already taken (be specific)
-3. Preventive Measures — long-term measures to prevent recurrence (must be actionable)
+1. Root Cause acknowledge the issue, no deflecting
+2. Immediate Actions specific emergency measures already taken (be specific)
+3. Preventive Measures long-term measures to prevent recurrence (must be actionable)
 
 Requirements: Tone should be sincere and professional, each section with numbered action items, no vague statements.
 ```
 
 ### Expected Output
 
-> AI will output a clearly structured Plan of Action with root cause analysis, immediate actions taken, and preventive measures — each section with specific numbered action items in a sincere, professional tone.
+> AI will output a clearly structured Plan of Action with root cause analysis, immediate actions taken, and preventive measures each section with specific numbered action items in a sincere, professional tone.
 
 ### Tips
 
@@ -76,5 +76,5 @@ Requirements: Tone should be sincere and professional, each section with numbere
 
 ---
 
-📎 **Share this template**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/en/prompts/customer-service.md#template-2-account-appeal-plan-of-action`
-🏠 **Source**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) — AI × Cross-Border E-Commerce Knowledge Hub
+**Share this template**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/en/prompts/customer-service.md#template-2-account-appeal-plan-of-action`
+**Source**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) AI × Cross-Border E-Commerce Knowledge Hub

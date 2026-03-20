@@ -1,6 +1,6 @@
 # Compliance & Inventory Management Prompt Templates
 
-> Last updated: 2026-03-10 | Templates: 2 | Status: ✅ Verified
+> Last updated: 2026-03-10 | Templates: 2 | Status: Verified
 
 ---
 
@@ -8,7 +8,7 @@
 
 **Scenario**: Quickly look up compliance requirements across different countries/categories and generate a compliance checklist
 **Recommended tools**: ChatGPT / Claude / Gemini
-**Status**: ✅ Verified
+**Status**: Verified
 **Contributor**: [@kangise](https://github.com/kangise)
 
 ### Prompt
@@ -37,8 +37,8 @@ Note: Regulations may have been updated. Please indicate information currency an
 
 ---
 
-📎 **Share this template**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/en/prompts/compliance.md#template-1-multi-market-compliance-comparison`
-🏠 **Source**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) — AI × Cross-Border E-Commerce Knowledge Hub
+**Share this template**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/en/prompts/compliance.md#template-1-multi-market-compliance-comparison`
+**Source**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) AI × Cross-Border E-Commerce Knowledge Hub
 
 ---
 
@@ -46,7 +46,7 @@ Note: Regulations may have been updated. Please indicate information currency an
 
 **Scenario**: Calculate optimal restocking timing and purchase quantity based on historical sales data
 **Recommended tools**: ChatGPT / Claude
-**Status**: ✅ Verified
+**Status**: Verified
 **Contributor**: [@kangise](https://github.com/kangise)
 
 ### Prompt
@@ -78,5 +78,5 @@ Please calculate:
 
 ---
 
-📎 **Share this template**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/en/prompts/compliance.md#template-2-restocking-decision-analysis`
-🏠 **Source**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) — AI × Cross-Border E-Commerce Knowledge Hub
+**Share this template**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/en/prompts/compliance.md#template-2-restocking-decision-analysis`
+**Source**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) AI × Cross-Border E-Commerce Knowledge Hub

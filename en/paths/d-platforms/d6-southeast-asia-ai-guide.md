@@ -4,14 +4,14 @@
 
 > **Path**: Path D: Multi-Platform · **Module**: D6
 > **Last Updated**: 2026-03-14
-> **Difficulty**: ⭐⭐ Intermediate
+> **Difficulty**: Intermediate
 > **Estimated Time**: 2-3 hours
 
-🏠 [Hub Home](../../README.md) · 📋 [Path D Overview](README.md)
+[Hub Home](../../README.md) · [Path D Overview](README.md)
 
 ---
 
-## 📖 Chapter Navigation
+## Chapter Navigation
 
 1. [Southeast Asia E-Commerce Market Overview](#1-southeast-asia-e-commerce-market-overview)
 2. [Shopee vs Lazada Differentiated Operations](#2-shopee-vs-lazada-differentiated-operations)
@@ -23,7 +23,7 @@
 
 ---
 
-> 💡 Shopee GMV $127B (2025), 400 million buyers, 45% Southeast Asia market share. Lazada 150M+ buyers, Alibaba/Cainiao logistics integration. TikTok Shop is closing the gap with Shopee. The top dual-platform choice for Chinese sellers expanding into Southeast Asia.
+> Shopee GMV $127B (2025), 400 million buyers, 45% Southeast Asia market share. Lazada 150M+ buyers, Alibaba/Cainiao logistics integration. TikTok Shop is closing the gap with Shopee. The top dual-platform choice for Chinese sellers expanding into Southeast Asia.
 
 ---
 
@@ -80,23 +80,23 @@
 请给出详细建议：
 
 1. 平台选择
-   - Shopee vs Lazada vs 两者都做？
-   - 如果只选一个，选哪个？为什么？
-   - TikTok Shop 东南亚是否也应该考虑？
+- Shopee vs Lazada vs 两者都做？
+- 如果只选一个，选哪个？为什么？
+- TikTok Shop 东南亚是否也应该考虑？
 
 2. 国家优先级排序
-   - 基于品类需求、竞争程度、物流难度排序
-   - 每个国家的预估月销量和利润率
+- 基于品类需求、竞争程度、物流难度排序
+- 每个国家的预估月销量和利润率
 
 3. 定价策略
-   - 各国的价格敏感度差异
-   - 是否需要不同国家不同定价？
-   - 促销/折扣策略（东南亚用户极度促销驱动）
+- 各国的价格敏感度差异
+- 是否需要不同国家不同定价？
+- 促销/折扣策略（东南亚用户极度促销驱动）
 
 4. 物流方案
-   - 跨境直邮 vs 海外仓 vs 平台物流
-   - 各方案的成本和时效对比
-   - COD（货到付款）的处理策略
+- 跨境直邮 vs 海外仓 vs 平台物流
+- 各方案的成本和时效对比
+- COD（货到付款）的处理策略
 
 5. 第一个月的行动计划
 ```
@@ -107,32 +107,32 @@
 
 ```
 Shopee Search Ranking Factors:
-├── Relevance
-│   ├── Title keyword matching
-│   ├── Category classification accuracy
-│   └── Product attribute completeness
-│
-├── Sales & Conversion (Performance)
-│   ├── Recent sales volume (highest weight)
-│   ├── Conversion rate
-│   ├── Click-through rate
-│   └── Review count and rating
-│
-├── Seller Performance (Seller Metrics)
-│   ├── Shop rating
-│   ├── Response rate (<12 hour response rate must be >90%)
-│   ├── Shipping speed
-│   └── Cancellation and return rates
-│
-├── Price Competitiveness
-│   ├── Price ranking within category
-│   └── Whether promotions/coupons are active
-│
-└── Shopee Weighted Factors
-    ├── Shopee Mall sellers (boosted)
-    ├── Using Shopee Logistics (boosted)
-    ├── Participating in platform events (boosted)
-    └── Shopee Ads spending (indirect boost)
+Relevance
+Title keyword matching
+Category classification accuracy
+Product attribute completeness
+
+Sales & Conversion (Performance)
+Recent sales volume (highest weight)
+Conversion rate
+Click-through rate
+Review count and rating
+
+Seller Performance (Seller Metrics)
+Shop rating
+Response rate (<12 hour response rate must be >90%)
+Shipping speed
+Cancellation and return rates
+
+Price Competitiveness
+Price ranking within category
+Whether promotions/coupons are active
+
+Shopee Weighted Factors
+Shopee Mall sellers (boosted)
+Using Shopee Logistics (boosted)
+Participating in platform events (boosted)
+Shopee Ads spending (indirect boost)
 ```
 
 **Shopee Campaign Mechanism (Southeast Asia Specialty):**
@@ -152,20 +152,20 @@ Shopee Search Ranking Factors:
 
 ## 3. Multi-Language Listing AI Optimization
 
-> 📎 **Related Reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md#1-listing-methodology-the-fundamentals-before-ai) — Multi-language localization general methodology from A2; core optimization framework can be reused across Southeast Asian language versions.
+> **Related Reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md#1-listing-methodology-the-fundamentals-before-ai) Multi-language localization general methodology from A2; core optimization framework can be reused across Southeast Asian language versions.
 
 ### 3.1 Southeast Asia Multi-Language Challenge
 
-Six major Southeast Asian markets have six languages — AI translation + localization is a core need:
+Six major Southeast Asian markets have six languages AI translation + localization is a core need:
 
 | Language | Market | Difficulty | AI Translation Quality | Notes |
 |----------|--------|-----------|----------------------|-------|
-| Indonesian | Indonesia | ⭐⭐ | Good | Many colloquial expressions, big formal/informal differences |
-| Thai | Thailand | ⭐⭐⭐ | Medium | Complex honorific system, attention to politeness level needed |
-| Vietnamese | Vietnam | ⭐⭐⭐ | Medium | Tonal language, AI translation prone to errors |
-| Malay | Malaysia | ⭐⭐ | Good | Similar to Indonesian but with differences |
-| Filipino | Philippines | ⭐ | Good | Heavy English mixing (Taglish) |
-| English | Singapore/Philippines | ⭐ | Good | Singapore English has local characteristics |
+| Indonesian | Indonesia | | Good | Many colloquial expressions, big formal/informal differences |
+| Thai | Thailand | | Medium | Complex honorific system, attention to politeness level needed |
+| Vietnamese | Vietnam | | Medium | Tonal language, AI translation prone to errors |
+| Malay | Malaysia | | Good | Similar to Indonesian but with differences |
+| Filipino | Philippines | | Good | Heavy English mixing (Taglish) |
+| English | Singapore/Philippines | | Good | Singapore English has local characteristics |
 
 ### 3.2 AI Localization Prompt (Enhanced)
 
@@ -187,29 +187,29 @@ Six major Southeast Asian markets have six languages — AI translation + locali
 每个语言版本请提供：
 
 A. 产品标题
-   - 使用当地消费者搜索习惯的关键词
-   - 包含品类词+核心卖点+规格
-   - Shopee 标题建议 ≤120 字符
+- 使用当地消费者搜索习惯的关键词
+- 包含品类词+核心卖点+规格
+- Shopee 标题建议 ≤120 字符
 
 B. 产品描述（300-500 字）
-   - 不是直译，是本地化重写
-   - 使用当地消费者习惯的表达方式
-   - 强调当地消费者最关心的卖点
-   - 包含使用场景（适配当地生活方式）
+- 不是直译，是本地化重写
+- 使用当地消费者习惯的表达方式
+- 强调当地消费者最关心的卖点
+- 包含使用场景（适配当地生活方式）
 
 C. 5 个卖点（Bullet Points）
-   - 每个 ≤100 字符
-   - 以利益点开头
+- 每个 ≤100 字符
+- 以利益点开头
 
 D. 搜索关键词（10 个）
-   - 当地语言的搜索热词
-   - 包含品类词+功能词+场景词
+- 当地语言的搜索热词
+- 包含品类词+功能词+场景词
 
 E. 本地化注意事项
-   - 货币转换（IDR/THB/VND）
-   - 尺寸单位（公制）
-   - 文化敏感性检查
-   - 当地节日/促销相关的关键词建议
+- 货币转换（IDR/THB/VND）
+- 尺寸单位（公制）
+- 文化敏感性检查
+- 当地节日/促销相关的关键词建议
 
 注意：
 - 印尼语：使用非正式但礼貌的语气（适合电商）
@@ -232,7 +232,7 @@ E. 本地化注意事项
 
 > **COD (Cash on Delivery) Special Reminder**: Indonesia, Vietnam, and the Philippines have extremely high COD rates (40-60%). COD order refusal rates are also high (5-15%). You need to factor COD refusal costs into your pricing.
 
-> 📎 **Related Reading**: [E5 WhatsApp Business](../e-social-media/e5-whatsapp-business-ai-guide.md#e5-whatsapp-business-ai-customer-service-and-marketing-guide) — Southeast Asia customer service can be combined with WhatsApp Business, especially for the Indonesian and Philippine markets.
+> **Related Reading**: [E5 WhatsApp Business](../e-social-media/e5-whatsapp-business-ai-guide.md#e5-whatsapp-business-ai-customer-service-and-marketing-guide) Southeast Asia customer service can be combined with WhatsApp Business, especially for the Indonesian and Philippine markets.
 
 ---
 
@@ -248,7 +248,7 @@ E. 本地化注意事项
 
 **Shopee Ads Optimization Prompt:**
 
-> 📎 **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md#31-search-term-report-analysis) — General ad optimization methodology from A3; search term analysis framework can be reused for Shopee Ads.
+> **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md#31-search-term-report-analysis) General ad optimization methodology from A3; search term analysis framework can be reused for Shopee Ads.
 
 ```
 你是一个 Shopee Ads 优化专家。
@@ -268,9 +268,9 @@ E. 本地化注意事项
 
 ### 4.2 Southeast Asia Livestream Selling Deep Dive
 
-> 📎 **Related Reading**: [D2 TikTok Shop](tiktok-shop-ai-guide.md#41-why-live-is-the-primary-gmv-driver-for-tiktok-shop) — Livestream script methodology from D2 TikTok Shop can be adapted for Shopee Live and Lazada Live.
+> **Related Reading**: [D2 TikTok Shop](tiktok-shop-ai-guide.md#41-why-live-is-the-primary-gmv-driver-for-tiktok-shop) Livestream script methodology from D2 TikTok Shop can be adapted for Shopee Live and Lazada Live.
 
-Southeast Asia has much higher livestream penetration than the West — it's a critical sales channel:
+Southeast Asia has much higher livestream penetration than the West it's a critical sales channel:
 
 | Dimension | Shopee Live | Lazada Live | TikTok Live |
 |-----------|------------|------------|-------------|
@@ -292,24 +292,24 @@ Southeast Asia has much higher livestream penetration than the West — it's a c
 请生成直播脚本，包含：
 
 1. 开场（0-5 分钟）
-   - 欢迎话术（当地语言）
-   - 今日直播预告（有什么优惠）
-   - 引导关注+分享
+- 欢迎话术（当地语言）
+- 今日直播预告（有什么优惠）
+- 引导关注+分享
 
 2. 产品展示（5-40 分钟）
-   - 每个产品 5-8 分钟
-   - 展示顺序：引流款→利润款→爆款
-   - 每个产品：痛点→展示→优惠→限时倒计时
+- 每个产品 5-8 分钟
+- 展示顺序：引流款→利润款→爆款
+- 每个产品：痛点→展示→优惠→限时倒计时
 
 3. 互动环节（穿插在产品展示中）
-   - 抽奖/红包（每 15 分钟一次）
-   - 问答互动
-   - "扣 1 下单"引导
+- 抽奖/红包（每 15 分钟一次）
+- 问答互动
+- "扣 1 下单"引导
 
 4. 收尾（40-60 分钟）
-   - 今日最佳优惠回顾
-   - 限时加码优惠
-   - 预告下次直播
+- 今日最佳优惠回顾
+- 限时加码优惠
+- 预告下次直播
 
 注意：
 - 东南亚直播节奏比中国慢，更注重互动和娱乐
@@ -343,46 +343,46 @@ Southeast Asia has much higher livestream penetration than the West — it's a c
 Shopee Cross-Border Onboarding Process:
 
 Step 1: Choose Target Market
-├── Options: Indonesia/Thailand/Vietnam/Philippines/Malaysia/Singapore
-├── Recommend starting with 1-2 countries for testing
-├── Recommended first market: Malaysia (English widely used) or Thailand (large market)
-└── Chinese sellers register through Shopee Cross-Border Seller Center
+Options: Indonesia/Thailand/Vietnam/Philippines/Malaysia/Singapore
+Recommend starting with 1-2 countries for testing
+Recommended first market: Malaysia (English widely used) or Thailand (large market)
+Chinese sellers register through Shopee Cross-Border Seller Center
 
 Step 2: Prepare Documents
-├── Business license (Chinese company)
-├── Legal representative ID
-├── Phone number + email
-├── Bank account (supports RMB settlement)
-└── Product information (category, quantity, price range)
+Business license (Chinese company)
+Legal representative ID
+Phone number + email
+Bank account (supports RMB settlement)
+Product information (category, quantity, price range)
 
 Step 3: Account Review (3-5 business days)
 
 Step 4: Product Listing
-├── Use Shopee Seller Center for bulk upload
-├── Each country needs separate Listings (different languages)
-├── Image requirements: ≥3, white background or lifestyle main image
-├── Title: Category keyword + brand + core attributes (≤120 characters)
-└── Description: Supports HTML, structured format recommended
+Use Shopee Seller Center for bulk upload
+Each country needs separate Listings (different languages)
+Image requirements: ≥3, white background or lifestyle main image
+Title: Category keyword + brand + core attributes (≤120 characters)
+Description: Supports HTML, structured format recommended
 
 Step 5: Logistics Setup
-├── SLS (Shopee Logistics Service): Shopee official logistics
-│   ├── China warehouse → destination country (7-15 days)
-│   ├── Fees calculated uniformly by Shopee
-│   └── Recommended for new sellers
-├── Self-shipping: Use third-party logistics
-│   ├── Need to connect with logistics providers yourself
-│   ├── Delivery time under your control
-│   └── Suitable for sellers with logistics experience
-└── Overseas Warehouse: Build warehouse in destination country
-    ├── Fastest delivery (1-3 days)
-    ├── Highest cost
-    └── Suitable for products with stable sales
+SLS (Shopee Logistics Service): Shopee official logistics
+China warehouse → destination country (7-15 days)
+Fees calculated uniformly by Shopee
+Recommended for new sellers
+Self-shipping: Use third-party logistics
+Need to connect with logistics providers yourself
+Delivery time under your control
+Suitable for sellers with logistics experience
+Overseas Warehouse: Build warehouse in destination country
+Fastest delivery (1-3 days)
+Highest cost
+Suitable for products with stable sales
 
 Step 6: Start Operations
-├── Participate in Shopee events (Flash Sale, mega sales)
-├── Launch Shopee Ads
-├── Set up coupons and promotions
-└── Start livestreaming (if category is suitable)
+Participate in Shopee events (Flash Sale, mega sales)
+Launch Shopee Ads
+Set up coupons and promotions
+Start livestreaming (if category is suitable)
 ```
 
 ### Shopee Fee Structure
@@ -411,34 +411,34 @@ Step 6: Start Operations
 Lazada Global Selling Onboarding Process:
 
 Step 1: Registration
-├── Visit sellercenter.lazada.com
-├── Select target country
-├── Submit company and product information
-└── Review time: 5-10 business days
+Visit sellercenter.lazada.com
+Select target country
+Submit company and product information
+Review time: 5-10 business days
 
 Step 2: Product Listing
-├── Lazada supports bulk upload (Excel template)
-├── Image requirements: ≥4, white background main image
-├── Title format: Brand + Product Name + Core Attributes
-└── Description: Supports Rich Content (similar to A+ Content)
+Lazada supports bulk upload (Excel template)
+Image requirements: ≥4, white background main image
+Title format: Brand + Product Name + Core Attributes
+Description: Supports Rich Content (similar to A+ Content)
 
 Step 3: Logistics Setup
-├── Cainiao Cross-Border Logistics (Alibaba ecosystem)
-│   ├── China warehouse → destination country (5-12 days)
-│   ├── Integrated with 1688/Alibaba
-│   └── Recommended for Alibaba ecosystem sellers
-├── LGS (Lazada Global Shipping)
-│   ├── Lazada official cross-border logistics
-│   └── Fees and delivery similar to Cainiao
-└── Overseas Warehouse
-    ├── Fastest delivery
-    └── Recommended for LazMall sellers
+Cainiao Cross-Border Logistics (Alibaba ecosystem)
+China warehouse → destination country (5-12 days)
+Integrated with 1688/Alibaba
+Recommended for Alibaba ecosystem sellers
+LGS (Lazada Global Shipping)
+Lazada official cross-border logistics
+Fees and delivery similar to Cainiao
+Overseas Warehouse
+Fastest delivery
+Recommended for LazMall sellers
 
 Step 4: LazMall Brand Flagship Store (Optional)
-├── Requires brand authorization letter
-├── Higher exposure and trust
-├── Dedicated brand page design
-└── Slightly higher commission but better conversion
+Requires brand authorization letter
+Higher exposure and trust
+Dedicated brand page design
+Slightly higher commission but better conversion
 ```
 
 ---
@@ -451,26 +451,26 @@ Step 4: LazMall Brand Flagship Store (Optional)
 Southeast Asia E-Commerce Key Metrics:
 
 I. Shopee Core Metrics
-├── Shop Rating: 4.5+ is good
-├── Chat Response Rate: >90%, <12 hours
-├── Ship Out Time: <2 days
-├── Cancellation Rate: <5%
-├── Return Rate: Varies by category
-├── Late Shipment Rate: <5%
-└── Penalty Points: <3 points
+Shop Rating: 4.5+ is good
+Chat Response Rate: >90%, <12 hours
+Ship Out Time: <2 days
+Cancellation Rate: <5%
+Return Rate: Varies by category
+Late Shipment Rate: <5%
+Penalty Points: <3 points
 
 II. Advertising Metrics
-├── ROAS (Return on Ad Spend)
-├── CPC (Cost Per Click)
-├── CTR (Click-Through Rate)
-├── Conversion Rate
-└── Ad Ratio (Ad Sales / Total Sales)
+ROAS (Return on Ad Spend)
+CPC (Cost Per Click)
+CTR (Click-Through Rate)
+Conversion Rate
+Ad Ratio (Ad Sales / Total Sales)
 
 III. Campaign Metrics
-├── Flash Sale participation rate
-├── Sales multiplier during campaigns
-├── Coupon redemption rate
-└── Livestream GMV
+Flash Sale participation rate
+Sales multiplier during campaigns
+Coupon redemption rate
+Livestream GMV
 ```
 
 ### 6.2 AI Data Analysis Prompt
@@ -511,7 +511,7 @@ Top 5 产品：
 
 ## 6.3 Common Southeast Asia E-Commerce Pitfalls
 
-### ❌ Pitfall 1: Ignoring COD Refusal Issues
+### Pitfall 1: Ignoring COD Refusal Issues
 
 Indonesia, Vietnam, and the Philippines have COD (Cash on Delivery) rates of 40-60%, with COD refusal rates of 5-15%.
 
@@ -521,7 +521,7 @@ Indonesia, Vietnam, and the Philippines have COD (Cash on Delivery) rates of 40-
 - Restrict COD options for high-risk areas
 - Use Shopee's COD insurance (if available)
 
-### ❌ Pitfall 2: Not Participating in Platform Events
+### Pitfall 2: Not Participating in Platform Events
 
 Southeast Asian consumers are extremely promotion-driven. Not participating in 9.9/11.11/12.12 mega sales = missing 40-50% of annual sales.
 
@@ -532,7 +532,7 @@ Southeast Asian consumers are extremely promotion-driven. Not participating in 9
 - Increase ad budget 2-3x during mega sales
 - Schedule livestreams (livestream traffic surges during mega sales)
 
-### ❌ Pitfall 3: Response Rate Below 90%
+### Pitfall 3: Response Rate Below 90%
 
 Shopee has strict response rate requirements (>90% within 12 hours). Falling below standard affects shop rating and search rankings.
 
@@ -542,7 +542,7 @@ Shopee has strict response rate requirements (>90% within 12 hours). Falling bel
 - Arrange customer service shifts to cover different time zones
 - Prepare multi-language reply templates
 
-### ❌ Pitfall 4: Using Chinese Text on Product Images
+### Pitfall 4: Using Chinese Text on Product Images
 
 Southeast Asian consumers can't read Chinese. Chinese text on product images must be replaced with local language or English.
 
@@ -551,7 +551,7 @@ Southeast Asian consumers can't read Chinese. Chinese text on product images mus
 - Prepare separate image versions for each country
 - At minimum, prepare English versions (English is widely understood across most of Southeast Asia)
 
-### ❌ Pitfall 5: Ignoring TikTok Shop Competition in Southeast Asia
+### Pitfall 5: Ignoring TikTok Shop Competition in Southeast Asia
 
 TikTok Shop is growing extremely fast in Southeast Asia, eating into Shopee's market share.
 
@@ -586,8 +586,8 @@ TikTok Shop is growing extremely fast in Southeast Asia, eating into Shopee's ma
 - [ ] Test livestream selling (if category is suitable)
 
 ---
-> 🏠 [Hub Home](../../README.md) · 📋 [Path D Overview](README.md) · 📊 [Platform Comparison](platform-comparison.md)
-> 
+> [Hub Home](../../README.md) · [Path D Overview](README.md) · [Platform Comparison](platform-comparison.md)
+>
 > **Path D**: [D1 Shopify](shopify-ai-guide.md) · [D2 TikTok](tiktok-shop-ai-guide.md) · [D3 Cross-Platform](cross-platform-strategy.md) · [D4 Walmart](d4-walmart-ai-guide.md) · [D5 Temu](d5-temu-seller-guide.md) · [D6 Southeast Asia](d6-southeast-asia-ai-guide.md) · [D7 Latin America](d7-mercado-libre-ai-guide.md) · [D8 Japan](d8-rakuten-japan-ai-guide.md) · [D9 eBay](d9-ebay-ai-guide.md) · [D10 AliExpress](d10-aliexpress-ai-guide.md) · [D11 Korea](d11-coupang-korea-ai-guide.md) · [D12 Faire](d12-faire-wholesale-ai-guide.md) · [D13 Europe](d13-europe-marketplaces-guide.md)
-> 
+>
 > **Quick Jump**: [Path 0 Foundations](../0-foundations/) · [Path A Operations](../a-operators/) · [Path B Technical](../b-developers/) · [Path C Management](../c-managers/) · [Path E Social Media](../e-social-media/)

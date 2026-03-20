@@ -4,15 +4,15 @@
 
 > **Path**: Path E: Social Media · **Module**: E7
 > **Last Updated**: 2026-03-14
-> **Difficulty**: ⭐⭐⭐ Advanced
+> **Difficulty**: Advanced
 > **Estimated Time**: 2 hours
 > **Prerequisites**: Complete at least one of E1-E2
 
-🏠 [Hub Home](../../README.md) · 📋 [Path E Overview](README.md)
+[Hub Home](../../README.md) · [Path E Overview](README.md)
 
 ---
 
-## 📖 Chapter Navigation
+## Chapter Navigation
 
 1. [One Content, Multi-Platform Adaptation](#1-one-content-multi-platform-adaptation)
 2. [Social Media → E-commerce Platform Attribution](#2-social-media--e-commerce-platform-attribution)
@@ -23,7 +23,7 @@
 
 ---
 
-> 💡 The global social commerce market is projected to reach $2.9 trillion in 2026 ([Social Champ](https://www.socialchamp.com/blog/ecommerce-social-media-strategy/)). A reliable social media attribution setup can improve ROI visibility by up to 89% ([Social Rails](https://socialrails.com/blog/social-media-attribution-modeling)). Cross-channel isn't about doing different things on each platform — it's about maximizing value from one core set of content across multiple platforms.
+> The global social commerce market is projected to reach $2.9 trillion in 2026 ([Social Champ](https://www.socialchamp.com/blog/ecommerce-social-media-strategy/)). A reliable social media attribution setup can improve ROI visibility by up to 89% ([Social Rails](https://socialrails.com/blog/social-media-attribution-modeling)). Cross-channel isn't about doing different things on each platform it's about maximizing value from one core set of content across multiple platforms.
 
 Content rephrased for compliance with licensing restrictions.
 
@@ -43,13 +43,13 @@ Content rephrased for compliance with licensing restrictions.
 
 ### 1.1 Core Content → Multi-Platform Variants
 
-> 📎 **Related Reading**: [E1 Instagram](e1-instagram-facebook-ai-guide.md#3-reels-ai-content-creation-methodology) and [E2 YouTube](e2-youtube-ai-guide.md#3-long-form-video-ai-content-creation) — Refer to E1 (Instagram Reels/Carousel) and E2 (YouTube long-form/Shorts) for detailed platform-specific content creation methodology.
+> **Related Reading**: [E1 Instagram](e1-instagram-facebook-ai-guide.md#3-reels-ai-content-creation-methodology) and [E2 YouTube](e2-youtube-ai-guide.md#3-long-form-video-ai-content-creation) Refer to E1 (Instagram Reels/Carousel) and E2 (YouTube long-form/Shorts) for detailed platform-specific content creation methodology.
 
 ```
 一个产品评测的核心素材可以变成：
 
 核心素材：10 分钟产品评测视频 + 产品图片 + 使用体验文字
-    ↓
+↓
 YouTube：完整 10 分钟评测视频
 YouTube Shorts：3-5 个 30-60 秒切片
 Instagram Reels：2-3 个 15-30 秒精致版本（调整调性）
@@ -105,7 +105,7 @@ Reddit：使用体验分享帖
 
 ### 2.1 Attribution Tracking Methods
 
-> 📎 **Related Reading**: [D3 Cross-Platform Strategy](../d-platforms/cross-platform-strategy.md#4-cross-platform-data-synergy) — Refer to D3 for cross-platform strategy. Multi-platform attribution and data integration methodologies complement each other.
+> **Related Reading**: [D3 Cross-Platform Strategy](../d-platforms/cross-platform-strategy.md#4-cross-platform-data-synergy) Refer to D3 for cross-platform strategy. Multi-platform attribution and data integration methodologies complement each other.
 
 | Method | Applicable Platforms | What It Tracks |
 |--------|---------------------|---------------|
@@ -122,16 +122,16 @@ Reddit：使用体验分享帖
 统一 UTM 命名规范：
 
 utm_source = 平台名
-  instagram / youtube / tiktok / pinterest / xiaohongshu / facebook / reddit
+instagram / youtube / tiktok / pinterest / xiaohongshu / facebook / reddit
 
 utm_medium = 内容类型
-  reels / shorts / pin / post / story / ad / affiliate
+reels / shorts / pin / post / story / ad / affiliate
 
 utm_campaign = 活动名
-  product-launch-[产品名] / seasonal-[季节] / evergreen
+product-launch-[产品名] / seasonal-[季节] / evergreen
 
 utm_content = 具体内容标识
-  review-v1 / comparison-ab / tutorial-howto
+review-v1 / comparison-ab / tutorial-howto
 
 示例：
 ?utm_source=instagram&utm_medium=reels&utm_campaign=neckfan-launch&utm_content=lifestyle-v2
@@ -185,7 +185,7 @@ utm_content = 具体内容标识
 
 ## 4. Budget Allocation Framework
 
-> 📎 **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md#34-ad-budget-allocation-optimization) — Refer to A3 for advertising budget optimization methodology. ROAS analysis and budget allocation frameworks are reusable for cross-channel budget planning.
+> **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md#34-ad-budget-allocation-optimization) Refer to A3 for advertising budget optimization methodology. ROAS analysis and budget allocation frameworks are reusable for cross-channel budget planning.
 
 ### 4.1 CAC Comparison by Channel (Reference Values)
 
@@ -202,24 +202,24 @@ utm_content = 具体内容标识
 
 ```
 初始阶段（月预算 <$2000）：
-├── 70% Meta Ads（Instagram 为主）
-├── 20% 内容制作（AI 工具订阅）
-└── 10% 达人合作（KOC/产品置换）
+70% Meta Ads（Instagram 为主）
+20% 内容制作（AI 工具订阅）
+10% 达人合作（KOC/产品置换）
 
 增长阶段（月预算 $2000-10000）：
-├── 40% Meta Ads
-├── 25% Google/YouTube Ads
-├── 15% TikTok Ads
-├── 10% Pinterest Ads（如果品类匹配）
-└── 10% 达人合作
+40% Meta Ads
+25% Google/YouTube Ads
+15% TikTok Ads
+10% Pinterest Ads（如果品类匹配）
+10% 达人合作
 
 规模化阶段（月预算 >$10000）：
-├── 35% Meta Ads
-├── 25% Google/YouTube Ads
-├── 15% TikTok Ads
-├── 10% Pinterest Ads
-├── 10% 达人合作
-└── 5% Reddit/其他
+35% Meta Ads
+25% Google/YouTube Ads
+15% TikTok Ads
+10% Pinterest Ads
+10% 达人合作
+5% Reddit/其他
 ```
 
 ---
@@ -259,45 +259,45 @@ utm_content = 具体内容标识
 跨平台内容生产 SOP（每周执行）：
 
 Day 1（周一）：核心内容创作
-├── 拍摄 1 个 10-15 分钟的产品评测/教程视频
-├── 拍摄 10-15 张产品图片（白底+场景+细节）
-├── 写 1 篇核心文案（500-800 字，包含所有卖点）
-└── 这是本周所有平台内容的"母版"
+拍摄 1 个 10-15 分钟的产品评测/教程视频
+拍摄 10-15 张产品图片（白底+场景+细节）
+写 1 篇核心文案（500-800 字，包含所有卖点）
+这是本周所有平台内容的"母版"
 
 Day 2（周二）：长视频 + Shorts 制作
-├── YouTube：上传完整长视频（优化标题/描述/缩略图）
-├── YouTube Shorts：从长视频切出 3-5 个 30-60 秒片段
-├── AI 辅助：自动生成章节标记、描述、标签
-└── 工具：CapCut（剪辑）+ Opus Clip（自动切片）
+YouTube：上传完整长视频（优化标题/描述/缩略图）
+YouTube Shorts：从长视频切出 3-5 个 30-60 秒片段
+AI 辅助：自动生成章节标记、描述、标签
+工具：CapCut（剪辑）+ Opus Clip（自动切片）
 
 Day 3（周三）：短视频平台适配
-├── Instagram Reels：从 Shorts 素材改编 2-3 个 15-30 秒版本
-│   ├── 调整调性：更精致、更美学
-│   ├── 添加 Instagram 风格的音乐
-│   └── 添加 Shoppable Tags
-├── TikTok：从 Shorts 素材改编 2-3 个 15-60 秒版本
-│   ├── 调整调性：更娱乐、更 Hook
-│   ├── 使用 TikTok 热门音乐
-│   └── 添加小黄车链接
-└── AI 辅助：用 ChatGPT 从同一个脚本生成不同平台的变体
+Instagram Reels：从 Shorts 素材改编 2-3 个 15-30 秒版本
+调整调性：更精致、更美学
+添加 Instagram 风格的音乐
+添加 Shoppable Tags
+TikTok：从 Shorts 素材改编 2-3 个 15-60 秒版本
+调整调性：更娱乐、更 Hook
+使用 TikTok 热门音乐
+添加小黄车链接
+AI 辅助：用 ChatGPT 从同一个脚本生成不同平台的变体
 
 Day 4（周四）：图文平台
-├── Instagram Carousel：从核心文案提取 8 页图文
-├── Pinterest：制作 5-10 个 Pin（不同角度/场景）
-├── 小红书：写 2-3 篇种草笔记（从核心文案改写）
-└── AI 辅助：用 Canva AI 批量生成图片变体
+Instagram Carousel：从核心文案提取 8 页图文
+Pinterest：制作 5-10 个 Pin（不同角度/场景）
+小红书：写 2-3 篇种草笔记（从核心文案改写）
+AI 辅助：用 Canva AI 批量生成图片变体
 
 Day 5（周五）：社群 + 广告
-├── Facebook Groups：发布讨论帖
-├── Reddit：在相关 Subreddit 参与讨论
-├── 广告素材准备：从本周内容中选择表现最好的作为广告素材
-└── 排期下周内容
+Facebook Groups：发布讨论帖
+Reddit：在相关 Subreddit 参与讨论
+广告素材准备：从本周内容中选择表现最好的作为广告素材
+排期下周内容
 
 周末：数据复盘
-├── 收集各平台数据
-├── AI 分析哪些内容表现好
-├── 调整下周策略
-└── 更新内容日历
+收集各平台数据
+AI 分析哪些内容表现好
+调整下周策略
+更新内容日历
 ```
 
 ### Cross-Platform Data Review Template
@@ -348,22 +348,22 @@ Pinterest：
 跨平台归因的 3 层模型：
 
 第 1 层：直接归因（Last Click）
-├── UTM 参数追踪最后一次点击来源
-├── 适合：直接转化的渠道（Meta Ads → Shopify）
-└── 工具：Google Analytics 4
+UTM 参数追踪最后一次点击来源
+适合：直接转化的渠道（Meta Ads → Shopify）
+工具：Google Analytics 4
 
 Layer 2: Assisted Attribution (Assisted Conversion)
-├── User may see product on Instagram → Watch review on YouTube → Search on Google to purchase
-├── GA4 Multi-Channel Funnels report
-├── Best for: Understanding each channel's role in the conversion path
-└── Tools: GA4 + Amazon Attribution
+User may see product on Instagram → Watch review on YouTube → Search on Google to purchase
+GA4 Multi-Channel Funnels report
+Best for: Understanding each channel's role in the conversion path
+Tools: GA4 + Amazon Attribution
 
 Layer 3: Indirect Attribution (Brand Lift)
-├── Social media activity → Amazon branded search volume growth
-├── TikTok seeding → Amazon "[brand name]" search volume changes
-├── Cannot be tracked directly, but can be inferred through correlation analysis
-├── Method: Compare branded search volume during social media campaigns vs. non-campaign periods
-└── Tools: Amazon Brand Analytics + Google Trends
+Social media activity → Amazon branded search volume growth
+TikTok seeding → Amazon "[brand name]" search volume changes
+Cannot be tracked directly, but can be inferred through correlation analysis
+Method: Compare branded search volume during social media campaigns vs. non-campaign periods
+Tools: Amazon Brand Analytics + Google Trends
 
 AI Attribution Analysis Prompt:
 ```
@@ -386,8 +386,8 @@ Please analyze:
 ```
 
 ---
-> 🏠 [Hub Home](../../README.md) · 📋 [Path E Overview](README.md)
-> 
+> [Hub Home](../../README.md) · [Path E Overview](README.md)
+>
 > **Path E**: [E1 Instagram](e1-instagram-facebook-ai-guide.md) · [E2 YouTube](e2-youtube-ai-guide.md) · [E3 Xiaohongshu](e3-xiaohongshu-ai-guide.md) · [E4 Pinterest](e4-pinterest-ai-guide.md) · [E5 WhatsApp](e5-whatsapp-business-ai-guide.md) · [E6 Reddit](e6-reddit-ai-guide.md) · [E7 Cross-Channel](e7-social-media-cross-channel.md)
-> 
+>
 > **Quick Jump**: [Path 0 Foundations](../0-foundations/) · [Path A Operations](../a-operators/) · [Path B Technical](../b-developers/) · [Path C Management](../c-managers/) · [Path D Multi-Platform](../d-platforms/)

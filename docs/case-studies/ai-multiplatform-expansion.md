@@ -2,10 +2,10 @@
 
 > **场景**: 从 Amazon US 扩展到 Shopify + Walmart + TikTok Shop
 > **工具**: ChatGPT/Claude + Midjourney + 各平台工具
-> **难度**: ⭐⭐⭐ 高级
+> **难度**: 高级
 > **预计时间**: 30 天
 
-🏠 [Hub 首页](../../README.md) · 📋 [案例列表](README.md)
+[Hub 首页](../../README.md) · [案例列表](README.md)
 
 ---
 
@@ -58,8 +58,8 @@
 
 ```
 Amazon Listing（标准化、关键词密集）：
-"Premium Bamboo Cutting Board Set - 3 Piece Large Kitchen Chopping 
-Boards with Juice Groove - Organic Bamboo Wood Cutting Board for 
+"Premium Bamboo Cutting Board Set - 3 Piece Large Kitchen Chopping
+Boards with Juice Groove - Organic Bamboo Wood Cutting Board for
 Meat Cheese Vegetables - BPA Free Eco Friendly"
 
 ↓ AI 转化 ↓
@@ -67,16 +67,16 @@ Meat Cheese Vegetables - BPA Free Eco Friendly"
 Shopify 产品页（品牌化、故事性）：
 "The Board That Changed Our Kitchen
 
-Crafted from sustainably sourced bamboo, our 3-piece cutting board 
-set brings warmth and functionality to your daily cooking ritual. 
-The deep juice grooves catch every drop, while the organic bamboo 
-surface is naturally antimicrobial — no chemicals, no BPA, just 
+Crafted from sustainably sourced bamboo, our 3-piece cutting board
+set brings warmth and functionality to your daily cooking ritual.
+The deep juice grooves catch every drop, while the organic bamboo
+surface is naturally antimicrobial no chemicals, no BPA, just
 pure kitchen confidence.
 
 Why 12,000+ home cooks chose us:
-✓ 3 sizes for every task (small prep to full feast)
-✓ Knife-friendly surface that won't dull your blades
-✓ Eco-conscious bamboo that's 16x harder than maple"
+3 sizes for every task (small prep to full feast)
+Knife-friendly surface that won't dull your blades
+Eco-conscious bamboo that's 16x harder than maple"
 ```
 
 ## 30 天结果
@@ -87,14 +87,14 @@ Why 12,000+ home cooks chose us:
 | Shopify | $12K | 16% | 3.8x |
 | Walmart | $8K | 11% | 5.1x |
 | TikTok Shop | $10K | 13% | 2.5x |
-| **总计** | **$75K** | **100%** | — |
+| **总计** | **$75K** | **100%** | |
 
 | 指标 | Before | After | 变化 |
 |------|--------|-------|------|
 | 月收入 | $45K | $75K | +67% |
 | 平台数 | 1 | 4 | +3 |
 | 平台依赖度 | 100% Amazon | 60% Amazon | -40% |
-| AI 节省时间 | — | ~40 小时/月 | — |
+| AI 节省时间 | | ~40 小时/月 | |
 
 > **真实数据参考**：59% 的全球消费者从本国以外的零售商购买，35% 每月至少一次（[Shopify Enterprise](https://www.shopify.com/ca/enterprise/blog/international-logistics)）。AI 广告和个性化可以将 ROAS 提升 20-30%（[Entrepreneur](https://www.entrepreneur.com/growing-a-business/how-to-use-ai-to-grow-your-amazon-sales-rankings-and/499421)）。
 
@@ -103,7 +103,7 @@ Content rephrased for compliance with licensing restrictions.
 ## 关键学习
 
 1. AI 让多平台扩张从"3 个月"压缩到"30 天"
-2. 不是复制粘贴——每个平台需要 AI 适配（风格/关键词/定价）
+2. 不是复制粘贴每个平台需要 AI 适配（风格/关键词/定价）
 3. TikTok Shop 的 ROI 波动大但品牌曝光价值高
 4. Walmart 的 ROAS 最高（竞争较小）
 5. 跨平台数据统一是持续优化的基础

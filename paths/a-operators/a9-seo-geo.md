@@ -2,15 +2,15 @@
 
 > **路径**: Path A: 运营人 · **模块**: A9
 > **最后更新**: 2026-03-15
-> **难度**: ⭐⭐⭐ 高级
+> **难度**: 高级
 > **预计时间**: 每天 30 分钟，2-3 周
 > **前置模块**: [A2 Listing 优化](a2-listing-optimization.md)
 
-🏠 [Hub 首页](../../README.md) · 📋 [Path A 总览](README.md)
+[Hub 首页](../../README.md) · [Path A 总览](README.md)
 
 ---
 
-## 📖 章节导航
+## 章节导航
 
 1. [从 SEO 到 GEO](#1-从-seo-到-geo) · 2. [Amazon SEO](#2-amazon-seo) · 3. [Google SEO](#3-google-seo-for-shopify) · 4. [GEO 优化](#4-geo-优化实操) · 5. [社交平台 SEO](#5-社交平台-seo) · 6. [工具](#6-ai-seo-工具对比) · 7. [Prompt](#7-prompt-模板) · 8. [完成标志](#8-完成标志)
 
@@ -21,10 +21,10 @@
 - 理解 SEO → GEO 的范式转变（从 Google 排名到 AI 推荐）
 - 掌握 Amazon SEO 最新算法（COSMO + Rufus）
 - 掌握 Shopify Google SEO 方法论
-- 学会 GEO 优化——让 ChatGPT/Perplexity/Gemini 推荐你的产品
+- 学会 GEO 优化让 ChatGPT/Perplexity/Gemini 推荐你的产品
 - 了解各社交平台站内 SEO
 
-> 💡 2026 年，1/3 的消费者已使用 AI Agent 进行产品发现。GEO 是 2026 年最重要的新技能。
+> 2026 年，1/3 的消费者已使用 AI Agent 进行产品发现。GEO 是 2026 年最重要的新技能。
 
 ---
 
@@ -36,7 +36,7 @@
 |------|------|---------|---------|
 | Google 搜索 | 2000s-现在 | 关键词+链接+内容 | Shopify Google SEO |
 | 平台内搜索 | 2010s-现在 | 平台规则+销量+转化率 | Amazon A9/COSMO |
-| AI 搜索/GEO | 2024-现在 🆕 | 结构化数据+品牌权威+评价 | 被 ChatGPT/Perplexity 推荐 |
+| AI 搜索/GEO | 2024-现在 | 结构化数据+品牌权威+评价 | 被 ChatGPT/Perplexity 推荐 |
 
 ### 1.2 GEO vs 传统 SEO
 
@@ -55,13 +55,13 @@
 - Google AI Overviews 在搜索结果顶部显示 AI 答案
 - 不被 AI 推荐 = 失去越来越多的流量
 
-> 📎 **相关阅读**: [D1 Shopify](../d-platforms/shopify-ai-guide.md) — GEO 和 Agentic Storefronts 详见 D1
+> **相关阅读**: [D1 Shopify](../d-platforms/shopify-ai-guide.md) GEO 和 Agentic Storefronts 详见 D1
 
 ---
 
 ## 2. Amazon SEO
 
-> 📎 **相关阅读**: [A2 Listing 优化](a2-listing-optimization.md) — A9→COSMO→Rufus 完整演进详见 A2
+> **相关阅读**: [A2 Listing 优化](a2-listing-optimization.md) A9→COSMO→Rufus 完整演进详见 A2
 
 ### 2.1 2026 Amazon SEO 核心清单
 
@@ -101,7 +101,7 @@ A+ Content：COSMO 读取理解产品，含使用场景，图片 Alt Text 含关
 
 | 项目 | 要求 | 工具 |
 |------|------|------|
-| SSL | HTTPS（Shopify 自动） | — |
+| SSL | HTTPS（Shopify 自动） | |
 | Sitemap | 提交到 GSC | Google Search Console |
 | Core Web Vitals | LCP<2.5s, FID<100ms, CLS<0.1 | PageSpeed Insights |
 | Schema | Product/FAQ/Breadcrumb/Review | JSON-LD |
@@ -121,22 +121,22 @@ A+ Content：COSMO 读取理解产品，含使用场景，图片 Alt Text 含关
 
 ```json
 {
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": "产品名称",
-  "brand": {"@type": "Brand", "name": "品牌名"},
-  "description": "产品描述",
-  "offers": {
-    "@type": "Offer",
-    "price": "29.99",
-    "priceCurrency": "USD",
-    "availability": "https://schema.org/InStock"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.7",
-    "reviewCount": "1250"
-  }
+"@context": "https://schema.org",
+"@type": "Product",
+"name": "产品名称",
+"brand": {"@type": "Brand", "name": "品牌名"},
+"description": "产品描述",
+"offers": {
+"@type": "Offer",
+"price": "29.99",
+"priceCurrency": "USD",
+"availability": "https://schema.org/InStock"
+},
+"aggregateRating": {
+"@type": "AggregateRating",
+"ratingValue": "4.7",
+"reviewCount": "1250"
+}
 }
 ```
 
@@ -148,11 +148,11 @@ A+ Content：COSMO 读取理解产品，含使用场景，图片 Alt Text 含关
 
 | 策略 | 说明 | 难度 | 影响 |
 |------|------|------|------|
-| 结构化数据 | Product/FAQ Schema | ⭐⭐ | ⭐⭐⭐⭐⭐ |
-| FAQ 优化 | 自然语言问答+Schema | ⭐⭐ | ⭐⭐⭐⭐ |
-| 品牌提及 | 第三方网站被提及 | ⭐⭐⭐ | ⭐⭐⭐⭐ |
-| 评价覆盖 | Amazon/Trustpilot 高评分 | ⭐⭐ | ⭐⭐⭐⭐ |
-| Agentic Storefronts | Shopify UCP 协议 | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
+| 结构化数据 | Product/FAQ Schema | | |
+| FAQ 优化 | 自然语言问答+Schema | | |
+| 品牌提及 | 第三方网站被提及 | | |
+| 评价覆盖 | Amazon/Trustpilot 高评分 | | |
+| Agentic Storefronts | Shopify UCP 协议 | | |
 
 ### 4.2 GEO 核心数据（2026 研究）
 
@@ -182,7 +182,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ### 4.4 Agentic Commerce（AI 代理购物）
 
-2026 年最重要的 GEO 趋势是 Agentic Commerce——AI 代理代替用户完成购物（[Charle Agency](https://www.charleagency.com/articles/agentic-commerce/)）：
+2026 年最重要的 GEO 趋势是 Agentic CommerceAI 代理代替用户完成购物（[Charle Agency](https://www.charleagency.com/articles/agentic-commerce/)）：
 
 | 平台 | AI 购物功能 | 状态 |
 |------|-----------|------|
@@ -217,11 +217,11 @@ Content rephrased for compliance with licensing restrictions.
 每月执行 GEO 审计：
 
 1. AI 搜索测试（5 个平台）
-   - ChatGPT: "best [品类] 2026" → 记录是否被提及
-   - Perplexity: "recommend [品类] for [场景]" → 记录
-   - Gemini: "[品类] buying guide" → 记录
-   - Claude: "compare [品牌] vs [竞品]" → 记录
-   - Google AI Overviews: "[品类] review" → 记录
+- ChatGPT: "best [品类] 2026" → 记录是否被提及
+- Perplexity: "recommend [品类] for [场景]" → 记录
+- Gemini: "[品类] buying guide" → 记录
+- Claude: "compare [品牌] vs [竞品]" → 记录
+- Google AI Overviews: "[品类] review" → 记录
 
 2. 竞品对比：谁被 AI 推荐更多？差距分析
 
@@ -299,8 +299,8 @@ Content rephrased for compliance with licensing restrictions.
 - [ ] 建立月度 GEO 审计流程
 
 ---
-> 🏠 [Hub 首页](../../README.md) · 📋 [Path A 总览](README.md)
-> 
+> [Hub 首页](../../README.md) · [Path A 总览](README.md)
+>
 > **Path A**: [A1 选品](a1-product-research.md) · [A2 Listing](a2-listing-optimization.md) · [A3 广告](a3-advertising.md) · [A4 客服](a4-customer-service.md) · [A5 库存](a5-inventory.md) · [A6 合规](a6-compliance.md) · [A7 视觉](a7-visual-content.md) · [A8 定价](a8-pricing-strategy.md) · [A9 SEO/GEO](a9-seo-geo.md) · [A10 品牌](a10-brand-building.md) · [A11 财务](a11-financial-analysis.md) · [A12 知识产权](a12-ip-protection.md)
-> 
+>
 > **快速跳转**: [Path 0 基础](../0-foundations/) · [Path B 技术](../b-developers/) · [Path C 管理](../c-managers/) · [Path D 多平台](../d-platforms/) · [Path E 社交媒体](../e-social-media/)

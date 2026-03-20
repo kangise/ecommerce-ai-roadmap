@@ -1,6 +1,6 @@
 # 客服与售后 Prompt 模板 | Customer Service Prompts
 
-> 最后更新: 2026-03-10 | 模板数量: 2 | 验证状态: ✅ 已验证
+> 最后更新: 2026-03-10 | 模板数量: 2 | 验证状态: 已验证
 
 ---
 
@@ -8,7 +8,7 @@
 
 **场景**: 批量分析产品差评，分类问题并制定改善方案
 **推荐工具**: ChatGPT / Claude
-**验证状态**: ✅ 已验证
+**验证状态**: 已验证
 **贡献者**: [@kangise](https://github.com/kangise)
 
 ### Prompt
@@ -21,8 +21,8 @@
 2. 每个类型的频率和占比（用表格）
 3. 每个类型中最有代表性的3条评论原文
 4. 针对每个问题：
-   - 短期应对（Listing 调整、客服话术）
-   - 长期改善（产品改进、供应商沟通要点）
+- 短期应对（Listing 调整、客服话术）
+- 长期改善（产品改进、供应商沟通要点）
 5. 优先级排序：先解决哪个问题（考虑频率 x 严重程度）
 
 [粘贴差评内容]
@@ -39,8 +39,8 @@
 
 ---
 
-📎 **分享此模板**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/prompts/customer-service.md#模板-1-差评批量分析`
-🏠 **来源**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) — AI × 跨境电商实战知识库
+**分享此模板**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/prompts/customer-service.md#模板-1-差评批量分析`
+**来源**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) AI × 跨境电商实战知识库
 
 ---
 
@@ -48,7 +48,7 @@
 
 **场景**: 账号被暂停时，撰写专业的 Plan of Action 申诉信
 **推荐工具**: ChatGPT / Claude
-**验证状态**: ✅ 已验证
+**验证状态**: 已验证
 **贡献者**: [@kangise](https://github.com/kangise)
 
 ### Prompt
@@ -76,5 +76,5 @@
 
 ---
 
-📎 **分享此模板**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/prompts/customer-service.md#模板-2-账号申诉信-plan-of-action`
-🏠 **来源**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) — AI × 跨境电商实战知识库
+**分享此模板**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/prompts/customer-service.md#模板-2-账号申诉信-plan-of-action`
+**来源**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) AI × 跨境电商实战知识库

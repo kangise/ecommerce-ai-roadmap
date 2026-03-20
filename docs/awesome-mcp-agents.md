@@ -1,26 +1,26 @@
-# 🔌 Awesome MCP Servers & AI Agent 工具集 | Awesome MCP & Agent Tools for E-Commerce
+# Awesome MCP Servers & AI Agent 工具集 | Awesome MCP & Agent Tools for E-Commerce
 
 > 电商 AI 自动化必备的 MCP Server、Agent 框架和外部资源集合。
 > 最后更新: 2026-03-15
 
-🏠 [Hub 首页](../README.md) · 🔧 [B6 MCP 集成指南](../paths/b-developers/b6-mcp-agentic-workflow.md) · 🤖 [B4 AI Agent 指南](../paths/b-developers/b4-agent-workflow.md) · ⚡ [F4 Agent 自动化基础](../paths/0-foundations/f4-agent-automation.md)
+[Hub 首页](../README.md) · [B6 MCP 集成指南](../paths/b-developers/b6-mcp-agentic-workflow.md) · [B4 AI Agent 指南](../paths/b-developers/b4-agent-workflow.md) · [F4 Agent 自动化基础](../paths/0-foundations/f4-agent-automation.md)
 
 ---
 
-## 📋 目录
+## 目录
 
-- [外部 Awesome Lists 和目录网站](#-外部-awesome-lists-和目录网站)
-- [电商 MCP Servers（推荐）](#-电商-mcp-servers推荐)
-- [广告平台 MCP Servers](#-广告平台-mcp-servers)
-- [SEO / 数据分析 MCP Servers](#-seo--数据分析-mcp-servers)
-- [营销自动化 MCP Servers](#-营销自动化-mcp-servers)
-- [通用工具 MCP Servers](#-通用工具-mcp-servers)
-- [AI Agent 框架](#-ai-agent-框架)
-- [电商 AI Agent 工具](#-电商-ai-agent-工具)
+- [外部 Awesome Lists 和目录网站](#外部-awesome-lists-和目录网站)
+- [电商 MCP Servers（推荐）](#电商-mcp-servers推荐)
+- [广告平台 MCP Servers](#广告平台-mcp-servers)
+- [SEO / 数据分析 MCP Servers](#seo--数据分析-mcp-servers)
+- [营销自动化 MCP Servers](#营销自动化-mcp-servers)
+- [通用工具 MCP Servers](#通用工具-mcp-servers)
+- [AI Agent 框架](#ai-agent-框架)
+- [电商 AI Agent 工具](#电商-ai-agent-工具)
 
 ---
 
-## 🌐 外部 Awesome Lists 和目录网站
+## 外部 Awesome Lists 和目录网站
 
 > 这些是社区维护的 MCP Server 集合和目录，可以发现更多工具。
 
@@ -28,8 +28,8 @@
 
 | 名称 | Stars | 说明 | 链接 |
 |------|-------|------|------|
-| awesome-mcp-servers (PipedreamHQ) | 🔥 热门 | 最全面的 MCP Server 集合，按类别分类 | [GitHub](https://github.com/PipedreamHQ/awesome-mcp-servers) |
-| awesome-mcp-servers (appcypher) | 🔥 热门 | 社区维护的 MCP Server 列表 | [GitHub](https://github.com/appcypher/awesome-mcp-servers) |
+| awesome-mcp-servers (PipedreamHQ) | 热门 | 最全面的 MCP Server 集合，按类别分类 | [GitHub](https://github.com/PipedreamHQ/awesome-mcp-servers) |
+| awesome-mcp-servers (appcypher) | 热门 | 社区维护的 MCP Server 列表 | [GitHub](https://github.com/appcypher/awesome-mcp-servers) |
 | awesome-mcp-list (MobinX) | 精简版 | 简洁的 MCP Server 列表 | [GitHub](https://github.com/MobinX/awesome-mcp-servers) |
 | awesome-mcp-servers (habitoai) | 分类详细 | 按数据源和工具类型分类 | [GitHub](https://github.com/habitoai/awesome-mcp-servers) |
 
@@ -61,7 +61,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ---
 
-## 🛒 电商 MCP Servers（推荐）
+## 电商 MCP Servers（推荐）
 
 ### Shopify
 
@@ -94,7 +94,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ---
 
-## 📢 广告平台 MCP Servers
+## 广告平台 MCP Servers
 
 | Server | 平台 | 功能 | 链接 |
 |--------|------|------|------|
@@ -105,7 +105,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ---
 
-## 🔍 SEO / 数据分析 MCP Servers
+## SEO / 数据分析 MCP Servers
 
 | Server | 功能 | 链接 |
 |--------|------|------|
@@ -118,7 +118,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ---
 
-## 📧 营销自动化 MCP Servers
+## 营销自动化 MCP Servers
 
 | Server | 功能 | 链接 |
 |--------|------|------|
@@ -129,7 +129,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ---
 
-## 🔧 通用工具 MCP Servers
+## 通用工具 MCP Servers
 
 | Server | 功能 | 电商用途 | 链接 |
 |--------|------|---------|------|
@@ -142,7 +142,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ---
 
-## 🤖 AI Agent 框架
+## AI Agent 框架
 
 > 用于构建电商自动化 Agent 的开发框架。
 
@@ -162,7 +162,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ---
 
-## 🛍️ 电商 AI Agent 工具
+## 电商 AI Agent 工具
 
 > 开箱即用的电商 AI Agent 产品（非框架）。
 
@@ -177,29 +177,29 @@ Content rephrased for compliance with licensing restrictions.
 
 ---
 
-## 💡 如何选择
+## 如何选择
 
 ```
 选择 MCP Server 的决策框架：
 
 1. 你需要连接什么平台？
-   ├── Amazon 广告 → Amazon Ads MCP（官方）
-   ├── Shopify 店铺 → Shopify Storefront MCP（官方）
-   ├── Google Ads → Google Ads MCP（官方）
-   ├── Meta Ads → pipeboard-co Meta Ads MCP
-   └── 多平台广告 → amekala ads-mcp（跨平台）
+Amazon 广告 → Amazon Ads MCP（官方）
+Shopify 店铺 → Shopify Storefront MCP（官方）
+Google Ads → Google Ads MCP（官方）
+Meta Ads → pipeboard-co Meta Ads MCP
+多平台广告 → amekala ads-mcp（跨平台）
 
 2. 你的技术能力？
-   ├── 会写代码 → 直接用 MCP Server + LangGraph
-   ├── 会配置 → 用 n8n / Make + MCP
-   └── 不会代码 → 用 Mesa / Commerce MCP（一键部署）
+会写代码 → 直接用 MCP Server + LangGraph
+会配置 → 用 n8n / Make + MCP
+不会代码 → 用 Mesa / Commerce MCP（一键部署）
 
 3. 你的预算？
-   ├── 免费 → 开源 MCP Server + Claude/ChatGPT
-   ├── $50-200/月 → Commerce MCP + 付费 AI 工具
-   └── $500+/月 → 企业级方案（Alhena/ZyG）
+免费 → 开源 MCP Server + Claude/ChatGPT
+$50-200/月 → Commerce MCP + 付费 AI 工具
+$500+/月 → 企业级方案（Alhena/ZyG）
 ```
 
 ---
 
-> 🏠 [Hub 首页](../README.md) · 🔧 [B6 MCP 集成指南](../paths/b-developers/b6-mcp-agentic-workflow.md) · 🤖 [B4 AI Agent 指南](../paths/b-developers/b4-agent-workflow.md) · ⚡ [F4 Agent 自动化基础](../paths/0-foundations/f4-agent-automation.md)
+> [Hub 首页](../README.md) · [B6 MCP 集成指南](../paths/b-developers/b6-mcp-agentic-workflow.md) · [B4 AI Agent 指南](../paths/b-developers/b4-agent-workflow.md) · [F4 Agent 自动化基础](../paths/0-foundations/f4-agent-automation.md)

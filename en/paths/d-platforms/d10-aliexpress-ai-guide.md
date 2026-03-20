@@ -4,20 +4,20 @@
 
 > **Path**: Path D: Multi-Platform · **Module**: D10
 > **Last Updated**: 2026-03-14
-> **Difficulty**: ⭐ Beginner
+> **Difficulty**: Beginner
 > **Estimated Time**: 1 hour
 
-🏠 [Hub Home](../../README.md) · 📋 [Path D Overview](README.md)
+[Hub Home](../../README.md) · [Path D Overview](README.md)
 
 ---
 
-> 💡 GMV $25B+ (Top 5 categories), 159M MAU. A native platform for Chinese sellers, ranking among the top in Southern European markets (Spain, France, Portugal). However, it's being cannibalized by Temu — cross-border share has declined 33% since 2018.
+> GMV $25B+ (Top 5 categories), 159M MAU. A native platform for Chinese sellers, ranking among the top in Southern European markets (Spain, France, Portugal). However, it's being cannibalized by Temu cross-border share has declined 33% since 2018.
 
 ## 1. AliExpress Current Status & Positioning
 
 ### 1.1 AliExpress vs Temu
 
-> 📎 **Related Reading**: [D5 Temu Seller Strategy](d5-temu-seller-guide.md#semi-managed-vs-fully-managed-profit-comparison-model) — Detailed Temu analysis in D5, including fully managed/semi-managed model comparison and onboarding decision framework.
+> **Related Reading**: [D5 Temu Seller Strategy](d5-temu-seller-guide.md#semi-managed-vs-fully-managed-profit-comparison-model) Detailed Temu analysis in D5, including fully managed/semi-managed model comparison and onboarding decision framework.
 
 | Dimension | AliExpress | Temu |
 |-----------|-----------|------|
@@ -81,9 +81,9 @@ AliExpress Choice is AliExpress's answer to Temu's fully managed model:
 
 ### 3.2 Multi-Language Listing Optimization
 
-> 📎 **Related Reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md#1-listing-methodology-the-fundamentals-before-ai) — Multi-language localization methodology from A2; Listing optimization framework can be adapted for AliExpress multi-language versions.
+> **Related Reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md#1-listing-methodology-the-fundamentals-before-ai) Multi-language localization methodology from A2; Listing optimization framework can be adapted for AliExpress multi-language versions.
 
-AliExpress covers the globe — multi-language is a core need. AliExpress ranks among the top in Southern European markets (Spain, France, Portugal) ([Marketplace Universe](https://marketplace-universe.com/aliexpress-europe/)), making these priority optimization targets.
+AliExpress covers the globe multi-language is a core need. AliExpress ranks among the top in Southern European markets (Spain, France, Portugal) ([Marketplace Universe](https://marketplace-universe.com/aliexpress-europe/)), making these priority optimization targets.
 
 ```
 你是一个 AliExpress 多语言 Listing 优化专家。
@@ -198,8 +198,8 @@ Content rephrased for compliance with licensing restrictions.
 - [ ] Choose logistics solution (Cainiao vs self-ship)
 
 ---
-> 🏠 [Hub Home](../../README.md) · 📋 [Path D Overview](README.md) · 📊 [Platform Comparison](platform-comparison.md)
-> 
+> [Hub Home](../../README.md) · [Path D Overview](README.md) · [Platform Comparison](platform-comparison.md)
+>
 > **Path D**: [D1 Shopify](shopify-ai-guide.md) · [D2 TikTok](tiktok-shop-ai-guide.md) · [D3 Cross-Platform](cross-platform-strategy.md) · [D4 Walmart](d4-walmart-ai-guide.md) · [D5 Temu](d5-temu-seller-guide.md) · [D6 Southeast Asia](d6-southeast-asia-ai-guide.md) · [D7 Latin America](d7-mercado-libre-ai-guide.md) · [D8 Japan](d8-rakuten-japan-ai-guide.md) · [D9 eBay](d9-ebay-ai-guide.md) · [D10 AliExpress](d10-aliexpress-ai-guide.md) · [D11 Korea](d11-coupang-korea-ai-guide.md) · [D12 Faire](d12-faire-wholesale-ai-guide.md) · [D13 Europe](d13-europe-marketplaces-guide.md)
-> 
+>
 > **Quick Jump**: [Path 0 Foundations](../0-foundations/) · [Path A Operations](../a-operators/) · [Path B Technical](../b-developers/) · [Path C Management](../c-managers/) · [Path E Social Media](../e-social-media/)

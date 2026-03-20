@@ -3,7 +3,7 @@
 > Prompt templates covering visual content, pricing, SEO/GEO, branding, finance, IP, and Growth Hacking.
 > Corresponds to Path A modules A7-A13.
 
-🏠 [Hub Home](../README.md) · 📋 [Prompt Template Library](README.md)
+[Hub Home](../README.md) · [Prompt Template Library](README.md)
 
 ---
 
@@ -22,7 +22,7 @@
 
 ## 1. AI Product Image Generation (A7)
 
-> 📎 Detailed methodology: [A7 Visual Content](../paths/a-operators/a7-visual-content.md)
+> Detailed methodology: [A7 Visual Content](../paths/a-operators/a7-visual-content.md)
 
 ```
 You are an e-commerce product image planning expert.
@@ -35,26 +35,26 @@ Brand colors: [X]
 Please plan a complete image suite for this product:
 
 1. Amazon main image (white background, product fills 85%+)
-   - Shooting angle recommendations
-   - Lighting plan
-   - AI generation prompt (Midjourney/DALL-E format)
+- Shooting angle recommendations
+- Lighting plan
+- AI generation prompt (Midjourney/DALL-E format)
 
 2. Lifestyle images x3
-   - Descriptions of 3 different usage scenarios
-   - AI generation prompt for each scenario
+- Descriptions of 3 different usage scenarios
+- AI generation prompt for each scenario
 
 3. Infographic images x2
-   - Size comparison chart layout suggestions
-   - Feature highlight chart layout suggestions
+- Size comparison chart layout suggestions
+- Feature highlight chart layout suggestions
 
 4. A+ Content images x3
-   - Brand story image
-   - Product comparison image
-   - Usage tutorial image
+- Brand story image
+- Product comparison image
+- Usage tutorial image
 
 5. Social media assets
-   - Instagram square image prompt
-   - TikTok vertical image prompt
+- Instagram square image prompt
+- TikTok vertical image prompt
 
 Each prompt should include positive descriptions and negative exclusion terms.
 ```
@@ -65,7 +65,7 @@ Each prompt should include positive descriptions and negative exclusion terms.
 
 ## 2. Competitor Price Monitoring & Dynamic Pricing (A8)
 
-> 📎 Detailed methodology: [A8 Pricing Strategy](../paths/a-operators/a8-pricing-strategy.md)
+> Detailed methodology: [A8 Pricing Strategy](../paths/a-operators/a8-pricing-strategy.md)
 
 ```
 You are an e-commerce pricing strategy expert.
@@ -92,7 +92,7 @@ Please analyze:
 
 ## 3. GEO Audit & AI Search Optimization (A9)
 
-> 📎 Detailed methodology: [A9 SEO/GEO](../paths/a-operators/a9-seo-geo.md)
+> Detailed methodology: [A9 SEO/GEO](../paths/a-operators/a9-seo-geo.md)
 
 ```
 You are a GEO (Generative Engine Optimization) expert.
@@ -105,20 +105,20 @@ Amazon ASIN: [X]
 Please conduct a GEO audit:
 
 1. Structured data check
-   - Is Product Schema complete?
-   - Does FAQ Schema exist?
-   - Does Review Schema exist?
+- Is Product Schema complete?
+- Does FAQ Schema exist?
+- Does Review Schema exist?
 
 2. AI search visibility test
-   - Search "best [category] 2026" in ChatGPT — is my brand mentioned?
-   - Search in Perplexity — is it recommended?
-   - Are competitors [A/B/C] recommended more often?
+- Search "best [category] 2026" in ChatGPT is my brand mentioned?
+- Search in Perplexity is it recommended?
+- Are competitors [A/B/C] recommended more often?
 
 3. Optimization recommendations
-   - Schema to add/fix
-   - FAQ content to create (10 questions)
-   - Third-party citations/reviews to obtain
-   - Agentic Commerce readiness assessment
+- Schema to add/fix
+- FAQ content to create (10 questions)
+- Third-party citations/reviews to obtain
+- Agentic Commerce readiness assessment
 
 4. Priority action list (1 week / 1 month / 3 months)
 ```
@@ -127,7 +127,7 @@ Please conduct a GEO audit:
 
 ## 4. Brand Story & Visual System Generation (A10)
 
-> 📎 Detailed methodology: [A10 Brand Building](../paths/a-operators/a10-brand-building.md)
+> Detailed methodology: [A10 Brand Building](../paths/a-operators/a10-brand-building.md)
 
 ```
 You are a brand strategy expert specializing in creating brand systems for cross-border e-commerce brands.
@@ -147,10 +147,10 @@ Please generate a complete brand system in one go:
 3. Brand tagline (3 options, each ≤8 words)
 4. Brand values (3-5)
 5. Brand voice guidelines (tone standards for each platform)
-   - Amazon Listing tone
-   - Shopify product page tone
-   - Instagram tone
-   - TikTok tone
+- Amazon Listing tone
+- Shopify product page tone
+- Instagram tone
+- TikTok tone
 6. Color palette recommendations (primary + secondary + accent colors, with hex codes)
 7. Amazon A+ Content brand story module copy
 ```
@@ -159,7 +159,7 @@ Please generate a complete brand system in one go:
 
 ## 5. SKU True Profit Calculation (A11)
 
-> 📎 Detailed methodology: [A11 Financial Analysis](../paths/a-operators/a11-financial-analysis.md)
+> Detailed methodology: [A11 Financial Analysis](../paths/a-operators/a11-financial-analysis.md)
 
 ```
 You are a cross-border e-commerce financial analysis expert.
@@ -191,7 +191,7 @@ Please calculate:
 
 ## 6. Comprehensive IP Risk Assessment (A12)
 
-> 📎 Detailed methodology: [A12 Intellectual Property](../paths/a-operators/a12-ip-protection.md)
+> Detailed methodology: [A12 Intellectual Property](../paths/a-operators/a12-ip-protection.md)
 
 ```
 You are an intellectual property risk assessment expert.
@@ -205,32 +205,32 @@ Product I plan to sell:
 Please conduct a comprehensive IP risk assessment:
 
 1. Patent risk (High / Medium / Low)
-   - Common patent types in this category
-   - Key patent databases to search
-   - High-risk features/design elements
+- Common patent types in this category
+- Key patent databases to search
+- High-risk features/design elements
 
 2. Trademark risk (High / Medium / Low)
-   - Whether the brand name may conflict with existing trademarks
-   - Recommended trademark search steps
+- Whether the brand name may conflict with existing trademarks
+- Recommended trademark search steps
 
 3. Copyright risk (High / Medium / Low)
-   - Copyright considerations for product images/copy
-   - Copyright policies for AI-generated content
+- Copyright considerations for product images/copy
+- Copyright policies for AI-generated content
 
 4. TRO risk (High / Medium / Low)
-   - Whether this category has frequent TRO cases
-   - Preventive measures
+- Whether this category has frequent TRO cases
+- Preventive measures
 
 5. Overall risk rating and recommendations
-   - Go / Caution / No-Go decision
-   - If Go: compliance steps to complete first
+- Go / Caution / No-Go decision
+- If Go: compliance steps to complete first
 ```
 
 ---
 
 ## 7. AI Growth Hack Product Validation (A13)
 
-> 📎 Detailed methodology: [A13 AI Growth Hack](../paths/a-operators/a13-ai-growth-hack.md)
+> Detailed methodology: [A13 AI Growth Hack](../paths/a-operators/a13-ai-growth-hack.md)
 
 ```
 You are a cross-border e-commerce product selection expert with deep expertise in AI data analysis.
@@ -256,7 +256,7 @@ Please use the AI Growth Hack framework to help me select products:
 
 ## 8. Daily AI Operations Brief (A13)
 
-> 📎 Detailed methodology: [A13 AI Growth Hack](../paths/a-operators/a13-ai-growth-hack.md#7-ai-agent-工作流实战)
+> Detailed methodology: [A13 AI Growth Hack](../paths/a-operators/a13-ai-growth-hack.md#7-ai-agent-工作流实战)
 
 ```
 You are my e-commerce operations AI assistant. Please generate today's operations brief based on the following data.
@@ -270,14 +270,14 @@ Yesterday's data:
 - New negative reviews: [X]
 
 Please generate:
-1. 📊 Key metrics summary (revenue / orders / ACOS day-over-day and week-over-week)
-2. ⚠️ Anomaly alerts (which metrics deviate from normal range)
-3. 📋 Today's priority action list (ranked by P0 / P1 / P2)
-4. 💡 One optimization suggestion (based on data trends)
+1. Key metrics summary (revenue / orders / ACOS day-over-day and week-over-week)
+2. Anomaly alerts (which metrics deviate from normal range)
+3. Today's priority action list (ranked by P0 / P1 / P2)
+4. One optimization suggestion (based on data trends)
 
-Keep it concise — designed to be read in under 5 minutes.
+Keep it concise designed to be read in under 5 minutes.
 ```
 
 ---
 
-> 🏠 [Hub Home](../README.md) · 📋 [Prompt Template Library](README.md) · 📖 [Path A Operations](../paths/a-operators/)
+> [Hub Home](../README.md) · [Prompt Template Library](README.md) · [Path A Operations](../paths/a-operators/)

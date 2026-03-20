@@ -1,6 +1,6 @@
 # Listing & Content Creation Prompt Templates
 
-> Last updated: 2026-03-10 | Templates: 3 | Status: ✅ Verified
+> Last updated: 2026-03-10 | Templates: 3 | Status: Verified
 
 ---
 
@@ -8,7 +8,7 @@
 
 **Scenario**: Generate a complete Amazon Listing from scratch (title, bullet points, description, Search Terms)
 **Recommended tools**: ChatGPT / Claude
-**Status**: ✅ Verified
+**Status**: Verified
 **Contributor**: [@kangise](https://github.com/kangise)
 
 ### Prompt
@@ -45,16 +45,16 @@ Requirements:
 
 ---
 
-📎 **Share this template**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/en/prompts/listing-optimization.md#template-1-full-listing-generation`
-🏠 **Source**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) — AI × Cross-Border E-Commerce Knowledge Hub
+**Share this template**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/en/prompts/listing-optimization.md#template-1-full-listing-generation`
+**Source**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) AI × Cross-Border E-Commerce Knowledge Hub
 
 ---
 
 ## Template 2: Multi-Language Localization
 
-**Scenario**: Localize an English Listing for other languages — not direct translation, but market adaptation
+**Scenario**: Localize an English Listing for other languages not direct translation, but market adaptation
 **Recommended tools**: ChatGPT / Claude / DeepL
-**Status**: ✅ Verified
+**Status**: Verified
 **Contributor**: [@kangise](https://github.com/kangise)
 
 ### Prompt
@@ -66,7 +66,7 @@ Here is the English Listing:
 [Paste English Listing]
 
 Please translate to [target language]. Note:
-1. This is not word-for-word translation — it should match [target market] consumer search habits and expressions
+1. This is not word-for-word translation it should match [target market] consumer search habits and expressions
 2. Replace with locally popular search keywords
 3. Reorder selling points, putting what [target market] consumers care about most first
 4. Note what localization adjustments you made and why
@@ -83,8 +83,8 @@ Please translate to [target language]. Note:
 
 ---
 
-📎 **Share this template**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/en/prompts/listing-optimization.md#template-2-multi-language-localization`
-🏠 **Source**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) — AI × Cross-Border E-Commerce Knowledge Hub
+**Share this template**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/en/prompts/listing-optimization.md#template-2-multi-language-localization`
+**Source**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) AI × Cross-Border E-Commerce Knowledge Hub
 
 ---
 
@@ -92,7 +92,7 @@ Please translate to [target language]. Note:
 
 **Scenario**: Compare and analyze multiple competitor Listings to find differentiation positioning opportunities
 **Recommended tools**: ChatGPT / Claude
-**Status**: ✅ Verified
+**Status**: Verified
 **Contributor**: [@kangise](https://github.com/kangise)
 
 ### Prompt
@@ -118,10 +118,10 @@ Please output:
 
 ### Tips
 
-- Paste complete titles and bullet point descriptions — the more information, the more accurate the analysis
+- Paste complete titles and bullet point descriptions the more information, the more accurate the analysis
 - Follow up with "If my product has an advantage in [specific area], how should I highlight it?"
 
 ---
 
-📎 **Share this template**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/en/prompts/listing-optimization.md#template-3-competitor-listing-strategy-breakdown`
-🏠 **Source**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) — AI × Cross-Border E-Commerce Knowledge Hub
+**Share this template**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/en/prompts/listing-optimization.md#template-3-competitor-listing-strategy-breakdown`
+**Source**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) AI × Cross-Border E-Commerce Knowledge Hub

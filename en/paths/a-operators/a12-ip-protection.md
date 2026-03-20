@@ -4,15 +4,15 @@
 
 > **Path**: Path A: Operators · **Module**: A12
 > **Last Updated**: 2026-03-14
-> **Difficulty**: ⭐⭐ Intermediate
+> **Difficulty**: Intermediate
 > **Estimated Time**: 30 minutes per day, 1 week
 > **Prerequisite**: [A6 Compliance & Risk Management](a6-compliance.md)
 
-🏠 [Hub Home](../../README.md) · 📋 [Path A Overview](README.md)
+[Hub Home](../../README.md) · [Path A Overview](README.md)
 
 ---
 
-## 📖 Module Navigation
+## Module Navigation
 
 1. [Why IP Protection Is a Lifeline for Cross-Border Sellers](#1-why-ip-protection-is-a-lifeline-for-cross-border-sellers)
 2. [AI Patent Search & Risk Assessment](#2-ai-patent-search--risk-assessment)
@@ -32,7 +32,7 @@
 - Understand copyright ownership issues with AI-generated content (images/copy)
 - Master Amazon Brand Protection tools
 
-> 💡 **How This Differs from A6**: A6 covers multi-market compliance (CE/FCC/VAT, etc.). This module focuses specifically on intellectual property (patents/trademarks/copyrights).
+> **How This Differs from A6**: A6 covers multi-market compliance (CE/FCC/VAT, etc.). This module focuses specifically on intellectual property (patents/trademarks/copyrights).
 
 ---
 
@@ -50,7 +50,7 @@
 
 ### 1.2 Financial Impact of IP Risks
 
-- A single patent infringement lawsuit: $50K–500K+ in legal fees
+- A single patent infringement lawsuit: $50K500K+ in legal fees
 - A single Amazon account suspension: weeks to months of lost revenue
 - Being counterfeited: ongoing loss of brand value and market share
 
@@ -73,10 +73,10 @@
 
 1. 这个品类常见的专利类型（发明专利/外观专利/实用新型）
 2. 需要排查的关键专利数据库
-   - US: USPTO (patents.google.com)
-   - EU: Espacenet (worldwide.espacenet.com)
-   - JP: J-PlatPat
-   - CN: CNIPA
+- US: USPTO (patents.google.com)
+- EU: Espacenet (worldwide.espacenet.com)
+- JP: J-PlatPat
+- CN: CNIPA
 3. 建议的搜索关键词（英文+中文）
 4. 高风险功能/设计特征（哪些最可能有专利保护）
 5. 规避策略（如何在不侵权的前提下设计产品）
@@ -135,10 +135,10 @@ TRO is one of the most serious IP risks facing cross-border sellers. U.S. courts
 
 | Market | Registration Authority | Cost | Timeline | Relationship with Amazon |
 |--------|----------------------|------|----------|--------------------------|
-| US | USPTO | $250–350/class | 8–12 months | Required for Amazon Brand Registry |
-| EU | EUIPO | €850/class | 4–6 months | Amazon EU Brand Registry |
-| JP | JPO | ¥12,000/class | 6–10 months | Amazon JP Brand Registry |
-| CN | CNIPA | ¥300/class | 9–12 months | Prevents domestic trademark squatting |
+| US | USPTO | $250350/class | 812 months | Required for Amazon Brand Registry |
+| EU | EUIPO | €850/class | 46 months | Amazon EU Brand Registry |
+| JP | JPO | ¥12,000/class | 610 months | Amazon JP Brand Registry |
+| CN | CNIPA | ¥300/class | 912 months | Prevents domestic trademark squatting |
 
 ### 3.2 AI Trademark Monitoring
 
@@ -152,19 +152,19 @@ TRO is one of the most serious IP risks facing cross-border sellers. U.S. courts
 请帮我设计商标监控方案：
 
 1. 需要监控的内容
-   - Amazon 上是否有人使用我的品牌名
-   - 是否有近似商标被申请注册
-   - 是否有仿冒产品使用我的 Logo
+- Amazon 上是否有人使用我的品牌名
+- 是否有近似商标被申请注册
+- 是否有仿冒产品使用我的 Logo
 
 2. 监控工具推荐
-   - Amazon Brand Protection 工具
-   - 第三方商标监控服务
-   - AI 辅助的定期检查
+- Amazon Brand Protection 工具
+- 第三方商标监控服务
+- AI 辅助的定期检查
 
 3. 发现侵权后的应对流程
-   - Amazon 投诉流程（Report a Violation）
-   - DMCA 投诉流程
-   - 法律途径
+- Amazon 投诉流程（Report a Violation）
+- DMCA 投诉流程
+- 法律途径
 ```
 
 ---
@@ -207,7 +207,7 @@ TRO is one of the most serious IP risks facing cross-border sellers. U.S. courts
 ## 5. Amazon Brand Protection Tools
 
 > **Real-World Case: 10,000+ Brands Have Joined Project Zero**
-> Over 10,000 brands have joined Amazon Project Zero, including Arduino, BMW, LifeProof, OtterBox, Salvatore Ferragamo, and Veet ([MediaDale](http://www.mediadale.com/news/articleView.html?idxno=56862)). Project Zero's three components — automated protection (scanning 5 billion+ Listings daily), brand self-service removal tools, and product serialization — together form Amazon's most powerful brand protection system.
+> Over 10,000 brands have joined Amazon Project Zero, including Arduino, BMW, LifeProof, OtterBox, Salvatore Ferragamo, and Veet ([MediaDale](http://www.mediadale.com/news/articleView.html?idxno=56862)). Project Zero's three components automated protection (scanning 5 billion+ Listings daily), brand self-service removal tools, and product serialization together form Amazon's most powerful brand protection system.
 
 Content rephrased for compliance with licensing restrictions.
 
@@ -227,8 +227,8 @@ Content rephrased for compliance with licensing restrictions.
 | Report a Violation | Report infringing Listings | Brand Registry | Manual reporting |
 | Transparency | Product authentication codes (unique code per unit) | Brand Registry + paid | Automatic verification |
 | Project Zero | AI-powered automatic counterfeit removal (94% detection rate) | Brand Registry + invite-only | Neural network scanning ([BareGold](https://baregold.ca/resources/advanced-ip-protection-strategies-for-amazon-brands-in-2026)) |
-| IP Accelerator | Fast-track trademark registration | Through Amazon partner law firms | — |
-| Counterfeit Crimes Unit | Criminal enforcement against counterfeits | Serious infringement cases | — |
+| IP Accelerator | Fast-track trademark registration | Through Amazon partner law firms | |
+| Counterfeit Crimes Unit | Criminal enforcement against counterfeits | Serious infringement cases | |
 | Brand Registry AI Database | AI brand asset identification | Brand Registry | Automatic matching |
 
 Content rephrased for compliance with licensing restrictions.
@@ -281,12 +281,12 @@ Content rephrased for compliance with licensing restrictions.
 
 | Tool | Commercial Use License | Copyright Ownership | Risk Level |
 |------|----------------------|---------------------|------------|
-| Midjourney (paid) | ✅ Allowed | User owns | Low |
-| DALL-E (ChatGPT Plus) | ✅ Allowed | User owns | Low |
-| Adobe Firefly | ✅ Allowed (with indemnity) | User owns | Lowest |
-| Canva AI | ✅ Allowed (Pro plan) | User owns | Low |
-| Free AI tools | ⚠️ Check terms | Uncertain | Medium |
-| ChatGPT-generated copy | ✅ Allowed | User owns | Low |
+| Midjourney (paid) | Allowed | User owns | Low |
+| DALL-E (ChatGPT Plus) | Allowed | User owns | Low |
+| Adobe Firefly | Allowed (with indemnity) | User owns | Lowest |
+| Canva AI | Allowed (Pro plan) | User owns | Low |
+| Free AI tools | Check terms | Uncertain | Medium |
+| ChatGPT-generated copy | Allowed | User owns | Low |
 
 > **Recommendation**: When using AI-generated content commercially, prioritize paid tools that explicitly grant commercial licenses. Keep generation records (prompts + outputs) as evidence of creation.
 
@@ -322,8 +322,8 @@ Content rephrased for compliance with licensing restrictions.
 - [ ] Familiar with Amazon Brand Protection tools
 
 ---
-> 🏠 [Hub Home](../../README.md) · 📋 [Path A Overview](README.md)
-> 
+> [Hub Home](../../README.md) · [Path A Overview](README.md)
+>
 > **Path A**: [A1 Product Research](a1-product-research.md) · [A2 Listing](a2-listing-optimization.md) · [A3 Advertising](a3-advertising.md) · [A4 Customer Service](a4-customer-service.md) · [A5 Inventory](a5-inventory.md) · [A6 Compliance](a6-compliance.md) · [A7 Visual Content](a7-visual-content.md) · [A8 Pricing](a8-pricing-strategy.md) · [A9 SEO/GEO](a9-seo-geo.md) · [A10 Branding](a10-brand-building.md) · [A11 Finance](a11-financial-analysis.md) · [A12 IP Protection](a12-ip-protection.md)
-> 
+>
 > **Quick Jump**: [Path 0 Foundations](../0-foundations/) · [Path B Developers](../b-developers/) · [Path C Managers](../c-managers/) · [Path D Multi-Platform](../d-platforms/) · [Path E Social Media](../e-social-media/)

@@ -1,6 +1,6 @@
 # Product Research & Market Analysis Prompt Templates
 
-> Last updated: 2026-03-10 | Templates: 3 | Status: ✅ Verified
+> Last updated: 2026-03-10 | Templates: 3 | Status: Verified
 
 ---
 
@@ -8,7 +8,7 @@
 
 **Scenario**: Analyze competitor negative reviews to extract product improvement directions and differentiation opportunities
 **Recommended tools**: ChatGPT / Claude
-**Status**: ✅ Verified
+**Status**: Verified
 **Contributor**: [@kangise](https://github.com/kangise)
 
 ### Prompt
@@ -37,8 +37,8 @@ Output format: Present in a table with columns: Pain Point | Frequency | Represe
 
 ---
 
-📎 **Share this template**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/en/prompts/product-research.md#template-1-competitor-review-pain-point-analysis`
-🏠 **Source**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) — AI × Cross-Border E-Commerce Knowledge Hub
+**Share this template**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/en/prompts/product-research.md#template-1-competitor-review-pain-point-analysis`
+**Source**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) AI × Cross-Border E-Commerce Knowledge Hub
 
 ---
 
@@ -46,7 +46,7 @@ Output format: Present in a table with columns: Pain Point | Frequency | Represe
 
 **Scenario**: Quickly assess whether a product is worth entering a specific market
 **Recommended tools**: ChatGPT / Claude / Gemini
-**Status**: ✅ Verified
+**Status**: Verified
 **Contributor**: [@kangise](https://github.com/kangise)
 
 ### Prompt
@@ -74,12 +74,12 @@ Finally, provide an overall recommendation: Enter / Proceed with Caution / Pass,
 ### Tips
 
 - The more specific the product information you provide (price range, target audience), the more accurate the assessment
-- You can assess multiple products simultaneously for comparison — follow up with "Which of these three products should I prioritize?"
+- You can assess multiple products simultaneously for comparison follow up with "Which of these three products should I prioritize?"
 
 ---
 
-📎 **Share this template**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/en/prompts/product-research.md#template-2-market-feasibility-assessment`
-🏠 **Source**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) — AI × Cross-Border E-Commerce Knowledge Hub
+**Share this template**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/en/prompts/product-research.md#template-2-market-feasibility-assessment`
+**Source**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) AI × Cross-Border E-Commerce Knowledge Hub
 
 ---
 
@@ -87,7 +87,7 @@ Finally, provide an overall recommendation: Enter / Proceed with Caution / Pass,
 
 **Scenario**: Group a large set of search keywords by actual purchase intent to discover product opportunities
 **Recommended tools**: ChatGPT / Claude
-**Status**: ✅ Verified
+**Status**: Verified
 **Contributor**: [@kangise](https://github.com/kangise)
 
 ### Prompt
@@ -116,5 +116,5 @@ For each cluster:
 
 ---
 
-📎 **Share this template**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/en/prompts/product-research.md#template-3-keyword-demand-clustering`
-🏠 **Source**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) — AI × Cross-Border E-Commerce Knowledge Hub
+**Share this template**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/en/prompts/product-research.md#template-3-keyword-demand-clustering`
+**Source**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) AI × Cross-Border E-Commerce Knowledge Hub

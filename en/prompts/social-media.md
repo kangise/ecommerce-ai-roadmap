@@ -78,9 +78,9 @@ Product information:
 - Amazon review summary: Positive reviews focus on [X], negative reviews focus on [X]
 
 Please generate a 10-12 minute review video script with this structure:
-1. Hook (0:00-0:30) — One-sentence summary + suspense
+1. Hook (0:00-0:30) One-sentence summary + suspense
 2. Unboxing & appearance (0:30-2:00)
-3. Feature testing (2:00-6:00) — Test each feature, score 1-10
+3. Feature testing (2:00-6:00) Test each feature, score 1-10
 4. Pros & cons summary (6:00-8:00)
 5. Who it's for / not for (8:00-9:30)
 6. Conclusion & CTA (9:30-10:30)
@@ -140,4 +140,4 @@ Adjust tone, length, and CTA for each platform to match its style.
 
 ---
 
-🏠 [Back to Hub Home](../README.md) · 📋 [Prompt Template Library](README.md)
+[Back to Hub Home](../README.md) · [Prompt Template Library](README.md)

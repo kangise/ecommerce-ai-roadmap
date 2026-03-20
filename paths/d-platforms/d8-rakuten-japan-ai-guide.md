@@ -2,14 +2,14 @@
 
 > **路径**: Path D: 多平台 · **模块**: D8
 > **最后更新**: 2026-03-14
-> **难度**: ⭐⭐ 中级
+> **难度**: 中级
 > **预计时间**: 1.5 小时
 
-🏠 [Hub 首页](../../README.md) · 📋 [Path D 总览](README.md)
+[Hub 首页](../../README.md) · [Path D 总览](README.md)
 
 ---
 
-> 💡 Rakuten GMV ~$31B，日本电商市场 $258B（2025）。日本第二大电商平台（仅次于 Amazon JP）。2026 年与 YouTube Shopping 合作。与 Amazon JP 运营逻辑完全不同——Rakuten 更像"线上商场"，卖家有高度自定义权。
+> Rakuten GMV ~$31B，日本电商市场 $258B（2025）。日本第二大电商平台（仅次于 Amazon JP）。2026 年与 YouTube Shopping 合作。与 Amazon JP 运营逻辑完全不同Rakuten 更像"线上商场"，卖家有高度自定义权。
 
 ## 1. Rakuten vs Amazon JP 核心差异
 
@@ -47,7 +47,7 @@ Rakuten Points 是日本最大的积分生态之一：
 
 ### 2.3 R-Mail 邮件营销
 
-> 📎 **相关阅读**: [D1 Shopify](shopify-ai-guide.md) — Shopify 的 Klaviyo 邮件营销方法论可参考 D1，邮件自动化和个性化策略可复用到 R-Mail。
+> **相关阅读**: [D1 Shopify](shopify-ai-guide.md) Shopify 的 Klaviyo 邮件营销方法论可参考 D1，邮件自动化和个性化策略可复用到 R-Mail。
 
 Amazon 禁止卖家直接联系买家，但 Rakuten 鼓励：
 - R-Mail：卖家可以给购买过的用户发邮件
@@ -67,9 +67,9 @@ Amazon 禁止卖家直接联系买家，但 Rakuten 鼓励：
 请生成 R-Mail 邮件：
 1. 邮件标题（≤50 字符，吸引打开）
 2. 邮件正文（日语，です/ます体）
-   - 开头：感谢+问候
-   - 中间：核心信息（新品/促销/推荐）
-   - 结尾：CTA + 积分提醒
+- 开头：感谢+问候
+- 中间：核心信息（新品/促销/推荐）
+- 结尾：CTA + 积分提醒
 3. 推荐发送时间（日本用户习惯）
 4. 个性化变量建议（用户名、上次购买产品等）
 
@@ -96,7 +96,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ### 2.5 YouTube Shopping × Rakuten（2026 新功能）
 
-> 📎 **相关阅读**: [E2 YouTube AI 运营](../e-social-media/e2-youtube-ai-guide.md) — YouTube 运营方法论参考 E2，达人合作和视频内容策略可直接复用。
+> **相关阅读**: [E2 YouTube AI 运营](../e-social-media/e2-youtube-ai-guide.md) YouTube 运营方法论参考 E2，达人合作和视频内容策略可直接复用。
 
 2026 年 2 月，Rakuten 与 Google 合作，在日本推出 YouTube Shopping 功能。这是日本首个与 YouTube Shopping 合作的电商平台。
 
@@ -134,24 +134,24 @@ Content rephrased for compliance with licensing restrictions.
 请制定 YouTube Shopping 策略：
 
 1. 适合 YouTube 推广的产品选择
-   - 视觉吸引力强的产品
-   - 需要演示/教程的产品
-   - 价格适中（¥3,000-30,000）
+- 视觉吸引力强的产品
+- 需要演示/教程的产品
+- 价格适中（¥3,000-30,000）
 
 2. 日本 YouTube 达人合作方案
-   - 目标达人类型（レビュー系/生活系/美容系）
-   - 合作模式（商品提供/報酬/アフィリエイト）
-   - 预算分配
+- 目标达人类型（レビュー系/生活系/美容系）
+- 合作模式（商品提供/報酬/アフィリエイト）
+- 预算分配
 
 3. 产品页面优化（承接 YouTube 流量）
-   - 着陆页设计
-   - 视频观看者专属优惠
-   - 积分倍率设置
+- 着陆页设计
+- 视频观看者专属优惠
+- 积分倍率设置
 
 4. 效果追踪
-   - YouTube → Rakuten 的转化追踪
-   - 达人 ROI 分析
-   - 与其他流量渠道的对比
+- YouTube → Rakuten 的转化追踪
+- 达人 ROI 分析
+- 与其他流量渠道的对比
 ```
 
 ### 2.6 Rakuten 初始设置费
@@ -183,39 +183,39 @@ Content rephrased for compliance with licensing restrictions.
 请帮我决策 Rakuten vs Amazon JP：
 
 1. 品类适配度分析
-   - Rakuten 优势品类：食品、美妆、时尚、家居
-   - Amazon JP 优势品类：电子、书籍、日用品
-   - 我的品类在哪个平台更有优势？
+- Rakuten 优势品类：食品、美妆、时尚、家居
+- Amazon JP 优势品类：电子、书籍、日用品
+- 我的品类在哪个平台更有优势？
 
 2. 成本对比
-   - Rakuten：月租+佣金+初始设置费
-   - Amazon JP：佣金+FBA 费用
-   - 哪个平台的总成本更低？
+- Rakuten：月租+佣金+初始设置费
+- Amazon JP：佣金+FBA 费用
+- 哪个平台的总成本更低？
 
 3. 运营复杂度
-   - Rakuten：需要自定义店铺页面（HTML/CSS）
-   - Amazon JP：标准化 Listing
-   - 我的团队能力是否匹配？
+- Rakuten：需要自定义店铺页面（HTML/CSS）
+- Amazon JP：标准化 Listing
+- 我的团队能力是否匹配？
 
 4. 流量获取
-   - Rakuten：积分生态+邮件营销+活动
-   - Amazon JP：搜索+广告+Prime
-   - 哪种流量获取方式更适合我？
+- Rakuten：积分生态+邮件营销+活动
+- Amazon JP：搜索+广告+Prime
+- 哪种流量获取方式更适合我？
 
 5. 品牌建设
-   - Rakuten：高度自定义，品牌展示空间大
-   - Amazon JP：标准化，品牌展示有限
-   - 品牌建设对我有多重要？
+- Rakuten：高度自定义，品牌展示空间大
+- Amazon JP：标准化，品牌展示有限
+- 品牌建设对我有多重要？
 
 6. 建议
-   - 先入驻哪个平台？
-   - 是否同时入驻两个平台？
-   - 资源分配建议
+- 先入驻哪个平台？
+- 是否同时入驻两个平台？
+- 资源分配建议
 ```
 
 ## 3. 日语 Listing AI 优化
 
-> 📎 **相关阅读**: [A2 Listing 优化](../a-operators/a2-listing-optimization.md) — Listing 优化通用方法论参考 A2，核心优化框架可适配到日语 Listing。
+> **相关阅读**: [A2 Listing 优化](../a-operators/a2-listing-optimization.md) Listing 优化通用方法论参考 A2，核心优化框架可适配到日语 Listing。
 
 ### 3.1 日本消费者文案偏好
 
@@ -242,33 +242,33 @@ Content rephrased for compliance with licensing restrictions.
 请生成完整的 Rakuten 日语 Listing：
 
 1. 商品名（日语，80-120 字符）
-   - 格式：【品牌名】产品名 核心属性 | 関連キーワード
-   - Rakuten 标题可以包含【】和 | 分隔符
-   - 包含搜索热词
+- 格式：【品牌名】产品名 核心属性 | 関連キーワード
+- Rakuten 标题可以包含【】和 | 分隔符
+- 包含搜索热词
 
 2. キャッチコピー（宣传语，20-30 字符）
-   - 简短有力，突出核心价值
+- 简短有力，突出核心价值
 
 3. 商品説明（500-1000 字，です/ます体）
-   - 开头：产品概述+核心价值
-   - 中间：详细功能说明+使用场景
-   - 结尾：品質保証+售后承诺
-   - 包含 HTML 格式（Rakuten 支持自定义 HTML）
+- 开头：产品概述+核心价值
+- 中间：详细功能说明+使用场景
+- 结尾：品質保証+售后承诺
+- 包含 HTML 格式（Rakuten 支持自定义 HTML）
 
 4. 商品スペック（规格表，所有技术参数）
 
 5. 推荐キーワード（10-15 个日语搜索词）
 
 6. 店铺页面文案建议
-   - ブランドストーリー（品牌故事）
-   - 選ばれる理由（为什么选择我们）
-   - お客様の声（客户评价精选）
+- ブランドストーリー（品牌故事）
+- 選ばれる理由（为什么选择我们）
+- お客様の声（客户评价精选）
 
 注意：
 - 使用です/ます体，强调品質、安心、保証
 - 日本消费者喜欢详细的使用说明和注意事项
 - 包含"送料無料"标识（如果适用）
-- 提及积分倍率（ポイント○倍）
+- 提及积分倍率（ポイント倍）
 ```
 
 ### 3.3 Rakuten 店铺页面设计
@@ -279,13 +279,13 @@ Rakuten 最大的差异是店铺页面可以完全自定义（HTML/CSS）：
 Rakuten 店铺页面结构建议：
 
 トップページ（首页）
-├── ヘッダー：品牌 logo + 导航 + 搜索
-├── メインバナー：当前促销/新品
-├── カテゴリー：按产品线分类
-├── ランキング：店铺热销 Top 5
-├── 新着商品：最近上架的产品
-├── レビュー：好评截图精选
-└── フッター：店铺信息+联系方式+退货政策
+ヘッダー：品牌 logo + 导航 + 搜索
+メインバナー：当前促销/新品
+カテゴリー：按产品线分类
+ランキング：店铺热销 Top 5
+新着商品：最近上架的产品
+レビュー：好评截图精选
+フッター：店铺信息+联系方式+退货政策
 ```
 
 ### 3.4 Rakuten 广告系统
@@ -344,8 +344,8 @@ Rakuten 店铺页面结构建议：
 - [ ] 探索 YouTube Shopping × Rakuten 合作机会
 
 ---
-> 🏠 [Hub 首页](../../README.md) · 📋 [Path D 总览](README.md) · 📊 [平台对比](platform-comparison.md)
-> 
+> [Hub 首页](../../README.md) · [Path D 总览](README.md) · [平台对比](platform-comparison.md)
+>
 > **Path D**: [D1 Shopify](shopify-ai-guide.md) · [D2 TikTok](tiktok-shop-ai-guide.md) · [D3 跨平台](cross-platform-strategy.md) · [D4 Walmart](d4-walmart-ai-guide.md) · [D5 Temu](d5-temu-seller-guide.md) · [D6 东南亚](d6-southeast-asia-ai-guide.md) · [D7 拉美](d7-mercado-libre-ai-guide.md) · [D8 日本](d8-rakuten-japan-ai-guide.md) · [D9 eBay](d9-ebay-ai-guide.md) · [D10 AliExpress](d10-aliexpress-ai-guide.md) · [D11 韩国](d11-coupang-korea-ai-guide.md) · [D12 Faire](d12-faire-wholesale-ai-guide.md) · [D13 欧洲](d13-europe-marketplaces-guide.md)
-> 
+>
 > **快速跳转**: [Path 0 基础](../0-foundations/) · [Path A 运营](../a-operators/) · [Path B 技术](../b-developers/) · [Path C 管理](../c-managers/) · [Path E 社交媒体](../e-social-media/)

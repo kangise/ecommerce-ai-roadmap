@@ -1,6 +1,6 @@
 # Listing 与内容创作 Prompt 模板 | Listing Optimization Prompts
 
-> 最后更新: 2026-03-10 | 模板数量: 3 | 验证状态: ✅ 已验证
+> 最后更新: 2026-03-10 | 模板数量: 3 | 验证状态: 已验证
 
 ---
 
@@ -8,7 +8,7 @@
 
 **场景**: 从零生成完整的 Amazon Listing（标题、五点、描述、Search Terms）
 **推荐工具**: ChatGPT / Claude
-**验证状态**: ✅ 已验证
+**验证状态**: 已验证
 **贡献者**: [@kangise](https://github.com/kangise)
 
 ### Prompt
@@ -45,8 +45,8 @@
 
 ---
 
-📎 **分享此模板**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/prompts/listing-optimization.md#模板-1-listing-全套生成`
-🏠 **来源**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) — AI × 跨境电商实战知识库
+**分享此模板**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/prompts/listing-optimization.md#模板-1-listing-全套生成`
+**来源**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) AI × 跨境电商实战知识库
 
 ---
 
@@ -54,7 +54,7 @@
 
 **场景**: 将英文 Listing 本地化为其他语言，不是直译而是适配当地市场
 **推荐工具**: ChatGPT / Claude / DeepL
-**验证状态**: ✅ 已验证
+**验证状态**: 已验证
 **贡献者**: [@kangise](https://github.com/kangise)
 
 ### Prompt
@@ -83,8 +83,8 @@
 
 ---
 
-📎 **分享此模板**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/prompts/listing-optimization.md#模板-2-多语言本地化`
-🏠 **来源**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) — AI × 跨境电商实战知识库
+**分享此模板**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/prompts/listing-optimization.md#模板-2-多语言本地化`
+**来源**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) AI × 跨境电商实战知识库
 
 ---
 
@@ -92,7 +92,7 @@
 
 **场景**: 对比分析多个竞品 Listing，找到差异化定位机会
 **推荐工具**: ChatGPT / Claude
-**验证状态**: ✅ 已验证
+**验证状态**: 已验证
 **贡献者**: [@kangise](https://github.com/kangise)
 
 ### Prompt
@@ -123,5 +123,5 @@
 
 ---
 
-📎 **分享此模板**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/prompts/listing-optimization.md#模板-3-竞品-listing-策略拆解`
-🏠 **来源**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) — AI × 跨境电商实战知识库
+**分享此模板**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/prompts/listing-optimization.md#模板-3-竞品-listing-策略拆解`
+**来源**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) AI × 跨境电商实战知识库

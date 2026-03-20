@@ -4,15 +4,15 @@
 
 > **Path**: Path C: Managers · **Module**: C4
 > **Last Updated**: 2026-03-15
-> **Difficulty**: ⭐⭐ Intermediate
+> **Difficulty**: Intermediate
 > **Estimated Time**: 3-4 hours (intensive)
 > **Prerequisite**: [C1 AI Capability Assessment](c1-ai-assessment.md)
 
-🏠 [Hub Home](../../README.md) · 📋 [Path C Overview](README.md)
+[Hub Home](../../README.md) · [Path C Overview](README.md)
 
 ---
 
-## 📖 Chapter Navigation
+## Chapter Navigation
 
 1. [Why Managers Must Care About AI Risk](#1-why-managers-must-care-about-ai-risk) · 2. [AI Hallucination Risk](#2-ai-hallucination-risk) · 3. [Data Privacy & Compliance](#3-data-privacy--compliance) · 4. [Legal Risks of AI-Generated Content](#4-legal-risks-of-ai-generated-content) · 5. [Agentic AI Security](#5-agentic-ai-security) · 6. [AI Governance Framework](#6-ai-governance-framework) · 7. [Prompt Templates](#7-prompt-templates) · 8. [Completion Checklist](#8-completion-checklist)
 
@@ -24,7 +24,7 @@
 - An AI governance policy (usage guidelines + review process + incident response plan)
 - An AI compliance checklist (GDPR / EU AI Act / Amazon BSA)
 
-> 💡 **Core Principle**: 2026 is the year of AI regulatory enforcement. The EU AI Act enters full applicability, US state AI regulations take effect, and Amazon BSA has updated AI Agent compliance requirements. Managers can't just focus on AI efficiency gains — they must also manage AI risks.
+> **Core Principle**: 2026 is the year of AI regulatory enforcement. The EU AI Act enters full applicability, US state AI regulations take effect, and Amazon BSA has updated AI Agent compliance requirements. Managers can't just focus on AI efficiency gains they must also manage AI risks.
 
 ---
 
@@ -38,16 +38,16 @@ Content rephrased for compliance with licensing restrictions.
 
 | Risk Category | Specific Risk | Impact | Probability |
 |----------|---------|------|---------|
-| AI Hallucination | AI generates incorrect product info/return policies/prices | Customer complaints, legal disputes | 🔴 High |
-| Data Leak | Customer data transmitted through AI models | GDPR fines, trust erosion | 🟡 Medium |
-| Copyright Infringement | AI-generated images/copy infringes others' copyright | Lawsuits, Listing removal | 🟡 Medium |
-| Compliance Violation | AI tools don't comply with platform policies (Amazon BSA) | Account suspension | 🟡 Medium |
-| Bias & Discrimination | AI produces discriminatory results in pricing/customer service | Legal risk, brand damage | 🟢 Low |
-| Agent Out of Control | Agentic AI executes incorrect operations (e.g., wrong price changes) | Direct financial loss | 🟡 Medium |
+| AI Hallucination | AI generates incorrect product info/return policies/prices | Customer complaints, legal disputes | High |
+| Data Leak | Customer data transmitted through AI models | GDPR fines, trust erosion | Medium |
+| Copyright Infringement | AI-generated images/copy infringes others' copyright | Lawsuits, Listing removal | Medium |
+| Compliance Violation | AI tools don't comply with platform policies (Amazon BSA) | Account suspension | Medium |
+| Bias & Discrimination | AI produces discriminatory results in pricing/customer service | Legal risk, brand damage | Low |
+| Agent Out of Control | Agentic AI executes incorrect operations (e.g., wrong price changes) | Direct financial loss | Medium |
 
 ### 1.2 2026 AI Regulatory Environment
 
-> **Real Data**: 2026 is the year of AI regulatory enforcement. The EU AI Act enters full applicability, Colorado's AI Act takes effect, and global regulators expect to see documented governance plans — not just policies ([SecurePrivacy](https://secureprivacy.ai/blog/ai-risk-compliance-2026)). The gray area where companies deployed AI systems with minimal oversight for years has ended ([Kiteworks](https://www.kiteworks.com/cybersecurity-risk-management/ai-regulation-2026-business-compliance-guide/)).
+> **Real Data**: 2026 is the year of AI regulatory enforcement. The EU AI Act enters full applicability, Colorado's AI Act takes effect, and global regulators expect to see documented governance plans not just policies ([SecurePrivacy](https://secureprivacy.ai/blog/ai-risk-compliance-2026)). The gray area where companies deployed AI systems with minimal oversight for years has ended ([Kiteworks](https://www.kiteworks.com/cybersecurity-risk-management/ai-regulation-2026-business-compliance-guide/)).
 
 Content rephrased for compliance with licensing restrictions.
 
@@ -79,28 +79,28 @@ Content rephrased for compliance with licensing restrictions.
 AI Hallucination Prevention Framework (Manager's Version):
 
 Layer 1: Human Review (Required)
-├── All AI-generated customer-facing content must be human-reviewed
-├── Establish review SOP (who reviews, what to review, how often)
-├── Critical content (prices/policies/certifications) requires dual review
-└── Archive review records
+All AI-generated customer-facing content must be human-reviewed
+Establish review SOP (who reviews, what to review, how often)
+Critical content (prices/policies/certifications) requires dual review
+Archive review records
 
 Layer 2: Technical Safeguards
-├── Use RAG (Retrieval-Augmented Generation) to reduce hallucinations
-├── Set confidence thresholds for AI output
-├── Use API verification for critical data (prices/inventory) instead of AI generation
-└── Regularly test AI output accuracy
+Use RAG (Retrieval-Augmented Generation) to reduce hallucinations
+Set confidence thresholds for AI output
+Use API verification for critical data (prices/inventory) instead of AI generation
+Regularly test AI output accuracy
 
 Layer 3: Process Controls
-├── Label AI-generated content as "AI-assisted"
-├── Establish AI error reporting and tracking mechanisms
-├── Conduct regular AI output quality audits
-└── Build emergency response procedures for AI errors
+Label AI-generated content as "AI-assisted"
+Establish AI error reporting and tracking mechanisms
+Conduct regular AI output quality audits
+Build emergency response procedures for AI errors
 
 Layer 4: Training
-├── Team understands the concept and manifestations of AI hallucinations
-├── Knows which scenarios have the highest hallucination risk
-├── Knows how to verify AI output
-└── Knows how to escalate when errors are found
+Team understands the concept and manifestations of AI hallucinations
+Knows which scenarios have the highest hallucination risk
+Knows how to verify AI output
+Knows how to escalate when errors are found
 ```
 
 ---
@@ -122,38 +122,38 @@ Layer 4: Training
 请评估数据隐私风险：
 
 1. 每个工具处理了哪些类型的数据？
-   - 产品数据（公开）
-   - 销售数据（内部机密）
-   - 客户数据（个人信息，受 GDPR/CCPA 保护）
-   - 财务数据（内部机密）
+- 产品数据（公开）
+- 销售数据（内部机密）
+- 客户数据（个人信息，受 GDPR/CCPA 保护）
+- 财务数据（内部机密）
 
 2. 每个工具的数据处理政策
-   - 是否用用户数据训练模型？
-   - 数据存储在哪里？
-   - 数据保留多长时间？
+- 是否用用户数据训练模型？
+- 数据存储在哪里？
+- 数据保留多长时间？
 
 3. 风险等级评估（高/中/低）
 
 4. 建议的防护措施
-   - 哪些数据不应该输入 AI 工具？
-   - 是否需要使用企业版（数据不用于训练）？
-   - 是否需要本地部署的 AI 模型？
+- 哪些数据不应该输入 AI 工具？
+- 是否需要使用企业版（数据不用于训练）？
+- 是否需要本地部署的 AI 模型？
 
 5. 合规检查清单
-   - GDPR 合规（如果有欧洲客户）
-   - CCPA 合规（如果有加州客户）
-   - Amazon 数据使用政策合规
+- GDPR 合规（如果有欧洲客户）
+- CCPA 合规（如果有加州客户）
+- Amazon 数据使用政策合规
 ```
 
 ### 3.2 Data Classification & Handling Rules
 
 | Data Category | Examples | Can It Be Input to AI? | Conditions |
 |----------|------|-------------|------|
-| Public data | Product descriptions, competitor Listings | ✅ Yes | No restrictions |
-| Internal data | Sales reports, advertising data | ⚠️ Conditional | Use enterprise AI (data not used for training) |
-| Customer PII | Names, emails, addresses | ❌ No | Must be anonymized before use |
-| Financial data | Profits, costs, bank information | ❌ No | Use local AI or anonymize |
-| Supplier data | Purchase prices, contract terms | ❌ No | Trade secrets |
+| Public data | Product descriptions, competitor Listings | Yes | No restrictions |
+| Internal data | Sales reports, advertising data | Conditional | Use enterprise AI (data not used for training) |
+| Customer PII | Names, emails, addresses | No | Must be anonymized before use |
+| Financial data | Profits, costs, bank information | No | Use local AI or anonymize |
+| Supplier data | Purchase prices, contract terms | No | Trade secrets |
 
 ---
 
@@ -163,29 +163,29 @@ Layer 4: Training
 
 | AI Tool | Commercial Use | Copyright Ownership | Indemnification | Risk Level |
 |---------|---------|---------|---------|---------|
-| ChatGPT Plus | ✅ | User | None | 🟢 Low |
-| Claude Pro | ✅ | User | None | 🟢 Low |
-| Midjourney (Paid) | ✅ | User | None | 🟢 Low |
-| DALL-E 3 | ✅ | User | None | 🟢 Low |
-| Adobe Firefly | ✅ | User | ✅ Has indemnification | 🟢 Lowest |
-| Free AI tools | ⚠️ Check terms | Uncertain | None | 🟡 Medium |
-| Open-source models | ⚠️ Check license | Depends on license | None | 🟡 Medium |
+| ChatGPT Plus | | User | None | Low |
+| Claude Pro | | User | None | Low |
+| Midjourney (Paid) | | User | None | Low |
+| DALL-E 3 | | User | None | Low |
+| Adobe Firefly | | User | Has indemnification | Lowest |
+| Free AI tools | Check terms | Uncertain | None | Medium |
+| Open-source models | Check license | Depends on license | None | Medium |
 
-> 📎 **Detailed Methodology**: [A12 IP Protection](../a-operators/a12-ip-protection.md#6-copyright-issues-with-ai-generated-content) — See A12 for copyright issues with AI-generated content
+> **Detailed Methodology**: [A12 IP Protection](../a-operators/a12-ip-protection.md#6-copyright-issues-with-ai-generated-content) See A12 for copyright issues with AI-generated content
 
 ### 4.2 AI Content Compliance Checklist
 
 ```
 Pre-publication Checklist for AI-Generated Content:
 
-□ Factual accuracy: Do product specs, features, and materials match the actual product?
-□ Legal compliance: Does it contain false advertising? Does it comply with advertising laws?
-□ Copyright check: Do AI-generated images resemble known brands/IP?
-□ Trademark check: Are others' trademarks inadvertently used?
-□ Platform policy: Does it comply with Amazon/Shopify content policies?
-□ Cultural sensitivity: Are there cultural issues in multilingual content?
-□ Data anonymization: Does it contain customer personal information?
-□ AI labeling: Does it need to be marked as "AI-generated" (required by some platforms/regulations)?
+Factual accuracy: Do product specs, features, and materials match the actual product?
+Legal compliance: Does it contain false advertising? Does it comply with advertising laws?
+Copyright check: Do AI-generated images resemble known brands/IP?
+Trademark check: Are others' trademarks inadvertently used?
+Platform policy: Does it comply with Amazon/Shopify content policies?
+Cultural sensitivity: Are there cultural issues in multilingual content?
+Data anonymization: Does it contain customer personal information?
+AI labeling: Does it need to be marked as "AI-generated" (required by some platforms/regulations)?
 ```
 
 ---
@@ -212,24 +212,24 @@ Content rephrased for compliance with licensing restrictions.
 Four Levels of Agentic AI Governance:
 
 Level 1: AI-Assisted (Most teams currently)
-├── AI generates suggestions, humans execute
-├── Risk: Low (humans are the final decision-makers)
-└── Governance: Basic usage guidelines
+AI generates suggestions, humans execute
+Risk: Low (humans are the final decision-makers)
+Governance: Basic usage guidelines
 
 Level 2: AI Semi-automated (2026 mainstream)
-├── AI executes low-risk operations; high-risk requires human confirmation
-├── Risk: Medium (clear permission boundaries needed)
-└── Governance: Operation auditing + human confirmation mechanisms
+AI executes low-risk operations; high-risk requires human confirmation
+Risk: Medium (clear permission boundaries needed)
+Governance: Operation auditing + human confirmation mechanisms
 
 Level 3: AI Automated (Advanced teams)
-├── AI autonomously executes most operations
-├── Risk: High (comprehensive security mechanisms needed)
-└── Governance: Real-time monitoring + anomaly detection + rollback mechanisms
+AI autonomously executes most operations
+Risk: High (comprehensive security mechanisms needed)
+Governance: Real-time monitoring + anomaly detection + rollback mechanisms
 
 Level 4: AI Autonomous (Future)
-├── AI Agent networks collaborate on complex tasks
-├── Risk: Very high
-└── Governance: Multi-layer security + human oversight + compliance auditing
+AI Agent networks collaborate on complex tasks
+Risk: Very high
+Governance: Multi-layer security + human oversight + compliance auditing
 ```
 
 ---
@@ -249,30 +249,30 @@ Level 4: AI Autonomous (Future)
 请帮我制定 AI 治理政策，包含：
 
 1. AI 使用规范
-   - 允许使用 AI 的场景
-   - 禁止使用 AI 的场景
-   - 需要人工审核的场景
-   - 数据输入限制（哪些数据不能输入 AI）
+- 允许使用 AI 的场景
+- 禁止使用 AI 的场景
+- 需要人工审核的场景
+- 数据输入限制（哪些数据不能输入 AI）
 
 2. 审核流程
-   - AI 生成内容的审核 SOP
-   - 审核责任人和时间要求
-   - 审核记录和存档
+- AI 生成内容的审核 SOP
+- 审核责任人和时间要求
+- 审核记录和存档
 
 3. 风险管理
-   - AI 错误的报告流程
-   - 应急响应预案
-   - 定期风险评估（频率和方法）
+- AI 错误的报告流程
+- 应急响应预案
+- 定期风险评估（频率和方法）
 
 4. 合规要求
-   - GDPR/CCPA 合规措施
-   - Amazon/Shopify 平台政策合规
-   - AI 生成内容标识要求
+- GDPR/CCPA 合规措施
+- Amazon/Shopify 平台政策合规
+- AI 生成内容标识要求
 
 5. 培训计划
-   - 新员工 AI 使用培训
-   - 定期更新培训（AI 工具和政策变化）
-   - AI 风险意识培训
+- 新员工 AI 使用培训
+- 定期更新培训（AI 工具和政策变化）
+- AI 风险意识培训
 ```
 
 ### 6.2 AI Incident Response Plan
@@ -317,8 +317,8 @@ Level 4: AI Autonomous (Future)
 - [ ] Complete team AI risk awareness training
 
 ---
-> 🏠 [Hub Home](../../README.md) · 📋 [Path C Overview](README.md)
-> 
+> [Hub Home](../../README.md) · [Path C Overview](README.md)
+>
 > **Path C**: [C1 Assessment](c1-ai-assessment.md) · [C2 Upskilling](c2-team-building.md) · [C3 ROI Evaluation](c3-roi-evaluation.md) · [C4 Risk & Governance](c4-ai-risk-governance.md) · [C5 Competitive Intelligence](c5-competitive-intelligence.md)
-> 
+>
 > **Quick Jump**: [Path 0 Foundations](../0-foundations/) · [Path A Operations](../a-operators/) · [Path B Developers](../b-developers/) · [Path D Multi-platform](../d-platforms/) · [Path E Social Media](../e-social-media/)

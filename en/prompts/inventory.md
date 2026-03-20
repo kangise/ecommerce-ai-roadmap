@@ -66,14 +66,14 @@ Slow-moving product information:
 Please output:
 1. Slow-moving severity assessment (Mild / Moderate / Severe)
 2. Disposal options ranked by priority:
-   - Price reduction promotion (suggested price and expected clearance timeline)
-   - Outlet / Warehouse Deals
-   - Transfer to overseas warehouse
-   - Disposal (cost-benefit comparison)
+- Price reduction promotion (suggested price and expected clearance timeline)
+- Outlet / Warehouse Deals
+- Transfer to overseas warehouse
+- Disposal (cost-benefit comparison)
 3. Cost-benefit analysis for each option
 4. Recommended option and execution timeline
 ```
 
 ---
 
-⬅️ [Back to Prompt Template Library](README.md) | 📦 [A5 Inventory Management Module](../paths/a-operators/a5-inventory.md)
+[Back to Prompt Template Library](README.md) | [A5 Inventory Management Module](../paths/a-operators/a5-inventory.md)

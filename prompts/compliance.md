@@ -1,6 +1,6 @@
 # 合规风控与库存管理 Prompt 模板 | Compliance & Inventory Prompts
 
-> 最后更新: 2026-03-10 | 模板数量: 2 | 验证状态: ✅ 已验证
+> 最后更新: 2026-03-10 | 模板数量: 2 | 验证状态: 已验证
 
 ---
 
@@ -8,7 +8,7 @@
 
 **场景**: 快速查询不同国家/品类的合规要求，生成合规清单
 **推荐工具**: ChatGPT / Claude / Gemini
-**验证状态**: ✅ 已验证
+**验证状态**: 已验证
 **贡献者**: [@kangise](https://github.com/kangise)
 
 ### Prompt
@@ -37,8 +37,8 @@
 
 ---
 
-📎 **分享此模板**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/prompts/compliance.md#模板-1-多市场合规对比`
-🏠 **来源**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) — AI × 跨境电商实战知识库
+**分享此模板**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/prompts/compliance.md#模板-1-多市场合规对比`
+**来源**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) AI × 跨境电商实战知识库
 
 ---
 
@@ -46,7 +46,7 @@
 
 **场景**: 基于历史销量数据计算最优补货时间和采购量
 **推荐工具**: ChatGPT / Claude
-**验证状态**: ✅ 已验证
+**验证状态**: 已验证
 **贡献者**: [@kangise](https://github.com/kangise)
 
 ### Prompt
@@ -78,5 +78,5 @@
 
 ---
 
-📎 **分享此模板**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/prompts/compliance.md#模板-2-补货决策分析`
-🏠 **来源**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) — AI × 跨境电商实战知识库
+**分享此模板**: `https://github.com/kangise/ecommerce-ai-roadmap/blob/main/prompts/compliance.md#模板-2-补货决策分析`
+**来源**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap) AI × 跨境电商实战知识库

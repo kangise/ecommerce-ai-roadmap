@@ -2,19 +2,19 @@
 
 # D2. TikTok Shop AI Playbook
 
-> **Path**: Path D: Multi-Platform · **Module**: D2  
-> **Last Updated**: 2026-03-13  
-> **Difficulty**: ⭐⭐ Intermediate  
-> **Estimated Time**: 2-3 hours  
+> **Path**: Path D: Multi-Platform · **Module**: D2
+> **Last Updated**: 2026-03-13
+> **Difficulty**: Intermediate
+> **Estimated Time**: 2-3 hours
 > **Prerequisites**: [Path 0 Foundations](../0-foundations/) · [AI Landscape Assessment](../0-foundations/ai-landscape.md)
 
-🏠 [Hub Home](../../README.md) · 📋 [Path D Overview](README.md)
+[Hub Home](../../README.md) · [Path D Overview](README.md)
 
 ---
 
-## 📖 Module Navigation
+## Module Navigation
 
-1. [TikTok Shop vs Amazon vs Shopify](#1-tiktok-shop-vs-amazon-vs-shopify) · 2. [Short Video Content Creation](#2-ai-short-video-content-creation) · 3. [Creator Collaboration & Matching](#3-creator-collaboration--ai-matching) · 4. [Live Commerce](#4-live-commerce--ai) · 5. [Product Optimization](#5-product-page--seo-optimization) · 6. [Ad Optimization](#6-tiktok-ads-ai-optimization) · 7. [Data Analytics](#7-data-analytics--operations-optimization) · 8. [Prompt Templates](#8-prompt-templatestiktok-shop-specific) · 9. [AI Tool Landscape](#9-ai-tool-landscape) · 10. [Common Pitfalls](#10-common-pitfalls) · 11. [Case Study](#11-case-study) · 12. [🦞 OpenClaw Automation](#12-automating-tiktok-shop-operations-with-openclaw) · 13. [Completion Checklist](#13-completion-checklist)
+1. [TikTok Shop vs Amazon vs Shopify](#1-tiktok-shop-vs-amazon-vs-shopify) · 2. [Short Video Content Creation](#2-ai-short-video-content-creation) · 3. [Creator Collaboration & Matching](#3-creator-collaboration--ai-matching) · 4. [Live Commerce](#4-live-commerce--ai) · 5. [Product Optimization](#5-product-page--seo-optimization) · 6. [Ad Optimization](#6-tiktok-ads-ai-optimization) · 7. [Data Analytics](#7-data-analytics--operations-optimization) · 8. [Prompt Templates](#8-prompt-templatestiktok-shop-specific) · 9. [AI Tool Landscape](#9-ai-tool-landscape) · 10. [Common Pitfalls](#10-common-pitfalls) · 11. [Case Study](#11-case-study) · 12. [ OpenClaw Automation](#12-automating-tiktok-shop-operations-with-openclaw) · 13. [Completion Checklist](#13-completion-checklist)
 
 ---
 
@@ -28,7 +28,7 @@ A complete TikTok Shop AI operations workflow. By the end, you'll have:
 - An AI optimization strategy for TikTok Ads
 - A TikTok Shop-specific prompt template library
 
-> 💡 **Core Principle**: TikTok Shop is "content-driven" e-commerce, fundamentally different from Amazon (search-driven) and Shopify (brand-driven). AI's core value on TikTok is content production efficiency — whoever can use AI to produce more quality short videos faster, wins.
+> **Core Principle**: TikTok Shop is "content-driven" e-commerce, fundamentally different from Amazon (search-driven) and Shopify (brand-driven). AI's core value on TikTok is content production efficiency whoever can use AI to produce more quality short videos faster, wins.
 
 
 ---
@@ -68,7 +68,7 @@ TikTok Creator Marketplace provides creator data. AI can:
 
 **Advantage 3: Algorithm-friendly = volume-friendly**
 
-TikTok's algorithm doesn't care about your follower count — it cares about content quality. AI helps you:
+TikTok's algorithm doesn't care about your follower count it cares about content quality. AI helps you:
 - Post 3-5 videos per day (impossible manually, achievable with AI)
 - Rapidly test different content angles (which hook works best)
 - Track trends and respond quickly (trending sounds/topics/formats)
@@ -80,34 +80,34 @@ Content rephrased for compliance with licensing restrictions. Sources: [TikTok S
 
 ## 2. AI Short Video Content Creation
 
-> 📎 **Related Reading**: [E1 Instagram/Facebook AI Guide](../e-social-media/e1-instagram-facebook-ai-guide.md#e1-instagram-facebook-ai-operations-guide-meta-ecosystem-ai-playbook) — See E1 for Instagram Reels short video methodology comparison
+> **Related Reading**: [E1 Instagram/Facebook AI Guide](../e-social-media/e1-instagram-facebook-ai-guide.md#e1-instagram-facebook-ai-operations-guide-meta-ecosystem-ai-playbook) See E1 for Instagram Reels short video methodology comparison
 
 ### 2.1 The Viral Video Structure Formula for TikTok
 
 ```
 First 3 seconds: Hook (grab attention, determines if user keeps watching)
-├── Pain point: "Have you ever experienced [problem]?"
-├── Contrast: "I spent $200 on this, and then..."
-├── Data-driven: "90% of people don't know [fact]"
-└── Suspense: "Watch till the end — you'll thank me"
+Pain point: "Have you ever experienced [problem]?"
+Contrast: "I spent $200 on this, and then..."
+Data-driven: "90% of people don't know [fact]"
+Suspense: "Watch till the end you'll thank me"
 
 3-15 seconds: Product showcase (show how the product solves the problem)
-├── Use-case demonstration
-├── Before/After comparison
-├── Unboxing
-└── Feature close-up
+Use-case demonstration
+Before/After comparison
+Unboxing
+Feature close-up
 
 15-25 seconds: Social proof + selling point reinforcement
-├── Customer reviews/UGC
-├── Sales data
-├── Expert endorsement
-└── Limited-time offer
+Customer reviews/UGC
+Sales data
+Expert endorsement
+Limited-time offer
 
 Last 3 seconds: CTA (drive action)
-├── "Click the product link below"
-├── "Tell me in the comments what color you want"
-├── "Follow me for more product recommendations"
-└── "Limited XX% off — act fast"
+"Click the product link below"
+"Tell me in the comments what color you want"
+"Follow me for more product recommendations"
+"Limited XX% off act fast"
 ```
 
 ### 2.2 AI Video Script Generation Prompt
@@ -127,7 +127,7 @@ Product info:
 Generate 5 video scripts (15-30 seconds each):
 
 Each script should include:
-1. Hook (first 3 seconds — lines/visuals that grab attention within 3 seconds)
+1. Hook (first 3 seconds lines/visuals that grab attention within 3 seconds)
 2. Body (product showcase method + lines/voiceover)
 3. CTA (purchase-driving copy)
 4. On-screen text overlay (key text displayed on each frame)
@@ -158,32 +158,32 @@ Use a different angle for each of the 5 scripts:
 
 ```
 Step 1: Content planning (AI-assisted, 30 min/week)
-├── Use AI to analyze this week's TikTok trends (topics/sounds/formats)
-├── Use AI to generate 15-20 video scripts (5 products × 4 angles)
-├── Select top 10 scripts for production
-└── Output: Weekly content calendar
+Use AI to analyze this week's TikTok trends (topics/sounds/formats)
+Use AI to generate 15-20 video scripts (5 products × 4 angles)
+Select top 10 scripts for production
+Output: Weekly content calendar
 
 Step 2: Asset preparation (1-2 hours)
-├── Product footage (reusable)
-├── AI-generated product scene images
-├── User UGC footage (if available)
-└── Output: Asset library
+Product footage (reusable)
+AI-generated product scene images
+User UGC footage (if available)
+Output: Asset library
 
 Step 3: Video production (AI-assisted, 10-15 min per video)
-├── CapCut AI auto-edit (select template → import assets → one-click production)
-├── AI voiceover + auto-subtitles
-├── Add text overlays and effects
-└── Output: 10+ finished videos
+CapCut AI auto-edit (select template → import assets → one-click production)
+AI voiceover + auto-subtitles
+Add text overlays and effects
+Output: 10+ finished videos
 
 Step 4: Publishing & optimization (15 min/day)
-├── Publish at optimal times (AI-recommended)
-├── Monitor first 2 hours of data (views/completion rate/engagement rate)
-├── High-performing videos → boost with Spark Ads
-├── Low-performing videos → analyze reasons, adjust next batch
-└── Output: Consistent 3-5 videos published daily
+Publish at optimal times (AI-recommended)
+Monitor first 2 hours of data (views/completion rate/engagement rate)
+High-performing videos → boost with Spark Ads
+Low-performing videos → analyze reasons, adjust next batch
+Output: Consistent 3-5 videos published daily
 ```
 
-> 💡 **Key Metrics**: TikTok's algorithm prioritizes completion rate (>40% is good) and engagement rate (>5% is good). AI helps you rapidly test different hooks to find the opening with the highest completion rate.
+> **Key Metrics**: TikTok's algorithm prioritizes completion rate (>40% is good) and engagement rate (>5% is good). AI helps you rapidly test different hooks to find the opening with the highest completion rate.
 
 Content rephrased for compliance with licensing restrictions. Sources: [EComposer AI TikTok Generators](https://ecomposer.io/blogs/tool-software/ai-tiktok-video-generators), [Benly TikTok Ads Tools](https://benly.ai/learn/ai-marketing/best-tiktok-ads-tools-2026)
 
@@ -192,7 +192,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [ECompose
 
 ## 3. Creator Collaboration & AI Matching
 
-> 📎 **Related Reading**: [E3 Xiaohongshu AI Guide](../e-social-media/e3-xiaohongshu-ai-guide.md#4-kolkoc-collaboration-ai-methodology) — See E3 for Xiaohongshu KOL/KOC collaboration methodology
+> **Related Reading**: [E3 Xiaohongshu AI Guide](../e-social-media/e3-xiaohongshu-ai-guide.md#4-kolkoc-collaboration-ai-methodology) See E3 for Xiaohongshu KOL/KOC collaboration methodology
 
 ### 3.1 Creator Collaboration Models
 
@@ -243,27 +243,27 @@ Output creator screening criteria:
 1. Follower range (recommend Nano/Micro/Mid/Macro tier with reasoning)
 2. Content type match (which content tags/topics are most relevant)
 3. Data metric thresholds:
-   - Minimum engagement rate: [X]% (below this indicates poor follower quality)
-   - Minimum completion rate: [X]% (below this indicates poor content quality)
-   - Sales conversion rate benchmark: [X]% (if sales history exists)
+- Minimum engagement rate: [X]% (below this indicates poor follower quality)
+- Minimum completion rate: [X]% (below this indicates poor content quality)
+- Sales conversion rate benchmark: [X]% (if sales history exists)
 4. Red flags (which creators to avoid):
-   - Abnormal follower growth (possible purchased followers)
-   - Extremely low engagement (<1%, many bot followers)
-   - Frequent sponsored posts (audience already has "ad fatigue")
-   - Content style completely mismatched with product
+- Abnormal follower growth (possible purchased followers)
+- Extremely low engagement (<1%, many bot followers)
+- Frequent sponsored posts (audience already has "ad fatigue")
+- Content style completely mismatched with product
 5. Outreach message templates (3 variants: formal/casual/benefit-driven)
 6. Collaboration brief template (filming guide for creators)
 
 Why this prompt works:
 The most common mistake in creator screening is "only looking at follower count."
-This prompt requires AI to evaluate creators across multiple dimensions —
-engagement rate, completion rate, content relevance — avoiding the trap of
+This prompt requires AI to evaluate creators across multiple dimensions
+engagement rate, completion rate, content relevance avoiding the trap of
 paying for a creator with "lots of followers but no sales impact."
 ```
 
 ### 3.4 Creator Briefs: Give Direction, Not a Script
 
-Many sellers hand creators a word-for-word script to read. This is the biggest mistake — creators know their audience best. Reading a script word-for-word makes the video look like an ad, tanking both completion rate and conversion rate.
+Many sellers hand creators a word-for-word script to read. This is the biggest mistake creators know their audience best. Reading a script word-for-word makes the video look like an ad, tanking both completion rate and conversion rate.
 
 Good Brief vs. Bad Brief:
 
@@ -284,14 +284,14 @@ Good Brief vs. Bad Brief:
 | Mid (100K-500K) | $500-5K | Broad reach, influential | AI ROI prediction + negotiation tips |
 | Macro (500K+) | $5K+ | Brand endorsement, massive exposure | AI audience overlap analysis |
 
-> 💡 **Practical Tip**: The optimal strategy for cross-border e-commerce sellers is "100 Nano + 20 Micro" rather than "1 Macro." AI enables you to manage 100+ creator partnerships simultaneously.
+> **Practical Tip**: The optimal strategy for cross-border e-commerce sellers is "100 Nano + 20 Micro" rather than "1 Macro." AI enables you to manage 100+ creator partnerships simultaneously.
 
 
 ---
 
 ## 4. Live Commerce & AI
 
-> 📎 **Related Reading**: [D6 Southeast Asia AI Guide](d6-southeast-asia-ai-guide.md#d6-southeast-asia-e-commerce-ai-guide-shopee-lazada) — See D6 for Southeast Asia live commerce details
+> **Related Reading**: [D6 Southeast Asia AI Guide](d6-southeast-asia-ai-guide.md#d6-southeast-asia-e-commerce-ai-guide-shopee-lazada) See D6 for Southeast Asia live commerce details
 
 ### 4.1 Why LIVE Is the Primary GMV Driver for TikTok Shop
 
@@ -365,7 +365,7 @@ Opening (0-5 min) -- Goal: Retain viewers
 
 Product showcase (5-20 min) -- Goal: Seed interest
 - Talking points for each SKU:
-  2 min pain point/scenario + 2 min demo + 1 min price reveal
+2 min pain point/scenario + 2 min demo + 1 min price reveal
 - Engagement touchpoint every 5 minutes
 - Urgency copy ("Only XX units left," "This price is today only")
 - Key metric: Product click rate >5%
@@ -382,7 +382,7 @@ Wrap-up (25-30 min) -- Goal: Follower retention
 
 Why this prompt works:
 The core of live streaming is "pacing." When to retain, when to seed,
-when to push for orders — each has an optimal time window.
+when to push for orders each has an optimal time window.
 This script designs pacing at the minute level, ensuring each phase
 has a clear objective. Beginner hosts following this script perform
 3-5x better than "winging it."
@@ -403,15 +403,15 @@ has a clear objective. Beginner hosts following this script perform
 | Description | Detailed specs + selling points | Short + conversational | TikTok users don't read long descriptions |
 | SEO | COSMO/Rufus semantic optimization | In-app search + hashtags | Different search algorithms |
 
-Core principle: The TikTok Shop product page isn't where you "convince users to buy" (that's the job of videos and live streams) — it's where users "confirm their purchase decision." After watching a video, users already want to buy; the product page just needs to confirm "yes, this is the right product."
+Core principle: The TikTok Shop product page isn't where you "convince users to buy" (that's the job of videos and live streams) it's where users "confirm their purchase decision." After watching a video, users already want to buy; the product page just needs to confirm "yes, this is the right product."
 
 ### 5.2 Three Keys to Product Page Optimization
 
-Key 1 — Hero image must be a lifestyle photo (not a white background)
+Key 1 Hero image must be a lifestyle photo (not a white background)
 
 TikTok product cards appear below videos and in search results. White background images look like ads in TikTok's feed, resulting in low click-through rates. Lifestyle images look like content, delivering 2-3x higher CTR.
 
-Key 2 — Title should read like a short video title (not an Amazon title)
+Key 2 Title should read like a short video title (not an Amazon title)
 
 Amazon title: "Portable Charger 10000mAh Power Bank USB-C Fast Charging Slim Lightweight for iPhone Samsung"
 TikTok title: "Never worry about a dead phone again | Pocket-sized fast charger"
@@ -422,9 +422,9 @@ TikTok title guidelines:
 - Write it like a short video title to attract clicks
 - Use "|" to separate selling points
 
-Key 3 — Video is the most important conversion element
+Key 3 Video is the most important conversion element
 
-The video on the product page isn't a "product introduction video" — it's your "best-performing sales video." Put your top-performing short video (highest completion rate and conversion rate) on the product page.
+The video on the product page isn't a "product introduction video" it's your "best-performing sales video." Put your top-performing short video (highest completion rate and conversion rate) on the product page.
 
 ### 5.3 TikTok Shop Product Optimization Prompt
 
@@ -466,7 +466,7 @@ Different stages call for different ad strategies:
 
 ```
 Stage 1: Cold start (monthly GMV <$5K, ad budget $0-$30/day)
-- Don't run ads — focus on organic content first
+- Don't run ads focus on organic content first
 - Post 1-3 videos per day, test what content works
 - Accumulate 10+ videos with organic views
 - Goal: Find 2-3 effective content directions
@@ -474,7 +474,7 @@ Stage 1: Cold start (monthly GMV <$5K, ad budget $0-$30/day)
 Stage 2: Validation (monthly GMV $5K-$20K, ad budget $30-$100/day)
 - Start running Spark Ads: boost organically strong videos (completion rate >40%)
 - Why Spark Ads over In-Feed: Spark Ads use already-validated content,
-  lower risk, lower CPM, higher conversion rate
+lower risk, lower CPM, higher conversion rate
 - Continue producing organic content (ads can't replace content)
 - Goal: Validate ad ROAS >2.0
 
@@ -500,7 +500,7 @@ How GMV Max works:
 ```
 You provide:
 - Product catalog (titles, images, prices, descriptions)
-- Video asset library (the more the better — AI auto-selects the best performers)
+- Video asset library (the more the better AI auto-selects the best performers)
 - Daily budget
 - Target ROAS (optional)
 
@@ -514,19 +514,19 @@ TikTok AI automatically:
 
 GMV Max performance depends on 3 variables you can control:
 
-Variable 1 — Asset quantity and quality (most important)
+Variable 1 Asset quantity and quality (most important)
 - AI needs enough assets to test and optimize
 - Minimum: 5 videos. Recommended: 20+ videos
 - Asset diversity matters: different hooks, styles, durations
 - Retire underperforming assets weekly and add fresh ones
 
-Variable 2 — Product feed quality
+Variable 2 Product feed quality
 - Title: Include search keywords but make it click-worthy (not Amazon-style)
 - Hero image: Lifestyle photo (not white background)
 - Price: Competitive (AI compares against same-category pricing)
 - Description: Short, conversational, includes core selling points
 
-Variable 3 — Shop Performance Score (SPS)
+Variable 3 Shop Performance Score (SPS)
 - Shops with SPS >= 4.0 receive better AI traffic allocation
 - Shops with SPS < 3.5 see significantly reduced ad performance
 - Improve SPS: Fast shipping, fast customer service response, low return rate
@@ -538,7 +538,7 @@ Content rephrased for compliance with licensing restrictions. Source: [Benly Tik
 
 ## 7. Data Analytics & Operations Optimization
 
-> 📎 **Related Reading**: [E7 Cross-Channel Strategy](../e-social-media/e7-social-media-cross-channel.md#e7-social-media-cross-channel-strategy) — See E7 for cross-channel content repurposing
+> **Related Reading**: [E7 Cross-Channel Strategy](../e-social-media/e7-social-media-cross-channel.md#e7-social-media-cross-channel-strategy) See E7 for cross-channel content repurposing
 
 ### 7.1 TikTok Shop Key Metrics
 
@@ -663,7 +663,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [KOL Spri
 | Pitfall | Why It's Wrong | Correct Approach |
 |---------|---------------|-----------------|
 | Applying Amazon thinking to TikTok | Amazon is search-driven; TikTok is content-driven. Posting spec sheets and white-background images gets zero traction on TikTok | TikTok demands lifestyle scenes, real people using products, entertaining content |
-| Over-polished video quality | Spending big on professional ad-quality production that looks like an ad | TikTok users trust "authenticity" more — phone-shot UGC-style content often converts better |
+| Over-polished video quality | Spending big on professional ad-quality production that looks like an ad | TikTok users trust "authenticity" more phone-shot UGC-style content often converts better |
 | Posting frequency too low | 1-2 posts per week gives the algorithm insufficient data to learn your content | At least 1 per day, ideally 3-5. AI enables batch production |
 | Relying solely on organic traffic | Waiting for organic virality could mean months with no results | Organic content + Spark Ads amplification is the standard playbook |
 | One-off creator partnerships | Finding new creators every time without building long-term relationships | Build a creator network; maintain long-term partnerships with top performers |
@@ -712,7 +712,7 @@ Key data:
 
 Key success factor analysis:
 
-1. Leveraging Amazon Review data for hooks: This brand had 3,000+ reviews on Amazon. AI analysis of negative reviews revealed "incorrect usage" as the most frequent complaint. They used "90% of people are using this product wrong" as a TikTok hook — 52% completion rate, far above other hooks.
+1. Leveraging Amazon Review data for hooks: This brand had 3,000+ reviews on Amazon. AI analysis of negative reviews revealed "incorrect usage" as the most frequent complaint. They used "90% of people are using this product wrong" as a TikTok hook 52% completion rate, far above other hooks.
 
 2. Intensive testing in the first 2 weeks: Published 20 videos in week one, each with a different hook type. Data showed "counter-intuitive" hooks had the highest completion rate (48%), while "pain point" hooks had the highest GMV conversion rate (3.2%). All subsequent videos focused on these two types.
 
@@ -785,7 +785,7 @@ OpenClaw auto-executes:
 
 ---
 
-⬅️ [Back to Path D Overview](README.md) | 🏠 [Back to Hub Home](../../README.md) | ⬅️ [D1 Shopify Guide](shopify-ai-guide.md)
+[Back to Path D Overview](README.md) | [Back to Hub Home](../../README.md) | [D1 Shopify Guide](shopify-ai-guide.md)
 
 
 ---
@@ -889,7 +889,7 @@ Key insight: The first 3 seconds determine completion rate, and completion rate 
 
 ### 15.2 Hook Design Methodology: Not "Grabbing Attention" but "Creating an Information Gap"
 
-Most people think of a hook as "using exaggeration to grab attention." But truly effective hooks "create an information gap" — making users feel they'll miss important information if they don't watch to the end.
+Most people think of a hook as "using exaggeration to grab attention." But truly effective hooks "create an information gap" making users feel they'll miss important information if they don't watch to the end.
 
 Information gap theory applied to TikTok:
 
@@ -898,8 +898,8 @@ Information gap theory applied to TikTok:
 | Suspense | User wants to know the outcome | "I spent $200 on this, and then..." | High |
 | Counter-intuitive | User wants to verify their assumptions | "90% of people are using this product wrong" | High |
 | Pain point | User wants to know the solution | "Have you ever experienced [problem]?" | Medium-high |
-| Data-driven | User wants to know the specific data | "This product sold 1 million units — why?" | Medium-high |
-| Comparison | User wants to know which is better | "$10 vs $100 — what's the difference?" | Medium-high |
+| Data-driven | User wants to know the specific data | "This product sold 1 million units why?" | Medium-high |
+| Comparison | User wants to know which is better | "$10 vs $100 what's the difference?" | Medium-high |
 
 Hook Generation Prompt:
 
@@ -914,7 +914,7 @@ Price: $[X]
 
 Requirements:
 - Each hook must create an "information gap" within 3 seconds
-  (make users feel they'll miss important info if they don't watch to the end)
+(make users feel they'll miss important info if they don't watch to the end)
 - Don't use empty hooks like "you have to watch this"
 - Label each hook with its information gap type (suspense/counter-intuitive/pain point/data/comparison)
 - Label each hook with expected completion rate (high/medium/low) and recommended filming approach
@@ -1003,7 +1003,7 @@ Most sellers only look at direct GMV from creators. But the true value of creato
 
 ```
 True Creator ROI =
-  (Direct GMV + Indirect GMV + Content Asset Value) / (Creator Fee + Sample Cost + Management Cost)
+(Direct GMV + Indirect GMV + Content Asset Value) / (Creator Fee + Sample Cost + Management Cost)
 
 Direct GMV: Sales directly from creator videos/live streams
 Indirect GMV: Brand search volume lift from creator content → organic traffic conversion (typically 0.3-0.5x of direct GMV)
@@ -1023,7 +1023,7 @@ Practical recommendation: The optimal strategy for cross-border e-commerce selle
 1. Higher total ROI (Nano creator ROI is typically 3-5x that of Macro)
 2. Risk diversification (one Macro creator flopping has massive impact; a few underperformers among 100 Nano creators is negligible)
 3. Content diversity (100 creators = 100 different content angles)
-4. AI can batch-manage Nano creators (screening, outreach, briefs, tracking — all automated)
+4. AI can batch-manage Nano creators (screening, outreach, briefs, tracking all automated)
 
 ### 16.2 Quantitative Scoring Model for AI Creator Screening
 
@@ -1034,39 +1034,39 @@ Creator Score = Content Relevance (30 pts) + Data Performance (30 pts) + Audienc
 
 Content Relevance (30 points):
 - Creator content category relevance to product (0-15 pts)
-  15 pts: Fully relevant (beauty creator promoting beauty products)
-  10 pts: Related (lifestyle creator promoting home products)
-  5 pts: Weakly related (comedy creator promoting any product)
-  0 pts: Unrelated
+15 pts: Fully relevant (beauty creator promoting beauty products)
+10 pts: Related (lifestyle creator promoting home products)
+5 pts: Weakly related (comedy creator promoting any product)
+0 pts: Unrelated
 
 - Creator content style match with product positioning (0-10 pts)
-  10 pts: Perfect match (professional review style promoting tech products)
-  5 pts: Acceptable (daily sharing style promoting everyday items)
-  0 pts: Mismatch (comedy style promoting premium products)
+10 pts: Perfect match (professional review style promoting tech products)
+5 pts: Acceptable (daily sharing style promoting everyday items)
+0 pts: Mismatch (comedy style promoting premium products)
 
 - Past sales category relevance (0-5 pts)
-  5 pts: Has promoted same category with good results
-  3 pts: Has promoted related categories
-  0 pts: Never sold or promoted completely unrelated categories
+5 pts: Has promoted same category with good results
+3 pts: Has promoted related categories
+0 pts: Never sold or promoted completely unrelated categories
 
 Data Performance (30 points):
 - Engagement rate = (likes + comments + shares) / views (0-10 pts)
-  10 pts: >8%
-  7 pts: 5-8%
-  4 pts: 3-5%
-  0 pts: <3%
+10 pts: >8%
+7 pts: 5-8%
+4 pts: 3-5%
+0 pts: <3%
 
 - Average completion rate over past 30 days (0-10 pts)
-  10 pts: >50%
-  7 pts: 35-50%
-  4 pts: 25-35%
-  0 pts: <25%
+10 pts: >50%
+7 pts: 35-50%
+4 pts: 25-35%
+0 pts: <25%
 
 - Product click rate on sales videos (0-10 pts)
-  10 pts: >5%
-  7 pts: 3-5%
-  4 pts: 1-3%
-  0 pts: <1% or no sales data
+10 pts: >5%
+7 pts: 3-5%
+4 pts: 1-3%
+0 pts: <1% or no sales data
 
 Audience Profile (20 points):
 - Audience age/gender overlap with target audience (0-10 pts)
@@ -1075,16 +1075,16 @@ Audience Profile (20 points):
 
 Cost Efficiency (20 points):
 - Estimated CPM (cost per thousand impressions) (0-10 pts)
-  10 pts: <$5
-  7 pts: $5-$15
-  4 pts: $15-$30
-  0 pts: >$30
+10 pts: <$5
+7 pts: $5-$15
+4 pts: $15-$30
+0 pts: >$30
 
 - Collaboration flexibility (0-10 pts)
-  10 pts: Accepts commission-only Affiliate
-  7 pts: Accepts seeding + commission
-  4 pts: Requires fixed fee + commission
-  0 pts: Only accepts high fixed fees
+10 pts: Accepts commission-only Affiliate
+7 pts: Accepts seeding + commission
+4 pts: Requires fixed fee + commission
+0 pts: Only accepts high fixed fees
 
 Scoring guide:
 80-100: Strongly recommend collaboration
@@ -1109,7 +1109,7 @@ Step 2: AI scoring (10 minutes)
 
 Step 3: Personalized outreach (AI-generated, 30 min/week)
 - AI generates personalized outreach messages based on each creator's content style
-- Not mass-sending the same message — each creator gets a custom message
+- Not mass-sending the same message each creator gets a custom message
 - Send via TikTok DM or email
 - Output: 10-20 creators who respond
 
@@ -1160,7 +1160,7 @@ not "just another brand spamming."
 
 ### 17.1 TikTok LIVE Traffic Acquisition Mechanics
 
-TikTok live stream traffic isn't "automatic when you go live" — the algorithm allocates it in real time based on live stream data:
+TikTok live stream traffic isn't "automatic when you go live" the algorithm allocates it in real time based on live stream data:
 
 ```
 Live stream traffic allocation algorithm:
@@ -1184,7 +1184,7 @@ Traffic source mix (healthy live stream):
 - Search: 5-10% (users searching product keywords find the live stream)
 ```
 
-Key insight: The live stream "flywheel effect" — good data → more traffic → more engagement and conversions → even better data → even more traffic. And vice versa. That's why the first 30 minutes must be an all-out effort to nail the data.
+Key insight: The live stream "flywheel effect" good data → more traffic → more engagement and conversions → even better data → even more traffic. And vice versa. That's why the first 30 minutes must be an all-out effort to nail the data.
 
 ### 17.2 Five Critical Data Metrics for Live Streams
 
@@ -1198,7 +1198,7 @@ Key insight: The live stream "flywheel effect" — good data → more traffic �
 
 ### 17.3 Live Stream Script Pacing Design
 
-Live streaming isn't "non-stop product introductions" — it has rhythm:
+Live streaming isn't "non-stop product introductions" it has rhythm:
 
 ```
 60-minute live stream pacing template:
@@ -1206,14 +1206,14 @@ Live streaming isn't "non-stop product introductions" — it has rhythm:
 0-5 minutes: Retention phase
 - Goal: Keep incoming viewers from leaving (boost watch duration)
 - Actions: Welcome + today's deals preview + loss-leader flash sale
-- Script: "Today's stream has [X] deals — the biggest one drops in [X] minutes. Follow so you don't miss it"
+- Script: "Today's stream has [X] deals the biggest one drops in [X] minutes. Follow so you don't miss it"
 - Key: Create anticipation so viewers don't want to leave
 
 5-20 minutes: Seeding phase
 - Goal: Get viewers interested in products (boost product click rate)
 - Actions: Detailed showcase of featured products (pain point → demo → comparison → price)
 - 5 minutes per product: 2 min pain point/scenario + 2 min demo + 1 min price reveal
-- Key: Don't lead with the price — build perceived value first
+- Key: Don't lead with the price build perceived value first
 
 20-30 minutes: Conversion phase
 - Goal: Get interested viewers to place orders (boost conversion rate)
@@ -1225,7 +1225,7 @@ Live streaming isn't "non-stop product introductions" — it has rhythm:
 - Goal: Boost engagement rate (trigger algorithm to push more traffic)
 - Actions: Giveaway + Q&A + polls
 - Script: "Type 1 in the comments for a chance to win [prize]" / "Do you want to see A or B?"
-- Key: Make viewers participate — don't just broadcast one-way
+- Key: Make viewers participate don't just broadcast one-way
 
 40-55 minutes: Encore phase
 - Goal: Convert hesitant viewers
@@ -1236,7 +1236,7 @@ Live streaming isn't "non-stop product introductions" — it has rhythm:
 55-60 minutes: Wrap-up phase
 - Goal: Follower retention
 - Actions: Thank viewers + preview next stream + prompt to follow
-- Script: "Next stream is [date/time] with even bigger deals — follow so you don't miss out"
+- Script: "Next stream is [date/time] with even bigger deals follow so you don't miss out"
 ```
 
 
@@ -1264,22 +1264,22 @@ Video data from the past 30 days:
 Analyze:
 
 1. Views vs GMV relationship
-   - Do high-view videos always generate high GMV?
-   - If not, what factors explain "high views but low GMV" vs "low views but high GMV"?
+- Do high-view videos always generate high GMV?
+- If not, what factors explain "high views but low GMV" vs "low views but high GMV"?
 
 2. Hook type effectiveness ranking
-   - Which hook type has the highest completion rate?
-   - Which hook type generates the highest GMV? (may not be the same)
-   - How strong is the correlation between completion rate and GMV?
+- Which hook type has the highest completion rate?
+- Which hook type generates the highest GMV? (may not be the same)
+- How strong is the correlation between completion rate and GMV?
 
 3. Optimal video duration
-   - What patterns exist between different durations and completion rate/GMV?
-   - Is there an "optimal duration range"?
+- What patterns exist between different durations and completion rate/GMV?
+- Is there an "optimal duration range"?
 
 4. Content production recommendations
-   - What type of content should be prioritized next month?
-   - What type of content should be discontinued?
-   - Recommended content mix (percentage by type)
+- What type of content should be prioritized next month?
+- What type of content should be discontinued?
+- Recommended content mix (percentage by type)
 
 Why this prompt works:
 "High views = good content" is the most common misconception.
@@ -1325,7 +1325,7 @@ TikTok SEO optimization across 3 layers:
 
 Layer 1: Product page optimization
 - Title: <80 characters, include core search terms, but write it like a short video title to attract clicks
-- Tags: 10 total — 5 category tags + 3 scenario tags + 2 trending tags
+- Tags: 10 total 5 category tags + 3 scenario tags + 2 trending tags
 - Description: Under 200 words, conversational, like a friend's recommendation
 
 Layer 2: Video title and description optimization
@@ -1344,7 +1344,7 @@ Layer 3: Video content itself
 
 ### 20.1 TikTok Seeding's Indirect Impact on Amazon
 
-TikTok's true value far exceeds its direct GMV. When creators recommend your product on TikTok, many users don't buy on TikTok — they search for the brand name on Amazon instead (because they trust Amazon's returns policy and Prime shipping).
+TikTok's true value far exceeds its direct GMV. When creators recommend your product on TikTok, many users don't buy on TikTok they search for the brand name on Amazon instead (because they trust Amazon's returns policy and Prime shipping).
 
 This "seeding → search → purchase" path can be validated through the following data:
 - Whether Amazon brand search volume increases 1-3 days after a creator video is published
@@ -1368,9 +1368,9 @@ TikTok Shop's commission (5-8%) is far lower than Amazon's (15% + FBA). But you 
 | Strategy | Approach | Risk |
 |----------|---------|------|
 | Unified pricing | Same price on both platforms | Safe, but doesn't leverage TikTok's lower commission |
-| TikTok-exclusive bundles | Sell different product combinations on TikTok (e.g., buy 2 get 1 free) | Safe — not technically a price reduction |
+| TikTok-exclusive bundles | Sell different product combinations on TikTok (e.g., buy 2 get 1 free) | Safe not technically a price reduction |
 | TikTok discount codes | Offer discounts through creator discount codes | Watch out for Amazon's pricing parity policy |
-| Differentiated SKUs | Sell different packaging/sizes on TikTok | Safest — completely different products |
+| Differentiated SKUs | Sell different packaging/sizes on TikTok | Safest completely different products |
 
 Note: Amazon has a pricing parity policy. If Amazon discovers you're selling at a lower price on another channel, they may remove your Buy Box. Use "different SKUs" or "discount codes" rather than direct price cuts to differentiate.
 
@@ -1396,28 +1396,28 @@ Step 1: AI script generation (10 min for 5 scripts)
 Step 2: Asset preparation (30 minutes)
 - Product footage: Shoot 5-10 product clips with your phone (reusable)
 - Usage scenarios: Film 3-5 usage scenes
-- No professional lighting or camera needed — phone + natural light is enough
+- No professional lighting or camera needed phone + natural light is enough
 - One filming session's assets can be edited into 10+ videos
 
 Step 3: AI editing (15 min per video)
 - Tool: CapCut (free version is sufficient)
 - CapCut AI features:
-  - Auto-subtitle generation (multilingual)
-  - AI voiceover (when you don't want to appear on camera)
-  - Smart editing (auto-matches music rhythm)
-  - Template application (select template → import assets → one-click production)
+- Auto-subtitle generation (multilingual)
+- AI voiceover (when you don't want to appear on camera)
+- Smart editing (auto-matches music rhythm)
+- Template application (select template → import assets → one-click production)
 
 Step 4: AI voiceover (optional, 5 min per video)
 - Tool: CapCut TTS (free) or ElevenLabs ($22/month, better quality)
 - Use cases: No on-camera appearance, multilingual versions, batch production
-- ElevenLabs can clone your voice — sounds like the real thing
+- ElevenLabs can clone your voice sounds like the real thing
 
 Step 5: Publishing optimization (5 min per video)
 - Title: Include search keywords but write like a short video title
 - Tags: 10 (category + scenario + trending)
 - Posting time: Target market's active hours
-  US: 7-9 AM, 12-2 PM, 7-10 PM (EST)
-  UK: 8-10 AM, 1-3 PM, 6-9 PM (GMT)
+US: 7-9 AM, 12-2 PM, 7-10 PM (EST)
+UK: 8-10 AM, 1-3 PM, 6-9 PM (GMT)
 ```
 
 ### 21.2 AI Video Tool Comparison
@@ -1455,26 +1455,26 @@ not ideal for categories requiring high trust
 
 Not all products are suited for TikTok Shop. TikTok purchase decisions are "impulse buys," so products must meet these criteria:
 
-Condition 1 — Demonstrable in 3 seconds: The product's effect can be shown in the first 3 seconds of video
+Condition 1 Demonstrable in 3 seconds: The product's effect can be shown in the first 3 seconds of video
 - Suitable: Cleaning products (Before/After), beauty (makeup effect), kitchen tools (usage demo)
 - Not suitable: Products requiring extended experience to feel the effect (e.g., supplements, software)
 
-Condition 2 — Impulse price range: $10-$50 is the sweet spot for impulse purchases
+Condition 2 Impulse price range: $10-$50 is the sweet spot for impulse purchases
 - Under $10: Margins too thin to cover ad costs
 - $10-$30: Optimal impulse purchase range
 - $30-$50: Requires stronger persuasion but still impulse-viable
 - $50+: Requires in-depth live stream explanation or multiple touchpoints
 
-Condition 3 — Visual impact: The product itself or its usage has visual appeal
+Condition 3 Visual impact: The product itself or its usage has visual appeal
 - High visual impact: Bright colors, obvious effects, entertaining usage process
 - Low visual impact: Plain appearance, invisible effects, boring usage process
 
-Condition 4 — Social currency: Users want to share with friends after watching
+Condition 4 Social currency: Users want to share with friends after watching
 - "This is so useful, I have to share it"
 - "This is so fun, my friends need to see this"
 - "This solves a problem I've always had"
 
-Condition 5 — Content sustainability: Can continuously produce content from multiple angles
+Condition 5 Content sustainability: Can continuously produce content from multiple angles
 - Good: One product can generate 20+ videos from different angles
 - Bad: After 3 videos, there's nothing new to say
 
@@ -1492,29 +1492,29 @@ Target market: [US/UK/Global]
 Evaluate across these 5 dimensions (1-10 points each):
 
 1. 3-Second Demonstrability (10 pts)
-   Can the product's effect be shown via video within 3 seconds?
-   If yes, what's the best way to demonstrate it?
+Can the product's effect be shown via video within 3 seconds?
+If yes, what's the best way to demonstrate it?
 
 2. Impulse Purchase Potential (10 pts)
-   Is the price in the impulse range?
-   Would users "buy without thinking" after seeing the video?
+Is the price in the impulse range?
+Would users "buy without thinking" after seeing the video?
 
 3. Visual Impact (10 pts)
-   Does the product's appearance or usage have visual appeal?
-   Can it make users stop scrolling to watch?
+Does the product's appearance or usage have visual appeal?
+Can it make users stop scrolling to watch?
 
 4. Content Sustainability (10 pts)
-   How many different angles can you film from?
-   List at least 5 different video angles.
+How many different angles can you film from?
+List at least 5 different video angles.
 
 5. Competition & Margins (10 pts)
-   Are there many similar products on TikTok Shop?
-   What's the margin after deducting commission (5-8%), shipping, and creator fees?
+Are there many similar products on TikTok Shop?
+What's the margin after deducting commission (5-8%), shipping, and creator fees?
 
 Total score /50:
 - 40-50: Strongly recommend launching on TikTok Shop
 - 30-39: Recommended, but requires a strong content strategy
-- 20-29: Proceed with caution — may need in-depth live stream explanation
+- 20-29: Proceed with caution may need in-depth live stream explanation
 - <20: Not recommended for TikTok Shop; consider other channels
 
 Why this prompt works:
@@ -1552,7 +1552,7 @@ Not all organic videos are suitable for Spark Ads. Selection criteria:
 - Product click rate >3% (indicates purchase intent, not just casual viewing)
 - Organic GMV >0 (already proven to drive sales)
 
-If a video has high completion rate but low product click rate, it's good content but not a good ad — suitable for brand awareness but not conversion campaigns.
+If a video has high completion rate but low product click rate, it's good content but not a good ad suitable for brand awareness but not conversion campaigns.
 
 ### 23.2 Ad Creative Fatigue Management
 
@@ -1671,7 +1671,7 @@ Execution timeline:
 | Steady state | Months 5-6 | Growing organic traffic share + follower repeat purchases | AI content calendar + fan engagement | $100K |
 
 Key success factors:
-1. Leveraged Amazon Review data to find the most effective selling points and hooks ("90% of people are using their face wash wrong" — this hook came from the high-frequency "incorrect usage" complaint in Amazon negative reviews)
+1. Leveraged Amazon Review data to find the most effective selling points and hooks ("90% of people are using their face wash wrong" this hook came from the high-frequency "incorrect usage" complaint in Amazon negative reviews)
 2. Intensive testing of 20+ video angles in the first 2 weeks, using data rather than intuition to choose direction
 3. Spark Ads to amplify organic viral hits rather than creating ad assets from scratch
 4. Creator strategy focused on Nano + Micro, where 100 small creators' total ROI > 1 big creator
@@ -1688,8 +1688,8 @@ Key data:
 Content rephrased for compliance with licensing restrictions. Sources: [Forbes Social Commerce](https://www.forbes.com/sites/catherineerdly/2025/07/14/ai-is-fueling-a-100-billion-boom-in-social-commerce/), [Iterathon TikTok Automation](https://iterathon.tech/blog/tiktok-shop-instagram-shopping-automation-2026)
 
 ---
-> 🏠 [Hub Home](../../README.md) · 📋 [Path D Overview](README.md) · 📊 [Platform Comparison](platform-comparison.md)
-> 
+> [Hub Home](../../README.md) · [Path D Overview](README.md) · [Platform Comparison](platform-comparison.md)
+>
 > **Path D**: [D1 Shopify](shopify-ai-guide.md) · [D2 TikTok](tiktok-shop-ai-guide.md) · [D3 Cross-Platform](cross-platform-strategy.md) · [D4 Walmart](d4-walmart-ai-guide.md) · [D5 Temu](d5-temu-seller-guide.md) · [D6 Southeast Asia](d6-southeast-asia-ai-guide.md) · [D7 Latin America](d7-mercado-libre-ai-guide.md) · [D8 Japan](d8-rakuten-japan-ai-guide.md) · [D9 eBay](d9-ebay-ai-guide.md) · [D10 AliExpress](d10-aliexpress-ai-guide.md) · [D11 Korea](d11-coupang-korea-ai-guide.md) · [D12 Faire](d12-faire-wholesale-ai-guide.md) · [D13 Europe](d13-europe-marketplaces-guide.md)
-> 
+>
 > **Quick Jump**: [Path 0 Foundations](../0-foundations/) · [Path A Operations](../a-operators/) · [Path B Technical](../b-developers/) · [Path C Management](../c-managers/) · [Path E Social Media](../e-social-media/)

@@ -1,26 +1,26 @@
-# 🔌 Awesome MCP Servers & AI Agent Tools | Awesome MCP & Agent Tools for E-Commerce
+# Awesome MCP Servers & AI Agent Tools | Awesome MCP & Agent Tools for E-Commerce
 
 > Essential MCP Servers, Agent frameworks, and external resources for e-commerce AI automation.
 > Last updated: 2026-03-15
 
-🏠 [Hub Home](../README.md) · 🔧 [B6 MCP Integration Guide](../paths/b-developers/b6-mcp-agentic-workflow.md) · 🤖 [B4 AI Agent Guide](../paths/b-developers/b4-agent-workflow.md) · ⚡ [F4 Agent Automation Basics](../paths/0-foundations/f4-agent-automation.md)
+[Hub Home](../README.md) · [B6 MCP Integration Guide](../paths/b-developers/b6-mcp-agentic-workflow.md) · [B4 AI Agent Guide](../paths/b-developers/b4-agent-workflow.md) · [F4 Agent Automation Basics](../paths/0-foundations/f4-agent-automation.md)
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
-- [External Awesome Lists and Directory Websites](#-external-awesome-lists-and-directory-websites)
-- [E-Commerce MCP Servers (Recommended)](#-e-commerce-mcp-servers-recommended)
-- [Advertising Platform MCP Servers](#-advertising-platform-mcp-servers)
-- [SEO / Data Analytics MCP Servers](#-seo--data-analytics-mcp-servers)
-- [Marketing Automation MCP Servers](#-marketing-automation-mcp-servers)
-- [General-Purpose MCP Servers](#-general-purpose-mcp-servers)
-- [AI Agent Frameworks](#-ai-agent-frameworks)
-- [E-Commerce AI Agent Tools](#-e-commerce-ai-agent-tools)
+- [External Awesome Lists and Directory Websites](#external-awesome-lists-and-directory-websites)
+- [E-Commerce MCP Servers (Recommended)](#e-commerce-mcp-servers-recommended)
+- [Advertising Platform MCP Servers](#advertising-platform-mcp-servers)
+- [SEO / Data Analytics MCP Servers](#seo--data-analytics-mcp-servers)
+- [Marketing Automation MCP Servers](#marketing-automation-mcp-servers)
+- [General-Purpose MCP Servers](#general-purpose-mcp-servers)
+- [AI Agent Frameworks](#ai-agent-frameworks)
+- [E-Commerce AI Agent Tools](#e-commerce-ai-agent-tools)
 
 ---
 
-## 🌐 External Awesome Lists and Directory Websites
+## External Awesome Lists and Directory Websites
 
 > These are community-maintained MCP Server collections and directories where you can discover more tools.
 
@@ -28,8 +28,8 @@
 
 | Name | Stars | Description | Link |
 |------|-------|-------------|------|
-| awesome-mcp-servers (PipedreamHQ) | 🔥 Popular | Most comprehensive MCP Server collection, categorized | [GitHub](https://github.com/PipedreamHQ/awesome-mcp-servers) |
-| awesome-mcp-servers (appcypher) | 🔥 Popular | Community-maintained MCP Server list | [GitHub](https://github.com/appcypher/awesome-mcp-servers) |
+| awesome-mcp-servers (PipedreamHQ) | Popular | Most comprehensive MCP Server collection, categorized | [GitHub](https://github.com/PipedreamHQ/awesome-mcp-servers) |
+| awesome-mcp-servers (appcypher) | Popular | Community-maintained MCP Server list | [GitHub](https://github.com/appcypher/awesome-mcp-servers) |
 | awesome-mcp-list (MobinX) | Compact | Concise MCP Server list | [GitHub](https://github.com/MobinX/awesome-mcp-servers) |
 | awesome-mcp-servers (habitoai) | Detailed | Categorized by data source and tool type | [GitHub](https://github.com/habitoai/awesome-mcp-servers) |
 
@@ -61,7 +61,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ---
 
-## 🛒 E-Commerce MCP Servers (Recommended)
+## E-Commerce MCP Servers (Recommended)
 
 ### Shopify
 
@@ -94,7 +94,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ---
 
-## 📢 Advertising Platform MCP Servers
+## Advertising Platform MCP Servers
 
 | Server | Platform | Features | Link |
 |--------|----------|----------|------|
@@ -105,7 +105,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ---
 
-## 🔍 SEO / Data Analytics MCP Servers
+## SEO / Data Analytics MCP Servers
 
 | Server | Features | Link |
 |--------|----------|------|
@@ -118,7 +118,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ---
 
-## 📧 Marketing Automation MCP Servers
+## Marketing Automation MCP Servers
 
 | Server | Features | Link |
 |--------|----------|------|
@@ -129,7 +129,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ---
 
-## 🔧 General-Purpose MCP Servers
+## General-Purpose MCP Servers
 
 | Server | Features | E-Commerce Use Case | Link |
 |--------|----------|---------------------|------|
@@ -142,7 +142,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ---
 
-## 🤖 AI Agent Frameworks
+## AI Agent Frameworks
 
 > Development frameworks for building e-commerce automation Agents.
 
@@ -162,7 +162,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ---
 
-## 🛍️ E-Commerce AI Agent Tools
+## E-Commerce AI Agent Tools
 
 > Ready-to-use e-commerce AI Agent products (not frameworks).
 
@@ -177,29 +177,29 @@ Content rephrased for compliance with licensing restrictions.
 
 ---
 
-## 💡 How to Choose
+## How to Choose
 
 ```
 Decision Framework for Choosing MCP Servers:
 
 1. What platform do you need to connect to?
-   ├── Amazon Ads → Amazon Ads MCP (Official)
-   ├── Shopify Store → Shopify Storefront MCP (Official)
-   ├── Google Ads → Google Ads MCP (Official)
-   ├── Meta Ads → pipeboard-co Meta Ads MCP
-   └── Multi-platform Ads → amekala ads-mcp (Cross-platform)
+Amazon Ads → Amazon Ads MCP (Official)
+Shopify Store → Shopify Storefront MCP (Official)
+Google Ads → Google Ads MCP (Official)
+Meta Ads → pipeboard-co Meta Ads MCP
+Multi-platform Ads → amekala ads-mcp (Cross-platform)
 
 2. What's your technical skill level?
-   ├── Can write code → Use MCP Server + LangGraph directly
-   ├── Can configure → Use n8n / Make + MCP
-   └── No coding skills → Use Mesa / Commerce MCP (one-click deploy)
+Can write code → Use MCP Server + LangGraph directly
+Can configure → Use n8n / Make + MCP
+No coding skills → Use Mesa / Commerce MCP (one-click deploy)
 
 3. What's your budget?
-   ├── Free → Open-source MCP Server + Claude/ChatGPT
-   ├── $50-200/month → Commerce MCP + paid AI tools
-   └── $500+/month → Enterprise solutions (Alhena/ZyG)
+Free → Open-source MCP Server + Claude/ChatGPT
+$50-200/month → Commerce MCP + paid AI tools
+$500+/month → Enterprise solutions (Alhena/ZyG)
 ```
 
 ---
 
-> 🏠 [Hub Home](../README.md) · 🔧 [B6 MCP Integration Guide](../paths/b-developers/b6-mcp-agentic-workflow.md) · 🤖 [B4 AI Agent Guide](../paths/b-developers/b4-agent-workflow.md) · ⚡ [F4 Agent Automation Basics](../paths/0-foundations/f4-agent-automation.md)
+> [Hub Home](../README.md) · [B6 MCP Integration Guide](../paths/b-developers/b6-mcp-agentic-workflow.md) · [B4 AI Agent Guide](../paths/b-developers/b4-agent-workflow.md) · [F4 Agent Automation Basics](../paths/0-foundations/f4-agent-automation.md)

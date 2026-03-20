@@ -4,31 +4,31 @@
 
 > **Path**: Path 0: AI Foundations · **Module**: F2
 > **Last Updated**: 2026-03-12
-> **Difficulty**: ⭐ Beginner → ⭐⭐ Intermediate
+> **Difficulty**: Beginner → Intermediate
 > **Estimated Time**: 3 hours
 > **Prerequisite**: [F1 The History of AI](f1-ai-evolution.md)
 
 ---
 
-🏠 [Hub Home](../../README.md) · 📋 [Path 0 Overview](README.md)
+[Hub Home](../../README.md) · [Path 0 Overview](README.md)
 
 ```mermaid
 flowchart LR
-    F1["F1 The History of AI"]
-    F1 --> F2
-    F2["✅ F2 Prompt Engineering<br/>(Current)"]:::current
-    F2 --> F3
-    F3["F3 Knowledge Bases & RAG"]
-    F3 --> F4
-    F4["F4 Automation & Agents"]
-    classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
+F1["F1 The History of AI"]
+F1 --> F2
+F2[" F2 Prompt Engineering<br/>(Current)"]:::current
+F2 --> F3
+F3["F3 Knowledge Bases & RAG"]
+F3 --> F4
+F4["F4 Automation & Agents"]
+classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 ```
 
 ---
 
-## 📖 Module Navigation
+## Module Navigation
 
-1. [Why Prompts Matter](#1-why-prompts-matter) · 2. [The CRISP Framework](#2-the-crisp-framework-a-methodology-for-structured-prompts) · 3. [Six Advanced Techniques](#3-six-advanced-prompt-techniques) · 4. [Scenario Template Library](#4-cross-border-e-commerce-prompt-template-library-20) · 5. [Common Mistakes & Fixes](#5-common-mistakes--fixes) · 6. [Advanced: Context Engineering](#6-advanced-from-prompt-engineering-to-context-engineering) · 7. [Learning Resources](#7-learning-resources) · 8. [🦞 OpenClaw Automation](#8-using-openclaw-for-prompt-management--optimization) · 9. [Completion Checklist](#9-completion-checklist)
+1. [Why Prompts Matter](#1-why-prompts-matter) · 2. [The CRISP Framework](#2-the-crisp-framework-a-methodology-for-structured-prompts) · 3. [Six Advanced Techniques](#3-six-advanced-prompt-techniques) · 4. [Scenario Template Library](#4-cross-border-e-commerce-prompt-template-library-20) · 5. [Common Mistakes & Fixes](#5-common-mistakes--fixes) · 6. [Advanced: Context Engineering](#6-advanced-from-prompt-engineering-to-context-engineering) · 7. [Learning Resources](#7-learning-resources) · 8. [ OpenClaw Automation](#8-using-openclaw-for-prompt-management--optimization) · 9. [Completion Checklist](#9-completion-checklist)
 
 
 ## What You'll Learn in This Module
@@ -42,13 +42,13 @@ After completing this module, you'll be able to:
 - Identify common prompt mistakes and know how to fix them
 - Understand the evolution from Prompt Engineering to Context Engineering
 
-> 💡 **Core Concept**: Prompt Engineering isn't about "writing one good instruction" — it's about "designing a complete communication protocol." What you give AI isn't just a question, but a full definition of role, context, constraints, format, and expectations.
+> **Core Concept**: Prompt Engineering isn't about "writing one good instruction" it's about "designing a complete communication protocol." What you give AI isn't just a question, but a full definition of role, context, constraints, format, and expectations.
 
 ---
 
 ## 1. Why Prompts Matter
 
-### 1.1 Same Question, Different Prompts — A Side-by-Side Comparison
+### 1.1 Same Question, Different Prompts A Side-by-Side Comparison
 
 **Scenario: Analyzing Competitor Reviews**
 
@@ -90,7 +90,7 @@ After completing this module, you'll be able to:
 
 ### 1.2 The Essence of Prompts: Reducing AI's "Guessing Space"
 
-Recall from F1: an LLM is a "next-token predictor." When your prompt is vague, AI has too many possible directions and will default to the "most common" one — which usually means generic, surface-level output.
+Recall from F1: an LLM is a "next-token predictor." When your prompt is vague, AI has too many possible directions and will default to the "most common" one which usually means generic, surface-level output.
 
 When your prompt is precise, you narrow AI's "guessing space" down to exactly the direction you want.
 
@@ -120,16 +120,16 @@ Think of it like assigning a task to a new employee:
 CRISP is a framework to help you write high-quality prompts. The 5 letters stand for 5 elements:
 
 ```
-C — Context: Give AI enough background information
-R — Role: Define what role AI should play
-I — Instructions: Clearly tell AI what to do
-S — Specifications: Define the output format, length, language, etc.
-P — Proof: Ask AI to provide evidence or explain its reasoning
+C Context: Give AI enough background information
+R Role: Define what role AI should play
+I Instructions: Clearly tell AI what to do
+S Specifications: Define the output format, length, language, etc.
+P Proof: Ask AI to provide evidence or explain its reasoning
 ```
 
 ### 2.2 Each Element in Detail
 
-**C — Context**
+**C Context**
 
 Tell AI "what situation you're asking this question in." The richer the context, the more accurate the response.
 
@@ -144,7 +144,7 @@ Tell AI "what situation you're asking this question in." The richer the context,
 - Who are the competitors? Price range, strengths/weaknesses
 - Your constraints? Budget, timeline, resources
 
-**R — Role**
+**R Role**
 
 Give AI a professional role, and it will respond using that role's knowledge and perspective.
 
@@ -157,9 +157,9 @@ Give AI a professional role, and it will respond using that role's knowledge and
 | Supplier Negotiation | "You are a procurement manager with 10 years of experience" |
 | Market Analysis | "You are an e-commerce industry analyst" |
 
-> 💡 **Why Do Roles Work?** Because AI's training data includes text from different professional roles. When you specify "Amazon PPC expert," AI tends to use PPC-related terminology and analytical frameworks.
+> **Why Do Roles Work?** Because AI's training data includes text from different professional roles. When you specify "Amazon PPC expert," AI tends to use PPC-related terminology and analytical frameworks.
 
-**I — Instructions**
+**I Instructions**
 
 Clearly tell AI what to do. Good instructions are specific, actionable, and prioritized.
 
@@ -169,7 +169,7 @@ Clearly tell AI what to do. Good instructions are specific, actionable, and prio
 | "Write a title" | "Write 3 Amazon product title variations, each ≤ 200 characters, including keywords [X], [Y], [Z]" |
 | "Give me suggestions" | "Give 3 specific improvement suggestions, each including: problem description, improvement plan, expected outcome" |
 
-**S — Specifications**
+**S Specifications**
 
 Define what the output should "look like."
 
@@ -181,7 +181,7 @@ Define what the output should "look like."
 | Tone | "Professional but easy to understand," "Suitable for Amazon buyers to read" |
 | Structure | "Give the conclusion first, then the analysis," "Rank by priority from high to low" |
 
-**P — Proof**
+**P Proof**
 
 Ask AI to explain its reasoning or provide evidence to reduce hallucinations.
 
@@ -230,7 +230,7 @@ Ask AI to explain its reasoning or provide evidence to reduce hallucinations.
 - 请解释综合评分的计算逻辑
 ```
 
-> 💡 **You don't need to label [C][R][I][S][P] in actual use** — that's just for teaching purposes here. Once you're comfortable, you'll naturally weave all 5 elements into your prompts.
+> **You don't need to label [C][R][I][S][P] in actual use** that's just for teaching purposes here. Once you're comfortable, you'll naturally weave all 5 elements into your prompts.
 
 
 
@@ -303,15 +303,15 @@ Have AI take on specific roles and analyze problems from each role's perspective
 ```
 请分别从以下 3 个角色的视角评估这个产品：
 
-角色 1 — 挑剔的消费者：
+角色 1 挑剔的消费者：
 "我是一个经常在 Amazon 购物的消费者，对产品质量要求很高，
 会仔细看差评。这个产品的 Listing 能说服我购买吗？"
 
-角色 2 — 竞品运营经理：
+角色 2 竞品运营经理：
 "我是竞品公司的运营经理，看到这个新产品进入市场。
 它对我的产品有威胁吗？我应该如何应对？"
 
-角色 3 — Amazon 品类经理：
+角色 3 Amazon 品类经理：
 "我是 Amazon 的品类经理，负责审核这个品类的产品。
 这个 Listing 有没有违规风险？质量评分如何？"
 ```
@@ -326,13 +326,13 @@ Explicitly ask AI to output in a specific format for easier downstream processin
 请用以下 JSON 格式输出分析结果：
 
 {
-  "product_name": "产品名称",
-  "market_score": 1-5,
-  "competition_score": 1-5,
-  "profit_score": 1-5,
-  "risk_factors": ["风险1", "风险2"],
-  "recommendation": "进入/谨慎/放弃",
-  "reasoning": "推荐理由"
+"product_name": "产品名称",
+"market_score": 1-5,
+"competition_score": 1-5,
+"profit_score": 1-5,
+"risk_factors": ["风险1", "风险2"],
+"recommendation": "进入/谨慎/放弃",
+"reasoning": "推荐理由"
 }
 ```
 
@@ -394,7 +394,7 @@ Telling AI "what NOT to do" is just as important as telling it "what to do."
 
 ## 4. Cross-Border E-Commerce Prompt Template Library (20+)
 
-> 📎 **Related Reading**: [A2 Listing & Content Creation](../a-operators/a2-listing-optimization.md#a2-listing-content-creation) — See A2 for detailed e-commerce Listing prompt templates
+> **Related Reading**: [A2 Listing & Content Creation](../a-operators/a2-listing-optimization.md#a2-listing-content-creation) See A2 for detailed e-commerce Listing prompt templates
 
 > The full standardized templates are stored in the [prompts/](../../prompts/) directory. This section provides quick-reference versions.
 
@@ -486,7 +486,7 @@ Telling AI "what NOT to do" is just as important as telling it "what to do."
 
 ### 4.3 Advertising & Marketing (4 Templates)
 
-> 📎 **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md#3-prompt-template-library-advertising-specific) — See A3 for detailed advertising analysis prompt templates
+> **Related Reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md#3-prompt-template-library-advertising-specific) See A3 for detailed advertising analysis prompt templates
 
 **Template 11: Search Term Report Analysis**
 ```
@@ -539,7 +539,7 @@ Telling AI "what NOT to do" is just as important as telling it "what to do."
 输出：每种问题 3 个回复变体（正式/友好/简洁）× 多语言
 ```
 
-**Template 17: Appeal Letter — Plan of Action**
+**Template 17: Appeal Letter Plan of Action**
 ```
 角色：Amazon 账号申诉专家
 输入：违规通知内容
@@ -611,11 +611,11 @@ Telling AI "what NOT to do" is just as important as telling it "what to do."
 ```
 
 **Diagnosis:**
-- ❌ No role
-- ❌ No context (What product? What market?)
-- ❌ "How is it" is too vague (Evaluate from which dimensions?)
-- ❌ No output format requirements
-- ❌ No verification requirements
+- No role
+- No context (What product? What market?)
+- "How is it" is too vague (Evaluate from which dimensions?)
+- No output format requirements
+- No verification requirements
 
 **First Improvement:**
 ```
@@ -657,7 +657,7 @@ Telling AI "what NOT to do" is just as important as telling it "what to do."
 | Gemini | Responds well to concise prompts | Ultra-long context is its strength; you can include large reference materials |
 | DeepSeek | Works well with Chinese prompts | Great cost-performance ratio, suitable for high-volume calls |
 
-**Claude-Specific Tip — XML Tags:**
+**Claude-Specific Tip XML Tags:**
 ```
 <context>
 我是 Amazon US 卖家，主营消费电子。
@@ -680,32 +680,32 @@ Telling AI "what NOT to do" is just as important as telling it "what to do."
 
 ## 6. Advanced: From Prompt Engineering to Context Engineering
 
-> 📎 **Related Reading**: [D6 Southeast Asia AI Guide](../d-platforms/d6-southeast-asia-ai-guide.md#31-southeast-asia-multi-language-challenge) — See D6 for multi-language prompt applications
+> **Related Reading**: [D6 Southeast Asia AI Guide](../d-platforms/d6-southeast-asia-ai-guide.md#31-southeast-asia-multi-language-challenge) See D6 for multi-language prompt applications
 
 ### 6.1 The 2026 Trend: Context Engineering
 
 In mid-2025, Andrej Karpathy (former OpenAI researcher) made an important observation: an LLM is like a CPU, the context window is like RAM, and you are the operating system responsible for loading the right information.
 
-This means Prompt Engineering is evolving into **Context Engineering** — it's no longer just about writing a good prompt, but about designing the entire information input architecture.
+This means Prompt Engineering is evolving into **Context Engineering** it's no longer just about writing a good prompt, but about designing the entire information input architecture.
 
 Content rephrased for compliance with licensing restrictions. Source: [Context Engineering Guide 2026](https://open.substack.com/pub/theaicorner1/p/context-engineering-guide-2026)
 
 
 ```
 Prompt Engineering (2023-2024):
-├── Focus: How to write a good instruction
-├── Core Skills: CRISP framework, CoT, Few-shot
-└── Use Cases: Single conversations, simple tasks
+Focus: How to write a good instruction
+Core Skills: CRISP framework, CoT, Few-shot
+Use Cases: Single conversations, simple tasks
 
 Context Engineering (2025-2026):
-├── Focus: How to design the entire information input architecture
-├── Core Skills: Information filtering, context management, tool orchestration
-├── New Elements:
-│   ├── What information goes into the context? (More isn't always better)
-│   ├── How should information be prioritized and organized?
-│   ├── How to use tools to dynamically retrieve information?
-│   └── How to manage context across multi-turn conversations?
-└── Use Cases: Complex workflows, Agents, long-term projects
+Focus: How to design the entire information input architecture
+Core Skills: Information filtering, context management, tool orchestration
+New Elements:
+What information goes into the context? (More isn't always better)
+How should information be prioritized and organized?
+How to use tools to dynamically retrieve information?
+How to manage context across multi-turn conversations?
+Use Cases: Complex workflows, Agents, long-term projects
 ```
 
 ### 6.2 Context Engineering in Practice
@@ -713,16 +713,16 @@ Context Engineering (2025-2026):
 **Principle 1: Information Layering**
 
 ```
-Layer 1 — System Instructions (always present):
+Layer 1 System Instructions (always present):
 Role definition, output specifications, constraints
 
-Layer 2 — Task Context (loaded on demand):
+Layer 2 Task Context (loaded on demand):
 Background information and relevant data for the current task
 
-Layer 3 — Reference Materials (dynamically retrieved):
+Layer 3 Reference Materials (dynamically retrieved):
 Relevant document fragments retrieved via RAG
 
-Layer 4 — Conversation History (auto-managed):
+Layer 4 Conversation History (auto-managed):
 Previous conversation content (may need summary compression)
 ```
 
@@ -744,12 +744,12 @@ The 2026 best practice is to design your prompt as a "contract":
 
 ```
 Output Contract = {
-  Format: Table / JSON / Markdown
-  Length: Maximum X words
-  Tone: Professional / Friendly / Concise
-  Required Sections: [list]
-  Behavior When Uncertain: Clearly label as "uncertain"
-  Error Handling: If input data is insufficient, ask for more rather than guessing
+Format: Table / JSON / Markdown
+Length: Maximum X words
+Tone: Professional / Friendly / Concise
+Required Sections: [list]
+Behavior When Uncertain: Clearly label as "uncertain"
+Error Handling: If input data is insufficient, ask for more rather than guessing
 }
 ```
 
@@ -784,7 +784,7 @@ Content rephrased for compliance with licensing restrictions. Source: [Prompt En
 
 ### Scenario
 
-> You want to automate your team's prompt template library management — regularly organize frequently used prompts, optimize underperforming templates, track the effectiveness of different prompt versions, and automatically update the library when new best practices emerge.
+> You want to automate your team's prompt template library management regularly organize frequently used prompts, optimize underperforming templates, track the effectiveness of different prompt versions, and automatically update the library when new best practices emerge.
 
 ```
 你是我的 Prompt 管理助手。请帮我：
@@ -825,8 +825,8 @@ Content rephrased for compliance with licensing restrictions. Source: [Prompt En
 Once you've checked off all the items above, you've mastered the core skills for communicating effectively with AI. Next up: [F3 Knowledge Bases & RAG](f3-rag-knowledge.md), where you'll learn how to make AI understand your private data.
 
 ---
-> 🏠 [Hub Home](../../README.md) · 📋 [Path 0 Overview](README.md) · 📊 [AI Landscape Assessment](ai-landscape.md)
-> 
+> [Hub Home](../../README.md) · [Path 0 Overview](README.md) · [AI Landscape Assessment](ai-landscape.md)
+>
 > **Path 0**: [F1 AI Evolution](f1-ai-evolution.md) · [F2 Prompt Engineering](f2-prompt-engineering.md) · [F3 RAG & Knowledge Bases](f3-rag-knowledge.md) · [F4 Agent Automation](f4-agent-automation.md) · [F5 RPA Automation](f5-rpa-automation.md) · [AI Landscape](ai-landscape.md)
-> 
+>
 > **Quick Jump**: [Path A Operations](../a-operators/) · [Path B Developers](../b-developers/) · [Path C Management](../c-managers/) · [Path D Multi-Platform](../d-platforms/) · [Path E Social Media](../e-social-media/)

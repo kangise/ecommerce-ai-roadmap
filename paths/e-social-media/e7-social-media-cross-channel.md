@@ -2,15 +2,15 @@
 
 > **路径**: Path E: 社交媒体 · **模块**: E7
 > **最后更新**: 2026-03-14
-> **难度**: ⭐⭐⭐ 高级
+> **难度**: 高级
 > **预计时间**: 2 小时
 > **前置模块**: 至少完成 E1-E2 中的一个
 
-🏠 [Hub 首页](../../README.md) · 📋 [Path E 总览](README.md)
+[Hub 首页](../../README.md) · [Path E 总览](README.md)
 
 ---
 
-## 📖 章节导航
+## 章节导航
 
 1. [一个内容多平台适配](#1-一个内容多平台适配)
 2. [社交媒体→电商平台归因](#2-社交媒体电商平台归因)
@@ -21,7 +21,7 @@
 
 ---
 
-> 💡 全球社交商务市场预计 2026 年达到 $2.9 万亿（[Social Champ](https://www.socialchamp.com/blog/ecommerce-social-media-strategy/)）。可靠的社交媒体归因设置可以将 ROI 可见度提升高达 89%（[Social Rails](https://socialrails.com/blog/social-media-attribution-modeling)）。跨渠道不是在每个平台做不同的事，而是用一套核心内容在多个平台产生最大价值。
+> 全球社交商务市场预计 2026 年达到 $2.9 万亿（[Social Champ](https://www.socialchamp.com/blog/ecommerce-social-media-strategy/)）。可靠的社交媒体归因设置可以将 ROI 可见度提升高达 89%（[Social Rails](https://socialrails.com/blog/social-media-attribution-modeling)）。跨渠道不是在每个平台做不同的事，而是用一套核心内容在多个平台产生最大价值。
 
 Content rephrased for compliance with licensing restrictions.
 
@@ -39,13 +39,13 @@ Content rephrased for compliance with licensing restrictions.
 
 ### 1.1 核心内容 → 多平台变体
 
-> 📎 **相关阅读**: [E1 Instagram](e1-instagram-facebook-ai-guide.md) 和 [E2 YouTube](e2-youtube-ai-guide.md) — 各平台内容创作详细方法论参考 E1（Instagram Reels/Carousel）和 E2（YouTube 长视频/Shorts）。
+> **相关阅读**: [E1 Instagram](e1-instagram-facebook-ai-guide.md) 和 [E2 YouTube](e2-youtube-ai-guide.md) 各平台内容创作详细方法论参考 E1（Instagram Reels/Carousel）和 E2（YouTube 长视频/Shorts）。
 
 ```
 一个产品评测的核心素材可以变成：
 
 核心素材：10 分钟产品评测视频 + 产品图片 + 使用体验文字
-    ↓
+↓
 YouTube：完整 10 分钟评测视频
 YouTube Shorts：3-5 个 30-60 秒切片
 Instagram Reels：2-3 个 15-30 秒精致版本（调整调性）
@@ -101,7 +101,7 @@ Reddit：使用体验分享帖
 
 ### 2.1 归因追踪方法
 
-> 📎 **相关阅读**: [D3 跨平台协同策略](../d-platforms/cross-platform-strategy.md) — 跨平台协同策略参考 D3，多平台归因和数据整合方法论可互相补充。
+> **相关阅读**: [D3 跨平台协同策略](../d-platforms/cross-platform-strategy.md) 跨平台协同策略参考 D3，多平台归因和数据整合方法论可互相补充。
 
 | 方法 | 适用平台 | 追踪内容 |
 |------|----------|----------|
@@ -118,16 +118,16 @@ Reddit：使用体验分享帖
 统一 UTM 命名规范：
 
 utm_source = 平台名
-  instagram / youtube / tiktok / pinterest / xiaohongshu / facebook / reddit
+instagram / youtube / tiktok / pinterest / xiaohongshu / facebook / reddit
 
 utm_medium = 内容类型
-  reels / shorts / pin / post / story / ad / affiliate
+reels / shorts / pin / post / story / ad / affiliate
 
 utm_campaign = 活动名
-  product-launch-[产品名] / seasonal-[季节] / evergreen
+product-launch-[产品名] / seasonal-[季节] / evergreen
 
 utm_content = 具体内容标识
-  review-v1 / comparison-ab / tutorial-howto
+review-v1 / comparison-ab / tutorial-howto
 
 示例：
 ?utm_source=instagram&utm_medium=reels&utm_campaign=neckfan-launch&utm_content=lifestyle-v2
@@ -181,7 +181,7 @@ utm_content = 具体内容标识
 
 ## 4. 预算分配框架
 
-> 📎 **相关阅读**: [A3 广告优化](../a-operators/a3-advertising.md) — 广告预算优化方法论参考 A3，ROAS 分析和预算分配框架可复用到跨渠道预算规划。
+> **相关阅读**: [A3 广告优化](../a-operators/a3-advertising.md) 广告预算优化方法论参考 A3，ROAS 分析和预算分配框架可复用到跨渠道预算规划。
 
 ### 4.1 各渠道 CAC 对比（参考值）
 
@@ -198,24 +198,24 @@ utm_content = 具体内容标识
 
 ```
 初始阶段（月预算 <$2000）：
-├── 70% Meta Ads（Instagram 为主）
-├── 20% 内容制作（AI 工具订阅）
-└── 10% 达人合作（KOC/产品置换）
+70% Meta Ads（Instagram 为主）
+20% 内容制作（AI 工具订阅）
+10% 达人合作（KOC/产品置换）
 
 增长阶段（月预算 $2000-10000）：
-├── 40% Meta Ads
-├── 25% Google/YouTube Ads
-├── 15% TikTok Ads
-├── 10% Pinterest Ads（如果品类匹配）
-└── 10% 达人合作
+40% Meta Ads
+25% Google/YouTube Ads
+15% TikTok Ads
+10% Pinterest Ads（如果品类匹配）
+10% 达人合作
 
 规模化阶段（月预算 >$10000）：
-├── 35% Meta Ads
-├── 25% Google/YouTube Ads
-├── 15% TikTok Ads
-├── 10% Pinterest Ads
-├── 10% 达人合作
-└── 5% Reddit/其他
+35% Meta Ads
+25% Google/YouTube Ads
+15% TikTok Ads
+10% Pinterest Ads
+10% 达人合作
+5% Reddit/其他
 ```
 
 ---
@@ -255,45 +255,45 @@ utm_content = 具体内容标识
 跨平台内容生产 SOP（每周执行）：
 
 Day 1（周一）：核心内容创作
-├── 拍摄 1 个 10-15 分钟的产品评测/教程视频
-├── 拍摄 10-15 张产品图片（白底+场景+细节）
-├── 写 1 篇核心文案（500-800 字，包含所有卖点）
-└── 这是本周所有平台内容的"母版"
+拍摄 1 个 10-15 分钟的产品评测/教程视频
+拍摄 10-15 张产品图片（白底+场景+细节）
+写 1 篇核心文案（500-800 字，包含所有卖点）
+这是本周所有平台内容的"母版"
 
 Day 2（周二）：长视频 + Shorts 制作
-├── YouTube：上传完整长视频（优化标题/描述/缩略图）
-├── YouTube Shorts：从长视频切出 3-5 个 30-60 秒片段
-├── AI 辅助：自动生成章节标记、描述、标签
-└── 工具：CapCut（剪辑）+ Opus Clip（自动切片）
+YouTube：上传完整长视频（优化标题/描述/缩略图）
+YouTube Shorts：从长视频切出 3-5 个 30-60 秒片段
+AI 辅助：自动生成章节标记、描述、标签
+工具：CapCut（剪辑）+ Opus Clip（自动切片）
 
 Day 3（周三）：短视频平台适配
-├── Instagram Reels：从 Shorts 素材改编 2-3 个 15-30 秒版本
-│   ├── 调整调性：更精致、更美学
-│   ├── 添加 Instagram 风格的音乐
-│   └── 添加 Shoppable Tags
-├── TikTok：从 Shorts 素材改编 2-3 个 15-60 秒版本
-│   ├── 调整调性：更娱乐、更 Hook
-│   ├── 使用 TikTok 热门音乐
-│   └── 添加小黄车链接
-└── AI 辅助：用 ChatGPT 从同一个脚本生成不同平台的变体
+Instagram Reels：从 Shorts 素材改编 2-3 个 15-30 秒版本
+调整调性：更精致、更美学
+添加 Instagram 风格的音乐
+添加 Shoppable Tags
+TikTok：从 Shorts 素材改编 2-3 个 15-60 秒版本
+调整调性：更娱乐、更 Hook
+使用 TikTok 热门音乐
+添加小黄车链接
+AI 辅助：用 ChatGPT 从同一个脚本生成不同平台的变体
 
 Day 4（周四）：图文平台
-├── Instagram Carousel：从核心文案提取 8 页图文
-├── Pinterest：制作 5-10 个 Pin（不同角度/场景）
-├── 小红书：写 2-3 篇种草笔记（从核心文案改写）
-└── AI 辅助：用 Canva AI 批量生成图片变体
+Instagram Carousel：从核心文案提取 8 页图文
+Pinterest：制作 5-10 个 Pin（不同角度/场景）
+小红书：写 2-3 篇种草笔记（从核心文案改写）
+AI 辅助：用 Canva AI 批量生成图片变体
 
 Day 5（周五）：社群 + 广告
-├── Facebook Groups：发布讨论帖
-├── Reddit：在相关 Subreddit 参与讨论
-├── 广告素材准备：从本周内容中选择表现最好的作为广告素材
-└── 排期下周内容
+Facebook Groups：发布讨论帖
+Reddit：在相关 Subreddit 参与讨论
+广告素材准备：从本周内容中选择表现最好的作为广告素材
+排期下周内容
 
 周末：数据复盘
-├── 收集各平台数据
-├── AI 分析哪些内容表现好
-├── 调整下周策略
-└── 更新内容日历
+收集各平台数据
+AI 分析哪些内容表现好
+调整下周策略
+更新内容日历
 ```
 
 ### 跨平台数据复盘模板
@@ -344,22 +344,22 @@ Pinterest：
 跨平台归因的 3 层模型：
 
 第 1 层：直接归因（Last Click）
-├── UTM 参数追踪最后一次点击来源
-├── 适合：直接转化的渠道（Meta Ads → Shopify）
-└── 工具：Google Analytics 4
+UTM 参数追踪最后一次点击来源
+适合：直接转化的渠道（Meta Ads → Shopify）
+工具：Google Analytics 4
 
 第 2 层：辅助归因（Assisted Conversion）
-├── 用户可能在 Instagram 看到产品 → YouTube 看评测 → Google 搜索购买
-├── GA4 的 Multi-Channel Funnels 报告
-├── 适合：理解各渠道在转化路径中的角色
-└── 工具：GA4 + Amazon Attribution
+用户可能在 Instagram 看到产品 → YouTube 看评测 → Google 搜索购买
+GA4 的 Multi-Channel Funnels 报告
+适合：理解各渠道在转化路径中的角色
+工具：GA4 + Amazon Attribution
 
 第 3 层：间接归因（Brand Lift）
-├── 社交媒体活动 → Amazon 品牌搜索量增长
-├── TikTok 种草 → Amazon "[品牌名]" 搜索量变化
-├── 无法直接追踪，但可以通过相关性分析推断
-├── 方法：对比社交媒体活动期间 vs 非活动期间的品牌搜索量
-└── 工具：Amazon Brand Analytics + Google Trends
+社交媒体活动 → Amazon 品牌搜索量增长
+TikTok 种草 → Amazon "[品牌名]" 搜索量变化
+无法直接追踪，但可以通过相关性分析推断
+方法：对比社交媒体活动期间 vs 非活动期间的品牌搜索量
+工具：Amazon Brand Analytics + Google Trends
 
 AI 归因分析 Prompt：
 ```
@@ -382,8 +382,8 @@ Amazon 品牌搜索量（过去 12 周）：
 ```
 
 ---
-> 🏠 [Hub 首页](../../README.md) · 📋 [Path E 总览](README.md)
-> 
+> [Hub 首页](../../README.md) · [Path E 总览](README.md)
+>
 > **Path E**: [E1 Instagram](e1-instagram-facebook-ai-guide.md) · [E2 YouTube](e2-youtube-ai-guide.md) · [E3 小红书](e3-xiaohongshu-ai-guide.md) · [E4 Pinterest](e4-pinterest-ai-guide.md) · [E5 WhatsApp](e5-whatsapp-business-ai-guide.md) · [E6 Reddit](e6-reddit-ai-guide.md) · [E7 跨渠道](e7-social-media-cross-channel.md)
-> 
+>
 > **快速跳转**: [Path 0 基础](../0-foundations/) · [Path A 运营](../a-operators/) · [Path B 技术](../b-developers/) · [Path C 管理](../c-managers/) · [Path D 多平台](../d-platforms/)

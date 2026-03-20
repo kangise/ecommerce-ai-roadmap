@@ -5,7 +5,7 @@
 > **Path**: Path D: Multi-Platform · **Module**: D3
 > **Last Updated**: 2026-03-14
 > **Difficulty**: Advanced
-> **Estimated Time**: 3–4 hours
+> **Estimated Time**: 34 hours
 > **Prerequisites**: [D1 Shopify AI Guide](shopify-ai-guide.md) · [D2 TikTok Shop AI Guide](tiktok-shop-ai-guide.md)
 
 [Hub Home](../../README.md) · [Path D Overview](README.md)
@@ -39,14 +39,14 @@ A complete Amazon × Shopify × TikTok Shop synergy operating system. By the end
 | Problem | Amazon Only | Shopify Only | TikTok Shop Only |
 |---------|------------|-------------|-----------------|
 | Traffic risk | 100% dependent on Amazon's algorithm | 100% dependent on paid ads + SEO | 100% dependent on content algorithm |
-| Margin pressure | 15% referral fee + rising FBA costs | CAC increasing year over year | 5–8% commission + creator costs |
+| Margin pressure | 15% referral fee + rising FBA costs | CAC increasing year over year | 58% commission + creator costs |
 | Brand building | Nearly impossible to build a brand | Possible but expensive to acquire customers | Possible but content-dependent |
 | Customer relationships | No direct access to customers | Full ownership of customer data | Follower relationships but limited data |
 | Policy risk | Account suspension risk | Relatively low | Policies change rapidly |
 
 ### 1.2 The Quantifiable Value of Cross-Platform Synergy
 
-Based on 2025–2026 industry data:
+Based on 20252026 industry data:
 - Multi-channel e-commerce accounts for 47%+ of total e-commerce sales
 - Multi-channel sellers generate 190% more revenue than single-channel sellers
 - Among brands using AI-optimized inventory allocation, 89% of top brands have adopted machine learning
@@ -66,19 +66,19 @@ Amazon (Search-to-Conversion Engine)
 - Role: Conversion hub for high purchase-intent traffic
 - Strengths: Built-in traffic, Prime trust, FBA logistics
 - AI focus: Listing SEO + Review analysis + PPC optimization
-- Revenue share target: 40–50%
+- Revenue share target: 4050%
 
 Shopify (Brand Profit Center)
 - Role: Brand hub + customer data center + margin maximization
 - Strengths: Full customer data ownership, highest margins, brand freedom
 - AI focus: Email marketing + GEO optimization + customer segmentation + personalization
-- Revenue share target: 25–35%
+- Revenue share target: 2535%
 
 TikTok Shop (Content-Driven Acquisition Engine)
 - Role: New customer acquisition + brand awareness + content seeding
 - Strengths: Content-driven, creator network, younger audience, low commission
 - AI focus: Batch video production + creator management + livestream scripts
-- Revenue share target: 20–30%
+- Revenue share target: 2030%
 ```
 
 ### 2.2 Product Strategy Differences
@@ -98,9 +98,9 @@ Not every product needs to be listed on all three platforms. Choose platforms ba
 
 | Stage | Amazon | Shopify | TikTok | Rationale |
 |-------|--------|---------|--------|-----------|
-| Cold start (months 0–3) | 50% | 20% | 30% | Amazon has immediate traffic; TikTok builds awareness |
-| Growth (months 3–6) | 40% | 30% | 30% | Shopify starts generating SEO and email revenue |
-| Maturity (months 6–12) | 35% | 35% | 30% | Three platforms balanced |
+| Cold start (months 03) | 50% | 20% | 30% | Amazon has immediate traffic; TikTok builds awareness |
+| Growth (months 36) | 40% | 30% | 30% | Shopify starts generating SEO and email revenue |
+| Maturity (months 612) | 35% | 35% | 30% | Three platforms balanced |
 | Scale (12+ months) | 30% | 35% | 35% | Shopify has highest margins; TikTok grows fastest |
 
 ---
@@ -141,8 +141,8 @@ Step 4: AI adapts for TikTok content (15 min)
 - Livestream talking points
 - Style: Conversational, visually impactful, impulse-purchase oriented
 
-Total time: 75 minutes (traditional approach: 5–8 hours)
-Efficiency gain: 4–6×
+Total time: 75 minutes (traditional approach: 58 hours)
+Efficiency gain: 46×
 ```
 
 ### 3.2 Content Repurposing Matrix
@@ -237,7 +237,7 @@ Method 1: Brand Search Volume Comparison
 
 Method 2: Time Series Analysis
 - Use AI to analyze the time-series correlation between TikTok content volume/views and Amazon brand search volume
-- There's typically a 1–3 day lag effect
+- There's typically a 13 day lag effect
 
 Method 3: Controlled Experiment
 - Pause TikTok spending for 2 weeks and observe whether Amazon brand search volume declines
@@ -268,22 +268,22 @@ TikTok Shop data (past 30 days):
 Please analyze:
 
 1. Cross-platform overview
-   - Total revenue and each platform's share
-   - Margin comparison by platform (accounting for different commission and cost structures)
-   - Customer acquisition efficiency comparison by platform
+- Total revenue and each platform's share
+- Margin comparison by platform (accounting for different commission and cost structures)
+- Customer acquisition efficiency comparison by platform
 
 2. Cross-platform synergy effects
-   - Is there a correlation between TikTok content volume and Amazon brand search volume?
-   - Do the highest-converting selling points from Shopify emails apply to other platforms?
-   - Which platform has the highest customer quality (LTV / repurchase rate)?
+- Is there a correlation between TikTok content volume and Amazon brand search volume?
+- Do the highest-converting selling points from Shopify emails apply to other platforms?
+- Which platform has the highest customer quality (LTV / repurchase rate)?
 
 3. Data synergy opportunities
-   - Which Amazon data can optimize Shopify/TikTok?
-   - Which TikTok data can optimize Amazon/Shopify?
+- Which Amazon data can optimize Shopify/TikTok?
+- Which TikTok data can optimize Amazon/Shopify?
 
 4. Resource reallocation recommendations
-   - Is the current ROI across platforms reasonable?
-   - Which platform should receive more/less investment?
+- Is the current ROI across platforms reasonable?
+- Which platform should receive more/less investment?
 
 Why this prompt works:
 Most sellers review each platform's data separately, missing cross-platform insights.
@@ -295,11 +295,11 @@ Integrated analysis reveals patterns invisible at the single-platform level.
 
 ## 5. Cross-Platform Advertising Synergy
 
-> 📎 **Related Reading**: [E7 Cross-Channel Strategy](../e-social-media/e7-social-media-cross-channel.md#e7-social-media-cross-channel-strategy) — Social media attribution methodology covered in E7 · [Platform Comparison](platform-comparison.md#cross-border-e-commerce-platform-comprehensive-comparison) — Detailed platform comparison available in Platform Comparison
+> **Related Reading**: [E7 Cross-Channel Strategy](../e-social-media/e7-social-media-cross-channel.md#e7-social-media-cross-channel-strategy) Social media attribution methodology covered in E7 · [Platform Comparison](platform-comparison.md#cross-border-e-commerce-platform-comprehensive-comparison) Detailed platform comparison available in Platform Comparison
 
 ### 5.1 First Principles of Ad Budget Allocation
 
-The core principle of cross-platform ad budget allocation is "marginal ROAS equilibrium" — the last $1 of ad spend on each platform should generate the same return.
+The core principle of cross-platform ad budget allocation is "marginal ROAS equilibrium" the last $1 of ad spend on each platform should generate the same return.
 
 ```
 If Amazon PPC marginal ROAS is 3.0 (spending $1 more earns $3 more)
@@ -318,9 +318,9 @@ If you ignore indirect effects, you'll mistakenly cut TikTok's budget
 
 | Stage | Amazon | Shopify (FB+Google) | TikTok | Rationale |
 |-------|--------|-------------------|--------|-----------|
-| Cold start (months 0–3) | 50% | 20% | 30% | Amazon has immediate traffic and conversions; TikTok builds brand awareness |
-| Growth (months 3–6) | 40% | 30% | 30% | Shopify SEO starts paying off; email revenue grows |
-| Maturity (months 6–12) | 35% | 35% | 30% | Three platforms balanced; Shopify has highest margins |
+| Cold start (months 03) | 50% | 20% | 30% | Amazon has immediate traffic and conversions; TikTok builds brand awareness |
+| Growth (months 36) | 40% | 30% | 30% | Shopify SEO starts paying off; email revenue grows |
+| Maturity (months 612) | 35% | 35% | 30% | Three platforms balanced; Shopify has highest margins |
 | Scale (12+ months) | 30% | 35% | 35% | TikTok grows fastest; Shopify has highest margins |
 
 ### 5.3 Cross-Platform Retargeting: Converting Traffic Across All Three Platforms
@@ -330,8 +330,8 @@ Cross-platform retargeting is the strategy of "pay once to acquire a customer, c
 | Path | Trigger | Ad Content | Why It Works |
 |------|---------|-----------|-------------|
 | TikTok view -> Facebook retargeting | Watched TikTok video but didn't purchase | Facebook dynamic product ads | User is already seeded; retargeting just needs a "nudge" |
-| Shopify browse -> Facebook retargeting | Browsed product page but didn't purchase | Abandoned cart retargeting (product image + limited-time offer) | Already has purchase intent; 5–8× conversion rate |
-| TikTok seeding -> Google brand search ads | User searches brand name | Google brand search ad -> Shopify | Brand search CPC is extremely low ($0.10–$0.30); conversion rate >15% |
+| Shopify browse -> Facebook retargeting | Browsed product page but didn't purchase | Abandoned cart retargeting (product image + limited-time offer) | Already has purchase intent; 58× conversion rate |
+| TikTok seeding -> Google brand search ads | User searches brand name | Google brand search ad -> Shopify | Brand search CPC is extremely low ($0.10$0.30); conversion rate >15% |
 | Amazon purchase -> Shopify email repurchase | Amazon customer registers email via package insert | Shopify email sequence | Verified customer; repurchase cost is nearly zero |
 
 ### 5.4 Ad Budget Allocation Prompt
@@ -373,7 +373,7 @@ budget allocation will skew heavily toward Amazon, missing growth opportunities.
 
 ## 6. Inventory and Logistics Synergy
 
-> 📎 **Related Reading**: [A5 Inventory & Supply Chain](../a-operators/a5-inventory.md#a5-inventory-supply-chain) — General inventory management methodology covered in A5
+> **Related Reading**: [A5 Inventory & Supply Chain](../a-operators/a5-inventory.md#a5-inventory-supply-chain) General inventory management methodology covered in A5
 
 ### 6.1 The Core Challenge of Cross-Platform Inventory
 
@@ -382,10 +382,10 @@ The biggest risk is "stockout on Platform A while Platform B has excess inventor
 ```
 Common inventory disaster scenarios:
 1. A TikTok creator video unexpectedly goes viral -> TikTok orders surge -> TikTok stockout
-   But FBA warehouse still has plenty of inventory -> Amazon inventory sits idle
-   
+But FBA warehouse still has plenty of inventory -> Amazon inventory sits idle
+
 2. During BFCM, Amazon sales exceed expectations -> FBA stockout -> Rankings plummet
-   But third-party warehouse still has inventory -> Shopify/TikTok inventory sits idle
+But third-party warehouse still has inventory -> Shopify/TikTok inventory sits idle
 
 3. New product launch -> Stocked inventory across all three platforms -> Product doesn't sell -> Excess inventory in three warehouses
 ```
@@ -400,8 +400,8 @@ Common inventory disaster scenarios:
 | Direct shipping | Testing / low volume | Zero inventory risk | Slow delivery | New product testing |
 
 Practical recommendations:
-- Monthly total orders <500: Use FBA for unified management (Amazon + Shopify MCF) — simple and hassle-free
-- Monthly total orders 500–2,000: FBA + third-party warehouse hybrid; high-frequency SKUs in FBA, others in third-party warehouse
+- Monthly total orders <500: Use FBA for unified management (Amazon + Shopify MCF) simple and hassle-free
+- Monthly total orders 5002,000: FBA + third-party warehouse hybrid; high-frequency SKUs in FBA, others in third-party warehouse
 - Monthly total orders >2,000: Third-party warehouse as primary (lower cost); FBA only for Amazon high-frequency SKUs
 
 ### 6.3 Using Amazon MCF to Fulfill Shopify Orders
@@ -410,17 +410,17 @@ Amazon Multi-Channel Fulfillment (MCF) lets you use FBA inventory to fulfill Sho
 
 Advantages:
 - No need to stock separately for Shopify (shared FBA inventory)
-- Prime-level shipping speed (1–3 days)
+- Prime-level shipping speed (13 days)
 - Shopify has a native MCF App for one-click integration
 
 Disadvantages:
-- MCF fees are 10–15% higher than FBA (Amazon prioritizes its own orders)
+- MCF fees are 1015% higher than FBA (Amazon prioritizes its own orders)
 - Default Amazon-branded packaging (you can request unbranded packaging, but cannot use your own brand packaging)
 - When FBA inventory is tight, MCF orders may be delayed
 
 When to use MCF vs. third-party warehouse:
 - Shopify monthly orders <200: Use MCF (simple; no extra warehouse contract needed)
-- Shopify monthly orders 200–1,000: MCF + third-party warehouse hybrid
+- Shopify monthly orders 2001,000: MCF + third-party warehouse hybrid
 - Shopify monthly orders >1,000: Third-party warehouse as primary (lower cost + branded packaging)
 
 ### 6.4 Inventory Synergy AI Prompt
@@ -519,17 +519,17 @@ Profit comparison for the same product across three platforms:
 Assumption: Selling price $40, COGS $12
 
 Amazon:
-  Price $40 - COGS $12 - Referral fee 15% ($6) - FBA ($5) - PPC ($4) = $13 profit (32.5%)
+Price $40 - COGS $12 - Referral fee 15% ($6) - FBA ($5) - PPC ($4) = $13 profit (32.5%)
 
 Shopify:
-  Price $40 - COGS $12 - Payment processing 2.9% ($1.16) - Shipping ($5) - Ad CAC ($8) = $13.84 profit (34.6%)
+Price $40 - COGS $12 - Payment processing 2.9% ($1.16) - Shipping ($5) - Ad CAC ($8) = $13.84 profit (34.6%)
 
 TikTok Shop:
-  Price $40 - COGS $12 - Commission 6% ($2.40) - Shipping ($5) - Creator commission 10% ($4) = $16.60 profit (41.5%)
+Price $40 - COGS $12 - Commission 6% ($2.40) - Shipping ($5) - Creator commission 10% ($4) = $16.60 profit (41.5%)
 
 Takeaway: TikTok Shop has the highest margin (low commission), but requires continuous content investment
-          Shopify margin depends on CAC management
-          Amazon margin is the most stable but has the lowest ceiling
+Shopify margin depends on CAC management
+Amazon margin is the most stable but has the lowest ceiling
 ```
 
 ---
@@ -590,28 +590,28 @@ Execution timeline:
 | Month | Amazon | Shopify | TikTok | Total Monthly Revenue |
 |-------|--------|---------|--------|-----------------------|
 | 0 | $200K | $0 | $0 | $200K |
-| 1–2 | $200K | $10K | $5K | $215K |
-| 3–6 | $220K | $40K | $30K | $290K |
-| 7–9 | $250K | $80K | $60K | $390K |
-| 10–12 | $280K | $120K | $100K | $500K |
+| 12 | $200K | $10K | $5K | $215K |
+| 36 | $220K | $40K | $30K | $290K |
+| 79 | $250K | $80K | $60K | $390K |
+| 1012 | $280K | $120K | $100K | $500K |
 
 Key synergy actions and causal analysis:
 
 Synergy 1: TikTok creator seeding -> Amazon brand search volume +150%
 - Mechanism: Creators recommend the product on TikTok -> Users remember the brand name -> Search for the brand name on Amazon to purchase
-- Data validation: Each time a creator video exceeds 50K views, Amazon Brand Analytics brand search volume rises 20–40% within 1–3 days
+- Data validation: Each time a creator video exceeds 50K views, Amazon Brand Analytics brand search volume rises 2040% within 13 days
 - Why users buy on Amazon instead of TikTok: They trust Prime shipping and return policies
 - If this indirect contribution isn't tracked, TikTok's value will be severely underestimated
 
 Synergy 2: Amazon package inserts -> 2,000 new Shopify email signups per month
 - Mechanism: A card in the Amazon package directs customers to register their email on Shopify for a "product usage guide + exclusive offer"
-- Conversion rate: Approximately 8–12% of Amazon customers scan and register (the key is offering something valuable — not just "follow us")
+- Conversion rate: Approximately 812% of Amazon customers scan and register (the key is offering something valuable not just "follow us")
 - Note: Amazon's policy prohibits directing customers away from Amazon to purchase elsewhere in package inserts. The insert content must be a "product usage guide," not "buy cheaper on our website"
 
 Synergy 3: Shopify email nurturing -> Amazon review growth rate +200%
 - Mechanism: The "post-purchase nurture" email in the Shopify email sequence sends on day 14: "If you've also purchased on Amazon, we'd love for you to share your experience"
 - Why it works: Shopify customers already have positive brand sentiment (repeat buyers); their Amazon reviews tend to be higher quality and higher rated
-- Note: You cannot directly ask customers to leave positive reviews — only guide them to "share their experience"
+- Note: You cannot directly ask customers to leave positive reviews only guide them to "share their experience"
 
 Synergy 4: Amazon review pain-point analysis -> TikTok video hooks
 - Mechanism: AI analyzes high-frequency pain points from Amazon negative reviews -> Uses these pain points as TikTok video hooks
@@ -639,7 +639,7 @@ Synergy 5: One set of product assets adapted for three platforms
 
 Why margins improved:
 - Shopify margin at 35% (no Amazon referral fee or FBA costs)
-- TikTok margin at 28% (commission only 5–8%)
+- TikTok margin at 28% (commission only 58%)
 - Amazon margin improved from 18% to 20% (brand search volume increase -> higher organic order share -> reduced ad dependency)
 
 ---
@@ -651,7 +651,7 @@ Why margins improved:
 | Pitfall | Why It's Wrong | Correct Approach |
 |---------|---------------|-----------------|
 | Doing the same thing on all three platforms | Each platform's user behavior and algorithm are completely different. Amazon users search to buy, TikTok users scroll and impulse-buy, Shopify users repurchase via email | Each platform has a unique role: Amazon for conversion, TikTok for acquisition, Shopify for repurchase |
-| Launching on all three platforms simultaneously | Resources spread thin; none of the platforms are done well. One person learning Amazon PPC + Facebook Ads + TikTok content at the same time = mastering nothing | Excel on one platform first (usually Amazon), then expand to the second after stabilizing (2–3 month gap) |
+| Launching on all three platforms simultaneously | Resources spread thin; none of the platforms are done well. One person learning Amazon PPC + Facebook Ads + TikTok content at the same time = mastering nothing | Excel on one platform first (usually Amazon), then expand to the second after stabilizing (23 month gap) |
 | Operating each platform independently without synergy | Misses the value of cross-platform data flow and content repurposing. Three independently operated platforms < one synergized system | Establish cross-platform data integration + content repurposing + attribution analysis |
 
 ### 11.2 Execution Pitfalls
@@ -669,7 +669,7 @@ Why margins improved:
 | Pitfall | Why It's Wrong | Correct Approach |
 |---------|---------------|-----------------|
 | Only looking at each platform's ROAS | TikTok's direct ROAS might only be 1.5, but adding its indirect contribution to Amazon brand search, the true ROAS could be 3.0 | Build a cross-platform attribution model to calculate "true ROAS" |
-| Using the same KPI for all three platforms | Amazon uses ACOS, Shopify uses LTV, TikTok uses GMV — you can't apply the same standard | Each platform has its own core KPI, but maintain a unified "cross-platform profit" metric |
+| Using the same KPI for all three platforms | Amazon uses ACOS, Shopify uses LTV, TikTok uses GMV you can't apply the same standard | Each platform has its own core KPI, but maintain a unified "cross-platform profit" metric |
 | Not integrating cross-platform data | Each platform's data lives in a different dashboard with no unified view | Use Google Sheets or Triple Whale to build a unified dashboard |
 
 ---
@@ -680,7 +680,7 @@ Why margins improved:
 
 During major sales events (BFCM, Prime Day), three-platform coordination far outperforms independent operations:
 - TikTok pre-event seeding -> Amazon brand search volume surges during the event -> Highest-converting traffic
-- Shopify email warm-up -> Email revenue can account for 40–50% on event day
+- Shopify email warm-up -> Email revenue can account for 4050% on event day
 - Amazon event traffic overflow -> Some users search the brand name and find the Shopify store
 
 ### 13.2 BFCM Three-Platform Coordination Timeline
@@ -689,8 +689,8 @@ During major sales events (BFCM, Prime Day), three-platform coordination far out
 T-6 weeks: Strategy planning
 - Finalize promotional products, discount levels, and inventory stocking across all three platforms
 - Key decision: Should discounts be uniform across platforms?
-  Recommendation: Amazon uses Coupons/Lightning Deals, Shopify uses coupon codes, TikTok uses livestream-exclusive pricing
-  This avoids Amazon's price parity policy issues
+Recommendation: Amazon uses Coupons/Lightning Deals, Shopify uses coupon codes, TikTok uses livestream-exclusive pricing
+This avoids Amazon's price parity policy issues
 
 T-4 weeks: Content preparation
 - AI generates promotional content for all three platforms (one core document -> three-platform adaptation)
@@ -735,11 +735,11 @@ Brand information:
 - Category: [Type]
 - SKUs participating in BFCM: [X]
 - Last year's BFCM data by platform:
-  | Platform | Revenue | vs. Normal Multiple | Ad Spend |
-  |----------|---------|-------------------|----------|
-  | Amazon | $[X] | [X]x | $[X] |
-  | Shopify | $[X] | [X]x | $[X] |
-  | TikTok | $[X] | [X]x | $[X] |
+| Platform | Revenue | vs. Normal Multiple | Ad Spend |
+|----------|---------|-------------------|----------|
+| Amazon | $[X] | [X]x | $[X] |
+| Shopify | $[X] | [X]x | $[X] |
+| TikTok | $[X] | [X]x | $[X] |
 - This year's BFCM total target: $[X]
 - Total ad budget: $[X]
 - Email list size: [X]
@@ -755,8 +755,8 @@ Please output:
 6. Contingency plans (how to adjust if one platform has issues)
 
 Why this prompt works:
-BFCM typically contributes 20–30% of annual revenue.
-Three-platform coordinated BFCM revenue is 50–100% higher than independent operations.
+BFCM typically contributes 2030% of annual revenue.
+Three-platform coordinated BFCM revenue is 50100% higher than independent operations.
 But coordination requires 6 weeks of advance preparation; this prompt helps you plan systematically.
 ```
 
@@ -769,16 +769,16 @@ But coordination requires 6 weeks of advance preparation; this prompt helps you 
 1-person team (total monthly revenue <$50K):
 
 ```
-Founder/Operator (1 person) — uses AI to manage three platforms
+Founder/Operator (1 person) uses AI to manage three platforms
 - Monday: Cross-platform data analysis + weekly plan (AI-generated weekly report)
-- Tuesday–Wednesday: TikTok content creation + creator management
+- TuesdayWednesday: TikTok content creation + creator management
 - Thursday: Amazon ad optimization + Shopify email
 - Friday: Data review + next week's plan
 - Weekend: TikTok video publishing + livestream (peak traffic)
 - AI tools: ChatGPT + CapCut + Klaviyo free tier ($33/month)
 ```
 
-3-person team (total monthly revenue $50K–$200K):
+3-person team (total monthly revenue $50K$200K):
 
 ```
 Operations Lead (1 person)
@@ -797,11 +797,11 @@ Amazon/Shopify Operations (1 person)
 5+ person team (total monthly revenue $200K+):
 
 ```
-Director (1 person) — Cross-platform strategy and P&L
-Amazon Operations (1 person) — Listing + PPC + Reviews
-Shopify Operations (1 person) — Website + email + SEO + ads
-TikTok Operations (1–2 people) — Video + creators + livestreams
-Customer Service (1 person) — Three-platform CS (unified via eDesk)
+Director (1 person) Cross-platform strategy and P&L
+Amazon Operations (1 person) Listing + PPC + Reviews
+Shopify Operations (1 person) Website + email + SEO + ads
+TikTok Operations (12 people) Video + creators + livestreams
+Customer Service (1 person) Three-platform CS (unified via eDesk)
 ```
 
 ### 14.2 Cross-Platform Collaboration Cadence
@@ -813,14 +813,14 @@ Daily (15 minutes):
 
 Weekly (1 hour):
 - Cross-platform weekly meeting (30 minutes):
-  Platform data review + synergy effect analysis + next week's priorities
+Platform data review + synergy effect analysis + next week's priorities
 - Content planning (15 minutes):
-  Confirm next week's three-platform content calendar
+Confirm next week's three-platform content calendar
 - Creator/ad review (15 minutes)
 
 Monthly (2 hours):
 - Cross-platform monthly retrospective (1 hour):
-  Platform P&L + cross-platform attribution + resource allocation adjustments
+Platform P&L + cross-platform attribution + resource allocation adjustments
 - Competitive analysis update (1 hour)
 ```
 
@@ -830,13 +830,13 @@ Managing customer service independently across three platforms is inefficient. T
 
 | Tool | Supported Platforms | AI Features | Monthly Cost |
 |------|-------------------|-------------|-------------|
-| eDesk | Amazon + Shopify + TikTok + eBay + 300+ | AI auto-reply, ticket classification, sentiment analysis | $35–$89 |
-| Gorgias | Shopify + Amazon + social media | AI auto-reply, macro templates | $10–$60 |
-| Zendesk | All platforms (requires integration) | AI Agent, knowledge base | $19–$115 |
+| eDesk | Amazon + Shopify + TikTok + eBay + 300+ | AI auto-reply, ticket classification, sentiment analysis | $35$89 |
+| Gorgias | Shopify + Amazon + social media | AI auto-reply, macro templates | $10$60 |
+| Zendesk | All platforms (requires integration) | AI Agent, knowledge base | $19$115 |
 
 Value of unified customer service:
-- Response time drops from 4–6 hours to under 30 minutes
-- AI automatically handles 60–70% of common inquiries
+- Response time drops from 46 hours to under 30 minutes
+- AI automatically handles 6070% of common inquiries
 - One CS agent can manage all three platforms (instead of one person per platform)
 - Customer history across any platform is visible in one place
 
@@ -854,8 +854,8 @@ Content rephrased for compliance with licensing restrictions. Source: [eDesk Man
 - [ ] Build a cross-platform prompt template library
 
 ---
-> 🏠 [Hub Home](../../README.md) · 📋 [Path D Overview](README.md) · 📊 [Platform Comparison](platform-comparison.md)
-> 
+> [Hub Home](../../README.md) · [Path D Overview](README.md) · [Platform Comparison](platform-comparison.md)
+>
 > **Path D**: [D1 Shopify](shopify-ai-guide.md) · [D2 TikTok](tiktok-shop-ai-guide.md) · [D3 Cross-Platform](cross-platform-strategy.md) · [D4 Walmart](d4-walmart-ai-guide.md) · [D5 Temu](d5-temu-seller-guide.md) · [D6 Southeast Asia](d6-southeast-asia-ai-guide.md) · [D7 Latin America](d7-mercado-libre-ai-guide.md) · [D8 Japan](d8-rakuten-japan-ai-guide.md) · [D9 eBay](d9-ebay-ai-guide.md) · [D10 AliExpress](d10-aliexpress-ai-guide.md) · [D11 Korea](d11-coupang-korea-ai-guide.md) · [D12 Faire](d12-faire-wholesale-ai-guide.md) · [D13 Europe](d13-europe-marketplaces-guide.md)
-> 
+>
 > **Quick Jump**: [Path 0 Foundations](../0-foundations/) · [Path A Operations](../a-operators/) · [Path B Developers](../b-developers/) · [Path C Managers](../c-managers/) · [Path E Social Media](../e-social-media/)
