@@ -393,7 +393,6 @@ C. 情感诉求（享受音乐、专注工作）"
 
 > **相关阅读**: [A2 Listing 与内容创作](../a-operators/a2-listing-optimization.md) 电商 Listing Prompt 模板详见 A2
 
-> 完整的标准化模板存放在 [prompts/](../../prompts/) 目录。本节提供快速参考版本。
 
 ### 4.1 选品与市场分析（5 个）
 

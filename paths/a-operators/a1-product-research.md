@@ -154,7 +154,6 @@ AI 不擅长的：
 
 ## 3. Prompt 模板库（选品专用）
 
-> 完整的标准化模板（含验证状态、贡献者信息、分享链接）存放在 [prompts/product-research.md](../../prompts/product-research.md)。
 > 本节提供每个模板的深度解析、常见错误和进阶变体。
 
 ### 3.1 竞品 Review 痛点分析
@@ -171,7 +170,6 @@ AI 不擅长的：
 - 不指定输出格式 → AI 会写长篇大论，难以对比和行动。表格格式是关键。
 - 只分析一个竞品 → 无法区分"品类通病"和"个别产品问题"。至少分析 3 个竞品。
 
-[完整模板 → prompts/product-research.md](../../prompts/product-research.md#模板-1-竞品-review-痛点分析)
 
 **进阶变体：**
 
@@ -246,7 +244,6 @@ AI 不擅长的：
 - 完全依赖 AI 的评分 → AI 没有实时数据，评分基于训练数据中的一般认知。必须用工具数据交叉验证。
 - 只做一次评估就决策 → 应该先用 AI 做初筛，再用 Helium 10/Jungle Scout 的真实数据做二次验证。
 
-[完整模板 → prompts/product-research.md](../../prompts/product-research.md#模板-2-市场可行性快速评估)
 
 **进阶变体：**
 
@@ -320,7 +317,6 @@ AI 不擅长的：
 - 混合不同品类的关键词 → 聚类结果会混乱，每次只分析一个品类
 - 不包含搜索量数据 → AI 无法判断需求强度，如果有搜索量数据一定要附上
 
-[完整模板 → prompts/product-research.md](../../prompts/product-research.md#模板-3-关键词需求聚类)
 
 **进阶变体：**
 

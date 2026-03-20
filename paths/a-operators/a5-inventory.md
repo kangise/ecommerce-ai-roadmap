@@ -217,7 +217,6 @@ Content rephrased for compliance with licensing restrictions. Sources: [goaura.c
 
 ## 3. Prompt 模板库（库存专用）
 
-> 完整的标准化模板（含验证状态、贡献者信息、分享链接）存放在 [prompts/inventory.md](../../prompts/inventory.md)（规划中）。
 > 本节提供每个模板的深度解析、常见错误和进阶变体。
 
 ### 3.1 补货决策分析
@@ -256,7 +255,6 @@ Content rephrased for compliance with licensing restrictions. Sources: [goaura.c
 8. 风险提示（缺货风险 vs 滞销风险的平衡建议）
 ```
 
-[完整模板 → prompts/inventory.md](../../prompts/inventory.md)
 
 **进阶变体：**
 

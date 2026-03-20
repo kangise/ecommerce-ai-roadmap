@@ -24,7 +24,7 @@
 
 覆盖范围：Amazon Listing 优化 / Rufus & COSMO 语义 SEO / GEO & Agentic Commerce / PPC 广告分析 / TikTok Shop 视频脚本 / Shopify 独立站 / 13 个电商平台 / 7 个社交媒体渠道。
 
-当前规模：56 篇深度指南 · 30 个 Prompt 模板 · 18 个 Colab Notebook · 8 个实战案例 · 4 种语言。
+当前规模：56 篇深度指南 · 18 个 Colab Notebook · 8 个实战案例 · 4 种语言。
 
 ## 如何使用
 
@@ -35,7 +35,7 @@
 1. 先看下面的「选择你的路径」，找到适合你的路径
 2. 进入路径后，每个模块都是独立的，可以跳着看
 3. 每个模块包含：方法论 + Prompt 模板 + 实操步骤 + 完成标志
-4. Prompt 模板可以直接复制到 ChatGPT / Claude 使用
+4. 模块中的 Prompt 可以直接复制到 ChatGPT / Claude 使用
 5. Notebook 可以在 Google Colab 一键运行，不需要本地环境
 
 **快速体验** — 复制下面的 Prompt 到 [ChatGPT](https://chat.openai.com/) 或 [Claude](https://claude.ai/)，30 秒得到一份市场分析：
@@ -51,7 +51,7 @@
 请用表格形式呈现关键数据对比。
 ```
 
-更多 Prompt → [Prompt 模板库](prompts/)
+更多 Prompt → [A1 选品与市场洞察](paths/a-operators/a1-product-research.md)
 
 ---
 
@@ -64,7 +64,6 @@
 - [热门内容直通车](#热门内容直通车)
 - [内容总览](#内容总览)
 - [学习路径](#学习路径)
-- [Prompt 模板库](#prompt-模板库)
 - [Notebook 实验室](#notebook-实验室)
 - [案例研究](#案例研究)
 - [贡献指南](#贡献指南)
@@ -152,25 +151,6 @@
 | 先修 | [AI 全景评估](paths/0-foundations/ai-landscape.md) | 了解 AI 在电商各环节的成熟度 |
 | 核心 | [C1 能力评估](paths/c-managers/c1-ai-assessment.md) → [C2 团队建设](paths/c-managers/c2-team-building.md) → [C3 ROI](paths/c-managers/c3-roi-evaluation.md) | 输出 AI 落地规划书 |
 | 进阶 | [C4 风险治理](paths/c-managers/c4-ai-risk-governance.md) · [C5 竞争情报](paths/c-managers/c5-competitive-intelligence.md) | 风险管理和竞争战略 |
-
-[回到目录](#目录)
-
----
-
-## Prompt 模板库
-
-30 个模板，按场景分类，可直接复制到 ChatGPT / Claude 使用。[查看完整模板库 →](prompts/README.md)
-
-| 模板集 | 模板数 | 场景 |
-|--------|--------|------|
-| [选品与市场分析](prompts/product-research.md) | 3 | 竞品 Review 分析、市场评估、关键词聚类 |
-| [Listing 生成与优化](prompts/listing-optimization.md) | 3 | Listing 全套生成、多语言本地化、竞品策略拆解 |
-| [广告分析与优化](prompts/advertising.md) | 2 | 搜索词报告分析、广告文案 A/B 测试 |
-| [客服与售后](prompts/customer-service.md) | 2 | 差评批量分析、账号申诉信 |
-| [合规与风控](prompts/compliance.md) | 1 | 多市场合规对比 |
-| [社交媒体运营](prompts/social-media.md) | 5 | Instagram Reels、YouTube、小红书、跨平台适配 |
-| [多平台运营](prompts/multi-platform.md) | 5 | Walmart、Temu、东南亚、多平台品类分析 |
-| [高级运营 A7-A13](prompts/advanced-operations.md) | 8 | AI 产品图、定价、GEO、品牌、利润、IP、增长 |
 
 [回到目录](#目录)
 

@@ -186,7 +186,6 @@ Content rephrased for compliance with licensing restrictions. Sources: [eDesk AI
 
 ## 3. Prompt 模板库（客服专用）
 
-> 完整的标准化模板（含验证状态、贡献者信息、分享链接）存放在 [prompts/customer-service.md](../../prompts/customer-service.md)。
 > 本节提供每个模板的深度解析、常见错误和进阶变体。
 
 ### 3.1 差评批量分析
@@ -202,7 +201,6 @@ Content rephrased for compliance with licensing restrictions. Sources: [eDesk AI
 - 只看文字不看星级分布 → 2 星和 1 星的问题严重程度不同，应该分开统计
 - 忽略好评中的"但是" → 4 星评论中的"但是"往往是最有价值的改进线索
 
-[完整模板 → prompts/customer-service.md](../../prompts/customer-service.md)
 
 **进阶变体：**
 
@@ -278,7 +276,6 @@ Content rephrased for compliance with licensing restrictions. Sources: [eDesk AI
 - 语气不当 → 不要辩解、不要抱怨、不要威胁。语气应该是"诚恳承认 + 积极解决"
 - 一次提交多个问题 → 如果有多个违规，每个违规单独写一封申诉信
 
-[完整模板 → prompts/customer-service.md](../../prompts/customer-service.md)
 
 **进阶变体：**
 

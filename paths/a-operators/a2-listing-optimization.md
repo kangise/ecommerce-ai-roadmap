@@ -223,7 +223,6 @@ Content rephrased for compliance with licensing restrictions. Sources: [amazonfb
 
 ## 3. Prompt 模板库（Listing 专用）
 
-> 完整的标准化模板（含验证状态、贡献者信息、分享链接）存放在 [prompts/listing-optimization.md](../../prompts/listing-optimization.md)。
 > 本节提供每个模板的深度解析、常见错误和进阶变体。
 
 ### 3.1 Listing 全套生成（标题 + 五点 + 描述 + Search Terms）
@@ -241,7 +240,6 @@ Content rephrased for compliance with licensing restrictions. Sources: [amazonfb
 - 不提供竞品信息 → AI 无法做差异化。至少告诉 AI 你的产品和竞品有什么不同。
 - 一次生成就直接用 → AI 的初稿是 80 分，需要人工检查关键词覆盖率、品牌调性、合规性。
 
-[完整模板 → prompts/listing-optimization.md](../../prompts/listing-optimization.md)
 
 **进阶变体：**
 
@@ -308,7 +306,6 @@ Content rephrased for compliance with licensing restrictions. Sources: [amazonfb
 - 翻译后不找母语者审核 → AI 的翻译可能语法正确但表达不自然。至少用 DeepL 交叉验证。
 - 所有市场用同一套卖点顺序 → 美国消费者最关心价格，德国消费者最关心品质，日本消费者最关心细节
 
-[完整模板 → prompts/listing-optimization.md](../../prompts/listing-optimization.md)
 
 **进阶变体：**
 
@@ -381,7 +378,6 @@ Content rephrased for compliance with licensing restrictions. Sources: [amazonfb
 - 只看文字不看图片 → 竞品的主图和 A+ Content 传达的信息可能和文字不同。
 - 不记录分析结果 → 竞品分析的价值在于积累。建议用表格记录，定期更新。
 
-[完整模板 → prompts/listing-optimization.md](../../prompts/listing-optimization.md)
 
 **进阶变体：**
 

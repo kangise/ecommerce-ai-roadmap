@@ -23,7 +23,7 @@ Welcome to ecommerce-ai-roadmap! Here's how you can contribute.
 3. 提交 Issue，维护者会审核并转化为正式模板文件
 4. 你会被标注为贡献者
 
-当前 Prompt 模板库覆盖 7 个分类、22 个模板，详见 [prompts/](prompts/README.md)。
+当前 Prompt 模板库覆盖 7 个分类、22 个模板，详见 [prompts/](paths/a-operators/)。
 
 ### 多平台运营经验（ 新增方向）
 

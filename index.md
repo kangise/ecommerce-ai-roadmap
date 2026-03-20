@@ -37,11 +37,11 @@ Cross-Border E-Commerce AI Knowledge Hub | An AAAI China Chapter Initiative
 请用表格形式呈现关键数据对比。
 ```
 
-更多 Prompt → [Prompt 模板库](prompts/) · 完整指南 → [GitHub README](https://github.com/kangise/ecommerce-ai-roadmap)
+更多 Prompt → Prompt 模板嵌入在各模块正文中
 
 ## 核心资源
 
-- [Prompt 模板库](prompts/) — 30 个可直接复制使用的 Prompt，覆盖选品、Listing、广告、客服、合规、社交媒体、多平台
+- Prompt 模板嵌入在各模块正文中
 - [Notebook 实验室](notebooks/) — 18 个可在 Google Colab 运行的实战 Notebook
 - [案例研究](docs/case-studies/) — 带量化指标的实战案例
 - [热门场景直通车](docs/popular-scenarios.md) — 60 个 AI 实战场景按使用频率排序

@@ -219,7 +219,6 @@ Content rephrased for compliance with licensing restrictions. Sources: [deepbi.c
 
 ## 3. Prompt 模板库（广告专用）
 
-> 完整的标准化模板（含验证状态、贡献者信息、分享链接）存放在 [prompts/advertising.md](../../prompts/advertising.md)。
 > 本节提供每个模板的深度解析、常见错误和进阶变体。
 
 ### 3.1 搜索词报告分析
@@ -235,7 +234,6 @@ Content rephrased for compliance with licensing restrictions. Sources: [deepbi.c
 - 忽略展示量高但零点击的词 → 这些词说明你的广告展示了但没人点击，可能是 Listing 主图或价格问题
 - 只看 ACOS 不看 TACOS → 一个 ACOS 高的关键词可能在推动自然排名，需要看整体效果
 
-[完整模板 → prompts/advertising.md](../../prompts/advertising.md)
 
 **进阶变体：**
 
@@ -302,7 +300,6 @@ Exact Match 搜索词：[粘贴数据]
 - 同时测试太多变体 → 每次只测 2 个变体（A/B），不要同时测 5 个
 - 测试时间太短 → 至少运行 2 周，积累足够的点击数据才有统计意义
 
-[完整模板 → prompts/advertising.md](../../prompts/advertising.md)
 
 **进阶变体：**
 
