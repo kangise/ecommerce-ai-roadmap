@@ -736,3 +736,9 @@ return {
 > **Path B**: [B1 数据管道](b1-data-pipeline.md) · [B2 预测模型](b2-prediction-models.md) · [B3 RAG 知识库](b3-rag-knowledge-base.md) · [B4 AI Agent](b4-agent-workflow.md) · [B5 本地模型](b5-local-model-deploy.md) · [B6 MCP 集成](b6-mcp-agentic-workflow.md) · [B7 Review NLP](b7-review-nlp-system.md) · [B8 Dashboard](b8-ecommerce-dashboard.md) · [B9 AI 图片生成](b9-ai-image-pipeline.md)
 >
 > **快速跳转**: [Path 0 基础](../0-foundations/) · [Path A 运营](../a-operators/) · [Path C 管理](../c-managers/) · [Path D 多平台](../d-platforms/) · [Path E 社交媒体](../e-social-media/)
+
+<!-- nav:prev-next -->
+
+---
+
+[< B8 Dashboard](b8-ecommerce-dashboard.md) | [Path 总览](README.md)

@@ -1131,3 +1131,9 @@ Step 4: 上传并测试
 > **Path A**: [A1 选品](a1-product-research.md) · [A2 Listing](a2-listing-optimization.md) · [A3 广告](a3-advertising.md) · [A4 客服](a4-customer-service.md) · [A5 库存](a5-inventory.md) · [A6 合规](a6-compliance.md)
 >
 > **快速跳转**: [Path 0 基础](../0-foundations/) · [Path B 技术](../b-developers/) · [Path C 管理](../c-managers/) · [Path D 多平台](../d-platforms/) · [Path E 社交媒体](../e-social-media/)
+
+<!-- nav:prev-next -->
+
+---
+
+[< A2 Listing](a2-listing-optimization.md) | [Path 总览](README.md) | [A4 客服 >](a4-customer-service.md)

@@ -282,3 +282,9 @@ Content rephrased for compliance with licensing restrictions.
 > **Path C**: [C1 AI 评估](c1-ai-assessment.md) · [C2 团队建设](c2-team-building.md) · [C3 ROI 评估](c3-roi-evaluation.md) · [C4 风险治理](c4-ai-risk-governance.md) · [C5 竞争情报](c5-competitive-intelligence.md)
 >
 > **快速跳转**: [Path 0 基础](../0-foundations/) · [Path A 运营](../a-operators/) · [Path B 技术](../b-developers/) · [Path D 多平台](../d-platforms/) · [Path E 社交媒体](../e-social-media/)
+
+<!-- nav:prev-next -->
+
+---
+
+[< C4 风险](c4-ai-risk-governance.md) | [Path 总览](README.md)

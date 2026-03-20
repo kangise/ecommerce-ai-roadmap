@@ -1312,3 +1312,9 @@ export OLLAMA_NUM_GPU=999 # 尽可能多用 GPU
 > **Path B**: [B1 数据](b1-data-pipeline.md) · [B2 预测](b2-prediction-models.md) · [B3 RAG](b3-rag-knowledge-base.md) · [B4 Agent](b4-agent-workflow.md) · [B5 部署](b5-local-model-deploy.md)
 >
 > **快速跳转**: [Path 0 基础](../0-foundations/) · [Path A 运营](../a-operators/) · [Path C 管理](../c-managers/) · [Path D 多平台](../d-platforms/) · [Path E 社交媒体](../e-social-media/)
+
+<!-- nav:prev-next -->
+
+---
+
+[< B4 Agent](b4-agent-workflow.md) | [Path 总览](README.md) | [B6 MCP >](b6-mcp-agentic-workflow.md)
