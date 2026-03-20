@@ -48,57 +48,57 @@
 
 ## 选品
 
-[选品与市场洞察](paths/a-operators/a1-product-research.md) — 竞品 Review 痛点分析、市场可行性评估、关键词聚类。
+[选品与市场洞察](paths/a-operators/a1-product-research.md) — 用 AI 做 [竞品 Review 痛点分析](paths/a-operators/a1-product-research.md#31-竞品-review-痛点分析)、[市场可行性 5 维度评估](paths/a-operators/a1-product-research.md#32-市场可行性快速评估)、[关键词需求聚类](paths/a-operators/a1-product-research.md#33-关键词需求聚类)。内含完整的 [选品 SOP 工作流](paths/a-operators/a1-product-research.md#4-选品实战工作流)和 [常见选品陷阱](paths/a-operators/a1-product-research.md#5-常见选品陷阱)。
 
-[定价策略](paths/a-operators/a8-pricing-strategy.md) — 动态定价模型、竞品价格监控。
+[定价策略](paths/a-operators/a8-pricing-strategy.md) — 竞品价格监控、动态定价模型、大促定价优化。
 
-[知识产权保护](paths/a-operators/a12-ip-protection.md) — 选品阶段排查专利和商标风险。
+[知识产权保护](paths/a-operators/a12-ip-protection.md) — 选品阶段排查专利和商标风险，避免上架后被投诉下架。
 
 ## 供应链
 
-[库存与供应链](paths/a-operators/a5-inventory.md) — 补货预测、安全库存、供应商评估。
+[库存与供应链](paths/a-operators/a5-inventory.md) — AI 驱动的补货预测、安全库存计算、供应商评估。
 
 ## 内容
 
-[Listing 优化](paths/a-operators/a2-listing-optimization.md) — Rufus/COSMO 语义优化、多语言本地化，一个 Prompt 生成完整 Listing。
+[Listing 优化](paths/a-operators/a2-listing-optimization.md) — 从 [A9 到 COSMO/Rufus 的算法演进](paths/a-operators/a2-listing-optimization.md#11-amazon-搜索算法演进从-a9-到-cosmo--rufus)，到 [Listing 全套一键生成](paths/a-operators/a2-listing-optimization.md#31-listing-全套生成标题--五点--描述--search-terms)（标题+五点+描述+Search Terms），到 [多语言本地化](paths/a-operators/a2-listing-optimization.md#32-多语言本地化不是直译)（不是翻译，是文化适配+本地关键词+度量转换），到 [Q&A 预埋](paths/a-operators/a2-listing-optimization.md)让 Rufus 推荐你的产品。
 
-[视觉内容](paths/a-operators/a7-visual-content.md) — AI 产品图、视频素材。
+[视觉内容](paths/a-operators/a7-visual-content.md) — AI 产品图、视频素材、A+ Content 视觉设计。
 
-[品牌建设](paths/a-operators/a10-brand-building.md) — 品牌故事、视觉系统、跨平台一致性。
+[品牌建设](paths/a-operators/a10-brand-building.md) — 品牌故事生成、视觉系统、跨平台品牌一致性。
 
 ## 流量
 
-[广告优化](paths/a-operators/a3-advertising.md) — 搜索词报告分析、浪费性支出识别、出价优化。
+[广告优化](paths/a-operators/a3-advertising.md) — [搜索词报告 AI 分析](paths/a-operators/a3-advertising.md#31-搜索词报告分析)（四象限分类：明星词/潜力词/观察词/浪费词）、[广告文案 A/B 测试](paths/a-operators/a3-advertising.md#32-广告文案-ab-测试)、[否定关键词策略](paths/a-operators/a3-advertising.md#33-否定关键词策略)、[新品 30 天广告启动计划](paths/a-operators/a3-advertising.md)。
 
-[SEO/GEO](paths/a-operators/a9-seo-geo.md) — 传统搜索优化 + 让 ChatGPT/Perplexity 推荐你的产品。
+[SEO/GEO](paths/a-operators/a9-seo-geo.md) — [Amazon SEO 2026 核心清单](paths/a-operators/a9-seo-geo.md#21-2026-amazon-seo-核心清单)、[Google SEO for Shopify](paths/a-operators/a9-seo-geo.md#3-google-seo-for-shopify)、[GEO 优化实操](paths/a-operators/a9-seo-geo.md#4-geo-优化实操)（让 ChatGPT/Perplexity/Gemini 推荐你的产品的 5 个策略）。
 
-[AI Growth Hack](paths/a-operators/a13-ai-growth-hack.md) — 从选品到规模化的 5 阶段增长飞轮。
+[AI Growth Hack](paths/a-operators/a13-ai-growth-hack.md) — 从选品验证到规模化的 5 阶段增长飞轮。
 
 ## 社交媒体
 
 ### 主流平台
 
-[Instagram/Facebook](paths/e-social-media/e1-instagram-facebook-ai-guide.md) · [YouTube](paths/e-social-media/e2-youtube-ai-guide.md) · [小红书](paths/e-social-media/e3-xiaohongshu-ai-guide.md) · [Pinterest](paths/e-social-media/e4-pinterest-ai-guide.md)
+[Instagram/Facebook](paths/e-social-media/e1-instagram-facebook-ai-guide.md) — Reels 脚本批量生成、Advantage+ 智能广告、Shopping 标签优化。[YouTube](paths/e-social-media/e2-youtube-ai-guide.md) — 长视频评测脚本、Shorts 创作、Shopping 和 Affiliate 变现。[小红书](paths/e-social-media/e3-xiaohongshu-ai-guide.md) — 种草笔记写作、KOL/KOC 合作策略。[Pinterest](paths/e-social-media/e4-pinterest-ai-guide.md) — 视觉搜索引擎优化、Shopping Ads。
 
 ### 对话与社区
 
-[WhatsApp](paths/e-social-media/e5-whatsapp-business-ai-guide.md) · [Reddit](paths/e-social-media/e6-reddit-ai-guide.md)
+[WhatsApp](paths/e-social-media/e5-whatsapp-business-ai-guide.md) — AI Chatbot 搭建、对话式商务。[Reddit](paths/e-social-media/e6-reddit-ai-guide.md) — 社区口碑营销、产品发现。
 
 ### 跨渠道
 
-[跨渠道策略](paths/e-social-media/e7-social-media-cross-channel.md) — 一个内容多平台适配。
+[跨渠道策略](paths/e-social-media/e7-social-media-cross-channel.md) — 一个内容多平台适配、跨渠道归因、预算分配。
 
 ## 客服
 
-[客服与售后](paths/a-operators/a4-customer-service.md) — 差评批量分析、多语言回复、账号申诉。
+[客服与售后](paths/a-operators/a4-customer-service.md) — 差评批量分析（自动分类+频率统计+改善方案）、多语言客服回复生成、[账号申诉 Plan of Action](paths/a-operators/a6-compliance.md#36-amazon-政策违规应对)、A-to-Z Claim 应对。
 
 ## 合规与财务
 
-[合规与风控](paths/a-operators/a6-compliance.md) — 多市场合规对比、BSA AI Agent 新规。
+[合规与风控](paths/a-operators/a6-compliance.md) — [多市场合规对比](paths/a-operators/a6-compliance.md#31-多市场合规对比深化版)（CE/FCC/PSE/UKCA 一表对比）、[合规成本估算](paths/a-operators/a6-compliance.md#33-合规成本估算)、[BSA AI Agent 合规新规](paths/a-operators/a6-compliance.md#61-2026-新趋势amazon-ai-agent-合规要求bsa-更新)。
 
-[财务分析](paths/a-operators/a11-financial-analysis.md) — 真实利润计算、现金流预测。
+[财务分析](paths/a-operators/a11-financial-analysis.md) — 含所有隐藏成本的真实利润计算、6 个月现金流预测。
 
-[AI 风险治理](paths/c-managers/c4-ai-risk-governance.md) — AI 使用的治理政策。
+[AI 风险治理](paths/c-managers/c4-ai-risk-governance.md) — AI 幻觉风险、数据隐私、使用治理政策。
 
 ---
 
@@ -110,11 +110,11 @@
 
 ### 独立站
 
-[Shopify AI 指南](paths/d-platforms/shopify-ai-guide.md) — 从选品到 GEO 到 Agentic Storefronts 的全链路。
+[Shopify AI 指南](paths/d-platforms/shopify-ai-guide.md) — 全链路手册：选品、产品页优化、[GEO 优化](paths/d-platforms/shopify-ai-guide.md#213-geo-优化实操-让-ai-推荐你的产品)（让 AI 推荐你的产品）、[Agentic Storefronts](paths/d-platforms/shopify-ai-guide.md#212-agentic-storefronts-与-ucp-协议-在-ai-平台内直接卖货)（在 ChatGPT 内直接卖货）、[Klaviyo 邮件个性化](paths/d-platforms/shopify-ai-guide.md#23-shopify-邮件营销深度方法论-从-klaviyo-到-ai-个性化)、[Amazon 转 Shopify 迁移方法论](paths/d-platforms/shopify-ai-guide.md#28-从-amazon-迁移到-shopify-的完整方法论)。
 
 ### 短视频与直播
 
-[TikTok Shop](paths/d-platforms/tiktok-shop-ai-guide.md) — Hook 公式、达人评分、直播脚本、GMV Max。
+[TikTok Shop](paths/d-platforms/tiktok-shop-ai-guide.md) — [Hook 公式库](paths/d-platforms/tiktok-shop-ai-guide.md#152-hook-设计方法论-不是吸引注意力而是制造信息缺口)（信息缺口理论）、[3 幕视频脚本](paths/d-platforms/tiktok-shop-ai-guide.md#153-视频脚本的3-幕结构)（转化率 3-5x）、[达人量化评分模型](paths/d-platforms/tiktok-shop-ai-guide.md#162-ai-达人筛选的量化评分模型)（100 分制）、[直播分钟级脚本](paths/d-platforms/tiktok-shop-ai-guide.md#173-直播脚本的节奏设计)、[GMV Max 优化](paths/d-platforms/tiktok-shop-ai-guide.md#142-gmv-max-强制化-2025-年-9-月起的重大变化)。
 
 ### 亚太
 
