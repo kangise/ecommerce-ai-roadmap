@@ -62,15 +62,11 @@
 - [关于本知识库](#关于本知识库)
 - [如何使用](#如何使用)
 - [热门内容直通车](#热门内容直通车)
-- [选择你的路径](#选择你的路径)
-- [Path A: 运营人](#path-a-运营人-ai-提效实战)
-- [Path B: 技术人](#path-b-技术人-ai-系统构建)
-- [Path C: 管理者](#path-c-管理者-ai-战略落地)
-- [Path D: 多平台](#path-d-多平台-超越-amazon)
-- [Path E: 社交媒体](#path-e-社交媒体-ai-运营)
+- [内容总览](#内容总览)
+- [学习路径](#学习路径)
 - [Prompt 模板库](#prompt-模板库)
 - [Notebook 实验室](#notebook-实验室)
-- [学习路径追踪](#学习路径追踪)
+- [案例研究](#案例研究)
 - [贡献指南](#贡献指南)
 
 ---
@@ -95,177 +91,67 @@
 [回到目录](#目录)
 
 ---
+## 内容总览
 
-## 选择你的路径
+按主题域浏览所有内容，点击链接直接进入。
 
-> **推荐先修**：无论你选择哪条路径，建议先完成 [Path 0: AI 基础先行](paths/0-foundations/)，建立 AI 认知基础（LLM 原理、Prompt 工程、RAG、Agent）。
-
-```mermaid
-flowchart TD
-P0[" Path 0: AI 基础先行<br/>（推荐先修）"] --> Q1
-Q1{"你的日常工作是什么？"}
-
-Q1 -->|"选品/运营/广告/客服"| A["Path A: 运营人"]
-Q1 -->|"写代码/做数据/搭系统"| B["Path B: 技术人"]
-Q1 -->|"带团队/定策略/管预算"| C["Path C: 管理者"]
-
-A --> A_DESC["目标: 用 AI 工具提升日常运营效率\n不需要写代码\n预计时间: 2-4 周上手"]
-B --> B_DESC["目标: 构建 AI 驱动的电商系统\n需要 Python 基础\n预计时间: 4-8 周系统掌握"]
-C --> C_DESC["目标: 制定团队 AI 转型策略\n不需要技术背景\n预计时间: 1-2 周建立认知"]
-```
-
-| 路径 | 适合谁 | 需要写代码吗 | 时间投入 | 核心产出 |
-|------|--------|-------------|----------|----------|
-| **[Path 0: AI 基础先行](paths/0-foundations/)** | 所有人（推荐先修） | 不需要 | 每天30分钟，1周 | AI 认知基础 |
-| **[Path A: 运营人](paths/a-operators/)** | 选品/运营/广告/客服岗 | 不需要 | 每天30分钟，2-4周 | 一套可复用的 AI 工作流 |
-| **[Path B: 技术人](paths/b-developers/)** | 开发/数据/BI 岗 | 需要 Python | 每天1小时，4-8周 | 一个可部署的 AI 工具 |
-| **[Path C: 管理者](paths/c-managers/)** | 团队负责人/创始人 | 不需要 | 集中3-5小时 | 一份 AI 落地规划书 |
-| **[Path D: 多平台](paths/d-platforms/)** | 多平台卖家 | 不需要 | 按需选择 | 多平台 AI 运营体系 |
-| **[Path E: 社交媒体](paths/e-social-media/)** | 品牌营销/内容运营 | 不需要 | 每天30分钟，2-3周 | 社交媒体 AI 引流体系 |
-
-> **推荐**：完成 Path 0 后、进入具体路径前，先看 [AI 应用全景评估](paths/0-foundations/ai-landscape.md) 30 分钟了解每个环节 AI 能做到什么程度、优先级如何排序。
-
-> 不确定选哪条？三条路径可以交叉学习。运营人学完 Path A 想深入，可以进 Path B；管理者想了解细节，可以看 Path A 的具体模块。
+| Domain | Topics |
+|--------|--------|
+| **AI 基础** | [AI 演进](paths/0-foundations/f1-ai-evolution.md) · [Prompt 工程](paths/0-foundations/f2-prompt-engineering.md) · [RAG](paths/0-foundations/f3-rag-knowledge.md) · [Agent](paths/0-foundations/f4-agent-automation.md) · [RPA](paths/0-foundations/f5-rpa-automation.md) · [工具对比](paths/0-foundations/f6-ai-tools-comparison.md) · [AI 全景评估](paths/0-foundations/ai-landscape.md) |
+| **选品与市场** | [选品与市场洞察](paths/a-operators/a1-product-research.md) · [定价策略](paths/a-operators/a8-pricing-strategy.md) · [知识产权保护](paths/a-operators/a12-ip-protection.md) |
+| **供应链与库存** | [库存与供应链](paths/a-operators/a5-inventory.md) |
+| **内容与转化** | [Listing 优化](paths/a-operators/a2-listing-optimization.md) · [视觉内容](paths/a-operators/a7-visual-content.md) · [品牌建设](paths/a-operators/a10-brand-building.md) |
+| **流量与获客** | [广告优化](paths/a-operators/a3-advertising.md) · [SEO/GEO](paths/a-operators/a9-seo-geo.md) · [AI Growth Hack](paths/a-operators/a13-ai-growth-hack.md) |
+| **社交媒体营销** | [Instagram/Facebook](paths/e-social-media/e1-instagram-facebook-ai-guide.md) · [YouTube](paths/e-social-media/e2-youtube-ai-guide.md) · [小红书](paths/e-social-media/e3-xiaohongshu-ai-guide.md) · [Pinterest](paths/e-social-media/e4-pinterest-ai-guide.md) · [WhatsApp](paths/e-social-media/e5-whatsapp-business-ai-guide.md) · [Reddit](paths/e-social-media/e6-reddit-ai-guide.md) · [跨渠道策略](paths/e-social-media/e7-social-media-cross-channel.md) |
+| **客户运营** | [客服与售后](paths/a-operators/a4-customer-service.md) |
+| **合规与财务** | [合规与风控](paths/a-operators/a6-compliance.md) · [财务分析](paths/a-operators/a11-financial-analysis.md) · [AI 风险治理](paths/c-managers/c4-ai-risk-governance.md) |
+| **多平台 — 货架电商** | [Walmart](paths/d-platforms/d4-walmart-ai-guide.md) · [eBay](paths/d-platforms/d9-ebay-ai-guide.md) · [AliExpress](paths/d-platforms/d10-aliexpress-ai-guide.md) · [Temu](paths/d-platforms/d5-temu-seller-guide.md) · [Faire](paths/d-platforms/d12-faire-wholesale-ai-guide.md) |
+| **多平台 — 独立站** | [Shopify AI 指南](paths/d-platforms/shopify-ai-guide.md) |
+| **多平台 — 短视频与直播** | [TikTok Shop](paths/d-platforms/tiktok-shop-ai-guide.md) |
+| **多平台 — 亚太** | [东南亚 Shopee/Lazada](paths/d-platforms/d6-southeast-asia-ai-guide.md) · [日本 Rakuten](paths/d-platforms/d8-rakuten-japan-ai-guide.md) · [韩国 Coupang](paths/d-platforms/d11-coupang-korea-ai-guide.md) |
+| **多平台 — 欧洲与拉美** | [拉美 Mercado Libre](paths/d-platforms/d7-mercado-libre-ai-guide.md) · [欧洲 Otto/Zalando](paths/d-platforms/d13-europe-marketplaces-guide.md) |
+| **跨平台策略** | [跨平台协同](paths/d-platforms/cross-platform-strategy.md) · [平台全景对比](paths/d-platforms/platform-comparison.md) |
+| **AI 系统构建** | [数据管道](paths/b-developers/b1-data-pipeline.md) · [预测模型](paths/b-developers/b2-prediction-models.md) · [RAG 知识库](paths/b-developers/b3-rag-knowledge-base.md) · [Agent 工作流](paths/b-developers/b4-agent-workflow.md) · [本地模型部署](paths/b-developers/b5-local-model-deploy.md) · [MCP 集成](paths/b-developers/b6-mcp-agentic-workflow.md) · [Review NLP](paths/b-developers/b7-review-nlp-system.md) · [Dashboard](paths/b-developers/b8-ecommerce-dashboard.md) · [AI 图片生成](paths/b-developers/b9-ai-image-pipeline.md) |
+| **团队与管理** | [AI 能力评估](paths/c-managers/c1-ai-assessment.md) · [团队建设](paths/c-managers/c2-team-building.md) · [ROI 评估](paths/c-managers/c3-roi-evaluation.md) · [竞争情报](paths/c-managers/c5-competitive-intelligence.md) |
 
 [回到目录](#目录)
 
 ---
 
-## Path A: 运营人 AI 提效实战
+## 学习路径
 
-> 目标：不写一行代码，用 AI 工具把日常运营效率提升 3-10 倍
->
-> 前提：你已经有基本的电商运营经验（知道什么是 ASIN、PPC、FBA）
->
-> 时间：每天 30 分钟，2-4 周完成全部模块
+不确定从哪里开始？按角色选一条路径。每条路径是对上面 domain 内容的推荐阅读顺序。
 
-[查看 Path A 完整内容 →](paths/a-operators/)
+### Path A: 运营人 — 不写代码，用 AI 提效
 
-| 模块 | 主题 | 你将学会 |
+适合：选品/运营/广告/客服岗 · 时间：每天 30 分钟，2-4 周 · [Path A 总览 →](paths/a-operators/)
+
+| 阶段 | 模块 | 完成标志 |
 |------|------|----------|
-| [A1. 选品与市场洞察](paths/a-operators/a1-product-research.md) | 竞品分析、市场评估 | 用 AI 完成选品可行性分析报告 |
-| [A2. Listing 与内容创作](paths/a-operators/a2-listing-optimization.md) | Listing 生成、多语言翻译 | 用 AI 生成完整的多语言 Listing |
-| [A3. 广告优化](paths/a-operators/a3-advertising.md) | 搜索词分析、文案测试 | 用 AI 分析搜索词报告并优化 |
-| [A4. 客服与售后](paths/a-operators/a4-customer-service.md) | 差评分析、申诉信撰写 | 建立多语言客服回复模板库 |
-| [A5. 库存与供应链](paths/a-operators/a5-inventory.md) | 补货预测、安全库存 | 用 AI 建立补货决策模型 |
-| [A6. 合规与风控](paths/a-operators/a6-compliance.md) | 多市场合规、认证查询 | 生成完整的多市场合规清单 |
-| [A7. 视觉内容](paths/a-operators/a7-visual-content.md) | AI 图片/视频生成 | AI 产品图、视频、品牌视觉一致性 |
-| [A8. 定价策略](paths/a-operators/a8-pricing-strategy.md) | 智能定价 | AI 竞品价格监控、动态定价 |
-| [A9. SEO/GEO](paths/a-operators/a9-seo-geo.md) | 搜索优化 | Amazon SEO + GEO（让 AI 推荐你的产品） |
-| [A10. 品牌建设](paths/a-operators/a10-brand-building.md) | 品牌策略 | AI 品牌故事、视觉系统、跨平台一致性 |
-| [A11. 财务分析](paths/a-operators/a11-financial-analysis.md) | 财务管理 | AI 利润计算、现金流预测 |
-| [A12. 知识产权](paths/a-operators/a12-ip-protection.md) | IP 保护 | AI 专利检索、商标监控、品牌保护 |
-| [A13. AI Growth Hack](paths/a-operators/a13-ai-growth-hack.md) | 全栈增长 | AI 增长飞轮、Agentic Commerce |
+| 先修 | [AI 基础](paths/0-foundations/) · [AI 全景评估](paths/0-foundations/ai-landscape.md) | 理解 Prompt/RAG/Agent 的区别 |
+| 核心 | [A1 选品](paths/a-operators/a1-product-research.md) → [A2 Listing](paths/a-operators/a2-listing-optimization.md) → [A3 广告](paths/a-operators/a3-advertising.md) → [A4 客服](paths/a-operators/a4-customer-service.md) → [A5 库存](paths/a-operators/a5-inventory.md) → [A6 合规](paths/a-operators/a6-compliance.md) | 每个环节有可复用的 AI 工作流 |
+| 进阶 | [A7 视觉](paths/a-operators/a7-visual-content.md) · [A8 定价](paths/a-operators/a8-pricing-strategy.md) · [A9 SEO/GEO](paths/a-operators/a9-seo-geo.md) · [A10 品牌](paths/a-operators/a10-brand-building.md) · [A11 财务](paths/a-operators/a11-financial-analysis.md) · [A12 IP](paths/a-operators/a12-ip-protection.md) · [A13 增长](paths/a-operators/a13-ai-growth-hack.md) | 按需选学 |
+| 扩展 | [多平台](paths/d-platforms/) · [社交媒体](paths/e-social-media/) | 拓展到 Amazon 以外 |
 
-[回到目录](#目录)
+### Path B: 技术人 — 构建 AI 电商系统
 
----
+适合：开发/数据/BI 岗 · 需要 Python · 时间：每天 1 小时，4-8 周 · [Path B 总览 →](paths/b-developers/)
 
-## Path B: 技术人 AI 系统构建
-
-> 目标：构建 AI 驱动的电商工具和系统，从脚本到产品级应用
->
-> 前提：有 Python 基础（或愿意边学边做，AI 会帮你写代码）
->
-> 时间：每天 1 小时，4-8 周系统掌握
-
-[查看 Path B 完整内容 →](paths/b-developers/)
-
-```mermaid
-flowchart LR
-B1["B1 数据采集\n与处理"] --> B2["B2 预测模型\n与决策"]
-B2 --> B3["B3 RAG\n知识库"]
-B3 --> B4["B4 AI Agent\n与自动化"]
-B4 --> B5["B5 本地模型\n部署微调"]
-```
-
-| 模块 | 主题 | 你将构建 |
+| 阶段 | 模块 | 完成标志 |
 |------|------|----------|
-| [B1. 数据采集与处理](paths/b-developers/b1-data-pipeline.md) | pandas、SP-API、自动化 | 自动合并 Amazon 报告的脚本 |
-| [B2. 预测模型与决策](paths/b-developers/b2-prediction-models.md) | Prophet、AutoGluon | SKU 90 天销量预测模型 |
-| [B3. RAG 知识库](paths/b-developers/b3-rag-knowledge-base.md) | LlamaIndex、Chroma | 产品 FAQ AI 问答系统 |
-| [B4. AI Agent 与自动化](paths/b-developers/b4-agent-workflow.md) | LangGraph、CrewAI | 自动化运营监控 Agent |
-| [B5. 本地模型部署](paths/b-developers/b5-local-model-deploy.md) | Ollama、LoRA 微调 | 本地运行的电商 LLM（选修） |
-| [B6. MCP 集成与 Agentic 工作流](paths/b-developers/b6-mcp-agentic-workflow.md) | MCP、Amazon Ads、Shopify | 用 Claude 对话管理广告和产品 |
-| [B7. Review 智能分析系统](paths/b-developers/b7-review-nlp-system.md) | BERTopic、情感分析 | Review 主题建模+洞察生成 |
-| [B8. 电商 Dashboard](paths/b-developers/b8-ecommerce-dashboard.md) | Streamlit、Plotly | 多平台运营 Dashboard + AI 异常检测 |
-| [B9. AI 图片/视频生成](paths/b-developers/b9-ai-image-pipeline.md) | ComfyUI、DALL-E、Flux | 产品图批量生成 Pipeline |
+| 先修 | [AI 基础](paths/0-foundations/) | 理解 LLM/RAG/Agent 原理 |
+| 核心 | [B1 数据管道](paths/b-developers/b1-data-pipeline.md) → [B2 预测模型](paths/b-developers/b2-prediction-models.md) → [B3 RAG](paths/b-developers/b3-rag-knowledge-base.md) → [B4 Agent](paths/b-developers/b4-agent-workflow.md) | 能独立构建 AI 电商工具 |
+| 进阶 | [B5 本地部署](paths/b-developers/b5-local-model-deploy.md) · [B6 MCP](paths/b-developers/b6-mcp-agentic-workflow.md) · [B7 NLP](paths/b-developers/b7-review-nlp-system.md) · [B8 Dashboard](paths/b-developers/b8-ecommerce-dashboard.md) · [B9 图片](paths/b-developers/b9-ai-image-pipeline.md) | 按需选学 |
 
-> 完成 B1-B4 中至少 3 个模块，你已经具备构建 AI 电商工具的能力。B5-B7 为进阶选修。
+### Path C: 管理者 — AI 战略落地
 
-[回到目录](#目录)
+适合：团队负责人/创始人 · 不需要技术背景 · 时间：集中 3-5 小时 · [Path C 总览 →](paths/c-managers/)
 
----
-
-## Path C: 管理者 AI 战略落地
-
-> 目标：理解 AI 能为团队做什么，制定可执行的 AI 落地计划
->
-> 前提：不需要技术背景，但需要对业务有深入理解
->
-> 时间：集中 3-5 小时完成评估和规划
-
-[查看 Path C 完整内容 →](paths/c-managers/)
-
-| 模块 | 主题 | 你将产出 |
+| 阶段 | 模块 | 完成标志 |
 |------|------|----------|
-| [C1. AI 能力评估与规划](paths/c-managers/c1-ai-assessment.md) | 落地优先级矩阵、规划 Prompt | 团队 AI 能力评估和优先级排序 |
-| [C2. 团队 AI 技能建设](paths/c-managers/c2-team-building.md) | 培训计划、习惯养成 | 团队 80%+ 每天使用 AI 工具 |
-| [C3. AI 项目 ROI 评估](paths/c-managers/c3-roi-evaluation.md) | ROI 计算框架、效果衡量 | 至少一个 AI 项目的 ROI 评估报告 |
-| [C4. AI 风险管理与治理](paths/c-managers/c4-ai-risk-governance.md) | AI 幻觉、隐私、合规 | AI 治理政策和风险评估报告 |
-| [C5. AI 竞争情报](paths/c-managers/c5-competitive-intelligence.md) | 竞品监控、AI 可见度 | 竞争格局分析和战略决策 |
-
-> 完成 C1-C3 输出 AI 落地规划书，C4-C5 为进阶模块（风险管理和竞争战略）。
-
-[回到目录](#目录)
-
----
-
-## Path D: 多平台 超越 Amazon
-
-> 把 AI 能力从 Amazon 扩展到全球 13 个电商平台。
->
-> 前置：建议先完成 Path A 的核心模块
-
-[查看 Path D 完整内容 →](paths/d-platforms/)
-
-| 模块 | 平台 | 核心内容 |
-|------|------|----------|
-| [D1. Shopify AI 指南](paths/d-platforms/shopify-ai-guide.md) | Shopify | 选品→产品页→广告→邮件→客服→数据分析全链路 |
-| [D2. TikTok Shop AI 指南](paths/d-platforms/tiktok-shop-ai-guide.md) | TikTok Shop | 短视频生成、达人匹配、直播脚本 |
-| [D3. 跨平台 AI 策略](paths/d-platforms/cross-platform-strategy.md) | 多平台 | Amazon + 独立站 + 社交电商协同 |
-| [D4. Walmart Marketplace](paths/d-platforms/d4-walmart-ai-guide.md) | Walmart | Amazon 卖家第二平台，Walmart Connect 广告 |
-| [D5. Temu 卖家策略](paths/d-platforms/d5-temu-seller-guide.md) | Temu | 竞争分析 + 入驻决策框架 |
-| [D6. 东南亚电商](paths/d-platforms/d6-southeast-asia-ai-guide.md) | Shopee + Lazada | 多语言本地化 + 直播带货 |
-| [D7. 拉美电商](paths/d-platforms/d7-mercado-libre-ai-guide.md) | Mercado Libre | 西语/葡语本地化 + 拉美市场 |
-| [D8. 日本电商](paths/d-platforms/d8-rakuten-japan-ai-guide.md) | Rakuten | 店铺自定义 + 积分生态 + 邮件营销 |
-| [D9. eBay](paths/d-platforms/d9-ebay-ai-guide.md) | eBay | 二手/翻新品 + 拍卖策略 |
-| [D10. AliExpress](paths/d-platforms/d10-aliexpress-ai-guide.md) | AliExpress | 全托管模式 + 南欧市场 |
-| [D11. 韩国电商](paths/d-platforms/d11-coupang-korea-ai-guide.md) | Coupang | 韩国市场入门 + 韩语 Listing |
-| [D12. Faire 批发](paths/d-platforms/d12-faire-wholesale-ai-guide.md) | Faire | B2B 批发 + 品牌故事 |
-| [D13. 欧洲平台](paths/d-platforms/d13-europe-marketplaces-guide.md) | Otto + Zalando | 德国市场 + 欧洲合规 |
-
-[回到目录](#目录)
-
----
-
-## Path E: 社交媒体 AI 运营
-
-> 用 AI 系统化运营社交媒体渠道，把"发帖"变成可复制的引流体系。
->
-> 前置：建议先完成 Path A 的核心模块
-
-[查看 Path E 完整内容 →](paths/e-social-media/)
-
-| 模块 | 渠道 | 核心内容 |
-|------|------|----------|
-| [E1. Instagram + Facebook](paths/e-social-media/e1-instagram-facebook-ai-guide.md) | Meta 生态 | Reels 创作 + Advantage+ 广告 + Shopping |
-| [E2. YouTube](paths/e-social-media/e2-youtube-ai-guide.md) | YouTube | 长视频评测 + Shorts + Shopping + Affiliate |
-| [E3. 小红书](paths/e-social-media/e3-xiaohongshu-ai-guide.md) | 小红书 | 种草笔记 + KOL/KOC + 中国市场入口 |
-| [E4. Pinterest](paths/e-social-media/e4-pinterest-ai-guide.md) | Pinterest | 视觉搜索引擎 + Shopping Ads |
-| [E5. WhatsApp Business](paths/e-social-media/e5-whatsapp-business-ai-guide.md) | WhatsApp | AI Chatbot + 对话式商务 |
-| [E6. Reddit](paths/e-social-media/e6-reddit-ai-guide.md) | Reddit | 口碑营销 + 产品发现 |
-| [E7. 跨渠道协同](paths/e-social-media/e7-social-media-cross-channel.md) | 多渠道 | 一个内容多平台适配 + 归因 + 预算分配 |
+| 先修 | [AI 全景评估](paths/0-foundations/ai-landscape.md) | 了解 AI 在电商各环节的成熟度 |
+| 核心 | [C1 能力评估](paths/c-managers/c1-ai-assessment.md) → [C2 团队建设](paths/c-managers/c2-team-building.md) → [C3 ROI](paths/c-managers/c3-roi-evaluation.md) | 输出 AI 落地规划书 |
+| 进阶 | [C4 风险治理](paths/c-managers/c4-ai-risk-governance.md) · [C5 竞争情报](paths/c-managers/c5-competitive-intelligence.md) | 风险管理和竞争战略 |
 
 [回到目录](#目录)
 
@@ -273,9 +159,7 @@ B4 --> B5["B5 本地模型\n部署微调"]
 
 ## Prompt 模板库
 
-所有 Prompt 模板集中在 [`prompts/`](prompts/) 目录，按场景分类，可直接复制使用。
-
-[查看完整 Prompt 模板库 →](prompts/README.md)
+30 个模板，按场景分类，可直接复制到 ChatGPT / Claude 使用。[查看完整模板库 →](prompts/README.md)
 
 | 模板集 | 模板数 | 场景 |
 |--------|--------|------|
@@ -284,10 +168,9 @@ B4 --> B5["B5 本地模型\n部署微调"]
 | [广告分析与优化](prompts/advertising.md) | 2 | 搜索词报告分析、广告文案 A/B 测试 |
 | [客服与售后](prompts/customer-service.md) | 2 | 差评批量分析、账号申诉信 |
 | [合规与风控](prompts/compliance.md) | 1 | 多市场合规对比 |
-| [社交媒体运营](prompts/social-media.md) | 5 | Instagram Reels 脚本、Meta Ads 文案、YouTube 评测脚本、小红书种草笔记、跨平台内容适配 |
-| [多平台运营](prompts/multi-platform.md) | 5 | Amazon→Walmart 转换、Walmart 广告分析、Temu 入驻评估、东南亚本地化、多平台品类分析 |
-
-> 欢迎贡献你验证过的 Prompt 模板！详见 [贡献指南](#贡献指南)。
+| [社交媒体运营](prompts/social-media.md) | 5 | Instagram Reels、YouTube、小红书、跨平台适配 |
+| [多平台运营](prompts/multi-platform.md) | 5 | Walmart、Temu、东南亚、多平台品类分析 |
+| [高级运营 A7-A13](prompts/advanced-operations.md) | 8 | AI 产品图、定价、GEO、品牌、利润、IP、增长 |
 
 [回到目录](#目录)
 
@@ -295,98 +178,27 @@ B4 --> B5["B5 本地模型\n部署微调"]
 
 ## Notebook 实验室
 
-可在 Google Colab 直接运行的 Jupyter Notebook，零配置上手。当前已有 18 个 Notebook，覆盖 Path A/B/C/D/E。
+18 个 Jupyter Notebook，可在 Google Colab 一键运行。[查看完整索引 →](notebooks/README.md)
 
-[查看完整 Notebook 索引 →](notebooks/README.md)
-
-| 路径 | Notebook 数量 | 覆盖模块 |
-|------|-------------|----------|
-| Path A 运营 | 11 | A1 选品、A2 Listing、A3 广告、A4 差评、A5 库存、A6 合规、A8 定价、A9 GEO、A10 品牌、A11 利润、A12 IP |
-| Path B 技术 | 4 | B1 数据管道、B2 销量预测、B7 Review 分析、B8 Dashboard |
-| Path C 管理 | 1 | C3 ROI 评估 |
-| Path D 平台 | 1 | D3 跨平台内容 |
-| Path E 社交 | 1 | E1 社交内容日历 |
-
-[回到目录](#目录)
-
----
-
-## 学习路径追踪
-
-复制以下 checklist 到你的笔记工具中，追踪学习进度。
-
-### Path A 进度追踪（运营人）
-
-```
-[ ] A1. 选品：用 AI 完成一个完整的选品可行性分析报告
-[ ] A2. Listing：用 AI 生成一套完整的多语言 Listing
-[ ] A3. 广告：用 AI 分析一份真实的搜索词报告并执行优化
-[ ] A4. 客服：建立一套多语言客服回复模板库
-[ ] A5. 库存：用 AI 建立一个产品的补货决策模型
-[ ] A6. 合规：为一个产品生成完整的多市场合规清单
-[ ] A7. 视觉：用 AI 生成一套产品图片和视频素材
-[ ] A8. 定价：建立 AI 竞品价格监控和动态定价模型
-[ ] A9. SEO/GEO：在 ChatGPT/Perplexity 测试产品是否被推荐
-[ ] A10. 品牌：用 AI 生成完整品牌故事和视觉系统
-[ ] A11. 财务：用 AI 计算至少 5 个 SKU 的真实利润
-[ ] A12. IP：完成至少 1 个产品的专利/商标风险排查
-[ ] A13. Growth Hack：建立 AI 驱动的每日运营工作流并扩展到 2+ 平台
-```
-
-### Path B 进度追踪（技术人）
-
-```
-[ ] B1. 数据：写一个脚本自动合并多个 Amazon 报告
-[ ] B2. 预测：用 Prophet 对一个真实 SKU 做 90 天销量预测
-[ ] B3. RAG：搭建一个可以回答产品问题的 RAG 系统
-[ ] B4. Agent：部署一个自动化运营监控 Agent
-[ ] B5. 部署：用 Ollama 在本地运行 LLM（选修）
-```
-
-### Path C 进度追踪（管理者）
-
-```
-[ ] C1. 评估：完成团队 AI 能力评估和优先级排序
-[ ] C2. 建设：团队 80%+ 的人每天使用 AI 工具
-[ ] C3. ROI：完成至少一个 AI 项目的 ROI 评估报告
-```
+| Domain | Notebook | 难度 |
+|--------|----------|------|
+| 选品与市场 | [a1-product-research](notebooks/a1-product-research.ipynb) · [a8-price-tracker](notebooks/a8-price-tracker.ipynb) · [a12-ip-patent-search](notebooks/a12-ip-patent-search.ipynb) | 入门-中级 |
+| 内容与转化 | [a2-multilingual-listing](notebooks/a2-multilingual-listing.ipynb) · [a10-brand-audit](notebooks/a10-brand-audit.ipynb) | 中级 |
+| 流量与获客 | [a3-advertising](notebooks/a3-advertising.ipynb) · [a9-geo-audit](notebooks/a9-geo-audit.ipynb) | 入门-中级 |
+| 客户运营 | [a4-negative-review-analysis](notebooks/a4-negative-review-analysis.ipynb) | 入门 |
+| 供应链与库存 | [a5-inventory-reorder](notebooks/a5-inventory-reorder.ipynb) | 入门 |
+| 合规与财务 | [a6-compliance-checker](notebooks/a6-compliance-checker.ipynb) · [a11-profit-calculator](notebooks/a11-profit-calculator.ipynb) · [c3-roi-evaluation](notebooks/c3-roi-evaluation.ipynb) | 入门 |
+| 社交媒体 | [e1-social-content-calendar](notebooks/e1-social-content-calendar.ipynb) | 入门 |
+| 跨平台 | [d3-cross-platform-content](notebooks/d3-cross-platform-content.ipynb) | 中级 |
+| AI 系统构建 | [b1-data-pipeline](notebooks/b1-data-pipeline.ipynb) · [b2-sales-forecast](notebooks/b2-sales-forecast.ipynb) · [b7-review-analysis](notebooks/b7-review-analysis.ipynb) · [b8-dashboard-demo](notebooks/b8-dashboard-demo.ipynb) | 入门-中级 |
 
 [回到目录](#目录)
 
 ---
 
-## AAAI China Chapter 社群
+## 案例研究
 
-ecommerce-ai-roadmap 是 **AAAI China Chapter (AAAI 中国分会)** 的开源项目之一。我们致力于推动 AI 技术在跨境电商领域的实际应用。
-
-### 加入社群你能获得什么
-
-- **月度 AI Workshop** -- 每月一次线上实战工作坊，跟着做一个完整的 AI 电商项目
-- **Prompt 模板共创** -- 社群成员共同维护和优化 Prompt 模板库
-- **案例分享** -- 一线操盘手分享 AI 在实际业务中的应用案例和踩坑经验
-- **技术答疑** -- 遇到问题可以在社群中获得帮助
-- **行业资讯** -- AI 工具更新、平台政策变化的第一手信息
-
-### 如何参与
-
-- Star 本仓库，关注更新
-- [提交 Issue](https://github.com/kangise/ecommerce-ai-roadmap/issues) 反馈问题或建议
-- [提交 PR](https://github.com/kangise/ecommerce-ai-roadmap/pulls) 贡献 Prompt 模板、Notebook 或案例
-- 关注 AAAI China Chapter 获取活动信息
-
-[回到目录](#目录)
-
----
-
-## Contributors
-
-感谢所有为 ecommerce-ai-roadmap 做出贡献的人！ | Thanks to all contributors!
-
-<!-- ALL-CONTRIBUTORS-LIST:START -->
-<a href="https://github.com/kangise"><img src="https://github.com/kangise.png" width="60px" alt="kangise" /></a>
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-> 想加入贡献者墙？[提交一个 Prompt 模板](https://github.com/kangise/ecommerce-ai-roadmap/issues/new?template=prompt_submission.md) 就够了！不需要会 PR。
+带量化指标的实战案例。[查看全部案例 →](docs/case-studies/)
 
 [回到目录](#目录)
 
@@ -394,20 +206,9 @@ ecommerce-ai-roadmap 是 **AAAI China Chapter (AAAI 中国分会)** 的开源项
 
 ## 贡献指南
 
-我们特别欢迎以下类型的贡献：
+欢迎贡献 Prompt 模板、Notebook、案例或修正内容。详见 [CONTRIBUTING.md](CONTRIBUTING.md)。
 
-1. **Prompt 模板** -- 你在实际工作中验证过的、效果好的 Prompt
-2. **Notebook** -- 可在 Colab 运行的实战教程
-3. **案例分享** -- 你用 AI 解决了什么电商问题？效果如何？
-4. **工具评测** -- 你试过的 AI 工具，优缺点是什么？
-5. **Bug 修复** -- 发现链接失效、内容过时？帮忙修正
-
-贡献时请注意：
-- 优先推荐免费或开源的工具和资源
-- Prompt 模板需要标注你验证过的 AI 工具和效果
-- Notebook 需要能在 Google Colab 免费版运行
-
-详见 [CONTRIBUTING.md](CONTRIBUTING.md)。
+[回到目录](#目录)
 
 ---
 
@@ -419,4 +220,4 @@ ecommerce-ai-roadmap 是 **AAAI China Chapter (AAAI 中国分会)** 的开源项
 
 ---
 
-*An AAAI China Chapter Initiative | Maintained by AAAEC, the Association of AI Applications for E-Commerce*
+*An AAAI China Chapter Initiative*
