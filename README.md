@@ -125,16 +125,16 @@ flowchart LR
 
 [选品与市场洞察](paths/a-operators/a1-product-research.md)用 AI 从 50 条竞品差评中[提取核心痛点](paths/a-operators/a1-product-research.md#31-竞品-review-痛点分析)，用 [5 个维度快速评估市场可行性](paths/a-operators/a1-product-research.md#32-市场可行性快速评估)（需求、竞争、利润、供应链、合规），再通过[关键词聚类](paths/a-operators/a1-product-research.md#33-关键词需求聚类)发现蓝海需求。流程完整 [SOP](paths/a-operators/a1-product-research.md#4-选品实战工作流)，也列出[常见的选品陷阱](paths/a-operators/a1-product-research.md#5-常见选品陷阱)。
 
-在亚马逊管理好价格至关重要。[定价策略](paths/a-operators/a8-pricing-strategy.md)里讲了 [Buy Box 的定价逻辑](paths/a-operators/a8-pricing-strategy.md#21-amazon-buy-box-定价策略)、如何做[价格弹性分析](paths/a-operators/a8-pricing-strategy.md#22-价格弹性分析)找到最优价格点，以及怎么用 AI 做[竞品价格带分析](paths/a-operators/a8-pricing-strategy.md#23-竞品价格带分析)。
+在亚马逊，定价直接决定 Buy Box 归属和利润空间。[定价策略](paths/a-operators/a8-pricing-strategy.md)讲了 [Buy Box 的定价逻辑](paths/a-operators/a8-pricing-strategy.md#21-amazon-buy-box-定价策略)、如何做[价格弹性分析](paths/a-operators/a8-pricing-strategy.md#22-价格弹性分析)找到最优价格点，以及怎么用 AI 做[竞品价格带分析](paths/a-operators/a8-pricing-strategy.md#23-竞品价格带分析)。
 
-[知识产权](paths/a-operators/a12-ip-protection.md) 做[专利排查](paths/a-operators/a12-ip-protection.md#21-选品阶段的专利排查)，用 [AI 辅助分析专利风险](paths/a-operators/a12-ip-protection.md#22-ai-辅助专利分析)，了解 [TRO（临时限制令）](paths/a-operators/a12-ip-protection.md#23-tro临时限制令风险防范)的防范方法，避免产品上架后被投诉下架。
+选品阶段最容易忽略的风险是[知识产权](paths/a-operators/a12-ip-protection.md)。在投入开模和备货之前，先做[专利排查](paths/a-operators/a12-ip-protection.md#21-选品阶段的专利排查)，用 [AI 辅助分析专利风险](paths/a-operators/a12-ip-protection.md#22-ai-辅助专利分析)，了解 [TRO（临时限制令）](paths/a-operators/a12-ip-protection.md#23-tro临时限制令风险防范)的防范方法，避免产品上架后被投诉下架。
 
 ### 供应链
 ---
 
 > 库存的本质是用资金换时间 — 备多了占资金，备少了丢销售。AI 让你用数据而不是直觉做这个权衡。
 
-[库存与供应链](paths/a-operators/a5-inventory.md)从 [FBA 库存的关键指标](paths/a-operators/a5-inventory.md#12-amazon-fba-库存关键指标)讲起，教你用 AI 做补货预测、计算安全库存、评估供应商。
+[库存与供应链](paths/a-operators/a5-inventory.md)从 [FBA 库存的关键指标](paths/a-operators/a5-inventory.md#12-amazon-fba-库存关键指标)讲起 — IPI 分数、库存周转率、长期仓储费，这些指标决定了你的资金效率。然后教你用 AI 做补货预测（避免断货丢排名）、计算安全库存（避免超储占资金）、评估供应商（避免品控翻车）。
 
 ### 内容
 ---
@@ -163,14 +163,14 @@ Listing 文字做好了，还需要视觉。[视觉内容](paths/a-operators/a7-
 
 > 社交媒体的本质不是"发帖"，而是在用户的决策链路上埋下触点。一个用户从"刷到"到"下单"可能跨越 3 个平台，你需要在每个节点都有存在感。
 
-[Instagram 和 Facebook](paths/e-social-media/e1-instagram-facebook-ai-guide.md) 共享 Meta 生态，但[内容策略完全不同](paths/e-social-media/e1-instagram-facebook-ai-guide.md#2-instagram-vs-tiktok-vs-youtube内容策略差异)。这篇指南教你批量生成 Reels 脚本、用 Advantage+ 智能投放、优化 Shopping 标签。[YouTube](paths/e-social-media/e2-youtube-ai-guide.md) 的价值在于长尾流量，理解 [YouTube 搜索算法的双引擎](paths/e-social-media/e2-youtube-ai-guide.md#21-youtube-搜索算法的双引擎)后，你可以用 AI 做关键词研究、写评测脚本、做 Shorts。[小红书](paths/e-social-media/e3-xiaohongshu-ai-guide.md)的核心是 [CES 评分机制](paths/e-social-media/e3-xiaohongshu-ai-guide.md#11-ces-评分机制)和独特的[流量分发逻辑](paths/e-social-media/e3-xiaohongshu-ai-guide.md#12-流量分发逻辑)。[Pinterest](paths/e-social-media/e4-pinterest-ai-guide.md) 本质上是一个视觉搜索引擎。[WhatsApp](paths/e-social-media/e5-whatsapp-business-ai-guide.md) 在拉美和东南亚是主要的客户触达渠道。[Reddit](paths/e-social-media/e6-reddit-ai-guide.md) 正在成为产品发现的重要渠道，2026 年还上线了 [AI 购物搜索](paths/e-social-media/e6-reddit-ai-guide.md#12-reddit-ai-购物搜索2026-新功能)。[跨渠道策略](paths/e-social-media/e7-social-media-cross-channel.md)教你一个内容多平台适配。
+[Instagram 和 Facebook](paths/e-social-media/e1-instagram-facebook-ai-guide.md) 是发现阶段的主力 — 用户在刷 Feed 时被你的产品打动。[内容策略和 TikTok、YouTube 完全不同](paths/e-social-media/e1-instagram-facebook-ai-guide.md#2-instagram-vs-tiktok-vs-youtube内容策略差异)，这篇指南教你批量生成 Reels 脚本、用 Advantage+ 智能投放。[YouTube](paths/e-social-media/e2-youtube-ai-guide.md) 是比较阶段的关键 — 用户搜"XX 产品评测"时，你的视频需要出现在前面。理解 [YouTube 搜索算法的双引擎](paths/e-social-media/e2-youtube-ai-guide.md#21-youtube-搜索算法的双引擎)后，用 AI 做关键词研究和评测脚本。[小红书](paths/e-social-media/e3-xiaohongshu-ai-guide.md)是种草阶段的核心渠道，算法由 [CES 评分机制](paths/e-social-media/e3-xiaohongshu-ai-guide.md#11-ces-评分机制)和独特的[流量分发逻辑](paths/e-social-media/e3-xiaohongshu-ai-guide.md#12-流量分发逻辑)驱动。[Pinterest](paths/e-social-media/e4-pinterest-ai-guide.md) 本质上是一个视觉搜索引擎，用户带着购买意图来搜灵感。[WhatsApp](paths/e-social-media/e5-whatsapp-business-ai-guide.md) 在拉美和东南亚是购买阶段的主要触达渠道。[Reddit](paths/e-social-media/e6-reddit-ai-guide.md) 正在成为决策阶段的关键 — 越来越多消费者在下单前搜 ["Reddit before buying"](paths/e-social-media/e6-reddit-ai-guide.md#11-reddit-before-buying-趋势)，2026 年还上线了 [AI 购物搜索](paths/e-social-media/e6-reddit-ai-guide.md#12-reddit-ai-购物搜索2026-新功能)。[跨渠道策略](paths/e-social-media/e7-social-media-cross-channel.md)教你把这些触点串成一个完整的用户旅程。
 
 ### 客服
 ---
 
 > 客服的本质是把问题变成信任。一个处理得当的差评比一个五星好评更能建立品牌信誉。
 
-[客服与售后](paths/a-operators/a4-customer-service.md)覆盖了 Amazon [客服场景的全景](paths/a-operators/a4-customer-service.md#12-客服场景全景)，教你用 AI 批量分析差评（自动分类、频率统计、改善方案），生成多语言客服回复，写[账号申诉 Plan of Action](paths/a-operators/a6-compliance.md#36-amazon-政策违规应对)，应对 A-to-Z Claim。
+[客服与售后](paths/a-operators/a4-customer-service.md)覆盖了 Amazon [客服场景的全景](paths/a-operators/a4-customer-service.md#12-客服场景全景)。用 AI 批量分析差评（自动分类、频率统计、改善方案），把用户的不满转化为产品改进方向。生成多语言客服回复，让每一次互动都在积累信任。写[账号申诉 Plan of Action](paths/a-operators/a6-compliance.md#36-amazon-政策违规应对) 时，AI 帮你结构化 Root Cause + Actions + Prevention，提高通过率。
 
 ### 合规与财务
 ---
@@ -178,7 +178,7 @@ Listing 文字做好了，还需要视觉。[视觉内容](paths/a-operators/a7-
 > 合规和财务是生意的底线。很多卖家在增长阶段忽略合规，等到被罚款或下架时才发现代价远超预防成本。利润不是你以为赚了多少，而是扣掉所有隐藏成本后还剩多少。
 
 
-[合规与风控](paths/a-operators/a6-compliance.md)从[主要市场的合规框架对比](paths/a-operators/a6-compliance.md#12-主要市场的合规框架对比)讲起，教你做 [CE/FCC/PSE/UKCA 多市场合规对比](paths/a-operators/a6-compliance.md#31-多市场合规对比深化版)、[估算合规成本](paths/a-operators/a6-compliance.md#33-合规成本估算)，以及应对 [BSA AI Agent 合规新规](paths/a-operators/a6-compliance.md#61-2026-新趋势amazon-ai-agent-合规要求bsa-更新)。[财务分析](paths/a-operators/a11-financial-analysis.md)帮你用 [Amazon 真实利润计算公式](paths/a-operators/a11-financial-analysis.md#21-amazon-真实利润计算公式)算出含所有隐藏成本的真实利润。[AI 风险治理](paths/c-managers/c4-ai-risk-governance.md)帮你建立 AI 使用的治理政策。
+[合规与风控](paths/a-operators/a6-compliance.md)从[主要市场的合规框架对比](paths/a-operators/a6-compliance.md#12-主要市场的合规框架对比)讲起，教你做 [CE/FCC/PSE/UKCA 多市场合规对比](paths/a-operators/a6-compliance.md#31-多市场合规对比深化版)、[估算合规成本](paths/a-operators/a6-compliance.md#33-合规成本估算)（认证费+测试费+标签费+年度维护），以及应对 [BSA AI Agent 合规新规](paths/a-operators/a6-compliance.md#61-2026-新趋势amazon-ai-agent-合规要求bsa-更新)。[财务分析](paths/a-operators/a11-financial-analysis.md)帮你看清[常见的财务盲区](paths/a-operators/a11-financial-analysis.md#11-常见的财务盲区)，用 [Amazon 真实利润计算公式](paths/a-operators/a11-financial-analysis.md#21-amazon-真实利润计算公式)算出含所有隐藏成本的真实利润，通过[成本优化矩阵](paths/a-operators/a11-financial-analysis.md#31-成本优化矩阵)找到降本空间。[AI 风险治理](paths/c-managers/c4-ai-risk-governance.md)帮你建立 AI 使用的治理政策。
 
 ---
 
@@ -227,7 +227,7 @@ flowchart TB
 ---
 > 货架电商的竞争维度是搜索排名和价格 — 用户带着明确的购买意图来，你的工作是在搜索结果里赢得点击。
 
-[Walmart](paths/d-platforms/d4-walmart-ai-guide.md) 是 Amazon 卖家最自然的第二平台。[eBay](paths/d-platforms/d9-ebay-ai-guide.md) 适合二手和翻新品。[AliExpress](paths/d-platforms/d10-aliexpress-ai-guide.md) 的全托管模式正在改变南欧市场。[Temu](paths/d-platforms/d5-temu-seller-guide.md) 的指南重点是竞争分析和入驻决策。[Faire](paths/d-platforms/d12-faire-wholesale-ai-guide.md) 是 B2B 批发的新渠道。
+[Walmart](paths/d-platforms/d4-walmart-ai-guide.md) 是 Amazon 卖家最自然的第二平台 — Listing Quality Score 决定搜索排名，Walmart Connect 广告体系和 Amazon PPC 逻辑类似但竞争更小。[eBay](paths/d-platforms/d9-ebay-ai-guide.md) 适合二手和翻新品，拍卖模式下定价策略完全不同。[AliExpress](paths/d-platforms/d10-aliexpress-ai-guide.md) 的全托管模式正在改变南欧市场，卖家只需供货，平台负责定价和运营。[Temu](paths/d-platforms/d5-temu-seller-guide.md) 的指南重点不是教你运营（卖家自主空间有限），而是帮你做竞争分析和入驻决策。[Faire](paths/d-platforms/d12-faire-wholesale-ai-guide.md) 是 B2B 批发渠道，算法优化和零售商关系管理是关键。
 
 ### 独立站
 ---
@@ -245,13 +245,13 @@ flowchart TB
 ---
 > 亚太市场的核心挑战是本地化深度 — 不只是语言翻译，而是支付习惯、物流期望和消费文化的全面适配。
 
-[东南亚](paths/d-platforms/d6-southeast-asia-ai-guide.md)（Shopee + Lazada）的多语言本地化和直播带货。[日本 Rakuten](paths/d-platforms/d8-rakuten-japan-ai-guide.md) 的店铺自定义和积分生态。[韩国 Coupang](paths/d-platforms/d11-coupang-korea-ai-guide.md) 的 Rocket Delivery 和韩语 Listing。
+[东南亚](paths/d-platforms/d6-southeast-asia-ai-guide.md)（Shopee + Lazada）需要适配 6 种语言、COD 支付习惯和直播带货文化。[日本 Rakuten](paths/d-platforms/d8-rakuten-japan-ai-guide.md) 的店铺自定义程度远超 Amazon，积分生态和 R-Mail 邮件营销是核心差异。[韩国 Coupang](paths/d-platforms/d11-coupang-korea-ai-guide.md) 的 Rocket Delivery 要求本地仓发货，韩语 Listing 的写法和中文、英文完全不同。
 
 ### 欧洲与拉美
 ---
 > 欧洲和拉美的核心挑战是合规复杂度 — 每个国家的税务、认证和消费者保护法规都不同，进入门槛高但竞争相对小。
 
-[Mercado Libre](paths/d-platforms/d7-mercado-libre-ai-guide.md) 的西语/葡语本地化。[Otto 和 Zalando](paths/d-platforms/d13-europe-marketplaces-guide.md) 的德国市场和 EU 合规。
+[Mercado Libre](paths/d-platforms/d7-mercado-libre-ai-guide.md) 是拉美最大的电商平台，西语/葡语本地化和 CBT（跨境贸易）模式是进入门槛。[Otto 和 Zalando](paths/d-platforms/d13-europe-marketplaces-guide.md) 是德国市场的主力，EU 合规要求（CE 认证、EPR 注册、VAT 申报、GPSR 产品安全法规）是最大的挑战，但也是竞争壁垒。
 
 ### 跨平台策略
 ---
