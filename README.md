@@ -117,7 +117,6 @@ flowchart LR
 ```
 
 ### 选品
----
 
 ---
 
@@ -215,17 +214,29 @@ flowchart TB
     X --> 欧洲与拉美
 ```
 
-**货架电商** — [Walmart](paths/d-platforms/d4-walmart-ai-guide.md) 是 Amazon 卖家最自然的第二平台。[eBay](paths/d-platforms/d9-ebay-ai-guide.md) 适合二手和翻新品。[AliExpress](paths/d-platforms/d10-aliexpress-ai-guide.md) 的全托管模式正在改变南欧市场。[Temu](paths/d-platforms/d5-temu-seller-guide.md) 的指南重点是竞争分析和入驻决策。[Faire](paths/d-platforms/d12-faire-wholesale-ai-guide.md) 是 B2B 批发的新渠道。
+### 货架电商
+---
+[Walmart](paths/d-platforms/d4-walmart-ai-guide.md) 是 Amazon 卖家最自然的第二平台。[eBay](paths/d-platforms/d9-ebay-ai-guide.md) 适合二手和翻新品。[AliExpress](paths/d-platforms/d10-aliexpress-ai-guide.md) 的全托管模式正在改变南欧市场。[Temu](paths/d-platforms/d5-temu-seller-guide.md) 的指南重点是竞争分析和入驻决策。[Faire](paths/d-platforms/d12-faire-wholesale-ai-guide.md) 是 B2B 批发的新渠道。
 
-**独立站** — [Shopify AI 指南](paths/d-platforms/shopify-ai-guide.md)是一篇 2200 行的完整手册，从选品到 [GEO 优化](paths/d-platforms/shopify-ai-guide.md#213-geo-优化实操-让-ai-推荐你的产品)到 [Agentic Storefronts](paths/d-platforms/shopify-ai-guide.md#212-agentic-storefronts-与-ucp-协议-在-ai-平台内直接卖货)到 [Klaviyo 邮件个性化](paths/d-platforms/shopify-ai-guide.md#23-shopify-邮件营销深度方法论-从-klaviyo-到-ai-个性化)到 [Amazon 转 Shopify 迁移](paths/d-platforms/shopify-ai-guide.md#28-从-amazon-迁移到-shopify-的完整方法论)。
+### 独立站
+---
+[Shopify AI 指南](paths/d-platforms/shopify-ai-guide.md)是一篇 2200 行的完整手册，从选品到 [GEO 优化](paths/d-platforms/shopify-ai-guide.md#213-geo-优化实操-让-ai-推荐你的产品)到 [Agentic Storefronts](paths/d-platforms/shopify-ai-guide.md#212-agentic-storefronts-与-ucp-协议-在-ai-平台内直接卖货)到 [Klaviyo 邮件个性化](paths/d-platforms/shopify-ai-guide.md#23-shopify-邮件营销深度方法论-从-klaviyo-到-ai-个性化)到 [Amazon 转 Shopify 迁移](paths/d-platforms/shopify-ai-guide.md#28-从-amazon-迁移到-shopify-的完整方法论)。
 
-**短视频与直播** — [TikTok Shop](paths/d-platforms/tiktok-shop-ai-guide.md) 的 1600 行指南覆盖了 [Hook 公式](paths/d-platforms/tiktok-shop-ai-guide.md#152-hook-设计方法论-不是吸引注意力而是制造信息缺口)、[3 幕视频脚本](paths/d-platforms/tiktok-shop-ai-guide.md#153-视频脚本的3-幕结构)、[达人量化评分](paths/d-platforms/tiktok-shop-ai-guide.md#162-ai-达人筛选的量化评分模型)、[直播分钟级脚本](paths/d-platforms/tiktok-shop-ai-guide.md#173-直播脚本的节奏设计)和 [GMV Max 优化](paths/d-platforms/tiktok-shop-ai-guide.md#142-gmv-max-强制化-2025-年-9-月起的重大变化)。
+### 短视频与直播
+---
+[TikTok Shop](paths/d-platforms/tiktok-shop-ai-guide.md) 的 1600 行指南覆盖了 [Hook 公式](paths/d-platforms/tiktok-shop-ai-guide.md#152-hook-设计方法论-不是吸引注意力而是制造信息缺口)、[3 幕视频脚本](paths/d-platforms/tiktok-shop-ai-guide.md#153-视频脚本的3-幕结构)、[达人量化评分](paths/d-platforms/tiktok-shop-ai-guide.md#162-ai-达人筛选的量化评分模型)、[直播分钟级脚本](paths/d-platforms/tiktok-shop-ai-guide.md#173-直播脚本的节奏设计)和 [GMV Max 优化](paths/d-platforms/tiktok-shop-ai-guide.md#142-gmv-max-强制化-2025-年-9-月起的重大变化)。
 
-**亚太** — [东南亚](paths/d-platforms/d6-southeast-asia-ai-guide.md)（Shopee + Lazada）的多语言本地化和直播带货。[日本 Rakuten](paths/d-platforms/d8-rakuten-japan-ai-guide.md) 的店铺自定义和积分生态。[韩国 Coupang](paths/d-platforms/d11-coupang-korea-ai-guide.md) 的 Rocket Delivery 和韩语 Listing。
+### 亚太
+---
+[东南亚](paths/d-platforms/d6-southeast-asia-ai-guide.md)（Shopee + Lazada）的多语言本地化和直播带货。[日本 Rakuten](paths/d-platforms/d8-rakuten-japan-ai-guide.md) 的店铺自定义和积分生态。[韩国 Coupang](paths/d-platforms/d11-coupang-korea-ai-guide.md) 的 Rocket Delivery 和韩语 Listing。
 
-**欧洲与拉美** — [Mercado Libre](paths/d-platforms/d7-mercado-libre-ai-guide.md) 的西语/葡语本地化。[Otto 和 Zalando](paths/d-platforms/d13-europe-marketplaces-guide.md) 的德国市场和 EU 合规。
+### 欧洲与拉美
+---
+[Mercado Libre](paths/d-platforms/d7-mercado-libre-ai-guide.md) 的西语/葡语本地化。[Otto 和 Zalando](paths/d-platforms/d13-europe-marketplaces-guide.md) 的德国市场和 EU 合规。
 
-**跨平台** — [跨平台协同](paths/d-platforms/cross-platform-strategy.md)教你一个核心文档适配三个平台。[平台全景对比](paths/d-platforms/platform-comparison.md)把 13 个平台和 7 个社交渠道放在一起对比。
+### 跨平台策略
+---
+[跨平台协同](paths/d-platforms/cross-platform-strategy.md)教你一个核心文档适配三个平台。[平台全景对比](paths/d-platforms/platform-comparison.md)把 13 个平台和 7 个社交渠道放在一起对比。
 
 ---
 
@@ -251,11 +262,20 @@ flowchart LR
     B6 --- B6a[Claude · MCP 协议]
 ```
 
-从[数据管道](paths/b-developers/b1-data-pipeline.md)开始，了解 [Amazon 数据源全景](paths/b-developers/b1-data-pipeline.md#12-amazon-数据源全景)，用 SP-API 和 pandas 搭建自动化报告处理。然后用[预测模型](paths/b-developers/b2-prediction-models.md)做 SKU 销量预测，理解[时间序列预测的原理](paths/b-developers/b2-prediction-models.md#11-时间序列预测的第一性原理)。
+### 数据与预测
+---
 
-想做智能问答？[RAG 知识库](paths/b-developers/b3-rag-knowledge-base.md)讲了 [RAG 和 Fine-tuning 怎么选](paths/b-developers/b3-rag-knowledge-base.md#12-rag-vs-fine-tuning-的选择)，用 LlamaIndex + Chroma 搭建产品 FAQ 系统。想做自动化？[Agent 工作流](paths/b-developers/b4-agent-workflow.md)讲了 [Agent、Chain 和 RAG 三种模式的区别](paths/b-developers/b4-agent-workflow.md#12-agent-vs-chain-vs-rag三种模式的区别)和 [ReAct 思维框架](paths/b-developers/b4-agent-workflow.md#13-react-模式agent-的核心思维框架)。想用 Claude 直接管理广告？[MCP 集成](paths/b-developers/b6-mcp-agentic-workflow.md)讲了 [MCP 和传统 API 的区别](paths/b-developers/b6-mcp-agentic-workflow.md#12-mcp-vs-传统-api-集成)。
+从[数据管道](paths/b-developers/b1-data-pipeline.md)开始，了解 [Amazon 数据源全景](paths/b-developers/b1-data-pipeline.md#12-amazon-数据源全景)，用 SP-API 和 pandas 搭建自动化报告处理。然后用[预测模型](paths/b-developers/b2-prediction-models.md)做 SKU 销量预测，理解[时间序列预测的原理](paths/b-developers/b2-prediction-models.md#11-时间序列预测的第一性原理)和电商预测的特殊挑战。
 
-还有[本地部署](paths/b-developers/b5-local-model-deploy.md)、[Review NLP](paths/b-developers/b7-review-nlp-system.md)、[Dashboard](paths/b-developers/b8-ecommerce-dashboard.md)、[AI 图片生成](paths/b-developers/b9-ai-image-pipeline.md)。
+### 知识库与 Agent
+---
+
+想做智能问答？[RAG 知识库](paths/b-developers/b3-rag-knowledge-base.md)讲了 [RAG 和 Fine-tuning 怎么选](paths/b-developers/b3-rag-knowledge-base.md#12-rag-vs-fine-tuning-的选择)，用 LlamaIndex + Chroma 搭建产品 FAQ 系统。想做自动化？[Agent 工作流](paths/b-developers/b4-agent-workflow.md)讲了 [Agent、Chain 和 RAG 三种模式的区别](paths/b-developers/b4-agent-workflow.md#12-agent-vs-chain-vs-rag三种模式的区别)和 [ReAct 思维框架](paths/b-developers/b4-agent-workflow.md#13-react-模式agent-的核心思维框架)，用 LangGraph + CrewAI 构建运营监控 Agent。想用 Claude 直接管理广告和产品？[MCP 集成](paths/b-developers/b6-mcp-agentic-workflow.md)讲了 [MCP 协议和传统 API 的区别](paths/b-developers/b6-mcp-agentic-workflow.md#12-mcp-vs-传统-api-集成)。
+
+### 部署与应用
+---
+
+[本地模型部署](paths/b-developers/b5-local-model-deploy.md)帮你做[云端 vs 本地的决策](paths/b-developers/b5-local-model-deploy.md#12-云端-vs-本地决策框架)，用 Ollama + LoRA 在本地运行和微调 LLM。[Review NLP 系统](paths/b-developers/b7-review-nlp-system.md)用 BERTopic 做主题建模和情感分析，自动生成 Review 洞察。[电商 Dashboard](paths/b-developers/b8-ecommerce-dashboard.md) 用 Streamlit + Plotly 搭建多平台 KPI 看板，加上 AI 异常检测。[AI 图片生成 Pipeline](paths/b-developers/b9-ai-image-pipeline.md) 用 ComfyUI/Stable Diffusion 批量生成产品图。
 
 ---
 
@@ -275,7 +295,20 @@ flowchart LR
     C3 --- C3a[ROI 计算框架]
 ```
 
-先做 [AI 能力评估](paths/c-managers/c1-ai-assessment.md)，了解 [AI 落地的三个阶段](paths/c-managers/c1-ai-assessment.md#12-ai-落地的三个阶段)，用 [10 个问题的成熟度问卷](paths/c-managers/c1-ai-assessment.md#41-ai-成熟度评估问卷10-个问题)评估团队现状，参考 [5 人、20 人、50 人团队的落地案例](paths/c-managers/c1-ai-assessment.md#7-学习资源)。然后通过[团队建设](paths/c-managers/c2-team-building.md)让 80%+ 的人每天用 AI，用 [ROI 评估](paths/c-managers/c3-roi-evaluation.md)量化 AI 投入的回报，用[竞争情报](paths/c-managers/c5-competitive-intelligence.md)监控竞品的 AI 动态。
+### 评估与规划
+---
+
+先做 [AI 能力评估](paths/c-managers/c1-ai-assessment.md)，了解 [AI 落地的三个阶段](paths/c-managers/c1-ai-assessment.md#12-ai-落地的三个阶段)，用 [10 个问题的成熟度问卷](paths/c-managers/c1-ai-assessment.md#41-ai-成熟度评估问卷10-个问题)评估团队现状，参考 [5 人、20 人、50 人团队的落地案例](paths/c-managers/c1-ai-assessment.md#7-学习资源)。
+
+### 团队与 ROI
+---
+
+通过[团队建设](paths/c-managers/c2-team-building.md)制定培训计划、养成使用习惯，目标是让 80%+ 的人每天用 AI。用 [ROI 评估](paths/c-managers/c3-roi-evaluation.md)量化每个 AI 项目的投入回报，建立可复用的 ROI 计算框架。
+
+### 风险与竞争
+---
+
+[AI 风险治理](paths/c-managers/c4-ai-risk-governance.md)帮你建立 AI 使用的治理政策，管控幻觉风险和数据隐私问题。[竞争情报](paths/c-managers/c5-competitive-intelligence.md)帮你监控竞品的 AI 动态，分析竞争格局变化。
 
 ---
 
