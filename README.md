@@ -178,6 +178,43 @@ Listing 文字做好了，还需要视觉。[视觉内容](paths/a-operators/a7-
 
 ---
 
+## 内容索引
+
+### 按主题
+
+| Domain | Topics |
+|--------|--------|
+| AI 基础 | [AI 演进](paths/0-foundations/f1-ai-evolution.md) · [Prompt 工程](paths/0-foundations/f2-prompt-engineering.md) · [RAG](paths/0-foundations/f3-rag-knowledge.md) · [Agent](paths/0-foundations/f4-agent-automation.md) · [RPA](paths/0-foundations/f5-rpa-automation.md) · [工具对比](paths/0-foundations/f6-ai-tools-comparison.md) · [AI 全景评估](paths/0-foundations/ai-landscape.md) |
+| 选品与市场 | [选品洞察](paths/a-operators/a1-product-research.md) · [定价策略](paths/a-operators/a8-pricing-strategy.md) · [知识产权](paths/a-operators/a12-ip-protection.md) |
+| 供应链 | [库存与供应链](paths/a-operators/a5-inventory.md) |
+| 内容与转化 | [Listing 优化](paths/a-operators/a2-listing-optimization.md) · [视觉内容](paths/a-operators/a7-visual-content.md) · [品牌建设](paths/a-operators/a10-brand-building.md) |
+| 流量与获客 | [广告优化](paths/a-operators/a3-advertising.md) · [SEO/GEO](paths/a-operators/a9-seo-geo.md) · [Growth Hack](paths/a-operators/a13-ai-growth-hack.md) |
+| 社交媒体 | [Instagram/Facebook](paths/e-social-media/e1-instagram-facebook-ai-guide.md) · [YouTube](paths/e-social-media/e2-youtube-ai-guide.md) · [小红书](paths/e-social-media/e3-xiaohongshu-ai-guide.md) · [Pinterest](paths/e-social-media/e4-pinterest-ai-guide.md) · [WhatsApp](paths/e-social-media/e5-whatsapp-business-ai-guide.md) · [Reddit](paths/e-social-media/e6-reddit-ai-guide.md) · [跨渠道](paths/e-social-media/e7-social-media-cross-channel.md) |
+| 客户运营 | [客服与售后](paths/a-operators/a4-customer-service.md) |
+| 合规与财务 | [合规风控](paths/a-operators/a6-compliance.md) · [财务分析](paths/a-operators/a11-financial-analysis.md) · [AI 风险治理](paths/c-managers/c4-ai-risk-governance.md) |
+| 多平台 — 货架 | [Walmart](paths/d-platforms/d4-walmart-ai-guide.md) · [eBay](paths/d-platforms/d9-ebay-ai-guide.md) · [AliExpress](paths/d-platforms/d10-aliexpress-ai-guide.md) · [Temu](paths/d-platforms/d5-temu-seller-guide.md) · [Faire](paths/d-platforms/d12-faire-wholesale-ai-guide.md) |
+| 多平台 — 独立站 | [Shopify](paths/d-platforms/shopify-ai-guide.md) |
+| 多平台 — 短视频 | [TikTok Shop](paths/d-platforms/tiktok-shop-ai-guide.md) |
+| 多平台 — 亚太 | [东南亚](paths/d-platforms/d6-southeast-asia-ai-guide.md) · [日本](paths/d-platforms/d8-rakuten-japan-ai-guide.md) · [韩国](paths/d-platforms/d11-coupang-korea-ai-guide.md) |
+| 多平台 — 欧洲拉美 | [Mercado Libre](paths/d-platforms/d7-mercado-libre-ai-guide.md) · [Otto/Zalando](paths/d-platforms/d13-europe-marketplaces-guide.md) |
+| 跨平台策略 | [跨平台协同](paths/d-platforms/cross-platform-strategy.md) · [平台对比](paths/d-platforms/platform-comparison.md) |
+| AI 系统构建 | [数据管道](paths/b-developers/b1-data-pipeline.md) · [预测模型](paths/b-developers/b2-prediction-models.md) · [RAG 知识库](paths/b-developers/b3-rag-knowledge-base.md) · [Agent](paths/b-developers/b4-agent-workflow.md) · [本地部署](paths/b-developers/b5-local-model-deploy.md) · [MCP](paths/b-developers/b6-mcp-agentic-workflow.md) · [Review NLP](paths/b-developers/b7-review-nlp-system.md) · [Dashboard](paths/b-developers/b8-ecommerce-dashboard.md) · [图片生成](paths/b-developers/b9-ai-image-pipeline.md) |
+| 团队与管理 | [能力评估](paths/c-managers/c1-ai-assessment.md) · [团队建设](paths/c-managers/c2-team-building.md) · [ROI](paths/c-managers/c3-roi-evaluation.md) · [竞争情报](paths/c-managers/c5-competitive-intelligence.md) |
+
+### 按角色
+
+| 路径 | 适合谁 | 阶段 | 模块 |
+|------|--------|------|------|
+| Path A 运营 | 选品/运营/广告/客服 | 先修 | [AI 基础](paths/0-foundations/) · [AI 全景评估](paths/0-foundations/ai-landscape.md) |
+| | | 核心 | [A1 选品](paths/a-operators/a1-product-research.md) → [A2 Listing](paths/a-operators/a2-listing-optimization.md) → [A3 广告](paths/a-operators/a3-advertising.md) → [A4 客服](paths/a-operators/a4-customer-service.md) → [A5 库存](paths/a-operators/a5-inventory.md) → [A6 合规](paths/a-operators/a6-compliance.md) |
+| | | 进阶 | [A7 视觉](paths/a-operators/a7-visual-content.md) · [A8 定价](paths/a-operators/a8-pricing-strategy.md) · [A9 SEO/GEO](paths/a-operators/a9-seo-geo.md) · [A10 品牌](paths/a-operators/a10-brand-building.md) · [A11 财务](paths/a-operators/a11-financial-analysis.md) · [A12 IP](paths/a-operators/a12-ip-protection.md) · [A13 增长](paths/a-operators/a13-ai-growth-hack.md) |
+| Path B 技术 | 开发/数据/BI | 核心 | [B1 数据](paths/b-developers/b1-data-pipeline.md) → [B2 预测](paths/b-developers/b2-prediction-models.md) → [B3 RAG](paths/b-developers/b3-rag-knowledge-base.md) → [B4 Agent](paths/b-developers/b4-agent-workflow.md) |
+| | | 进阶 | [B5 部署](paths/b-developers/b5-local-model-deploy.md) · [B6 MCP](paths/b-developers/b6-mcp-agentic-workflow.md) · [B7 NLP](paths/b-developers/b7-review-nlp-system.md) · [B8 Dashboard](paths/b-developers/b8-ecommerce-dashboard.md) · [B9 图片](paths/b-developers/b9-ai-image-pipeline.md) |
+| Path C 管理 | 团队负责人/创始人 | 核心 | [C1 评估](paths/c-managers/c1-ai-assessment.md) → [C2 团队](paths/c-managers/c2-team-building.md) → [C3 ROI](paths/c-managers/c3-roi-evaluation.md) |
+| | | 进阶 | [C4 风险](paths/c-managers/c4-ai-risk-governance.md) · [C5 竞情](paths/c-managers/c5-competitive-intelligence.md) |
+
+---
+
 欢迎贡献。详见 [CONTRIBUTING.md](CONTRIBUTING.md)。
 
 [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) · [免责声明](DISCLAIMER.md) · *An AAAI China Chapter Initiative*
