@@ -170,9 +170,12 @@ Listing 文字做好了，还需要视觉。[视觉内容](paths/a-operators/a7-
 
 > 客服的本质是把问题变成信任。一个处理得当的差评比一个五星好评更能建立品牌信誉。
 
+[客服与售后](paths/a-operators/a4-customer-service.md)覆盖了 Amazon [客服场景的全景](paths/a-operators/a4-customer-service.md#12-客服场景全景)，教你用 AI 批量分析差评（自动分类、频率统计、改善方案），生成多语言客服回复，写[账号申诉 Plan of Action](paths/a-operators/a6-compliance.md#36-amazon-政策违规应对)，应对 A-to-Z Claim。
+
 ### 合规与财务
 ---
-合规和财务是生意的底线。很多卖家在增长阶段忽略合规，等到被罚款或下架时才发现代价远超预防成本。利润不是你以为赚了多少，而是扣掉所有隐藏成本后还剩多少。
+
+> 合规和财务是生意的底线。很多卖家在增长阶段忽略合规，等到被罚款或下架时才发现代价远超预防成本。利润不是你以为赚了多少，而是扣掉所有隐藏成本后还剩多少。
 
 
 [合规与风控](paths/a-operators/a6-compliance.md)从[主要市场的合规框架对比](paths/a-operators/a6-compliance.md#12-主要市场的合规框架对比)讲起，教你做 [CE/FCC/PSE/UKCA 多市场合规对比](paths/a-operators/a6-compliance.md#31-多市场合规对比深化版)、[估算合规成本](paths/a-operators/a6-compliance.md#33-合规成本估算)，以及应对 [BSA AI Agent 合规新规](paths/a-operators/a6-compliance.md#61-2026-新趋势amazon-ai-agent-合规要求bsa-更新)。[财务分析](paths/a-operators/a11-financial-analysis.md)帮你用 [Amazon 真实利润计算公式](paths/a-operators/a11-financial-analysis.md#21-amazon-真实利润计算公式)算出含所有隐藏成本的真实利润。[AI 风险治理](paths/c-managers/c4-ai-risk-governance.md)帮你建立 AI 使用的治理政策。
