@@ -157,12 +157,18 @@ flowchart LR
 
 选品阶段最容易忽略的风险是[知识产权](paths/a-operators/a12-ip-protection.md)。在投入开模和备货之前，先做[专利排查](paths/a-operators/a12-ip-protection.md#21-选品阶段的专利排查)，用 [AI 辅助分析专利风险](paths/a-operators/a12-ip-protection.md#22-ai-辅助专利分析)，了解 [TRO（临时限制令）](paths/a-operators/a12-ip-protection.md#23-tro临时限制令风险防范)的防范方法，避免产品上架后被投诉下架。
 
+
+**Skills**: [Competitive Analysis](https://github.com/kostja94/marketing-skills) · [Market Research Analyst](https://github.com/f/awesome-chatgpt-prompts) · [更多 →](docs/skills-library.md#选品与市场)
+
 ### 供应链
 ---
 
 > 库存的本质是用资金换时间 — 备多了占资金，备少了丢销售。AI 让你用数据而不是直觉做这个权衡。
 
 [库存与供应链](paths/a-operators/a5-inventory.md)从 [FBA 库存的关键指标](paths/a-operators/a5-inventory.md#12-amazon-fba-库存关键指标)讲起 — IPI 分数、库存周转率、长期仓储费，这些指标决定了你的资金效率。然后教你用 AI 做补货预测（避免断货丢排名）、计算安全库存（避免超储占资金）、评估供应商（避免品控翻车）。
+
+
+**Skills**: [Data Analysis](https://github.com/levnikolaevich/claude-code-skills) · [更多 →](docs/skills-library.md#技术构建数据--agent--mcp)
 
 ### 内容
 ---
@@ -175,6 +181,9 @@ Listing 文字做好了，还需要视觉。[视觉内容](paths/a-operators/a7-
 
 如果你想做品牌而不只是卖货，[品牌建设](paths/a-operators/a10-brand-building.md)讲了如何用 AI 构建[品牌故事](paths/a-operators/a10-brand-building.md#21-品牌故事框架)、保持[跨平台视觉一致性](paths/a-operators/a10-brand-building.md#3-ai-品牌视觉一致性)，以及 [2026 年 DTC 品牌的趋势](paths/a-operators/a10-brand-building.md#13-2026-年-dtc-品牌趋势)。
 
+
+**Skills**: [Direct Response Copy](https://gist.github.com/boringmarketer/96192770df22ac2a9ff4aed72b4c20f4) · [Marketing Skills (127)](https://github.com/kostja94/marketing-skills) · [CRO & Copywriting](https://github.com/coreyhaines31/marketingskills) · [更多 →](docs/skills-library.md#内容与转化listing--文案--视觉)
+
 ### 流量
 ---
 
@@ -186,6 +195,9 @@ Listing 文字做好了，还需要视觉。[视觉内容](paths/a-operators/a7-
 
 想要系统化的增长方法论？[AI Growth Hack](paths/a-operators/a13-ai-growth-hack.md) 把从选品验证到规模化拆成了 5 个阶段，每个阶段都有对应的 AI 工作流。
 
+
+**Skills**: [Claude SEO](https://github.com/AgriciDaniel/claude-seo) · [SEO & Analytics](https://github.com/coreyhaines31/marketingskills) · [Growth Engineering](https://github.com/coreyhaines31/marketingskills) · [Google Indexing](https://github.com/goenning/google-indexing-script) · [更多 →](docs/skills-library.md#流量与获客广告--seo--geo)
+
 ### 社交媒体
 ---
 
@@ -193,12 +205,18 @@ Listing 文字做好了，还需要视觉。[视觉内容](paths/a-operators/a7-
 
 [Instagram 和 Facebook](paths/e-social-media/e1-instagram-facebook-ai-guide.md) 是发现阶段的主力 — 用户在刷 Feed 时被你的产品打动。[内容策略和 TikTok、YouTube 完全不同](paths/e-social-media/e1-instagram-facebook-ai-guide.md#2-instagram-vs-tiktok-vs-youtube内容策略差异)，这篇指南教你批量生成 Reels 脚本、用 Advantage+ 智能投放。[YouTube](paths/e-social-media/e2-youtube-ai-guide.md) 是比较阶段的关键 — 用户搜"XX 产品评测"时，你的视频需要出现在前面。理解 [YouTube 搜索算法的双引擎](paths/e-social-media/e2-youtube-ai-guide.md#21-youtube-搜索算法的双引擎)后，用 AI 做关键词研究和评测脚本。[小红书](paths/e-social-media/e3-xiaohongshu-ai-guide.md)是种草阶段的核心渠道，算法由 [CES 评分机制](paths/e-social-media/e3-xiaohongshu-ai-guide.md#11-ces-评分机制)和独特的[流量分发逻辑](paths/e-social-media/e3-xiaohongshu-ai-guide.md#12-流量分发逻辑)驱动。[Pinterest](paths/e-social-media/e4-pinterest-ai-guide.md) 本质上是一个视觉搜索引擎，用户带着购买意图来搜灵感。[WhatsApp](paths/e-social-media/e5-whatsapp-business-ai-guide.md) 在拉美和东南亚是购买阶段的主要触达渠道。[Reddit](paths/e-social-media/e6-reddit-ai-guide.md) 正在成为决策阶段的关键 — 越来越多消费者在下单前搜 ["Reddit before buying"](paths/e-social-media/e6-reddit-ai-guide.md#11-reddit-before-buying-趋势)，2026 年还上线了 [AI 购物搜索](paths/e-social-media/e6-reddit-ai-guide.md#12-reddit-ai-购物搜索2026-新功能)。[跨渠道策略](paths/e-social-media/e7-social-media-cross-channel.md)教你把这些触点串成一个完整的用户旅程。
 
+
+**Skills**: [Channel Strategy (127)](https://github.com/kostja94/marketing-skills) · [Social Media Manager](https://github.com/f/awesome-chatgpt-prompts) · [更多 →](docs/skills-library.md#社交媒体)
+
 ### 客服
 ---
 
 > 客服的本质是把问题变成信任。一个处理得当的差评比一个五星好评更能建立品牌信誉。
 
 [客服与售后](paths/a-operators/a4-customer-service.md)覆盖了 Amazon [客服场景的全景](paths/a-operators/a4-customer-service.md#12-客服场景全景)。用 AI 批量分析差评（自动分类、频率统计、改善方案），把用户的不满转化为产品改进方向。生成多语言客服回复，让每一次互动都在积累信任。写[账号申诉 Plan of Action](paths/a-operators/a6-compliance.md#36-amazon-政策违规应对) 时，AI 帮你结构化 Root Cause + Actions + Prevention，提高通过率。
+
+
+**Skills**: [Customer Service Rep](https://github.com/f/awesome-chatgpt-prompts) · [更多 →](docs/skills-library.md#客服与售后)
 
 ### 合规与财务
 ---
@@ -209,6 +227,9 @@ Listing 文字做好了，还需要视觉。[视觉内容](paths/a-operators/a7-
 [合规与风控](paths/a-operators/a6-compliance.md)从[主要市场的合规框架对比](paths/a-operators/a6-compliance.md#12-主要市场的合规框架对比)讲起，教你做 [CE/FCC/PSE/UKCA 多市场合规对比](paths/a-operators/a6-compliance.md#31-多市场合规对比深化版)、[估算合规成本](paths/a-operators/a6-compliance.md#33-合规成本估算)（认证费+测试费+标签费+年度维护），以及应对 [BSA AI Agent 合规新规](paths/a-operators/a6-compliance.md#61-2026-新趋势amazon-ai-agent-合规要求bsa-更新)。[财务分析](paths/a-operators/a11-financial-analysis.md)帮你看清[常见的财务盲区](paths/a-operators/a11-financial-analysis.md#11-常见的财务盲区)，用 [Amazon 真实利润计算公式](paths/a-operators/a11-financial-analysis.md#21-amazon-真实利润计算公式)算出含所有隐藏成本的真实利润，通过[成本优化矩阵](paths/a-operators/a11-financial-analysis.md#31-成本优化矩阵)找到降本空间。[AI 风险治理](paths/c-managers/c4-ai-risk-governance.md)帮你建立 AI 使用的治理政策。
 
 ---
+
+
+**Skills**: [Accountant](https://github.com/f/awesome-chatgpt-prompts) · [更多 →](docs/skills-library.md#合规与财务)
 
 ## 多平台
 
