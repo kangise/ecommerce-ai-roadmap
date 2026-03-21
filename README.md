@@ -117,6 +117,7 @@ flowchart LR
 ```
 
 ### 选品
+---
 
 ---
 
@@ -128,10 +129,12 @@ flowchart LR
 还有一个很多人忽略的环节：[知识产权](paths/a-operators/a12-ip-protection.md)。在选品阶段就应该做[专利排查](paths/a-operators/a12-ip-protection.md#21-选品阶段的专利排查)，用 [AI 辅助分析专利风险](paths/a-operators/a12-ip-protection.md#22-ai-辅助专利分析)，了解 [TRO（临时限制令）](paths/a-operators/a12-ip-protection.md#23-tro临时限制令风险防范)的防范方法，避免产品上架后被投诉下架。
 
 ### 供应链
+---
 
 品选好了，接下来是备货。[库存与供应链](paths/a-operators/a5-inventory.md)从 [FBA 库存的关键指标](paths/a-operators/a5-inventory.md#12-amazon-fba-库存关键指标)讲起，教你用 AI 做补货预测、计算安全库存、评估供应商。
 
 ### 内容
+---
 
 产品到手，需要让它在平台上被看见、被买走。
 
@@ -142,6 +145,7 @@ Listing 文字做好了，还需要视觉。[视觉内容](paths/a-operators/a7-
 如果你想做品牌而不只是卖货，[品牌建设](paths/a-operators/a10-brand-building.md)讲了如何用 AI 构建[品牌故事](paths/a-operators/a10-brand-building.md#21-品牌故事框架)、保持[跨平台视觉一致性](paths/a-operators/a10-brand-building.md#3-ai-品牌视觉一致性)，以及 [2026 年 DTC 品牌的趋势](paths/a-operators/a10-brand-building.md#13-2026-年-dtc-品牌趋势)。
 
 ### 流量
+---
 
 内容做好了，需要流量。
 
@@ -152,16 +156,19 @@ Listing 文字做好了，还需要视觉。[视觉内容](paths/a-operators/a7-
 想要系统化的增长方法论？[AI Growth Hack](paths/a-operators/a13-ai-growth-hack.md) 把从选品验证到规模化拆成了 5 个阶段，每个阶段都有对应的 AI 工作流。
 
 ### 社交媒体
+---
 
 流量不只来自平台内部。
 
 [Instagram 和 Facebook](paths/e-social-media/e1-instagram-facebook-ai-guide.md) 共享 Meta 生态，但[内容策略完全不同](paths/e-social-media/e1-instagram-facebook-ai-guide.md#2-instagram-vs-tiktok-vs-youtube内容策略差异)。这篇指南教你批量生成 Reels 脚本、用 Advantage+ 智能投放、优化 Shopping 标签。[YouTube](paths/e-social-media/e2-youtube-ai-guide.md) 的价值在于长尾流量，理解 [YouTube 搜索算法的双引擎](paths/e-social-media/e2-youtube-ai-guide.md#21-youtube-搜索算法的双引擎)后，你可以用 AI 做关键词研究、写评测脚本、做 Shorts。[小红书](paths/e-social-media/e3-xiaohongshu-ai-guide.md)的核心是 [CES 评分机制](paths/e-social-media/e3-xiaohongshu-ai-guide.md#11-ces-评分机制)和独特的[流量分发逻辑](paths/e-social-media/e3-xiaohongshu-ai-guide.md#12-流量分发逻辑)。[Pinterest](paths/e-social-media/e4-pinterest-ai-guide.md) 本质上是一个视觉搜索引擎。[WhatsApp](paths/e-social-media/e5-whatsapp-business-ai-guide.md) 在拉美和东南亚是主要的客户触达渠道。[Reddit](paths/e-social-media/e6-reddit-ai-guide.md) 正在成为产品发现的重要渠道，2026 年还上线了 [AI 购物搜索](paths/e-social-media/e6-reddit-ai-guide.md#12-reddit-ai-购物搜索2026-新功能)。[跨渠道策略](paths/e-social-media/e7-social-media-cross-channel.md)教你一个内容多平台适配。
 
 ### 客服
+---
 
 订单来了之后，[客服与售后](paths/a-operators/a4-customer-service.md)帮你处理日常。用 AI 批量分析差评、生成多语言客服回复、写[账号申诉 Plan of Action](paths/a-operators/a6-compliance.md#36-amazon-政策违规应对)、应对 A-to-Z Claim。
 
 ### 合规与财务
+---
 
 [合规与风控](paths/a-operators/a6-compliance.md)从[主要市场的合规框架对比](paths/a-operators/a6-compliance.md#12-主要市场的合规框架对比)讲起，教你做 [CE/FCC/PSE/UKCA 多市场合规对比](paths/a-operators/a6-compliance.md#31-多市场合规对比深化版)、[估算合规成本](paths/a-operators/a6-compliance.md#33-合规成本估算)，以及应对 [BSA AI Agent 合规新规](paths/a-operators/a6-compliance.md#61-2026-新趋势amazon-ai-agent-合规要求bsa-更新)。[财务分析](paths/a-operators/a11-financial-analysis.md)帮你用 [Amazon 真实利润计算公式](paths/a-operators/a11-financial-analysis.md#21-amazon-真实利润计算公式)算出含所有隐藏成本的真实利润。[AI 风险治理](paths/c-managers/c4-ai-risk-governance.md)帮你建立 AI 使用的治理政策。
 
