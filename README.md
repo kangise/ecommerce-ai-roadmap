@@ -71,7 +71,35 @@
 
 ## AI 基础
 
-不管你是什么角色，建议先了解 AI 的基本概念。[AI 基础](paths/0-foundations/)里有 [AI 技术演进](paths/0-foundations/f1-ai-evolution.md)的全景、[Prompt 工程](paths/0-foundations/f2-prompt-engineering.md)的方法论、[RAG](paths/0-foundations/f3-rag-knowledge.md) 和 [Agent](paths/0-foundations/f4-agent-automation.md) 的原理、[RPA 自动化](paths/0-foundations/f5-rpa-automation.md)和 [AI 工具对比](paths/0-foundations/f6-ai-tools-comparison.md)。[AI 全景评估](paths/0-foundations/ai-landscape.md)帮你判断每个业务环节 AI 的成熟度和优先级。
+不管你是什么角色，建议先建立 AI 的基本认知。这部分按 4 个维度展开：AI 是什么、怎么和 AI 对话、怎么让 AI 自动干活、怎么把 AI 能力固化成可复用的工具。
+
+### AI 认知
+---
+
+> AI 不是魔法，而是概率。理解它的能力边界，才能知道什么时候该信任它、什么时候该质疑它。
+
+[AI 技术演进](paths/0-foundations/f1-ai-evolution.md)梳理了从规则系统到大语言模型的完整脉络，帮你理解为什么 2024 年之后 AI 在电商领域突然变得实用。[AI 全景评估](paths/0-foundations/ai-landscape.md)把跨境电商的每个业务环节按 AI 成熟度打分，帮你判断哪些环节值得优先投入、哪些还不成熟。[AI 工具对比](paths/0-foundations/f6-ai-tools-comparison.md)帮你在 ChatGPT、Claude、Gemini 等工具之间做选择。
+
+### Prompt 工程
+---
+
+> Prompt 是你和 AI 之间的接口。同样的模型，好的 Prompt 和差的 Prompt 输出质量可以差 10 倍。
+
+[Prompt 工程](paths/0-foundations/f2-prompt-engineering.md)不只是"怎么写提示词"，而是一套系统化的方法论 — 角色设定、上下文注入、输出格式控制、Chain-of-Thought 推理。这篇指南教你从"能用"到"好用"到"稳定好用"。
+
+### Agent 与自动化
+---
+
+> Prompt 是一次性的对话，Agent 是持续运行的工作流。当你需要 AI 自动执行多步骤任务时，就需要从 Prompt 升级到 Agent。
+
+[RAG](paths/0-foundations/f3-rag-knowledge.md) 让 AI 能查阅你的私有数据（产品手册、历史报告），而不只是依赖训练数据。[Agent](paths/0-foundations/f4-agent-automation.md) 让 AI 能自主规划和执行多步骤任务 — 比如自动监控竞品价格变化并生成调价建议。[RPA 自动化](paths/0-foundations/f5-rpa-automation.md)覆盖了不需要 AI 判断的重复性操作，和 Agent 互补。
+
+### Skills 与工具生态
+---
+
+> Skills 是把 AI 能力固化成可复用模块的方式。写一次 Skill，团队所有人都能用同样的质量标准调用 AI。
+
+[AI Skills 与 Rules 合集](docs/awesome-ai-skills.md)收集了 Kiro Skills、Cursor Rules、Claude SKILL.md 和 OpenClaw Skills 的最佳实践。[MCP 与 Agent 工具集](docs/awesome-mcp-agents.md)收集了 30+ 电商相关的 MCP Server（Shopify、Amazon Ads、SEO 等）和 7 大 Agent 框架，让你的 AI 工具能直接连接电商平台的数据和操作。
 
 ---
 
