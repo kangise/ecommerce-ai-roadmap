@@ -62,7 +62,7 @@
 | 多平台 — 独立站 | [Shopify](paths/d-platforms/shopify-ai-guide.md) |
 | 多平台 — 短视频 | [TikTok Shop](paths/d-platforms/tiktok-shop-ai-guide.md) |
 | 多平台 — 亚太 | [东南亚](paths/d-platforms/d6-southeast-asia-ai-guide.md) · [日本](paths/d-platforms/d8-rakuten-japan-ai-guide.md) · [韩国](paths/d-platforms/d11-coupang-korea-ai-guide.md) |
-| 多平台 — 欧洲拉美 | [Mercado Libre](paths/d-platforms/d7-mercado-libre-ai-guide.md) · [Otto/Zalando](paths/d-platforms/d13-europe-marketplaces-guide.md) |
+| 多平台 — 欧拉美 | [Mercado Libre](paths/d-platforms/d7-mercado-libre-ai-guide.md) · [Otto/Zalando](paths/d-platforms/d13-europe-marketplaces-guide.md) |
 | 跨平台策略 | [跨平台协同](paths/d-platforms/cross-platform-strategy.md) · [平台对比](paths/d-platforms/platform-comparison.md) |
 | AI 系统构建 | [数据管道](paths/b-developers/b1-data-pipeline.md) · [预测模型](paths/b-developers/b2-prediction-models.md) · [RAG 知识库](paths/b-developers/b3-rag-knowledge-base.md) · [Agent](paths/b-developers/b4-agent-workflow.md) · [本地部署](paths/b-developers/b5-local-model-deploy.md) · [MCP](paths/b-developers/b6-mcp-agentic-workflow.md) · [Review NLP](paths/b-developers/b7-review-nlp-system.md) · [Dashboard](paths/b-developers/b8-ecommerce-dashboard.md) · [图片生成](paths/b-developers/b9-ai-image-pipeline.md) |
 | 团队与管理 | [能力评估](paths/c-managers/c1-ai-assessment.md) · [团队建设](paths/c-managers/c2-team-building.md) · [ROI](paths/c-managers/c3-roi-evaluation.md) · [竞争情报](paths/c-managers/c5-competitive-intelligence.md) |
@@ -87,9 +87,39 @@ flowchart LR
     D --> E[社交媒体]
     E --> F[客服]
     F --> G[合规与财务]
+
+    A --- A1[选品洞察]
+    A --- A8[定价策略]
+    A --- A12[知识产权]
+
+    B --- B5[库存与供应链]
+
+    C --- C2[Listing 优化]
+    C --- C7[视觉内容]
+    C --- C10[品牌建设]
+
+    D --- D3[广告优化]
+    D --- D9[SEO/GEO]
+    D --- D13[Growth Hack]
+
+    E --- E1[Instagram/Facebook]
+    E --- E2[YouTube]
+    E --- E3[小红书]
+    E --- E4[Pinterest]
+    E --- E5[WhatsApp]
+    E --- E6[Reddit]
+
+    F --- F4[客服与售后]
+
+    G --- G6[合规风控]
+    G --- G11[财务分析]
+    G --- G14[AI 风险治理]
 ```
 
 ### 选品
+
+---
+
 
 一切从选品开始。[选品与市场洞察](paths/a-operators/a1-product-research.md)教你用 AI 从 50 条竞品差评中[提取核心痛点](paths/a-operators/a1-product-research.md#31-竞品-review-痛点分析)，用 [5 个维度快速评估市场可行性](paths/a-operators/a1-product-research.md#32-市场可行性快速评估)（需求、竞争、利润、供应链、合规），再通过[关键词聚类](paths/a-operators/a1-product-research.md#33-关键词需求聚类)发现竞品没覆盖的蓝海需求。整个流程有一套完整的 [SOP](paths/a-operators/a1-product-research.md#4-选品实战工作流)，也列出了[常见的选品陷阱](paths/a-operators/a1-product-research.md#5-常见选品陷阱)帮你避坑。
 
@@ -144,7 +174,7 @@ Listing 文字做好了，还需要视觉。[视觉内容](paths/a-operators/a7-
 ```mermaid
 flowchart TB
     subgraph 货架电商
-        W[Walmart] 
+        W[Walmart]
         E[eBay]
         AE[AliExpress]
         T[Temu]
@@ -152,9 +182,15 @@ flowchart TB
     end
     subgraph 独立站
         S[Shopify]
+        S --- S1[GEO 优化]
+        S --- S2[Agentic Storefronts]
+        S --- S3[Klaviyo 邮件]
     end
     subgraph 短视频与直播
         TK[TikTok Shop]
+        TK --- TK1[Hook 公式]
+        TK --- TK2[达人评分]
+        TK --- TK3[直播脚本]
     end
     subgraph 亚太
         SE[东南亚]
@@ -200,6 +236,12 @@ flowchart LR
     B4 --> B7[Review NLP]
     B4 --> B8[Dashboard]
     B4 --> B9[图片生成]
+
+    B1 --- B1a[SP-API · pandas]
+    B2 --- B2a[Prophet · AutoGluon]
+    B3 --- B3a[LlamaIndex · Chroma]
+    B4 --- B4a[LangGraph · CrewAI]
+    B6 --- B6a[Claude · MCP 协议]
 ```
 
 从[数据管道](paths/b-developers/b1-data-pipeline.md)开始，了解 [Amazon 数据源全景](paths/b-developers/b1-data-pipeline.md#12-amazon-数据源全景)，用 SP-API 和 pandas 搭建自动化报告处理。然后用[预测模型](paths/b-developers/b2-prediction-models.md)做 SKU 销量预测，理解[时间序列预测的原理](paths/b-developers/b2-prediction-models.md#11-时间序列预测的第一性原理)。
@@ -220,6 +262,10 @@ flowchart LR
     C2 --> C3[ROI 评估]
     C3 --> C4[风险治理]
     C3 --> C5[竞争情报]
+
+    C1 --- C1a[成熟度问卷 · 落地案例]
+    C2 --- C2a[培训计划 · 习惯养成]
+    C3 --- C3a[ROI 计算框架]
 ```
 
 先做 [AI 能力评估](paths/c-managers/c1-ai-assessment.md)，了解 [AI 落地的三个阶段](paths/c-managers/c1-ai-assessment.md#12-ai-落地的三个阶段)，用 [10 个问题的成熟度问卷](paths/c-managers/c1-ai-assessment.md#41-ai-成熟度评估问卷10-个问题)评估团队现状，参考 [5 人、20 人、50 人团队的落地案例](paths/c-managers/c1-ai-assessment.md#7-学习资源)。然后通过[团队建设](paths/c-managers/c2-team-building.md)让 80%+ 的人每天用 AI，用 [ROI 评估](paths/c-managers/c3-roi-evaluation.md)量化 AI 投入的回报，用[竞争情报](paths/c-managers/c5-competitive-intelligence.md)监控竞品的 AI 动态。
