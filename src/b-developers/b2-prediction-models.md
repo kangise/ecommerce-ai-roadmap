@@ -26,7 +26,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ## 本模块章节导航
 
-1. [预测方法论](#1-预测方法论) · 2. [工具全景](#2-工具全景) · 3. [代码实战](#3-代码实战) · 4. [模型评估](#4-模型评估) · 5. [实战项目](#5-实战项目构建-sku-销量预测系统) · 6. [常见陷阱](#6-常见陷阱) · 7. [学习资源](#7-学习资源) · 8. [ OpenClaw 自动化](#8-用-openclaw-自动化预测流程) · 9. [完成标志](#9-完成标志)
+1. [预测方法论](#1-预测方法论) · 2. [工具全景](#2-工具全景) · 3. [代码实战](#3-代码实战) · 4. [模型评估](#4-模型评估) · 5. [实战项目](#5-实战项目构建-sku-销量预测系统) · 6. [常见陷阱](#6-常见陷阱) · 7. [学习资源](#7-学习资源)
 
 
 ## 本模块你将构建
@@ -1344,49 +1344,6 @@ python3 run_forecast.py --data data/daily_sales.csv --asin B0XXXXX --stock 500 -
 | [OR-Tools](https://github.com/google/or-tools) | 11k+ | 运筹优化 |
 
 Content rephrased for compliance with licensing restrictions. Sources cited inline.
-
----
-
-## 8. 用 OpenClaw 自动化预测流程
-
-### 8.1 场景：AI Agent 定期运行销量预测并生成补货建议
-
-```
-你对 OpenClaw 说：
-"每周一自动运行销量预测，基于预测结果生成补货建议，
-更新预测 Dashboard 并发送摘要到 Slack"
-
-OpenClaw 自动执行：
-1. [Heartbeat] 每周一触发
-2. [filesystem MCP] 读取最新销售数据
-3. [LLM + Prophet] 运行 90 天销量预测
-4. [LLM] 基于预测结果生成补货建议
-5. [Skill: google-sheets] 更新预测 Dashboard
-6. [Skill: slack] 发送预测摘要
-```
-
-### 8.2 需要的 Skills 和 MCP Server
-
-| 组件 | 用途 | 链接 |
-|------|------|------|
-| **filesystem MCP** | 读写本地销售数据 | [MCP Filesystem](https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem) |
-| **google-sheets** Skill | 更新预测 Dashboard | [ClawHub](https://clawhub.ai/) |
-| **slack** Skill | 发送预测摘要 | [ClawHub](https://clawhub.ai/) |
-| **memory** Skill | 存储历史预测基准 | [OpenClaw Docs](https://docs.openclaw.com/) |
-| **sqlite MCP** | 本地数据库存储 | [MCP SQLite](https://github.com/modelcontextprotocol/servers/tree/main/src/sqlite) |
-
-### 8.3 相关资源
-
-| 资源 | 说明 | 链接 |
-|------|------|------|
-| OpenClaw 官方文档 | 安装和配置指南 | [docs.openclaw.com](https://docs.openclaw.com/) |
-| ClawHub Skills 市场 | 搜索和安装 Agent Skills | [clawhub.ai](https://clawhub.ai/) |
-| OpenClaw MCP 集成 | 连接 MCP Server | [Build Skill with MCP](https://rebeccamdeprey.com/blog/build-openclaw-skill-with-mcp) |
-| F4 自动化与 Agent | Agent 基础模块 | [F4 模块](../0-foundations/f4-agent-automation.md) |
-
-Content rephrased for compliance with licensing restrictions. Sources cited inline.
-
----
 
 ## 9. 完成标志
 

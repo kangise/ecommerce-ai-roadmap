@@ -36,7 +36,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "ayu";
-            window.path_to_searchindex_js = "../searchindex-6ad91222.js";
+            window.path_to_searchindex_js = "../searchindex-823ed5e4.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-e97a050e.js"></script>
@@ -206,7 +206,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 <hr>
 <h2 id="本模块章节导航"><a class="header" href="#本模块章节导航">本模块章节导航</a></h2>
 <ol>
-<li><a href="#1-合规方法论ai-之前你需要理解的基础">合规方法论</a> · 2. <a href="#2-ai-工具全景合规阶段用什么">AI 工具全景</a> · 3. <a href="#3-prompt-模板库合规专用">Prompt 模板库</a> · 4. <a href="#4-合规实战工作流">合规实战工作流</a> · 5. <a href="#5-常见合规陷阱">常见陷阱</a> · 6. <a href="#6-进阶技巧">进阶技巧</a> · 7. <a href="#7-学习资源">学习资源</a> · 8. <a href="#8-用-openclaw-自动化合规检查"> OpenClaw 自动化</a> · 9. <a href="#9-完成标志">完成标志</a></li>
+<li><a href="#1-合规方法论ai-之前你需要理解的基础">合规方法论</a> · 2. <a href="#2-ai-工具全景合规阶段用什么">AI 工具全景</a> · 3. <a href="#3-prompt-模板库合规专用">Prompt 模板库</a> · 4. <a href="#4-合规实战工作流">合规实战工作流</a> · 5. <a href="#5-常见合规陷阱">常见陷阱</a> · 6. <a href="#6-进阶技巧">进阶技巧</a> · 7. <a href="#7-学习资源">学习资源</a></li>
 </ol>
 <blockquote>
 <p><strong>重要免责声明 | Important Disclaimer</strong>
@@ -1164,50 +1164,6 @@ Amazon 的政策持续更新，请以 Seller Central 的最新通知为准。
 </tbody>
 </table>
 </div>
-<hr>
-<h2 id="8-用-openclaw-自动化合规检查"><a class="header" href="#8-用-openclaw-自动化合规检查">8. 用 OpenClaw 自动化合规检查</a></h2>
-<h3 id="81-场景ai-agent-新品上架前自动合规预检"><a class="header" href="#81-场景ai-agent-新品上架前自动合规预检">8.1 场景：AI Agent 新品上架前自动合规预检</a></h3>
-<pre><code>你对 OpenClaw 说：
-"新产品信息录入后，自动检索合规知识库，
-对比产品信息和各市场合规要求，生成差距清单和认证费用估算，发送合规预检报告"
-
-OpenClaw 自动执行：
-1. [触发] 新产品信息录入时
-2. [Skill: memory] 检索合规知识库（各市场认证要求）
-3. [LLM] 对比产品信息和合规要求，生成差距清单
-4. [LLM] 估算认证费用和周期
-5. [Skill: slack] 发送合规预检报告
-</code></pre>
-<h3 id="82-需要的-skills-和-mcp-server"><a class="header" href="#82-需要的-skills-和-mcp-server">8.2 需要的 Skills 和 MCP Server</a></h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>组件</th><th>用途</th><th>链接</th></tr>
-</thead>
-<tbody>
-<tr><td><strong>memory</strong> Skill</td><td>存储合规知识库和认证要求</td><td><a href="https://docs.openclaw.com/">OpenClaw Docs</a></td></tr>
-<tr><td><strong>web-search</strong> Skill</td><td>检索最新法规更新</td><td><a href="https://docs.openclaw.com/">OpenClaw Docs</a></td></tr>
-<tr><td><strong>slack</strong> Skill</td><td>发送合规预检报告</td><td><a href="https://clawhub.ai/">ClawHub</a></td></tr>
-<tr><td><strong>filesystem MCP</strong></td><td>读取本地合规文档和模板</td><td><a href="https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem">MCP Filesystem</a></td></tr>
-</tbody>
-</table>
-</div>
-<h3 id="83-相关资源"><a class="header" href="#83-相关资源">8.3 相关资源</a></h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>资源</th><th>说明</th><th>链接</th></tr>
-</thead>
-<tbody>
-<tr><td>OpenClaw 官方文档</td><td>安装和配置指南</td><td><a href="https://docs.openclaw.com/">docs.openclaw.com</a></td></tr>
-<tr><td>ClawHub Skills 市场</td><td>搜索和安装 Agent Skills</td><td><a href="https://clawhub.ai/">clawhub.ai</a></td></tr>
-<tr><td>OpenClaw MCP 集成</td><td>连接 MCP Server</td><td><a href="https://rebeccamdeprey.com/blog/build-openclaw-skill-with-mcp">Build Skill with MCP</a></td></tr>
-<tr><td>F4 自动化与 Agent</td><td>Agent 基础模块</td><td><a href="../0-foundations/f4-agent-automation.html">F4 模块</a></td></tr>
-</tbody>
-</table>
-</div>
-<p>Content rephrased for compliance with licensing restrictions. Sources cited inline.</p>
-<hr>
 <h2 id="85-补充各社交平台广告合规要求对比"><a class="header" href="#85-补充各社交平台广告合规要求对比">8.5 补充：各社交平台广告合规要求对比</a></h2>
 <blockquote>
 <p>本节补充跨平台广告合规要求。当你在社交媒体投放广告引流到 Amazon/Shopify 时，需要同时遵守平台广告政策。</p>

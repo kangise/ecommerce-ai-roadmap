@@ -36,7 +36,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "ayu";
-            window.path_to_searchindex_js = "../searchindex-6ad91222.js";
+            window.path_to_searchindex_js = "../searchindex-823ed5e4.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-e97a050e.js"></script>
@@ -205,7 +205,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 <hr>
 <h2 id="本模块章节导航"><a class="header" href="#本模块章节导航">本模块章节导航</a></h2>
 <ol>
-<li><a href="#1-预测方法论">预测方法论</a> · 2. <a href="#2-工具全景">工具全景</a> · 3. <a href="#3-代码实战">代码实战</a> · 4. <a href="#4-模型评估">模型评估</a> · 5. <a href="#5-实战项目构建-sku-销量预测系统">实战项目</a> · 6. <a href="#6-常见陷阱">常见陷阱</a> · 7. <a href="#7-学习资源">学习资源</a> · 8. <a href="#8-用-openclaw-自动化预测流程"> OpenClaw 自动化</a> · 9. <a href="#9-完成标志">完成标志</a></li>
+<li><a href="#1-预测方法论">预测方法论</a> · 2. <a href="#2-工具全景">工具全景</a> · 3. <a href="#3-代码实战">代码实战</a> · 4. <a href="#4-模型评估">模型评估</a> · 5. <a href="#5-实战项目构建-sku-销量预测系统">实战项目</a> · 6. <a href="#6-常见陷阱">常见陷阱</a> · 7. <a href="#7-学习资源">学习资源</a></li>
 </ol>
 <h2 id="本模块你将构建"><a class="header" href="#本模块你将构建">本模块你将构建</a></h2>
 <p>销量预测模型 + Review 主题分析系统。</p>
@@ -1512,52 +1512,6 @@ python3 run_forecast.py --data data/daily_sales.csv --asin B0XXXXX --stock 500 -
 </table>
 </div>
 <p>Content rephrased for compliance with licensing restrictions. Sources cited inline.</p>
-<hr>
-<h2 id="8-用-openclaw-自动化预测流程"><a class="header" href="#8-用-openclaw-自动化预测流程">8. 用 OpenClaw 自动化预测流程</a></h2>
-<h3 id="81-场景ai-agent-定期运行销量预测并生成补货建议"><a class="header" href="#81-场景ai-agent-定期运行销量预测并生成补货建议">8.1 场景：AI Agent 定期运行销量预测并生成补货建议</a></h3>
-<pre><code>你对 OpenClaw 说：
-"每周一自动运行销量预测，基于预测结果生成补货建议，
-更新预测 Dashboard 并发送摘要到 Slack"
-
-OpenClaw 自动执行：
-1. [Heartbeat] 每周一触发
-2. [filesystem MCP] 读取最新销售数据
-3. [LLM + Prophet] 运行 90 天销量预测
-4. [LLM] 基于预测结果生成补货建议
-5. [Skill: google-sheets] 更新预测 Dashboard
-6. [Skill: slack] 发送预测摘要
-</code></pre>
-<h3 id="82-需要的-skills-和-mcp-server"><a class="header" href="#82-需要的-skills-和-mcp-server">8.2 需要的 Skills 和 MCP Server</a></h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>组件</th><th>用途</th><th>链接</th></tr>
-</thead>
-<tbody>
-<tr><td><strong>filesystem MCP</strong></td><td>读写本地销售数据</td><td><a href="https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem">MCP Filesystem</a></td></tr>
-<tr><td><strong>google-sheets</strong> Skill</td><td>更新预测 Dashboard</td><td><a href="https://clawhub.ai/">ClawHub</a></td></tr>
-<tr><td><strong>slack</strong> Skill</td><td>发送预测摘要</td><td><a href="https://clawhub.ai/">ClawHub</a></td></tr>
-<tr><td><strong>memory</strong> Skill</td><td>存储历史预测基准</td><td><a href="https://docs.openclaw.com/">OpenClaw Docs</a></td></tr>
-<tr><td><strong>sqlite MCP</strong></td><td>本地数据库存储</td><td><a href="https://github.com/modelcontextprotocol/servers/tree/main/src/sqlite">MCP SQLite</a></td></tr>
-</tbody>
-</table>
-</div>
-<h3 id="83-相关资源"><a class="header" href="#83-相关资源">8.3 相关资源</a></h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>资源</th><th>说明</th><th>链接</th></tr>
-</thead>
-<tbody>
-<tr><td>OpenClaw 官方文档</td><td>安装和配置指南</td><td><a href="https://docs.openclaw.com/">docs.openclaw.com</a></td></tr>
-<tr><td>ClawHub Skills 市场</td><td>搜索和安装 Agent Skills</td><td><a href="https://clawhub.ai/">clawhub.ai</a></td></tr>
-<tr><td>OpenClaw MCP 集成</td><td>连接 MCP Server</td><td><a href="https://rebeccamdeprey.com/blog/build-openclaw-skill-with-mcp">Build Skill with MCP</a></td></tr>
-<tr><td>F4 自动化与 Agent</td><td>Agent 基础模块</td><td><a href="../0-foundations/f4-agent-automation.html">F4 模块</a></td></tr>
-</tbody>
-</table>
-</div>
-<p>Content rephrased for compliance with licensing restrictions. Sources cited inline.</p>
-<hr>
 <h2 id="9-完成标志"><a class="header" href="#9-完成标志">9. 完成标志</a></h2>
 <ul>
 <li><input disabled="" type="checkbox"> 用 Prophet 对一个真实 SKU 做 90 天销量预测，输出预测值和置信区间</li>

@@ -22,7 +22,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ## 本模块章节导航
 
-1. [ROI 方法论](#1-roi-评估方法论) · 2. [计算框架](#2-roi-计算框架详细版) · 3. [基准数据](#3-跨境电商-ai-roi-基准数据) · 4. [数据收集](#4-roi-数据收集方法) · 5. [Prompt 模板](#5-prompt-模板roi-评估专用) · 6. [实战案例](#6-roi-评估实战案例) · 7. [优化策略](#7-roi-优化策略) · 8. [报告模板](#8-roi-报告模板) · 9. [常见陷阱](#9-常见陷阱与误区) · 10. [长期视角](#10-进阶ai-roi-的长期视角) · 11. [学习资源](#11-学习资源) · 12. [ OpenClaw 自动化](#12-用-openclaw-自动化-roi-追踪) · 13. [完成标志](#13-完成标志)
+1. [ROI 方法论](#1-roi-评估方法论) · 2. [计算框架](#2-roi-计算框架详细版) · 3. [基准数据](#3-跨境电商-ai-roi-基准数据) · 4. [数据收集](#4-roi-数据收集方法) · 5. [Prompt 模板](#5-prompt-模板roi-评估专用) · 6. [实战案例](#6-roi-评估实战案例) · 7. [优化策略](#7-roi-优化策略) · 8. [报告模板](#8-roi-报告模板) · 9. [常见陷阱](#9-常见陷阱与误区) · 10. [长期视角](#10-进阶ai-roi-的长期视角) · 11. [学习资源](#11-学习资源)
 
 
 ## 本模块你将产出
@@ -1010,47 +1010,6 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 | 《The AI-First Company》 | Ash Fontana | 如何衡量和最大化 AI 投资的回报 |
 | 《Competing in the Age of AI》 | Marco Iansiti | 理解 AI 如何改变竞争格局，帮助做战略级 AI 投资决策 |
 | 《Measure What Matters》 | John Doerr | OKR 方法论，适用于设定和追踪 AI 项目的目标和关键结果 |
-
----
-
-## 12. 用 OpenClaw 自动化 ROI 追踪
-
-### 12.1 场景：AI Agent 自动收集 AI 使用数据并生成月度 ROI 报告
-
-```
-你对 OpenClaw 说：
-"每月 1 日自动收集 AI 使用数据，计算月度 ROI，
-更新 Dashboard 并发送报告到管理频道"
-
-OpenClaw 自动执行：
-1. [Heartbeat] 每月 1 日触发
-2. [Skill: google-sheets] 读取 AI 工具成本和使用时间数据
-3. [Skill: slack] 统计 AI 使用频次
-4. [LLM] 计算月度 ROI（成本、价值、净收益）
-5. [Skill: google-sheets] 更新 ROI Dashboard
-6. [Skill: slack] 发送月度 ROI 报告到 #management
-```
-
-### 12.2 需要的 Skills 和 MCP Server
-
-| 组件 | 用途 | 链接 |
-|------|------|------|
-| **google-sheets** Skill | 读取成本数据、更新 Dashboard | [ClawHub](https://clawhub.ai/) |
-| **slack** Skill | 统计使用频次、发送报告 | [ClawHub](https://clawhub.ai/) |
-| **memory** Skill | 存储历史 ROI 数据 | [OpenClaw Docs](https://docs.openclaw.com/) |
-
-### 12.3 相关资源
-
-| 资源 | 说明 | 链接 |
-|------|------|------|
-| OpenClaw 官方文档 | 安装和配置指南 | [docs.openclaw.com](https://docs.openclaw.com/) |
-| ClawHub Skills 市场 | 搜索和安装 Agent Skills | [clawhub.ai](https://clawhub.ai/) |
-| OpenClaw 商业应用指南 | 企业场景设置 | [Business Guide](https://www.aimakers.co/blog/openclaw-clawbot-business-guide/) |
-| F4 自动化与 Agent | Agent 基础模块 | [F4 模块](../0-foundations/f4-agent-automation.md) |
-
-Content rephrased for compliance with licensing restrictions. Sources cited inline.
-
----
 
 ## 13. 完成标志
 

@@ -27,7 +27,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ## 本模块章节导航
 
-1. [广告方法论](#1-广告方法论ai-之前你需要理解的基础) · 2. [AI 工具全景](#2-ai-工具全景广告阶段用什么) · 3. [Prompt 模板库](#3-prompt-模板库广告专用) · 4. [广告实战工作流](#4-广告实战工作流) · 5. [常见陷阱](#5-常见广告陷阱) · 6. [进阶技巧](#6-进阶技巧) · 7. [学习资源](#7-学习资源) · 8. [ OpenClaw 自动化](#8-用-openclaw-自动化广告优化) · 9. [完成标志](#9-完成标志)
+1. [广告方法论](#1-广告方法论ai-之前你需要理解的基础) · 2. [AI 工具全景](#2-ai-工具全景广告阶段用什么) · 3. [Prompt 模板库](#3-prompt-模板库广告专用) · 4. [广告实战工作流](#4-广告实战工作流) · 5. [常见陷阱](#5-常见广告陷阱) · 6. [进阶技巧](#6-进阶技巧) · 7. [学习资源](#7-学习资源)
 
 
 ## 本模块你将学会
@@ -942,47 +942,6 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 | PPC Chat Community | Slack/Discord | PPC 从业者社区，跨平台广告讨论 |
 | 知无不言 | 知乎 | 中文跨境电商社区，PPC 优化经验丰富 |
 | 创蓝论坛 | 独立站点 | 中国卖家社区，广告实操案例多 |
-
----
-
-## 8. 用 OpenClaw 自动化广告优化
-
-### 8.1 场景：AI Agent 自动分析搜索词报告并优化广告
-
-```
-你对 OpenClaw 说：
-"每周一自动分析搜索词报告，找出高花费低转化词和高转化词，
-生成否定关键词建议和预算调整方案，发送到 #ads-optimization 频道"
-
-OpenClaw 自动执行：
-1. [Heartbeat] 每周一触发
-2. [Skill: google-sheets] 读取搜索词报告
-3. [LLM] 分析高花费低转化词、高转化词
-4. [LLM] 生成否定关键词建议和预算调整方案
-5. [Skill: slack] 发送优化建议到 #ads-optimization
-```
-
-### 8.2 需要的 Skills 和 MCP Server
-
-| 组件 | 用途 | 链接 |
-|------|------|------|
-| **google-sheets** Skill | 读写搜索词报告和广告数据 | [ClawHub](https://clawhub.ai/) |
-| **slack** Skill | 发送优化建议通知 | [ClawHub](https://clawhub.ai/) |
-| **memory** Skill | 存储历史广告数据和优化规则 | [OpenClaw Docs](https://docs.openclaw.com/) |
-| **filesystem MCP** | 读取本地广告报告文件 | [MCP Filesystem](https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem) |
-
-### 8.3 相关资源
-
-| 资源 | 说明 | 链接 |
-|------|------|------|
-| OpenClaw 官方文档 | 安装和配置指南 | [docs.openclaw.com](https://docs.openclaw.com/) |
-| ClawHub Skills 市场 | 搜索和安装 Agent Skills | [clawhub.ai](https://clawhub.ai/) |
-| OpenClaw MCP 集成 | 连接 MCP Server | [Build Skill with MCP](https://rebeccamdeprey.com/blog/build-openclaw-skill-with-mcp) |
-| F4 自动化与 Agent | Agent 基础模块 | [F4 模块](../0-foundations/f4-agent-automation.md) |
-
-Content rephrased for compliance with licensing restrictions. Sources cited inline.
-
----
 
 ## 8.5 补充：AI 广告素材批量生成与跨渠道归因
 

@@ -36,7 +36,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "ayu";
-            window.path_to_searchindex_js = "../searchindex-6ad91222.js";
+            window.path_to_searchindex_js = "../searchindex-823ed5e4.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-e97a050e.js"></script>
@@ -183,7 +183,7 @@
                     <main>
                         <h1 id="awesome-ai-skills--rules--ai-ide-技能文件与规则集合"><a class="header" href="#awesome-ai-skills--rules--ai-ide-技能文件与规则集合">Awesome AI Skills &amp; Rules | AI IDE 技能文件与规则集合</a></h1>
 <blockquote>
-<p>AI IDE（Kiro/Cursor/Windsurf/Claude Code）和 AI Agent（OpenClaw）的 Skills、Steering Files、Rules 集合。
+<p>AI IDE（Kiro/Cursor/Windsurf/Claude Code）的 Skills、Steering Files、Rules 集合。
 让 AI 按照你的规范工作，不再每次重复解释。
 最后更新: 2026-03-15</p>
 </blockquote>
@@ -192,7 +192,6 @@
 <ul>
 <li><a href="#什么是-ai-skills--rules">什么是 AI Skills / Rules</a></li>
 <li><a href="#外部-awesome-lists-和资源">外部 Awesome Lists 和资源</a></li>
-<li><a href="#openclaw-skills--plugins">OpenClaw Skills &amp; Plugins</a></li>
 <li><a href="#kiro-skills--steering-files">Kiro Skills &amp; Steering Files</a></li>
 <li><a href="#cursor-rules">Cursor Rules</a></li>
 <li><a href="#claude-code-skillmd">Claude Code SKILL.md</a></li>
@@ -210,7 +209,6 @@
 <tr><td>Kiro</td><td><code>*.md</code></td><td><code>.kiro/skills/</code> 或 <code>.kiro/steering/</code></td><td>Steering files 持久化项目规范</td></tr>
 <tr><td>Cursor</td><td><code>.cursorrules</code> 或 <code>.mdc</code></td><td>项目根目录</td><td>自定义 AI 代码生成规则</td></tr>
 <tr><td>Claude Code</td><td><code>SKILL.md</code></td><td>项目根目录</td><td>可复用的 AI 编码指令</td></tr>
-<tr><td>OpenClaw</td><td>Skills（JS/TS 模块）</td><td><code>skills/</code> 目录</td><td>AI Agent 的可执行技能</td></tr>
 <tr><td>Windsurf</td><td><code>.windsurfrules</code></td><td>项目根目录</td><td>类似 Cursor Rules</td></tr>
 </tbody>
 </table>
@@ -260,81 +258,6 @@
 </div>
 <p>Sources: <a href="https://virtuslab.com/blog/ai/how-to-write-rules-for-ai/">VirtusLab</a>, <a href="https://www.mtechzilla.com/guides/how-to-develop-skill-md-production-guide-engineering-teams">MTechZilla</a>, <a href="https://www.freecodecamp.org/news/how-to-guide-ai-with-rules-and-tests/">freeCodeCamp</a>, <a href="https://blog.tedivm.com/guides/2026/03/beyond-the-vibes-coding-assistants-and-agents/">tedivm</a>.</p>
 <p>Content rephrased for compliance with licensing restrictions.</p>
-<hr>
-<h2 id="openclaw-skills--plugins"><a class="header" href="#openclaw-skills--plugins">OpenClaw Skills &amp; Plugins</a></h2>
-<p>OpenClaw 是 2026 年最热门的开源 AI Agent 框架（180K+ GitHub Stars），其 Skills 系统是核心竞争力。Skills 就像 npm 包安装即用，不需要从零编写（<a href="https://www.tencentcloud.com/techpedia/140807">Tencent Cloud</a>）。</p>
-<p>Content rephrased for compliance with licensing restrictions.</p>
-<h3 id="openclaw-核心概念"><a class="header" href="#openclaw-核心概念">OpenClaw 核心概念</a></h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>概念</th><th>说明</th></tr>
-</thead>
-<tbody>
-<tr><td>Gateway</td><td>本地运行的 AI 网关，连接消息平台和 AI 模型</td></tr>
-<tr><td>Skills</td><td>可执行的技能模块（类似 npm 包），定义 Agent 能做什么</td></tr>
-<tr><td>Plugins</td><td>扩展插件，连接外部服务（消息平台/API/工具）</td></tr>
-<tr><td>Channels</td><td>消息渠道（WhatsApp/Telegram/Discord/Slack/iMessage）</td></tr>
-</tbody>
-</table>
-</div>
-<h3 id="openclaw-官方-skills-生态"><a class="header" href="#openclaw-官方-skills-生态">OpenClaw 官方 Skills 生态</a></h3>
-<blockquote>
-<p>OpenClaw 拥有 50+ 官方集成，是其核心竞争优势之一（<a href="https://help.apiyi.com/en/openclaw-extensions-ecosystem-guide-en.html">ApiYi</a>）。</p>
-</blockquote>
-<p>Content rephrased for compliance with licensing restrictions.</p>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>类别</th><th>Skills</th><th>说明</th></tr>
-</thead>
-<tbody>
-<tr><td>消息渠道</td><td>WhatsApp, Telegram, Discord, Slack, Signal, iMessage, Google Chat, Teams</td><td>多平台消息收发</td></tr>
-<tr><td>浏览器</td><td>Browser Relay, Screen Capture</td><td>网页浏览、截图、自动化</td></tr>
-<tr><td>文件系统</td><td>File Manager, Code Executor</td><td>文件读写、代码执行</td></tr>
-<tr><td>日历/邮件</td><td>Google Calendar, Gmail, Outlook</td><td>日程管理、邮件处理</td></tr>
-<tr><td>开发工具</td><td>GitHub, Git, Terminal</td><td>代码管理、命令执行</td></tr>
-<tr><td>数据分析</td><td>CSV/Excel Parser, Web Scraper</td><td>数据处理和抓取</td></tr>
-<tr><td>AI 模型</td><td>Claude, GPT-4, DeepSeek, Gemini, Ollama</td><td>多模型支持</td></tr>
-</tbody>
-</table>
-</div>
-<h3 id="openclaw-电商应用场景"><a class="header" href="#openclaw-电商应用场景">OpenClaw 电商应用场景</a></h3>
-<pre><code>OpenClaw 电商自动化示例：
-
-1. WhatsApp 客服 Agent
-安装 WhatsApp Channel Plugin
-配置客服 Skill（产品FAQ/退换货/物流查询）
-连接 Shopify MCP（查询订单状态）
-7×24 自动回复，复杂问题转人工
-
-2. 多平台价格监控
-安装 Web Scraper Skill
-定时抓取竞品价格
-AI 分析价格变化
-通过 Telegram 推送告警
-
-3. 每日运营报告
-安装 CSV Parser + Gmail Skill
-自动下载 Amazon 报告
-AI 分析关键指标
-通过 Slack 发送日报
-</code></pre>
-<h3 id="openclaw-资源"><a class="header" href="#openclaw-资源">OpenClaw 资源</a></h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>资源</th><th>说明</th><th>链接</th></tr>
-</thead>
-<tbody>
-<tr><td>OpenClaw GitHub</td><td>主仓库（180K+ Stars）</td><td><a href="https://github.com/nicepkg/openclaw">GitHub</a></td></tr>
-<tr><td>官方文档</td><td>安装和配置指南</td><td><a href="https://openclaw.dev/">openclaw.dev</a></td></tr>
-<tr><td>Skills 市场</td><td>预构建 Skills 浏览</td><td>内置于 OpenClaw CLI</td></tr>
-<tr><td>安装指南</td><td>一键安装：<code>npm install -g openclaw@latest</code></td><td><a href="https://www.aifreeapi.com/en/posts/openclaw-installation-guide">AIFreeAPI</a></td></tr>
-<tr><td>完整教程</td><td>从零到个人 AI 助手</td><td><a href="https://www.digitalapplied.com/blog/openclaw-ai-complete-guide-setup-skills-automation">DigitalApplied</a></td></tr>
-</tbody>
-</table>
-</div>
 <hr>
 <h2 id="kiro-skills--steering-files"><a class="header" href="#kiro-skills--steering-files">Kiro Skills &amp; Steering Files</a></h2>
 <p>Kiro 使用 Steering Files 提供持久化的项目知识（<a href="https://aws.amazon.com/documentation-overview/kiro/">Kiro Docs</a>）。</p>
@@ -410,20 +333,14 @@ AI 分析关键指标
 <tr><th>角色</th><th>推荐工具</th><th>推荐 Skills/Rules</th></tr>
 </thead>
 <tbody>
-<tr><td>运营（非技术）</td><td>OpenClaw</td><td>WhatsApp 客服 Skill + Web Scraper + 报告生成</td></tr>
 <tr><td>Python 开发</td><td>Kiro + Claude Code</td><td>Steering Files（tech.md）+ SKILL.md（Python 规范）</td></tr>
 <tr><td>前端开发</td><td>Cursor</td><td>React/TypeScript Rules + Shopify Liquid Rules</td></tr>
 <tr><td>全栈</td><td>Kiro</td><td>Steering + MCP 配置 + Skills</td></tr>
-<tr><td>自动化</td><td>OpenClaw + n8n</td><td>OpenClaw Skills + n8n MCP</td></tr>
 </tbody>
 </table>
 </div>
 <h3 id="快速开始"><a class="header" href="#快速开始">快速开始</a></h3>
-<pre><code class="language-bash"># OpenClaw：一键安装 AI 助手
-npm install -g openclaw@latest
-openclaw onboard
-
-# Kiro：创建 Steering Files
+<pre><code class="language-bash"># Kiro：创建 Steering Files
 mkdir -p .kiro/steering
 echo "# 项目规范\n你的编码规则..." &gt; .kiro/steering/rules.md
 

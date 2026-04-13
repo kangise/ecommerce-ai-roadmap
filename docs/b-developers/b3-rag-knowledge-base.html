@@ -36,7 +36,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "ayu";
-            window.path_to_searchindex_js = "../searchindex-6ad91222.js";
+            window.path_to_searchindex_js = "../searchindex-823ed5e4.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-e97a050e.js"></script>
@@ -205,7 +205,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 <hr>
 <h2 id="本模块章节导航"><a class="header" href="#本模块章节导航">本模块章节导航</a></h2>
 <ol>
-<li><a href="#1-rag-方法论">RAG 方法论</a> · 2. <a href="#2-工具全景">工具全景</a> · 3. <a href="#3-技术栈选择详解">技术栈选择</a> · 4. <a href="#4-代码实战">代码实战</a> · 5. <a href="#5-电商-rag-应用场景">电商 RAG 应用</a> · 6. <a href="#6-常见陷阱">常见陷阱</a> · 7. <a href="#7-进阶技术">进阶技术</a> · 8. <a href="#8-学习资源">学习资源</a> · 9. <a href="#9-用-openclaw-构建-rag-知识库"> OpenClaw 自动化</a> · 10. <a href="#10-完成标志">完成标志</a></li>
+<li><a href="#1-rag-方法论">RAG 方法论</a> · 2. <a href="#2-工具全景">工具全景</a> · 3. <a href="#3-技术栈选择详解">技术栈选择</a> · 4. <a href="#4-代码实战">代码实战</a> · 5. <a href="#5-电商-rag-应用场景">电商 RAG 应用</a> · 6. <a href="#6-常见陷阱">常见陷阱</a> · 7. <a href="#7-进阶技术">进阶技术</a> · 8. <a href="#8-学习资源">学习资源</a></li>
 </ol>
 <h2 id="本模块你将构建"><a class="header" href="#本模块你将构建">本模块你将构建</a></h2>
 <p>基于内部文档的 AI 问答系统 上传产品手册、政策文档、FAQ、Review 数据，AI 自动检索并回答问题。</p>
@@ -1388,50 +1388,6 @@ return agent
 </table>
 </div>
 <p>Content rephrased for compliance with licensing restrictions. Sources cited inline.</p>
-<hr>
-<h2 id="9-用-openclaw-构建-rag-知识库"><a class="header" href="#9-用-openclaw-构建-rag-知识库">9. 用 OpenClaw 构建 RAG 知识库</a></h2>
-<h3 id="91-场景ai-agent-自动维护产品知识库并回答客服问题"><a class="header" href="#91-场景ai-agent-自动维护产品知识库并回答客服问题">9.1 场景：AI Agent 自动维护产品知识库并回答客服问题</a></h3>
-<pre><code>你对 OpenClaw 说：
-"当有新产品文档上传时，自动索引到知识库，
-当客服在 Telegram 提问时，自动从知识库检索并回答"
-
-OpenClaw 自动执行：
-1. [触发] 新产品文档上传时
-2. [filesystem MCP] 读取新文档
-3. [LLM] 自动分块和生成 Embedding
-4. [Skill: memory] 存入知识图谱
-5. [Channel: Telegram] 客服通过 Telegram 提问，Agent 从知识库检索回答
-</code></pre>
-<h3 id="92-需要的-skills-和-mcp-server"><a class="header" href="#92-需要的-skills-和-mcp-server">9.2 需要的 Skills 和 MCP Server</a></h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>组件</th><th>用途</th><th>链接</th></tr>
-</thead>
-<tbody>
-<tr><td><strong>filesystem MCP</strong></td><td>读取新产品文档</td><td><a href="https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem">MCP Filesystem</a></td></tr>
-<tr><td><strong>memory</strong> Skill</td><td>存入知识图谱</td><td><a href="https://docs.openclaw.com/">OpenClaw Docs</a></td></tr>
-<tr><td><strong>telegram/slack</strong> Skill</td><td>接收提问并回答</td><td><a href="https://clawhub.ai/">ClawHub</a></td></tr>
-<tr><td><strong>web-search</strong> Skill</td><td>补充外部知识</td><td><a href="https://clawhub.ai/">ClawHub</a></td></tr>
-</tbody>
-</table>
-</div>
-<h3 id="93-相关资源"><a class="header" href="#93-相关资源">9.3 相关资源</a></h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>资源</th><th>说明</th><th>链接</th></tr>
-</thead>
-<tbody>
-<tr><td>OpenClaw 官方文档</td><td>安装和配置指南</td><td><a href="https://docs.openclaw.com/">docs.openclaw.com</a></td></tr>
-<tr><td>ClawHub Skills 市场</td><td>搜索和安装 Agent Skills</td><td><a href="https://clawhub.ai/">clawhub.ai</a></td></tr>
-<tr><td>OpenClaw MCP 集成</td><td>连接 MCP Server</td><td><a href="https://rebeccamdeprey.com/blog/build-openclaw-skill-with-mcp">Build Skill with MCP</a></td></tr>
-<tr><td>F4 自动化与 Agent</td><td>Agent 基础模块</td><td><a href="../0-foundations/f4-agent-automation.html">F4 模块</a></td></tr>
-</tbody>
-</table>
-</div>
-<p>Content rephrased for compliance with licensing restrictions. Sources cited inline.</p>
-<hr>
 <h2 id="10-完成标志"><a class="header" href="#10-完成标志">10. 完成标志</a></h2>
 <ul>
 <li><input disabled="" type="checkbox"> 用 LlamaIndex 10 行代码搭建一个最简 RAG，能回答产品文档中的问题</li>

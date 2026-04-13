@@ -26,7 +26,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ## 本模块章节导航
 
-1. [本地部署方法论](#1-本地部署方法论) · 2. [工具全景](#2-工具全景) · 3. [代码实战](#3-代码实战) · 4. [硬件选购指南](#4-硬件选购指南) · 5. [常见陷阱](#5-常见陷阱) · 6. [进阶技术](#6-进阶技术) · 7. [学习资源](#7-学习资源) · 8. [ OpenClaw 本地部署](#8-用-openclaw--ollama-构建本地-agent) · 9. [完成标志](#9-完成标志)
+1. [本地部署方法论](#1-本地部署方法论) · 2. [工具全景](#2-工具全景) · 3. [代码实战](#3-代码实战) · 4. [硬件选购指南](#4-硬件选购指南) · 5. [常见陷阱](#5-常见陷阱) · 6. [进阶技术](#6-进阶技术) · 7. [学习资源](#7-学习资源)
 
 
 ## 本模块你将构建
@@ -1165,47 +1165,6 @@ return results
 4. 构建本地 RAG（3.4 节，结合 B3 模块知识）
 5. 尝试 LoRA 微调（3.5 节，需要 GPU 或 Colab）
 6. 看 Coursera 的 Generative AI for Everyone 补全理论基础
-
----
-
-## 8. 用 OpenClaw + Ollama 构建本地 Agent
-
-### 8.1 场景：完全本地化的 AI Agent（数据不出服务器）
-
-```
-你对 OpenClaw 说：
-"用本地模型处理所有敏感商业数据，
-利润分析、供应商价格对比、库存成本计算，零外部 API 调用"
-
-OpenClaw 自动执行：
-1. 安装 Ollama + 下载 Qwen2.5/Llama 3.3
-2. 安装 OpenClaw，配置使用本地 Ollama 模型
-3. 配置 filesystem MCP（只访问指定目录）
-4. 所有数据处理在本地完成
-5. 通过 Signal/本地 Web UI 交互
-```
-
-### 8.2 需要的 Skills 和 MCP Server
-
-| 组件 | 用途 | 链接 |
-|------|------|------|
-| **filesystem MCP** | 读写本地敏感数据 | [MCP Filesystem](https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem) |
-| **memory** Skill | 本地知识图谱存储 | [OpenClaw Docs](https://docs.openclaw.com/) |
-| **Ollama** | 本地运行 LLM | [ollama.com](https://ollama.com/) |
-
-### 8.3 相关资源
-
-| 资源 | 说明 | 链接 |
-|------|------|------|
-| OpenClaw 官方文档 | 安装和配置指南 | [docs.openclaw.com](https://docs.openclaw.com/) |
-| ClawHub Skills 市场 | 搜索和安装 Agent Skills | [clawhub.ai](https://clawhub.ai/) |
-| OpenClaw MCP 集成 | 连接 MCP Server | [Build Skill with MCP](https://rebeccamdeprey.com/blog/build-openclaw-skill-with-mcp) |
-| F4 自动化与 Agent | Agent 基础模块 | [F4 模块](../0-foundations/f4-agent-automation.md) |
-| OpenClaw + Ollama 配置 | 本地模型集成 | [OpenClaw Setup](https://macaron.im/blog/how-to-setup-openclaw) |
-
-Content rephrased for compliance with licensing restrictions. Sources cited inline.
-
----
 
 ## 9. 完成标志
 

@@ -36,7 +36,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "ayu";
-            window.path_to_searchindex_js = "../searchindex-6ad91222.js";
+            window.path_to_searchindex_js = "../searchindex-823ed5e4.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-e97a050e.js"></script>
@@ -194,7 +194,7 @@
 <hr>
 <h2 id="本模块章节导航"><a class="header" href="#本模块章节导航">本模块章节导航</a></h2>
 <ol>
-<li><a href="#1-shopify-vs-amazonai-应用的关键差异">Shopify vs Amazon</a> · 2. <a href="#2-选品与市场分析">选品与市场分析</a> · 3. <a href="#3-产品页面优化">产品页面优化</a> · 4. <a href="#4-广告与获客">广告与获客</a> · 5. <a href="#5-邮件营销自动化">邮件营销自动化</a> · 6. <a href="#6-客服与售后">客服与售后</a> · 7. <a href="#7-数据分析与优化">数据分析与优化</a> · 8. <a href="#8-prompt-模板shopify-专用">Prompt 模板</a> · 9. <a href="#9-ai-工具全景shopify-生态">AI 工具全景</a> · 10. <a href="#10-用-openclaw-自动化-shopify-运营"> OpenClaw 自动化</a> · 11. <a href="#11-完成标志">完成标志</a> · 12. <a href="#12-常见陷阱与误区">常见陷阱</a> · 13. <a href="#13-案例分析shopify-独立站-ai-落地实战">案例分析</a> · 14. <a href="#14-shopify-seo-深度指南ai-驱动">SEO 深度指南</a> · 15. <a href="#15-shopify-广告进阶ai-驱动的全漏斗策略">广告进阶</a> · 16. <a href="#16-客户生命周期管理ai-驱动">客户生命周期</a> · 17. <a href="#17-shopify-数据分析进阶">数据分析进阶</a> · 18. <a href="#18-学习资源">学习资源</a> · 19. <a href="#19-shopify-flow-自动化工作流">Flow 自动化</a> · 20. <a href="#20-常见问题-faq">FAQ</a></li>
+<li><a href="#1-shopify-vs-amazonai-应用的关键差异">Shopify vs Amazon</a> · 2. <a href="#2-选品与市场分析">选品与市场分析</a> · 3. <a href="#3-产品页面优化">产品页面优化</a> · 4. <a href="#4-广告与获客">广告与获客</a> · 5. <a href="#5-邮件营销自动化">邮件营销自动化</a> · 6. <a href="#6-客服与售后">客服与售后</a> · 7. <a href="#7-数据分析与优化">数据分析与优化</a> · 8. <a href="#8-prompt-模板shopify-专用">Prompt 模板</a> · 9. <a href="#9-ai-工具全景shopify-生态">AI 工具全景</a></li>
 </ol>
 <hr>
 <h2 id="本模块你将产出"><a class="header" href="#本模块你将产出">本模块你将产出</a></h2>
@@ -827,50 +827,6 @@ Top 5 流量来源：
 </table>
 </div>
 <p>Content rephrased for compliance with licensing restrictions. Sources: <a href="https://www.omnisend.com/blog/shopify-ai-tools/">Omnisend Shopify AI</a>, <a href="https://thegrowthminer.com/best-ai-tools-for-shopify-stores-2026/">Growth Miner Shopify AI</a>, <a href="https://www.madgicx.com/blog/ai-driven-advertising-for-shopify-stores">Madgicx Shopify Ads</a></p>
-<hr>
-<h2 id="10-用-openclaw-自动化-shopify-运营"><a class="header" href="#10-用-openclaw-自动化-shopify-运营">10. 用 OpenClaw 自动化 Shopify 运营</a></h2>
-<h3 id="101-场景ai-agent-自动化-shopify-日常运营"><a class="header" href="#101-场景ai-agent-自动化-shopify-日常运营">10.1 场景：AI Agent 自动化 Shopify 日常运营</a></h3>
-<pre><code>你对 OpenClaw 说：
-"每天早上自动检查 Shopify 店铺数据，
-分析异常指标，生成优化建议，发送到运营频道"
-
-OpenClaw 自动执行：
-1. [Heartbeat] 每天 8:00 触发
-2. [Skill: shopify-api] 拉取昨日销售、流量、转化数据
-3. [LLM] 分析数据异常和趋势变化
-4. [Skill: google-sheets] 更新日报 Dashboard
-5. [Skill: slack] 发送日报 + 异常预警到 #shopify-ops
-6. [Heartbeat] 每周一生成周度分析报告
-</code></pre>
-<h3 id="102-需要的-skills-和-mcp-server"><a class="header" href="#102-需要的-skills-和-mcp-server">10.2 需要的 Skills 和 MCP Server</a></h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>组件</th><th>用途</th><th>链接</th></tr>
-</thead>
-<tbody>
-<tr><td><strong>shopify-api</strong> Skill</td><td>读取店铺数据</td><td><a href="https://clawhub.ai/">ClawHub</a></td></tr>
-<tr><td><strong>google-sheets</strong> Skill</td><td>更新 Dashboard</td><td><a href="https://clawhub.ai/">ClawHub</a></td></tr>
-<tr><td><strong>slack</strong> Skill</td><td>发送报告和预警</td><td><a href="https://clawhub.ai/">ClawHub</a></td></tr>
-<tr><td><strong>memory</strong> Skill</td><td>存储历史数据用于趋势对比</td><td><a href="https://openclaw.com/">OpenClaw Docs</a></td></tr>
-</tbody>
-</table>
-</div>
-<h3 id="103-相关资源"><a class="header" href="#103-相关资源">10.3 相关资源</a></h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>资源</th><th>说明</th><th>链接</th></tr>
-</thead>
-<tbody>
-<tr><td>OpenClaw 官方文档</td><td>安装和配置指南</td><td><a href="https://openclaw.com/">openclaw.com</a></td></tr>
-<tr><td>ClawHub Skills 市场</td><td>搜索和安装 Agent Skills</td><td><a href="https://clawhub.ai/">clawhub.ai</a></td></tr>
-<tr><td>F4 自动化与 Agent</td><td>Agent 基础模块</td><td><a href="../0-foundations/f4-agent-automation.html">F4 模块</a></td></tr>
-</tbody>
-</table>
-</div>
-<p>Content rephrased for compliance with licensing restrictions. Sources cited inline.</p>
-<hr>
 <h2 id="11-完成标志"><a class="header" href="#11-完成标志">11. 完成标志</a></h2>
 <ul>
 <li><input disabled="" type="checkbox"> 理解 Shopify vs Amazon 的 AI 应用差异（能说出 3 个关键差异）</li>

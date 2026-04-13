@@ -36,7 +36,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "ayu";
-            window.path_to_searchindex_js = "../searchindex-6ad91222.js";
+            window.path_to_searchindex_js = "../searchindex-823ed5e4.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-e97a050e.js"></script>
@@ -205,7 +205,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 <hr>
 <h2 id="本模块章节导航"><a class="header" href="#本模块章节导航">本模块章节导航</a></h2>
 <ol>
-<li><a href="#1-数据工程方法论">数据工程方法论</a> · 2. <a href="#2-核心技能pandas-数据处理">pandas 数据处理</a> · 3. <a href="#3-sp-api-数据采集">SP-API 数据采集</a> · 4. <a href="#4-浏览器自动化selenium--playwright">浏览器自动化</a> · 5. <a href="#5-数据存储与查询">数据存储与查询</a> · 6. <a href="#6-数据可视化与报告">数据可视化</a> · 7. <a href="#7-实战项目构建完整的数据管道">实战项目</a> · 8. <a href="#8-学习资源">学习资源</a> · 9. <a href="#9-用-openclaw-自动化数据管道"> OpenClaw 自动化</a> · 10. <a href="#10-完成标志">完成标志</a></li>
+<li><a href="#1-数据工程方法论">数据工程方法论</a> · 2. <a href="#2-核心技能pandas-数据处理">pandas 数据处理</a> · 3. <a href="#3-sp-api-数据采集">SP-API 数据采集</a> · 4. <a href="#4-浏览器自动化selenium--playwright">浏览器自动化</a> · 5. <a href="#5-数据存储与查询">数据存储与查询</a> · 6. <a href="#6-数据可视化与报告">数据可视化</a> · 7. <a href="#7-实战项目构建完整的数据管道">实战项目</a> · 8. <a href="#8-学习资源">学习资源</a></li>
 </ol>
 <h2 id="本模块你将构建"><a class="header" href="#本模块你将构建">本模块你将构建</a></h2>
 <p>一个自动化数据管道：从 Amazon 报告到清洗后的分析数据集。</p>
@@ -1687,54 +1687,6 @@ for col in df.select_dtypes(include="number").columns
 </tbody>
 </table>
 </div>
-<hr>
-<h2 id="9-用-openclaw-自动化数据管道"><a class="header" href="#9-用-openclaw-自动化数据管道">9. 用 OpenClaw 自动化数据管道</a></h2>
-<h3 id="91-场景ai-agent-自动采集和处理-amazon-报告"><a class="header" href="#91-场景ai-agent-自动采集和处理-amazon-报告">9.1 场景：AI Agent 自动采集和处理 Amazon 报告</a></h3>
-<pre><code>你对 OpenClaw 说：
-"每天早上 8 点，从 Seller Central 下载昨天的 Business Report 和 Advertising Report，
-合并到 Google Sheet 'Daily Dashboard'，如果有异常指标（销量下降 &gt;20%、ACOS 上升 &gt;10%），
-发 Slack 告警到 #daily-ops"
-
-OpenClaw 自动执行：
-1. [Heartbeat] 每天 8:00 触发
-2. [Skill: web-search / fetch MCP] 获取报告数据
-3. [LLM + pandas] 数据清洗和合并
-4. [Skill: google-sheets] 写入 Dashboard
-5. [LLM] 检测异常指标
-6. [Skill: slack] 异常时发送告警
-</code></pre>
-<h3 id="92-需要的-skills-和-mcp-server"><a class="header" href="#92-需要的-skills-和-mcp-server">9.2 需要的 Skills 和 MCP Server</a></h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>组件</th><th>用途</th><th>链接</th></tr>
-</thead>
-<tbody>
-<tr><td><strong>google-sheets</strong> Skill</td><td>读写数据报表</td><td><a href="https://clawhub.ai/">ClawHub</a></td></tr>
-<tr><td><strong>slack</strong> Skill</td><td>异常告警通知</td><td><a href="https://clawhub.ai/">ClawHub</a></td></tr>
-<tr><td><strong>memory</strong> Skill</td><td>存储历史基线数据</td><td><a href="https://docs.openclaw.com/">OpenClaw Docs</a></td></tr>
-<tr><td><strong>filesystem MCP</strong></td><td>读写本地 CSV/Excel</td><td><a href="https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem">MCP Filesystem</a></td></tr>
-<tr><td><strong>fetch MCP</strong></td><td>调用 SP-API 等外部接口</td><td><a href="https://github.com/modelcontextprotocol/servers/tree/main/src/fetch">MCP Fetch</a></td></tr>
-<tr><td><strong>sqlite MCP</strong></td><td>本地数据库存储</td><td><a href="https://github.com/modelcontextprotocol/servers/tree/main/src/sqlite">MCP SQLite</a></td></tr>
-</tbody>
-</table>
-</div>
-<h3 id="93-相关资源"><a class="header" href="#93-相关资源">9.3 相关资源</a></h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>资源</th><th>说明</th><th>链接</th></tr>
-</thead>
-<tbody>
-<tr><td>OpenClaw 官方文档</td><td>安装和配置指南</td><td><a href="https://docs.openclaw.com/">docs.openclaw.com</a></td></tr>
-<tr><td>ClawHub Skills 市场</td><td>搜索和安装 Agent Skills</td><td><a href="https://clawhub.ai/">clawhub.ai</a></td></tr>
-<tr><td>OpenClaw MCP 集成</td><td>连接 MCP Server</td><td><a href="https://rebeccamdeprey.com/blog/build-openclaw-skill-with-mcp">Build Skill with MCP</a></td></tr>
-<tr><td>F4 自动化与 Agent</td><td>Agent 基础模块</td><td><a href="../0-foundations/f4-agent-automation.html">F4 模块</a></td></tr>
-</tbody>
-</table>
-</div>
-<p>Content rephrased for compliance with licensing restrictions. Sources cited inline.</p>
-<hr>
 <h2 id="10-完成标志"><a class="header" href="#10-完成标志">10. 完成标志</a></h2>
 <ul>
 <li><input disabled="" type="checkbox"> 写一个脚本自动读取和清洗 Amazon Business Report（处理编码、数值、日期问题）</li>

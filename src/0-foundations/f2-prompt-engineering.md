@@ -25,7 +25,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ## 本模块章节导航
 
-1. [为什么 Prompt 重要](#1-为什么-prompt-重要) · 2. [CRISP 框架](#2-crisp-框架结构化-prompt-的方法论) · 3. [六种高级技巧](#3-六种高级-prompt-技巧) · 4. [场景模板库](#4-跨境电商场景-prompt-模板库20) · 5. [常见错误与修复](#5-常见错误与修复) · 6. [进阶：Context Engineering](#6-进阶从-prompt-engineering-到-context-engineering) · 7. [学习资源](#7-学习资源) · 8. [ OpenClaw 自动化](#8-用-openclaw-辅助-prompt-管理与优化) · 9. [完成标志](#9-完成标志)
+1. [为什么 Prompt 重要](#1-为什么-prompt-重要) · 2. [CRISP 框架](#2-crisp-框架结构化-prompt-的方法论) · 3. [六种高级技巧](#3-六种高级-prompt-技巧) · 4. [场景模板库](#4-跨境电商场景-prompt-模板库20) · 5. [常见错误与修复](#5-常见错误与修复) · 6. [进阶：Context Engineering](#6-进阶从-prompt-engineering-到-context-engineering) · 7. [学习资源](#7-学习资源)
 
 
 ## 本模块你将掌握
@@ -763,41 +763,6 @@ Content rephrased for compliance with licensing restrictions. Source: [Prompt En
 | 第 2 周 | 尝试 6 种高级技巧，找到最适合你的 | 每天 20 分钟 |
 | 第 3 周 | 建立个人 Prompt 模板库（至少 10 个） | 集中 2 小时 |
 | 持续 | 每次用 AI 后，反思 Prompt 可以怎么改进 | 每次 2 分钟 |
-
----
-
-## 8. 用 OpenClaw 辅助 Prompt 管理与优化
-
-### 场景
-
-> 你希望自动化管理团队的 Prompt 模板库 定期整理高频使用的 Prompt、优化低效模板、追踪不同 Prompt 版本的效果对比，并在有新的最佳实践时自动更新模板库。
-
-```
-你是我的 Prompt 管理助手。请帮我：
-1. 每周整理团队 Prompt 使用记录，找出使用频率最高的 10 个模板
-2. 对比不同版本 Prompt 的输出质量，标记需要优化的模板
-3. 当发现新的 Prompt 技巧或框架时，自动更新相关模板
-4. 维护一份 Prompt 模板索引，按场景分类，方便团队查找
-```
-
-### Skills 配置
-
-| Skill | 用途 |
-|-------|------|
-| `slack` | 接收团队成员提交的新 Prompt / 推送优化建议和模板更新通知 |
-| `google-sheets` | 维护 Prompt 模板库索引表（模板名、版本、使用频率、效果评分） |
-| `memory` | 记忆每个模板的历史版本和优化记录，追踪长期效果趋势 |
-
-### 相关资源
-
-| 资源 | 链接 |
-|------|------|
-| OpenClaw 官方文档 | [docs.openclaw.com](https://docs.openclaw.com/) |
-| ClawHub Skills 市场 | [clawhub.ai](https://clawhub.ai/) |
-| ecommerce-ai-roadmap 商业指南 | [about.md](../../about.md) |
-| F4 自动化与 Agent | [f4-agent-automation.md](f4-agent-automation.md) |
-
----
 
 ## 9. 完成标志
 

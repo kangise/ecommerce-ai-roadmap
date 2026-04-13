@@ -36,7 +36,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "ayu";
-            window.path_to_searchindex_js = "../searchindex-6ad91222.js";
+            window.path_to_searchindex_js = "../searchindex-823ed5e4.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-e97a050e.js"></script>
@@ -205,7 +205,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 <hr>
 <h2 id="本模块章节导航"><a class="header" href="#本模块章节导航">本模块章节导航</a></h2>
 <ol>
-<li><a href="#1-agent-方法论">Agent 方法论</a> · 2. <a href="#2-工具全景">工具全景</a> · 3. <a href="#3-代码实战">代码实战</a> · 4. <a href="#4-电商-agent-应用场景">电商 Agent 应用</a> · 5. <a href="#5-常见陷阱">常见陷阱</a> · 6. <a href="#6-进阶技术">进阶技术</a> · 7. <a href="#7-学习资源">学习资源</a> · 8. <a href="#8-用-openclaw-部署电商-agent"> OpenClaw 实战</a> · 9. <a href="#9-完成标志">完成标志</a></li>
+<li><a href="#1-agent-方法论">Agent 方法论</a> · 2. <a href="#2-工具全景">工具全景</a> · 3. <a href="#3-代码实战">代码实战</a> · 4. <a href="#4-电商-agent-应用场景">电商 Agent 应用</a> · 5. <a href="#5-常见陷阱">常见陷阱</a> · 6. <a href="#6-进阶技术">进阶技术</a> · 7. <a href="#7-学习资源">学习资源</a></li>
 </ol>
 <h2 id="本模块你将构建"><a class="header" href="#本模块你将构建">本模块你将构建</a></h2>
 <p>AI Agent 系统 自动执行多步骤运营任务（如每日数据检查 → 异常分析 → 报告生成 → 告警通知）。</p>
@@ -1132,55 +1132,6 @@ return llm.invoke([message]).content
 <li>尝试 CrewAI 多 Agent（3.5）</li>
 <li>看 HuggingFace Agent Course 深入理解原理</li>
 </ol>
-<hr>
-<h2 id="8-用-openclaw-部署电商-agent"><a class="header" href="#8-用-openclaw-部署电商-agent">8. 用 OpenClaw 部署电商 Agent</a></h2>
-<h3 id="81-场景用-openclaw-搭建多技能电商运营-agent"><a class="header" href="#81-场景用-openclaw-搭建多技能电商运营-agent">8.1 场景：用 OpenClaw 搭建多技能电商运营 Agent</a></h3>
-<pre><code>你对 OpenClaw 说：
-"帮我搭建一个全自动电商运营 Agent，
-能监控销售数据、分析竞品、管理库存、处理客服问题"
-
-OpenClaw 自动执行：
-1. 安装 OpenClaw 到本地/服务器
-2. 配置 LLM（Claude/GPT/Ollama）
-3. 安装电商相关 Skills（google-sheets, slack, web-search）
-4. 配置 MCP Server（filesystem, fetch, sqlite）
-5. 通过 WhatsApp/Telegram 下达运营指令
-6. Agent 自主执行并汇报结果
-</code></pre>
-<h3 id="82-需要的-skills-和-mcp-server"><a class="header" href="#82-需要的-skills-和-mcp-server">8.2 需要的 Skills 和 MCP Server</a></h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>组件</th><th>用途</th><th>链接</th></tr>
-</thead>
-<tbody>
-<tr><td><strong>google-sheets</strong> Skill</td><td>读写运营数据</td><td><a href="https://clawhub.ai/">ClawHub</a></td></tr>
-<tr><td><strong>slack</strong> Skill</td><td>告警和汇报</td><td><a href="https://clawhub.ai/">ClawHub</a></td></tr>
-<tr><td><strong>web-search</strong> Skill</td><td>竞品监控</td><td><a href="https://clawhub.ai/">ClawHub</a></td></tr>
-<tr><td><strong>memory</strong> Skill</td><td>存储运营知识</td><td><a href="https://docs.openclaw.com/">OpenClaw Docs</a></td></tr>
-<tr><td><strong>filesystem MCP</strong></td><td>读写本地数据</td><td><a href="https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem">MCP Filesystem</a></td></tr>
-<tr><td><strong>fetch MCP</strong></td><td>调用外部 API</td><td><a href="https://github.com/modelcontextprotocol/servers/tree/main/src/fetch">MCP Fetch</a></td></tr>
-<tr><td><strong>sqlite MCP</strong></td><td>本地数据库</td><td><a href="https://github.com/modelcontextprotocol/servers/tree/main/src/sqlite">MCP SQLite</a></td></tr>
-</tbody>
-</table>
-</div>
-<h3 id="83-相关资源"><a class="header" href="#83-相关资源">8.3 相关资源</a></h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>资源</th><th>说明</th><th>链接</th></tr>
-</thead>
-<tbody>
-<tr><td>OpenClaw 官方文档</td><td>安装和配置指南</td><td><a href="https://docs.openclaw.com/">docs.openclaw.com</a></td></tr>
-<tr><td>ClawHub Skills 市场</td><td>搜索和安装 Agent Skills</td><td><a href="https://clawhub.ai/">clawhub.ai</a></td></tr>
-<tr><td>OpenClaw MCP 集成</td><td>连接 MCP Server</td><td><a href="https://rebeccamdeprey.com/blog/build-openclaw-skill-with-mcp">Build Skill with MCP</a></td></tr>
-<tr><td>F4 自动化与 Agent</td><td>Agent 基础模块</td><td><a href="../0-foundations/f4-agent-automation.html">F4 模块</a></td></tr>
-<tr><td>OpenClaw 完整设置指南</td><td>25 Tools + 53 Skills</td><td><a href="https://yu-wenhao.com/en/blog/openclaw-tools-skills-tutorial">Setup Guide</a></td></tr>
-</tbody>
-</table>
-</div>
-<p>Content rephrased for compliance with licensing restrictions. Sources cited inline.</p>
-<hr>
 <h2 id="9-完成标志"><a class="header" href="#9-完成标志">9. 完成标志</a></h2>
 <ul>
 <li><input disabled="" type="checkbox"> 理解 Agent vs Chain vs RAG 的区别，能说出各自适用场景</li>

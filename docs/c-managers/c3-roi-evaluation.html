@@ -36,7 +36,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "ayu";
-            window.path_to_searchindex_js = "../searchindex-6ad91222.js";
+            window.path_to_searchindex_js = "../searchindex-823ed5e4.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-e97a050e.js"></script>
@@ -201,7 +201,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 <hr>
 <h2 id="本模块章节导航"><a class="header" href="#本模块章节导航">本模块章节导航</a></h2>
 <ol>
-<li><a href="#1-roi-评估方法论">ROI 方法论</a> · 2. <a href="#2-roi-计算框架详细版">计算框架</a> · 3. <a href="#3-跨境电商-ai-roi-基准数据">基准数据</a> · 4. <a href="#4-roi-数据收集方法">数据收集</a> · 5. <a href="#5-prompt-模板roi-评估专用">Prompt 模板</a> · 6. <a href="#6-roi-评估实战案例">实战案例</a> · 7. <a href="#7-roi-优化策略">优化策略</a> · 8. <a href="#8-roi-报告模板">报告模板</a> · 9. <a href="#9-常见陷阱与误区">常见陷阱</a> · 10. <a href="#10-进阶ai-roi-的长期视角">长期视角</a> · 11. <a href="#11-学习资源">学习资源</a> · 12. <a href="#12-用-openclaw-自动化-roi-追踪"> OpenClaw 自动化</a> · 13. <a href="#13-完成标志">完成标志</a></li>
+<li><a href="#1-roi-评估方法论">ROI 方法论</a> · 2. <a href="#2-roi-计算框架详细版">计算框架</a> · 3. <a href="#3-跨境电商-ai-roi-基准数据">基准数据</a> · 4. <a href="#4-roi-数据收集方法">数据收集</a> · 5. <a href="#5-prompt-模板roi-评估专用">Prompt 模板</a> · 6. <a href="#6-roi-评估实战案例">实战案例</a> · 7. <a href="#7-roi-优化策略">优化策略</a> · 8. <a href="#8-roi-报告模板">报告模板</a> · 9. <a href="#9-常见陷阱与误区">常见陷阱</a> · 10. <a href="#10-进阶ai-roi-的长期视角">长期视角</a> · 11. <a href="#11-学习资源">学习资源</a></li>
 </ol>
 <h2 id="本模块你将产出"><a class="header" href="#本模块你将产出">本模块你将产出</a></h2>
 <p>一份完整的 AI 项目 ROI 评估报告。</p>
@@ -1223,50 +1223,6 @@ Slide 5：下一步计划（1.5 分钟）
 </tbody>
 </table>
 </div>
-<hr>
-<h2 id="12-用-openclaw-自动化-roi-追踪"><a class="header" href="#12-用-openclaw-自动化-roi-追踪">12. 用 OpenClaw 自动化 ROI 追踪</a></h2>
-<h3 id="121-场景ai-agent-自动收集-ai-使用数据并生成月度-roi-报告"><a class="header" href="#121-场景ai-agent-自动收集-ai-使用数据并生成月度-roi-报告">12.1 场景：AI Agent 自动收集 AI 使用数据并生成月度 ROI 报告</a></h3>
-<pre><code>你对 OpenClaw 说：
-"每月 1 日自动收集 AI 使用数据，计算月度 ROI，
-更新 Dashboard 并发送报告到管理频道"
-
-OpenClaw 自动执行：
-1. [Heartbeat] 每月 1 日触发
-2. [Skill: google-sheets] 读取 AI 工具成本和使用时间数据
-3. [Skill: slack] 统计 AI 使用频次
-4. [LLM] 计算月度 ROI（成本、价值、净收益）
-5. [Skill: google-sheets] 更新 ROI Dashboard
-6. [Skill: slack] 发送月度 ROI 报告到 #management
-</code></pre>
-<h3 id="122-需要的-skills-和-mcp-server"><a class="header" href="#122-需要的-skills-和-mcp-server">12.2 需要的 Skills 和 MCP Server</a></h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>组件</th><th>用途</th><th>链接</th></tr>
-</thead>
-<tbody>
-<tr><td><strong>google-sheets</strong> Skill</td><td>读取成本数据、更新 Dashboard</td><td><a href="https://clawhub.ai/">ClawHub</a></td></tr>
-<tr><td><strong>slack</strong> Skill</td><td>统计使用频次、发送报告</td><td><a href="https://clawhub.ai/">ClawHub</a></td></tr>
-<tr><td><strong>memory</strong> Skill</td><td>存储历史 ROI 数据</td><td><a href="https://docs.openclaw.com/">OpenClaw Docs</a></td></tr>
-</tbody>
-</table>
-</div>
-<h3 id="123-相关资源"><a class="header" href="#123-相关资源">12.3 相关资源</a></h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>资源</th><th>说明</th><th>链接</th></tr>
-</thead>
-<tbody>
-<tr><td>OpenClaw 官方文档</td><td>安装和配置指南</td><td><a href="https://docs.openclaw.com/">docs.openclaw.com</a></td></tr>
-<tr><td>ClawHub Skills 市场</td><td>搜索和安装 Agent Skills</td><td><a href="https://clawhub.ai/">clawhub.ai</a></td></tr>
-<tr><td>OpenClaw 商业应用指南</td><td>企业场景设置</td><td><a href="https://www.aimakers.co/blog/openclaw-clawbot-business-guide/">Business Guide</a></td></tr>
-<tr><td>F4 自动化与 Agent</td><td>Agent 基础模块</td><td><a href="../0-foundations/f4-agent-automation.html">F4 模块</a></td></tr>
-</tbody>
-</table>
-</div>
-<p>Content rephrased for compliance with licensing restrictions. Sources cited inline.</p>
-<hr>
 <h2 id="13-完成标志"><a class="header" href="#13-完成标志">13. 完成标志</a></h2>
 <ul>
 <li><input disabled="" type="checkbox"> 收集团队 AI 使用前的基线数据（至少 3 个场景的时间记录）</li>

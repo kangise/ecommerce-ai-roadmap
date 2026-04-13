@@ -180,7 +180,6 @@ GPT-4、Claude 2/3、Gemini、Llama 2/3
 2025-2026: Agent 时代
 从"对话"到"行动"：AI 不只回答问题，还能执行任务
 MCP 协议标准化：AI 连接外部工具的统一接口
-OpenClaw 等框架：自主 Agent 管理邮件、日程、工作流
 跨境电商应用：自动化运营监控、智能补货、多平台管理
 我们正在这里 ← 你来得正好
 ```
@@ -574,44 +573,6 @@ API（调用第三方服务）
 
 Content rephrased for compliance with licensing restrictions. Sources: [Anthropic MCP Documentation](https://modelcontextprotocol.io/), [MCP Guide 2026](https://www.taskade.com/blog/mcp-your-ai-agents-superpower-for-real-world-context-and-automation)
 
-### 6.4 OpenClaw：2026 年最火的 Agent 框架
-
-OpenClaw 是 2025 年底发布的开源 AI Agent 框架，在 GitHub 上迅速获得超过 180K Star，成为 Agent 领域的现象级项目。
-
-**OpenClaw 是什么？**
-
-一个自托管的 AI Agent，运行在你自己的电脑上，可以通过 WhatsApp、Telegram、Slack 等消息平台接收指令，自主执行任务。
-
-**核心特点：**
-
-| 特点 | 说明 |
-|------|------|
-| 自托管 | 运行在你的设备上，数据不出本地 |
-| 多平台 | 通过 WhatsApp/Telegram/Slack/Discord 交互 |
-| 工具集成 | 通过 MCP 协议连接任意外部工具 |
-| 自主执行 | 不只回答问题，还能发邮件、管日程、写代码 |
-| 开源免费 | 完全开源，可自由定制 |
-
-**跨境电商场景想象：**
-
-```
-你在 WhatsApp 上对 OpenClaw 说：
-"帮我检查一下今天的 Amazon US 订单情况，
-如果有差评，分析原因并起草回复"
-
-OpenClaw 自动执行：
-1. 通过 Amazon SP-API MCP 获取今日订单数据
-2. 检查是否有新的 1-3 星 Review
-3. 分析差评内容，归类问题类型
-4. 根据问题类型生成回复草稿
-5. 把结果发回你的 WhatsApp
-```
-
-> **安全提醒**：Agent 能力越强，安全风险越大。OpenClaw 运行在你的系统上，有权限访问你的文件和应用。务必了解权限设置，不要给 Agent 过多权限。
-
-Content rephrased for compliance with licensing restrictions. Sources: [OpenClaw Guide](https://www.hostinger.com/tutorials/what-is-openclaw), [TechTarget OpenClaw Explained](https://www.techtarget.com/searchcio/feature/OpenClaw-and-Moltbook-explained-The-latest-AI-agent-craze)
-
-
 ---
 
 ## 7. 跨境电商视角：AI 在每个环节的角色
@@ -699,7 +660,7 @@ SEO 关键词优化（文本分析）
 自动化/Agent
 简单自动化 → Zapier/Make + AI
 中等自动化 → MCP + Claude/GPT
-高级自动化 → LangGraph/CrewAI/OpenClaw（参考 Path B）
+高级自动化 → LangGraph/CrewAI（参考 Path B）
 ```
 
 ---

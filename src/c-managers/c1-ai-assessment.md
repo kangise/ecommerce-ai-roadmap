@@ -18,7 +18,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ## 本模块章节导航
 
-1. [AI 落地方法论](#1-ai-落地方法论先想清楚再动手) · 2. [优先级矩阵](#2-ai-落地优先级矩阵) · 3. [Prompt 模板](#3-prompt-模板管理者专用) · 4. [评估工具](#4-评估工具) · 5. [实战工作流](#5-实战工作流ai-落地规划-sop) · 6. [常见陷阱](#6-常见陷阱) · 7. [案例分析](#7-案例分析不同规模团队的-ai-落地) · 8. [学习资源](#8-学习资源) · 9. [ OpenClaw 自动化](#9-用-openclaw-辅助-ai-能力评估) · 10. [完成标志](#10-完成标志)
+1. [AI 落地方法论](#1-ai-落地方法论先想清楚再动手) · 2. [优先级矩阵](#2-ai-落地优先级矩阵) · 3. [Prompt 模板](#3-prompt-模板管理者专用) · 4. [评估工具](#4-评估工具) · 5. [实战工作流](#5-实战工作流ai-落地规划-sop) · 6. [常见陷阱](#6-常见陷阱) · 7. [案例分析](#7-案例分析不同规模团队的-ai-落地) · 8. [学习资源](#8-学习资源)
 
 ---
 
@@ -377,47 +377,6 @@ Content rephrased for compliance with licensing restrictions. Source: [McKinsey 
 | 《Co-Intelligence》 | Ethan Mollick | 如何与 AI 协作而非被替代 |
 
 Content rephrased for compliance with licensing restrictions. Sources cited inline.
-
----
-
-## 9. 用 OpenClaw 辅助 AI 能力评估
-
-### 9.1 场景：AI Agent 自动收集团队 AI 使用数据
-
-```
-你对 OpenClaw 说：
-"每周自动收集团队成员的 AI 使用频次和场景，
-汇总到 Google Sheets，并生成 AI 成熟度趋势报告发送到管理频道"
-
-OpenClaw 自动执行：
-1. [Heartbeat] 每周五触发
-2. [Skill: slack] 收集 #ai-usage 频道的使用记录
-3. [Skill: memory] 对比历史数据，计算成熟度变化趋势
-4. [Skill: google-sheets] 更新团队 AI 成熟度追踪表
-5. [LLM] 生成周度 AI 使用趋势分析和改进建议
-6. [Skill: slack] 发送报告到 #management
-```
-
-### 9.2 需要的 Skills 和 MCP Server
-
-| 组件 | 用途 | 链接 |
-|------|------|------|
-| **slack** Skill | 收集使用记录、发送报告 | [ClawHub](https://clawhub.ai/) |
-| **google-sheets** Skill | 存储和更新成熟度数据 | [ClawHub](https://clawhub.ai/) |
-| **memory** Skill | 存储历史数据用于趋势对比 | [OpenClaw Docs](https://docs.openclaw.com/) |
-
-### 9.3 相关资源
-
-| 资源 | 说明 | 链接 |
-|------|------|------|
-| OpenClaw 官方文档 | 安装和配置指南 | [docs.openclaw.com](https://docs.openclaw.com/) |
-| ClawHub Skills 市场 | 搜索和安装 Agent Skills | [clawhub.ai](https://clawhub.ai/) |
-| OpenClaw 商业应用指南 | 企业场景设置 | [Business Guide](https://www.aimakers.co/blog/openclaw-clawbot-business-guide/) |
-| F4 自动化与 Agent | Agent 基础模块 | [F4 模块](../0-foundations/f4-agent-automation.md) |
-
-Content rephrased for compliance with licensing restrictions. Sources cited inline.
-
----
 
 ## 10. 完成标志
 

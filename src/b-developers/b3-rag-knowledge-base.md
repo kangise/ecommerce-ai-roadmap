@@ -26,7 +26,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ## 本模块章节导航
 
-1. [RAG 方法论](#1-rag-方法论) · 2. [工具全景](#2-工具全景) · 3. [技术栈选择](#3-技术栈选择详解) · 4. [代码实战](#4-代码实战) · 5. [电商 RAG 应用](#5-电商-rag-应用场景) · 6. [常见陷阱](#6-常见陷阱) · 7. [进阶技术](#7-进阶技术) · 8. [学习资源](#8-学习资源) · 9. [ OpenClaw 自动化](#9-用-openclaw-构建-rag-知识库) · 10. [完成标志](#10-完成标志)
+1. [RAG 方法论](#1-rag-方法论) · 2. [工具全景](#2-工具全景) · 3. [技术栈选择](#3-技术栈选择详解) · 4. [代码实战](#4-代码实战) · 5. [电商 RAG 应用](#5-电商-rag-应用场景) · 6. [常见陷阱](#6-常见陷阱) · 7. [进阶技术](#7-进阶技术) · 8. [学习资源](#8-学习资源)
 
 
 ## 本模块你将构建
@@ -1213,47 +1213,6 @@ return agent
 | [RAGAS](https://github.com/explodinggradients/ragas) | 7k+ | RAG 评估框架 |
 
 Content rephrased for compliance with licensing restrictions. Sources cited inline.
-
----
-
-## 9. 用 OpenClaw 构建 RAG 知识库
-
-### 9.1 场景：AI Agent 自动维护产品知识库并回答客服问题
-
-```
-你对 OpenClaw 说：
-"当有新产品文档上传时，自动索引到知识库，
-当客服在 Telegram 提问时，自动从知识库检索并回答"
-
-OpenClaw 自动执行：
-1. [触发] 新产品文档上传时
-2. [filesystem MCP] 读取新文档
-3. [LLM] 自动分块和生成 Embedding
-4. [Skill: memory] 存入知识图谱
-5. [Channel: Telegram] 客服通过 Telegram 提问，Agent 从知识库检索回答
-```
-
-### 9.2 需要的 Skills 和 MCP Server
-
-| 组件 | 用途 | 链接 |
-|------|------|------|
-| **filesystem MCP** | 读取新产品文档 | [MCP Filesystem](https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem) |
-| **memory** Skill | 存入知识图谱 | [OpenClaw Docs](https://docs.openclaw.com/) |
-| **telegram/slack** Skill | 接收提问并回答 | [ClawHub](https://clawhub.ai/) |
-| **web-search** Skill | 补充外部知识 | [ClawHub](https://clawhub.ai/) |
-
-### 9.3 相关资源
-
-| 资源 | 说明 | 链接 |
-|------|------|------|
-| OpenClaw 官方文档 | 安装和配置指南 | [docs.openclaw.com](https://docs.openclaw.com/) |
-| ClawHub Skills 市场 | 搜索和安装 Agent Skills | [clawhub.ai](https://clawhub.ai/) |
-| OpenClaw MCP 集成 | 连接 MCP Server | [Build Skill with MCP](https://rebeccamdeprey.com/blog/build-openclaw-skill-with-mcp) |
-| F4 自动化与 Agent | Agent 基础模块 | [F4 模块](../0-foundations/f4-agent-automation.md) |
-
-Content rephrased for compliance with licensing restrictions. Sources cited inline.
-
----
 
 ## 10. 完成标志
 

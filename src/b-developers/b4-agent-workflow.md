@@ -26,7 +26,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ## 本模块章节导航
 
-1. [Agent 方法论](#1-agent-方法论) · 2. [工具全景](#2-工具全景) · 3. [代码实战](#3-代码实战) · 4. [电商 Agent 应用](#4-电商-agent-应用场景) · 5. [常见陷阱](#5-常见陷阱) · 6. [进阶技术](#6-进阶技术) · 7. [学习资源](#7-学习资源) · 8. [ OpenClaw 实战](#8-用-openclaw-部署电商-agent) · 9. [完成标志](#9-完成标志)
+1. [Agent 方法论](#1-agent-方法论) · 2. [工具全景](#2-工具全景) · 3. [代码实战](#3-代码实战) · 4. [电商 Agent 应用](#4-电商-agent-应用场景) · 5. [常见陷阱](#5-常见陷阱) · 6. [进阶技术](#6-进阶技术) · 7. [学习资源](#7-学习资源)
 
 
 ## 本模块你将构建
@@ -983,52 +983,6 @@ return llm.invoke([message]).content
 2. 跟着本模块的代码实战动手做（3.1 → 3.2 → 3.3）
 3. 尝试 CrewAI 多 Agent（3.5）
 4. 看 HuggingFace Agent Course 深入理解原理
-
----
-
-## 8. 用 OpenClaw 部署电商 Agent
-
-### 8.1 场景：用 OpenClaw 搭建多技能电商运营 Agent
-
-```
-你对 OpenClaw 说：
-"帮我搭建一个全自动电商运营 Agent，
-能监控销售数据、分析竞品、管理库存、处理客服问题"
-
-OpenClaw 自动执行：
-1. 安装 OpenClaw 到本地/服务器
-2. 配置 LLM（Claude/GPT/Ollama）
-3. 安装电商相关 Skills（google-sheets, slack, web-search）
-4. 配置 MCP Server（filesystem, fetch, sqlite）
-5. 通过 WhatsApp/Telegram 下达运营指令
-6. Agent 自主执行并汇报结果
-```
-
-### 8.2 需要的 Skills 和 MCP Server
-
-| 组件 | 用途 | 链接 |
-|------|------|------|
-| **google-sheets** Skill | 读写运营数据 | [ClawHub](https://clawhub.ai/) |
-| **slack** Skill | 告警和汇报 | [ClawHub](https://clawhub.ai/) |
-| **web-search** Skill | 竞品监控 | [ClawHub](https://clawhub.ai/) |
-| **memory** Skill | 存储运营知识 | [OpenClaw Docs](https://docs.openclaw.com/) |
-| **filesystem MCP** | 读写本地数据 | [MCP Filesystem](https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem) |
-| **fetch MCP** | 调用外部 API | [MCP Fetch](https://github.com/modelcontextprotocol/servers/tree/main/src/fetch) |
-| **sqlite MCP** | 本地数据库 | [MCP SQLite](https://github.com/modelcontextprotocol/servers/tree/main/src/sqlite) |
-
-### 8.3 相关资源
-
-| 资源 | 说明 | 链接 |
-|------|------|------|
-| OpenClaw 官方文档 | 安装和配置指南 | [docs.openclaw.com](https://docs.openclaw.com/) |
-| ClawHub Skills 市场 | 搜索和安装 Agent Skills | [clawhub.ai](https://clawhub.ai/) |
-| OpenClaw MCP 集成 | 连接 MCP Server | [Build Skill with MCP](https://rebeccamdeprey.com/blog/build-openclaw-skill-with-mcp) |
-| F4 自动化与 Agent | Agent 基础模块 | [F4 模块](../0-foundations/f4-agent-automation.md) |
-| OpenClaw 完整设置指南 | 25 Tools + 53 Skills | [Setup Guide](https://yu-wenhao.com/en/blog/openclaw-tools-skills-tutorial) |
-
-Content rephrased for compliance with licensing restrictions. Sources cited inline.
-
----
 
 ## 9. 完成标志
 

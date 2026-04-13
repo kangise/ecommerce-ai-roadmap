@@ -36,7 +36,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "ayu";
-            window.path_to_searchindex_js = "../searchindex-6ad91222.js";
+            window.path_to_searchindex_js = "../searchindex-823ed5e4.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-e97a050e.js"></script>
@@ -212,7 +212,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 <li>理解从 Prompt 到 Agent 的升级路径</li>
 <li>掌握自动化三层模型（脚本 → 工作流 → Agent）</li>
 <li>深入理解 MCP 协议的架构和应用</li>
-<li>了解主流 Agent 框架（LangGraph、CrewAI、OpenClaw）</li>
+<li>了解主流 Agent 框架（LangGraph、CrewAI）</li>
 <li>评估 10 个跨境电商 Agent 场景的可行性和 ROI</li>
 <li>知道 Agent 的安全风险和应对策略</li>
 </ul>
@@ -270,7 +270,7 @@ AI 自主规划任务、调用工具、执行行动
 <tbody>
 <tr><td><strong>模型能力</strong></td><td>GPT-4 刚发布，推理能力有限</td><td>GPT-4o/Claude Opus 4 推理能力大幅提升</td></tr>
 <tr><td><strong>工具协议</strong></td><td>每个工具需要定制集成</td><td>MCP 协议标准化，即插即用</td></tr>
-<tr><td><strong>框架成熟</strong></td><td>LangChain 早期，bug 多</td><td>LangGraph/CrewAI/OpenClaw 生产可用</td></tr>
+<tr><td><strong>框架成熟</strong></td><td>LangChain 早期，bug 多</td><td>LangGraph/CrewAI 生产可用</td></tr>
 </tbody>
 </table>
 </div>
@@ -296,7 +296,7 @@ Layer 2：工作流自动化（Workflow Automation）
 Layer 3：Agent 自动化（Agent Automation）
 什么：AI 自主规划和执行任务，能处理不确定性
 特点：灵活、能处理意外情况、但需要监督
-工具：LangGraph、CrewAI、OpenClaw、AutoGPT
+工具：LangGraph、CrewAI、AutoGPT
 示例：AI 自主分析市场变化，判断是否需要调价，起草调价方案
 适合：需要判断和决策、流程不完全确定、需要适应变化
 跨境电商：智能选品、自适应广告优化、多市场策略协调
@@ -478,7 +478,6 @@ Listing Agent 把结果传给广告 Agent
 <tbody>
 <tr><td><a href="https://github.com/langchain-ai/langgraph">LangGraph</a></td><td>开发框架</td><td>自定义 Agent 工作流</td><td>高（需要 Python）</td><td>10K+</td></tr>
 <tr><td><a href="https://github.com/crewAIInc/crewAI">CrewAI</a></td><td>多 Agent 框架</td><td>多个 Agent 协作</td><td>中</td><td>25K+</td></tr>
-<tr><td><a href="https://github.com/openclaw/openclaw">OpenClaw</a></td><td>个人 AI Agent</td><td>日常任务自动化</td><td>低-中</td><td>180K+</td></tr>
 <tr><td><a href="https://github.com/Significant-Gravitas/AutoGPT">AutoGPT</a></td><td>自主 Agent</td><td>探索性任务</td><td>中</td><td>170K+</td></tr>
 <tr><td><a href="https://github.com/langgenius/dify">Dify</a></td><td>低代码平台</td><td>快速搭建 AI 应用</td><td>低</td><td>55K+</td></tr>
 <tr><td><a href="https://www.coze.com/">Coze</a></td><td>无代码平台</td><td>快速搭建 Bot</td><td>最低</td><td>N/A（商业产品）</td></tr>
@@ -497,7 +496,6 @@ Listing Agent 把结果传给广告 Agent
 多个 Agent 协作 → CrewAI（多 Agent 编排）
 
 想要个人 AI 助理
-OpenClaw（自托管，通过消息平台交互）
 </code></pre>
 <h3 id="43-langgraph最灵活的-agent-框架"><a class="header" href="#43-langgraph最灵活的-agent-框架">4.3 LangGraph：最灵活的 Agent 框架</a></h3>
 <blockquote>
@@ -554,49 +552,6 @@ Agent 4：决策顾问
 
 工作流：Agent 1 → Agent 2 → Agent 3 → Agent 4
 </code></pre>
-<h3 id="45-openclaw个人-ai-助理"><a class="header" href="#45-openclaw个人-ai-助理">4.5 OpenClaw：个人 AI 助理</a></h3>
-<p>OpenClaw 是 2025 年底发布的现象级开源项目，定位是“运行在你自己设备上的个人 AI Agent“。</p>
-<p><strong>核心架构：</strong></p>
-<pre><code>你的设备（电脑/服务器）
-OpenClaw 核心引擎
-LLM 接口（支持 OpenAI/Claude/本地模型）
-Skills（技能模块）
-邮件管理
-日程管理
-文件操作
-网页浏览
-自定义技能
-Memory（记忆系统）
-短期记忆（当前对话）
-长期记忆（知识图谱）
-Heartbeat（心跳系统）
-定时执行任务
-
-Channels（通信渠道）
-WhatsApp
-Telegram
-Slack
-Discord
-Web UI
-</code></pre>
-<p><strong>跨境电商使用场景：</strong></p>
-<pre><code>通过 WhatsApp 对 OpenClaw 说：
-
-"每天早上 9 点，帮我：
-1. 检查 Amazon US 的新订单和新 Review
-2. 如果有 1-3 星 Review，分析原因并起草回复
-3. 检查库存水平，如果低于安全库存，提醒我补货
-4. 把以上信息汇总成日报，发到我的 Slack"
-
-OpenClaw 会：
-- 设置每日定时任务（Heartbeat）
-- 通过 MCP 连接 Amazon SP-API
-- 用 LLM 分析 Review 内容
-- 检查库存数据
-- 生成日报
-- 通过 Slack Channel 发送
-</code></pre>
-<p>Content rephrased for compliance with licensing restrictions. Sources: <a href="https://sparkco.ai/blog/how-openclaw-works-skills-heartbeat-memory-and-channels-explained">OpenClaw Developer Guide</a>, <a href="https://o-mega.ai/articles/openclaw-creating-the-ai-agent-workforce-ultimate-guide-2026">OpenClaw Guide 2026</a></p>
 <hr>
 <h2 id="5-10-个跨境电商-agent-场景"><a class="header" href="#5-10-个跨境电商-agent-场景">5. 10 个跨境电商 Agent 场景</a></h2>
 <blockquote>
@@ -837,7 +792,6 @@ Month 5-6：Agent 优化
 <tr><td><a href="https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph/">AI Agents in LangGraph</a></td><td>DeepLearning.AI</td><td>免费课程，LangGraph Agent 入门</td></tr>
 <tr><td><a href="https://www.deeplearning.ai/short-courses/multi-ai-agent-systems-with-crewai/">Multi AI Agent Systems with CrewAI</a></td><td>DeepLearning.AI</td><td>免费课程，多 Agent 协作</td></tr>
 <tr><td><a href="https://modelcontextprotocol.io/">MCP 官方文档</a></td><td>Anthropic</td><td>MCP 协议的权威参考</td></tr>
-<tr><td><a href="https://docs.openclaw.com/">OpenClaw 官方文档</a></td><td>OpenClaw</td><td>个人 Agent 搭建指南</td></tr>
 </tbody>
 </table>
 </div>

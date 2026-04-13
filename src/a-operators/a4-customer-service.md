@@ -27,7 +27,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ## 本模块章节导航
 
-1. [客服方法论](#1-客服方法论ai-之前你需要理解的基础) · 2. [AI 工具全景](#2-ai-工具全景客服阶段用什么) · 3. [Prompt 模板库](#3-prompt-模板库客服专用) · 4. [客服实战工作流](#4-客服实战工作流) · 5. [常见陷阱](#5-常见客服陷阱) · 6. [进阶技巧](#6-进阶技巧) · 7. [学习资源](#7-学习资源) · 8. [ OpenClaw 自动化](#8-用-openclaw-自动化客服售后) · 9. [完成标志](#9-完成标志)
+1. [客服方法论](#1-客服方法论ai-之前你需要理解的基础) · 2. [AI 工具全景](#2-ai-工具全景客服阶段用什么) · 3. [Prompt 模板库](#3-prompt-模板库客服专用) · 4. [客服实战工作流](#4-客服实战工作流) · 5. [常见陷阱](#5-常见客服陷阱) · 6. [进阶技巧](#6-进阶技巧) · 7. [学习资源](#7-学习资源)
 
 
 ## 本模块你将学会
@@ -933,47 +933,6 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 | 知无不言 | 知乎 | 中文跨境电商社区，账号申诉和客服经验丰富 |
 | 创蓝论坛 | 独立站点 | 中国卖家社区，差评处理和申诉实操案例多 |
 | eComCrew | Podcast + 社区 | 英文电商社区，客服最佳实践和工具推荐 |
-
----
-
-## 8. 用 OpenClaw 自动化客服售后
-
-### 8.1 场景：AI Agent 自动监控差评并生成回复草稿
-
-```
-你对 OpenClaw 说：
-"每 6 小时检查我的产品是否有新的 1-3 星 Review，
-分析差评原因，生成多语言回复草稿，发送给客服审核"
-
-OpenClaw 自动执行：
-1. [Heartbeat] 每 6 小时检查
-2. [Skill: web-search] 检测新 1-3 星 Review
-3. [LLM] 分析差评原因分类
-4. [LLM] 生成多语言回复草稿
-5. [Skill: telegram] 发送草稿给客服审核
-```
-
-### 8.2 需要的 Skills 和 MCP Server
-
-| 组件 | 用途 | 链接 |
-|------|------|------|
-| **web-search** Skill | 检测新差评和客户反馈 | [OpenClaw Docs](https://docs.openclaw.com/) |
-| **memory** Skill | 存储回复模板和差评历史 | [OpenClaw Docs](https://docs.openclaw.com/) |
-| **telegram/slack** Skill | 发送审核通知 | [ClawHub](https://clawhub.ai/) |
-| **filesystem MCP** | 读取本地客服模板文件 | [MCP Filesystem](https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem) |
-
-### 8.3 相关资源
-
-| 资源 | 说明 | 链接 |
-|------|------|------|
-| OpenClaw 官方文档 | 安装和配置指南 | [docs.openclaw.com](https://docs.openclaw.com/) |
-| ClawHub Skills 市场 | 搜索和安装 Agent Skills | [clawhub.ai](https://clawhub.ai/) |
-| OpenClaw MCP 集成 | 连接 MCP Server | [Build Skill with MCP](https://rebeccamdeprey.com/blog/build-openclaw-skill-with-mcp) |
-| F4 自动化与 Agent | Agent 基础模块 | [F4 模块](../0-foundations/f4-agent-automation.md) |
-
-Content rephrased for compliance with licensing restrictions. Sources cited inline.
-
----
 
 ## 8.5 补充：AI Chatbot 与社交媒体客服自动化
 

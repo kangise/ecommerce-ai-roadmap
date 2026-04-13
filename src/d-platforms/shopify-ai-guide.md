@@ -15,7 +15,7 @@
 
 ## 本模块章节导航
 
-1. [Shopify vs Amazon](#1-shopify-vs-amazonai-应用的关键差异) · 2. [选品与市场分析](#2-选品与市场分析) · 3. [产品页面优化](#3-产品页面优化) · 4. [广告与获客](#4-广告与获客) · 5. [邮件营销自动化](#5-邮件营销自动化) · 6. [客服与售后](#6-客服与售后) · 7. [数据分析与优化](#7-数据分析与优化) · 8. [Prompt 模板](#8-prompt-模板shopify-专用) · 9. [AI 工具全景](#9-ai-工具全景shopify-生态) · 10. [ OpenClaw 自动化](#10-用-openclaw-自动化-shopify-运营) · 11. [完成标志](#11-完成标志) · 12. [常见陷阱](#12-常见陷阱与误区) · 13. [案例分析](#13-案例分析shopify-独立站-ai-落地实战) · 14. [SEO 深度指南](#14-shopify-seo-深度指南ai-驱动) · 15. [广告进阶](#15-shopify-广告进阶ai-驱动的全漏斗策略) · 16. [客户生命周期](#16-客户生命周期管理ai-驱动) · 17. [数据分析进阶](#17-shopify-数据分析进阶) · 18. [学习资源](#18-学习资源) · 19. [Flow 自动化](#19-shopify-flow-自动化工作流) · 20. [FAQ](#20-常见问题-faq)
+1. [Shopify vs Amazon](#1-shopify-vs-amazonai-应用的关键差异) · 2. [选品与市场分析](#2-选品与市场分析) · 3. [产品页面优化](#3-产品页面优化) · 4. [广告与获客](#4-广告与获客) · 5. [邮件营销自动化](#5-邮件营销自动化) · 6. [客服与售后](#6-客服与售后) · 7. [数据分析与优化](#7-数据分析与优化) · 8. [Prompt 模板](#8-prompt-模板shopify-专用) · 9. [AI 工具全景](#9-ai-工具全景shopify-生态)
 
 ---
 
@@ -649,47 +649,6 @@ Top 5 流量来源：
 | 分析 | Triple Whale / Lifetimely | $50-150 | AI 归因、LTV 预测 |
 
 Content rephrased for compliance with licensing restrictions. Sources: [Omnisend Shopify AI](https://www.omnisend.com/blog/shopify-ai-tools/), [Growth Miner Shopify AI](https://thegrowthminer.com/best-ai-tools-for-shopify-stores-2026/), [Madgicx Shopify Ads](https://www.madgicx.com/blog/ai-driven-advertising-for-shopify-stores)
-
----
-
-## 10. 用 OpenClaw 自动化 Shopify 运营
-
-### 10.1 场景：AI Agent 自动化 Shopify 日常运营
-
-```
-你对 OpenClaw 说：
-"每天早上自动检查 Shopify 店铺数据，
-分析异常指标，生成优化建议，发送到运营频道"
-
-OpenClaw 自动执行：
-1. [Heartbeat] 每天 8:00 触发
-2. [Skill: shopify-api] 拉取昨日销售、流量、转化数据
-3. [LLM] 分析数据异常和趋势变化
-4. [Skill: google-sheets] 更新日报 Dashboard
-5. [Skill: slack] 发送日报 + 异常预警到 #shopify-ops
-6. [Heartbeat] 每周一生成周度分析报告
-```
-
-### 10.2 需要的 Skills 和 MCP Server
-
-| 组件 | 用途 | 链接 |
-|------|------|------|
-| **shopify-api** Skill | 读取店铺数据 | [ClawHub](https://clawhub.ai/) |
-| **google-sheets** Skill | 更新 Dashboard | [ClawHub](https://clawhub.ai/) |
-| **slack** Skill | 发送报告和预警 | [ClawHub](https://clawhub.ai/) |
-| **memory** Skill | 存储历史数据用于趋势对比 | [OpenClaw Docs](https://openclaw.com/) |
-
-### 10.3 相关资源
-
-| 资源 | 说明 | 链接 |
-|------|------|------|
-| OpenClaw 官方文档 | 安装和配置指南 | [openclaw.com](https://openclaw.com/) |
-| ClawHub Skills 市场 | 搜索和安装 Agent Skills | [clawhub.ai](https://clawhub.ai/) |
-| F4 自动化与 Agent | Agent 基础模块 | [F4 模块](../0-foundations/f4-agent-automation.md) |
-
-Content rephrased for compliance with licensing restrictions. Sources cited inline.
-
----
 
 ## 11. 完成标志
 

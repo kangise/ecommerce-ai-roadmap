@@ -25,7 +25,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ## 本模块章节导航
 
-1. [为什么 AI 不知道你的产品](#1-为什么-ai-不知道你的产品信息) · 2. [Embedding 原理](#2-embedding-原理让-ai-理解语义) · 3. [向量数据库](#3-向量数据库存储和检索语义) · 4. [RAG 架构](#4-rag-架构完整的工作流程) · 5. [实操概览](#5-实操概览搭建产品知识库) · 6. [RAG 优化技巧](#6-rag-优化技巧) · 7. [常见问题](#7-常见问题) · 8. [学习资源](#8-学习资源) · 9. [ OpenClaw 自动化](#9-用-openclaw-自动化知识库管理与-rag-监控) · 10. [完成标志](#10-完成标志)
+1. [为什么 AI 不知道你的产品](#1-为什么-ai-不知道你的产品信息) · 2. [Embedding 原理](#2-embedding-原理让-ai-理解语义) · 3. [向量数据库](#3-向量数据库存储和检索语义) · 4. [RAG 架构](#4-rag-架构完整的工作流程) · 5. [实操概览](#5-实操概览搭建产品知识库) · 6. [RAG 优化技巧](#6-rag-优化技巧) · 7. [常见问题](#7-常见问题) · 8. [学习资源](#8-学习资源)
 
 
 ## 本模块你将理解
@@ -529,41 +529,6 @@ Content rephrased for compliance with licensing restrictions. Sources: [RAG Arch
 | [B3 RAG 知识库模块](../b-developers/b3-rag-knowledge-base.md) | ecommerce-ai-roadmap | 本 Hub 的技术实操模块，完整代码 |
 | [Vector Databases 2026 Guide](https://iterathon.tech/blog/vector-databases-ai-applications-guide) | Iterathon | 向量数据库选型和生产部署指南 |
 | [Retrieval-Augmented Generation (RAG) Paper](https://arxiv.org/abs/2005.11401) | Meta AI | RAG 原始论文（2020），理解理论基础 |
-
----
-
-## 9. 用 OpenClaw 自动化知识库管理与 RAG 监控
-
-### 场景
-
-> 你希望自动化知识库的日常维护 当产品手册更新、FAQ 新增、政策变更时，自动触发知识库更新；同时监控 RAG 管道的检索质量，在回答准确率下降时及时告警。
-
-```
-你是我的知识库管理助手。请帮我：
-1. 监控产品文档目录，发现新增或修改的文件时自动触发 Embedding 更新
-2. 每周运行 RAG 质量测试集（20 个标准问题），记录准确率变化
-3. 当准确率低于 85% 时，分析原因并建议优化方向（分块策略、检索参数等）
-4. 维护一份知识库健康报告，包含文档覆盖率、更新频率、检索命中率
-```
-
-### Skills 配置
-
-| Skill | 用途 |
-|-------|------|
-| `slack` | 推送知识库更新通知 / 质量告警 / 周报摘要 |
-| `google-sheets` | 记录 RAG 质量测试结果、文档更新日志、知识库健康指标 |
-| `memory` | 记忆知识库结构和历史质量数据，追踪长期趋势 |
-
-### 相关资源
-
-| 资源 | 链接 |
-|------|------|
-| OpenClaw 官方文档 | [docs.openclaw.com](https://docs.openclaw.com/) |
-| ClawHub Skills 市场 | [clawhub.ai](https://clawhub.ai/) |
-| ecommerce-ai-roadmap 商业指南 | [about.md](../../about.md) |
-| F4 自动化与 Agent | [f4-agent-automation.md](f4-agent-automation.md) |
-
----
 
 ## 10. 完成标志
 

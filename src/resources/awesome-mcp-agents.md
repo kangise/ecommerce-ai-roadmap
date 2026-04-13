@@ -172,7 +172,6 @@ Content rephrased for compliance with licensing restrictions.
 | Mesa | Shopify AI 工作流自动化（MCP 原生） | 付费 | [getmesa.com](https://www.getmesa.com/) |
 | ZyG | Agentic 电商平台（DTC 品牌全栈） | 付费 | [zyg.com](https://www.zyg.com/) |
 | Fin.ai | AI 客服 Agent | 付费 | [fin.ai](https://fin.ai/) |
-| OpenClaw | 本地 AI 助手（50+ 集成） | 开源 | [GitHub](https://github.com/nicepkg/openclaw) |
 
 ---
 
@@ -200,4 +199,3 @@ $500+/月 → 企业级方案（Alhena/ZyG）
 ```
 
 ---
-

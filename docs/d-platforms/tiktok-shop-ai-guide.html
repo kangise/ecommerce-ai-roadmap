@@ -36,7 +36,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "ayu";
-            window.path_to_searchindex_js = "../searchindex-6ad91222.js";
+            window.path_to_searchindex_js = "../searchindex-823ed5e4.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-e97a050e.js"></script>
@@ -193,7 +193,7 @@
 <p><strong>TL;DR</strong>: 1600+ 行的 TikTok Shop 完整指南。核心看点：ch15 短视频 Hook 公式 + 3 幕脚本结构、ch16 达人量化评分模型、ch17 直播分钟级脚本、ch14 GMV Max 强制化后的应对策略。如果时间有限，优先看 ch15（视频脚本）+ ch16（达人合作）+ ch6（广告体系）。</p>
 <p>—## 本模块章节导航</p>
 <ol>
-<li><a href="#1-tiktok-shop-vs-amazon-vs-shopify">TikTok Shop vs Amazon vs Shopify</a> · 2. <a href="#2-ai-短视频内容创作">短视频内容创作</a> · 3. <a href="#3-达人合作与-ai-匹配">达人合作与匹配</a> · 4. <a href="#4-直播电商与-ai">直播电商</a> · 5. <a href="#5-商品页面与-seo-优化">商品优化</a> · 6. <a href="#6-tiktok-ads-ai-优化">广告投放</a> · 7. <a href="#7-数据分析与运营优化">数据分析</a> · 8. <a href="#8-prompt-模板tiktok-shop-专用">Prompt 模板</a> · 9. <a href="#9-ai-工具全景">AI 工具全景</a> · 10. <a href="#10-常见陷阱">常见陷阱</a> · 11. <a href="#11-案例分析">案例分析</a> · 12. <a href="#12-用-openclaw-自动化-tiktok-shop-运营"> OpenClaw 自动化</a> · 13. <a href="#13-完成标志">完成标志</a></li>
+<li><a href="#1-tiktok-shop-vs-amazon-vs-shopify">TikTok Shop vs Amazon vs Shopify</a> · 2. <a href="#2-ai-短视频内容创作">短视频内容创作</a> · 3. <a href="#3-达人合作与-ai-匹配">达人合作与匹配</a> · 4. <a href="#4-直播电商与-ai">直播电商</a> · 5. <a href="#5-商品页面与-seo-优化">商品优化</a> · 6. <a href="#6-tiktok-ads-ai-优化">广告投放</a> · 7. <a href="#7-数据分析与运营优化">数据分析</a> · 8. <a href="#8-prompt-模板tiktok-shop-专用">Prompt 模板</a> · 9. <a href="#9-ai-工具全景">AI 工具全景</a> · 10. <a href="#10-常见陷阱">常见陷阱</a> · 11. <a href="#11-案例分析">案例分析</a></li>
 </ol>
 <hr>
 <h2 id="本模块你将产出"><a class="header" href="#本模块你将产出">本模块你将产出</a></h2>
@@ -907,36 +907,6 @@ TikTok AI 自动:
 </tbody>
 </table>
 </div>
-<hr>
-<h2 id="12-用-openclaw-自动化-tiktok-shop-运营"><a class="header" href="#12-用-openclaw-自动化-tiktok-shop-运营">12. 用 OpenClaw 自动化 TikTok Shop 运营</a></h2>
-<h3 id="121-场景ai-agent-自动化达人管理和内容分析"><a class="header" href="#121-场景ai-agent-自动化达人管理和内容分析">12.1 场景：AI Agent 自动化达人管理和内容分析</a></h3>
-<pre><code>你对 OpenClaw 说：
-"每天自动分析 TikTok Shop 的视频数据和达人带货数据，
-识别高潜力内容和高 ROI 达人，生成运营建议"
-
-OpenClaw 自动执行：
-1. [Heartbeat] 每天 9:00 触发
-2. [Skill: web-search] 抓取 TikTok 热门趋势
-3. [Skill: google-sheets] 读取视频发布和达人合作数据
-4. [LLM] 分析内容表现 + 达人 ROI + 趋势匹配
-5. [Skill: slack] 发送日报到 #tiktok-ops
-6. [Heartbeat] 每周一生成周度内容规划
-</code></pre>
-<h3 id="122-需要的-skills"><a class="header" href="#122-需要的-skills">12.2 需要的 Skills</a></h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>组件</th><th>用途</th><th>链接</th></tr>
-</thead>
-<tbody>
-<tr><td><strong>google-sheets</strong> Skill</td><td>读写运营数据</td><td><a href="https://clawhub.ai/">ClawHub</a></td></tr>
-<tr><td><strong>slack</strong> Skill</td><td>发送报告和预警</td><td><a href="https://clawhub.ai/">ClawHub</a></td></tr>
-<tr><td><strong>web-search</strong> Skill</td><td>趋势追踪</td><td><a href="https://clawhub.ai/">ClawHub</a></td></tr>
-<tr><td><strong>memory</strong> Skill</td><td>存储历史数据</td><td><a href="https://openclaw.com/">OpenClaw</a></td></tr>
-</tbody>
-</table>
-</div>
-<hr>
 <h2 id="13-完成标志"><a class="header" href="#13-完成标志">13. 完成标志</a></h2>
 <ul>
 <li><input disabled="" type="checkbox"> 理解 TikTok Shop 和 Amazon/Shopify 的核心差异</li>

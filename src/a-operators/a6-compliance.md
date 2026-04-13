@@ -27,7 +27,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ## 本模块章节导航
 
-1. [合规方法论](#1-合规方法论ai-之前你需要理解的基础) · 2. [AI 工具全景](#2-ai-工具全景合规阶段用什么) · 3. [Prompt 模板库](#3-prompt-模板库合规专用) · 4. [合规实战工作流](#4-合规实战工作流) · 5. [常见陷阱](#5-常见合规陷阱) · 6. [进阶技巧](#6-进阶技巧) · 7. [学习资源](#7-学习资源) · 8. [ OpenClaw 自动化](#8-用-openclaw-自动化合规检查) · 9. [完成标志](#9-完成标志)
+1. [合规方法论](#1-合规方法论ai-之前你需要理解的基础) · 2. [AI 工具全景](#2-ai-工具全景合规阶段用什么) · 3. [Prompt 模板库](#3-prompt-模板库合规专用) · 4. [合规实战工作流](#4-合规实战工作流) · 5. [常见陷阱](#5-常见合规陷阱) · 6. [进阶技巧](#6-进阶技巧) · 7. [学习资源](#7-学习资源)
 
 
 > **重要免责声明 | Important Disclaimer**
@@ -983,47 +983,6 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 | 知无不言 | 知乎 | 中文跨境电商社区，认证和合规经验丰富 |
 | 创蓝论坛 | 独立站点 | 中国卖家社区，欧洲 VAT、CE 认证实操案例多 |
 | 福步外贸论坛 | 独立站点 | 外贸综合社区，产品认证和出口合规信息丰富 |
-
----
-
-## 8. 用 OpenClaw 自动化合规检查
-
-### 8.1 场景：AI Agent 新品上架前自动合规预检
-
-```
-你对 OpenClaw 说：
-"新产品信息录入后，自动检索合规知识库，
-对比产品信息和各市场合规要求，生成差距清单和认证费用估算，发送合规预检报告"
-
-OpenClaw 自动执行：
-1. [触发] 新产品信息录入时
-2. [Skill: memory] 检索合规知识库（各市场认证要求）
-3. [LLM] 对比产品信息和合规要求，生成差距清单
-4. [LLM] 估算认证费用和周期
-5. [Skill: slack] 发送合规预检报告
-```
-
-### 8.2 需要的 Skills 和 MCP Server
-
-| 组件 | 用途 | 链接 |
-|------|------|------|
-| **memory** Skill | 存储合规知识库和认证要求 | [OpenClaw Docs](https://docs.openclaw.com/) |
-| **web-search** Skill | 检索最新法规更新 | [OpenClaw Docs](https://docs.openclaw.com/) |
-| **slack** Skill | 发送合规预检报告 | [ClawHub](https://clawhub.ai/) |
-| **filesystem MCP** | 读取本地合规文档和模板 | [MCP Filesystem](https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem) |
-
-### 8.3 相关资源
-
-| 资源 | 说明 | 链接 |
-|------|------|------|
-| OpenClaw 官方文档 | 安装和配置指南 | [docs.openclaw.com](https://docs.openclaw.com/) |
-| ClawHub Skills 市场 | 搜索和安装 Agent Skills | [clawhub.ai](https://clawhub.ai/) |
-| OpenClaw MCP 集成 | 连接 MCP Server | [Build Skill with MCP](https://rebeccamdeprey.com/blog/build-openclaw-skill-with-mcp) |
-| F4 自动化与 Agent | Agent 基础模块 | [F4 模块](../0-foundations/f4-agent-automation.md) |
-
-Content rephrased for compliance with licensing restrictions. Sources cited inline.
-
----
 
 ## 8.5 补充：各社交平台广告合规要求对比
 
