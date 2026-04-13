@@ -1,0 +1,1474 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>合规与风控 - 跨境电商 AI 实战知识库</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="跨境电商 AI 实操手册 — 56 篇指南，从选品到增长，每个环节都有可直接复制的 Prompt">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom-467616e9.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "ayu";
+            window.path_to_searchindex_js = "../searchindex-656d55b3.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-e97a050e.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">跨境电商 AI 实战知识库</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap/edit/main/src/src/a-operators/a6-compliance.md" title="Suggest an edit" aria-label="Suggest an edit" rel="edit">
+                            <span class=fa-svg id="git-edit-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M421.7 220.3l-11.3 11.3-22.6 22.6-205 205c-6.6 6.6-14.8 11.5-23.8 14.1L30.8 511c-8.4 2.5-17.5 .2-23.7-6.1S-1.5 489.7 1 481.2L38.7 353.1c2.6-9 7.5-17.2 14.1-23.8l205-205 22.6-22.6 11.3-11.3 33.9 33.9 62.1 62.1 33.9 33.9zM96 353.9l-9.3 9.3c-.9 .9-1.6 2.1-2 3.4l-25.3 86 86-25.3c1.3-.4 2.5-1.1 3.4-2l9.3-9.3H112c-8.8 0-16-7.2-16-16V353.9zM453.3 19.3l39.4 39.4c25 25 25 65.5 0 90.5l-14.5 14.5-22.6 22.6-11.3 11.3-33.9-33.9-62.1-62.1L314.3 67.7l11.3-11.3 22.6-22.6 14.5-14.5c25-25 65.5-25 90.5 0z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="a6-合规与风控--compliance--risk-management"><a class="header" href="#a6-合规与风控--compliance--risk-management">A6. 合规与风控 | Compliance &amp; Risk Management</a></h1>
+<blockquote>
+<p><strong>路径</strong>: Path A: 运营人 · <strong>模块</strong>: A6
+<strong>最后更新</strong>: 2026-03-12
+<strong>难度</strong>: 进阶
+<strong>预计时间</strong>: 每天 30 分钟，1-2 周</p>
+</blockquote>
+<hr>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path A 总览</a></p>
+<pre><code class="language-mermaid">flowchart LR
+A1["A1 选品与市场"]
+A1 --&gt; A2
+A2["A2 Listing 创作"]
+A2 --&gt; A3
+A3["A3 广告优化"]
+A3 --&gt; A4
+A4["A4 客服售后"]
+A4 --&gt; A5
+A5["A5 库存供应链"]
+A5 --&gt; A6
+A6[" A6 合规风控&lt;br/&gt;（当前）"]:::current
+classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
+</code></pre>
+<hr>
+<h2 id="本模块章节导航"><a class="header" href="#本模块章节导航">本模块章节导航</a></h2>
+<ol>
+<li><a href="#1-合规方法论ai-之前你需要理解的基础">合规方法论</a> · 2. <a href="#2-ai-工具全景合规阶段用什么">AI 工具全景</a> · 3. <a href="#3-prompt-模板库合规专用">Prompt 模板库</a> · 4. <a href="#4-合规实战工作流">合规实战工作流</a> · 5. <a href="#5-常见合规陷阱">常见陷阱</a> · 6. <a href="#6-进阶技巧">进阶技巧</a> · 7. <a href="#7-学习资源">学习资源</a> · 8. <a href="#8-用-openclaw-自动化合规检查"> OpenClaw 自动化</a> · 9. <a href="#9-完成标志">完成标志</a></li>
+</ol>
+<blockquote>
+<p><strong>重要免责声明 | Important Disclaimer</strong>
+本模块内容仅供一般性参考，<strong>不构成法律、税务或合规建议</strong>。各国法规频繁更新，AI 工具的输出可能不反映最新法规变化。在做出任何合规决策之前，请务必咨询专业的法律顾问、认证机构或税务师。依赖本模块内容做出的任何决策，风险由使用者自行承担。
+This module is for general reference only and <strong>does not constitute legal, tax, or compliance advice</strong>. Regulations change frequently and AI outputs may not reflect the latest updates. Always consult qualified legal counsel, certification bodies, or tax advisors before making compliance decisions.</p>
+</blockquote>
+<hr>
+<h2 id="本模块你将学会"><a class="header" href="#本模块你将学会">本模块你将学会</a></h2>
+<p>用 AI 工具把合规调研从“逐条查法规“变成“结构化对比分析“。从产品认证到知识产权，建立一套可复用的 AI 辅助合规管理工作流。</p>
+<p>完成本模块后，你将能够：</p>
+<ul>
+<li>用 ChatGPT/Claude 快速生成多市场合规对比表，30 分钟完成过去需要 2-3 天的合规调研</li>
+<li>用 AI 生成产品认证需求清单，明确每个市场需要的认证类型、费用范围和周期</li>
+<li>用 AI 做知识产权风险评估（专利/商标/版权），在选品阶段就识别潜在的 IP 风险</li>
+<li>用 AI 生成合规文档框架（Declaration of Conformity、Technical File），降低文档准备的门槛</li>
+<li>用 AI 应对 Amazon 政策违规通知，快速生成申诉方案和 Plan of Action</li>
+<li>用 AI 做 VAT/税务合规检查，理解不同市场的税务义务和申报要求</li>
+</ul>
+<hr>
+<h2 id="1-合规方法论ai-之前你需要理解的基础"><a class="header" href="#1-合规方法论ai-之前你需要理解的基础">1. 合规方法论：AI 之前你需要理解的基础</a></h2>
+<h3 id="11-跨境电商合规的第一性原理"><a class="header" href="#11-跨境电商合规的第一性原理">1.1 跨境电商合规的第一性原理</a></h3>
+<p>合规的本质不是成本，而是<strong>市场准入门票</strong>。</p>
+<p>很多卖家把合规看作“额外的负担“，但实际上：</p>
+<ul>
+<li><strong>没有 CE 标志，你的产品无法在欧盟销售</strong> 这不是“建议“，是法律要求</li>
+<li><strong>没有 FCC 认证，电子产品无法在美国合法销售</strong> 海关可以直接扣货</li>
+<li><strong>没有 PSE 标志，电器产品无法在日本上架</strong> Amazon JP 会直接下架 Listing</li>
+<li><strong>没有 UKCA 标志，产品无法在英国销售</strong> 脱欧后英国不再接受 CE 标志（过渡期已结束）</li>
+</ul>
+<pre><code>合规投入的 ROI = 避免的损失 / 合规成本
+
+避免的损失包括：
+- Listing 被下架的销售损失（可能是几万到几十万美元）
+- 产品被召回的成本（退货 + 销毁 + 罚款）
+- 账号被封的全部损失（所有 ASIN 停售 + 资金冻结）
+- 法律诉讼的赔偿和律师费
+- 品牌声誉损失（长期影响）
+</code></pre>
+<blockquote>
+<p><strong>核心洞察</strong>：合规成本通常是产品成本的 3-8%，但不合规的损失可能是年销售额的 50-100%。合规是投资，不是成本。</p>
+</blockquote>
+<h3 id="12-主要市场的合规框架对比"><a class="header" href="#12-主要市场的合规框架对比">1.2 主要市场的合规框架对比</a></h3>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="../d-platforms/d13-europe-marketplaces-guide.html">D13 欧洲平台</a> 欧洲合规要求（CE/EPR/VAT/VerpackG/GPSR）详见 D13。 · <a href="../d-platforms/d11-coupang-korea-ai-guide.html">D11 Coupang 韩国</a> 韩国 KC 认证要求详见 D11。 · <a href="../e-social-media/e1-instagram-facebook-ai-guide.html">E1 Instagram/Facebook AI 指南</a> 社交平台广告合规详见 E1</p>
+</blockquote>
+<p>以下是跨境电商四大主要市场的合规要求对比。这是一个<strong>概览性参考</strong>，具体要求因产品品类而异。</p>
+<blockquote>
+<p><strong>注意</strong>：以下信息基于截至 2026 年初的一般性认知，法规可能已更新。请以各国官方机构发布的最新法规为准。</p>
+</blockquote>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>维度</th><th>🇺🇸 US</th><th>🇪🇺 EU (以 DE 为例)</th><th>🇯🇵 JP</th><th>🇬🇧 UK</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>产品安全认证</strong></td><td>FCC（电子）、UL（安全）、CPSIA（儿童）</td><td><a href="https://en.wikipedia.org/wiki/CE_marking">CE 标志</a>（强制）、GS（自愿但推荐）</td><td>PSE（电气）、S-Mark（安全）、技適マーク（无线）</td><td>UKCA（脱欧后替代 CE）</td></tr>
+<tr><td><strong>包装法规</strong></td><td>无联邦统一要求，各州不同</td><td>WEEE（电子废弃物）、包装法（VerpackG）、Green Dot</td><td>容器包装リサイクル法</td><td>UK WEEE、包装废弃物法规</td></tr>
+<tr><td><strong>标签要求</strong></td><td>FTC 标签法、原产地标注</td><td>EU 能效标签、CE 标志、制造商信息</td><td>消費者保護法、家庭用品品質表示法</td><td>UKCA 标志、UK 进口商信息</td></tr>
+<tr><td><strong>化学物质限制</strong></td><td>CPSIA（铅/邻苯）、Prop 65（加州）</td><td>REACH（化学品注册）、RoHS（有害物质限制）</td><td>化審法（化学物质审查）</td><td>UK REACH（独立于 EU REACH）</td></tr>
+<tr><td><strong>知识产权</strong></td><td>USPTO（专利商标局）</td><td>EUIPO（欧盟知识产权局）</td><td>JPO（特許庁）</td><td>UKIPO（英国知识产权局）</td></tr>
+<tr><td><strong>税务</strong></td><td>Sales Tax（各州不同）</td><td>VAT（德国 19%，各国不同）</td><td>消費税（10%）</td><td>VAT（20%）</td></tr>
+<tr><td><strong>Amazon 特殊要求</strong></td><td>Brand Registry、透明计划</td><td>EPR 注册号、LUCID 注册</td><td>技適マーク上传</td><td>UK Responsible Person</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>各维度详细说明：</strong></p>
+<p><strong>产品安全认证</strong></p>
+<ul>
+<li><strong>US FCC/UL</strong>：FCC 认证是所有发射无线电频率的电子设备的强制要求。UL 认证虽然不是联邦强制的，但 Amazon US 对某些品类（如充电器、电池）要求提供 UL 测试报告。CPSIA 是针对 12 岁以下儿童产品的强制要求，包括铅含量测试和第三方实验室认证。</li>
+<li><strong>EU CE/GS</strong>：<a href="https://en.wikipedia.org/wiki/CE_marking">CE 标志</a>是进入欧盟市场的强制要求，覆盖安全、健康、环保等多个指令。GS 标志（Geprüfte Sicherheit）是德国的自愿性安全认证，但在德国市场有很高的消费者认知度，建议获取。</li>
+<li><strong>JP PSE/S-Mark</strong>：PSE 标志是日本电气用品安全法的强制要求，分为菱形 PSE（特定电气用品）和圆形 PSE（非特定电气用品）。S-Mark 是日本的安全标志，由第三方认证机构颁发。</li>
+<li><strong>UK UKCA</strong>：英国脱欧后，UKCA（UK Conformity Assessed）标志替代了 CE 标志。目前部分品类仍接受 CE 标志，但长期来看 UKCA 将成为唯一要求。请关注英国政府最新公告。</li>
+</ul>
+<p><strong>包装法规</strong></p>
+<ul>
+<li><strong>US</strong>：没有联邦层面的统一包装法规，但加州、纽约等州有各自的包装回收要求。实际操作中，大多数卖家不需要额外注册。</li>
+<li><strong>EU VerpackG/WEEE</strong>：德国的包装法（VerpackG）要求所有在德国销售带包装产品的企业在 <a href="https://lucid.verpackungsregister.org/">LUCID</a> 系统注册，并与授权的双元回收系统签约。WEEE 指令要求电子产品生产商注册并承担回收责任。<strong>这是很多中国卖家容易忽略的合规要求</strong>。</li>
+<li><strong>JP</strong>：容器包装リサイクル法要求企业对包装材料承担回收义务，但对小规模进口商有豁免。</li>
+<li><strong>UK</strong>：脱欧后英国有独立的包装废弃物法规和 WEEE 法规，与 EU 类似但注册系统不同。</li>
+</ul>
+<p><strong>化学物质限制</strong></p>
+<ul>
+<li><strong>US CPSIA/Prop 65</strong>：CPSIA 限制儿童产品中的铅和邻苯二甲酸盐含量。加州 Prop 65 要求对含有已知致癌或生殖毒性化学物质的产品加贴警告标签 这个要求非常广泛，几乎所有品类都可能涉及。</li>
+<li><strong>EU REACH/RoHS</strong>：REACH 法规要求对化学物质进行注册、评估和授权。RoHS 指令限制电子电气设备中的有害物质（铅、汞、镉等）。两者都是强制要求。</li>
+<li><strong>JP 化審法</strong>：日本的化学物质审查法对新化学物质有严格的审查和注册要求。</li>
+</ul>
+<p>Content rephrased for compliance with licensing restrictions. Sources: <a href="https://en.wikipedia.org/wiki/CE_marking">CE marking - Wikipedia</a>, <a href="https://legalclarity.org/when-trading-with-more-developed-countries-key-compliance-rules/">legalclarity.org trading compliance</a></p>
+<h3 id="13-ai-在合规中的角色定位"><a class="header" href="#13-ai-在合规中的角色定位">1.3 AI 在合规中的角色定位</a></h3>
+<p>AI 擅长的：</p>
+<ul>
+<li><strong>快速查询</strong>：在几分钟内生成多市场合规对比表，替代过去需要几天的手动调研</li>
+<li><strong>对比分析</strong>：把不同市场的合规要求放在同一个框架下对比，发现差异和共同点</li>
+<li><strong>文档生成</strong>：生成合规文档的框架和模板（如 Declaration of Conformity、Technical File 大纲）</li>
+<li><strong>风险识别</strong>：基于产品描述识别可能的合规风险点，提醒你需要关注的领域</li>
+<li><strong>多语言处理</strong>：理解日文、德文的法规文本，帮你做跨语言的合规调研</li>
+</ul>
+<p>AI 不擅长的：</p>
+<ul>
+<li><strong>法律判断</strong>：AI 不能替代律师做法律判断。合规问题的最终答案需要专业法律意见</li>
+<li><strong>最新法规追踪</strong>：AI 的训练数据有截止日期，可能不包含最新的法规变化。关键法规请查官方来源</li>
+<li><strong>认证执行</strong>：AI 可以告诉你需要什么认证，但不能替你完成认证测试和申请</li>
+<li><strong>个案判断</strong>：每个产品的合规情况都有特殊性，AI 给出的是通用建议，不是针对你具体产品的法律意见</li>
+<li><strong>责任承担</strong>：AI 的建议不构成法律意见，如果基于 AI 建议做出错误决策，AI 不承担任何责任</li>
+</ul>
+<blockquote>
+<p><strong>核心原则</strong>：用 AI 做合规调研的“第一步“（快速了解大方向），但关键决策必须咨询专业人士。AI 是你的合规研究助手，不是你的合规顾问。</p>
+</blockquote>
+<blockquote>
+<p><strong>再次强调</strong>：本模块所有内容都是一般性参考信息。具体到你的产品和目标市场，请务必咨询认证机构（如 SGS、TÜV、Intertek）或专业律师。</p>
+</blockquote>
+<hr>
+<h2 id="2-ai-工具全景合规阶段用什么"><a class="header" href="#2-ai-工具全景合规阶段用什么">2. AI 工具全景：合规阶段用什么</a></h2>
+<h3 id="21-付费工具与服务"><a class="header" href="#21-付费工具与服务">2.1 付费工具与服务</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>工具/服务</th><th>类型</th><th>价格范围</th><th>核心能力</th><th>适合谁</th></tr>
+</thead>
+<tbody>
+<tr><td><a href="https://www.sgs.com/">SGS</a></td><td>认证机构</td><td>按项目报价</td><td>全球领先的检测认证机构，覆盖 CE、FCC、UL 等所有主流认证</td><td>所有需要产品认证的卖家</td></tr>
+<tr><td><a href="https://www.tuv.com/">TÜV</a></td><td>认证机构</td><td>按项目报价</td><td>德国权威认证机构，GS 标志的主要颁发者，在欧洲市场认可度极高</td><td>主攻欧洲市场的卖家</td></tr>
+<tr><td><a href="https://www.intertek.com/">Intertek</a></td><td>认证机构</td><td>按项目报价</td><td>全球性检测认证机构，ETL 标志（UL 的替代方案）的颁发者</td><td>需要多市场认证的卖家</td></tr>
+<tr><td><a href="https://www.compliancegate.com/">Compliance Gate</a></td><td>SaaS 平台</td><td>$99-499/月</td><td>产品合规管理平台，自动追踪法规变化，管理认证文档</td><td>多 SKU、多市场的中大型卖家</td></tr>
+<tr><td><a href="https://www.ashtonpotter.com/">Ashton Potter</a></td><td>防伪溯源</td><td>按项目报价</td><td>产品认证和防伪解决方案，与 Amazon Transparency 集成</td><td>品牌卖家，需要防伪的品类</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>选择建议：</strong></p>
+<p><strong>预算有限</strong>：直接联系 SGS 或 Intertek 的中国办事处，他们在深圳、上海都有实验室，价格比欧美总部便宜。先用 AI 确定需要哪些认证，再找认证机构报价。</p>
+<p><strong>多市场运营</strong>：考虑 Compliance Gate 这类 SaaS 平台，它可以帮你追踪不同市场的法规变化，管理所有产品的认证文档。当你的 SKU 超过 20 个且覆盖 3+ 市场时，手动管理合规文档会变得非常困难。</p>
+<p><strong>欧洲市场优先</strong>：TÜV 的 GS 标志在德国消费者中有很高的认知度。虽然 GS 不是强制要求，但有 GS 标志的产品在德国市场的转化率通常更高。</p>
+<h3 id="22-免费工具与资源"><a class="header" href="#22-免费工具与资源">2.2 免费工具与资源</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>工具/资源</th><th>用途</th><th>链接</th></tr>
+</thead>
+<tbody>
+<tr><td>ChatGPT / Claude</td><td>合规调研、对比分析、文档生成、申诉方案起草</td><td><a href="https://chat.openai.com/">chat.openai.com</a> / <a href="https://claude.ai/">claude.ai</a></td></tr>
+<tr><td>Amazon Compliance Reference</td><td>Amazon 官方合规要求文档，按品类列出所需认证</td><td>Seller Central → Help → Product Compliance</td></tr>
+<tr><td>EU RAPEX / Safety Gate</td><td>欧盟产品安全快速预警系统，查看被召回的产品和原因</td><td><a href="https://ec.europa.eu/safety-gate-alerts/screen/webReport">ec.europa.eu/safety-gate</a></td></tr>
+<tr><td>CPSC Recalls Database</td><td>美国消费品安全委员会召回数据库，了解哪些产品被召回</td><td><a href="https://www.cpsc.gov/Recalls">cpsc.gov/Recalls</a></td></tr>
+<tr><td>Google Patents</td><td>专利搜索，评估产品的专利侵权风险</td><td><a href="https://patents.google.com/">patents.google.com</a></td></tr>
+<tr><td>USPTO TESS</td><td>美国商标搜索系统，检查商标是否已被注册</td><td><a href="https://tmsearch.uspto.gov/">tmsearch.uspto.gov</a></td></tr>
+<tr><td>EUIPO eSearch</td><td>欧盟商标和外观设计搜索</td><td><a href="https://euipo.europa.eu/eSearch/">euipo.europa.eu/eSearch</a></td></tr>
+<tr><td>LUCID 包装注册</td><td>德国包装法注册系统，查询和注册包装义务</td><td><a href="https://lucid.verpackungsregister.org/">lucid.verpackungsregister.org</a></td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>免费工具的使用策略：</strong></p>
+<ol>
+<li><strong>ChatGPT/Claude 做初步调研</strong>：先用 AI 了解你的产品在目标市场需要哪些认证，生成一个合规需求清单。这是“第一步“，不是“最后一步“。</li>
+<li><strong>RAPEX/CPSC 做风险评估</strong>：搜索你的品类在这两个数据库中的召回记录。如果同类产品频繁被召回，说明这个品类的合规风险很高，需要特别注意。</li>
+<li><strong>Google Patents 做专利排查</strong>：在选品阶段就搜索相关专利，避免投入大量资金后才发现侵权。</li>
+<li><strong>USPTO TESS/EUIPO 做商标检查</strong>：在确定品牌名和产品名之前，先搜索是否已被注册。</li>
+</ol>
+<h3 id="23-ai-辅助合规的局限性"><a class="header" href="#23-ai-辅助合规的局限性">2.3 AI 辅助合规的局限性</a></h3>
+<p>虽然 AI 在合规调研中非常有用，但必须清楚它的局限性：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>AI 可以做</th><th>AI 不能做</th></tr>
+</thead>
+<tbody>
+<tr><td>生成合规需求概览</td><td>提供具有法律效力的合规意见</td></tr>
+<tr><td>对比不同市场的法规差异</td><td>保证信息是最新的</td></tr>
+<tr><td>生成文档模板和框架</td><td>替代认证机构的测试和认证</td></tr>
+<tr><td>识别潜在的合规风险点</td><td>对具体产品做合规判定</td></tr>
+<tr><td>起草申诉方案的初稿</td><td>保证申诉一定成功</td></tr>
+<tr><td>翻译和理解多语言法规</td><td>替代专业律师的法律解读</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>关键提醒</strong>：永远不要仅凭 AI 的输出就做出合规决策。AI 是帮你“问对问题“的工具，答案需要从官方来源和专业人士那里获取。</p>
+</blockquote>
+<hr>
+<h2 id="3-prompt-模板库合规专用"><a class="header" href="#3-prompt-模板库合规专用">3. Prompt 模板库（合规专用）</a></h2>
+<blockquote>
+<p>本节提供每个模板的深度解析、常见错误和进阶变体。</p>
+</blockquote>
+<h3 id="31-多市场合规对比深化版"><a class="header" href="#31-多市场合规对比深化版">3.1 多市场合规对比（深化版）</a></h3>
+<p><strong>为什么这个 Prompt 有效：</strong> 它要求 AI 按统一维度对比多个市场的合规要求，输出结构化的对比表。关键设计点：</p>
+<ul>
+<li>“对比表“格式 强制 AI 做结构化输出，避免长篇大论</li>
+<li>“预估费用和周期” 把合规从“要不要做“变成“花多少钱、多长时间“的量化决策</li>
+<li>“常见陷阱” 让 AI 基于常见错误给出预警</li>
+<li>“信息时效性标注” 提醒 AI 和用户法规可能已更新</li>
+</ul>
+<p><strong>常见错误：</strong></p>
+<ul>
+<li>只说“电子产品“ → 太笼统。“带锂电池的蓝牙耳机“和“USB 充电线“的合规要求完全不同。越具体越好</li>
+<li>不指定目标市场 → 每个市场的要求差异很大，必须明确是 US、EU、JP 还是 UK</li>
+<li>完全依赖 AI 输出 → AI 的合规信息可能过时或不完整。必须用官方来源交叉验证</li>
+<li>忽略 Amazon 平台特殊要求 → Amazon 的合规要求有时比法规更严格（如对锂电池的额外要求）</li>
+</ul>
+<p><strong>进阶变体：</strong></p>
+<p><strong>变体 A 特定品类深度合规分析：</strong></p>
+<pre><code>我要在 Amazon [US/DE/JP/UK] 销售以下产品：
+产品：[具体产品描述，如"带锂电池的便携式颈部风扇"]
+材质：[主要材质，如"ABS 塑料 + 硅胶 + 锂聚合物电池"]
+目标用户：[成人/儿童/通用]
+价格区间：$[X]-$[X]
+
+请做深度合规分析：
+1. 每个市场的强制认证清单（区分"必须有"和"建议有"）
+2. 锂电池相关的特殊要求（UN38.3、MSDS、运输限制）
+3. 材质相关的化学物质限制（REACH、CPSIA、Prop 65）
+4. 包装和标签的具体要求（需要标注什么信息？用什么语言？）
+5. Amazon 平台的额外要求（需要上传什么文件？）
+6. 合规成本估算（认证费 + 测试费 + 标签费）
+7. 合规时间线（从开始到拿到所有认证需要多久？）
+
+注意：请标注信息的时效性。法规可能已更新，以上信息仅供参考，
+最终请以认证机构和官方法规为准。
+</code></pre>
+<blockquote>
+<p><strong>为什么用这个变体</strong>：通用的合规对比只能给你大方向。当你确定了具体产品后，需要做深度分析，把每个合规要求落实到具体的行动项和成本。</p>
+</blockquote>
+<p><strong>变体 B 已有认证的扩展市场分析：</strong></p>
+<pre><code>我的产品已经有以下认证：
+- FCC Part 15 Class B（美国）
+- UL 62368-1 测试报告
+- UN38.3 锂电池测试报告
+
+现在我想把产品扩展到 [EU/JP/UK] 市场。
+
+请分析：
+1. 已有的认证中，哪些可以直接用于新市场？
+2. 哪些认证需要重新做？（不能互认的部分）
+3. 哪些认证可以基于已有报告做转换？（如 FCC → CE 的 EMC 部分）
+4. 新市场还需要哪些额外认证？
+5. 增量合规成本和时间估算
+6. 建议的认证顺序（先做哪个性价比最高？）
+
+认证互认规则可能变化，请与认证机构确认最新政策。
+</code></pre>
+<blockquote>
+<p><strong>为什么用这个变体</strong>：如果你已经有了一些认证，扩展到新市场不需要从零开始。有些测试报告可以复用，有些认证可以做转换，这能节省大量时间和费用。</p>
+</blockquote>
+<hr>
+<h3 id="32-产品认证需求清单生成"><a class="header" href="#32-产品认证需求清单生成">3.2 产品认证需求清单生成</a></h3>
+<p><strong>为什么需要这个 Prompt：</strong> 在选品阶段就了解合规成本，避免投入大量资金后才发现认证费用超出预算。这个 Prompt 帮你生成一个完整的认证需求清单，包含费用、周期和优先级。</p>
+<p><strong>常见错误：</strong></p>
+<ul>
+<li>选品时不考虑合规成本 → 有些品类的认证费用可能占产品成本的 20-30%（如医疗器械、儿童产品）</li>
+<li>只看认证费用，忽略持续合规成本 → 有些认证需要年度审核、定期测试</li>
+<li>不区分强制和自愿认证 → 强制认证必须做，自愿认证根据市场策略决定</li>
+</ul>
+<pre><code>请为以下产品生成完整的认证需求清单：
+
+产品信息：
+- 产品名称：[名称]
+- 产品描述：[详细描述，包括功能、材质、电气参数]
+- 目标市场：[US / EU / JP / UK，可多选]
+- 目标品类：Amazon [品类名称]
+- 是否含电池：[是/否，如是请说明电池类型和容量]
+- 目标用户年龄：[成人/儿童/通用]
+- 是否接触食品/皮肤：[是/否]
+
+请输出：
+1. 认证需求清单表格：
+| 认证名称 | 市场 | 强制/自愿 | 费用范围 | 周期 | 有效期 | 优先级 |
+
+2. 认证依赖关系（哪些认证需要先做？）
+3. 总合规成本估算（首次 + 年度维护）
+4. 建议的认证执行顺序和时间线
+5. 可能的合规风险点
+
+费用和周期为估算值，实际以认证机构报价为准。
+不同实验室的报价可能差异较大，建议至少询价 2-3 家。
+</code></pre>
+<hr>
+<h3 id="33-合规成本估算"><a class="header" href="#33-合规成本估算">3.3 合规成本估算</a></h3>
+<p><strong>为什么需要这个 Prompt：</strong> 合规成本不只是认证费。还包括测试费、标签印刷费、包装调整费、文档翻译费、年度维护费等。这个 Prompt 帮你做全面的合规成本估算，纳入产品定价模型。</p>
+<p><strong>常见错误：</strong></p>
+<ul>
+<li>只算认证费 → 测试费往往比认证费更高（如 EMC 测试、安全测试）</li>
+<li>忽略不同市场的标签成本 → 欧洲要求多语言标签，日本要求日文标签，每个市场的标签可能不同</li>
+<li>不算时间成本 → 认证周期可能是 4-12 周，这段时间你的产品无法上架销售</li>
+</ul>
+<pre><code>请帮我估算以下产品的全面合规成本：
+
+产品信息：
+- 产品：[名称和描述]
+- 目标市场：[US / EU / JP / UK]
+- 预计年销量：[X] 件
+- 产品单价：$[X]
+- 已有认证：[列出已有的认证，如无则写"无"]
+
+请估算以下成本项：
+1. 首次认证成本：
+- 各项认证的测试费和认证费
+- 样品费（送检样品）
+- 文档准备费（技术文件、Declaration of Conformity）
+
+2. 标签和包装调整成本：
+- 各市场的标签设计和印刷费
+- 包装调整费（如需要添加回收标志、警告标签）
+- 多语言说明书翻译费
+
+3. 持续合规成本（年度）：
+- 年度审核费（如适用）
+- 定期测试费
+- 法规更新追踪成本
+- 包装法注册费（如 LUCID）
+
+4. 合规成本占比分析：
+- 合规成本占产品成本的百分比
+- 合规成本占售价的百分比
+- 是否影响产品的定价竞争力？
+
+5. 成本优化建议：
+- 哪些认证可以合并测试以节省费用？
+- 是否有政府补贴或行业协会优惠？
+- 选择哪家认证机构性价比最高？
+
+以上为估算值，实际费用请以认证机构报价为准。
+</code></pre>
+<hr>
+<h3 id="34-知识产权风险评估"><a class="header" href="#34-知识产权风险评估">3.4 知识产权风险评估</a></h3>
+<p><strong>为什么需要这个 Prompt：</strong> 知识产权（IP）侵权是跨境电商最常见的合规风险之一。一次专利侵权投诉可能导致 Listing 被下架、库存被冻结，甚至面临法律诉讼。在选品阶段就做 IP 风险评估，可以避免巨大的损失。</p>
+<p><strong>常见错误：</strong></p>
+<ul>
+<li>只搜索产品名称 → 专利侵权不看名称，看功能和外观。需要搜索功能描述和技术特征</li>
+<li>只查美国专利 → 如果你在欧洲和日本也销售，需要查各市场的专利</li>
+<li>认为“大家都在卖就没问题“ → 专利持有人可能还没开始维权，不代表没有风险</li>
+<li>忽略外观设计专利 → 很多产品的外观设计有专利保护，模仿外观也是侵权</li>
+</ul>
+<pre><code>请帮我评估以下产品的知识产权风险：
+
+产品信息：
+- 产品名称：[名称]
+- 产品描述：[详细描述，包括外观特征、核心功能、技术特点]
+- 目标市场：[US / EU / JP]
+- 竞品 ASIN（如有）：[ASIN 列表]
+- 计划使用的品牌名：[品牌名]
+
+请评估以下风险：
+1. 专利风险：
+- 这个产品的核心功能可能涉及哪些类型的专利？（发明专利、实用新型、外观设计）
+- 建议搜索哪些关键词来排查专利？
+- 如何在 Google Patents 上做初步排查？
+- 风险等级评估（高/中/低）
+
+2. 商标风险：
+- 计划使用的品牌名是否可能与已注册商标冲突？
+- 建议在哪些数据库搜索？（USPTO TESS、EUIPO、JPO）
+- 品牌名的命名建议（避免与知名品牌相似）
+
+3. 版权风险：
+- 产品包装、说明书、Listing 图片是否可能涉及版权问题？
+- 使用竞品图片做参考的法律风险
+
+4. Amazon 平台 IP 投诉风险：
+- 这个品类是否有频繁的 IP 投诉历史？
+- 如何降低被投诉的风险？
+- 如果被投诉，应对流程是什么？
+
+5. 风险缓解建议：
+- 是否需要做专业的专利检索（FTO 分析）？
+- 是否需要注册自己的专利/商标？
+- 产品设计上如何规避已有专利？
+
+AI 的专利分析仅供初步参考，不能替代专业的专利律师意见。
+如果风险等级为"高"，强烈建议聘请专利律师做正式的 FTO（Freedom to Operate）分析。
+</code></pre>
+<hr>
+<h3 id="35-合规文档生成"><a class="header" href="#35-合规文档生成">3.5 合规文档生成</a></h3>
+<p><strong>为什么需要这个 Prompt：</strong> 合规文档（如 Declaration of Conformity、Technical File）是产品合规的核心证据。很多卖家不知道这些文档应该包含什么内容。AI 可以帮你生成文档框架，你再填入具体的产品信息和测试数据。</p>
+<p><strong>常见错误：</strong></p>
+<ul>
+<li>没有合规文档就上架 → 即使产品通过了认证测试，没有正式的合规文档也是不合规的</li>
+<li>用模板直接填写不修改 → 每个产品的合规文档都应该是针对性的，不能用通用模板</li>
+<li>文档语言不对 → EU 的合规文档需要用目标市场的官方语言（或至少英文）</li>
+</ul>
+<pre><code>请帮我生成以下合规文档的框架：
+
+产品信息：
+- 产品名称：[名称]
+- 产品型号：[型号]
+- 制造商：[公司名称和地址]
+- 目标市场：[EU / UK]
+
+需要生成的文档：
+1. EU Declaration of Conformity（欧盟符合性声明）框架：
+- 需要引用哪些指令？（如 LVD、EMC、RoHS、RED）
+- 需要引用哪些协调标准？
+- 需要包含哪些信息？
+- 签署人要求
+
+2. Technical File（技术文件）大纲：
+- 技术文件应该包含哪些章节？
+- 每个章节需要什么内容？
+- 需要附上哪些测试报告？
+- 文件保存要求（保存多少年？）
+
+3. 产品标签内容清单：
+- CE 标志的尺寸和位置要求
+- 需要标注的信息（制造商、进口商、型号等）
+- 警告标签要求（如适用）
+
+以上框架仅供参考，正式的合规文档应由合规专业人士审核。
+Declaration of Conformity 是法律文件，签署人需要对内容的准确性负法律责任。
+</code></pre>
+<hr>
+<h3 id="36-amazon-政策违规应对"><a class="header" href="#36-amazon-政策违规应对">3.6 Amazon 政策违规应对</a></h3>
+<p><strong>为什么需要这个 Prompt：</strong> Amazon 的政策违规通知（如 Listing 被下架、账号被警告）需要快速响应。AI 可以帮你分析违规原因、生成 Plan of Action（POA）的初稿，加速申诉流程。</p>
+<p><strong>常见错误：</strong></p>
+<ul>
+<li>收到通知后不及时响应 → Amazon 通常给 48-72 小时的响应时间，超时可能导致更严重的处罚</li>
+<li>申诉信写得太笼统 → “我们会改进“不够，需要具体的根因分析和改进措施</li>
+<li>不承认问题 → Amazon 希望看到你理解问题所在，否认问题只会让情况更糟</li>
+<li>多次提交相同的申诉 → 每次申诉都应该有新的信息或改进，重复提交会降低成功率</li>
+</ul>
+<pre><code>我收到了 Amazon 的以下政策违规通知，请帮我分析并生成申诉方案：
+
+违规通知内容：
+[粘贴 Amazon 发送的违规通知全文]
+
+产品信息：
+- ASIN：[ASIN]
+- 产品名称：[名称]
+- 品类：[品类]
+- 销售市场：[US/DE/JP]
+
+补充信息：
+- 这个问题是第几次发生？[首次/重复]
+- 你认为可能的原因是什么？[你的分析]
+- 你已经采取了哪些措施？[已有的改进]
+
+请帮我：
+1. 违规原因分析：
+- 这个违规通知的具体含义是什么？
+- 可能触发违规的根本原因有哪些？
+- 这个违规的严重程度如何？（警告/Listing 下架/账号风险）
+
+2. Plan of Action（POA）框架：
+- Root Cause（根本原因）：具体说明问题是怎么发生的
+- Immediate Actions（已采取的措施）：你已经做了什么来解决问题
+- Preventive Measures（预防措施）：你将如何防止问题再次发生
+- 附件清单：需要提供哪些证据文件？
+
+3. 申诉信初稿（英文）：
+- 专业、简洁、有诚意
+- 包含具体的数据和证据
+- 明确的时间线和责任人
+
+4. 后续跟进建议：
+- 如果首次申诉被拒，下一步怎么做？
+- 是否需要寻求专业申诉服务？
+- 如何监控账号健康状态？
+
+AI 生成的申诉方案仅供参考。复杂的违规案例（如账号被封、IP 侵权投诉）
+建议寻求专业的 Amazon 申诉服务或律师协助。
+</code></pre>
+<hr>
+<h3 id="37-vat税务合规检查"><a class="header" href="#37-vat税务合规检查">3.7 VAT/税务合规检查</a></h3>
+<p><strong>为什么需要这个 Prompt：</strong> 税务合规是跨境电商最容易被忽略但后果最严重的合规领域。欧洲的 VAT 合规尤其复杂 不同国家税率不同，注册要求不同，申报频率不同。不合规可能面临高额罚款和追缴税款。</p>
+<p><strong>常见错误：</strong></p>
+<ul>
+<li>认为“Amazon 代扣代缴就不用管了“ → Amazon 只在部分国家代扣 VAT，卖家仍有注册和申报义务</li>
+<li>不注册 VAT 就开始销售 → 在欧洲，没有 VAT 号就销售是违法的</li>
+<li>只注册一个国家的 VAT → 如果你在多个欧洲国家有库存（如 Pan-EU），每个有库存的国家都需要注册</li>
+<li>不按时申报 → 即使没有销售，也需要按时提交零申报</li>
+</ul>
+<pre><code>请帮我做 VAT/税务合规检查：
+
+业务信息：
+- 公司注册地：[中国/其他]
+- 销售市场：[US / DE / FR / IT / ES / UK / JP]
+- 物流模式：[FBA / FBM / Pan-EU / EFN]
+- 月均销售额（各市场）：[数据]
+- 是否已注册 VAT：[是/否，如是请列出已注册的国家]
+- 是否使用 Amazon VAT Services：[是/否]
+
+请分析：
+1. 各市场的税务义务：
+| 市场 | 税种 | 税率 | 是否需要注册 | 申报频率 | Amazon 是否代扣 |
+
+2. VAT 注册需求：
+- 哪些国家必须注册 VAT？
+- 注册流程和所需文件
+- 注册费用和时间
+
+3. 税务合规风险评估：
+- 当前是否存在合规缺口？
+- 不合规的潜在后果（罚款金额、账号风险）
+- 是否需要补缴历史税款？
+
+4. 税务优化建议：
+- 物流模式对税务的影响（Pan-EU vs EFN）
+- 是否可以利用 OSS（One-Stop Shop）简化申报？
+- 是否需要聘请税务代理？
+
+税务法规复杂且经常变化。以上分析仅供参考，
+具体的税务义务请咨询专业的跨境电商税务师或会计师。
+</code></pre>
+<hr>
+<h3 id="38-产品召回风险评估"><a class="header" href="#38-产品召回风险评估">3.8 产品召回风险评估</a></h3>
+<p><strong>为什么需要这个 Prompt：</strong> 产品召回是最严重的合规事件之一。一次召回可能导致数十万美元的损失（退货、销毁、罚款、法律费用）和不可逆的品牌损害。提前评估召回风险，可以在产品设计和质量控制阶段就采取预防措施。</p>
+<p><strong>常见错误：</strong></p>
+<ul>
+<li>认为“我的产品不会被召回“ → 任何产品都有召回风险，特别是电子产品、儿童产品、食品接触产品</li>
+<li>不关注同类产品的召回历史 → CPSC 和 RAPEX 数据库中的召回案例是最好的风险预警</li>
+<li>不做产品责任保险 → 一旦发生安全事故，没有保险的卖家可能面临巨额赔偿</li>
+</ul>
+<pre><code>请帮我评估以下产品的召回风险：
+
+产品信息：
+- 产品名称：[名称]
+- 产品描述：[详细描述]
+- 主要材质：[材质列表]
+- 是否含电池/电气部件：[是/否]
+- 目标用户：[成人/儿童/通用]
+- 销售市场：[US / EU / JP]
+
+请分析：
+1. 品类召回历史：
+- 这个品类在 CPSC（美国）和 RAPEX（欧盟）中的召回记录
+- 最常见的召回原因是什么？
+- 召回频率如何？（高风险/中风险/低风险品类）
+
+2. 产品风险点识别：
+- 基于产品描述，可能存在哪些安全风险？
+- 哪些材质或部件最容易出问题？
+- 是否有窒息、触电、起火、化学物质超标等风险？
+
+3. 预防措施建议：
+- 产品设计阶段应该注意什么？
+- 质量控制（QC）的关键检查点
+- 需要做哪些安全测试？
+- 是否需要购买产品责任保险？
+
+4. 召回应急预案：
+- 如果发生安全事故，第一步做什么？
+- 如何与 Amazon 和监管机构沟通？
+- 召回的流程和成本估算
+
+产品安全是最高优先级。如果 AI 识别出高风险点，
+请立即咨询专业的产品安全顾问或认证机构。
+</code></pre>
+<hr>
+<h2 id="4-合规实战工作流"><a class="header" href="#4-合规实战工作流">4. 合规实战工作流</a></h2>
+<h3 id="41-新品上架前合规检查-sop"><a class="header" href="#41-新品上架前合规检查-sop">4.1 新品上架前合规检查 SOP</a></h3>
+<p>每个新品在上架前都应该经过系统化的合规检查。这套 SOP 把合规检查从“想到什么查什么“变成“按清单逐项确认“。</p>
+<pre><code>
+Step 1: 合规需求识别（1-2 小时）
+操作: 确定产品品类和目标市场
+AI: 用多市场合规对比 Prompt（3.1）生成合规需求概览
+AI: 用产品认证需求清单 Prompt（3.2）生成认证清单
+输出: 合规需求清单（认证 + 标签 + 包装 + 化学物质）
+验证: 在 Amazon Seller Central 确认品类的具体合规要求
+
+Step 2: 知识产权排查（1-2 小时）
+操作: 搜索相关专利和商标
+工具: Google Patents + USPTO TESS + EUIPO eSearch
+AI: 用知识产权风险评估 Prompt（3.4）做初步评估
+输出: IP 风险评估报告
+决策: 如果风险为"高"，暂停项目，咨询专利律师
+
+Step 3: 合规成本估算（30 分钟）
+AI: 用合规成本估算 Prompt（3.3）计算全面合规成本
+操作: 向 2-3 家认证机构询价，验证 AI 估算
+决策: 合规成本是否在预算内？是否影响产品定价竞争力？
+输出: 合规预算和时间线
+
+Step 4: 认证执行（4-12 周，视品类而定）
+操作: 选择认证机构，提交样品，开始测试
+追踪: 建立认证进度追踪表
+文档: 准备技术文件和合规声明
+AI: 用合规文档生成 Prompt（3.5）生成文档框架
+
+Step 5: 标签和包装准备（1-2 周）
+操作: 设计符合各市场要求的产品标签
+检查: CE/UKCA/PSE 标志尺寸和位置
+检查: 多语言标签内容（产品信息、警告、回收标志）
+检查: 包装法注册（如 LUCID）
+
+Step 6: 上架前最终检查（30 分钟）
+检查清单:
+所有必需认证已获得？
+认证文件已上传到 Seller Central？
+产品标签符合目标市场要求？
+包装法已注册（如适用）？
+VAT 已注册（如适用）？
+产品责任保险已购买（如适用）？
+合规文档已归档保存？
+通过 → 上架销售
+未通过 → 返回对应步骤补完
+
+</code></pre>
+<h3 id="42-多站点合规扩展-sop"><a class="header" href="#42-多站点合规扩展-sop">4.2 多站点合规扩展 SOP</a></h3>
+<p>当你的产品已经在一个市场成功销售，想要扩展到其他市场时，合规是最大的门槛。这套 SOP 帮你系统化地评估和执行多站点合规扩展。</p>
+<pre><code>
+Step 1: 目标市场合规差异分析（1-2 小时）
+操作: 对比当前市场和目标市场的合规要求差异
+AI: 用已有认证扩展市场 Prompt（3.1 变体 B）分析
+输出: 增量合规需求清单（需要新增的认证、标签、注册）
+关键问题: 已有认证哪些可以复用？哪些需要重新做？
+
+Step 2: 合规成本和 ROI 评估（1 小时）
+操作: 估算增量合规成本
+AI: 用合规成本估算 Prompt（3.3）计算
+对比: 合规成本 vs 目标市场的预期收入
+决策: 合规投入的 ROI 是否合理？
+如果 ROI &lt; 1 → 暂缓扩展，优先优化现有市场
+
+Step 3: 税务合规准备（1-2 周）
+操作: 注册目标市场的 VAT/税号
+AI: 用 VAT 合规检查 Prompt（3.7）确认税务义务
+注意: 欧洲 VAT 注册通常需要 2-6 周
+注意: 在 VAT 注册完成前不要开始销售
+
+Step 4: 认证和标签调整（4-8 周）
+操作: 完成目标市场所需的额外认证
+操作: 调整产品标签（添加 CE/UKCA/PSE 标志、多语言标签）
+操作: 注册包装法（如 LUCID）
+操作: 指定 Responsible Person（如 EU/UK 要求）
+
+Step 5: Listing 合规适配（1 周）
+操作: 确保 Listing 内容符合目标市场的广告法规
+检查: 产品声明是否合规（不能有未经验证的功效声明）
+检查: 图片是否符合当地要求
+操作: 上传合规文件到 Seller Central
+
+Step 6: 上架和监控
+操作: 在目标市场上架产品
+监控: 关注是否收到合规相关的通知或警告
+记录: 建立合规文档归档系统
+定期: 每季度检查法规更新
+
+</code></pre>
+<h3 id="43-合规事件应急响应-sop"><a class="header" href="#43-合规事件应急响应-sop">4.3 合规事件应急响应 SOP</a></h3>
+<p>当你收到 Amazon 的合规通知（Listing 下架、账号警告、IP 投诉）时，快速响应至关重要。这套 SOP 帮你在 24 小时内完成初步应对。</p>
+<pre><code>
+Hour 0-2: 评估和分类
+操作: 仔细阅读通知内容，确定违规类型
+分类:
+- 产品安全/认证问题 → 高优先级
+- IP 侵权投诉 → 高优先级
+- Listing 内容违规 → 中优先级
+- 文档缺失 → 中优先级
+- 客户投诉触发 → 视严重程度
+AI: 用 Amazon 政策违规应对 Prompt（3.6）分析违规原因
+
+Hour 2-8: 证据收集和方案制定
+操作: 收集所有相关证据
+- 产品认证文件、测试报告
+- 供应商资质文件
+- 质量控制记录
+- 客户沟通记录（如涉及客户投诉）
+AI: 用 Prompt（3.6）生成 Plan of Action 初稿
+审核: 人工审核 AI 生成的方案，补充具体细节
+
+Hour 8-16: 申诉提交
+操作: 完善 Plan of Action
+操作: 准备所有附件（认证文件、改进措施证据）
+操作: 通过 Seller Central 提交申诉
+注意: 申诉信要专业、简洁、有诚意
+注意: 不要否认问题，展示你理解问题并已采取行动
+
+Hour 16-24: 后续准备
+操作: 准备备选方案（如果首次申诉被拒）
+操作: 评估是否需要专业申诉服务或律师
+操作: 检查其他 ASIN 是否有类似风险
+操作: 更新合规检查清单，防止类似问题再次发生
+
+Day 2-7: 跟进
+监控: 每天检查 Seller Central 的案件状态
+如果被拒: 分析拒绝原因，补充新证据，重新提交
+如果通过: 记录经验教训，更新合规 SOP
+升级: 如果 3 次申诉都被拒，考虑寻求专业帮助
+
+</code></pre>
+<blockquote>
+<p><strong>应急响应的核心原则</strong>：速度 &gt; 完美。先在 24 小时内提交一个合理的初步申诉，比花一周准备一个“完美“的申诉更重要。Amazon 看重的是你的响应速度和态度。</p>
+</blockquote>
+<hr>
+<h2 id="5-常见合规陷阱"><a class="header" href="#5-常见合规陷阱">5. 常见合规陷阱</a></h2>
+<h3 id="51-认证相关陷阱"><a class="header" href="#51-认证相关陷阱">5.1 认证相关陷阱</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>陷阱</th><th>表现</th><th>如何避免</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>CE 标志 ≠ 万能通行证</strong></td><td>以为有了 CE 标志就能在所有欧洲国家销售，忽略了各国的额外要求（如德国 VerpackG、法国 DEEE）</td><td>CE 是基础，但每个国家可能有额外的注册要求。用 AI 逐国检查。</td></tr>
+<tr><td><strong>认证过期不续</strong></td><td>认证有有效期（通常 1-5 年），过期后继续销售是违规的</td><td>建立认证到期提醒系统，提前 3 个月启动续期流程。</td></tr>
+<tr><td><strong>用假证或买证</strong></td><td>从不正规渠道购买认证证书，被查到后果严重（产品召回 + 法律追责）</td><td>只通过正规认证机构（SGS、TÜV、Intertek 等）获取认证。</td></tr>
+<tr><td><strong>认证范围不匹配</strong></td><td>产品做了改版但没有更新认证，新版本的认证实际上是无效的</td><td>产品任何设计变更都需要评估是否影响认证有效性。</td></tr>
+<tr><td><strong>只做了部分认证</strong></td><td>产品需要 CE + RoHS + REACH，但只做了 CE，以为够了</td><td>用认证需求清单 Prompt（3.2）确保不遗漏任何必需认证。</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="52-标签相关陷阱"><a class="header" href="#52-标签相关陷阱">5.2 标签相关陷阱</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>陷阱</th><th>表现</th><th>如何避免</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>标签语言不对</strong></td><td>在德国市场用英文标签，在日本市场没有日文标签</td><td>每个市场的标签必须使用当地官方语言。欧洲多国销售需要多语言标签。</td></tr>
+<tr><td><strong>CE 标志尺寸不合规</strong></td><td>CE 标志太小或比例不对（CE 标志有严格的尺寸和比例要求）</td><td>CE 标志最小高度 5mm，两个字母的比例必须符合官方模板。参考 <a href="https://en.wikipedia.org/wiki/CE_marking">CE marking guidelines</a>。</td></tr>
+<tr><td><strong>缺少制造商/进口商信息</strong></td><td>欧盟要求产品标签上标注制造商或欧盟授权代表的名称和地址</td><td>确保标签包含完整的制造商信息。如果你是中国卖家，需要指定欧盟 Responsible Person。</td></tr>
+<tr><td><strong>Prop 65 警告缺失</strong></td><td>在加州销售的产品没有 Prop 65 警告标签，被起诉索赔</td><td>如果产品可能含有 Prop 65 清单上的化学物质，加贴警告标签。宁可多贴不要漏贴。</td></tr>
+<tr><td><strong>回收标志缺失</strong></td><td>在德国销售的产品包装没有回收标志（Green Dot 或类似标志）</td><td>注册 LUCID 后，按要求在包装上标注回收标志。</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="53-知识产权相关陷阱"><a class="header" href="#53-知识产权相关陷阱">5.3 知识产权相关陷阱</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>陷阱</th><th>表现</th><th>如何避免</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>外观设计侵权</strong></td><td>产品外观与竞品太相似，被投诉外观设计专利侵权</td><td>在产品设计阶段就做外观设计专利排查。保持足够的设计差异化。</td></tr>
+<tr><td><strong>商标抢注</strong></td><td>使用的品牌名在目标市场已被他人注册</td><td>在确定品牌名之前，先在 USPTO/EUIPO/JPO 搜索。尽早注册自己的商标。</td></tr>
+<tr><td><strong>图片版权</strong></td><td>Listing 使用了未授权的图片（包括竞品图片、网络图片）</td><td>所有 Listing 图片必须是自己拍摄或有合法授权的。</td></tr>
+<tr><td><strong>恶意 IP 投诉</strong></td><td>竞品通过虚假的 IP 投诉让你的 Listing 下架</td><td>了解 Amazon 的 IP 投诉反申诉流程。保留所有产品原创性证据。</td></tr>
+<tr><td><strong>专利流氓</strong></td><td>收到不明来源的专利侵权警告信，要求支付“许可费“</td><td>不要立即付款。先验证专利的有效性，咨询专利律师评估风险。</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="54-税务相关陷阱"><a class="header" href="#54-税务相关陷阱">5.4 税务相关陷阱</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>陷阱</th><th>表现</th><th>如何避免</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>不注册 VAT 就销售</strong></td><td>在欧洲没有 VAT 号就开始销售，被税务局追缴税款 + 罚款</td><td>在开始销售前完成 VAT 注册。注册通常需要 2-6 周。</td></tr>
+<tr><td><strong>Pan-EU 忘记多国注册</strong></td><td>使用 Pan-EU 物流但只注册了德国 VAT，其他有库存的国家没注册</td><td>Pan-EU 模式下，每个有库存的国家都需要注册 VAT。</td></tr>
+<tr><td><strong>不按时申报</strong></td><td>忘记按时提交 VAT 申报，产生滞纳金和罚款</td><td>设置申报日历提醒。考虑使用 Amazon VAT Services 或专业税务代理。</td></tr>
+<tr><td><strong>低报销售额</strong></td><td>为了少缴税而低报销售额，被税务审计发现后面临严重处罚</td><td>如实申报。Amazon 会向税务局报告你的销售数据，低报很容易被发现。</td></tr>
+<tr><td><strong>忽略 US Sales Tax</strong></td><td>认为 Amazon 代收 Sales Tax 就不用管了</td><td>Amazon 在大多数州代收 Sales Tax，但卖家仍需了解自己的 Nexus 义务。</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="55-amazon-政策相关陷阱"><a class="header" href="#55-amazon-政策相关陷阱">5.5 Amazon 政策相关陷阱</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>陷阱</th><th>表现</th><th>如何避免</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Listing 内容违规</strong></td><td>使用了禁止的词汇（如“FDA approved“但实际没有 FDA 批准）</td><td>不要在 Listing 中做未经验证的声明。了解 Amazon 的 Listing 内容政策。</td></tr>
+<tr><td><strong>Review 操纵</strong></td><td>通过刷单、换评等方式操纵 Review，被 Amazon 检测到</td><td>不要做任何形式的 Review 操纵。Amazon 的检测算法越来越强。</td></tr>
+<tr><td><strong>多账号关联</strong></td><td>在同一市场开设多个卖家账号，被 Amazon 检测到关联</td><td>一个市场只用一个账号。如果确实需要多账号，确保完全隔离。</td></tr>
+<tr><td><strong>忽略 BSA 合规要求</strong></td><td>使用的第三方工具或 AI Agent 不符合 Amazon 的 Buyer-Seller Agreement 要求</td><td>确保所有使用的工具和 AI Agent 符合 Amazon 的最新政策要求。参考 <a href="https://ppc.land/amazons-new-ai-agent-rules-shake-up-sellers-before-march-4-deadline/">Amazon AI Agent 合规要求</a>。</td></tr>
+<tr><td><strong>产品安全投诉不处理</strong></td><td>收到客户的产品安全投诉但不及时处理，导致 Listing 被下架</td><td>所有安全相关投诉必须在 24 小时内响应。建立安全投诉处理流程。</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="6-进阶技巧"><a class="header" href="#6-进阶技巧">6. 进阶技巧</a></h2>
+<h3 id="61-2026-新趋势amazon-ai-agent-合规要求bsa-更新"><a class="header" href="#61-2026-新趋势amazon-ai-agent-合规要求bsa-更新">6.1 2026 新趋势：Amazon AI Agent 合规要求（BSA 更新）</a></h3>
+<p>2026 年初，Amazon 更新了 Buyer-Seller Agreement（BSA），对卖家使用的 AI Agent 和自动化工具提出了新的合规要求。这是一个重要的趋势变化，所有使用 AI 工具的卖家都需要关注。</p>
+<p><strong>核心要求概述：</strong></p>
+<p>Amazon 要求卖家确保其使用的所有第三方工具和 AI Agent 符合以下原则：</p>
+<ul>
+<li><strong>数据安全</strong>：工具不能未经授权访问或存储买家数据</li>
+<li><strong>行为合规</strong>：AI Agent 的自动化操作不能违反 Amazon 的服务条款</li>
+<li><strong>透明度</strong>：卖家需要了解并对其使用的工具的行为负责</li>
+<li><strong>及时更新</strong>：卖家需要在规定期限内确保工具合规</li>
+</ul>
+<p><strong>对卖家的影响：</strong></p>
+<ol>
+<li><strong>审查你使用的所有工具</strong>：列出所有连接到 Seller Central 的第三方工具和 AI Agent，确认它们符合 Amazon 的最新要求</li>
+<li><strong>关注工具提供商的合规声明</strong>：正规的工具提供商会发布合规更新，确认其工具符合 Amazon 的新要求</li>
+<li><strong>谨慎使用自动化操作</strong>：AI Agent 的自动定价、自动回复等功能需要确保不违反 Amazon 政策</li>
+<li><strong>保留操作记录</strong>：记录 AI Agent 的操作日志，以备 Amazon 审查</li>
+</ol>
+<p>Content rephrased for compliance with licensing restrictions. Sources: <a href="https://ppc.land/amazons-new-ai-agent-rules-shake-up-sellers-before-march-4-deadline/">ppc.land Amazon AI agent rules</a>, <a href="https://www.ecommercebytes.com/2026/02/18/amazon-sellers-have-2-weeks-to-ensure-compliance-of-tools-they-use/">ecommercebytes.com BSA compliance</a></p>
+<p><strong>AI 辅助 BSA 合规检查：</strong></p>
+<pre><code>请帮我检查以下工具是否符合 Amazon 最新的 BSA 合规要求：
+
+我使用的工具列表：
+1. [工具名称] 用途：[描述]，连接方式：[API/插件/手动]
+2. [工具名称] 用途：[描述]，连接方式：[API/插件/手动]
+3. [工具名称] 用途：[描述]，连接方式：[API/插件/手动]
+
+请分析：
+1. 每个工具可能涉及的 BSA 合规风险
+2. 需要向工具提供商确认的合规问题
+3. 是否有工具需要停用或替换？
+4. 如何建立工具合规审查的定期流程？
+
+Amazon 的政策持续更新，请以 Seller Central 的最新通知为准。
+</code></pre>
+<h3 id="62-欧盟新法规digital-product-passport-与-gpsr"><a class="header" href="#62-欧盟新法规digital-product-passport-与-gpsr">6.2 欧盟新法规：Digital Product Passport 与 GPSR</a></h3>
+<p>欧盟正在推进两项重要的新法规，将对跨境电商卖家产生深远影响：</p>
+<p><strong>Digital Product Passport（DPP） 数字产品护照</strong></p>
+<p>DPP 是欧盟绿色协议的一部分，要求产品携带数字化的“护照“，记录产品的全生命周期信息（材料来源、制造过程、碳足迹、回收指南等）。</p>
+<ul>
+<li><strong>时间线</strong>：预计 2027-2030 年分品类逐步实施，电池产品最先受影响</li>
+<li><strong>对卖家的影响</strong>：需要收集和提供更详细的产品供应链信息</li>
+<li><strong>准备建议</strong>：开始建立产品供应链数据收集体系，与供应商沟通数据共享</li>
+</ul>
+<p><strong>GPSR（General Product Safety Regulation） 通用产品安全法规</strong></p>
+<p>GPSR 于 2024 年 12 月 13 日生效，替代了旧的通用产品安全指令（GPSD）。</p>
+<ul>
+<li>
+<p><strong>核心变化</strong>：</p>
+</li>
+<li>
+<p>所有在欧盟销售的消费品都需要指定一个欧盟境内的 Responsible Person（经济运营商）</p>
+</li>
+<li>
+<p>产品必须有可追溯性信息（制造商、进口商、产品标识）</p>
+</li>
+<li>
+<p>在线市场（如 Amazon）有更大的合规监管责任</p>
+</li>
+<li>
+<p>加强了产品召回和安全通知的要求</p>
+</li>
+<li>
+<p><strong>对中国卖家的影响</strong>：</p>
+</li>
+<li>
+<p>必须指定欧盟境内的 Responsible Person（可以是进口商、授权代表或履行服务提供商）</p>
+</li>
+<li>
+<p>产品标签需要包含 Responsible Person 的联系信息</p>
+</li>
+<li>
+<p>Amazon 可能要求卖家提供 Responsible Person 的信息才能上架</p>
+</li>
+</ul>
+<p><strong>AI 辅助新法规影响评估：</strong></p>
+<pre><code>请帮我评估欧盟新法规对我的业务的影响：
+
+业务信息：
+- 产品品类：[品类]
+- 欧盟销售市场：[DE/FR/IT/ES 等]
+- 当前是否有欧盟 Responsible Person：[是/否]
+- 年销售额（欧盟）：€[X]
+
+请分析：
+1. GPSR 对我的产品的具体要求是什么？
+2. 我是否需要指定 Responsible Person？如何找到合适的？
+3. 产品标签需要做哪些调整？
+4. Digital Product Passport 未来会如何影响我的品类？
+5. 建议的合规准备时间线和预算
+
+欧盟法规实施细则可能仍在更新中，请关注欧盟官方公告和 Amazon 的合规通知。
+</code></pre>
+<h3 id="63-合规成本优化策略"><a class="header" href="#63-合规成本优化策略">6.3 合规成本优化策略</a></h3>
+<p>合规是必须做的，但可以通过策略优化来降低成本：</p>
+<p><strong>策略 1：认证合并测试</strong></p>
+<p>很多认证的测试项目有重叠。例如：</p>
+<ul>
+<li>CE 的 EMC 测试和 FCC 的 EMC 测试有很大的重叠部分</li>
+<li>如果同时做 CE 和 FCC，可以要求认证机构合并测试，节省 20-30% 的测试费</li>
+</ul>
+<p><strong>策略 2：选择性价比高的认证机构</strong></p>
+<ul>
+<li>国际大机构（SGS、TÜV、Intertek）价格较高但认可度最广</li>
+<li>中国本土的 CNAS 认可实验室价格更低，出具的报告在很多情况下也被接受</li>
+<li>建议：首次认证用国际大机构（建立信任），后续续期或新产品可以考虑本土实验室</li>
+</ul>
+<p><strong>策略 3：利用认证互认</strong></p>
+<ul>
+<li>部分认证之间有互认协议。例如，CB 体系（IECEE CB Scheme）的测试报告可以在多个国家转换为当地认证</li>
+<li>先做 CB 报告，再转换为各国认证，比逐国单独做认证便宜</li>
+</ul>
+<p><strong>策略 4：批量认证</strong></p>
+<ul>
+<li>如果你有多个类似产品（如同一系列的不同型号），可以申请“系列认证“</li>
+<li>只需要对代表性型号做完整测试，其他型号做差异测试即可</li>
+</ul>
+<p><strong>策略 5：合规前置到选品阶段</strong></p>
+<ul>
+<li>在选品阶段就评估合规成本（用 Prompt 3.3），避免选择合规成本过高的品类</li>
+<li>合规成本占产品成本超过 10% 的品类，需要谨慎评估是否值得进入</li>
+</ul>
+<pre><code>请帮我优化以下产品的合规成本：
+
+产品信息：
+- 产品：[名称]
+- 目标市场：[US + EU + JP]
+- 当前合规预算：$[X]
+- 已有认证：[列出]
+
+请建议：
+1. 哪些认证可以合并测试以节省费用？
+2. 是否可以利用 CB 体系做认证转换？
+3. 推荐的认证执行顺序（先做哪个可以复用最多？）
+4. 认证机构选择建议（性价比最优方案）
+5. 预计可以节省多少合规成本？
+</code></pre>
+<hr>
+<h2 id="7-学习资源"><a class="header" href="#7-学习资源">7. 学习资源</a></h2>
+<h3 id="71-免费课程与官方资源"><a class="header" href="#71-免费课程与官方资源">7.1 免费课程与官方资源</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>资源</th><th>平台</th><th>时长</th><th>适合谁</th><th>链接</th></tr>
+</thead>
+<tbody>
+<tr><td>Amazon Seller University Product Compliance</td><td>Amazon</td><td>自学</td><td>所有卖家（官方合规要求说明，按品类分类）</td><td><a href="https://sellercentral.amazon.com/learn">sellercentral.amazon.com/learn</a></td></tr>
+<tr><td>EU Product Safety &amp; CE Marking Guide</td><td>European Commission</td><td>自学</td><td>主攻欧洲市场的卖家（官方 CE 标志指南）</td><td><a href="https://single-market-economy.ec.europa.eu/single-market/ce-marking_en">ec.europa.eu/growth</a></td></tr>
+<tr><td>CPSC Business Education</td><td>CPSC</td><td>自学</td><td>主攻美国市场的卖家（消费品安全要求）</td><td><a href="https://www.cpsc.gov/Business--Manufacturing">cpsc.gov/Business</a></td></tr>
+<tr><td>ChatGPT Prompt Engineering for Developers</td><td>DeepLearning.AI</td><td>1.5h</td><td>所有人（学会写好 Prompt 是 AI 合规调研的基础）</td><td><a href="https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/">deeplearning.ai</a></td></tr>
+<tr><td>VAT for E-Commerce Sellers</td><td>Various</td><td>自学</td><td>在欧洲销售的卖家（VAT 注册和申报基础）</td><td>搜索 “VAT for Amazon sellers”</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="72-youtube-频道推荐"><a class="header" href="#72-youtube-频道推荐">7.2 YouTube 频道推荐</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>频道</th><th>内容方向</th><th>为什么推荐</th></tr>
+</thead>
+<tbody>
+<tr><td>Amazon Seller University</td><td>官方合规教程，按品类讲解合规要求</td><td>最权威的合规信息来源</td></tr>
+<tr><td>Jungle Scout</td><td>包含合规相关的选品建议和市场分析</td><td>从选品角度理解合规成本</td></tr>
+<tr><td>My Amazon Guy</td><td>Amazon 运营全流程，含账号健康和申诉技巧</td><td>实操性强，有大量真实申诉案例</td></tr>
+<tr><td>Seller Sessions</td><td>深度访谈，含合规专家和律师的分享</td><td>专业视角，适合深入学习</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="73-推荐阅读"><a class="header" href="#73-推荐阅读">7.3 推荐阅读</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>文章/资源</th><th>来源</th><th>核心观点</th></tr>
+</thead>
+<tbody>
+<tr><td><a href="https://en.wikipedia.org/wiki/CE_marking">CE Marking Wikipedia</a></td><td>Wikipedia</td><td>CE 标志的全面介绍，包括适用指令、标志要求和合规流程</td></tr>
+<tr><td><a href="https://ppc.land/amazons-new-ai-agent-rules-shake-up-sellers-before-march-4-deadline/">Amazon’s New AI Agent Rules</a></td><td>PPC Land</td><td>Amazon 2026 年 BSA 更新对 AI Agent 和第三方工具的新合规要求</td></tr>
+<tr><td><a href="https://www.ecommercebytes.com/2026/02/18/amazon-sellers-have-2-weeks-to-ensure-compliance-of-tools-they-use/">Amazon Sellers BSA Compliance</a></td><td>eCommerce Bytes</td><td>卖家需要在截止日期前确保工具合规的详细指南</td></tr>
+<tr><td><a href="https://legalclarity.org/when-trading-with-more-developed-countries-key-compliance-rules/">Key Compliance Rules for International Trade</a></td><td>Legal Clarity</td><td>与发达国家贸易时的关键合规规则概述</td></tr>
+<tr><td><a href="https://www.cpsc.gov/Recalls">CPSC Recalls Database</a></td><td>CPSC</td><td>美国消费品召回数据库，了解哪些产品被召回及原因</td></tr>
+<tr><td><a href="https://ec.europa.eu/safety-gate-alerts/screen/webReport">EU Safety Gate (RAPEX)</a></td><td>European Commission</td><td>欧盟产品安全快速预警系统，查看被通报的危险产品</td></tr>
+</tbody>
+</table>
+</div>
+<p>Content rephrased for compliance with licensing restrictions. Sources cited inline.</p>
+<h3 id="74-社区与论坛"><a class="header" href="#74-社区与论坛">7.4 社区与论坛</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>社区</th><th>平台</th><th>特点</th></tr>
+</thead>
+<tbody>
+<tr><td>r/AmazonSeller</td><td>Reddit</td><td>综合 Amazon 卖家社区，合规问题讨论活跃</td></tr>
+<tr><td>r/FulfillmentByAmazon</td><td>Reddit</td><td>FBA 卖家社区，产品合规和账号健康话题多</td></tr>
+<tr><td>Amazon Seller Forums</td><td>Amazon</td><td>官方论坛，合规政策更新和申诉经验第一手信息</td></tr>
+<tr><td>知无不言</td><td>知乎</td><td>中文跨境电商社区，认证和合规经验丰富</td></tr>
+<tr><td>创蓝论坛</td><td>独立站点</td><td>中国卖家社区，欧洲 VAT、CE 认证实操案例多</td></tr>
+<tr><td>福步外贸论坛</td><td>独立站点</td><td>外贸综合社区，产品认证和出口合规信息丰富</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="8-用-openclaw-自动化合规检查"><a class="header" href="#8-用-openclaw-自动化合规检查">8. 用 OpenClaw 自动化合规检查</a></h2>
+<h3 id="81-场景ai-agent-新品上架前自动合规预检"><a class="header" href="#81-场景ai-agent-新品上架前自动合规预检">8.1 场景：AI Agent 新品上架前自动合规预检</a></h3>
+<pre><code>你对 OpenClaw 说：
+"新产品信息录入后，自动检索合规知识库，
+对比产品信息和各市场合规要求，生成差距清单和认证费用估算，发送合规预检报告"
+
+OpenClaw 自动执行：
+1. [触发] 新产品信息录入时
+2. [Skill: memory] 检索合规知识库（各市场认证要求）
+3. [LLM] 对比产品信息和合规要求，生成差距清单
+4. [LLM] 估算认证费用和周期
+5. [Skill: slack] 发送合规预检报告
+</code></pre>
+<h3 id="82-需要的-skills-和-mcp-server"><a class="header" href="#82-需要的-skills-和-mcp-server">8.2 需要的 Skills 和 MCP Server</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>组件</th><th>用途</th><th>链接</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>memory</strong> Skill</td><td>存储合规知识库和认证要求</td><td><a href="https://docs.openclaw.com/">OpenClaw Docs</a></td></tr>
+<tr><td><strong>web-search</strong> Skill</td><td>检索最新法规更新</td><td><a href="https://docs.openclaw.com/">OpenClaw Docs</a></td></tr>
+<tr><td><strong>slack</strong> Skill</td><td>发送合规预检报告</td><td><a href="https://clawhub.ai/">ClawHub</a></td></tr>
+<tr><td><strong>filesystem MCP</strong></td><td>读取本地合规文档和模板</td><td><a href="https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem">MCP Filesystem</a></td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="83-相关资源"><a class="header" href="#83-相关资源">8.3 相关资源</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>资源</th><th>说明</th><th>链接</th></tr>
+</thead>
+<tbody>
+<tr><td>OpenClaw 官方文档</td><td>安装和配置指南</td><td><a href="https://docs.openclaw.com/">docs.openclaw.com</a></td></tr>
+<tr><td>ClawHub Skills 市场</td><td>搜索和安装 Agent Skills</td><td><a href="https://clawhub.ai/">clawhub.ai</a></td></tr>
+<tr><td>OpenClaw MCP 集成</td><td>连接 MCP Server</td><td><a href="https://rebeccamdeprey.com/blog/build-openclaw-skill-with-mcp">Build Skill with MCP</a></td></tr>
+<tr><td>F4 自动化与 Agent</td><td>Agent 基础模块</td><td><a href="../0-foundations/f4-agent-automation.html">F4 模块</a></td></tr>
+</tbody>
+</table>
+</div>
+<p>Content rephrased for compliance with licensing restrictions. Sources cited inline.</p>
+<hr>
+<h2 id="85-补充各社交平台广告合规要求对比"><a class="header" href="#85-补充各社交平台广告合规要求对比">8.5 补充：各社交平台广告合规要求对比</a></h2>
+<blockquote>
+<p>本节补充跨平台广告合规要求。当你在社交媒体投放广告引流到 Amazon/Shopify 时，需要同时遵守平台广告政策。</p>
+</blockquote>
+<h3 id="各平台广告合规对比"><a class="header" href="#各平台广告合规对比">各平台广告合规对比</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>合规要求</th><th>Amazon</th><th>Meta (IG/FB)</th><th>Google/YouTube</th><th>TikTok</th><th>Pinterest</th></tr>
+</thead>
+<tbody>
+<tr><td>虚假宣传</td><td>禁止</td><td>禁止</td><td>禁止</td><td>禁止</td><td>禁止</td></tr>
+<tr><td>身体特征描述</td><td>允许（产品相关）</td><td>禁止（“你的皮肤…”）</td><td>限制</td><td>限制</td><td>限制</td></tr>
+<tr><td>Before/After 图</td><td>允许</td><td>限制（不能暗示身体变化）</td><td>限制</td><td>限制</td><td>限制</td></tr>
+<tr><td>健康声明</td><td>需要认证</td><td>严格限制</td><td>严格限制</td><td>严格限制</td><td>严格限制</td></tr>
+<tr><td>Affiliate 披露</td><td>不适用</td><td>建议</td><td>FTC 要求</td><td>建议</td><td>建议</td></tr>
+<tr><td>价格展示</td><td>必须准确</td><td>必须准确</td><td>必须准确</td><td>必须准确</td><td>必须准确</td></tr>
+<tr><td>竞品对比</td><td>允许（需真实）</td><td>允许（需真实）</td><td>允许（需真实）</td><td>允许</td><td>允许</td></tr>
+<tr><td>用户评价引用</td><td>允许</td><td>需要真实来源</td><td>需要真实来源</td><td>需要真实来源</td><td>需要真实来源</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="ai-广告合规检查-prompt"><a class="header" href="#ai-广告合规检查-prompt">AI 广告合规检查 Prompt</a></h3>
+<pre><code>你是一个跨平台广告合规专家。
+
+以下是我准备投放的广告文案：
+[粘贴文案]
+
+投放平台：[Meta / Google / TikTok / Pinterest]
+产品品类：[X]
+目标市场：[US / EU / JP]
+
+请检查：
+1. 是否违反该平台的广告政策？（具体指出哪条）
+2. 是否违反目标市场的广告法规？（FTC / EU 消费者保护 / 日本景品表示法）
+3. 是否需要添加免责声明或披露？
+4. 修改建议（保持营销效果的同时合规）
+</code></pre>
+<h3 id="各市场广告法规要点"><a class="header" href="#各市场广告法规要点">各市场广告法规要点</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>市场</th><th>法规</th><th>关键要求</th></tr>
+</thead>
+<tbody>
+<tr><td>US</td><td>FTC Act</td><td>Affiliate 必须披露；健康声明需要科学依据；“免费“必须真正免费</td></tr>
+<tr><td>EU</td><td>UCPD + DSA</td><td>禁止误导性广告；必须标注“广告“；GDPR 数据合规</td></tr>
+<tr><td>JP</td><td>景品表示法</td><td>禁止“优良误认“和“有利误认“；比较广告需要客观数据</td></tr>
+<tr><td>DE</td><td>UWG</td><td>德国反不正当竞争法，比 EU 更严格</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p>详细的各市场合规要求请参考本模块 <a href="#31-多市场合规对比深化版">3.1 多市场合规对比</a>。社交平台具体广告投放指南请参考 <a href="../e-social-media/e1-instagram-facebook-ai-guide.html#6-meta-advantage-ai-广告深度指南">E1 Meta Ads</a>。</p>
+</blockquote>
+<hr>
+<h2 id="9-完成标志"><a class="header" href="#9-完成标志">9. 完成标志</a></h2>
+<ul>
+<li><input disabled="" type="checkbox"> 用 AI 生成产品认证需求清单，并向至少 2 家认证机构询价验证</li>
+<li><input disabled="" type="checkbox"> 用 AI 做一次知识产权风险评估（专利 + 商标排查）</li>
+<li><input disabled="" type="checkbox"> 完成一次新品上架前合规检查 SOP 的全流程执行</li>
+<li><input disabled="" type="checkbox"> 用 AI 起草一份 Plan of Action（即使没有实际违规，也做一次模拟练习）</li>
+<li><input disabled="" type="checkbox"> 建立合规文档归档系统，包含所有产品的认证文件、测试报告和合规声明</li>
+</ul>
+<p>完成以上所有项目后，你已经掌握了 AI 辅助合规管理的核心技能。合规是一个持续的过程，建议每季度用 AI 检查一次法规更新，确保你的产品始终合规。</p>
+<blockquote>
+<p><strong>最终提醒</strong>：本模块所有内容仅供一般性参考。合规决策涉及法律责任，请务必在专业人士指导下做出最终决策。AI 是你的合规研究助手，不是你的合规顾问。</p>
+</blockquote>
+<hr>
+<h2 id="附录合规速查表"><a class="header" href="#附录合规速查表">附录：合规速查表</a></h2>
+<h3 id="按市场--品类矩阵"><a class="header" href="#按市场--品类矩阵">按市场 × 品类矩阵</a></h3>
+<p>以下速查表帮你快速了解不同市场和品类组合的核心合规要求。这是一个<strong>简化概览</strong>，具体要求请参考对应的 Prompt 模板做深度分析。</p>
+<blockquote>
+<p>以下信息为一般性参考，法规可能已更新。请以官方来源为准。</p>
+</blockquote>
+<p><strong>消费电子产品（如蓝牙耳机、充电器、移动电源）</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>合规项</th><th>🇺🇸 US</th><th>🇪🇺 EU</th><th>🇯🇵 JP</th><th>🇬🇧 UK</th></tr>
+</thead>
+<tbody>
+<tr><td>电磁兼容</td><td>FCC Part 15</td><td>CE (EMC Directive)</td><td>技適マーク（无线设备）</td><td>UKCA (EMC)</td></tr>
+<tr><td>电气安全</td><td>UL 测试报告</td><td>CE (LVD Directive)</td><td>PSE 标志</td><td>UKCA (LVD)</td></tr>
+<tr><td>有害物质</td><td></td><td>RoHS</td><td></td><td>UK RoHS</td></tr>
+<tr><td>化学物质</td><td>CPSIA（如适用）</td><td>REACH</td><td>化審法</td><td>UK REACH</td></tr>
+<tr><td>锂电池</td><td>UN38.3 + MSDS</td><td>UN38.3 + 电池指令</td><td>UN38.3 + PSE</td><td>UN38.3 + 电池法规</td></tr>
+<tr><td>包装</td><td>无联邦要求</td><td>VerpackG + WEEE</td><td>容器包装法</td><td>UK 包装法 + WEEE</td></tr>
+<tr><td>税务</td><td>Sales Tax</td><td>VAT (19% DE)</td><td>消費税 (10%)</td><td>VAT (20%)</td></tr>
+<tr><td>预估认证费</td><td>$2,000-5,000</td><td>€3,000-8,000</td><td>¥300,000-800,000</td><td>£2,500-6,000</td></tr>
+<tr><td>预估周期</td><td>4-8 周</td><td>6-12 周</td><td>6-10 周</td><td>4-8 周</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>儿童产品（如玩具、儿童餐具、婴儿用品）</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>合规项</th><th>🇺🇸 US</th><th>🇪🇺 EU</th><th>🇯🇵 JP</th><th>🇬🇧 UK</th></tr>
+</thead>
+<tbody>
+<tr><td>产品安全</td><td>CPSIA + ASTM F963</td><td>CE (Toy Safety Directive)</td><td>ST 标志（玩具安全）</td><td>UKCA (Toy Safety)</td></tr>
+<tr><td>化学物质</td><td>CPSIA 铅/邻苯</td><td>REACH + EN 71</td><td>食品衛生法（如接触口腔）</td><td>UK REACH + EN 71</td></tr>
+<tr><td>窒息警告</td><td>CPSIA 小零件警告</td><td>CE 年龄警告标签</td><td>年龄警告标签</td><td>UKCA 年龄警告</td></tr>
+<tr><td>第三方测试</td><td>CPSC 认可实验室（强制）</td><td>Notified Body（部分品类）</td><td>第三方测试（推荐）</td><td>UK Approved Body</td></tr>
+<tr><td>追踪标签</td><td>CPSIA 追踪标签（强制）</td><td>制造商信息标签</td><td>制造商信息</td><td>制造商信息</td></tr>
+<tr><td>预估认证费</td><td>$3,000-8,000</td><td>€4,000-10,000</td><td>¥500,000-1,000,000</td><td>£3,000-8,000</td></tr>
+<tr><td>预估周期</td><td>6-12 周</td><td>8-16 周</td><td>8-12 周</td><td>6-12 周</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>家居用品（如厨房用具、收纳、装饰品）</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>合规项</th><th>🇺🇸 US</th><th>🇪🇺 EU</th><th>🇯🇵 JP</th><th>🇬🇧 UK</th></tr>
+</thead>
+<tbody>
+<tr><td>食品接触</td><td>FDA 21 CFR（如适用）</td><td>EU 1935/2004</td><td>食品衛生法</td><td>UK 食品接触法规</td></tr>
+<tr><td>化学物质</td><td>Prop 65（加州）</td><td>REACH</td><td>化審法</td><td>UK REACH</td></tr>
+<tr><td>产品安全</td><td>CPSC 一般要求</td><td>CE (GPSD/GPSR)</td><td>消費生活用製品安全法</td><td>UKCA (GPSR)</td></tr>
+<tr><td>标签</td><td>FTC 标签法</td><td>EU 标签要求</td><td>家庭用品品質表示法</td><td>UK 标签要求</td></tr>
+<tr><td>预估认证费</td><td>$1,000-3,000</td><td>€2,000-5,000</td><td>¥200,000-500,000</td><td>£1,500-4,000</td></tr>
+<tr><td>预估周期</td><td>3-6 周</td><td>4-8 周</td><td>4-8 周</td><td>3-6 周</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>如何使用这个速查表</strong>：</p>
+<ol>
+<li>找到你的产品品类和目标市场的交叉点</li>
+<li>了解需要哪些合规项</li>
+<li>用对应的 Prompt 模板（第 3 节）做深度分析</li>
+<li>向认证机构询价确认费用和周期</li>
+</ol>
+</blockquote>
+<hr>
+<h3 id="prompt-速查表"><a class="header" href="#prompt-速查表">Prompt 速查表</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>场景</th><th>Prompt 模板</th><th>所在章节</th></tr>
+</thead>
+<tbody>
+<tr><td>多市场合规对比</td><td>多市场合规对比（深化版）</td><td><a href="#31-多市场合规对比深化版">3.1</a></td></tr>
+<tr><td>特定品类深度分析</td><td>特定品类深度合规分析（变体 A）</td><td><a href="#31-多市场合规对比深化版">3.1</a></td></tr>
+<tr><td>已有认证扩展市场</td><td>已有认证扩展市场分析（变体 B）</td><td><a href="#31-多市场合规对比深化版">3.1</a></td></tr>
+<tr><td>认证需求清单</td><td>产品认证需求清单生成</td><td><a href="#32-产品认证需求清单生成">3.2</a></td></tr>
+<tr><td>合规成本估算</td><td>合规成本估算</td><td><a href="#33-合规成本估算">3.3</a></td></tr>
+<tr><td>知识产权风险</td><td>知识产权风险评估</td><td><a href="#34-知识产权风险评估">3.4</a></td></tr>
+<tr><td>合规文档生成</td><td>合规文档生成</td><td><a href="#35-合规文档生成">3.5</a></td></tr>
+<tr><td>Amazon 违规应对</td><td>Amazon 政策违规应对</td><td><a href="#36-amazon-政策违规应对">3.6</a></td></tr>
+<tr><td>VAT/税务检查</td><td>VAT/税务合规检查</td><td><a href="#37-vat税务合规检查">3.7</a></td></tr>
+<tr><td>召回风险评估</td><td>产品召回风险评估</td><td><a href="#38-产品召回风险评估">3.8</a></td></tr>
+<tr><td>BSA 工具合规</td><td>BSA 合规检查</td><td><a href="#61-2026-新趋势amazon-ai-agent-合规要求bsa-更新">6.1</a></td></tr>
+<tr><td>新法规影响评估</td><td>新法规影响评估</td><td><a href="#62-欧盟新法规digital-product-passport-与-gpsr">6.2</a></td></tr>
+<tr><td>合规成本优化</td><td>合规成本优化</td><td><a href="#63-合规成本优化策略">6.3</a></td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="工具速查表"><a class="header" href="#工具速查表">工具速查表</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>需求</th><th>推荐工具/服务</th><th>免费替代</th></tr>
+</thead>
+<tbody>
+<tr><td>合规调研</td><td>Compliance Gate</td><td>ChatGPT / Claude</td></tr>
+<tr><td>产品认证</td><td>SGS / TÜV / Intertek</td><td>（认证必须通过正规机构）</td></tr>
+<tr><td>专利搜索</td><td>专利律师 + 专业数据库</td><td>Google Patents（初步排查）</td></tr>
+<tr><td>商标搜索</td><td>商标律师</td><td>USPTO TESS / EUIPO eSearch</td></tr>
+<tr><td>召回监控</td><td>Compliance Gate</td><td>CPSC Recalls / EU RAPEX</td></tr>
+<tr><td>VAT 管理</td><td>专业税务代理</td><td>Amazon VAT Services</td></tr>
+<tr><td>包装法注册</td><td>合规服务商</td><td>LUCID 自行注册</td></tr>
+<tr><td>合规文档</td><td>认证机构协助</td><td>ChatGPT 生成框架 + 人工审核</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path A 总览</a></p>
+<p><strong>Path A</strong>: <a href="a1-product-research.html">A1 选品</a> · <a href="a2-listing-optimization.html">A2 Listing</a> · <a href="a3-advertising.html">A3 广告</a> · <a href="a4-customer-service.html">A4 客服</a> · <a href="a5-inventory.html">A5 库存</a> · <a href="a6-compliance.html">A6 合规</a></p>
+<p><strong>快速跳转</strong>: <a href="../0-foundations/">Path 0 基础</a> · <a href="../b-developers/">Path B 技术</a> · <a href="../c-managers/">Path C 管理</a> · <a href="../d-platforms/">Path D 多平台</a> · <a href="../e-social-media/">Path E 社交媒体</a></p>
+</blockquote>
+<!-- nav:prev-next -->
+<hr>
+<p><a href="a5-inventory.html">&lt; A5 库存</a> | <a href="README.html">Path 总览</a> | <a href="a7-visual-content.html">A7 视觉 &gt;</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../a-operators/a5-inventory.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../a-operators/a7-visual-content.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../a-operators/a5-inventory.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../a-operators/a7-visual-content.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../mermaid-217b66ef.min.js"></script>
+        <script src="../mermaid-init-d4730691.js"></script>
+
+
+
+    </div>
+    </body>
+</html>

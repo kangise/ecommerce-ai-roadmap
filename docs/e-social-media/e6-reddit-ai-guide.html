@@ -1,0 +1,638 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Reddit - 跨境电商 AI 实战知识库</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="跨境电商 AI 实操手册 — 56 篇指南，从选品到增长，每个环节都有可直接复制的 Prompt">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom-467616e9.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "ayu";
+            window.path_to_searchindex_js = "../searchindex-656d55b3.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-e97a050e.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">跨境电商 AI 实战知识库</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap/edit/main/src/src/e-social-media/e6-reddit-ai-guide.md" title="Suggest an edit" aria-label="Suggest an edit" rel="edit">
+                            <span class=fa-svg id="git-edit-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M421.7 220.3l-11.3 11.3-22.6 22.6-205 205c-6.6 6.6-14.8 11.5-23.8 14.1L30.8 511c-8.4 2.5-17.5 .2-23.7-6.1S-1.5 489.7 1 481.2L38.7 353.1c2.6-9 7.5-17.2 14.1-23.8l205-205 22.6-22.6 11.3-11.3 33.9 33.9 62.1 62.1 33.9 33.9zM96 353.9l-9.3 9.3c-.9 .9-1.6 2.1-2 3.4l-25.3 86 86-25.3c1.3-.4 2.5-1.1 3.4-2l9.3-9.3H112c-8.8 0-16-7.2-16-16V353.9zM453.3 19.3l39.4 39.4c25 25 25 65.5 0 90.5l-14.5 14.5-22.6 22.6-11.3 11.3-33.9-33.9-62.1-62.1L314.3 67.7l11.3-11.3 22.6-22.6 14.5-14.5c25-25 65.5-25 90.5 0z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="e6-reddit-ai-营销指南--reddit-ai-marketing-playbook"><a class="header" href="#e6-reddit-ai-营销指南--reddit-ai-marketing-playbook">E6. Reddit AI 营销指南 | Reddit AI Marketing Playbook</a></h1>
+<blockquote>
+<p><strong>路径</strong>: Path E: 社交媒体 · <strong>模块</strong>: E6
+<strong>最后更新</strong>: 2026-03-14
+<strong>难度</strong>: 入门
+<strong>预计时间</strong>: 1 小时</p>
+</blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path E 总览</a></p>
+<hr>
+<h2 id="章节导航"><a class="header" href="#章节导航">章节导航</a></h2>
+<ol>
+<li><a href="#1-reddit-作为产品发现引擎">Reddit 作为产品发现引擎</a></li>
+<li><a href="#2-reddit-社区营销方法论">Reddit 社区营销方法论</a></li>
+<li><a href="#3-reddit-ads-ai-优化">Reddit Ads AI 优化</a></li>
+<li><a href="#4-品牌口碑监控">品牌口碑监控</a></li>
+<li><a href="#5-prompt-模板">Prompt 模板</a></li>
+<li><a href="#6-常见陷阱">常见陷阱</a></li>
+<li><a href="#7-完成标志">完成标志</a></li>
+</ol>
+<hr>
+<blockquote>
+<p><strong>核心理念</strong>：Reddit 是“反营销“的营销平台。10 亿+ MAU，用户在购买前主动搜索 Reddit 评价（“Reddit before buying” 趋势），Google 搜索结果中 Reddit 权重大幅提升。2026 年 Reddit 正在测试 AI 购物搜索功能。AI 在 Reddit 的核心价值是帮你监控品牌口碑、生成真实风格的内容、优化 Reddit Ads。</p>
+</blockquote>
+<hr>
+<h2 id="1-reddit-作为产品发现引擎"><a class="header" href="#1-reddit-作为产品发现引擎">1. Reddit 作为产品发现引擎</a></h2>
+<h3 id="11-reddit-before-buying-趋势"><a class="header" href="#11-reddit-before-buying-趋势">1.1 “Reddit before buying” 趋势</a></h3>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="../a-operators/a1-product-research.html">A1 选品与市场调研</a> 选品调研方法论参考 A1，Reddit 上的用户讨论是产品需求和痛点的重要数据来源。</p>
+</blockquote>
+<p>越来越多消费者在购买前搜索 “[产品] reddit” 来获取真实评价：</p>
+<ul>
+<li>Google 搜索 “best [品类] reddit” 的搜索量持续增长</li>
+<li>Reddit 帖子在 Google 搜索结果中排名越来越高</li>
+<li>2026 年 Reddit 测试 AI 购物搜索：直接从社区讨论中提取产品推荐并配对可购买链接</li>
+</ul>
+<h3 id="12-reddit-ai-购物搜索2026-新功能"><a class="header" href="#12-reddit-ai-购物搜索2026-新功能">1.2 Reddit AI 购物搜索（2026 新功能）</a></h3>
+<p>2026 年 2 月，Reddit 开始测试 AI 驱动的购物搜索功能（<a href="https://techcrunch.com/2026/02/19/reddit-is-testing-a-new-ai-search-feature-for-shopping/">TechCrunch</a>，<a href="https://www.contentgrip.com/reddit-ai-shopping-search/">ContentGrip</a>）：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>功能</th><th>说明</th></tr>
+</thead>
+<tbody>
+<tr><td>AI 产品轮播</td><td>搜索产品相关查询时，底部显示可交互的产品轮播</td></tr>
+<tr><td>实时价格</td><td>轮播包含实时定价、高清产品图片</td></tr>
+<tr><td>零售商链接</td><td>直接链接到零售商购买页面</td></tr>
+<tr><td>社区驱动</td><td>从社区讨论中提取推荐产品</td></tr>
+<tr><td>DPA 合作伙伴</td><td>产品目录来自 Dynamic Product Ads 合作伙伴</td></tr>
+</tbody>
+</table>
+</div>
+<p>Content rephrased for compliance with licensing restrictions. Sources: <a href="https://techcrunch.com/2026/02/19/reddit-is-testing-a-new-ai-search-feature-for-shopping/">TechCrunch</a>, <a href="https://mpost.io/new-ai-powered-shopping-feature-marks-reddits-first-major-step-toward-community-driven-commerce-integration/">mpost.io</a>.</p>
+<blockquote>
+<p><strong>对卖家的影响</strong>：Reddit 正在从“讨论平台“转变为“购物发现平台“。搜索 “best wireless earbuds under $100” 这样的查询，现在可以直接生成包含价格和购买链接的产品轮播（<a href="https://www.chatai.com/posts/reddit-rolls-out-ai-product-carousels-entering-the-commerce-search-race">ChatAI</a>）。这意味着：</p>
+<ul>
+<li>在 Reddit 上有正面讨论的产品更可能被 AI 购物功能推荐</li>
+<li>Reddit Dynamic Product Ads (DPA) 的价值大幅提升</li>
+<li>品牌口碑管理在 Reddit 上变得更加重要</li>
+</ul>
+</blockquote>
+<h3 id="13-reddit-用户特征"><a class="header" href="#13-reddit-用户特征">1.3 Reddit 用户特征</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>特征</th><th>说明</th></tr>
+</thead>
+<tbody>
+<tr><td>反广告文化</td><td>明显的推销会被 downvote 到不可见</td></tr>
+<tr><td>重视真实性</td><td>真实用户体验 &gt; 专业评测 &gt; 品牌宣传</td></tr>
+<tr><td>投票机制</td><td>好内容被 upvote 放大，差内容被 downvote 埋没</td></tr>
+<tr><td>社区规则</td><td>每个 Subreddit 有自己的规则，违规会被 ban</td></tr>
+<tr><td>匿名性</td><td>用户更愿意分享真实（包括负面）体验</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="2-reddit-社区营销方法论"><a class="header" href="#2-reddit-社区营销方法论">2. Reddit 社区营销方法论</a></h2>
+<blockquote>
+<p><strong>真实案例：Reddit 成为 AI 搜索引擎的重要数据源</strong>
+Reddit 是 Google 和 AI 系统认可的“真实用户对话“平台。Level Agency 指出：“Reddit 是互联网上最受信任的信息环境之一，Google 和 AI 系统知道真实的人在这里进行关于真实产品的真实对话。Subreddit 由社区治理，而非品牌。”（<a href="https://www.level.agency/perspectives/reddit-marketing-strategy/">Level Agency</a>）这意味着 Reddit 上的品牌讨论直接影响 AI 搜索引擎是否推荐你的产品。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<h3 id="21-核心原则提供价值不推销"><a class="header" href="#21-核心原则提供价值不推销">2.1 核心原则：提供价值，不推销</a></h3>
+<pre><code>Reddit 营销的黄金法则：
+做：回答问题、分享经验、提供有用信息
+做：参与社区讨论，建立账号信誉
+做：在相关讨论中自然提及产品（有上下文）
+不做：直接发产品链接
+不做：用多个账号自问自答
+不做：在不相关的 Subreddit 发帖
+</code></pre>
+<h3 id="22-subreddit-选择策略"><a class="header" href="#22-subreddit-选择策略">2.2 Subreddit 选择策略</a></h3>
+<pre><code>你是一个 Reddit 营销专家。
+
+我的产品：[名称]，品类 [X]
+目标市场：[US/EU]
+
+请帮我找到 10 个最相关的 Subreddit：
+
+每个 Subreddit 提供：
+1. 名称和链接
+2. 成员数量级
+3. 活跃度评估
+4. 允许的内容类型（自我推广规则）
+5. 推荐的参与方式
+6. 适合发布的内容角度
+</code></pre>
+<h3 id="23-amaask-me-anything策略"><a class="header" href="#23-amaask-me-anything策略">2.3 AMA（Ask Me Anything）策略</a></h3>
+<p>AMA 是 Reddit 上品牌与用户直接对话的最佳方式：</p>
+<ul>
+<li>以创始人/产品经理身份做 AMA</li>
+<li>提前准备常见问题的回答</li>
+<li>诚实回答负面问题（这反而建立信任）</li>
+<li>AI 辅助：提前用 AI 模拟可能的问题并准备回答</li>
+</ul>
+<hr>
+<h2 id="3-reddit-ads-ai-优化"><a class="header" href="#3-reddit-ads-ai-优化">3. Reddit Ads AI 优化</a></h2>
+<h3 id="31-reddit-ads-特点"><a class="header" href="#31-reddit-ads-特点">3.1 Reddit Ads 特点</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>维度</th><th>Reddit Ads</th><th>Meta Ads</th></tr>
+</thead>
+<tbody>
+<tr><td>定向</td><td>Interest + Community + Conversation</td><td>兴趣 + 行为 + Lookalike</td></tr>
+<tr><td>风格</td><td>必须像原生帖子，不能太像广告</td><td>可以明显是广告</td></tr>
+<tr><td>CPC</td><td>通常更低（$0.20-1.00）</td><td>中等（$0.50-2.00）</td></tr>
+<tr><td>转化</td><td>适合品牌认知和考虑阶段</td><td>适合全漏斗</td></tr>
+<tr><td>DPA</td><td>Dynamic Product Ads（2025 年推出）</td><td>Dynamic Ads</td></tr>
+<tr><td>AI 购物整合</td><td>AI 购物轮播（2026 新功能）</td><td>无</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="32-reddit-dynamic-product-ads-dpa"><a class="header" href="#32-reddit-dynamic-product-ads-dpa">3.2 Reddit Dynamic Product Ads (DPA)</a></h3>
+<p>Reddit 在 2025 年推出了 DPA，2026 年与 AI 购物搜索功能整合后价值大幅提升（<a href="https://techcrunch.com/2026/02/19/reddit-is-testing-a-new-ai-search-feature-for-shopping/">TechCrunch</a>）：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>功能</th><th>说明</th></tr>
+</thead>
+<tbody>
+<tr><td>个性化推荐</td><td>基于用户兴趣展示个性化产品推荐</td></tr>
+<tr><td>产品目录</td><td>上传产品目录，自动匹配相关讨论</td></tr>
+<tr><td>AI 购物整合</td><td>DPA 合作伙伴的产品会出现在 AI 购物轮播中</td></tr>
+<tr><td>重定向</td><td>对访问过网站的用户展示 Reddit 广告</td></tr>
+</tbody>
+</table>
+</div>
+<pre><code>你是一个 Reddit Ads 策略专家。
+
+我的品牌：[名称]
+品类：[X]
+月广告预算：$[X]
+当前主要广告渠道：[Meta/Google/Amazon]
+
+请制定 Reddit Ads 策略：
+
+1. 是否适合投放 Reddit Ads？
+- 品类在 Reddit 上的讨论热度
+- 目标用户是否活跃在 Reddit
+- 与现有广告渠道的互补性
+
+2. 广告类型选择
+- Promoted Posts（推广帖子）
+- Dynamic Product Ads（DPA）
+- Video Ads
+- Conversation Ads
+
+3. 定向策略
+- Subreddit 定向（最精准）
+- Interest 定向
+- Conversation 定向（基于讨论话题）
+- 重定向（网站访客）
+
+4. 创意策略
+- Reddit 风格文案（不像广告）
+- 图片/视频要求
+- A/B 测试方案
+
+5. 预算分配
+- 测试期预算（$500-1000/月）
+- 扩展期预算
+- 与其他渠道的预算平衡
+
+6. KPI 设置
+- 品牌认知：CPM、Reach
+- 考虑阶段：CPC、CTR
+- 转化：CPA、ROAS
+</code></pre>
+<h3 id="33-ai-生成-reddit-风格广告文案"><a class="header" href="#33-ai-生成-reddit-风格广告文案">3.3 AI 生成 Reddit 风格广告文案</a></h3>
+<pre><code>你是一个 Reddit Ads 文案专家。
+
+产品：[名称]，价格 $[X]
+目标 Subreddit：[列出]
+
+请生成 5 个 Reddit 广告文案，要求：
+1. 看起来像普通 Reddit 帖子（不像广告）
+2. 标题用 Reddit 常见格式（问题/分享/讨论）
+3. 正文口语化、真实、不夸张
+4. 包含产品信息但不硬推
+5. 每个文案标注适合的 Subreddit
+</code></pre>
+<hr>
+<h2 id="4-品牌口碑监控"><a class="header" href="#4-品牌口碑监控">4. 品牌口碑监控</a></h2>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="../a-operators/a4-customer-service.html">A4 客服与售后</a> 客户反馈分析方法论参考 A4，情感分析和负面评价应对策略可复用到 Reddit 口碑管理。</p>
+</blockquote>
+<h3 id="41-ai-监控方案"><a class="header" href="#41-ai-监控方案">4.1 AI 监控方案</a></h3>
+<pre><code>你是一个品牌口碑监控专家。
+
+我的品牌：[名称]
+竞品：[列出 3 个]
+
+请帮我设计 Reddit 口碑监控方案：
+
+1. 监控关键词列表（品牌名+产品名+品类词+竞品名）
+2. 监控的 Subreddit 列表
+3. 情感分析框架（正面/中性/负面）
+4. 负面讨论应对策略
+5. 竞品口碑对比分析模板
+</code></pre>
+<h3 id="42-负面讨论应对"><a class="header" href="#42-负面讨论应对">4.2 负面讨论应对</a></h3>
+<ul>
+<li>不要删除或隐藏负面评价（Reddit 用户会发现并反弹）</li>
+<li>以官方账号诚实回应，承认问题并提供解决方案</li>
+<li>把负面反馈转化为产品改进的输入</li>
+</ul>
+<hr>
+<h2 id="5-prompt-模板"><a class="header" href="#5-prompt-模板">5. Prompt 模板</a></h2>
+<h3 id="51-reddit-内容创作"><a class="header" href="#51-reddit-内容创作">5.1 Reddit 内容创作</a></h3>
+<pre><code>请为 [产品] 生成 5 个 Reddit 帖子，分别适合以下场景：
+1. 回答 "best [品类] 2026?" 的问题
+2. 分享使用体验（第一人称，真实风格）
+3. 对比 [产品] vs [竞品] 的讨论帖
+4. 教程/Tips 帖子（自然植入产品）
+5. AMA 预热帖
+
+要求：Reddit 风格真实、口语化、不像广告、适当自嘲。
+</code></pre>
+<hr>
+<h2 id="6-常见陷阱"><a class="header" href="#6-常见陷阱">6. 常见陷阱</a></h2>
+<h3 id="陷阱-1明显的-astroturfing水军"><a class="header" href="#陷阱-1明显的-astroturfing水军">陷阱 1：明显的 astroturfing（水军）</a></h3>
+<p>Reddit 用户极其擅长识别水军。被发现后品牌声誉会严重受损。</p>
+<h3 id="陷阱-2忽略-subreddit-规则"><a class="header" href="#陷阱-2忽略-subreddit-规则">陷阱 2：忽略 Subreddit 规则</a></h3>
+<p>每个 Subreddit 有自己的规则。发帖前必须阅读 sidebar 规则。</p>
+<h3 id="陷阱-3只发不互动"><a class="header" href="#陷阱-3只发不互动">陷阱 3：只发不互动</a></h3>
+<p>Reddit 是对话平台。只发帖不回复评论会被视为垃圾信息。</p>
+<hr>
+<h2 id="65-reddit-内容营销深度策略"><a class="header" href="#65-reddit-内容营销深度策略">6.5 Reddit 内容营销深度策略</a></h2>
+<h3 id="reddit-账号建设路线图"><a class="header" href="#reddit-账号建设路线图">Reddit 账号建设路线图</a></h3>
+<pre><code>Reddit 品牌营销不能急需要先建立账号信誉：
+
+Phase 1: 潜伏期（第 1-2 周）
+注册账号（不要用品牌名，用个人名）
+加入 10-15 个相关 Subreddit
+每天浏览，了解社区文化和规则
+开始 upvote 和评论（真实、有价值的评论）
+目标：积累 100+ karma
+
+Phase 2: 参与期（第 3-6 周）
+开始回答问题（在相关 Subreddit 中）
+分享有价值的信息（不提及自己的产品）
+参与讨论，建立专业形象
+偶尔发帖（分享行业知识/经验）
+目标：积累 500+ karma，被社区认可
+
+Phase 3: 自然推广期（第 7 周+）
+在相关讨论中自然提及产品（有上下文）
+回答"推荐 XX 产品"的帖子
+发布使用体验帖（第一人称，真实）
+做 AMA（如果有足够信誉）
+注意：每 10 条互动中最多 1 条提及产品
+
+关键原则：
+90/10 法则：90% 的内容是纯价值，10% 可以提及产品
+永远不要在帖子中放购买链接（会被删除/ban）
+如果被问到"在哪里买"，可以在回复中提供链接
+诚实披露你与品牌的关系（Reddit 用户尊重透明）
+</code></pre>
+<h3 id="reddit-口碑管理-ai-工作流"><a class="header" href="#reddit-口碑管理-ai-工作流">Reddit 口碑管理 AI 工作流</a></h3>
+<pre><code>Reddit 品牌口碑管理月度工作流：
+
+Week 1: 监控
+搜索品牌名+产品名+品类词
+记录所有提及（正面/中性/负面）
+AI 情感分析：分类和趋势
+
+Week 2: 分析
+AI 分析负面讨论的核心问题
+与产品团队沟通改进方向
+准备回应策略
+
+Week 3: 参与
+回应负面讨论（诚实、提供解决方案）
+在正面讨论中感谢用户
+在相关讨论中提供有价值的信息
+
+Week 4: 内容
+发布 1-2 篇有价值的帖子
+回答社区问题
+更新口碑监控报告
+</code></pre>
+<h3 id="reddit-对-google-seo-的影响"><a class="header" href="#reddit-对-google-seo-的影响">Reddit 对 Google SEO 的影响</a></h3>
+<p>2025-2026 年 Google 大幅提升了 Reddit 内容在搜索结果中的权重：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>搜索类型</th><th>Reddit 出现频率</th><th>对品牌的影响</th></tr>
+</thead>
+<tbody>
+<tr><td>“[产品] review”</td><td>极高（前 5 结果常有 Reddit）</td><td>正面/负面讨论直接影响购买决策</td></tr>
+<tr><td>“[产品] vs [竞品]”</td><td>高</td><td>Reddit 对比讨论影响用户选择</td></tr>
+<tr><td>“best [品类] 2026”</td><td>高</td><td>Reddit 推荐帖影响品类选择</td></tr>
+<tr><td>“[品牌] problems”</td><td>中高</td><td>负面帖子可能排名很高</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>关键洞察</strong>：即使你不在 Reddit 上做营销，用户也在 Reddit 上讨论你的产品。主动管理 Reddit 口碑已经不是可选项，而是必选项。</p>
+</blockquote>
+<h3 id="reddit-对-geoai-搜索优化的影响"><a class="header" href="#reddit-对-geoai-搜索优化的影响">Reddit 对 GEO（AI 搜索优化）的影响</a></h3>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="../a-operators/a9-seo-geo.html">A9 SEO/GEO</a> GEO 优化方法论参考 A9，Reddit 内容是 AI 搜索引擎的重要数据来源。</p>
+</blockquote>
+<p>Reddit 内容不仅影响 Google 搜索，还直接影响 AI 搜索引擎的推荐：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>AI 平台</th><th>Reddit 内容的影响</th></tr>
+</thead>
+<tbody>
+<tr><td>ChatGPT</td><td>训练数据包含 Reddit 讨论，推荐时参考社区共识</td></tr>
+<tr><td>Perplexity</td><td>直接引用 Reddit 帖子作为信息来源</td></tr>
+<tr><td>Google AI Overviews</td><td>Reddit 帖子经常出现在 AI 摘要中</td></tr>
+<tr><td>Reddit AI 购物</td><td>直接从社区讨论提取产品推荐</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>GEO 策略</strong>：确保你的产品在 Reddit 上有正面讨论，这会直接影响 AI 搜索引擎是否推荐你的产品。</p>
+<pre><code>你是一个 Reddit GEO 策略专家。
+
+我的品牌：[名称]
+品类：[X]
+
+请分析 Reddit 对我的 AI 搜索可见度的影响：
+
+1. 当前状态
+- 在 Reddit 上搜索品牌名，有多少讨论？
+- 讨论的情感倾向（正面/中性/负面）？
+- 在 "best [品类]" 类帖子中是否被提及？
+
+2. AI 搜索影响评估
+- ChatGPT 搜索 "best [品类]" 是否提及我的品牌？
+- Perplexity 是否引用了 Reddit 上关于我品牌的讨论？
+- Google AI Overviews 是否包含 Reddit 上的品牌讨论？
+
+3. 优化策略
+- 如何增加 Reddit 上的正面讨论
+- 如何应对负面讨论（不是删除，而是回应）
+- 如何让品牌在 "best X" 类帖子中被自然提及
+
+4. 与 Reddit AI 购物功能的配合
+- 是否应该成为 Reddit DPA 合作伙伴
+- 如何让产品出现在 AI 购物轮播中
+</code></pre>
+<hr>
+<h2 id="7-完成标志"><a class="header" href="#7-完成标志">7. 完成标志</a></h2>
+<ul>
+<li><input disabled="" type="checkbox"> 识别 5-10 个目标 Subreddit</li>
+<li><input disabled="" type="checkbox"> 建立品牌口碑监控流程</li>
+<li><input disabled="" type="checkbox"> 用 AI 生成 Reddit 风格内容</li>
+<li><input disabled="" type="checkbox"> 测试 Reddit Ads（如果预算允许）</li>
+</ul>
+<hr>
+<blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path E 总览</a></p>
+<p><strong>Path E</strong>: <a href="e1-instagram-facebook-ai-guide.html">E1 Instagram</a> · <a href="e2-youtube-ai-guide.html">E2 YouTube</a> · <a href="e3-xiaohongshu-ai-guide.html">E3 小红书</a> · <a href="e4-pinterest-ai-guide.html">E4 Pinterest</a> · <a href="e5-whatsapp-business-ai-guide.html">E5 WhatsApp</a> · <a href="e6-reddit-ai-guide.html">E6 Reddit</a> · <a href="e7-social-media-cross-channel.html">E7 跨渠道</a></p>
+<p><strong>快速跳转</strong>: <a href="../0-foundations/">Path 0 基础</a> · <a href="../a-operators/">Path A 运营</a> · <a href="../b-developers/">Path B 技术</a> · <a href="../c-managers/">Path C 管理</a> · <a href="../d-platforms/">Path D 多平台</a></p>
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../e-social-media/e5-whatsapp-business-ai-guide.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../e-social-media/e7-social-media-cross-channel.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../e-social-media/e5-whatsapp-business-ai-guide.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../e-social-media/e7-social-media-cross-channel.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../mermaid-217b66ef.min.js"></script>
+        <script src="../mermaid-init-d4730691.js"></script>
+
+
+
+    </div>
+    </body>
+</html>

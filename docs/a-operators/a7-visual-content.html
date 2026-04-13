@@ -1,0 +1,648 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>视觉内容 - 跨境电商 AI 实战知识库</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="跨境电商 AI 实操手册 — 56 篇指南，从选品到增长，每个环节都有可直接复制的 Prompt">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom-467616e9.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "ayu";
+            window.path_to_searchindex_js = "../searchindex-656d55b3.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-e97a050e.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">跨境电商 AI 实战知识库</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap/edit/main/src/src/a-operators/a7-visual-content.md" title="Suggest an edit" aria-label="Suggest an edit" rel="edit">
+                            <span class=fa-svg id="git-edit-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M421.7 220.3l-11.3 11.3-22.6 22.6-205 205c-6.6 6.6-14.8 11.5-23.8 14.1L30.8 511c-8.4 2.5-17.5 .2-23.7-6.1S-1.5 489.7 1 481.2L38.7 353.1c2.6-9 7.5-17.2 14.1-23.8l205-205 22.6-22.6 11.3-11.3 33.9 33.9 62.1 62.1 33.9 33.9zM96 353.9l-9.3 9.3c-.9 .9-1.6 2.1-2 3.4l-25.3 86 86-25.3c1.3-.4 2.5-1.1 3.4-2l9.3-9.3H112c-8.8 0-16-7.2-16-16V353.9zM453.3 19.3l39.4 39.4c25 25 25 65.5 0 90.5l-14.5 14.5-22.6 22.6-11.3 11.3-33.9-33.9-62.1-62.1L314.3 67.7l11.3-11.3 22.6-22.6 14.5-14.5c25-25 65.5-25 90.5 0z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="a7-ai-图片与视频生成--ai-visual-content-creation"><a class="header" href="#a7-ai-图片与视频生成--ai-visual-content-creation">A7. AI 图片与视频生成 | AI Visual Content Creation</a></h1>
+<blockquote>
+<p><strong>路径</strong>: Path A: 运营人 · <strong>模块</strong>: A7
+<strong>最后更新</strong>: 2026-03-14
+<strong>难度</strong>: 中级
+<strong>预计时间</strong>: 每天 30 分钟，1-2 周
+<strong>前置模块</strong>: <a href="a2-listing-optimization.html">A2 Listing 与内容创作</a></p>
+</blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path A 总览</a></p>
+<hr>
+<h2 id="章节导航"><a class="header" href="#章节导航">章节导航</a></h2>
+<ol>
+<li><a href="#1-为什么-ai-视觉内容是-2026-年的必修课">为什么 AI 视觉内容是 2026 年的必修课</a></li>
+<li><a href="#2-ai-产品图片生成">AI 产品图片生成</a></li>
+<li><a href="#3-ai-产品视频生成">AI 产品视频生成</a></li>
+<li><a href="#4-各平台图片视频规格">各平台图片/视频规格</a></li>
+<li><a href="#5-ai-视觉内容工作流">AI 视觉内容工作流</a></li>
+<li><a href="#6-prompt-模板">Prompt 模板</a></li>
+<li><a href="#7-工具对比与推荐">工具对比与推荐</a></li>
+<li><a href="#8-常见陷阱">常见陷阱</a></li>
+<li><a href="#9-完成标志">完成标志</a></li>
+</ol>
+<hr>
+<h2 id="本模块你将学会"><a class="header" href="#本模块你将学会">本模块你将学会</a></h2>
+<ul>
+<li>用 AI 生成专业级产品图片（白底图、场景图、生活方式图）</li>
+<li>用 AI 制作产品视频（展示视频、广告视频、社交媒体视频）</li>
+<li>掌握各平台的图片/视频规格要求</li>
+<li>建立一套 AI 视觉内容批量生产工作流</li>
+</ul>
+<blockquote>
+<p><strong>核心理念</strong>：2026 年，AI 产品图片可以降低 80% 的摄影成本，生活方式图片的转化率比纯白底图高 22-30%（<a href="https://apac.entrepreneur.com/news-and-trends/how-smart-entrepreneurs-are-cutting-product-photography/501040">Entrepreneur</a>）。AI 视频生成市场 2025 年达 $71.68 亿，年增长 20%（<a href="https://framepack.cc/articles/ai-video-tools-comparison-framepack">Fortune Business Insights</a>）。不会用 AI 做视觉内容的卖家，正在失去竞争力。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<hr>
+<h2 id="1-为什么-ai-视觉内容是-2026-年的必修课"><a class="header" href="#1-为什么-ai-视觉内容是-2026-年的必修课">1. 为什么 AI 视觉内容是 2026 年的必修课</a></h2>
+<h3 id="11-数据说话"><a class="header" href="#11-数据说话">1.1 数据说话</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>指标</th><th>数据</th><th>来源</th></tr>
+</thead>
+<tbody>
+<tr><td>AI 产品图片成本降低</td><td>80%</td><td>Entrepreneur 2026</td></tr>
+<tr><td>生活方式图 vs 白底图转化率提升</td><td>22-30%</td><td>A/B 测试研究</td></tr>
+<tr><td>AI 视频生成市场规模（2025）</td><td>$71.68 亿</td><td>Fortune Business Insights</td></tr>
+<tr><td>AI 视频市场预计（2032）</td><td>$256 亿</td><td>Fortune Business Insights</td></tr>
+<tr><td>Amazon 产品视频对转化率的影响</td><td>+9.7%</td><td>Amazon 内部数据</td></tr>
+<tr><td>有视频的 Listing 停留时间</td><td>+2x</td><td>行业基准</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="12-ai-视觉内容的三个层次"><a class="header" href="#12-ai-视觉内容的三个层次">1.2 AI 视觉内容的三个层次</a></h3>
+<pre><code>Level 1：AI 辅助编辑（最简单）
+背景移除/替换（PhotoRoom、Remove.bg）
+图片增强（放大、去噪、调色）
+批量裁剪和调整尺寸
+适合：已有产品实拍图，需要快速优化
+
+Level 2：AI 生成场景图（中级）
+产品实拍图 + AI 生成背景/场景
+工具：Midjourney、DALL-E、Ideogram、PhotoRoom AI Staging
+不需要摄影棚，不需要模特
+适合：需要生活方式图但预算有限
+
+Level 3：AI 完全生成（高级）
+从文字描述生成产品图片
+从产品图片生成视频
+AI 虚拟模特（服装品类）
+适合：新品上市前的概念验证、社交媒体内容批量生产
+</code></pre>
+<hr>
+<h2 id="2-ai-产品图片生成"><a class="header" href="#2-ai-产品图片生成">2. AI 产品图片生成</a></h2>
+<h3 id="21-工具全景"><a class="header" href="#21-工具全景">2.1 工具全景</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>工具</th><th>核心功能</th><th>价格</th><th>最适合</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Midjourney</strong></td><td>高质量 AI 图片生成</td><td>$10/月起</td><td>创意场景图、生活方式图</td></tr>
+<tr><td><strong>DALL-E 3</strong>（ChatGPT）</td><td>文字→图片</td><td>$20/月（ChatGPT Plus）</td><td>快速概念验证</td></tr>
+<tr><td><strong>Ideogram</strong></td><td>文字渲染准确</td><td>免费/付费</td><td>包含文字的图片（标签、包装）</td></tr>
+<tr><td><strong>PhotoRoom</strong></td><td>背景移除+AI 场景</td><td>免费/Pro $10/月</td><td>产品白底图→场景图</td></tr>
+<tr><td><strong>Canva AI</strong></td><td>图片编辑+AI 生成</td><td>免费/Pro $13/月</td><td>非设计师的全能工具</td></tr>
+<tr><td><strong>Adobe Firefly</strong></td><td>专业级 AI 编辑</td><td>$5/月起</td><td>已用 Adobe 的团队</td></tr>
+<tr><td><strong>ZMO AI</strong></td><td>电商专用 AI 模特</td><td>付费</td><td>服装品类虚拟模特</td></tr>
+<tr><td><strong>Nano Banana AI</strong></td><td>Amazon 产品图专用</td><td>付费</td><td>Amazon Listing 图片</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="22-amazon-产品图片-ai-生成实操"><a class="header" href="#22-amazon-产品图片-ai-生成实操">2.2 Amazon 产品图片 AI 生成实操</a></h3>
+<p><strong>白底主图（Main Image）</strong></p>
+<p>Amazon 主图要求：纯白背景（RGB 255,255,255），产品占画面 85%+，≥1000x1000px。</p>
+<pre><code>AI 工作流：
+1. 手机拍摄产品照片（任何背景）
+2. PhotoRoom / Remove.bg 一键去背景
+3. 自动替换为纯白背景
+4. 调整产品位置和大小（占画面 85%+）
+5. 导出 2000x2000px（Amazon 推荐）
+
+时间：2 分钟/张（vs 传统摄影 30 分钟/张）
+成本：$0（PhotoRoom 免费版）
+</code></pre>
+<p><strong>场景图/生活方式图（Lifestyle Images）</strong></p>
+<pre><code>方法 1：PhotoRoom AI Staging（最简单）
+1. 上传产品白底图
+2. 选择场景模板（厨房/客厅/户外/办公桌）
+3. AI 自动将产品放入场景
+4. 调整光影和角度
+时间：1 分钟/张
+
+方法 2：Midjourney（最高质量）
+1. 上传产品参考图到 Midjourney
+2. 使用 Prompt 描述想要的场景
+3. 生成 4 张变体，选择最佳
+4. 用 Photoshop/Canva 微调
+时间：5-10 分钟/张
+</code></pre>
+<p><strong>Midjourney 产品场景图 Prompt 模板：</strong></p>
+<pre><code>你是一个 Midjourney Prompt 专家，专注于电商产品图片。
+
+产品：[名称]
+产品外观：[颜色、材质、尺寸描述]
+目标场景：[使用场景描述]
+目标平台：[Amazon/Shopify/Instagram]
+风格：[简约/温馨/专业/户外/现代]
+
+请生成 5 个 Midjourney Prompt，每个包含：
+1. 完整的英文 Prompt（Midjourney 只接受英文）
+2. 推荐的参数（--ar 比例、--v 版本、--s 风格化程度）
+3. 预期效果描述
+
+5 个角度：
+- 角度 1：产品特写（白色/浅色背景，突出细节）
+- 角度 2：使用场景（人物使用产品的生活方式图）
+- 角度 3：环境场景（产品在自然环境中）
+- 角度 4：对比/尺寸参考（产品与常见物品对比）
+- 角度 5：创意/概念图（适合社交媒体的创意构图）
+
+Midjourney Prompt 格式要求：
+- 以主体描述开头
+- 包含光线描述（soft lighting, studio lighting, natural light）
+- 包含风格描述（photorealistic, commercial photography, lifestyle）
+- 包含技术参数（--ar 1:1 --v 6.1 --s 250）
+</code></pre>
+<h3 id="23-信息图卖点图-ai-生成"><a class="header" href="#23-信息图卖点图-ai-生成">2.3 信息图/卖点图 AI 生成</a></h3>
+<p>Amazon 的辅图中，信息图（Infographic）是转化率最高的图片类型之一：</p>
+<pre><code>AI 信息图工作流：
+1. 用 ChatGPT/Claude 生成卖点文案（每个卖点 ≤8 个词）
+2. 用 Canva AI 选择信息图模板
+3. 放入产品图片 + 卖点文案
+4. AI 自动调整布局和配色
+5. 导出多个尺寸（Amazon/Shopify/社交媒体）
+
+Canva AI Prompt：
+"Create a product infographic for [产品名], highlighting these 5 features:
+1. [卖点 1]
+2. [卖点 2]
+3. [卖点 3]
+4. [卖点 4]
+5. [卖点 5]
+Style: clean, modern, white background with accent color [品牌色]"
+</code></pre>
+<hr>
+<h2 id="3-ai-产品视频生成"><a class="header" href="#3-ai-产品视频生成">3. AI 产品视频生成</a></h2>
+<h3 id="31-视频工具全景"><a class="header" href="#31-视频工具全景">3.1 视频工具全景</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>工具</th><th>核心功能</th><th>价格</th><th>最适合</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>CapCut</strong></td><td>视频剪辑+AI 功能</td><td>免费/Pro $8/月</td><td>TikTok/Reels 短视频</td></tr>
+<tr><td><strong>Runway Gen-3</strong></td><td>文字/图片→视频</td><td>$12/月起</td><td>高质量产品展示视频</td></tr>
+<tr><td><strong>Pika</strong></td><td>图片→动态视频</td><td>免费/Pro $8/月</td><td>产品动态展示</td></tr>
+<tr><td><strong>Magic Hour</strong></td><td>产品图→广告视频</td><td>付费</td><td>广告素材批量生成</td></tr>
+<tr><td><strong>Canva Video</strong></td><td>模板化视频制作</td><td>免费/Pro $13/月</td><td>非专业人士</td></tr>
+<tr><td><strong>InVideo AI</strong></td><td>AI 自动生成视频</td><td>$25/月起</td><td>完整的产品视频</td></tr>
+<tr><td><strong>HeyGen</strong></td><td>AI 虚拟主播</td><td>$24/月起</td><td>产品介绍/教程视频</td></tr>
+<tr><td><strong>Synthesia</strong></td><td>AI 虚拟人视频</td><td>$22/月起</td><td>多语言产品介绍</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="32-amazon-产品视频-ai-制作"><a class="header" href="#32-amazon-产品视频-ai-制作">3.2 Amazon 产品视频 AI 制作</a></h3>
+<p>Amazon 允许在 Listing 中上传产品视频，有视频的 Listing 转化率平均提升 9.7%：</p>
+<pre><code>Amazon 产品视频类型：
+
+1. 产品展示视频（30-60 秒）
+多角度展示产品外观
+核心功能演示
+尺寸对比
+AI 工具：Runway（图片→视频）+ CapCut（剪辑）
+
+2. 使用教程视频（60-120 秒）
+开箱过程
+安装/设置步骤
+使用演示
+AI 工具：HeyGen（AI 虚拟主播讲解）+ CapCut
+
+3. 对比视频（30-60 秒）
+与竞品的视觉对比
+Before/After 效果
+AI 工具：CapCut（分屏对比模板）
+
+4. 品牌故事视频（60-90 秒）
+品牌理念
+制造过程
+用户故事
+AI 工具：InVideo AI（从文字生成完整视频）
+</code></pre>
+<h3 id="33-社交媒体视频-ai-批量生产"><a class="header" href="#33-社交媒体视频-ai-批量生产">3.3 社交媒体视频 AI 批量生产</a></h3>
+<pre><code>从 1 个产品素材生成 10+ 个视频的工作流：
+
+Step 1: 素材准备
+产品白底图 5 张
+产品使用场景图 3 张（AI 生成）
+产品实拍视频片段 30 秒（手机拍摄即可）
+产品卖点文案（ChatGPT 生成）
+
+Step 2: AI 生成视频变体
+Runway：产品图→3 秒动态展示 × 5 个角度
+CapCut：模板化剪辑 × 3 种风格（产品展示/教程/对比）
+Pika：产品图→动态背景 × 3 种场景
+总计：11 个视频素材
+
+Step 3: 平台适配
+Amazon 产品视频：横版 16:9，30-60 秒
+TikTok/Reels：竖版 9:16，15-30 秒
+YouTube Shorts：竖版 9:16，30-60 秒
+Pinterest：竖版 2:3 或 9:16
+总计：每个素材 × 4 个平台 = 44 个视频
+
+Step 4: 文案+字幕
+ChatGPT 生成各平台文案
+CapCut AI 自动生成字幕
+批量导出
+</code></pre>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="../e-social-media/e1-instagram-facebook-ai-guide.html">E1 Instagram Reels</a> Reels 视频创作方法论 · <a href="../e-social-media/e2-youtube-ai-guide.html">E2 YouTube</a> YouTube 视频脚本和缩略图 · <a href="../d-platforms/tiktok-shop-ai-guide.html">D2 TikTok Shop</a> TikTok 短视频批量生产</p>
+</blockquote>
+<hr>
+<h2 id="4-各平台图片视频规格"><a class="header" href="#4-各平台图片视频规格">4. 各平台图片/视频规格</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>平台</th><th>图片尺寸</th><th>视频尺寸</th><th>视频时长</th><th>特殊要求</th></tr>
+</thead>
+<tbody>
+<tr><td>Amazon 主图</td><td>2000x2000（1:1）</td><td>16:9</td><td>30-120 秒</td><td>白底，产品占 85%+</td></tr>
+<tr><td>Amazon 辅图</td><td>2000x2000（1:1）</td><td></td><td></td><td>场景图/信息图/对比图</td></tr>
+<tr><td>Shopify</td><td>自定义</td><td>自定义</td><td>自定义</td><td>建议 2048x2048</td></tr>
+<tr><td>Instagram Feed</td><td>1080x1080（1:1）</td><td>9:16</td><td>15-90 秒</td><td>精致美学风格</td></tr>
+<tr><td>Instagram Stories</td><td>1080x1920（9:16）</td><td>9:16</td><td>≤60 秒</td><td>全屏竖版</td></tr>
+<tr><td>TikTok</td><td></td><td>1080x1920（9:16）</td><td>15-60 秒</td><td>竖版，前 3 秒是关键</td></tr>
+<tr><td>YouTube 缩略图</td><td>1280x720（16:9）</td><td>16:9</td><td>不限</td><td>高对比度，大文字</td></tr>
+<tr><td>YouTube Shorts</td><td></td><td>1080x1920（9:16）</td><td>≤60 秒</td><td>竖版</td></tr>
+<tr><td>Pinterest</td><td>1000x1500（2:3）</td><td>9:16</td><td>15-60 秒</td><td>竖版，文字叠加</td></tr>
+<tr><td>Walmart</td><td>2000x2000（1:1）</td><td>16:9</td><td>30-120 秒</td><td>白底主图</td></tr>
+<tr><td>eBay</td><td>1600x1600（1:1）</td><td></td><td></td><td>白底推荐</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="5-ai-视觉内容工作流"><a class="header" href="#5-ai-视觉内容工作流">5. AI 视觉内容工作流</a></h2>
+<h3 id="51-新品上市视觉内容-sop"><a class="header" href="#51-新品上市视觉内容-sop">5.1 新品上市视觉内容 SOP</a></h3>
+<pre><code>Day 1: 产品实拍（手机即可）
+白底图 5 张（不同角度）
+手持/使用图 3 张
+包装/配件图 2 张
+30 秒使用视频片段
+
+Day 2: AI 图片生成
+PhotoRoom：白底图优化（去背景+调整）
+Midjourney：生活方式场景图 5 张
+Canva AI：信息图/卖点图 3 张
+尺寸对比图 1 张
+总计：~15 张图片
+
+Day 3: AI 视频生成
+Runway：产品展示视频 1 个（30 秒）
+CapCut：TikTok/Reels 短视频 3 个
+HeyGen：产品介绍视频 1 个（60 秒，AI 虚拟主播）
+总计：~5 个视频
+
+Day 4: 平台适配+上传
+Amazon：主图+6 张辅图+1 个视频
+Shopify：产品页图片+视频
+社交媒体：各平台尺寸适配
+广告素材：Meta Ads/Google Ads 图片+视频
+
+传统方式：2-3 周 + $2000-5000
+AI 方式：4 天 + $50-100（工具订阅费）
+</code></pre>
+<hr>
+<h2 id="6-prompt-模板"><a class="header" href="#6-prompt-模板">6. Prompt 模板</a></h2>
+<h3 id="61-midjourney-电商产品图-prompt-库"><a class="header" href="#61-midjourney-电商产品图-prompt-库">6.1 Midjourney 电商产品图 Prompt 库</a></h3>
+<p><strong>白底产品图：</strong></p>
+<pre><code>[产品描述], product photography, pure white background, studio lighting,
+high resolution, commercial photography, centered composition,
+sharp focus, no shadows --ar 1:1 --v 6.1 --s 100
+</code></pre>
+<p><strong>生活方式场景图：</strong></p>
+<pre><code>[产品描述] in use, [场景描述], lifestyle photography, natural lighting,
+warm tones, shallow depth of field, editorial style,
+photorealistic --ar 1:1 --v 6.1 --s 250
+</code></pre>
+<p><strong>信息图背景：</strong></p>
+<pre><code>clean minimal background for product infographic, [品牌色] accent color,
+geometric shapes, modern design, negative space,
+professional layout --ar 1:1 --v 6.1 --s 150
+</code></pre>
+<h3 id="62-ai-视频脚本生成"><a class="header" href="#62-ai-视频脚本生成">6.2 AI 视频脚本生成</a></h3>
+<pre><code>你是一个电商产品视频脚本专家。
+
+产品：[名称]
+视频类型：[产品展示/使用教程/对比/品牌故事]
+目标平台：[Amazon/TikTok/Instagram/YouTube]
+视频时长：[30/60/120 秒]
+
+请生成视频脚本，包含：
+1. 每个镜头的画面描述（用于 AI 视频生成工具）
+2. 字幕/旁白文字
+3. 时长标注
+4. 推荐的 AI 工具（每个镜头用什么工具生成）
+5. 背景音乐风格建议
+</code></pre>
+<hr>
+<h2 id="7-工具对比与推荐"><a class="header" href="#7-工具对比与推荐">7. 工具对比与推荐</a></h2>
+<h3 id="71-按预算推荐"><a class="header" href="#71-按预算推荐">7.1 按预算推荐</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>预算</th><th>图片工具</th><th>视频工具</th><th>月成本</th></tr>
+</thead>
+<tbody>
+<tr><td>免费</td><td>PhotoRoom 免费版 + Canva 免费版</td><td>CapCut 免费版</td><td>$0</td></tr>
+<tr><td>$20-50/月</td><td>Midjourney + PhotoRoom</td><td>CapCut Pro + Pika</td><td>$26-36</td></tr>
+<tr><td>$50-100/月</td><td>Midjourney + Adobe Firefly</td><td>Runway + CapCut + HeyGen</td><td>$54-80</td></tr>
+<tr><td>$100+/月</td><td>全套工具</td><td>全套工具</td><td>$100+</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="72-按品类推荐"><a class="header" href="#72-按品类推荐">7.2 按品类推荐</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>品类</th><th>最需要的图片类型</th><th>推荐工具</th></tr>
+</thead>
+<tbody>
+<tr><td>电子产品</td><td>白底图+功能信息图+尺寸对比</td><td>PhotoRoom + Canva</td></tr>
+<tr><td>家居</td><td>场景图（房间内效果）</td><td>Midjourney + PhotoRoom AI Staging</td></tr>
+<tr><td>服装</td><td>虚拟模特图</td><td>ZMO AI + Lalaland.ai</td></tr>
+<tr><td>美妆</td><td>使用效果图+Before/After</td><td>Midjourney + Canva</td></tr>
+<tr><td>食品</td><td>美食摄影风格</td><td>Midjourney（美食 Prompt）</td></tr>
+<tr><td>户外运动</td><td>户外场景图</td><td>Midjourney（户外场景）</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="8-常见陷阱"><a class="header" href="#8-常见陷阱">8. 常见陷阱</a></h2>
+<h3 id="陷阱-1ai-生成的图片直接用作-amazon-主图"><a class="header" href="#陷阱-1ai-生成的图片直接用作-amazon-主图">陷阱 1：AI 生成的图片直接用作 Amazon 主图</a></h3>
+<p>Amazon 主图要求是产品的真实照片。AI 生成的场景图可以用作辅图，但主图建议用实拍+AI 去背景。</p>
+<h3 id="陷阱-2忽略各平台的图片政策"><a class="header" href="#陷阱-2忽略各平台的图片政策">陷阱 2：忽略各平台的图片政策</a></h3>
+<p>Amazon 禁止在主图上添加文字、logo、水印。AI 生成的信息图只能用作辅图。</p>
+<h3 id="陷阱-3ai-生成的产品细节不准确"><a class="header" href="#陷阱-3ai-生成的产品细节不准确">陷阱 3：AI 生成的产品细节不准确</a></h3>
+<p>AI 可能改变产品的颜色、形状、按钮位置等细节。生成后必须人工检查产品细节的准确性。</p>
+<h3 id="陷阱-4过度依赖-ai-生成忽略实拍"><a class="header" href="#陷阱-4过度依赖-ai-生成忽略实拍">陷阱 4：过度依赖 AI 生成，忽略实拍</a></h3>
+<p>AI 场景图很好，但买家也需要看到真实的产品照片。建议比例：实拍 50% + AI 生成 50%。</p>
+<h3 id="陷阱-5版权风险"><a class="header" href="#陷阱-5版权风险">陷阱 5：版权风险</a></h3>
+<p>Midjourney 等工具生成的图片版权归属仍有争议。商业使用建议选择明确授予商业许可的工具（Midjourney 付费版、Adobe Firefly、Canva Pro）。</p>
+<hr>
+<h2 id="9-完成标志"><a class="header" href="#9-完成标志">9. 完成标志</a></h2>
+<ul>
+<li><input disabled="" type="checkbox"> 用 AI 为一个产品生成完整的图片套装（白底图+场景图+信息图）</li>
+<li><input disabled="" type="checkbox"> 用 AI 制作至少 1 个产品视频（30-60 秒）</li>
+<li><input disabled="" type="checkbox"> 建立 Midjourney 电商 Prompt 模板库</li>
+<li><input disabled="" type="checkbox"> 掌握至少 2 个 AI 图片工具和 1 个 AI 视频工具</li>
+<li><input disabled="" type="checkbox"> 完成一次 AI 图片 vs 传统摄影的成本对比</li>
+</ul>
+<hr>
+<blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path A 总览</a></p>
+<p><strong>Path A</strong>: <a href="a1-product-research.html">A1 选品</a> · <a href="a2-listing-optimization.html">A2 Listing</a> · <a href="a3-advertising.html">A3 广告</a> · <a href="a4-customer-service.html">A4 客服</a> · <a href="a5-inventory.html">A5 库存</a> · <a href="a6-compliance.html">A6 合规</a> · <a href="a7-visual-content.html">A7 视觉内容</a></p>
+<p><strong>快速跳转</strong>: <a href="../0-foundations/">Path 0 基础</a> · <a href="../b-developers/">Path B 技术</a> · <a href="../c-managers/">Path C 管理</a> · <a href="../d-platforms/">Path D 多平台</a> · <a href="../e-social-media/">Path E 社交媒体</a></p>
+</blockquote>
+<!-- nav:prev-next -->
+<hr>
+<p><a href="a6-compliance.html">&lt; A6 合规</a> | <a href="README.html">Path 总览</a> | <a href="a8-pricing-strategy.html">A8 定价 &gt;</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../a-operators/a6-compliance.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../a-operators/a8-pricing-strategy.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../a-operators/a6-compliance.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../a-operators/a8-pricing-strategy.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../mermaid-217b66ef.min.js"></script>
+        <script src="../mermaid-init-d4730691.js"></script>
+
+
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,1063 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Review NLP 系统 - 跨境电商 AI 实战知识库</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="跨境电商 AI 实操手册 — 56 篇指南，从选品到增长，每个环节都有可直接复制的 Prompt">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom-467616e9.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "ayu";
+            window.path_to_searchindex_js = "../searchindex-656d55b3.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-e97a050e.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">跨境电商 AI 实战知识库</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap/edit/main/src/src/b-developers/b7-review-nlp-system.md" title="Suggest an edit" aria-label="Suggest an edit" rel="edit">
+                            <span class=fa-svg id="git-edit-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M421.7 220.3l-11.3 11.3-22.6 22.6-205 205c-6.6 6.6-14.8 11.5-23.8 14.1L30.8 511c-8.4 2.5-17.5 .2-23.7-6.1S-1.5 489.7 1 481.2L38.7 353.1c2.6-9 7.5-17.2 14.1-23.8l205-205 22.6-22.6 11.3-11.3 33.9 33.9 62.1 62.1 33.9 33.9zM96 353.9l-9.3 9.3c-.9 .9-1.6 2.1-2 3.4l-25.3 86 86-25.3c1.3-.4 2.5-1.1 3.4-2l9.3-9.3H112c-8.8 0-16-7.2-16-16V353.9zM453.3 19.3l39.4 39.4c25 25 25 65.5 0 90.5l-14.5 14.5-22.6 22.6-11.3 11.3-33.9-33.9-62.1-62.1L314.3 67.7l11.3-11.3 22.6-22.6 14.5-14.5c25-25 65.5-25 90.5 0z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="b7-review-智能分析系统nlp--主题建模--情感分析"><a class="header" href="#b7-review-智能分析系统nlp--主题建模--情感分析">B7. Review 智能分析系统：NLP + 主题建模 + 情感分析</a></h1>
+<blockquote>
+<p><strong>路径</strong>: Path B: 技术人 · <strong>模块</strong>: B7
+<strong>最后更新</strong>: 2026-03-15
+<strong>难度</strong>: 中级
+<strong>预计时间</strong>: 每天 1 小时，2 周
+<strong>前置模块</strong>: <a href="b1-data-pipeline.html">B1 数据采集与处理</a></p>
+</blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path B 总览</a></p>
+<hr>
+<h2 id="章节导航"><a class="header" href="#章节导航">章节导航</a></h2>
+<ol>
+<li><a href="#1-为什么需要-review-nlp-系统">为什么需要 Review NLP 系统</a> · 2. <a href="#2-技术栈选择">技术栈选择</a> · 3. <a href="#3-数据采集与预处理">数据采集与预处理</a> · 4. <a href="#4-情感分析实战">情感分析实战</a> · 5. <a href="#5-bertopic-主题建模">BERTopic 主题建模</a> · 6. <a href="#6-llm-增强分析">LLM 增强分析</a> · 7. <a href="#7-构建完整-pipeline">构建完整 Pipeline</a> · 8. <a href="#8-完成标志">完成标志</a></li>
+</ol>
+<hr>
+<h2 id="本模块你将构建"><a class="header" href="#本模块你将构建">本模块你将构建</a></h2>
+<ul>
+<li>一个 Amazon Review 自动采集和清洗 Pipeline</li>
+<li>一个基于 BERT 的情感分析模型（正面/负面/中性）</li>
+<li>一个 BERTopic 主题建模系统（自动发现 Review 中的核心话题）</li>
+<li>一个 LLM 增强的 Review 洞察生成器（从数据到可执行建议）</li>
+<li>一个完整的 Review 分析 Dashboard</li>
+</ul>
+<blockquote>
+<p><strong>核心理念</strong>：Review 是电商最有价值的非结构化数据。传统方法是人工阅读，AI 方法是自动提取主题、情感和可执行洞察。一个好的 Review NLP 系统可以指导选品、改进产品、优化 Listing、预防差评。</p>
+</blockquote>
+<hr>
+<h2 id="1-为什么需要-review-nlp-系统"><a class="header" href="#1-为什么需要-review-nlp-系统">1. 为什么需要 Review NLP 系统</a></h2>
+<h3 id="11-review-数据的价值"><a class="header" href="#11-review-数据的价值">1.1 Review 数据的价值</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>应用场景</th><th>输入</th><th>输出</th><th>业务价值</th></tr>
+</thead>
+<tbody>
+<tr><td>选品验证</td><td>竞品 Review</td><td>用户痛点排名</td><td>找到差异化方向</td></tr>
+<tr><td>产品改进</td><td>自己的差评</td><td>问题分类+频率</td><td>优先修复最高频问题</td></tr>
+<tr><td>Listing 优化</td><td>好评关键词</td><td>用户最看重的卖点</td><td>标题/Bullet 优化</td></tr>
+<tr><td>广告优化</td><td>Review 高频词</td><td>用户搜索意图</td><td>广告关键词扩展</td></tr>
+<tr><td>客服预防</td><td>差评趋势</td><td>早期预警</td><td>在差评爆发前介入</td></tr>
+<tr><td>竞品监控</td><td>竞品 Review 变化</td><td>竞品问题/优势变化</td><td>竞争策略调整</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="12-人工-vs-ai-分析对比"><a class="header" href="#12-人工-vs-ai-分析对比">1.2 人工 vs AI 分析对比</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>维度</th><th>人工阅读</th><th>AI NLP 分析</th></tr>
+</thead>
+<tbody>
+<tr><td>速度</td><td>100 条/小时</td><td>10,000 条/分钟</td></tr>
+<tr><td>一致性</td><td>主观判断，不同人结果不同</td><td>客观一致</td></tr>
+<tr><td>覆盖度</td><td>通常只看最近/最差的</td><td>全量分析</td></tr>
+<tr><td>深度</td><td>表面理解</td><td>主题聚类+情感量化+趋势分析</td></tr>
+<tr><td>成本</td><td>高（人力时间）</td><td>低（一次开发，持续使用）</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="2-技术栈选择"><a class="header" href="#2-技术栈选择">2. 技术栈选择</a></h2>
+<h3 id="21-推荐技术栈"><a class="header" href="#21-推荐技术栈">2.1 推荐技术栈</a></h3>
+<pre><code>Review NLP 系统技术栈：
+
+数据层：
+pandas 数据处理
+SP-API / 爬虫 Review 采集
+SQLite / PostgreSQL 数据存储
+
+NLP 层：
+transformers (HuggingFace) BERT 模型
+BERTopic 主题建模
+sentence-transformers 文本向量化
+TextBlob / VADER 快速情感分析（轻量）
+spaCy 文本预处理
+
+LLM 增强层：
+OpenAI API / Claude API 深度分析
+本地 LLM (Ollama) 隐私敏感场景
+
+可视化层：
+Streamlit 交互式 Dashboard
+matplotlib / plotly 图表
+wordcloud 词云
+</code></pre>
+<h3 id="22-依赖安装"><a class="header" href="#22-依赖安装">2.2 依赖安装</a></h3>
+<pre><code class="language-bash"># 核心依赖
+pip3 install pandas numpy
+pip3 install transformers torch sentence-transformers
+pip3 install bertopic
+pip3 install textblob vaderSentiment
+pip3 install spacy
+python3 -m spacy download en_core_web_sm
+
+# 可视化
+pip3 install streamlit plotly wordcloud matplotlib
+
+# LLM（可选）
+pip3 install openai anthropic
+</code></pre>
+<hr>
+<h2 id="3-数据采集与预处理"><a class="header" href="#3-数据采集与预处理">3. 数据采集与预处理</a></h2>
+<h3 id="31-review-数据获取方式"><a class="header" href="#31-review-数据获取方式">3.1 Review 数据获取方式</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>方式</th><th>优点</th><th>缺点</th><th>适合</th></tr>
+</thead>
+<tbody>
+<tr><td>Amazon SP-API</td><td>官方 API，稳定合规</td><td>只能获取自己产品的 Review</td><td>自有产品分析</td></tr>
+<tr><td>网页抓取</td><td>可获取竞品 Review</td><td>需要处理反爬、合规风险</td><td>竞品分析</td></tr>
+<tr><td>第三方工具导出</td><td>简单快速</td><td>数据格式不统一</td><td>快速分析</td></tr>
+<tr><td>公开数据集</td><td>免费、大量</td><td>数据可能过时</td><td>学习和测试</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>真实资源</strong>：多个教程展示了如何用 Python 抓取 Amazon Review 数据，包括使用 BeautifulSoup、Scrapy 和专业 API 服务（<a href="https://www.scrapingbee.com/blog/how-to-scrape-amazon-reviews/">ScrapingBee</a>，<a href="https://oxylabs.io/blog/how-to-scrape-amazon-reviews">Oxylabs</a>）。抓取的数据通常包含评分、标题、正文、日期、验证购买状态和有用投票数。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<blockquote>
+<p><strong>真实案例：跨产品 Review 分析</strong>
+学术研究展示了使用上下文主题建模（Contextual Topic Modeling）和关联规则挖掘对耳机品类的 Amazon Review 进行跨产品分析，发现不同产品之间共享的用户关注点和差异化特征（<a href="https://www.mdpi.com/0718-1876/19/4/170">MDPI</a>）。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<h3 id="32-review-数据结构"><a class="header" href="#32-review-数据结构">3.2 Review 数据结构</a></h3>
+<pre><code class="language-python">import pandas as pd
+
+# Review 数据标准格式
+review_schema = {
+"asin": str, # 产品 ASIN
+"rating": int, # 1-5 星
+"title": str, # Review 标题
+"body": str, # Review 正文
+"date": str, # 日期
+"verified": bool, # 是否验证购买
+"helpful_votes": int, # 有用投票数
+"marketplace": str # 市场（US/UK/DE/JP）
+}
+</code></pre>
+<h3 id="32-数据清洗-pipeline"><a class="header" href="#32-数据清洗-pipeline">3.2 数据清洗 Pipeline</a></h3>
+<pre><code class="language-python">import re
+import spacy
+
+nlp = spacy.load("en_core_web_sm")
+
+def clean_review(text: str) -&gt; str:
+"""清洗 Review 文本"""
+if not text or not isinstance(text, str):
+return ""
+
+# 移除 HTML 标签
+text = re.sub(r'&lt;[^&gt;]+&gt;', '', text)
+# 移除 URL
+text = re.sub(r'http\S+', '', text)
+# 移除多余空白
+text = re.sub(r'\s+', ' ', text).strip()
+
+return text
+
+def preprocess_reviews(df: pd.DataFrame) -&gt; pd.DataFrame:
+"""预处理 Review DataFrame"""
+# 清洗文本
+df['clean_body'] = df['body'].apply(clean_review)
+df['clean_title'] = df['title'].apply(clean_review)
+
+# 合并标题和正文
+df['full_text'] = df['clean_title'] + '. ' + df['clean_body']
+
+# 过滤空文本
+df = df[df['full_text'].str.len() &gt; 10]
+
+# 标记情感标签（基于星级的粗略分类）
+df['sentiment_label'] = df['rating'].map({
+1: 'negative', 2: 'negative',
+3: 'neutral',
+4: 'positive', 5: 'positive'
+})
+
+return df
+</code></pre>
+<hr>
+<h2 id="4-情感分析实战"><a class="header" href="#4-情感分析实战">4. 情感分析实战</a></h2>
+<h3 id="41-方法对比"><a class="header" href="#41-方法对比">4.1 方法对比</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>方法</th><th>准确度</th><th>速度</th><th>成本</th><th>适合</th></tr>
+</thead>
+<tbody>
+<tr><td>VADER</td><td>中等（70-75%）</td><td>极快</td><td>免费</td><td>快速筛选、大量数据</td></tr>
+<tr><td>TextBlob</td><td>中等（70-75%）</td><td>极快</td><td>免费</td><td>简单场景</td></tr>
+<tr><td>DistilBERT</td><td>高（85-90%）</td><td>中等</td><td>免费（本地）</td><td>精确分析</td></tr>
+<tr><td>GPT/Claude API</td><td>最高（90%+）</td><td>慢</td><td>付费</td><td>小量高价值分析</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="42-vader-快速情感分析"><a class="header" href="#42-vader-快速情感分析">4.2 VADER 快速情感分析</a></h3>
+<pre><code class="language-python">from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+
+analyzer = SentimentIntensityAnalyzer()
+
+def vader_sentiment(text: str) -&gt; dict:
+"""VADER 情感分析（适合英文 Review）"""
+scores = analyzer.polarity_scores(text)
+
+# 判断情感
+if scores['compound'] &gt;= 0.05:
+label = 'positive'
+elif scores['compound'] &lt;= -0.05:
+label = 'negative'
+else:
+label = 'neutral'
+
+return {
+'label': label,
+'score': scores['compound'],
+'positive': scores['pos'],
+'negative': scores['neg'],
+'neutral': scores['neu']
+}
+
+# 批量分析
+df['vader'] = df['full_text'].apply(vader_sentiment)
+df['vader_label'] = df['vader'].apply(lambda x: x['label'])
+df['vader_score'] = df['vader'].apply(lambda x: x['score'])
+</code></pre>
+<h3 id="43-distilbert-深度情感分析"><a class="header" href="#43-distilbert-深度情感分析">4.3 DistilBERT 深度情感分析</a></h3>
+<pre><code class="language-python">from transformers import pipeline
+
+# 加载预训练情感分析模型
+sentiment_pipeline = pipeline(
+"sentiment-analysis",
+model="distilbert-base-uncased-finetuned-sst-2-english",
+device=0 # GPU，如果没有 GPU 用 -1
+)
+
+def bert_sentiment(texts: list, batch_size: int = 32) -&gt; list:
+"""批量 BERT 情感分析"""
+results = sentiment_pipeline(texts, batch_size=batch_size, truncation=True)
+return [
+{
+'label': r['label'].lower(),
+'score': r['score'] if r['label'] == 'POSITIVE' else -r['score']
+}
+for r in results
+]
+
+# 批量处理（比逐条快 10x）
+texts = df['full_text'].tolist()
+sentiments = bert_sentiment(texts)
+df['bert_label'] = [s['label'] for s in sentiments]
+df['bert_score'] = [s['score'] for s in sentiments]
+</code></pre>
+<blockquote>
+<p><strong>真实案例</strong>：学术研究表明，基于 BERT 的情感分析在 Amazon Review 数据集上可以达到 90%+ 的准确率，显著优于传统机器学习方法（<a href="https://www.mdpi.com/1999-5903/18/3/138">MDPI</a>）。BERTopic 结合 Amazon Review 数据可以自动发现产品的核心话题和用户关注点（<a href="https://www.amalytix.com/en/blog/analyze-reviews-bertopic/">Amalytix</a>）。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<hr>
+<h2 id="5-bertopic-主题建模"><a class="header" href="#5-bertopic-主题建模">5. BERTopic 主题建模</a></h2>
+<h3 id="51-bertopic-核心概念"><a class="header" href="#51-bertopic-核心概念">5.1 BERTopic 核心概念</a></h3>
+<p>BERTopic 使用 BERT 嵌入 + UMAP 降维 + HDBSCAN 聚类来自动发现文本中的主题。</p>
+<pre><code class="language-python">from bertopic import BERTopic
+from sentence_transformers import SentenceTransformer
+
+# 使用轻量级嵌入模型
+embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
+
+# 创建 BERTopic 模型
+topic_model = BERTopic(
+embedding_model=embedding_model,
+nr_topics="auto", # 自动确定主题数
+min_topic_size=10, # 最小主题大小
+language="english",
+verbose=True
+)
+
+# 训练模型
+topics, probs = topic_model.fit_transform(df['full_text'].tolist())
+
+# 查看主题
+topic_info = topic_model.get_topic_info()
+print(topic_info.head(20))
+
+# 查看每个主题的关键词
+for topic_id in range(min(10, len(topic_info))):
+print(f"\nTopic {topic_id}:")
+print(topic_model.get_topic(topic_id))
+</code></pre>
+<h3 id="52-差评专项主题分析"><a class="header" href="#52-差评专项主题分析">5.2 差评专项主题分析</a></h3>
+<pre><code class="language-python"># 只分析差评（1-2 星）的主题
+negative_reviews = df[df['rating'] &lt;= 2]['full_text'].tolist()
+
+negative_topic_model = BERTopic(
+embedding_model=embedding_model,
+nr_topics=10, # 限制主题数
+min_topic_size=5,
+language="english"
+)
+
+neg_topics, neg_probs = negative_topic_model.fit_transform(negative_reviews)
+
+# 差评主题排名（按频率）
+neg_topic_info = negative_topic_model.get_topic_info()
+print("=== 差评核心问题 TOP 10 ===")
+for _, row in neg_topic_info.head(10).iterrows():
+print(f"Topic {row['Topic']}: {row['Name']} ({row['Count']} reviews)")
+</code></pre>
+<h3 id="53-主题趋势分析"><a class="header" href="#53-主题趋势分析">5.3 主题趋势分析</a></h3>
+<pre><code class="language-python"># 分析主题随时间的变化
+topics_over_time = topic_model.topics_over_time(
+df['full_text'].tolist(),
+df['date'].tolist()
+)
+
+# 可视化
+fig = topic_model.visualize_topics_over_time(topics_over_time)
+fig.show()
+
+# 发现：某个质量问题的差评是否在增加？
+# 这可以作为产品改进的早期预警信号
+</code></pre>
+<h3 id="54-高级-bertopic-技巧"><a class="header" href="#54-高级-bertopic-技巧">5.4 高级 BERTopic 技巧</a></h3>
+<blockquote>
+<p><strong>真实案例：Amalytix 的 Amazon Review BERTopic 分析</strong>
+Amalytix 展示了如何用 BERTopic 分析 Amazon Review，自动发现产品的核心话题。BERTopic 使用基于 BERT 的方法和修改后的 TF-IDF 分析，能够从非结构化的 Review 文本中提取有意义的主题聚类（<a href="https://www.amalytix.com/en/blog/analyze-reviews-bertopic/">Amalytix</a>）。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<pre><code class="language-python"># 高级技巧 1：按品类分组的主题分析
+def analyze_by_category(df: pd.DataFrame, categories: list):
+"""按品类分别做主题分析，发现品类特有的问题"""
+results = {}
+for cat in categories:
+cat_df = df[df['category'] == cat]
+if len(cat_df) &lt; 50:
+continue
+
+model = BERTopic(
+embedding_model=embedding_model,
+nr_topics=8,
+min_topic_size=5
+)
+topics, _ = model.fit_transform(cat_df['full_text'].tolist())
+results[cat] = {
+'model': model,
+'topics': model.get_topic_info(),
+'negative_topics': cat_df[cat_df['rating'] &lt;= 2].groupby(
+pd.Series(topics)[cat_df['rating'] &lt;= 2].values
+).size().sort_values(ascending=False)
+}
+return results
+
+# 高级技巧 2：多语言 Review 分析
+from sentence_transformers import SentenceTransformer
+
+# 使用多语言嵌入模型（支持 100+ 语言）
+multilingual_model = SentenceTransformer("paraphrase-multilingual-MiniLM-L12-v2")
+
+multilingual_topic_model = BERTopic(
+embedding_model=multilingual_model,
+language="multilingual"
+)
+
+# 可以同时分析英语、德语、日语的 Review
+all_reviews = pd.concat([us_reviews, de_reviews, jp_reviews])
+topics, _ = multilingual_topic_model.fit_transform(all_reviews['full_text'].tolist())
+
+# 高级技巧 3：主题标签自动生成（用 LLM）
+def auto_label_topics(topic_model, top_n_topics=20):
+"""用 LLM 为 BERTopic 发现的主题生成人类可读的标签"""
+labels = {}
+for topic_id in range(top_n_topics):
+keywords = topic_model.get_topic(topic_id)
+if not keywords:
+continue
+
+keyword_str = ", ".join([w for w, _ in keywords[:10]])
+
+prompt = f"""
+以下是从产品 Review 中提取的一个主题的关键词：
+{keyword_str}
+
+请用一个简短的中文标签（3-6 个字）描述这个主题。
+只返回标签，不要解释。
+"""
+label = llm_call(prompt).strip()
+labels[topic_id] = label
+
+return labels
+
+# 高级技巧 4：Review 质量评分
+def score_review_quality(df: pd.DataFrame) -&gt; pd.DataFrame:
+"""评估 Review 的信息质量（用于筛选高价值 Review）"""
+df['word_count'] = df['full_text'].str.split().str.len()
+df['has_specific_detail'] = df['full_text'].str.contains(
+r'\d+\s*(day|week|month|hour|minute|inch|cm|kg|lb|oz)',
+case=False, regex=True
+)
+df['has_comparison'] = df['full_text'].str.contains(
+r'(better than|worse than|compared to|vs|versus|unlike)',
+case=False, regex=True
+)
+df['quality_score'] = (
+(df['word_count'] &gt; 30).astype(int) * 2 +
+df['has_specific_detail'].astype(int) * 3 +
+df['has_comparison'].astype(int) * 3 +
+(df['helpful_votes'] &gt; 0).astype(int) * 2
+)
+return df
+</code></pre>
+<hr>
+<h2 id="6-llm-增强分析"><a class="header" href="#6-llm-增强分析">6. LLM 增强分析</a></h2>
+<h3 id="61-用-llm-生成可执行洞察"><a class="header" href="#61-用-llm-生成可执行洞察">6.1 用 LLM 生成可执行洞察</a></h3>
+<p>BERTopic 发现主题，LLM 解读主题并生成建议：</p>
+<pre><code class="language-python">import anthropic # 或 openai
+
+client = anthropic.Anthropic()
+
+def generate_review_insights(topic_info: dict, sample_reviews: list) -&gt; str:
+"""用 LLM 从 Review 主题生成可执行洞察"""
+prompt = f"""
+你是一个电商产品分析专家。以下是 Amazon Review 的 NLP 分析结果。
+
+产品：[产品名]
+分析的 Review 总数：{topic_info['total_reviews']}
+时间范围：{topic_info['date_range']}
+
+差评主题排名（按频率）：
+{topic_info['negative_topics']}
+
+好评主题排名：
+{topic_info['positive_topics']}
+
+差评样本（每个主题 3 条）：
+{sample_reviews}
+
+请生成：
+1. 产品核心问题排名（按严重程度和频率）
+2. 每个问题的具体改进建议
+3. 用户最看重的 3 个卖点（用于 Listing 优化）
+4. 竞品差异化机会（基于用户未满足的需求）
+5. 预警信号（哪些问题在恶化？）
+6. 优先级行动清单（ROI 最高的改进先做）
+"""
+
+response = client.messages.create(
+model="claude-sonnet-4-20250514",
+max_tokens=2000,
+messages=[{"role": "user", "content": prompt}]
+)
+
+return response.content[0].text
+</code></pre>
+<h3 id="62-竞品-review-对比分析"><a class="header" href="#62-竞品-review-对比分析">6.2 竞品 Review 对比分析</a></h3>
+<pre><code class="language-python">def competitive_review_analysis(my_reviews: pd.DataFrame,
+competitor_reviews: pd.DataFrame) -&gt; str:
+"""对比自己和竞品的 Review 主题"""
+
+# 分别做主题建模
+my_topics = run_bertopic(my_reviews)
+comp_topics = run_bertopic(competitor_reviews)
+
+# 用 LLM 对比分析
+prompt = f"""
+对比两个产品的 Review 分析结果：
+
+我的产品：
+- 平均评分：{my_reviews['rating'].mean():.1f}
+- 差评主题：{my_topics['negative']}
+- 好评主题：{my_topics['positive']}
+
+竞品：
+- 平均评分：{competitor_reviews['rating'].mean():.1f}
+- 差评主题：{comp_topics['negative']}
+- 好评主题：{comp_topics['positive']}
+
+请分析：
+1. 我的产品 vs 竞品的优势和劣势
+2. 竞品的差评中有哪些是我可以利用的机会
+3. 我的差评中哪些问题竞品已经解决了
+4. 差异化定位建议
+"""
+return llm_call(prompt)
+</code></pre>
+<hr>
+<h2 id="7-构建完整-pipeline"><a class="header" href="#7-构建完整-pipeline">7. 构建完整 Pipeline</a></h2>
+<h3 id="71-端到端-review-分析-pipeline"><a class="header" href="#71-端到端-review-分析-pipeline">7.1 端到端 Review 分析 Pipeline</a></h3>
+<pre><code class="language-python">class ReviewAnalysisPipeline:
+"""完整的 Review 分析 Pipeline"""
+
+def __init__(self, embedding_model="all-MiniLM-L6-v2"):
+self.embedding_model = SentenceTransformer(embedding_model)
+self.sentiment_pipeline = pipeline(
+"sentiment-analysis",
+model="distilbert-base-uncased-finetuned-sst-2-english"
+)
+self.topic_model = None
+
+def run(self, reviews_df: pd.DataFrame) -&gt; dict:
+"""运行完整分析"""
+# Step 1: 预处理
+df = preprocess_reviews(reviews_df)
+
+# Step 2: 情感分析
+sentiments = self.sentiment_pipeline(
+df['full_text'].tolist(),
+batch_size=32, truncation=True
+)
+df['sentiment'] = [s['label'].lower() for s in sentiments]
+
+# Step 3: 主题建模
+self.topic_model = BERTopic(
+embedding_model=self.embedding_model,
+nr_topics="auto",
+min_topic_size=5
+)
+topics, _ = self.topic_model.fit_transform(df['full_text'].tolist())
+df['topic'] = topics
+
+# Step 4: 汇总
+results = {
+'total_reviews': len(df),
+'avg_rating': df['rating'].mean(),
+'sentiment_dist': df['sentiment'].value_counts().to_dict(),
+'rating_dist': df['rating'].value_counts().to_dict(),
+'topics': self.topic_model.get_topic_info().to_dict(),
+'negative_topics': self._get_negative_topics(df),
+'positive_topics': self._get_positive_topics(df),
+'trends': self._get_trends(df)
+}
+
+# Step 5: LLM 洞察
+results['insights'] = generate_review_insights(results,
+df[df['rating'] &lt;= 2].sample(min(15, len(df[df['rating'] &lt;= 2])))
+)
+
+return results
+
+def _get_negative_topics(self, df):
+neg = df[df['rating'] &lt;= 2]
+return neg.groupby('topic').size().sort_values(ascending=False).head(10)
+
+def _get_positive_topics(self, df):
+pos = df[df['rating'] &gt;= 4]
+return pos.groupby('topic').size().sort_values(ascending=False).head(10)
+
+def _get_trends(self, df):
+df['month'] = pd.to_datetime(df['date']).dt.to_period('M')
+return df.groupby('month')['rating'].mean()
+</code></pre>
+<h3 id="72-streamlit-dashboard完整实现"><a class="header" href="#72-streamlit-dashboard完整实现">7.2 Streamlit Dashboard（完整实现）</a></h3>
+<pre><code class="language-python"># review_dashboard.py Review 智能分析 Dashboard
+import streamlit as st
+import pandas as pd
+import plotly.express as px
+import plotly.graph_objects as go
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+from collections import Counter
+import numpy as np
+
+st.set_page_config(page_title="Review 智能分析", layout="wide")
+st.title(" Review 智能分析系统")
+
+# === 侧边栏 ===
+with st.sidebar:
+st.header(" 数据上传")
+uploaded_file = st.file_uploader("上传 Review CSV", type="csv")
+
+if uploaded_file:
+st.header(" 分析设置")
+min_rating = st.slider("最低评分筛选", 1, 5, 1)
+max_rating = st.slider("最高评分筛选", 1, 5, 5)
+num_topics = st.slider("主题数量", 5, 30, 10)
+analysis_type = st.selectbox(
+"分析类型",
+["全部 Review", "仅差评 (1-2星)", "仅好评 (4-5星)", "中评 (3星)"]
+)
+
+if uploaded_file:
+df = pd.read_csv(uploaded_file)
+df = preprocess_reviews(df)
+
+# 筛选
+df_filtered = df[(df['rating'] &gt;= min_rating) &amp; (df['rating'] &lt;= max_rating)]
+
+# === Tab 1: 概览 ===
+tab1, tab2, tab3, tab4, tab5 = st.tabs([
+" 概览", " 情感分析", " 主题建模", " 趋势", " AI 洞察"
+])
+
+with tab1:
+# KPI 卡片
+col1, col2, col3, col4, col5 = st.columns(5)
+col1.metric("总 Review", f"{len(df_filtered):,}")
+col2.metric("平均评分", f"{df_filtered['rating'].mean():.2f} ")
+col3.metric("差评率", f"{(df_filtered['rating'] &lt;= 2).mean()*100:.1f}%")
+col4.metric("好评率", f"{(df_filtered['rating'] &gt;= 4).mean()*100:.1f}%")
+col5.metric("验证购买", f"{df_filtered['verified'].mean()*100:.0f}%")
+
+# 评分分布
+col1, col2 = st.columns(2)
+with col1:
+rating_dist = df_filtered['rating'].value_counts().sort_index()
+fig = px.bar(x=rating_dist.index, y=rating_dist.values,
+labels={'x': '评分', 'y': '数量'},
+title="评分分布",
+color=rating_dist.index,
+color_continuous_scale=['red', 'orange', 'yellow', 'lightgreen', 'green'])
+st.plotly_chart(fig, use_container_width=True)
+
+with col2:
+# 词云
+all_text = ' '.join(df_filtered['full_text'].tolist())
+wc = WordCloud(width=800, height=400, background_color='white',
+max_words=100, colormap='viridis').generate(all_text)
+fig_wc, ax = plt.subplots(figsize=(10, 5))
+ax.imshow(wc, interpolation='bilinear')
+ax.axis('off')
+st.pyplot(fig_wc)
+
+with tab2:
+st.subheader(" 情感分析")
+
+# 运行情感分析
+with st.spinner("正在分析情感..."):
+sentiments = bert_sentiment(df_filtered['full_text'].tolist())
+df_filtered['sentiment'] = [s['label'] for s in sentiments]
+df_filtered['sentiment_score'] = [s['score'] for s in sentiments]
+
+# 情感分布
+col1, col2 = st.columns(2)
+with col1:
+sent_dist = df_filtered['sentiment'].value_counts()
+fig = px.pie(values=sent_dist.values, names=sent_dist.index,
+title="情感分布",
+color_discrete_map={'positive': 'green', 'negative': 'red', 'neutral': 'gray'})
+st.plotly_chart(fig, use_container_width=True)
+
+with col2:
+# 情感 vs 评分的关系
+fig = px.box(df_filtered, x='rating', y='sentiment_score',
+title="情感得分 vs 评分",
+labels={'rating': '评分', 'sentiment_score': '情感得分'})
+st.plotly_chart(fig, use_container_width=True)
+
+# 情感最极端的 Review
+st.subheader("最正面的 Review")
+top_positive = df_filtered.nlargest(3, 'sentiment_score')
+for _, row in top_positive.iterrows():
+st.success(f"{row['rating']} | {row['full_text'][:200]}...")
+
+st.subheader("最负面的 Review")
+top_negative = df_filtered.nsmallest(3, 'sentiment_score')
+for _, row in top_negative.iterrows():
+st.error(f"{row['rating']} | {row['full_text'][:200]}...")
+
+with tab3:
+st.subheader(" 主题建模 (BERTopic)")
+
+with st.spinner("正在提取主题..."):
+topic_model = BERTopic(
+embedding_model=embedding_model,
+nr_topics=num_topics,
+min_topic_size=5
+)
+topics, probs = topic_model.fit_transform(df_filtered['full_text'].tolist())
+df_filtered['topic'] = topics
+
+# 主题概览
+topic_info = topic_model.get_topic_info()
+st.dataframe(topic_info[['Topic', 'Count', 'Name']].head(20),
+use_container_width=True)
+
+# 主题可视化
+try:
+fig = topic_model.visualize_barchart(top_n_topics=10)
+st.plotly_chart(fig, use_container_width=True)
+except:
+pass
+
+# 差评专项主题
+st.subheader(" 差评核心问题")
+neg_df = df_filtered[df_filtered['rating'] &lt;= 2]
+if len(neg_df) &gt; 10:
+neg_topic_counts = neg_df.groupby('topic').size().sort_values(ascending=False)
+for topic_id in neg_topic_counts.head(5).index:
+if topic_id == -1:
+continue
+keywords = topic_model.get_topic(topic_id)
+keyword_str = ", ".join([w for w, _ in keywords[:5]])
+count = neg_topic_counts[topic_id]
+st.warning(f"**Topic {topic_id}** ({count} 条差评): {keyword_str}")
+
+# 显示该主题的示例 Review
+examples = neg_df[neg_df['topic'] == topic_id]['full_text'].head(2)
+for ex in examples:
+st.caption(f" → {ex[:150]}...")
+
+with tab4:
+st.subheader(" 趋势分析")
+
+df_filtered['month'] = pd.to_datetime(df_filtered['date']).dt.to_period('M').astype(str)
+
+# 月度评分趋势
+monthly = df_filtered.groupby('month').agg({
+'rating': 'mean',
+'full_text': 'count'
+}).reset_index()
+monthly.columns = ['月份', '平均评分', 'Review 数量']
+
+fig = go.Figure()
+fig.add_trace(go.Bar(x=monthly['月份'], y=monthly['Review 数量'], name='Review 数量'))
+fig.add_trace(go.Scatter(x=monthly['月份'], y=monthly['平均评分'],
+name='平均评分', yaxis='y2', mode='lines+markers'))
+fig.update_layout(
+title="月度 Review 趋势",
+yaxis=dict(title='Review 数量'),
+yaxis2=dict(title='平均评分', overlaying='y', side='right', range=[1, 5])
+)
+st.plotly_chart(fig, use_container_width=True)
+
+with tab5:
+st.subheader(" AI 洞察")
+
+if st.button("生成 AI 分析报告"):
+with st.spinner("AI 正在分析..."):
+insights = generate_review_insights({
+'total_reviews': len(df_filtered),
+'avg_rating': df_filtered['rating'].mean(),
+'negative_topics': str(neg_topic_counts.head(5).to_dict()) if 'neg_topic_counts' in dir() else "N/A",
+'positive_topics': "N/A",
+'date_range': f"{df_filtered['date'].min()} to {df_filtered['date'].max()}"
+}, df_filtered[df_filtered['rating'] &lt;= 2].head(10).to_dict())
+
+st.markdown(insights)
+
+# 下载报告
+st.download_button(
+" 下载分析报告",
+insights,
+file_name=f"review_analysis_{datetime.now().strftime('%Y%m%d')}.md",
+mime="text/markdown"
+)
+
+else:
+st.info(" 请在左侧上传 Review CSV 文件开始分析")
+st.markdown("""
+**CSV 文件格式要求：**
+- `rating`: 评分 (1-5)
+- `title`: Review 标题
+- `body`: Review 正文
+- `date`: 日期
+- `verified`: 是否验证购买 (True/False)
+- `helpful_votes`: 有用投票数（可选）
+""")
+</code></pre>
+<p>运行：<code>streamlit run review_dashboard.py</code></p>
+<h3 id="73-导出分析结果"><a class="header" href="#73-导出分析结果">7.3 导出分析结果</a></h3>
+<pre><code class="language-python">def export_analysis_results(df: pd.DataFrame, topic_model, output_dir: str = "output"):
+"""导出完整的分析结果"""
+from pathlib import Path
+Path(output_dir).mkdir(exist_ok=True)
+
+# 1. 导出带标注的 Review 数据
+df.to_csv(f"{output_dir}/reviews_analyzed.csv", index=False)
+
+# 2. 导出主题摘要
+topic_info = topic_model.get_topic_info()
+topic_info.to_csv(f"{output_dir}/topics_summary.csv", index=False)
+
+# 3. 导出差评主题详情
+neg_df = df[df['rating'] &lt;= 2]
+neg_topics = neg_df.groupby('topic').agg({
+'full_text': 'count',
+'rating': 'mean'
+}).sort_values('full_text', ascending=False)
+neg_topics.to_csv(f"{output_dir}/negative_topics.csv")
+
+# 4. 生成 HTML 报告
+html_report = topic_model.visualize_topics()
+html_report.write_html(f"{output_dir}/topic_visualization.html")
+
+print(f"分析结果已导出到 {output_dir}/")
+</code></pre>
+<hr>
+<h2 id="8-完成标志"><a class="header" href="#8-完成标志">8. 完成标志</a></h2>
+<ul>
+<li><input disabled="" type="checkbox"> 构建 Review 数据采集和清洗 Pipeline</li>
+<li><input disabled="" type="checkbox"> 实现 VADER + BERT 双层情感分析</li>
+<li><input disabled="" type="checkbox"> 用 BERTopic 对至少 1000 条 Review 做主题建模</li>
+<li><input disabled="" type="checkbox"> 用 LLM 生成可执行的 Review 洞察报告</li>
+<li><input disabled="" type="checkbox"> 构建 Streamlit Dashboard 展示分析结果</li>
+<li><input disabled="" type="checkbox"> 完成一次竞品 Review 对比分析</li>
+</ul>
+<hr>
+<blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path B 总览</a></p>
+<p><strong>Path B</strong>: <a href="b1-data-pipeline.html">B1 数据管道</a> · <a href="b2-prediction-models.html">B2 预测模型</a> · <a href="b3-rag-knowledge-base.html">B3 RAG 知识库</a> · <a href="b4-agent-workflow.html">B4 AI Agent</a> · <a href="b5-local-model-deploy.html">B5 本地模型</a> · <a href="b6-mcp-agentic-workflow.html">B6 MCP 集成</a> · <a href="b7-review-nlp-system.html">B7 Review NLP</a></p>
+<p><strong>快速跳转</strong>: <a href="../0-foundations/">Path 0 基础</a> · <a href="../a-operators/">Path A 运营</a> · <a href="../c-managers/">Path C 管理</a> · <a href="../d-platforms/">Path D 多平台</a> · <a href="../e-social-media/">Path E 社交媒体</a></p>
+</blockquote>
+<!-- nav:prev-next -->
+<hr>
+<p><a href="b6-mcp-agentic-workflow.html">&lt; B6 MCP</a> | <a href="README.html">Path 总览</a> | <a href="b8-ecommerce-dashboard.html">B8 Dashboard &gt;</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../b-developers/b6-mcp-agentic-workflow.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../b-developers/b8-ecommerce-dashboard.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../b-developers/b6-mcp-agentic-workflow.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../b-developers/b8-ecommerce-dashboard.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../mermaid-217b66ef.min.js"></script>
+        <script src="../mermaid-init-d4730691.js"></script>
+
+
+
+    </div>
+    </body>
+</html>

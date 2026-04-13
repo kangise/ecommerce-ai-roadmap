@@ -213,3 +213,6 @@ confidential/
 
 # Internal planning docs
 .planning/
+
+# mdBook build (docs/ is committed for GitHub Pages)
+# book/

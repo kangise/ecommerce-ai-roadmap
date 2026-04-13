@@ -1,0 +1,1685 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>RAG 知识库 - 跨境电商 AI 实战知识库</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="跨境电商 AI 实操手册 — 56 篇指南，从选品到增长，每个环节都有可直接复制的 Prompt">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom-467616e9.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "ayu";
+            window.path_to_searchindex_js = "../searchindex-656d55b3.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-e97a050e.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">跨境电商 AI 实战知识库</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap/edit/main/src/src/b-developers/b3-rag-knowledge-base.md" title="Suggest an edit" aria-label="Suggest an edit" rel="edit">
+                            <span class=fa-svg id="git-edit-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M421.7 220.3l-11.3 11.3-22.6 22.6-205 205c-6.6 6.6-14.8 11.5-23.8 14.1L30.8 511c-8.4 2.5-17.5 .2-23.7-6.1S-1.5 489.7 1 481.2L38.7 353.1c2.6-9 7.5-17.2 14.1-23.8l205-205 22.6-22.6 11.3-11.3 33.9 33.9 62.1 62.1 33.9 33.9zM96 353.9l-9.3 9.3c-.9 .9-1.6 2.1-2 3.4l-25.3 86 86-25.3c1.3-.4 2.5-1.1 3.4-2l9.3-9.3H112c-8.8 0-16-7.2-16-16V353.9zM453.3 19.3l39.4 39.4c25 25 25 65.5 0 90.5l-14.5 14.5-22.6 22.6-11.3 11.3-33.9-33.9-62.1-62.1L314.3 67.7l11.3-11.3 22.6-22.6 14.5-14.5c25-25 65.5-25 90.5 0z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="b3-rag-知识库系统--rag-knowledge-base-system"><a class="header" href="#b3-rag-知识库系统--rag-knowledge-base-system">B3. RAG 知识库系统 | RAG Knowledge Base System</a></h1>
+<blockquote>
+<p><strong>路径</strong>: Path B: 技术人 · <strong>模块</strong>: B3
+<strong>最后更新</strong>: 2026-03-12
+<strong>难度</strong>: 中级 → 进阶
+<strong>前提</strong>: B1 数据管道基础（Python、文件处理）、B2 基本 ML 概念
+<strong>预计时间</strong>: 每天 1 小时，2-3 周</p>
+</blockquote>
+<hr>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path B 总览</a></p>
+<pre><code class="language-mermaid">flowchart LR
+B1["B1 数据管道"]
+B1 --&gt; B2
+B2["B2 预测模型"]
+B2 --&gt; B3
+B3[" B3 RAG 知识库&lt;br/&gt;（当前）"]:::current
+B3 --&gt; B4
+B4["B4 Agent 工作流"]
+B4 --&gt; B5
+B5["B5 本地模型部署"]
+classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
+</code></pre>
+<hr>
+<h2 id="本模块章节导航"><a class="header" href="#本模块章节导航">本模块章节导航</a></h2>
+<ol>
+<li><a href="#1-rag-方法论">RAG 方法论</a> · 2. <a href="#2-工具全景">工具全景</a> · 3. <a href="#3-技术栈选择详解">技术栈选择</a> · 4. <a href="#4-代码实战">代码实战</a> · 5. <a href="#5-电商-rag-应用场景">电商 RAG 应用</a> · 6. <a href="#6-常见陷阱">常见陷阱</a> · 7. <a href="#7-进阶技术">进阶技术</a> · 8. <a href="#8-学习资源">学习资源</a> · 9. <a href="#9-用-openclaw-构建-rag-知识库"> OpenClaw 自动化</a> · 10. <a href="#10-完成标志">完成标志</a></li>
+</ol>
+<h2 id="本模块你将构建"><a class="header" href="#本模块你将构建">本模块你将构建</a></h2>
+<p>基于内部文档的 AI 问答系统 上传产品手册、政策文档、FAQ、Review 数据，AI 自动检索并回答问题。</p>
+<p>完成本模块后，你将能够：</p>
+<ul>
+<li>理解 RAG（Retrieval-Augmented Generation）的核心原理和架构</li>
+<li>用 LlamaIndex 10 行代码搭建一个可用的 RAG 系统</li>
+<li>从产品手册和 Review 数据构建产品 FAQ 知识库</li>
+<li>合并多个数据源（产品文档 + 政策文件 + Review）构建多文档 RAG</li>
+<li>用 Chroma 向量数据库持久化存储，避免每次重建索引</li>
+<li>用 Ollama 在本地运行 LLM，不依赖 OpenAI API</li>
+<li>评估 RAG 系统的检索准确率和回答质量</li>
+<li>搭建一个完整的电商产品知识库问答系统</li>
+</ul>
+<hr>
+<h2 id="1-rag-方法论"><a class="header" href="#1-rag-方法论">1. RAG 方法论</a></h2>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="../a-operators/a4-customer-service.html">A4 客服与售后</a> RAG 系统在客服 FAQ 自动回答中的应用场景详见 A4。 · <a href="../0-foundations/f3-rag-knowledge.html">F3 知识库与 RAG</a> RAG 基础理论详见 F3</p>
+</blockquote>
+<h3 id="11-什么是-rag"><a class="header" href="#11-什么是-rag">1.1 什么是 RAG</a></h3>
+<p>RAG（Retrieval-Augmented Generation，检索增强生成）是让 LLM 基于你的私有数据回答问题的技术。</p>
+<p>核心思路：</p>
+<pre><code>用户提问 → 从文档中检索相关段落 → 段落+问题发给 LLM → LLM 基于检索内容回答
+</code></pre>
+<p><strong>为什么不直接用 ChatGPT？</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>方式</th><th>优点</th><th>缺点</th></tr>
+</thead>
+<tbody>
+<tr><td>直接问 ChatGPT</td><td>零成本，即开即用</td><td>不知道你的产品细节、内部政策、最新数据</td></tr>
+<tr><td>把文档粘贴到对话框</td><td>简单</td><td>受 token 限制（约 128k），文档多了放不下</td></tr>
+<tr><td>Fine-tuning 微调</td><td>模型“记住“你的知识</td><td>成本高、更新慢、容易遗忘旧知识</td></tr>
+<tr><td><strong>RAG</strong></td><td><strong>实时检索最新数据，成本低，可解释</strong></td><td><strong>需要搭建检索系统</strong></td></tr>
+</tbody>
+</table>
+</div>
+<p>RAG 的核心优势是<strong>数据新鲜度</strong>和<strong>可解释性</strong>：你可以随时更新文档，RAG 立刻能用最新内容回答；而且每个回答都能追溯到具体的源文档段落。</p>
+<h3 id="12-rag-vs-fine-tuning-的选择"><a class="header" href="#12-rag-vs-fine-tuning-的选择">1.2 RAG vs Fine-tuning 的选择</a></h3>
+<p>这是最常被问到的问题。简单说：RAG 适合“查资料“，Fine-tuning 适合“改风格“。</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>维度</th><th>RAG</th><th>Fine-tuning</th></tr>
+</thead>
+<tbody>
+<tr><td>适合场景</td><td>基于文档回答问题（FAQ、政策查询）</td><td>改变模型的输出风格或格式</td></tr>
+<tr><td>数据更新</td><td>实时（更新文档即可）</td><td>需要重新训练（耗时耗钱）</td></tr>
+<tr><td>成本</td><td>低（只需向量数据库 + API 调用）</td><td>高（GPU 训练 + 数据标注）</td></tr>
+<tr><td>幻觉控制</td><td>好（回答基于检索到的文档）</td><td>差（模型可能编造内容）</td></tr>
+<tr><td>可解释性</td><td>强（可以展示引用来源）</td><td>弱（黑盒）</td></tr>
+<tr><td>知识容量</td><td>无限（文档数量不受限）</td><td>有限（受模型容量限制）</td></tr>
+<tr><td>技术门槛</td><td>低（几十行代码）</td><td>高（需要 ML 工程经验）</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>决策框架：</strong></p>
+<pre><code>你的需求是什么？
+让 AI 回答关于你的文档/数据的问题 → RAG
+让 AI 用特定风格/格式输出 → Fine-tuning
+两者都需要 → RAG + Fine-tuning（先 RAG，效果不够再加 Fine-tuning）
+不确定 → 先试 RAG（成本低、见效快）
+</code></pre>
+<h3 id="13-电商-rag-的典型场景"><a class="header" href="#13-电商-rag-的典型场景">1.3 电商 RAG 的典型场景</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>场景</th><th>数据源</th><th>用户问题示例</th><th>价值</th></tr>
+</thead>
+<tbody>
+<tr><td>产品 FAQ</td><td>产品手册、规格书</td><td>“这个摄像头支持 4K 60fps 吗？”</td><td>客服效率提升 5-10 倍</td></tr>
+<tr><td>政策查询</td><td>Amazon 政策文档、合规指南</td><td>“FBA 退货政策对电子产品有什么特殊要求？”</td><td>减少合规风险</td></tr>
+<tr><td>Review 洞察</td><td>客户评论数据</td><td>“客户对电池续航的主要抱怨是什么？”</td><td>产品改进方向</td></tr>
+<tr><td>供应商知识库</td><td>供应商手册、沟通记录</td><td>“供应商 A 的最小起订量是多少？”</td><td>采购决策加速</td></tr>
+<tr><td>运营 SOP</td><td>内部操作手册</td><td>“如何处理 A-to-Z Claim？”</td><td>新人培训效率</td></tr>
+<tr><td>竞品分析</td><td>竞品 Listing、Review</td><td>“竞品 X 的主要卖点是什么？”</td><td>差异化策略</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>关键洞察</strong>：电商场景的 RAG 价值在于把“散落在各处的知识“变成“随时可查的智能助手“。一个运营团队可能有几十份产品手册、上百页政策文档、几万条 Review 没有人能全部记住，但 RAG 可以。</p>
+</blockquote>
+<h3 id="14-rag-架构全景"><a class="header" href="#14-rag-架构全景">1.4 RAG 架构全景</a></h3>
+<p>一个完整的 RAG 系统包含两个阶段：</p>
+<p><strong>阶段 1：索引（Indexing） 离线准备</strong></p>
+<pre><code>原始文档 → 文档加载 → 文本分块(Chunking) → 向量化(Embedding) → 存入向量数据库
+</code></pre>
+<p><strong>阶段 2：查询（Querying） 在线服务</strong></p>
+<pre><code>用户提问 → 问题向量化 → 向量相似度搜索 → 取回 Top-K 相关段落 → 构造 Prompt → LLM 生成回答
+</code></pre>
+<p><strong>各环节的关键选择：</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>环节</th><th>选项</th><th>推荐（入门）</th><th>推荐（生产）</th></tr>
+</thead>
+<tbody>
+<tr><td>文档加载</td><td>LlamaIndex SimpleDirectoryReader, LangChain Loaders</td><td>LlamaIndex</td><td>LlamaIndex</td></tr>
+<tr><td>文本分块</td><td>固定大小、按句子、按语义</td><td>固定大小（512 tokens）</td><td>语义分块</td></tr>
+<tr><td>Embedding 模型</td><td>OpenAI text-embedding-3-small, BGE, E5</td><td>OpenAI（最简单）</td><td>BGE-large（开源免费）</td></tr>
+<tr><td>向量数据库</td><td>Chroma, FAISS, Pinecone, Weaviate</td><td>Chroma（最简单）</td><td>Pinecone（托管服务）</td></tr>
+<tr><td>LLM</td><td>OpenAI GPT-4o, Claude, Ollama 本地模型</td><td>OpenAI GPT-4o-mini</td><td>Ollama + Qwen2.5（本地免费）</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="2-工具全景"><a class="header" href="#2-工具全景">2. 工具全景</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>工具</th><th>类型</th><th>难度</th><th>最佳场景</th><th>安装</th></tr>
+</thead>
+<tbody>
+<tr><td><a href="https://docs.llamaindex.ai/">LlamaIndex</a></td><td>RAG 框架</td><td>入门</td><td>快速搭建 RAG，文档问答</td><td><code>pip install llama-index</code></td></tr>
+<tr><td><a href="https://python.langchain.com/">LangChain</a></td><td>LLM 应用框架</td><td>中级</td><td>复杂 LLM 工作流、Agent</td><td><code>pip install langchain</code></td></tr>
+<tr><td><a href="https://www.trychroma.com/">Chroma</a></td><td>向量数据库</td><td>入门</td><td>本地开发、小规模数据</td><td><code>pip install chromadb</code></td></tr>
+<tr><td><a href="https://ollama.com/">Ollama</a></td><td>本地 LLM</td><td>入门</td><td>不想用 OpenAI API、数据隐私</td><td><a href="https://ollama.com/download">ollama.com/download</a></td></tr>
+<tr><td><a href="https://platform.openai.com/">OpenAI API</a></td><td>云端 LLM</td><td>入门</td><td>最高质量回答、快速原型</td><td><code>pip install openai</code></td></tr>
+<tr><td><a href="https://www.pinecone.io/">Pinecone</a></td><td>托管向量数据库</td><td>中级</td><td>生产环境、大规模数据</td><td><code>pip install pinecone-client</code></td></tr>
+<tr><td><a href="https://github.com/facebookresearch/faiss">FAISS</a></td><td>向量搜索库</td><td>中级</td><td>高性能、大规模向量搜索</td><td><code>pip install faiss-cpu</code></td></tr>
+<tr><td><a href="https://www.sbert.net/">Sentence-Transformers</a></td><td>Embedding 模型</td><td>中级</td><td>开源免费 Embedding</td><td><code>pip install sentence-transformers</code></td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>选择建议：</strong></p>
+<ul>
+<li>刚入门 → LlamaIndex + OpenAI API（10 行代码出结果）</li>
+<li>不想花钱 → LlamaIndex + Ollama + Chroma（全部本地免费）</li>
+<li>生产环境 → LlamaIndex/LangChain + Pinecone + OpenAI（稳定可扩展）</li>
+<li>数据隐私要求高 → Ollama + Chroma（数据不出本机）</li>
+</ul>
+<hr>
+<h2 id="3-技术栈选择详解"><a class="header" href="#3-技术栈选择详解">3. 技术栈选择详解</a></h2>
+<h3 id="31-llamaindex-vs-langchain"><a class="header" href="#31-llamaindex-vs-langchain">3.1 LlamaIndex vs LangChain</a></h3>
+<p>这两个是 RAG 领域最流行的框架，经常被拿来对比：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>维度</th><th>LlamaIndex</th><th>LangChain</th></tr>
+</thead>
+<tbody>
+<tr><td>定位</td><td>专注数据索引和检索</td><td>通用 LLM 应用框架</td></tr>
+<tr><td>RAG 体验</td><td>开箱即用，5 行代码搭建 RAG</td><td>需要更多配置，灵活但复杂</td></tr>
+<tr><td>学习曲线</td><td>平缓，文档清晰</td><td>较陡，概念多（Chain、Agent、Tool）</td></tr>
+<tr><td>文档加载</td><td>内置 100+ 数据加载器</td><td>内置 100+ 数据加载器</td></tr>
+<tr><td>适合场景</td><td>文档问答、知识库</td><td>复杂工作流、多步推理、Agent</td></tr>
+<tr><td>社区</td><td>活跃，更新快</td><td>非常活跃，生态最大</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>结论</strong>：入门用 LlamaIndex（更简单），需要复杂工作流时再引入 LangChain。本模块以 LlamaIndex 为主。</p>
+<p>参考文档：<a href="https://docs.llamaindex.ai/">LlamaIndex 官方文档</a> | <a href="https://python.langchain.com/">LangChain 官方文档</a></p>
+<h3 id="32-embedding-模型选择"><a class="header" href="#32-embedding-模型选择">3.2 Embedding 模型选择</a></h3>
+<p>Embedding 模型决定了检索质量。选错模型，检索不准，后面的 LLM 再强也没用。</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>模型</th><th>提供方</th><th>维度</th><th>中文支持</th><th>成本</th><th>推荐场景</th></tr>
+</thead>
+<tbody>
+<tr><td>text-embedding-3-small</td><td>OpenAI</td><td>1536</td><td></td><td>$0.02/1M tokens</td><td>快速原型，质量好</td></tr>
+<tr><td>text-embedding-3-large</td><td>OpenAI</td><td>3072</td><td></td><td>$0.13/1M tokens</td><td>追求最高检索精度</td></tr>
+<tr><td>BGE-large-zh-v1.5</td><td>BAAI</td><td>1024</td><td>优秀</td><td>免费（本地运行）</td><td>中文文档，数据隐私</td></tr>
+<tr><td>E5-large-v2</td><td>Microsoft</td><td>1024</td><td></td><td>免费（本地运行）</td><td>多语言场景</td></tr>
+<tr><td>all-MiniLM-L6-v2</td><td>Sentence-Transformers</td><td>384</td><td>一般</td><td>免费（本地运行）</td><td>英文文档，资源有限</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>电商场景推荐</strong>：</p>
+<ul>
+<li>中英文混合文档 → <code>text-embedding-3-small</code>（OpenAI，质量最稳定）</li>
+<li>纯中文文档 + 数据隐私 → <code>BGE-large-zh-v1.5</code>（本地免费，中文效果好）</li>
+<li>预算有限 → <code>all-MiniLM-L6-v2</code>（本地免费，英文够用）</li>
+</ul>
+<h3 id="33-向量数据库选择"><a class="header" href="#33-向量数据库选择">3.3 向量数据库选择</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>数据库</th><th>类型</th><th>数据规模</th><th>持久化</th><th>适合场景</th></tr>
+</thead>
+<tbody>
+<tr><td>Chroma</td><td>嵌入式</td><td>&lt;100 万向量</td><td>本地文件</td><td>开发测试、小团队</td></tr>
+<tr><td>FAISS</td><td>库（非数据库）</td><td>&lt;1000 万向量</td><td>需手动保存</td><td>高性能搜索、离线场景</td></tr>
+<tr><td>Pinecone</td><td>云托管</td><td>无限</td><td>云端自动</td><td>生产环境、免运维</td></tr>
+<tr><td>Weaviate</td><td>自托管/云</td><td>无限</td><td>自动</td><td>需要混合搜索（向量+关键词）</td></tr>
+<tr><td>Qdrant</td><td>自托管/云</td><td>无限</td><td>自动</td><td>高性能、过滤查询</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>推荐路径</strong>：开发阶段用 Chroma（零配置），生产环境迁移到 Pinecone 或 Qdrant。</p>
+<hr>
+<h2 id="4-代码实战"><a class="header" href="#4-代码实战">4. 代码实战</a></h2>
+<h3 id="41-最简-rag10-行代码用-llamaindex-构建问答系统"><a class="header" href="#41-最简-rag10-行代码用-llamaindex-构建问答系统">4.1 最简 RAG：10 行代码用 LlamaIndex 构建问答系统</a></h3>
+<p>这是你能写出的最简单的 RAG 系统。把文档放到一个文件夹里，10 行代码就能问答。</p>
+<pre><code class="language-python"># 最简 RAG 10 行代码
+# 前提：pip install llama-index openai
+# 环境变量：export OPENAI_API_KEY="sk-..."
+
+from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
+
+# 1. 加载文档（支持 .txt, .pdf, .md, .docx, .csv 等）
+documents = SimpleDirectoryReader("data/product_docs").load_data()
+print(f" 加载了 {len(documents)} 个文档")
+
+# 2. 构建索引（自动分块 + Embedding + 内存向量存储）
+index = VectorStoreIndex.from_documents(documents)
+
+# 3. 创建查询引擎
+query_engine = index.as_query_engine()
+
+# 4. 提问
+response = query_engine.query("这个产品支持 4K 60fps 吗？")
+print(response)
+</code></pre>
+<p>就这么简单。LlamaIndex 在背后做了所有事情：</p>
+<ol>
+<li><code>SimpleDirectoryReader</code> 自动识别文件格式并加载</li>
+<li><code>VectorStoreIndex.from_documents</code> 自动分块（默认 1024 tokens）、调用 OpenAI Embedding API 生成向量、存入内存</li>
+<li><code>as_query_engine()</code> 创建查询引擎，默认检索 Top-2 相关段落</li>
+<li><code>query()</code> 把检索到的段落和问题一起发给 GPT，生成回答</li>
+</ol>
+<blockquote>
+<p><strong>注意</strong>：这个最简版本使用 OpenAI API，需要设置 <code>OPENAI_API_KEY</code> 环境变量。每次运行都会重新构建索引（调用 Embedding API），有 API 成本。后面会介绍如何用 Chroma 持久化存储和用 Ollama 替代 OpenAI。</p>
+</blockquote>
+<p><strong>查看检索到的源文档：</strong></p>
+<pre><code class="language-python"># 查看 RAG 检索到了哪些文档段落
+response = query_engine.query("退货政策是什么？")
+
+print("回答:", response)
+print("\n--- 引用来源 ---")
+for node in response.source_nodes:
+print(f" 文件: {node.metadata.get('file_name', 'unknown')}")
+print(f" 相似度: {node.score:.4f}")
+print(f" 内容: {node.text[:200]}...")
+print()
+</code></pre>
+<blockquote>
+<p><strong>可解释性</strong>：RAG 的一大优势是每个回答都能追溯到源文档。这在电商场景中非常重要 当客服用 AI 回答客户问题时，需要确保回答有据可查。</p>
+</blockquote>
+<h3 id="42-产品-faq-知识库从产品手册构建问答系统"><a class="header" href="#42-产品-faq-知识库从产品手册构建问答系统">4.2 产品 FAQ 知识库：从产品手册构建问答系统</a></h3>
+<p>真实场景：你有一堆产品手册（PDF/Word/Markdown），想让 AI 自动回答产品相关问题。</p>
+<pre><code class="language-python">import os
+from pathlib import Path
+from llama_index.core import (
+VectorStoreIndex,
+SimpleDirectoryReader,
+Settings,
+StorageContext,
+load_index_from_storage,
+)
+from llama_index.core.node_parser import SentenceSplitter
+
+def build_product_faq(
+docs_dir: str,
+chunk_size: int = 512,
+chunk_overlap: int = 50,
+persist_dir: str = "storage/product_faq"
+) -&gt; VectorStoreIndex:
+"""
+从产品文档构建 FAQ 知识库。
+
+Args:
+docs_dir: 产品文档目录（支持 .txt, .pdf, .md, .docx, .csv）
+chunk_size: 分块大小（tokens）
+chunk_overlap: 分块重叠大小
+persist_dir: 索引持久化目录
+
+Returns:
+构建好的向量索引
+"""
+# 检查是否已有持久化索引
+if Path(persist_dir).exists():
+print(" 加载已有索引...")
+storage_context = StorageContext.from_defaults(persist_dir=persist_dir)
+index = load_index_from_storage(storage_context)
+print(" 索引加载完成")
+return index
+
+# 1. 加载文档
+print(f" 从 {docs_dir} 加载文档...")
+documents = SimpleDirectoryReader(
+docs_dir,
+recursive=True,
+filename_as_id=True,
+).load_data()
+print(f" 加载了 {len(documents)} 个文档")
+
+# 2. 配置分块策略
+text_splitter = SentenceSplitter(
+chunk_size=chunk_size,
+chunk_overlap=chunk_overlap,
+)
+Settings.text_splitter = text_splitter
+
+# 3. 构建索引
+print(" 构建向量索引...")
+index = VectorStoreIndex.from_documents(documents, show_progress=True)
+
+# 4. 持久化存储（下次不用重建）
+index.storage_context.persist(persist_dir=persist_dir)
+print(f" 索引已保存到 {persist_dir}")
+
+return index
+
+def query_product_faq(
+index: VectorStoreIndex,
+question: str,
+top_k: int = 3,
+response_mode: str = "compact"
+) -&gt; dict:
+"""
+查询产品 FAQ 知识库。
+
+Args:
+index: 向量索引
+question: 用户问题
+top_k: 检索的文档块数量
+response_mode: 回答模式
+- "compact": 压缩所有检索内容生成简洁回答（推荐）
+- "refine": 逐块精炼回答（更准确但更慢）
+- "tree_summarize": 树状汇总（适合长回答）
+"""
+query_engine = index.as_query_engine(
+similarity_top_k=top_k,
+response_mode=response_mode,
+)
+
+response = query_engine.query(question)
+
+sources = []
+for node in response.source_nodes:
+sources.append({
+"file": node.metadata.get("file_name", "unknown"),
+"score": round(node.score, 4) if node.score else None,
+"text_preview": node.text[:300],
+})
+
+return {
+"question": question,
+"answer": str(response),
+"sources": sources,
+"num_sources": len(sources),
+}
+
+# 使用示例
+# index = build_product_faq("data/product_docs", chunk_size=512)
+#
+# result = query_product_faq(index, "这个摄像头的防水等级是多少？")
+# print(f"Q: {result['question']}")
+# print(f"A: {result['answer']}")
+# print(f"\n引用了 {result['num_sources']} 个文档段落:")
+# for s in result['sources']:
+# print(f" - {s['file']} (相似度: {s['score']})")
+</code></pre>
+<blockquote>
+<p><strong>chunk_size 调参指南</strong>：</p>
+<ul>
+<li>产品规格书（短句、结构化）→ 256-512 tokens</li>
+<li>产品手册（段落式描述）→ 512-1024 tokens</li>
+<li>政策文档（长段落、法律语言）→ 1024-2048 tokens</li>
+<li>不确定 → 从 512 开始，根据回答质量调整</li>
+</ul>
+</blockquote>
+<h3 id="43-多文档-rag合并多个数据源"><a class="header" href="#43-多文档-rag合并多个数据源">4.3 多文档 RAG：合并多个数据源</a></h3>
+<p>电商场景中，知识散落在多个地方：产品手册、Review 数据、政策文档、运营 SOP。多文档 RAG 把它们统一到一个问答系统中。</p>
+<pre><code class="language-python">from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Document, Settings
+from llama_index.core.node_parser import SentenceSplitter
+import pandas as pd
+
+def load_review_data(csv_path: str, text_col: str = "review_text",
+max_reviews: int = 1000) -&gt; list:
+"""将 Review CSV 数据转换为 LlamaIndex Document 对象。"""
+df = pd.read_csv(csv_path)
+
+if len(df) &gt; max_reviews:
+df = df.sort_values("rating", ascending=True).head(max_reviews)
+
+documents = []
+for _, row in df.iterrows():
+text = str(row.get(text_col, ""))
+if len(text.strip()) &lt; 10:
+continue
+
+metadata = {
+"source": "customer_review",
+"rating": int(row.get("rating", 0)),
+"asin": str(row.get("asin", "")),
+"date": str(row.get("date", "")),
+}
+doc = Document(text=text, metadata=metadata)
+documents.append(doc)
+
+print(f" 加载了 {len(documents)} 条 Review")
+return documents
+
+def build_multi_source_rag(
+product_docs_dir: str = None,
+policy_docs_dir: str = None,
+review_csv: str = None,
+sop_docs_dir: str = None,
+chunk_size: int = 512,
+) -&gt; VectorStoreIndex:
+"""
+构建多数据源 RAG 索引。
+合并多种文档类型到同一个向量索引中，
+每个文档带有 source 元数据，方便过滤和追溯。
+"""
+all_documents = []
+
+if product_docs_dir:
+docs = SimpleDirectoryReader(product_docs_dir).load_data()
+for doc in docs:
+doc.metadata["source"] = "product_manual"
+all_documents.extend(docs)
+print(f" 产品文档: {len(docs)} 个")
+
+if policy_docs_dir:
+docs = SimpleDirectoryReader(policy_docs_dir).load_data()
+for doc in docs:
+doc.metadata["source"] = "policy"
+all_documents.extend(docs)
+print(f" 政策文档: {len(docs)} 个")
+
+if review_csv:
+review_docs = load_review_data(review_csv)
+all_documents.extend(review_docs)
+
+if sop_docs_dir:
+docs = SimpleDirectoryReader(sop_docs_dir).load_data()
+for doc in docs:
+doc.metadata["source"] = "sop"
+all_documents.extend(docs)
+print(f" SOP 文档: {len(docs)} 个")
+
+print(f"\n 总计: {len(all_documents)} 个文档")
+
+Settings.text_splitter = SentenceSplitter(chunk_size=chunk_size, chunk_overlap=50)
+index = VectorStoreIndex.from_documents(all_documents, show_progress=True)
+
+print(" 多源 RAG 索引构建完成")
+return index
+
+def query_with_source_filter(
+index: VectorStoreIndex,
+question: str,
+source_filter: str = None,
+top_k: int = 5,
+) -&gt; dict:
+"""
+带数据源过滤的查询。
+
+Args:
+source_filter: 数据源过滤
+- None: 搜索所有数据源
+- "product_manual": 只搜索产品文档
+- "policy": 只搜索政策文档
+- "customer_review": 只搜索 Review
+- "sop": 只搜索 SOP
+"""
+from llama_index.core.vector_stores import (
+MetadataFilter, MetadataFilters, FilterOperator,
+)
+
+filters = None
+if source_filter:
+filters = MetadataFilters(filters=[
+MetadataFilter(key="source", operator=FilterOperator.EQ, value=source_filter)
+])
+
+query_engine = index.as_query_engine(similarity_top_k=top_k, filters=filters)
+response = query_engine.query(question)
+
+sources = []
+for node in response.source_nodes:
+sources.append({
+"source_type": node.metadata.get("source", "unknown"),
+"file": node.metadata.get("file_name", ""),
+"score": round(node.score, 4) if node.score else None,
+})
+
+return {"question": question, "answer": str(response), "sources": sources}
+
+# 使用示例
+# index = build_multi_source_rag(
+# product_docs_dir="data/product_docs",
+# policy_docs_dir="data/policy_docs",
+# review_csv="data/reviews.csv",
+# )
+# result = query_with_source_filter(index, "客户对电池续航有什么反馈？")
+# result = query_with_source_filter(index, "FBA 退货政策是什么？", source_filter="policy")
+</code></pre>
+<blockquote>
+<p><strong>多源 RAG 的价值</strong>：当客服问“这个产品的退货率高吗？“，系统可以同时从 Review 数据中找到客户抱怨、从政策文档中找到退货规则、从 SOP 中找到处理流程，给出一个综合性的回答。</p>
+</blockquote>
+<h3 id="44-chroma-向量数据库持久化存储与增量更新"><a class="header" href="#44-chroma-向量数据库持久化存储与增量更新">4.4 Chroma 向量数据库：持久化存储与增量更新</a></h3>
+<p>前面的例子每次运行都重建索引，浪费时间和 API 费用。用 Chroma 可以把向量持久化到磁盘，支持增量添加新文档。</p>
+<pre><code class="language-python">import chromadb
+from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, StorageContext
+from llama_index.vector_stores.chroma import ChromaVectorStore
+
+def create_chroma_index(
+docs_dir: str,
+collection_name: str = "product_knowledge",
+persist_dir: str = "chroma_db",
+) -&gt; VectorStoreIndex:
+"""
+用 Chroma 创建持久化向量索引。
+
+Chroma 的优势：
+- 数据持久化到磁盘，重启不丢失
+- 支持增量添加文档（不用重建整个索引）
+- 支持元数据过滤
+- 零配置，嵌入式运行
+"""
+chroma_client = chromadb.PersistentClient(path=persist_dir)
+chroma_collection = chroma_client.get_or_create_collection(name=collection_name)
+
+print(f" Collection '{collection_name}': {chroma_collection.count()} 个已有向量")
+
+vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
+storage_context = StorageContext.from_defaults(vector_store=vector_store)
+
+documents = SimpleDirectoryReader(docs_dir).load_data()
+index = VectorStoreIndex.from_documents(
+documents, storage_context=storage_context, show_progress=True
+)
+
+print(f" 索引构建完成，共 {chroma_collection.count()} 个向量")
+return index
+
+def load_existing_chroma_index(
+collection_name: str = "product_knowledge",
+persist_dir: str = "chroma_db",
+) -&gt; VectorStoreIndex:
+"""加载已有的 Chroma 索引（不重建）。"""
+chroma_client = chromadb.PersistentClient(path=persist_dir)
+chroma_collection = chroma_client.get_collection(name=collection_name)
+vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
+index = VectorStoreIndex.from_vector_store(vector_store)
+print(f" 加载已有索引: {chroma_collection.count()} 个向量")
+return index
+
+def add_documents_to_index(index: VectorStoreIndex, new_docs_dir: str) -&gt; int:
+"""增量添加新文档到已有索引。不需要重建整个索引。"""
+new_documents = SimpleDirectoryReader(new_docs_dir).load_data()
+for doc in new_documents:
+index.insert(doc)
+print(f" 新增 {len(new_documents)} 个文档到索引")
+return len(new_documents)
+
+# 使用示例
+# index = create_chroma_index("data/product_docs", persist_dir="chroma_db")
+# index = load_existing_chroma_index(persist_dir="chroma_db") # 秒级加载
+# add_documents_to_index(index, "data/new_docs") # 增量更新
+</code></pre>
+<blockquote>
+<p><strong>Chroma vs 内存存储</strong>：100 个文档的索引，内存模式每次启动花 30 秒 + $0.01 API 费用；Chroma 模式加载 &lt;1 秒，零费用。</p>
+</blockquote>
+<h3 id="45-本地-ragollama不依赖-openai保护商业数据隐私"><a class="header" href="#45-本地-ragollama不依赖-openai保护商业数据隐私">4.5 本地 RAG（Ollama）：不依赖 OpenAI，保护商业数据隐私</a></h3>
+<p>电商数据（产品成本、供应商信息、销量数据）属于商业机密。Ollama 让你在本地运行 LLM，数据不出本机。</p>
+<p><strong>Ollama 安装与模型下载：</strong></p>
+<pre><code class="language-bash"># 1. 安装 Ollama（macOS） 从 https://ollama.com/download 下载
+
+# 2. 下载模型
+ollama pull qwen2.5:7b # 推荐：中英文都好，7B 参数
+ollama pull llama3.1:8b # Meta 开源，英文优秀
+ollama pull nomic-embed-text # Embedding 模型（免费替代 OpenAI）
+
+# 3. 验证
+ollama list # 查看已下载的模型
+</code></pre>
+<p><strong>用 Ollama 构建完全本地的 RAG：</strong></p>
+<pre><code class="language-python">from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
+from llama_index.llms.ollama import Ollama
+from llama_index.embeddings.ollama import OllamaEmbedding
+
+def build_local_rag(
+docs_dir: str,
+llm_model: str = "qwen2.5:7b",
+embed_model: str = "nomic-embed-text",
+ollama_base_url: str = "http://localhost:11434",
+) -&gt; VectorStoreIndex:
+"""
+构建完全本地的 RAG 系统（不调用任何外部 API）。
+
+前提：
+1. 已安装 Ollama
+2. 已下载 LLM 模型: ollama pull qwen2.5:7b
+3. 已下载 Embedding 模型: ollama pull nomic-embed-text
+"""
+# 配置本地 LLM
+llm = Ollama(
+model=llm_model,
+base_url=ollama_base_url,
+request_timeout=120.0,
+temperature=0.1,
+)
+
+# 配置本地 Embedding
+embed = OllamaEmbedding(
+model_name=embed_model,
+base_url=ollama_base_url,
+)
+
+# 设置全局配置（替代 OpenAI）
+Settings.llm = llm
+Settings.embed_model = embed
+
+# 加载文档并构建索引
+documents = SimpleDirectoryReader(docs_dir).load_data()
+print(f" 加载了 {len(documents)} 个文档")
+
+index = VectorStoreIndex.from_documents(documents, show_progress=True)
+
+print(f" 本地 RAG 构建完成（LLM: {llm_model}, Embed: {embed_model}）")
+print(" 所有数据在本地处理，未发送到任何外部服务")
+return index
+
+# 使用示例
+# index = build_local_rag("data/product_docs")
+# engine = index.as_query_engine(similarity_top_k=3)
+# response = engine.query("这个产品的保修期是多久？")
+</code></pre>
+<p><strong>本地 vs 云端 RAG 对比：</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>维度</th><th>本地 RAG (Ollama)</th><th>云端 RAG (OpenAI)</th></tr>
+</thead>
+<tbody>
+<tr><td>数据隐私</td><td>数据不出本机</td><td>数据发送到 OpenAI 服务器</td></tr>
+<tr><td>成本</td><td>免费（电费除外）</td><td>按 token 计费</td></tr>
+<tr><td>回答质量</td><td>7B 模型约 GPT-3.5 水平</td><td>GPT-4o 水平最高</td></tr>
+<tr><td>速度</td><td>取决于硬件（M1 Mac 约 30 tokens/s）</td><td>快（云端 GPU）</td></tr>
+<tr><td>离线使用</td><td>无需网络</td><td>需要网络</td></tr>
+<tr><td>硬件要求</td><td>7B 模型需 8GB+ RAM</td><td>无要求</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>推荐策略</strong>：开发阶段用 OpenAI（回答质量高，调试方便），生产环境根据数据敏感度决定。涉及商业机密用 Ollama 本地部署。</p>
+</blockquote>
+<h3 id="46-rag-评估如何衡量回答质量"><a class="header" href="#46-rag-评估如何衡量回答质量">4.6 RAG 评估：如何衡量回答质量</a></h3>
+<p>RAG 系统上线前必须评估质量。不评估就上线，等于让一个没经过培训的客服直接面对客户。</p>
+<p>RAG 评估有三个核心维度：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>维度</th><th>含义</th><th>衡量什么</th></tr>
+</thead>
+<tbody>
+<tr><td>Faithfulness（忠实度）</td><td>回答是否基于检索到的文档</td><td>LLM 有没有“编造“文档中不存在的内容</td></tr>
+<tr><td>Relevancy（相关性）</td><td>回答是否与问题相关</td><td>回答有没有跑题</td></tr>
+<tr><td>Context Recall（上下文召回）</td><td>检索到的文档是否包含正确答案</td><td>检索环节有没有漏掉关键信息</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>用 RAGAS 框架评估：</strong></p>
+<pre><code class="language-python"># pip install ragas
+
+from ragas import evaluate
+from ragas.metrics import (
+faithfulness, answer_relevancy,
+context_precision, context_recall,
+)
+from datasets import Dataset
+
+def evaluate_rag_quality(
+questions: list[str],
+answers: list[str],
+contexts: list[list[str]],
+ground_truths: list[str] = None,
+) -&gt; dict:
+"""
+用 RAGAS 框架评估 RAG 系统质量。
+
+Args:
+questions: 测试问题列表
+answers: RAG 系统的回答列表
+contexts: 每个问题检索到的上下文列表
+ground_truths: 标准答案（可选，有的话评估更准确）
+"""
+data = {
+"question": questions,
+"answer": answers,
+"contexts": contexts,
+}
+
+metrics = [faithfulness, answer_relevancy, context_precision]
+
+if ground_truths:
+data["ground_truth"] = ground_truths
+metrics.append(context_recall)
+
+dataset = Dataset.from_dict(data)
+result = evaluate(dataset=dataset, metrics=metrics)
+
+print(" RAG 评估结果:")
+print(f" Faithfulness（忠实度）: {result['faithfulness']:.3f}")
+print(f" Answer Relevancy（相关性）: {result['answer_relevancy']:.3f}")
+print(f" Context Precision（上下文精度）: {result['context_precision']:.3f}")
+if ground_truths:
+print(f" Context Recall（上下文召回）: {result['context_recall']:.3f}")
+
+return dict(result)
+
+def create_eval_dataset(index, eval_questions: list[dict]) -&gt; tuple:
+"""
+从 RAG 系统生成评估数据集。
+
+Args:
+eval_questions: [{"question": "...", "ground_truth": "..."}, ...]
+"""
+questions, answers, contexts, ground_truths = [], [], [], []
+query_engine = index.as_query_engine(similarity_top_k=3)
+
+for item in eval_questions:
+q = item["question"]
+response = query_engine.query(q)
+
+questions.append(q)
+answers.append(str(response))
+contexts.append([node.text for node in response.source_nodes])
+if "ground_truth" in item:
+ground_truths.append(item["ground_truth"])
+
+return questions, answers, contexts, ground_truths or None
+
+# 使用示例
+# eval_questions = [
+# {"question": "这个摄像头支持 4K 60fps 吗？", "ground_truth": "是的，支持 4K 60fps 视频录制。"},
+# {"question": "电池续航多久？", "ground_truth": "标准模式下约 2 小时。"},
+# {"question": "防水等级是多少？", "ground_truth": "IPX8，可在 10 米水深使用。"},
+# ]
+# questions, answers, contexts, truths = create_eval_dataset(index, eval_questions)
+# results = evaluate_rag_quality(questions, answers, contexts, truths)
+</code></pre>
+<p><strong>评估指标参考基准：</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>指标</th><th>优秀</th><th>良好</th><th>需改进</th></tr>
+</thead>
+<tbody>
+<tr><td>Faithfulness</td><td>&gt; 0.90</td><td>0.75-0.90</td><td>&lt; 0.75</td></tr>
+<tr><td>Answer Relevancy</td><td>&gt; 0.85</td><td>0.70-0.85</td><td>&lt; 0.70</td></tr>
+<tr><td>Context Precision</td><td>&gt; 0.80</td><td>0.60-0.80</td><td>&lt; 0.60</td></tr>
+<tr><td>Context Recall</td><td>&gt; 0.85</td><td>0.70-0.85</td><td>&lt; 0.70</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>评估结果不好怎么办？</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>问题</th><th>可能原因</th><th>解决方案</th></tr>
+</thead>
+<tbody>
+<tr><td>Faithfulness 低</td><td>LLM 在编造内容</td><td>在 Prompt 中强调“只基于提供的文档回答“</td></tr>
+<tr><td>Relevancy 低</td><td>回答跑题</td><td>检查检索到的文档是否相关，调整 top_k</td></tr>
+<tr><td>Context Precision 低</td><td>检索到了不相关的文档</td><td>调整 chunk_size、换 Embedding 模型</td></tr>
+<tr><td>Context Recall 低</td><td>正确答案没被检索到</td><td>增大 top_k、检查文档是否被正确分块</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>评估的投入产出比</strong>：准备 20-30 个评估问题（含标准答案）大约需要 2 小时。但这 2 小时的投入可以帮你发现 80% 的质量问题，避免上线后被用户投诉“AI 乱说话“。</p>
+</blockquote>
+<hr>
+<h2 id="5-电商-rag-应用场景"><a class="header" href="#5-电商-rag-应用场景">5. 电商 RAG 应用场景</a></h2>
+<h3 id="51-客服自动回答系统"><a class="header" href="#51-客服自动回答系统">5.1 客服自动回答系统</a></h3>
+<p>最直接的 RAG 应用：用产品手册和 FAQ 文档训练一个客服 AI，自动回答客户常见问题。</p>
+<pre><code class="language-python">from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
+from llama_index.core.prompts import PromptTemplate
+
+# 自定义客服 Prompt 控制回答风格和边界
+CUSTOMER_SERVICE_PROMPT = PromptTemplate(
+"""你是一个专业的电商客服助手。请基于以下产品文档回答客户问题。
+
+规则：
+1. 只基于提供的文档内容回答，不要编造信息
+2. 如果文档中没有相关信息，请说"抱歉，我需要为您转接人工客服"
+3. 回答要简洁、友好、专业
+4. 如果涉及退货/退款，请引导客户联系官方客服
+
+产品文档：
+{context_str}
+
+客户问题：{query_str}
+
+回答："""
+)
+
+def build_customer_service_bot(docs_dir: str, chunk_size: int = 256) -&gt; VectorStoreIndex:
+"""
+构建客服问答机器人。
+
+客服场景的特殊配置：
+- chunk_size 较小（256）：客服问题通常很具体，小块检索更精确
+- top_k 较大（5）：多检索几个段落，减少遗漏
+- 自定义 Prompt：控制回答风格和安全边界
+"""
+from llama_index.core.node_parser import SentenceSplitter
+
+Settings.text_splitter = SentenceSplitter(chunk_size=chunk_size, chunk_overlap=30)
+documents = SimpleDirectoryReader(docs_dir, recursive=True).load_data()
+index = VectorStoreIndex.from_documents(documents, show_progress=True)
+
+print(f" 客服知识库构建完成: {len(documents)} 个文档")
+return index
+
+def answer_customer_question(index: VectorStoreIndex, question: str) -&gt; dict:
+"""回答客户问题，带来源追溯。"""
+query_engine = index.as_query_engine(
+similarity_top_k=5,
+text_qa_template=CUSTOMER_SERVICE_PROMPT,
+)
+response = query_engine.query(question)
+
+return {
+"question": question,
+"answer": str(response),
+"confidence": "high" if response.source_nodes
+and response.source_nodes[0].score
+and response.source_nodes[0].score &gt; 0.8
+else "medium",
+"sources": [node.metadata.get("file_name", "") for node in response.source_nodes],
+}
+
+# 使用示例
+# index = build_customer_service_bot("data/customer_service_docs")
+# for q in ["这个摄像头防水吗？", "电池能用多久？", "怎么退货？"]:
+# result = answer_customer_question(index, q)
+# print(f"Q: {result['question']}")
+# print(f"A: {result['answer']} (置信度: {result['confidence']})\n")
+</code></pre>
+<h3 id="52-合规文档查询系统"><a class="header" href="#52-合规文档查询系统">5.2 合规文档查询系统</a></h3>
+<p>Amazon 的政策文档又多又长，合规团队经常需要查询特定政策。RAG 可以把几百页的政策文档变成一个即时查询系统。</p>
+<pre><code class="language-python">def build_compliance_rag(policy_docs_dir: str, chunk_size: int = 1024) -&gt; VectorStoreIndex:
+"""
+构建合规政策查询系统。
+
+政策文档的特殊处理：
+- chunk_size 较大（1024）：政策条款通常较长，需要完整上下文
+- overlap 大一些（100）：避免条款被截断
+"""
+from llama_index.core.node_parser import SentenceSplitter
+
+Settings.text_splitter = SentenceSplitter(chunk_size=chunk_size, chunk_overlap=100)
+
+documents = SimpleDirectoryReader(policy_docs_dir, recursive=True).load_data()
+
+for doc in documents:
+filename = doc.metadata.get("file_name", "")
+if "fba" in filename.lower():
+doc.metadata["policy_area"] = "FBA"
+elif "advertising" in filename.lower():
+doc.metadata["policy_area"] = "Advertising"
+elif "brand" in filename.lower():
+doc.metadata["policy_area"] = "Brand Registry"
+else:
+doc.metadata["policy_area"] = "General"
+
+index = VectorStoreIndex.from_documents(documents, show_progress=True)
+print(f" 合规知识库构建完成: {len(documents)} 个政策文档")
+return index
+
+# 使用示例
+# index = build_compliance_rag("data/amazon_policies")
+# engine = index.as_query_engine(similarity_top_k=5)
+# response = engine.query("FBA 退货政策对电子产品有什么特殊要求？")
+</code></pre>
+<h3 id="53-内部培训知识库"><a class="header" href="#53-内部培训知识库">5.3 内部培训知识库</a></h3>
+<p>新人入职需要学习大量运营知识。RAG 可以把培训文档、SOP、历史案例变成一个“随时可问的导师“。</p>
+<pre><code class="language-python">def build_training_rag(
+sop_dir: str = None, case_study_dir: str = None, faq_dir: str = None,
+) -&gt; VectorStoreIndex:
+"""
+构建内部培训知识库。
+数据源：SOP 文档、案例库、FAQ
+"""
+all_docs = []
+
+for dir_path, doc_type in [(sop_dir, "sop"), (case_study_dir, "case_study"), (faq_dir, "faq")]:
+if dir_path:
+docs = SimpleDirectoryReader(dir_path).load_data()
+for d in docs:
+d.metadata["doc_type"] = doc_type
+all_docs.extend(docs)
+
+index = VectorStoreIndex.from_documents(all_docs, show_progress=True)
+print(f" 培训知识库: {len(all_docs)} 个文档")
+return index
+
+# 使用示例
+# index = build_training_rag(sop_dir="data/sop", case_study_dir="data/cases", faq_dir="data/faq")
+# engine = index.as_query_engine()
+# response = engine.query("如何处理 A-to-Z Claim？")
+</code></pre>
+<blockquote>
+<p><strong>培训 RAG 的 ROI</strong>：一个新人入职通常需要 2-4 周才能熟悉所有流程。有了培训 RAG，新人可以随时提问，学习效率提升 50% 以上。而且 RAG 的回答是一致的，不会因为“问的人不同“而得到不同答案。</p>
+</blockquote>
+<hr>
+<h2 id="6-常见陷阱"><a class="header" href="#6-常见陷阱">6. 常见陷阱</a></h2>
+<h3 id="61-检索质量差"><a class="header" href="#61-检索质量差">6.1 检索质量差</a></h3>
+<p>这是 RAG 系统最常见的问题。回答不好，80% 的原因是检索不准。</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>症状</th><th>可能原因</th><th>解决方案</th></tr>
+</thead>
+<tbody>
+<tr><td>回答完全不相关</td><td>Embedding 模型不适合你的文档语言</td><td>中文文档换 BGE-large-zh，英文用 OpenAI</td></tr>
+<tr><td>回答部分正确但遗漏关键信息</td><td>top_k 太小，没检索到关键段落</td><td>增大 top_k（从 2 调到 5）</td></tr>
+<tr><td>检索到了相关文档但回答不对</td><td>LLM 没有正确理解上下文</td><td>优化 Prompt，明确要求“只基于文档回答“</td></tr>
+<tr><td>简单问题回答正确，复杂问题不行</td><td>答案跨多个文档块，单块不完整</td><td>增大 chunk_size 或使用 overlap</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>调试检索质量的方法：</strong></p>
+<pre><code class="language-python">def debug_retrieval(index, question: str, top_k: int = 5):
+"""
+调试检索结果 查看 RAG 到底检索到了什么。
+当回答质量不好时，先用这个函数检查检索环节。
+"""
+retriever = index.as_retriever(similarity_top_k=top_k)
+nodes = retriever.retrieve(question)
+
+print(f" 问题: {question}")
+print(f" 检索到 {len(nodes)} 个文档块:\n")
+
+for i, node in enumerate(nodes):
+score = f"{node.score:.4f}" if node.score else "N/A"
+file_name = node.metadata.get("file_name", "unknown")
+print(f" [{i+1}] 相似度: {score} | 文件: {file_name}")
+print(f" 内容: {node.text[:200]}...")
+print()
+return nodes
+</code></pre>
+<h3 id="62-chunk-大小不当"><a class="header" href="#62-chunk-大小不当">6.2 Chunk 大小不当</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>chunk_size</th><th>效果</th><th>适合场景</th></tr>
+</thead>
+<tbody>
+<tr><td>128-256</td><td>检索精确但丢失上下文</td><td>FAQ、产品规格（短句）</td></tr>
+<tr><td>512</td><td>平衡精确度和上下文</td><td>通用场景（推荐起点）</td></tr>
+<tr><td>1024</td><td>上下文丰富但检索可能不精确</td><td>政策文档、长段落</td></tr>
+<tr><td>2048+</td><td>上下文完整但检索噪声大</td><td>很少使用</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>经验法则</strong>：从 512 开始，如果回答缺少上下文就调大，如果回答包含太多无关信息就调小。</p>
+<h3 id="63-幻觉问题hallucination"><a class="header" href="#63-幻觉问题hallucination">6.3 幻觉问题（Hallucination）</a></h3>
+<p>LLM 可能“编造“文档中不存在的信息。这在客服场景中非常危险。</p>
+<p><strong>减少幻觉的方法：</strong></p>
+<ol>
+<li><strong>Prompt 约束</strong>：在 Prompt 中明确要求“只基于提供的文档回答，如果文档中没有相关信息，请说不知道“</li>
+<li><strong>降低 temperature</strong>：<code>temperature=0.1</code> 让模型更确定性，减少创造性发挥</li>
+<li><strong>增加 top_k</strong>：检索更多文档，给 LLM 更多参考信息</li>
+<li><strong>使用 Faithfulness 评估</strong>：定期用 RAGAS 检测幻觉率</li>
+<li><strong>显示引用来源</strong>：让用户可以验证回答的依据</li>
+</ol>
+<pre><code class="language-python"># 减少幻觉的 Prompt 模板
+ANTI_HALLUCINATION_PROMPT = """基于以下文档回答问题。
+
+重要规则：
+- 只使用文档中明确提到的信息
+- 如果文档中没有相关信息，回答"根据现有文档，我无法找到这个问题的答案"
+- 不要推测或补充文档中没有的内容
+- 在回答末尾标注信息来源
+
+文档内容：
+{context_str}
+
+问题：{query_str}
+
+回答："""
+</code></pre>
+<h3 id="64-上下文窗口限制"><a class="header" href="#64-上下文窗口限制">6.4 上下文窗口限制</a></h3>
+<p>即使检索到了很多相关文档，LLM 的上下文窗口也有限制。</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>模型</th><th>上下文窗口</th><th>建议 top_k</th></tr>
+</thead>
+<tbody>
+<tr><td>GPT-4o-mini</td><td>128k tokens</td><td>5-10</td></tr>
+<tr><td>GPT-4o</td><td>128k tokens</td><td>5-10</td></tr>
+<tr><td>Qwen2.5 7B</td><td>32k tokens</td><td>3-5</td></tr>
+<tr><td>Llama 3.1 8B</td><td>128k tokens</td><td>5-8</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>计算公式</strong>：<code>top_k × chunk_size &lt; 模型上下文窗口的 50%</code>（留一半给 Prompt 和回答）</p>
+<blockquote>
+<p><strong>常见错误</strong>：设置 top_k=20, chunk_size=1024，检索到 20k tokens 的上下文。对于 32k 窗口的本地模型，这已经占了 60% 以上，留给回答的空间不够，导致回答被截断或质量下降。</p>
+</blockquote>
+<hr>
+<h2 id="7-进阶技术"><a class="header" href="#7-进阶技术">7. 进阶技术</a></h2>
+<h3 id="71-hybrid-search混合搜索关键词--向量"><a class="header" href="#71-hybrid-search混合搜索关键词--向量">7.1 Hybrid Search（混合搜索：关键词 + 向量）</a></h3>
+<p>纯向量搜索有一个弱点：对精确关键词匹配不够好。比如用户搜索 “ASIN B0XXXXX”，向量搜索可能找不到，因为 ASIN 编号没有语义含义。</p>
+<p>Hybrid Search 结合了关键词搜索（BM25）和向量搜索的优势：</p>
+<pre><code class="language-python">from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
+from llama_index.retrievers.bm25 import BM25Retriever
+from llama_index.core.retrievers import QueryFusionRetriever
+
+def build_hybrid_search(
+docs_dir: str,
+vector_top_k: int = 3,
+bm25_top_k: int = 3,
+) -&gt; tuple:
+"""
+构建混合搜索（向量 + BM25 关键词）。
+
+工作原理：
+1. 向量搜索：找语义相似的文档（"摄像头防水" → "相机可以水下使用"）
+2. BM25 搜索：找关键词匹配的文档（"B0XXXXX" → 包含该 ASIN 的文档）
+3. 融合排序：用 Reciprocal Rank Fusion 合并两个结果列表
+"""
+documents = SimpleDirectoryReader(docs_dir).load_data()
+index = VectorStoreIndex.from_documents(documents, show_progress=True)
+
+vector_retriever = index.as_retriever(similarity_top_k=vector_top_k)
+
+from llama_index.core.node_parser import SentenceSplitter
+splitter = SentenceSplitter(chunk_size=512)
+nodes = splitter.get_nodes_from_documents(documents)
+bm25_retriever = BM25Retriever.from_defaults(nodes=nodes, similarity_top_k=bm25_top_k)
+
+hybrid_retriever = QueryFusionRetriever(
+retrievers=[vector_retriever, bm25_retriever],
+similarity_top_k=vector_top_k + bm25_top_k,
+num_queries=1,
+mode="reciprocal_rerank",
+)
+
+print(" 混合搜索构建完成（向量 + BM25）")
+return hybrid_retriever, index
+
+# 使用示例
+# retriever, index = build_hybrid_search("data/product_docs")
+# nodes = retriever.retrieve("ASIN B0XXXXX 的规格参数") # BM25 擅长
+# nodes = retriever.retrieve("这个产品能在水下使用吗？") # 向量搜索擅长
+</code></pre>
+<blockquote>
+<p><strong>什么时候需要 Hybrid Search？</strong> 当你的文档中包含大量专有名词（ASIN、SKU、型号）、数字（价格、尺寸）或代码时，纯向量搜索效果不好，Hybrid Search 可以显著提升检索质量。</p>
+</blockquote>
+<h3 id="72-re-ranking重排序"><a class="header" href="#72-re-ranking重排序">7.2 Re-ranking（重排序）</a></h3>
+<p>检索到的文档按相似度排序，但相似度高不一定最相关。Re-ranking 用一个更精确的模型对检索结果重新排序。</p>
+<pre><code class="language-python">from llama_index.core import VectorStoreIndex
+from llama_index.core.postprocessor import SentenceTransformerRerank
+
+def query_with_reranking(
+index: VectorStoreIndex,
+question: str,
+initial_top_k: int = 10,
+final_top_k: int = 3,
+rerank_model: str = "cross-encoder/ms-marco-MiniLM-L-6-v2",
+) -&gt; str:
+"""
+带 Re-ranking 的查询。
+
+流程：
+1. 先用向量搜索检索 initial_top_k 个候选文档（粗筛）
+2. 用 Cross-Encoder 模型对候选文档重新打分（精排）
+3. 取 final_top_k 个最相关的文档生成回答
+"""
+reranker = SentenceTransformerRerank(model=rerank_model, top_n=final_top_k)
+
+query_engine = index.as_query_engine(
+similarity_top_k=initial_top_k,
+node_postprocessors=[reranker],
+)
+
+response = query_engine.query(question)
+return str(response)
+</code></pre>
+<h3 id="73-agent--rag"><a class="header" href="#73-agent--rag">7.3 Agent + RAG</a></h3>
+<p>Agent 可以根据用户问题自动决定：是查产品文档、查政策文档、还是查 Review 数据。比手动指定数据源更智能。</p>
+<pre><code class="language-python">from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
+from llama_index.core.tools import QueryEngineTool, ToolMetadata
+from llama_index.core.agent import ReActAgent
+
+def build_rag_agent(
+product_docs_dir: str,
+policy_docs_dir: str,
+review_docs_dir: str,
+) -&gt; ReActAgent:
+"""
+构建 RAG Agent 自动选择数据源回答问题。
+
+Agent 会根据问题内容自动判断应该查询哪个知识库：
+- 产品相关问题 → 查产品文档
+- 政策相关问题 → 查政策文档
+- 客户反馈问题 → 查 Review 数据
+"""
+product_index = VectorStoreIndex.from_documents(
+SimpleDirectoryReader(product_docs_dir).load_data()
+)
+policy_index = VectorStoreIndex.from_documents(
+SimpleDirectoryReader(policy_docs_dir).load_data()
+)
+review_index = VectorStoreIndex.from_documents(
+SimpleDirectoryReader(review_docs_dir).load_data()
+)
+
+tools = [
+QueryEngineTool(
+query_engine=product_index.as_query_engine(),
+metadata=ToolMetadata(
+name="product_knowledge",
+description="查询产品规格、功能、使用方法等产品相关信息。",
+),
+),
+QueryEngineTool(
+query_engine=policy_index.as_query_engine(),
+metadata=ToolMetadata(
+name="policy_knowledge",
+description="查询 Amazon 政策、合规要求、退货规则等。",
+),
+),
+QueryEngineTool(
+query_engine=review_index.as_query_engine(),
+metadata=ToolMetadata(
+name="review_insights",
+description="查询客户评论、反馈、投诉等信息。",
+),
+),
+]
+
+agent = ReActAgent.from_tools(tools, verbose=True)
+print(" RAG Agent 构建完成（3 个知识库工具）")
+return agent
+
+# 使用示例
+# agent = build_rag_agent("data/product_docs", "data/policy_docs", "data/review_docs")
+# response = agent.chat("这个摄像头支持 4K 60fps 吗？") # → 查产品知识库
+# response = agent.chat("FBA 退货政策是什么？") # → 查政策知识库
+# response = agent.chat("客户对电池续航有什么反馈？产品手册标注的续航是多久？") # → 查多个知识库
+</code></pre>
+<blockquote>
+<p><strong>Agent + RAG 的价值</strong>：普通 RAG 需要用户知道“我应该查哪个知识库“。Agent + RAG 让 AI 自动判断，用户只需要提问，系统自动路由到正确的数据源。这是从“工具“到“助手“的质变。</p>
+<p>更多 Agent 内容请参考 <a href="b4-agent-workflow.html">B4 Agent 工作流</a>。</p>
+</blockquote>
+<hr>
+<h2 id="8-学习资源"><a class="header" href="#8-学习资源">8. 学习资源</a></h2>
+<h3 id="81-免费课程与文档"><a class="header" href="#81-免费课程与文档">8.1 免费课程与文档</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>资源</th><th>平台</th><th>时长</th><th>适合谁</th><th>链接</th></tr>
+</thead>
+<tbody>
+<tr><td>LlamaIndex 官方文档</td><td>LlamaIndex</td><td>持续更新</td><td>RAG 入门到进阶</td><td><a href="https://docs.llamaindex.ai/">docs.llamaindex.ai</a></td></tr>
+<tr><td>Building Agentic RAG</td><td>DeepLearning.AI</td><td>1h</td><td>RAG + Agent 结合</td><td><a href="https://www.deeplearning.ai/short-courses/building-agentic-rag-with-llamaindex/">deeplearning.ai</a></td></tr>
+<tr><td>LangChain 官方文档</td><td>LangChain</td><td>持续更新</td><td>LLM 应用开发</td><td><a href="https://python.langchain.com/">python.langchain.com</a></td></tr>
+<tr><td>HuggingFace NLP Course</td><td>HuggingFace</td><td>10h+</td><td>NLP 和 Embedding 基础</td><td><a href="https://huggingface.co/learn/nlp-course">huggingface.co/learn/nlp-course</a></td></tr>
+<tr><td>Chroma 官方文档</td><td>Chroma</td><td>2h</td><td>向量数据库入门</td><td><a href="https://www.trychroma.com/">trychroma.com</a></td></tr>
+<tr><td>Ollama 官方文档</td><td>Ollama</td><td>1h</td><td>本地 LLM 部署</td><td><a href="https://ollama.com/">ollama.com</a></td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="82-推荐-github-仓库"><a class="header" href="#82-推荐-github-仓库">8.2 推荐 GitHub 仓库</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>仓库</th><th>Star</th><th>用途</th></tr>
+</thead>
+<tbody>
+<tr><td><a href="https://github.com/run-llama/llama_index">LlamaIndex</a></td><td>37k+</td><td>RAG 框架核心库</td></tr>
+<tr><td><a href="https://github.com/langchain-ai/langchain">LangChain</a></td><td>98k+</td><td>LLM 应用框架</td></tr>
+<tr><td><a href="https://github.com/chroma-core/chroma">Chroma</a></td><td>16k+</td><td>开源向量数据库</td></tr>
+<tr><td><a href="https://github.com/facebookresearch/faiss">FAISS</a></td><td>32k+</td><td>高性能向量搜索</td></tr>
+<tr><td><a href="https://github.com/ollama/ollama">Ollama</a></td><td>105k+</td><td>本地 LLM 运行</td></tr>
+<tr><td><a href="https://github.com/explodinggradients/ragas">RAGAS</a></td><td>7k+</td><td>RAG 评估框架</td></tr>
+</tbody>
+</table>
+</div>
+<p>Content rephrased for compliance with licensing restrictions. Sources cited inline.</p>
+<hr>
+<h2 id="9-用-openclaw-构建-rag-知识库"><a class="header" href="#9-用-openclaw-构建-rag-知识库">9. 用 OpenClaw 构建 RAG 知识库</a></h2>
+<h3 id="91-场景ai-agent-自动维护产品知识库并回答客服问题"><a class="header" href="#91-场景ai-agent-自动维护产品知识库并回答客服问题">9.1 场景：AI Agent 自动维护产品知识库并回答客服问题</a></h3>
+<pre><code>你对 OpenClaw 说：
+"当有新产品文档上传时，自动索引到知识库，
+当客服在 Telegram 提问时，自动从知识库检索并回答"
+
+OpenClaw 自动执行：
+1. [触发] 新产品文档上传时
+2. [filesystem MCP] 读取新文档
+3. [LLM] 自动分块和生成 Embedding
+4. [Skill: memory] 存入知识图谱
+5. [Channel: Telegram] 客服通过 Telegram 提问，Agent 从知识库检索回答
+</code></pre>
+<h3 id="92-需要的-skills-和-mcp-server"><a class="header" href="#92-需要的-skills-和-mcp-server">9.2 需要的 Skills 和 MCP Server</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>组件</th><th>用途</th><th>链接</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>filesystem MCP</strong></td><td>读取新产品文档</td><td><a href="https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem">MCP Filesystem</a></td></tr>
+<tr><td><strong>memory</strong> Skill</td><td>存入知识图谱</td><td><a href="https://docs.openclaw.com/">OpenClaw Docs</a></td></tr>
+<tr><td><strong>telegram/slack</strong> Skill</td><td>接收提问并回答</td><td><a href="https://clawhub.ai/">ClawHub</a></td></tr>
+<tr><td><strong>web-search</strong> Skill</td><td>补充外部知识</td><td><a href="https://clawhub.ai/">ClawHub</a></td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="93-相关资源"><a class="header" href="#93-相关资源">9.3 相关资源</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>资源</th><th>说明</th><th>链接</th></tr>
+</thead>
+<tbody>
+<tr><td>OpenClaw 官方文档</td><td>安装和配置指南</td><td><a href="https://docs.openclaw.com/">docs.openclaw.com</a></td></tr>
+<tr><td>ClawHub Skills 市场</td><td>搜索和安装 Agent Skills</td><td><a href="https://clawhub.ai/">clawhub.ai</a></td></tr>
+<tr><td>OpenClaw MCP 集成</td><td>连接 MCP Server</td><td><a href="https://rebeccamdeprey.com/blog/build-openclaw-skill-with-mcp">Build Skill with MCP</a></td></tr>
+<tr><td>F4 自动化与 Agent</td><td>Agent 基础模块</td><td><a href="../0-foundations/f4-agent-automation.html">F4 模块</a></td></tr>
+</tbody>
+</table>
+</div>
+<p>Content rephrased for compliance with licensing restrictions. Sources cited inline.</p>
+<hr>
+<h2 id="10-完成标志"><a class="header" href="#10-完成标志">10. 完成标志</a></h2>
+<ul>
+<li><input disabled="" type="checkbox"> 用 LlamaIndex 10 行代码搭建一个最简 RAG，能回答产品文档中的问题</li>
+<li><input disabled="" type="checkbox"> 从产品手册/FAQ 文档构建产品知识库，支持至少 3 种文件格式（.txt, .md, .pdf）</li>
+<li><input disabled="" type="checkbox"> 构建多文档 RAG，合并至少 2 个数据源（如产品手册 + Review 数据），支持按数据源过滤查询</li>
+<li><input disabled="" type="checkbox"> 用 Chroma 持久化存储向量索引，验证重启后可以秒级加载（不重新调用 Embedding API）</li>
+<li><input disabled="" type="checkbox"> 用 Ollama 搭建完全本地的 RAG 系统，验证不依赖任何外部 API 即可问答</li>
+<li><input disabled="" type="checkbox"> 用 RAGAS 评估 RAG 系统质量，Faithfulness &gt; 0.75 且 Answer Relevancy &gt; 0.70</li>
+</ul>
+<h2 id="完成以上所有项目后你已经掌握了-rag-知识库系统的核心技能接下来进入-b4-agent-工作流学习如何构建自主决策的-ai-agent"><a class="header" href="#完成以上所有项目后你已经掌握了-rag-知识库系统的核心技能接下来进入-b4-agent-工作流学习如何构建自主决策的-ai-agent">完成以上所有项目后，你已经掌握了 RAG 知识库系统的核心技能。接下来进入 <a href="b4-agent-workflow.html">B4 Agent 工作流</a>，学习如何构建自主决策的 AI Agent。</a></h2>
+<h2 id="附录"><a class="header" href="#附录">附录</a></h2>
+<h3 id="附录-arag-架构图"><a class="header" href="#附录-arag-架构图">附录 A：RAG 架构图</a></h3>
+<pre><code>
+RAG 系统架构
+
+
+
+产品手册 政策文档 Review 数据
+(.pdf/.md) (.pdf/.docx) (.csv)
+
+
+
+
+文档加载 (SimpleDirectoryReader)
+
+
+
+文本分块 (SentenceSplitter)
+chunk_size=512, overlap=50
+
+
+
+向量化 (Embedding Model)
+OpenAI / BGE / Ollama
+
+
+
+向量数据库 (Chroma / FAISS)
+持久化存储，支持增量更新
+
+
+
+索引阶段（离线） 查询阶段（在线）
+
+
+
+用户提问
+
+
+
+相似度搜索 (Top-K) + Re-ranking
+
+
+
+Prompt 构造 + LLM 生成回答
+
+
+
+回答 + 引用来源
+
+
+
+</code></pre>
+<h3 id="附录-b代码速查表"><a class="header" href="#附录-b代码速查表">附录 B：代码速查表</a></h3>
+<pre><code class="language-python"># === LlamaIndex 基础 RAG ===
+from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
+
+documents = SimpleDirectoryReader("docs/").load_data() # 加载文档
+index = VectorStoreIndex.from_documents(documents) # 构建索引
+engine = index.as_query_engine() # 创建查询引擎
+response = engine.query("你的问题") # 提问
+
+# === 查看检索来源 ===
+for node in response.source_nodes:
+print(node.metadata["file_name"], node.score, node.text[:100])
+
+# === 自定义分块 ===
+from llama_index.core.node_parser import SentenceSplitter
+from llama_index.core import Settings
+Settings.text_splitter = SentenceSplitter(chunk_size=512, chunk_overlap=50)
+
+# === Chroma 持久化 ===
+import chromadb
+from llama_index.vector_stores.chroma import ChromaVectorStore
+from llama_index.core import StorageContext
+
+client = chromadb.PersistentClient(path="chroma_db")
+collection = client.get_or_create_collection("my_collection")
+vector_store = ChromaVectorStore(chroma_collection=collection)
+storage_ctx = StorageContext.from_defaults(vector_store=vector_store)
+index = VectorStoreIndex.from_documents(docs, storage_context=storage_ctx)
+
+# 加载已有索引
+index = VectorStoreIndex.from_vector_store(vector_store)
+
+# === Ollama 本地 RAG ===
+from llama_index.llms.ollama import Ollama
+from llama_index.embeddings.ollama import OllamaEmbedding
+Settings.llm = Ollama(model="qwen2.5:7b", request_timeout=120)
+Settings.embed_model = OllamaEmbedding(model_name="nomic-embed-text")
+
+# === 元数据过滤 ===
+from llama_index.core.vector_stores import MetadataFilter, MetadataFilters, FilterOperator
+filters = MetadataFilters(filters=[
+MetadataFilter(key="source", operator=FilterOperator.EQ, value="policy")
+])
+engine = index.as_query_engine(filters=filters)
+
+# === Re-ranking ===
+from llama_index.core.postprocessor import SentenceTransformerRerank
+reranker = SentenceTransformerRerank(model="cross-encoder/ms-marco-MiniLM-L-6-v2", top_n=3)
+engine = index.as_query_engine(similarity_top_k=10, node_postprocessors=[reranker])
+
+# === RAGAS 评估 ===
+from ragas import evaluate
+from ragas.metrics import faithfulness, answer_relevancy
+from datasets import Dataset
+dataset = Dataset.from_dict({
+"question": questions, "answer": answers,
+"contexts": contexts, "ground_truth": truths,
+})
+result = evaluate(dataset=dataset, metrics=[faithfulness, answer_relevancy])
+</code></pre>
+<h3 id="附录-c依赖安装"><a class="header" href="#附录-c依赖安装">附录 C：依赖安装</a></h3>
+<pre><code class="language-bash"># 基础 RAG（LlamaIndex + OpenAI）
+pip install llama-index openai
+
+# Chroma 向量数据库
+pip install llama-index-vector-stores-chroma chromadb
+
+# Ollama 本地 LLM
+pip install llama-index-llms-ollama llama-index-embeddings-ollama
+
+# BM25 混合搜索
+pip install llama-index-retrievers-bm25
+
+# Re-ranking
+pip install sentence-transformers
+
+# RAG 评估
+pip install ragas datasets
+
+# 全部安装
+pip install llama-index openai \
+llama-index-vector-stores-chroma chromadb \
+llama-index-llms-ollama llama-index-embeddings-ollama \
+llama-index-retrievers-bm25 \
+sentence-transformers \
+ragas datasets pandas
+</code></pre>
+<blockquote>
+<p><strong>安装提示</strong>：LlamaIndex v0.10+ 采用模块化架构，核心包 <code>llama-index</code> 只包含基础功能，向量数据库、LLM 提供商等需要单独安装对应的集成包（如 <code>llama-index-vector-stores-chroma</code>）。</p>
+</blockquote>
+<hr>
+<h3 id="附录-d常见问题-faq"><a class="header" href="#附录-d常见问题-faq">附录 D：常见问题 FAQ</a></h3>
+<p><strong>Q: RAG 和 Fine-tuning 可以一起用吗？</strong>
+A: 可以。先用 RAG 提供知识检索，再用 Fine-tuned 模型生成更符合你风格的回答。但大多数场景下，RAG 单独就够了。</p>
+<p><strong>Q: 文档更新了怎么办？</strong>
+A: 用 Chroma 的增量更新功能（<code>index.insert(new_doc)</code>），不需要重建整个索引。如果文档被修改（而非新增），建议删除旧向量后重新插入。</p>
+<p><strong>Q: 多语言文档怎么处理？</strong>
+A: 用支持多语言的 Embedding 模型（如 OpenAI <code>text-embedding-3-small</code> 或 <code>paraphrase-multilingual-MiniLM-L12-v2</code>）。中英文混合文档可以放在同一个索引中。</p>
+<p><strong>Q: RAG 系统的响应速度怎么优化？</strong>
+A: 三个方向：(1) 用 Chroma 持久化避免重建索引；(2) 减小 top_k 减少 LLM 输入量；(3) 用更快的 LLM（GPT-4o-mini 比 GPT-4o 快 3 倍）。</p>
+<p><strong>Q: 数据量很大（10 万+ 文档）怎么办？</strong>
+A: 本地 Chroma 可能不够用，考虑迁移到 Pinecone（云托管）或 Qdrant（自托管）。同时优化 chunk_size 和 Embedding 模型选择。</p>
+<hr>
+<blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path B 总览</a></p>
+<p><strong>Path B</strong>: <a href="b1-data-pipeline.html">B1 数据</a> · <a href="b2-prediction-models.html">B2 预测</a> · <a href="b3-rag-knowledge-base.html">B3 RAG</a> · <a href="b4-agent-workflow.html">B4 Agent</a> · <a href="b5-local-model-deploy.html">B5 部署</a></p>
+<p><strong>快速跳转</strong>: <a href="../0-foundations/">Path 0 基础</a> · <a href="../a-operators/">Path A 运营</a> · <a href="../c-managers/">Path C 管理</a> · <a href="../d-platforms/">Path D 多平台</a> · <a href="../e-social-media/">Path E 社交媒体</a></p>
+</blockquote>
+<!-- nav:prev-next -->
+<hr>
+<p><a href="b2-prediction-models.html">&lt; B2 预测</a> | <a href="README.html">Path 总览</a> | <a href="b4-agent-workflow.html">B4 Agent &gt;</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../b-developers/b2-prediction-models.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../b-developers/b4-agent-workflow.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../b-developers/b2-prediction-models.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../b-developers/b4-agent-workflow.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../mermaid-217b66ef.min.js"></script>
+        <script src="../mermaid-init-d4730691.js"></script>
+
+
+
+    </div>
+    </body>
+</html>

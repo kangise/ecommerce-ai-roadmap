@@ -1,0 +1,702 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>WhatsApp Business - 跨境电商 AI 实战知识库</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="跨境电商 AI 实操手册 — 56 篇指南，从选品到增长，每个环节都有可直接复制的 Prompt">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom-467616e9.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "ayu";
+            window.path_to_searchindex_js = "../searchindex-656d55b3.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-e97a050e.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">跨境电商 AI 实战知识库</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap/edit/main/src/src/e-social-media/e5-whatsapp-business-ai-guide.md" title="Suggest an edit" aria-label="Suggest an edit" rel="edit">
+                            <span class=fa-svg id="git-edit-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M421.7 220.3l-11.3 11.3-22.6 22.6-205 205c-6.6 6.6-14.8 11.5-23.8 14.1L30.8 511c-8.4 2.5-17.5 .2-23.7-6.1S-1.5 489.7 1 481.2L38.7 353.1c2.6-9 7.5-17.2 14.1-23.8l205-205 22.6-22.6 11.3-11.3 33.9 33.9 62.1 62.1 33.9 33.9zM96 353.9l-9.3 9.3c-.9 .9-1.6 2.1-2 3.4l-25.3 86 86-25.3c1.3-.4 2.5-1.1 3.4-2l9.3-9.3H112c-8.8 0-16-7.2-16-16V353.9zM453.3 19.3l39.4 39.4c25 25 25 65.5 0 90.5l-14.5 14.5-22.6 22.6-11.3 11.3-33.9-33.9-62.1-62.1L314.3 67.7l11.3-11.3 22.6-22.6 14.5-14.5c25-25 65.5-25 90.5 0z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="e5-whatsapp-business-ai-客服与营销指南"><a class="header" href="#e5-whatsapp-business-ai-客服与营销指南">E5. WhatsApp Business AI 客服与营销指南</a></h1>
+<blockquote>
+<p><strong>路径</strong>: Path E: 社交媒体 · <strong>模块</strong>: E5
+<strong>最后更新</strong>: 2026-03-14
+<strong>难度</strong>: 中级
+<strong>预计时间</strong>: 1-1.5 小时
+<strong>前置模块</strong>: <a href="../a-operators/a4-customer-service.html">A4 客服与售后</a></p>
+</blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path E 总览</a></p>
+<hr>
+<h2 id="章节导航"><a class="header" href="#章节导航">章节导航</a></h2>
+<ol>
+<li><a href="#1-whatsapp-在电商中的定位">WhatsApp 在电商中的定位</a></li>
+<li><a href="#2-ai-chatbot-搭建方法论">AI Chatbot 搭建方法论</a></li>
+<li><a href="#3-whatsapp-营销自动化">WhatsApp 营销自动化</a></li>
+<li><a href="#4-售后自动化">售后自动化</a></li>
+<li><a href="#5-prompt-模板">Prompt 模板</a></li>
+<li><a href="#6-常见陷阱">常见陷阱</a></li>
+<li><a href="#7-完成标志">完成标志</a></li>
+</ol>
+<hr>
+<h2 id="本模块你将产出"><a class="header" href="#本模块你将产出">本模块你将产出</a></h2>
+<ul>
+<li>一套 WhatsApp AI Chatbot 工作流设计</li>
+<li>一套多语言自动回复模板库</li>
+<li>一套 WhatsApp 营销自动化方案</li>
+</ul>
+<blockquote>
+<p><strong>核心理念</strong>：WhatsApp 是“对话式商务“的核心渠道。30 亿 MAU，2025 年对话式商务消费 $2900 亿。AI Chatbot 转化率 12.3% vs 普通浏览 3.1%。核心市场：拉美、东南亚、中东、南欧。如果你在这些市场卖货，WhatsApp 不是可选项，是必选项。</p>
+</blockquote>
+<hr>
+<h2 id="1-whatsapp-在电商中的定位"><a class="header" href="#1-whatsapp-在电商中的定位">1. WhatsApp 在电商中的定位</a></h2>
+<h3 id="11-whatsapp-business-app-vs-api"><a class="header" href="#11-whatsapp-business-app-vs-api">1.1 WhatsApp Business App vs API</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>维度</th><th>Business App（免费）</th><th>Business API（付费）</th></tr>
+</thead>
+<tbody>
+<tr><td>适合</td><td>小卖家，月消息 &lt;1000 条</td><td>中大卖家，需要自动化</td></tr>
+<tr><td>自动回复</td><td>基础（欢迎消息+离开消息）</td><td>完整 AI Chatbot</td></tr>
+<tr><td>广播消息</td><td>最多 256 人</td><td>无限制（需用户 opt-in）</td></tr>
+<tr><td>集成</td><td>无</td><td>Shopify/CRM/订单系统</td></tr>
+<tr><td>多人协作</td><td>不支持</td><td>支持团队协作</td></tr>
+<tr><td>费用</td><td>免费</td><td>按消息量计费（$0.005-0.08/条）</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="12-核心市场分析"><a class="header" href="#12-核心市场分析">1.2 核心市场分析</a></h3>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="../d-platforms/d7-mercado-libre-ai-guide.html">D7 Mercado Libre</a> 拉美市场电商参考 D7，WhatsApp 在巴西和墨西哥是电商客服的必选渠道。</p>
+</blockquote>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>市场</th><th>WhatsApp 渗透率</th><th>电商场景</th></tr>
+</thead>
+<tbody>
+<tr><td>巴西</td><td>99%</td><td>售前咨询+下单+支付</td></tr>
+<tr><td>印度</td><td>97%</td><td>产品咨询+客服</td></tr>
+<tr><td>印尼</td><td>90%+</td><td>售前+售后+复购</td></tr>
+<tr><td>墨西哥</td><td>95%</td><td>全流程</td></tr>
+<tr><td>西班牙/意大利</td><td>90%+</td><td>客服+售后</td></tr>
+<tr><td>中东</td><td>85%+</td><td>售前咨询+定制</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="2-ai-chatbot-搭建方法论"><a class="header" href="#2-ai-chatbot-搭建方法论">2. AI Chatbot 搭建方法论</a></h2>
+<blockquote>
+<p><strong>真实案例：对话式商务消费 $2900 亿</strong>
+2025 年全球消费者通过对话式商务渠道的消费达到 $2900 亿，从 2021 年的仅 $410 亿大幅增长。与 AI 互动的购物者转化率为 12.3%，是不互动者 3.1% 的近 4 倍（<a href="https://neuwark.com/blog/conversational-commerce-2026-ai-replacing-shopping-cart">Neuwark</a>）。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<blockquote>
+<p><strong>真实案例：Kicks Kenya 用 WhatsApp 挽回弃购订单</strong>
+肯尼亚运动鞋品牌 Kicks Kenya 使用 Chpter 平台将网站弃购的购物车转化为 WhatsApp 实时聊天结账，成功将放弃的网站购物车转化为实际订单（<a href="https://techtrendske.co.ke/2026/03/11/africa-whatsapp-commerce/">TechTrends Kenya</a>）。这展示了 WhatsApp 在新兴市场电商中的核心地位。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<blockquote>
+<p><strong>真实案例：AI 聊天工具实现 38-46% 聊天转化率</strong>
+一位电商卖家使用 AI 驱动的 WhatsApp/Instagram 聊天工具（ZipChat），6 个月后实现了 38-46% 的聊天转化率，月收入 $8,900，每周只工作 22-26 小时（<a href="https://md-alberunis-newsletter.beehiiv.com/p/zipchat-ai-ai-powered-sales-chat-for-whatsapp-instagram-email-more-my-appsumo-review">Beehiiv Review</a>）。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<h3 id="21-电商-chatbot-工作流设计"><a class="header" href="#21-电商-chatbot-工作流设计">2.1 电商 Chatbot 工作流设计</a></h3>
+<pre><code>WhatsApp AI Chatbot 工作流：
+
+用户发消息
+↓
+AI 意图识别
+产品咨询 → 产品推荐流程
+询问需求（用途/预算/偏好）
+AI 推荐 1-3 个产品
+发送产品图片+链接
+引导下单
+
+订单查询 → 订单状态流程
+请求订单号
+查询物流系统
+返回物流状态
+
+售后问题 → 售后流程
+问题分类（退换/维修/投诉）
+AI 尝试解决
+复杂问题转人工
+
+复购提醒 → 营销流程
+基于购买历史推荐
+发送优惠券
+引导复购
+
+无法识别 → 转人工客服
+</code></pre>
+<h3 id="22-多语言自动回复模板"><a class="header" href="#22-多语言自动回复模板">2.2 多语言自动回复模板</a></h3>
+<pre><code>你是一个 WhatsApp 电商客服 AI 专家。
+
+我的产品：[品类]
+目标市场：[巴西/墨西哥/印尼/西班牙]
+
+请为以下场景生成多语言自动回复模板：
+
+场景 1：欢迎消息（新用户首次联系）
+场景 2：产品咨询回复（推荐产品）
+场景 3：价格询问
+场景 4：物流查询
+场景 5：退换货请求
+场景 6：好评感谢+复购引导
+场景 7：差评安抚+解决方案
+
+每个场景提供：
+- 英语版本
+- 西班牙语版本（拉美）
+- 葡萄牙语版本（巴西）
+- 印尼语版本
+
+要求：
+- 语气友好、专业、不过度正式
+- 包含 emoji（适度）
+- 每条消息不超过 300 字符（WhatsApp 阅读习惯）
+- 包含明确的下一步引导
+</code></pre>
+<hr>
+<h2 id="3-whatsapp-营销自动化"><a class="header" href="#3-whatsapp-营销自动化">3. WhatsApp 营销自动化</a></h2>
+<h3 id="31-broadcast-消息策略"><a class="header" href="#31-broadcast-消息策略">3.1 Broadcast 消息策略</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>消息类型</th><th>频率</th><th>内容</th><th>转化目标</th></tr>
+</thead>
+<tbody>
+<tr><td>新品通知</td><td>每月 1-2 次</td><td>新品图片+卖点+链接</td><td>首购</td></tr>
+<tr><td>促销活动</td><td>大促期间</td><td>折扣信息+倒计时</td><td>转化</td></tr>
+<tr><td>复购提醒</td><td>基于购买周期</td><td>个性化推荐+优惠</td><td>复购</td></tr>
+<tr><td>内容分享</td><td>每周 1 次</td><td>使用技巧/教程</td><td>粘性</td></tr>
+<tr><td>节日祝福</td><td>节日当天</td><td>祝福+专属优惠</td><td>品牌好感</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="32-20261-新政策注意"><a class="header" href="#32-20261-新政策注意">3.2 2026.1 新政策注意</a></h3>
+<p>WhatsApp 于 2026 年 1 月 15 日禁止通用 AI Bot（如直接接入 ChatGPT），移除了包括 OpenAI ChatGPT 在内的第三方 AI 聊天机器人集成（<a href="https://windowsnews.ai/article/whatsapp-bans-general-ai-bots-business-api-policy-shift-migration-guide.397847">WindowsNews</a>）。</p>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<p>合规做法：</p>
+<ul>
+<li>使用 WhatsApp Business API 官方合作伙伴（BSP）</li>
+<li>Bot 必须明确标识为自动回复</li>
+<li>不能冒充真人</li>
+<li>必须提供转人工选项</li>
+<li>不能使用通用 AI（如直接接入 ChatGPT API）</li>
+<li>必须通过 Facebook Business Manager 验证</li>
+</ul>
+<h3 id="33-whatsapp-business-api-消息层级"><a class="header" href="#33-whatsapp-business-api-消息层级">3.3 WhatsApp Business API 消息层级</a></h3>
+<p>WhatsApp Business API 有消息层级限制（<a href="https://www.latenode.com/blog/integration-api-management/whatsapp-business-api/how-to-design-and-build-a-whatsapp-chatbot-using-api">Latenode</a>）：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>层级</th><th>24 小时内可发起对话数</th><th>要求</th></tr>
+</thead>
+<tbody>
+<tr><td>未验证</td><td>250</td><td>注册即可</td></tr>
+<tr><td>Tier 1</td><td>1,000</td><td>完成 Business 验证</td></tr>
+<tr><td>Tier 2</td><td>10,000</td><td>良好发送记录</td></tr>
+<tr><td>Tier 3</td><td>100,000</td><td>持续良好记录</td></tr>
+<tr><td>无限制</td><td>无限</td><td>长期优质记录</td></tr>
+</tbody>
+</table>
+</div>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<h3 id="34-whatsapp-business-api-合作伙伴bsp选择"><a class="header" href="#34-whatsapp-business-api-合作伙伴bsp选择">3.4 WhatsApp Business API 合作伙伴（BSP）选择</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>BSP</th><th>特点</th><th>价格</th><th>适合</th></tr>
+</thead>
+<tbody>
+<tr><td>WATI</td><td>专注电商，Shopify 集成好</td><td>$49/月起</td><td>中小卖家</td></tr>
+<tr><td>Zoko</td><td>多渠道，团队协作</td><td>$34.99/月起</td><td>团队使用</td></tr>
+<tr><td>Interakt</td><td>印度市场强</td><td>$15/月起</td><td>印度/东南亚</td></tr>
+<tr><td>SleekFlow</td><td>全渠道客服+CRM</td><td>付费</td><td>中大型品牌</td></tr>
+<tr><td>Qualimero</td><td>AI 销售顾问，Shopify 深度集成（<a href="https://qualimero.com/en/blog/shopify-whatsapp-integration-ai-sales-consultant-guide">Qualimero</a>）</td><td>付费</td><td>AI 驱动销售</td></tr>
+<tr><td>Respond.io</td><td>多渠道消息平台</td><td>$79/月起</td><td>多渠道管理</td></tr>
+</tbody>
+</table>
+</div>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<h3 id="35-whatsapp-消息打开率数据"><a class="header" href="#35-whatsapp-消息打开率数据">3.5 WhatsApp 消息打开率数据</a></h3>
+<p>WhatsApp 消息的效果远超传统营销渠道（<a href="https://qualimero.com/en/blog/whatsapp-business-account-complete-guide-sales-consulting">Qualimero</a>）：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>渠道</th><th>打开率</th><th>回复率</th><th>转化率</th></tr>
+</thead>
+<tbody>
+<tr><td>WhatsApp</td><td>90%+</td><td>40-60%</td><td>12.3%</td></tr>
+<tr><td>Email</td><td>20-25%</td><td>2-5%</td><td>3.1%</td></tr>
+<tr><td>SMS</td><td>95%</td><td>10-15%</td><td>5-8%</td></tr>
+<tr><td>Push 通知</td><td>5-15%</td><td>1-3%</td><td>1-2%</td></tr>
+</tbody>
+</table>
+</div>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<hr>
+<h2 id="4-售后自动化"><a class="header" href="#4-售后自动化">4. 售后自动化</a></h2>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="../a-operators/a4-customer-service.html">A4 客服与售后</a> 客服通用方法论参考 A4，售后自动化和客户满意度管理框架可复用到 WhatsApp。</p>
+</blockquote>
+<h3 id="41-ai-情绪检测与升级"><a class="header" href="#41-ai-情绪检测与升级">4.1 AI 情绪检测与升级</a></h3>
+<pre><code>Chatbot 售后流程：
+用户消息 → AI 情绪分析
+正面/中性 → 继续自动处理
+轻度不满 → 提供解决方案 + 优惠补偿
+强烈不满 → 立即转人工 + 标记优先处理
+</code></pre>
+<h3 id="42-物流状态主动推送"><a class="header" href="#42-物流状态主动推送">4.2 物流状态主动推送</a></h3>
+<ul>
+<li>发货通知（含物流单号）</li>
+<li>到达目的国通知</li>
+<li>派送中通知</li>
+<li>签收确认 + 使用引导</li>
+<li>7 天后满意度调查</li>
+</ul>
+<hr>
+<h2 id="5-prompt-模板"><a class="header" href="#5-prompt-模板">5. Prompt 模板</a></h2>
+<h3 id="51-chatbot-对话设计"><a class="header" href="#51-chatbot-对话设计">5.1 Chatbot 对话设计</a></h3>
+<pre><code>你是一个 WhatsApp 电商 Chatbot 对话设计专家。
+
+我的品牌：[名称]，销售 [品类]
+品牌调性：[友好/专业/活泼]
+目标市场：[X]
+
+请设计完整的 Chatbot 对话树，包含：
+1. 欢迎流程（首次+回访）
+2. 产品推荐流程（3 轮对话内完成推荐）
+3. 下单引导流程
+4. 售后处理流程
+5. 转人工触发条件
+
+每个节点提供：
+- Bot 消息文本
+- 用户可能的回复选项（Quick Reply 按钮）
+- 下一步逻辑
+</code></pre>
+<hr>
+<h2 id="6-常见陷阱"><a class="header" href="#6-常见陷阱">6. 常见陷阱</a></h2>
+<h3 id="陷阱-1消息频率过高"><a class="header" href="#陷阱-1消息频率过高">陷阱 1：消息频率过高</a></h3>
+<p>WhatsApp 是私人空间。每周超过 2 条营销消息会导致大量取消订阅。</p>
+<h3 id="陷阱-2不提供转人工选项"><a class="header" href="#陷阱-2不提供转人工选项">陷阱 2：不提供转人工选项</a></h3>
+<p>AI 无法解决所有问题。必须在 2 轮无法解决后提供转人工选项。</p>
+<h3 id="陷阱-3忽略-opt-in-合规"><a class="header" href="#陷阱-3忽略-opt-in-合规">陷阱 3：忽略 opt-in 合规</a></h3>
+<p>发送营销消息必须获得用户明确同意（opt-in）。违规会导致账号被封。</p>
+<hr>
+<h2 id="65-whatsapp-business-api-集成深度指南"><a class="header" href="#65-whatsapp-business-api-集成深度指南">6.5 WhatsApp Business API 集成深度指南</a></h2>
+<h3 id="与电商平台的集成方案"><a class="header" href="#与电商平台的集成方案">与电商平台的集成方案</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>集成</th><th>说明</th><th>工具</th></tr>
+</thead>
+<tbody>
+<tr><td>Shopify + WhatsApp</td><td>订单通知、物流更新、售后自动化</td><td>Zoko、WATI、Interakt</td></tr>
+<tr><td>Amazon + WhatsApp</td><td>通过包装卡片引导用户添加 WhatsApp</td><td>手动流程（Amazon 禁止站内引导）</td></tr>
+<tr><td>WooCommerce + WhatsApp</td><td>订单通知、弃购挽回</td><td>ChatPion、Whatso</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="whatsapp-弃购挽回工作流"><a class="header" href="#whatsapp-弃购挽回工作流">WhatsApp 弃购挽回工作流</a></h3>
+<pre><code>弃购挽回自动化流程：
+
+用户加购但未付款
+↓ 1 小时后
+WhatsApp 消息 1：温和提醒
+"Hi [名字]! We noticed you left something in your cart.
+Your [产品名] is still waiting for you!
+Need any help with your order?"
+↓ 如果未回复，24 小时后
+WhatsApp 消息 2：提供优惠
+"Hey [名字], just a quick reminder about your cart!
+Here's a special 10% off code just for you: SAVE10
+Valid for the next 24 hours."
+↓ 如果未回复，48 小时后
+WhatsApp 消息 3：最后提醒
+"Last chance! Your cart items are selling fast.
+Use code SAVE10 before it expires tonight! "
+↓ 如果仍未购买
+停止发送（避免骚扰）
+</code></pre>
+<h3 id="whatsapp-复购自动化"><a class="header" href="#whatsapp-复购自动化">WhatsApp 复购自动化</a></h3>
+<pre><code>你是一个 WhatsApp 复购营销专家。
+
+我的产品：[品类]
+平均复购周期：[X] 天
+客户数据库：[X] 个 WhatsApp 联系人
+
+请设计复购自动化方案：
+
+1. 复购提醒时间线
+- 购买后 [X] 天：使用教程/Tips
+- 购买后 [X] 天：满意度调查
+- 购买后 [X] 天：复购提醒+专属优惠
+- 购买后 [X] 天：新品推荐
+
+2. 每个触点的消息模板（多语言）
+- 英语
+- 西班牙语（拉美）
+- 葡萄牙语（巴西）
+
+3. 个性化策略
+- 基于购买历史推荐相关产品
+- 基于浏览行为推荐
+- VIP 客户专属优惠
+
+4. 效果追踪
+- 消息打开率
+- 回复率
+- 复购转化率
+- 每条消息的 ROI
+</code></pre>
+<h3 id="whatsapp-catalog-优化"><a class="header" href="#whatsapp-catalog-优化">WhatsApp Catalog 优化</a></h3>
+<p>WhatsApp Business 支持产品目录功能：</p>
+<pre><code>WhatsApp Catalog 最佳实践：
+
+产品信息：
+产品名：简洁明了（≤50 字符）
+描述：突出核心卖点（≤200 字符）
+价格：当地货币，含税
+图片：正方形，白底或场景图
+链接：指向产品页面
+分类：按品类/用途/价格带分组
+
+优化技巧：
+热销产品放在目录最前面
+定期更新价格和库存状态
+使用高质量图片（手机拍摄即可但要清晰）
+描述中包含关键卖点和使用场景
+设置"精选"产品（最多 10 个）
+</code></pre>
+<h3 id="whatsapp-ai-销售顾问模式2026-趋势"><a class="header" href="#whatsapp-ai-销售顾问模式2026-趋势">WhatsApp AI 销售顾问模式（2026 趋势）</a></h3>
+<p>2026 年 WhatsApp 营销正在从“被动客服“转向“主动 AI 销售顾问“（<a href="https://qualimero.com/en/blog/whatsapp-bot-api-guide-ai-sales-service-2025">Qualimero</a>）。AI 销售顾问不只是回答问题，而是主动推荐产品、引导购买、提升转化。</p>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>模式</th><th>传统客服 Bot</th><th>AI 销售顾问</th></tr>
+</thead>
+<tbody>
+<tr><td>触发方式</td><td>用户主动联系</td><td>主动触达+用户联系</td></tr>
+<tr><td>对话风格</td><td>菜单式/关键词匹配</td><td>自然语言对话</td></tr>
+<tr><td>产品推荐</td><td>固定推荐</td><td>基于用户需求个性化推荐</td></tr>
+<tr><td>购买引导</td><td>发送链接</td><td>全流程引导（需求→推荐→下单→支付）</td></tr>
+<tr><td>售后</td><td>基础 FAQ</td><td>主动跟进+复购提醒</td></tr>
+<tr><td>数据利用</td><td>无</td><td>购买历史+浏览行为+偏好</td></tr>
+</tbody>
+</table>
+</div>
+<pre><code>你是一个 WhatsApp AI 销售顾问设计专家。
+
+我的品牌：[名称]
+品类：[X]
+平均客单价：$[X]
+目标市场：[巴西/墨西哥/印度/西班牙]
+当前 WhatsApp 联系人数：[X]
+
+请设计 AI 销售顾问方案：
+
+1. 主动触达策略
+- 新用户欢迎流程（首次添加后的自动对话）
+- 浏览未购买用户的跟进
+- 购物车放弃挽回
+- 复购提醒
+
+2. 对话式销售流程
+- 需求发现（3 个问题内了解用户需求）
+- 个性化推荐（基于需求推荐 1-3 个产品）
+- 异议处理（价格/质量/配送等常见异议）
+- 下单引导（发送购买链接或直接在 WhatsApp 内完成）
+
+3. 多语言支持
+- 自动检测用户语言
+- 各语言版本的对话模板
+- 文化差异注意事项
+
+4. 效果追踪
+- 对话→购买转化率
+- 平均对话轮数
+- 用户满意度
+- 每条消息的 ROI
+
+5. 合规要求
+- opt-in 获取方式
+- 消息频率限制
+- 退订机制
+- 数据隐私（GDPR/LGPD）
+</code></pre>
+<h3 id="whatsapp-flows2026-新功能"><a class="header" href="#whatsapp-flows2026-新功能">WhatsApp Flows（2026 新功能）</a></h3>
+<p>WhatsApp Flows 允许在 WhatsApp 内创建结构化的交互体验，无需跳转到外部网站：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>功能</th><th>说明</th><th>电商应用</th></tr>
+</thead>
+<tbody>
+<tr><td>表单收集</td><td>在 WhatsApp 内填写表单</td><td>收集用户偏好/尺码/地址</td></tr>
+<tr><td>产品浏览</td><td>在 WhatsApp 内浏览产品</td><td>产品目录展示</td></tr>
+<tr><td>预约</td><td>在 WhatsApp 内预约</td><td>售后服务预约</td></tr>
+<tr><td>调查</td><td>在 WhatsApp 内完成调查</td><td>满意度调查/NPS</td></tr>
+<tr><td>支付</td><td>在 WhatsApp 内完成支付（部分市场）</td><td>直接购买</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="7-完成标志"><a class="header" href="#7-完成标志">7. 完成标志</a></h2>
+<ul>
+<li><input disabled="" type="checkbox"> 设置 WhatsApp Business 账号</li>
+<li><input disabled="" type="checkbox"> 设计并部署 AI Chatbot 工作流</li>
+<li><input disabled="" type="checkbox"> 建立多语言自动回复模板库</li>
+<li><input disabled="" type="checkbox"> 设置售后自动化流程</li>
+<li><input disabled="" type="checkbox"> 运行首次 Broadcast 营销活动</li>
+</ul>
+<hr>
+<blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path E 总览</a></p>
+<p><strong>Path E</strong>: <a href="e1-instagram-facebook-ai-guide.html">E1 Instagram</a> · <a href="e2-youtube-ai-guide.html">E2 YouTube</a> · <a href="e3-xiaohongshu-ai-guide.html">E3 小红书</a> · <a href="e4-pinterest-ai-guide.html">E4 Pinterest</a> · <a href="e5-whatsapp-business-ai-guide.html">E5 WhatsApp</a> · <a href="e6-reddit-ai-guide.html">E6 Reddit</a> · <a href="e7-social-media-cross-channel.html">E7 跨渠道</a></p>
+<p><strong>快速跳转</strong>: <a href="../0-foundations/">Path 0 基础</a> · <a href="../a-operators/">Path A 运营</a> · <a href="../b-developers/">Path B 技术</a> · <a href="../c-managers/">Path C 管理</a> · <a href="../d-platforms/">Path D 多平台</a></p>
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../e-social-media/e4-pinterest-ai-guide.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../e-social-media/e6-reddit-ai-guide.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../e-social-media/e4-pinterest-ai-guide.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../e-social-media/e6-reddit-ai-guide.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../mermaid-217b66ef.min.js"></script>
+        <script src="../mermaid-init-d4730691.js"></script>
+
+
+
+    </div>
+    </body>
+</html>

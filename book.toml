@@ -1,0 +1,22 @@
+[book]
+title = "跨境电商 AI 实战知识库"
+authors = ["kangise"]
+description = "跨境电商 AI 实操手册 — 56 篇指南，从选品到增长，每个环节都有可直接复制的 Prompt"
+language = "zh"
+src = "src"
+
+[build]
+build-dir = "docs"
+
+[output.html]
+default-theme = "light"
+preferred-dark-theme = "ayu"
+git-repository-url = "https://github.com/kangise/ecommerce-ai-roadmap"
+edit-url-template = "https://github.com/kangise/ecommerce-ai-roadmap/edit/main/src/{path}"
+no-section-label = false
+additional-css = ["custom.css"]
+additional-js = ["mermaid.min.js", "mermaid-init.js"]
+
+[output.html.fold]
+enable = true
+level = 1

@@ -1,0 +1,605 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>韩国 Coupang - 跨境电商 AI 实战知识库</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="跨境电商 AI 实操手册 — 56 篇指南，从选品到增长，每个环节都有可直接复制的 Prompt">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom-467616e9.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "ayu";
+            window.path_to_searchindex_js = "../searchindex-656d55b3.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-e97a050e.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">跨境电商 AI 实战知识库</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap/edit/main/src/src/d-platforms/d11-coupang-korea-ai-guide.md" title="Suggest an edit" aria-label="Suggest an edit" rel="edit">
+                            <span class=fa-svg id="git-edit-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M421.7 220.3l-11.3 11.3-22.6 22.6-205 205c-6.6 6.6-14.8 11.5-23.8 14.1L30.8 511c-8.4 2.5-17.5 .2-23.7-6.1S-1.5 489.7 1 481.2L38.7 353.1c2.6-9 7.5-17.2 14.1-23.8l205-205 22.6-22.6 11.3-11.3 33.9 33.9 62.1 62.1 33.9 33.9zM96 353.9l-9.3 9.3c-.9 .9-1.6 2.1-2 3.4l-25.3 86 86-25.3c1.3-.4 2.5-1.1 3.4-2l9.3-9.3H112c-8.8 0-16-7.2-16-16V353.9zM453.3 19.3l39.4 39.4c25 25 25 65.5 0 90.5l-14.5 14.5-22.6 22.6-11.3 11.3-33.9-33.9-62.1-62.1L314.3 67.7l11.3-11.3 22.6-22.6 14.5-14.5c25-25 65.5-25 90.5 0z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="d11-coupang-韩国电商-ai-指南"><a class="header" href="#d11-coupang-韩国电商-ai-指南">D11. Coupang 韩国电商 AI 指南</a></h1>
+<blockquote>
+<p><strong>路径</strong>: Path D: 多平台 · <strong>模块</strong>: D11
+<strong>最后更新</strong>: 2026-03-14
+<strong>难度</strong>: 中级
+<strong>预计时间</strong>: 1 小时</p>
+</blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path D 总览</a></p>
+<hr>
+<blockquote>
+<p>收入 $36.8B（2025），2460 万活跃用户。韩国电商市场 $230B+，预计 2027 达 $336B。被称为“韩国的 Amazon“，Rocket Delivery（次日达/当日达）是核心竞争力。跨境入驻门槛较高。</p>
+</blockquote>
+<h2 id="1-coupang-核心特征"><a class="header" href="#1-coupang-核心特征">1. Coupang 核心特征</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>维度</th><th>Coupang</th><th>Amazon JP</th></tr>
+</thead>
+<tbody>
+<tr><td>市场</td><td>韩国（单一市场）</td><td>日本（单一市场）</td></tr>
+<tr><td>物流</td><td>Rocket Delivery（极速）</td><td>FBA</td></tr>
+<tr><td>用户</td><td>2460 万活跃用户</td><td>-</td></tr>
+<tr><td>跨境友好度</td><td>低（韩语+本地化要求高）</td><td>中</td></tr>
+<tr><td>增长</td><td>14% YoY</td><td>稳定</td></tr>
+<tr><td>特色</td><td>Coupang Play（流媒体）、Coupang Eats</td><td>-</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="2-韩国市场特征"><a class="header" href="#2-韩国市场特征">2. 韩国市场特征</a></h2>
+<h3 id="21-韩国消费者画像"><a class="header" href="#21-韩国消费者画像">2.1 韩国消费者画像</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>维度</th><th>特征</th><th>对卖家的影响</th></tr>
+</thead>
+<tbody>
+<tr><td>配送期望</td><td>次日达是标配，当日达越来越普遍</td><td>必须用 Coupang Rocket Delivery 或等效物流</td></tr>
+<tr><td>品质要求</td><td>极高，对瑕疵零容忍</td><td>质检标准要比其他市场更严格</td></tr>
+<tr><td>品牌偏好</td><td>韩国本土品牌 &gt; 日本 &gt; 欧美 &gt; 中国</td><td>中国品牌需要额外建立信任</td></tr>
+<tr><td>设计审美</td><td>简约、精致、韩系风格</td><td>产品图片和包装需要适配韩国审美</td></tr>
+<tr><td>价格敏感度</td><td>中等（愿意为品质付溢价）</td><td>不需要像 Temu 那样极致低价</td></tr>
+<tr><td>退货习惯</td><td>退货率较高（尤其服装品类）</td><td>需要在定价中考虑退货成本</td></tr>
+<tr><td>社交影响</td><td>Naver Blog + Instagram + YouTube</td><td>韩国 KOL 营销很重要</td></tr>
+<tr><td>支付方式</td><td>信用卡为主 + Coupang Pay</td><td>不需要 COD</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="22-韩国电商市场竞争格局"><a class="header" href="#22-韩国电商市场竞争格局">2.2 韩国电商市场竞争格局</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>平台</th><th>市场份额</th><th>特点</th></tr>
+</thead>
+<tbody>
+<tr><td>Coupang</td><td>最大</td><td>Rocket Delivery，全品类</td></tr>
+<tr><td>Naver Shopping</td><td>第二</td><td>搜索引擎+购物，类似 Google Shopping</td></tr>
+<tr><td>11st (11번가)</td><td>第三</td><td>SK 集团旗下</td></tr>
+<tr><td>Gmarket/Auction</td><td>第四</td><td>eBay Korea（已被 Emart 收购）</td></tr>
+<tr><td>SSG.com</td><td>第五</td><td>新世界集团旗下</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="3-韩语-listing-ai-优化增强版"><a class="header" href="#3-韩语-listing-ai-优化增强版">3. 韩语 Listing AI 优化（增强版）</a></h2>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="../a-operators/a2-listing-optimization.html">A2 Listing 优化</a> Listing 优化通用方法论参考 A2，核心优化框架可适配到韩语 Listing。</p>
+</blockquote>
+<pre><code>你是一个韩国电商 Listing 优化专家，精通韩语电商文案。
+
+产品：[名称]
+品类：[X]
+卖点：[5 个]
+价格：$[X]（约 ₩[X]）
+
+请生成完整的 Coupang 韩语 Listing：
+
+1. 상품명（商品名，50-100 字符）
+- 格式：브랜드 + 상품명 + 핵심속성
+- 包含韩语搜索热词
+- Coupang 标题不要太长（比 Amazon 短）
+
+2. 상세설명（详细描述，500-800 字）
+- 使用존댓말（敬语）
+- 强调品질（品质）和 안전（安全）
+- 包含详细的使用方法和注意事项
+- 韩国消费者喜欢看到认证信息（KC 认证等）
+
+3. 주요특징（主要特征，5 个 Bullet Points）
+- 每个以利益点开头
+- 包含具体数据（尺寸/重量/材质）
+
+4. 추천 키워드（推荐关键词，10 个）
+- 韩语品类词
+- 韩语功能词
+- 韩语场景词
+
+5. 이미지 가이드（图片指南）
+- 韩国消费者偏好的图片风格
+- 必须包含的信息图（尺寸图、材质说明、认证标志）
+
+注意：
+- 韩国消费者重视"정품"（正品）标识
+- 强调 KC 认证（韩国安全认证）
+- 包含 A/S（售后服务）信息
+- 使用존댓말（敬语），不要用반말（非敬语）
+- 韩国消费者对"무료배송"（免费配送）很敏感
+</code></pre>
+<h2 id="4-coupang-特有运营差异"><a class="header" href="#4-coupang-特有运营差异">4. Coupang 特有运营差异</a></h2>
+<h3 id="41-rocket-delivery로켓배송"><a class="header" href="#41-rocket-delivery로켓배송">4.1 Rocket Delivery（로켓배송）</a></h3>
+<p>Coupang 的核心竞争力是 Rocket Delivery（<a href="https://www.marketbeat.com/instant-alerts/coupang-q4-earnings-call-highlights-2026-02-27/">Coupang Q4 2025 Earnings</a>）：</p>
+<ul>
+<li>次日达（大部分地区）</li>
+<li>当日达（首尔等大城市）</li>
+<li>凌晨配送（새벽배송，凌晨 7 点前送达）</li>
+<li>100+ 个物流中心覆盖韩国 70% 人口（7 英里内）</li>
+</ul>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>物流选项</th><th>说明</th><th>对排名影响</th><th>适合</th></tr>
+</thead>
+<tbody>
+<tr><td>Rocket Delivery</td><td>Coupang 仓储+配送</td><td>排名大幅提升</td><td>销量稳定的产品</td></tr>
+<tr><td>Rocket Growth</td><td>跨境卖家专用（海外仓→韩国）</td><td>有一定加权</td><td>跨境卖家首选</td></tr>
+<tr><td>卖家自发货</td><td>卖家自行配送</td><td>排名较低</td><td>测试阶段</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="42-coupang-2025-q4-关键数据"><a class="header" href="#42-coupang-2025-q4-关键数据">4.2 Coupang 2025 Q4 关键数据</a></h3>
+<p>基于 Coupang Q4 2025 财报（<a href="https://www.marketbeat.com/instant-alerts/coupang-q4-earnings-call-highlights-2026-02-27/">MarketBeat</a>）：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>指标</th><th>数据</th></tr>
+</thead>
+<tbody>
+<tr><td>Q4 收入</td><td>$8.8B（+11% YoY，恒定汇率 +14%）</td></tr>
+<tr><td>全年收入</td><td>$34.5B（+14% YoY）</td></tr>
+<tr><td>活跃用户</td><td>2460 万（+8% YoY）</td></tr>
+<tr><td>Product Commerce 收入</td><td>+8% YoY</td></tr>
+<tr><td>Developing Offerings 收入</td><td>+32% YoY（含 Eats、台湾、Farfetch）</td></tr>
+<tr><td>2026 Q1 指引</td><td>恒定汇率收入增长 5-10%</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>注意</strong>：Coupang 在 2025 年经历了重大数据泄露事件（3300 万账户受影响），导致 Q4 利润下降 97%。公司将发放约 $12 亿的代金券给受影响用户。这可能短期影响平台信任度，但长期来看 Coupang 在韩国的市场地位仍然稳固。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<h3 id="43-coupang-广告系统"><a class="header" href="#43-coupang-广告系统">4.3 Coupang 广告系统</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>广告类型</th><th>说明</th><th>计费</th><th>最低竞价</th></tr>
+</thead>
+<tbody>
+<tr><td>검색광고（搜索广告）</td><td>搜索结果页</td><td>CPC</td><td>₩70 起</td></tr>
+<tr><td>디스플레이광고（展示广告）</td><td>站内展示位</td><td>CPM</td><td>按 Campaign</td></tr>
+<tr><td>브랜드광고（品牌广告）</td><td>品牌专区</td><td>CPC</td><td>需要品牌认证</td></tr>
+<tr><td>로켓그로스 광고</td><td>Rocket Growth 卖家专用</td><td>CPC</td><td>跨境卖家可用</td></tr>
+</tbody>
+</table>
+</div>
+<pre><code>你是一个 Coupang 广告优化专家。
+
+我的产品：[名称]
+品类：[X]
+日预算：₩[X]
+当前 ROAS：[X]
+
+请优化：
+1. 韩语关键词策略
+- 品类词（카테고리）
+- 品牌词（브랜드）
+- 功能词（기능）
+- 长尾词
+2. 出价策略（Coupang CPC 竞争程度）
+3. 广告类型组合（搜索+展示的预算分配）
+4. 与 Rocket Delivery 的配合策略
+5. 季节性调整（韩国购物节日：빼빼로데이、크리스마스、설날）
+</code></pre>
+<h3 id="43-kc-认证要求"><a class="header" href="#43-kc-认证要求">4.3 KC 认证要求</a></h3>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="../a-operators/a6-compliance.html">A6 合规与风控</a> 多市场合规方法论参考 A6，认证和合规框架可复用到韩国 KC 认证。</p>
+</blockquote>
+<p>韩国对进口产品有严格的认证要求：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>认证</th><th>适用品类</th><th>说明</th></tr>
+</thead>
+<tbody>
+<tr><td>KC 安全认证</td><td>电子产品、儿童用品、家电</td><td>强制性，没有不能销售</td></tr>
+<tr><td>KC 电磁兼容</td><td>电子/电气产品</td><td>强制性</td></tr>
+<tr><td>식품인증（食品认证）</td><td>食品、保健品</td><td>需要韩国 FDA 批准</td></tr>
+<tr><td>화장품인증（化妆品认证）</td><td>化妆品</td><td>需要 MFDS 注册</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="5-跨境入驻实操"><a class="header" href="#5-跨境入驻实操">5. 跨境入驻实操</a></h2>
+<h3 id="51-coupang-global-selling-平台"><a class="header" href="#51-coupang-global-selling-平台">5.1 Coupang Global Selling 平台</a></h3>
+<p>Coupang 正在构建一个可扩展的国际扩展引擎，其新的出口平台是关键（<a href="https://www.ainvest.com/news/coupang-export-platform-scalable-gateway-336-billion-global-market-2602/">AInvest</a>）。韩国电商市场预计从 2024 年的 $230B 增长到 2027 年的 $336B。</p>
+<p>Coupang Global Selling 官方平台（<a href="https://globalsellers.coupang.com/">globalsellers.coupang.com</a>）为国际卖家提供入驻通道。</p>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<h3 id="52-入驻路径详解"><a class="header" href="#52-入驻路径详解">5.2 入驻路径详解</a></h3>
+<blockquote>
+<p><strong>真实案例：SOU・SOU京都品牌通过 Coupang 进入韩国</strong>
+日本京都的传统纺织品牌 SOU・SOU 通过 Coupang Global Selling 成功进入韩国市场。SOU・SOU 以日本传统图案和现代设计的融合著称，加入 Coupang 后迅速成为韩国消费者喜爱的品牌，证明了植根于传统的风格可以跨越国界（<a href="https://globalsellers.coupang.com/en/newsroom/sou%E3%83%BBsou-bringing-kyotos-colorful-seasons-to-korea/">Coupang Global Sellers</a>）。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<blockquote>
+<p><strong>真实案例：MITSUYA从汽车出口到日本消费品跨境</strong>
+日本公司 MITSUYA CO., LTD. 最初是一家出口日本汽车和零部件的公司。随着客户需求的变化，公司扩展到日本消费品的国际销售，2007 年启动了全面的海外直购服务。通过 Coupang 平台，MITSUYA 将日本工匠精神的产品带到了韩国市场（<a href="https://globalsellers.coupang.com/en/meet-a-seller/delivering-japanese-craftsmanship-to-korea-with-heart/">Coupang Global Sellers</a>）。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>路径</th><th>说明</th><th>门槛</th><th>费用</th><th>适合</th></tr>
+</thead>
+<tbody>
+<tr><td>Coupang Global Seller</td><td>直接在 Coupang 注册国际卖家账号</td><td>需要有效营业执照、银行账户</td><td>无月租，按佣金</td><td>有一定运营能力的卖家</td></tr>
+<tr><td>Rocket Growth</td><td>跨境物流方案（海外仓→韩国仓→Rocket Delivery）</td><td>需要有海外仓能力</td><td>物流费+佣金</td><td>想获得 Rocket Delivery 标签的卖家</td></tr>
+<tr><td>韩国代运营</td><td>通过韩国本地代运营商入驻和运营</td><td>低（代运营商处理一切）</td><td>代运营费 15-30%</td><td>没有韩语能力的卖家</td></tr>
+<tr><td>韩国本地公司</td><td>注册韩国法人实体，以本地卖家身份入驻</td><td>高（需要韩国公司）</td><td>注册费+运营费</td><td>长期深耕韩国市场</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="53-global-seller-入驻要求"><a class="header" href="#53-global-seller-入驻要求">5.3 Global Seller 入驻要求</a></h3>
+<p>根据 Coupang 和行业资料（<a href="https://selltokorea.com/faq/">SellToKorea</a>）：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>要求</th><th>说明</th></tr>
+</thead>
+<tbody>
+<tr><td>营业执照</td><td>有效的企业营业执照</td></tr>
+<tr><td>银行账户</td><td>用于接收付款的银行账户</td></tr>
+<tr><td>韩语 Listing</td><td>产品描述必须包含韩语</td></tr>
+<tr><td>产品图片</td><td>清晰的产品图片</td></tr>
+<tr><td>韩国进口法规</td><td>符合韩国进口规定</td></tr>
+<tr><td>品类认证</td><td>特定品类可能需要额外认证（KC 等）</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="54-rocket-growth-深度解析"><a class="header" href="#54-rocket-growth-深度解析">5.4 Rocket Growth 深度解析</a></h3>
+<p>Rocket Growth 是 Coupang 为跨境卖家设计的 3PL 服务（<a href="https://www.kontactic.com/blog/how-to-sell-on-coupang-foreign-brand">Kontactic</a>）。通过 Rocket Growth 履约的产品会获得 Rocket Delivery 标签，这会显著提升转化率和搜索可见度。</p>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<pre><code>Rocket Growth 工作流程：
+
+Step 1: 卖家将产品发送到海外仓（中国/美国/日本）
+↓
+Step 2: Coupang 从海外仓调拨到韩国 Coupang 仓库
+↓
+Step 3: 产品获得 Rocket Delivery 标签
+↓
+Step 4: 买家下单后，Coupang 从韩国仓库发货
+↓
+Step 5: 次日达/当日达配送到买家
+
+优势：
+获得 Rocket Delivery 标签（排名大幅提升）
+配送速度与本地卖家相同
+退货由 Coupang 处理
+买家信任度高
+
+劣势：
+需要提前备货到海外仓
+库存管理复杂
+物流成本较高
+滞销库存风险
+</code></pre>
+<h3 id="55-coupang-战略动态2026"><a class="header" href="#55-coupang-战略动态2026">5.5 Coupang 战略动态（2026）</a></h3>
+<p>Coupang 在 2025-2026 年有几个重要战略方向：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>方向</th><th>说明</th><th>对卖家的影响</th></tr>
+</thead>
+<tbody>
+<tr><td>出口平台</td><td>Coupang 推出面向全球 SMB 的出口平台</td><td>韩国产品出海机会</td></tr>
+<tr><td>台湾扩展</td><td>Developing Offerings 收入 +32% YoY</td><td>未来可能开放台湾市场</td></tr>
+<tr><td>Farfetch 整合</td><td>收购 Farfetch 进入奢侈品领域</td><td>高端品类新机会</td></tr>
+<tr><td>$1B 股票回购</td><td>表明公司对未来增长的信心</td><td>平台稳定性</td></tr>
+<tr><td>Rocket WOW 会员</td><td>1400 万会员（<a href="https://www.ainvest.com/news/coupang-global-scalability-assessing-tam-tech-moat-growth-investors-2601/">AInvest</a>）</td><td>高价值用户群体</td></tr>
+</tbody>
+</table>
+</div>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<h3 id="56-韩国市场营销渠道"><a class="header" href="#56-韩国市场营销渠道">5.6 韩国市场营销渠道</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>渠道</th><th>说明</th><th>适合</th><th>AI 应用</th></tr>
+</thead>
+<tbody>
+<tr><td>Naver Blog</td><td>韩国最大搜索引擎的博客平台</td><td>产品评测、SEO</td><td>AI 生成韩语博客文章</td></tr>
+<tr><td>Instagram</td><td>韩国年轻人最常用的社交平台</td><td>视觉品类（时尚/美妆）</td><td>AI 生成韩语 Caption</td></tr>
+<tr><td>YouTube</td><td>韩国第二大搜索引擎</td><td>产品评测、开箱</td><td>AI 生成韩语脚本</td></tr>
+<tr><td>KakaoTalk</td><td>韩国国民通讯 App</td><td>客服、营销推送</td><td>AI Chatbot</td></tr>
+<tr><td>Naver Shopping Live</td><td>直播带货</td><td>实时销售</td><td>AI 辅助直播脚本</td></tr>
+</tbody>
+</table>
+</div>
+<pre><code>你是一个韩国市场营销专家。
+
+我的品牌：[名称]
+品类：[X]
+目标用户：[年龄/性别]
+月预算：₩[X]
+
+请制定韩国市场营销方案：
+
+1. 渠道优先级（Naver Blog &gt; Instagram &gt; YouTube &gt; KakaoTalk）
+2. KOL/KOC 合作策略
+- 韩国 KOL 的特点（重视真实性和详细评测）
+- 推荐的合作模式（产品赠送/付费合作/佣金分成）
+- 预算分配建议
+3. Naver SEO 策略
+- 韩语关键词研究
+- Naver Blog 内容策略
+- Naver Shopping 优化
+4. 韩国节日营销日历
+- 설날（春节，1-2月）
+- 빼빼로데이（11月11日，类似光棍节）
+- 크리스마스（圣诞节）
+- 추석（中秋节）
+- 어버이날（父母节，5月8日）
+5. 内容本地化要求
+- 韩国审美偏好
+- 韩语文案风格
+- 韩国消费者信任建设
+</code></pre>
+<h2 id="6-完成标志"><a class="header" href="#6-完成标志">6. 完成标志</a></h2>
+<ul>
+<li><input disabled="" type="checkbox"> 评估韩国市场机会和 KC 认证要求</li>
+<li><input disabled="" type="checkbox"> 确认入驻路径（Coupang Global / 代运营）</li>
+<li><input disabled="" type="checkbox"> 完成韩语 Listing 优化</li>
+<li><input disabled="" type="checkbox"> 设置 Rocket Delivery 或 Rocket Growth</li>
+<li><input disabled="" type="checkbox"> 启动 Coupang 搜索广告</li>
+</ul>
+<hr>
+<blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path D 总览</a> · <a href="platform-comparison.html">平台对比</a></p>
+<p><strong>Path D</strong>: <a href="shopify-ai-guide.html">D1 Shopify</a> · <a href="tiktok-shop-ai-guide.html">D2 TikTok</a> · <a href="cross-platform-strategy.html">D3 跨平台</a> · <a href="d4-walmart-ai-guide.html">D4 Walmart</a> · <a href="d5-temu-seller-guide.html">D5 Temu</a> · <a href="d6-southeast-asia-ai-guide.html">D6 东南亚</a> · <a href="d7-mercado-libre-ai-guide.html">D7 拉美</a> · <a href="d8-rakuten-japan-ai-guide.html">D8 日本</a> · <a href="d9-ebay-ai-guide.html">D9 eBay</a> · <a href="d10-aliexpress-ai-guide.html">D10 AliExpress</a> · <a href="d11-coupang-korea-ai-guide.html">D11 韩国</a> · <a href="d12-faire-wholesale-ai-guide.html">D12 Faire</a> · <a href="d13-europe-marketplaces-guide.html">D13 欧洲</a></p>
+<p><strong>快速跳转</strong>: <a href="../0-foundations/">Path 0 基础</a> · <a href="../a-operators/">Path A 运营</a> · <a href="../b-developers/">Path B 技术</a> · <a href="../c-managers/">Path C 管理</a> · <a href="../e-social-media/">Path E 社交媒体</a></p>
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../d-platforms/d10-aliexpress-ai-guide.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../d-platforms/d12-faire-wholesale-ai-guide.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../d-platforms/d10-aliexpress-ai-guide.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../d-platforms/d12-faire-wholesale-ai-guide.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../mermaid-217b66ef.min.js"></script>
+        <script src="../mermaid-init-d4730691.js"></script>
+
+
+
+    </div>
+    </body>
+</html>

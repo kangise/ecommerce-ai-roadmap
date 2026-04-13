@@ -1,0 +1,1214 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Instagram / Facebook - 跨境电商 AI 实战知识库</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="跨境电商 AI 实操手册 — 56 篇指南，从选品到增长，每个环节都有可直接复制的 Prompt">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom-467616e9.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "ayu";
+            window.path_to_searchindex_js = "../searchindex-656d55b3.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-e97a050e.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">跨境电商 AI 实战知识库</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap/edit/main/src/src/e-social-media/e1-instagram-facebook-ai-guide.md" title="Suggest an edit" aria-label="Suggest an edit" rel="edit">
+                            <span class=fa-svg id="git-edit-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M421.7 220.3l-11.3 11.3-22.6 22.6-205 205c-6.6 6.6-14.8 11.5-23.8 14.1L30.8 511c-8.4 2.5-17.5 .2-23.7-6.1S-1.5 489.7 1 481.2L38.7 353.1c2.6-9 7.5-17.2 14.1-23.8l205-205 22.6-22.6 11.3-11.3 33.9 33.9 62.1 62.1 33.9 33.9zM96 353.9l-9.3 9.3c-.9 .9-1.6 2.1-2 3.4l-25.3 86 86-25.3c1.3-.4 2.5-1.1 3.4-2l9.3-9.3H112c-8.8 0-16-7.2-16-16V353.9zM453.3 19.3l39.4 39.4c25 25 25 65.5 0 90.5l-14.5 14.5-22.6 22.6-11.3 11.3-33.9-33.9-62.1-62.1L314.3 67.7l11.3-11.3 22.6-22.6 14.5-14.5c25-25 65.5-25 90.5 0z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="e1-instagram--facebook-ai-运营指南--meta-ecosystem-ai-playbook"><a class="header" href="#e1-instagram--facebook-ai-运营指南--meta-ecosystem-ai-playbook">E1. Instagram + Facebook AI 运营指南 | Meta Ecosystem AI Playbook</a></h1>
+<blockquote>
+<p><strong>路径</strong>: Path E: 社交媒体 · <strong>模块</strong>: E1
+<strong>最后更新</strong>: 2026-03-14
+<strong>难度</strong>: 中级
+<strong>预计时间</strong>: 2-3 小时
+<strong>前置模块</strong>: <a href="../0-foundations/">Path 0 基础</a> · <a href="../a-operators/">Path A 运营</a>（至少完成 A1-A3）</p>
+</blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path E 总览</a></p>
+<hr>
+<h2 id="本模块章节导航"><a class="header" href="#本模块章节导航">本模块章节导航</a></h2>
+<ol>
+<li><a href="#1-为什么合并-instagram--facebook">为什么合并 Instagram + Facebook</a></li>
+<li><a href="#2-instagram-vs-tiktok-vs-youtube内容策略差异">Instagram vs TikTok vs YouTube：内容策略差异</a></li>
+<li><a href="#3-reels-ai-内容创作方法论">Reels AI 内容创作方法论</a></li>
+<li><a href="#4-stories-与-carousel-ai-策略">Stories 与 Carousel AI 策略</a></li>
+<li><a href="#5-instagram-shopping-深度实操">Instagram Shopping 深度实操</a></li>
+<li><a href="#6-meta-advantage-ai-广告深度指南">Meta Advantage+ AI 广告深度指南</a></li>
+<li><a href="#7-facebook-社群与-marketplace">Facebook 社群与 Marketplace</a></li>
+<li><a href="#8-meta-数据分析与-ai-诊断">Meta 数据分析与 AI 诊断</a></li>
+<li><a href="#9-prompt-模板meta-生态专用">Prompt 模板：Meta 生态专用</a></li>
+<li><a href="#10-ai-工具推荐">AI 工具推荐</a></li>
+<li><a href="#11-常见陷阱与避坑">常见陷阱与避坑</a></li>
+<li><a href="#12-完成标志">完成标志</a></li>
+</ol>
+<hr>
+<h2 id="本模块你将产出"><a class="header" href="#本模块你将产出">本模块你将产出</a></h2>
+<p>一套完整的 Meta 生态 AI 运营体系。完成后你将拥有：</p>
+<ul>
+<li>一套 AI 驱动的 Reels 批量生产工作流（脚本→拍摄→发布）</li>
+<li>一套 Stories/Carousel 内容模板库</li>
+<li>一套 Instagram Shopping 优化方案</li>
+<li>一套 Meta Advantage+ 广告 AI 优化策略</li>
+<li>一套 Meta 专用 Prompt 模板库</li>
+</ul>
+<blockquote>
+<p><strong>核心理念</strong>：Instagram 是“生活方式驱动“的电商渠道。和 Amazon（搜索驱动）、TikTok（娱乐驱动）不同，Instagram 用户追求的是“我想成为的样子“。AI 在 Instagram 的核心价值是帮你高效生产符合平台美学的内容，同时用 Meta 的 AI 广告系统精准触达目标用户。</p>
+</blockquote>
+<hr>
+<h2 id="1-为什么合并-instagram--facebook"><a class="header" href="#1-为什么合并-instagram--facebook">1. 为什么合并 Instagram + Facebook</a></h2>
+<h3 id="11-meta-统一生态"><a class="header" href="#11-meta-统一生态">1.1 Meta 统一生态</a></h3>
+<p>Instagram 和 Facebook 共享同一套基础设施：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>共享组件</th><th>说明</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Meta Ads Manager</strong></td><td>同一个广告后台管理两个平台的投放</td></tr>
+<tr><td><strong>Meta Business Suite</strong></td><td>统一的内容发布、消息管理、数据分析</td></tr>
+<tr><td><strong>Meta Pixel + Conversions API</strong></td><td>同一套追踪代码，跨平台归因</td></tr>
+<tr><td><strong>Product Catalog</strong></td><td>同一个商品目录同时供 Instagram Shop 和 Facebook Shop</td></tr>
+<tr><td><strong>Advantage+ AI</strong></td><td>同一套 AI 广告优化引擎</td></tr>
+<tr><td><strong>受众数据</strong></td><td>跨平台的用户画像和行为数据</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="12-但内容策略完全不同"><a class="header" href="#12-但内容策略完全不同">1.2 但内容策略完全不同</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>维度</th><th>Instagram</th><th>Facebook</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>核心用户</strong></td><td>18-34 岁，视觉导向，追求美学</td><td>25-54 岁，社交导向，信息获取</td></tr>
+<tr><td><strong>内容风格</strong></td><td>精致、生活方式、aspirational</td><td>实用、社群讨论、信息分享</td></tr>
+<tr><td><strong>最强内容形态</strong></td><td>Reels（短视频）&gt; Carousel &gt; Stories</td><td>Groups（社群）&gt; Reels &gt; 长帖</td></tr>
+<tr><td><strong>电商路径</strong></td><td>发现→种草→Shop 购买</td><td>社群推荐→Marketplace/Shop</td></tr>
+<tr><td><strong>AI 核心场景</strong></td><td>Reels 脚本 + 视觉内容生成</td><td>社群运营 + 广告投放</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>实操建议</strong>：内容创作以 Instagram 为主阵地，Facebook 作为广告投放和社群运营的补充。广告预算通过 Meta Ads Manager 统一管理，让 AI 自动分配到效果更好的平台。</p>
+</blockquote>
+<hr>
+<h2 id="2-instagram-vs-tiktok-vs-youtube内容策略差异"><a class="header" href="#2-instagram-vs-tiktok-vs-youtube内容策略差异">2. Instagram vs TikTok vs YouTube：内容策略差异</a></h2>
+<blockquote>
+<p>如果你已经在做 TikTok（参考 <a href="../d-platforms/tiktok-shop-ai-guide.html">D2 TikTok Shop 指南</a>），这一节帮你理解 Instagram 的差异化定位。</p>
+</blockquote>
+<h3 id="21-同样是短视频风格完全不同"><a class="header" href="#21-同样是短视频风格完全不同">2.1 同样是短视频，风格完全不同</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>维度</th><th>Instagram Reels</th><th>TikTok</th><th>YouTube Shorts</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>调性</strong></td><td>精致、美学、生活方式</td><td>真实、娱乐、信息缺口</td><td>教育、深度、专业</td></tr>
+<tr><td><strong>最佳时长</strong></td><td>15-30 秒（精炼）</td><td>15-60 秒（故事性）</td><td>30-60 秒（信息密度）</td></tr>
+<tr><td><strong>Hook 风格</strong></td><td>视觉冲击（美图/场景切换）</td><td>文字/语言 Hook（制造悬念）</td><td>问题/数据 Hook（引发好奇）</td></tr>
+<tr><td><strong>音乐使用</strong></td><td>氛围音乐（配合美学）</td><td>热门音乐（跟趋势）</td><td>可选（内容为主）</td></tr>
+<tr><td><strong>字幕</strong></td><td>简洁、设计感</td><td>大字幕、口语化</td><td>信息型字幕</td></tr>
+<tr><td><strong>CTA</strong></td><td>“Link in bio” / Shop 标签</td><td>“小黄车” / 评论区</td><td>描述区链接 / 订阅</td></tr>
+<tr><td><strong>算法偏好</strong></td><td>完播率 + 保存率 + 分享率</td><td>完播率 + 互动率</td><td>点击率 + 观看时长</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="22-一个产品三种内容角度"><a class="header" href="#22-一个产品三种内容角度">2.2 一个产品，三种内容角度</a></h3>
+<p>以“便携颈挂风扇“为例：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>平台</th><th>内容角度</th><th>示例</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Instagram</strong></td><td>生活方式场景</td><td>夏日户外野餐，模特优雅佩戴，配合 lo-fi 音乐，文字：“Summer essential “</td></tr>
+<tr><td><strong>TikTok</strong></td><td>痛点+解决方案</td><td>“大热天出门 5 分钟就汗流浃背？试试这个…”，快节奏展示，评论区互动</td></tr>
+<tr><td><strong>YouTube Shorts</strong></td><td>产品评测/对比</td><td>“我测试了 5 款颈挂风扇，这款风力最强但只要 $19…”，数据对比</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>关键洞察</strong>：同一个产品素材可以复用，但脚本和剪辑风格必须适配平台。AI 可以帮你从一个核心脚本自动生成三个平台的变体（详见 <a href="e7-social-media-cross-channel.html">E7 跨渠道协同</a>）。</p>
+</blockquote>
+<hr>
+<h2 id="3-reels-ai-内容创作方法论"><a class="header" href="#3-reels-ai-内容创作方法论">3. Reels AI 内容创作方法论</a></h2>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="../d-platforms/tiktok-shop-ai-guide.html">D2 TikTok Shop</a> TikTok 短视频方法论参考 D2，同一素材可适配不同平台风格。</p>
+</blockquote>
+<h3 id="31-instagram-reels-的内容矩阵"><a class="header" href="#31-instagram-reels-的内容矩阵">3.1 Instagram Reels 的内容矩阵</a></h3>
+<p>高效的 Reels 策略不是随机发视频，而是按矩阵规划：</p>
+<pre><code>内容矩阵（建议比例）：
+40% 产品展示型（直接带货）
+使用场景演示
+Before/After 对比
+开箱/拆包
+产品特写 + 卖点文字
+
+30% 教育/价值型（建立信任）
+"X 个你不知道的 [品类] 小技巧"
+"如何选择适合你的 [产品]"
+行业知识科普
+常见问题解答
+
+20% 趋势/娱乐型（获取曝光）
+热门音乐 + 产品植入
+热门挑战参与
+Meme 式内容
+幕后花絮
+
+10% UGC/社会证明型（促进转化）
+客户使用视频
+评价截图合集
+达人推荐片段
+销量/好评数据展示
+</code></pre>
+<h3 id="32-reels-脚本结构与-tiktok-的区别"><a class="header" href="#32-reels-脚本结构与-tiktok-的区别">3.2 Reels 脚本结构（与 TikTok 的区别）</a></h3>
+<p>Instagram Reels 的脚本结构更注重视觉节奏和美学感：</p>
+<pre><code>第 1-2 秒：视觉 Hook（不是文字 Hook）
+产品特写 + 光影效果
+场景切换（快速蒙太奇）
+颜色对比（产品 vs 背景）
+动作起始（手拿起产品的瞬间）
+
+第 3-10 秒：产品故事（不是功能罗列）
+使用场景（生活方式植入）
+情感连接（"这就是我一直在找的..."）
+视觉变化（至少 3 个镜头切换）
+背景音乐节奏配合
+
+第 11-20 秒：卖点 + 社会证明
+1-2 个核心卖点（文字叠加）
+价格/优惠信息
+评价/销量数据
+品牌标识
+
+第 21-30 秒：CTA
+"Shop now link in bio"
+产品标签（Shoppable Tag）
+"Save for later "（引导保存，提升算法权重）
+"Tag someone who needs this"（引导分享）
+</code></pre>
+<h3 id="33-ai-生成-reels-脚本-prompt"><a class="header" href="#33-ai-生成-reels-脚本-prompt">3.3 AI 生成 Reels 脚本 Prompt</a></h3>
+<pre><code>你是一个 Instagram Reels 创意专家，专注于电商品牌内容。
+
+产品信息：
+- 产品名：[名称]
+- 品牌定位：[高端/中端/性价比]
+- 核心卖点：[3 个]
+- 价格：$[X]
+- 目标受众：[年龄、性别、生活方式]
+
+请生成 5 个不同角度的 Reels 脚本，每个脚本包含：
+1. 视觉 Hook 描述（前 2 秒的画面）
+2. 分镜脚本（每个镜头的画面 + 时长 + 文字叠加）
+3. 推荐背景音乐风格
+4. Caption 文案（含 hashtag 策略）
+5. CTA 设计
+
+5 个角度分别是：
+- 角度 1：生活方式场景（aspirational）
+- 角度 2：Before/After 对比
+- 角度 3：教育型（"X 个理由选择这个产品"）
+- 角度 4：趋势跟拍（适配当前热门 Reels 格式）
+- 角度 5：UGC 风格（模拟真实用户分享）
+
+要求：
+- 每个脚本 15-30 秒
+- Instagram 风格：精致、有设计感、不过度推销
+- 文字叠加简洁（每屏不超过 8 个词）
+- 至少包含一个 Shoppable Tag 的使用场景
+</code></pre>
+<h3 id="34-reels-批量生产工作流"><a class="header" href="#34-reels-批量生产工作流">3.4 Reels 批量生产工作流</a></h3>
+<pre><code>Step 1: AI 生成脚本（ChatGPT/Claude）
+↓ 每周生成 15-20 个脚本
+Step 2: 素材拍摄/收集
+↓ 产品实拍 + 场景素材 + UGC 收集
+Step 3: AI 剪辑（CapCut AI / Canva Video）
+↓ 自动匹配音乐、字幕、转场
+Step 4: 文案生成（AI 生成 Caption + Hashtag）
+↓ 批量生成，人工微调
+Step 5: 排期发布（Meta Business Suite）
+↓ 最佳发布时间 AI 推荐
+Step 6: 数据复盘（每周）
+↓ AI 分析哪些内容表现好，调整下周策略
+</code></pre>
+<blockquote>
+<p><strong>效率对比</strong>：人工制作 1 条 Reels 约 2-3 小时。AI 辅助后，脚本 5 分钟 + 剪辑 15 分钟 + 文案 5 分钟 = 25 分钟/条。每周可以稳定产出 10-15 条。</p>
+</blockquote>
+<hr>
+<h2 id="4-stories-与-carousel-ai-策略"><a class="header" href="#4-stories-与-carousel-ai-策略">4. Stories 与 Carousel AI 策略</a></h2>
+<h3 id="41-stories日常互动--限时促销"><a class="header" href="#41-stories日常互动--限时促销">4.1 Stories：日常互动 + 限时促销</a></h3>
+<p>Stories 24 小时消失的特性决定了它的独特价值：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Stories 类型</th><th>目的</th><th>AI 应用</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>投票/问答</strong></td><td>互动 + 用户调研</td><td>AI 生成投票选项（“你更喜欢 A 还是 B？”）</td></tr>
+<tr><td><strong>倒计时</strong></td><td>促销紧迫感</td><td>AI 生成限时优惠文案</td></tr>
+<tr><td><strong>产品标签</strong></td><td>直接带货</td><td>自动关联 Product Catalog</td></tr>
+<tr><td><strong>幕后花絮</strong></td><td>品牌人格化</td><td>AI 生成“一天的工作“脚本</td></tr>
+<tr><td><strong>用户晒单</strong></td><td>社会证明</td><td>AI 筛选最佳 UGC 并生成转发文案</td></tr>
+<tr><td><strong>教程/Tips</strong></td><td>价值输出</td><td>AI 生成分步教程脚本</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>AI 生成 Stories 互动内容 Prompt：</strong></p>
+<pre><code>你是一个 Instagram Stories 互动设计专家。
+
+品牌：[品牌名]，销售 [品类]
+本周目标：提升互动率 + 为新品预热
+
+请设计一周 7 天的 Stories 内容计划，每天 3-5 条 Stories，包含：
+- 周一：本周新品预告（倒计时贴纸）
+- 周二：用户投票（"你更需要 A 功能还是 B 功能？"）
+- 周三：教程/Tips（产品使用技巧）
+- 周四：幕后花絮（仓库/打包/团队）
+- 周五：用户晒单转发（UGC）
+- 周六：限时优惠（倒计时 + 滑动链接）
+- 周日：Q&amp;A 问答框（收集用户问题）
+
+每条 Stories 请提供：
+1. 画面描述
+2. 文字内容
+3. 使用的互动贴纸（投票/问答/倒计时/滑动条）
+4. CTA
+</code></pre>
+<h3 id="42-carousel深度内容的最佳载体"><a class="header" href="#42-carousel深度内容的最佳载体">4.2 Carousel：深度内容的最佳载体</a></h3>
+<p>Carousel（轮播图）是 Instagram 上保存率最高的内容形态，特别适合：</p>
+<p><strong>Carousel 内容类型矩阵：</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>类型</th><th>结构</th><th>适合场景</th><th>示例</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>教育型</strong></td><td>封面 Hook → 5-7 页知识点 → CTA</td><td>建立专业形象</td><td>“选购 [品类] 的 5 个误区”</td></tr>
+<tr><td><strong>对比型</strong></td><td>封面 → A vs B 对比 → 结论</td><td>竞品差异化</td><td>“我们 vs 竞品：6 个维度对比”</td></tr>
+<tr><td><strong>步骤型</strong></td><td>封面 → Step 1-5 → 结果</td><td>使用教程</td><td>“5 步打造完美 [效果]”</td></tr>
+<tr><td><strong>清单型</strong></td><td>封面 → 推荐列表 → 总结</td><td>选品推荐</td><td>“2026 年必备的 8 款 [产品]”</td></tr>
+<tr><td><strong>故事型</strong></td><td>封面 → 问题 → 过程 → 结果</td><td>品牌故事/案例</td><td>“从 0 到 10000 单的故事”</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>AI 生成 Carousel 文案 Prompt：</strong></p>
+<pre><code>你是一个 Instagram Carousel 内容专家。
+
+产品：[名称]，[品类]
+目标：教育用户 + 建立品牌专业形象
+
+请生成一个 8 页的教育型 Carousel，主题："选购 [品类] 的 5 个常见误区"
+
+每页提供：
+1. 标题文字（大字，不超过 6 个词）
+2. 正文（不超过 30 个词）
+3. 视觉建议（配图/图标/颜色方案）
+4. 设计备注
+
+结构要求：
+- 第 1 页：封面（Hook 标题 + 品牌 logo）
+- 第 2-6 页：5 个误区（每页一个，问题→正确做法）
+- 第 7 页：总结 + 产品推荐（自然植入，不硬推）
+- 第 8 页：CTA（"保存这篇 " + "关注获取更多"）
+
+风格：简洁、专业、Instagram 美学（建议配色方案）
+</code></pre>
+<hr>
+<h2 id="5-instagram-shopping-深度实操"><a class="header" href="#5-instagram-shopping-深度实操">5. Instagram Shopping 深度实操</a></h2>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="../d-platforms/shopify-ai-guide.html">D1 Shopify</a> Instagram Shopping 与 Shopify 深度集成，Product Catalog 同步和 DTC 策略参考 D1。</p>
+</blockquote>
+<h3 id="51-instagram-shopping-功能全景"><a class="header" href="#51-instagram-shopping-功能全景">5.1 Instagram Shopping 功能全景</a></h3>
+<pre><code>Instagram Shopping 功能矩阵：
+Product Tags（产品标签）
+Feed 帖子标签
+Reels 标签（互动率 +30%）
+Stories 标签
+Live Shopping 标签
+
+Instagram Shop（店铺页面）
+品牌主页 Shop Tab
+产品详情页
+合集（Collections）
+编辑精选（Editorial）
+
+Checkout（站内结账）
+仅限美国（2026 年）
+其他地区跳转外部网站
+
+Shopping Ads
+自动从 Catalog 生成广告
+动态产品广告（DPA）
+Collection Ads
+</code></pre>
+<h3 id="52-product-catalog-ai-优化"><a class="header" href="#52-product-catalog-ai-优化">5.2 Product Catalog AI 优化</a></h3>
+<p>Product Catalog 是 Instagram Shopping 的基础。优化 Catalog 直接影响 Shopping 的展示效果：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>字段</th><th>Amazon Listing 风格</th><th>Instagram 风格（需要适配）</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>标题</strong></td><td>关键词堆砌，长标题</td><td>简洁、品牌化，不超过 65 字符</td></tr>
+<tr><td><strong>描述</strong></td><td>功能参数罗列</td><td>生活方式描述 + 使用场景</td></tr>
+<tr><td><strong>图片</strong></td><td>白底主图 + 场景图</td><td>生活方式场景图为主，白底图为辅</td></tr>
+<tr><td><strong>价格展示</strong></td><td>直接显示</td><td>可以用“From $XX“或促销价</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>AI 批量转换 Amazon Listing → Instagram Catalog Prompt：</strong></p>
+<pre><code>你是一个 Instagram Shopping 优化专家。
+
+我有一批 Amazon 产品 Listing，需要转换为 Instagram Product Catalog 格式。
+
+Amazon Listing 信息：
+- 标题：[Amazon 长标题]
+- Bullet Points：[5 点]
+- 描述：[A+ Content 描述]
+- 价格：$[X]
+
+请转换为 Instagram Catalog 格式：
+1. Instagram 产品标题（≤65 字符，品牌化，不堆关键词）
+2. Instagram 产品描述（≤200 字符，生活方式导向，包含 1-2 个 emoji）
+3. 图片选择建议（从 Amazon 图片中选择最适合 Instagram 的，或建议补拍）
+4. 推荐的 Collection 分类
+5. 3 个适合标记这个产品的 Reels/Stories 内容创意
+</code></pre>
+<h3 id="53-shoppable-reels-最佳实践"><a class="header" href="#53-shoppable-reels-最佳实践">5.3 Shoppable Reels 最佳实践</a></h3>
+<p>Shoppable Reels（带产品标签的 Reels）是 2026 年 Instagram 电商转化率最高的内容形态：</p>
+<p><strong>数据支撑</strong>：带产品标签的 Reels 互动率比普通 Reels 高 30%（<a href="https://blog.lueurexterne.com/en/blog/social-commerce-in-2026-how-to-sell-on-instagram-tiktok-pinterest">lueurexterne.com</a>）。Content rephrased for compliance with licensing restrictions.</p>
+<p><strong>Shoppable Reels 优化清单：</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> 产品在前 3 秒内出现（不要铺垫太久）</li>
+<li><input disabled="" type="checkbox"> 产品标签放在视觉焦点附近（不遮挡关键画面）</li>
+<li><input disabled="" type="checkbox"> Caption 中提及产品名称和价格</li>
+<li><input disabled="" type="checkbox"> 使用 “Shop now” 或 “Tap to shop” 的 CTA</li>
+<li><input disabled="" type="checkbox"> Hashtag 包含品类词 + 品牌词 + Shopping 相关标签</li>
+<li><input disabled="" type="checkbox"> 发布时间选择目标受众活跃时段</li>
+</ul>
+<hr>
+<h2 id="6-meta-advantage-ai-广告深度指南"><a class="header" href="#6-meta-advantage-ai-广告深度指南">6. Meta Advantage+ AI 广告深度指南</a></h2>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="../a-operators/a3-advertising.html">A3 广告优化</a> 广告优化通用方法论参考 A3，ROAS 分析和预算分配框架可复用到 Meta Ads。</p>
+</blockquote>
+<h3 id="61-advantage-广告产品矩阵"><a class="header" href="#61-advantage-广告产品矩阵">6.1 Advantage+ 广告产品矩阵</a></h3>
+<p>Meta 的 AI 广告系统是目前最成熟的社交媒体广告 AI：</p>
+<pre><code>Meta Advantage+ AI 广告体系：
+Advantage+ Shopping Campaigns (ASC)
+全自动化：AI 控制受众、版位、预算分配
+最适合：电商转化（购买/加购）
+卖家只需提供：创意素材 + 产品目录 + 预算
+
+Advantage+ Creative
+自动调整图片亮度/对比度/裁剪
+自动生成多个文案变体
+自动适配不同版位（Feed/Stories/Reels）
+动态创意优化（DCO）
+
+Advantage+ Audience
+AI 自动扩展受众（基于种子受众）
+不再需要手动设置兴趣定向
+建议：提供 Advantage+ Audience Suggestion 而非限制
+
+Advantage+ Placements
+AI 自动分配预算到最佳版位
+覆盖：Instagram Feed/Stories/Reels/Explore + Facebook Feed/Reels/Marketplace
+建议：始终开启，让 AI 优化
+
+Advantage+ Catalog Ads
+动态产品广告（DPA）
+自动从 Catalog 选择最佳产品展示
+个性化推荐（基于用户浏览历史）
+</code></pre>
+<h3 id="62-ascadvantage-shopping-campaigns设置指南"><a class="header" href="#62-ascadvantage-shopping-campaigns设置指南">6.2 ASC（Advantage+ Shopping Campaigns）设置指南</a></h3>
+<p>ASC 是 Meta 为电商卖家设计的全自动 AI 广告方案：</p>
+<p><strong>ASC vs 传统广告的区别：</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>维度</th><th>传统 Meta 广告</th><th>ASC</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>受众</strong></td><td>手动设置兴趣/行为/Lookalike</td><td>AI 自动寻找最佳受众</td></tr>
+<tr><td><strong>版位</strong></td><td>手动选择或 Automatic</td><td>AI 全自动分配</td></tr>
+<tr><td><strong>预算</strong></td><td>手动设置 Ad Set 预算</td><td>Campaign 级别预算，AI 分配</td></tr>
+<tr><td><strong>创意</strong></td><td>手动 A/B 测试</td><td>AI 自动测试最佳组合</td></tr>
+<tr><td><strong>优化目标</strong></td><td>手动选择</td><td>默认优化购买转化</td></tr>
+<tr><td><strong>适合阶段</strong></td><td>测试期（需要控制变量）</td><td>规模化期（让 AI 接管）</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>ASC 最佳实践：</strong></p>
+<ol>
+<li><strong>创意素材是唯一的杠杆</strong>：ASC 中你能控制的只有创意。提供 10-20 个不同角度的素材，让 AI 测试</li>
+<li><strong>预算建议</strong>：日预算 ≥ $50（低于此 AI 学习数据不足）</li>
+<li><strong>Existing Customer Budget Cap</strong>：设置 10-20%，避免 AI 只投给老客户</li>
+<li><strong>Pixel 数据要充足</strong>：至少 50 个购买事件/周，ASC 才能有效学习</li>
+<li><strong>不要频繁调整</strong>：给 AI 至少 7 天学习期</li>
+</ol>
+<h3 id="63-广告素材-ai-批量生成工作流"><a class="header" href="#63-广告素材-ai-批量生成工作流">6.3 广告素材 AI 批量生成工作流</a></h3>
+<pre><code>Step 1: 产品素材准备
+产品白底图（3-5 张不同角度）
+场景图（3-5 张使用场景）
+UGC 素材（客户实拍/评价截图）
+品牌素材（logo、品牌色、字体）
+
+Step 2: AI 生成广告文案（ChatGPT/Claude）
+5 个不同角度的主标题（Headline）
+5 个不同风格的正文（Primary Text）
+3 个 CTA 变体
+输出格式：直接可粘贴到 Ads Manager
+
+Step 3: AI 生成广告图片（Midjourney/DALL-E → Canva）
+产品 + 生活方式背景合成
+Before/After 对比图
+数据/卖点信息图
+适配 3 个尺寸：1:1（Feed）、9:16（Stories/Reels）、1.91:1（横版）
+
+Step 4: AI 生成广告视频（CapCut/Canva Video）
+产品展示 15 秒视频
+UGC 风格 30 秒视频
+幻灯片式产品合集视频
+适配竖版（Reels/Stories）和方形（Feed）
+
+Step 5: 上传到 Ads Manager
+每个 Campaign 上传 10-20 个素材
+开启 Advantage+ Creative
+让 AI 自动测试最佳组合
+</code></pre>
+<p><strong>AI 生成广告文案 Prompt：</strong></p>
+<pre><code>你是一个 Meta Ads 文案专家，擅长写高转化率的电商广告。
+
+产品信息：
+- 产品：[名称]
+- 核心卖点：[3 个]
+- 价格：$[X]（原价 $[X]，折扣 XX%）
+- 目标受众：[年龄、性别、兴趣、痛点]
+- 落地页：[Shopify 产品页 / Amazon Listing]
+
+请生成 5 组广告文案，每组包含：
+1. Primary Text（正文，3 个版本：短版 ≤125 字符 / 中版 ≤250 字符 / 长版 ≤500 字符）
+2. Headline（标题，≤40 字符）
+3. Description（描述，≤30 字符）
+4. CTA 按钮建议（Shop Now / Learn More / Get Offer）
+
+5 组角度：
+- 组 1：痛点导向（"还在为 [问题] 烦恼？"）
+- 组 2：社会证明（"10000+ 用户的选择"）
+- 组 3：限时优惠（紧迫感）
+- 组 4：产品特性（功能/参数亮点）
+- 组 5：情感连接（生活方式/身份认同）
+
+要求：
+- 不使用夸张/虚假宣传
+- 符合 Meta 广告政策（不使用"你"的身体特征描述）
+- 包含 emoji 但不过度（每段 1-2 个）
+- 适合 Instagram 和 Facebook 双平台
+</code></pre>
+<h3 id="64-广告数据分析-ai-prompt"><a class="header" href="#64-广告数据分析-ai-prompt">6.4 广告数据分析 AI Prompt</a></h3>
+<pre><code>你是一个 Meta Ads 数据分析专家。
+
+以下是我过去 7 天的广告数据：
+
+Campaign: [名称]
+- Spend: $[X]
+- Impressions: [X]
+- Clicks: [X]
+- CTR: [X]%
+- CPC: $[X]
+- Purchases: [X]
+- ROAS: [X]
+- CPM: $[X]
+- Frequency: [X]
+
+Ad Set 级别数据：
+[粘贴各 Ad Set 的数据]
+
+Ad 级别数据：
+[粘贴各 Ad 的数据]
+
+请分析：
+1. 整体表现评估（与行业基准对比：电商 CTR 基准 1-2%，ROAS 基准 3-4x）
+2. 哪些 Ad Set/Ad 表现最好？为什么？
+3. 哪些应该关停？（给出具体标准）
+4. 预算重新分配建议
+5. 创意优化方向（基于表现最好的素材特征）
+6. 受众优化建议
+7. 下一步测试计划（新素材/新受众/新版位）
+</code></pre>
+<hr>
+<h2 id="7-facebook-社群与-marketplace"><a class="header" href="#7-facebook-社群与-marketplace">7. Facebook 社群与 Marketplace</a></h2>
+<h3 id="71-facebook-groups-运营策略"><a class="header" href="#71-facebook-groups-运营策略">7.1 Facebook Groups 运营策略</a></h3>
+<p>Facebook Groups 是 Meta 生态中被低估的电商渠道。与 Instagram 的“广播式“内容不同，Groups 是“对话式“社群：</p>
+<p><strong>适合建群的场景：</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>场景</th><th>示例</th><th>AI 应用</th></tr>
+</thead>
+<tbody>
+<tr><td>品牌用户社群</td><td>“[品牌名] Owners Club”</td><td>AI 生成每周讨论话题、自动回复常见问题</td></tr>
+<tr><td>品类爱好者社群</td><td>“Outdoor Photography Gear”</td><td>AI 分析讨论热点、提取产品需求</td></tr>
+<tr><td>售后支持社群</td><td>“[品牌名] Support”</td><td>AI Chatbot 自动回复技术问题</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>AI 辅助社群运营 Prompt：</strong></p>
+<pre><code>你是一个 Facebook Group 社群运营专家。
+
+社群信息：
+- 社群名：[名称]
+- 成员数：[X]
+- 品类：[产品品类]
+- 目标：提升活跃度 + 自然带货
+
+请生成本月的社群内容计划（4 周），每周包含：
+- 周一：讨论话题帖（开放式问题，引发讨论）
+- 周三：教育内容帖（使用技巧/行业知识）
+- 周五：用户晒单/UGC 征集帖
+- 周日：轻松互动帖（投票/趣味问答）
+
+每个帖子提供：
+1. 帖子文案（口语化、社群感、不像广告）
+2. 配图建议
+3. 互动引导策略（如何让成员回复）
+4. 产品植入方式（自然、不硬推）
+</code></pre>
+<h3 id="72-facebook-marketplace"><a class="header" href="#72-facebook-marketplace">7.2 Facebook Marketplace</a></h3>
+<p>Facebook Marketplace 适合特定品类（家具、电子产品、本地服务）：</p>
+<ul>
+<li><strong>优势</strong>：零佣金、本地流量、信任度高</li>
+<li><strong>限制</strong>：不适合跨境（本地交易为主）、品类有限</li>
+<li><strong>AI 应用</strong>：AI 生成 Marketplace 产品描述（更口语化、本地化）</li>
+</ul>
+<blockquote>
+<p><strong>建议</strong>：除非你有本地仓储和配送能力，否则 Facebook Marketplace 优先级低于 Instagram Shopping。</p>
+</blockquote>
+<hr>
+<h2 id="8-meta-数据分析与-ai-诊断"><a class="header" href="#8-meta-数据分析与-ai-诊断">8. Meta 数据分析与 AI 诊断</a></h2>
+<h3 id="81-关键指标体系"><a class="header" href="#81-关键指标体系">8.1 关键指标体系</a></h3>
+<pre><code>Meta 电商运营关键指标：
+
+一、内容指标（Instagram）
+Reach（触达人数）
+Impressions（展示次数）
+Engagement Rate（互动率）= (点赞+评论+保存+分享) / 触达
+Save Rate（保存率）← Instagram 算法最看重的指标
+Share Rate（分享率）← 第二重要
+Profile Visits（主页访问）
+Website Clicks（网站点击）
+
+二、Shopping 指标
+Product Page Views（产品页浏览）
+Add to Cart（加购）
+Checkout Initiated（发起结账）
+Purchases（购买）
+Revenue（收入）
+
+三、广告指标
+ROAS（广告回报率）← 核心指标
+CPA（单次获客成本）
+CTR（点击率）
+CPM（千次展示成本）
+Frequency（频次）← &gt;3 需要更换素材
+Thumbstop Rate（停留率）← 视频广告核心
+</code></pre>
+<h3 id="82-ai-周报分析-prompt"><a class="header" href="#82-ai-周报分析-prompt">8.2 AI 周报分析 Prompt</a></h3>
+<pre><code>你是一个 Meta 社交媒体数据分析师。
+
+以下是本周的 Instagram 运营数据：
+
+内容数据：
+- 发布 Reels: [X] 条，平均触达 [X]，平均互动率 [X]%
+- 发布 Carousel: [X] 条，平均触达 [X]，平均保存率 [X]%
+- 发布 Stories: [X] 条，平均完播率 [X]%
+- 粉丝增长: +[X]（净增）
+
+Shopping 数据：
+- 产品页浏览: [X]
+- 加购: [X]
+- 购买: [X]
+- 收入: $[X]
+
+广告数据：
+- 总花费: $[X]
+- ROAS: [X]
+- CPA: $[X]
+- 最佳素材: [描述]
+- 最差素材: [描述]
+
+请提供：
+1. 本周表现总结（3 句话）
+2. 表现最好的 3 条内容及原因分析
+3. 表现最差的 3 条内容及改进建议
+4. 广告优化建议（预算调整/素材更换/受众优化）
+5. 下周内容策略建议（基于本周数据趋势）
+6. 需要关注的风险信号（如互动率下降、CPM 上升等）
+</code></pre>
+<hr>
+<h2 id="9-prompt-模板meta-生态专用"><a class="header" href="#9-prompt-模板meta-生态专用">9. Prompt 模板：Meta 生态专用</a></h2>
+<h3 id="91-instagram-bio-优化"><a class="header" href="#91-instagram-bio-优化">9.1 Instagram Bio 优化</a></h3>
+<pre><code>你是一个 Instagram 品牌主页优化专家。
+
+品牌信息：
+- 品牌名：[名称]
+- 品类：[产品品类]
+- 核心卖点：[1 句话]
+- 目标受众：[描述]
+- 网站：[URL]
+
+请生成 5 个版本的 Instagram Bio（≤150 字符），包含：
+1. 品牌定位（一句话说清楚你是谁）
+2. 价值主张（用户为什么要关注你）
+3. CTA（引导点击链接）
+4. 适当使用 emoji（不超过 3 个）
+
+同时建议：
+- Highlights 分类（5-7 个，每个的名称和封面图标建议）
+- Link in bio 工具推荐（Linktree / Later / Stan Store）
+- 用户名优化建议（如果当前用户名不够好）
+</code></pre>
+<h3 id="92-hashtag-策略生成"><a class="header" href="#92-hashtag-策略生成">9.2 Hashtag 策略生成</a></h3>
+<pre><code>你是一个 Instagram Hashtag 策略专家。
+
+产品：[名称]，[品类]
+目标市场：[国家/地区]
+账号粉丝量：[X]
+
+请生成一套 Hashtag 策略：
+
+1. 品牌标签（1-2 个，用于所有帖子）
+2. 产品标签（3-5 个，品类相关）
+3. 社群标签（3-5 个，目标受众使用的标签）
+4. 热门标签（3-5 个，高流量但竞争大）
+5. 长尾标签（5-10 个，精准但竞争小）
+
+每个标签提供：
+- 标签名
+- 预估帖子量（大/中/小）
+- 推荐使用场景（哪类内容用）
+
+总数控制在 20-25 个标签/帖子。
+按"5-5-5-10"策略分配：5 个大标签 + 5 个中标签 + 5 个小标签 + 10 个长尾标签。
+</code></pre>
+<h3 id="93-竞品-instagram-分析"><a class="header" href="#93-竞品-instagram-分析">9.3 竞品 Instagram 分析</a></h3>
+<pre><code>你是一个 Instagram 竞品分析专家。
+
+请帮我分析以下竞品的 Instagram 运营策略：
+
+竞品账号：
+1. @[竞品1]（粉丝 [X]）
+2. @[竞品2]（粉丝 [X]）
+3. @[竞品3]（粉丝 [X]）
+
+请分析每个竞品的：
+1. 内容策略（发布频率、内容类型比例、风格调性）
+2. 互动策略（如何引导评论/保存/分享）
+3. Shopping 策略（是否使用产品标签、Shop 页面布局）
+4. 广告策略（通过 Meta Ad Library 可见的广告素材风格）
+5. 增长策略（合作达人、活动、Giveaway）
+
+最后给出：
+- 3 个可以借鉴的策略
+- 3 个他们没做好的机会点（我们可以差异化的地方）
+- 建议的内容差异化方向
+</code></pre>
+<hr>
+<h2 id="10-ai-工具推荐"><a class="header" href="#10-ai-工具推荐">10. AI 工具推荐</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>工具</th><th>用途</th><th>价格</th><th>推荐度</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Meta Business Suite</strong></td><td>内容发布、数据分析、消息管理</td><td>免费</td><td></td></tr>
+<tr><td><strong>Meta Ads Manager</strong></td><td>广告投放与优化</td><td>免费（广告费另计）</td><td></td></tr>
+<tr><td><strong>Canva</strong></td><td>图片/视频设计、AI 生成</td><td>免费 / Pro $13/月</td><td></td></tr>
+<tr><td><strong>CapCut</strong></td><td>Reels 视频剪辑、AI 字幕</td><td>免费 / Pro $8/月</td><td></td></tr>
+<tr><td><strong>Later</strong></td><td>内容排期、最佳发布时间、Link in bio</td><td>$25/月起</td><td></td></tr>
+<tr><td><strong>ChatGPT / Claude</strong></td><td>文案生成、数据分析、策略规划</td><td>$20/月</td><td></td></tr>
+<tr><td><strong>Midjourney</strong></td><td>AI 生成产品场景图</td><td>$10/月起</td><td></td></tr>
+<tr><td><strong>Meta Ad Library</strong></td><td>竞品广告素材研究</td><td>免费</td><td></td></tr>
+<tr><td><strong>Manychat</strong></td><td>Instagram DM 自动化</td><td>免费 / Pro $15/月</td><td></td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="11-常见陷阱与避坑"><a class="header" href="#11-常见陷阱与避坑">11. 常见陷阱与避坑</a></h2>
+<h3 id="陷阱-1把-amazon-listing-图直接用在-instagram"><a class="header" href="#陷阱-1把-amazon-listing-图直接用在-instagram">陷阱 1：把 Amazon Listing 图直接用在 Instagram</a></h3>
+<p>Amazon 的白底产品图在 Instagram 上表现极差。Instagram 用户期待的是生活方式场景图。</p>
+<p><strong>解决方案</strong>：用 AI（Midjourney/DALL-E）生成产品 + 场景的合成图，或用 Canva 添加生活方式背景。</p>
+<h3 id="陷阱-2过度依赖-hashtag-获取流量"><a class="header" href="#陷阱-2过度依赖-hashtag-获取流量">陷阱 2：过度依赖 Hashtag 获取流量</a></h3>
+<p>2026 年 Instagram 算法已经大幅降低 Hashtag 的流量权重。Reels 的推荐算法才是主要流量来源。</p>
+<p><strong>解决方案</strong>：Hashtag 作为分类标签使用（帮助算法理解内容），但不要指望它带来大量流量。把精力放在 Reels 内容质量上。</p>
+<h3 id="陷阱-3asc-预算太低"><a class="header" href="#陷阱-3asc-预算太低">陷阱 3：ASC 预算太低</a></h3>
+<p>Advantage+ Shopping Campaigns 需要足够的数据来学习。日预算低于 $30 的 ASC 通常表现不佳。</p>
+<p><strong>解决方案</strong>：如果预算有限，先用传统广告结构测试素材和受众，积累 Pixel 数据后再切换到 ASC。</p>
+<h3 id="陷阱-4instagram-和-tiktok-用同一套内容"><a class="header" href="#陷阱-4instagram-和-tiktok-用同一套内容">陷阱 4：Instagram 和 TikTok 用同一套内容</a></h3>
+<p>虽然都是短视频，但风格完全不同。TikTok 的“真实感“内容在 Instagram 上可能显得粗糙；Instagram 的“精致感“内容在 TikTok 上可能显得做作。</p>
+<p><strong>解决方案</strong>：用 AI 从同一个核心脚本生成两个平台的变体，调整调性和剪辑风格。</p>
+<h3 id="陷阱-5忽略-instagram-的保存指标"><a class="header" href="#陷阱-5忽略-instagram-的保存指标">陷阱 5：忽略 Instagram 的“保存“指标</a></h3>
+<p>很多卖家只关注点赞和评论，但 Instagram 算法最看重的是“保存“（Save）。保存率高的内容会获得更多推荐。</p>
+<p><strong>解决方案</strong>：创作“值得保存“的内容教程、清单、对比图、Tips。在 CTA 中引导用户保存（“Save this for later “）。</p>
+<hr>
+<h2 id="115-instagram-算法深度解析2026"><a class="header" href="#115-instagram-算法深度解析2026">11.5 Instagram 算法深度解析（2026）</a></h2>
+<h3 id="算法排名因素权重"><a class="header" href="#算法排名因素权重">算法排名因素权重</a></h3>
+<pre><code>Instagram 2026 算法排名因素：
+
+Feed/Reels 推荐算法：
+互动预测（权重最高）
+AI 预测用户是否会与这条内容互动
+基于用户历史行为（点赞/评论/保存/分享的内容类型）
+基于内容特征（视觉元素、文字、音乐、话题）
+新内容有 200-500 人的初始测试池
+
+内容质量信号
+完播率（Reels 最重要的指标）
+保存率（Save Rate）← 2026 年权重大幅提升
+分享率（Share Rate）← 第二重要
+评论率（Comment Rate）
+点赞率（Like Rate）← 权重最低
+停留时间（Dwell Time）
+
+账号信号
+账号活跃度（发布频率）
+粉丝互动率
+账号年龄和历史表现
+内容一致性（是否持续发布同类内容）
+
+时效性
+新内容有初始推荐加成
+发布后 30 分钟内的互动率决定后续推荐
+最佳发布时间因受众而异
+
+负面信号
+用户隐藏/举报 → 严重降权
+取消关注 → 降权
+内容被标记为低质量 → 降权
+违反社区准则 → 限流或封号
+</code></pre>
+<h3 id="算法友好的内容策略"><a class="header" href="#算法友好的内容策略">算法友好的内容策略</a></h3>
+<pre><code>你是一个 Instagram 算法优化专家。
+
+我的账号数据：
+- 粉丝数：[X]
+- 平均 Reels 触达：[X]
+- 平均互动率：[X]%
+- 平均保存率：[X]%
+- 平均分享率：[X]%
+- 发布频率：每周 [X] 条
+
+请分析：
+1. 我的内容在算法中的表现如何？（与行业基准对比）
+2. 哪个指标是我的瓶颈？（完播率/保存率/分享率）
+3. 如何提升保存率？（具体的内容策略）
+4. 如何提升分享率？（具体的内容策略）
+5. 最佳发布时间建议（基于我的受众活跃时间）
+6. 发布频率是否需要调整？
+7. 下周的 5 个内容选题建议（基于算法偏好）
+</code></pre>
+<hr>
+<h2 id="116-instagram-达人合作深度指南"><a class="header" href="#116-instagram-达人合作深度指南">11.6 Instagram 达人合作深度指南</a></h2>
+<h3 id="达人类型与合作模式"><a class="header" href="#达人类型与合作模式">达人类型与合作模式</a></h3>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="e3-xiaohongshu-ai-guide.html">E3 小红书</a> 中国市场的达人合作（KOL/KOC）方法论参考 E3 小红书，达人筛选模型可互相借鉴。</p>
+</blockquote>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>达人类型</th><th>粉丝量</th><th>合作费用</th><th>适合目标</th><th>ROI 预期</th></tr>
+</thead>
+<tbody>
+<tr><td>Nano</td><td>1K-10K</td><td>$50-250/帖</td><td>真实口碑、UGC 素材</td><td>高（性价比最好）</td></tr>
+<tr><td>Micro</td><td>10K-100K</td><td>$250-2500/帖</td><td>精准受众、高互动</td><td>中高</td></tr>
+<tr><td>Mid-tier</td><td>100K-500K</td><td>$2500-10000/帖</td><td>品牌认知+转化</td><td>中</td></tr>
+<tr><td>Macro</td><td>500K-1M</td><td>$10000-50000/帖</td><td>大规模品牌曝光</td><td>中低</td></tr>
+<tr><td>Mega</td><td>1M+</td><td>$50000+/帖</td><td>品牌代言级</td><td>低（但品牌价值高）</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="ai-达人筛选模型"><a class="header" href="#ai-达人筛选模型">AI 达人筛选模型</a></h3>
+<pre><code>你是一个 Instagram 达人合作专家。
+
+我的产品：[名称]，品类 [X]，价格 $[X]
+目标受众：[年龄/性别/兴趣/地区]
+月预算：$[X]
+
+请设计达人合作方案：
+
+1. 达人筛选评分模型（100 分制）
+- 内容相关性（25 分）：达人内容是否与我的品类相关
+- 受众匹配度（25 分）：达人粉丝画像是否匹配我的目标客户
+- 互动质量（20 分）：评论质量（真实 vs 水军）、互动率
+- 内容质量（15 分）：视觉风格、制作水平
+- 性价比（15 分）：CPE（Cost Per Engagement）
+
+2. 推荐的达人组合（基于预算）
+- Nano 达人 [X] 个 × $[X] = $[X]
+- Micro 达人 [X] 个 × $[X] = $[X]
+- 总预算：$[X]
+
+3. 达人邀约 DM 模板（英文，Instagram 风格）
+- 简短、真诚、不像群发
+- 说明为什么选择这个达人
+- 明确合作方式和报酬
+
+4. Creative Brief 模板
+- 产品信息和卖点（必须提及）
+- 内容方向建议（不限制创作自由）
+- 必须包含的元素（产品标签、CTA、Hashtag）
+- 禁止事项（竞品提及、虚假宣传）
+- 发布时间和格式要求
+
+5. 效果追踪方法
+- UTM 参数设置
+- 专属折扣码追踪
+- 达人内容的 Engagement 数据收集
+- ROI 计算公式
+</code></pre>
+<h3 id="达人内容二次利用"><a class="header" href="#达人内容二次利用">达人内容二次利用</a></h3>
+<p>达人创作的内容是宝贵的素材资产：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>二次利用方式</th><th>说明</th><th>注意事项</th></tr>
+</thead>
+<tbody>
+<tr><td>品牌账号转发</td><td>Repost 达人内容到品牌账号</td><td>需要达人授权</td></tr>
+<tr><td>广告素材</td><td>用达人内容作为 Meta Ads 素材</td><td>需要在合同中约定使用权</td></tr>
+<tr><td>产品页面</td><td>达人图片/视频用在 Shopify 产品页</td><td>需要授权</td></tr>
+<tr><td>A+ Content</td><td>达人评价截图用在 Amazon A+</td><td>需要授权</td></tr>
+<tr><td>社交证明</td><td>达人推荐截图用在其他营销材料</td><td>需要授权</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>合同建议</strong>：在达人合作合同中明确约定内容使用权（Usage Rights），包括使用渠道、使用期限、是否可以修改。</p>
+</blockquote>
+<hr>
+<h2 id="117-instagram-reels-进阶技巧"><a class="header" href="#117-instagram-reels-进阶技巧">11.7 Instagram Reels 进阶技巧</a></h2>
+<h3 id="reels-音乐策略"><a class="header" href="#reels-音乐策略">Reels 音乐策略</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>音乐类型</th><th>适用场景</th><th>算法影响</th></tr>
+</thead>
+<tbody>
+<tr><td>热门音乐（Trending）</td><td>趋势跟拍</td><td>使用热门音乐有算法加成</td></tr>
+<tr><td>原创音频</td><td>品牌内容</td><td>如果你的音频被其他人使用，会获得额外曝光</td></tr>
+<tr><td>无音乐（纯口播）</td><td>教育/评测</td><td>适合信息密度高的内容</td></tr>
+<tr><td>氛围音乐（Lo-fi/Ambient）</td><td>生活方式/产品展示</td><td>适合 Instagram 美学</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="reels-剪辑节奏"><a class="header" href="#reels-剪辑节奏">Reels 剪辑节奏</a></h3>
+<pre><code>高完播率 Reels 的剪辑节奏：
+
+前 1 秒：视觉冲击（快速切换/颜色对比/动作起始）
+1-3 秒：Hook 文字出现（大字、简短、制造好奇）
+3-5 秒：第一个信息点（快速展示）
+5-8 秒：第二个信息点（保持节奏）
+8-12 秒：产品展示/核心内容
+12-18 秒：社会证明/卖点强化
+18-25 秒：CTA + 结尾
+
+剪辑技巧：
+每 2-3 秒切换一次镜头（保持注意力）
+使用 Jump Cut（跳切）加快节奏
+文字叠加与口播同步出现
+关键信息用放大/高亮强调
+结尾留 0.5 秒空白（引导循环播放，提升完播率）
+竖版 9:16，确保关键内容在安全区域内
+</code></pre>
+<h3 id="reels-ab-测试方法论"><a class="header" href="#reels-ab-测试方法论">Reels A/B 测试方法论</a></h3>
+<pre><code>Reels A/B 测试框架：
+
+每周测试一个变量：
+
+Week 1: 测试 Hook
+同一个产品，5 种不同的 Hook
+其他元素保持一致
+对比完播率和互动率
+找到最有效的 Hook 类型
+
+Week 2: 测试时长
+同一个内容，15秒/30秒/60秒 三个版本
+对比完播率和触达量
+找到最佳时长
+
+Week 3: 测试 CTA
+同一个内容，不同的 CTA
+"Shop now" vs "Save for later" vs "Tag a friend"
+对比保存率/分享率/点击率
+找到最有效的 CTA
+
+Week 4: 测试发布时间
+同类内容在不同时间发布
+对比初始互动率和最终触达量
+找到最佳发布时间
+
+记录模板：
+| 测试变量 | 版本 A | 版本 B | 版本 C | 胜出 | 原因分析 |
+</code></pre>
+<hr>
+<h2 id="12-完成标志"><a class="header" href="#12-完成标志">12. 完成标志</a></h2>
+<p>完成本模块后，你应该能够：</p>
+<ul>
+<li><input disabled="" type="checkbox"> 每周用 AI 批量生产 10+ 条 Instagram Reels</li>
+<li><input disabled="" type="checkbox"> 建立一套 Stories 和 Carousel 的内容模板库</li>
+<li><input disabled="" type="checkbox"> 设置并优化 Instagram Shopping（Product Catalog + Shoppable Tags）</li>
+<li><input disabled="" type="checkbox"> 运行 Meta Advantage+ Shopping Campaign 并持续优化</li>
+<li><input disabled="" type="checkbox"> 用 AI 分析每周数据并生成优化建议</li>
+<li><input disabled="" type="checkbox"> 建立一套可复用的 Meta 生态 Prompt 模板库</li>
+</ul>
+<blockquote>
+<p><strong>下一步</strong>：完成 E1 后，建议继续 <a href="e2-youtube-ai-guide.html">E2 YouTube AI 运营</a>，把视频内容能力从短视频扩展到长视频。或者直接跳到 <a href="e7-social-media-cross-channel.html">E7 跨渠道协同</a>，学习如何把 Instagram 内容高效复用到其他平台。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path E 总览</a></p>
+<p><strong>Path E</strong>: <a href="e1-instagram-facebook-ai-guide.html">E1 Instagram</a> · <a href="e2-youtube-ai-guide.html">E2 YouTube</a> · <a href="e3-xiaohongshu-ai-guide.html">E3 小红书</a> · <a href="e4-pinterest-ai-guide.html">E4 Pinterest</a> · <a href="e5-whatsapp-business-ai-guide.html">E5 WhatsApp</a> · <a href="e6-reddit-ai-guide.html">E6 Reddit</a> · <a href="e7-social-media-cross-channel.html">E7 跨渠道</a></p>
+<p><strong>快速跳转</strong>: <a href="../0-foundations/">Path 0 基础</a> · <a href="../a-operators/">Path A 运营</a> · <a href="../b-developers/">Path B 技术</a> · <a href="../c-managers/">Path C 管理</a> · <a href="../d-platforms/">Path D 多平台</a></p>
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../d-platforms/platform-comparison.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../e-social-media/e2-youtube-ai-guide.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../d-platforms/platform-comparison.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../e-social-media/e2-youtube-ai-guide.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../mermaid-217b66ef.min.js"></script>
+        <script src="../mermaid-init-d4730691.js"></script>
+
+
+
+    </div>
+    </body>
+</html>

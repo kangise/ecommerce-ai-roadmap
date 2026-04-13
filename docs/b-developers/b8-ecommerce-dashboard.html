@@ -1,0 +1,860 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>电商 Dashboard - 跨境电商 AI 实战知识库</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="跨境电商 AI 实操手册 — 56 篇指南，从选品到增长，每个环节都有可直接复制的 Prompt">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom-467616e9.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "ayu";
+            window.path_to_searchindex_js = "../searchindex-656d55b3.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-e97a050e.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">跨境电商 AI 实战知识库</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap/edit/main/src/src/b-developers/b8-ecommerce-dashboard.md" title="Suggest an edit" aria-label="Suggest an edit" rel="edit">
+                            <span class=fa-svg id="git-edit-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M421.7 220.3l-11.3 11.3-22.6 22.6-205 205c-6.6 6.6-14.8 11.5-23.8 14.1L30.8 511c-8.4 2.5-17.5 .2-23.7-6.1S-1.5 489.7 1 481.2L38.7 353.1c2.6-9 7.5-17.2 14.1-23.8l205-205 22.6-22.6 11.3-11.3 33.9 33.9 62.1 62.1 33.9 33.9zM96 353.9l-9.3 9.3c-.9 .9-1.6 2.1-2 3.4l-25.3 86 86-25.3c1.3-.4 2.5-1.1 3.4-2l9.3-9.3H112c-8.8 0-16-7.2-16-16V353.9zM453.3 19.3l39.4 39.4c25 25 25 65.5 0 90.5l-14.5 14.5-22.6 22.6-11.3 11.3-33.9-33.9-62.1-62.1L314.3 67.7l11.3-11.3 22.6-22.6 14.5-14.5c25-25 65.5-25 90.5 0z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="b8-电商数据可视化与实时-dashboard"><a class="header" href="#b8-电商数据可视化与实时-dashboard">B8. 电商数据可视化与实时 Dashboard</a></h1>
+<blockquote>
+<p><strong>路径</strong>: Path B: 技术人 · <strong>模块</strong>: B8
+<strong>最后更新</strong>: 2026-03-15
+<strong>难度</strong>: 中级
+<strong>预计时间</strong>: 每天 1 小时，1-2 周
+<strong>前置模块</strong>: <a href="b1-data-pipeline.html">B1 数据采集与处理</a></p>
+</blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path B 总览</a></p>
+<hr>
+<h2 id="章节导航"><a class="header" href="#章节导航">章节导航</a></h2>
+<ol>
+<li><a href="#1-为什么需要自建-dashboard">为什么需要自建 Dashboard</a> · 2. <a href="#2-技术栈选择">技术栈选择</a> · 3. <a href="#3-streamlit-快速上手">Streamlit 快速上手</a> · 4. <a href="#4-电商核心-dashboard-模块">电商核心 Dashboard 模块</a> · 5. <a href="#5-多平台数据整合">多平台数据整合</a> · 6. <a href="#6-ai-增强-dashboard">AI 增强 Dashboard</a> · 7. <a href="#7-部署与分享">部署与分享</a> · 8. <a href="#8-完成标志">完成标志</a></li>
+</ol>
+<hr>
+<h2 id="本模块你将构建"><a class="header" href="#本模块你将构建">本模块你将构建</a></h2>
+<ul>
+<li>一个 Streamlit 电商运营 Dashboard（销售/广告/库存/利润）</li>
+<li>多平台数据整合视图（Amazon + Shopify + 广告平台）</li>
+<li>AI 增强的异常检测和自动洞察</li>
+<li>可部署到云端的实时监控系统</li>
+</ul>
+<blockquote>
+<p><strong>核心理念</strong>：Amazon Seller Central 和 Shopify 后台的数据分散在不同报告中，无法一眼看到全局。自建 Dashboard 把所有数据汇聚到一个视图，加上 AI 异常检测，让你从“被动看数据“变成“主动发现问题“。</p>
+</blockquote>
+<hr>
+<h2 id="1-为什么需要自建-dashboard"><a class="header" href="#1-为什么需要自建-dashboard">1. 为什么需要自建 Dashboard</a></h2>
+<h3 id="11-平台后台的局限"><a class="header" href="#11-平台后台的局限">1.1 平台后台的局限</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>局限</th><th>说明</th><th>自建 Dashboard 解决</th></tr>
+</thead>
+<tbody>
+<tr><td>数据分散</td><td>销售、广告、库存在不同页面</td><td>一个页面看全局</td></tr>
+<tr><td>无法跨平台</td><td>Amazon 和 Shopify 数据无法合并</td><td>统一数据视图</td></tr>
+<tr><td>无 AI 洞察</td><td>只有原始数据，没有智能分析</td><td>AI 异常检测+建议</td></tr>
+<tr><td>无法自定义</td><td>固定的报告格式</td><td>完全自定义指标和视图</td></tr>
+<tr><td>无法分享</td><td>需要登录后台才能看</td><td>生成链接分享给团队</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="2-技术栈选择"><a class="header" href="#2-技术栈选择">2. 技术栈选择</a></h2>
+<h3 id="21-方案对比"><a class="header" href="#21-方案对比">2.1 方案对比</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>方案</th><th>优点</th><th>缺点</th><th>适合</th></tr>
+</thead>
+<tbody>
+<tr><td>Streamlit</td><td>Python 原生、开发最快、免费</td><td>性能有限、样式受限</td><td>内部工具、快速原型</td></tr>
+<tr><td>Gradio</td><td>ML 模型展示好、简单</td><td>功能较少</td><td>AI 模型 Demo</td></tr>
+<tr><td>Dash (Plotly)</td><td>图表丰富、企业级</td><td>学习曲线陡</td><td>复杂交互 Dashboard</td></tr>
+<tr><td>单文件 HTML</td><td>零依赖、可直接打开</td><td>无后端、无实时</td><td>静态报告</td></tr>
+<tr><td>Retool/Metabase</td><td>拖拽式、无需编码</td><td>付费、灵活性低</td><td>非技术团队</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="22-推荐streamlit--plotly"><a class="header" href="#22-推荐streamlit--plotly">2.2 推荐：Streamlit + Plotly</a></h3>
+<pre><code class="language-bash">pip3 install streamlit plotly pandas openpyxl
+</code></pre>
+<hr>
+<h2 id="3-streamlit-快速上手"><a class="header" href="#3-streamlit-快速上手">3. Streamlit 快速上手</a></h2>
+<h3 id="31-最小可行-dashboard10-分钟"><a class="header" href="#31-最小可行-dashboard10-分钟">3.1 最小可行 Dashboard（10 分钟）</a></h3>
+<pre><code class="language-python"># dashboard.py 电商运营 Dashboard
+import streamlit as st
+import pandas as pd
+import plotly.express as px
+from datetime import datetime, timedelta
+
+st.set_page_config(page_title="电商运营 Dashboard", layout="wide")
+st.title(" 电商运营 Dashboard")
+
+# 侧边栏：日期选择
+with st.sidebar:
+st.header("筛选条件")
+date_range = st.date_input(
+"日期范围",
+value=(datetime.now() - timedelta(days=30), datetime.now())
+)
+marketplace = st.selectbox("市场", ["All", "US", "EU", "JP"])
+
+# 数据加载
+@st.cache_data
+def load_data():
+# 替换为你的数据源（CSV/API/数据库）
+df = pd.read_csv("sales_data.csv", parse_dates=["date"])
+return df
+
+df = load_data()
+
+# KPI 卡片
+col1, col2, col3, col4 = st.columns(4)
+col1.metric("总收入", f"${df['revenue'].sum():,.0f}",
+f"{(df['revenue'].sum() / df['revenue_prev'].sum() - 1)*100:+.1f}%")
+col2.metric("总订单", f"{df['orders'].sum():,}")
+col3.metric("平均客单价", f"${df['revenue'].sum() / df['orders'].sum():.2f}")
+col4.metric("广告 ROAS", f"{df['ad_revenue'].sum() / df['ad_spend'].sum():.1f}x")
+
+# 销售趋势图
+st.subheader(" 销售趋势")
+daily = df.groupby("date").agg({"revenue": "sum", "orders": "sum"}).reset_index()
+fig = px.line(daily, x="date", y="revenue", title="日收入趋势")
+st.plotly_chart(fig, use_container_width=True)
+
+# 品类分布
+col1, col2 = st.columns(2)
+with col1:
+st.subheader(" 品类收入分布")
+cat_data = df.groupby("category")["revenue"].sum().reset_index()
+fig2 = px.pie(cat_data, values="revenue", names="category")
+st.plotly_chart(fig2, use_container_width=True)
+
+with col2:
+st.subheader(" 库存健康度")
+inv_data = df.groupby("sku")[["inventory_days", "daily_sales"]].mean().reset_index()
+inv_data["status"] = inv_data["inventory_days"].apply(
+lambda x: " 紧急" if x &lt; 7 else (" 注意" if x &lt; 14 else " 正常")
+)
+st.dataframe(inv_data, use_container_width=True)
+</code></pre>
+<p>运行：<code>streamlit run dashboard.py</code></p>
+<hr>
+<h2 id="4-电商核心-dashboard-模块"><a class="header" href="#4-电商核心-dashboard-模块">4. 电商核心 Dashboard 模块</a></h2>
+<h3 id="41-模块架构"><a class="header" href="#41-模块架构">4.1 模块架构</a></h3>
+<pre><code>电商 Dashboard 模块：
+
+Overview（总览）
+KPI 卡片（收入/订单/利润/ROAS）
+日/周/月趋势图
+同比/环比变化
+
+Sales（销售分析）
+SKU 级别销售排名
+品类/市场分布
+新品 vs 老品表现
+退货率分析
+
+Advertising（广告分析）
+Campaign 表现排名
+ACOS/ROAS/TACOS 趋势
+关键词表现 Top/Bottom
+搜索词发现
+预算消耗进度
+
+Inventory（库存管理）
+库存健康度（红黄绿灯）
+可售天数预警
+补货建议
+长期仓储费预警
+
+Profitability（利润分析）
+SKU 级别真实利润
+成本结构分解
+利润趋势
+盈亏平衡分析
+
+AI Insights（AI 洞察）
+异常检测（销量骤降/ACOS 飙升）
+趋势预测（未来 7 天预测）
+自动优化建议
+竞品变化提醒
+</code></pre>
+<h3 id="42-广告分析模块代码"><a class="header" href="#42-广告分析模块代码">4.2 广告分析模块代码</a></h3>
+<pre><code class="language-python">def render_advertising_tab(df_ads: pd.DataFrame):
+"""广告分析 Tab"""
+st.header(" 广告分析")
+
+# KPI
+col1, col2, col3, col4 = st.columns(4)
+total_spend = df_ads['spend'].sum()
+total_sales = df_ads['attributed_sales'].sum()
+col1.metric("总花费", f"${total_spend:,.0f}")
+col2.metric("广告销售", f"${total_sales:,.0f}")
+col3.metric("ACOS", f"{total_spend/total_sales*100:.1f}%")
+col4.metric("ROAS", f"{total_sales/total_spend:.1f}x")
+
+# Campaign 排名
+st.subheader("Campaign 表现排名")
+campaign_data = df_ads.groupby("campaign_name").agg({
+"spend": "sum",
+"attributed_sales": "sum",
+"clicks": "sum",
+"impressions": "sum"
+}).reset_index()
+campaign_data["acos"] = campaign_data["spend"] / campaign_data["attributed_sales"] * 100
+campaign_data["roas"] = campaign_data["attributed_sales"] / campaign_data["spend"]
+campaign_data["ctr"] = campaign_data["clicks"] / campaign_data["impressions"] * 100
+
+# 颜色编码 ACOS
+st.dataframe(
+campaign_data.sort_values("spend", ascending=False),
+use_container_width=True,
+column_config={
+"acos": st.column_config.ProgressColumn(
+"ACOS %", min_value=0, max_value=100, format="%.1f%%"
+)
+}
+)
+
+# 关键词散点图（花费 vs 转化）
+st.subheader("关键词表现散点图")
+fig = px.scatter(
+df_ads.groupby("keyword").agg({"spend": "sum", "attributed_sales": "sum", "clicks": "sum"}).reset_index(),
+x="spend", y="attributed_sales", size="clicks",
+hover_name="keyword",
+title="花费 vs 销售（气泡大小=点击量）"
+)
+fig.add_shape(type="line", x0=0, y0=0, x1=df_ads["spend"].max(),
+y1=df_ads["spend"].max()/0.25, line=dict(dash="dash", color="red"))
+st.plotly_chart(fig, use_container_width=True)
+</code></pre>
+<hr>
+<h2 id="5-多平台数据整合"><a class="header" href="#5-多平台数据整合">5. 多平台数据整合</a></h2>
+<blockquote>
+<p><strong>真实案例：AWS 电商流量异常检测架构</strong>
+AWS 官方博客展示了如何自动化电商流量模式的异常检测。早期发现网站页面访问和订单完成等指标的微小异常，帮助组织采取纠正措施，减少对业务 KPI 的负面影响（<a href="https://aws.amazon.com/blogs/architecture/automating-anomaly-detection-in-ecommerce-traffic-patterns/">AWS Architecture Blog</a>）。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<blockquote>
+<p><strong>真实案例：Streamlit BI Dashboard 整合 GA4 + 电商数据</strong>
+Squadbase 展示了一个综合性的 Streamlit BI Dashboard，整合了 Google Analytics 4（GA4）分析和电商智能两个关键业务领域，提供网站流量、用户行为和转化模式的深度分析（<a href="https://www.squadbase.dev/blog/showcase-streamlit-bi-dashboard-with-google-analytics-and-e-commerce">Squadbase</a>）。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<blockquote>
+<p><strong>真实案例：Amazon SP-API Python 数据获取</strong>
+Andrew Kushnerov 的系列教程展示了如何用 Python 从 Amazon SP-API 获取订单数据和库存/价格数据。关键洞察：订单在创建后会持续更新（状态变化、金额变化），要构建高质量分析需要追踪订单的完整生命周期（<a href="https://andrewkushnerov.medium.com/amazon-sp-api-get-orders-with-python-7b7e913d87ea">Medium - Orders</a>，<a href="https://andrewkushnerov.medium.com/amazon-sp-api-get-inventory-and-prices-with-python-3226b980bd79">Medium - Inventory</a>）。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<h3 id="51-amazon-sp-api-数据获取"><a class="header" href="#51-amazon-sp-api-数据获取">5.1 Amazon SP-API 数据获取</a></h3>
+<pre><code class="language-python"># Amazon SP-API 订单数据获取示例
+from sp_api.api import Orders, Reports
+from sp_api.base import Marketplaces
+from datetime import datetime, timedelta
+
+def get_amazon_orders(days_back: int = 30) -&gt; pd.DataFrame:
+"""从 Amazon SP-API 获取订单数据"""
+orders_api = Orders(marketplace=Marketplaces.US)
+
+created_after = (datetime.now() - timedelta(days=days_back)).isoformat()
+
+all_orders = []
+response = orders_api.get_orders(
+CreatedAfter=created_after,
+OrderStatuses=["Shipped", "Unshipped"]
+)
+
+all_orders.extend(response.payload.get("Orders", []))
+
+# 处理分页
+while response.payload.get("NextToken"):
+response = orders_api.get_orders(
+CreatedAfter=created_after,
+NextToken=response.payload["NextToken"]
+)
+all_orders.extend(response.payload.get("Orders", []))
+
+# 转换为 DataFrame
+df = pd.DataFrame(all_orders)
+df["OrderDate"] = pd.to_datetime(df["PurchaseDate"])
+df["Revenue"] = df["OrderTotal"].apply(
+lambda x: float(x["Amount"]) if isinstance(x, dict) else 0
+)
+
+return df
+
+def get_amazon_inventory() -&gt; pd.DataFrame:
+"""获取 FBA 库存数据"""
+reports_api = Reports(marketplace=Marketplaces.US)
+
+# 请求 FBA 库存报告
+report = reports_api.create_report(
+reportType="GET_FBA_MYI_UNSUPPRESSED_INVENTORY_DATA"
+)
+
+# 等待报告生成并下载
+# ... (轮询 report status)
+
+return pd.read_csv(report_file, sep="\t")
+</code></pre>
+<h3 id="52-统一数据模型"><a class="header" href="#52-统一数据模型">5.2 统一数据模型</a></h3>
+<pre><code class="language-python"># 统一的跨平台销售数据模型
+unified_schema = {
+"date": "datetime",
+"platform": "str", # amazon_us / shopify / walmart
+"sku": "str",
+"product_name": "str",
+"revenue": "float",
+"orders": "int",
+"units": "int",
+"refunds": "float",
+"ad_spend": "float",
+"ad_revenue": "float",
+"cogs": "float", # 产品成本
+"fba_fees": "float", # 平台费用
+"net_profit": "float" # 净利润
+}
+
+def merge_platforms(amazon_df, shopify_df, walmart_df=None):
+"""合并多平台数据到统一格式"""
+dfs = []
+
+# Amazon
+amazon_df["platform"] = "amazon_us"
+amazon_df = amazon_df.rename(columns={...}) # 映射列名
+dfs.append(amazon_df)
+
+# Shopify
+shopify_df["platform"] = "shopify"
+shopify_df = shopify_df.rename(columns={...})
+dfs.append(shopify_df)
+
+if walmart_df is not None:
+walmart_df["platform"] = "walmart"
+dfs.append(walmart_df)
+
+return pd.concat(dfs, ignore_index=True)
+</code></pre>
+<hr>
+<h2 id="6-ai-增强-dashboard"><a class="header" href="#6-ai-增强-dashboard">6. AI 增强 Dashboard</a></h2>
+<h3 id="61-电商核心-kpi-体系"><a class="header" href="#61-电商核心-kpi-体系">6.1 电商核心 KPI 体系</a></h3>
+<p>根据行业最佳实践（<a href="https://www.thoughtspot.com/data-trends/ecommerce-kpis-metrics">ThoughtSpot</a>，<a href="https://feedcast.ai/en/blog/ultimate-guide-to-e-commerce-kpi-dashboards">Feedcast</a>），电商 Dashboard 应该追踪以下 KPI：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>类别</th><th>KPI</th><th>公式</th><th>健康范围</th><th>异常阈值</th></tr>
+</thead>
+<tbody>
+<tr><td>销售</td><td>日收入</td><td>总销售额</td><td>因品类而异</td><td>±30% vs 7 日均值</td></tr>
+<tr><td>销售</td><td>转化率</td><td>订单/会话</td><td>8-15% (Amazon)</td><td>&lt;5% 或 &gt;25%</td></tr>
+<tr><td>销售</td><td>客单价</td><td>收入/订单</td><td>因品类而异</td><td>±20% vs 均值</td></tr>
+<tr><td>广告</td><td>ACOS</td><td>广告花费/广告销售</td><td>15-25%</td><td>&gt;40%</td></tr>
+<tr><td>广告</td><td>TACOS</td><td>广告花费/总销售</td><td>8-15%</td><td>&gt;20%</td></tr>
+<tr><td>广告</td><td>ROAS</td><td>广告销售/广告花费</td><td>3-5x</td><td>&lt;2x</td></tr>
+<tr><td>库存</td><td>可售天数</td><td>库存/日均销量</td><td>30-60 天</td><td>&lt;14 天或 &gt;90 天</td></tr>
+<tr><td>库存</td><td>库存周转率</td><td>COGS/平均库存</td><td>6-12 次/年</td><td>&lt;4 次</td></tr>
+<tr><td>利润</td><td>毛利率</td><td>(收入-COGS)/收入</td><td>50-70%</td><td>&lt;40%</td></tr>
+<tr><td>利润</td><td>净利率</td><td>净利润/收入</td><td>15-30%</td><td>&lt;10%</td></tr>
+<tr><td>客户</td><td>退货率</td><td>退货/订单</td><td>5-15%</td><td>&gt;20%</td></tr>
+<tr><td>客户</td><td>Review 评分</td><td>平均星级</td><td>4.0-4.5</td><td>&lt;3.8</td></tr>
+</tbody>
+</table>
+</div>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<h3 id="62-异常检测多种方法"><a class="header" href="#62-异常检测多种方法">6.2 异常检测（多种方法）</a></h3>
+<pre><code class="language-python">def detect_anomalies(df: pd.DataFrame, metric: str, threshold: float = 2.0):
+"""基于 Z-Score 的异常检测"""
+mean = df[metric].rolling(window=7).mean()
+std = df[metric].rolling(window=7).std()
+z_score = (df[metric] - mean) / std
+
+anomalies = df[abs(z_score) &gt; threshold].copy()
+anomalies["direction"] = z_score.apply(lambda x: " 异常高" if x &gt; 0 else " 异常低")
+
+return anomalies
+
+# 在 Dashboard 中显示
+anomalies = detect_anomalies(daily_data, "revenue")
+if len(anomalies) &gt; 0:
+st.warning(f" 发现 {len(anomalies)} 个异常数据点")
+st.dataframe(anomalies[["date", "revenue", "direction"]])
+</code></pre>
+<h3 id="62-异常检测多种方法-1"><a class="header" href="#62-异常检测多种方法-1">6.2 异常检测（多种方法）</a></h3>
+<pre><code class="language-python">import numpy as np
+
+# 方法 1：Z-Score 异常检测（简单有效）
+def detect_zscore_anomalies(df: pd.DataFrame, metric: str,
+window: int = 7, threshold: float = 2.0):
+"""基于滚动 Z-Score 的异常检测"""
+mean = df[metric].rolling(window=window).mean()
+std = df[metric].rolling(window=window).std()
+z_score = (df[metric] - mean) / std
+
+anomalies = df[abs(z_score) &gt; threshold].copy()
+anomalies["z_score"] = z_score[abs(z_score) &gt; threshold]
+anomalies["direction"] = anomalies["z_score"].apply(
+lambda x: " 异常高" if x &gt; 0 else " 异常低"
+)
+return anomalies
+
+# 方法 2：IQR 异常检测（对非正态分布更稳健）
+def detect_iqr_anomalies(df: pd.DataFrame, metric: str, multiplier: float = 1.5):
+"""基于四分位距的异常检测"""
+Q1 = df[metric].quantile(0.25)
+Q3 = df[metric].quantile(0.75)
+IQR = Q3 - Q1
+
+lower = Q1 - multiplier * IQR
+upper = Q3 + multiplier * IQR
+
+anomalies = df[(df[metric] &lt; lower) | (df[metric] &gt; upper)].copy()
+anomalies["direction"] = anomalies[metric].apply(
+lambda x: " 异常高" if x &gt; upper else " 异常低"
+)
+return anomalies
+
+# 方法 3：同比/环比异常检测（电商最实用）
+def detect_period_anomalies(df: pd.DataFrame, metric: str,
+threshold_pct: float = 0.3):
+"""基于同比/环比变化的异常检测"""
+df = df.copy()
+df['wow_change'] = df[metric].pct_change(periods=7) # 周环比
+df['mom_change'] = df[metric].pct_change(periods=30) # 月环比
+
+anomalies = df[
+(abs(df['wow_change']) &gt; threshold_pct) |
+(abs(df['mom_change']) &gt; threshold_pct)
+].copy()
+
+return anomalies
+
+# 在 Dashboard 中整合
+def render_anomaly_alerts(df: pd.DataFrame):
+"""在 Dashboard 中显示异常告警"""
+metrics_to_check = {
+"revenue": {"threshold": 2.0, "label": "收入"},
+"orders": {"threshold": 2.0, "label": "订单"},
+"acos": {"threshold": 1.5, "label": "ACOS"},
+"conversion_rate": {"threshold": 2.0, "label": "转化率"}
+}
+
+all_anomalies = []
+for metric, config in metrics_to_check.items():
+if metric in df.columns:
+anomalies = detect_zscore_anomalies(df, metric, threshold=config["threshold"])
+for _, row in anomalies.iterrows():
+all_anomalies.append({
+"日期": row["date"],
+"指标": config["label"],
+"方向": row["direction"],
+"值": row[metric],
+"Z-Score": f"{row['z_score']:.1f}"
+})
+
+if all_anomalies:
+st.warning(f" 发现 {len(all_anomalies)} 个异常数据点")
+st.dataframe(pd.DataFrame(all_anomalies), use_container_width=True)
+else:
+st.success(" 所有指标正常")
+</code></pre>
+<h3 id="63-利润分析模块"><a class="header" href="#63-利润分析模块">6.3 利润分析模块</a></h3>
+<pre><code class="language-python">def render_profitability_tab(df: pd.DataFrame):
+"""利润分析 Tab"""
+st.header(" 利润分析")
+
+# SKU 级别利润计算
+df['gross_profit'] = df['revenue'] - df['cogs'] - df['fba_fees'] - df['ad_spend']
+df['gross_margin'] = df['gross_profit'] / df['revenue'] * 100
+df['net_profit'] = df['gross_profit'] - df['other_costs']
+df['net_margin'] = df['net_profit'] / df['revenue'] * 100
+
+# 利润瀑布图
+st.subheader("利润瀑布图（单位经济模型）")
+avg_price = df['revenue'].sum() / df['units'].sum()
+avg_cogs = df['cogs'].sum() / df['units'].sum()
+avg_fba = df['fba_fees'].sum() / df['units'].sum()
+avg_ad = df['ad_spend'].sum() / df['units'].sum()
+avg_other = df['other_costs'].sum() / df['units'].sum()
+avg_profit = avg_price - avg_cogs - avg_fba - avg_ad - avg_other
+
+waterfall_data = pd.DataFrame({
+'item': ['售价', 'COGS', 'FBA 费用', '广告费', '其他成本', '净利润'],
+'amount': [avg_price, -avg_cogs, -avg_fba, -avg_ad, -avg_other, avg_profit]
+})
+
+fig = px.bar(waterfall_data, x='item', y='amount',
+color='amount', color_continuous_scale=['red', 'green'],
+title=f"单件利润分解（平均净利润: ${avg_profit:.2f}）")
+st.plotly_chart(fig, use_container_width=True)
+
+# SKU 利润排名
+st.subheader("SKU 利润排名")
+sku_profit = df.groupby('sku').agg({
+'revenue': 'sum',
+'gross_profit': 'sum',
+'net_profit': 'sum',
+'units': 'sum'
+}).reset_index()
+sku_profit['margin'] = sku_profit['net_profit'] / sku_profit['revenue'] * 100
+sku_profit = sku_profit.sort_values('net_profit', ascending=False)
+
+# 标记亏损 SKU
+st.dataframe(
+sku_profit.style.applymap(
+lambda x: 'color: red' if isinstance(x, (int, float)) and x &lt; 0 else '',
+subset=['net_profit', 'margin']
+),
+use_container_width=True
+)
+</code></pre>
+<h3 id="64-库存健康度模块"><a class="header" href="#64-库存健康度模块">6.4 库存健康度模块</a></h3>
+<pre><code class="language-python">def render_inventory_tab(df_inv: pd.DataFrame):
+"""库存健康度 Tab"""
+st.header(" 库存健康度")
+
+# 计算可售天数
+df_inv['days_of_supply'] = df_inv['quantity'] / df_inv['daily_sales'].replace(0, 0.1)
+
+# 库存状态分类
+def classify_inventory(days):
+if days &lt; 7:
+return " 紧急补货"
+elif days &lt; 14:
+return " 即将缺货"
+elif days &lt; 30:
+return " 需要关注"
+elif days &lt; 90:
+return " 健康"
+else:
+return " 库存过多"
+
+df_inv['status'] = df_inv['days_of_supply'].apply(classify_inventory)
+
+# 状态分布
+col1, col2 = st.columns(2)
+with col1:
+status_counts = df_inv['status'].value_counts()
+fig = px.pie(values=status_counts.values, names=status_counts.index,
+title="库存状态分布")
+st.plotly_chart(fig, use_container_width=True)
+
+with col2:
+# 紧急补货列表
+urgent = df_inv[df_inv['days_of_supply'] &lt; 14].sort_values('days_of_supply')
+st.subheader(f" 需要补货的 SKU ({len(urgent)} 个)")
+st.dataframe(urgent[['sku', 'product_name', 'quantity',
+'daily_sales', 'days_of_supply', 'status']],
+use_container_width=True)
+
+# 长期仓储费预警
+st.subheader(" 长期仓储费预警")
+long_storage = df_inv[df_inv['days_in_warehouse'] &gt; 180]
+if len(long_storage) &gt; 0:
+estimated_fee = long_storage['quantity'].sum() * 6.90 # $6.90/cubic foot/month
+st.warning(f" {len(long_storage)} 个 SKU 在仓超过 180 天，预估月仓储费: ${estimated_fee:,.0f}")
+st.dataframe(long_storage[['sku', 'quantity', 'days_in_warehouse']])
+</code></pre>
+<h3 id="65-ai-自动洞察"><a class="header" href="#65-ai-自动洞察">6.5 AI 自动洞察</a></h3>
+<pre><code class="language-python">def generate_ai_insights(data_summary: dict) -&gt; str:
+"""用 LLM 生成数据洞察"""
+prompt = f"""
+你是一个电商数据分析专家。以下是过去 7 天的运营数据摘要：
+
+{data_summary}
+
+请生成 3-5 条关键洞察，每条包含：
+1. 发现了什么（数据事实）
+2. 为什么重要（业务影响）
+3. 建议的行动（具体可执行）
+
+用简洁的中文回答，每条不超过 2 句话。
+"""
+# 调用 LLM API
+return llm_call(prompt)
+</code></pre>
+<hr>
+<h2 id="7-部署与分享"><a class="header" href="#7-部署与分享">7. 部署与分享</a></h2>
+<h3 id="71-部署选项"><a class="header" href="#71-部署选项">7.1 部署选项</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>方案</th><th>成本</th><th>适合</th><th>说明</th></tr>
+</thead>
+<tbody>
+<tr><td>Streamlit Cloud</td><td>免费</td><td>个人/小团队</td><td>直接从 GitHub 部署</td></tr>
+<tr><td>Hugging Face Spaces</td><td>免费</td><td>开源项目</td><td>支持 Streamlit</td></tr>
+<tr><td>AWS EC2 / Lightsail</td><td>$5-20/月</td><td>企业内部</td><td>完全控制</td></tr>
+<tr><td>Docker + 任意云</td><td>按需</td><td>灵活部署</td><td>容器化</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="72-streamlit-cloud-一键部署"><a class="header" href="#72-streamlit-cloud-一键部署">7.2 Streamlit Cloud 一键部署</a></h3>
+<pre><code class="language-bash"># 1. 确保项目有 requirements.txt
+echo "streamlit\nplotly\npandas\nopenpyxl" &gt; requirements.txt
+
+# 2. 推送到 GitHub
+git add -A &amp;&amp; git commit -m "add dashboard" &amp;&amp; git push
+
+# 3. 在 share.streamlit.io 连接 GitHub 仓库
+# 选择 dashboard.py 作为入口文件
+# 点击 Deploy
+</code></pre>
+<hr>
+<h2 id="8-完成标志"><a class="header" href="#8-完成标志">8. 完成标志</a></h2>
+<ul>
+<li><input disabled="" type="checkbox"> 构建一个包含 4+ 模块的 Streamlit Dashboard</li>
+<li><input disabled="" type="checkbox"> 整合至少 2 个平台的数据（Amazon + Shopify）</li>
+<li><input disabled="" type="checkbox"> 实现异常检测功能（自动标注异常数据点）</li>
+<li><input disabled="" type="checkbox"> 集成 AI 洞察生成（LLM 自动分析数据）</li>
+<li><input disabled="" type="checkbox"> 部署到 Streamlit Cloud 或其他平台</li>
+</ul>
+<hr>
+<blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path B 总览</a></p>
+<p><strong>Path B</strong>: <a href="b1-data-pipeline.html">B1 数据管道</a> · <a href="b2-prediction-models.html">B2 预测模型</a> · <a href="b3-rag-knowledge-base.html">B3 RAG 知识库</a> · <a href="b4-agent-workflow.html">B4 AI Agent</a> · <a href="b5-local-model-deploy.html">B5 本地模型</a> · <a href="b6-mcp-agentic-workflow.html">B6 MCP 集成</a> · <a href="b7-review-nlp-system.html">B7 Review NLP</a> · <a href="b8-ecommerce-dashboard.html">B8 Dashboard</a> · <a href="b9-ai-image-pipeline.html">B9 AI 图片生成</a></p>
+<p><strong>快速跳转</strong>: <a href="../0-foundations/">Path 0 基础</a> · <a href="../a-operators/">Path A 运营</a> · <a href="../c-managers/">Path C 管理</a> · <a href="../d-platforms/">Path D 多平台</a> · <a href="../e-social-media/">Path E 社交媒体</a></p>
+</blockquote>
+<!-- nav:prev-next -->
+<hr>
+<p><a href="b7-review-nlp-system.html">&lt; B7 NLP</a> | <a href="README.html">Path 总览</a> | <a href="b9-ai-image-pipeline.html">B9 图片 &gt;</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../b-developers/b7-review-nlp-system.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../b-developers/b9-ai-image-pipeline.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../b-developers/b7-review-nlp-system.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../b-developers/b9-ai-image-pipeline.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../mermaid-217b66ef.min.js"></script>
+        <script src="../mermaid-init-d4730691.js"></script>
+
+
+
+    </div>
+    </body>
+</html>

@@ -1,11 +1,3 @@
-<div align="center">
-
-### Language / 语言切换
-
-[![中文](https://img.shields.io/badge/🇨🇳_中文-当前语言-orange?style=for-the-badge)](README.md) [![English](https://img.shields.io/badge/🇺🇸_English-Click_Here-blue?style=for-the-badge)](en/README.md) [![日本語](https://img.shields.io/badge/🇯🇵_日本語-ここをクリック-red?style=for-the-badge)](ja/README.md) [![Español](https://img.shields.io/badge/🇪🇸_Español-Haz_Clic-yellow?style=for-the-badge)](es/README.md)
-
-</div>
-
 # ecommerce-ai-roadmap
 
 > 跨境电商 AI 实战知识库 — AAAI China Chapter 开源项目
@@ -13,8 +5,6 @@
 [![AAAI China Chapter](https://img.shields.io/badge/AAAI_China_Chapter-Initiative-blue)](https://github.com/kangise/ecommerce-ai-roadmap)
 [![Stars](https://img.shields.io/github/stars/kangise/ecommerce-ai-roadmap?style=social)](https://github.com/kangise/ecommerce-ai-roadmap)
 [![License: CC0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
-
-🇨🇳 中文（当前） | 🇺🇸 [English](en/README.md) | 🇯🇵 [日本語](ja/README.md)（概要のみ） | 🇪🇸 [Español](es/README.md)（resumen）
 
 ---
 

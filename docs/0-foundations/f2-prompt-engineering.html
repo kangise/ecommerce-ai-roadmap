@@ -1,0 +1,997 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Prompt 工程 - 跨境电商 AI 实战知识库</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="跨境电商 AI 实操手册 — 56 篇指南，从选品到增长，每个环节都有可直接复制的 Prompt">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom-467616e9.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "ayu";
+            window.path_to_searchindex_js = "../searchindex-656d55b3.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-e97a050e.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">跨境电商 AI 实战知识库</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap/edit/main/src/src/0-foundations/f2-prompt-engineering.md" title="Suggest an edit" aria-label="Suggest an edit" rel="edit">
+                            <span class=fa-svg id="git-edit-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M421.7 220.3l-11.3 11.3-22.6 22.6-205 205c-6.6 6.6-14.8 11.5-23.8 14.1L30.8 511c-8.4 2.5-17.5 .2-23.7-6.1S-1.5 489.7 1 481.2L38.7 353.1c2.6-9 7.5-17.2 14.1-23.8l205-205 22.6-22.6 11.3-11.3 33.9 33.9 62.1 62.1 33.9 33.9zM96 353.9l-9.3 9.3c-.9 .9-1.6 2.1-2 3.4l-25.3 86 86-25.3c1.3-.4 2.5-1.1 3.4-2l9.3-9.3H112c-8.8 0-16-7.2-16-16V353.9zM453.3 19.3l39.4 39.4c25 25 25 65.5 0 90.5l-14.5 14.5-22.6 22.6-11.3 11.3-33.9-33.9-62.1-62.1L314.3 67.7l11.3-11.3 22.6-22.6 14.5-14.5c25-25 65.5-25 90.5 0z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="f2-prompt-工程--prompt-engineering"><a class="header" href="#f2-prompt-工程--prompt-engineering">F2. Prompt 工程 | Prompt Engineering</a></h1>
+<blockquote>
+<p><strong>路径</strong>: Path 0: AI 基础先行 · <strong>模块</strong>: F2
+<strong>最后更新</strong>: 2026-03-12
+<strong>难度</strong>: 入门 → 中级
+<strong>预计时间</strong>: 3 小时
+<strong>前置模块</strong>: <a href="f1-ai-evolution.html">F1 AI 的前世今生</a></p>
+</blockquote>
+<hr>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path 0 总览</a></p>
+<pre><code class="language-mermaid">flowchart LR
+F1["F1 AI 的前世今生"]
+F1 --&gt; F2
+F2[" F2 Prompt 工程&lt;br/&gt;（当前）"]:::current
+F2 --&gt; F3
+F3["F3 知识库与 RAG"]
+F3 --&gt; F4
+F4["F4 自动化与 Agent"]
+classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
+</code></pre>
+<hr>
+<h2 id="本模块章节导航"><a class="header" href="#本模块章节导航">本模块章节导航</a></h2>
+<ol>
+<li><a href="#1-为什么-prompt-重要">为什么 Prompt 重要</a> · 2. <a href="#2-crisp-框架结构化-prompt-的方法论">CRISP 框架</a> · 3. <a href="#3-六种高级-prompt-技巧">六种高级技巧</a> · 4. <a href="#4-跨境电商场景-prompt-模板库20">场景模板库</a> · 5. <a href="#5-常见错误与修复">常见错误与修复</a> · 6. <a href="#6-进阶从-prompt-engineering-到-context-engineering">进阶：Context Engineering</a> · 7. <a href="#7-学习资源">学习资源</a> · 8. <a href="#8-用-openclaw-辅助-prompt-管理与优化"> OpenClaw 自动化</a> · 9. <a href="#9-完成标志">完成标志</a></li>
+</ol>
+<h2 id="本模块你将掌握"><a class="header" href="#本模块你将掌握">本模块你将掌握</a></h2>
+<p>Prompt 是你和 AI 沟通的唯一接口。同样的 AI 模型，Prompt 写得好和写得差，输出质量可以差 10 倍。</p>
+<p>完成本模块后，你将能够：</p>
+<ul>
+<li>用 CRISP 框架写出结构化的高质量 Prompt</li>
+<li>掌握 6 种高级 Prompt 技巧（Chain-of-Thought、Few-shot 等）</li>
+<li>拥有 20+ 个跨境电商场景的即用 Prompt 模板</li>
+<li>知道 Prompt 的常见错误和修复方法</li>
+<li>理解从 Prompt Engineering 到 Context Engineering 的演进</li>
+</ul>
+<blockquote>
+<p><strong>核心理念</strong>：Prompt Engineering 不是“写一句好的指令“，而是“设计一个完整的沟通协议“。你给 AI 的不只是一个问题，而是角色、背景、约束、格式和期望的完整定义。</p>
+</blockquote>
+<hr>
+<h2 id="1-为什么-prompt-重要"><a class="header" href="#1-为什么-prompt-重要">1. 为什么 Prompt 重要</a></h2>
+<h3 id="11-同一个问题不同-prompt-的效果对比"><a class="header" href="#11-同一个问题不同-prompt-的效果对比">1.1 同一个问题，不同 Prompt 的效果对比</a></h3>
+<p><strong>场景：分析竞品 Review</strong></p>
+<p><strong>差的 Prompt：</strong></p>
+<pre><code>帮我分析这些 Review
+</code></pre>
+<p><strong>AI 输出：</strong> 泛泛而谈的总结，没有结构，没有可操作的建议。</p>
+<p><strong>好的 Prompt：</strong></p>
+<pre><code>你是一个资深的 Amazon 产品经理，专注于消费电子品类。
+我会给你一组竞品蓝牙耳机的 1-3 星差评（共 50 条）。
+
+请分析这些差评，输出：
+1. 排名前 5 的用户痛点（按提及频率排序）
+2. 每个痛点的代表性评论原文（1-2 条）
+3. 每个痛点的改进建议
+4. 哪些痛点最容易通过产品设计解决
+
+输出格式：表格
+语言：中文
+
+[在此粘贴差评内容]
+</code></pre>
+<p><strong>AI 输出：</strong> 结构化的表格，按频率排序的痛点，每个都有原文引用和可操作的改进建议。</p>
+<p><strong>差距在哪里？</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>维度</th><th>差的 Prompt</th><th>好的 Prompt</th></tr>
+</thead>
+<tbody>
+<tr><td>角色定义</td><td>无</td><td>“资深 Amazon 产品经理”</td></tr>
+<tr><td>背景信息</td><td>无</td><td>“消费电子品类”“蓝牙耳机”“1-3 星差评”</td></tr>
+<tr><td>具体要求</td><td>“分析”</td><td>4 个明确的输出要求</td></tr>
+<tr><td>输出格式</td><td>无</td><td>“表格”</td></tr>
+<tr><td>语言指定</td><td>无</td><td>“中文”</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="12-prompt-的本质减少-ai-的猜测空间"><a class="header" href="#12-prompt-的本质减少-ai-的猜测空间">1.2 Prompt 的本质：减少 AI 的“猜测空间“</a></h3>
+<p>回忆 F1 的内容：LLM 是一个“下一个词预测器“。当你的 Prompt 模糊时，AI 有太多可能的方向，它会选择“最常见“的方向 通常是泛泛而谈。</p>
+<p>当你的 Prompt 精确时，你把 AI 的“猜测空间“缩小到了你想要的方向。</p>
+<pre><code>模糊 Prompt → AI 的可能输出空间很大 → 大概率输出平庸的结果
+精确 Prompt → AI 的可能输出空间很小 → 大概率输出你想要的结果
+</code></pre>
+<p>这就像你给新员工布置任务：</p>
+<ul>
+<li>“帮我做个报告” → 他不知道做什么报告、给谁看、什么格式、什么时候要</li>
+<li>“帮我做一份 Q1 销售分析报告，给老板看，用 PPT 格式，包含同比增长和 Top 10 产品，周五前完成” → 他知道该做什么</li>
+</ul>
+<h3 id="13-prompt-engineering-的投入产出比"><a class="header" href="#13-prompt-engineering-的投入产出比">1.3 Prompt Engineering 的投入产出比</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>投入</th><th>产出</th></tr>
+</thead>
+<tbody>
+<tr><td>多花 2 分钟写 Prompt</td><td>省 20 分钟修改 AI 输出</td></tr>
+<tr><td>建立 Prompt 模板库（一次性 2 小时）</td><td>团队每人每天省 30 分钟</td></tr>
+<tr><td>学习 CRISP 框架（本模块 3 小时）</td><td>所有 AI 交互质量提升 50%+</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="2-crisp-框架结构化-prompt-的方法论"><a class="header" href="#2-crisp-框架结构化-prompt-的方法论">2. CRISP 框架：结构化 Prompt 的方法论</a></h2>
+<h3 id="21-什么是-crisp"><a class="header" href="#21-什么是-crisp">2.1 什么是 CRISP</a></h3>
+<p>CRISP 是一个帮你写出高质量 Prompt 的框架，5 个字母代表 5 个要素：</p>
+<pre><code>C Context（背景）：给 AI 足够的背景信息
+R Role（角色）：定义 AI 应该扮演什么角色
+I Instructions（指令）：明确告诉 AI 要做什么
+S Specifications（规格）：定义输出的格式、长度、语言等
+P Proof（验证）：要求 AI 提供证据或解释推理过程
+</code></pre>
+<h3 id="22-每个要素详解"><a class="header" href="#22-每个要素详解">2.2 每个要素详解</a></h3>
+<p><strong>C Context（背景）</strong></p>
+<p>告诉 AI “你在什么情况下问这个问题”。背景越丰富，AI 的回答越精准。</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>无背景</th><th>有背景</th></tr>
+</thead>
+<tbody>
+<tr><td>“帮我写一个产品标题”</td><td>“我在 Amazon US 卖一款便携式颈挂风扇，目标客户是户外运动爱好者，售价 $25，主要竞品是 JISULIFE 和 TORRAS”</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>背景信息清单（跨境电商）：</strong></p>
+<ul>
+<li>产品是什么？品类、特点、卖点</li>
+<li>目标市场？US/EU/JP</li>
+<li>目标客户？年龄、场景、需求</li>
+<li>竞品是谁？价格带、优劣势</li>
+<li>你的约束？预算、时间、资源</li>
+</ul>
+<p><strong>R Role（角色）</strong></p>
+<p>给 AI 一个专业角色，它会用该角色的知识和视角来回答。</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>场景</th><th>推荐角色</th></tr>
+</thead>
+<tbody>
+<tr><td>写 Listing</td><td>“你是一个 Amazon Listing 优化专家，有 5 年经验”</td></tr>
+<tr><td>分析 Review</td><td>“你是一个资深的产品经理，专注于消费电子”</td></tr>
+<tr><td>广告优化</td><td>“你是一个 Amazon PPC 广告专家”</td></tr>
+<tr><td>合规查询</td><td>“你是一个跨境电商合规顾问，熟悉 EU/US/JP 法规”</td></tr>
+<tr><td>供应商谈判</td><td>“你是一个有 10 年经验的采购经理”</td></tr>
+<tr><td>市场分析</td><td>“你是一个电商行业分析师”</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>为什么角色有效？</strong> 因为 AI 的训练数据中包含了不同角色的文本。当你指定“Amazon PPC 专家“时，AI 会倾向于使用与 PPC 相关的专业术语和分析框架。</p>
+</blockquote>
+<p><strong>I Instructions（指令）</strong></p>
+<p>明确告诉 AI 要做什么。好的指令是具体的、可执行的、有优先级的。</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>模糊指令</th><th>具体指令</th></tr>
+</thead>
+<tbody>
+<tr><td>“分析这些数据”</td><td>“从这些搜索词数据中，找出 ACOS &gt; 50% 且点击 &gt; 100 的词，按花费从高到低排序”</td></tr>
+<tr><td>“写一个标题”</td><td>“写 3 个 Amazon 产品标题变体，每个 ≤ 200 字符，包含关键词 [X]、[Y]、[Z]”</td></tr>
+<tr><td>“给我建议”</td><td>“给出 3 个具体的改进建议，每个包含：问题描述、改进方案、预期效果”</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>S Specifications（规格）</strong></p>
+<p>定义输出的“长什么样“。</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>规格类型</th><th>示例</th></tr>
+</thead>
+<tbody>
+<tr><td>格式</td><td>“用表格输出”、“用 Markdown 格式”、“用编号列表”</td></tr>
+<tr><td>长度</td><td>“每个要点不超过 50 字”、“总字数 500-800 字”</td></tr>
+<tr><td>语言</td><td>“用中文回答”、“用英文写 Listing，用中文写分析”</td></tr>
+<tr><td>语气</td><td>“专业但易懂”、“适合 Amazon 买家阅读”</td></tr>
+<tr><td>结构</td><td>“先给结论，再给分析过程”、“按优先级从高到低排列”</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>P Proof（验证）</strong></p>
+<p>要求 AI 解释推理过程或提供证据，减少幻觉。</p>
+<pre><code>验证要求示例：
+- "请解释你的推理过程"
+- "请标注每个建议的依据"
+- "如果你不确定某个信息，请明确标注"
+- "请区分'基于数据的结论'和'基于经验的推测'"
+</code></pre>
+<h3 id="23-crisp-完整示例"><a class="header" href="#23-crisp-完整示例">2.3 CRISP 完整示例</a></h3>
+<p><strong>场景：评估一个新品类是否值得进入</strong></p>
+<pre><code>【C - Context 背景】
+我是一个 Amazon US 卖家，目前主营消费电子品类，
+年销售额约 $500K，团队 5 人。
+我在考虑进入便携式投影仪品类。
+目前 Amazon US 上这个品类的头部卖家有 XGIMI、Anker Nebula、YABER。
+我的启动预算约 ¥30 万。
+
+【R - Role 角色】
+你是一个有 10 年经验的跨境电商选品顾问，
+精通 Amazon US 市场的消费电子品类。
+
+【I - Instructions 指令】
+请对便携式投影仪品类做一个全面的市场可行性评估，包含：
+1. 市场规模和增长趋势
+2. 竞争格局分析（头部卖家的优劣势）
+3. 利润空间估算
+4. 进入壁垒（资金、技术、认证）
+5. 主要风险
+6. Go/No-Go 建议
+
+【S - Specifications 规格】
+- 输出格式：每个维度用表格 + 简要分析
+- 语言：中文
+- 评分：每个维度 1-5 分
+- 最后给出综合评分和明确的建议（进入/谨慎/放弃）
+
+【P - Proof 验证】
+- 请标注哪些信息是基于公开数据，哪些是你的推测
+- 如果某个维度你不确定，请明确说明
+- 请解释综合评分的计算逻辑
+</code></pre>
+<blockquote>
+<p><strong>实际使用时不需要标注 [C][R][I][S][P]</strong>，这里只是为了教学。熟练后你会自然地把这 5 个要素融入 Prompt 中。</p>
+</blockquote>
+<hr>
+<h2 id="3-六种高级-prompt-技巧"><a class="header" href="#3-六种高级-prompt-技巧">3. 六种高级 Prompt 技巧</a></h2>
+<h3 id="31-chain-of-thought思维链"><a class="header" href="#31-chain-of-thought思维链">3.1 Chain-of-Thought（思维链）</a></h3>
+<p>让 AI “一步一步思考”，而不是直接给答案。适合需要推理的复杂问题。</p>
+<p><strong>不用 CoT：</strong></p>
+<pre><code>这个产品在 Amazon US 的利润率是多少？
+采购成本 ¥80，售价 $29.99，FBA 费用 $5.50，佣金 15%
+</code></pre>
+<p>AI 可能直接给一个数字，但计算过程不透明，容易出错。</p>
+<p><strong>用 CoT：</strong></p>
+<pre><code>请一步一步计算这个产品在 Amazon US 的利润率：
+1. 先把采购成本从人民币换算成美元（汇率 7.2）
+2. 计算 Amazon 佣金
+3. 汇总所有成本
+4. 计算利润和利润率
+
+数据：采购成本 ¥80，售价 $29.99，FBA 费用 $5.50，佣金率 15%
+</code></pre>
+<p><strong>为什么有效？</strong> 强制 AI 展示中间步骤，每一步都可以验证。如果某一步算错了，你能立刻发现。</p>
+<p><strong>适用场景：</strong></p>
+<ul>
+<li>利润计算、成本分析</li>
+<li>多步骤的市场评估</li>
+<li>需要逻辑推理的决策问题</li>
+<li>任何你需要“看到过程“的分析</li>
+</ul>
+<h3 id="32-few-shot-learning少样本学习"><a class="header" href="#32-few-shot-learning少样本学习">3.2 Few-shot Learning（少样本学习）</a></h3>
+<p>给 AI 几个示例，让它学会你想要的输出格式和风格。</p>
+<pre><code>请按以下格式分析每个竞品的 Listing 标题策略：
+
+示例：
+标题：Anker Soundcore Life Q20 Hybrid Active Noise Cancelling Headphones
+分析：
+- 品牌前置（Anker Soundcore）→ 品牌认知度高，放在最前
+- 核心卖点（Hybrid Active Noise Cancelling）→ 技术差异化
+- 品类词（Headphones）→ 确保搜索匹配
+- 策略：品牌 + 技术卖点 + 品类词
+
+现在请用同样的格式分析以下 3 个标题：
+1. [竞品A标题]
+2. [竞品B标题]
+3. [竞品C标题]
+</code></pre>
+<p><strong>为什么有效？</strong> 示例比描述更精确。与其花 100 字描述你想要什么格式，不如给一个示例。</p>
+<p><strong>最佳实践：</strong></p>
+<ul>
+<li>1-3 个示例通常就够了</li>
+<li>示例要覆盖不同的情况（正面/负面、简单/复杂）</li>
+<li>示例的格式就是你期望的输出格式</li>
+</ul>
+<h3 id="33-role-playing角色扮演"><a class="header" href="#33-role-playing角色扮演">3.3 Role-Playing（角色扮演）</a></h3>
+<p>让 AI 扮演特定角色，从该角色的视角分析问题。</p>
+<pre><code>请分别从以下 3 个角色的视角评估这个产品：
+
+角色 1 挑剔的消费者：
+"我是一个经常在 Amazon 购物的消费者，对产品质量要求很高，
+会仔细看差评。这个产品的 Listing 能说服我购买吗？"
+
+角色 2 竞品运营经理：
+"我是竞品公司的运营经理，看到这个新产品进入市场。
+它对我的产品有威胁吗？我应该如何应对？"
+
+角色 3 Amazon 品类经理：
+"我是 Amazon 的品类经理，负责审核这个品类的产品。
+这个 Listing 有没有违规风险？质量评分如何？"
+</code></pre>
+<p><strong>为什么有效？</strong> 多角色分析能帮你发现单一视角容易忽略的问题。</p>
+<h3 id="34-structured-output结构化输出"><a class="header" href="#34-structured-output结构化输出">3.4 Structured Output（结构化输出）</a></h3>
+<p>明确要求 AI 用特定格式输出，便于后续处理和对比。</p>
+<pre><code>请用以下 JSON 格式输出分析结果：
+
+{
+"product_name": "产品名称",
+"market_score": 1-5,
+"competition_score": 1-5,
+"profit_score": 1-5,
+"risk_factors": ["风险1", "风险2"],
+"recommendation": "进入/谨慎/放弃",
+"reasoning": "推荐理由"
+}
+</code></pre>
+<p><strong>适用场景：</strong></p>
+<ul>
+<li>需要批量处理多个产品的评估</li>
+<li>需要导入 Excel 或数据库的数据</li>
+<li>需要在团队间标准化分析格式</li>
+</ul>
+<h3 id="35-iterative-refinement迭代优化"><a class="header" href="#35-iterative-refinement迭代优化">3.5 Iterative Refinement（迭代优化）</a></h3>
+<p>不要期望一次 Prompt 就得到完美结果。把 AI 当作协作伙伴，通过多轮对话逐步优化。</p>
+<pre><code>第 1 轮：
+"帮我写一个蓝牙耳机的 Amazon 标题"
+
+第 2 轮：
+"不错，但请加入'降噪'这个关键词，并把标题控制在 150 字符以内"
+
+第 3 轮：
+"很好。现在请生成 3 个变体，分别侧重：
+A. 技术参数（降噪 dB、续航时间）
+B. 使用场景（通勤、运动、办公）
+C. 情感诉求（享受音乐、专注工作）"
+
+第 4 轮：
+"我选 B 方向。请进一步优化，加入'2026 新款'和'Type-C 快充'"
+</code></pre>
+<p><strong>为什么有效？</strong> 复杂任务很难一次描述清楚。迭代让你可以在看到 AI 输出后调整方向。</p>
+<h3 id="36-constraint-setting约束设定"><a class="header" href="#36-constraint-setting约束设定">3.6 Constraint Setting（约束设定）</a></h3>
+<p>告诉 AI “不要做什么”，和告诉它“要做什么“一样重要。</p>
+<pre><code>请帮我写 Amazon Listing 的 5 个 Bullet Points。
+
+约束条件：
+- 不要使用夸张词汇（如"最好的"、"完美的"、"革命性的"）
+- 不要提及竞品品牌名
+- 不要使用 HTML 标签
+- 每个 Bullet 不超过 200 字符
+- 不要重复关键词
+- 不要使用全大写字母（除品牌名外）
+</code></pre>
+<p><strong>常用约束清单（跨境电商）：</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>约束类型</th><th>示例</th></tr>
+</thead>
+<tbody>
+<tr><td>内容约束</td><td>“不要编造数据”、“不要使用未经验证的声明”</td></tr>
+<tr><td>格式约束</td><td>“不超过 X 字”、“用表格而非段落”</td></tr>
+<tr><td>合规约束</td><td>“不要使用医疗声明”、“不要提及竞品品牌”</td></tr>
+<tr><td>风格约束</td><td>“不要用学术语气”、“不要用中式英语”</td></tr>
+<tr><td>安全约束</td><td>“如果不确定，请说明而非猜测”</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="4-跨境电商场景-prompt-模板库20"><a class="header" href="#4-跨境电商场景-prompt-模板库20">4. 跨境电商场景 Prompt 模板库（20+）</a></h2>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="../a-operators/a2-listing-optimization.html">A2 Listing 与内容创作</a> 电商 Listing Prompt 模板详见 A2</p>
+</blockquote>
+<h3 id="41-选品与市场分析5-个"><a class="header" href="#41-选品与市场分析5-个">4.1 选品与市场分析（5 个）</a></h3>
+<p><strong>模板 1：竞品 Review 痛点提取</strong></p>
+<pre><code>角色：资深 Amazon 产品经理
+输入：[粘贴 50+ 条 1-3 星差评]
+任务：提取排名前 5 的痛点，按频率排序
+输出：表格（痛点 | 频率 | 代表性评论 | 改进建议 | 难度）
+</code></pre>
+<p><strong>模板 2：市场可行性 5 维度评估</strong></p>
+<pre><code>角色：跨境电商选品顾问
+输入：产品名称、目标市场、竞品信息
+任务：从市场需求/竞争/利润/供应链/合规 5 维度评分（1-5）
+输出：评分表 + 综合建议（进入/谨慎/放弃）
+</code></pre>
+<p><strong>模板 3：关键词需求聚类</strong></p>
+<pre><code>角色：Amazon SEO 专家
+输入：[粘贴 100+ 关键词列表]
+任务：按用户购买意图聚类，识别蓝海需求
+输出：聚类表（聚类名 | 关键词 | 搜索量 | 竞争度 | 产品机会）
+</code></pre>
+<p><strong>模板 4：趋势预测</strong></p>
+<pre><code>角色：电商趋势分析师
+输入：品类名称 + Google Trends 数据 + BSR 数据
+任务：判断品类处于上升期/平台期/衰退期
+输出：趋势判断 + 依据 + 进入时机建议
+</code></pre>
+<p><strong>模板 5：供应商对比评估</strong></p>
+<pre><code>角色：采购经理
+输入：3 个供应商的报价、MOQ、交期、资质
+任务：多维度对比评估
+输出：对比表 + 推荐排序 + 谈判策略
+</code></pre>
+<h3 id="42-listing-与内容5-个"><a class="header" href="#42-listing-与内容5-个">4.2 Listing 与内容（5 个）</a></h3>
+<p><strong>模板 6：Listing 全套生成</strong></p>
+<pre><code>角色：Amazon Listing 优化专家
+输入：产品信息、卖点、关键词列表
+任务：生成标题 + 5 Bullet Points + 描述 + Search Terms
+约束：标题 ≤ 200 字符，关键词自然融入
+</code></pre>
+<p><strong>模板 7：多语言本地化</strong></p>
+<pre><code>角色：[目标语言] 本地化专家
+输入：英文 Listing
+任务：翻译 + 本地化适配（关键词替换、卖点顺序调整）
+输出：本地化 Listing + 所有调整的说明
+</code></pre>
+<p><strong>模板 8：A+ 内容策划</strong></p>
+<pre><code>角色：Amazon A+ Content 设计师
+输入：产品信息、品牌故事、竞品 A+ 截图
+任务：策划 A+ 内容模块布局和文案
+输出：模块顺序 + 每个模块的标题/文案/图片建议
+</code></pre>
+<p><strong>模板 9：竞品 Listing 拆解</strong></p>
+<pre><code>角色：竞品分析师
+输入：3 个竞品的完整 Listing
+任务：对比策略差异，找差异化机会
+输出：策略对比表 + 关键词覆盖对比 + 差异化建议
+</code></pre>
+<p><strong>模板 10：产品卖点提炼</strong></p>
+<pre><code>角色：品牌营销专家
+输入：产品参数、用户好评、竞品弱点
+任务：提炼 3 个核心卖点 + 1 个一句话 USP
+输出：卖点描述 + 支撑证据 + 适用场景
+</code></pre>
+<h3 id="43-广告与营销4-个"><a class="header" href="#43-广告与营销4-个">4.3 广告与营销（4 个）</a></h3>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="../a-operators/a3-advertising.html">A3 广告优化</a> 广告分析 Prompt 模板详见 A3</p>
+</blockquote>
+<p><strong>模板 11：搜索词报告分析</strong></p>
+<pre><code>角色：Amazon PPC 专家
+输入：搜索词报告数据（过去 30 天）
+任务：找出高转化词、浪费词、否定词建议
+输出：TOP 10 高转化词 + TOP 10 浪费词 + 否定词列表 + 预算建议
+</code></pre>
+<p><strong>模板 12：广告文案 A/B 变体</strong></p>
+<pre><code>角色：广告文案专家
+输入：产品描述、核心卖点
+任务：生成 5 种风格的 Headline（功能/场景/情感/数据/问题解决）
+输出：5 个 Headline + 预期效果 + 适合受众
+</code></pre>
+<p><strong>模板 13：促销策略规划</strong></p>
+<pre><code>角色：电商促销策略师
+输入：产品信息、历史销售数据、促销预算
+任务：制定 BFCM/Prime Day 促销方案
+输出：促销日历 + 折扣策略 + 广告配合方案 + 预期 ROI
+</code></pre>
+<p><strong>模板 14：品牌故事撰写</strong></p>
+<pre><code>角色：品牌故事作家
+输入：品牌背景、创始故事、核心价值观
+任务：撰写 Amazon Brand Story 内容
+输出：品牌故事文案（200-300 字）+ 配图建议
+</code></pre>
+<h3 id="44-客服与售后3-个"><a class="header" href="#44-客服与售后3-个">4.4 客服与售后（3 个）</a></h3>
+<p><strong>模板 15：差评批量分析</strong></p>
+<pre><code>角色：产品质量分析师
+输入：最近 60 天的 1-3 星评论
+任务：按类型分类、统计频率、制定改善方案
+输出：分类表 + 频率占比 + 短期应对 + 长期改善 + 优先级
+</code></pre>
+<p><strong>模板 16：客服回复模板生成</strong></p>
+<pre><code>角色：Amazon 客服专家
+输入：常见客户问题类型
+任务：生成多语言客服回复模板
+输出：每种问题 3 个回复变体（正式/友好/简洁）× 多语言
+</code></pre>
+<p><strong>模板 17：申诉信 Plan of Action</strong></p>
+<pre><code>角色：Amazon 账号申诉专家
+输入：违规通知内容
+任务：撰写 Plan of Action
+输出：Root Cause + Immediate Actions + Preventive Measures
+</code></pre>
+<h3 id="45-运营管理4-个"><a class="header" href="#45-运营管理4-个">4.5 运营管理（4 个）</a></h3>
+<p><strong>模板 18：补货决策分析</strong></p>
+<pre><code>角色：库存管理专家
+输入：过去 90 天销售数据、当前库存、供应商交期
+任务：计算安全库存和补货建议
+输出：安全库存量 + 补货时间点 + 补货数量 + 风险提示
+</code></pre>
+<p><strong>模板 19：竞品监控周报</strong></p>
+<pre><code>角色：竞品情报分析师
+输入：竞品的价格/Review/BSR 变化数据
+任务：分析竞品策略变化和应对建议
+输出：变化摘要 + 策略分析 + 应对建议
+</code></pre>
+<p><strong>模板 20：运营日报/周报生成</strong></p>
+<pre><code>角色：运营数据分析师
+输入：当日/当周的销售、广告、库存数据
+任务：生成结构化的运营报告
+输出：关键指标摘要 + 异常标注 + 行动建议
+</code></pre>
+<p><strong>模板 21：多市场合规对比</strong></p>
+<pre><code>角色：跨境电商合规顾问
+输入：产品类型、目标市场列表
+任务：生成各市场的合规要求对比
+输出：合规对比表 + 认证费用估算 + 常见陷阱
+</code></pre>
+<hr>
+<h2 id="5-常见错误与修复"><a class="header" href="#5-常见错误与修复">5. 常见错误与修复</a></h2>
+<h3 id="51-十大-prompt-错误"><a class="header" href="#51-十大-prompt-错误">5.1 十大 Prompt 错误</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>#</th><th>错误</th><th>示例</th><th>修复</th><th>修复后</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td><strong>太模糊</strong></td><td>“帮我分析市场”</td><td>加具体产品、市场、维度</td><td>“分析蓝牙耳机在 Amazon US 的竞争格局”</td></tr>
+<tr><td>2</td><td><strong>没有角色</strong></td><td>“写一个标题”</td><td>加角色定义</td><td>“你是 Amazon Listing 专家，写一个标题”</td></tr>
+<tr><td>3</td><td><strong>没有格式要求</strong></td><td>“给我一些建议”</td><td>指定输出格式</td><td>“用编号列表给出 5 个建议，每个不超过 50 字”</td></tr>
+<tr><td>4</td><td><strong>一次问太多</strong></td><td>“分析市场、写 Listing、做广告方案”</td><td>拆分为多个 Prompt</td><td>先分析市场，再基于分析写 Listing</td></tr>
+<tr><td>5</td><td><strong>没给数据就要分析</strong></td><td>“这个品类的月销量是多少？”</td><td>提供数据让 AI 分析</td><td>“以下是 Helium 10 的数据，请分析…”</td></tr>
+<tr><td>6</td><td><strong>期望 AI 知道实时信息</strong></td><td>“现在 BSR 排名第几？”</td><td>说明 AI 的局限</td><td>“假设 BSR 排名在 50-100，请分析…”</td></tr>
+<tr><td>7</td><td><strong>没有约束</strong></td><td>“写一篇产品描述”</td><td>加长度、风格、禁忌约束</td><td>“写 200 字以内，不用夸张词，突出实用性”</td></tr>
+<tr><td>8</td><td><strong>中英文混用不当</strong></td><td>中文 Prompt 要求英文输出</td><td>明确语言要求</td><td>“请用英文写 Listing，用中文写分析说明”</td></tr>
+<tr><td>9</td><td><strong>不迭代</strong></td><td>对第一次输出不满意就放弃</td><td>给反馈让 AI 改进</td><td>“标题太长了，请缩短到 150 字符以内”</td></tr>
+<tr><td>10</td><td><strong>不保存好的 Prompt</strong></td><td>每次重新写</td><td>建立 Prompt 模板库</td><td>把验证过的 Prompt 存入团队共享文档</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="52-修复实战从差到好的-prompt-改造"><a class="header" href="#52-修复实战从差到好的-prompt-改造">5.2 修复实战：从差到好的 Prompt 改造</a></h3>
+<p><strong>原始 Prompt（差）：</strong></p>
+<pre><code>帮我看看这个产品怎么样
+</code></pre>
+<p><strong>问题诊断：</strong></p>
+<ul>
+<li>没有角色</li>
+<li>没有背景（什么产品？什么市场？）</li>
+<li>“怎么样“太模糊（从哪些维度评估？）</li>
+<li>没有输出格式要求</li>
+<li>没有验证要求</li>
+</ul>
+<p><strong>第一次改进：</strong></p>
+<pre><code>你是一个跨境电商选品顾问。
+请评估"便携式颈挂风扇"在 Amazon US 的市场前景。
+从市场需求、竞争、利润 3 个维度分析。
+</code></pre>
+<p><strong>第二次改进（加入 CRISP 完整要素）：</strong></p>
+<pre><code>【角色】你是一个有 10 年经验的跨境电商选品顾问，精通 Amazon US 消费电子品类。
+
+【背景】我是一个年销售额 $200K 的 Amazon 卖家，团队 3 人，
+启动预算 ¥15 万。我在考虑进入便携式颈挂风扇品类。
+目前头部竞品有 JISULIFE（BSR #1，4.3 星，12000+ Review）
+和 TORRAS（BSR #3，4.4 星，8000+ Review）。
+
+【任务】请做一个全面的市场可行性评估：
+1. 市场需求（搜索趋势、季节性、增长潜力）
+2. 竞争格局（头部卖家壁垒、新品进入难度）
+3. 利润空间（估算成本结构和利润率）
+4. 风险评估（季节性、专利、合规）
+5. 综合建议（Go/No-Go + 如果 Go 的进入策略）
+
+【格式】每个维度用表格 + 1-5 分评分 + 简要分析。
+最后给出综合评分和明确建议。
+
+【验证】请标注哪些是基于公开信息的分析，
+哪些是你的推测。如果某个维度不确定，请说明。
+</code></pre>
+<h3 id="53-不同模型的-prompt-差异"><a class="header" href="#53-不同模型的-prompt-差异">5.3 不同模型的 Prompt 差异</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>模型</th><th>Prompt 偏好</th><th>注意事项</th></tr>
+</thead>
+<tbody>
+<tr><td>ChatGPT (GPT-4o)</td><td>接受各种格式，对自然语言 Prompt 响应好</td><td>长 Prompt 效果好，可以给很多背景</td></tr>
+<tr><td>Claude (Sonnet/Opus)</td><td>偏好结构化 Prompt，XML 标签效果好</td><td>用 <code>&lt;context&gt;</code> <code>&lt;instructions&gt;</code> 等标签组织</td></tr>
+<tr><td>Gemini</td><td>对简洁 Prompt 响应好</td><td>超长上下文是优势，可以放入大量参考资料</td></tr>
+<tr><td>DeepSeek</td><td>中文 Prompt 效果好</td><td>性价比高，适合大量调用</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Claude 专用技巧 XML 标签：</strong></p>
+<pre><code>&lt;context&gt;
+我是 Amazon US 卖家，主营消费电子。
+&lt;/context&gt;
+
+&lt;task&gt;
+分析以下竞品 Review 的痛点。
+&lt;/task&gt;
+
+&lt;format&gt;
+用表格输出，包含：痛点、频率、代表性评论、改进建议。
+&lt;/format&gt;
+
+&lt;reviews&gt;
+[在此粘贴 Review 内容]
+&lt;/reviews&gt;
+</code></pre>
+<hr>
+<h2 id="6-进阶从-prompt-engineering-到-context-engineering"><a class="header" href="#6-进阶从-prompt-engineering-到-context-engineering">6. 进阶：从 Prompt Engineering 到 Context Engineering</a></h2>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="../d-platforms/d6-southeast-asia-ai-guide.html">D6 东南亚 AI 指南</a> 多语言 Prompt 应用详见 D6</p>
+</blockquote>
+<h3 id="61-2026-年的趋势context-engineering"><a class="header" href="#61-2026-年的趋势context-engineering">6.1 2026 年的趋势：Context Engineering</a></h3>
+<p>2025 年中，Andrej Karpathy（前 OpenAI 研究员）提出了一个重要观点：LLM 就像 CPU，上下文窗口就像 RAM，而你就是操作系统，负责加载正确的信息。</p>
+<p>这意味着 Prompt Engineering 正在演进为 <strong>Context Engineering</strong> 不只是写好一个 Prompt，而是设计整个信息输入的架构。</p>
+<p>Content rephrased for compliance with licensing restrictions. Source: <a href="https://open.substack.com/pub/theaicorner1/p/context-engineering-guide-2026">Context Engineering Guide 2026</a></p>
+<pre><code>Prompt Engineering（2023-2024）：
+关注点：如何写一个好的指令
+核心技能：CRISP 框架、CoT、Few-shot
+适用场景：单次对话、简单任务
+
+Context Engineering（2025-2026）：
+关注点：如何设计整个信息输入架构
+核心技能：信息筛选、上下文管理、工具编排
+新增要素：
+哪些信息放入上下文？（不是越多越好）
+信息的优先级和组织方式？
+如何利用工具动态获取信息？
+如何管理多轮对话的上下文？
+适用场景：复杂工作流、Agent、长期项目
+</code></pre>
+<h3 id="62-context-engineering-的实践"><a class="header" href="#62-context-engineering-的实践">6.2 Context Engineering 的实践</a></h3>
+<p><strong>原则 1：信息分层</strong></p>
+<pre><code>Layer 1 系统指令（始终存在）：
+角色定义、输出规范、约束条件
+
+Layer 2 任务上下文（按需加载）：
+当前任务的背景信息、相关数据
+
+Layer 3 参考资料（动态检索）：
+通过 RAG 检索的相关文档片段
+
+Layer 4 对话历史（自动管理）：
+之前的对话内容（可能需要摘要压缩）
+</code></pre>
+<p><strong>原则 2：上下文预算管理</strong></p>
+<p>每个模型的上下文窗口有限。你需要像管理广告预算一样管理上下文预算：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>内容类型</th><th>优先级</th><th>预算占比</th></tr>
+</thead>
+<tbody>
+<tr><td>系统指令和角色</td><td>最高</td><td>5-10%</td></tr>
+<tr><td>当前任务的核心数据</td><td>高</td><td>40-50%</td></tr>
+<tr><td>参考资料和示例</td><td>中</td><td>20-30%</td></tr>
+<tr><td>对话历史</td><td>低</td><td>10-20%</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>原则 3：输出合约</strong></p>
+<p>2026 年的最佳实践是把 Prompt 当作一个“合约“来设计：</p>
+<pre><code>输出合约 = {
+格式：表格/JSON/Markdown
+长度：最大 X 字
+语气：专业/友好/简洁
+必须包含的部分：[列表]
+不确定时的行为：明确标注"不确定"
+错误处理：如果输入数据不足，要求补充而非猜测
+}
+</code></pre>
+<p>Content rephrased for compliance with licensing restrictions. Source: <a href="https://promptbuilder.cc/blog/prompt-engineering-best-practices-2026">Prompt Engineering Best Practices 2026</a></p>
+<hr>
+<h2 id="7-学习资源"><a class="header" href="#7-学习资源">7. 学习资源</a></h2>
+<h3 id="71-必读资源"><a class="header" href="#71-必读资源">7.1 必读资源</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>资源</th><th>来源</th><th>为什么推荐</th></tr>
+</thead>
+<tbody>
+<tr><td><a href="https://platform.openai.com/docs/guides/prompt-engineering">OpenAI Prompt Engineering Guide</a></td><td>OpenAI</td><td>官方最佳实践，最权威</td></tr>
+<tr><td><a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview">Anthropic Prompt Engineering Guide</a></td><td>Anthropic</td><td>Claude 专用技巧，XML 标签用法</td></tr>
+<tr><td><a href="https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/">ChatGPT Prompt Engineering for Developers</a></td><td>DeepLearning.AI</td><td>免费课程，1.5 小时，实操为主</td></tr>
+<tr><td><a href="https://www.aipromptlibrary.app/blog/advanced-prompt-engineering-techniques">12 Advanced Prompt Engineering Techniques</a></td><td>AI Prompt Library</td><td>2026 年最新的高级技巧汇总</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="72-实践建议"><a class="header" href="#72-实践建议">7.2 实践建议</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>阶段</th><th>做什么</th><th>预计时间</th></tr>
+</thead>
+<tbody>
+<tr><td>第 1 周</td><td>用 CRISP 框架改写你现有的 Prompt</td><td>每天 15 分钟</td></tr>
+<tr><td>第 2 周</td><td>尝试 6 种高级技巧，找到最适合你的</td><td>每天 20 分钟</td></tr>
+<tr><td>第 3 周</td><td>建立个人 Prompt 模板库（至少 10 个）</td><td>集中 2 小时</td></tr>
+<tr><td>持续</td><td>每次用 AI 后，反思 Prompt 可以怎么改进</td><td>每次 2 分钟</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="8-用-openclaw-辅助-prompt-管理与优化"><a class="header" href="#8-用-openclaw-辅助-prompt-管理与优化">8. 用 OpenClaw 辅助 Prompt 管理与优化</a></h2>
+<h3 id="场景"><a class="header" href="#场景">场景</a></h3>
+<blockquote>
+<p>你希望自动化管理团队的 Prompt 模板库 定期整理高频使用的 Prompt、优化低效模板、追踪不同 Prompt 版本的效果对比，并在有新的最佳实践时自动更新模板库。</p>
+</blockquote>
+<pre><code>你是我的 Prompt 管理助手。请帮我：
+1. 每周整理团队 Prompt 使用记录，找出使用频率最高的 10 个模板
+2. 对比不同版本 Prompt 的输出质量，标记需要优化的模板
+3. 当发现新的 Prompt 技巧或框架时，自动更新相关模板
+4. 维护一份 Prompt 模板索引，按场景分类，方便团队查找
+</code></pre>
+<h3 id="skills-配置"><a class="header" href="#skills-配置">Skills 配置</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Skill</th><th>用途</th></tr>
+</thead>
+<tbody>
+<tr><td><code>slack</code></td><td>接收团队成员提交的新 Prompt / 推送优化建议和模板更新通知</td></tr>
+<tr><td><code>google-sheets</code></td><td>维护 Prompt 模板库索引表（模板名、版本、使用频率、效果评分）</td></tr>
+<tr><td><code>memory</code></td><td>记忆每个模板的历史版本和优化记录，追踪长期效果趋势</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="相关资源"><a class="header" href="#相关资源">相关资源</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>资源</th><th>链接</th></tr>
+</thead>
+<tbody>
+<tr><td>OpenClaw 官方文档</td><td><a href="https://docs.openclaw.com/">docs.openclaw.com</a></td></tr>
+<tr><td>ClawHub Skills 市场</td><td><a href="https://clawhub.ai/">clawhub.ai</a></td></tr>
+<tr><td>ecommerce-ai-roadmap 商业指南</td><td><a href="../../about.html">about.md</a></td></tr>
+<tr><td>F4 自动化与 Agent</td><td><a href="f4-agent-automation.html">f4-agent-automation.md</a></td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="9-完成标志"><a class="header" href="#9-完成标志">9. 完成标志</a></h2>
+<ul>
+<li><input disabled="" type="checkbox"> 能用 CRISP 框架写出结构化的 Prompt</li>
+<li><input disabled="" type="checkbox"> 至少使用过 3 种高级技巧（CoT、Few-shot、Role-Playing 等）</li>
+<li><input disabled="" type="checkbox"> 建立了至少 10 个个人常用的 Prompt 模板</li>
+<li><input disabled="" type="checkbox"> 能识别并修复常见的 Prompt 错误</li>
+<li><input disabled="" type="checkbox"> 理解 Context Engineering 的概念和实践原则</li>
+</ul>
+<p>完成以上所有项目后，你已经掌握了和 AI 高效沟通的核心技能。接下来进入 <a href="f3-rag-knowledge.html">F3 知识库与 RAG</a>，学习如何让 AI 理解你的私有数据。</p>
+<hr>
+<blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path 0 总览</a> · <a href="ai-landscape.html">AI 全景评估</a></p>
+<p><strong>Path 0</strong>: <a href="f1-ai-evolution.html">F1 AI 演进</a> · <a href="f2-prompt-engineering.html">F2 Prompt 工程</a> · <a href="f3-rag-knowledge.html">F3 RAG 知识库</a> · <a href="f4-agent-automation.html">F4 Agent 自动化</a> · <a href="f5-rpa-automation.html">F5 RPA 自动化</a> · <a href="ai-landscape.html">AI 全景</a></p>
+<p><strong>快速跳转</strong>: <a href="../a-operators/">Path A 运营</a> · <a href="../b-developers/">Path B 技术</a> · <a href="../c-managers/">Path C 管理</a> · <a href="../d-platforms/">Path D 多平台</a> · <a href="../e-social-media/">Path E 社交媒体</a></p>
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../0-foundations/f1-ai-evolution.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../0-foundations/f3-rag-knowledge.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../0-foundations/f1-ai-evolution.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../0-foundations/f3-rag-knowledge.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../mermaid-217b66ef.min.js"></script>
+        <script src="../mermaid-init-d4730691.js"></script>
+
+
+
+    </div>
+    </body>
+</html>

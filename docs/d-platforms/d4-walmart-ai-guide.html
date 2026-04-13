@@ -1,0 +1,1036 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Walmart - 跨境电商 AI 实战知识库</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="跨境电商 AI 实操手册 — 56 篇指南，从选品到增长，每个环节都有可直接复制的 Prompt">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom-467616e9.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "ayu";
+            window.path_to_searchindex_js = "../searchindex-656d55b3.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-e97a050e.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">跨境电商 AI 实战知识库</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap/edit/main/src/src/d-platforms/d4-walmart-ai-guide.md" title="Suggest an edit" aria-label="Suggest an edit" rel="edit">
+                            <span class=fa-svg id="git-edit-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M421.7 220.3l-11.3 11.3-22.6 22.6-205 205c-6.6 6.6-14.8 11.5-23.8 14.1L30.8 511c-8.4 2.5-17.5 .2-23.7-6.1S-1.5 489.7 1 481.2L38.7 353.1c2.6-9 7.5-17.2 14.1-23.8l205-205 22.6-22.6 11.3-11.3 33.9 33.9 62.1 62.1 33.9 33.9zM96 353.9l-9.3 9.3c-.9 .9-1.6 2.1-2 3.4l-25.3 86 86-25.3c1.3-.4 2.5-1.1 3.4-2l9.3-9.3H112c-8.8 0-16-7.2-16-16V353.9zM453.3 19.3l39.4 39.4c25 25 25 65.5 0 90.5l-14.5 14.5-22.6 22.6-11.3 11.3-33.9-33.9-62.1-62.1L314.3 67.7l11.3-11.3 22.6-22.6 14.5-14.5c25-25 65.5-25 90.5 0z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="d4-walmart-marketplace-ai-指南"><a class="header" href="#d4-walmart-marketplace-ai-指南">D4. Walmart Marketplace AI 指南</a></h1>
+<blockquote>
+<p><strong>路径</strong>: Path D: 多平台 · <strong>模块</strong>: D4
+<strong>最后更新</strong>: 2026-03-14
+<strong>难度</strong>: 中级
+<strong>预计时间</strong>: 2-3 小时
+<strong>前置模块</strong>: <a href="../a-operators/">Path A 运营</a>（Amazon 经验可直接复用 70%）</p>
+</blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path D 总览</a></p>
+<hr>
+<h2 id="章节导航"><a class="header" href="#章节导航">章节导航</a></h2>
+<ol>
+<li><a href="#1-walmart-vs-amazon-核心差异">Walmart vs Amazon 核心差异</a></li>
+<li><a href="#2-walmart-seo-与-listing-优化">Walmart SEO 与 Listing 优化</a></li>
+<li><a href="#3-walmart-connect-广告">Walmart Connect 广告</a></li>
+<li><a href="#4-wfs-物流决策">WFS 物流决策</a></li>
+<li><a href="#5-amazon--walmart-迁移方法论">Amazon → Walmart 迁移方法论</a></li>
+<li><a href="#6-prompt-模板">Prompt 模板</a></li>
+<li><a href="#7-完成标志">完成标志</a></li>
+</ol>
+<hr>
+<h2 id="本模块你将产出"><a class="header" href="#本模块你将产出">本模块你将产出</a></h2>
+<ul>
+<li>一套 Walmart Listing 优化方案（基于 Amazon 经验适配）</li>
+<li>一套 Walmart Connect 广告策略</li>
+<li>一套 Amazon → Walmart 迁移清单</li>
+</ul>
+<blockquote>
+<p><strong>核心理念</strong>：Walmart Marketplace 是 Amazon 卖家最自然的第二平台。250K+ 活跃卖家，GMV $10B+，广告收入 $64 亿（+46% YoY）。Path A 中 70% 的 AI 方法论可以直接复用，本指南只聚焦差异化部分。</p>
+</blockquote>
+<hr>
+<h2 id="1-walmart-vs-amazon-核心差异"><a class="header" href="#1-walmart-vs-amazon-核心差异">1. Walmart vs Amazon 核心差异</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>维度</th><th>Amazon</th><th>Walmart</th></tr>
+</thead>
+<tbody>
+<tr><td>卖家数量</td><td>200 万+</td><td>25 万+</td></tr>
+<tr><td>竞争程度</td><td>极高</td><td>中等（机会窗口）</td></tr>
+<tr><td>Buy Box 算法</td><td>Review 数量+价格+FBA</td><td>价格权重更高+WFS</td></tr>
+<tr><td>Listing 质量评分</td><td>无统一评分</td><td>Listing Quality Score（可见）</td></tr>
+<tr><td>广告系统</td><td>Amazon PPC（成熟）</td><td>Walmart Connect（快速增长）</td></tr>
+<tr><td>物流</td><td>FBA</td><td>WFS（Walmart Fulfillment Services）</td></tr>
+<tr><td>佣金</td><td>8-15%（品类不同）</td><td>6-15%（通常略低）</td></tr>
+<tr><td>全渠道</td><td>纯线上</td><td>线上+4700 门店+Walmart+</td></tr>
+<tr><td>用户画像</td><td>全年龄，偏中高收入</td><td>偏家庭，价格敏感</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="11-walmart-的独特优势"><a class="header" href="#11-walmart-的独特优势">1.1 Walmart 的独特优势</a></h3>
+<ul>
+<li><strong>竞争较低</strong>：卖家数量是 Amazon 的 1/8，同品类竞争压力小</li>
+<li><strong>全渠道</strong>：线上订单可以门店自提，覆盖 Amazon 触达不到的用户</li>
+<li><strong>广告增长快</strong>：Walmart Connect 广告收入 +46% YoY，早期红利</li>
+<li><strong>Walmart+</strong>：会员体系增长中，类似 Prime 但渗透率更低</li>
+</ul>
+<hr>
+<h2 id="2-walmart-seo-与-listing-优化"><a class="header" href="#2-walmart-seo-与-listing-优化">2. Walmart SEO 与 Listing 优化</a></h2>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="../a-operators/a2-listing-optimization.html">A2 Listing 优化</a> Amazon Listing 的通用优化方法论可参考 A2，70% 可直接复用到 Walmart。</p>
+</blockquote>
+<h3 id="21-listing-quality-score"><a class="header" href="#21-listing-quality-score">2.1 Listing Quality Score</a></h3>
+<p>Walmart 有一个可见的 Listing Quality Score（Amazon 没有），直接影响搜索排名：</p>
+<pre><code>Listing Quality Score 组成：
+内容质量（Content） 权重最高
+标题：50-75 字符最佳，格式 "品牌 + 产品名 + 核心属性（尺寸/颜色/数量）"
+必须 Title Case（每个主要词首字母大写）
+禁止全大写、特殊字符、促销信息（"Sale""Free Shipping"）
+禁止在标题中包含价格
+与 Amazon 的区别：Amazon 允许 200 字符长标题堆关键词，Walmart 要求简洁
+
+Key Features（Bullet Points）：3-10 个，每个不超过 80 字符
+前 3 个最重要（折叠前可见）
+以动词或利益点开头（"Provides..."、"Features..."）
+与 Amazon 的区别：Amazon 允许 500 字符/条，Walmart 要求更精炼
+
+描述：至少 150 字，建议 300-500 字
+支持 Rich Media（类似 A+ Content）
+可以包含 HTML 格式（加粗、列表、表格）
+建议结构：使用场景 → 核心功能 → 规格参数 → 品牌故事
+
+属性（Attributes）：尽可能填写所有可选属性
+颜色、尺寸、材质、重量、产地等
+属性完整度直接影响搜索过滤器匹配
+很多卖家忽略这一步，填写完整是低成本的排名提升
+
+图片质量（Images）
+主图：纯白背景（RGB 255,255,255），≥1000x1000px
+辅图：至少 4 张（建议 6-8 张）
+场景图（产品在使用中）
+尺寸对比图（与常见物品对比）
+细节特写图
+包装内容图（What's in the box）
+信息图（卖点文字叠加）
+视频：强烈建议上传（Walmart 给有视频的 Listing 额外权重）
+360° 视图：加分项
+与 Amazon 的区别：Walmart 图片要求更"朴实"，不要过度 PS，要让 Walmart 用户觉得"真实可靠"
+
+价格竞争力（Price）
+Walmart 会与 Amazon、Target、eBay 等平台比价
+价格过高会降低 Score 并可能失去 Buy Box
+建议：Walmart 定价 = Amazon 价格 或略低 5-10%
+心理定价：以 .88 或 .97 结尾（Walmart 用户习惯）
+
+库存与配送（Fulfillment）
+WFS 使用（显著加分，类似 FBA 对 Amazon 排名的影响）
+配送速度：2 天配送是基准，次日达加分
+库存充足度：频繁断货会降低 Score
+退货率：高退货率会被降权
+</code></pre>
+<h3 id="22-walmart-标题优化公式"><a class="header" href="#22-walmart-标题优化公式">2.2 Walmart 标题优化公式</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>品类</th><th>Amazon 标题风格</th><th>Walmart 标题风格（正确）</th></tr>
+</thead>
+<tbody>
+<tr><td>电子产品</td><td>“UGREEN USB C Hub 8-in-1 Multiport Adapter with 4K HDMI, 100W PD, 3 USB 3.0, SD/TF Card Reader for MacBook Pro Air”</td><td>“UGREEN USB C Hub 8-in-1 with 4K HDMI, 100W PD Charging”</td></tr>
+<tr><td>家居</td><td>“Portable Neck Fan, Hands Free Bladeless Fan, 360° Cooling, 3 Speeds, USB Rechargeable, Lightweight for Outdoor Sports Travel”</td><td>“Portable Neck Fan, Bladeless 360° Cooling, 3 Speeds, USB Rechargeable”</td></tr>
+<tr><td>美妆</td><td>“Vitamin C Serum for Face with Hyaluronic Acid, Retinol, Amino Acids - Anti Aging Skin Brightening Serum for Dark Spots, Fine Lines, Wrinkles - 1 fl oz”</td><td>“Vitamin C Face Serum with Hyaluronic Acid, Anti-Aging, 1 fl oz”</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>AI 标题转换 Prompt：</strong></p>
+<pre><code>你是一个 Walmart Listing 标题优化专家。
+
+以下是我的 Amazon 标题：
+[粘贴 Amazon 标题]
+
+请转换为 Walmart 格式，要求：
+1. 50-75 字符（Amazon 允许 200，Walmart 要简洁）
+2. 格式：品牌 + 产品名 + 1-2 个核心属性
+3. Title Case（每个主要词首字母大写）
+4. 不包含促销信息、价格、"Best""#1"等词
+5. 保留最重要的搜索关键词
+6. 给出 3 个变体供选择
+</code></pre>
+<h3 id="23-walmart-rich-media类似-a-content"><a class="header" href="#23-walmart-rich-media类似-a-content">2.3 Walmart Rich Media（类似 A+ Content）</a></h3>
+<p>Walmart 的 Rich Media 功能允许在描述区域添加增强内容：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>功能</th><th>Amazon A+ Content</th><th>Walmart Rich Media</th></tr>
+</thead>
+<tbody>
+<tr><td>品牌故事</td><td></td><td></td></tr>
+<tr><td>对比表格</td><td></td><td></td></tr>
+<tr><td>图文模块</td><td></td><td></td></tr>
+<tr><td>视频嵌入</td><td>（Premium A+）</td><td>（所有卖家）</td></tr>
+<tr><td>360° 视图</td><td></td><td></td></tr>
+<tr><td>技术要求</td><td>Amazon 后台编辑器</td><td>支持 HTML/CSS</td></tr>
+<tr><td>门槛</td><td>需要品牌注册</td><td>所有卖家可用</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>关键差异</strong>：Walmart Rich Media 对所有卖家开放（Amazon A+ 需要品牌注册），而且支持 HTML/CSS 自定义，灵活度更高。</p>
+</blockquote>
+<p><strong>AI 生成 Walmart Rich Media 内容 Prompt：</strong></p>
+<pre><code>你是一个 Walmart Rich Media 内容专家。
+
+产品：[名称]
+卖点：[5 个]
+目标受众：Walmart 用户（偏家庭、价格敏感、重视实用性）
+
+请生成 Rich Media 内容方案：
+1. 品牌故事模块（100 字，强调品质和价值）
+2. 产品特性模块（3 个图文块，每块：标题+50 字描述+图片建议）
+3. 对比表格（我的产品 vs 2 个竞品，5 个维度）
+4. 使用场景模块（3 个场景，每个：场景名+30 字描述+图片建议）
+5. FAQ 模块（5 个常见问题+回答）
+
+注意：Walmart 用户更看重"实用性"和"性价比"，不要太"高端品牌感"。
+</code></pre>
+<hr>
+<h2 id="3-walmart-connect-广告"><a class="header" href="#3-walmart-connect-广告">3. Walmart Connect 广告</a></h2>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="../a-operators/a3-advertising.html">A3 广告优化</a> 搜索词报告分析的通用方法论可直接复用到 Walmart Connect。</p>
+</blockquote>
+<h3 id="31-广告类型详解"><a class="header" href="#31-广告类型详解">3.1 广告类型详解</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>广告类型</th><th>版位</th><th>计费</th><th>最低竞价</th><th>适合</th></tr>
+</thead>
+<tbody>
+<tr><td>Sponsored Products - Automatic</td><td>搜索结果+产品页</td><td>CPC</td><td>$0.20</td><td>新品测试、关键词发现</td></tr>
+<tr><td>Sponsored Products - Manual</td><td>搜索结果+产品页</td><td>CPC</td><td>$0.20</td><td>精准关键词投放</td></tr>
+<tr><td>Sponsored Brands</td><td>搜索结果顶部横幅</td><td>CPC</td><td>$1.00</td><td>品牌认知、品类占位</td></tr>
+<tr><td>Sponsored Videos</td><td>搜索结果视频位</td><td>CPC</td><td>$0.20</td><td>产品演示、差异化展示</td></tr>
+<tr><td>Display Ads</td><td>站内+站外</td><td>CPM/CPC</td><td>按 Campaign</td><td>再营销、品牌曝光</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="32-第一价格竞价-vs-第二价格竞价"><a class="header" href="#32-第一价格竞价-vs-第二价格竞价">3.2 第一价格竞价 vs 第二价格竞价</a></h3>
+<p>这是 Walmart 和 Amazon 广告最大的区别：</p>
+<pre><code>Amazon（第二价格竞价）：
+你出价 $1.50，第二高出价 $1.00
+→ 你实际支付 $1.01（第二高+$0.01）
+→ 策略：可以出高价，实际不会付那么多
+
+Walmart（第一价格竞价）：
+你出价 $1.50
+→ 你实际支付 $1.50（你出多少付多少）
+→ 策略：必须精确出价，出高了就是浪费钱
+</code></pre>
+<p><strong>Walmart 出价策略最佳实践：</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>策略</th><th>说明</th><th>适用场景</th></tr>
+</thead>
+<tbody>
+<tr><td>保守出价</td><td>从品类建议竞价的 70% 开始</td><td>新品测试期</td></tr>
+<tr><td>阶梯测试</td><td>每 3 天提高 10%，观察 ROAS 变化</td><td>找到最优出价</td></tr>
+<tr><td>时段调整</td><td>高转化时段（周末/晚上）提高出价</td><td>成熟期优化</td></tr>
+<tr><td>关键词分层</td><td>高转化词高出价，长尾词低出价</td><td>预算有限时</td></tr>
+<tr><td>自动+手动组合</td><td>自动 Campaign 发现词，手动 Campaign 精准投放</td><td>所有阶段</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="33-walmart-搜索词报告分析"><a class="header" href="#33-walmart-搜索词报告分析">3.3 Walmart 搜索词报告分析</a></h3>
+<p>Walmart 的搜索词报告格式与 Amazon 不同，AI 分析 Prompt 需要适配：</p>
+<pre><code>你是一个 Walmart Connect 广告优化专家。
+
+以下是我的 Walmart 搜索词报告数据（过去 14 天）：
+
+Campaign: [名称]
+总花费: $[X]
+总点击: [X]
+总订单: [X]
+ROAS: [X]
+
+搜索词数据（按花费排序 Top 20）：
+| 搜索词 | 展示 | 点击 | 花费 | 订单 | 销售额 | ROAS |
+[粘贴数据]
+
+请分析：
+1. 高 ROAS 词（&gt;4x）：这些词应该提高出价多少？
+2. 低 ROAS 词（&lt;2x）：哪些应该降低出价，哪些应该否定？
+3. 高展示低点击词：是出价问题还是 Listing 问题？
+4. 零转化高花费词：立即否定的候选词
+5. 新发现的长尾机会词
+6. 预算重新分配建议
+
+注意 Walmart 特殊性：
+- 第一价格竞价，出价调整要更精确（不像 Amazon 可以出高价）
+- Walmart 用户更价格敏感，低价产品的转化率通常更高
+- 周末和晚上的转化率通常高于工作日白天
+</code></pre>
+<h3 id="34-walmart-广告-30-天启动计划"><a class="header" href="#34-walmart-广告-30-天启动计划">3.4 Walmart 广告 30 天启动计划</a></h3>
+<pre><code>Week 1: 数据收集期
+启动 1 个 Automatic Campaign（预算 $20/天）
+启动 1 个 Manual Campaign（5-10 个核心关键词，预算 $15/天）
+出价：品类建议竞价的 80%
+目标：收集搜索词数据，不追求 ROAS
+
+Week 2: 优化期
+分析搜索词报告
+从 Automatic 中提取高转化词 → 加入 Manual
+否定低效词
+调整出价（高转化词 +15%，低转化词 -20%）
+目标：ROAS &gt; 2x
+
+Week 3: 扩展期
+增加 Sponsored Brands Campaign（如果有品牌注册）
+测试 Sponsored Videos（如果有视频素材）
+扩展关键词列表（加入长尾词）
+提高高转化 Campaign 预算
+目标：ROAS &gt; 3x
+
+Week 4: 规模化
+稳定的 Campaign 提高预算 30-50%
+启动 Display Ads（再营销）
+建立每周优化 SOP
+目标：ROAS &gt; 4x，广告销售占比 20-30%
+</code></pre>
+<hr>
+<h2 id="4-wfs-物流决策"><a class="header" href="#4-wfs-物流决策">4. WFS 物流决策</a></h2>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="../a-operators/a5-inventory.html">A5 库存管理</a> 库存管理和补货决策的通用方法论参考 A5。</p>
+</blockquote>
+<h3 id="41-wfs-vs-fba-详细对比"><a class="header" href="#41-wfs-vs-fba-详细对比">4.1 WFS vs FBA 详细对比</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>维度</th><th>WFS</th><th>FBA</th></tr>
+</thead>
+<tbody>
+<tr><td>仓储费（标准）</td><td>$0.75/立方英尺/月</td><td>$0.87/立方英尺/月（1-9月）</td></tr>
+<tr><td>仓储费（旺季）</td><td>无旺季加价</td><td>$2.40/立方英尺/月（10-12月）</td></tr>
+<tr><td>配送费（小件）</td><td>$3.45 起</td><td>$3.22 起</td></tr>
+<tr><td>配送费（大件）</td><td>通常比 FBA 低 10-15%</td><td>较高</td></tr>
+<tr><td>长期仓储费</td><td>无（2026 年政策）</td><td>有（365 天后收取）</td></tr>
+<tr><td>退货处理</td><td>Walmart 处理，费用较低</td><td>Amazon 处理，费用较高</td></tr>
+<tr><td>多渠道配送</td><td>MCS（新功能，首次用户 -30%）</td><td>MCF</td></tr>
+<tr><td>Buy Box 加成</td><td>显著（类似 FBA）</td><td>显著</td></tr>
+<tr><td>配送速度</td><td>2-3 天（Walmart+ 次日达）</td><td>1-2 天（Prime）</td></tr>
+<tr><td>入仓要求</td><td>较宽松</td><td>严格（标签/包装要求多）</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="42-wfs-成本计算-ai-prompt"><a class="header" href="#42-wfs-成本计算-ai-prompt">4.2 WFS 成本计算 AI Prompt</a></h3>
+<pre><code>你是一个电商物流成本分析专家。
+
+我的产品信息：
+- 产品尺寸：[长x宽x高] 英寸
+- 产品重量：[X] 磅
+- 月销量：Amazon [X] 单，Walmart [X] 单
+- 当前 FBA 费用/单：$[X]
+
+请计算并对比：
+1. FBA 月度总成本（配送费+仓储费+长期仓储风险）
+2. WFS 月度总成本（配送费+仓储费）
+3. 自发货成本估算（USPS/UPS/FedEx）
+4. 最优物流方案建议
+5. 库存分配比例建议（FBA:WFS:自发货）
+</code></pre>
+<h3 id="43-walmart-multichannel-solutions-mcs"><a class="header" href="#43-walmart-multichannel-solutions-mcs">4.3 Walmart Multichannel Solutions (MCS)</a></h3>
+<p>MCS 是 Walmart 的多渠道配送服务（类似 Amazon MCF），2026 年新推出：</p>
+<ul>
+<li>用 WFS 库存配送其他渠道（Shopify、eBay、自有网站）的订单</li>
+<li>首次用户享受 30% 配送费折扣</li>
+<li>与 Shopify、BigCommerce、WooCommerce 集成</li>
+<li>配送速度：2-3 天</li>
+</ul>
+<blockquote>
+<p><strong>策略建议</strong>：如果你同时在 Amazon 和 Walmart 销售，可以用 WFS+MCS 替代部分 FBA+MCF，降低物流成本（特别是旺季，WFS 没有旺季仓储加价）。</p>
+</blockquote>
+<hr>
+<h2 id="5-amazon--walmart-迁移方法论"><a class="header" href="#5-amazon--walmart-迁移方法论">5. Amazon → Walmart 迁移方法论</a></h2>
+<h3 id="51-迁移前评估"><a class="header" href="#51-迁移前评估">5.1 迁移前评估</a></h3>
+<pre><code>你是一个多平台电商策略专家。
+
+我目前在 Amazon 的业务数据：
+- 品类：[X]
+- 月销量：[X] 单
+- 月收入：$[X]
+- 平均售价：$[X]
+- 利润率：[X]%
+- 主要竞品数量：[X]
+
+请评估 Walmart 迁移可行性：
+1. 这个品类在 Walmart 的竞争程度（搜索该品类关键词，看结果数量和 Review 数量）
+2. 价格带是否匹配 Walmart 用户（Walmart 用户平均客单价低于 Amazon）
+3. 预估 Walmart 月销量（通常是 Amazon 的 10-30%，取决于品类）
+4. 预估利润率变化（佣金差异+物流差异+广告差异）
+5. 迁移优先级建议（立即/观望/不建议）
+</code></pre>
+<h3 id="52-详细迁移清单"><a class="header" href="#52-详细迁移清单">5.2 详细迁移清单</a></h3>
+<pre><code>Phase 1: 准备期（1-2 周）
+[ ] 注册 Walmart Marketplace 卖家账号
+需要：美国公司实体（或 EIN）
+需要：W-9 税表
+审核时间：2-4 周
+注意：Walmart 审核比 Amazon 严格，不是所有申请都会通过
+[ ] 准备 UPC/GTIN（Walmart 要求每个产品有唯一 UPC）
+[ ] 准备产品图片（适配 Walmart 风格，更"朴实"）
+[ ] 研究 Walmart 品类佣金率
+
+Phase 2: Listing 上架（1 周）
+[ ] 转换标题格式（50-75 字符，Title Case）
+[ ] 重写 Key Features（每条 ≤80 字符，更精炼）
+[ ] 创建 Rich Media 内容
+[ ] 填写所有产品属性（提升 Listing Quality Score）
+[ ] 设置定价（建议 = Amazon 价格 或 -5~10%）
+[ ] 上传图片（适配 Walmart 风格）
+
+Phase 3: 物流设置（1 周）
+[ ] 注册 WFS
+[ ] 创建入仓计划
+[ ] 发送首批库存（建议 30 天销量）
+[ ] 设置自发货备选方案
+
+Phase 4: 广告启动（2-4 周）
+[ ] 启动 Automatic Campaign
+[ ] 启动 Manual Campaign（核心关键词）
+[ ] 每周分析搜索词报告
+[ ] 逐步优化出价和关键词
+
+Phase 5: 持续优化
+[ ] 每周检查 Listing Quality Score
+[ ] 每周优化广告
+[ ] 监控 Buy Box 状态
+[ ] 参与 Walmart 促销活动（Rollbacks、Flash Deals）
+[ ] 建立 Walmart 专用数据追踪
+</code></pre>
+<h3 id="53-walmart-特有促销机制"><a class="header" href="#53-walmart-特有促销机制">5.3 Walmart 特有促销机制</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>促销类型</th><th>说明</th><th>与 Amazon 对比</th></tr>
+</thead>
+<tbody>
+<tr><td>Rollbacks</td><td>临时降价，Walmart 标记“Rollback“标签</td><td>类似 Lightning Deal</td></tr>
+<tr><td>Flash Deals</td><td>限时特价</td><td>类似 Lightning Deal</td></tr>
+<tr><td>Clearance</td><td>清仓价</td><td>类似 Outlet Deal</td></tr>
+<tr><td>Walmart+ Weekend</td><td>Walmart+ 会员专属促销</td><td>类似 Prime Day</td></tr>
+<tr><td>节日促销</td><td>BFCM、Back to School 等</td><td>类似</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="54-常见迁移错误"><a class="header" href="#54-常见迁移错误">5.4 常见迁移错误</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>错误</th><th>后果</th><th>正确做法</th></tr>
+</thead>
+<tbody>
+<tr><td>直接复制 Amazon 标题</td><td>Listing Quality Score 低，排名差</td><td>重写为 50-75 字符 Walmart 格式</td></tr>
+<tr><td>用 Amazon 定价</td><td>可能失去 Buy Box（Walmart 比价更严格）</td><td>定价 = Amazon 价格或略低</td></tr>
+<tr><td>忽略属性填写</td><td>搜索过滤器匹配不到</td><td>填写所有可选属性</td></tr>
+<tr><td>用 Amazon PPC 出价策略</td><td>浪费预算（第一价格竞价）</td><td>从建议竞价 70% 开始，逐步调整</td></tr>
+<tr><td>不用 WFS</td><td>失去 Buy Box 优势</td><td>优先使用 WFS</td></tr>
+<tr><td>忽略 Walmart 用户画像</td><td>内容不匹配</td><td>强调实用性和性价比，不要太“高端“</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="6-prompt-模板"><a class="header" href="#6-prompt-模板">6. Prompt 模板</a></h2>
+<h3 id="61-walmart-品类机会分析"><a class="header" href="#61-walmart-品类机会分析">6.1 Walmart 品类机会分析</a></h3>
+<pre><code>你是一个 Walmart Marketplace 品类分析专家。
+
+我目前在 Amazon 销售 [品类]，月销 [X] 单。
+
+请分析这个品类在 Walmart 的机会：
+1. Walmart 上该品类的竞争程度（卖家数量、Review 数量）
+2. 价格带对比（Walmart vs Amazon）
+3. 预估月销量潜力
+4. 进入策略建议
+5. 需要注意的 Walmart 特有合规要求
+</code></pre>
+<hr>
+<h2 id="62-walmart-buy-box-深度解析"><a class="header" href="#62-walmart-buy-box-深度解析">6.2 Walmart Buy Box 深度解析</a></h2>
+<h3 id="buy-box-算法因素权重"><a class="header" href="#buy-box-算法因素权重">Buy Box 算法因素权重</a></h3>
+<p>Walmart Buy Box 与 Amazon Buy Box 的核心区别在于价格权重更高：</p>
+<pre><code>Walmart Buy Box 算法因素（按权重排序）：
+
+1. 价格（权重最高）
+产品价格 + 运费的总价
+与 Amazon/Target/eBay 等平台的比价
+价格过高会直接失去 Buy Box
+建议：总价（产品+运费）≤ Amazon 同产品价格
+心理定价：.88 或 .97 结尾
+
+2. 配送速度和方式
+WFS（Walmart Fulfillment Services）→ 最高优先级
+2 天配送 → 高优先级
+3-5 天配送 → 中优先级
+5+ 天配送 → 低优先级
+Walmart+ 次日达 → 额外加分
+
+3. 卖家绩效指标
+On-Time Delivery Rate（准时发货率）&gt; 95%
+Valid Tracking Rate（有效追踪率）&gt; 99%
+Cancellation Rate（取消率）&lt; 2%
+Return Rate（退货率）越低越好
+Customer Satisfaction（客户满意度评分）
+
+4. 库存深度
+库存充足 → 加分
+频繁断货 → 降权
+预售/缺货状态 → 失去 Buy Box
+
+5. 卖家账户健康度
+账户年龄
+历史销量
+品牌注册状态
+违规记录
+</code></pre>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="shopify-ai-guide.html">D1 Shopify</a> 如果你同时做独立站，Shopify 的品牌建设和 DTC 策略参考 D1。</p>
+</blockquote>
+<h3 id="buy-box-监控与优化-ai-prompt"><a class="header" href="#buy-box-监控与优化-ai-prompt">Buy Box 监控与优化 AI Prompt</a></h3>
+<pre><code>你是一个 Walmart Buy Box 优化专家。
+
+我的产品数据：
+- ASIN/Item ID: [X]
+- 我的售价: $[X]
+- 竞品最低价: $[X]
+- 我的配送方式: [WFS/自发货/2天配送]
+- 我的 Buy Box 占有率: [X]%
+- 我的卖家评分: [X]
+- 竞品数量: [X] 个卖家
+
+请分析：
+1. 我为什么没有 100% 占有 Buy Box？
+2. 价格需要调整到多少才能提高 Buy Box 占有率？
+3. 配送方式是否需要升级？
+4. 卖家绩效中哪些指标需要改善？
+5. 如果有多个竞品卖家，我的竞争策略是什么？
+6. 是否建议使用自动调价工具？如果是，推荐哪些？
+</code></pre>
+<h3 id="walmart-自动调价策略"><a class="header" href="#walmart-自动调价策略">Walmart 自动调价策略</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>策略</th><th>说明</th><th>适用场景</th><th>风险</th></tr>
+</thead>
+<tbody>
+<tr><td>跟随最低价</td><td>始终匹配最低价</td><td>标品、多卖家竞争</td><td>利润被压缩</td></tr>
+<tr><td>价格区间</td><td>设置最低/最高价，在区间内调整</td><td>有品牌溢价的产品</td><td>可能偶尔失去 Buy Box</td></tr>
+<tr><td>基于 ROAS 调价</td><td>广告 ROAS 高时提价，低时降价</td><td>广告驱动的产品</td><td>需要数据积累</td></tr>
+<tr><td>时段调价</td><td>周末/晚上提价，工作日降价</td><td>转化率有时段差异的产品</td><td>需要测试验证</td></tr>
+<tr><td>竞品联动</td><td>监控竞品价格变化，自动响应</td><td>竞争激烈的品类</td><td>可能引发价格战</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="63-walmart-品类佣金率详表"><a class="header" href="#63-walmart-品类佣金率详表">6.3 Walmart 品类佣金率详表</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>品类</th><th>佣金率</th><th>与 Amazon 对比</th></tr>
+</thead>
+<tbody>
+<tr><td>消费电子</td><td>8%</td><td>Amazon 8-15%</td></tr>
+<tr><td>家居家具</td><td>10%</td><td>Amazon 15%</td></tr>
+<tr><td>服装</td><td>5-15%</td><td>Amazon 17%</td></tr>
+<tr><td>美妆个护</td><td>8%</td><td>Amazon 8-15%</td></tr>
+<tr><td>玩具</td><td>8%</td><td>Amazon 15%</td></tr>
+<tr><td>运动户外</td><td>8%</td><td>Amazon 15%</td></tr>
+<tr><td>宠物用品</td><td>8%</td><td>Amazon 15%</td></tr>
+<tr><td>食品杂货</td><td>8%</td><td>Amazon 8%</td></tr>
+<tr><td>珠宝手表</td><td>15%</td><td>Amazon 20%</td></tr>
+<tr><td>汽车配件</td><td>12%</td><td>Amazon 12%</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>关键发现</strong>：Walmart 在家居（10% vs 15%）、服装（5-15% vs 17%）、玩具（8% vs 15%）、珠宝（15% vs 20%）等品类的佣金率显著低于 Amazon。这些品类在 Walmart 上的利润空间更大。</p>
+</blockquote>
+<hr>
+<h2 id="64-walmart-seller-center-数据分析"><a class="header" href="#64-walmart-seller-center-数据分析">6.4 Walmart Seller Center 数据分析</a></h2>
+<h3 id="关键报告与指标"><a class="header" href="#关键报告与指标">关键报告与指标</a></h3>
+<pre><code>Walmart Seller Center 核心报告：
+
+一、销售报告
+Item Performance（单品表现）
+Page Views（页面浏览量）
+Units Sold（销量）
+Revenue（收入）
+Buy Box %（Buy Box 占有率）
+Conversion Rate（转化率）
+
+Sales Trend（销售趋势）
+日/周/月销售趋势
+同比/环比变化
+品类对比
+
+Returns Report（退货报告）
+退货率
+退货原因分类
+退货成本
+
+二、广告报告（Walmart Connect）
+Campaign Performance
+Search Term Report
+Keyword Performance
+Placement Report
+
+三、库存报告
+Inventory Health
+WFS Inventory
+Stranded Inventory
+Restock Recommendations
+
+四、卖家绩效
+On-Time Delivery Rate
+Valid Tracking Rate
+Cancellation Rate
+Customer Satisfaction Score
+Policy Compliance
+</code></pre>
+<h3 id="ai-周报分析-prompt"><a class="header" href="#ai-周报分析-prompt">AI 周报分析 Prompt</a></h3>
+<pre><code>你是一个 Walmart Marketplace 数据分析专家。
+
+以下是我的 Walmart 店铺过去 7 天的数据：
+
+销售数据：
+- 总收入: $[X]（上周 $[X]，变化 [X]%）
+- 总订单: [X]（上周 [X]）
+- 平均客单价: $[X]
+- 转化率: [X]%
+- Buy Box 平均占有率: [X]%
+
+Top 5 产品表现：
+| 产品 | 页面浏览 | 销量 | 收入 | 转化率 | Buy Box% |
+[粘贴数据]
+
+广告数据：
+- 总广告花费: $[X]
+- 广告收入: $[X]
+- ROAS: [X]
+- ACOS: [X]%
+
+卖家绩效：
+- 准时发货率: [X]%
+- 有效追踪率: [X]%
+- 取消率: [X]%
+- 退货率: [X]%
+
+请提供：
+1. 本周表现总结（3 句话，与上周对比）
+2. 表现最好的产品及原因分析
+3. 表现下滑的产品及改善建议
+4. Buy Box 占有率变化分析（如果下降，原因是什么）
+5. 广告优化建议（基于 ROAS 和搜索词数据）
+6. 卖家绩效改善建议（如果有指标低于标准）
+7. 下周重点行动项（最多 3 个）
+</code></pre>
+<hr>
+<h2 id="65-walmart-全渠道策略"><a class="header" href="#65-walmart-全渠道策略">6.5 Walmart 全渠道策略</a></h2>
+<h3 id="线上线下协同walmart-独有优势"><a class="header" href="#线上线下协同walmart-独有优势">线上+线下协同（Walmart 独有优势）</a></h3>
+<p>Walmart 拥有 4700+ 实体门店，这是 Amazon 没有的：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>全渠道功能</th><th>说明</th><th>对卖家的影响</th></tr>
+</thead>
+<tbody>
+<tr><td>Store Pickup</td><td>线上下单，门店自提</td><td>提高转化率（用户觉得更方便）</td></tr>
+<tr><td>Ship from Store</td><td>从最近门店发货</td><td>更快的配送速度</td></tr>
+<tr><td>Returns to Store</td><td>线上购买，门店退货</td><td>降低退货摩擦（但可能提高退货率）</td></tr>
+<tr><td>Walmart+</td><td>会员免费配送+门店优惠</td><td>会员用户转化率更高</td></tr>
+<tr><td>Local Delivery</td><td>本地 2 小时配送</td><td>特定品类（食品/日用品）的优势</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="walmart-会员策略"><a class="header" href="#walmart-会员策略">Walmart+ 会员策略</a></h3>
+<p>Walmart+ 是 Walmart 的会员计划（类似 Amazon Prime）：</p>
+<ul>
+<li>月费 $12.95 或年费 $98</li>
+<li>免费配送（无最低消费）</li>
+<li>门店扫码结账</li>
+<li>Paramount+ 流媒体</li>
+<li>加油折扣</li>
+</ul>
+<p><strong>对卖家的影响</strong>：</p>
+<ul>
+<li>Walmart+ 会员的转化率比非会员高 30-50%</li>
+<li>WFS 产品自动享受 Walmart+ 免费配送</li>
+<li>建议：优先使用 WFS，确保产品对 Walmart+ 会员有吸引力</li>
+</ul>
+<hr>
+<h2 id="66-walmart-常见陷阱深度解析"><a class="header" href="#66-walmart-常见陷阱深度解析">6.6 Walmart 常见陷阱深度解析</a></h2>
+<h3 id="陷阱-1直接复制-amazon-listing"><a class="header" href="#陷阱-1直接复制-amazon-listing">陷阱 1：直接复制 Amazon Listing</a></h3>
+<p><strong>问题</strong>：Amazon 标题 200 字符堆关键词，Walmart 标题要求 50-75 字符简洁明了。直接复制会导致 Listing Quality Score 极低。</p>
+<p><strong>案例</strong>：</p>
+<pre><code>Amazon 标题（错误示范）：
+"UGREEN USB C Hub 8-in-1 Multiport Adapter with 4K HDMI 60Hz, 100W Power Delivery, 3 USB 3.0 Ports, SD/TF Card Reader, Gigabit Ethernet for MacBook Pro Air iPad Pro Dell XPS Surface Pro"
+
+Walmart 标题（正确）：
+"UGREEN USB C Hub 8-in-1 with 4K HDMI, 100W PD Charging"
+</code></pre>
+<p><strong>AI 修复 Prompt</strong>：</p>
+<pre><code>以下是我从 Amazon 复制到 Walmart 的 Listing，请帮我适配为 Walmart 格式：
+
+Amazon 标题：[粘贴]
+Amazon Bullet Points：[粘贴]
+Amazon 描述：[粘贴]
+
+请输出：
+1. Walmart 标题（50-75 字符，Title Case）
+2. Walmart Key Features（3-10 条，每条 ≤80 字符）
+3. Walmart 描述（300-500 字，结构化，支持 HTML）
+4. 需要填写的产品属性清单
+5. Listing Quality Score 预估和优化建议
+</code></pre>
+<h3 id="陷阱-2忽略-walmart-用户画像差异"><a class="header" href="#陷阱-2忽略-walmart-用户画像差异">陷阱 2：忽略 Walmart 用户画像差异</a></h3>
+<p><strong>问题</strong>：Walmart 用户和 Amazon 用户画像不同，内容策略需要调整。</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>维度</th><th>Amazon 用户</th><th>Walmart 用户</th></tr>
+</thead>
+<tbody>
+<tr><td>收入水平</td><td>中高收入</td><td>中低收入，家庭为主</td></tr>
+<tr><td>购买动机</td><td>便利+选择多</td><td>价格+实用性</td></tr>
+<tr><td>决策因素</td><td>Review 数量+品牌</td><td>价格+配送速度</td></tr>
+<tr><td>内容偏好</td><td>详细参数+品牌故事</td><td>简洁实用+性价比突出</td></tr>
+<tr><td>图片偏好</td><td>精致+生活方式</td><td>真实+实用+清晰</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>AI 内容适配 Prompt</strong>：</p>
+<pre><code>以下是我的 Amazon 产品描述，请改写为适合 Walmart 用户的风格：
+
+Amazon 描述：[粘贴]
+
+Walmart 用户特征：
+- 更价格敏感，强调性价比
+- 更注重实用性，减少品牌故事
+- 更喜欢简洁直接的表达
+- 家庭用户为主，强调家庭使用场景
+
+请改写，保持核心信息但调整语气和重点。
+</code></pre>
+<h3 id="陷阱-3广告出价过高第一价格竞价"><a class="header" href="#陷阱-3广告出价过高第一价格竞价">陷阱 3：广告出价过高（第一价格竞价）</a></h3>
+<p><strong>问题</strong>：很多从 Amazon 转来的卖家习惯出高价（因为 Amazon 是第二价格竞价，实际不会付那么多）。在 Walmart 上出高价就是实际付高价。</p>
+<p><strong>解决方案</strong>：</p>
+<pre><code>Walmart 出价优化步骤：
+
+1. 查看品类建议竞价（Walmart 后台提供）
+2. 初始出价 = 建议竞价 × 70%
+3. 运行 3 天，观察展示量和点击量
+4. 如果展示量不足 → 提高 10%
+5. 如果展示量充足但 ROAS 低 → 降低 10%
+6. 每 3 天调整一次，直到找到最优出价
+7. 记录每个关键词的最优出价，建立出价数据库
+
+关键原则：
+- 永远不要一次性大幅调整出价（±10% 为宜）
+- 高转化词可以出价高于建议竞价
+- 长尾词出价应该低于建议竞价 30-50%
+- 周末/晚上可以适当提高出价（转化率更高）
+</code></pre>
+<h3 id="陷阱-4不参与-walmart-促销活动"><a class="header" href="#陷阱-4不参与-walmart-促销活动">陷阱 4：不参与 Walmart 促销活动</a></h3>
+<p><strong>问题</strong>：Walmart 的促销活动（Rollbacks、Flash Deals）对排名和流量有显著影响，但很多新卖家不知道如何参与。</p>
+<p><strong>Walmart 促销活动参与指南</strong>：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>活动类型</th><th>如何参与</th><th>折扣要求</th><th>流量提升</th></tr>
+</thead>
+<tbody>
+<tr><td>Rollback</td><td>Seller Center 后台申请</td><td>通常 10-25% off</td><td></td></tr>
+<tr><td>Flash Deal</td><td>需要邀请或申请</td><td>通常 20-40% off</td><td></td></tr>
+<tr><td>Clearance</td><td>手动设置清仓价</td><td>大幅折扣</td><td></td></tr>
+<tr><td>Walmart+ Weekend</td><td>自动参与（WFS 产品）</td><td>无额外折扣要求</td><td></td></tr>
+<tr><td>节日促销</td><td>提前 4-6 周申请</td><td>取决于活动</td><td></td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="陷阱-5忽略-walmart-review-策略"><a class="header" href="#陷阱-5忽略-walmart-review-策略">陷阱 5：忽略 Walmart Review 策略</a></h3>
+<p><strong>问题</strong>：Walmart 的 Review 系统与 Amazon 不同Walmart 允许 Spark Reviewer Program（类似 Vine），但很多卖家不知道。</p>
+<p><strong>Walmart Review 获取策略</strong>：</p>
+<ul>
+<li>Spark Reviewer Program：Walmart 的官方评测计划，类似 Amazon Vine</li>
+<li>Review Accelerator：付费获取评测（Walmart 官方项目）</li>
+<li>自然 Review：通过优质产品和服务积累</li>
+<li>注意：Walmart 禁止刷评，违规会被封号</li>
+</ul>
+<hr>
+<h2 id="67-walmart-ai-工具生态"><a class="header" href="#67-walmart-ai-工具生态">6.7 Walmart AI 工具生态</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>工具</th><th>用途</th><th>价格</th><th>推荐度</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Walmart Seller Center</strong></td><td>官方后台，Listing/订单/广告管理</td><td>免费</td><td></td></tr>
+<tr><td><strong>Aura</strong></td><td>自动调价+Buy Box 监控</td><td>$97/月起</td><td></td></tr>
+<tr><td><strong>Helium 10 (Walmart)</strong></td><td>关键词研究+Listing 优化</td><td>$79/月起</td><td></td></tr>
+<tr><td><strong>Teikametrics</strong></td><td>AI 广告优化</td><td>按广告花费比例</td><td></td></tr>
+<tr><td><strong>SellerApp</strong></td><td>数据分析+广告优化</td><td>$49/月起</td><td></td></tr>
+<tr><td><strong>ChatGPT/Claude</strong></td><td>Listing 文案+数据分析+策略规划</td><td>$20/月</td><td></td></tr>
+<tr><td><strong>Canva</strong></td><td>产品图片设计</td><td>免费/Pro $13/月</td><td></td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="7-完成标志"><a class="header" href="#7-完成标志">7. 完成标志</a></h2>
+<ul>
+<li><input disabled="" type="checkbox"> 完成 Walmart 卖家注册</li>
+<li><input disabled="" type="checkbox"> 适配并上传至少 10 个 Listing</li>
+<li><input disabled="" type="checkbox"> 设置 WFS 并完成首批发货</li>
+<li><input disabled="" type="checkbox"> 启动 Walmart Connect 广告</li>
+<li><input disabled="" type="checkbox"> 建立 Walmart 数据分析流程</li>
+</ul>
+<hr>
+<blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path D 总览</a> · <a href="platform-comparison.html">平台对比</a></p>
+<p><strong>Path D</strong>: <a href="shopify-ai-guide.html">D1 Shopify</a> · <a href="tiktok-shop-ai-guide.html">D2 TikTok</a> · <a href="cross-platform-strategy.html">D3 跨平台</a> · <a href="d4-walmart-ai-guide.html">D4 Walmart</a> · <a href="d5-temu-seller-guide.html">D5 Temu</a> · <a href="d6-southeast-asia-ai-guide.html">D6 东南亚</a> · <a href="d7-mercado-libre-ai-guide.html">D7 拉美</a> · <a href="d8-rakuten-japan-ai-guide.html">D8 日本</a> · <a href="d9-ebay-ai-guide.html">D9 eBay</a> · <a href="d10-aliexpress-ai-guide.html">D10 AliExpress</a> · <a href="d11-coupang-korea-ai-guide.html">D11 韩国</a> · <a href="d12-faire-wholesale-ai-guide.html">D12 Faire</a> · <a href="d13-europe-marketplaces-guide.html">D13 欧洲</a></p>
+<p><strong>快速跳转</strong>: <a href="../0-foundations/">Path 0 基础</a> · <a href="../a-operators/">Path A 运营</a> · <a href="../b-developers/">Path B 技术</a> · <a href="../c-managers/">Path C 管理</a> · <a href="../e-social-media/">Path E 社交媒体</a></p>
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../c-managers/c5-competitive-intelligence.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../d-platforms/d5-temu-seller-guide.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../c-managers/c5-competitive-intelligence.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../d-platforms/d5-temu-seller-guide.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../mermaid-217b66ef.min.js"></script>
+        <script src="../mermaid-init-d4730691.js"></script>
+
+
+
+    </div>
+    </body>
+</html>

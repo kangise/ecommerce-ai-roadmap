@@ -1,0 +1,567 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Faire 批发 - 跨境电商 AI 实战知识库</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="跨境电商 AI 实操手册 — 56 篇指南，从选品到增长，每个环节都有可直接复制的 Prompt">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom-467616e9.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "ayu";
+            window.path_to_searchindex_js = "../searchindex-656d55b3.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-e97a050e.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">跨境电商 AI 实战知识库</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap/edit/main/src/src/d-platforms/d12-faire-wholesale-ai-guide.md" title="Suggest an edit" aria-label="Suggest an edit" rel="edit">
+                            <span class=fa-svg id="git-edit-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M421.7 220.3l-11.3 11.3-22.6 22.6-205 205c-6.6 6.6-14.8 11.5-23.8 14.1L30.8 511c-8.4 2.5-17.5 .2-23.7-6.1S-1.5 489.7 1 481.2L38.7 353.1c2.6-9 7.5-17.2 14.1-23.8l205-205 22.6-22.6 11.3-11.3 33.9 33.9 62.1 62.1 33.9 33.9zM96 353.9l-9.3 9.3c-.9 .9-1.6 2.1-2 3.4l-25.3 86 86-25.3c1.3-.4 2.5-1.1 3.4-2l9.3-9.3H112c-8.8 0-16-7.2-16-16V353.9zM453.3 19.3l39.4 39.4c25 25 25 65.5 0 90.5l-14.5 14.5-22.6 22.6-11.3 11.3-33.9-33.9-62.1-62.1L314.3 67.7l11.3-11.3 22.6-22.6 14.5-14.5c25-25 65.5-25 90.5 0z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="d12-faire-批发电商-ai-指南"><a class="header" href="#d12-faire-批发电商-ai-指南">D12. Faire 批发电商 AI 指南</a></h1>
+<blockquote>
+<p><strong>路径</strong>: Path D: 多平台 · <strong>模块</strong>: D12
+<strong>最后更新</strong>: 2026-03-14
+<strong>难度</strong>: 入门
+<strong>预计时间</strong>: 45 分钟</p>
+</blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path D 总览</a></p>
+<hr>
+<blockquote>
+<p>GMV ~$3B（2025），收入 $500M+（+40% YoY），700K+ 零售商。B2B 批发平台，连接品牌与独立零售商。与 B2C 电商完全不同的商业模式。</p>
+</blockquote>
+<h2 id="1-faire-商业模式"><a class="header" href="#1-faire-商业模式">1. Faire 商业模式</a></h2>
+<h3 id="11-faire-vs-b2c-平台"><a class="header" href="#11-faire-vs-b2c-平台">1.1 Faire vs B2C 平台</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>维度</th><th>Faire（B2B 批发）</th><th>Amazon（B2C 零售）</th></tr>
+</thead>
+<tbody>
+<tr><td>买家</td><td>独立零售商/精品店</td><td>终端消费者</td></tr>
+<tr><td>订单量</td><td>批量（MOQ）</td><td>单件</td></tr>
+<tr><td>定价</td><td>批发价（零售价的 40-50%）</td><td>零售价</td></tr>
+<tr><td>关系</td><td>长期合作</td><td>一次性交易</td></tr>
+<tr><td>佣金</td><td>15%（新客户）/ 0%（回头客）</td><td>8-15%</td></tr>
+<tr><td>退货</td><td>60 天免费退货（Faire 承担）</td><td>30 天</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="12-适合-faire-的产品"><a class="header" href="#12-适合-faire-的产品">1.2 适合 Faire 的产品</a></h3>
+<ul>
+<li>有品牌故事的产品（独立零售商看重品牌）</li>
+<li>设计感强的产品（家居、礼品、美妆、食品）</li>
+<li>有一定利润空间的产品（批发价需要是零售价的 40-50%）</li>
+<li>不适合：纯标品、低价产品、无品牌产品</li>
+</ul>
+<h2 id="2-ai-应用场景"><a class="header" href="#2-ai-应用场景">2. AI 应用场景</a></h2>
+<h3 id="21-faire-算法与排名机制"><a class="header" href="#21-faire-算法与排名机制">2.1 Faire 算法与排名机制</a></h3>
+<p>Faire 的搜索算法决定哪些品牌被零售商看到。以下是基于实操经验的排名因素（<a href="https://www.smoothed.io/blog/faire-account-settings-that-drive-sales">Smoothed.io</a>）：</p>
+<pre><code>Faire 搜索排名因素：
+
+1. 账号设置（很多卖家忽略，但影响巨大）
+MOQ（最低起订量）：设为 $0 可以出现在所有筛选结果中（3x 曝光）
+Lead Time（发货时间）：1-3 天最佳，&gt;14 天会被视为红旗
+Collections（合集）：Faire 允许 20 个合集，大部分卖家只用 3-4 个
+品牌标签：eco-friendly/women-owned/handmade 等标签是零售商的筛选条件
+产品属性：每个字段都要填完整，空字段 = 搜索不到
+
+2. 销售数据
+历史订单量
+复购率（回头客比例）
+评价数量和评分
+转化率（浏览→下单）
+
+3. 内容质量
+产品图片质量
+品牌故事完整度
+视频（极少品牌上传视频，上传的会获得额外曝光）
+产品描述详细度
+</code></pre>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<h3 id="22-faire-账号设置优化高杠杆操作"><a class="header" href="#22-faire-账号设置优化高杠杆操作">2.2 Faire 账号设置优化（高杠杆操作）</a></h3>
+<p>基于 <a href="https://www.smoothed.io/blog/faire-account-settings-that-drive-sales">Smoothed.io</a> 的实操数据，以下设置调整可以显著提升曝光：</p>
+<p><strong>MOQ 设为 $0（最高杠杆）</strong></p>
+<p>Faire 零售商可以按 MOQ 筛选：$0、$100、$200。如果你的 MOQ 设为 $200，你只在零售商选择 $200 筛选时出现。设为 $0 则在所有三个筛选中出现一个设置改变带来 3 倍曝光。</p>
+<p>小订单不是问题它们带来评价、训练算法、最终转化为大额复购。</p>
+<p><strong>Lead Time 保持 1-3 天</strong></p>
+<p>零售商被 Amazon 速度训练过了。14 天的 Lead Time 感觉像红旗。超过承诺的 Lead Time 更糟会降低算法排名并产生差评。</p>
+<blockquote>
+<p><strong>关键提醒</strong>：永远不要使用 Holiday Mode / Pause Mode。算法会重置，回来后要花数月恢复排名。替代方案：把 Lead Time 延长到 40+ 天，订单会减少但排名不会丢失。</p>
+</blockquote>
+<p><strong>使用全部 20 个 Collections</strong></p>
+<p>Collections 是 Faire 站内搜索的 SEO。分两类创建：</p>
+<ul>
+<li>产品导向：Bestsellers、New Arrivals、Summer Essentials、Holiday Gift Sets</li>
+<li>零售商导向：“For Gift Shops”、“For Boutiques”、“For Online Retailers”、“For Spa &amp; Wellness”</li>
+</ul>
+<p>每个没创建的 Collection = 一个搜不到你的搜索结果。</p>
+<p><strong>阶梯促销（Always-On）</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>层级</th><th>优惠</th><th>目的</th></tr>
+</thead>
+<tbody>
+<tr><td>达到平均订单金额</td><td>免运费</td><td>推动订单达到目标金额</td></tr>
+<tr><td>更高金额</td><td>10% off + 免运费</td><td>推动更大订单</td></tr>
+<tr><td>$1000-2000+</td><td>20% off</td><td>吸引大批量买家</td></tr>
+<tr><td>预售产品</td><td>5% off</td><td>提前收集订单</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>运费策略</strong></p>
+<p>把包装和处理费用计入产品价格，不要在结账时加“handling fee“。零售商被训练期望透明定价，结账时的额外费用会杀死转化率。</p>
+<h3 id="23-品牌故事-ai-生成基于-faire-最佳实践"><a class="header" href="#23-品牌故事-ai-生成基于-faire-最佳实践">2.3 品牌故事 AI 生成（基于 Faire 最佳实践）</a></h3>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="shopify-ai-guide.html">D1 Shopify</a> 品牌建设也可参考 D1 Shopify 独立站，DTC 品牌策略和品牌故事方法论可复用。</p>
+</blockquote>
+<p>Faire 官方建议品牌故事聚焦 USP（独特卖点），而不是个人经历。零售商不需要你的创业故事他们需要知道你的产品为什么能在他们的店里卖得好。</p>
+<pre><code>你是一个 Faire 品牌页面优化专家，精通 B2B 批发电商。
+
+品牌信息：
+- 品牌名：[名称]
+- 品类：[X]
+- 核心 USP：[3 个独特卖点]
+- 品牌标签（勾选所有适用的）：
+Eco-friendly Women-owned Handmade
+Gives back Small batch Made in [国家]
+- 目标零售商类型：[精品店/礼品店/家居店/美妆店/在线零售商]
+
+请生成完整的 Faire 品牌页面内容：
+
+1. Brand Story（200-300 字）
+- 聚焦 USP，不是个人故事
+- 回答零售商最关心的问题："为什么我的顾客会买这个？"
+- 包含具体数据（如果有）：复购率、平均评分、获奖信息
+- 语气：专业但有温度，像在 Trade Show 上面对面介绍
+
+2. 产品描述模板（面向零售商，不是消费者）
+- 零售卖点："这个产品在店里好卖的 3 个理由"
+- 建议零售价和利润空间（"Wholesale $X → Retail $X = XX% margin"）
+- 陈列建议（"放在收银台旁边 / 与 XX 品类搭配展示"）
+- 目标消费者画像（帮零售商理解谁会买）
+
+3. 20 个 Collections 建议
+- 10 个产品导向 Collections（名称+描述）
+- 10 个零售商导向 Collections（名称+描述）
+
+4. 视频脚本（30-60 秒，虚拟 Trade Show Pitch）
+- 开头：品牌介绍（5 秒）
+- 中间：产品展示+USP（20-40 秒）
+- 结尾：为什么零售商应该进货（10 秒）
+</code></pre>
+<h3 id="24-faire-adspromoted-listings"><a class="header" href="#24-faire-adspromoted-listings">2.4 Faire Ads（Promoted Listings）</a></h3>
+<p>Faire 的广告系统是 CPC 模式。基于实操数据（<a href="https://www.smoothed.io/blog/faire-account-settings-that-drive-sales">Smoothed.io</a>）：$570 广告花费产生 $1,979 首单销售额（3.5x ROAS），且不包含这些零售商的后续复购。</p>
+<pre><code>Faire Ads 最佳实践：
+
+1. 预算设置
+设置高于预期的月预算（Faire 广告库存有限，不会全花完）
+从 $200-500/月 开始测试
+3-4 个月内逐步增加
+不要一开始就设 $20000先确认转化漏斗没问题
+
+2. 优化顺序
+先优化产品图片和描述（广告把流量带来，但转化靠内容）
+再优化定价和 MOQ（确保零售商愿意下单）
+最后增加广告预算
+如果 ROAS &lt; 2x，先修内容再加预算
+
+3. 效果追踪
+首单 ROAS（广告直接带来的销售）
+复购 ROAS（首单客户的后续复购，0% 佣金）
+混合 ROAS（首单+复购的综合回报）
+目标：首单 ROAS &gt; 3x，混合 ROAS &gt; 5x
+</code></pre>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<h3 id="25-批发定价深度策略"><a class="header" href="#25-批发定价深度策略">2.5 批发定价深度策略</a></h3>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="../a-operators/a1-product-research.html">A1 选品与市场调研</a> 选品和定价方法论参考 A1，市场调研框架可帮助确定批发定价策略。</p>
+</blockquote>
+<p>Faire 的费用结构（<a href="https://b2bridge.io/blog/faire-wholesale-pricing/">B2Bridge</a>）：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>费用项</th><th>金额</th><th>说明</th></tr>
+</thead>
+<tbody>
+<tr><td>新客户佣金</td><td>15%</td><td>Faire 算法带来的新零售商</td></tr>
+<tr><td>回头客佣金</td><td>0%</td><td>零售商直接复购（通过 Faire 平台）</td></tr>
+<tr><td>Faire Direct 佣金</td><td>0%</td><td>你自己带来的零售商（通过你的专属链接）</td></tr>
+<tr><td>新客户一次性费用</td><td>$10</td><td>每个新零售商首单</td></tr>
+<tr><td>支付处理费</td><td>包含在佣金中</td><td>无额外费用</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>关键策略：Faire Direct</strong>。如果你有自己的零售商客户（Trade Show 认识的、自己开发的），通过 Faire Direct 链接让他们在 Faire 上下单，佣金为 0%。这是 Faire 最被低估的功能。</p>
+</blockquote>
+<pre><code>你是一个 B2B 批发定价专家，精通 Faire 平台。
+
+我的产品：
+- 产品名：[名称]
+- 单位成本（COGS）：$[X]
+- 当前零售价（Amazon/Shopify）：$[X]
+- 品类：[X]
+- 预估月销量（Faire）：[X] 单
+
+请设计完整的 Faire 定价方案：
+
+1. 批发价计算
+- 标准 Keystone：批发价 = 零售价 × 40-50%
+- 考虑 Faire 15% 佣金后的实际利润
+- 考虑 Faire Direct（0% 佣金）的混合利润
+
+2. 阶梯定价
+- Tier 1（1-11 件）：$[X]/件
+- Tier 2（12-47 件）：$[X]/件（-5%）
+- Tier 3（48+ 件）：$[X]/件（-10%）
+- 每个 Tier 的利润率计算
+
+3. 首单优惠策略
+- 新零售商首单 10% off（降低试单门槛）
+- 免运费门槛设置
+- 预售折扣（5% off）
+
+4. 利润模型
+- 场景 A：100% 新客户（15% 佣金）
+- 场景 B：50% 新客户 + 50% 回头客
+- 场景 C：30% 新客户 + 50% 回头客 + 20% Faire Direct
+- 每个场景的混合利润率
+
+5. MAP（最低广告价格）策略
+- 是否需要设置 MAP 保护零售商利润
+- 如何在 Faire 上执行 MAP 政策
+</code></pre>
+<h3 id="26-零售商关系管理faire-的核心竞争力"><a class="header" href="#26-零售商关系管理faire-的核心竞争力">2.6 零售商关系管理（Faire 的核心竞争力）</a></h3>
+<p>Faire 的商业模式核心：新客户 15% 佣金，回头客 0% 佣金。这意味着你的长期利润取决于复购率。</p>
+<pre><code>你是一个 B2B 客户关系管理专家，精通 Faire 平台。
+
+我在 Faire 上有 [X] 个零售商客户。
+平均首单金额：$[X]
+当前复购率：[X]%
+目标复购率：[X]%
+
+请设计零售商关系管理方案：
+
+1. 新客户 Onboarding（首单后 7 天内）
+- Day 1：感谢邮件（包含品牌故事+使用建议）
+- Day 3：确认收货+满意度调查
+- Day 7：陈列建议+销售 Tips
+
+2. 复购激励（首单后 30-90 天）
+- Day 30：新品预览（提前通知老客户）
+- Day 60：独家折扣（回头客专属）
+- Day 90：如果未复购，发送"我们想念你"邮件+特别优惠
+
+3. 季节性沟通
+- 每季度：季节性产品推荐
+- Trade Show 前：Market Season 特别优惠
+- 节日前 8 周：节日产品预售
+
+4. VIP 客户管理（Top 20% 客户）
+- 新品首发权
+- 独家折扣
+- 个性化推荐
+- 定期 1:1 沟通
+
+5. 流失预警
+- 超过 [X] 天未复购 → 自动触发挽回邮件
+- 连续 2 次未复购 → 人工跟进
+- 提供"回归优惠"（15-20% off）
+</code></pre>
+<h2 id="3-faire-战略分析与-ai-应用"><a class="header" href="#3-faire-战略分析与-ai-应用">3. Faire 战略分析与 AI 应用</a></h2>
+<blockquote>
+<p><strong>真实案例：Faire 的商业策略</strong>
+Faire 的核心策略是“从极度狭窄开始，然后用数据扩展“。平台构建的是采购层（sourcing layer）而非销售层，嵌入式金融（Net 60 付款条件）是粘合剂而非产品本身（<a href="https://fasterthannormal.co/businesses/faire">Faster Than Normal</a>）。这意味着在 Faire 上成功的关键是理解零售商的采购心理，而非消费者的购买心理。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<h3 id="31-faire-上的-ai-应用场景"><a class="header" href="#31-faire-上的-ai-应用场景">3.1 Faire 上的 AI 应用场景</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>场景</th><th>AI 应用</th><th>工具</th></tr>
+</thead>
+<tbody>
+<tr><td>品牌故事</td><td>AI 生成打动零售商的品牌叙事</td><td>ChatGPT/Claude</td></tr>
+<tr><td>产品描述</td><td>AI 生成 B2B 风格的产品描述（强调利润空间和陈列效果）</td><td>ChatGPT/Claude</td></tr>
+<tr><td>定价策略</td><td>AI 计算批发价/建议零售价/利润空间</td><td>ChatGPT + Excel</td></tr>
+<tr><td>零售商沟通</td><td>AI 生成个性化的零售商邀约和跟进邮件</td><td>ChatGPT/Claude</td></tr>
+<tr><td>产品图片</td><td>AI 生成适合批发展示的产品图（含陈列效果图）</td><td>Midjourney/DALL-E</td></tr>
+<tr><td>市场分析</td><td>AI 分析 Faire 上的品类趋势和竞品</td><td>ChatGPT + Faire 数据</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="32-b2b-vs-b2c-文案差异"><a class="header" href="#32-b2b-vs-b2c-文案差异">3.2 B2B vs B2C 文案差异</a></h3>
+<pre><code>你是一个 B2B 批发文案专家。
+
+以下是我的 B2C（Amazon）产品描述：
+[粘贴 Amazon Listing]
+
+请转化为 Faire B2B 批发描述，注意以下差异：
+
+B2C 关注：消费者利益、使用场景、情感诉求
+B2B 关注：零售商利润空间、陈列效果、复购率、品牌故事
+
+请生成：
+1. Faire 品牌页面描述（强调品牌故事和零售商价值）
+2. 产品描述（强调利润空间、陈列建议、目标客群）
+3. 给零售商的首次合作邮件模板
+4. 批发定价建议（基于零售价的 40-50%）
+</code></pre>
+<blockquote>
+<p><strong>真实数据</strong>：2026 年 Marketplace 成功将取决于统一运营、加强产品数据、采用自动化，以及战略性而非机会性地选择平台（<a href="https://www.channelengine.com/en/blog/marketplace-strategy-tips-webinar">ChannelEngine</a>）。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<h2 id="4-完成标志"><a class="header" href="#4-完成标志">4. 完成标志</a></h2>
+<ul>
+<li><input disabled="" type="checkbox"> 评估产品是否适合 Faire</li>
+<li><input disabled="" type="checkbox"> 完成品牌页面和产品上架</li>
+<li><input disabled="" type="checkbox"> 设置批发定价和 MOQ</li>
+<li><input disabled="" type="checkbox"> 建立零售商关系管理流程</li>
+</ul>
+<hr>
+<blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path D 总览</a> · <a href="platform-comparison.html">平台对比</a></p>
+<p><strong>Path D</strong>: <a href="shopify-ai-guide.html">D1 Shopify</a> · <a href="tiktok-shop-ai-guide.html">D2 TikTok</a> · <a href="cross-platform-strategy.html">D3 跨平台</a> · <a href="d4-walmart-ai-guide.html">D4 Walmart</a> · <a href="d5-temu-seller-guide.html">D5 Temu</a> · <a href="d6-southeast-asia-ai-guide.html">D6 东南亚</a> · <a href="d7-mercado-libre-ai-guide.html">D7 拉美</a> · <a href="d8-rakuten-japan-ai-guide.html">D8 日本</a> · <a href="d9-ebay-ai-guide.html">D9 eBay</a> · <a href="d10-aliexpress-ai-guide.html">D10 AliExpress</a> · <a href="d11-coupang-korea-ai-guide.html">D11 韩国</a> · <a href="d12-faire-wholesale-ai-guide.html">D12 Faire</a> · <a href="d13-europe-marketplaces-guide.html">D13 欧洲</a></p>
+<p><strong>快速跳转</strong>: <a href="../0-foundations/">Path 0 基础</a> · <a href="../a-operators/">Path A 运营</a> · <a href="../b-developers/">Path B 技术</a> · <a href="../c-managers/">Path C 管理</a> · <a href="../e-social-media/">Path E 社交媒体</a></p>
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../d-platforms/d11-coupang-korea-ai-guide.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../d-platforms/d13-europe-marketplaces-guide.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../d-platforms/d11-coupang-korea-ai-guide.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../d-platforms/d13-europe-marketplaces-guide.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../mermaid-217b66ef.min.js"></script>
+        <script src="../mermaid-init-d4730691.js"></script>
+
+
+
+    </div>
+    </body>
+</html>

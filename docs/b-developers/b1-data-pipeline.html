@@ -1,0 +1,1913 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>数据管道 - 跨境电商 AI 实战知识库</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="跨境电商 AI 实操手册 — 56 篇指南，从选品到增长，每个环节都有可直接复制的 Prompt">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom-467616e9.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "ayu";
+            window.path_to_searchindex_js = "../searchindex-656d55b3.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-e97a050e.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">跨境电商 AI 实战知识库</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap/edit/main/src/src/b-developers/b1-data-pipeline.md" title="Suggest an edit" aria-label="Suggest an edit" rel="edit">
+                            <span class=fa-svg id="git-edit-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M421.7 220.3l-11.3 11.3-22.6 22.6-205 205c-6.6 6.6-14.8 11.5-23.8 14.1L30.8 511c-8.4 2.5-17.5 .2-23.7-6.1S-1.5 489.7 1 481.2L38.7 353.1c2.6-9 7.5-17.2 14.1-23.8l205-205 22.6-22.6 11.3-11.3 33.9 33.9 62.1 62.1 33.9 33.9zM96 353.9l-9.3 9.3c-.9 .9-1.6 2.1-2 3.4l-25.3 86 86-25.3c1.3-.4 2.5-1.1 3.4-2l9.3-9.3H112c-8.8 0-16-7.2-16-16V353.9zM453.3 19.3l39.4 39.4c25 25 25 65.5 0 90.5l-14.5 14.5-22.6 22.6-11.3 11.3-33.9-33.9-62.1-62.1L314.3 67.7l11.3-11.3 22.6-22.6 14.5-14.5c25-25 65.5-25 90.5 0z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="b1-数据采集与处理自动化--data-collection--processing-automation"><a class="header" href="#b1-数据采集与处理自动化--data-collection--processing-automation">B1. 数据采集与处理自动化 | Data Collection &amp; Processing Automation</a></h1>
+<blockquote>
+<p><strong>路径</strong>: Path B: 技术人 · <strong>模块</strong>: B1
+<strong>最后更新</strong>: 2026-03-12
+<strong>难度</strong>: 中级
+<strong>前提</strong>: Python 基础（变量、函数、列表、字典）
+<strong>预计时间</strong>: 每天 1 小时，1-2 周</p>
+</blockquote>
+<h2 id="直接在-colab-运行配套-notebook"><a class="header" href="#直接在-colab-运行配套-notebook"><a href="https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/b1-data-pipeline.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a> 直接在 Colab 运行配套 Notebook</a></h2>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path B 总览</a></p>
+<pre><code class="language-mermaid">flowchart LR
+B1[" B1 数据管道&lt;br/&gt;（当前）"]:::current
+B1 --&gt; B2
+B2["B2 预测模型"]
+B2 --&gt; B3
+B3["B3 RAG 知识库"]
+B3 --&gt; B4
+B4["B4 Agent 工作流"]
+B4 --&gt; B5
+B5["B5 本地模型部署"]
+classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
+</code></pre>
+<hr>
+<h2 id="本模块章节导航"><a class="header" href="#本模块章节导航">本模块章节导航</a></h2>
+<ol>
+<li><a href="#1-数据工程方法论">数据工程方法论</a> · 2. <a href="#2-核心技能pandas-数据处理">pandas 数据处理</a> · 3. <a href="#3-sp-api-数据采集">SP-API 数据采集</a> · 4. <a href="#4-浏览器自动化selenium--playwright">浏览器自动化</a> · 5. <a href="#5-数据存储与查询">数据存储与查询</a> · 6. <a href="#6-数据可视化与报告">数据可视化</a> · 7. <a href="#7-实战项目构建完整的数据管道">实战项目</a> · 8. <a href="#8-学习资源">学习资源</a> · 9. <a href="#9-用-openclaw-自动化数据管道"> OpenClaw 自动化</a> · 10. <a href="#10-完成标志">完成标志</a></li>
+</ol>
+<h2 id="本模块你将构建"><a class="header" href="#本模块你将构建">本模块你将构建</a></h2>
+<p>一个自动化数据管道：从 Amazon 报告到清洗后的分析数据集。</p>
+<p>完成本模块后，你将能够：</p>
+<ul>
+<li>用 pandas 批量读取和清洗 Amazon 各类报告（Business Report、Advertising Report、FBA Report）</li>
+<li>处理真实数据中的编码问题、日期格式不一致、多 marketplace 列名差异</li>
+<li>正确计算复合指标（ASP、CR 等必须从基础指标重算，不能直接 sum）</li>
+<li>用 SP-API 自动采集订单、库存、广告数据</li>
+<li>用 Playwright 自动下载 Seller Central 中无法通过 API 获取的报告</li>
+<li>用 DuckDB 对中等规模数据做高性能本地查询</li>
+<li>搭建一个从数据采集到报告生成的完整 pipeline，并用 cron 定时运行</li>
+</ul>
+<hr>
+<h2 id="1-数据工程方法论"><a class="header" href="#1-数据工程方法论">1. 数据工程方法论</a></h2>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="../a-operators/a3-advertising.html">A3 广告优化</a> 広告報告分析応用详见 A3 · <a href="../0-foundations/f4-agent-automation.html">F4 自動化与 Agent</a> 数据处理自动化的 Agent 基础理论详见 F4。</p>
+</blockquote>
+<h3 id="11-电商数据管道的第一性原理"><a class="header" href="#11-电商数据管道的第一性原理">1.1 电商数据管道的第一性原理</a></h3>
+<p>数据管道的本质是把“散落在各处的原始数据“变成“可以直接用于决策的信息“。</p>
+<p>对于跨境电商场景，数据管道有几个特殊性：</p>
+<ul>
+<li><strong>数据量不大但变化快</strong>：一个中型卖家每天的数据量可能只有几 MB，但报告格式、列名、编码会随 Amazon 后台更新而变化</li>
+<li><strong>数据源碎片化</strong>：销量在 Business Report，广告在 Advertising Console，库存在 FBA Report，Review 在前台页面</li>
+<li><strong>指标计算有陷阱</strong>：ASP（平均售价）不能直接对多行求平均，必须用 GMS ÷ Units 重算；CR（转化率）同理</li>
+</ul>
+<p><strong>ETL vs ELT 的选择：</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>模式</th><th>含义</th><th>适合场景</th></tr>
+</thead>
+<tbody>
+<tr><td>ETL</td><td>先清洗转换，再存储</td><td>数据量大、schema 固定的传统数仓</td></tr>
+<tr><td>ELT</td><td>先存储原始数据，再按需转换</td><td>数据量小但格式多变的电商场景</td></tr>
+</tbody>
+</table>
+</div>
+<p>对于跨境电商，推荐 ELT 模式：先把原始报告存下来（保留原始数据），再写脚本按需清洗和计算。原因：</p>
+<ol>
+<li>Amazon 报告格式可能变化，保留原始数据方便回溯</li>
+<li>不同分析需求对同一份数据的清洗逻辑不同</li>
+<li>数据量小（通常 &lt;100MB），存储成本可忽略</li>
+</ol>
+<h3 id="12-amazon-数据源全景"><a class="header" href="#12-amazon-数据源全景">1.2 Amazon 数据源全景</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>数据源</th><th>获取方式</th><th>数据内容</th><th>更新频率</th><th>适合场景</th></tr>
+</thead>
+<tbody>
+<tr><td>Business Reports</td><td>Seller Central 下载 / SP-API</td><td>销量、流量、转化率、Buy Box %</td><td>每日</td><td>日常运营监控、周报月报</td></tr>
+<tr><td>Advertising Reports</td><td>Advertising Console / SP-API</td><td>广告花费、点击、ACOS、关键词表现</td><td>每日</td><td>广告优化、ROI 分析</td></tr>
+<tr><td>Inventory Reports</td><td>Seller Central / SP-API</td><td>FBA 库存数量、可售/不可售、库龄</td><td>每日</td><td>库存预警、补货决策</td></tr>
+<tr><td>FBA Reports</td><td>Seller Central 下载</td><td>物流费用、退货明细、仓储费</td><td>每月</td><td>成本分析、退货率监控</td></tr>
+<tr><td>Brand Analytics</td><td>Seller Central（品牌卖家）</td><td>搜索词排名、市场篮子、重复购买</td><td>每周</td><td>关键词策略、竞品分析</td></tr>
+<tr><td>SP-API</td><td>REST API 调用</td><td>订单、产品目录、定价、库存</td><td>实时</td><td>自动化系统、实时监控</td></tr>
+<tr><td>Review 数据</td><td>前台页面抓取 / 第三方工具</td><td>评分、评论文本、图片</td><td>不定期</td><td>产品改进、竞品分析</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>关键洞察</strong>：Business Report 和 Advertising Report 是最常用的两个数据源，覆盖了 80% 的日常分析需求。SP-API 适合需要实时数据或自动化的场景。Brand Analytics 数据价值极高但只有品牌卖家才能访问。</p>
+</blockquote>
+<h3 id="13-技术栈选择"><a class="header" href="#13-技术栈选择">1.3 技术栈选择</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>工具</th><th>用途</th><th>为什么选它</th><th>安装</th></tr>
+</thead>
+<tbody>
+<tr><td><a href="https://pandas.pydata.org/">pandas</a></td><td>数据处理核心</td><td>电商数据量级（&lt;1GB）pandas 完全够用，生态最成熟</td><td><code>pip install pandas</code></td></tr>
+<tr><td><a href="https://openpyxl.readthedocs.io/">openpyxl</a></td><td>Excel 读写</td><td>pandas 读写 .xlsx 的默认引擎</td><td><code>pip install openpyxl</code></td></tr>
+<tr><td><a href="https://github.com/saleweaver/python-amazon-sp-api">python-amazon-sp-api</a></td><td>SP-API 封装</td><td>最活跃的 Python SP-API 库，star 1k+</td><td><code>pip install python-amazon-sp-api</code></td></tr>
+<tr><td><a href="https://duckdb.org/">DuckDB</a></td><td>本地高性能查询</td><td>直接查询 CSV/Parquet，无需导入，比 SQLite 快 10-100x</td><td><code>pip install duckdb</code></td></tr>
+<tr><td><a href="https://playwright.dev/python/">Playwright</a></td><td>浏览器自动化</td><td>比 Selenium 更现代，自动等待、更稳定</td><td><code>pip install playwright</code></td></tr>
+<tr><td><a href="https://github.com/dbader/schedule">schedule</a></td><td>定时任务</td><td>纯 Python，比 cron 更易读</td><td><code>pip install schedule</code></td></tr>
+<tr><td><a href="https://streamlit.io/">Streamlit</a></td><td>快速仪表盘</td><td>几十行代码搭建交互式数据看板</td><td><code>pip install streamlit</code></td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>为什么不用 Spark/Airflow？</strong></p>
+<p>跨境电商的数据量级（通常 &lt;1GB）不需要分布式计算。Spark 和 Airflow 的运维成本远大于收益。pandas + DuckDB + cron 就是最佳组合：</p>
+<ul>
+<li>pandas 处理 &lt;100MB 的数据毫无压力</li>
+<li>DuckDB 处理 100MB-10GB 的数据比 pandas 快 10 倍以上</li>
+<li>cron（或 schedule 库）足够做定时任务，不需要 Airflow 的 DAG 编排</li>
+</ul>
+<hr>
+<h2 id="2-核心技能pandas-数据处理"><a class="header" href="#2-核心技能pandas-数据处理">2. 核心技能：pandas 数据处理</a></h2>
+<h3 id="21-amazon-报告的常见数据问题"><a class="header" href="#21-amazon-报告的常见数据问题">2.1 Amazon 报告的常见数据问题</a></h3>
+<p>在写代码之前，先了解你会遇到的“坑“。这些问题在真实业务中反复出现：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>问题</th><th>表现</th><th>解决方案</th></tr>
+</thead>
+<tbody>
+<tr><td>编码问题</td><td>中文乱码、日文乱码</td><td>US/EU 报告用 <code>utf-8-sig</code>（处理 BOM），JP 报告用 <code>shift_jis</code> 或 <code>cp932</code></td></tr>
+<tr><td>日期格式不一致</td><td>US: <code>01/15/2025</code>，DE: <code>15.01.2025</code>，JP: <code>2025/01/15</code></td><td>用 <code>pd.to_datetime()</code> 的 <code>dayfirst</code> 参数，或统一转换</td></tr>
+<tr><td>数值列含逗号</td><td><code>"1,234.56"</code> 被读成字符串</td><td><code>df['col'].str.replace(',', '').astype(float)</code></td></tr>
+<tr><td>货币符号</td><td><code>"$29.99"</code> 或 <code>"€24,99"</code></td><td><code>str.replace('[$€¥£]', '', regex=True)</code></td></tr>
+<tr><td>多 marketplace 列名差异</td><td>US: <code>Units Ordered</code>，DE: <code>Bestellte Einheiten</code></td><td>建立列名映射字典</td></tr>
+<tr><td>比率指标不能直接 sum</td><td>把多行的 CR 直接求平均 → 错误</td><td>必须从基础指标重算：CR = Total Units ÷ Total Sessions</td></tr>
+<tr><td>空行和汇总行</td><td>报告末尾有 “Total” 汇总行</td><td>读取后过滤掉非数据行</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="22-代码示例读取和清洗-amazon-business-report"><a class="header" href="#22-代码示例读取和清洗-amazon-business-report">2.2 代码示例：读取和清洗 Amazon Business Report</a></h3>
+<p>这是你最常用的代码。一个健壮的读取函数需要处理上面列出的所有问题：</p>
+<pre><code class="language-python">import pandas as pd
+import numpy as np
+from pathlib import Path
+
+def load_business_report(filepath: str, market: str = "US") -&gt; pd.DataFrame:
+"""
+读取 Amazon Business Report CSV/Excel，处理常见数据问题。
+
+Args:
+filepath: 报告文件路径（支持 .csv 和 .xlsx）
+market: 市场标识 (US, DE, FR, IT, ES, UK, JP)
+
+Returns:
+清洗后的 DataFrame
+"""
+path = Path(filepath)
+
+# 1. 根据市场选择编码
+encoding_map = {
+"US": "utf-8-sig",
+"UK": "utf-8-sig",
+"DE": "utf-8-sig",
+"FR": "utf-8-sig",
+"IT": "utf-8-sig",
+"ES": "utf-8-sig",
+"JP": "cp932", # 日本站用 Shift-JIS 变体
+}
+encoding = encoding_map.get(market, "utf-8-sig")
+
+# 2. 读取文件
+if path.suffix == ".csv":
+df = pd.read_csv(filepath, encoding=encoding)
+elif path.suffix in (".xlsx", ".xls"):
+df = pd.read_excel(filepath, engine="openpyxl")
+else:
+raise ValueError(f"不支持的文件格式: {path.suffix}")
+
+# 3. 统一列名（处理多语言列名差异）
+column_mapping = {
+# 德语列名映射
+"Bestellte Einheiten": "Units Ordered",
+"Sitzungen": "Sessions",
+"Seitenaufrufe": "Page Views",
+# 日语列名映射
+"注文された商品の売上": "Ordered Product Sales",
+"セッション": "Sessions",
+# 通用清理
+"(Child) ASIN": "ASIN",
+"Child ASIN": "ASIN",
+}
+df = df.rename(columns=column_mapping)
+
+# 4. 清洗数值列（去除逗号、货币符号）
+numeric_cols = ["Units Ordered", "Ordered Product Sales",
+"Sessions", "Page Views"]
+for col in numeric_cols:
+if col in df.columns:
+df[col] = (
+df[col]
+.astype(str)
+.str.replace(",", "", regex=False)
+.str.replace(r"[$€¥£]", "", regex=True)
+.str.strip()
+)
+df[col] = pd.to_numeric(df[col], errors="coerce").fillna(0)
+
+# 5. 过滤无效行（汇总行、空行）
+if "ASIN" in df.columns:
+df = df[df["ASIN"].notna() &amp; (df["ASIN"] != "")]
+df = df[~df["ASIN"].str.contains("Total|合計", na=False)]
+
+# 6. 添加市场标识
+df["Market"] = market
+
+return df
+
+# 使用示例
+# df_us = load_business_report("reports/us_business_report.csv", market="US")
+# df_jp = load_business_report("reports/jp_business_report.csv", market="JP")
+</code></pre>
+<blockquote>
+<p><strong>重要</strong>：这个函数处理了 80% 的常见问题。但真实业务中你可能还会遇到 Amazon 更新报告格式的情况，建议加上 try-except 和日志记录。</p>
+</blockquote>
+<h3 id="23-代码示例多报告合并与指标计算"><a class="header" href="#23-代码示例多报告合并与指标计算">2.3 代码示例：多报告合并与指标计算</a></h3>
+<p>跨境电商运营通常需要合并多个市场、多个时间段的报告。这里有一个关键陷阱：<strong>比率指标不能直接求和或求平均</strong>。</p>
+<pre><code class="language-python">def merge_reports(report_files: dict[str, str]) -&gt; pd.DataFrame:
+"""
+合并多个市场的 Business Report。
+
+Args:
+report_files: {market: filepath} 字典
+例如 {"US": "us_report.csv", "DE": "de_report.csv"}
+
+Returns:
+合并后的 DataFrame
+"""
+frames = []
+for market, filepath in report_files.items():
+df = load_business_report(filepath, market=market)
+frames.append(df)
+
+merged = pd.concat(frames, ignore_index=True)
+return merged
+
+def calculate_metrics(df: pd.DataFrame, group_by: list[str]) -&gt; pd.DataFrame:
+"""
+按指定维度计算核心指标。
+
+关键原则：比率指标必须从基础指标重算！
+- ASP = GMS / Units（不能对 ASP 列求平均）
+- CR = Units / Sessions（不能对 CR 列求平均）
+- Buy Box % = 加权平均（按 Sessions 加权）
+
+Args:
+df: 包含基础指标的 DataFrame
+group_by: 分组维度列表，如 ["Market", "Category"]
+
+Returns:
+汇总后的 DataFrame
+"""
+# 先计算行级 GMS
+if "GMS" not in df.columns:
+if "Ordered Product Sales" in df.columns:
+df["GMS"] = df["Ordered Product Sales"]
+elif "Units Ordered" in df.columns and "Unit Price" in df.columns:
+df["GMS"] = df["Units Ordered"] * df["Unit Price"]
+
+# 按维度汇总基础指标
+agg_dict = {
+"Units Ordered": "sum",
+"GMS": "sum",
+"Sessions": "sum",
+"Page Views": "sum",
+}
+# 只聚合存在的列
+agg_dict = {k: v for k, v in agg_dict.items() if k in df.columns}
+
+summary = df.groupby(group_by).agg(agg_dict).reset_index()
+
+# 从基础指标重算比率指标
+if "GMS" in summary.columns and "Units Ordered" in summary.columns:
+summary["ASP"] = np.where(
+summary["Units Ordered"] &gt; 0,
+summary["GMS"] / summary["Units Ordered"],
+0
+)
+
+if "Units Ordered" in summary.columns and "Sessions" in summary.columns:
+summary["CR"] = np.where(
+summary["Sessions"] &gt; 0,
+summary["Units Ordered"] / summary["Sessions"],
+0
+)
+
+return summary.round(2)
+
+# 使用示例
+# reports = {"US": "us_report.csv", "DE": "de_report.csv", "JP": "jp_report.csv"}
+# merged = merge_reports(reports)
+#
+# # 按市场汇总
+# by_market = calculate_metrics(merged, group_by=["Market"])
+#
+# # 按市场+品类汇总
+# by_market_cat = calculate_metrics(merged, group_by=["Market", "Category"])
+</code></pre>
+<blockquote>
+<p><strong>为什么 ASP 不能直接求平均？</strong> 假设产品 A 售价 $10 卖了 100 件，产品 B 售价 $100 卖了 1 件。直接平均 ASP = ($10 + $100) / 2 = $55。但真实 ASP = ($10×100 + $100×1) / 101 = $10.89。差了 5 倍。这是电商数据分析中最常见的错误。</p>
+</blockquote>
+<h3 id="24-代码示例自动化周报生成"><a class="header" href="#24-代码示例自动化周报生成">2.4 代码示例：自动化周报生成</a></h3>
+<p>把上面的代码串起来，生成一份完整的 HTML 周报：</p>
+<pre><code class="language-python">from datetime import datetime
+
+def generate_weekly_report(
+report_files: dict[str, str],
+output_path: str = "weekly_report.html"
+) -&gt; str:
+"""
+从原始报告生成 HTML 周报。
+
+完整 pipeline: 读取 → 合并 → 清洗 → 计算 → 输出
+"""
+# 1. 读取和合并
+merged = merge_reports(report_files)
+
+# 2. 按市场汇总
+market_summary = calculate_metrics(merged, group_by=["Market"])
+
+# 3. 按品类汇总（如果有品类列）
+category_summary = None
+if "Category" in merged.columns:
+category_summary = calculate_metrics(
+merged, group_by=["Category"]
+).sort_values("GMS", ascending=False)
+
+# 4. 计算整体指标
+total_gms = merged["GMS"].sum() if "GMS" in merged.columns else 0
+total_units = merged["Units Ordered"].sum()
+overall_asp = total_gms / total_units if total_units &gt; 0 else 0
+
+# 5. 生成 HTML
+report_date = datetime.now().strftime("%Y-%m-%d")
+html = f"""&lt;!DOCTYPE html&gt;
+&lt;html lang="zh"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;title&gt;周报 {report_date}&lt;/title&gt;
+&lt;style&gt;
+body {{ font-family: -apple-system, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; }}
+table {{ border-collapse: collapse; width: 100%; margin: 16px 0; }}
+th, td {{ border: 1px solid #ddd; padding: 8px 12px; text-align: right; }}
+th {{ background: #f5f5f5; text-align: left; }}
+.metric {{ font-size: 24px; font-weight: bold; color: #1a73e8; }}
+.card {{ display: inline-block; padding: 16px 24px; margin: 8px; border: 1px solid #e0e0e0; border-radius: 8px; }}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt; 业务周报 | Weekly Report&lt;/h1&gt;
+&lt;p&gt;生成时间: {report_date}&lt;/p&gt;
+
+&lt;div&gt;
+&lt;div class="card"&gt;
+&lt;div&gt;Total GMS&lt;/div&gt;
+&lt;div class="metric"&gt;${total_gms:,.2f}&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="card"&gt;
+&lt;div&gt;Total Units&lt;/div&gt;
+&lt;div class="metric"&gt;{total_units:,}&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="card"&gt;
+&lt;div&gt;ASP&lt;/div&gt;
+&lt;div class="metric"&gt;${overall_asp:.2f}&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h2&gt;按市场 | By Market&lt;/h2&gt;
+{market_summary.to_html(index=False)}
+"""
+if category_summary is not None:
+html += f"""
+&lt;h2&gt;按品类 | By Category&lt;/h2&gt;
+{category_summary.to_html(index=False)}
+"""
+html += """
+&lt;/body&gt;
+&lt;/html&gt;"""
+
+with open(output_path, "w", encoding="utf-8") as f:
+f.write(html)
+
+print(f" 周报已生成: {output_path}")
+return output_path
+
+# 使用示例
+# generate_weekly_report(
+# report_files={"US": "us_report.csv", "DE": "de_report.csv"},
+# output_path="output/weekly_report_2025_01_20.html"
+# )
+</code></pre>
+<blockquote>
+<p><strong>为什么用 HTML 而不是 Excel？</strong> HTML 报告可以直接在浏览器打开、通过邮件分享、嵌入到内部系统。不需要安装任何软件。而且 HTML 支持更丰富的样式和交互（如 Chart.js 图表）。</p>
+</blockquote>
+<hr>
+<h2 id="3-sp-api-数据采集"><a class="header" href="#3-sp-api-数据采集">3. SP-API 数据采集</a></h2>
+<h3 id="31-sp-api-入门"><a class="header" href="#31-sp-api-入门">3.1 SP-API 入门</a></h3>
+<p>Amazon Selling Partner API (SP-API) 是获取实时数据的官方渠道。相比手动下载报告，SP-API 的优势：</p>
+<ul>
+<li><strong>自动化</strong>：脚本定时调用，无需人工操作</li>
+<li><strong>实时性</strong>：订单数据几乎实时，库存数据每小时更新</li>
+<li><strong>结构化</strong>：返回 JSON 格式，直接可用</li>
+</ul>
+<p><strong>准备工作（一次性设置）：</strong></p>
+<ol>
+<li>在 <a href="https://sellercentral.amazon.com/">Seller Central</a> 注册开发者账号</li>
+<li>创建 SP-API 应用，获取 <code>client_id</code> 和 <code>client_secret</code></li>
+<li>获取 <code>refresh_token</code>（通过 OAuth 授权流程）</li>
+<li>安装 Python 库：<code>pip install python-amazon-sp-api</code></li>
+</ol>
+<p><strong>凭证管理（重要！不要硬编码）：</strong></p>
+<pre><code class="language-python"># config.json 不要提交到 Git！加入 .gitignore
+{
+"refresh_token": "your_refresh_token",
+"lwa_app_id": "your_client_id",
+"lwa_client_secret": "your_client_secret",
+"aws_access_key": "your_aws_key",
+"aws_secret_key": "your_aws_secret",
+"role_arn": "your_role_arn"
+}
+</code></pre>
+<pre><code class="language-python"># 或者用环境变量（推荐）
+import os
+from dotenv import load_dotenv
+
+load_dotenv() # 从 .env 文件加载
+
+credentials = {
+"refresh_token": os.getenv("SP_API_REFRESH_TOKEN"),
+"lwa_app_id": os.getenv("SP_API_CLIENT_ID"),
+"lwa_client_secret": os.getenv("SP_API_CLIENT_SECRET"),
+}
+</code></pre>
+<blockquote>
+<p><strong>安全提醒</strong>：SP-API 凭证泄露可能导致店铺数据被盗。务必使用环境变量或加密配置文件，永远不要把凭证提交到 Git。</p>
+</blockquote>
+<h3 id="32-代码示例获取订单数据"><a class="header" href="#32-代码示例获取订单数据">3.2 代码示例：获取订单数据</a></h3>
+<pre><code class="language-python">from sp_api.api import Orders
+from sp_api.base import Marketplaces
+from datetime import datetime, timedelta
+import pandas as pd
+
+def fetch_orders(
+credentials: dict,
+marketplace: Marketplaces = Marketplaces.US,
+days_back: int = 7
+) -&gt; pd.DataFrame:
+"""
+获取最近 N 天的订单数据。
+
+Args:
+credentials: SP-API 凭证字典
+marketplace: 目标市场
+days_back: 回溯天数
+
+Returns:
+订单 DataFrame
+"""
+orders_api = Orders(credentials=credentials, marketplace=marketplace)
+
+created_after = (
+datetime.utcnow() - timedelta(days=days_back)
+).isoformat()
+
+all_orders = []
+next_token = None
+
+while True:
+if next_token:
+response = orders_api.get_orders(
+NextToken=next_token
+)
+else:
+response = orders_api.get_orders(
+CreatedAfter=created_after,
+OrderStatuses=["Shipped", "Unshipped"],
+MaxResultsPerPage=100
+)
+
+orders = response.payload.get("Orders", [])
+all_orders.extend(orders)
+
+next_token = response.payload.get("NextToken")
+if not next_token:
+break
+
+# 转换为 DataFrame
+if not all_orders:
+return pd.DataFrame()
+
+df = pd.json_normalize(all_orders)
+
+# 清洗关键字段
+if "OrderTotal.Amount" in df.columns:
+df["OrderTotal.Amount"] = pd.to_numeric(
+df["OrderTotal.Amount"], errors="coerce"
+)
+
+if "PurchaseDate" in df.columns:
+df["PurchaseDate"] = pd.to_datetime(df["PurchaseDate"])
+
+return df
+
+# 使用示例
+# from sp_api.base import Marketplaces
+# orders = fetch_orders(credentials, Marketplaces.US, days_back=30)
+# print(f"获取到 {len(orders)} 个订单")
+</code></pre>
+<p>参考文档：<a href="https://developer-docs.amazon.com/sp-api/docs/orders-api-v0-reference">SP-API Orders API</a> | <a href="https://python-amazon-sp-api.readthedocs.io/">python-amazon-sp-api 文档</a></p>
+<h3 id="33-代码示例获取库存数据"><a class="header" href="#33-代码示例获取库存数据">3.3 代码示例：获取库存数据</a></h3>
+<p>库存监控是跨境电商的生命线。断货 = 丢排名 = 丢钱。</p>
+<pre><code class="language-python">from sp_api.api import Inventories
+from sp_api.base import Marketplaces
+import pandas as pd
+
+def fetch_inventory(
+credentials: dict,
+marketplace: Marketplaces = Marketplaces.US,
+granularity: str = "Marketplace"
+) -&gt; pd.DataFrame:
+"""
+获取 FBA 库存汇总数据。
+
+Args:
+credentials: SP-API 凭证
+marketplace: 目标市场
+granularity: 粒度 ("Marketplace" 或 "Country")
+
+Returns:
+库存 DataFrame，包含可售数量、不可售数量等
+"""
+inv_api = Inventories(
+credentials=credentials, marketplace=marketplace
+)
+
+all_items = []
+next_token = None
+
+while True:
+kwargs = {
+"granularityType": granularity,
+"granularityId": marketplace.marketplace_id,
+"marketplaceIds": [marketplace.marketplace_id],
+}
+if next_token:
+kwargs["nextToken"] = next_token
+
+response = inv_api.get_inventory_summary_marketplace(**kwargs)
+
+summaries = response.payload.get("inventorySummaries", [])
+all_items.extend(summaries)
+
+next_token = response.payload.get("nextToken")
+if not next_token:
+break
+
+if not all_items:
+return pd.DataFrame()
+
+df = pd.json_normalize(all_items)
+
+# 添加库存健康标记
+if "totalQuantity" in df.columns:
+df["stock_status"] = df["totalQuantity"].apply(
+lambda x: " 断货" if x == 0
+else " 低库存" if x &lt; 50
+else " 正常"
+)
+
+return df
+
+# 使用示例
+# inventory = fetch_inventory(credentials, Marketplaces.US)
+# low_stock = inventory[inventory["stock_status"] != " 正常"]
+# print(f" 需要关注的 SKU: {len(low_stock)}")
+</code></pre>
+<h3 id="34-代码示例获取广告报告"><a class="header" href="#34-代码示例获取广告报告">3.4 代码示例：获取广告报告</a></h3>
+<p>广告数据是优化 ACOS 的基础。SP-API 的广告报告是异步的：先请求生成报告，等报告生成完成后再下载。</p>
+<pre><code class="language-python">from sp_api.api import Reports
+from sp_api.base import Marketplaces
+import time
+import json
+import gzip
+import pandas as pd
+
+def request_advertising_report(
+credentials: dict,
+marketplace: Marketplaces = Marketplaces.US,
+report_type: str = "GET_FLAT_FILE_ALL_ORDERS_DATA_BY_ORDER_DATE_GENERAL",
+days_back: int = 7
+) -&gt; pd.DataFrame:
+"""
+请求并下载 SP-API 报告（异步流程）。
+
+SP-API 报告流程：
+1. 创建报告请求 → 获取 reportId
+2. 轮询报告状态 → 等待 DONE
+3. 获取报告文档 → 下载内容
+
+Args:
+credentials: SP-API 凭证
+marketplace: 目标市场
+report_type: 报告类型（参考 SP-API 文档）
+days_back: 回溯天数
+"""
+reports_api = Reports(
+credentials=credentials, marketplace=marketplace
+)
+
+from datetime import datetime, timedelta
+start_date = (
+datetime.utcnow() - timedelta(days=days_back)
+).strftime("%Y-%m-%dT00:00:00Z")
+end_date = datetime.utcnow().strftime("%Y-%m-%dT23:59:59Z")
+
+# Step 1: 创建报告请求
+create_response = reports_api.create_report(
+reportType=report_type,
+dataStartTime=start_date,
+dataEndTime=end_date,
+marketplaceIds=[marketplace.marketplace_id]
+)
+report_id = create_response.payload["reportId"]
+print(f" 报告请求已创建: {report_id}")
+
+# Step 2: 轮询状态（最多等 5 分钟）
+max_wait = 300 # 秒
+elapsed = 0
+poll_interval = 15
+
+while elapsed &lt; max_wait:
+status_response = reports_api.get_report(report_id)
+status = status_response.payload["processingStatus"]
+
+if status == "DONE":
+doc_id = status_response.payload["reportDocumentId"]
+print(f" 报告生成完成: {doc_id}")
+break
+elif status in ("CANCELLED", "FATAL"):
+raise RuntimeError(f"报告生成失败: {status}")
+
+print(f" 等待中... ({elapsed}s, 状态: {status})")
+time.sleep(poll_interval)
+elapsed += poll_interval
+else:
+raise TimeoutError("报告生成超时（5分钟）")
+
+# Step 3: 下载报告文档
+doc_response = reports_api.get_report_document(
+doc_id, download=True
+)
+
+# 解析内容（通常是 TSV 格式）
+content = doc_response.payload.get("document", "")
+if isinstance(content, bytes):
+content = content.decode("utf-8")
+
+from io import StringIO
+df = pd.read_csv(StringIO(content), sep="\t")
+
+print(f" 获取到 {len(df)} 行数据")
+return df
+
+# 使用示例
+# ad_report = request_advertising_report(
+# credentials, Marketplaces.US,
+# report_type="GET_FLAT_FILE_ALL_ORDERS_DATA_BY_ORDER_DATE_GENERAL",
+# days_back=30
+# )
+</code></pre>
+<blockquote>
+<p><strong>常用报告类型</strong>：</p>
+<ul>
+<li><code>GET_FLAT_FILE_ALL_ORDERS_DATA_BY_ORDER_DATE_GENERAL</code> 订单报告</li>
+<li><code>GET_FBA_MYI_UNSUPPRESSED_INVENTORY_DATA</code> FBA 库存报告</li>
+<li><code>GET_MERCHANT_LISTINGS_ALL_DATA</code> 商品列表报告</li>
+</ul>
+<p>完整列表参考 <a href="https://developer-docs.amazon.com/sp-api/docs/report-type-values">SP-API Report Type Values</a></p>
+</blockquote>
+<h3 id="35-代码示例定时数据采集脚本"><a class="header" href="#35-代码示例定时数据采集脚本">3.5 代码示例：定时数据采集脚本</a></h3>
+<p>把上面的采集逻辑串起来，用 <code>schedule</code> 库做定时任务：</p>
+<pre><code class="language-python">import schedule
+import time
+import logging
+from datetime import datetime
+from pathlib import Path
+
+# 配置日志
+logging.basicConfig(
+level=logging.INFO,
+format="%(asctime)s [%(levelname)s] %(message)s",
+handlers=[
+logging.FileHandler("pipeline.log"),
+logging.StreamHandler()
+]
+)
+logger = logging.getLogger(__name__)
+
+def daily_data_collection():
+"""每日数据采集任务"""
+today = datetime.now().strftime("%Y%m%d")
+output_dir = Path(f"data/raw/{today}")
+output_dir.mkdir(parents=True, exist_ok=True)
+
+logger.info(f"开始每日数据采集: {today}")
+
+try:
+# 1. 获取订单数据
+orders = fetch_orders(credentials, days_back=1)
+orders.to_csv(output_dir / "orders.csv", index=False)
+logger.info(f"订单数据: {len(orders)} 行")
+
+# 2. 获取库存数据
+inventory = fetch_inventory(credentials)
+inventory.to_csv(output_dir / "inventory.csv", index=False)
+logger.info(f"库存数据: {len(inventory)} 行")
+
+# 3. 检查低库存预警
+low_stock = inventory[
+inventory.get("stock_status", "") != " 正常"
+] if "stock_status" in inventory.columns else pd.DataFrame()
+
+if len(low_stock) &gt; 0:
+logger.warning(f" {len(low_stock)} 个 SKU 库存异常！")
+# 可以在这里加邮件/Slack 通知
+
+logger.info(f" 每日采集完成: {output_dir}")
+
+except Exception as e:
+logger.error(f" 采集失败: {e}", exc_info=True)
+
+def weekly_report_generation():
+"""每周报告生成任务"""
+logger.info("开始生成周报...")
+try:
+# 合并本周的每日数据
+# ... 调用 generate_weekly_report()
+logger.info(" 周报生成完成")
+except Exception as e:
+logger.error(f" 周报生成失败: {e}", exc_info=True)
+
+# 设置定时任务
+schedule.every().day.at("08:00").do(daily_data_collection)
+schedule.every().monday.at("09:00").do(weekly_report_generation)
+
+if __name__ == "__main__":
+logger.info(" 数据管道启动")
+logger.info(f"定时任务: 每日 08:00 采集, 每周一 09:00 生成周报")
+
+# 启动时先执行一次
+daily_data_collection()
+
+while True:
+schedule.run_pending()
+time.sleep(60)
+</code></pre>
+<blockquote>
+<p><strong>生产环境建议</strong>：<code>schedule</code> 库适合开发和小规模使用。生产环境推荐用系统级 cron（macOS/Linux）或 Windows Task Scheduler，更稳定且不依赖 Python 进程持续运行。</p>
+<pre><code class="language-bash"># macOS/Linux cron 示例（每天早上 8 点执行）
+# 编辑 crontab: crontab -e
+0 8 * * * /usr/bin/python3 /path/to/daily_collection.py &gt;&gt; /path/to/cron.log 2&gt;&amp;1
+</code></pre>
+</blockquote>
+<hr>
+<h2 id="4-浏览器自动化selenium--playwright"><a class="header" href="#4-浏览器自动化selenium--playwright">4. 浏览器自动化（Selenium / Playwright）</a></h2>
+<h3 id="41-什么时候需要浏览器自动化"><a class="header" href="#41-什么时候需要浏览器自动化">4.1 什么时候需要浏览器自动化</a></h3>
+<p>SP-API 覆盖了大部分数据需求，但有些数据只能通过 Seller Central 网页下载：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>数据</th><th>SP-API 可获取？</th><th>需要浏览器自动化？</th></tr>
+</thead>
+<tbody>
+<tr><td>订单数据</td><td></td><td>否</td></tr>
+<tr><td>库存数据</td><td></td><td>否</td></tr>
+<tr><td>Business Report</td><td>（部分）</td><td>完整版需要下载</td></tr>
+<tr><td>Brand Analytics</td><td></td><td>必须登录下载</td></tr>
+<tr><td>QuickSight 报表</td><td></td><td>必须登录下载</td></tr>
+<tr><td>广告详细报告</td><td>（Advertising API）</td><td>否</td></tr>
+<tr><td>A+ Content 数据</td><td></td><td></td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="42-playwright-vs-selenium-对比"><a class="header" href="#42-playwright-vs-selenium-对比">4.2 Playwright vs Selenium 对比</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>维度</th><th>Playwright</th><th>Selenium</th></tr>
+</thead>
+<tbody>
+<tr><td>安装</td><td><code>pip install playwright &amp;&amp; playwright install</code></td><td><code>pip install selenium webdriver-manager</code></td></tr>
+<tr><td>自动等待</td><td>内置智能等待</td><td>需要手动 <code>WebDriverWait</code></td></tr>
+<tr><td>浏览器支持</td><td>Chromium, Firefox, WebKit</td><td>Chrome, Firefox, Edge, Safari</td></tr>
+<tr><td>速度</td><td>更快（直接通过 CDP 通信）</td><td>较慢（通过 WebDriver 协议）</td></tr>
+<tr><td>调试</td><td><code>PWDEBUG=1</code> 可视化调试</td><td>需要额外配置</td></tr>
+<tr><td>社区</td><td>较新但增长快</td><td>成熟，文档和教程多</td></tr>
+<tr><td>推荐</td><td>新项目首选</td><td>已有项目可继续用</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>结论</strong>：新项目用 Playwright，已有 Selenium 代码不需要迁移。</p>
+<h3 id="43-代码示例用-playwright-自动下载-business-report"><a class="header" href="#43-代码示例用-playwright-自动下载-business-report">4.3 代码示例：用 Playwright 自动下载 Business Report</a></h3>
+<pre><code class="language-python">from playwright.sync_api import sync_playwright
+from pathlib import Path
+import time
+
+def download_business_report(
+email: str,
+password: str,
+marketplace_url: str = "https://sellercentral.amazon.com",
+download_dir: str = "downloads",
+otp_callback=None
+) -&gt; str:
+"""
+自动登录 Seller Central 并下载 Business Report。
+
+Args:
+email: Seller Central 登录邮箱
+password: 登录密码
+marketplace_url: Seller Central URL
+download_dir: 下载目录
+otp_callback: OTP 验证码回调函数（用于两步验证）
+
+Returns:
+下载文件的路径
+
+注意：
+- Amazon 有反爬机制，频繁登录可能触发验证
+- 建议使用 headful 模式（非 headless）减少被检测概率
+- 两步验证需要手动输入或通过 OTP 回调处理
+"""
+download_path = Path(download_dir).resolve()
+download_path.mkdir(parents=True, exist_ok=True)
+
+with sync_playwright() as p:
+# 使用 headful 模式（可见浏览器窗口）
+browser = p.chromium.launch(
+headless=False, # 设为 True 可无头运行，但更容易被检测
+slow_mo=500 # 每步操作间隔 500ms，模拟人类操作
+)
+
+context = browser.new_context(
+accept_downloads=True,
+viewport={"width": 1280, "height": 800}
+)
+page = context.new_page()
+
+try:
+# 1. 导航到登录页
+page.goto(marketplace_url)
+page.wait_for_load_state("networkidle")
+
+# 2. 登录
+page.fill("#ap_email", email)
+page.click("#continue")
+page.fill("#ap_password", password)
+page.click("#signInSubmit")
+
+# 3. 处理两步验证（如果需要）
+if page.locator("#auth-mfa-otpcode").is_visible(timeout=5000):
+if otp_callback:
+otp = otp_callback()
+else:
+otp = input("请输入两步验证码: ")
+page.fill("#auth-mfa-otpcode", otp)
+page.click("#auth-signin-button")
+
+page.wait_for_load_state("networkidle")
+
+# 4. 导航到 Business Report 页面
+report_url = (
+f"{marketplace_url}/business-reports"
+"/ref=xx_sitemetric_dnav_xx"
+)
+page.goto(report_url)
+page.wait_for_load_state("networkidle")
+
+# 5. 点击下载按钮
+with page.expect_download() as download_info:
+# 选择 "Detail Page Sales and Traffic"
+page.click("text=Download")
+
+download = download_info.value
+dest = str(download_path / download.suggested_filename)
+download.save_as(dest)
+
+print(f" 报告已下载: {dest}")
+return dest
+
+finally:
+browser.close()
+
+# 使用示例
+# filepath = download_business_report(
+# email="your_email@example.com",
+# password="your_password",
+# download_dir="data/raw/business_reports"
+# )
+</code></pre>
+<blockquote>
+<p><strong>重要提醒</strong>：</p>
+<ol>
+<li>浏览器自动化登录 Seller Central 可能违反 Amazon 的服务条款，请谨慎使用</li>
+<li>频繁自动登录可能触发账号安全验证</li>
+<li>优先使用 SP-API 获取数据，浏览器自动化只作为最后手段</li>
+<li>密码不要硬编码，使用环境变量或密钥管理工具</li>
+</ol>
+</blockquote>
+<hr>
+<h2 id="5-数据存储与查询"><a class="header" href="#5-数据存储与查询">5. 数据存储与查询</a></h2>
+<h3 id="51-文件存储-vs-数据库"><a class="header" href="#51-文件存储-vs-数据库">5.1 文件存储 vs 数据库</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>方案</th><th>数据量</th><th>查询速度</th><th>适合场景</th><th>学习成本</th></tr>
+</thead>
+<tbody>
+<tr><td>CSV/Excel</td><td>&lt;100MB</td><td>慢（全量加载）</td><td>小规模、临时分析</td><td>零</td></tr>
+<tr><td>Parquet</td><td>&lt;1GB</td><td>快（列式存储）</td><td>中规模、重复查询</td><td>低</td></tr>
+<tr><td>DuckDB</td><td>100MB-10GB</td><td>很快（OLAP 引擎）</td><td>中规模、复杂查询</td><td>低</td></tr>
+<tr><td>SQLite</td><td>&lt;1GB</td><td>中等</td><td>需要事务的场景</td><td>低</td></tr>
+<tr><td>PostgreSQL</td><td>&gt;1GB</td><td>快</td><td>大规模、多用户</td><td>中</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>推荐路径</strong>：</p>
+<ul>
+<li>刚开始：CSV/Excel（你已经在用了）</li>
+<li>数据量增长到 50MB+：切换到 Parquet 格式（读写快 5-10 倍）</li>
+<li>需要复杂查询（JOIN、窗口函数）：引入 DuckDB</li>
+<li>多人协作或需要 Web 应用：PostgreSQL</li>
+</ul>
+<h3 id="52-duckdb-快速入门"><a class="header" href="#52-duckdb-快速入门">5.2 DuckDB 快速入门</a></h3>
+<p>DuckDB 是近年来最受关注的嵌入式分析数据库。它的杀手级特性：<strong>直接查询 CSV/Parquet 文件，无需导入</strong>。</p>
+<pre><code class="language-python">import duckdb
+
+# 直接查询 CSV 文件 不需要先用 pandas 读取！
+result = duckdb.sql("""
+SELECT
+Market,
+COUNT(*) as order_count,
+SUM("Units Ordered") as total_units,
+SUM("Ordered Product Sales") as total_gms,
+SUM("Ordered Product Sales") / NULLIF(SUM("Units Ordered"), 0) as asp
+FROM read_csv_auto('data/raw/20250120/orders.csv')
+GROUP BY Market
+ORDER BY total_gms DESC
+""")
+
+print(result.fetchdf()) # 返回 pandas DataFrame
+</code></pre>
+<p><strong>DuckDB 的优势场景：</strong></p>
+<pre><code class="language-python"># 场景 1: 跨多个 CSV 文件查询（通配符）
+# 一行 SQL 查询 data/raw/ 下所有日期文件夹中的 orders.csv
+result = duckdb.sql("""
+SELECT
+*,
+filename as source_file
+FROM read_csv_auto('data/raw/*/orders.csv', filename=true)
+WHERE "Units Ordered" &gt; 10
+ORDER BY "Ordered Product Sales" DESC
+LIMIT 100
+""")
+
+# 场景 2: 窗口函数 计算每个 ASIN 的销量排名
+result = duckdb.sql("""
+SELECT
+ASIN,
+Market,
+"Units Ordered",
+RANK() OVER (
+PARTITION BY Market
+ORDER BY "Units Ordered" DESC
+) as rank_in_market
+FROM read_csv_auto('data/raw/20250120/orders.csv')
+""")
+
+# 场景 3: 将查询结果直接导出为 Parquet（比 CSV 快 10 倍）
+duckdb.sql("""
+COPY (
+SELECT * FROM read_csv_auto('data/raw/*/orders.csv')
+) TO 'data/processed/all_orders.parquet' (FORMAT PARQUET)
+""")
+
+# 场景 4: 与 pandas DataFrame 混合使用
+import pandas as pd
+
+df_inventory = pd.read_csv("data/raw/inventory.csv")
+
+# DuckDB 可以直接查询 pandas DataFrame！
+result = duckdb.sql("""
+SELECT
+o.ASIN,
+o."Units Ordered",
+i.totalQuantity as current_stock,
+i.totalQuantity / NULLIF(o."Units Ordered", 0) as days_of_stock
+FROM read_csv_auto('data/raw/20250120/orders.csv') o
+JOIN df_inventory i ON o.ASIN = i.asin
+WHERE i.totalQuantity &lt; 100
+ORDER BY days_of_stock ASC
+""")
+print(" 库存不足 30 天的 ASIN:")
+print(result.fetchdf())
+</code></pre>
+<blockquote>
+<p><strong>DuckDB vs pandas 性能对比</strong>：对于 100MB+ 的 CSV 文件，DuckDB 的查询速度通常是 pandas 的 10-100 倍。原因：DuckDB 使用列式存储和向量化执行，而 pandas 需要把整个文件加载到内存。</p>
+<p>参考：<a href="https://duckdb.org/">DuckDB 官方文档</a> | <a href="https://duckdb.org/2021/05/14/sql-on-pandas.html">DuckDB vs pandas 基准测试</a></p>
+</blockquote>
+<hr>
+<h2 id="6-数据可视化与报告"><a class="header" href="#6-数据可视化与报告">6. 数据可视化与报告</a></h2>
+<h3 id="61-matplotlibseaborn-基础图表"><a class="header" href="#61-matplotlibseaborn-基础图表">6.1 matplotlib/seaborn 基础图表</a></h3>
+<p>对于快速的数据探索和分析，matplotlib 和 seaborn 是最直接的选择：</p>
+<pre><code class="language-python">import matplotlib.pyplot as plt
+import matplotlib
+import pandas as pd
+
+# 设置中文字体（macOS）
+matplotlib.rcParams["font.sans-serif"] = ["PingFang SC", "Heiti TC", "Arial"]
+matplotlib.rcParams["axes.unicode_minus"] = False
+
+def plot_market_comparison(df: pd.DataFrame, metric: str = "GMS"):
+"""
+绘制多市场指标对比柱状图。
+
+Args:
+df: 包含 Market 和指标列的 DataFrame
+metric: 要对比的指标名
+"""
+fig, ax = plt.subplots(figsize=(10, 6))
+
+colors = {"US": "#FF9900", "DE": "#003399", "JP": "#BC002D"}
+
+bars = ax.bar(
+df["Market"],
+df[metric],
+color=[colors.get(m, "#666") for m in df["Market"]]
+)
+
+# 在柱子上方显示数值
+for bar in bars:
+height = bar.get_height()
+ax.text(
+bar.get_x() + bar.get_width() / 2., height,
+f"${height:,.0f}" if metric == "GMS" else f"{height:,.0f}",
+ha="center", va="bottom", fontweight="bold"
+)
+
+ax.set_title(f"各市场 {metric} 对比", fontsize=14, fontweight="bold")
+ax.set_ylabel(metric)
+ax.spines["top"].set_visible(False)
+ax.spines["right"].set_visible(False)
+
+plt.tight_layout()
+plt.savefig(f"output/{metric}_by_market.png", dpi=150)
+plt.show()
+
+# 使用示例
+# market_data = calculate_metrics(merged, group_by=["Market"])
+# plot_market_comparison(market_data, "GMS")
+# plot_market_comparison(market_data, "Units Ordered")
+</code></pre>
+<h3 id="62-streamlit-快速仪表盘"><a class="header" href="#62-streamlit-快速仪表盘">6.2 Streamlit 快速仪表盘</a></h3>
+<p>Streamlit 可以用几十行代码搭建一个交互式数据看板。非常适合内部团队使用：</p>
+<pre><code class="language-python"># dashboard.py 运行: streamlit run dashboard.py
+import streamlit as st
+import pandas as pd
+import duckdb
+
+st.set_page_config(page_title=" 电商数据看板", layout="wide")
+st.title(" 电商数据看板 | E-Commerce Dashboard")
+
+# 侧边栏：文件上传
+uploaded_file = st.sidebar.file_uploader(
+"上传 Business Report", type=["csv", "xlsx"]
+)
+
+if uploaded_file:
+# 读取数据
+if uploaded_file.name.endswith(".csv"):
+df = pd.read_csv(uploaded_file, encoding="utf-8-sig")
+else:
+df = pd.read_excel(uploaded_file, engine="openpyxl")
+
+st.sidebar.success(f" 已加载 {len(df)} 行数据")
+
+# 核心指标卡片
+col1, col2, col3, col4 = st.columns(4)
+
+total_units = df["Units Ordered"].sum() if "Units Ordered" in df.columns else 0
+total_gms = df["GMS"].sum() if "GMS" in df.columns else 0
+asp = total_gms / total_units if total_units &gt; 0 else 0
+
+col1.metric("Total Units", f"{total_units:,}")
+col2.metric("Total GMS", f"${total_gms:,.2f}")
+col3.metric("ASP", f"${asp:.2f}")
+col4.metric("SKU Count", f"{df['ASIN'].nunique() if 'ASIN' in df.columns else 0}")
+
+# 按维度筛选
+if "Market" in df.columns:
+selected_market = st.sidebar.multiselect(
+"选择市场", df["Market"].unique(), default=df["Market"].unique()
+)
+df = df[df["Market"].isin(selected_market)]
+
+# 数据表格
+st.subheader(" 数据明细")
+st.dataframe(df, use_container_width=True)
+
+# DuckDB 自定义查询
+st.subheader(" 自定义 SQL 查询")
+query = st.text_area(
+"输入 SQL（表名为 df）",
+value='SELECT Market, SUM("Units Ordered") as units FROM df GROUP BY Market'
+)
+if st.button("执行查询"):
+try:
+result = duckdb.sql(query).fetchdf()
+st.dataframe(result)
+except Exception as e:
+st.error(f"查询错误: {e}")
+
+else:
+st.info(" 请在左侧上传 Business Report 文件")
+</code></pre>
+<blockquote>
+<p><strong>Streamlit 的优势</strong>：零前端代码、自动刷新、内置图表组件、一键部署到 <a href="https://streamlit.io/cloud">Streamlit Cloud</a>（免费）。非常适合给团队做内部数据看板。</p>
+</blockquote>
+<h3 id="63-html-报告生成自包含可直接分享"><a class="header" href="#63-html-报告生成自包含可直接分享">6.3 HTML 报告生成（自包含，可直接分享）</a></h3>
+<p>对于需要通过邮件或 IM 分享的报告，自包含 HTML 是最佳格式。使用 Chart.js 从 CDN 加载，无需任何构建步骤：</p>
+<pre><code class="language-python">def generate_html_dashboard(
+df: pd.DataFrame,
+title: str = "业务报告",
+output_path: str = "report.html"
+):
+"""
+生成自包含的 HTML 报告，含 Chart.js 交互图表。
+直接在浏览器打开，无需任何依赖。
+"""
+# 准备图表数据
+if "Market" in df.columns and "GMS" in df.columns:
+market_data = df.groupby("Market")["GMS"].sum().reset_index()
+labels = market_data["Market"].tolist()
+values = market_data["GMS"].tolist()
+else:
+labels, values = [], []
+
+import json
+
+html = f"""&lt;!DOCTYPE html&gt;
+&lt;html lang="zh"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;title&gt;{title}&lt;/title&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0"&gt;&lt;/script&gt;
+&lt;style&gt;
+* {{ margin: 0; padding: 0; box-sizing: border-box; }}
+body {{ font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+max-width: 1200px; margin: 0 auto; padding: 24px;
+background: #f8f9fa; color: #333; }}
+h1 {{ margin-bottom: 24px; }}
+.cards {{ display: flex; gap: 16px; margin-bottom: 24px; }}
+.card {{ flex: 1; background: white; padding: 20px;
+border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }}
+.card-value {{ font-size: 28px; font-weight: 700; color: #1a73e8; }}
+.card-label {{ font-size: 14px; color: #666; margin-top: 4px; }}
+.chart-container {{ background: white; padding: 24px;
+border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+margin-bottom: 24px; }}
+canvas {{ max-height: 400px; }}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt; {title}&lt;/h1&gt;
+
+&lt;div class="cards"&gt;
+&lt;div class="card"&gt;
+&lt;div class="card-value"&gt;{df["GMS"].sum() if "GMS" in df.columns else 0:,.0f}&lt;/div&gt;
+&lt;div class="card-label"&gt;Total GMS ($)&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="card"&gt;
+&lt;div class="card-value"&gt;{df["Units Ordered"].sum() if "Units Ordered" in df.columns else 0:,}&lt;/div&gt;
+&lt;div class="card-label"&gt;Total Units&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="chart-container"&gt;
+&lt;canvas id="marketChart"&gt;&lt;/canvas&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+new Chart(document.getElementById('marketChart'), {{
+type: 'bar',
+data: {{
+labels: {json.dumps(labels)},
+datasets: [{{
+label: 'GMS ($)',
+data: {json.dumps(values)},
+backgroundColor: ['#FF9900', '#003399', '#BC002D', '#009639', '#0055A4']
+}}]
+}},
+options: {{
+responsive: true,
+plugins: {{ legend: {{ display: false }} }}
+}}
+}});
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;"""
+
+with open(output_path, "w", encoding="utf-8") as f:
+f.write(html)
+
+print(f" HTML 报告已生成: {output_path}")
+return output_path
+</code></pre>
+<blockquote>
+<p><strong>为什么用自包含 HTML？</strong> 一个 .html 文件就是完整的报告，可以通过邮件、Slack、微信直接发送。接收者双击打开即可查看，不需要安装任何软件。Chart.js 从 CDN 加载，文件本身只有几 KB。</p>
+</blockquote>
+<hr>
+<hr>
+<h2 id="7-实战项目构建完整的数据管道"><a class="header" href="#7-实战项目构建完整的数据管道">7. 实战项目：构建完整的数据管道</a></h2>
+<h3 id="71-项目架构"><a class="header" href="#71-项目架构">7.1 项目架构</a></h3>
+<p>把前面学到的所有技能整合成一个完整的项目：</p>
+<pre><code>data-pipeline/
+config.json # 配置文件（API 凭证路径、报告目录）
+.env # 环境变量（API 密钥，不提交 Git）
+.gitignore # 忽略 .env、data/raw/、*.log
+requirements.txt # Python 依赖
+
+extract/ # 数据采集层
+__init__.py
+sp_api_client.py # SP-API 数据采集（订单、库存）
+report_downloader.py # 浏览器自动化下载报告
+file_watcher.py # 监控文件夹，自动处理新报告
+
+transform/ # 数据清洗和转换层
+__init__.py
+cleaners.py # 通用清洗函数（编码、数值、日期）
+business_report.py # Business Report 专用清洗
+advertising.py # 广告报告专用清洗
+metrics.py # 指标计算（GMS、ASP、CR）
+
+load/ # 数据存储层
+__init__.py
+file_store.py # CSV/Parquet 文件存储
+duckdb_store.py # DuckDB 查询接口
+
+report/ # 报告生成层
+__init__.py
+html_report.py # HTML 报告生成
+excel_report.py # Excel 报告生成
+templates/ # HTML 模板
+weekly.html
+
+data/ # 数据目录（不提交 Git）
+raw/ # 原始数据（按日期组织）
+20250120/
+processed/ # 清洗后的数据
+
+output/ # 输出报告
+weekly/
+
+schedule.py # 定时任务入口
+run_pipeline.py # 手动执行入口
+README.md # 项目说明
+</code></pre>
+<h3 id="72-从零搭建的步骤"><a class="header" href="#72-从零搭建的步骤">7.2 从零搭建的步骤</a></h3>
+<p><strong>Step 1: 初始化项目</strong></p>
+<pre><code class="language-bash">mkdir data-pipeline &amp;&amp; cd data-pipeline
+python3 -m venv venv
+source venv/bin/activate # macOS/Linux
+
+# 创建目录结构
+mkdir -p extract transform load report/templates data/raw data/processed output
+
+# 安装依赖
+pip install pandas openpyxl duckdb python-amazon-sp-api \
+python-dotenv schedule playwright requests
+pip freeze &gt; requirements.txt
+
+# 初始化 Playwright 浏览器
+playwright install chromium
+</code></pre>
+<p><strong>Step 2: 配置文件</strong></p>
+<pre><code class="language-python"># config.py 统一配置管理
+import json
+import os
+from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
+
+# 项目根目录
+ROOT_DIR = Path(__file__).parent
+
+# 数据目录
+RAW_DATA_DIR = ROOT_DIR / "data" / "raw"
+PROCESSED_DATA_DIR = ROOT_DIR / "data" / "processed"
+OUTPUT_DIR = ROOT_DIR / "output"
+
+# SP-API 凭证（从环境变量读取）
+SP_API_CREDENTIALS = {
+"refresh_token": os.getenv("SP_API_REFRESH_TOKEN", ""),
+"lwa_app_id": os.getenv("SP_API_CLIENT_ID", ""),
+"lwa_client_secret": os.getenv("SP_API_CLIENT_SECRET", ""),
+"aws_access_key": os.getenv("AWS_ACCESS_KEY", ""),
+"aws_secret_key": os.getenv("AWS_SECRET_KEY", ""),
+"role_arn": os.getenv("SP_API_ROLE_ARN", ""),
+}
+
+# 市场配置
+MARKETS = {
+"US": {"encoding": "utf-8-sig", "currency": "USD"},
+"DE": {"encoding": "utf-8-sig", "currency": "EUR"},
+"JP": {"encoding": "cp932", "currency": "JPY"},
+}
+
+# 确保目录存在
+for d in [RAW_DATA_DIR, PROCESSED_DATA_DIR, OUTPUT_DIR]:
+d.mkdir(parents=True, exist_ok=True)
+</code></pre>
+<p><strong>Step 3: 主 pipeline 脚本</strong></p>
+<pre><code class="language-python"># run_pipeline.py 手动执行完整 pipeline
+import argparse
+from datetime import datetime
+from pathlib import Path
+
+from config import RAW_DATA_DIR, OUTPUT_DIR, MARKETS
+from extract.sp_api_client import fetch_orders, fetch_inventory
+from transform.business_report import load_business_report
+from transform.metrics import calculate_metrics, merge_reports
+from report.html_report import generate_html_dashboard
+
+def run(date_str: str = None, markets: list = None):
+"""
+执行完整的数据管道。
+
+Args:
+date_str: 数据日期 (YYYYMMDD)，默认今天
+markets: 要处理的市场列表，默认全部
+"""
+date_str = date_str or datetime.now().strftime("%Y%m%d")
+markets = markets or list(MARKETS.keys())
+
+print(f" Pipeline 启动: {date_str}, 市场: {markets}")
+
+# === Extract ===
+raw_dir = RAW_DATA_DIR / date_str
+raw_dir.mkdir(parents=True, exist_ok=True)
+
+# 检查是否有手动下载的报告文件
+report_files = {}
+for market in markets:
+pattern = f"*{market.lower()}*business*report*"
+found = list(raw_dir.glob(pattern))
+if found:
+report_files[market] = str(found[0])
+print(f" 找到 {market} 报告: {found[0].name}")
+
+if not report_files:
+print(" 未找到报告文件，尝试通过 SP-API 获取...")
+# 这里可以调用 SP-API 采集逻辑
+return
+
+# === Transform ===
+merged = merge_reports(report_files)
+print(f" 合并完成: {len(merged)} 行")
+
+# 按市场汇总
+market_summary = calculate_metrics(merged, group_by=["Market"])
+
+# 保存处理后的数据
+from config import PROCESSED_DATA_DIR
+processed_dir = PROCESSED_DATA_DIR / date_str
+processed_dir.mkdir(parents=True, exist_ok=True)
+merged.to_parquet(processed_dir / "merged.parquet", index=False)
+
+# === Load &amp; Report ===
+output_path = OUTPUT_DIR / f"report_{date_str}.html"
+generate_html_dashboard(
+merged,
+title=f"业务报告 {date_str}",
+output_path=str(output_path)
+)
+
+print(f"\n Pipeline 完成!")
+print(f" 处理数据: {processed_dir / 'merged.parquet'}")
+print(f" 输出报告: {output_path}")
+
+if __name__ == "__main__":
+parser = argparse.ArgumentParser(description="数据管道")
+parser.add_argument("--date", help="数据日期 YYYYMMDD")
+parser.add_argument("--markets", nargs="+", help="市场列表")
+args = parser.parse_args()
+
+run(date_str=args.date, markets=args.markets)
+</code></pre>
+<pre><code class="language-bash"># 运行示例
+python3 run_pipeline.py # 处理今天的数据
+python3 run_pipeline.py --date 20250120 # 处理指定日期
+python3 run_pipeline.py --markets US DE # 只处理 US 和 DE
+</code></pre>
+<h3 id="73-常见问题和调试技巧"><a class="header" href="#73-常见问题和调试技巧">7.3 常见问题和调试技巧</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>问题</th><th>症状</th><th>解决方案</th></tr>
+</thead>
+<tbody>
+<tr><td>编码错误</td><td><code>UnicodeDecodeError</code></td><td>检查 market 参数是否正确，JP 用 <code>cp932</code></td></tr>
+<tr><td>SP-API 认证失败</td><td><code>401 Unauthorized</code></td><td>检查 refresh_token 是否过期，重新授权</td></tr>
+<tr><td>SP-API 限流</td><td><code>429 Too Many Requests</code></td><td>加 <code>time.sleep(1)</code> 或用指数退避</td></tr>
+<tr><td>报告格式变化</td><td><code>KeyError: 'Units Ordered'</code></td><td>打印 <code>df.columns</code> 检查列名，更新映射</td></tr>
+<tr><td>Playwright 超时</td><td><code>TimeoutError</code></td><td>增加 <code>timeout</code> 参数，检查网络连接</td></tr>
+<tr><td>DuckDB 类型错误</td><td><code>Conversion Error</code></td><td>用 <code>TRY_CAST</code> 替代 <code>CAST</code>，或先清洗数据</td></tr>
+<tr><td>内存不足</td><td><code>MemoryError</code></td><td>用 DuckDB 替代 pandas，或分批处理</td></tr>
+<tr><td>cron 不执行</td><td>日志无输出</td><td>检查 Python 路径（用绝对路径），检查权限</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>调试技巧：</strong></p>
+<pre><code class="language-python"># 1. 快速检查 DataFrame 结构
+def inspect(df: pd.DataFrame, name: str = "df"):
+"""快速检查 DataFrame 的结构和数据质量"""
+print(f"\n{'='*50}")
+print(f" {name}: {df.shape[0]} 行 × {df.shape[1]} 列")
+print(f"列名: {list(df.columns)}")
+print(f"数据类型:\n{df.dtypes}")
+print(f"缺失值:\n{df.isnull().sum()[df.isnull().sum() &gt; 0]}")
+print(f"前 3 行:\n{df.head(3)}")
+print(f"{'='*50}\n")
+
+# 2. 安全的数值转换
+def safe_numeric(series: pd.Series) -&gt; pd.Series:
+"""安全地将列转换为数值，无法转换的变为 NaN"""
+return pd.to_numeric(
+series.astype(str)
+.str.replace(",", "")
+.str.replace(r"[$€¥£%]", "", regex=True)
+.str.strip(),
+errors="coerce"
+)
+
+# 3. 数据质量检查
+def quality_check(df: pd.DataFrame) -&gt; dict:
+"""返回数据质量报告"""
+return {
+"total_rows": len(df),
+"null_pct": (df.isnull().sum() / len(df) * 100).to_dict(),
+"duplicate_rows": df.duplicated().sum(),
+"negative_values": {
+col: (df[col] &lt; 0).sum()
+for col in df.select_dtypes(include="number").columns
+}
+}
+</code></pre>
+<hr>
+<h2 id="8-学习资源"><a class="header" href="#8-学习资源">8. 学习资源</a></h2>
+<h3 id="81-免费课程与教程"><a class="header" href="#81-免费课程与教程">8.1 免费课程与教程</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>资源</th><th>平台</th><th>时长</th><th>适合谁</th><th>链接</th></tr>
+</thead>
+<tbody>
+<tr><td>Kaggle: Pandas Course</td><td>Kaggle</td><td>4h</td><td>pandas 零基础</td><td><a href="https://www.kaggle.com/learn/pandas">kaggle.com/learn/pandas</a></td></tr>
+<tr><td>Automate the Boring Stuff</td><td>在线书</td><td>自学</td><td>Python 自动化入门</td><td><a href="https://automatetheboringstuff.com/">automatetheboringstuff.com</a></td></tr>
+<tr><td>SP-API 官方文档</td><td>Amazon</td><td>自学</td><td>需要用 SP-API 的开发者</td><td><a href="https://developer-docs.amazon.com/sp-api">developer-docs.amazon.com/sp-api</a></td></tr>
+<tr><td>DuckDB 官方文档</td><td>DuckDB</td><td>自学</td><td>想用 SQL 查询本地文件</td><td><a href="https://duckdb.org/">duckdb.org</a></td></tr>
+<tr><td>Playwright Python 文档</td><td>Microsoft</td><td>自学</td><td>浏览器自动化</td><td><a href="https://playwright.dev/python/">playwright.dev/python</a></td></tr>
+<tr><td>pandas 官方文档</td><td>pandas</td><td>自学</td><td>进阶用法参考</td><td><a href="https://pandas.pydata.org/">pandas.pydata.org</a></td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="82-youtube-频道推荐"><a class="header" href="#82-youtube-频道推荐">8.2 YouTube 频道推荐</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>频道</th><th>内容方向</th><th>为什么推荐</th></tr>
+</thead>
+<tbody>
+<tr><td>Corey Schafer</td><td>Python 基础 + pandas</td><td>讲解清晰，适合入门，pandas 系列是经典</td></tr>
+<tr><td>sentdex</td><td>Python 数据分析</td><td>实战项目多，从数据采集到可视化全覆盖</td></tr>
+<tr><td>Rob Mulla</td><td>pandas + 数据科学</td><td>专注 pandas 技巧，短视频高效学习</td></tr>
+<tr><td>ArjanCodes</td><td>Python 工程实践</td><td>代码架构、设计模式，适合写出更好的 pipeline</td></tr>
+</tbody>
+</table>
+</div>
+<p>Content rephrased for compliance with licensing restrictions. Sources cited inline.</p>
+<h3 id="83-推荐-github-仓库"><a class="header" href="#83-推荐-github-仓库">8.3 推荐 GitHub 仓库</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>仓库</th><th>Star</th><th>用途</th></tr>
+</thead>
+<tbody>
+<tr><td><a href="https://github.com/saleweaver/python-amazon-sp-api">python-amazon-sp-api</a></td><td>1k+</td><td>SP-API Python 封装，本模块核心依赖</td></tr>
+<tr><td><a href="https://github.com/tommyod/awesome-pandas">awesome-pandas</a></td><td>500+</td><td>pandas 学习资源汇总</td></tr>
+<tr><td><a href="https://github.com/duckdb/duckdb">DuckDB</a></td><td>20k+</td><td>嵌入式分析数据库源码</td></tr>
+<tr><td><a href="https://github.com/microsoft/playwright-python">Playwright Python</a></td><td>10k+</td><td>浏览器自动化框架</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="9-用-openclaw-自动化数据管道"><a class="header" href="#9-用-openclaw-自动化数据管道">9. 用 OpenClaw 自动化数据管道</a></h2>
+<h3 id="91-场景ai-agent-自动采集和处理-amazon-报告"><a class="header" href="#91-场景ai-agent-自动采集和处理-amazon-报告">9.1 场景：AI Agent 自动采集和处理 Amazon 报告</a></h3>
+<pre><code>你对 OpenClaw 说：
+"每天早上 8 点，从 Seller Central 下载昨天的 Business Report 和 Advertising Report，
+合并到 Google Sheet 'Daily Dashboard'，如果有异常指标（销量下降 &gt;20%、ACOS 上升 &gt;10%），
+发 Slack 告警到 #daily-ops"
+
+OpenClaw 自动执行：
+1. [Heartbeat] 每天 8:00 触发
+2. [Skill: web-search / fetch MCP] 获取报告数据
+3. [LLM + pandas] 数据清洗和合并
+4. [Skill: google-sheets] 写入 Dashboard
+5. [LLM] 检测异常指标
+6. [Skill: slack] 异常时发送告警
+</code></pre>
+<h3 id="92-需要的-skills-和-mcp-server"><a class="header" href="#92-需要的-skills-和-mcp-server">9.2 需要的 Skills 和 MCP Server</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>组件</th><th>用途</th><th>链接</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>google-sheets</strong> Skill</td><td>读写数据报表</td><td><a href="https://clawhub.ai/">ClawHub</a></td></tr>
+<tr><td><strong>slack</strong> Skill</td><td>异常告警通知</td><td><a href="https://clawhub.ai/">ClawHub</a></td></tr>
+<tr><td><strong>memory</strong> Skill</td><td>存储历史基线数据</td><td><a href="https://docs.openclaw.com/">OpenClaw Docs</a></td></tr>
+<tr><td><strong>filesystem MCP</strong></td><td>读写本地 CSV/Excel</td><td><a href="https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem">MCP Filesystem</a></td></tr>
+<tr><td><strong>fetch MCP</strong></td><td>调用 SP-API 等外部接口</td><td><a href="https://github.com/modelcontextprotocol/servers/tree/main/src/fetch">MCP Fetch</a></td></tr>
+<tr><td><strong>sqlite MCP</strong></td><td>本地数据库存储</td><td><a href="https://github.com/modelcontextprotocol/servers/tree/main/src/sqlite">MCP SQLite</a></td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="93-相关资源"><a class="header" href="#93-相关资源">9.3 相关资源</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>资源</th><th>说明</th><th>链接</th></tr>
+</thead>
+<tbody>
+<tr><td>OpenClaw 官方文档</td><td>安装和配置指南</td><td><a href="https://docs.openclaw.com/">docs.openclaw.com</a></td></tr>
+<tr><td>ClawHub Skills 市场</td><td>搜索和安装 Agent Skills</td><td><a href="https://clawhub.ai/">clawhub.ai</a></td></tr>
+<tr><td>OpenClaw MCP 集成</td><td>连接 MCP Server</td><td><a href="https://rebeccamdeprey.com/blog/build-openclaw-skill-with-mcp">Build Skill with MCP</a></td></tr>
+<tr><td>F4 自动化与 Agent</td><td>Agent 基础模块</td><td><a href="../0-foundations/f4-agent-automation.html">F4 模块</a></td></tr>
+</tbody>
+</table>
+</div>
+<p>Content rephrased for compliance with licensing restrictions. Sources cited inline.</p>
+<hr>
+<h2 id="10-完成标志"><a class="header" href="#10-完成标志">10. 完成标志</a></h2>
+<ul>
+<li><input disabled="" type="checkbox"> 写一个脚本自动读取和清洗 Amazon Business Report（处理编码、数值、日期问题）</li>
+<li><input disabled="" type="checkbox"> 写一个脚本自动合并多个市场的报告并正确计算 ASP 和 CR（从基础指标重算）</li>
+<li><input disabled="" type="checkbox"> 用 SP-API 获取至少一种数据（订单或库存）</li>
+<li><input disabled="" type="checkbox"> 用 DuckDB 对 CSV 文件执行至少一次 SQL 查询</li>
+<li><input disabled="" type="checkbox"> 生成一份自包含的 HTML 周报（含 Chart.js 图表）</li>
+<li><input disabled="" type="checkbox"> 搭建一个完整的 pipeline 项目结构（extract → transform → load → report）</li>
+</ul>
+<p>完成以上所有项目后，你已经掌握了电商数据管道的核心技能。接下来进入 <a href="b2-prediction-models.html">B2 预测模型</a>，学习如何用 Prophet 做销量预测。</p>
+<hr>
+<h2 id="附录代码速查表"><a class="header" href="#附录代码速查表">附录：代码速查表</a></h2>
+<h3 id="pandas-常用操作"><a class="header" href="#pandas-常用操作">pandas 常用操作</a></h3>
+<pre><code class="language-python"># 读取
+df = pd.read_csv("file.csv", encoding="utf-8-sig")
+df = pd.read_excel("file.xlsx", engine="openpyxl")
+
+# 清洗
+df["col"] = df["col"].str.replace(",", "").astype(float) # 去逗号转数值
+df["date"] = pd.to_datetime(df["date"]) # 转日期
+df = df.dropna(subset=["ASIN"]) # 删除空行
+df = df[df["Units"] &gt;= 0] # 过滤负数
+
+# 聚合（正确计算比率指标）
+summary = df.groupby("Market").agg(
+units=("Units Ordered", "sum"),
+gms=("GMS", "sum"),
+sessions=("Sessions", "sum")
+).reset_index()
+summary["ASP"] = summary["gms"] / summary["units"] # 重算 ASP
+summary["CR"] = summary["units"] / summary["sessions"] # 重算 CR
+
+# 导出
+df.to_csv("output.csv", index=False)
+df.to_excel("output.xlsx", index=False)
+df.to_parquet("output.parquet", index=False) # 推荐！
+</code></pre>
+<h3 id="sp-api-常用端点"><a class="header" href="#sp-api-常用端点">SP-API 常用端点</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>端点</th><th>用途</th><th>python-amazon-sp-api 类</th></tr>
+</thead>
+<tbody>
+<tr><td>Orders API</td><td>获取订单列表和详情</td><td><code>sp_api.api.Orders</code></td></tr>
+<tr><td>Catalog Items API</td><td>获取产品信息</td><td><code>sp_api.api.CatalogItems</code></td></tr>
+<tr><td>FBA Inventory API</td><td>获取 FBA 库存</td><td><code>sp_api.api.Inventories</code></td></tr>
+<tr><td>Reports API</td><td>请求和下载报告</td><td><code>sp_api.api.Reports</code></td></tr>
+<tr><td>Product Pricing API</td><td>获取产品定价</td><td><code>sp_api.api.ProductPricing</code></td></tr>
+<tr><td>Notifications API</td><td>订阅事件通知</td><td><code>sp_api.api.Notifications</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>完整 API 参考：<a href="https://developer-docs.amazon.com/sp-api">SP-API 文档</a> | <a href="https://python-amazon-sp-api.readthedocs.io/">python-amazon-sp-api 文档</a></p>
+<h3 id="duckdb-常用查询"><a class="header" href="#duckdb-常用查询">DuckDB 常用查询</a></h3>
+<pre><code class="language-sql">-- 直接查询 CSV
+SELECT * FROM read_csv_auto('data.csv') LIMIT 10;
+
+-- 查询多个文件（通配符）
+SELECT * FROM read_csv_auto('data/raw/*/orders.csv');
+
+-- 聚合查询
+SELECT Market, SUM("Units Ordered") as units, SUM(GMS) as gms
+FROM read_csv_auto('data.csv')
+GROUP BY Market;
+
+-- 窗口函数（排名）
+SELECT *, RANK() OVER (PARTITION BY Market ORDER BY GMS DESC) as rank
+FROM read_csv_auto('data.csv');
+
+-- 导出为 Parquet
+COPY (SELECT * FROM read_csv_auto('data.csv'))
+TO 'output.parquet' (FORMAT PARQUET);
+
+-- 查询 pandas DataFrame（在 Python 中）
+-- duckdb.sql("SELECT * FROM df WHERE units &gt; 100")
+</code></pre>
+<h3 id="数据清洗-checklist"><a class="header" href="#数据清洗-checklist">数据清洗 Checklist</a></h3>
+<p>在处理任何 Amazon 报告之前，检查以下项目：</p>
+<ul>
+<li><input disabled="" type="checkbox"> 文件编码正确（US/EU: utf-8-sig, JP: cp932）</li>
+<li><input disabled="" type="checkbox"> 列名已统一（处理多语言列名差异）</li>
+<li><input disabled="" type="checkbox"> 数值列已去除逗号和货币符号</li>
+<li><input disabled="" type="checkbox"> 日期列已转换为 datetime 类型</li>
+<li><input disabled="" type="checkbox"> 已过滤汇总行（Total/合計）和空行</li>
+<li><input disabled="" type="checkbox"> 负数和零值已处理（过滤或标记）</li>
+<li><input disabled="" type="checkbox"> 比率指标从基础指标重算（不直接 sum/avg）</li>
+<li><input disabled="" type="checkbox"> 已添加市场标识列（Market）</li>
+<li><input disabled="" type="checkbox"> 数据质量检查通过（缺失值、重复行、异常值）</li>
+</ul>
+<hr>
+<blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path B 总览</a></p>
+<p><strong>Path B</strong>: <a href="b1-data-pipeline.html">B1 数据</a> · <a href="b2-prediction-models.html">B2 预测</a> · <a href="b3-rag-knowledge-base.html">B3 RAG</a> · <a href="b4-agent-workflow.html">B4 Agent</a> · <a href="b5-local-model-deploy.html">B5 部署</a></p>
+<p><strong>快速跳转</strong>: <a href="../0-foundations/">Path 0 基础</a> · <a href="../a-operators/">Path A 运营</a> · <a href="../c-managers/">Path C 管理</a> · <a href="../d-platforms/">Path D 多平台</a> · <a href="../e-social-media/">Path E 社交媒体</a></p>
+</blockquote>
+<!-- nav:prev-next -->
+<hr>
+<p><a href="README.html">Path 总览</a> | <a href="b2-prediction-models.html">B2 预测 &gt;</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../a-operators/a13-ai-growth-hack.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../b-developers/b2-prediction-models.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../a-operators/a13-ai-growth-hack.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../b-developers/b2-prediction-models.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../mermaid-217b66ef.min.js"></script>
+        <script src="../mermaid-init-d4730691.js"></script>
+
+
+
+    </div>
+    </body>
+</html>

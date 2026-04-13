@@ -1,0 +1,863 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>RAG 知识检索 - 跨境电商 AI 实战知识库</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="跨境电商 AI 实操手册 — 56 篇指南，从选品到增长，每个环节都有可直接复制的 Prompt">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom-467616e9.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "ayu";
+            window.path_to_searchindex_js = "../searchindex-656d55b3.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-e97a050e.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">跨境电商 AI 实战知识库</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap/edit/main/src/src/0-foundations/f3-rag-knowledge.md" title="Suggest an edit" aria-label="Suggest an edit" rel="edit">
+                            <span class=fa-svg id="git-edit-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M421.7 220.3l-11.3 11.3-22.6 22.6-205 205c-6.6 6.6-14.8 11.5-23.8 14.1L30.8 511c-8.4 2.5-17.5 .2-23.7-6.1S-1.5 489.7 1 481.2L38.7 353.1c2.6-9 7.5-17.2 14.1-23.8l205-205 22.6-22.6 11.3-11.3 33.9 33.9 62.1 62.1 33.9 33.9zM96 353.9l-9.3 9.3c-.9 .9-1.6 2.1-2 3.4l-25.3 86 86-25.3c1.3-.4 2.5-1.1 3.4-2l9.3-9.3H112c-8.8 0-16-7.2-16-16V353.9zM453.3 19.3l39.4 39.4c25 25 25 65.5 0 90.5l-14.5 14.5-22.6 22.6-11.3 11.3-33.9-33.9-62.1-62.1L314.3 67.7l11.3-11.3 22.6-22.6 14.5-14.5c25-25 65.5-25 90.5 0z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="f3-知识库与-rag--knowledge-base--rag"><a class="header" href="#f3-知识库与-rag--knowledge-base--rag">F3. 知识库与 RAG | Knowledge Base &amp; RAG</a></h1>
+<blockquote>
+<p><strong>路径</strong>: Path 0: AI 基础先行 · <strong>模块</strong>: F3
+<strong>最后更新</strong>: 2026-03-12
+<strong>难度</strong>: 中级
+<strong>预计时间</strong>: 2 小时
+<strong>前置模块</strong>: <a href="f1-ai-evolution.html">F1 AI 的前世今生</a>、<a href="f2-prompt-engineering.html">F2 Prompt 工程</a></p>
+</blockquote>
+<hr>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path 0 总览</a></p>
+<pre><code class="language-mermaid">flowchart LR
+F1["F1 AI 的前世今生"]
+F1 --&gt; F2
+F2["F2 Prompt 工程"]
+F2 --&gt; F3
+F3[" F3 知识库与 RAG&lt;br/&gt;（当前）"]:::current
+F3 --&gt; F4
+F4["F4 自动化与 Agent"]
+classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
+</code></pre>
+<hr>
+<h2 id="本模块章节导航"><a class="header" href="#本模块章节导航">本模块章节导航</a></h2>
+<ol>
+<li><a href="#1-为什么-ai-不知道你的产品信息">为什么 AI 不知道你的产品</a> · 2. <a href="#2-embedding-原理让-ai-理解语义">Embedding 原理</a> · 3. <a href="#3-向量数据库存储和检索语义">向量数据库</a> · 4. <a href="#4-rag-架构完整的工作流程">RAG 架构</a> · 5. <a href="#5-实操概览搭建产品知识库">实操概览</a> · 6. <a href="#6-rag-优化技巧">RAG 优化技巧</a> · 7. <a href="#7-常见问题">常见问题</a> · 8. <a href="#8-学习资源">学习资源</a> · 9. <a href="#9-用-openclaw-自动化知识库管理与-rag-监控"> OpenClaw 自动化</a> · 10. <a href="#10-完成标志">完成标志</a></li>
+</ol>
+<h2 id="本模块你将理解"><a class="header" href="#本模块你将理解">本模块你将理解</a></h2>
+<p>为什么 ChatGPT 不知道你的产品信息？怎么让 AI 基于你的私有数据回答问题？RAG 是解决这个问题的核心技术。</p>
+<p>完成本模块后，你将能够：</p>
+<ul>
+<li>理解为什么 AI 不知道你的产品、政策和内部数据</li>
+<li>用通俗语言解释 Embedding（向量嵌入）的原理</li>
+<li>知道向量数据库是什么、为什么需要它</li>
+<li>理解 RAG 的完整架构和工作流程</li>
+<li>判断什么场景该用 RAG，什么场景不需要</li>
+<li>了解搭建产品知识库的基本步骤（技术实操参考 <a href="../b-developers/b3-rag-knowledge-base.html">B3 RAG 知识库</a>）</li>
+</ul>
+<blockquote>
+<p><strong>本模块定位</strong>：建立概念理解，不需要写代码。如果你想动手搭建 RAG 系统，完成本模块后进入 <a href="../b-developers/b3-rag-knowledge-base.html">Path B: B3 RAG 知识库</a>。</p>
+</blockquote>
+<hr>
+<h2 id="1-为什么-ai-不知道你的产品信息"><a class="header" href="#1-为什么-ai-不知道你的产品信息">1. 为什么 AI 不知道你的产品信息</a></h2>
+<h3 id="11-ai-的知识来源"><a class="header" href="#11-ai-的知识来源">1.1 AI 的知识来源</a></h3>
+<p>回忆 F1 的内容：LLM 的知识全部来自训练数据。训练数据是互联网上的公开文本 维基百科、新闻、论坛、代码库等。</p>
+<p><strong>AI 知道的：</strong></p>
+<ul>
+<li>Amazon 平台的一般规则和政策（公开信息）</li>
+<li>常见品类的一般特征（公开讨论）</li>
+<li>通用的电商运营知识（博客、教程）</li>
+</ul>
+<p><strong>AI 不知道的：</strong></p>
+<ul>
+<li>你的产品具体参数和卖点</li>
+<li>你的内部定价策略和利润数据</li>
+<li>你的供应商信息和采购成本</li>
+<li>你的历史销售数据和趋势</li>
+<li>你的客服 SOP 和内部政策</li>
+<li>最新的平台政策变化（训练数据有截止日期）</li>
+</ul>
+<h3 id="12-三种让-ai-知道你的数据的方法"><a class="header" href="#12-三种让-ai-知道你的数据的方法">1.2 三种让 AI “知道“你的数据的方法</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>方法</th><th>原理</th><th>优点</th><th>缺点</th><th>适合场景</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>直接粘贴</strong></td><td>把数据放在 Prompt 里</td><td>最简单，零成本</td><td>受上下文窗口限制（128K-1M token）</td><td>数据量小（&lt;50 页）</td></tr>
+<tr><td><strong>Fine-tuning</strong></td><td>用你的数据重新训练模型</td><td>模型“记住“你的知识</td><td>成本高、更新慢、可能遗忘</td><td>需要改变模型风格/格式</td></tr>
+<tr><td><strong>RAG</strong></td><td>实时检索相关数据，注入 Prompt</td><td>数据实时更新、成本低、可解释</td><td>需要搭建检索系统</td><td>数据量大、需要实时更新</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="13-用跨境电商类比理解"><a class="header" href="#13-用跨境电商类比理解">1.3 用跨境电商类比理解</a></h3>
+<p><strong>直接粘贴</strong> = 你把所有资料打印出来摊在桌上，让助理看着回答问题。</p>
+<ul>
+<li>资料少的时候没问题</li>
+<li>资料多了桌子放不下（上下文窗口限制）</li>
+</ul>
+<p><strong>Fine-tuning</strong> = 你让助理花一个月把所有资料背下来。</p>
+<ul>
+<li>背完之后回答很快</li>
+<li>但资料更新了需要重新背（重新训练）</li>
+<li>而且可能背串了（幻觉）</li>
+</ul>
+<p><strong>RAG</strong> = 你给助理一个文件柜和一套检索系统。每次有问题，助理先去文件柜里找到相关资料，然后基于资料回答。</p>
+<ul>
+<li>文件柜可以随时更新</li>
+<li>回答有据可查（可以追溯到具体文档）</li>
+<li>文件柜可以无限大</li>
+</ul>
+<blockquote>
+<p><strong>结论</strong>：对于跨境电商团队，RAG 是最实用的方案。数据量大、更新频繁、需要可追溯 这三个特点完美匹配 RAG 的优势。</p>
+</blockquote>
+<hr>
+<h2 id="2-embedding-原理让-ai-理解语义"><a class="header" href="#2-embedding-原理让-ai-理解语义">2. Embedding 原理：让 AI “理解“语义</a></h2>
+<h3 id="21-什么是-embedding"><a class="header" href="#21-什么是-embedding">2.1 什么是 Embedding</a></h3>
+<p>Embedding（向量嵌入）是把文本转换成一组数字（向量）的技术。这组数字捕捉了文本的“语义“。</p>
+<p><strong>直觉理解：</strong></p>
+<p>想象你要在地图上标记不同的产品。传统方式是用关键词匹配 “蓝牙耳机“只能匹配包含“蓝牙耳机“这四个字的文档。</p>
+<p>Embedding 的方式是把每个产品放在一个“语义空间“里：</p>
+<ul>
+<li>“蓝牙耳机“和“无线耳机“在语义空间里很近（意思相似）</li>
+<li>“蓝牙耳机“和“蓝牙音箱“距离中等（有关联但不同）</li>
+<li>“蓝牙耳机“和“厨房刀具“在语义空间里很远（完全不相关）</li>
+</ul>
+<pre><code>语义空间示意（简化为 2D）：
+
+音频设备
+↑
+蓝牙音箱 无线耳机
+蓝牙耳机
+智能手表 有线耳机
+
+← 可穿戴 配件 →
+
+手机壳
+
+厨房刀具（很远，不在这个区域）
+</code></pre>
+<p>实际的 Embedding 不是 2D 而是 768D 或 1536D（几百到几千个维度），但原理一样：语义相似的文本，向量距离近。</p>
+<h3 id="22-embedding-的工作过程"><a class="header" href="#22-embedding-的工作过程">2.2 Embedding 的工作过程</a></h3>
+<pre><code>输入文本 → Embedding 模型 → 向量（一组数字）
+
+示例：
+"这款蓝牙耳机降噪效果很好"
+→ [0.12, -0.34, 0.56, 0.78, -0.23, ..., 0.45] (1536 个数字)
+
+"这个无线耳机的主动降噪很棒"
+→ [0.11, -0.32, 0.55, 0.79, -0.21, ..., 0.44] (1536 个数字)
+
+两个向量非常接近 → 语义相似！
+</code></pre>
+<h3 id="23-常用-embedding-模型"><a class="header" href="#23-常用-embedding-模型">2.3 常用 Embedding 模型</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>模型</th><th>提供商</th><th>维度</th><th>价格</th><th>适合场景</th></tr>
+</thead>
+<tbody>
+<tr><td>text-embedding-3-small</td><td>OpenAI</td><td>1536</td><td>$0.02/M tokens</td><td>性价比最高，推荐首选</td></tr>
+<tr><td>text-embedding-3-large</td><td>OpenAI</td><td>3072</td><td>$0.13/M tokens</td><td>需要更高精度时</td></tr>
+<tr><td>Voyage-3</td><td>Voyage AI</td><td>1024</td><td>$0.06/M tokens</td><td>代码和技术文档</td></tr>
+<tr><td>BGE-M3</td><td>BAAI</td><td>1024</td><td>免费（开源）</td><td>多语言、本地部署</td></tr>
+<tr><td>Cohere Embed v3</td><td>Cohere</td><td>1024</td><td>$0.10/M tokens</td><td>多语言搜索</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>跨境电商推荐：</strong></p>
+<ul>
+<li>预算有限：OpenAI text-embedding-3-small（便宜且效果好）</li>
+<li>多语言需求：BGE-M3（开源免费，中英日德法都支持）</li>
+<li>数据隐私：BGE-M3 本地部署（数据不出服务器）</li>
+</ul>
+<h3 id="24-关键词搜索-vs-语义搜索"><a class="header" href="#24-关键词搜索-vs-语义搜索">2.4 关键词搜索 vs 语义搜索</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>维度</th><th>关键词搜索</th><th>语义搜索（Embedding）</th></tr>
+</thead>
+<tbody>
+<tr><td>原理</td><td>精确匹配关键词</td><td>匹配语义相似度</td></tr>
+<tr><td>“无线耳机” 能找到 “蓝牙耳机” 吗？</td><td>不能（关键词不同）</td><td>能（语义相似）</td></tr>
+<tr><td>“earphone noise cancel” 能找到中文文档吗？</td><td>不能（语言不同）</td><td>能（跨语言语义匹配）</td></tr>
+<tr><td>速度</td><td>极快</td><td>快（毫秒级）</td></tr>
+<tr><td>适合场景</td><td>精确查找已知内容</td><td>模糊查找、跨语言查找</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>实际应用中，最好的方案是混合搜索</strong>：先用关键词搜索缩小范围，再用语义搜索精确匹配。这就是 2026 年 RAG 系统的主流做法。</p>
+</blockquote>
+<hr>
+<h2 id="3-向量数据库存储和检索语义"><a class="header" href="#3-向量数据库存储和检索语义">3. 向量数据库：存储和检索语义</a></h2>
+<h3 id="31-为什么需要向量数据库"><a class="header" href="#31-为什么需要向量数据库">3.1 为什么需要向量数据库</a></h3>
+<p>普通数据库（MySQL、PostgreSQL）擅长精确查询：“找出价格 = $25.99 的产品”。</p>
+<p>但它们不擅长语义查询：“找出和’降噪效果差’语义相似的 Review”。</p>
+<p>向量数据库专门为存储和检索向量设计，能在毫秒内从百万条向量中找到最相似的几条。</p>
+<h3 id="32-主流向量数据库对比"><a class="header" href="#32-主流向量数据库对比">3.2 主流向量数据库对比</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>数据库</th><th>类型</th><th>价格</th><th>适合场景</th><th>特点</th></tr>
+</thead>
+<tbody>
+<tr><td><a href="https://www.trychroma.com/">Chroma</a></td><td>嵌入式</td><td>免费开源</td><td>原型开发、小规模</td><td>Python 原生，最简单</td></tr>
+<tr><td><a href="https://github.com/facebookresearch/faiss">FAISS</a></td><td>库</td><td>免费开源</td><td>大规模、高性能</td><td>Meta 出品，速度极快</td></tr>
+<tr><td><a href="https://www.pinecone.io/">Pinecone</a></td><td>云服务</td><td>免费层 + 付费</td><td>生产环境、免运维</td><td>全托管，开箱即用</td></tr>
+<tr><td><a href="https://weaviate.io/">Weaviate</a></td><td>自托管/云</td><td>免费开源</td><td>混合搜索</td><td>支持关键词 + 语义混合搜索</td></tr>
+<tr><td><a href="https://qdrant.tech/">Qdrant</a></td><td>自托管/云</td><td>免费开源</td><td>高性能生产环境</td><td>Rust 编写，性能优秀</td></tr>
+<tr><td><a href="https://github.com/pgvector/pgvector">pgvector</a></td><td>PostgreSQL 扩展</td><td>免费</td><td>已有 PostgreSQL 的团队</td><td>不需要额外数据库</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>跨境电商推荐：</strong></p>
+<ul>
+<li>刚开始尝试：Chroma（最简单，10 行代码搞定）</li>
+<li>生产环境：Pinecone（免运维）或 Qdrant（自托管）</li>
+<li>已有 PostgreSQL：pgvector（不需要额外基础设施）</li>
+</ul>
+<p>Content rephrased for compliance with licensing restrictions. Sources: <a href="https://iterathon.tech/blog/vector-databases-ai-applications-guide">Vector Databases 2026 Guide</a>, <a href="https://tutorialq.com/ai/machine-learning/embeddings-and-vector-databases">Embeddings and Vector Databases Guide</a></p>
+<h3 id="33-向量数据库的工作流程"><a class="header" href="#33-向量数据库的工作流程">3.3 向量数据库的工作流程</a></h3>
+<pre><code>写入阶段（一次性）：
+文档 → 分块（Chunking）→ Embedding 模型 → 向量 → 存入向量数据库
+
+查询阶段（每次提问）：
+用户问题 → Embedding 模型 → 查询向量 → 向量数据库检索 → 返回最相似的文档块
+</code></pre>
+<p><strong>分块（Chunking）是关键：</strong></p>
+<p>你不能把一整份 50 页的产品手册作为一个向量存储 太大了，语义会被稀释。需要把文档切成小块：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>分块策略</th><th>块大小</th><th>适合场景</th></tr>
+</thead>
+<tbody>
+<tr><td>按段落</td><td>100-300 字</td><td>结构化文档（FAQ、政策）</td></tr>
+<tr><td>按固定长度</td><td>500-1000 字</td><td>长篇文档（产品手册）</td></tr>
+<tr><td>按语义</td><td>自动检测</td><td>混合内容（Review、邮件）</td></tr>
+<tr><td>按标题层级</td><td>按 H1/H2/H3 切分</td><td>Markdown/HTML 文档</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>分块的黄金法则</strong>：每个块应该包含一个完整的信息单元。太小会丢失上下文，太大会引入噪音。500-1000 字通常是好的起点。</p>
+</blockquote>
+<hr>
+<h2 id="4-rag-架构完整的工作流程"><a class="header" href="#4-rag-架构完整的工作流程">4. RAG 架构：完整的工作流程</a></h2>
+<h3 id="41-rag-的三个阶段"><a class="header" href="#41-rag-的三个阶段">4.1 RAG 的三个阶段</a></h3>
+<pre><code>阶段 1：索引（Indexing） 一次性准备
+
+文档收集 → 文档分块 → 生成 Embedding
+↓ ↓ ↓
+产品手册 500字/块 向量化
+FAQ 文档
+Review 数据 → 存入向量数据库
+政策文件
+
+
+阶段 2：检索（Retrieval） 每次提问
+
+用户问题 → 生成查询向量 → 向量数据库检索
+↓ ↓
+"这个产品防水吗？" 返回 Top 5 相关文档块
+
+
+阶段 3：生成（Generation） 每次提问
+
+系统 Prompt + 检索到的文档块 + 用户问题
+↓
+发送给 LLM
+↓
+LLM 基于检索到的内容生成回答
+"根据产品手册，本产品支持 IPX5 防水..."
+
+</code></pre>
+<h3 id="42-rag-vs-直接问-ai-的效果对比"><a class="header" href="#42-rag-vs-直接问-ai-的效果对比">4.2 RAG vs 直接问 AI 的效果对比</a></h3>
+<p><strong>场景：客户问“你们的蓝牙耳机支持什么蓝牙版本？“</strong></p>
+<p><strong>直接问 AI（无 RAG）：</strong></p>
+<pre><code>AI："一般来说，2024-2025 年的蓝牙耳机通常支持蓝牙 5.0 或 5.3..."
+→ 泛泛而谈，不是你的产品的具体信息
+</code></pre>
+<p><strong>用 RAG：</strong></p>
+<pre><code>RAG 检索到的文档块：
+"产品型号 XB-500，蓝牙版本 5.3，支持 AAC/SBC/LDAC 编码，
+连接距离 15 米，支持同时连接 2 台设备。"
+
+AI 基于检索内容回答：
+"我们的 XB-500 蓝牙耳机支持蓝牙 5.3，支持 AAC、SBC 和 LDAC
+音频编码，连接距离可达 15 米，并且支持同时连接 2 台设备。"
+→ 精确、具体、基于你的产品数据
+</code></pre>
+<h3 id="43-rag-在跨境电商中的应用场景"><a class="header" href="#43-rag-在跨境电商中的应用场景">4.3 RAG 在跨境电商中的应用场景</a></h3>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="../b-developers/b3-rag-knowledge-base.html">B3 RAG 知识库系统</a> RAG 系统构建实操详见 B3 · <a href="../a-operators/a4-customer-service.html">A4 客服与售后</a> RAG 在客服 FAQ 自动回答中的应用场景详见 A4。</p>
+</blockquote>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>场景</th><th>知识库内容</th><th>用户问题示例</th><th>价值</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>产品 FAQ 系统</strong></td><td>产品手册、规格参数、使用说明</td><td>“这个产品能用多久？”“支持快充吗？”</td><td>客服效率提升 80%</td></tr>
+<tr><td><strong>内部政策查询</strong></td><td>退换货政策、定价规则、审批流程</td><td>“欧洲站的退货政策是什么？”</td><td>新员工快速上手</td></tr>
+<tr><td><strong>合规知识库</strong></td><td>各市场认证要求、法规文档</td><td>“卖蓝牙产品到日本需要什么认证？”</td><td>减少合规风险</td></tr>
+<tr><td><strong>竞品情报库</strong></td><td>竞品 Review、Listing、价格历史</td><td>“竞品 A 最近的差评主要是什么？”</td><td>竞品监控自动化</td></tr>
+<tr><td><strong>运营 SOP 库</strong></td><td>操作手册、最佳实践、案例库</td><td>“新品上架的标准流程是什么？”</td><td>团队知识沉淀</td></tr>
+<tr><td><strong>供应商信息库</strong></td><td>供应商资料、报价、沟通记录</td><td>“上次和工厂 B 谈的价格是多少？”</td><td>采购决策支持</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="44-rag-的-prompt-设计"><a class="header" href="#44-rag-的-prompt-设计">4.4 RAG 的 Prompt 设计</a></h3>
+<p>RAG 系统中，发送给 LLM 的 Prompt 通常包含三个部分：</p>
+<pre><code>系统 Prompt（固定）：
+"你是一个产品客服助手。请基于以下参考资料回答用户问题。
+如果参考资料中没有相关信息，请明确告知用户你不确定，
+不要编造答案。回答时请标注信息来源。"
+
+检索到的文档块（动态）：
+---参考资料开始---
+[文档块 1]: 产品型号 XB-500，蓝牙版本 5.3...
+[文档块 2]: 防水等级 IPX5，可在雨中使用...
+[文档块 3]: 续航时间：ANC 开启 30 小时，关闭 50 小时...
+---参考资料结束---
+
+用户问题（动态）：
+"这个耳机能在游泳时用吗？"
+</code></pre>
+<p><strong>关键设计原则：</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>原则</th><th>说明</th><th>为什么重要</th></tr>
+</thead>
+<tbody>
+<tr><td>明确指示基于资料回答</td><td>“请基于以下参考资料回答”</td><td>减少 AI 编造信息</td></tr>
+<tr><td>允许说“不知道“</td><td>“如果资料中没有，请说明”</td><td>避免强行回答导致错误</td></tr>
+<tr><td>要求标注来源</td><td>“请标注信息来源”</td><td>方便验证和追溯</td></tr>
+<tr><td>限定回答范围</td><td>“只回答与产品相关的问题”</td><td>防止 AI 回答无关问题</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="45-rag-的评估指标"><a class="header" href="#45-rag-的评估指标">4.5 RAG 的评估指标</a></h3>
+<p>搭建 RAG 系统后，怎么知道它好不好？需要评估两个维度：</p>
+<p><strong>检索质量：</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>指标</th><th>含义</th><th>怎么测</th></tr>
+</thead>
+<tbody>
+<tr><td>召回率（Recall）</td><td>相关文档有没有被检索到</td><td>准备测试问题，检查检索结果是否包含正确文档</td></tr>
+<tr><td>精确率（Precision）</td><td>检索到的文档是否都相关</td><td>检查 Top-5 结果中有多少是真正相关的</td></tr>
+<tr><td>MRR（Mean Reciprocal Rank）</td><td>正确文档排在第几位</td><td>正确文档排名越靠前越好</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>生成质量：</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>指标</th><th>含义</th><th>怎么测</th></tr>
+</thead>
+<tbody>
+<tr><td>忠实度（Faithfulness）</td><td>回答是否基于检索到的内容</td><td>检查回答中的信息是否都能在检索文档中找到</td></tr>
+<tr><td>相关性（Relevancy）</td><td>回答是否回答了用户的问题</td><td>人工评估回答是否切题</td></tr>
+<tr><td>完整性（Completeness）</td><td>回答是否覆盖了所有相关信息</td><td>检查是否遗漏了重要信息</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>简单的评估方法：</strong></p>
+<p>准备 20-30 个测试问题和标准答案，定期运行测试，追踪质量变化。</p>
+<pre><code>测试集示例：
+| 问题 | 期望答案 | 期望引用的文档 |
+|------|---------|--------------|
+| "蓝牙版本是多少？" | "5.3" | product_spec.md |
+| "能在水里用吗？" | "IPX5 防水，可防溅水但不能浸泡" | product_spec.md |
+| "保修多久？" | "12 个月" | warranty_policy.md |
+</code></pre>
+<h3 id="46-rag-的成本分析"><a class="header" href="#46-rag-的成本分析">4.6 RAG 的成本分析</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>成本项</th><th>一次性</th><th>持续</th><th>说明</th></tr>
+</thead>
+<tbody>
+<tr><td>Embedding 生成</td><td>$0.01-0.10</td><td></td><td>取决于文档量（1000 页约 $0.05）</td></tr>
+<tr><td>向量数据库</td><td>$0</td><td>$0-50/月</td><td>Chroma 免费，Pinecone 有免费层</td></tr>
+<tr><td>LLM API 调用</td><td></td><td>$0.01-0.10/次</td><td>每次查询的 LLM 费用</td></tr>
+<tr><td>开发时间</td><td>8-40 小时</td><td>2-4 小时/月</td><td>搭建 + 维护</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>成本估算示例（小型产品知识库）：</strong></p>
+<pre><code>文档量：50 个产品手册 + 500 条 FAQ = 约 200 页
+Embedding 成本：$0.02（一次性）
+向量数据库：$0（Chroma 本地）
+每月查询量：1000 次
+LLM 成本：$5-10/月（GPT-4o-mini）
+总月度成本：$5-10
+
+对比人工成本：
+客服每天回答 30 个产品问题 × 5 分钟/个 = 2.5 小时/天
+月度人工成本：2.5h × 22 天 × $15/h = $825
+
+ROI：($825 - $10) / $10 = 8,150%
+</code></pre>
+<hr>
+<h2 id="5-实操概览搭建产品知识库"><a class="header" href="#5-实操概览搭建产品知识库">5. 实操概览：搭建产品知识库</a></h2>
+<blockquote>
+<p>本节提供概念性的步骤说明。完整的代码实操请参考 <a href="../b-developers/b3-rag-knowledge-base.html">B3 RAG 知识库</a>。</p>
+</blockquote>
+<h3 id="51-最简-rag-系统10-行代码"><a class="header" href="#51-最简-rag-系统10-行代码">5.1 最简 RAG 系统（10 行代码）</a></h3>
+<p>用 LlamaIndex + Chroma，10 行 Python 代码就能搭建一个可用的 RAG 系统：</p>
+<pre><code class="language-python"># 概念性代码（完整版见 B3 模块）
+from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
+
+# 1. 读取文档（产品手册、FAQ 等）
+documents = SimpleDirectoryReader("product_docs/").load_data()
+
+# 2. 建立索引（自动分块 + Embedding + 存储）
+index = VectorStoreIndex.from_documents(documents)
+
+# 3. 创建查询引擎
+query_engine = index.as_query_engine()
+
+# 4. 提问
+response = query_engine.query("这个产品的蓝牙版本是多少？")
+print(response)
+# → "根据产品手册，XB-500 支持蓝牙 5.3..."
+</code></pre>
+<h3 id="52-搭建步骤概览"><a class="header" href="#52-搭建步骤概览">5.2 搭建步骤概览</a></h3>
+<pre><code>Step 1：收集文档（1-2 小时）
+产品手册（PDF/Word）
+FAQ 文档
+客服常见问题和回答
+产品规格参数表
+内部政策文档
+
+Step 2：文档预处理（30 分钟）
+转换为统一格式（文本/Markdown）
+清理格式问题（乱码、多余空行）
+检查内容完整性
+
+Step 3：搭建 RAG 系统（1-2 小时）
+安装依赖（pip install llama-index chromadb）
+配置 Embedding 模型和 LLM
+加载文档并建立索引
+测试查询效果
+
+Step 4：优化和部署（持续）
+调整分块策略
+优化检索参数
+添加新文档
+监控回答质量
+</code></pre>
+<h3 id="53-不写代码也能用的-rag-方案"><a class="header" href="#53-不写代码也能用的-rag-方案">5.3 不写代码也能用的 RAG 方案</a></h3>
+<p>如果你不想写代码，以下工具提供了开箱即用的 RAG 功能：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>工具</th><th>价格</th><th>特点</th><th>适合谁</th></tr>
+</thead>
+<tbody>
+<tr><td>ChatGPT + 文件上传</td><td>$20/月（Plus）</td><td>上传 PDF/文档，直接提问</td><td>个人使用，文档量小</td></tr>
+<tr><td>Claude + Projects</td><td>$20/月（Pro）</td><td>创建项目，上传多个文档作为知识库</td><td>个人使用，需要长期知识库</td></tr>
+<tr><td>Notion AI</td><td>$10/月</td><td>基于 Notion 笔记的 AI 问答</td><td>团队已用 Notion</td></tr>
+<tr><td>Dify</td><td>免费开源</td><td>可视化搭建 RAG 应用</td><td>想自定义但不想写太多代码</td></tr>
+<tr><td>Coze</td><td>免费</td><td>字节跳动出品，中文友好</td><td>中文场景，快速搭建</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="6-rag-优化技巧"><a class="header" href="#6-rag-优化技巧">6. RAG 优化技巧</a></h2>
+<h3 id="61-影响-rag-质量的关键因素"><a class="header" href="#61-影响-rag-质量的关键因素">6.1 影响 RAG 质量的关键因素</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>因素</th><th>影响</th><th>优化方向</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>分块策略</strong></td><td>块太大 → 噪音多；块太小 → 上下文丢失</td><td>测试不同块大小，500-1000 字起步</td></tr>
+<tr><td><strong>Embedding 模型</strong></td><td>模型质量决定语义理解准确度</td><td>用 OpenAI 或 BGE-M3，不要用太老的模型</td></tr>
+<tr><td><strong>检索数量（Top-K）</strong></td><td>太少 → 可能漏掉关键信息；太多 → 引入噪音</td><td>从 Top-5 开始，根据效果调整</td></tr>
+<tr><td><strong>文档质量</strong></td><td>垃圾进垃圾出</td><td>确保文档内容准确、格式清晰</td></tr>
+<tr><td><strong>查询改写</strong></td><td>用户问题可能不够精确</td><td>用 LLM 改写用户问题后再检索</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="62-高级-rag-模式2026"><a class="header" href="#62-高级-rag-模式2026">6.2 高级 RAG 模式（2026）</a></h3>
+<pre><code>基础 RAG（Naive RAG）：
+用户问题 → 检索 → 生成
+简单但有效，适合大多数场景
+
+高级 RAG（Advanced RAG）：
+用户问题 → 查询改写 → 混合检索 → 重排序 → 生成
+查询改写：用 LLM 优化用户问题
+混合检索：关键词 + 语义同时检索
+重排序：用 Cross-Encoder 对检索结果重新排序
+适合对质量要求高的场景
+
+模块化 RAG（Modular RAG）：
+用户问题 → 路由 → 选择最佳检索策略 → 多源检索 → 融合 → 生成
+路由：判断问题类型，选择不同的检索策略
+多源检索：同时从多个知识库检索
+融合：合并多个来源的结果
+适合复杂的企业级应用
+</code></pre>
+<p>Content rephrased for compliance with licensing restrictions. Sources: <a href="https://ztabs.co/blog/rag-architecture-guide">RAG Architecture Guide 2026</a>, <a href="https://iterathon.tech/blog/rag-systems-production-guide-2025">RAG Systems Production Guide 2026</a></p>
+<hr>
+<h2 id="7-常见问题"><a class="header" href="#7-常见问题">7. 常见问题</a></h2>
+<h3 id="71-rag-faq"><a class="header" href="#71-rag-faq">7.1 RAG FAQ</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>问题</th><th>回答</th></tr>
+</thead>
+<tbody>
+<tr><td>“RAG 和直接上传文件到 ChatGPT 有什么区别？”</td><td>ChatGPT 的文件上传本质上也是一种 RAG，但你无法控制分块策略、检索参数等。自建 RAG 可以完全定制。</td></tr>
+<tr><td>“我的数据量很小（&lt;10 个文档），需要 RAG 吗？”</td><td>不需要。直接上传到 ChatGPT/Claude 就够了。RAG 的价值在数据量大（50+ 文档）时才明显。</td></tr>
+<tr><td>“RAG 能保证 100% 准确吗？”</td><td>不能。RAG 减少幻觉但不能消除。检索可能漏掉关键信息，LLM 也可能误解检索内容。始终需要人工审核关键回答。</td></tr>
+<tr><td>“多语言文档可以放在同一个知识库吗？”</td><td>可以，但建议用支持多语言的 Embedding 模型（如 BGE-M3）。或者按语言分别建立索引。</td></tr>
+<tr><td>“RAG 系统需要多少钱？”</td><td>最低成本：Chroma（免费）+ OpenAI Embedding（$0.02/M tokens）+ OpenAI GPT-4o-mini（$0.15/M tokens）。1000 次查询约 $1-2。</td></tr>
+<tr><td>“数据安全怎么办？”</td><td>用本地 Embedding 模型（BGE-M3）+ 本地 LLM（Ollama）+ 本地向量数据库（Chroma），数据完全不出服务器。</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="72-什么时候不需要-rag"><a class="header" href="#72-什么时候不需要-rag">7.2 什么时候不需要 RAG</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>场景</th><th>为什么不需要</th><th>替代方案</th></tr>
+</thead>
+<tbody>
+<tr><td>数据量很小（&lt;10 页）</td><td>直接放进 Prompt 就够了</td><td>ChatGPT/Claude 文件上传</td></tr>
+<tr><td>不需要实时更新</td><td>数据固定不变</td><td>Fine-tuning 可能更合适</td></tr>
+<tr><td>只需要改变输出风格</td><td>RAG 解决的是“知识“问题，不是“风格“问题</td><td>Fine-tuning 或 Prompt 调整</td></tr>
+<tr><td>通用知识问题</td><td>AI 已经知道的信息不需要 RAG</td><td>直接问 AI</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="8-学习资源"><a class="header" href="#8-学习资源">8. 学习资源</a></h2>
+<h3 id="81-入门推荐"><a class="header" href="#81-入门推荐">8.1 入门推荐</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>资源</th><th>来源</th><th>为什么推荐</th></tr>
+</thead>
+<tbody>
+<tr><td><a href="https://www.deeplearning.ai/short-courses/building-evaluating-advanced-rag/">Building RAG from Scratch</a></td><td>DeepLearning.AI</td><td>免费课程，从零搭建 RAG</td></tr>
+<tr><td><a href="https://docs.llamaindex.ai/en/stable/getting_started/starter_example/">LlamaIndex 官方教程</a></td><td>LlamaIndex</td><td>最简单的 RAG 入门，10 行代码</td></tr>
+<tr><td><a href="https://ztabs.co/blog/rag-architecture-guide">RAG Architecture Guide 2026</a></td><td>ZTabs</td><td>2026 年最新的 RAG 架构全景</td></tr>
+<tr><td><a href="https://tutorialq.com/ai/machine-learning/embeddings-and-vector-databases">Embeddings Guide</a></td><td>TutorialQ</td><td>Embedding 和向量数据库的通俗解释</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="82-进阶推荐"><a class="header" href="#82-进阶推荐">8.2 进阶推荐</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>资源</th><th>来源</th><th>为什么推荐</th></tr>
+</thead>
+<tbody>
+<tr><td><a href="../b-developers/b3-rag-knowledge-base.html">B3 RAG 知识库模块</a></td><td>ecommerce-ai-roadmap</td><td>本 Hub 的技术实操模块，完整代码</td></tr>
+<tr><td><a href="https://iterathon.tech/blog/vector-databases-ai-applications-guide">Vector Databases 2026 Guide</a></td><td>Iterathon</td><td>向量数据库选型和生产部署指南</td></tr>
+<tr><td><a href="https://arxiv.org/abs/2005.11401">Retrieval-Augmented Generation (RAG) Paper</a></td><td>Meta AI</td><td>RAG 原始论文（2020），理解理论基础</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="9-用-openclaw-自动化知识库管理与-rag-监控"><a class="header" href="#9-用-openclaw-自动化知识库管理与-rag-监控">9. 用 OpenClaw 自动化知识库管理与 RAG 监控</a></h2>
+<h3 id="场景"><a class="header" href="#场景">场景</a></h3>
+<blockquote>
+<p>你希望自动化知识库的日常维护 当产品手册更新、FAQ 新增、政策变更时，自动触发知识库更新；同时监控 RAG 管道的检索质量，在回答准确率下降时及时告警。</p>
+</blockquote>
+<pre><code>你是我的知识库管理助手。请帮我：
+1. 监控产品文档目录，发现新增或修改的文件时自动触发 Embedding 更新
+2. 每周运行 RAG 质量测试集（20 个标准问题），记录准确率变化
+3. 当准确率低于 85% 时，分析原因并建议优化方向（分块策略、检索参数等）
+4. 维护一份知识库健康报告，包含文档覆盖率、更新频率、检索命中率
+</code></pre>
+<h3 id="skills-配置"><a class="header" href="#skills-配置">Skills 配置</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Skill</th><th>用途</th></tr>
+</thead>
+<tbody>
+<tr><td><code>slack</code></td><td>推送知识库更新通知 / 质量告警 / 周报摘要</td></tr>
+<tr><td><code>google-sheets</code></td><td>记录 RAG 质量测试结果、文档更新日志、知识库健康指标</td></tr>
+<tr><td><code>memory</code></td><td>记忆知识库结构和历史质量数据，追踪长期趋势</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="相关资源"><a class="header" href="#相关资源">相关资源</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>资源</th><th>链接</th></tr>
+</thead>
+<tbody>
+<tr><td>OpenClaw 官方文档</td><td><a href="https://docs.openclaw.com/">docs.openclaw.com</a></td></tr>
+<tr><td>ClawHub Skills 市场</td><td><a href="https://clawhub.ai/">clawhub.ai</a></td></tr>
+<tr><td>ecommerce-ai-roadmap 商业指南</td><td><a href="../../about.html">about.md</a></td></tr>
+<tr><td>F4 自动化与 Agent</td><td><a href="f4-agent-automation.html">f4-agent-automation.md</a></td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="10-完成标志"><a class="header" href="#10-完成标志">10. 完成标志</a></h2>
+<ul>
+<li><input disabled="" type="checkbox"> 能解释为什么 AI 不知道你的产品信息</li>
+<li><input disabled="" type="checkbox"> 理解 Embedding 的概念（文本 → 向量 → 语义相似度）</li>
+<li><input disabled="" type="checkbox"> 知道向量数据库的作用和主流选择</li>
+<li><input disabled="" type="checkbox"> 能画出 RAG 的三阶段架构（索引 → 检索 → 生成）</li>
+<li><input disabled="" type="checkbox"> 能判断一个场景是否需要 RAG</li>
+<li><input disabled="" type="checkbox"> 了解至少一种不写代码的 RAG 方案（ChatGPT 文件上传 / Claude Projects）</li>
+</ul>
+<p>完成以上所有项目后，你已经理解了让 AI 使用私有数据的核心技术。接下来进入 <a href="f4-agent-automation.html">F4 自动化与 Agent</a>，学习如何让 AI 不只回答问题，还能执行任务。</p>
+<hr>
+<blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path 0 总览</a> · <a href="ai-landscape.html">AI 全景评估</a></p>
+<p><strong>Path 0</strong>: <a href="f1-ai-evolution.html">F1 AI 演进</a> · <a href="f2-prompt-engineering.html">F2 Prompt 工程</a> · <a href="f3-rag-knowledge.html">F3 RAG 知识库</a> · <a href="f4-agent-automation.html">F4 Agent 自动化</a> · <a href="f5-rpa-automation.html">F5 RPA 自动化</a> · <a href="ai-landscape.html">AI 全景</a></p>
+<p><strong>快速跳转</strong>: <a href="../a-operators/">Path A 运营</a> · <a href="../b-developers/">Path B 技术</a> · <a href="../c-managers/">Path C 管理</a> · <a href="../d-platforms/">Path D 多平台</a> · <a href="../e-social-media/">Path E 社交媒体</a></p>
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../0-foundations/f2-prompt-engineering.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../0-foundations/f4-agent-automation.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../0-foundations/f2-prompt-engineering.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../0-foundations/f4-agent-automation.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../mermaid-217b66ef.min.js"></script>
+        <script src="../mermaid-init-d4730691.js"></script>
+
+
+
+    </div>
+    </body>
+</html>

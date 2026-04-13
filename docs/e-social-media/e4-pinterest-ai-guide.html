@@ -1,0 +1,746 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Pinterest - 跨境电商 AI 实战知识库</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="跨境电商 AI 实操手册 — 56 篇指南，从选品到增长，每个环节都有可直接复制的 Prompt">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom-467616e9.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "ayu";
+            window.path_to_searchindex_js = "../searchindex-656d55b3.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-e97a050e.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">跨境电商 AI 实战知识库</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap/edit/main/src/src/e-social-media/e4-pinterest-ai-guide.md" title="Suggest an edit" aria-label="Suggest an edit" rel="edit">
+                            <span class=fa-svg id="git-edit-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M421.7 220.3l-11.3 11.3-22.6 22.6-205 205c-6.6 6.6-14.8 11.5-23.8 14.1L30.8 511c-8.4 2.5-17.5 .2-23.7-6.1S-1.5 489.7 1 481.2L38.7 353.1c2.6-9 7.5-17.2 14.1-23.8l205-205 22.6-22.6 11.3-11.3 33.9 33.9 62.1 62.1 33.9 33.9zM96 353.9l-9.3 9.3c-.9 .9-1.6 2.1-2 3.4l-25.3 86 86-25.3c1.3-.4 2.5-1.1 3.4-2l9.3-9.3H112c-8.8 0-16-7.2-16-16V353.9zM453.3 19.3l39.4 39.4c25 25 25 65.5 0 90.5l-14.5 14.5-22.6 22.6-11.3 11.3-33.9-33.9-62.1-62.1L314.3 67.7l11.3-11.3 22.6-22.6 14.5-14.5c25-25 65.5-25 90.5 0z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="e4-pinterest-ai-运营指南--pinterest-ai-playbook"><a class="header" href="#e4-pinterest-ai-运营指南--pinterest-ai-playbook">E4. Pinterest AI 运营指南 | Pinterest AI Playbook</a></h1>
+<blockquote>
+<p><strong>路径</strong>: Path E: 社交媒体 · <strong>模块</strong>: E4
+<strong>最后更新</strong>: 2026-03-14
+<strong>难度</strong>: 中级
+<strong>预计时间</strong>: 1.5-2 小时
+<strong>前置模块</strong>: <a href="../0-foundations/">Path 0 基础</a></p>
+</blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path E 总览</a></p>
+<hr>
+<h2 id="章节导航"><a class="header" href="#章节导航">章节导航</a></h2>
+<ol>
+<li><a href="#1-pinterest-的独特定位">Pinterest 的独特定位</a></li>
+<li><a href="#2-pinterest-seo-方法论">Pinterest SEO 方法论</a></li>
+<li><a href="#3-ai-视觉内容创作">AI 视觉内容创作</a></li>
+<li><a href="#4-pinterest-shopping-ads">Pinterest Shopping Ads</a></li>
+<li><a href="#5-数据分析">数据分析</a></li>
+<li><a href="#6-prompt-模板">Prompt 模板</a></li>
+<li><a href="#7-常见陷阱">常见陷阱</a></li>
+<li><a href="#8-完成标志">完成标志</a></li>
+</ol>
+<hr>
+<h2 id="本模块你将产出"><a class="header" href="#本模块你将产出">本模块你将产出</a></h2>
+<ul>
+<li>一套 Pinterest SEO 关键词和 Pin 优化策略</li>
+<li>一套 AI 批量生成 Pin 内容的工作流</li>
+<li>一套 Pinterest Shopping Ads 优化方案</li>
+<li>一套 Pinterest 专用 Prompt 模板库</li>
+</ul>
+<blockquote>
+<p><strong>核心理念</strong>：Pinterest 不是社交媒体，是视觉搜索引擎。6.19 亿 MAU，月搜索量 800 亿次。用户来 Pinterest 是为了搜索灵感和产品购买意图极高。最强品类：家居、时尚、美妆、DIY、婚礼、食品。AI 在 Pinterest 的核心价值是帮你批量生产高质量的视觉内容，并优化搜索排名。</p>
+</blockquote>
+<hr>
+<h2 id="1-pinterest-的独特定位"><a class="header" href="#1-pinterest-的独特定位">1. Pinterest 的独特定位</a></h2>
+<h3 id="11-pinterest-vs-其他平台"><a class="header" href="#11-pinterest-vs-其他平台">1.1 Pinterest vs 其他平台</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>维度</th><th>Pinterest</th><th>Instagram</th><th>Google</th></tr>
+</thead>
+<tbody>
+<tr><td>本质</td><td>视觉搜索引擎</td><td>社交媒体</td><td>文字搜索引擎</td></tr>
+<tr><td>用户意图</td><td>搜索+规划+购买</td><td>发现+社交</td><td>搜索+研究</td></tr>
+<tr><td>内容寿命</td><td>极长（Pin 可持续获得流量数月甚至数年）</td><td>短（24-48 小时）</td><td>长（SEO 常青）</td></tr>
+<tr><td>竞争</td><td>相对低（很多卖家忽略 Pinterest）</td><td>极高</td><td>极高</td></tr>
+<tr><td>最强品类</td><td>家居/时尚/美妆/DIY/婚礼/食品</td><td>全品类</td><td>全品类</td></tr>
+<tr><td>用户画像</td><td>25-44 岁女性为主，高消费力</td><td>18-34 岁</td><td>全年龄</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="12-pinterest-用户行为特征"><a class="header" href="#12-pinterest-用户行为特征">1.2 Pinterest 用户行为特征</a></h3>
+<ul>
+<li>用户提前 3-6 个月搜索（圣诞礼物 7 月就开始搜）</li>
+<li>97% 的搜索不包含品牌名（用户在寻找灵感，不是找特定品牌）</li>
+<li>85% 的用户在 Pinterest 上发现新品牌后购买</li>
+<li>平均每次会话保存 5-10 个 Pin</li>
+</ul>
+<hr>
+<h2 id="2-pinterest-seo-方法论"><a class="header" href="#2-pinterest-seo-方法论">2. Pinterest SEO 方法论</a></h2>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="../a-operators/a2-listing-optimization.html">A2 Listing 优化</a> SEO 通用方法论参考 A2，关键词研究和内容优化框架可复用到 Pinterest。</p>
+</blockquote>
+<h3 id="21-pinterest-搜索排名因素"><a class="header" href="#21-pinterest-搜索排名因素">2.1 Pinterest 搜索排名因素</a></h3>
+<pre><code>Pinterest SEO 排名因素：
+Pin 质量
+图片质量和尺寸（2:3 竖版最佳）
+标题关键词匹配
+描述关键词密度
+Rich Pin 数据完整性
+
+互动信号
+Save 数量（最重要）
+Click-through 数量
+Close-up 数量（放大查看）
+评论数量
+
+账号权重
+账号活跃度（发布频率）
+账号年龄
+粉丝数量
+域名验证状态
+
+新鲜度
+新 Pin 有初始推荐加成
+同一图片重复发布会被降权
+定期发布新内容很重要
+</code></pre>
+<h3 id="22-board-策略"><a class="header" href="#22-board-策略">2.2 Board 策略</a></h3>
+<p>Board（画板）是 Pinterest SEO 的基础结构：</p>
+<pre><code>你是一个 Pinterest SEO 专家。
+
+我的品牌销售 [品类]，目标市场 [US/EU]。
+
+请帮我设计 Pinterest Board 结构：
+
+1. 8-12 个 Board，每个包含：
+- Board 名称（包含关键词，不超过 30 字符）
+- Board 描述（包含 3-5 个关键词，不超过 500 字符）
+- 推荐 Pin 数量（每个 Board 至少 20 个 Pin）
+
+2. Board 分类建议：
+- 产品 Board（按品类/系列分）
+- 灵感 Board（使用场景/生活方式）
+- 教程 Board（How-to/Tips）
+- 季节性 Board（节日/季节）
+
+3. 每个 Board 的前 5 个 Pin 选题
+</code></pre>
+<hr>
+<h2 id="3-ai-视觉内容创作"><a class="header" href="#3-ai-视觉内容创作">3. AI 视觉内容创作</a></h2>
+<h3 id="31-pin-设计最佳实践"><a class="header" href="#31-pin-设计最佳实践">3.1 Pin 设计最佳实践</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>要素</th><th>最佳实践</th><th>AI 辅助</th></tr>
+</thead>
+<tbody>
+<tr><td>尺寸</td><td>1000x1500px（2:3 竖版）</td><td>Canva AI 自动调整</td></tr>
+<tr><td>文字叠加</td><td>标题大字+简短描述，不超过图片面积 20%</td><td>AI 生成文案</td></tr>
+<tr><td>品牌元素</td><td>Logo 或品牌色，位置一致</td><td>模板化</td></tr>
+<tr><td>图片风格</td><td>明亮、干净、生活方式感</td><td>Midjourney 生成场景</td></tr>
+<tr><td>CTA</td><td>“Shop Now” / “Learn More” / “Get the Look”</td><td>AI 选择最佳 CTA</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="32-ai-批量生成-pin-内容"><a class="header" href="#32-ai-批量生成-pin-内容">3.2 AI 批量生成 Pin 内容</a></h3>
+<pre><code>你是一个 Pinterest 内容创作专家。
+
+产品：[名称]，品类 [X]
+目标关键词：[3-5 个]
+目标受众：[描述]
+
+请为这个产品生成 10 个不同的 Pin 方案：
+
+每个 Pin 包含：
+1. Pin 标题（不超过 100 字符，包含关键词）
+2. Pin 描述（不超过 500 字符，自然融入 3-5 个关键词）
+3. 图片创意描述（画面内容、风格、配色）
+4. 文字叠加内容（不超过 8 个词）
+5. 推荐 Board
+6. 最佳发布时间（考虑季节性）
+
+10 个 Pin 的角度：
+- 3 个产品展示型（不同场景）
+- 2 个教程型（使用技巧）
+- 2 个灵感型（生活方式）
+- 2 个清单型（"X 个理由选择..."）
+- 1 个季节性（当前季节/即将到来的节日）
+</code></pre>
+<h3 id="33-idea-pins类似-stories"><a class="header" href="#33-idea-pins类似-stories">3.3 Idea Pins（类似 Stories）</a></h3>
+<p>Idea Pins 是 Pinterest 的多页内容格式，适合教程和步骤型内容：</p>
+<pre><code>请为 [产品] 设计一个 5 页的 Idea Pin：
+
+主题：[如 "5 步打造完美家庭办公桌"]
+
+每页包含：
+1. 画面描述
+2. 文字内容（简短、大字）
+3. 产品植入方式（自然、不硬推）
+
+结构：
+- 第 1 页：封面（Hook 标题）
+- 第 2-4 页：步骤/内容
+- 第 5 页：总结 + 产品推荐
+</code></pre>
+<hr>
+<h2 id="4-pinterest-shopping-ads"><a class="header" href="#4-pinterest-shopping-ads">4. Pinterest Shopping Ads</a></h2>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="e1-instagram-facebook-ai-guide.html">E1 Instagram</a> Meta Ads 对比参考 E1，Pinterest Ads 和 Meta Ads 的预算分配策略可互相参考。</p>
+</blockquote>
+<h3 id="41-广告类型"><a class="header" href="#41-广告类型">4.1 广告类型</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>类型</th><th>说明</th><th>适合</th></tr>
+</thead>
+<tbody>
+<tr><td>Standard Pins</td><td>推广普通 Pin</td><td>品牌认知</td></tr>
+<tr><td>Shopping Pins</td><td>从 Product Catalog 自动生成</td><td>产品转化</td></tr>
+<tr><td>Collection Ads</td><td>主图+多个产品图</td><td>品类推广</td></tr>
+<tr><td>Idea Ads</td><td>推广 Idea Pins</td><td>教程/灵感</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="42-product-catalog-优化"><a class="header" href="#42-product-catalog-优化">4.2 Product Catalog 优化</a></h3>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="../d-platforms/shopify-ai-guide.html">D1 Shopify</a> Pinterest 与 Shopify 原生集成，Product Catalog 同步和 Shopping 设置参考 D1。</p>
+</blockquote>
+<p>Pinterest Shopping 依赖 Product Catalog（与 Shopify 原生集成）：</p>
+<pre><code>你是一个 Pinterest Shopping 优化专家。
+
+我有一批产品需要优化 Pinterest Product Catalog：
+
+产品信息：
+- 标题：[当前标题]
+- 描述：[当前描述]
+- 品类：[X]
+
+请优化为 Pinterest 格式：
+1. Pinterest 产品标题（包含搜索关键词，自然语言）
+2. Pinterest 产品描述（生活方式导向，包含使用场景）
+3. 推荐的 Product Group 分类
+4. 建议补充的产品属性（颜色、材质、风格等）
+</code></pre>
+<h3 id="43-pinterest-ads-vs-meta-ads-预算分配"><a class="header" href="#43-pinterest-ads-vs-meta-ads-预算分配">4.3 Pinterest Ads vs Meta Ads 预算分配</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>维度</th><th>Pinterest Ads</th><th>Meta Ads</th></tr>
+</thead>
+<tbody>
+<tr><td>CPC</td><td>通常更低（$0.10-0.50）</td><td>中等（$0.50-2.00）</td></tr>
+<tr><td>转化意图</td><td>高（用户在搜索产品）</td><td>中（用户在浏览社交）</td></tr>
+<tr><td>最强品类</td><td>家居/时尚/美妆/DIY</td><td>全品类</td></tr>
+<tr><td>受众规模</td><td>较小（6.19 亿 MAU）</td><td>极大（30 亿 MAU）</td></tr>
+<tr><td>建议</td><td>品类匹配时优先投放</td><td>规模化时主力投放</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="5-数据分析"><a class="header" href="#5-数据分析">5. 数据分析</a></h2>
+<h3 id="51-关键指标"><a class="header" href="#51-关键指标">5.1 关键指标</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>指标</th><th>说明</th><th>基准值</th></tr>
+</thead>
+<tbody>
+<tr><td>Impressions</td><td>Pin 展示次数</td><td>取决于关键词竞争</td></tr>
+<tr><td>Saves</td><td>保存次数（最重要）</td><td>Save Rate &gt; 1% 为好</td></tr>
+<tr><td>Outbound Clicks</td><td>点击到外部网站</td><td>CTR &gt; 0.5% 为好</td></tr>
+<tr><td>Pin Clicks</td><td>点击放大查看</td><td>表示内容吸引人</td></tr>
+<tr><td>Engagement Rate</td><td>(Saves+Clicks)/Impressions</td><td>&gt; 2% 为好</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="52-ai-数据分析-prompt"><a class="header" href="#52-ai-数据分析-prompt">5.2 AI 数据分析 Prompt</a></h3>
+<pre><code>以下是我 Pinterest 账号过去 30 天的数据：
+- 总展示：[X]
+- 总保存：[X]
+- 总外链点击：[X]
+- Top 5 Pin 表现：[列出]
+- Bottom 5 Pin 表现：[列出]
+
+请分析并给出优化建议。
+</code></pre>
+<hr>
+<h2 id="6-prompt-模板"><a class="header" href="#6-prompt-模板">6. Prompt 模板</a></h2>
+<h3 id="61-季节性内容规划"><a class="header" href="#61-季节性内容规划">6.1 季节性内容规划</a></h3>
+<pre><code>请为 [品类] 品牌生成 Pinterest 季节性内容日历（未来 6 个月）。
+
+考虑：
+- Pinterest 用户提前 3-6 个月搜索
+- 主要节日和购物季
+- 品类的季节性趋势
+
+每个月提供：
+- 3-5 个 Pin 选题
+- 推荐关键词
+- 最佳发布时间
+</code></pre>
+<hr>
+<h2 id="7-常见陷阱"><a class="header" href="#7-常见陷阱">7. 常见陷阱</a></h2>
+<h3 id="陷阱-1把-pinterest-当社交媒体运营"><a class="header" href="#陷阱-1把-pinterest-当社交媒体运营">陷阱 1：把 Pinterest 当社交媒体运营</a></h3>
+<p>Pinterest 是搜索引擎。不需要每天发 Stories、回复评论。重点是 SEO 和内容质量。</p>
+<h3 id="陷阱-2忽略季节性提前量"><a class="header" href="#陷阱-2忽略季节性提前量">陷阱 2：忽略季节性提前量</a></h3>
+<p>Pinterest 用户提前 3-6 个月搜索。圣诞内容 7 月就要开始发。</p>
+<h3 id="陷阱-3重复使用同一张图片"><a class="header" href="#陷阱-3重复使用同一张图片">陷阱 3：重复使用同一张图片</a></h3>
+<p>Pinterest 会降权重复图片。每个 Pin 需要独特的视觉设计。</p>
+<h3 id="陷阱-4不设置-rich-pins"><a class="header" href="#陷阱-4不设置-rich-pins">陷阱 4：不设置 Rich Pins</a></h3>
+<p>Rich Pins 自动同步产品价格和库存信息，提升 SEO 和转化。必须设置。</p>
+<hr>
+<h2 id="75-pinterest-算法深度解析"><a class="header" href="#75-pinterest-算法深度解析">7.5 Pinterest 算法深度解析</a></h2>
+<h3 id="pinterest-推荐算法机制"><a class="header" href="#pinterest-推荐算法机制">Pinterest 推荐算法机制</a></h3>
+<pre><code>Pinterest 推荐算法（与 Instagram/TikTok 完全不同）：
+
+核心逻辑：Pinterest 是搜索引擎，不是社交媒体
+搜索匹配（Search Relevance）
+Pin 标题/描述中的关键词与用户搜索词的匹配度
+Board 名称和描述的关键词
+图片视觉内容（Pinterest 有图像识别 AI）
+Rich Pin 的结构化数据
+
+Pin 质量评分（Pin Quality）
+图片质量（分辨率、构图、色彩）
+点击率（CTR）
+Save 率（最重要的互动指标）
+Close-up 率（用户放大查看）
+Outbound Click 率（点击到外部网站）
+
+域名权重（Domain Authority）
+已验证的域名有更高权重
+域名的历史 Pin 表现
+域名的内容质量评分
+
+新鲜度（Freshness）
+新 Pin 有初始推荐加成
+同一图片重复发布会被降权
+定期发布新内容很重要
+
+账号权重（Pinner Quality）
+账号活跃度
+历史 Pin 的平均表现
+粉丝数量和互动率
+内容一致性
+</code></pre>
+<h3 id="pinterest-季节性内容策略关键差异"><a class="header" href="#pinterest-季节性内容策略关键差异">Pinterest 季节性内容策略（关键差异）</a></h3>
+<p>Pinterest 用户提前 3-6 个月搜索，这是与所有其他平台最大的区别：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>节日/季节</th><th>用户开始搜索时间</th><th>内容发布建议时间</th><th>搜索高峰</th></tr>
+</thead>
+<tbody>
+<tr><td>情人节</td><td>11 月</td><td>12 月初</td><td>1-2 月</td></tr>
+<tr><td>春季装修</td><td>12 月</td><td>1 月</td><td>3-4 月</td></tr>
+<tr><td>夏季户外</td><td>2 月</td><td>3 月</td><td>5-7 月</td></tr>
+<tr><td>返校季</td><td>4 月</td><td>5 月</td><td>7-8 月</td></tr>
+<tr><td>万圣节</td><td>6 月</td><td>7 月</td><td>9-10 月</td></tr>
+<tr><td>感恩节</td><td>7 月</td><td>8 月</td><td>10-11 月</td></tr>
+<tr><td>圣诞节</td><td>7 月</td><td>8 月</td><td>10-12 月</td></tr>
+<tr><td>新年</td><td>10 月</td><td>11 月</td><td>12-1 月</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>AI 季节性内容规划 Prompt（增强版）：</strong></p>
+<pre><code>你是一个 Pinterest 季节性内容策略专家。
+
+我的品类：[X]
+当前月份：[X]
+目标市场：[US/EU]
+
+请生成未来 6 个月的 Pinterest 季节性内容日历：
+
+每个月提供：
+1. 当月应该发布的内容主题（针对 3-6 个月后的节日/季节）
+2. 5 个 Pin 选题（标题+描述+关键词）
+3. 推荐的 Board 分类
+4. 热门搜索词预测
+5. 竞品可能忽略的长尾机会
+
+注意：
+- Pinterest 用户提前 3-6 个月搜索
+- 现在发布的内容是为了 3-6 个月后的流量
+- 季节性内容的 Save 率通常比常青内容高 2-3 倍
+</code></pre>
+<hr>
+<h2 id="76-pinterest-shopping-深度实操"><a class="header" href="#76-pinterest-shopping-深度实操">7.6 Pinterest Shopping 深度实操</a></h2>
+<h3 id="product-catalog-设置与优化"><a class="header" href="#product-catalog-设置与优化">Product Catalog 设置与优化</a></h3>
+<pre><code>Pinterest Product Catalog 设置流程：
+
+Step 1: 验证域名
+在 Pinterest Business 后台验证你的网站域名
+支持 Shopify 一键验证
+验证后所有从你网站 Pin 的内容都会关联到你的账号
+
+Step 2: 创建 Product Catalog
+方式 1：Shopify 集成（推荐，自动同步）
+方式 2：手动上传 Data Feed（CSV/XML）
+方式 3：通过 Catalog Manager API
+产品数据要求：标题、描述、价格、图片 URL、产品 URL、库存状态
+
+Step 3: 优化 Product Feed
+标题：包含搜索关键词（与 Pinterest 搜索习惯匹配）
+描述：生活方式导向（不是 Amazon 风格的参数罗列）
+图片：竖版 2:3，生活方式场景图优先
+价格：准确、实时更新
+品类分类：选择最精确的 Google Product Category
+自定义标签：用于广告分组（季节性/价格带/利润率）
+
+Step 4: 设置 Rich Pins
+Product Rich Pins：自动显示价格、库存状态、购买链接
+需要在网站添加 Open Graph 或 Schema.org 标记
+Shopify 自动支持
+验证：使用 Pinterest Rich Pin Validator
+</code></pre>
+<h3 id="pinterest-shopping-ads-深度优化"><a class="header" href="#pinterest-shopping-ads-深度优化">Pinterest Shopping Ads 深度优化</a></h3>
+<pre><code>你是一个 Pinterest Shopping Ads 优化专家。
+
+我的产品目录：[X] 个产品
+月广告预算：$[X]
+目标 ROAS：[X]
+
+请设计 Pinterest Shopping Ads 策略：
+
+1. Campaign 结构
+- 按品类/季节/利润率分组
+- 每个 Ad Group 的产品数量建议
+- 预算分配比例
+
+2. 定向策略
+- 关键词定向（搜索广告）
+- 兴趣定向（发现广告）
+- 受众定向（网站访客再营销）
+- Actalike 受众（类似 Lookalike）
+
+3. 出价策略
+- 自动出价 vs 手动出价
+- 按品类的建议 CPC 范围
+- 季节性出价调整
+
+4. 创意优化
+- 标准 Shopping Pin vs Collection Ad
+- 图片风格建议（Pinterest 用户偏好）
+- 文案优化（标题+描述）
+
+5. 数据分析
+- 关键指标：ROAS、CPC、CTR、Save Rate
+- 优化频率：每周检查，每月大调整
+- A/B 测试计划
+</code></pre>
+<h3 id="pinterest-vs-meta-ads-详细对比"><a class="header" href="#pinterest-vs-meta-ads-详细对比">Pinterest vs Meta Ads 详细对比</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>维度</th><th>Pinterest Ads</th><th>Meta Ads (Instagram/FB)</th></tr>
+</thead>
+<tbody>
+<tr><td>用户意图</td><td>高（主动搜索产品/灵感）</td><td>中（被动浏览社交内容）</td></tr>
+<tr><td>平均 CPC</td><td>$0.10-0.50</td><td>$0.50-2.00</td></tr>
+<tr><td>平均 CPM</td><td>$2-5</td><td>$5-15</td></tr>
+<tr><td>转化路径</td><td>搜索→Save→点击→购买（较长但高意图）</td><td>浏览→点击→购买（较短但低意图）</td></tr>
+<tr><td>最强品类</td><td>家居/时尚/美妆/DIY/婚礼/食品</td><td>全品类</td></tr>
+<tr><td>受众规模</td><td>6.19 亿 MAU</td><td>30 亿 MAU</td></tr>
+<tr><td>内容寿命</td><td>长（Pin 可持续获得流量数月）</td><td>短（广告停止即无流量）</td></tr>
+<tr><td>再营销</td><td>支持（网站访客+Pin 互动者）</td><td>支持（更成熟）</td></tr>
+<tr><td>AI 优化</td><td>基础（自动出价+受众扩展）</td><td>成熟（Advantage+ 全自动）</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>预算分配建议</strong>：如果你的品类在 Pinterest 强势品类中（家居/时尚/美妆/DIY），建议将 20-30% 的社交广告预算分配给 Pinterest。Pinterest 的 CPC 更低，用户购买意图更高，长期 ROI 通常优于 Meta Ads。</p>
+</blockquote>
+<hr>
+<h2 id="77-pinterest-数据分析深度指南"><a class="header" href="#77-pinterest-数据分析深度指南">7.7 Pinterest 数据分析深度指南</a></h2>
+<h3 id="ai-数据分析-prompt增强版"><a class="header" href="#ai-数据分析-prompt增强版">AI 数据分析 Prompt（增强版）</a></h3>
+<pre><code>你是一个 Pinterest 数据分析专家。
+
+以下是我的 Pinterest 账号过去 30 天的数据：
+
+账号数据：
+- 总展示：[X]
+- 总保存：[X]（Save Rate: [X]%）
+- 总外链点击：[X]（Outbound CTR: [X]%）
+- 总 Pin 点击：[X]
+- 粉丝增长：+[X]
+- 发布 Pin 数：[X]
+
+Top 5 Pin 表现：
+| Pin 标题 | Board | 展示 | 保存 | 外链点击 | Save Rate |
+[粘贴数据]
+
+Bottom 5 Pin 表现：
+| Pin 标题 | Board | 展示 | 保存 | 外链点击 | Save Rate |
+[粘贴数据]
+
+广告数据（如果有）：
+- 总花费：$[X]
+- ROAS：[X]
+- CPC：$[X]
+- 最佳广告组：[描述]
+
+请分析：
+1. 整体表现评估（与 Pinterest 行业基准对比：Save Rate &gt;1% 为好，Outbound CTR &gt;0.5% 为好）
+2. 表现最好的 Pin 有什么共同特征？（图片风格/标题/Board/关键词）
+3. 表现最差的 Pin 问题在哪？
+4. Board 策略是否需要调整？
+5. 关键词策略优化建议
+6. 季节性内容规划建议（基于当前月份）
+7. 广告优化建议（如果有广告数据）
+8. 下月的 10 个 Pin 选题建议
+</code></pre>
+<hr>
+<h2 id="8-完成标志"><a class="header" href="#8-完成标志">8. 完成标志</a></h2>
+<ul>
+<li><input disabled="" type="checkbox"> 设置 Pinterest Business 账号 + 域名验证</li>
+<li><input disabled="" type="checkbox"> 创建 8-12 个优化过的 Board</li>
+<li><input disabled="" type="checkbox"> 用 AI 批量生成 30+ 个 Pin</li>
+<li><input disabled="" type="checkbox"> 设置 Product Catalog + Rich Pins</li>
+<li><input disabled="" type="checkbox"> 运行 Pinterest Shopping Ads 并优化</li>
+</ul>
+<hr>
+<blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path E 总览</a></p>
+<p><strong>Path E</strong>: <a href="e1-instagram-facebook-ai-guide.html">E1 Instagram</a> · <a href="e2-youtube-ai-guide.html">E2 YouTube</a> · <a href="e3-xiaohongshu-ai-guide.html">E3 小红书</a> · <a href="e4-pinterest-ai-guide.html">E4 Pinterest</a> · <a href="e5-whatsapp-business-ai-guide.html">E5 WhatsApp</a> · <a href="e6-reddit-ai-guide.html">E6 Reddit</a> · <a href="e7-social-media-cross-channel.html">E7 跨渠道</a></p>
+<p><strong>快速跳转</strong>: <a href="../0-foundations/">Path 0 基础</a> · <a href="../a-operators/">Path A 运营</a> · <a href="../b-developers/">Path B 技术</a> · <a href="../c-managers/">Path C 管理</a> · <a href="../d-platforms/">Path D 多平台</a></p>
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../e-social-media/e3-xiaohongshu-ai-guide.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../e-social-media/e5-whatsapp-business-ai-guide.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../e-social-media/e3-xiaohongshu-ai-guide.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../e-social-media/e5-whatsapp-business-ai-guide.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../mermaid-217b66ef.min.js"></script>
+        <script src="../mermaid-init-d4730691.js"></script>
+
+
+
+    </div>
+    </body>
+</html>

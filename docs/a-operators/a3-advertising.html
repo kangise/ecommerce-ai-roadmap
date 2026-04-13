@@ -1,0 +1,1376 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>广告优化 - 跨境电商 AI 实战知识库</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="跨境电商 AI 实操手册 — 56 篇指南，从选品到增长，每个环节都有可直接复制的 Prompt">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom-467616e9.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "ayu";
+            window.path_to_searchindex_js = "../searchindex-656d55b3.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-e97a050e.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">跨境电商 AI 实战知识库</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap/edit/main/src/src/a-operators/a3-advertising.md" title="Suggest an edit" aria-label="Suggest an edit" rel="edit">
+                            <span class=fa-svg id="git-edit-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M421.7 220.3l-11.3 11.3-22.6 22.6-205 205c-6.6 6.6-14.8 11.5-23.8 14.1L30.8 511c-8.4 2.5-17.5 .2-23.7-6.1S-1.5 489.7 1 481.2L38.7 353.1c2.6-9 7.5-17.2 14.1-23.8l205-205 22.6-22.6 11.3-11.3 33.9 33.9 62.1 62.1 33.9 33.9zM96 353.9l-9.3 9.3c-.9 .9-1.6 2.1-2 3.4l-25.3 86 86-25.3c1.3-.4 2.5-1.1 3.4-2l9.3-9.3H112c-8.8 0-16-7.2-16-16V353.9zM453.3 19.3l39.4 39.4c25 25 25 65.5 0 90.5l-14.5 14.5-22.6 22.6-11.3 11.3-33.9-33.9-62.1-62.1L314.3 67.7l11.3-11.3 22.6-22.6 14.5-14.5c25-25 65.5-25 90.5 0z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="a3-广告优化--advertising-optimization"><a class="header" href="#a3-广告优化--advertising-optimization">A3. 广告优化 | Advertising Optimization</a></h1>
+<blockquote>
+<p><strong>路径</strong>: Path A: 运营人 · <strong>模块</strong>: A3
+<strong>最后更新</strong>: 2026-03-12
+<strong>难度</strong>: 进阶
+<strong>预计时间</strong>: 每天 30 分钟，1-2 周</p>
+</blockquote>
+<hr>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path A 总览</a></p>
+<pre><code class="language-mermaid">flowchart LR
+A1["A1 选品与市场"]
+A1 --&gt; A2
+A2["A2 Listing 创作"]
+A2 --&gt; A3
+A3[" A3 广告优化&lt;br/&gt;（当前）"]:::current
+A3 --&gt; A4
+A4["A4 客服售后"]
+A4 --&gt; A5
+A5["A5 库存供应链"]
+A5 --&gt; A6
+A6["A6 合规风控"]
+classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
+</code></pre>
+<hr>
+<h2 id="本模块章节导航"><a class="header" href="#本模块章节导航">本模块章节导航</a></h2>
+<ol>
+<li><a href="#1-广告方法论ai-之前你需要理解的基础">广告方法论</a> · 2. <a href="#2-ai-工具全景广告阶段用什么">AI 工具全景</a> · 3. <a href="#3-prompt-模板库广告专用">Prompt 模板库</a> · 4. <a href="#4-广告实战工作流">广告实战工作流</a> · 5. <a href="#5-常见广告陷阱">常见陷阱</a> · 6. <a href="#6-进阶技巧">进阶技巧</a> · 7. <a href="#7-学习资源">学习资源</a> · 8. <a href="#8-用-openclaw-自动化广告优化"> OpenClaw 自动化</a> · 9. <a href="#9-完成标志">完成标志</a></li>
+</ol>
+<h2 id="本模块你将学会"><a class="header" href="#本模块你将学会">本模块你将学会</a></h2>
+<p>用 AI 工具把需要数小时的广告数据分析压缩到 30 分钟。从搜索词报告分析到出价优化，建立一套可复用的 AI 辅助广告管理工作流。</p>
+<p>完成本模块后，你将能够：</p>
+<ul>
+<li>用 ChatGPT/Claude 分析搜索词报告，10 分钟找出高 ROAS 关键词和需要否定的浪费词</li>
+<li>用 AI 生成 Sponsored Brands 广告文案的多种变体，做 A/B 测试</li>
+<li>用 AI 制定新品 30 天广告启动计划，从 Auto 到 Manual 的关键词收割流程</li>
+<li>理解 ACOS/TACOS/ROAS 的关系，用 AI 做广告预算分配优化</li>
+<li>用 AI 诊断广告效果下滑的根因，快速定位问题</li>
+<li>了解 2026 年新趋势：Amazon Ads MCP Server 如何让 AI Agent 直接管理广告</li>
+</ul>
+<hr>
+<h2 id="1-广告方法论ai-之前你需要理解的基础"><a class="header" href="#1-广告方法论ai-之前你需要理解的基础">1. 广告方法论：AI 之前你需要理解的基础</a></h2>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="../d-platforms/d4-walmart-ai-guide.html">D4 Walmart AI 指南</a> Walmart Connect 广告（第一价格竞价）详见 D4 · <a href="../e-social-media/e1-instagram-facebook-ai-guide.html">E1 Instagram/Facebook AI 指南</a> Meta Advantage+ AI 广告素材生成和优化详见 E1。 · <a href="../e-social-media/e7-social-media-cross-channel.html">E7 跨渠道协同</a> 跨渠道广告归因和预算分配框架详见 E7。</p>
+</blockquote>
+<h3 id="11-amazon-广告的第一性原理"><a class="header" href="#11-amazon-广告的第一性原理">1.1 Amazon 广告的第一性原理</a></h3>
+<p>Amazon PPC 广告的本质是“花钱买精准流量，用转化率把流量变成利润“。</p>
+<p>Amazon 的 PPC 竞价机制采用第二价格拍卖（Second-Price Auction）：</p>
+<pre><code>你实际支付的 CPC = 第二高出价 + $0.01
+</code></pre>
+<p>这意味着你不需要出最高价，只需要比第二名多 $0.01。但广告排名不只看出价：</p>
+<pre><code>广告排名 = 出价 × 相关性 × 转化率
+</code></pre>
+<ul>
+<li><strong>出价</strong>：你愿意为每次点击支付的最高金额</li>
+<li><strong>相关性</strong>：你的关键词和 Listing 与用户搜索意图的匹配程度</li>
+<li><strong>转化率</strong>：用户点击广告后实际购买的比例</li>
+</ul>
+<blockquote>
+<p><strong>核心洞察</strong>：很多卖家以为“出价越高排名越好“。但如果你的 Listing 转化率高，即使出价比竞品低，广告排名也可能更好。这就是为什么广告优化不能脱离 Listing 优化 参考 <a href="a2-listing-optimization.html">A2 Listing 模块</a>。</p>
+</blockquote>
+<h3 id="12-acos--tacos--roas-的关系和计算"><a class="header" href="#12-acos--tacos--roas-的关系和计算">1.2 ACOS / TACOS / ROAS 的关系和计算</a></h3>
+<p>这三个指标是广告优化的核心语言，必须理解透彻：</p>
+<pre><code>ACOS (Advertising Cost of Sales) = 广告花费 / 广告销售额 × 100%
+</code></pre>
+<ul>
+<li>例：花了 $100 广告费，带来 $400 广告销售额 → ACOS = 25%</li>
+<li>含义：每赚 $1 广告销售额，花了 $0.25 的广告费</li>
+<li>目标：ACOS &lt; 产品利润率（否则广告在亏钱）</li>
+</ul>
+<pre><code>TACOS (Total Advertising Cost of Sales) = 广告花费 / 总销售额 × 100%
+</code></pre>
+<ul>
+<li>例：花了 $100 广告费，总销售额（广告 + 自然）$1000 → TACOS = 10%</li>
+<li>含义：广告花费占总收入的比例</li>
+<li>目标：TACOS 持续下降 = 自然流量在增长，广告依赖在减少</li>
+</ul>
+<pre><code>ROAS (Return on Ad Spend) = 广告销售额 / 广告花费
+</code></pre>
+<ul>
+<li>例：花了 $100 广告费，带来 $400 广告销售额 → ROAS = 4.0</li>
+<li>含义：每花 $1 广告费，赚回 $4 销售额</li>
+<li>关系：ROAS = 1 / ACOS（ACOS 25% = ROAS 4.0）</li>
+</ul>
+<p><strong>为什么 TACOS 比 ACOS 更重要？</strong></p>
+<p>ACOS 只看广告本身的效率，但广告的真正目的不只是直接销售 还有推动关键词的自然排名（organic rank flywheel）：</p>
+<pre><code>广告带来销量 → 销量提升关键词自然排名 → 自然流量增加 → 总销售额增长 → TACOS 下降
+</code></pre>
+<p>一个 ACOS 40% 的广告看起来“亏钱“，但如果它推动了自然排名上升，导致 TACOS 从 15% 降到 10%，那这个广告其实是赚钱的。AI 可以帮你监控这个飞轮效应。</p>
+<h3 id="13-广告类型全景"><a class="header" href="#13-广告类型全景">1.3 广告类型全景</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>类型</th><th>Sponsored Products (SP)</th><th>Sponsored Brands (SB)</th><th>Sponsored Display (SD)</th><th>DSP</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>展示位置</strong></td><td>搜索结果页、产品详情页</td><td>搜索结果顶部横幅</td><td>产品详情页、站外</td><td>站内外全渠道</td></tr>
+<tr><td><strong>竞价方式</strong></td><td>CPC（按点击付费）</td><td>CPC</td><td>CPC / vCPM</td><td>CPM（按展示付费）</td></tr>
+<tr><td><strong>最低预算</strong></td><td>无最低</td><td>$1/天</td><td>$1/天</td><td>$10,000+/月（通常）</td></tr>
+<tr><td><strong>适合阶段</strong></td><td>所有阶段（必备）</td><td>品牌注册后</td><td>品牌注册后</td><td>大卖家/品牌</td></tr>
+<tr><td><strong>核心目标</strong></td><td>直接转化、关键词排名</td><td>品牌曝光、品类占位</td><td>再营销、竞品拦截</td><td>全漏斗营销</td></tr>
+<tr><td><strong>AI 优化空间</strong></td><td>搜索词分析、出价优化</td><td>文案 A/B 测试</td><td>受众分析</td><td>预算分配</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>新手应该从哪种开始？</strong></p>
+<pre><code>SP Auto → SP Manual → SB → SD
+</code></pre>
+<ol>
+<li><strong>SP Auto</strong>（第 1 周）：让 Amazon 自动匹配关键词，收集数据</li>
+<li><strong>SP Manual</strong>（第 2 周起）：从 Auto 中提取高转化关键词，创建手动广告</li>
+<li><strong>SB</strong>（品牌注册后）：用品牌广告占据搜索结果顶部</li>
+<li><strong>SD</strong>（有一定销量后）：再营销和竞品拦截</li>
+</ol>
+<h3 id="14-ai-在广告中的角色定位"><a class="header" href="#14-ai-在广告中的角色定位">1.4 AI 在广告中的角色定位</a></h3>
+<p>AI 擅长的：</p>
+<ul>
+<li><strong>搜索词分析</strong>：从几千行搜索词报告中找出高 ROAS 词和浪费词</li>
+<li><strong>出价优化建议</strong>：基于历史数据建议每个关键词的最优出价</li>
+<li><strong>否定词发现</strong>：找出花钱但不转化的无关搜索词</li>
+<li><strong>文案变体生成</strong>：为 SB 广告生成多种 Headline 做 A/B 测试</li>
+<li><strong>预算分配建议</strong>：基于各广告组的 ROAS 建议预算重新分配</li>
+<li><strong>趋势分析</strong>：对比不同时间段的广告表现，发现趋势变化</li>
+</ul>
+<p>AI 不擅长的：</p>
+<ul>
+<li><strong>实时竞价</strong>：需要专业工具（Helium 10 Adtomic、Perpetua）做自动化竞价</li>
+<li><strong>创意设计</strong>：SB Video 和 SD 的视觉创意需要设计工具</li>
+<li><strong>品牌策略</strong>：广告的整体策略（防守 vs 进攻、品牌 vs 效果）需要人做决策</li>
+<li><strong>预算决策</strong>：总预算多少取决于业务目标和现金流，不是 AI 能决定的</li>
+</ul>
+<blockquote>
+<p><strong>核心原则</strong>：用工具获取广告数据，用 AI 做分析和建议，用人做策略决策和执行。AI 是你的广告分析师，不是广告经理。</p>
+</blockquote>
+<hr>
+<h2 id="2-ai-工具全景广告阶段用什么"><a class="header" href="#2-ai-工具全景广告阶段用什么">2. AI 工具全景：广告阶段用什么</a></h2>
+<h3 id="21-付费工具深度评测"><a class="header" href="#21-付费工具深度评测">2.1 付费工具深度评测</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>工具</th><th>价格</th><th>核心能力</th><th>适合谁</th><th>AI 功能</th></tr>
+</thead>
+<tbody>
+<tr><td><a href="https://h10-wp.com/helium-10-adtomic/">Helium 10 Adtomic</a></td><td>$229/月 (Platinum 含)</td><td>AI 驱动的竞价自动化，规则引擎 + AI 建议</td><td>进阶卖家，需要自动化竞价管理</td><td>AI 出价建议、自动否定词、预算优化</td></tr>
+<tr><td>Jungle Scout PPC Manager</td><td>$49-84/月</td><td>简化版广告管理，关键词建议</td><td>新手卖家，界面友好</td><td>基础 AI 关键词建议</td></tr>
+<tr><td>Perpetua (by Ascential)</td><td>按广告花费 % 收费</td><td>企业级 AI 广告优化，自动竞价+预算分配</td><td>月广告花费 $5000+ 的卖家</td><td>全自动 AI 竞价、目标 ACOS 优化</td></tr>
+<tr><td>Pacvue</td><td>企业定价</td><td>多平台广告管理（Amazon+Walmart+Instacart）</td><td>大卖家/代理商</td><td>AI 预算分配、跨平台优化</td></tr>
+<tr><td><a href="https://www.deepbi.com/blog/13/">DeepBI</a></td><td>按广告花费 % 收费</td><td>AI 广告管理，新手友好，每小时调整出价</td><td>中小卖家，想要全托管</td><td>全自动 AI 管理，案例：ACOS 从 55% 降到 43%</td></tr>
+<tr><td>Quartile</td><td>按广告花费 % 收费</td><td>AI 驱动的全渠道广告优化</td><td>多渠道卖家</td><td>AI 自动创建广告组、关键词发现</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>工具选择建议：</strong></p>
+<p><strong>预算有限（&lt;$50/月）</strong>：Amazon Advertising Console + ChatGPT/Claude</p>
+<ul>
+<li>Amazon 官方广告后台是免费的，功能足够中小卖家使用</li>
+<li>每周下载搜索词报告，用 ChatGPT 分析（见第 3 节 Prompt 模板）</li>
+<li>手动调整出价和否定词</li>
+</ul>
+<p><strong>认真做（$100-300/月）</strong>：Helium 10 Adtomic</p>
+<ul>
+<li>Adtomic 的 AI 竞价自动化可以节省大量时间</li>
+<li>规则引擎让你设定“ACOS &gt; 40% 自动降低出价“等规则</li>
+<li>配合 ChatGPT 做深度搜索词分析</li>
+</ul>
+<p><strong>月广告花费 $5000+</strong>：Perpetua 或 DeepBI</p>
+<ul>
+<li>广告花费大了之后，手动管理效率太低</li>
+<li>Perpetua 的目标 ACOS 优化适合有明确利润目标的卖家</li>
+<li>DeepBI 的全托管模式适合不想花时间管理广告的卖家</li>
+</ul>
+<blockquote>
+<p><strong>关键洞察</strong>：广告工具的核心价值是自动化执行，不是策略制定。工具能帮你自动调出价、自动加否定词，但“应该把预算集中在哪些关键词上“这个策略问题，还是需要你（或 AI 分析）来决定。最佳组合：用 Adtomic/Perpetua 做自动化执行，用 ChatGPT/Claude 做策略分析。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions. Sources: <a href="https://www.deepbi.com/blog/13/">deepbi.com AI PPC</a>, <a href="https://aijourn.com/amazon-ppc-optimization-tool/">aijourn.com PPC optimization</a>, <a href="https://www.algofy.com/post/best-ai-tools-for-amazon-sellers-in-2026">algofy.com AI tools 2026</a></p>
+<h3 id="22-免费工具组合"><a class="header" href="#22-免费工具组合">2.2 免费工具组合</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>工具</th><th>用途</th><th>链接</th></tr>
+</thead>
+<tbody>
+<tr><td>ChatGPT / Claude</td><td>搜索词报告分析、否定词发现、文案生成、预算分配建议</td><td><a href="https://chat.openai.com/">chat.openai.com</a> / <a href="https://claude.ai/">claude.ai</a></td></tr>
+<tr><td>Amazon Advertising Console</td><td>官方免费广告管理工具，创建/管理所有广告类型</td><td><a href="https://advertising.amazon.com/">advertising.amazon.com</a></td></tr>
+<tr><td>Amazon Brand Analytics</td><td>搜索词排名数据、市场篮子分析、人群画像</td><td>Seller Central → Brand Analytics</td></tr>
+<tr><td>Amazon Attribution</td><td>站外流量追踪（Google Ads、社交媒体等）</td><td><a href="https://advertising.amazon.com/">advertising.amazon.com/attribution</a></td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>免费工具的使用策略：</strong></p>
+<ol>
+<li><strong>Amazon Advertising Console 是基础</strong>：所有广告操作都在这里完成。即使用了第三方工具，也需要理解官方后台的功能。</li>
+<li><strong>搜索词报告是金矿</strong>：每周下载搜索词报告（Advertising → Reports → Search Term Report），这是广告优化最重要的数据源。用 ChatGPT 分析比手动看快 10 倍。</li>
+<li><strong>Brand Analytics 做竞品情报</strong>：搜索词排名数据告诉你竞品在哪些关键词上有广告，市场篮子分析告诉你用户还买了什么。</li>
+<li><strong>Amazon Attribution 追踪站外流量</strong>：如果你在 Google Ads 或社交媒体上投放广告引流到 Amazon，Attribution 可以追踪转化效果。</li>
+</ol>
+<h3 id="23-开源工具与-api"><a class="header" href="#23-开源工具与-api">2.3 开源工具与 API</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>工具/API</th><th>用途</th><th>GitHub/链接</th></tr>
+</thead>
+<tbody>
+<tr><td>Amazon Advertising API</td><td>通过 API 批量管理广告（创建、调整出价、下载报告）</td><td><a href="https://advertising.amazon.com/API/">advertising.amazon.com/API</a></td></tr>
+<tr><td>python-amazon-sp-api</td><td>SP-API Python 封装，含广告相关接口</td><td><a href="https://github.com/saleweaver/python-amazon-sp-api">github.com/saleweaver/python-amazon-sp-api</a></td></tr>
+<tr><td>pandas + matplotlib</td><td>搜索词报告数据分析和可视化</td><td>Python 标准数据分析栈</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>什么时候用开源工具？</strong></p>
+<p>如果你管理 10+ 个广告活动或需要批量操作，API 可以：</p>
+<ul>
+<li><strong>批量调整出价</strong>：根据 AI 分析结果，一次性调整几百个关键词的出价</li>
+<li><strong>自动下载报告</strong>：定时拉取搜索词报告，自动喂给 AI 分析</li>
+<li><strong>自定义仪表盘</strong>：用 pandas + matplotlib 构建自己的广告分析仪表盘</li>
+</ul>
+<blockquote>
+<p>更多技术实现细节，参考 <a href="../b-developers/">Path B: 技术人</a> 的相关模块。</p>
+</blockquote>
+<hr>
+<h2 id="3-prompt-模板库广告专用"><a class="header" href="#3-prompt-模板库广告专用">3. Prompt 模板库（广告专用）</a></h2>
+<blockquote>
+<p>本节提供每个模板的深度解析、常见错误和进阶变体。</p>
+</blockquote>
+<h3 id="31-搜索词报告分析"><a class="header" href="#31-搜索词报告分析">3.1 搜索词报告分析</a></h3>
+<p><strong>为什么这个 Prompt 有效：</strong> 它要求 AI 按 ROAS 排序并用表格输出，避免了 AI 常见的“泛泛而谈“问题。分成 5 个明确的输出类别（高转化、高浪费、高展示低点击、否定词、预算分配），每个类别都有具体的操作建议。关键设计点：</p>
+<ul>
+<li>“按 ROAS 排序” 强制 AI 做量化排序而非主观判断</li>
+<li>“标注每个关键词的建议操作和优先级” 直接导向行动</li>
+<li>“精确否定 vs 短语否定” 区分否定类型，避免过度否定</li>
+</ul>
+<p><strong>常见错误：</strong></p>
+<ul>
+<li>数据量太少（&lt;7 天）→ 广告数据有归因延迟（7-14 天），至少用 30 天数据分析</li>
+<li>不区分匹配类型 → Broad、Phrase、Exact 的搜索词表现差异很大，应该分开分析</li>
+<li>忽略展示量高但零点击的词 → 这些词说明你的广告展示了但没人点击，可能是 Listing 主图或价格问题</li>
+<li>只看 ACOS 不看 TACOS → 一个 ACOS 高的关键词可能在推动自然排名，需要看整体效果</li>
+</ul>
+<p><strong>进阶变体：</strong></p>
+<p><strong>变体 A 按匹配类型分层分析：</strong></p>
+<pre><code>以下是我的搜索词报告数据（过去 30 天），请按匹配类型分层分析：
+
+Broad Match 搜索词：[粘贴数据]
+Phrase Match 搜索词：[粘贴数据]
+Exact Match 搜索词：[粘贴数据]
+
+请分别分析每种匹配类型的表现：
+1. 每种匹配类型的整体 ACOS 和 ROAS
+2. Broad Match 中发现的新关键词机会（应该提升为 Exact Match）
+3. Phrase Match 中需要否定的无关词
+4. Exact Match 中出价需要调整的关键词
+5. 三种匹配类型的预算分配建议
+</code></pre>
+<blockquote>
+<p><strong>为什么用这个变体</strong>：Broad Match 是“关键词发现器“，Exact Match 是“利润收割器“。分层分析能帮你建立从 Broad → Phrase → Exact 的关键词收割流程。</p>
+</blockquote>
+<p><strong>变体 B 时间趋势分析（周度/月度对比）：</strong></p>
+<pre><code>以下是我的广告数据，分为两个时间段：
+上月数据：[粘贴]
+本月数据：[粘贴]
+
+请对比分析：
+1. 整体 ACOS/ROAS 变化趋势及原因分析
+2. 哪些关键词的表现在改善？哪些在恶化？
+3. CPC 变化趋势（竞争是否在加剧？）
+4. 转化率变化趋势（Listing 是否需要优化？）
+5. 基于趋势，下个月的优化重点建议
+</code></pre>
+<blockquote>
+<p><strong>为什么用这个变体</strong>：单次分析只能看到“现在怎么样“，趋势分析能看到“在变好还是变差“。CPC 持续上升可能意味着竞争加剧，需要调整策略。</p>
+</blockquote>
+<p><strong>变体 C 竞品 ASIN 定向分析：</strong></p>
+<pre><code>以下是我的 Product Targeting（ASIN 定向）广告数据：
+[粘贴数据：目标 ASIN、展示量、点击量、花费、订单数]
+
+请分析：
+1. 哪些竞品 ASIN 的定向广告 ROAS 最高？（我应该加大投放）
+2. 哪些竞品 ASIN 花钱但不转化？（我应该停止定向）
+3. 基于高转化的竞品特征，推荐新的定向 ASIN
+4. 竞品定向 vs 关键词定向的整体效率对比
+</code></pre>
+<blockquote>
+<p><strong>为什么用这个变体</strong>：ASIN 定向广告让你的产品出现在竞品的详情页上。分析哪些竞品的流量最容易被你转化，就知道你的产品对哪类竞品最有竞争力。</p>
+</blockquote>
+<hr>
+<h3 id="32-广告文案-ab-测试"><a class="header" href="#32-广告文案-ab-测试">3.2 广告文案 A/B 测试</a></h3>
+<p><strong>为什么这个 Prompt 有效：</strong> 5 种风格强制 AI 做差异化，避免生成 5 个看起来差不多的 Headline。每种风格对应不同的用户心理，让你测试哪种风格最能打动你的目标客户。</p>
+<p><strong>常见错误：</strong></p>
+<ul>
+<li>Headline 超过 50 字符 → Sponsored Brands Headline 限制 50 字符，超出会被截断</li>
+<li>不标注目标受众 → 不同受众对不同风格的反应不同，测试前要明确目标</li>
+<li>同时测试太多变体 → 每次只测 2 个变体（A/B），不要同时测 5 个</li>
+<li>测试时间太短 → 至少运行 2 周，积累足够的点击数据才有统计意义</li>
+</ul>
+<p><strong>进阶变体：</strong></p>
+<p><strong>变体 A Sponsored Brands Video 脚本：</strong></p>
+<pre><code>我的产品是 [产品描述]，核心卖点是 [卖点]。
+
+请为 Sponsored Brands Video 广告生成 3 个不同风格的 15 秒脚本：
+
+脚本1：问题-解决型
+- 开头（0-3秒）：展示用户痛点
+- 中间（3-10秒）：产品如何解决
+- 结尾（10-15秒）：CTA + 核心卖点
+
+脚本2：演示型
+- 开头（0-3秒）：产品外观展示
+- 中间（3-10秒）：核心功能演示
+- 结尾（10-15秒）：规格 + CTA
+
+脚本3：社交证明型
+- 开头（0-3秒）：用户好评引用
+- 中间（3-10秒）：产品使用场景
+- 结尾（10-15秒）：评分 + CTA
+
+每个脚本标注：画面建议、文字叠加内容、背景音乐风格建议。
+</code></pre>
+<blockquote>
+<p><strong>为什么用这个变体</strong>：SB Video 的 CTR 通常比静态 SB 广告高 2-3 倍。15 秒脚本的关键是前 3 秒抓住注意力 AI 可以帮你设计多种“钩子“。</p>
+</blockquote>
+<p><strong>变体 B Sponsored Display 创意文案：</strong></p>
+<pre><code>我的产品是 [产品描述]，目标是做竞品拦截（在竞品详情页展示我的广告）。
+
+请为 Sponsored Display 广告生成 3 组创意文案：
+
+组1：价格优势型（适合我的价格比竞品低的情况）
+- Headline: [不超过 50 字符]
+- Custom Image 文案建议
+
+组2：功能优势型（适合我的产品有竞品没有的功能）
+- Headline: [不超过 50 字符]
+- Custom Image 文案建议
+
+组3：评价优势型（适合我的评分比竞品高的情况）
+- Headline: [不超过 50 字符]
+- Custom Image 文案建议
+
+注意：SD 广告出现在竞品详情页，用户正在考虑买竞品。文案需要给用户一个"转向你"的理由。
+</code></pre>
+<hr>
+<h3 id="33-否定关键词策略"><a class="header" href="#33-否定关键词策略">3.3 否定关键词策略</a></h3>
+<p><strong>为什么这个 Prompt 重要：</strong> 否定词是降低 ACOS 最快的方法。一个不相关的搜索词每天花 $2，一个月就是 $60 的浪费。AI 可以从几千行搜索词报告中快速找出所有需要否定的词。</p>
+<p><strong>常见错误：</strong></p>
+<ul>
+<li>过度否定导致流量断崖 → 否定了太多词，广告展示量骤降。建议每次否定不超过 20 个词，观察 3 天后再继续。</li>
+<li>不区分精确否定和短语否定 → 精确否定只屏蔽完全匹配的搜索词，短语否定会屏蔽包含该短语的所有搜索词。用错了会误伤有效流量。</li>
+<li>只否定不转化的词，不否定不相关的词 → 有些词虽然有少量转化，但完全不相关（如卖手机壳的广告出现在“手机“搜索中），长期来看会拉低广告质量分。</li>
+</ul>
+<pre><code>你是一个 Amazon PPC 否定关键词专家。
+
+以下是我的搜索词报告（过去 30 天）：
+[粘贴数据：搜索词、匹配类型、展示量、点击量、花费、订单数、销售额]
+
+我的产品是：[产品描述]
+我的目标 ACOS：[X]%
+
+请生成否定关键词列表：
+
+1. **精确否定列表**（Negative Exact）：
+- 完全不相关的搜索词（与产品无关）
+- 花费 &gt; $[X] 但零转化的搜索词
+
+2. **短语否定列表**（Negative Phrase）：
+- 包含某个词根的一系列不相关搜索词（如所有包含"free"的搜索词）
+
+3. **观察列表**（暂不否定，继续观察）：
+- 花费中等、有少量转化但 ACOS 偏高的词
+- 建议观察时间和判断标准
+
+每个否定词标注：否定原因、预计节省的月度花费、风险评估（是否可能误伤有效流量）。
+</code></pre>
+<p><strong>进阶变体 否定词审计（检查是否过度否定）：</strong></p>
+<pre><code>以下是我当前的否定关键词列表：
+[粘贴否定词列表]
+
+我的产品是：[产品描述]
+最近 2 周广告展示量下降了 [X]%。
+
+请审计我的否定词列表：
+1. 是否有被误否定的有效关键词？
+2. 哪些短语否定可能误伤了相关搜索词？
+3. 建议移除哪些否定词以恢复流量？
+4. 建议将哪些短语否定改为精确否定（缩小否定范围）？
+</code></pre>
+<blockquote>
+<p><strong>否定词的核心原则</strong>：宁可少否定，不要过度否定。否定一个词很容易，恢复被否定的流量很难。每次否定后观察 3-5 天的数据变化。</p>
+</blockquote>
+<hr>
+<h3 id="34-广告预算分配优化"><a class="header" href="#34-广告预算分配优化">3.4 广告预算分配优化</a></h3>
+<p><strong>为什么这个 Prompt 重要：</strong> 80% 的广告预算应该花在 20% 的高效广告组上。但很多卖家平均分配预算，导致高效广告组预算不足提前下线，低效广告组浪费预算。AI 可以基于历史数据做最优分配。</p>
+<p><strong>常见错误：</strong></p>
+<ul>
+<li>所有广告组平均分配预算 → 高 ROAS 的广告组可能因为预算不足在下午就下线了</li>
+<li>只看 ACOS 分配预算 → 新品期的广告 ACOS 高是正常的，因为目标是推排名不是赚钱</li>
+<li>不考虑广告目标差异 → 品牌防守广告（品牌词）和进攻广告（竞品词）的预算逻辑不同</li>
+<li>大促期间不调整预算 → Prime Day/BFCM 期间流量暴增，日常预算会在几小时内花完</li>
+</ul>
+<pre><code>你是一个 Amazon 广告预算优化专家。
+
+以下是我的各广告活动数据（过去 30 天）：
+[粘贴数据：广告活动名称、日预算、花费、销售额、ACOS、ROAS、展示量、点击量]
+
+总日预算：$[X]
+业务目标：[选择一个]
+- 利润最大化（控制 ACOS）
+- 销量最大化（推排名）
+- 品牌曝光最大化
+
+请建议预算重新分配：
+1. 每个广告活动的建议日预算（总和 = 总日预算）
+2. 调整理由（基于 ROAS、趋势、广告目标）
+3. 哪些广告活动应该暂停或降低预算
+4. 哪些广告活动应该增加预算
+5. 预计调整后的整体 ACOS 和 ROAS 变化
+</code></pre>
+<p><strong>进阶变体 大促期间预算调整策略：</strong></p>
+<pre><code>Prime Day / BFCM 大促即将到来。以下是我的日常广告数据：
+[粘贴日常数据]
+
+请制定大促广告预算策略：
+
+大促前 2 周：
+- 预算应该调整到日常的多少倍？
+- 哪些广告活动需要提前加大投放？
+- 是否需要创建新的广告活动？
+
+大促期间（3-5 天）：
+- 预算应该调整到日常的多少倍？
+- 出价策略（提高多少？哪些词提高？）
+- 实时监控的关键指标和阈值
+
+大促后 1 周：
+- 如何收割大促带来的长尾流量？
+- 预算何时恢复日常水平？
+- 如何分析大促广告效果？
+</code></pre>
+<blockquote>
+<p><strong>预算分配的核心原则</strong>：预算跟着 ROAS 走，但要考虑广告的战略目标。品牌词防守广告即使 ROAS 一般也不能停，因为停了竞品就会抢你的品牌流量。</p>
+</blockquote>
+<hr>
+<h3 id="35-新品广告启动策略"><a class="header" href="#35-新品广告启动策略">3.5 新品广告启动策略</a></h3>
+<p><strong>为什么这个 Prompt 重要：</strong> 新品期的广告策略和成熟产品完全不同。新品没有 Review、没有销售历史、没有关键词排名，广告是获取初始流量的唯一途径。AI 可以帮你设计一个从零开始的 30 天广告启动计划。</p>
+<p><strong>常见错误：</strong></p>
+<ul>
+<li>新品一上来就开 Manual Exact → 没有数据支撑，不知道哪些词转化好。应该先用 Auto 收集数据。</li>
+<li>新品期就追求低 ACOS → 新品期的目标是获取销量和 Review，ACOS 高是正常的</li>
+<li>预算太低 → 新品需要足够的展示量来收集数据。日预算太低（&lt;$10）数据积累太慢。</li>
+<li>不做关键词收割 → Auto 广告发现的高转化词应该及时“收割“到 Manual 广告中</li>
+</ul>
+<pre><code>你是一个 Amazon 新品广告启动专家。
+
+产品信息：
+- 产品名称：[名称]
+- 品类：[品类]
+- 售价：$[X]
+- 目标市场：Amazon [US/DE/JP]
+- 竞品平均 Review 数：[X] 条
+- 我的 Review 数：0（新品）
+- 日广告预算：$[X]
+- 核心关键词（来自 Helium 10）：[列出 10-20 个关键词及搜索量]
+
+请设计 30 天广告启动计划：
+
+Week 1（数据收集期）：
+- 应该创建哪些广告活动？（Auto/Manual/SP/SB）
+- 每个活动的出价策略和日预算
+- 关键监控指标
+
+Week 2（关键词收割期）：
+- 如何从 Auto 搜索词报告中筛选高转化词？
+- 如何创建 Manual 广告活动？
+- 否定词策略
+
+Week 3（优化期）：
+- 出价调整策略
+- 预算重新分配
+- 是否扩展到 SB/SD？
+
+Week 4（评估期）：
+- 30 天广告效果评估框架
+- ACOS 趋势分析
+- 下一步策略建议
+
+每周标注：具体操作步骤、预期指标、风险提示。
+</code></pre>
+<p><strong>进阶变体 Auto → Manual 关键词收割流程：</strong></p>
+<pre><code>以下是我的新品 Auto 广告运行 2 周后的搜索词报告：
+[粘贴数据]
+
+请帮我做关键词收割：
+1. 哪些搜索词应该提升为 Manual Exact Match？（标准：点击 ≥ [X]，转化率 ≥ [X]%）
+2. 哪些搜索词应该提升为 Manual Phrase Match？（标准：展示量高，有少量转化）
+3. 哪些搜索词应该在 Auto 中否定？（标准：花费 &gt; $[X]，零转化）
+4. Manual 广告的建议出价（基于 Auto 中的实际 CPC）
+5. 收割后 Auto 广告是否继续运行？预算如何调整？
+</code></pre>
+<blockquote>
+<p><strong>新品广告的核心逻辑</strong>：Auto 是“探路者“，Manual 是“收割者“。Auto 帮你发现哪些关键词有效，Manual 帮你精准投放这些关键词。这个从 Auto 到 Manual 的“收割“流程是新品广告的核心。</p>
+</blockquote>
+<hr>
+<h3 id="36-竞品广告情报分析"><a class="header" href="#36-竞品广告情报分析">3.6 竞品广告情报分析</a></h3>
+<p><strong>为什么这个 Prompt 重要：</strong> 了解竞品在哪些关键词上投放广告，可以帮你发现新的关键词机会和竞品的广告策略。虽然 Amazon 不公开竞品的广告数据，但可以从搜索结果页推断。</p>
+<p><strong>常见错误：</strong></p>
+<ul>
+<li>只看一次搜索结果就下结论 → 广告展示有随机性，需要多次搜索、不同时间段观察</li>
+<li>不区分 SP 和 SB 广告 → SP 出现在搜索结果中间，SB 出现在顶部横幅，策略不同</li>
+<li>忽略 SD 广告 → 竞品可能在你的产品详情页上投放了 SD 广告</li>
+</ul>
+<pre><code>我想分析竞品的广告策略。以下是我在 Amazon 搜索不同关键词时观察到的竞品广告情况：
+
+关键词1 "[关键词]"：
+- 搜索结果顶部 SB 广告：[竞品品牌/产品]
+- 搜索结果中 SP 广告位置：[竞品出现在第几位]
+- 是否有 SB Video：[是/否]
+
+关键词2 "[关键词]"：[类似观察]
+关键词3 "[关键词]"：[类似观察]
+
+我的产品详情页上出现的 SD 广告：[列出竞品]
+
+请分析：
+1. 竞品的广告策略推断（主攻哪些关键词？用了哪些广告类型？）
+2. 竞品的预估广告预算范围（基于出现频率和位置推断）
+3. 我应该在哪些关键词上与竞品正面竞争？
+4. 哪些关键词竞品投放了但我没有？（机会）
+5. 我的产品详情页上的竞品 SD 广告如何应对？
+</code></pre>
+<blockquote>
+<p><strong>竞品情报的核心价值</strong>：不是为了模仿竞品，而是为了找到竞品的“盲区“。如果竞品在某个高搜索量关键词上没有投放广告，那就是你的低成本获客机会。</p>
+</blockquote>
+<hr>
+<h3 id="37-广告效果诊断"><a class="header" href="#37-广告效果诊断">3.7 广告效果诊断</a></h3>
+<p><strong>为什么这个 Prompt 重要：</strong> ACOS 突然升高可能有多种原因 竞品降价、季节性变化、Listing 被改、关键词竞争加剧。AI 可以帮你系统性排查，避免“头痛医头“。</p>
+<p><strong>常见错误：</strong></p>
+<ul>
+<li>ACOS 升高就立刻降出价 → 可能是转化率下降导致的，降出价只会让展示量也下降</li>
+<li>不看外部因素 → 竞品降价、新竞品进入、季节性变化都会影响广告效果</li>
+<li>只看整体数据不看细分 → 整体 ACOS 升高可能是某一个广告组拖后腿，其他广告组表现正常</li>
+</ul>
+<pre><code>我的广告效果最近出现异常，请帮我做根因分析：
+
+异常表现：
+- ACOS 从 [X]% 升高到 [X]%（时间段：[日期]）
+- 或：转化率从 [X]% 下降到 [X]%
+- 或：CPC 从 $[X] 升高到 $[X]
+
+相关数据：
+- 各广告活动的分项数据：[粘贴]
+- 同期 Listing 是否有变化：[是/否，描述变化]
+- 同期价格是否有变化：[是/否]
+- 同期 Review 是否有变化：[新增差评？评分下降？]
+- 竞品是否有明显动作：[降价？新品进入？]
+
+请从以下维度逐一排查：
+1. **内部因素**：Listing 变化、价格变化、库存问题、Review 变化
+2. **广告因素**：出价变化、预算变化、新增/暂停的关键词
+3. **竞争因素**：竞品降价、新竞品进入、竞品广告加大投放
+4. **外部因素**：季节性变化、平台政策变化、大促前后波动
+
+对每个可能的原因给出：可能性评估（高/中/低）、验证方法、应对策略。
+</code></pre>
+<p><strong>进阶变体 转化率下降专项诊断：</strong></p>
+<pre><code>我的广告点击量没变，但转化率从 [X]% 下降到 [X]%。
+
+请帮我排查转化率下降的原因：
+1. Listing 是否被修改？（标题、图片、价格、A+ Content）
+2. 是否有新的差评影响了评分？
+3. 竞品是否降价或推出了更有竞争力的产品？
+4. 是否有库存问题（配送时间变长）？
+5. 是否是季节性因素？
+6. 搜索词是否发生了变化（新的不相关搜索词进来了）？
+
+每个原因标注验证方法和修复建议。
+</code></pre>
+<blockquote>
+<p><strong>广告诊断的核心原则</strong>：先排查内部因素（Listing、价格、Review），再排查广告因素（出价、预算），最后排查外部因素（竞品、季节）。80% 的广告效果下滑是内部因素导致的。</p>
+</blockquote>
+<hr>
+<h3 id="38-多站点广告策略"><a class="header" href="#38-多站点广告策略">3.8 多站点广告策略</a></h3>
+<p><strong>为什么这个 Prompt 重要：</strong> 不同站点的 CPC、竞争格局、消费者行为差异很大。在 US 站有效的广告策略直接搬到 DE 或 JP 站往往效果不好。AI 可以帮你针对每个站点制定差异化的广告策略。</p>
+<p><strong>常见错误：</strong></p>
+<ul>
+<li>所有站点用同一套关键词 → 不同语言的搜索习惯不同，需要本地化关键词</li>
+<li>所有站点用同一个出价 → US 站 CPC 可能是 DE 站的 2-3 倍，出价策略需要调整</li>
+<li>忽略小站点 → JP、IT、ES 等站点竞争小、CPC 低，ROI 可能比 US 站更好</li>
+<li>不考虑 VAT 对利润的影响 → 欧洲站的 VAT（19-22%）会显著影响利润率和可承受的 ACOS</li>
+</ul>
+<pre><code>我的产品目前在 Amazon US 站投放广告，表现如下：
+- 日预算：$[X]
+- ACOS：[X]%
+- 核心关键词和 CPC：[列出 Top 5 关键词及 CPC]
+- 月广告销售额：$[X]
+
+现在要扩展到 Amazon [DE/JP/UK]。请帮我制定目标站点的广告策略：
+
+1. **关键词本地化**：US 站的核心关键词在目标站点对应什么搜索词？
+2. **出价策略**：目标站点的预估 CPC 范围？建议起始出价？
+3. **预算分配**：目标站点的日预算建议（考虑市场规模差异）
+4. **广告结构**：是否需要调整广告活动结构？
+5. **目标 ACOS**：考虑 VAT 和物流成本差异后的目标 ACOS
+6. **时间规划**：建议的启动顺序和每个站点的预期回本周期
+
+目标站点特殊考虑：
+- [DE] VAT 19%，消费者重视品质，CPC 通常比 US 低 30-50%
+- [JP] 消费者重视细节，搜索词可能用片假名或汉字，CPC 通常比 US 低 40-60%
+- [UK] 与 US 类似但市场规模小，CPC 介于 US 和 DE 之间
+</code></pre>
+<blockquote>
+<p><strong>多站点广告的核心原则</strong>：每个站点都是独立的市场，需要独立的广告策略。但可以用 US 站的数据作为“基准“来加速其他站点的启动 US 站的高转化关键词翻译后在其他站点大概率也有效。</p>
+</blockquote>
+<hr>
+<h2 id="4-广告实战工作流"><a class="header" href="#4-广告实战工作流">4. 广告实战工作流</a></h2>
+<h3 id="41-新品广告启动-sop30-天计划"><a class="header" href="#41-新品广告启动-sop30-天计划">4.1 新品广告启动 SOP（30 天计划）</a></h3>
+<p>这套 SOP 把新品广告从零开始到稳定运行的流程标准化。每一步都标注了使用的工具和 Prompt。</p>
+<pre><code>
+Week 1: 数据收集期
+操作: 创建 SP Auto 广告（Broad + Close Match）
+出价: 建议出价的 1.2 倍（新品需要更高出价获取展示）
+预算: 日预算 $20-50（确保足够的数据量）
+AI: 新品广告启动策略 Prompt（3.5）
+监控: 每天检查花费和展示量，确保广告在运行
+输出: 7 天搜索词报告
+
+Week 2: 关键词收割期
+操作: 下载搜索词报告 → AI 分析 → 创建 Manual 广告
+AI: 搜索词报告分析 Prompt（3.1）
+AI: Auto → Manual 关键词收割 Prompt（3.5 变体）
+规则: 点击 ≥5 且转化率 ≥10% → Exact Match
+点击 ≥10 且有转化 → Phrase Match
+花费 &gt;$5 且零转化 → 否定
+输出: Manual SP 广告活动 + 否定词列表
+
+Week 3: 优化期
+操作: 调整出价 + 添加否定词 + 评估是否扩展广告类型
+AI: 否定关键词策略 Prompt（3.3）
+AI: 预算分配优化 Prompt（3.4）
+出价调整: ACOS &lt; 目标 → 提高出价 10-20%
+ACOS &gt; 目标 × 1.5 → 降低出价 10-20%
+扩展: 如果有品牌注册，考虑开启 SB 广告
+输出: 优化后的广告结构 + 出价调整记录
+
+Week 4: 评估期
+操作: 30 天广告效果全面评估
+AI: 广告效果诊断 Prompt（3.7）
+评估: ACOS 趋势、关键词排名变化、TACOS 变化
+决策: 继续当前策略 / 调整策略 / 扩展到更多广告类型
+输出: 30 天广告报告 + 下一步计划
+
+</code></pre>
+<h3 id="42-日常广告优化-sop每周-30-分钟"><a class="header" href="#42-日常广告优化-sop每周-30-分钟">4.2 日常广告优化 SOP（每周 30 分钟）</a></h3>
+<p>广告不是“设置好就不管“的。每周 30 分钟的优化可以持续降低 ACOS、提高 ROAS。</p>
+<pre><code>
+Step 1: 下载数据（5 分钟）
+操作: 从 Advertising Console 下载搜索词报告（过去 7 天）
+格式: CSV 文件
+
+Step 2: AI 分析（10 分钟）
+AI: 搜索词报告分析 Prompt（3.1）
+输入: 粘贴 CSV 数据到 ChatGPT/Claude
+输出: 高转化词、浪费词、否定词建议、出价调整建议
+
+Step 3: 执行调整（10 分钟）
+操作: 根据 AI 建议调整出价、添加否定词、调整预算
+原则: 每次调整幅度不超过 20%，避免剧烈波动
+
+Step 4: 记录变化（5 分钟）
+操作: 记录本周做了什么调整、为什么调整
+工具: 简单的 Excel 表格或笔记
+价值: 积累数据，下周对比效果
+
+</code></pre>
+<blockquote>
+<p><strong>日常优化的核心原则</strong>：小步快跑，持续迭代。不要一次做大幅调整，每周微调 + 记录 + 对比，3 个月后你的广告效率会有质的提升。</p>
+</blockquote>
+<h3 id="43-大促广告策略prime-day--bfcm"><a class="header" href="#43-大促广告策略prime-day--bfcm">4.3 大促广告策略（Prime Day / BFCM）</a></h3>
+<p>大促是广告花费最高但也是 ROI 最高的时期。策略分三个阶段：</p>
+<p><strong>大促前 2 周：蓄力期</strong></p>
+<ul>
+<li>提高日预算到日常的 2-3 倍（确保大促期间不会提前下线）</li>
+<li>扩大关键词覆盖（添加更多 Broad Match 关键词）</li>
+<li>创建大促专用广告活动（便于单独追踪大促效果）</li>
+<li>提前测试 SB 广告文案（大促期间没时间测试）</li>
+<li>用 AI 分析去年同期的搜索词报告，预判大促热门关键词</li>
+</ul>
+<p><strong>大促期间（3-5 天）：冲刺期</strong></p>
+<ul>
+<li>预算提高到日常的 3-5 倍</li>
+<li>出价提高 30-50%（大促期间竞争激烈，CPC 会上升）</li>
+<li>每天检查预算消耗速度，避免提前下线</li>
+<li>暂停低效广告组，集中预算到高 ROAS 广告组</li>
+<li>实时监控 ACOS，如果超过阈值及时调整</li>
+</ul>
+<p><strong>大促后 1 周：收割期</strong></p>
+<ul>
+<li>逐步恢复日常预算（不要一次性砍预算）</li>
+<li>分析大促期间的搜索词报告，发现新的高转化关键词</li>
+<li>收割大促带来的长尾流量（很多用户大促期间加购物车但没买）</li>
+<li>用 AI 做大促广告效果复盘（对比大促前后的 ACOS、ROAS、关键词排名变化）</li>
+</ul>
+<hr>
+<h2 id="5-常见广告陷阱"><a class="header" href="#5-常见广告陷阱">5. 常见广告陷阱</a></h2>
+<h3 id="51-出价相关陷阱"><a class="header" href="#51-出价相关陷阱">5.1 出价相关陷阱</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>陷阱</th><th>表现</th><th>如何避免</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>出价太高</strong></td><td>ACOS 远超目标，每次点击花费过多</td><td>从建议出价的 80% 开始，逐步提高。用 AI 分析最优出价区间。</td></tr>
+<tr><td><strong>出价太低</strong></td><td>广告几乎没有展示量，花不出去预算</td><td>检查建议出价，至少出到建议出价的 100%。新品期可以出 120%。</td></tr>
+<tr><td><strong>不区分匹配类型出价</strong></td><td>Broad、Phrase、Exact 用同一个出价</td><td>Exact Match 出价最高（精准流量），Broad Match 出价最低（探索性流量）。</td></tr>
+<tr><td><strong>不用动态出价</strong></td><td>错过了 Amazon 的自动出价优化</td><td>开启 “Dynamic bids - down only”（保守）或 “Up and down”（激进）。</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="52-结构相关陷阱"><a class="header" href="#52-结构相关陷阱">5.2 结构相关陷阱</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>陷阱</th><th>表现</th><th>如何避免</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>广告组太多</strong></td><td>管理混乱，预算分散，每个广告组数据量不足</td><td>每个产品 3-5 个广告活动足够（Auto + Manual Exact + Manual Broad + SB）。</td></tr>
+<tr><td><strong>广告组太少</strong></td><td>所有关键词混在一起，无法针对性优化</td><td>至少按匹配类型分开（Exact 一个组，Broad 一个组）。</td></tr>
+<tr><td><strong>关键词重叠</strong></td><td>同一个关键词在多个广告组中出现，自己和自己竞争</td><td>用 AI 检查关键词重叠，确保每个关键词只在一个广告组中。</td></tr>
+<tr><td><strong>Auto 和 Manual 冲突</strong></td><td>Auto 广告和 Manual 广告竞争同一个关键词</td><td>Manual 中已有的关键词在 Auto 中做精确否定。</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="53-预算相关陷阱"><a class="header" href="#53-预算相关陷阱">5.3 预算相关陷阱</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>陷阱</th><th>表现</th><th>如何避免</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>预算不足导致提前下线</strong></td><td>广告在下午就花完预算，错过晚间高峰</td><td>检查广告的“预算消耗时间“，如果经常提前下线就增加预算。</td></tr>
+<tr><td><strong>预算分配不均</strong></td><td>高效广告组预算不足，低效广告组浪费预算</td><td>每周用 AI 做预算分配优化（Prompt 3.4）。</td></tr>
+<tr><td><strong>大促期间预算不足</strong></td><td>大促流量暴增但预算没调整，广告几小时就下线</td><td>大促前 2 周开始逐步提高预算，大促期间预算提高 3-5 倍。</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="54-数据相关陷阱"><a class="header" href="#54-数据相关陷阱">5.4 数据相关陷阱</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>陷阱</th><th>表现</th><th>如何避免</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>数据归因延迟</strong></td><td>看到昨天的广告数据就做调整，但实际转化还没归因完</td><td>Amazon 广告数据有 7-14 天的归因窗口。至少看 7 天以上的数据再做决策。</td></tr>
+<tr><td><strong>混淆 ACOS 和 TACOS</strong></td><td>只看 ACOS 觉得广告亏钱，忽略了广告推动的自然销量</td><td>同时追踪 ACOS 和 TACOS。TACOS 下降 = 广告在推动自然增长。</td></tr>
+<tr><td><strong>样本量不足</strong></td><td>一个关键词只有 5 次点击就判断“不转化“</td><td>至少 20 次点击才有统计意义。点击太少的关键词放在“观察列表“。</td></tr>
+<tr><td><strong>不看搜索词报告</strong></td><td>只看广告活动级别的数据，不看具体搜索词</td><td>搜索词报告是广告优化的金矿。每周必看。</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="6-进阶技巧"><a class="header" href="#6-进阶技巧">6. 进阶技巧</a></h2>
+<h3 id="61-amazon-ads-mcp-server2026-新趋势"><a class="header" href="#61-amazon-ads-mcp-server2026-新趋势">6.1 Amazon Ads MCP Server（2026 新趋势）</a></h3>
+<p>2026 年，Amazon 推出了 Ads MCP Server（Model Context Protocol Server），这是 Amazon 官方的 AI 广告接口，允许 AI Agent 直接管理广告活动。这标志着广告管理从“人操作工具“向“AI 自主执行“的转变。</p>
+<p><strong>什么是 MCP Server？</strong></p>
+<p>MCP（Model Context Protocol）是一种让 AI 模型与外部工具交互的标准协议。Amazon Ads MCP Server 让 ChatGPT、Claude 等 AI 模型可以直接：</p>
+<ul>
+<li>创建和管理广告活动</li>
+<li>调整出价和预算</li>
+<li>下载和分析报告</li>
+<li>执行关键词操作</li>
+</ul>
+<p><strong>对卖家意味着什么？</strong></p>
+<ol>
+<li><strong>自动化升级</strong>：未来你可以对 AI 说“帮我把 ACOS 超过 40% 的关键词出价降低 15%“，AI 会直接执行，不需要你登录后台手动操作。</li>
+<li><strong>实时优化</strong>：AI Agent 可以 24/7 监控广告表现，实时调整出价和预算，比人工操作更及时。</li>
+<li><strong>策略执行一体化</strong>：目前的流程是“AI 分析 → 人执行“，未来会变成“人定策略 → AI 分析+执行“。</li>
+<li><strong>降低工具成本</strong>：如果 AI 可以直接通过 MCP Server 管理广告，第三方广告管理工具的价值会被重新定义。</li>
+</ol>
+<p><strong>现阶段如何准备？</strong></p>
+<ul>
+<li>学习 Prompt 工程（本模块的 Prompt 模板就是基础）</li>
+<li>建立清晰的广告策略框架（AI 执行需要明确的规则和目标）</li>
+<li>关注 Amazon Advertising API 的更新</li>
+<li>尝试用 ChatGPT/Claude 做广告分析，积累 AI 辅助广告管理的经验</li>
+</ul>
+<p>Content rephrased for compliance with licensing restrictions. Source: <a href="https://futurumgroup.com/insights/amazon-ads-mcp-server-debuts-streamlining-ai-managed-campaign-execution/">futurumgroup.com Amazon Ads MCP Server</a></p>
+<h3 id="62-广告与-organic-排名的飞轮效应"><a class="header" href="#62-广告与-organic-排名的飞轮效应">6.2 广告与 Organic 排名的飞轮效应</a></h3>
+<p>广告的价值不只是直接销售，更重要的是推动关键词的自然排名。这个“飞轮效应“是 Amazon 广告最核心的战略价值：</p>
+<pre><code>广告投放 → 广告带来销量 → 销量提升关键词自然排名
+↑ ↓
+← 降低对广告的依赖 ← 自然流量增加 ←
+</code></pre>
+<p><strong>如何用 AI 监控飞轮效应：</strong></p>
+<pre><code>以下是我的产品在过去 3 个月的数据：
+
+月份1：广告销售额 $[X]，自然销售额 $[X]，TACOS [X]%
+月份2：广告销售额 $[X]，自然销售额 $[X]，TACOS [X]%
+月份3：广告销售额 $[X]，自然销售额 $[X]，TACOS [X]%
+
+核心关键词排名变化：
+关键词A：第[X]页 → 第[X]页 → 第[X]页
+关键词B：第[X]页 → 第[X]页 → 第[X]页
+
+请分析：
+1. 飞轮效应是否在运转？（自然销售额占比是否在增加？）
+2. TACOS 趋势是否健康？（应该逐月下降）
+3. 哪些关键词的自然排名在提升？哪些停滞？
+4. 对于排名停滞的关键词，是否需要加大广告投放？
+5. 对于排名已经稳定在首页的关键词，是否可以降低广告出价？
+6. 预计还需要多长时间可以将 TACOS 降到 [X]%？
+</code></pre>
+<blockquote>
+<p><strong>飞轮效应的核心指标</strong>：TACOS。如果 TACOS 持续下降，说明飞轮在运转 广告花费没变但总销售额在增长，因为自然流量在增加。如果 TACOS 持续上升，说明你越来越依赖广告，需要检查 Listing 质量和产品竞争力。</p>
+</blockquote>
+<hr>
+<h3 id="63-多渠道广告策略amazon--google--social"><a class="header" href="#63-多渠道广告策略amazon--google--social">6.3 多渠道广告策略（Amazon + Google + Social）</a></h3>
+<p>Amazon 站内广告不是唯一的流量来源。站外流量（Google Ads、社交媒体）可以补充站内广告的不足，尤其是在品牌建设和新客获取方面。</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>渠道</th><th>优势</th><th>劣势</th><th>适合场景</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Amazon SP/SB/SD</strong></td><td>高购买意图、直接转化</td><td>CPC 高、竞争激烈</td><td>所有产品（必备）</td></tr>
+<tr><td><strong>Amazon DSP</strong></td><td>全漏斗营销、站外展示</td><td>门槛高（$10k+/月）</td><td>品牌卖家、大预算</td></tr>
+<tr><td><strong>Google Ads</strong></td><td>覆盖搜索+购物+YouTube</td><td>转化路径长、归因复杂</td><td>品牌词保护、品类教育</td></tr>
+<tr><td><strong>Meta Ads</strong></td><td>精准人群定向、视觉驱动</td><td>购买意图低、转化率低</td><td>新品推广、品牌曝光</td></tr>
+<tr><td><strong>TikTok Ads</strong></td><td>年轻用户、病毒传播潜力</td><td>转化不稳定</td><td>视觉吸引力强的产品</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>站外流量如何用 Amazon Attribution 追踪：</strong></p>
+<p>Amazon Attribution 是免费工具，可以追踪站外流量到 Amazon 的转化效果。</p>
+<pre><code>我计划在 Google Ads 和 Instagram 上投放广告引流到 Amazon。
+
+请帮我设计站外引流策略：
+
+1. **Google Ads 策略**：
+- 应该投放哪些关键词？（品牌词 vs 品类词 vs 竞品词）
+- 落地页应该指向 Amazon 产品页还是品牌旗舰店？
+- 预算分配建议
+
+2. **Instagram/Meta Ads 策略**：
+- 目标受众定义
+- 广告创意方向（图片 vs 视频 vs 轮播）
+- 预算分配建议
+
+3. **Amazon Attribution 设置**：
+- 如何创建追踪链接
+- 如何分析各渠道的转化效果
+- 如何基于数据优化渠道预算分配
+
+4. **整体预算分配**：
+- Amazon 站内 vs 站外的预算比例建议
+- 不同阶段（新品期 vs 成熟期）的比例调整
+</code></pre>
+<p>Content rephrased for compliance with licensing restrictions. Source: <a href="https://deliveredsocial.com/amazon-advertising-beyond-sponsored-products-dsp-video-and-external-traffic/">deliveredsocial.com Amazon advertising beyond sponsored products</a></p>
+<hr>
+<h2 id="7-学习资源"><a class="header" href="#7-学习资源">7. 学习资源</a></h2>
+<h3 id="71-免费课程"><a class="header" href="#71-免费课程">7.1 免费课程</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>资源</th><th>平台</th><th>时长</th><th>适合谁</th><th>链接</th></tr>
+</thead>
+<tbody>
+<tr><td>Amazon Advertising Learning Console</td><td>Amazon</td><td>自学</td><td>所有卖家（官方免费认证，含 SP/SB/SD 课程）</td><td><a href="https://learningconsole.amazonadvertising.com/">learningconsole.amazonadvertising.com</a></td></tr>
+<tr><td>Fundamentals of Digital Marketing</td><td>Google</td><td>40h</td><td>广告新手（数字广告基础，含认证）</td><td><a href="https://learndigital.withgoogle.com/digitalgarage">learndigital.withgoogle.com</a></td></tr>
+<tr><td>ChatGPT Prompt Engineering for Developers</td><td>DeepLearning.AI</td><td>1.5h</td><td>所有人（学会写好 Prompt 是 AI 广告分析的基础）</td><td><a href="https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/">deeplearning.ai</a></td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="72-youtube-频道推荐"><a class="header" href="#72-youtube-频道推荐">7.2 YouTube 频道推荐</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>频道</th><th>内容方向</th><th>为什么推荐</th></tr>
+</thead>
+<tbody>
+<tr><td>Helium 10</td><td>Adtomic 教程、PPC 策略实战</td><td>官方频道，Adtomic AI 竞价的最佳教程来源</td></tr>
+<tr><td>PPC Den (by Ad Badger)</td><td>专注 Amazon PPC 的深度内容</td><td>每期一个 PPC 话题，深入浅出</td></tr>
+<tr><td>Mina Elias</td><td>Amazon PPC 策略、ACOS 优化</td><td>实操性强，有大量真实案例和数据分享</td></tr>
+<tr><td>Pacvue</td><td>企业级广告管理、多平台策略</td><td>适合大卖家，了解行业前沿趋势</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="73-推荐阅读"><a class="header" href="#73-推荐阅读">7.3 推荐阅读</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>文章/资源</th><th>来源</th><th>核心观点</th></tr>
+</thead>
+<tbody>
+<tr><td><a href="https://us.entrepreneur.com/growing-a-business/how-to-use-ai-to-grow-your-amazon-sales-rankings-and/499421">How to Use AI to Grow Your Amazon Sales</a></td><td>Entrepreneur</td><td>AI 在广告优化、关键词发现、竞价策略中的实际应用案例</td></tr>
+<tr><td><a href="https://aijourn.com/amazon-ppc-optimization-tool/">Amazon PPC Optimization with AI</a></td><td>AI Journ</td><td>AI PPC 优化工具全景，含自动竞价和搜索词分析</td></tr>
+<tr><td><a href="https://www.deepbi.com/blog/13/">AI PPC Management: ACOS from 55% to 43%</a></td><td>DeepBI</td><td>真实案例：AI 全自动管理广告如何降低 ACOS</td></tr>
+<tr><td><a href="https://www.algofy.com/post/best-ai-tools-for-amazon-sellers-in-2026">Best AI Tools for Amazon Sellers 2026</a></td><td>Algofy</td><td>2026 年 AI 广告工具对比，含 MCP Server 趋势分析</td></tr>
+<tr><td><a href="https://futurumgroup.com/insights/amazon-ads-mcp-server-debuts-streamlining-ai-managed-campaign-execution/">Amazon Ads MCP Server</a></td><td>Futurum Group</td><td>Amazon 官方 AI 广告接口的深度解读和行业影响</td></tr>
+<tr><td><a href="https://goaura.com/blog/amazon-advertising-strategies">Amazon Advertising Strategies</a></td><td>GoAura</td><td>Amazon 广告策略全面指南，含 SP/SB/SD/DSP 最佳实践</td></tr>
+<tr><td><a href="https://deliveredsocial.com/amazon-advertising-beyond-sponsored-products-dsp-video-and-external-traffic/">Beyond Sponsored Products: DSP, Video &amp; External Traffic</a></td><td>Delivered Social</td><td>超越 SP 广告的进阶策略，含 DSP 和站外流量</td></tr>
+</tbody>
+</table>
+</div>
+<p>Content rephrased for compliance with licensing restrictions. Sources cited inline.</p>
+<h3 id="74-社区与论坛"><a class="header" href="#74-社区与论坛">7.4 社区与论坛</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>社区</th><th>平台</th><th>特点</th></tr>
+</thead>
+<tbody>
+<tr><td>r/AmazonPPC</td><td>Reddit</td><td>英文社区，专注 Amazon PPC 讨论，真实卖家经验分享</td></tr>
+<tr><td>r/AmazonSeller</td><td>Reddit</td><td>综合 Amazon 卖家社区，含广告话题</td></tr>
+<tr><td>Amazon Advertising Forums</td><td>Amazon</td><td>官方论坛，广告政策更新和功能发布第一手信息</td></tr>
+<tr><td>PPC Chat Community</td><td>Slack/Discord</td><td>PPC 从业者社区，跨平台广告讨论</td></tr>
+<tr><td>知无不言</td><td>知乎</td><td>中文跨境电商社区，PPC 优化经验丰富</td></tr>
+<tr><td>创蓝论坛</td><td>独立站点</td><td>中国卖家社区，广告实操案例多</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="8-用-openclaw-自动化广告优化"><a class="header" href="#8-用-openclaw-自动化广告优化">8. 用 OpenClaw 自动化广告优化</a></h2>
+<h3 id="81-场景ai-agent-自动分析搜索词报告并优化广告"><a class="header" href="#81-场景ai-agent-自动分析搜索词报告并优化广告">8.1 场景：AI Agent 自动分析搜索词报告并优化广告</a></h3>
+<pre><code>你对 OpenClaw 说：
+"每周一自动分析搜索词报告，找出高花费低转化词和高转化词，
+生成否定关键词建议和预算调整方案，发送到 #ads-optimization 频道"
+
+OpenClaw 自动执行：
+1. [Heartbeat] 每周一触发
+2. [Skill: google-sheets] 读取搜索词报告
+3. [LLM] 分析高花费低转化词、高转化词
+4. [LLM] 生成否定关键词建议和预算调整方案
+5. [Skill: slack] 发送优化建议到 #ads-optimization
+</code></pre>
+<h3 id="82-需要的-skills-和-mcp-server"><a class="header" href="#82-需要的-skills-和-mcp-server">8.2 需要的 Skills 和 MCP Server</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>组件</th><th>用途</th><th>链接</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>google-sheets</strong> Skill</td><td>读写搜索词报告和广告数据</td><td><a href="https://clawhub.ai/">ClawHub</a></td></tr>
+<tr><td><strong>slack</strong> Skill</td><td>发送优化建议通知</td><td><a href="https://clawhub.ai/">ClawHub</a></td></tr>
+<tr><td><strong>memory</strong> Skill</td><td>存储历史广告数据和优化规则</td><td><a href="https://docs.openclaw.com/">OpenClaw Docs</a></td></tr>
+<tr><td><strong>filesystem MCP</strong></td><td>读取本地广告报告文件</td><td><a href="https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem">MCP Filesystem</a></td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="83-相关资源"><a class="header" href="#83-相关资源">8.3 相关资源</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>资源</th><th>说明</th><th>链接</th></tr>
+</thead>
+<tbody>
+<tr><td>OpenClaw 官方文档</td><td>安装和配置指南</td><td><a href="https://docs.openclaw.com/">docs.openclaw.com</a></td></tr>
+<tr><td>ClawHub Skills 市场</td><td>搜索和安装 Agent Skills</td><td><a href="https://clawhub.ai/">clawhub.ai</a></td></tr>
+<tr><td>OpenClaw MCP 集成</td><td>连接 MCP Server</td><td><a href="https://rebeccamdeprey.com/blog/build-openclaw-skill-with-mcp">Build Skill with MCP</a></td></tr>
+<tr><td>F4 自动化与 Agent</td><td>Agent 基础模块</td><td><a href="../0-foundations/f4-agent-automation.html">F4 模块</a></td></tr>
+</tbody>
+</table>
+</div>
+<p>Content rephrased for compliance with licensing restrictions. Sources cited inline.</p>
+<hr>
+<h2 id="85-补充ai-广告素材批量生成与跨渠道归因"><a class="header" href="#85-补充ai-广告素材批量生成与跨渠道归因">8.5 补充：AI 广告素材批量生成与跨渠道归因</a></h2>
+<blockquote>
+<p>本节补充跨平台通用的广告素材 AI 生成方法论和归因体系。具体平台的差异化应用请参考 <a href="../e-social-media/e1-instagram-facebook-ai-guide.html#6-meta-advantage-ai-广告深度指南">E1 Meta Ads</a>、<a href="../e-social-media/e2-youtube-ai-guide.html#6-youtube-ads-ai-优化">E2 YouTube Ads</a>、<a href="../d-platforms/d4-walmart-ai-guide.html#3-walmart-connect-广告">D4 Walmart Connect</a>。</p>
+</blockquote>
+<h3 id="ai-广告素材批量生成工作流通用"><a class="header" href="#ai-广告素材批量生成工作流通用">AI 广告素材批量生成工作流（通用）</a></h3>
+<p>不管是 Amazon PPC、Meta Ads、Google Ads 还是 TikTok Ads，广告素材的 AI 生成流程是通用的：</p>
+<pre><code>Step 1: 素材库准备
+产品图片（白底+场景，至少 5 张）
+产品视频素材（15-60 秒原始素材）
+UGC 素材（客户评价截图、使用视频）
+品牌素材（logo、品牌色、字体）
+
+Step 2: AI 生成文案变体
+5 个痛点导向标题
+5 个社会证明标题
+5 个限时优惠标题
+每个标题配 3 种长度的正文（短/中/长）
+输出格式：按平台分类，可直接粘贴
+
+Step 3: AI 生成视觉素材
+产品+场景合成图（Midjourney/DALL-E）
+数据/卖点信息图（Canva AI）
+视频广告（CapCut AI 剪辑）
+适配各平台尺寸（1:1 / 9:16 / 16:9）
+
+Step 4: 上传并测试
+每个平台上传 10-20 个素材组合
+让平台 AI 自动测试最佳组合
+7 天后复盘，淘汰表现差的素材
+</code></pre>
+<h3 id="ai-广告素材批量生成-prompt"><a class="header" href="#ai-广告素材批量生成-prompt">AI 广告素材批量生成 Prompt</a></h3>
+<pre><code>你是一个跨平台电商广告素材专家。
+
+产品：[名称]，价格 $[X]
+核心卖点：[3 个]
+目标受众：[描述]
+
+请为以下平台生成广告文案：
+
+1. Amazon Sponsored Brands（标题 ≤50 字符，简洁直接）
+2. Meta Ads（Primary Text + Headline + Description）
+3. Google Ads（Headline 30 字符 x3 + Description 90 字符 x2）
+
+每个平台生成 5 组变体，角度分别是：
+痛点、社会证明、限时优惠、功能亮点、情感连接。
+</code></pre>
+<h3 id="跨渠道广告归因方法论"><a class="header" href="#跨渠道广告归因方法论">跨渠道广告归因方法论</a></h3>
+<p>当你同时在 Amazon PPC + Meta Ads + Google Ads 投放时，需要理解各渠道的贡献：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>归因工具</th><th>追踪路径</th><th>设置方式</th></tr>
+</thead>
+<tbody>
+<tr><td>Amazon Attribution</td><td>社交/搜索 → Amazon 购买</td><td>Amazon Brand Registry 后台开通</td></tr>
+<tr><td>Meta Pixel + CAPI</td><td>Meta 广告 → Shopify 购买</td><td>Shopify 后台一键集成</td></tr>
+<tr><td>Google Analytics 4</td><td>Google/YouTube → Shopify 购买</td><td>GA4 + Shopify 集成</td></tr>
+<tr><td>UTM 参数</td><td>所有渠道 → 所有落地页</td><td>手动添加到每个链接</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p>详细的跨渠道归因和预算分配框架请参考 <a href="../e-social-media/e7-social-media-cross-channel.html">E7 跨渠道协同</a> 和 <a href="../d-platforms/cross-platform-strategy.html">D3 跨平台策略</a>。</p>
+</blockquote>
+<hr>
+<h2 id="9-完成标志"><a class="header" href="#9-完成标志">9. 完成标志</a></h2>
+<ul>
+<li><input disabled="" type="checkbox"> 用 AI 生成至少 3 种风格的 Sponsored Brands 广告文案</li>
+<li><input disabled="" type="checkbox"> 理解 ACOS/TACOS/ROAS 的关系，能手动计算并解释含义</li>
+<li><input disabled="" type="checkbox"> 用 AI 制定一份新品 30 天广告启动计划</li>
+<li><input disabled="" type="checkbox"> 完成一次广告预算分配优化（基于各广告组的 ROAS 数据）</li>
+<li><input disabled="" type="checkbox"> 了解 Amazon Ads MCP Server 趋势，理解 AI 自主管理广告的未来方向</li>
+</ul>
+<p>完成以上所有项目后，你已经掌握了 AI 辅助广告优化的核心技能。接下来进入 <a href="a4-customer-service.html">A4 客服与售后</a>，学习如何用 AI 提升客服效率和客户满意度。</p>
+<hr>
+<h2 id="附录快速参考卡片"><a class="header" href="#附录快速参考卡片">附录：快速参考卡片</a></h2>
+<h3 id="prompt-速查表"><a class="header" href="#prompt-速查表">Prompt 速查表</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>场景</th><th>Prompt 模板</th><th>所在章节</th></tr>
+</thead>
+<tbody>
+<tr><td>分析搜索词报告</td><td>搜索词报告分析</td><td><a href="#31-搜索词报告分析">3.1</a></td></tr>
+<tr><td>按匹配类型分析</td><td>匹配类型分层分析（变体 A）</td><td><a href="#31-搜索词报告分析">3.1</a></td></tr>
+<tr><td>周度/月度趋势对比</td><td>时间趋势分析（变体 B）</td><td><a href="#31-搜索词报告分析">3.1</a></td></tr>
+<tr><td>竞品 ASIN 定向分析</td><td>ASIN 定向分析（变体 C）</td><td><a href="#31-搜索词报告分析">3.1</a></td></tr>
+<tr><td>广告文案 A/B 测试</td><td>广告文案 A/B 测试</td><td><a href="#32-广告文案-ab-测试">3.2</a></td></tr>
+<tr><td>SB Video 脚本</td><td>SB Video 脚本（变体 A）</td><td><a href="#32-广告文案-ab-测试">3.2</a></td></tr>
+<tr><td>SD 创意文案</td><td>SD 创意文案（变体 B）</td><td><a href="#32-广告文案-ab-测试">3.2</a></td></tr>
+<tr><td>否定关键词生成</td><td>否定关键词策略</td><td><a href="#33-否定关键词策略">3.3</a></td></tr>
+<tr><td>否定词审计</td><td>否定词审计（变体）</td><td><a href="#33-否定关键词策略">3.3</a></td></tr>
+<tr><td>预算分配优化</td><td>广告预算分配优化</td><td><a href="#34-广告预算分配优化">3.4</a></td></tr>
+<tr><td>大促预算策略</td><td>大促预算调整（变体）</td><td><a href="#34-广告预算分配优化">3.4</a></td></tr>
+<tr><td>新品广告启动</td><td>新品广告启动策略</td><td><a href="#35-新品广告启动策略">3.5</a></td></tr>
+<tr><td>关键词收割</td><td>Auto → Manual 收割（变体）</td><td><a href="#35-新品广告启动策略">3.5</a></td></tr>
+<tr><td>竞品广告情报</td><td>竞品广告情报分析</td><td><a href="#36-竞品广告情报分析">3.6</a></td></tr>
+<tr><td>广告效果诊断</td><td>广告效果诊断</td><td><a href="#37-广告效果诊断">3.7</a></td></tr>
+<tr><td>转化率下降诊断</td><td>转化率下降专项（变体）</td><td><a href="#37-广告效果诊断">3.7</a></td></tr>
+<tr><td>多站点广告策略</td><td>多站点广告策略</td><td><a href="#38-多站点广告策略">3.8</a></td></tr>
+<tr><td>飞轮效应监控</td><td>飞轮效应监控</td><td><a href="#62-广告与-organic-排名的飞轮效应">6.2</a></td></tr>
+<tr><td>站外引流策略</td><td>多渠道广告策略</td><td><a href="#63-多渠道广告策略amazon--google--social">6.3</a></td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="工具速查表"><a class="header" href="#工具速查表">工具速查表</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>需求</th><th>推荐工具</th><th>免费替代</th></tr>
+</thead>
+<tbody>
+<tr><td>搜索词分析</td><td>ChatGPT / Claude</td><td>ChatGPT 免费版</td></tr>
+<tr><td>自动竞价</td><td>Helium 10 Adtomic</td><td>手动调整 + AI 建议</td></tr>
+<tr><td>全自动广告管理</td><td>Perpetua / DeepBI</td><td>Amazon Console + AI</td></tr>
+<tr><td>广告文案生成</td><td>ChatGPT / Claude</td><td>ChatGPT 免费版</td></tr>
+<tr><td>多平台广告管理</td><td>Pacvue</td><td>各平台独立管理</td></tr>
+<tr><td>搜索词排名数据</td><td>Amazon Brand Analytics</td><td>Brand Analytics（本身免费）</td></tr>
+<tr><td>站外流量追踪</td><td>Amazon Attribution</td><td>Attribution（本身免费）</td></tr>
+<tr><td>关键词反查</td><td>Helium 10 Cerebro</td><td></td></tr>
+<tr><td>广告报告可视化</td><td>pandas + matplotlib</td><td>Google Sheets 图表</td></tr>
+<tr><td>AI 广告接口</td><td>Amazon Ads MCP Server</td><td>尚未公开（2026 新）</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="acos--tacos--roas-计算速查"><a class="header" href="#acos--tacos--roas-计算速查">ACOS / TACOS / ROAS 计算速查</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>指标</th><th>公式</th><th>示例</th><th>健康范围</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>ACOS</strong></td><td>广告花费 ÷ 广告销售额 × 100%</td><td>$100 ÷ $400 = 25%</td><td>&lt; 产品利润率</td></tr>
+<tr><td><strong>TACOS</strong></td><td>广告花费 ÷ 总销售额 × 100%</td><td>$100 ÷ $1000 = 10%</td><td>5-15%（成熟产品）</td></tr>
+<tr><td><strong>ROAS</strong></td><td>广告销售额 ÷ 广告花费</td><td>$400 ÷ $100 = 4.0</td><td>&gt; 3.0（盈利）</td></tr>
+<tr><td><strong>CPC</strong></td><td>广告花费 ÷ 点击数</td><td>$100 ÷ 200 = $0.50</td><td>因品类而异</td></tr>
+<tr><td><strong>CTR</strong></td><td>点击数 ÷ 展示量 × 100%</td><td>200 ÷ 50000 = 0.4%</td><td>&gt; 0.3%</td></tr>
+<tr><td><strong>CVR</strong></td><td>订单数 ÷ 点击数 × 100%</td><td>20 ÷ 200 = 10%</td><td>&gt; 8%</td></tr>
+<tr><td><strong>盈亏平衡 ACOS</strong></td><td>产品利润率</td><td>利润率 30% → ACOS &lt; 30% 才盈利</td><td>= 利润率</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>快速判断公式：</strong></p>
+<ul>
+<li>ACOS &lt; 利润率 → 广告盈利</li>
+<li>ACOS = 利润率 → 广告盈亏平衡</li>
+<li>ACOS &gt; 利润率 → 广告亏损（但可能在推排名）/</li>
+</ul>
+<hr>
+<blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path A 总览</a></p>
+<p><strong>Path A</strong>: <a href="a1-product-research.html">A1 选品</a> · <a href="a2-listing-optimization.html">A2 Listing</a> · <a href="a3-advertising.html">A3 广告</a> · <a href="a4-customer-service.html">A4 客服</a> · <a href="a5-inventory.html">A5 库存</a> · <a href="a6-compliance.html">A6 合规</a></p>
+<p><strong>快速跳转</strong>: <a href="../0-foundations/">Path 0 基础</a> · <a href="../b-developers/">Path B 技术</a> · <a href="../c-managers/">Path C 管理</a> · <a href="../d-platforms/">Path D 多平台</a> · <a href="../e-social-media/">Path E 社交媒体</a></p>
+</blockquote>
+<!-- nav:prev-next -->
+<hr>
+<p><a href="a2-listing-optimization.html">&lt; A2 Listing</a> | <a href="README.html">Path 总览</a> | <a href="a4-customer-service.html">A4 客服 &gt;</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../a-operators/a2-listing-optimization.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../a-operators/a4-customer-service.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../a-operators/a2-listing-optimization.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../a-operators/a4-customer-service.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../mermaid-217b66ef.min.js"></script>
+        <script src="../mermaid-init-d4730691.js"></script>
+
+
+
+    </div>
+    </body>
+</html>

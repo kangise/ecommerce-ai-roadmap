@@ -1,0 +1,1759 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>预测模型 - 跨境电商 AI 实战知识库</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="跨境电商 AI 实操手册 — 56 篇指南，从选品到增长，每个环节都有可直接复制的 Prompt">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom-467616e9.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "ayu";
+            window.path_to_searchindex_js = "../searchindex-656d55b3.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-e97a050e.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">跨境电商 AI 实战知识库</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap/edit/main/src/src/b-developers/b2-prediction-models.md" title="Suggest an edit" aria-label="Suggest an edit" rel="edit">
+                            <span class=fa-svg id="git-edit-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M421.7 220.3l-11.3 11.3-22.6 22.6-205 205c-6.6 6.6-14.8 11.5-23.8 14.1L30.8 511c-8.4 2.5-17.5 .2-23.7-6.1S-1.5 489.7 1 481.2L38.7 353.1c2.6-9 7.5-17.2 14.1-23.8l205-205 22.6-22.6 11.3-11.3 33.9 33.9 62.1 62.1 33.9 33.9zM96 353.9l-9.3 9.3c-.9 .9-1.6 2.1-2 3.4l-25.3 86 86-25.3c1.3-.4 2.5-1.1 3.4-2l9.3-9.3H112c-8.8 0-16-7.2-16-16V353.9zM453.3 19.3l39.4 39.4c25 25 25 65.5 0 90.5l-14.5 14.5-22.6 22.6-11.3 11.3-33.9-33.9-62.1-62.1L314.3 67.7l11.3-11.3 22.6-22.6 14.5-14.5c25-25 65.5-25 90.5 0z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="b2-预测模型与智能决策--prediction-models--intelligent-decision"><a class="header" href="#b2-预测模型与智能决策--prediction-models--intelligent-decision">B2. 预测模型与智能决策 | Prediction Models &amp; Intelligent Decision</a></h1>
+<blockquote>
+<p><strong>路径</strong>: Path B: 技术人 · <strong>模块</strong>: B2
+<strong>最后更新</strong>: 2026-03-12
+<strong>难度</strong>: 中级 → 进阶
+<strong>前提</strong>: B1 数据管道基础（pandas、数据清洗）、Python 基础
+<strong>预计时间</strong>: 每天 1 小时，2-3 周</p>
+</blockquote>
+<hr>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path B 总览</a></p>
+<pre><code class="language-mermaid">flowchart LR
+B1["B1 数据管道"]
+B1 --&gt; B2
+B2[" B2 预测模型&lt;br/&gt;（当前）"]:::current
+B2 --&gt; B3
+B3["B3 RAG 知识库"]
+B3 --&gt; B4
+B4["B4 Agent 工作流"]
+B4 --&gt; B5
+B5["B5 本地模型部署"]
+classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
+</code></pre>
+<hr>
+<h2 id="本模块章节导航"><a class="header" href="#本模块章节导航">本模块章节导航</a></h2>
+<ol>
+<li><a href="#1-预测方法论">预测方法论</a> · 2. <a href="#2-工具全景">工具全景</a> · 3. <a href="#3-代码实战">代码实战</a> · 4. <a href="#4-模型评估">模型评估</a> · 5. <a href="#5-实战项目构建-sku-销量预测系统">实战项目</a> · 6. <a href="#6-常见陷阱">常见陷阱</a> · 7. <a href="#7-学习资源">学习资源</a> · 8. <a href="#8-用-openclaw-自动化预测流程"> OpenClaw 自动化</a> · 9. <a href="#9-完成标志">完成标志</a></li>
+</ol>
+<h2 id="本模块你将构建"><a class="header" href="#本模块你将构建">本模块你将构建</a></h2>
+<p>销量预测模型 + Review 主题分析系统。</p>
+<p>完成本模块后，你将能够：</p>
+<ul>
+<li>用 Prophet 对 SKU 做 30/60/90 天销量预测，输出预测值和置信区间</li>
+<li>理解时间序列预测的核心原理（趋势 + 季节性 + 噪声分解）</li>
+<li>处理电商预测的特殊挑战：大促尖峰、新品冷启动、竞品影响</li>
+<li>用 AutoGluon 零配置建模，自动选择最优算法</li>
+<li>用 BERTopic 从 Review 文本中自动发现主题和情感趋势</li>
+<li>将预测结果转化为补货决策（连接 <a href="../a-operators/a5-inventory.html">A5 库存模块</a>）</li>
+<li>用 MAPE/MAE/RMSE 评估模型质量，用回测验证预测可靠性</li>
+</ul>
+<hr>
+<h2 id="1-预测方法论"><a class="header" href="#1-预测方法论">1. 预测方法论</a></h2>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="../a-operators/a5-inventory.html">A5 库存与供应链</a> 销量预测在库存补货决策中的应用详见 A5。 · <a href="../d-platforms/cross-platform-strategy.html">D3 跨平台 AI 协同策略</a> 跨平台需求预测详见 D3</p>
+</blockquote>
+<h3 id="11-时间序列预测的第一性原理"><a class="header" href="#11-时间序列预测的第一性原理">1.1 时间序列预测的第一性原理</a></h3>
+<p>任何时间序列数据都可以分解为三个成分：</p>
+<pre><code>观测值 = 趋势(Trend) + 季节性(Seasonality) + 噪声(Residual)
+</code></pre>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>成分</th><th>含义</th><th>电商场景举例</th></tr>
+</thead>
+<tbody>
+<tr><td>趋势</td><td>长期上升或下降方向</td><td>新品上市后销量逐月增长；老品进入衰退期</td></tr>
+<tr><td>季节性</td><td>固定周期的重复模式</td><td>每周一销量最高（周末下单周一到货）；Q4 旺季</td></tr>
+<tr><td>噪声</td><td>无法解释的随机波动</td><td>某天突然被网红推荐，销量暴涨一天后恢复</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>加法模型 vs 乘法模型：</strong></p>
+<ul>
+<li><strong>加法模型</strong>：<code>y = trend + seasonality + noise</code> 季节性波动幅度固定（如每年 Q4 多卖 1000 件）</li>
+<li><strong>乘法模型</strong>：<code>y = trend × seasonality × noise</code> 季节性波动幅度随趋势变化（如每年 Q4 多卖 30%）</li>
+</ul>
+<p>电商场景通常用<strong>乘法模型</strong>更准确，因为销量基数越大，季节性波动的绝对值也越大。</p>
+<p><strong>分解可视化：</strong></p>
+<pre><code class="language-python">import pandas as pd
+from statsmodels.tsa.seasonal import seasonal_decompose
+import matplotlib.pyplot as plt
+import matplotlib
+
+matplotlib.rcParams["font.sans-serif"] = ["PingFang SC", "Heiti TC", "Arial"]
+matplotlib.rcParams["axes.unicode_minus"] = False
+
+def decompose_sales(df: pd.DataFrame, date_col: str = "date", value_col: str = "units"):
+"""
+将销量时间序列分解为趋势、季节性、噪声三个成分。
+
+Args:
+df: 包含日期和销量的 DataFrame
+date_col: 日期列名
+value_col: 销量列名
+"""
+ts = df.set_index(date_col)[value_col]
+ts = ts.asfreq("D").fillna(method="ffill") # 补齐缺失日期
+
+# 乘法分解，周期=7（周季节性）
+result = seasonal_decompose(ts, model="multiplicative", period=7)
+
+fig, axes = plt.subplots(4, 1, figsize=(12, 8), sharex=True)
+result.observed.plot(ax=axes[0], title="原始数据 (Observed)")
+result.trend.plot(ax=axes[1], title="趋势 (Trend)")
+result.seasonal.plot(ax=axes[2], title="季节性 (Seasonality)")
+result.resid.plot(ax=axes[3], title="噪声 (Residual)")
+
+plt.tight_layout()
+plt.savefig("output/decomposition.png", dpi=150)
+plt.show()
+
+return result
+
+# 使用示例
+# df = pd.read_csv("data/daily_sales.csv")
+# result = decompose_sales(df, date_col="date", value_col="units")
+</code></pre>
+<blockquote>
+<p><strong>关键洞察</strong>：如果分解后的“噪声“成分仍然有明显的模式（比如每逢大促就有巨大残差），说明你的模型缺少对大促事件的建模。这正是 Prophet 的 <code>holidays</code> 参数要解决的问题。</p>
+</blockquote>
+<h3 id="12-电商预测的特殊挑战"><a class="header" href="#12-电商预测的特殊挑战">1.2 电商预测的特殊挑战</a></h3>
+<p>电商销量预测比传统零售更难，因为有几个独特的干扰因素：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>挑战</th><th>表现</th><th>影响</th><th>应对策略</th></tr>
+</thead>
+<tbody>
+<tr><td>大促尖峰</td><td>Prime Day/BFCM 销量暴涨 5-20 倍</td><td>模型被极端值带偏</td><td>将大促作为特殊事件建模（Prophet holidays）</td></tr>
+<tr><td>新品冷启动</td><td>新 ASIN 无历史数据</td><td>无法用时间序列预测</td><td>用类似品的销量曲线做类比预测</td></tr>
+<tr><td>竞品影响</td><td>竞品降价/断货导致自己销量突变</td><td>外部因素无法从自身数据中学到</td><td>添加外部回归变量（竞品价格、BSR）</td></tr>
+<tr><td>广告依赖</td><td>停广告后销量断崖下跌</td><td>自然销量和广告销量混在一起</td><td>分离自然流量和广告流量分别预测</td></tr>
+<tr><td>库存约束</td><td>断货期间销量为 0（非真实需求）</td><td>历史数据中的 0 不代表“没有需求“</td><td>断货期数据需要特殊处理或剔除</td></tr>
+<tr><td>季节性叠加</td><td>周季节性 + 月季节性 + 年季节性同时存在</td><td>单一周期模型不够</td><td>Prophet 支持多重季节性自动建模</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>断货数据处理（关键！）：</strong></p>
+<pre><code class="language-python">def handle_stockout(df: pd.DataFrame, units_col: str = "units") -&gt; pd.DataFrame:
+"""
+处理断货期间的零销量数据。
+
+断货期间销量为 0 不代表需求为 0。
+策略：用断货前后的平均销量填充，避免模型学到"某些天需求为 0"。
+"""
+df = df.copy()
+
+# 标记连续零销量（可能是断货）
+df["is_zero"] = df[units_col] == 0
+df["zero_streak"] = (
+df["is_zero"]
+.groupby((~df["is_zero"]).cumsum())
+.cumsum()
+)
+
+# 连续 3 天以上零销量视为断货（而非真实零需求）
+stockout_mask = df["zero_streak"] &gt;= 3
+
+if stockout_mask.any():
+# 用前后各 7 天的非零均值填充
+rolling_mean = (
+df[~stockout_mask][units_col]
+.rolling(window=7, min_periods=1)
+.mean()
+)
+df.loc[stockout_mask, units_col] = rolling_mean.reindex(
+df.index
+).ffill().bfill()
+
+stockout_days = stockout_mask.sum()
+print(f" 检测到 {stockout_days} 天疑似断货，已用滚动均值填充")
+
+df = df.drop(columns=["is_zero", "zero_streak"])
+return df
+</code></pre>
+<h3 id="13-何时用简单规则-vs-何时用-ml-模型"><a class="header" href="#13-何时用简单规则-vs-何时用-ml-模型">1.3 何时用简单规则 vs 何时用 ML 模型</a></h3>
+<p>不是所有预测都需要机器学习。选择合适的方法比选择最复杂的方法更重要：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>场景</th><th>推荐方法</th><th>理由</th></tr>
+</thead>
+<tbody>
+<tr><td>稳定老品，历史 &gt;1 年</td><td>Prophet / 指数平滑</td><td>数据充足，时间序列模型效果好</td></tr>
+<tr><td>新品上市 &lt;3 个月</td><td>类比法 + 人工调整</td><td>数据不足，ML 模型会过拟合</td></tr>
+<tr><td>大促备货</td><td>去年同期 × 增长系数 + 人工调整</td><td>大促是非常规事件，历史样本太少</td></tr>
+<tr><td>多 SKU 批量预测</td><td>AutoGluon / LightGBM</td><td>自动化程度高，适合批量处理</td></tr>
+<tr><td>需要解释性</td><td>Prophet</td><td>可分解为趋势+季节性，业务人员能理解</td></tr>
+<tr><td>追求精度</td><td>集成方法（多模型加权）</td><td>单一模型有偏差，集成可以互补</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>决策框架：</strong></p>
+<pre><code>历史数据 &gt; 1 年？
+是 → 销量稳定？
+是 → Prophet（简单高效）
+否 → Prophet + 外部变量 / AutoGluon
+否 → 历史数据 &gt; 3 个月？
+是 → Prophet（短周期）/ 移动平均
+否 → 类比法（找相似品历史数据）
+</code></pre>
+<hr>
+<h2 id="2-工具全景"><a class="header" href="#2-工具全景">2. 工具全景</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>工具</th><th>类型</th><th>难度</th><th>最佳场景</th><th>安装</th></tr>
+</thead>
+<tbody>
+<tr><td><a href="https://facebook.github.io/prophet/">Prophet</a></td><td>时间序列</td><td>入门</td><td>单 SKU 销量预测，最易上手</td><td><code>pip install prophet</code></td></tr>
+<tr><td><a href="https://unit8co.github.io/darts/">Darts</a></td><td>时间序列</td><td>中级</td><td>需要对比多种模型</td><td><code>pip install darts</code></td></tr>
+<tr><td><a href="https://auto.gluon.ai/">AutoGluon</a></td><td>自动化 ML</td><td>入门</td><td>零 ML 知识批量建模</td><td><code>pip install autogluon.timeseries</code></td></tr>
+<tr><td><a href="https://maartengr.github.io/BERTopic/">BERTopic</a></td><td>NLP 主题建模</td><td>中级</td><td>Review 文本主题发现</td><td><code>pip install bertopic</code></td></tr>
+<tr><td><a href="https://developers.google.com/optimization">OR-Tools</a></td><td>运筹优化</td><td>进阶</td><td>补货策略优化</td><td><code>pip install ortools</code></td></tr>
+<tr><td><a href="https://scikit-learn.org/">scikit-learn</a></td><td>通用 ML</td><td>中级</td><td>特征工程、回归、分类</td><td><code>pip install scikit-learn</code></td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>选择建议：</strong></p>
+<ul>
+<li>刚入门 → 从 Prophet 开始，一个下午就能出结果</li>
+<li>想要自动化 → AutoGluon，零配置自动选最优模型</li>
+<li>需要 Review 分析 → BERTopic，自动发现评论主题</li>
+<li>需要优化补货量 → OR-Tools，数学规划求最优解</li>
+</ul>
+<hr>
+<h2 id="3-代码实战"><a class="header" href="#3-代码实战">3. 代码实战</a></h2>
+<h3 id="31-prophet-销量预测完整流程"><a class="header" href="#31-prophet-销量预测完整流程">3.1 Prophet 销量预测（完整流程）</a></h3>
+<p>Prophet 是 Meta 开源的时间序列预测库，专为业务预测设计。它的核心优势：</p>
+<ul>
+<li>自动处理缺失值和异常值</li>
+<li>内置节假日效应</li>
+<li>可解释的分解结果（趋势 + 季节性 + 节假日）</li>
+<li>对非专业人员友好</li>
+</ul>
+<p><strong>完整代码：数据准备 → 训练 → 预测 → 评估 → 可视化</strong></p>
+<pre><code class="language-python">import pandas as pd
+import numpy as np
+from prophet import Prophet
+from datetime import datetime, timedelta
+import matplotlib.pyplot as plt
+import matplotlib
+
+matplotlib.rcParams["font.sans-serif"] = ["PingFang SC", "Heiti TC", "Arial"]
+matplotlib.rcParams["axes.unicode_minus"] = False
+
+# ============================================================
+# Step 1: 数据准备
+# ============================================================
+
+def prepare_prophet_data(
+df: pd.DataFrame,
+date_col: str = "date",
+value_col: str = "units"
+) -&gt; pd.DataFrame:
+"""
+将业务数据转换为 Prophet 要求的格式。
+
+Prophet 要求两列：
+- ds: 日期列（datetime 类型）
+- y: 目标值列（数值类型）
+
+Args:
+df: 原始数据
+date_col: 日期列名
+value_col: 目标值列名
+
+Returns:
+Prophet 格式的 DataFrame
+"""
+prophet_df = df[[date_col, value_col]].copy()
+prophet_df.columns = ["ds", "y"]
+
+# 确保日期格式正确
+prophet_df["ds"] = pd.to_datetime(prophet_df["ds"])
+prophet_df["y"] = pd.to_numeric(prophet_df["y"], errors="coerce")
+
+# 按日期排序并去重（同一天多条记录则求和）
+prophet_df = prophet_df.groupby("ds")["y"].sum().reset_index()
+prophet_df = prophet_df.sort_values("ds").reset_index(drop=True)
+
+# 补齐缺失日期（用 0 填充，后续可用断货处理逻辑替换）
+date_range = pd.date_range(
+start=prophet_df["ds"].min(),
+end=prophet_df["ds"].max(),
+freq="D"
+)
+prophet_df = (
+prophet_df
+.set_index("ds")
+.reindex(date_range)
+.fillna(0)
+.reset_index()
+.rename(columns={"index": "ds"})
+)
+
+print(f" 数据准备完成: {len(prophet_df)} 天")
+print(f" 日期范围: {prophet_df['ds'].min().date()} → {prophet_df['ds'].max().date()}")
+print(f" 日均销量: {prophet_df['y'].mean():.1f}")
+
+return prophet_df
+
+# ============================================================
+# Step 2: 训练模型
+# ============================================================
+
+def train_prophet(
+df: pd.DataFrame,
+yearly: bool = True,
+weekly: bool = True,
+daily: bool = False,
+changepoint_prior: float = 0.05
+) -&gt; Prophet:
+"""
+训练 Prophet 模型。
+
+Args:
+df: Prophet 格式数据（ds, y 两列）
+yearly: 是否启用年季节性
+weekly: 是否启用周季节性
+daily: 是否启用日季节性（通常不需要）
+changepoint_prior: 趋势变化点灵敏度
+- 值越大，模型越容易捕捉趋势变化（但可能过拟合）
+- 值越小，趋势越平滑（但可能欠拟合）
+- 默认 0.05，电商场景建议 0.1-0.3（变化较快）
+
+Returns:
+训练好的 Prophet 模型
+"""
+model = Prophet(
+yearly_seasonality=yearly,
+weekly_seasonality=weekly,
+daily_seasonality=daily,
+changepoint_prior_scale=changepoint_prior,
+interval_width=0.8, # 80% 置信区间
+)
+
+model.fit(df)
+print(" 模型训练完成")
+
+return model
+
+# ============================================================
+# Step 3: 生成预测
+# ============================================================
+
+def make_forecast(
+model: Prophet,
+periods: int = 90,
+freq: str = "D"
+) -&gt; pd.DataFrame:
+"""
+生成未来 N 天的预测。
+
+Args:
+model: 训练好的 Prophet 模型
+periods: 预测天数
+freq: 频率（D=天, W=周, M=月）
+
+Returns:
+预测结果 DataFrame，包含：
+- ds: 日期
+- yhat: 预测值
+- yhat_lower: 预测下界
+- yhat_upper: 预测上界
+- trend: 趋势成分
+- weekly: 周季节性成分
+- yearly: 年季节性成分
+"""
+future = model.make_future_dataframe(periods=periods, freq=freq)
+forecast = model.predict(future)
+
+# 预测值不能为负（销量最小为 0）
+forecast["yhat"] = forecast["yhat"].clip(lower=0)
+forecast["yhat_lower"] = forecast["yhat_lower"].clip(lower=0)
+
+print(f" 预测完成: 未来 {periods} 天")
+print(f" 预测均值: {forecast['yhat'].tail(periods).mean():.1f}")
+print(f" 预测区间: [{forecast['yhat_lower'].tail(periods).mean():.1f}, "
+f"{forecast['yhat_upper'].tail(periods).mean():.1f}]")
+
+return forecast
+
+# ============================================================
+# Step 4: 可视化
+# ============================================================
+
+def plot_forecast(
+model: Prophet,
+forecast: pd.DataFrame,
+actual_df: pd.DataFrame = None,
+title: str = "SKU 销量预测"
+):
+"""
+绘制预测结果图。
+
+Args:
+model: Prophet 模型
+forecast: 预测结果
+actual_df: 实际数据（用于对比）
+title: 图表标题
+"""
+fig, axes = plt.subplots(2, 1, figsize=(14, 10))
+
+# 图 1: 预测 vs 实际
+ax1 = axes[0]
+ax1.plot(forecast["ds"], forecast["yhat"], color="#1a73e8", label="预测值")
+ax1.fill_between(
+forecast["ds"],
+forecast["yhat_lower"],
+forecast["yhat_upper"],
+alpha=0.2, color="#1a73e8", label="80% 置信区间"
+)
+
+if actual_df is not None:
+ax1.scatter(
+actual_df["ds"], actual_df["y"],
+color="#333", s=10, alpha=0.5, label="实际值"
+)
+
+ax1.set_title(title, fontsize=14, fontweight="bold")
+ax1.set_ylabel("销量 (Units)")
+ax1.legend()
+ax1.grid(True, alpha=0.3)
+
+# 图 2: 成分分解
+ax2 = axes[1]
+ax2.plot(forecast["ds"], forecast["trend"], label="趋势", color="#e8710a")
+if "weekly" in forecast.columns:
+ax2_twin = ax2.twinx()
+weekly_data = forecast.drop_duplicates(subset=["ds"]).tail(90)
+ax2_twin.plot(
+weekly_data["ds"], weekly_data["weekly"],
+label="周季节性", color="#0d652d", alpha=0.7
+)
+ax2_twin.set_ylabel("周季节性")
+
+ax2.set_title("趋势分解", fontsize=14, fontweight="bold")
+ax2.set_ylabel("趋势")
+ax2.legend(loc="upper left")
+ax2.grid(True, alpha=0.3)
+
+plt.tight_layout()
+plt.savefig("output/forecast.png", dpi=150, bbox_inches="tight")
+plt.show()
+print(" 图表已保存: output/forecast.png")
+
+# ============================================================
+# 完整使用示例
+# ============================================================
+
+# # 1. 加载数据
+# raw_df = pd.read_csv("data/daily_sales.csv")
+# prophet_df = prepare_prophet_data(raw_df, date_col="date", value_col="units")
+#
+# # 2. 处理断货数据
+# prophet_df = handle_stockout(prophet_df, units_col="y")
+#
+# # 3. 训练模型
+# model = train_prophet(prophet_df, changepoint_prior=0.1)
+#
+# # 4. 预测未来 90 天
+# forecast = make_forecast(model, periods=90)
+#
+# # 5. 可视化
+# plot_forecast(model, forecast, actual_df=prophet_df, title="ASIN-B0XXXXX 销量预测")
+</code></pre>
+<blockquote>
+<p><strong>changepoint_prior_scale 调参指南</strong>：这是 Prophet 最重要的超参数。电商数据变化快，建议从 0.1 开始尝试。如果预测曲线太平滑（跟不上趋势变化），调大到 0.2-0.3；如果预测曲线太波动（过拟合噪声），调小到 0.01-0.05。</p>
+</blockquote>
+<h3 id="32-prophet-进阶节假日效应与外部变量"><a class="header" href="#32-prophet-进阶节假日效应与外部变量">3.2 Prophet 进阶：节假日效应与外部变量</a></h3>
+<p>基础 Prophet 模型忽略了电商最重要的因素：大促事件。添加节假日效应可以显著提升预测精度。</p>
+<p><strong>添加电商大促事件：</strong></p>
+<pre><code class="language-python">def create_ecommerce_holidays(years: list[int]) -&gt; pd.DataFrame:
+"""
+创建电商大促日历。
+
+Prophet 的 holidays 参数接受一个 DataFrame，包含：
+- holiday: 事件名称
+- ds: 事件日期
+- lower_window: 事件前影响天数（负数）
+- upper_window: 事件后影响天数
+"""
+holidays = []
+
+for year in years:
+# Prime Day（通常 7 月中旬，持续 2 天）
+holidays.append({
+"holiday": "prime_day",
+"ds": f"{year}-07-12",
+"lower_window": -3, # 提前 3 天开始有影响（预热期）
+"upper_window": 2, # 结束后 2 天仍有余波
+})
+
+# Black Friday（11 月第四个周五）
+# 简化处理：固定 11-24 附近
+holidays.append({
+"holiday": "black_friday",
+"ds": f"{year}-11-24",
+"lower_window": -7, # BFCM 周提前一周开始
+"upper_window": 3, # Cyber Monday 后几天
+})
+
+# Cyber Monday
+holidays.append({
+"holiday": "cyber_monday",
+"ds": f"{year}-11-27",
+"lower_window": 0,
+"upper_window": 1,
+})
+
+# 双十一（对中国卖家有影响）
+holidays.append({
+"holiday": "singles_day",
+"ds": f"{year}-11-11",
+"lower_window": -3,
+"upper_window": 1,
+})
+
+# 圣诞节前购物季
+holidays.append({
+"holiday": "christmas_shopping",
+"ds": f"{year}-12-15",
+"lower_window": -5,
+"upper_window": 10,
+})
+
+# 新年后低谷期
+holidays.append({
+"holiday": "post_newyear_dip",
+"ds": f"{year}-01-05",
+"lower_window": -5,
+"upper_window": 10,
+})
+
+return pd.DataFrame(holidays)
+
+def train_prophet_with_holidays(
+df: pd.DataFrame,
+holidays: pd.DataFrame = None,
+changepoint_prior: float = 0.1
+) -&gt; Prophet:
+"""
+训练带节假日效应的 Prophet 模型。
+"""
+if holidays is None:
+years = list(range(
+df["ds"].dt.year.min(),
+df["ds"].dt.year.max() + 2 # 包含预测年份
+))
+holidays = create_ecommerce_holidays(years)
+
+model = Prophet(
+yearly_seasonality=True,
+weekly_seasonality=True,
+daily_seasonality=False,
+changepoint_prior_scale=changepoint_prior,
+holidays=holidays,
+holidays_prior_scale=10.0, # 节假日效应的灵敏度
+interval_width=0.8,
+)
+
+model.fit(df)
+print(f" 模型训练完成（含 {len(holidays)} 个节假日事件）")
+
+return model
+</code></pre>
+<p><strong>添加外部回归变量（广告花费、竞品价格）：</strong></p>
+<pre><code class="language-python">def train_prophet_with_regressors(
+df: pd.DataFrame,
+regressor_cols: list[str] = None
+) -&gt; Prophet:
+"""
+训练带外部回归变量的 Prophet 模型。
+
+外部变量可以是：
+- ad_spend: 广告花费（广告投入越多，销量越高）
+- competitor_price: 竞品价格（竞品涨价，自己销量可能上升）
+- bsr_rank: BSR 排名（排名越高，曝光越多）
+- coupon_active: 是否有优惠券（0/1）
+
+注意：预测时也需要提供未来的外部变量值！
+"""
+years = list(range(
+df["ds"].dt.year.min(),
+df["ds"].dt.year.max() + 2
+))
+holidays = create_ecommerce_holidays(years)
+
+model = Prophet(
+yearly_seasonality=True,
+weekly_seasonality=True,
+changepoint_prior_scale=0.1,
+holidays=holidays,
+interval_width=0.8,
+)
+
+# 添加外部回归变量
+regressor_cols = regressor_cols or []
+for col in regressor_cols:
+if col in df.columns:
+model.add_regressor(col, standardize=True)
+print(f" 添加回归变量: {col}")
+
+model.fit(df)
+print(" 模型训练完成（含外部变量）")
+
+return model
+
+def forecast_with_regressors(
+model: Prophet,
+periods: int = 90,
+future_regressors: pd.DataFrame = None
+) -&gt; pd.DataFrame:
+"""
+带外部变量的预测。
+
+Args:
+model: 训练好的模型
+periods: 预测天数
+future_regressors: 未来的外部变量值
+如果不提供，用历史均值填充（不推荐，会降低精度）
+"""
+future = model.make_future_dataframe(periods=periods)
+
+# 合并未来的外部变量
+if future_regressors is not None:
+future = future.merge(future_regressors, on="ds", how="left")
+
+# 对缺失的外部变量用历史均值填充
+for col in future.columns:
+if col not in ["ds"] and future[col].isna().any():
+fill_value = future[col].dropna().mean()
+future[col] = future[col].fillna(fill_value)
+print(f" {col} 有缺失值，用均值 {fill_value:.2f} 填充")
+
+forecast = model.predict(future)
+forecast["yhat"] = forecast["yhat"].clip(lower=0)
+forecast["yhat_lower"] = forecast["yhat_lower"].clip(lower=0)
+
+return forecast
+
+# 使用示例
+# df = prepare_prophet_data(raw_df)
+# df["ad_spend"] = ad_data["spend"] # 合并广告花费数据
+# df["competitor_price"] = competitor_data["price"] # 合并竞品价格
+#
+# model = train_prophet_with_regressors(df, regressor_cols=["ad_spend", "competitor_price"])
+#
+# # 预测时需要提供未来的广告预算和竞品价格预估
+# future_regs = pd.DataFrame({
+# "ds": pd.date_range("2025-04-01", periods=90, freq="D"),
+# "ad_spend": [500] * 90, # 假设未来每天广告预算 $500
+# "competitor_price": [29.99] * 90, # 假设竞品价格不变
+# })
+# forecast = forecast_with_regressors(model, periods=90, future_regressors=future_regs)
+</code></pre>
+<blockquote>
+<p><strong>外部变量的陷阱</strong>：预测时你需要提供未来的外部变量值。如果你不知道未来的广告预算，那添加 <code>ad_spend</code> 作为回归变量反而会降低预测精度。只添加你能合理预估未来值的变量。</p>
+</blockquote>
+<h3 id="33-autogluon-自动化预测零配置建模"><a class="header" href="#33-autogluon-自动化预测零配置建模">3.3 AutoGluon 自动化预测（零配置建模）</a></h3>
+<p>AutoGluon 是 Amazon 开源的自动化机器学习框架。它的时间序列模块可以自动尝试多种模型（Prophet、ETS、DeepAR、Theta 等），选择最优的一个。适合不想手动调参的场景。</p>
+<pre><code class="language-python">from autogluon.timeseries import TimeSeriesDataFrame, TimeSeriesPredictor
+
+def autogluon_forecast(
+df: pd.DataFrame,
+date_col: str = "date",
+value_col: str = "units",
+item_col: str = "asin",
+prediction_length: int = 30,
+time_limit: int = 300
+) -&gt; pd.DataFrame:
+"""
+用 AutoGluon 自动化预测多个 SKU 的销量。
+
+AutoGluon 的优势：
+- 零配置：不需要选模型、调参数
+- 多 SKU：一次训练，同时预测所有 SKU
+- 自动集成：自动尝试多种模型并集成最优结果
+
+Args:
+df: 包含日期、销量、SKU 标识的 DataFrame
+date_col: 日期列名
+value_col: 目标值列名
+item_col: SKU 标识列名
+prediction_length: 预测天数
+time_limit: 训练时间限制（秒）
+
+Returns:
+预测结果 DataFrame
+"""
+# 1. 转换为 AutoGluon 格式
+ag_df = df.rename(columns={
+date_col: "timestamp",
+value_col: "target",
+item_col: "item_id"
+})
+ag_df["timestamp"] = pd.to_datetime(ag_df["timestamp"])
+
+ts_df = TimeSeriesDataFrame.from_data_frame(
+ag_df,
+id_column="item_id",
+timestamp_column="timestamp"
+)
+
+print(f" 数据: {ts_df.num_items} 个 SKU, "
+f"{len(ts_df)} 条记录")
+
+# 2. 训练（AutoGluon 自动选择最优模型）
+predictor = TimeSeriesPredictor(
+prediction_length=prediction_length,
+target="target",
+eval_metric="MAPE", # 用 MAPE 作为评估指标
+)
+
+predictor.fit(
+train_data=ts_df,
+time_limit=time_limit, # 限制训练时间
+presets="medium_quality", # fast / medium / high / best
+)
+
+# 3. 查看模型排行榜
+leaderboard = predictor.leaderboard(ts_df)
+print("\n 模型排行榜:")
+print(leaderboard[["model", "score_val"]].to_string(index=False))
+
+# 4. 生成预测
+predictions = predictor.predict(ts_df)
+
+print(f"\n 预测完成: {ts_df.num_items} 个 SKU × {prediction_length} 天")
+
+return predictions
+
+# 使用示例
+# df = pd.read_csv("data/daily_sales_all_skus.csv")
+# predictions = autogluon_forecast(
+# df,
+# date_col="date",
+# value_col="units",
+# item_col="asin",
+# prediction_length=30,
+# time_limit=600 # 10 分钟
+# )
+#
+# # 查看某个 SKU 的预测
+# sku_pred = predictions.loc["B0XXXXX"]
+# print(sku_pred)
+</code></pre>
+<blockquote>
+<p><strong>AutoGluon vs Prophet 怎么选？</strong></p>
+<ul>
+<li>单个 SKU 深度分析 → Prophet（可解释性强，可以添加节假日和外部变量）</li>
+<li>批量预测 100+ SKU → AutoGluon（自动化程度高，一次搞定）</li>
+<li>不确定用什么 → 先用 AutoGluon 跑一遍基线，再用 Prophet 对重点 SKU 精调</li>
+</ul>
+<p>参考：<a href="https://auto.gluon.ai/stable/tutorials/timeseries/index.html">AutoGluon 时间序列文档</a></p>
+</blockquote>
+<h3 id="34-bertopic-review-主题分析"><a class="header" href="#34-bertopic-review-主题分析">3.4 BERTopic Review 主题分析</a></h3>
+<p>BERTopic 可以从大量 Review 文本中自动发现主题，帮助你理解客户在说什么。这比手动读 Review 高效 100 倍。</p>
+<pre><code class="language-python">from bertopic import BERTopic
+from sentence_transformers import SentenceTransformer
+import pandas as pd
+
+def analyze_review_topics(
+reviews: list[str],
+language: str = "english",
+nr_topics: int = "auto",
+min_topic_size: int = 10
+) -&gt; tuple:
+"""
+用 BERTopic 从 Review 文本中自动发现主题。
+
+工作原理：
+1. 用 Sentence-BERT 将每条 Review 转换为向量
+2. 用 UMAP 降维
+3. 用 HDBSCAN 聚类
+4. 用 c-TF-IDF 提取每个主题的关键词
+
+Args:
+reviews: Review 文本列表
+language: 语言 ("english" 或 "chinese")
+nr_topics: 主题数量（"auto" 自动确定）
+min_topic_size: 最小主题大小（Review 数少于此值的主题会被合并）
+
+Returns:
+(topic_model, topics, probs)
+- topic_model: 训练好的 BERTopic 模型
+- topics: 每条 Review 的主题编号
+- probs: 每条 Review 属于各主题的概率
+"""
+# 选择嵌入模型
+if language == "chinese":
+embedding_model = SentenceTransformer(
+"paraphrase-multilingual-MiniLM-L12-v2"
+)
+else:
+embedding_model = SentenceTransformer(
+"all-MiniLM-L6-v2"
+)
+
+# 创建 BERTopic 模型
+topic_model = BERTopic(
+embedding_model=embedding_model,
+nr_topics=nr_topics,
+min_topic_size=min_topic_size,
+language=language,
+verbose=True
+)
+
+# 训练
+topics, probs = topic_model.fit_transform(reviews)
+
+# 输出主题概览
+topic_info = topic_model.get_topic_info()
+print("\n 发现的主题:")
+for _, row in topic_info.head(10).iterrows():
+if row["Topic"] != -1: # -1 是离群点
+print(f" 主题 {row['Topic']}: {row['Name']} "
+f"({row['Count']} 条 Review)")
+
+return topic_model, topics, probs
+
+def get_topic_summary(
+topic_model: BERTopic,
+reviews: list[str],
+topics: list[int],
+ratings: list[int] = None
+) -&gt; pd.DataFrame:
+"""
+生成主题摘要报告。
+
+Args:
+topic_model: 训练好的模型
+reviews: Review 文本
+topics: 主题编号
+ratings: 评分（1-5），用于分析每个主题的情感倾向
+
+Returns:
+主题摘要 DataFrame
+"""
+summary_data = []
+topic_info = topic_model.get_topic_info()
+
+for _, row in topic_info.iterrows():
+topic_id = row["Topic"]
+if topic_id == -1:
+continue
+
+# 获取该主题的关键词
+keywords = topic_model.get_topic(topic_id)
+keyword_str = ", ".join([w for w, _ in keywords[:5]])
+
+# 获取该主题的 Review 索引
+topic_mask = [t == topic_id for t in topics]
+topic_reviews = [r for r, m in zip(reviews, topic_mask) if m]
+
+entry = {
+"topic_id": topic_id,
+"keywords": keyword_str,
+"review_count": len(topic_reviews),
+"sample_review": topic_reviews[0][:200] if topic_reviews else "",
+}
+
+# 如果有评分数据，计算该主题的平均评分
+if ratings:
+topic_ratings = [r for r, m in zip(ratings, topic_mask) if m]
+entry["avg_rating"] = round(sum(topic_ratings) / len(topic_ratings), 2) if topic_ratings else None
+entry["negative_pct"] = round(
+sum(1 for r in topic_ratings if r &lt;= 2) / len(topic_ratings) * 100, 1
+) if topic_ratings else None
+
+summary_data.append(entry)
+
+summary = pd.DataFrame(summary_data)
+
+if "avg_rating" in summary.columns:
+summary = summary.sort_values("avg_rating", ascending=True)
+
+return summary
+
+# 使用示例
+# reviews_df = pd.read_csv("data/reviews.csv")
+# reviews = reviews_df["review_text"].tolist()
+# ratings = reviews_df["rating"].tolist()
+#
+# topic_model, topics, probs = analyze_review_topics(reviews, language="english")
+#
+# # 生成主题摘要
+# summary = get_topic_summary(topic_model, reviews, topics, ratings)
+# print(summary.to_string(index=False))
+#
+# # 可视化主题分布
+# fig = topic_model.visualize_topics()
+# fig.write_html("output/review_topics.html")
+#
+# # 查看主题随时间的变化（需要日期数据）
+# timestamps = reviews_df["date"].tolist()
+# topics_over_time = topic_model.topics_over_time(reviews, topics, timestamps)
+# fig = topic_model.visualize_topics_over_time(topics_over_time)
+# fig.write_html("output/topics_over_time.html")
+</code></pre>
+<blockquote>
+<p><strong>BERTopic 的实际价值</strong>：假设你有 5000 条竞品 Review，手动读完需要几天。BERTopic 5 分钟就能告诉你：主题 1 是“电池续航差“（平均评分 2.1），主题 2 是“画质好“（平均评分 4.5），主题 3 是“App 难用“（平均评分 1.8）。这直接告诉你产品改进方向。</p>
+<p>参考：<a href="https://maartengr.github.io/BERTopic/">BERTopic 官方文档</a> | <a href="https://maartengr.github.io/BERTopic/getting_started/best_practices/best_practices.html">BERTopic 最佳实践</a></p>
+</blockquote>
+<h3 id="35-预测结果转化为补货决策"><a class="header" href="#35-预测结果转化为补货决策">3.5 预测结果转化为补货决策</a></h3>
+<p>预测本身不是目的，补货决策才是。这一节把预测结果连接到 <a href="../a-operators/a5-inventory.html">A5 库存模块</a> 的补货逻辑。</p>
+<pre><code class="language-python">def forecast_to_reorder(
+forecast: pd.DataFrame,
+current_stock: int,
+lead_time_days: int = 30,
+safety_stock_days: int = 14,
+moq: int = 100
+) -&gt; dict:
+"""
+将预测结果转化为补货建议。
+
+Args:
+forecast: Prophet 预测结果
+current_stock: 当前库存数量
+lead_time_days: 供应商交货周期（天）
+safety_stock_days: 安全库存天数
+moq: 最小起订量
+
+Returns:
+补货建议字典
+"""
+# 取未来预测数据
+future_data = forecast[forecast["ds"] &gt; pd.Timestamp.now()]
+
+if future_data.empty:
+return {"error": "无未来预测数据"}
+
+# 计算日均预测销量（用上界做保守估计）
+daily_forecast = future_data["yhat"].mean()
+daily_upper = future_data["yhat_upper"].mean()
+
+# 安全库存 = 安全天数 × 日均销量上界
+safety_stock = int(safety_stock_days * daily_upper)
+
+# Lead Time 期间的预期消耗
+lt_consumption = int(lead_time_days * daily_forecast)
+
+# 再订货点 = Lead Time 消耗 + 安全库存
+reorder_point = lt_consumption + safety_stock
+
+# 当前库存可支撑天数
+days_of_stock = int(current_stock / daily_forecast) if daily_forecast &gt; 0 else 999
+
+# 建议订货量 = 90 天预测需求 - 当前库存 + 安全库存
+forecast_90d = int(future_data["yhat"].head(90).sum())
+suggested_qty = max(forecast_90d - current_stock + safety_stock, 0)
+
+# 向上取整到 MOQ 的倍数
+if suggested_qty &gt; 0:
+suggested_qty = max(
+((suggested_qty + moq - 1) // moq) * moq,
+moq
+)
+
+# 紧急程度判断
+if current_stock &lt;= reorder_point * 0.5:
+urgency = " 紧急补货"
+elif current_stock &lt;= reorder_point:
+urgency = " 建议补货"
+else:
+urgency = " 库存充足"
+
+result = {
+"urgency": urgency,
+"current_stock": current_stock,
+"days_of_stock": days_of_stock,
+"daily_forecast": round(daily_forecast, 1),
+"safety_stock": safety_stock,
+"reorder_point": reorder_point,
+"suggested_qty": suggested_qty,
+"forecast_90d": forecast_90d,
+"lead_time_days": lead_time_days,
+}
+
+print(f"\n 补货建议:")
+print(f" 状态: {urgency}")
+print(f" 当前库存: {current_stock} 件（可支撑 {days_of_stock} 天）")
+print(f" 日均预测: {daily_forecast:.1f} 件/天")
+print(f" 安全库存: {safety_stock} 件")
+print(f" 再订货点: {reorder_point} 件")
+print(f" 建议订货: {suggested_qty} 件（MOQ={moq}）")
+
+return result
+
+# 使用示例
+# reorder = forecast_to_reorder(
+# forecast=forecast,
+# current_stock=500,
+# lead_time_days=30,
+# safety_stock_days=14,
+# moq=200
+# )
+</code></pre>
+<hr>
+<h2 id="4-模型评估"><a class="header" href="#4-模型评估">4. 模型评估</a></h2>
+<h3 id="41-评估指标"><a class="header" href="#41-评估指标">4.1 评估指标</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>指标</th><th>公式</th><th>含义</th><th>适合场景</th></tr>
+</thead>
+<tbody>
+<tr><td>MAE</td><td><code>mean(abs(actual - predicted))</code></td><td>平均绝对误差</td><td>通用，对异常值不敏感</td></tr>
+<tr><td>RMSE</td><td><code>sqrt(mean((actual - predicted)²))</code></td><td>均方根误差</td><td>惩罚大误差，适合不容忍大偏差的场景</td></tr>
+<tr><td>MAPE</td><td><code>mean(abs((actual - predicted) / actual)) × 100%</code></td><td>平均绝对百分比误差</td><td>跨 SKU 对比（不受销量基数影响）</td></tr>
+<tr><td>WAPE</td><td><code>sum(abs(actual - predicted)) / sum(actual) × 100%</code></td><td>加权绝对百分比误差</td><td>避免 MAPE 在低销量时爆炸</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>电商场景推荐用 WAPE</strong>：MAPE 在实际销量接近 0 时会趋向无穷大（除以接近 0 的数），而 WAPE 用总销量做分母，更稳定。</p>
+<pre><code class="language-python">def evaluate_forecast(
+actual: pd.Series,
+predicted: pd.Series
+) -&gt; dict:
+"""
+计算预测评估指标。
+
+Args:
+actual: 实际值
+predicted: 预测值
+
+Returns:
+评估指标字典
+"""
+actual = actual.values
+predicted = predicted.values
+
+mae = np.mean(np.abs(actual - predicted))
+rmse = np.sqrt(np.mean((actual - predicted) ** 2))
+
+# MAPE（过滤掉实际值为 0 的天）
+nonzero_mask = actual &gt; 0
+if nonzero_mask.any():
+mape = np.mean(
+np.abs((actual[nonzero_mask] - predicted[nonzero_mask])
+/ actual[nonzero_mask])
+) * 100
+else:
+mape = float("inf")
+
+# WAPE（更稳健）
+wape = np.sum(np.abs(actual - predicted)) / np.sum(actual) * 100 if np.sum(actual) &gt; 0 else float("inf")
+
+metrics = {
+"MAE": round(mae, 2),
+"RMSE": round(rmse, 2),
+"MAPE": round(mape, 2),
+"WAPE": round(wape, 2),
+}
+
+print(" 评估结果:")
+for k, v in metrics.items():
+unit = "%" if k in ("MAPE", "WAPE") else "units"
+print(f" {k}: {v} {unit}")
+
+return metrics
+</code></pre>
+<p><strong>MAPE 参考基准（电商场景）：</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>MAPE</th><th>评价</th><th>说明</th></tr>
+</thead>
+<tbody>
+<tr><td>&lt; 15%</td><td>优秀</td><td>稳定老品，数据充足</td></tr>
+<tr><td>15-25%</td><td>良好</td><td>大多数 SKU 的合理水平</td></tr>
+<tr><td>25-40%</td><td>可接受</td><td>新品或波动较大的品类</td></tr>
+<tr><td>&gt; 40%</td><td>需改进</td><td>检查数据质量或模型配置</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="42-回测backtesting"><a class="header" href="#42-回测backtesting">4.2 回测（Backtesting）</a></h3>
+<p>回测是验证预测模型最可靠的方法：用历史数据模拟“如果当时用这个模型预测，结果会怎样“。</p>
+<pre><code class="language-python">def backtest_prophet(
+df: pd.DataFrame,
+initial_days: int = 180,
+horizon_days: int = 30,
+period_days: int = 30
+) -&gt; pd.DataFrame:
+"""
+Prophet 回测：滚动窗口验证。
+
+原理：
+1. 用前 initial_days 天数据训练
+2. 预测未来 horizon_days 天
+3. 与实际值对比
+4. 窗口向前滑动 period_days 天，重复
+
+Args:
+df: Prophet 格式数据
+initial_days: 初始训练数据天数
+horizon_days: 每次预测的天数
+period_days: 窗口滑动步长
+
+Returns:
+回测结果 DataFrame
+"""
+from prophet.diagnostics import cross_validation, performance_metrics
+
+model = Prophet(
+yearly_seasonality=True,
+weekly_seasonality=True,
+changepoint_prior_scale=0.1,
+interval_width=0.8,
+)
+model.fit(df)
+
+# 交叉验证
+cv_results = cross_validation(
+model,
+initial=f"{initial_days} days",
+period=f"{period_days} days",
+horizon=f"{horizon_days} days"
+)
+
+# 计算性能指标
+perf = performance_metrics(cv_results)
+
+print(" 回测结果:")
+print(f" MAE: {perf['mae'].mean():.2f}")
+print(f" RMSE: {perf['rmse'].mean():.2f}")
+print(f" MAPE: {perf['mape'].mean() * 100:.2f}%")
+
+return cv_results, perf
+
+# 使用示例
+# cv_results, perf = backtest_prophet(prophet_df, initial_days=180, horizon_days=30)
+#
+# # 可视化回测结果
+# from prophet.plot import plot_cross_validation_metric
+# fig = plot_cross_validation_metric(cv_results, metric="mape")
+# plt.savefig("output/backtest_mape.png", dpi=150)
+</code></pre>
+<h3 id="43-预测区间的使用"><a class="header" href="#43-预测区间的使用">4.3 预测区间的使用</a></h3>
+<p>预测值是一个点估计，但业务决策需要考虑不确定性。Prophet 的预测区间告诉你“真实值大概率落在这个范围内“。</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>决策场景</th><th>用哪个值</th><th>理由</th></tr>
+</thead>
+<tbody>
+<tr><td>补货量计算</td><td><code>yhat_upper</code>（上界）</td><td>宁可多备一点，断货损失 &gt; 库存成本</td></tr>
+<tr><td>销售目标设定</td><td><code>yhat</code>（中位数）</td><td>目标应该是最可能的结果</td></tr>
+<tr><td>悲观情景分析</td><td><code>yhat_lower</code>（下界）</td><td>评估最差情况下的现金流</td></tr>
+<tr><td>仓储空间规划</td><td><code>yhat_upper</code>（上界）</td><td>确保有足够空间存放</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="5-实战项目构建-sku-销量预测系统"><a class="header" href="#5-实战项目构建-sku-销量预测系统">5. 实战项目：构建 SKU 销量预测系统</a></h2>
+<h3 id="51-项目架构"><a class="header" href="#51-项目架构">5.1 项目架构</a></h3>
+<pre><code>sales-forecaster/
+config.py # 配置（数据路径、模型参数）
+requirements.txt # 依赖
+
+data/ # 数据目录
+raw/ # 原始销量数据
+processed/ # 清洗后的数据
+
+models/ # 模型存储
+prophet/ # Prophet 模型文件
+
+src/
+data_prep.py # 数据准备（清洗、断货处理）
+prophet_model.py # Prophet 训练和预测
+autogluon_model.py # AutoGluon 批量预测
+review_analysis.py # BERTopic Review 分析
+evaluator.py # 模型评估和回测
+reorder.py # 补货决策
+
+output/ # 输出
+forecasts/ # 预测结果 CSV
+reports/ # HTML 报告
+plots/ # 图表
+
+run_forecast.py # 主入口：单 SKU 预测
+run_batch_forecast.py # 批量预测入口
+README.md
+</code></pre>
+<h3 id="52-主入口脚本"><a class="header" href="#52-主入口脚本">5.2 主入口脚本</a></h3>
+<pre><code class="language-python"># run_forecast.py 单 SKU 销量预测
+import argparse
+import pandas as pd
+from pathlib import Path
+
+from src.data_prep import prepare_prophet_data, handle_stockout
+from src.prophet_model import (
+train_prophet_with_holidays,
+make_forecast,
+plot_forecast
+)
+from src.evaluator import evaluate_forecast, backtest_prophet
+from src.reorder import forecast_to_reorder
+
+def run(
+data_path: str,
+asin: str = None,
+forecast_days: int = 90,
+current_stock: int = None,
+lead_time: int = 30
+):
+"""
+完整预测流程：数据准备 → 训练 → 预测 → 评估 → 补货建议
+"""
+print(f" 开始预测流程")
+
+# 1. 加载数据
+df = pd.read_csv(data_path)
+if asin and "asin" in df.columns:
+df = df[df["asin"] == asin]
+print(f" SKU: {asin}")
+
+# 2. 数据准备
+prophet_df = prepare_prophet_data(df, date_col="date", value_col="units")
+prophet_df = handle_stockout(prophet_df, units_col="y")
+
+# 3. 训练（带节假日效应）
+model = train_prophet_with_holidays(prophet_df, changepoint_prior=0.1)
+
+# 4. 预测
+forecast = make_forecast(model, periods=forecast_days)
+
+# 5. 评估（用最后 30 天做验证）
+if len(prophet_df) &gt; 30:
+train_df = prophet_df.iloc[:-30]
+test_df = prophet_df.iloc[-30:]
+
+eval_model = train_prophet_with_holidays(train_df)
+eval_forecast = make_forecast(eval_model, periods=30)
+
+eval_pred = eval_forecast.tail(30)["yhat"].values
+eval_actual = test_df["y"].values
+metrics = evaluate_forecast(
+pd.Series(eval_actual), pd.Series(eval_pred)
+)
+
+# 6. 可视化
+output_dir = Path("output")
+output_dir.mkdir(exist_ok=True)
+
+plot_forecast(
+model, forecast, actual_df=prophet_df,
+title=f"{'ASIN ' + asin if asin else 'SKU'} 销量预测 ({forecast_days}天)"
+)
+
+# 7. 保存预测结果
+forecast_output = forecast[["ds", "yhat", "yhat_lower", "yhat_upper"]].tail(forecast_days)
+forecast_output.to_csv(
+output_dir / f"forecast_{asin or 'sku'}_{forecast_days}d.csv",
+index=False
+)
+
+# 8. 补货建议
+if current_stock is not None:
+reorder = forecast_to_reorder(
+forecast,
+current_stock=current_stock,
+lead_time_days=lead_time
+)
+
+print(f"\n 预测完成！结果已保存到 output/")
+
+if __name__ == "__main__":
+parser = argparse.ArgumentParser(description="SKU 销量预测")
+parser.add_argument("--data", required=True, help="销量数据 CSV 路径")
+parser.add_argument("--asin", help="ASIN 编号")
+parser.add_argument("--days", type=int, default=90, help="预测天数")
+parser.add_argument("--stock", type=int, help="当前库存")
+parser.add_argument("--lead-time", type=int, default=30, help="交货周期(天)")
+args = parser.parse_args()
+
+run(
+data_path=args.data,
+asin=args.asin,
+forecast_days=args.days,
+current_stock=args.stock,
+lead_time=args.lead_time
+)
+</code></pre>
+<pre><code class="language-bash"># 运行示例
+python3 run_forecast.py --data data/daily_sales.csv --asin B0XXXXX --days 90
+python3 run_forecast.py --data data/daily_sales.csv --asin B0XXXXX --stock 500 --lead-time 30
+</code></pre>
+<hr>
+<h2 id="6-常见陷阱"><a class="header" href="#6-常见陷阱">6. 常见陷阱</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>陷阱</th><th>表现</th><th>解决方案</th></tr>
+</thead>
+<tbody>
+<tr><td>过拟合</td><td>训练集 MAPE 很低，测试集 MAPE 很高</td><td>降低 <code>changepoint_prior_scale</code>，用回测验证</td></tr>
+<tr><td>数据泄露</td><td>用未来数据训练模型（如用全年数据预测 Q3）</td><td>严格按时间切分训练/测试集，用 <code>cross_validation</code></td></tr>
+<tr><td>忽略断货</td><td>断货期间的 0 被当作真实需求</td><td>用 <code>handle_stockout</code> 函数处理</td></tr>
+<tr><td>忽略外部因素</td><td>竞品降价导致销量暴涨，模型无法解释</td><td>添加外部回归变量（竞品价格、广告花费）</td></tr>
+<tr><td>预测值为负</td><td>Prophet 可能输出负数预测</td><td>用 <code>.clip(lower=0)</code> 截断</td></tr>
+<tr><td>季节性错配</td><td>用周数据训练却期望日级预测</td><td>确保训练数据和预测频率一致</td></tr>
+<tr><td>大促过拟合</td><td>模型把大促当作常规模式</td><td>用 <code>holidays</code> 参数显式建模大促事件</td></tr>
+<tr><td>新品无数据</td><td>新 ASIN 没有历史销量</td><td>用类似品的销量曲线做类比，或用 AutoGluon 的迁移学习</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="7-学习资源"><a class="header" href="#7-学习资源">7. 学习资源</a></h2>
+<h3 id="71-免费课程与文档"><a class="header" href="#71-免费课程与文档">7.1 免费课程与文档</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>资源</th><th>平台</th><th>时长</th><th>适合谁</th><th>链接</th></tr>
+</thead>
+<tbody>
+<tr><td>Prophet 官方教程</td><td>Meta</td><td>2h</td><td>时间序列入门</td><td><a href="https://facebook.github.io/prophet/">facebook.github.io/prophet</a></td></tr>
+<tr><td>Kaggle: Time Series</td><td>Kaggle</td><td>5h</td><td>时间序列基础</td><td><a href="https://www.kaggle.com/learn/time-series">kaggle.com/learn/time-series</a></td></tr>
+<tr><td>Kaggle: Intro to ML</td><td>Kaggle</td><td>4h</td><td>ML 零基础</td><td><a href="https://www.kaggle.com/learn/intro-to-machine-learning">kaggle.com/learn/intro-to-machine-learning</a></td></tr>
+<tr><td>Google ML Crash Course</td><td>Google</td><td>15h</td><td>系统学习 ML</td><td><a href="https://developers.google.com/machine-learning/crash-course">developers.google.com/machine-learning/crash-course</a></td></tr>
+<tr><td>AutoGluon 时间序列教程</td><td>Amazon</td><td>2h</td><td>自动化预测</td><td><a href="https://auto.gluon.ai/">auto.gluon.ai</a></td></tr>
+<tr><td>BERTopic 文档</td><td>GitHub</td><td>3h</td><td>Review 主题分析</td><td><a href="https://maartengr.github.io/BERTopic/">maartengr.github.io/BERTopic</a></td></tr>
+<tr><td>Darts 文档</td><td>Unit8</td><td>3h</td><td>多模型对比</td><td><a href="https://unit8co.github.io/darts/">unit8co.github.io/darts</a></td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="72-推荐-github-仓库"><a class="header" href="#72-推荐-github-仓库">7.2 推荐 GitHub 仓库</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>仓库</th><th>Star</th><th>用途</th></tr>
+</thead>
+<tbody>
+<tr><td><a href="https://github.com/facebook/prophet">Prophet</a></td><td>18k+</td><td>时间序列预测核心库</td></tr>
+<tr><td><a href="https://github.com/autogluon/autogluon">AutoGluon</a></td><td>8k+</td><td>自动化 ML 框架</td></tr>
+<tr><td><a href="https://github.com/MaartenGr/BERTopic">BERTopic</a></td><td>6k+</td><td>主题建模</td></tr>
+<tr><td><a href="https://github.com/unit8co/darts">Darts</a></td><td>8k+</td><td>时间序列工具箱</td></tr>
+<tr><td><a href="https://github.com/google/or-tools">OR-Tools</a></td><td>11k+</td><td>运筹优化</td></tr>
+</tbody>
+</table>
+</div>
+<p>Content rephrased for compliance with licensing restrictions. Sources cited inline.</p>
+<hr>
+<h2 id="8-用-openclaw-自动化预测流程"><a class="header" href="#8-用-openclaw-自动化预测流程">8. 用 OpenClaw 自动化预测流程</a></h2>
+<h3 id="81-场景ai-agent-定期运行销量预测并生成补货建议"><a class="header" href="#81-场景ai-agent-定期运行销量预测并生成补货建议">8.1 场景：AI Agent 定期运行销量预测并生成补货建议</a></h3>
+<pre><code>你对 OpenClaw 说：
+"每周一自动运行销量预测，基于预测结果生成补货建议，
+更新预测 Dashboard 并发送摘要到 Slack"
+
+OpenClaw 自动执行：
+1. [Heartbeat] 每周一触发
+2. [filesystem MCP] 读取最新销售数据
+3. [LLM + Prophet] 运行 90 天销量预测
+4. [LLM] 基于预测结果生成补货建议
+5. [Skill: google-sheets] 更新预测 Dashboard
+6. [Skill: slack] 发送预测摘要
+</code></pre>
+<h3 id="82-需要的-skills-和-mcp-server"><a class="header" href="#82-需要的-skills-和-mcp-server">8.2 需要的 Skills 和 MCP Server</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>组件</th><th>用途</th><th>链接</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>filesystem MCP</strong></td><td>读写本地销售数据</td><td><a href="https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem">MCP Filesystem</a></td></tr>
+<tr><td><strong>google-sheets</strong> Skill</td><td>更新预测 Dashboard</td><td><a href="https://clawhub.ai/">ClawHub</a></td></tr>
+<tr><td><strong>slack</strong> Skill</td><td>发送预测摘要</td><td><a href="https://clawhub.ai/">ClawHub</a></td></tr>
+<tr><td><strong>memory</strong> Skill</td><td>存储历史预测基准</td><td><a href="https://docs.openclaw.com/">OpenClaw Docs</a></td></tr>
+<tr><td><strong>sqlite MCP</strong></td><td>本地数据库存储</td><td><a href="https://github.com/modelcontextprotocol/servers/tree/main/src/sqlite">MCP SQLite</a></td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="83-相关资源"><a class="header" href="#83-相关资源">8.3 相关资源</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>资源</th><th>说明</th><th>链接</th></tr>
+</thead>
+<tbody>
+<tr><td>OpenClaw 官方文档</td><td>安装和配置指南</td><td><a href="https://docs.openclaw.com/">docs.openclaw.com</a></td></tr>
+<tr><td>ClawHub Skills 市场</td><td>搜索和安装 Agent Skills</td><td><a href="https://clawhub.ai/">clawhub.ai</a></td></tr>
+<tr><td>OpenClaw MCP 集成</td><td>连接 MCP Server</td><td><a href="https://rebeccamdeprey.com/blog/build-openclaw-skill-with-mcp">Build Skill with MCP</a></td></tr>
+<tr><td>F4 自动化与 Agent</td><td>Agent 基础模块</td><td><a href="../0-foundations/f4-agent-automation.html">F4 模块</a></td></tr>
+</tbody>
+</table>
+</div>
+<p>Content rephrased for compliance with licensing restrictions. Sources cited inline.</p>
+<hr>
+<h2 id="9-完成标志"><a class="header" href="#9-完成标志">9. 完成标志</a></h2>
+<ul>
+<li><input disabled="" type="checkbox"> 用 Prophet 对一个真实 SKU 做 90 天销量预测，输出预测值和置信区间</li>
+<li><input disabled="" type="checkbox"> 添加电商大促节假日效应（Prime Day、BFCM），对比有无节假日的预测精度差异</li>
+<li><input disabled="" type="checkbox"> 用回测（backtesting）验证模型，MAPE &lt; 30%</li>
+<li><input disabled="" type="checkbox"> 用 AutoGluon 对 10+ SKU 做批量预测，查看模型排行榜</li>
+<li><input disabled="" type="checkbox"> 用 BERTopic 分析一组 Review 文本，发现至少 3 个有意义的主题</li>
+<li><input disabled="" type="checkbox"> 将预测结果转化为补货建议（计算再订货点和建议订货量）</li>
+</ul>
+<p>完成以上所有项目后，你已经掌握了电商预测建模的核心技能。接下来进入 <a href="b3-rag-knowledge-base.html">B3 RAG 知识库</a>，学习如何构建基于 RAG 的智能问答系统。</p>
+<hr>
+<h2 id="附录"><a class="header" href="#附录">附录</a></h2>
+<h3 id="附录-a模型选择决策树"><a class="header" href="#附录-a模型选择决策树">附录 A：模型选择决策树</a></h3>
+<pre><code>你的预测需求是什么？
+
+单个 SKU 深度预测
+有 1 年以上历史数据？
+是 → Prophet + 节假日 + 外部变量
+否 → Prophet 基础版 / 移动平均
+需要解释为什么这样预测？
+是 → Prophet（可分解为趋势+季节性）
+否 → AutoGluon（自动选最优模型）
+
+批量预测 100+ SKU
+有 GPU？
+是 → AutoGluon (high_quality preset)
+否 → AutoGluon (medium_quality preset)
+需要快速出结果？
+是 → AutoGluon (fast_training preset)
+
+Review 文本分析
+发现主题 → BERTopic
+情感分类 → scikit-learn + TF-IDF / BERT
+关键词提取 → BERTopic 的 c-TF-IDF
+
+补货优化
+简单规则 → 预测值 + 安全库存公式
+多约束优化 → OR-Tools（考虑 MOQ、仓容、资金）
+</code></pre>
+<h3 id="附录-b代码速查表"><a class="header" href="#附录-b代码速查表">附录 B：代码速查表</a></h3>
+<pre><code class="language-python"># === Prophet 基础 ===
+from prophet import Prophet
+
+df = pd.DataFrame({"ds": dates, "y": values}) # 必须是 ds 和 y
+model = Prophet()
+model.fit(df)
+future = model.make_future_dataframe(periods=90)
+forecast = model.predict(future)
+model.plot(forecast) # 预测图
+model.plot_components(forecast) # 成分分解图
+
+# === Prophet 节假日 ===
+holidays = pd.DataFrame({
+"holiday": ["prime_day"], "ds": ["2025-07-12"],
+"lower_window": [-3], "upper_window": [2]
+})
+model = Prophet(holidays=holidays)
+
+# === Prophet 外部变量 ===
+model = Prophet()
+model.add_regressor("ad_spend")
+model.fit(df) # df 必须包含 ad_spend 列
+future["ad_spend"] = 500 # 预测时也要提供
+
+# === Prophet 回测 ===
+from prophet.diagnostics import cross_validation, performance_metrics
+cv = cross_validation(model, initial="180 days", period="30 days", horizon="30 days")
+perf = performance_metrics(cv)
+
+# === AutoGluon ===
+from autogluon.timeseries import TimeSeriesDataFrame, TimeSeriesPredictor
+ts = TimeSeriesDataFrame.from_data_frame(df, id_column="item_id", timestamp_column="timestamp")
+predictor = TimeSeriesPredictor(prediction_length=30, target="target")
+predictor.fit(ts, time_limit=300)
+predictions = predictor.predict(ts)
+
+# === BERTopic ===
+from bertopic import BERTopic
+model = BERTopic(language="english", min_topic_size=10)
+topics, probs = model.fit_transform(documents)
+model.get_topic_info() # 主题概览
+model.visualize_topics() # 主题可视化
+
+# === 评估指标 ===
+mae = np.mean(np.abs(actual - predicted))
+rmse = np.sqrt(np.mean((actual - predicted) ** 2))
+mape = np.mean(np.abs((actual - predicted) / actual)) * 100
+wape = np.sum(np.abs(actual - predicted)) / np.sum(actual) * 100
+</code></pre>
+<h3 id="附录-c依赖安装"><a class="header" href="#附录-c依赖安装">附录 C：依赖安装</a></h3>
+<pre><code class="language-bash"># 基础预测
+pip install prophet pandas numpy matplotlib
+
+# AutoGluon（较大，建议单独安装）
+pip install autogluon.timeseries
+
+# Review 分析
+pip install bertopic sentence-transformers
+
+# 运筹优化
+pip install ortools
+
+# 全部安装
+pip install prophet pandas numpy matplotlib \
+autogluon.timeseries \
+bertopic sentence-transformers \
+ortools scikit-learn \
+statsmodels
+</code></pre>
+<blockquote>
+<p>Prophet 在某些系统上安装可能遇到问题（依赖 pystan/cmdstanpy）。如果安装失败，参考 <a href="https://facebook.github.io/prophet/docs/installation.html">Prophet 安装指南</a> 或使用 Google Colab（预装了大部分依赖）。</p>
+</blockquote>
+<hr>
+<hr>
+<blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path B 总览</a></p>
+<p><strong>Path B</strong>: <a href="b1-data-pipeline.html">B1 数据</a> · <a href="b2-prediction-models.html">B2 预测</a> · <a href="b3-rag-knowledge-base.html">B3 RAG</a> · <a href="b4-agent-workflow.html">B4 Agent</a> · <a href="b5-local-model-deploy.html">B5 部署</a></p>
+<p><strong>快速跳转</strong>: <a href="../0-foundations/">Path 0 基础</a> · <a href="../a-operators/">Path A 运营</a> · <a href="../c-managers/">Path C 管理</a> · <a href="../d-platforms/">Path D 多平台</a> · <a href="../e-social-media/">Path E 社交媒体</a></p>
+</blockquote>
+<!-- nav:prev-next -->
+<hr>
+<p><a href="b1-data-pipeline.html">&lt; B1 数据</a> | <a href="README.html">Path 总览</a> | <a href="b3-rag-knowledge-base.html">B3 RAG &gt;</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../b-developers/b1-data-pipeline.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../b-developers/b3-rag-knowledge-base.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../b-developers/b1-data-pipeline.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../b-developers/b3-rag-knowledge-base.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../mermaid-217b66ef.min.js"></script>
+        <script src="../mermaid-init-d4730691.js"></script>
+
+
+
+    </div>
+    </body>
+</html>

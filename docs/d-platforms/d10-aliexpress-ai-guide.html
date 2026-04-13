@@ -1,0 +1,555 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>AliExpress - 跨境电商 AI 实战知识库</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="跨境电商 AI 实操手册 — 56 篇指南，从选品到增长，每个环节都有可直接复制的 Prompt">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom-467616e9.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "ayu";
+            window.path_to_searchindex_js = "../searchindex-656d55b3.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-e97a050e.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">跨境电商 AI 实战知识库</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap/edit/main/src/src/d-platforms/d10-aliexpress-ai-guide.md" title="Suggest an edit" aria-label="Suggest an edit" rel="edit">
+                            <span class=fa-svg id="git-edit-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M421.7 220.3l-11.3 11.3-22.6 22.6-205 205c-6.6 6.6-14.8 11.5-23.8 14.1L30.8 511c-8.4 2.5-17.5 .2-23.7-6.1S-1.5 489.7 1 481.2L38.7 353.1c2.6-9 7.5-17.2 14.1-23.8l205-205 22.6-22.6 11.3-11.3 33.9 33.9 62.1 62.1 33.9 33.9zM96 353.9l-9.3 9.3c-.9 .9-1.6 2.1-2 3.4l-25.3 86 86-25.3c1.3-.4 2.5-1.1 3.4-2l9.3-9.3H112c-8.8 0-16-7.2-16-16V353.9zM453.3 19.3l39.4 39.4c25 25 25 65.5 0 90.5l-14.5 14.5-22.6 22.6-11.3 11.3-33.9-33.9-62.1-62.1L314.3 67.7l11.3-11.3 22.6-22.6 14.5-14.5c25-25 65.5-25 90.5 0z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="d10-aliexpress-ai-指南"><a class="header" href="#d10-aliexpress-ai-指南">D10. AliExpress AI 指南</a></h1>
+<blockquote>
+<p><strong>路径</strong>: Path D: 多平台 · <strong>模块</strong>: D10
+<strong>最后更新</strong>: 2026-03-14
+<strong>难度</strong>: 入门
+<strong>预计时间</strong>: 1 小时</p>
+</blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path D 总览</a></p>
+<hr>
+<blockquote>
+<p>GMV $25B+（Top 5 品类），159M MAU。中国卖家原生平台，南欧市场（西班牙、法国、葡萄牙）排名前列。但正被 Temu 分流跨境份额从 2018 年下降 33%。</p>
+</blockquote>
+<h2 id="1-aliexpress-现状与定位"><a class="header" href="#1-aliexpress-现状与定位">1. AliExpress 现状与定位</a></h2>
+<h3 id="11-aliexpress-vs-temu"><a class="header" href="#11-aliexpress-vs-temu">1.1 AliExpress vs Temu</a></h3>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="d5-temu-seller-guide.html">D5 Temu 卖家策略</a> Temu 详细分析参考 D5，包括全托管/半托管模式对比和入驻决策框架。</p>
+</blockquote>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>维度</th><th>AliExpress</th><th>Temu</th></tr>
+</thead>
+<tbody>
+<tr><td>模式</td><td>卖家自主运营</td><td>平台控价控流量</td></tr>
+<tr><td>定价权</td><td>卖家定价</td><td>平台定价</td></tr>
+<tr><td>品牌空间</td><td>有（品牌旗舰店）</td><td>几乎没有</td></tr>
+<tr><td>物流</td><td>卖家选择（菜鸟/自发）</td><td>平台统一</td></tr>
+<tr><td>利润空间</td><td>中等</td><td>极低</td></tr>
+<tr><td>增长趋势</td><td>放缓</td><td>爆发式增长</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="12-aliexpress-的差异化优势"><a class="header" href="#12-aliexpress-的差异化优势">1.2 AliExpress 的差异化优势</a></h3>
+<ul>
+<li>全托管模式（AliExpress Choice）：类似 Temu 但卖家有更多控制</li>
+<li>品牌旗舰店：适合有品牌的卖家</li>
+<li>南欧市场强势：西班牙、法国、葡萄牙市场份额高</li>
+<li>Alibaba 生态：与 1688、Cainiao 物流打通</li>
+</ul>
+<h2 id="2-aliexpress-费用结构与入驻门槛"><a class="header" href="#2-aliexpress-费用结构与入驻门槛">2. AliExpress 费用结构与入驻门槛</a></h2>
+<h3 id="21-入驻条件"><a class="header" href="#21-入驻条件">2.1 入驻条件</a></h3>
+<p>AliExpress 目前对以下国家/地区的卖家开放入驻：中国大陆、俄罗斯、西班牙、意大利、土耳其、法国、巴西等（<a href="https://wise.com/us/blog/sell-on-aliexpress">Wise</a>）。入驻需要提供营业执照、法人身份证、税务信息等。</p>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>入驻类型</th><th>说明</th><th>适合</th></tr>
+</thead>
+<tbody>
+<tr><td>普通卖家</td><td>自主运营，自行定价和发货</td><td>有运营能力的卖家</td></tr>
+<tr><td>AliExpress Choice</td><td>全托管/半托管模式</td><td>供应链型卖家</td></tr>
+<tr><td>品牌旗舰店</td><td>品牌认证后开设</td><td>有注册商标的品牌</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="22-佣金与费用"><a class="header" href="#22-佣金与费用">2.2 佣金与费用</a></h3>
+<p>AliExpress 佣金按品类不同，一般在 5%-9% 之间（<a href="https://worldofcalculator.com/aliexpress-fee-calculator/">WorldOfCalculator</a>）：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>品类</th><th>佣金率</th><th>说明</th></tr>
+</thead>
+<tbody>
+<tr><td>消费电子</td><td>5-7%</td><td>竞争激烈</td></tr>
+<tr><td>家居园艺</td><td>7-8%</td><td>标准费率</td></tr>
+<tr><td>服装配饰</td><td>5-8%</td><td>季节性强</td></tr>
+<tr><td>美妆个护</td><td>5-8%</td><td>增长快</td></tr>
+<tr><td>汽车配件</td><td>5-8%</td><td>利润空间大</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>注意</strong>：AliExpress 不收月租费（与 Amazon 不同），但 AliExpress Choice 模式下平台会从定价中抽取更高比例。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<h3 id="23-aliexpress-供应商筛选标准"><a class="header" href="#23-aliexpress-供应商筛选标准">2.3 AliExpress 供应商筛选标准</a></h3>
+<p>根据行业最佳实践（<a href="https://www.alibaba.com/product-insights/dropshipping-hacks-you-need-to-know-in-2026-top-20-best-selling-aliexpress-items-revealed.html">Alibaba Insights</a>），成功卖家关注三大支柱：供应链韧性、微利基权威、售后体验工程。筛选供应商时优先选择评分 ≥4.8、近 90 天订单 ≥2000、有视频验证仓库的供应商。</p>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<h2 id="3-ai-应用场景"><a class="header" href="#3-ai-应用场景">3. AI 应用场景</a></h2>
+<h3 id="31-aliexpress-choice全托管模式深度解析"><a class="header" href="#31-aliexpress-choice全托管模式深度解析">3.1 AliExpress Choice（全托管模式）深度解析</a></h3>
+<p>AliExpress Choice 是 AliExpress 对标 Temu 的全托管模式：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>维度</th><th>AliExpress Choice</th><th>Temu 全托管</th><th>AliExpress 普通</th></tr>
+</thead>
+<tbody>
+<tr><td>定价权</td><td>平台建议价，卖家可微调</td><td>平台完全控制</td><td>卖家自主</td></tr>
+<tr><td>物流</td><td>平台统一（5-10 天）</td><td>平台统一（7-15 天）</td><td>卖家选择</td></tr>
+<tr><td>流量</td><td>Choice 标签加权</td><td>平台分配</td><td>自然+广告</td></tr>
+<tr><td>退货</td><td>平台处理</td><td>平台处理</td><td>卖家处理</td></tr>
+<tr><td>适合</td><td>有一定品牌的卖家</td><td>纯供应链卖家</td><td>运营能力强的卖家</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="22-多语言-listing-优化"><a class="header" href="#22-多语言-listing-优化">2.2 多语言 Listing 优化</a></h3>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="../a-operators/a2-listing-optimization.html">A2 Listing 优化</a> 多语言本地化方法论参考 A2，Listing 优化框架可适配到 AliExpress 多语言版本。</p>
+</blockquote>
+<p>AliExpress 覆盖全球，多语言是核心需求。AliExpress 在南欧市场（西班牙、法国、葡萄牙）排名前列（<a href="https://marketplace-universe.com/aliexpress-europe/">Marketplace Universe</a>），这些市场是重点优化方向。</p>
+<pre><code>你是一个 AliExpress 多语言 Listing 优化专家。
+
+产品：[名称]
+品类：[X]
+主要目标市场：[西班牙/法国/俄罗斯/巴西]
+
+请生成以下语言版本的 Listing：
+
+1. 西班牙语（西班牙市场，AliExpress 在西班牙排名前 3）
+2. 法语（法国市场）
+3. 俄语（俄罗斯/CIS 市场）
+4. 巴西葡语（巴西市场）
+
+每个版本包含：
+- 标题（AliExpress 标题格式：品牌+产品+核心属性+关键词，≤128 字符）
+- 描述（结构化，包含使用场景和规格）
+- 5 个卖点
+- 10 个当地语言搜索关键词
+
+注意 AliExpress 特殊性：
+- 标题可以比 Amazon 更长（128 字符）
+- 描述支持 HTML 格式
+- 南欧市场（西班牙/法国/葡萄牙）是 AliExpress 最强市场
+- 俄罗斯市场虽然受制裁影响但仍有需求
+</code></pre>
+<h3 id="23-aliexpress-广告系统"><a class="header" href="#23-aliexpress-广告系统">2.3 AliExpress 广告系统</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>广告类型</th><th>说明</th><th>计费</th><th>适合</th></tr>
+</thead>
+<tbody>
+<tr><td>Search Ads</td><td>搜索结果广告</td><td>CPC</td><td>精准关键词投放</td></tr>
+<tr><td>Display Ads</td><td>站内展示</td><td>CPM</td><td>品牌曝光</td></tr>
+<tr><td>Affiliate Program</td><td>达人/网红推广</td><td>按成交佣金</td><td>社交媒体引流</td></tr>
+<tr><td>Super Deals</td><td>平台促销活动</td><td>需要大幅折扣</td><td>冲销量</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="24-aliexpress-2026-年的变化"><a class="header" href="#24-aliexpress-2026-年的变化">2.4 AliExpress 2026 年的变化</a></h3>
+<p>基于外网报道（<a href="https://www.ad-hoc-news.de/news/ueberblick/aliexpress-in-2026-is-the-ultra-cheap-marketplace-still-worth-it-for-us/68641516">ad-hoc-news.de</a>），AliExpress 在 2025-2026 年有以下重要变化：</p>
+<ul>
+<li>买家保护规则收紧（更严格的退款和争议处理）</li>
+<li>美国市场物流改善（配送时间缩短）</li>
+<li>加强假货和侵权打击（受 USTR 审查压力）</li>
+<li>TikTok 和 YouTube 驱动的流量增长（社交媒体种草→AliExpress 购买）</li>
+</ul>
+<blockquote>
+<p><strong>真实案例：TikTok Haul 驱动 AliExpress 增长</strong>
+2026 年 AliExpress 再次成为热门话题，主要因为 TikTok 开箱视频（hauls）、YouTube Shorts 和美国转卖者在 Etsy/Amazon/Depop 上翻卖 AliExpress 商品的趋势（<a href="https://www.ad-hoc-news.de/boerse/news/ueberblick/aliexpress-in-2026-cheap-dupe-paradise-or-shipping-nightmare-for-u-s/68623881">Ad-Hoc News</a>）。但同时美国海关规则、州税和运费正在收紧，卖家需要更加注意合规。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<h3 id="25-aliexpress-vs-temu-竞争策略"><a class="header" href="#25-aliexpress-vs-temu-竞争策略">2.5 AliExpress vs Temu 竞争策略</a></h3>
+<pre><code>你是一个跨境电商平台策略专家。
+
+我目前在 AliExpress 销售 [品类]，月销 [X] 单。
+Temu 上同品类竞品价格比我低 [X]%。
+
+请分析：
+1. 我应该同时入驻 Temu 吗？（会不会自己打自己）
+2. 如果不入驻 Temu，如何在 AliExpress 上应对 Temu 竞争？
+3. AliExpress Choice 是否值得加入？
+- Choice 的优势：流量加权、5-10 天配送、平台推广
+- Choice 的劣势：价格被压低、利润空间小
+4. 是否应该转向品牌化策略（AliExpress 品牌旗舰店）？
+5. 南欧市场（西班牙/法国）的差异化机会
+6. 社交媒体引流策略（TikTok/YouTube → AliExpress）
+</code></pre>
+<h3 id="36-aliexpress-卖家工具"><a class="header" href="#36-aliexpress-卖家工具">3.6 AliExpress 卖家工具</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>工具</th><th>用途</th><th>价格</th></tr>
+</thead>
+<tbody>
+<tr><td>AliExpress Seller Center</td><td>官方后台</td><td>免费</td></tr>
+<tr><td>AliExpress Affiliate Program</td><td>达人推广</td><td>佣金最高 9%（<a href="https://www.creator-hero.com/blog/aliexpress-affiliate-program-in-depth-review-pros-and-cons">Creator Hero</a>）</td></tr>
+<tr><td>1688 数据分析</td><td>供应链选品</td><td>免费</td></tr>
+<tr><td>ChatGPT/Claude</td><td>多语言 Listing 生成</td><td>$20/月</td></tr>
+<tr><td>AliDropship</td><td>Dropshipping 自动化</td><td>一次性 $89</td></tr>
+<tr><td>CJDropshipping</td><td>供应链+代发</td><td>免费注册</td></tr>
+</tbody>
+</table>
+</div>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<h2 id="4-aliexpress-物流方案详解"><a class="header" href="#4-aliexpress-物流方案详解">4. AliExpress 物流方案详解</a></h2>
+<h3 id="41-物流选项对比"><a class="header" href="#41-物流选项对比">4.1 物流选项对比</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>物流方案</th><th>配送时间</th><th>费用</th><th>适合</th><th>排名影响</th></tr>
+</thead>
+<tbody>
+<tr><td>菜鸟经济</td><td>20-40 天</td><td>最低</td><td>低价轻小件</td><td>低</td></tr>
+<tr><td>菜鸟标准</td><td>15-25 天</td><td>中等</td><td>大部分产品</td><td>中</td></tr>
+<tr><td>AliExpress 标准配送</td><td>12-20 天</td><td>中等</td><td>Choice 标签产品</td><td>中高</td></tr>
+<tr><td>AliExpress Choice 配送</td><td>5-10 天</td><td>较高（平台补贴）</td><td>Choice 全托管</td><td>最高</td></tr>
+<tr><td>海外仓发货</td><td>3-7 天</td><td>最高</td><td>高频复购品</td><td>最高</td></tr>
+<tr><td>卖家自发货（DHL/FedEx）</td><td>5-15 天</td><td>高</td><td>高价值产品</td><td>中</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="42-海外仓布局策略"><a class="header" href="#42-海外仓布局策略">4.2 海外仓布局策略</a></h3>
+<pre><code>你是一个 AliExpress 物流策略专家。
+
+我的产品：[品类]
+月销量：[X] 单
+主要市场：[西班牙/法国/巴西/美国]
+产品重量：[X] kg
+产品尺寸：[X] cm
+
+请分析：
+1. 是否值得使用海外仓？（成本 vs 转化率提升）
+2. 推荐的海外仓位置（欧洲/美国/巴西）
+3. 海外仓 vs 菜鸟直邮的成本对比
+4. 库存备货策略（海外仓需要提前备货）
+5. 退货处理方案（海外仓退货 vs 直邮退货）
+6. AliExpress Choice 配送 vs 自建海外仓的选择
+</code></pre>
+<h2 id="5-aliexpress-南欧市场深度策略"><a class="header" href="#5-aliexpress-南欧市场深度策略">5. AliExpress 南欧市场深度策略</a></h2>
+<h3 id="51-南欧市场数据"><a class="header" href="#51-南欧市场数据">5.1 南欧市场数据</a></h3>
+<p>AliExpress 在南欧市场（西班牙、法国、葡萄牙）排名前列（<a href="https://marketplace-universe.com/aliexpress-europe/">Marketplace Universe</a>），这些市场有独特的消费特征：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>市场</th><th>AliExpress 地位</th><th>消费特征</th><th>热门品类</th></tr>
+</thead>
+<tbody>
+<tr><td>西班牙</td><td>Top 3 电商平台</td><td>价格敏感、移动端购物比例高</td><td>时尚、电子、家居</td></tr>
+<tr><td>法国</td><td>Top 5 电商平台</td><td>重视品质、环保意识强</td><td>美妆、时尚、家居</td></tr>
+<tr><td>葡萄牙</td><td>Top 3 电商平台</td><td>与西班牙类似但市场更小</td><td>电子、家居</td></tr>
+<tr><td>巴西</td><td>重要市场</td><td>分期付款文化、物流挑战</td><td>电子、时尚</td></tr>
+<tr><td>俄罗斯/CIS</td><td>曾经最大市场</td><td>受制裁影响但仍有需求</td><td>电子、工具</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="52-南欧市场本地化-prompt"><a class="header" href="#52-南欧市场本地化-prompt">5.2 南欧市场本地化 Prompt</a></h3>
+<pre><code>你是一个 AliExpress 南欧市场运营专家。
+
+我的产品：[名称]
+品类：[X]
+当前主要市场：[中国直邮]
+
+请制定南欧市场进入策略：
+
+1. 市场选择（西班牙 vs 法国 vs 葡萄牙，优先级排序）
+2. 定价策略
+- 考虑当地购买力和竞品价格
+- 是否需要针对不同国家差异化定价
+- 包邮门槛设置（南欧消费者对包邮很敏感）
+3. 物流方案
+- 菜鸟直邮 vs 欧洲海外仓
+- 配送时间对转化率的影响
+4. 本地化要求
+- 西班牙语/法语/葡萄牙语 Listing
+- 当地节日促销日历
+- 当地消费者偏好的支付方式
+5. 竞争分析
+- 与 Temu 在南欧的竞争
+- 与 Amazon.es / Amazon.fr 的差异化
+6. 合规要求
+- 欧盟 CE 认证
+- EPR（生产者延伸责任）
+- VAT 注册
+</code></pre>
+<h3 id="53-aliexpress-信任度挑战"><a class="header" href="#53-aliexpress-信任度挑战">5.3 AliExpress 信任度挑战</a></h3>
+<p>根据 2026 年全球电商诚信指数（<a href="https://www.alibaba.com/product-insights/best-aliexpress-alternatives-in-2026-top-platforms-for-global-online-shopping.html">Alibaba Insights</a>），AliExpress 在“产品真实性信心“方面得分 62/100，落后于 Temu（79）、Shein（76）和 Amazon Global（84）。这意味着卖家需要额外努力建立信任：</p>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>信任建设策略</th><th>说明</th><th>效果</th></tr>
+</thead>
+<tbody>
+<tr><td>品牌旗舰店</td><td>申请品牌认证，获得官方标识</td><td>高</td></tr>
+<tr><td>视频展示</td><td>产品实拍视频、工厂视频</td><td>高</td></tr>
+<tr><td>详细描述</td><td>包含尺寸图、材质说明、使用教程</td><td>中高</td></tr>
+<tr><td>快速回复</td><td>24 小时内回复买家消息</td><td>中</td></tr>
+<tr><td>售后保障</td><td>明确的退换货政策</td><td>中高</td></tr>
+<tr><td>社交证明</td><td>鼓励买家留评+晒图</td><td>高</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="6-完成标志"><a class="header" href="#6-完成标志">6. 完成标志</a></h2>
+<ul>
+<li><input disabled="" type="checkbox"> 评估 AliExpress vs Temu 的选择</li>
+<li><input disabled="" type="checkbox"> 如果入驻：完成多语言 Listing</li>
+<li><input disabled="" type="checkbox"> 设置 AliExpress Ads</li>
+<li><input disabled="" type="checkbox"> 选择物流方案（菜鸟 vs 自发货）</li>
+</ul>
+<hr>
+<blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path D 总览</a> · <a href="platform-comparison.html">平台对比</a></p>
+<p><strong>Path D</strong>: <a href="shopify-ai-guide.html">D1 Shopify</a> · <a href="tiktok-shop-ai-guide.html">D2 TikTok</a> · <a href="cross-platform-strategy.html">D3 跨平台</a> · <a href="d4-walmart-ai-guide.html">D4 Walmart</a> · <a href="d5-temu-seller-guide.html">D5 Temu</a> · <a href="d6-southeast-asia-ai-guide.html">D6 东南亚</a> · <a href="d7-mercado-libre-ai-guide.html">D7 拉美</a> · <a href="d8-rakuten-japan-ai-guide.html">D8 日本</a> · <a href="d9-ebay-ai-guide.html">D9 eBay</a> · <a href="d10-aliexpress-ai-guide.html">D10 AliExpress</a> · <a href="d11-coupang-korea-ai-guide.html">D11 韩国</a> · <a href="d12-faire-wholesale-ai-guide.html">D12 Faire</a> · <a href="d13-europe-marketplaces-guide.html">D13 欧洲</a></p>
+<p><strong>快速跳转</strong>: <a href="../0-foundations/">Path 0 基础</a> · <a href="../a-operators/">Path A 运营</a> · <a href="../b-developers/">Path B 技术</a> · <a href="../c-managers/">Path C 管理</a> · <a href="../e-social-media/">Path E 社交媒体</a></p>
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../d-platforms/d9-ebay-ai-guide.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../d-platforms/d11-coupang-korea-ai-guide.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../d-platforms/d9-ebay-ai-guide.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../d-platforms/d11-coupang-korea-ai-guide.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../mermaid-217b66ef.min.js"></script>
+        <script src="../mermaid-init-d4730691.js"></script>
+
+
+
+    </div>
+    </body>
+</html>

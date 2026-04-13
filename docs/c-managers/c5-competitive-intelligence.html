@@ -1,0 +1,525 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>竞争情报 - 跨境电商 AI 实战知识库</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="跨境电商 AI 实操手册 — 56 篇指南，从选品到增长，每个环节都有可直接复制的 Prompt">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom-467616e9.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "ayu";
+            window.path_to_searchindex_js = "../searchindex-656d55b3.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-e97a050e.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">跨境电商 AI 实战知识库</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap/edit/main/src/src/c-managers/c5-competitive-intelligence.md" title="Suggest an edit" aria-label="Suggest an edit" rel="edit">
+                            <span class=fa-svg id="git-edit-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M421.7 220.3l-11.3 11.3-22.6 22.6-205 205c-6.6 6.6-14.8 11.5-23.8 14.1L30.8 511c-8.4 2.5-17.5 .2-23.7-6.1S-1.5 489.7 1 481.2L38.7 353.1c2.6-9 7.5-17.2 14.1-23.8l205-205 22.6-22.6 11.3-11.3 33.9 33.9 62.1 62.1 33.9 33.9zM96 353.9l-9.3 9.3c-.9 .9-1.6 2.1-2 3.4l-25.3 86 86-25.3c1.3-.4 2.5-1.1 3.4-2l9.3-9.3H112c-8.8 0-16-7.2-16-16V353.9zM453.3 19.3l39.4 39.4c25 25 25 65.5 0 90.5l-14.5 14.5-22.6 22.6-11.3 11.3-33.9-33.9-62.1-62.1L314.3 67.7l11.3-11.3 22.6-22.6 14.5-14.5c25-25 65.5-25 90.5 0z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="c5-ai-竞争情报与战略决策--ai-competitive-intelligence"><a class="header" href="#c5-ai-竞争情报与战略决策--ai-competitive-intelligence">C5. AI 竞争情报与战略决策 | AI Competitive Intelligence</a></h1>
+<blockquote>
+<p><strong>路径</strong>: Path C: 管理者 · <strong>模块</strong>: C5
+<strong>最后更新</strong>: 2026-03-15
+<strong>难度</strong>: 中级
+<strong>预计时间</strong>: 集中 3-4 小时
+<strong>前置模块</strong>: <a href="c1-ai-assessment.html">C1 AI 能力评估</a></p>
+</blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path C 总览</a></p>
+<hr>
+<h2 id="章节导航"><a class="header" href="#章节导航">章节导航</a></h2>
+<ol>
+<li><a href="#1-ai-竞争情报的新范式">AI 竞争情报的新范式</a> · 2. <a href="#2-五大情报支柱">五大情报支柱</a> · 3. <a href="#3-ai-竞争情报工具矩阵">AI 工具矩阵</a> · 4. <a href="#4-ai-搜索可见度监控">AI 搜索可见度监控</a> · 5. <a href="#5-ai-驱动的战略决策框架">战略决策框架</a> · 6. <a href="#6-prompt-模板">Prompt 模板</a> · 7. <a href="#7-完成标志">完成标志</a></li>
+</ol>
+<hr>
+<h2 id="本模块你将产出"><a class="header" href="#本模块你将产出">本模块你将产出</a></h2>
+<ul>
+<li>一套 AI 驱动的竞品监控体系</li>
+<li>一份竞争格局分析报告</li>
+<li>一个 AI 搜索可见度基准测试</li>
+<li>一份基于数据的战略决策建议</li>
+</ul>
+<blockquote>
+<p><strong>核心理念</strong>：2026 年的竞争情报不再只是监控竞品价格和 Listing。AI 搜索可见度（你的产品是否被 ChatGPT/Perplexity 推荐）已经成为新的竞争维度。竞争情报工具市场预计到 2032 年达到 $11.2 亿，年增长率 12.4%（<a href="https://www.trendos.io/blog/ecommerce-competitive-intelligence-tools-2026">Trendos</a>）。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<hr>
+<h2 id="1-ai-竞争情报的新范式"><a class="header" href="#1-ai-竞争情报的新范式">1. AI 竞争情报的新范式</a></h2>
+<h3 id="11-传统-vs-ai-竞争情报"><a class="header" href="#11-传统-vs-ai-竞争情报">1.1 传统 vs AI 竞争情报</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>维度</th><th>传统方式</th><th>AI 驱动</th></tr>
+</thead>
+<tbody>
+<tr><td>价格监控</td><td>手动查看竞品页面</td><td>AI 实时追踪+异常告警</td></tr>
+<tr><td>Listing 分析</td><td>人工阅读竞品 Listing</td><td>AI 语义分析+差异化发现</td></tr>
+<tr><td>Review 监控</td><td>偶尔查看竞品评价</td><td>AI 情感分析+主题追踪</td></tr>
+<tr><td>市场趋势</td><td>季度报告</td><td>AI 实时趋势检测</td></tr>
+<tr><td>AI 搜索可见度</td><td>不存在</td><td>监控 ChatGPT/Perplexity 推荐</td></tr>
+<tr><td>广告情报</td><td>手动搜索看竞品广告</td><td>AI 追踪竞品广告策略变化</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="12-2026-年竞争情报的新维度"><a class="header" href="#12-2026-年竞争情报的新维度">1.2 2026 年竞争情报的新维度</a></h3>
+<blockquote>
+<p><strong>真实数据</strong>：营销人员不能再仅仅依赖谁在 Google 关键词排名第一，现在必须监控生成式搜索中的“答案份额“、应用商店动态和 AI 驱动代理中的品牌可见度（<a href="https://www.similarweb.com/blog/marketing/marketing-strategy/8-best-competitor-analysis-tools-in-2023/">SimilarWeb</a>）。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<blockquote>
+<p><strong>真实数据</strong>：卖家在 68% 的交易中面临竞争对手。然而平均销售团队对其竞争准备度的自评仅为 3.8/10Crayon 的竞争情报报告估计这一差距每年让组织损失 $200 万到 $1000 万的可赢交易（<a href="https://www.autobound.ai/blog/ai-competitor-analysis-tools-for-sales-teams">Autobound</a>）。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<hr>
+<h2 id="2-五大情报支柱"><a class="header" href="#2-五大情报支柱">2. 五大情报支柱</a></h2>
+<p>根据行业最佳实践（<a href="https://www.trendos.io/blog/ecommerce-competitive-intelligence-guide">Trendos</a>），电商竞争情报有五大支柱：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>支柱</th><th>监控内容</th><th>AI 工具</th><th>频率</th></tr>
+</thead>
+<tbody>
+<tr><td>价格情报</td><td>竞品价格变化、促销策略</td><td>Prisync/Intelligence Node</td><td>实时</td></tr>
+<tr><td>产品情报</td><td>新品上架、Listing 变化、品类扩展</td><td>Helium 10/Jungle Scout</td><td>每日</td></tr>
+<tr><td>营销情报</td><td>广告策略、社交媒体、内容策略</td><td>Semrush/SpyFu/SimilarWeb</td><td>每周</td></tr>
+<tr><td>Review 情报</td><td>竞品评价趋势、用户痛点变化</td><td>VOC.AI/ChatGPT</td><td>每周</td></tr>
+<tr><td>AI 可见度情报</td><td>竞品在 AI 搜索中的推荐频率</td><td>Otterly.ai/手动测试</td><td>每月</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="21-价格情报"><a class="header" href="#21-价格情报">2.1 价格情报</a></h3>
+<pre><code>你是一个电商定价策略专家。
+
+以下是我和 3 个主要竞品的价格数据（过去 30 天）：
+
+我的产品：$[X]（稳定）
+竞品 A：$[X] → $[X]（降价 [X]%）
+竞品 B：$[X]（稳定）
+竞品 C：$[X] → $[X]（涨价 [X]%）
+
+请分析：
+1. 竞品 A 降价的可能原因（清库存？抢市场份额？新品上市前促销？）
+2. 竞品 C 涨价的可能原因（成本上升？品牌升级？供应短缺？）
+3. 我应该如何应对？（跟进降价？保持不变？差异化定位？）
+4. 价格弹性分析：如果我降价 10%，预计销量变化多少？
+5. 长期定价策略建议
+</code></pre>
+<h3 id="22-ai-搜索可见度情报"><a class="header" href="#22-ai-搜索可见度情报">2.2 AI 搜索可见度情报</a></h3>
+<blockquote>
+<p><strong>详细方法论</strong>: <a href="../a-operators/a9-seo-geo.html">A9 SEO/GEO</a> GEO 优化方法论详见 A9</p>
+</blockquote>
+<pre><code>AI 搜索可见度竞品对比测试：
+
+Step 1: 在 5 个 AI 平台测试
+ChatGPT: "best [品类] 2026"
+Perplexity: "recommend [品类] for [场景]"
+Gemini: "[品类] buying guide"
+Claude: "compare [品类] options"
+Google AI Overviews: "[品类] review"
+
+Step 2: 记录结果
+我的品牌被提及次数
+竞品 A/B/C 被提及次数
+被推荐的排名位置
+AI 对每个品牌的描述（正面/中性/负面）
+
+Step 3: 分析差距
+谁被推荐最多？为什么？
+AI 推荐的依据是什么？（评价？价格？功能？）
+我的品牌缺少什么信号？
+行动计划
+</code></pre>
+<hr>
+<h2 id="3-ai-竞争情报工具矩阵"><a class="header" href="#3-ai-竞争情报工具矩阵">3. AI 竞争情报工具矩阵</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>工具</th><th>功能</th><th>价格</th><th>适合</th></tr>
+</thead>
+<tbody>
+<tr><td>Helium 10</td><td>Amazon 竞品分析、关键词、Listing 监控</td><td>$79/月起</td><td>Amazon 卖家</td></tr>
+<tr><td>Jungle Scout</td><td>Amazon 选品、竞品追踪</td><td>$49/月起</td><td>Amazon 卖家</td></tr>
+<tr><td>VOC.AI</td><td>AI Review 语义分析、竞品对比</td><td>付费</td><td>Review 深度分析</td></tr>
+<tr><td>Semrush</td><td>SEO/SEM 竞品分析、广告情报</td><td>$130/月起</td><td>全渠道</td></tr>
+<tr><td>SimilarWeb</td><td>流量分析、市场份额</td><td>付费</td><td>市场全景</td></tr>
+<tr><td>SpyFu</td><td>PPC 竞品分析</td><td>$39/月起</td><td>广告情报</td></tr>
+<tr><td>Visualping</td><td>网站变化监控</td><td>免费/付费</td><td>竞品页面监控</td></tr>
+<tr><td>Prisync</td><td>竞品价格监控</td><td>$99/月起</td><td>价格情报</td></tr>
+<tr><td>Otterly.ai</td><td>AI 搜索可见度追踪</td><td>付费</td><td>GEO 监控</td></tr>
+<tr><td>ChatGPT/Claude</td><td>通用竞品分析</td><td>$20/月</td><td>所有场景</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>真实案例</strong>：VOC.AI 被描述为“我的技术栈中的情报引擎“。与其他只给出词云的工具不同，VOC.AI 充当语义分析师，在产品开发阶段特别有用（<a href="https://www.voc.ai/blog/best-amazon-competitor-analysis-tools">VOC.AI</a>）。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<hr>
+<h2 id="4-ai-搜索可见度监控"><a class="header" href="#4-ai-搜索可见度监控">4. AI 搜索可见度监控</a></h2>
+<h3 id="41-agentic-commerce-竞争准备度评估"><a class="header" href="#41-agentic-commerce-竞争准备度评估">4.1 Agentic Commerce 竞争准备度评估</a></h3>
+<blockquote>
+<p><strong>真实数据</strong>：Gartner 预测到 2028 年，AI Agent 将处理 90% 的 B2B 采购超过 $15 万亿的年度支出（<a href="https://oroinc.com/b2b-ecommerce/blog/agentic-ai-in-commerce/">OroInc</a>）。73% 的消费者现在使用 AI 进行购物（<a href="https://datadome.co/agent-trust-management/agentic-commerce-readiness-checklist/">DataDome</a>）。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<pre><code>你是一个 Agentic Commerce 战略顾问。
+
+我的品牌：[名称]
+品类：[X]
+当前渠道：[Amazon/Shopify/其他]
+竞品：[列出 3 个]
+
+请评估我和竞品的 Agentic Commerce 准备度：
+
+1. 结构化数据完整度（Product Schema/FAQ Schema）
+- 我的品牌：[评分 1-10]
+- 竞品 A/B/C：[评分]
+
+2. AI 搜索可见度
+- 在 ChatGPT/Perplexity 中谁被推荐更多？
+
+3. 可购物性
+- 谁的产品可以在 AI 渠道内直接购买？
+- 谁启用了 Shopify UCP 协议？
+
+4. 品牌权威信号
+- 第三方评测/媒体报道数量对比
+- Review 数量和评分对比
+
+5. 差距分析和行动计划
+- 我最大的差距在哪里？
+- 优先级行动清单（1 周/1 月/3 月）
+</code></pre>
+<hr>
+<h2 id="5-ai-驱动的战略决策框架"><a class="header" href="#5-ai-驱动的战略决策框架">5. AI 驱动的战略决策框架</a></h2>
+<h3 id="51-季度战略复盘-prompt"><a class="header" href="#51-季度战略复盘-prompt">5.1 季度战略复盘 Prompt</a></h3>
+<pre><code>你是一个电商战略顾问。
+
+以下是我的业务数据（本季度 vs 上季度）：
+
+收入：$[X] vs $[X]（[+/-X]%）
+利润：$[X] vs $[X]
+市场份额：[X]% vs [X]%
+新品数量：[X] vs [X]
+平台数量：[X] vs [X]
+
+竞争环境变化：
+- 竞品 A：[描述变化]
+- 竞品 B：[描述变化]
+- 市场趋势：[描述]
+
+请生成季度战略复盘报告：
+
+1. 业绩评估（哪些目标达成/未达成？为什么？）
+2. 竞争格局变化分析
+3. 机会识别（基于数据的增长机会）
+4. 风险预警（需要关注的威胁）
+5. 下季度战略建议（3 个优先级行动）
+6. 资源分配建议（人力/预算/平台）
+</code></pre>
+<h3 id="52-市场进入决策框架"><a class="header" href="#52-市场进入决策框架">5.2 市场进入决策框架</a></h3>
+<pre><code>你是一个跨境电商市场进入策略专家。
+
+我当前的业务：
+- 主要市场：[US]
+- 月收入：$[X]
+- 产品线：[X]
+- 团队规模：[X] 人
+
+考虑进入的新市场/平台：[EU/JP/拉美/Walmart/TikTok Shop]
+
+请用以下框架分析：
+
+1. 市场吸引力（1-10）
+- 市场规模和增长率
+- 竞争强度
+- 利润空间
+- 进入门槛
+
+2. 我的竞争力（1-10）
+- 产品适配度
+- 供应链能力
+- 团队能力
+- 资金充裕度
+
+3. 风险评估
+- 合规风险
+- 汇率风险
+- 运营复杂度
+- 退出成本
+
+4. 建议
+- Go / No-Go / Wait 决策
+- 如果 Go：进入路径和时间线
+- 预估投入和 ROI
+</code></pre>
+<hr>
+<h2 id="6-prompt-模板"><a class="header" href="#6-prompt-模板">6. Prompt 模板</a></h2>
+<h3 id="61-竞品全景分析"><a class="header" href="#61-竞品全景分析">6.1 竞品全景分析</a></h3>
+<pre><code>分析我在 [品类] 的竞争格局。
+我的品牌 [X]，竞品 [A/B/C]。
+从价格、产品、Review、广告、AI 可见度 5 个维度对比。
+给出差异化策略和优先行动。
+</code></pre>
+<h3 id="62-月度竞争情报报告"><a class="header" href="#62-月度竞争情报报告">6.2 月度竞争情报报告</a></h3>
+<pre><code>基于以下数据生成月度竞争情报报告：
+[粘贴竞品价格/排名/Review 变化数据]
+报告包含：竞品动态摘要、威胁评估、机会识别、建议行动。
+</code></pre>
+<hr>
+<h2 id="7-完成标志"><a class="header" href="#7-完成标志">7. 完成标志</a></h2>
+<ul>
+<li><input disabled="" type="checkbox"> 建立竞品监控体系（价格+Listing+Review+广告）</li>
+<li><input disabled="" type="checkbox"> 完成 AI 搜索可见度基准测试（5 个 AI 平台）</li>
+<li><input disabled="" type="checkbox"> 生成第一份竞争格局分析报告</li>
+<li><input disabled="" type="checkbox"> 评估 Agentic Commerce 准备度（自己 vs 竞品）</li>
+<li><input disabled="" type="checkbox"> 用 AI 完成一次季度战略复盘</li>
+</ul>
+<hr>
+<blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path C 总览</a></p>
+<p><strong>Path C</strong>: <a href="c1-ai-assessment.html">C1 AI 评估</a> · <a href="c2-team-building.html">C2 团队建设</a> · <a href="c3-roi-evaluation.html">C3 ROI 评估</a> · <a href="c4-ai-risk-governance.html">C4 风险治理</a> · <a href="c5-competitive-intelligence.html">C5 竞争情报</a></p>
+<p><strong>快速跳转</strong>: <a href="../0-foundations/">Path 0 基础</a> · <a href="../a-operators/">Path A 运营</a> · <a href="../b-developers/">Path B 技术</a> · <a href="../d-platforms/">Path D 多平台</a> · <a href="../e-social-media/">Path E 社交媒体</a></p>
+</blockquote>
+<!-- nav:prev-next -->
+<hr>
+<p><a href="c4-ai-risk-governance.html">&lt; C4 风险</a> | <a href="README.html">Path 总览</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../c-managers/c4-ai-risk-governance.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../d-platforms/d4-walmart-ai-guide.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../c-managers/c4-ai-risk-governance.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../d-platforms/d4-walmart-ai-guide.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../mermaid-217b66ef.min.js"></script>
+        <script src="../mermaid-init-d4730691.js"></script>
+
+
+
+    </div>
+    </body>
+</html>

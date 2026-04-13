@@ -1,0 +1,979 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>AI 图片 Pipeline - 跨境电商 AI 实战知识库</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="跨境电商 AI 实操手册 — 56 篇指南，从选品到增长，每个环节都有可直接复制的 Prompt">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom-467616e9.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "ayu";
+            window.path_to_searchindex_js = "../searchindex-656d55b3.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-e97a050e.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">跨境电商 AI 实战知识库</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap/edit/main/src/src/b-developers/b9-ai-image-pipeline.md" title="Suggest an edit" aria-label="Suggest an edit" rel="edit">
+                            <span class=fa-svg id="git-edit-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M421.7 220.3l-11.3 11.3-22.6 22.6-205 205c-6.6 6.6-14.8 11.5-23.8 14.1L30.8 511c-8.4 2.5-17.5 .2-23.7-6.1S-1.5 489.7 1 481.2L38.7 353.1c2.6-9 7.5-17.2 14.1-23.8l205-205 22.6-22.6 11.3-11.3 33.9 33.9 62.1 62.1 33.9 33.9zM96 353.9l-9.3 9.3c-.9 .9-1.6 2.1-2 3.4l-25.3 86 86-25.3c1.3-.4 2.5-1.1 3.4-2l9.3-9.3H112c-8.8 0-16-7.2-16-16V353.9zM453.3 19.3l39.4 39.4c25 25 25 65.5 0 90.5l-14.5 14.5-22.6 22.6-11.3 11.3-33.9-33.9-62.1-62.1L314.3 67.7l11.3-11.3 22.6-22.6 14.5-14.5c25-25 65.5-25 90.5 0z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="b9-ai-产品图片与视频生成-pipeline"><a class="header" href="#b9-ai-产品图片与视频生成-pipeline">B9. AI 产品图片与视频生成 Pipeline</a></h1>
+<blockquote>
+<p><strong>路径</strong>: Path B: 技术人 · <strong>模块</strong>: B9
+<strong>最后更新</strong>: 2026-03-15
+<strong>难度</strong>: 高级
+<strong>预计时间</strong>: 每天 1 小时，2-3 周
+<strong>前置模块</strong>: 无（独立模块，但建议了解 <a href="../a-operators/a7-visual-content.html">A7 视觉内容</a>）</p>
+</blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path B 总览</a></p>
+<hr>
+<h2 id="章节导航"><a class="header" href="#章节导航">章节导航</a></h2>
+<ol>
+<li><a href="#1-为什么需要-ai-图片-pipeline">为什么需要 AI 图片 Pipeline</a> · 2. <a href="#2-技术栈选择">技术栈选择</a> · 3. <a href="#3-comfyui-产品图工作流">ComfyUI 产品图工作流</a> · 4. <a href="#4-api-方案midjourneydall-eflux">API 方案</a> · 5. <a href="#5-批量生成-pipeline">批量生成 Pipeline</a> · 6. <a href="#6-ai-视频生成">视频生成</a> · 7. <a href="#7-质量控制与合规">质量控制与合规</a> · 8. <a href="#8-完成标志">完成标志</a></li>
+</ol>
+<hr>
+<h2 id="本模块你将构建"><a class="header" href="#本模块你将构建">本模块你将构建</a></h2>
+<ul>
+<li>一个 ComfyUI 产品图生成工作流（白底主图 + 场景图 + 信息图）</li>
+<li>一个 API 驱动的批量图片生成 Pipeline（Midjourney/DALL-E/Flux）</li>
+<li>一个产品视频自动生成系统</li>
+<li>品牌视觉一致性保障机制</li>
+</ul>
+<blockquote>
+<p><strong>核心理念</strong>：电商产品图是转化率的第一要素。传统方式是请摄影师拍摄（$500-2000/产品），AI 方式是用 ComfyUI/Midjourney 生成（$0-50/产品）。但 AI 生成不是“一键出图“，需要构建可重复、可控制、品牌一致的 Pipeline。</p>
+</blockquote>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="../a-operators/a7-visual-content.html">A7 视觉内容</a> 运营视角的 AI 视觉内容方法论</p>
+</blockquote>
+<hr>
+<h2 id="1-为什么需要-ai-图片-pipeline"><a class="header" href="#1-为什么需要-ai-图片-pipeline">1. 为什么需要 AI 图片 Pipeline</a></h2>
+<h3 id="11-电商图片需求矩阵"><a class="header" href="#11-电商图片需求矩阵">1.1 电商图片需求矩阵</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>图片类型</th><th>用途</th><th>数量/产品</th><th>传统成本</th><th>AI 成本</th></tr>
+</thead>
+<tbody>
+<tr><td>白底主图</td><td>Amazon/Shopify 主图</td><td>1</td><td>$100-300</td><td>$0-5</td></tr>
+<tr><td>场景图</td><td>使用场景展示</td><td>3-5</td><td>$200-500</td><td>$5-20</td></tr>
+<tr><td>信息图</td><td>尺寸/对比/功能说明</td><td>2-3</td><td>$100-200</td><td>$5-10</td></tr>
+<tr><td>A+ Content</td><td>品牌故事图文</td><td>5-7</td><td>$300-500</td><td>$10-30</td></tr>
+<tr><td>社交媒体</td><td>Instagram/TikTok 素材</td><td>10-20/月</td><td>$500-1000/月</td><td>$20-50/月</td></tr>
+<tr><td>广告素材</td><td>PPC/Meta/Google Ads</td><td>5-10 变体</td><td>$200-500</td><td>$10-30</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="12-ai-图片生成的挑战"><a class="header" href="#12-ai-图片生成的挑战">1.2 AI 图片生成的挑战</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>挑战</th><th>说明</th><th>解决方案</th></tr>
+</thead>
+<tbody>
+<tr><td>产品一致性</td><td>AI 生成的产品外观可能与实物不同</td><td>使用产品实拍图作为参考（ControlNet/IP-Adapter）</td></tr>
+<tr><td>品牌一致性</td><td>不同图片风格不统一</td><td>固定 Prompt 前缀 + Style Reference</td></tr>
+<tr><td>平台合规</td><td>Amazon 主图要求纯白底</td><td>后处理去背景 + 白底合成</td></tr>
+<tr><td>文字渲染</td><td>AI 生成的文字经常出错</td><td>后处理用 Pillow/Canva 叠加文字</td></tr>
+<tr><td>版权风险</td><td>AI 可能生成与已有作品相似的内容</td><td>使用商业许可工具 + 人工审核</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="2-技术栈选择"><a class="header" href="#2-技术栈选择">2. 技术栈选择</a></h2>
+<h3 id="21-方案对比"><a class="header" href="#21-方案对比">2.1 方案对比</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>方案</th><th>优点</th><th>缺点</th><th>成本</th><th>适合</th></tr>
+</thead>
+<tbody>
+<tr><td>ComfyUI（本地）</td><td>完全控制、可自动化、免费</td><td>需要 GPU、学习曲线陡</td><td>硬件成本</td><td>大量图片、技术团队</td></tr>
+<tr><td>Midjourney</td><td>质量最高、风格多样</td><td>无 API（需要 Discord）、不可控</td><td>$10-30/月</td><td>少量高质量图片</td></tr>
+<tr><td>DALL-E 3（API）</td><td>有 API、可编程</td><td>质量中等、风格有限</td><td>按量付费</td><td>批量生成、自动化</td></tr>
+<tr><td>Flux（本地/API）</td><td>开源、质量高、可微调</td><td>需要 GPU</td><td>免费/按量</td><td>技术团队、定制化</td></tr>
+<tr><td>Adobe Firefly</td><td>商业安全、有赔偿保障</td><td>功能有限</td><td>$10/月起</td><td>商业使用、合规优先</td></tr>
+<tr><td>Canva AI</td><td>简单易用、模板丰富</td><td>灵活性低</td><td>$13/月</td><td>非技术人员</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="22-推荐组合"><a class="header" href="#22-推荐组合">2.2 推荐组合</a></h3>
+<pre><code>推荐的 AI 图片技术栈：
+
+主图/场景图生成：
+ComfyUI + Flux（本地，完全控制）
+或 Midjourney（云端，质量最高）
+或 DALL-E 3 API（可编程，批量生成）
+
+后处理：
+rembg（Python 去背景）
+Pillow（图片处理、文字叠加）
+OpenCV（高级图片处理）
+
+批量管理：
+Python 脚本（自动化工作流）
+Canva Brand Kit（模板管理）
+</code></pre>
+<hr>
+<h2 id="3-comfyui-产品图工作流"><a class="header" href="#3-comfyui-产品图工作流">3. ComfyUI 产品图工作流</a></h2>
+<h3 id="31-安装-comfyui"><a class="header" href="#31-安装-comfyui">3.1 安装 ComfyUI</a></h3>
+<pre><code class="language-bash"># 克隆 ComfyUI
+git clone https://github.com/comfyanonymous/ComfyUI.git
+cd ComfyUI
+
+# 安装依赖
+pip3 install -r requirements.txt
+
+# 下载模型（Flux 推荐）
+# 将模型文件放到 models/checkpoints/ 目录
+
+# 启动
+python3 main.py
+# 浏览器打开 http://127.0.0.1:8188
+</code></pre>
+<h3 id="32-产品图生成工作流"><a class="header" href="#32-产品图生成工作流">3.2 产品图生成工作流</a></h3>
+<blockquote>
+<p><strong>真实案例：ComfyUI 产品图工作流实战</strong>
+MyAIForce 展示了一个完整的 ComfyUI 产品图工作流：输入一张护肤品图片和描述性 Prompt，工作流自动将产品无缝融入新背景，调整光照和阴影以匹配新环境，确保自然和谐的外观。工作流包含 7 个步骤：上传图片→设置背景→基础调整→产品定位→重新打光→重绘→恢复细节（<a href="https://myaiforce.com/comfyui-product-photography/">MyAIForce</a>）。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<blockquote>
+<p><strong>真实案例：Midjourney + ComfyUI 组合工作流</strong>
+另一个高级工作流将 Midjourney 和 ComfyUI 结合：先用 Midjourney 生成高质量的场景背景，再用 ComfyUI 的 ControlNet 和 IP-Adapter 将产品精确放置到场景中，同时调整光照和阴影以保留产品文字等关键细节（<a href="https://myaiforce.com/product-photography-comfyui-midjourney/">MyAIForce</a>）。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<blockquote>
+<p><strong>真实案例：ComfyUI 背景替换 V4 工作流</strong>
+最新的 V4 背景替换工作流使用 SDXL checkpoints，仅需 10 个采样步骤和约 6GB VRAM 即可完成基础任务。使用 Flux 模型可以获得更高质量的效果，但需要更多 VRAM（<a href="https://myaiforce.com/flux-replace-background-v4/">MyAIForce</a>）。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<pre><code>ComfyUI 电商产品图完整工作流（7 步）：
+
+Step 1: 上传图片和设置背景
+Load Image 节点：加载产品实拍图
+背景选择：上传预设背景 或 用 Prompt 生成
+参数设置：分辨率、采样步数
+
+Step 2: 基础调整
+产品抠图（Florence2Run 或 rembg）
+尺寸调整
+初始合成
+
+Step 3: 产品定位
+调整产品在画面中的位置
+缩放比例
+角度调整
+
+Step 4: 重新打光（Relighting）
+IC-Light 节点：根据背景调整产品光照
+阴影方向匹配
+高光调整
+
+Step 5: 生成背景
+Flux Fill + Redux：生成与产品匹配的背景
+或 IP-Adapter：复制参考图片的风格
+KSampler：执行生成
+
+Step 6: 重绘（Inpainting）
+修复产品与背景的接缝
+添加自然阴影
+细节融合
+
+Step 7: 恢复细节和颜色
+恢复产品原始颜色
+锐化细节
+最终输出
+保存为 PNG/JPEG
+</code></pre>
+<h3 id="33-电商场景-prompt-模板40-测试过的模板"><a class="header" href="#33-电商场景-prompt-模板40-测试过的模板">3.3 电商场景 Prompt 模板（40+ 测试过的模板）</a></h3>
+<blockquote>
+<p><strong>真实资源</strong>：Apatero 整理了 40+ 经过测试的 AI 产品图 Prompt 模板，覆盖白底、场景、平铺、信息图等所有电商场景（<a href="https://www.apatero.com/blog/best-prompts-product-photography-ai-generation-2025">Apatero</a>）。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<pre><code class="language-python"># 电商产品图 Prompt 模板库（扩展版）
+PROMPT_TEMPLATES = {
+# === 主图系列 ===
+"amazon_main": {
+"positive": "professional product photography, {product}, centered on pure white background #FFFFFF, product fills 85 percent of frame, studio lighting with soft shadows, high resolution 8k, sharp focus, no text no logos no watermarks, commercial catalog style",
+"negative": "blurry, low quality, text, watermark, logo, human, hand, colored background, shadow on background, props, accessories not part of product"
+},
+"shopify_hero": {
+"positive": "hero product shot, {product}, clean minimal background with subtle gradient, dramatic studio lighting, slight shadow underneath, premium feel, editorial quality, 4k",
+"negative": "cluttered, busy background, text, watermark, low quality"
+},
+
+# === 场景图系列 ===
+"lifestyle_home": {
+"positive": "lifestyle product photography, {product} in modern minimalist home, natural window lighting, warm tones, shallow depth of field, bokeh background, editorial style, authentic feel",
+"negative": "artificial, oversaturated, studio look, text, watermark"
+},
+"lifestyle_outdoor": {
+"positive": "outdoor lifestyle photography, {product} in natural setting, golden hour lighting, vibrant colors, adventure feel, authentic, editorial quality",
+"negative": "indoor, artificial lighting, text, watermark, studio"
+},
+"lifestyle_office": {
+"positive": "modern office setting, {product} on clean desk, natural lighting from window, minimalist decor, professional atmosphere, shallow depth of field",
+"negative": "cluttered, messy, dark, text, watermark"
+},
+"lifestyle_kitchen": {
+"positive": "modern kitchen setting, {product} on marble countertop, natural lighting, fresh ingredients nearby, clean and bright, food photography style",
+"negative": "dirty, cluttered, dark, text, watermark"
+},
+
+# === 平铺图系列 ===
+"flat_lay_minimal": {
+"positive": "flat lay photography, {product} with complementary items, top-down view, clean arrangement on {surface}, soft shadows, minimalist, {color_scheme}",
+"negative": "cluttered, messy, blurry, text, 3D perspective"
+},
+"flat_lay_seasonal": {
+"positive": "seasonal flat lay, {product} surrounded by {season} elements, top-down view, cohesive color palette, editorial styling, natural textures",
+"negative": "cluttered, artificial, text, watermark"
+},
+
+# === 信息图背景系列 ===
+"infographic_clean": {
+"positive": "clean infographic background for {product}, {color_scheme} gradient, modern design, ample negative space for text overlay, professional, soft lighting on product",
+"negative": "text, numbers, charts, cluttered, busy, distracting elements"
+},
+"infographic_comparison": {
+"positive": "split comparison layout background, {product} centered, left side and right side clearly divided, clean modern design, space for before/after or feature comparison text",
+"negative": "text, numbers, cluttered"
+},
+
+# === 社交媒体系列 ===
+"instagram_aesthetic": {
+"positive": "instagram aesthetic product shot, {product}, trendy styling, {color_scheme} color palette, natural lighting, lifestyle feel, square format, influencer style",
+"negative": "corporate, boring, text, watermark, low quality"
+},
+"tiktok_dynamic": {
+"positive": "dynamic product shot, {product}, vibrant colors, energetic composition, slight motion blur on background, youth-oriented, vertical format 9:16",
+"negative": "static, boring, corporate, text"
+},
+
+# === A+ Content 系列 ===
+"aplus_brand_story": {
+"positive": "brand story photography, {product} in aspirational setting, warm emotional lighting, lifestyle context, premium quality, cinematic feel",
+"negative": "cheap, low quality, text, watermark"
+},
+"aplus_feature_highlight": {
+"positive": "close-up detail shot, {product} {feature} highlighted, macro photography style, sharp focus on detail, soft background, studio lighting",
+"negative": "blurry, wide shot, text, watermark"
+}
+}
+
+def generate_prompt(template_name: str, product: str, **kwargs) -&gt; dict:
+"""生成产品图 Prompt"""
+template = PROMPT_TEMPLATES[template_name]
+# 填充默认值
+defaults = {
+"surface": "white marble",
+"color_scheme": "blue and white",
+"season": "autumn",
+"feature": "texture detail"
+}
+for k, v in defaults.items():
+kwargs.setdefault(k, v)
+
+return {
+"positive": template["positive"].format(product=product, **kwargs),
+"negative": template["negative"]
+}
+
+# 使用示例
+prompt = generate_prompt(
+"lifestyle_home",
+product="wireless bluetooth earbuds with charging case"
+)
+print(prompt["positive"])
+</code></pre>
+<hr>
+<h2 id="4-api-方案midjourneydall-eflux"><a class="header" href="#4-api-方案midjourneydall-eflux">4. API 方案（Midjourney/DALL-E/Flux）</a></h2>
+<h3 id="41-dall-e-3-批量生成"><a class="header" href="#41-dall-e-3-批量生成">4.1 DALL-E 3 批量生成</a></h3>
+<pre><code class="language-python">from openai import OpenAI
+import requests
+from pathlib import Path
+
+client = OpenAI()
+
+def generate_product_image(
+product_description: str,
+style: str = "white_background",
+size: str = "1024x1024",
+output_dir: str = "output"
+) -&gt; str:
+"""用 DALL-E 3 生成产品图"""
+
+prompts = {
+"white_background": f"Professional product photography of {product_description}, centered on pure white background, studio lighting, high resolution, commercial quality",
+"lifestyle": f"Lifestyle product photography of {product_description} being used in a modern home setting, natural lighting, warm tones, editorial quality",
+"amazon_main": f"Amazon product listing main image: {product_description}, pure white background (#FFFFFF), product fills 85% of frame, no text or logos, professional studio photography"
+}
+
+response = client.images.generate(
+model="dall-e-3",
+prompt=prompts[style],
+size=size,
+quality="hd",
+n=1
+)
+
+# 下载图片
+image_url = response.data[0].url
+Path(output_dir).mkdir(exist_ok=True)
+
+img_data = requests.get(image_url).content
+filepath = f"{output_dir}/{product_description[:30]}_{style}.png"
+with open(filepath, "wb") as f:
+f.write(img_data)
+
+return filepath
+
+# 批量生成
+products = [
+"wireless bluetooth earbuds with charging case",
+"stainless steel water bottle 32oz",
+"portable neck fan with LED display"
+]
+
+for product in products:
+for style in ["white_background", "lifestyle"]:
+path = generate_product_image(product, style)
+print(f"Generated: {path}")
+</code></pre>
+<h3 id="42-去背景--白底合成"><a class="header" href="#42-去背景--白底合成">4.2 去背景 + 白底合成</a></h3>
+<pre><code class="language-python">from rembg import remove
+from PIL import Image
+import io
+
+def create_amazon_main_image(input_path: str, output_path: str):
+"""创建 Amazon 合规的白底主图"""
+# 读取图片
+with open(input_path, "rb") as f:
+input_data = f.read()
+
+# 去背景
+output_data = remove(input_data)
+
+# 创建白底画布
+fg = Image.open(io.BytesIO(output_data)).convert("RGBA")
+
+# 计算产品占比（Amazon 要求 85%+）
+bbox = fg.getbbox()
+product_w = bbox[2] - bbox[0]
+product_h = bbox[3] - bbox[1]
+
+# 创建正方形白底（产品占 85%）
+canvas_size = int(max(product_w, product_h) / 0.85)
+canvas = Image.new("RGBA", (canvas_size, canvas_size), (255, 255, 255, 255))
+
+# 居中放置产品
+offset_x = (canvas_size - product_w) // 2 - bbox[0]
+offset_y = (canvas_size - product_h) // 2 - bbox[1]
+canvas.paste(fg, (offset_x, offset_y), fg)
+
+# 保存为 RGB（Amazon 不接受透明背景）
+canvas.convert("RGB").save(output_path, "JPEG", quality=95)
+print(f"Amazon main image saved: {output_path}")
+</code></pre>
+<hr>
+<h2 id="5-批量生成-pipeline"><a class="header" href="#5-批量生成-pipeline">5. 批量生成 Pipeline</a></h2>
+<h3 id="51-完整的产品图生成-pipeline"><a class="header" href="#51-完整的产品图生成-pipeline">5.1 完整的产品图生成 Pipeline</a></h3>
+<pre><code class="language-python">import os
+import json
+from pathlib import Path
+from datetime import datetime
+from dataclasses import dataclass
+from typing import Optional
+
+@dataclass
+class ProductImageRequest:
+"""产品图生成请求"""
+product_name: str
+product_description: str
+source_image: Optional[str] = None # 产品实拍图路径
+brand_color: str = "blue"
+target_platforms: list = None # ["amazon", "shopify", "instagram"]
+
+def __post_init__(self):
+if self.target_platforms is None:
+self.target_platforms = ["amazon", "shopify"]
+
+class ProductImagePipeline:
+"""电商产品图批量生成 Pipeline"""
+
+def __init__(self, method: str = "dalle", output_dir: str = "output/images"):
+self.method = method
+self.output_dir = output_dir
+Path(output_dir).mkdir(parents=True, exist_ok=True)
+self.log = []
+
+def generate_product_set(self, request: ProductImageRequest) -&gt; dict:
+"""为一个产品生成完整的图片集"""
+product_dir = os.path.join(
+self.output_dir,
+request.product_name.replace(" ", "_")[:30]
+)
+Path(product_dir).mkdir(exist_ok=True)
+
+results = {"product": request.product_name, "images": {}}
+
+# 1. Amazon 白底主图
+if "amazon" in request.target_platforms:
+self._log(f"生成 Amazon 主图: {request.product_name}")
+main_img = self._generate_image(
+request, "amazon_main",
+os.path.join(product_dir, "amazon_main.jpg")
+)
+# 后处理：去背景 + 白底合成
+amazon_img = self._post_process_amazon(main_img)
+results["images"]["amazon_main"] = amazon_img
+
+# 合规检查
+compliance = check_amazon_compliance(amazon_img)
+results["images"]["amazon_compliance"] = compliance
+if not compliance["compliant"]:
+self._log(f" Amazon 合规问题: {compliance['issues']}")
+
+# 2. 场景图 x3
+scenes = [
+("modern living room", "lifestyle_home"),
+("outdoor natural setting", "lifestyle_outdoor"),
+("clean office desk", "lifestyle_office")
+]
+results["images"]["lifestyle"] = []
+for i, (scene, template) in enumerate(scenes):
+self._log(f"生成场景图 {i+1}/3: {scene}")
+img = self._generate_image(
+request, template,
+os.path.join(product_dir, f"lifestyle_{i+1}.jpg"),
+scene=scene
+)
+results["images"]["lifestyle"].append(img)
+
+# 3. 信息图背景 x2
+results["images"]["infographic"] = []
+for i, color in enumerate(["blue and white", "warm earth tones"]):
+self._log(f"生成信息图背景 {i+1}/2")
+img = self._generate_image(
+request, "infographic_clean",
+os.path.join(product_dir, f"infographic_{i+1}.jpg"),
+color_scheme=color
+)
+results["images"]["infographic"].append(img)
+
+# 4. 社交媒体素材
+if "instagram" in request.target_platforms:
+self._log("生成 Instagram 素材")
+img = self._generate_image(
+request, "instagram_aesthetic",
+os.path.join(product_dir, "instagram.jpg"),
+color_scheme=request.brand_color
+)
+results["images"]["instagram"] = img
+
+# 5. A+ Content 品牌故事图
+self._log("生成 A+ Content 图")
+img = self._generate_image(
+request, "aplus_brand_story",
+os.path.join(product_dir, "aplus_brand.jpg")
+)
+results["images"]["aplus"] = img
+
+# 保存元数据
+metadata = {
+"product": request.product_name,
+"generated_at": datetime.now().isoformat(),
+"method": self.method,
+"images": {k: str(v) for k, v in results["images"].items()},
+"log": self.log
+}
+with open(os.path.join(product_dir, "metadata.json"), "w") as f:
+json.dump(metadata, f, indent=2, ensure_ascii=False)
+
+self._log(f" 完成: {request.product_name} ({len(results['images'])} 张图片)")
+return results
+
+def batch_generate(self, requests: list[ProductImageRequest]) -&gt; list:
+"""批量生成多个产品的图片集"""
+all_results = []
+for i, request in enumerate(requests):
+print(f"\n{'='*50}")
+print(f"Processing {i+1}/{len(requests)}: {request.product_name}")
+print(f"{'='*50}")
+
+try:
+results = self.generate_product_set(request)
+all_results.append(results)
+except Exception as e:
+self._log(f" 失败: {request.product_name} - {str(e)}")
+all_results.append({"product": request.product_name, "error": str(e)})
+
+# 生成批量报告
+self._generate_batch_report(all_results)
+return all_results
+
+def _generate_image(self, request, template, output_path, **kwargs):
+"""生成单张图片（根据 method 选择不同的生成方式）"""
+prompt = generate_prompt(template, request.product_description, **kwargs)
+
+if self.method == "dalle":
+return self._dalle_generate(prompt, output_path)
+elif self.method == "comfyui":
+return self._comfyui_generate(prompt, request.source_image, output_path)
+else:
+raise ValueError(f"Unknown method: {self.method}")
+
+def _dalle_generate(self, prompt, output_path):
+"""DALL-E 3 生成"""
+response = client.images.generate(
+model="dall-e-3",
+prompt=prompt["positive"],
+size="1024x1024",
+quality="hd",
+n=1
+)
+# 下载并保存
+import requests
+img_data = requests.get(response.data[0].url).content
+with open(output_path, "wb") as f:
+f.write(img_data)
+return output_path
+
+def _post_process_amazon(self, image_path):
+"""Amazon 主图后处理"""
+output_path = image_path.replace(".jpg", "_amazon.jpg")
+create_amazon_main_image(image_path, output_path)
+return output_path
+
+def _log(self, message):
+timestamp = datetime.now().strftime("%H:%M:%S")
+self.log.append(f"[{timestamp}] {message}")
+print(f"[{timestamp}] {message}")
+
+def _generate_batch_report(self, results):
+"""生成批量处理报告"""
+report = f"# 产品图批量生成报告\n\n"
+report += f"生成时间: {datetime.now().isoformat()}\n"
+report += f"总产品数: {len(results)}\n"
+report += f"成功: {sum(1 for r in results if 'error' not in r)}\n"
+report += f"失败: {sum(1 for r in results if 'error' in r)}\n\n"
+
+for r in results:
+if "error" in r:
+report += f" {r['product']}: {r['error']}\n"
+else:
+report += f" {r['product']}: {len(r['images'])} 张图片\n"
+
+with open(os.path.join(self.output_dir, "batch_report.md"), "w") as f:
+f.write(report)
+
+# === 使用示例 ===
+if __name__ == "__main__":
+pipeline = ProductImagePipeline(method="dalle")
+
+products = [
+ProductImageRequest(
+product_name="Wireless Bluetooth Earbuds",
+product_description="premium wireless bluetooth earbuds with active noise cancellation, charging case, white color",
+brand_color="blue",
+target_platforms=["amazon", "shopify", "instagram"]
+),
+ProductImageRequest(
+product_name="Stainless Steel Water Bottle",
+product_description="32oz stainless steel insulated water bottle, matte black, with bamboo lid",
+brand_color="green",
+target_platforms=["amazon", "shopify"]
+),
+ProductImageRequest(
+product_name="Portable Neck Fan",
+product_description="portable bladeless neck fan with LED display, 3 speed settings, white and gray",
+brand_color="blue",
+target_platforms=["amazon", "instagram"]
+)
+]
+
+results = pipeline.batch_generate(products)
+</code></pre>
+<h3 id="52-ab-测试图片变体"><a class="header" href="#52-ab-测试图片变体">5.2 A/B 测试图片变体</a></h3>
+<pre><code class="language-python">def generate_ab_test_variants(request: ProductImageRequest,
+num_variants: int = 3) -&gt; list:
+"""为 A/B 测试生成多个主图变体"""
+variants = []
+
+# 变体 1：不同角度
+angles = ["front view centered", "45 degree angle", "slight top-down angle"]
+
+# 变体 2：不同光照
+lightings = ["soft studio lighting", "dramatic side lighting", "bright even lighting"]
+
+# 变体 3：不同构图
+compositions = [
+"product fills 85% of frame",
+"product fills 70% with more white space",
+"product with subtle shadow underneath"
+]
+
+for i in range(num_variants):
+variant_prompt = (
+f"professional product photography, {request.product_description}, "
+f"{angles[i % len(angles)]}, {lightings[i % len(lightings)]}, "
+f"{compositions[i % len(compositions)]}, "
+f"pure white background, high resolution 8k"
+)
+
+img = generate_with_dalle(variant_prompt, f"variant_{i+1}.jpg")
+variants.append({
+"variant": i + 1,
+"angle": angles[i % len(angles)],
+"lighting": lightings[i % len(lightings)],
+"composition": compositions[i % len(compositions)],
+"image": img
+})
+
+return variants
+</code></pre>
+<hr>
+<h2 id="6-ai-视频生成"><a class="header" href="#6-ai-视频生成">6. AI 视频生成</a></h2>
+<h3 id="61-产品视频类型"><a class="header" href="#61-产品视频类型">6.1 产品视频类型</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>类型</th><th>时长</th><th>用途</th><th>AI 工具</th></tr>
+</thead>
+<tbody>
+<tr><td>产品展示</td><td>15-30s</td><td>Amazon 视频、Shopify</td><td>Runway Gen-3 / Pika</td></tr>
+<tr><td>使用教程</td><td>30-60s</td><td>A+ Content、YouTube</td><td>Synthesia / HeyGen</td></tr>
+<tr><td>社交短视频</td><td>15-60s</td><td>TikTok/Reels/Shorts</td><td>CapCut AI / Runway</td></tr>
+<tr><td>广告视频</td><td>6-15s</td><td>PPC 视频广告</td><td>Runway / Sora</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="62-产品展示视频生成"><a class="header" href="#62-产品展示视频生成">6.2 产品展示视频生成</a></h3>
+<pre><code class="language-python"># 概念代码：用 Runway API 生成产品展示视频
+import runway
+
+def generate_product_video(
+product_image: str,
+motion_prompt: str = "slow 360 degree rotation, studio lighting",
+duration: int = 4 # 秒
+) -&gt; str:
+"""从产品图生成展示视频"""
+
+task = runway.image_to_video.create(
+model="gen3a_turbo",
+prompt_image=product_image,
+prompt_text=motion_prompt,
+duration=duration
+)
+
+# 等待生成完成
+task = runway.tasks.retrieve(task.id)
+while task.status != "SUCCEEDED":
+import time
+time.sleep(5)
+task = runway.tasks.retrieve(task.id)
+
+return task.output[0] # 视频 URL
+</code></pre>
+<hr>
+<h2 id="7-质量控制与合规"><a class="header" href="#7-质量控制与合规">7. 质量控制与合规</a></h2>
+<h3 id="71-amazon-图片合规检查"><a class="header" href="#71-amazon-图片合规检查">7.1 Amazon 图片合规检查</a></h3>
+<pre><code class="language-python">def check_amazon_compliance(image_path: str) -&gt; dict:
+"""检查图片是否符合 Amazon 要求"""
+img = Image.open(image_path)
+issues = []
+
+# 尺寸检查（最小 1000px）
+if min(img.size) &lt; 1000:
+issues.append(f"尺寸不足: {img.size}，最小需要 1000x1000")
+
+# 白底检查（主图）
+pixels = list(img.getdata())
+corners = [pixels[0], pixels[img.width-1],
+pixels[-img.width], pixels[-1]]
+for i, corner in enumerate(corners):
+if not all(c &gt; 240 for c in corner[:3]):
+issues.append(f"角落 {i} 不是纯白: {corner}")
+
+# 产品占比检查
+# ... (检查产品是否占画面 85%+)
+
+return {
+"compliant": len(issues) == 0,
+"issues": issues,
+"size": img.size,
+"format": img.format
+}
+</code></pre>
+<h3 id="72-品牌一致性检查"><a class="header" href="#72-品牌一致性检查">7.2 品牌一致性检查</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>检查项</th><th>方法</th><th>工具</th></tr>
+</thead>
+<tbody>
+<tr><td>配色一致</td><td>提取主色调对比品牌色</td><td>Pillow + ColorThief</td></tr>
+<tr><td>风格一致</td><td>CLIP 嵌入相似度</td><td>sentence-transformers</td></tr>
+<tr><td>Logo 位置</td><td>模板检查</td><td>Pillow</td></tr>
+<tr><td>文字字体</td><td>OCR + 字体匹配</td><td>Tesseract</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="8-完成标志"><a class="header" href="#8-完成标志">8. 完成标志</a></h2>
+<ul>
+<li><input disabled="" type="checkbox"> 搭建 ComfyUI 或选择 API 方案</li>
+<li><input disabled="" type="checkbox"> 为一个产品生成完整图片集（主图+场景图+信息图）</li>
+<li><input disabled="" type="checkbox"> 实现去背景+白底合成的自动化流程</li>
+<li><input disabled="" type="checkbox"> 构建批量生成 Pipeline（一次处理 5+ 产品）</li>
+<li><input disabled="" type="checkbox"> 通过 Amazon 图片合规检查</li>
+<li><input disabled="" type="checkbox"> 生成至少 1 个产品展示视频</li>
+</ul>
+<hr>
+<blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path B 总览</a></p>
+<p><strong>Path B</strong>: <a href="b1-data-pipeline.html">B1 数据管道</a> · <a href="b2-prediction-models.html">B2 预测模型</a> · <a href="b3-rag-knowledge-base.html">B3 RAG 知识库</a> · <a href="b4-agent-workflow.html">B4 AI Agent</a> · <a href="b5-local-model-deploy.html">B5 本地模型</a> · <a href="b6-mcp-agentic-workflow.html">B6 MCP 集成</a> · <a href="b7-review-nlp-system.html">B7 Review NLP</a> · <a href="b8-ecommerce-dashboard.html">B8 Dashboard</a> · <a href="b9-ai-image-pipeline.html">B9 AI 图片生成</a></p>
+<p><strong>快速跳转</strong>: <a href="../0-foundations/">Path 0 基础</a> · <a href="../a-operators/">Path A 运营</a> · <a href="../c-managers/">Path C 管理</a> · <a href="../d-platforms/">Path D 多平台</a> · <a href="../e-social-media/">Path E 社交媒体</a></p>
+</blockquote>
+<!-- nav:prev-next -->
+<hr>
+<p><a href="b8-ecommerce-dashboard.html">&lt; B8 Dashboard</a> | <a href="README.html">Path 总览</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../b-developers/b8-ecommerce-dashboard.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../c-managers/c1-ai-assessment.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../b-developers/b8-ecommerce-dashboard.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../c-managers/c1-ai-assessment.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../mermaid-217b66ef.min.js"></script>
+        <script src="../mermaid-init-d4730691.js"></script>
+
+
+
+    </div>
+    </body>
+</html>

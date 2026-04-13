@@ -1,0 +1,643 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>欧洲 (Otto + Zalando) - 跨境电商 AI 实战知识库</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="跨境电商 AI 实操手册 — 56 篇指南，从选品到增长，每个环节都有可直接复制的 Prompt">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom-467616e9.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "ayu";
+            window.path_to_searchindex_js = "../searchindex-656d55b3.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-e97a050e.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">跨境电商 AI 实战知识库</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap/edit/main/src/src/d-platforms/d13-europe-marketplaces-guide.md" title="Suggest an edit" aria-label="Suggest an edit" rel="edit">
+                            <span class=fa-svg id="git-edit-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M421.7 220.3l-11.3 11.3-22.6 22.6-205 205c-6.6 6.6-14.8 11.5-23.8 14.1L30.8 511c-8.4 2.5-17.5 .2-23.7-6.1S-1.5 489.7 1 481.2L38.7 353.1c2.6-9 7.5-17.2 14.1-23.8l205-205 22.6-22.6 11.3-11.3 33.9 33.9 62.1 62.1 33.9 33.9zM96 353.9l-9.3 9.3c-.9 .9-1.6 2.1-2 3.4l-25.3 86 86-25.3c1.3-.4 2.5-1.1 3.4-2l9.3-9.3H112c-8.8 0-16-7.2-16-16V353.9zM453.3 19.3l39.4 39.4c25 25 25 65.5 0 90.5l-14.5 14.5-22.6 22.6-11.3 11.3-33.9-33.9-62.1-62.1L314.3 67.7l11.3-11.3 22.6-22.6 14.5-14.5c25-25 65.5-25 90.5 0z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="d13-欧洲电商平台指南otto--zalando"><a class="header" href="#d13-欧洲电商平台指南otto--zalando">D13. 欧洲电商平台指南（Otto + Zalando）</a></h1>
+<blockquote>
+<p><strong>路径</strong>: Path D: 多平台 · <strong>模块</strong>: D13
+<strong>最后更新</strong>: 2026-03-14
+<strong>难度</strong>: 中级
+<strong>预计时间</strong>: 1 小时</p>
+</blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path D 总览</a></p>
+<hr>
+<blockquote>
+<p>德国电商市场 €92B+（2026），欧洲第二大电商市场。Otto 收入 $9B，Zalando GMV €17.6B（2025）。这两个平台是 Amazon.de 之外进入德国市场的重要渠道，但本地化要求极高。</p>
+</blockquote>
+<h2 id="1-德国电商市场概览"><a class="header" href="#1-德国电商市场概览">1. 德国电商市场概览</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>平台</th><th>收入/GMV</th><th>定位</th><th>品类优势</th></tr>
+</thead>
+<tbody>
+<tr><td>Amazon.de</td><td>最大</td><td>全品类</td><td>全品类</td></tr>
+<tr><td>Otto</td><td>$9B</td><td>综合百货</td><td>家居、时尚、电子</td></tr>
+<tr><td>Zalando</td><td>€17.6B GMV</td><td>时尚专业</td><td>服装、鞋、配饰</td></tr>
+<tr><td>eBay.de</td><td>大</td><td>二手+全品类</td><td>二手、收藏、汽配</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="2-otto-marketplace"><a class="header" href="#2-otto-marketplace">2. Otto Marketplace</a></h2>
+<h3 id="21-otto-核心数据"><a class="header" href="#21-otto-核心数据">2.1 Otto 核心数据</a></h3>
+<p>Otto 是德国第二大在线零售商，拥有超过 1220 万活跃买家，日均 250 万次访问，平均每秒 35 笔订单（<a href="https://blog.shoppingfeed.com/en-us/otto-marketplace-what-brands-need-to-know-about-germanys-second-largest-platform">Shoppingfeed</a>）。平台采用精选卖家模式，仅接受约 5000+ 经过严格审核的卖家，以维护其高端品牌形象和产品质量标准（<a href="https://unimall.ai/guides/sell-on-otto">Unimall</a>）。</p>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>维度</th><th>Otto</th><th>Amazon.de</th></tr>
+</thead>
+<tbody>
+<tr><td>卖家数量</td><td>~5,000+（精选）</td><td>数十万</td></tr>
+<tr><td>活跃买家</td><td>1220 万</td><td>更多</td></tr>
+<tr><td>品质定位</td><td>高端/精选</td><td>全品类</td></tr>
+<tr><td>退货率</td><td>高（时尚 &gt;50%）</td><td>中等</td></tr>
+<tr><td>品牌控制</td><td>强（审核严格）</td><td>中等</td></tr>
+<tr><td>广告系统</td><td>基础</td><td>成熟（PPC）</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="22-入驻要求2026-更新"><a class="header" href="#22-入驻要求2026-更新">2.2 入驻要求（2026 更新）</a></h3>
+<p>2026 年 Otto 正在向全欧盟卖家开放，取消了此前限制非德国卖家的支付和 VAT 限制（<a href="https://marketplace-universe.com/entering-germany-beyond-amazon-why-brands-should-look-otto/">Marketplace Universe</a>）。</p>
+<p>根据 Otto Market 官方要求（<a href="https://www.otto.market/en/faq/faq.html">otto.market</a>）：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>要求</th><th>说明</th><th>必要性</th></tr>
+</thead>
+<tbody>
+<tr><td>法人实体</td><td>德国或荷兰公司法律形式</td><td>强制</td></tr>
+<tr><td>VAT ID</td><td>德国或荷兰 VAT 税号</td><td>强制</td></tr>
+<tr><td>德语客服</td><td>必须提供德语客户服务</td><td>强制</td></tr>
+<tr><td>欧盟仓库发货</td><td>从德国或欧盟仓库发货</td><td>强制</td></tr>
+<tr><td>退货接收</td><td>德国或指定欧盟国家（丹麦/法国/意大利/荷兰/奥地利/波兰/西班牙/捷克）接收退货</td><td>强制</td></tr>
+<tr><td>EPR 合规</td><td>生产者延伸责任注册</td><td>强制（不合规将立即暂停销售，<a href="https://deutsche-recycling.com/blog/ensure-compliance-for-selling-on-otto-marketplace/">Deutsche Recycling</a>）</td></tr>
+<tr><td>VerpackG</td><td>德国包装法注册</td><td>强制</td></tr>
+<tr><td>WEEE</td><td>电子废弃物回收注册</td><td>电子产品强制</td></tr>
+</tbody>
+</table>
+</div>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<blockquote>
+<p><strong>跨境卖家注意</strong>：中国卖家目前无法直接入驻 Otto，需要通过德国/荷兰法人实体或代运营商。这是 Otto 与 Amazon 最大的区别门槛更高但竞争更小。</p>
+</blockquote>
+<h3 id="23-otto-佣金与费用"><a class="header" href="#23-otto-佣金与费用">2.3 Otto 佣金与费用</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>费用项</th><th>金额</th><th>说明</th></tr>
+</thead>
+<tbody>
+<tr><td>月租费</td><td>€39.90/月</td><td>基础套餐</td></tr>
+<tr><td>佣金</td><td>7-15%（按品类）</td><td>类似 Amazon</td></tr>
+<tr><td>初始设置费</td><td>无</td><td></td></tr>
+<tr><td>退货处理</td><td>卖家承担</td><td>退货率高需注意</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="24-otto-运营-ai-策略"><a class="header" href="#24-otto-运营-ai-策略">2.4 Otto 运营 AI 策略</a></h3>
+<blockquote>
+<p><strong>真实案例：Otto Marketplace 增长 24%</strong>
+Otto 在过去一个财年中 Marketplace 销售额增长了 24%，增速超过德国电商市场整体水平。CEO Marc Opelt 表示：“过去 12 个月的强劲增长让我们充满信心，我们正在经历两年挑战期后的转折点。”（<a href="https://ecommercenews.eu/otto-thrives-thanks-to-24-increase-in-marketplace-sales/">EcommerceNews EU</a>）</p>
+<p>但 Otto 也面临挑战：费用上涨和与卖家的争议导致部分卖家流失（<a href="https://ecommercenews.eu/ottos-marketplace-is-losing-sellers-and-is-in-crisis/">EcommerceNews EU</a>）。这意味着入驻 Otto 需要权衡：竞争较小但平台政策变化风险存在。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<blockquote>
+<p><strong>真实案例：Otto 使用 Adobe Analytics 优化客户旅程</strong>
+Otto 正在将其成功的自营模式转型为平台模式，被公司称为“自 1995 年开始在线交易以来最重大的变革“。Otto 使用 Adobe Customer Journey Analytics 来优化跨渠道客户体验，帮助零售合作伙伴更好地在平台上销售（<a href="https://business.adobe.com/customer-success-stories/otto-e-commerce-case-study.html">Adobe Case Study</a>）。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<pre><code>你是一个 Otto Marketplace 运营专家。
+
+我的产品：[名称]
+品类：[家居/时尚/电子]
+当前在 Amazon.de 月销：€[X]
+
+请评估 Otto 入驻可行性：
+
+1. 品类适配度（Otto 的优势品类是家居、时尚、电子）
+2. 入驻路径（直接入驻 vs 代运营）
+3. 与 Amazon.de 的差异化运营策略
+- Otto 允许更多品牌展示空间
+- Otto 用户偏好高品质产品
+- Otto 退货率更高，需要在定价中考虑
+4. 德语 Listing 优化（Otto 对产品信息质量要求更高）
+5. 物流方案（德国仓 vs 欧盟仓）
+6. 预估月度成本和 ROI
+</code></pre>
+<h2 id="3-zalando-partner-program"><a class="header" href="#3-zalando-partner-program">3. Zalando Partner Program</a></h2>
+<h3 id="31-zalando-核心数据2025-财报"><a class="header" href="#31-zalando-核心数据2025-财报">3.1 Zalando 核心数据（2025 财报）</a></h3>
+<p>Zalando 2025 年表现强劲（<a href="https://news.europawire.eu/zalando-reports-strong-2025-growth-driven-by-ai-innovation-about-you-integration-and-expanding-fashion-platform/">Europawire</a>，<a href="https://www.theretailbulletin.com/fashion/zalando-performance-boosted-by-ai-innovations-12-03-2026/">The Retail Bulletin</a>）：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>指标</th><th>2025 数据</th><th>YoY 变化</th></tr>
+</thead>
+<tbody>
+<tr><td>集团收入</td><td>€12.3B</td><td>+16.8%</td></tr>
+<tr><td>GMV</td><td>€17.6B</td><td>增长</td></tr>
+<tr><td>调整后 EBIT</td><td>€591M</td><td>大幅改善</td></tr>
+<tr><td>活跃用户</td><td>5200 万</td><td>增长</td></tr>
+<tr><td>2026 展望</td><td>继续增长+盈利改善</td><td>€300M 股票回购计划</td></tr>
+</tbody>
+</table>
+</div>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<h3 id="32-zalando-ai-创新2026-重点"><a class="header" href="#32-zalando-ai-创新2026-重点">3.2 Zalando AI 创新（2026 重点）</a></h3>
+<p>Zalando 在 AI 方面投入巨大，是欧洲时尚电商 AI 应用的领导者（<a href="https://markets.ft.com/data/announce/detail?dockey=600-202603131203DGAP____ORIGRE___rc_24956-1">FT/Quirin Research</a>）：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>AI 应用</th><th>说明</th><th>对卖家的影响</th></tr>
+</thead>
+<tbody>
+<tr><td>AI 产品内容生成</td><td>从接近零到 90% 的营销内容由 AI 生成</td><td>卖家需要提供高质量产品数据</td></tr>
+<tr><td>AI 个性化推荐</td><td>基于用户行为的个性化购物体验</td><td>产品属性越完整，被推荐概率越高</td></tr>
+<tr><td>AI 购物助手</td><td>集成购买历史的对话式购物助手</td><td>产品描述需要结构化以便 AI 理解</td></tr>
+<tr><td>AI 尺码推荐</td><td>减少因尺码不合导致的退货</td><td>需要提供精确的尺码数据</td></tr>
+<tr><td>内容生产效率</td><td>营销活动制作时间从 6 周缩短到几天</td><td></td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>关键洞察</strong>：Zalando 正在与“欧洲最有雄心的 AI 实验室之一“合作（<a href="https://www.defenseworld.net/2026/03/14/zalando-q4-earnings-call-highlights.html">DefenseWorld</a>），并将 AI 助手的“可购物性“（shoppability）集成到平台中。这意味着在 Zalando 上销售的品牌需要确保产品数据的结构化和完整性，以便被 AI 系统正确理解和推荐。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<h3 id="33-入驻要求"><a class="header" href="#33-入驻要求">3.3 入驻要求</a></h3>
+<blockquote>
+<p><strong>真实案例：Zalando AI 推荐提升 13% 加购率</strong>
+Zalando 的 AI 推荐系统已经产生了可量化的效果：AI 推荐使用户加购商品数量增加 13%，同时退货率下降 8%（得益于更好的尺码建议）（<a href="https://www.ad-hoc-news.de/news/ueberblick/zalando-kleider-ai-powered-fashion-revolution/68671487">Ad-Hoc News</a>）。这意味着在 Zalando 上销售的品牌，产品数据越完整（尺码、材质、版型），被 AI 推荐的概率越高，退货率也越低。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<blockquote>
+<p><strong>真实案例：Zalando AI 内容生产从 0 到 90%</strong>
+Zalando 在一年内将 AI 生成的营销内容从接近零提升到 90%，营销活动制作时间从 6 周缩短到几天，创建的内容数量增加了 70%（<a href="https://markets.ft.com/data/announce/detail?dockey=600-202603131203DGAP____ORIGRE___rc_24956-1">FT/Quirin Research</a>）。这展示了 AI 在时尚电商内容生产中的巨大潜力。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions.</p>
+<ul>
+<li>品牌必须符合 Zalando 品质标准</li>
+<li>需要通过 Zalando Partner Program 申请</li>
+<li>支持 Connected Retail（线下门店库存在线销售）</li>
+<li>必须接受 Zalando 的退货政策（100 天免费退货）</li>
+</ul>
+<h2 id="4-德语-listing-ai-优化"><a class="header" href="#4-德语-listing-ai-优化">4. 德语 Listing AI 优化</a></h2>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="../a-operators/a2-listing-optimization.html">A2 Listing 优化</a> Listing 优化通用方法论参考 A2，核心优化框架可适配到德语 Listing。</p>
+</blockquote>
+<pre><code>你是一个德国电商本地化专家。
+
+产品：[名称]
+卖点：[5 个]
+
+请生成德语 Listing：
+1. Produktname（产品名，德语，包含关键词）
+2. Produktbeschreibung（产品描述，详细、专业）
+3. Eigenschaften（产品特征，5 个 Bullet Points）
+4. 推荐的德语搜索关键词
+
+注意：
+- 德国消费者重视详细的技术参数
+- 强调品质、安全认证（CE、GS 标志）
+- 包含环保信息（德国消费者环保意识强）
+- 使用 Sie（您）的正式称呼
+- 价格含 VAT（德国法律要求）
+</code></pre>
+<h2 id="5-欧洲合规要求详细"><a class="header" href="#5-欧洲合规要求详细">5. 欧洲合规要求（详细）</a></h2>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="../a-operators/a6-compliance.html">A6 合规与风控</a> 详细的多市场合规方法论参考 A6，CE 认证、EPR、VAT 等通用合规框架可直接复用。</p>
+</blockquote>
+<p>这是进入欧洲市场最大的门槛，必须在入驻前完成：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>合规项</th><th>说明</th><th>费用估算</th><th>时间</th><th>必要性</th></tr>
+</thead>
+<tbody>
+<tr><td>CE 标志</td><td>欧盟产品安全认证</td><td>$500-5000（取决于品类）</td><td>4-12 周</td><td>强制</td></tr>
+<tr><td>GDPR</td><td>数据保护（如果收集用户数据）</td><td>法律咨询费</td><td>持续</td><td>强制</td></tr>
+<tr><td>EPR</td><td>生产者延伸责任（包装/电子/电池）</td><td>€200-500/年/国家</td><td>2-4 周</td><td>强制</td></tr>
+<tr><td>VerpackG</td><td>德国包装法</td><td>€50-200/年</td><td>1-2 周</td><td>德国强制</td></tr>
+<tr><td>WEEE</td><td>电子废弃物回收注册</td><td>€200-500/年</td><td>2-4 周</td><td>电子产品强制</td></tr>
+<tr><td>VAT</td><td>增值税注册</td><td>€500-1000（注册费）+ 持续申报</td><td>4-8 周</td><td>强制</td></tr>
+<tr><td>LUCID</td><td>德国包装注册号</td><td>包含在 VerpackG 中</td><td>1 周</td><td>德国强制</td></tr>
+<tr><td>Battery Regulation</td><td>电池法规（2024 新规）</td><td>取决于电池类型</td><td>4-8 周</td><td>含电池产品强制</td></tr>
+<tr><td>GPSR</td><td>通用产品安全法规（2024 新规）</td><td>需要欧盟授权代表</td><td>持续</td><td>强制</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="51-欧盟授权代表authorized-representative"><a class="header" href="#51-欧盟授权代表authorized-representative">5.1 欧盟授权代表（Authorized Representative）</a></h3>
+<p>2024 年起，所有非欧盟卖家必须指定欧盟授权代表：</p>
+<ul>
+<li>授权代表负责产品合规文件的保管</li>
+<li>必须在产品标签上标注授权代表信息</li>
+<li>费用：€500-2000/年（取决于服务商）</li>
+</ul>
+<h3 id="52-vat-注册和申报"><a class="header" href="#52-vat-注册和申报">5.2 VAT 注册和申报</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>国家</th><th>VAT 税率</th><th>注册门槛</th><th>申报频率</th></tr>
+</thead>
+<tbody>
+<tr><td>德国</td><td>19%</td><td>无门槛（必须注册）</td><td>月度/季度</td></tr>
+<tr><td>法国</td><td>20%</td><td>无门槛</td><td>月度/季度</td></tr>
+<tr><td>意大利</td><td>22%</td><td>无门槛</td><td>月度/季度</td></tr>
+<tr><td>西班牙</td><td>21%</td><td>无门槛</td><td>季度</td></tr>
+<tr><td>荷兰</td><td>21%</td><td>无门槛</td><td>季度</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>OSS（One-Stop Shop）</strong>：2021 年起，欧盟推出 OSS 简化 VAT 申报。在一个国家注册 OSS 后，可以统一申报所有欧盟国家的 VAT。</p>
+</blockquote>
+<h3 id="53-ai-合规检查-prompt"><a class="header" href="#53-ai-合规检查-prompt">5.3 AI 合规检查 Prompt</a></h3>
+<pre><code>你是一个欧洲电商合规专家。
+
+我的产品：
+- 品类：[X]
+- 材质：[X]
+- 是否含电池：[是/否]
+- 是否含电子元件：[是/否]
+- 目标市场：[德国/法国/意大利/西班牙/全欧盟]
+- 是否已有 CE 认证：[是/否]
+
+请生成完整的欧洲合规清单：
+
+1. 必须的认证和注册（按优先级排序）
+2. 每项的预估费用和时间
+3. 推荐的认证机构/服务商
+4. 产品标签要求（必须标注的信息）
+5. 包装要求（VerpackG/EPR）
+6. VAT 注册建议（OSS vs 各国单独注册）
+7. 欧盟授权代表选择建议
+8. 总预估合规成本（一次性+年度）
+</code></pre>
+<blockquote>
+<p>详细的多市场合规方法论请参考 <a href="../a-operators/a6-compliance.html">A6 合规与风控</a>。</p>
+</blockquote>
+<h2 id="6-其他欧洲平台概览"><a class="header" href="#6-其他欧洲平台概览">6. 其他欧洲平台概览</a></h2>
+<h3 id="61-欧洲电商平台全景"><a class="header" href="#61-欧洲电商平台全景">6.1 欧洲电商平台全景</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>平台</th><th>国家</th><th>品类</th><th>特点</th><th>跨境友好度</th></tr>
+</thead>
+<tbody>
+<tr><td>Cdiscount</td><td>法国</td><td>全品类</td><td>法国第二大电商</td><td>中</td></tr>
+<tr><td>Bol.com</td><td>荷兰/比利时</td><td>全品类</td><td>荷比卢最大</td><td>中</td></tr>
+<tr><td>Allegro</td><td>波兰</td><td>全品类</td><td>波兰最大电商</td><td>中</td></tr>
+<tr><td>eMAG</td><td>罗马尼亚</td><td>全品类</td><td>东欧最大</td><td>低</td></tr>
+<tr><td>Fnac/Darty</td><td>法国</td><td>电子/文化</td><td>法国电子品类强</td><td>中</td></tr>
+<tr><td>ASOS</td><td>英国</td><td>时尚</td><td>年轻时尚</td><td>中</td></tr>
+<tr><td>Kaufland.de</td><td>德国</td><td>全品类</td><td>德国第三大</td><td>中</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="62-欧洲市场进入决策框架"><a class="header" href="#62-欧洲市场进入决策框架">6.2 欧洲市场进入决策框架</a></h3>
+<pre><code>你是一个欧洲电商市场进入策略专家。
+
+我的品牌：[名称]
+品类：[X]
+当前市场：[Amazon US / Amazon JP / 其他]
+月收入：$[X]
+产品特点：[列出 3-5 个]
+
+请制定欧洲市场进入策略：
+
+1. 市场优先级排序
+- 德国（最大市场，€92B+）
+- 英国（脱欧后独立市场）
+- 法国（第三大）
+- 意大利/西班牙（增长快）
+- 荷兰/波兰（新兴机会）
+
+2. 平台选择矩阵
+- Amazon EU（最简单的起步方式）
+- Otto（德国高端市场）
+- Zalando（时尚品类）
+- 其他本地平台
+
+3. 合规路线图（按时间排序）
+- Phase 1: VAT + CE（必须先完成）
+- Phase 2: EPR + VerpackG（德国必须）
+- Phase 3: GPSR + 欧盟授权代表
+- Phase 4: 品类特定认证
+
+4. 物流方案
+- Amazon Pan-EU FBA
+- 第三方欧洲仓
+- 直邮（测试阶段）
+
+5. 预算规划
+- 合规成本（一次性+年度）
+- 物流成本
+- 营销预算
+- 预计 ROI 时间线
+
+6. 风险评估
+- 汇率风险（EUR/GBP）
+- 合规风险
+- 退货率风险（德国尤其高）
+- 竞争风险
+</code></pre>
+<h3 id="63-gpsr通用产品安全法规2024-新规详解"><a class="header" href="#63-gpsr通用产品安全法规2024-新规详解">6.3 GPSR（通用产品安全法规）2024 新规详解</a></h3>
+<p>2024 年 12 月 13 日起生效的 GPSR 是欧盟最重要的产品安全法规更新：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>要求</th><th>说明</th><th>影响</th></tr>
+</thead>
+<tbody>
+<tr><td>欧盟授权代表</td><td>所有非欧盟卖家必须指定</td><td>没有授权代表不能在欧盟销售</td></tr>
+<tr><td>产品标签</td><td>必须包含制造商+授权代表信息</td><td>需要更新所有产品包装</td></tr>
+<tr><td>安全评估</td><td>产品必须经过安全评估</td><td>需要保留技术文件</td></tr>
+<tr><td>可追溯性</td><td>产品必须可追溯到制造商</td><td>需要条形码/批次号</td></tr>
+<tr><td>在线销售要求</td><td>产品页面必须显示安全信息</td><td>需要更新 Listing</td></tr>
+</tbody>
+</table>
+</div>
+<pre><code>你是一个 GPSR 合规专家。
+
+我的产品：[名称]
+品类：[X]
+制造地：[中国]
+目标市场：[德国/法国/全欧盟]
+当前是否有 CE 认证：[是/否]
+当前是否有欧盟授权代表：[是/否]
+
+请生成 GPSR 合规行动计划：
+
+1. 我的产品是否受 GPSR 管辖？
+2. 需要完成的合规步骤（按优先级）
+3. 欧盟授权代表选择建议
+- 服务商推荐
+- 费用范围
+- 选择标准
+4. 产品标签更新要求
+- 必须标注的信息
+- 标签格式要求
+5. 技术文件准备清单
+6. 在线 Listing 更新要求
+7. 总预估成本和时间
+</code></pre>
+<h2 id="7-完成标志"><a class="header" href="#7-完成标志">7. 完成标志</a></h2>
+<ul>
+<li><input disabled="" type="checkbox"> 评估德国/欧洲市场机会</li>
+<li><input disabled="" type="checkbox"> 完成合规准备（CE/EPR/VAT/VerpackG/GPSR）</li>
+<li><input disabled="" type="checkbox"> 指定欧盟授权代表</li>
+<li><input disabled="" type="checkbox"> 申请 Otto 和/或 Zalando 入驻</li>
+<li><input disabled="" type="checkbox"> 完成德语 Listing 本地化</li>
+<li><input disabled="" type="checkbox"> 建立德语客服能力</li>
+<li><input disabled="" type="checkbox"> 制定欧洲多平台扩展路线图</li>
+</ul>
+<hr>
+<blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path D 总览</a> · <a href="platform-comparison.html">平台对比</a></p>
+<p><strong>Path D</strong>: <a href="shopify-ai-guide.html">D1 Shopify</a> · <a href="tiktok-shop-ai-guide.html">D2 TikTok</a> · <a href="cross-platform-strategy.html">D3 跨平台</a> · <a href="d4-walmart-ai-guide.html">D4 Walmart</a> · <a href="d5-temu-seller-guide.html">D5 Temu</a> · <a href="d6-southeast-asia-ai-guide.html">D6 东南亚</a> · <a href="d7-mercado-libre-ai-guide.html">D7 拉美</a> · <a href="d8-rakuten-japan-ai-guide.html">D8 日本</a> · <a href="d9-ebay-ai-guide.html">D9 eBay</a> · <a href="d10-aliexpress-ai-guide.html">D10 AliExpress</a> · <a href="d11-coupang-korea-ai-guide.html">D11 韩国</a> · <a href="d12-faire-wholesale-ai-guide.html">D12 Faire</a> · <a href="d13-europe-marketplaces-guide.html">D13 欧洲</a></p>
+<p><strong>快速跳转</strong>: <a href="../0-foundations/">Path 0 基础</a> · <a href="../a-operators/">Path A 运营</a> · <a href="../b-developers/">Path B 技术</a> · <a href="../c-managers/">Path C 管理</a> · <a href="../e-social-media/">Path E 社交媒体</a></p>
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../d-platforms/d12-faire-wholesale-ai-guide.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../d-platforms/shopify-ai-guide.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../d-platforms/d12-faire-wholesale-ai-guide.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../d-platforms/shopify-ai-guide.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../mermaid-217b66ef.min.js"></script>
+        <script src="../mermaid-init-d4730691.js"></script>
+
+
+
+    </div>
+    </body>
+</html>

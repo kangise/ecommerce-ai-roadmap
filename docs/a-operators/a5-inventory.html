@@ -1,0 +1,1416 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>库存与供应链 - 跨境电商 AI 实战知识库</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="跨境电商 AI 实操手册 — 56 篇指南，从选品到增长，每个环节都有可直接复制的 Prompt">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom-467616e9.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "ayu";
+            window.path_to_searchindex_js = "../searchindex-656d55b3.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-e97a050e.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">跨境电商 AI 实战知识库</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap/edit/main/src/src/a-operators/a5-inventory.md" title="Suggest an edit" aria-label="Suggest an edit" rel="edit">
+                            <span class=fa-svg id="git-edit-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M421.7 220.3l-11.3 11.3-22.6 22.6-205 205c-6.6 6.6-14.8 11.5-23.8 14.1L30.8 511c-8.4 2.5-17.5 .2-23.7-6.1S-1.5 489.7 1 481.2L38.7 353.1c2.6-9 7.5-17.2 14.1-23.8l205-205 22.6-22.6 11.3-11.3 33.9 33.9 62.1 62.1 33.9 33.9zM96 353.9l-9.3 9.3c-.9 .9-1.6 2.1-2 3.4l-25.3 86 86-25.3c1.3-.4 2.5-1.1 3.4-2l9.3-9.3H112c-8.8 0-16-7.2-16-16V353.9zM453.3 19.3l39.4 39.4c25 25 25 65.5 0 90.5l-14.5 14.5-22.6 22.6-11.3 11.3-33.9-33.9-62.1-62.1L314.3 67.7l11.3-11.3 22.6-22.6 14.5-14.5c25-25 65.5-25 90.5 0z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="a5-库存与供应链--inventory--supply-chain"><a class="header" href="#a5-库存与供应链--inventory--supply-chain">A5. 库存与供应链 | Inventory &amp; Supply Chain</a></h1>
+<blockquote>
+<p><strong>路径</strong>: Path A: 运营人 · <strong>模块</strong>: A5
+<strong>最后更新</strong>: 2026-03-12
+<strong>难度</strong>: 进阶
+<strong>预计时间</strong>: 每天 30 分钟，1-2 周</p>
+</blockquote>
+<hr>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path A 总览</a></p>
+<pre><code class="language-mermaid">flowchart LR
+A1["A1 选品与市场"]
+A1 --&gt; A2
+A2["A2 Listing 创作"]
+A2 --&gt; A3
+A3["A3 广告优化"]
+A3 --&gt; A4
+A4["A4 客服售后"]
+A4 --&gt; A5
+A5[" A5 库存供应链&lt;br/&gt;（当前）"]:::current
+A5 --&gt; A6
+A6["A6 合规风控"]
+classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
+</code></pre>
+<hr>
+<h2 id="本模块章节导航"><a class="header" href="#本模块章节导航">本模块章节导航</a></h2>
+<ol>
+<li><a href="#1-库存方法论ai-之前你需要理解的基础">库存方法论</a> · 2. <a href="#2-ai-工具全景库存管理阶段用什么">AI 工具全景</a> · 3. <a href="#3-prompt-模板库库存专用">Prompt 模板库</a> · 4. <a href="#4-库存实战工作流">库存实战工作流</a> · 5. <a href="#5-常见库存陷阱">常见陷阱</a> · 6. <a href="#6-进阶技巧">进阶技巧</a> · 7. <a href="#7-学习资源">学习资源</a> · 8. <a href="#8-用-openclaw-自动化库存管理"> OpenClaw 自动化</a> · 9. <a href="#9-完成标志">完成标志</a></li>
+</ol>
+<h2 id="本模块你将学会"><a class="header" href="#本模块你将学会">本模块你将学会</a></h2>
+<p>用 AI 工具把库存管理从“凭感觉补货“变成“数据驱动决策“。从安全库存计算到大促备货，建立一套可复用的 AI 辅助库存管理工作流。</p>
+<p>完成本模块后，你将能够：</p>
+<ul>
+<li>用 ChatGPT/Claude 建立补货决策模型，基于历史销量和 Lead Time 计算最优补货时间和数量</li>
+<li>用 AI 计算安全库存水位，平衡缺货风险和资金占用，避免“要么断货要么滞销“的两难</li>
+<li>用 AI 制定大促备货策略（Prime Day / BFCM），从 8 周前开始系统化准备</li>
+<li>用 AI 分析 IPI Score 改善方案，避免仓储限制和超量费用</li>
+<li>用 AI 评估供应商交期风险，建立供应链韧性</li>
+<li>用 AI 优化多站点库存分配，在 US/EU/JP 之间合理分配库存</li>
+</ul>
+<hr>
+<h2 id="1-库存方法论ai-之前你需要理解的基础"><a class="header" href="#1-库存方法论ai-之前你需要理解的基础">1. 库存方法论：AI 之前你需要理解的基础</a></h2>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="../d-platforms/d4-walmart-ai-guide.html">D4 Walmart AI 指南</a> WFS vs FBA 物流成本对比和库存分配策略详见 D4。 · <a href="../d-platforms/cross-platform-strategy.html">D3 跨平台 AI 协同策略</a> 跨平台库存协同详见 D3</p>
+</blockquote>
+<h3 id="11-库存管理的第一性原理"><a class="header" href="#11-库存管理的第一性原理">1.1 库存管理的第一性原理</a></h3>
+<p>库存管理的本质是一个平衡问题：<strong>缺货成本 vs 滞销成本</strong>。</p>
+<pre><code>缺货成本 = 断货天数 × 日均销量 × 客单价 × 利润率 + 排名恢复成本
+</code></pre>
+<ul>
+<li>断货 1 天可能只损失当天销售额</li>
+<li>断货 7 天以上，关键词排名下滑，恢复可能需要 2-4 周的广告投入</li>
+<li>断货期间竞品抢占你的市场份额，部分客户可能永久流失</li>
+</ul>
+<pre><code>滞销成本 = 库存数量 × 单位仓储费 × 滞销天数 + 长期仓储费 + 资金占用成本
+</code></pre>
+<ul>
+<li>FBA 月度仓储费：标准尺寸 $0.87/立方英尺（1-9月），$2.40/立方英尺（10-12月）</li>
+<li>库龄超过 181 天开始收取 Aged Inventory Surcharge</li>
+<li>库龄超过 365 天的费用更高，严重侵蚀利润</li>
+<li>资金被库存占用，无法用于新品开发或广告投放</li>
+</ul>
+<blockquote>
+<p><strong>核心洞察</strong>：对于大多数跨境卖家，缺货的隐性成本远大于滞销。一次断货可能导致 BSR 排名从 Top 50 掉到 Top 500，恢复需要几千美元的广告费。但滞销的成本是可预测和可控的。所以库存策略应该偏向“宁可多备一点“，但要设定明确的库龄预警线。</p>
+</blockquote>
+<p><strong>安全库存公式：</strong></p>
+<pre><code>安全库存 = Z × σ_d × √L
+
+其中：
+Z = 服务水平系数（95% 服务水平 → Z = 1.65，99% → Z = 2.33）
+σ_d = 日均销量的标准差（衡量销量波动）
+L = Lead Time（从下单到入仓的天数）
+</code></pre>
+<p><strong>补货点公式（Reorder Point）：</strong></p>
+<pre><code>补货点 = 日均销量 × Lead Time + 安全库存
+</code></pre>
+<p>当库存降到补货点时，就应该下单补货。</p>
+<p><strong>Lead Time 的组成：</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>环节</th><th>典型时间</th><th>波动范围</th></tr>
+</thead>
+<tbody>
+<tr><td>供应商生产</td><td>15-30 天</td><td>±7 天</td></tr>
+<tr><td>国内运输到港口</td><td>3-5 天</td><td>±2 天</td></tr>
+<tr><td>海运（中国→美国西海岸）</td><td>15-20 天</td><td>±5 天</td></tr>
+<tr><td>清关 + 国内运输</td><td>5-10 天</td><td>±3 天</td></tr>
+<tr><td>FBA 入仓处理</td><td>5-14 天</td><td>±7 天（旺季更长）</td></tr>
+<tr><td><strong>总计</strong></td><td><strong>43-79 天</strong></td><td><strong>波动很大</strong></td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>Lead Time 是库存管理中最大的不确定性来源</strong>。FBA 入仓时间在旺季（Q4）可能从 5 天暴增到 21 天。你的安全库存计算必须考虑 Lead Time 的波动，而不是只用平均值。</p>
+</blockquote>
+<h3 id="12-amazon-fba-库存关键指标"><a class="header" href="#12-amazon-fba-库存关键指标">1.2 Amazon FBA 库存关键指标</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>指标</th><th>定义</th><th>目标值</th><th>影响</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>IPI Score</strong></td><td>Inventory Performance Index，综合库存健康评分</td><td>≥ 400（避免仓储限制）</td><td>低于阈值会被限制 FBA 入仓数量</td></tr>
+<tr><td><strong>Sell-through Rate</strong></td><td>过去 90 天销量 ÷ 平均库存</td><td>&gt; 3（即 90 天内库存周转 3 次）</td><td>IPI 的核心组成部分</td></tr>
+<tr><td><strong>Excess Inventory</strong></td><td>超过 90 天预计销量的库存</td><td>越少越好</td><td>占用仓储空间，产生额外费用</td></tr>
+<tr><td><strong>Stranded Inventory</strong></td><td>有库存但无法销售的 ASIN（Listing 问题）</td><td>0</td><td>纯粹的成本浪费</td></tr>
+<tr><td><strong>In-stock Rate</strong></td><td>有库存的天数 ÷ 总天数</td><td>&gt; 95%</td><td>影响 BSR 排名和广告效果</td></tr>
+<tr><td><strong>Aged Inventory</strong></td><td>库龄超过 90/180/270/365 天的库存</td><td>尽量减少</td><td>产生 Aged Inventory Surcharge</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>IPI Score 的构成（Amazon 不公开具体权重，但业界共识）：</strong></p>
+<pre><code>IPI Score ≈ f(Sell-through Rate, Excess Inventory %, Stranded Inventory %, In-stock Rate)
+</code></pre>
+<ul>
+<li><strong>Sell-through Rate</strong> 权重最高 卖得快的库存是好库存</li>
+<li><strong>Excess Inventory %</strong> 超量库存占比越低越好</li>
+<li><strong>Stranded Inventory</strong> 必须为 0，这是最容易修复的</li>
+<li><strong>In-stock Rate</strong> 保持高库存率，但不要过度备货</li>
+</ul>
+<p>Content rephrased for compliance with licensing restrictions. Sources: <a href="https://goaura.com/blog/improving-your-amazon-ipi-score">goaura.com IPI score guide</a>, <a href="https://goaura.com/blog/amazon-inventory-management">goaura.com inventory management</a></p>
+<h3 id="13-ai-在库存管理中的角色定位"><a class="header" href="#13-ai-在库存管理中的角色定位">1.3 AI 在库存管理中的角色定位</a></h3>
+<p>AI 擅长的：</p>
+<ul>
+<li><strong>需求预测</strong>：基于历史销量、季节性、趋势等数据预测未来需求，比人工“凭感觉“准确得多</li>
+<li><strong>补货计算</strong>：综合考虑 Lead Time、安全库存、在途库存、仓储限制等多个变量，给出最优补货建议</li>
+<li><strong>异常检测</strong>：发现销量突然变化（暴涨或暴跌），提前预警可能的缺货或滞销风险</li>
+<li><strong>场景模拟</strong>：模拟不同备货策略的结果（乐观/基准/悲观），帮助决策</li>
+<li><strong>多变量优化</strong>：在资金有限的情况下，优化多个 SKU 的库存分配</li>
+</ul>
+<p>AI 不擅长的：</p>
+<ul>
+<li><strong>突发事件预测</strong>：疫情、港口罢工、政策变化等黑天鹅事件无法预测</li>
+<li><strong>供应商关系管理</strong>：谈判交期、争取优先排产需要人际关系</li>
+<li><strong>质量判断</strong>：库存是否有质量问题（如过期、损坏）需要实物检查</li>
+<li><strong>现金流决策</strong>：备货多少最终取决于你的资金状况和风险偏好，AI 只能提供建议</li>
+</ul>
+<blockquote>
+<p><strong>核心原则</strong>：AI 是你的库存分析师，不是库存决策者。用 AI 做数据分析和方案生成，用人做最终决策。特别是大额采购决策（如大促备货），AI 的建议是参考，最终要结合你的资金状况、供应商关系和风险偏好来决定。</p>
+</blockquote>
+<hr>
+<h2 id="2-ai-工具全景库存管理阶段用什么"><a class="header" href="#2-ai-工具全景库存管理阶段用什么">2. AI 工具全景：库存管理阶段用什么</a></h2>
+<h3 id="21-付费工具深度评测"><a class="header" href="#21-付费工具深度评测">2.1 付费工具深度评测</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>工具</th><th>价格</th><th>核心能力</th><th>适合谁</th><th>AI 功能</th></tr>
+</thead>
+<tbody>
+<tr><td><a href="https://www.sostocked.com/">SoStocked</a></td><td>$49-199/月</td><td>补货预测、季节性调整、多仓库管理、采购订单管理</td><td>中大型卖家（50+ SKU）</td><td>AI 需求预测、自动补货建议、季节性因子调整</td></tr>
+<tr><td><a href="https://goaura.com/blog/restockpro">RestockPro</a></td><td>$59-249/月</td><td>补货建议、利润分析、供应商管理、FBA 发货计划</td><td>认真做库存管理的卖家</td><td>AI 补货算法、利润预测、库龄预警</td></tr>
+<tr><td><a href="https://www.forecastly.com/">Forecastly</a></td><td>$49-149/月</td><td>需求预测、缺货预警、补货建议</td><td>需要精准预测的卖家</td><td>机器学习需求预测、缺货风险评分</td></tr>
+<tr><td><a href="https://www.inventorylab.com/">Inventory Lab</a></td><td>$69/月</td><td>利润追踪、库存管理、会计集成</td><td>需要利润分析的卖家</td><td>利润预测、库存周转分析</td></tr>
+<tr><td>Helium 10 Inventory Management</td><td>$79/月 (Platinum 含)</td><td>补货建议、库存预警、利润仪表盘</td><td>Helium 10 用户</td><td>AI 补货建议、销量预测</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>工具选择建议：</strong></p>
+<p><strong>预算有限（&lt;$50/月）</strong>：ChatGPT/Claude + Excel + Amazon 官方工具</p>
+<ul>
+<li>用 ChatGPT 做补货计算和场景分析</li>
+<li>用 Excel 建立简单的库存追踪表</li>
+<li>用 Amazon Restock Inventory 工具查看官方补货建议</li>
+<li>适合 SKU 数量 &lt; 20 的卖家</li>
+</ul>
+<p><strong>认真做（$50-150/月）</strong>：SoStocked 或 RestockPro + ChatGPT</p>
+<ul>
+<li>SoStocked/RestockPro 做日常补货管理和预警</li>
+<li>ChatGPT 做大促备货策略和异常分析</li>
+<li>适合 SKU 数量 20-100 的卖家</li>
+</ul>
+<p><strong>大卖家（$150+/月）</strong>：RestockPro + SoStocked + 自建系统</p>
+<ul>
+<li>付费工具做日常管理</li>
+<li>自建 Python 脚本做定制化分析（参考 Path B）</li>
+<li>适合 SKU 数量 100+ 或多站点运营的卖家</li>
+</ul>
+<p>Content rephrased for compliance with licensing restrictions. Sources: <a href="https://goaura.com/blog/restockpro">goaura.com RestockPro review</a>, <a href="https://selectedfirms.co/blog/ai-in-ecommerce-inventory-management">selectedfirms.co AI inventory management</a></p>
+<h3 id="22-免费工具组合"><a class="header" href="#22-免费工具组合">2.2 免费工具组合</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>工具</th><th>用途</th><th>链接</th></tr>
+</thead>
+<tbody>
+<tr><td>ChatGPT / Claude</td><td>补货计算、安全库存分析、大促备货策略、IPI 改善方案</td><td><a href="https://chat.openai.com/">chat.openai.com</a> / <a href="https://claude.ai/">claude.ai</a></td></tr>
+<tr><td>Amazon Restock Inventory</td><td>官方补货建议工具，基于销量趋势给出补货数量和时间建议</td><td>Seller Central → Inventory → Restock Inventory</td></tr>
+<tr><td>Amazon FBA Revenue Calculator</td><td>计算 FBA 费用、利润率，辅助库存决策</td><td><a href="https://sellercentral.amazon.com/hz/fba/profitabilitycalculator/index">sellercentral.amazon.com/hz/fba/profitabilitycalculator</a></td></tr>
+<tr><td>Amazon Inventory Dashboard</td><td>库存健康仪表盘，IPI Score、库龄分布、Stranded Inventory</td><td>Seller Central → Inventory → Inventory Dashboard</td></tr>
+<tr><td>Google Sheets</td><td>建立库存追踪表、补货计算模型</td><td><a href="https://sheets.google.com/">sheets.google.com</a></td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>免费工具的使用策略：</strong></p>
+<ol>
+<li><strong>Amazon Restock Inventory 是起点</strong>：它基于你的历史销量给出补货建议，但它不考虑大促、季节性、新品上升期等因素。把它的建议作为基准，用 AI 做调整。</li>
+<li><strong>FBA Revenue Calculator 做利润验证</strong>：在决定备货量之前，先用 Revenue Calculator 确认每单利润。如果利润率太低，备太多货反而是风险。</li>
+<li><strong>ChatGPT 做场景分析</strong>：把销量数据、Lead Time、资金预算等信息给 ChatGPT，让它模拟乐观/基准/悲观三种场景的备货方案。</li>
+<li><strong>Google Sheets 做持续追踪</strong>：建立一个简单的库存追踪表，每周更新库存数量、在途数量、预计到货日期，用 AI 帮你设计公式和预警规则。</li>
+</ol>
+<h3 id="23-开源工具与-api"><a class="header" href="#23-开源工具与-api">2.3 开源工具与 API</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>工具/API</th><th>用途</th><th>GitHub/链接</th></tr>
+</thead>
+<tbody>
+<tr><td><a href="https://facebook.github.io/prophet/">Facebook Prophet</a></td><td>时间序列预测，适合有季节性的销量预测</td><td><a href="https://github.com/facebook/prophet">github.com/facebook/prophet</a></td></tr>
+<tr><td>pandas + numpy</td><td>数据处理和分析，库存计算的基础工具</td><td><a href="https://pandas.pydata.org/">pandas.pydata.org</a></td></tr>
+<tr><td>python-amazon-sp-api</td><td>SP-API Python 封装，含 Inventory API（库存数据）和 Reports API（销量报告）</td><td><a href="https://github.com/saleweaver/python-amazon-sp-api">github.com/saleweaver/python-amazon-sp-api</a></td></tr>
+<tr><td>statsmodels</td><td>统计建模，含 ARIMA 等经典时间序列模型</td><td><a href="https://github.com/statsmodels/statsmodels">github.com/statsmodels/statsmodels</a></td></tr>
+<tr><td>scikit-learn</td><td>机器学习库，可用于需求预测和异常检测</td><td><a href="https://github.com/scikit-learn/scikit-learn">github.com/scikit-learn/scikit-learn</a></td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>什么时候用开源工具？</strong></p>
+<p>如果你管理 50+ SKU 或需要精准的季节性预测，开源工具可以：</p>
+<ul>
+<li><strong>自动化预测</strong>：用 Prophet 对每个 SKU 做时间序列预测，自动考虑季节性、趋势和节假日效应</li>
+<li><strong>批量计算</strong>：用 pandas 批量计算所有 SKU 的安全库存、补货点和补货量</li>
+<li><strong>自动预警</strong>：用 Python 脚本每天检查库存水位，自动发送缺货预警邮件</li>
+</ul>
+<blockquote>
+<p>更多技术实现细节，参考 <a href="../b-developers/">Path B: 技术人</a> 的相关模块。</p>
+</blockquote>
+<hr>
+<h2 id="3-prompt-模板库库存专用"><a class="header" href="#3-prompt-模板库库存专用">3. Prompt 模板库（库存专用）</a></h2>
+<blockquote>
+<p>本节提供每个模板的深度解析、常见错误和进阶变体。</p>
+</blockquote>
+<h3 id="31-补货决策分析"><a class="header" href="#31-补货决策分析">3.1 补货决策分析</a></h3>
+<p><strong>为什么这个 Prompt 有效：</strong> 它要求 AI 综合考虑日均销量、波动范围、当前库存、在途库存和 Lead Time 五个关键变量，输出三种场景的补货建议。关键设计点：</p>
+<ul>
+<li>“波动范围 min-max” 让 AI 理解销量不确定性，而不是只用平均值</li>
+<li>“乐观/基准/悲观三种场景” 强制 AI 做风险分析而非单一预测</li>
+<li>“资金占用估算” 把库存决策和资金决策关联起来</li>
+</ul>
+<p><strong>常见错误：</strong></p>
+<ul>
+<li>只提供平均销量 → 日均 10 件但波动范围 3-25 件，安全库存需求完全不同。必须提供波动范围</li>
+<li>忽略在途库存 → 如果有 500 件在途，实际可用库存 = 当前库存 + 在途库存</li>
+<li>Lead Time 用平均值 → Lead Time 的波动比销量波动影响更大。用最近 3 次的实际 Lead Time，取最大值作为安全值</li>
+<li>不考虑仓储限制 → IPI Score 低于阈值时，FBA 入仓数量有上限。补货量不能超过限制</li>
+</ul>
+<pre><code>我的产品数据：
+- 过去90天日均销量：[X] 件（波动范围 [min]-[max]）
+- 当前 FBA 库存：[X] 件
+- 在途库存：[X] 件（预计 [X] 天后到仓）
+- 从下单到入仓的 Lead Time：[X] 天（最近3次实际值：[X]、[X]、[X] 天）
+- 安全库存天数目标：[X] 天
+- 单件采购成本：$[X]
+- 单件 FBA 仓储费（月）：$[X]
+- 当前 IPI Score：[X]
+- FBA 仓储限制：[X] 件（如有）
+
+请计算：
+1. 当前库存可支撑天数（含在途库存）
+2. 安全库存数量（用公式说明计算过程）
+3. 补货点（Reorder Point）
+4. 建议采购量（乐观/基准/悲观三种场景）
+5. 最晚采购下单日期
+6. 如果有大促（如 Prime Day），需要额外备多少
+7. 资金占用估算（采购成本 + 预计仓储费）
+8. 风险提示（缺货风险 vs 滞销风险的平衡建议）
+</code></pre>
+<p><strong>进阶变体：</strong></p>
+<p><strong>变体 A 多 SKU 批量补货优先级：</strong></p>
+<pre><code>我有以下 SKU 需要补货决策，但资金有限（总预算 $[X]）：
+
+SKU 1: [产品名]
+- 日均销量：[X] 件，当前库存：[X] 件，Lead Time：[X] 天
+- 单件成本：$[X]，单件利润：$[X]
+
+SKU 2: [产品名]
+- 日均销量：[X] 件，当前库存：[X] 件，Lead Time：[X] 天
+- 单件成本：$[X]，单件利润：$[X]
+
+[更多 SKU...]
+
+请完成：
+1. 每个 SKU 的缺货紧急度评分（基于库存可支撑天数 vs Lead Time）
+2. 每个 SKU 的利润贡献排名
+3. 在预算限制下的最优补货分配方案
+4. 如果预算增加 20%/50%，分配方案如何变化
+5. 哪些 SKU 可以延迟补货？延迟的风险是什么？
+</code></pre>
+<blockquote>
+<p><strong>为什么用这个变体</strong>：资金有限时，不是所有 SKU 都能同时补货。优先补利润高、缺货风险大的 SKU，延迟补利润低、库存充足的 SKU。AI 可以帮你做这个多变量优化。</p>
+</blockquote>
+<p><strong>变体 B 新品首批备货量估算：</strong></p>
+<pre><code>我准备发布一个新产品，需要估算首批 FBA 备货量：
+
+产品信息：
+- 品类：[品类]
+- 售价：$[X]
+- 竞品日均销量范围：[X]-[X] 件（来自 Helium 10/Jungle Scout）
+- 我的目标市场份额：[X]%
+- 计划广告预算：$[X]/天
+- Lead Time（从下单到入仓）：[X] 天
+
+请分析：
+1. 基于竞品数据，预估我的日均销量范围（保守/中等/乐观）
+2. 首批备货量建议（覆盖 [X] 天的销量 + 安全库存）
+3. 首批备货的资金需求
+4. 如果首批卖得比预期快/慢，第二批补货策略
+5. 新品期的库存风险提示（卖不动怎么办？卖太快怎么办？）
+</code></pre>
+<blockquote>
+<p><strong>为什么用这个变体</strong>：新品没有历史数据，只能基于竞品数据和市场分析估算。首批备货的原则是“宁少勿多“ 先用小批量测试市场反应，确认产品能卖之后再大量补货。</p>
+</blockquote>
+<hr>
+<h3 id="32-安全库存计算"><a class="header" href="#32-安全库存计算">3.2 安全库存计算</a></h3>
+<p><strong>为什么这个 Prompt 有效：</strong> 安全库存不是拍脑袋决定的“多备 30 天“，而是基于销量波动和 Lead Time 波动的数学计算。这个 Prompt 要求 AI 用公式计算，并解释每个参数的含义，帮你理解“为什么是这个数字“。</p>
+<p><strong>常见错误：</strong></p>
+<ul>
+<li>用固定天数代替公式 → “安全库存 = 30 天销量“太粗糙。销量波动大的产品需要更多安全库存，波动小的需要更少</li>
+<li>不考虑 Lead Time 波动 → Lead Time 从 45 天变成 60 天，安全库存需要相应增加</li>
+<li>所有 SKU 用同一个安全库存标准 → 高利润产品可以多备（缺货成本高），低利润产品少备（滞销成本相对更高）</li>
+</ul>
+<pre><code>请帮我计算以下产品的安全库存：
+
+产品数据：
+- 过去 180 天的月销量数据：[1月X件, 2月X件, 3月X件, 4月X件, 5月X件, 6月X件]
+- 日均销量标准差：[X]（如果不知道，请根据月销量数据计算）
+- Lead Time 数据（最近 5 次）：[X天, X天, X天, X天, X天]
+- 目标服务水平：[95% / 99%]（95% 意味着允许 5% 的概率缺货）
+- 单件成本：$[X]
+- 单件售价：$[X]
+- 月仓储费：$[X]/件
+
+请计算：
+1. 日均销量和标准差
+2. Lead Time 均值和标准差
+3. 安全库存数量（用公式 Z × σ_d × √L，展示计算过程）
+4. 补货点（Reorder Point = 日均销量 × Lead Time + 安全库存）
+5. 安全库存的资金占用成本
+6. 如果将服务水平从 95% 提高到 99%，安全库存增加多少？值得吗？
+7. 建议：这个产品应该用 95% 还是 99% 的服务水平？为什么？
+</code></pre>
+<hr>
+<h3 id="33-季节性需求预测"><a class="header" href="#33-季节性需求预测">3.3 季节性需求预测</a></h3>
+<p><strong>为什么这个 Prompt 重要：</strong> 很多跨境产品有明显的季节性 户外产品夏天卖得好，取暖产品冬天卖得好，礼品类产品 Q4 是旺季。如果不考虑季节性，你会在旺季缺货、淡季滞销。</p>
+<p><strong>常见错误：</strong></p>
+<ul>
+<li>用全年平均销量预测每个月 → 如果 Q4 销量是 Q1 的 3 倍，用平均值会导致 Q4 严重缺货</li>
+<li>只看去年同期 → 今年的增长趋势、市场变化、竞品情况都可能不同</li>
+<li>不区分季节性和趋势 → 销量上升可能是季节性（会回落）也可能是趋势（会持续），应对策略不同</li>
+</ul>
+<pre><code>请帮我分析产品的季节性需求并预测未来 6 个月的销量：
+
+历史销量数据（月度）：
+- 去年：[1月X, 2月X, 3月X, ..., 12月X]
+- 今年已有：[1月X, 2月X, ...]
+
+产品信息：
+- 品类：[品类]
+- 主要市场：Amazon [US/DE/JP]
+- 是否有明显季节性：[是/否/不确定]
+- 今年 vs 去年的整体增长率：[X]%
+
+请分析：
+1. 季节性模式识别：
+- 旺季是哪几个月？淡季是哪几个月？
+- 旺季销量是淡季的多少倍？
+- 季节性因子表（每月的季节性系数）
+
+2. 未来 6 个月销量预测：
+- 基准预测（考虑季节性 + 增长趋势）
+- 乐观预测（+20%）
+- 悲观预测（-20%）
+
+3. 备货建议：
+- 每月建议库存水位
+- 关键补货时间节点（考虑 Lead Time）
+- 旺季前需要提前多久开始备货？
+
+4. 风险提示：
+- 如果季节性比预期弱/强，应该如何调整？
+- 哪些外部因素可能影响季节性模式？
+</code></pre>
+<hr>
+<h3 id="34-大促备货策略prime-day--bfcm"><a class="header" href="#34-大促备货策略prime-day--bfcm">3.4 大促备货策略（Prime Day / BFCM）</a></h3>
+<p><strong>为什么这个 Prompt 重要：</strong> Prime Day 和 BFCM 是 Amazon 全年最大的两个促销活动。大促期间销量可能是平时的 3-10 倍，但备货过多又会在大促后变成滞销库存。这个 Prompt 帮你制定系统化的大促备货计划。</p>
+<p><strong>常见错误：</strong></p>
+<ul>
+<li>只看去年大促数据 → 今年的折扣力度、广告预算、竞品策略都可能不同</li>
+<li>不考虑大促前后的销量变化 → 大促前 1-2 周销量会下降（消费者等待折扣），大促后 1-2 周销量也会下降（需求被提前消耗）</li>
+<li>备货太晚 → FBA 入仓在大促前 2-4 周会变慢，必须提前 6-8 周发货</li>
+<li>不设止损线 → 如果大促效果不如预期，多余的库存怎么处理？需要提前想好</li>
+</ul>
+<pre><code>请帮我制定 [Prime Day / BFCM] 备货策略：
+
+产品信息：
+- 产品名称：[名称]
+- 日均销量（近 30 天）：[X] 件
+- 去年同期大促数据：
+- 大促期间日均销量：[X] 件（是平时的 [X] 倍）
+- 大促持续天数：[X] 天
+- 大促前 2 周日均销量变化：[X]%
+- 大促后 2 周日均销量变化：[X]%
+- 当前 FBA 库存：[X] 件
+- Lead Time：[X] 天
+- 计划折扣力度：[X]% off
+- 计划广告预算增幅：[X]%
+- 大促日期：[日期]
+
+请制定：
+1. 大促销量预测：
+- 基于去年数据 + 今年增长趋势 + 折扣力度调整
+- 乐观/基准/悲观三种场景
+
+2. 备货量计算：
+- 大促期间需求量
+- 大促前后缓冲库存
+- 安全库存
+- 总备货量
+
+3. 时间线规划：
+- 最晚下单日期（倒推 Lead Time）
+- 最晚发货日期
+- FBA 入仓截止日期
+- 关键检查节点
+
+4. 资金需求：
+- 采购成本
+- 头程物流成本
+- 预计仓储费
+- 总资金需求
+
+5. 风险预案：
+- 如果大促销量只有预期的 50%，多余库存怎么处理？
+- 如果大促销量超过预期 150%，如何紧急补货？
+- 止损线设定：大促后多少天内库存必须降到什么水位？
+</code></pre>
+<blockquote>
+<p><strong>大促备货的核心原则</strong>：宁可少备也不要多备太多。大促后的滞销库存会在 Q4 高仓储费期间产生巨额费用。建议备货量 = 基准场景需求 × 1.2（留 20% 缓冲），而不是按乐观场景备货。</p>
+</blockquote>
+<hr>
+<h3 id="35-多站点库存分配"><a class="header" href="#35-多站点库存分配">3.5 多站点库存分配</a></h3>
+<p><strong>为什么这个 Prompt 重要：</strong> 如果你同时运营 US、EU（DE/FR/IT/ES/UK）、JP 多个站点，库存分配是一个复杂的优化问题。每个站点的销量、仓储费、Lead Time 都不同，需要在有限的总库存中做最优分配。</p>
+<p><strong>常见错误：</strong></p>
+<ul>
+<li>按销量比例简单分配 → 没有考虑各站点的 Lead Time 差异和仓储费差异</li>
+<li>忽略欧洲站的 Pan-EU 和 EFN 选择 → Pan-EU 可以在欧洲各国仓库之间自动调拨，EFN 只从一个国家发货</li>
+<li>不考虑汇率和利润率差异 → 同一产品在不同站点的利润率可能差很多</li>
+</ul>
+<pre><code>我的产品在多个 Amazon 站点销售，请帮我优化库存分配：
+
+总可用库存：[X] 件（或总采购预算：$[X]）
+
+各站点数据：
+US 站：
+- 日均销量：[X] 件，Lead Time：[X] 天
+- 当前库存：[X] 件，月仓储费：$[X]/件
+- 单件利润：$[X]
+
+EU 站（DE 为主仓）：
+- 日均销量：[X] 件，Lead Time：[X] 天
+- 当前库存：[X] 件，月仓储费：€[X]/件
+- 单件利润：€[X]
+- 物流模式：[Pan-EU / EFN]
+
+JP 站：
+- 日均销量：[X] 件，Lead Time：[X] 天
+- 当前库存：[X] 件，月仓储费：¥[X]/件
+- 单件利润：¥[X]
+
+请优化：
+1. 各站点的目标库存水位（天数）
+2. 本次补货的分配方案
+3. 各站点的缺货风险评估
+4. 如果总库存不足以满足所有站点，优先保哪个站点？为什么？
+5. 各站点的库存周转率对比和改善建议
+</code></pre>
+<hr>
+<h3 id="36-滞销库存处理策略"><a class="header" href="#36-滞销库存处理策略">3.6 滞销库存处理策略</a></h3>
+<p><strong>为什么这个 Prompt 重要：</strong> 滞销库存是利润的隐形杀手。库龄超过 180 天的库存不仅占用仓储空间，还会产生 Aged Inventory Surcharge，拉低 IPI Score。及时处理滞销库存是库存管理的重要环节。</p>
+<p><strong>常见错误：</strong></p>
+<ul>
+<li>等到收到长期仓储费通知才处理 → 应该在库龄 90 天时就开始关注，120 天时采取行动</li>
+<li>只想到降价清仓 → 还有创建 Removal Order、转移到其他渠道、捆绑销售等多种方式</li>
+<li>不计算处理成本 → 有时候销毁比运回更划算（运回的物流费可能超过产品价值）</li>
+</ul>
+<pre><code>以下是我的滞销库存清单：
+
+SKU 1: [产品名]
+- 库存数量：[X] 件
+- 库龄：[X] 天
+- 原售价：$[X]，当前售价：$[X]
+- 单件成本：$[X]
+- 过去 30 天销量：[X] 件
+- FBA 月仓储费：$[X]/件
+- 预计 Aged Inventory Surcharge：$[X]/件
+
+[更多 SKU...]
+
+请为每个 SKU 制定处理策略：
+1. 策略选项评估（每个选项的成本和收益）：
+- 降价促销（降到什么价格？预计多久清完？）
+- 创建 Lightning Deal 或 Coupon
+- 创建 Removal Order（运回 vs 销毁的成本对比）
+- 转移到其他销售渠道（eBay、独立站、线下清仓）
+- 捆绑销售（与畅销品搭配）
+- 捐赠（FBA Donations 计划）
+
+2. 推荐策略和执行时间线
+3. 预计回收金额 vs 继续持有的成本对比
+4. 如何避免未来再出现类似滞销？
+</code></pre>
+<hr>
+<h3 id="37-供应商交期风险评估"><a class="header" href="#37-供应商交期风险评估">3.7 供应商交期风险评估</a></h3>
+<p><strong>为什么这个 Prompt 重要：</strong> 供应商交期延迟是导致缺货的最常见原因之一。提前评估供应商的交期风险，建立备选方案，可以大幅降低缺货概率。</p>
+<p><strong>常见错误：</strong></p>
+<ul>
+<li>只有一个供应商 → 单一供应商风险极高，一旦出问题就断货</li>
+<li>不追踪历史交期数据 → 没有数据就无法评估风险</li>
+<li>不考虑季节性因素 → 春节前后、国庆期间供应商产能会大幅下降</li>
+</ul>
+<pre><code>请帮我评估供应商交期风险并制定应对方案：
+
+供应商信息：
+供应商 A（主供应商）：
+- 合作时间：[X] 年
+- 过去 12 个月的交期记录：[X天, X天, X天, ...]（每次下单到发货的天数）
+- 最近一次延迟原因：[原因]
+- 产能：[X] 件/月
+- 最小起订量（MOQ）：[X] 件
+
+供应商 B（备选供应商，如有）：
+- [类似信息]
+
+我的需求：
+- 月均采购量：[X] 件
+- 下一次大批量采购时间：[日期]
+- 是否有大促备货需求：[是/否]
+
+请分析：
+1. 供应商 A 的交期可靠性评分（基于历史数据）
+2. 交期延迟的概率和预期延迟天数
+3. 如果供应商 A 延迟 [X] 天，对库存的影响
+4. 备选方案：
+- 是否需要发展第二供应商？
+- 是否需要增加安全库存来缓冲交期风险？
+- 关键时期（大促前、春节前）是否需要提前下单？
+5. 供应商管理建议：
+- 如何与供应商沟通以减少延迟？
+- 合同中应该包含哪些交期保障条款？
+</code></pre>
+<hr>
+<h3 id="38-ipi-score-改善方案"><a class="header" href="#38-ipi-score-改善方案">3.8 IPI Score 改善方案</a></h3>
+<p><strong>为什么这个 Prompt 重要：</strong> IPI Score 低于阈值（目前是 400 分）会导致 FBA 仓储限制，直接影响你的补货能力。改善 IPI Score 需要从 Sell-through Rate、Excess Inventory、Stranded Inventory 三个维度同时优化。</p>
+<p><strong>常见错误：</strong></p>
+<ul>
+<li>只关注 IPI Score 数字，不分析具体原因 → 需要知道是哪个维度拖了后腿</li>
+<li>通过减少库存来提高 Sell-through Rate → 这会增加缺货风险，得不偿失</li>
+<li>忽略 Stranded Inventory → 这是最容易修复的维度，但很多卖家不检查</li>
+</ul>
+<pre><code>我的 IPI Score 需要改善，请帮我制定改善方案：
+
+当前数据：
+- IPI Score：[X] 分（目标：≥ 400）
+- Sell-through Rate：[X]（过去 90 天销量 ÷ 平均库存）
+- Excess Inventory：[X] 个 ASIN，[X] 件
+- Stranded Inventory：[X] 个 ASIN，[X] 件
+- In-stock Rate：[X]%
+- 当前仓储限制：[X] 立方英尺（如有）
+
+Excess Inventory 详情：
+[列出库龄超过 90 天的 ASIN、数量、库龄]
+
+Stranded Inventory 详情：
+[列出 Stranded 的 ASIN 和原因]
+
+请制定改善方案：
+1. 诊断：IPI Score 低的主要原因是什么？
+2. 快速修复（1 周内）：
+- Stranded Inventory 处理方案
+- 最紧急的 Excess Inventory 处理
+3. 中期改善（1-3 个月）：
+- Sell-through Rate 提升策略
+- Excess Inventory 系统性清理计划
+4. 长期预防：
+- 补货策略调整（避免过度备货）
+- 库存监控频率和预警机制
+5. 预计改善时间线和目标 IPI Score
+</code></pre>
+<p>Content rephrased for compliance with licensing restrictions. Sources: <a href="https://goaura.com/blog/improving-your-amazon-ipi-score">goaura.com IPI score improvement</a>, <a href="https://impakter.com/the-2026-playbook-fba-prep-services-ai-forecasting-and-greener-3pl-operations/">impakter.com FBA AI forecasting</a></p>
+<hr>
+<h2 id="4-库存实战工作流"><a class="header" href="#4-库存实战工作流">4. 库存实战工作流</a></h2>
+<h3 id="41-月度补货-sop"><a class="header" href="#41-月度补货-sop">4.1 月度补货 SOP</a></h3>
+<p>每月执行一次的系统化补货流程，确保所有 SKU 的库存水位健康。</p>
+<pre><code>
+Step 1: 数据收集（30 分钟）
+操作: 导出以下数据
+- Seller Central → Inventory → Manage Inventory（库存）
+- Business Reports → Sales（过去 90 天销量）
+- Inventory Dashboard → IPI Score 和库龄分布
+- 在途库存清单（采购订单追踪表）
+AI: 将数据整理成标准格式，粘贴给 ChatGPT
+
+Step 2: 库存健康检查（20 分钟）
+检查: IPI Score 是否 ≥ 400？
+检查: 是否有 Stranded Inventory？→ 立即修复
+检查: 是否有库龄 &gt; 90 天的库存？→ 标记处理
+检查: 是否有即将缺货的 SKU？（库存 &lt; 14 天销量）
+AI: 用 IPI 改善方案 Prompt（3.8）诊断问题
+
+Step 3: 补货计算（30 分钟）
+AI: 用补货决策分析 Prompt（3.1）逐个 SKU 计算
+或: 用多 SKU 批量补货变体（3.1 变体 A）批量处理
+输出: 每个 SKU 的建议补货量、最晚下单日期
+审核: 人工检查 AI 建议，结合资金状况调整
+
+Step 4: 采购下单（20 分钟）
+操作: 向供应商下达采购订单
+记录: 更新采购订单追踪表（供应商、数量、预计交期）
+确认: 与供应商确认交期和质量要求
+
+Step 5: 滞销库存处理（20 分钟）
+操作: 处理 Step 2 中标记的滞销库存
+AI: 用滞销库存处理策略 Prompt（3.6）制定方案
+执行: 创建促销/Removal Order/转移渠道
+
+</code></pre>
+<h3 id="42-大促备货-sopprime-day--bfcm-前-8-周计划"><a class="header" href="#42-大促备货-sopprime-day--bfcm-前-8-周计划">4.2 大促备货 SOP（Prime Day / BFCM 前 8 周计划）</a></h3>
+<p>大促备货是一个 8 周的系统化过程，不是大促前 2 周才开始准备。</p>
+<pre><code>
+Week 8（大促前 8 周）: 需求预测
+操作: 收集去年大促数据 + 今年增长趋势
+AI: 用大促备货策略 Prompt（3.4）预测大促销量
+输出: 乐观/基准/悲观三种场景的备货量
+决策: 确定备货量（建议用基准 × 1.2）
+
+Week 7: 供应商沟通
+操作: 向供应商下达大促采购订单
+确认: 交期承诺、质量标准、紧急加单的可能性
+AI: 用供应商交期风险评估 Prompt（3.7）评估风险
+备选: 如果主供应商产能不足，联系备选供应商
+
+Week 6: 头程物流安排
+操作: 预订海运/空运舱位
+注意: 大促前物流资源紧张，提前预订
+决策: 海运 vs 空运（见进阶技巧 6.3）
+追踪: 更新物流追踪表，确认预计到港日期
+
+Week 5: 质检和发货
+操作: 工厂质检 → 装箱 → 发货
+检查: 产品质量、包装完整性、标签正确性
+发货: 按 FBA 要求准备发货计划
+
+Week 4: 入仓追踪
+操作: 追踪货物运输状态
+预警: 如果物流延迟，启动备选方案（空运补货）
+准备: 开始准备大促 Listing 优化和广告计划
+
+Week 3: FBA 入仓
+操作: 货物到达 FBA 仓库，等待入仓处理
+注意: 大促前入仓速度可能变慢，预留缓冲时间
+检查: 入仓数量是否正确？是否有 Stranded Inventory？
+
+Week 2: 最终确认
+检查: 库存是否全部入仓可售？
+检查: 大促 Deal 是否已提交并通过？
+检查: 广告预算和竞价是否已调整？
+准备: 大促期间的客服模板（参考 A4 模块）
+
+Week 1: 大促执行
+监控: 每天检查库存消耗速度
+调整: 如果消耗比预期快，考虑提高售价或减少广告
+记录: 记录每天的销量数据，用于下次大促参考
+
+</code></pre>
+<blockquote>
+<p><strong>大促备货的核心教训</strong>：大部分卖家的大促失败不是因为“卖不动“，而是因为“备货不够“或“备货太晚“。8 周的准备时间看起来很长，但考虑到供应商生产 + 海运 + FBA 入仓的时间，其实刚刚好。</p>
+</blockquote>
+<h3 id="43-新品首批备货-sop"><a class="header" href="#43-新品首批备货-sop">4.3 新品首批备货 SOP</a></h3>
+<p>新品没有历史数据，首批备货需要特别谨慎。</p>
+<pre><code>
+Step 1: 市场调研（参考 A1 选品模块）
+操作: 用 Helium 10/Jungle Scout 调研竞品销量
+数据: 竞品日均销量范围、市场容量、季节性
+AI: 用新品首批备货 Prompt（3.1 变体 B）估算销量
+
+Step 2: 首批备货量决策
+原则: 首批备货 = 30-45 天预计销量（保守估计）
+理由: 新品不确定性高，先小批量测试市场反应
+计算: 预计日均销量 × 45 天 × 0.7（保守系数）
+资金: 确认采购资金和头程物流费用在预算内
+
+Step 3: 同步准备第二批
+操作: 首批发货的同时，与供应商确认第二批的交期
+触发: 如果首批上架后日均销量达到预期的 80%，立即下单
+数量: 第二批 = 60-90 天预计销量（基于实际数据调整）
+
+Step 4: 上架后监控
+频率: 每天检查销量和库存
+预警: 如果销量远超预期，紧急空运补货
+调整: 如果销量远低于预期，暂停第二批采购
+AI: 每周用 AI 分析销量趋势，调整补货计划
+
+</code></pre>
+<blockquote>
+<p><strong>新品备货的核心原则</strong>：首批宁少勿多。新品失败率很高，如果首批备了 3000 件但只卖出 300 件，剩下的 2700 件就是纯亏损。先用 500-1000 件测试市场，确认能卖再大量补货。</p>
+</blockquote>
+<hr>
+<h2 id="5-常见库存陷阱"><a class="header" href="#5-常见库存陷阱">5. 常见库存陷阱</a></h2>
+<h3 id="51-缺货相关陷阱"><a class="header" href="#51-缺货相关陷阱">5.1 缺货相关陷阱</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>陷阱</th><th>表现</th><th>如何避免</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Lead Time 估算过于乐观</strong></td><td>用最短的一次 Lead Time 做计划，结果延迟导致断货</td><td>用最近 3-5 次 Lead Time 的最大值（而非平均值）做安全计算。旺季额外加 7-14 天缓冲。</td></tr>
+<tr><td><strong>忽略 FBA 入仓时间</strong></td><td>货到美国仓库 ≠ 可售。FBA 入仓处理需要 5-14 天，旺季更长</td><td>在 Lead Time 中单独列出 FBA 入仓时间，旺季按 21 天计算。</td></tr>
+<tr><td><strong>不监控在途库存</strong></td><td>不知道有多少货在路上、什么时候到，导致重复下单或漏下单</td><td>建立采购订单追踪表，每周更新物流状态。</td></tr>
+<tr><td><strong>大促前备货不足</strong></td><td>低估大促销量倍数，大促第一天就断货</td><td>用去年大促数据 × 1.2 作为基准备货量。宁可多备 20% 也不要断货。</td></tr>
+<tr><td><strong>新品首批备货过少</strong></td><td>新品上架后卖得好但很快断货，错过最佳推广窗口</td><td>首批备货同时准备第二批，设定触发条件自动下单。</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="52-滞销相关陷阱"><a class="header" href="#52-滞销相关陷阱">5.2 滞销相关陷阱</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>陷阱</th><th>表现</th><th>如何避免</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>过度备货</strong></td><td>凭感觉“多备点“，结果库龄超过 180 天产生高额仓储费</td><td>用安全库存公式计算，不要凭感觉。设定库龄 90 天预警线。</td></tr>
+<tr><td><strong>不及时处理滞销</strong></td><td>等到收到长期仓储费通知才处理，已经产生大量费用</td><td>每月检查库龄分布（月度 SOP Step 2），库龄 &gt; 90 天立即制定处理方案。</td></tr>
+<tr><td><strong>降价清仓太晚</strong></td><td>库龄 300 天才开始降价，已经产生了大量仓储费</td><td>库龄 120 天开始降价促销，180 天考虑 Removal Order。</td></tr>
+<tr><td><strong>季节性产品不清仓</strong></td><td>夏季产品到了秋天还在仓库，等明年夏天再卖</td><td>季节性产品在旺季结束前 1 个月开始清仓，不要等到淡季。</td></tr>
+<tr><td><strong>新品失败不止损</strong></td><td>新品上架 3 个月卖不动，但一直不处理</td><td>新品上架 60 天后评估，如果日均销量 &lt; 预期的 30%，启动清仓流程。</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="53-资金相关陷阱"><a class="header" href="#53-资金相关陷阱">5.3 资金相关陷阱</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>陷阱</th><th>表现</th><th>如何避免</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>库存占用过多资金</strong></td><td>80% 的资金被库存占用，没有钱做广告和新品开发</td><td>设定库存资金占比上限（建议 &lt; 60%），超过就减少备货量。</td></tr>
+<tr><td><strong>不计算库存持有成本</strong></td><td>只看采购成本，忽略仓储费、资金成本、滞销风险</td><td>库存总成本 = 采购成本 + 头程物流 + 仓储费 + 资金占用成本（年化 8-12%）。</td></tr>
+<tr><td><strong>大促备货透支现金流</strong></td><td>大促前大量采购，但大促后回款需要 2-4 周，现金流断裂</td><td>大促备货预算不超过可用资金的 50%，预留现金流缓冲。</td></tr>
+<tr><td><strong>多站点分散资金</strong></td><td>每个站点都备了一点货，但每个站点都不够</td><td>集中资源在 1-2 个主力站点，其他站点用最小库存维持。</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="54-物流相关陷阱"><a class="header" href="#54-物流相关陷阱">5.4 物流相关陷阱</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>陷阱</th><th>表现</th><th>如何避免</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>只用海运</strong></td><td>海运便宜但慢（30-45 天），紧急补货时来不及</td><td>常规补货用海运，紧急补货用空运。保持 10-20% 的空运预算。</td></tr>
+<tr><td><strong>不预订舱位</strong></td><td>旺季（Q4）海运舱位紧张，临时订不到或价格翻倍</td><td>Q4 备货的海运舱位在 8-9 月就要预订。</td></tr>
+<tr><td><strong>清关问题导致延迟</strong></td><td>产品文件不齐全，被海关扣留</td><td>提前准备好所有清关文件（发票、装箱单、合规证书）。</td></tr>
+<tr><td><strong>FBA 发货计划错误</strong></td><td>标签错误、数量不符、包装不合规，被 FBA 拒收</td><td>严格按 FBA 发货要求准备，发货前做最终检查。</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="6-进阶技巧"><a class="header" href="#6-进阶技巧">6. 进阶技巧</a></h2>
+<h3 id="61-ai-需求预测prophet-简介"><a class="header" href="#61-ai-需求预测prophet-简介">6.1 AI 需求预测：Prophet 简介</a></h3>
+<p>当你的 SKU 数量超过 20 个，手动用 ChatGPT 逐个预测不现实。Facebook Prophet 是一个开源的时间序列预测工具，特别适合有季节性的销量预测。</p>
+<p><strong>什么时候用 Prophet vs 什么时候用简单规则？</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>场景</th><th>推荐方法</th><th>理由</th></tr>
+</thead>
+<tbody>
+<tr><td>SKU &lt; 20，无明显季节性</td><td>ChatGPT + Excel</td><td>简单规则足够，不需要复杂模型</td></tr>
+<tr><td>SKU &lt; 20，有季节性</td><td>ChatGPT + 季节性 Prompt（3.3）</td><td>AI 可以理解季节性模式</td></tr>
+<tr><td>SKU 20-100，有季节性</td><td>Prophet</td><td>批量预测效率高，自动处理季节性</td></tr>
+<tr><td>SKU 100+，多站点</td><td>Prophet + 自建系统</td><td>需要自动化流程</td></tr>
+<tr><td>新品（无历史数据）</td><td>ChatGPT + 竞品数据</td><td>Prophet 需要历史数据，新品用不了</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Prophet 快速入门（伪代码）：</strong></p>
+<pre><code class="language-python"># 1. 准备数据：日期 + 销量
+# 格式：ds (日期), y (销量)
+import pandas as pd
+from prophet import Prophet
+
+df = pd.DataFrame({
+'ds': ['2025-01-01', '2025-01-02', ...], # 日期
+'y': [10, 12, 8, ...] # 日销量
+})
+
+# 2. 训练模型
+model = Prophet(
+yearly_seasonality=True, # 年度季节性
+weekly_seasonality=True, # 周度季节性（周末销量可能不同）
+changepoint_prior_scale=0.05 # 趋势变化灵敏度
+)
+model.fit(df)
+
+# 3. 预测未来 90 天
+future = model.make_future_dataframe(periods=90)
+forecast = model.predict(future)
+
+# 4. 输出：预测值 + 置信区间
+# forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']]
+# yhat = 预测值, yhat_lower/upper = 80% 置信区间
+</code></pre>
+<blockquote>
+<p><strong>Prophet 的核心优势</strong>：它自动处理季节性、趋势变化和节假日效应，不需要你手动设定参数。对于有 1 年以上历史数据的产品，Prophet 的预测准确度通常优于人工判断。详细实现参考 <a href="../b-developers/">Path B: 技术人</a> 的相关模块。</p>
+</blockquote>
+<p>Content rephrased for compliance with licensing restrictions. Source: <a href="https://facebook.github.io/prophet/">Facebook Prophet documentation</a></p>
+<h3 id="62-多渠道库存同步amazon--shopify--独立站"><a class="header" href="#62-多渠道库存同步amazon--shopify--独立站">6.2 多渠道库存同步（Amazon + Shopify + 独立站）</a></h3>
+<p>如果你同时在 Amazon、Shopify 和独立站销售，库存同步是一个关键挑战。同一批库存在多个渠道销售，如果不同步，可能出现超卖（已卖完但其他渠道还在卖）。</p>
+<p><strong>多渠道库存管理框架：</strong></p>
+<pre><code>
+Amazon Shopify 独立站
+FBA 仓库 自发货 自发货
+
+
+
+
+
+库存中心系统
+(总库存池)
+
+</code></pre>
+<p><strong>策略选择：</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>策略</th><th>适合谁</th><th>优点</th><th>缺点</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>FBA 为主 + MCF</strong></td><td>Amazon 为主的卖家</td><td>用 FBA 库存发其他渠道的订单（Multi-Channel Fulfillment）</td><td>MCF 费用比 FBA 高，时效可能慢</td></tr>
+<tr><td><strong>分仓管理</strong></td><td>各渠道销量均衡的卖家</td><td>每个渠道独立库存，不互相影响</td><td>需要更多总库存，资金占用高</td></tr>
+<tr><td><strong>3PL 统一仓储</strong></td><td>多渠道大卖家</td><td>一个仓库发所有渠道，库存利用率最高</td><td>需要 3PL 合作，管理复杂度高</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>AI 辅助多渠道库存分配：</strong></p>
+<pre><code>我同时在以下渠道销售，请帮我优化库存分配：
+
+总可用库存：[X] 件
+
+渠道数据：
+Amazon FBA：日均 [X] 单，利润率 [X]%，Lead Time [X] 天
+Shopify：日均 [X] 单，利润率 [X]%，自发货
+独立站：日均 [X] 单，利润率 [X]%，自发货
+
+请建议：
+1. 各渠道的库存分配比例
+2. 是否应该用 FBA MCF 发其他渠道的订单？
+3. 库存同步策略（如何避免超卖？）
+4. 如果总库存不足，优先保哪个渠道？
+</code></pre>
+<h3 id="63-头程物流优化海运-vs-空运-vs-铁路"><a class="header" href="#63-头程物流优化海运-vs-空运-vs-铁路">6.3 头程物流优化：海运 vs 空运 vs 铁路</a></h3>
+<p>头程物流成本通常占产品总成本的 10-20%，选择正确的物流方式可以显著影响利润。</p>
+<p><strong>物流方式对比：</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>维度</th><th>海运</th><th>空运</th><th>铁路（中欧班列）</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>时效</strong></td><td>30-45 天</td><td>7-12 天</td><td>18-25 天</td></tr>
+<tr><td><strong>成本</strong></td><td>$3-6/kg</td><td>$8-15/kg</td><td>$5-8/kg</td></tr>
+<tr><td><strong>适合</strong></td><td>大批量、不紧急</td><td>小批量、紧急补货</td><td>欧洲站、中等批量</td></tr>
+<tr><td><strong>最小起运量</strong></td><td>1 CBM 或整柜</td><td>无最小限制</td><td>1 CBM</td></tr>
+<tr><td><strong>风险</strong></td><td>港口拥堵、天气延迟</td><td>航班取消、旺季涨价</td><td>线路不稳定</td></tr>
+<tr><td><strong>适用路线</strong></td><td>全球</td><td>全球</td><td>中国→欧洲</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>决策框架：</strong></p>
+<pre><code>需要补货
+库存可支撑 &gt; 45 天？
+是 → 海运（成本最低）
+库存可支撑 15-45 天？
+目的地是欧洲？→ 考虑铁路（性价比）
+其他 → 海运 + 少量空运（混合策略）
+库存可支撑 &lt; 15 天？
+空运（紧急补货，避免断货）
+已经断货？
+空运最快批次 + 海运大批量（双管齐下）
+</code></pre>
+<p><strong>AI 辅助物流决策：</strong></p>
+<pre><code>请帮我选择最优的头程物流方式：
+
+货物信息：
+- 产品重量：[X] kg/件，体积：[X] CBM/件
+- 本次发货数量：[X] 件
+- 总重量：[X] kg，总体积：[X] CBM
+- 出发地：[城市]
+- 目的地：Amazon [US/DE/JP] FBA 仓库
+
+时间要求：
+- 当前库存可支撑：[X] 天
+- 期望到仓日期：[日期]
+
+物流报价（如有）：
+- 海运：$[X]/kg 或 $[X]/CBM，时效 [X] 天
+- 空运：$[X]/kg，时效 [X] 天
+- 铁路：$[X]/kg（如适用），时效 [X] 天
+
+请分析：
+1. 各物流方式的总成本对比
+2. 各方式的到仓时间和缺货风险
+3. 推荐方案（考虑成本和时效的平衡）
+4. 是否建议混合方式（如 70% 海运 + 30% 空运）？
+5. 如果物流延迟 [X] 天，对库存的影响和应对方案
+</code></pre>
+<blockquote>
+<p><strong>头程物流的核心原则</strong>：常规补货用海运控制成本，紧急补货用空运保证不断货。建议每次海运发货时，预留 10-20% 的空运预算作为应急。</p>
+</blockquote>
+<hr>
+<p>Content rephrased for compliance with licensing restrictions. Source: <a href="https://impakter.com/the-2026-playbook-fba-prep-services-ai-forecasting-and-greener-3pl-operations/">impakter.com FBA prep and 3PL operations</a></p>
+<hr>
+<h2 id="7-学习资源"><a class="header" href="#7-学习资源">7. 学习资源</a></h2>
+<h3 id="71-免费课程"><a class="header" href="#71-免费课程">7.1 免费课程</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>资源</th><th>平台</th><th>时长</th><th>适合谁</th><th>链接</th></tr>
+</thead>
+<tbody>
+<tr><td>Amazon Seller University Inventory Management</td><td>Amazon</td><td>自学</td><td>所有卖家（官方免费课程，覆盖 FBA 库存管理、IPI Score、补货工具）</td><td><a href="https://sellercentral.amazon.com/learn">sellercentral.amazon.com/learn</a></td></tr>
+<tr><td>Supply Chain Management Specialization</td><td>Coursera (Rutgers)</td><td>16 周</td><td>想系统学习供应链的卖家（库存理论、需求预测、供应商管理）</td><td><a href="https://www.coursera.org/specializations/supply-chain-management">coursera.org</a></td></tr>
+<tr><td>ChatGPT Prompt Engineering for Developers</td><td>DeepLearning.AI</td><td>1.5h</td><td>所有人（学会写好 Prompt 是 AI 库存分析的基础）</td><td><a href="https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/">deeplearning.ai</a></td></tr>
+<tr><td>Prophet Quick Start Guide</td><td>Facebook/Meta</td><td>1h</td><td>有 Python 基础的卖家（时间序列预测入门）</td><td><a href="https://facebook.github.io/prophet/docs/quick_start.html">facebook.github.io/prophet</a></td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="72-youtube-频道推荐"><a class="header" href="#72-youtube-频道推荐">7.2 YouTube 频道推荐</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>频道</th><th>内容方向</th><th>为什么推荐</th></tr>
+</thead>
+<tbody>
+<tr><td>My Amazon Guy</td><td>Amazon 运营全流程，含库存管理和 IPI Score 优化</td><td>内容全面，有大量真实案例和数据</td></tr>
+<tr><td>Seller Sessions</td><td>Amazon 卖家深度访谈，含供应链和库存策略</td><td>真实卖家经验，实操性强</td></tr>
+<tr><td>Jungle Scout</td><td>选品和库存管理工具教程，含需求预测功能</td><td>工具使用的最佳教程来源</td></tr>
+<tr><td>Travis Marziani</td><td>Amazon FBA 运营，含库存管理和现金流优化</td><td>适合中小卖家，讲解清晰</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="73-推荐阅读"><a class="header" href="#73-推荐阅读">7.3 推荐阅读</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>文章/资源</th><th>来源</th><th>核心观点</th></tr>
+</thead>
+<tbody>
+<tr><td><a href="https://goaura.com/blog/improving-your-amazon-ipi-score">Improving Your Amazon IPI Score</a></td><td>GoAura</td><td>IPI Score 改善全指南，含四个维度的具体优化策略和常见误区</td></tr>
+<tr><td><a href="https://goaura.com/blog/amazon-inventory-management">Amazon Inventory Management Guide</a></td><td>GoAura</td><td>Amazon 库存管理系统化方法，从基础指标到高级策略</td></tr>
+<tr><td><a href="https://goaura.com/blog/restockpro">RestockPro Review</a></td><td>GoAura</td><td>RestockPro 工具深度评测，含功能对比和使用场景分析</td></tr>
+<tr><td><a href="https://selectedfirms.co/blog/ai-in-ecommerce-inventory-management">AI in E-Commerce Inventory Management</a></td><td>SelectedFirms</td><td>AI 在电商库存管理中的应用全景，含需求预测、自动补货等场景</td></tr>
+<tr><td><a href="https://impakter.com/the-2026-playbook-fba-prep-services-ai-forecasting-and-greener-3pl-operations/">FBA Prep Services, AI Forecasting and Greener 3PL</a></td><td>Impakter</td><td>2026 年 FBA 运营趋势，含 AI 预测和绿色物流</td></tr>
+<tr><td><a href="https://us.entrepreneur.com/growing-a-business/how-to-use-ai-to-grow-your-amazon-sales-rankings-and/499421">How to Use AI to Grow Your Amazon Sales</a></td><td>Entrepreneur</td><td>AI 在 Amazon 运营中的实战应用，含库存优化和销量预测</td></tr>
+<tr><td><a href="https://facebook.github.io/prophet/">Prophet Documentation</a></td><td>Meta</td><td>Facebook Prophet 官方文档，时间序列预测的最佳入门资源</td></tr>
+</tbody>
+</table>
+</div>
+<p>Content rephrased for compliance with licensing restrictions. Sources cited inline.</p>
+<h3 id="74-社区与论坛"><a class="header" href="#74-社区与论坛">7.4 社区与论坛</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>社区</th><th>平台</th><th>特点</th></tr>
+</thead>
+<tbody>
+<tr><td>r/AmazonSeller</td><td>Reddit</td><td>综合 Amazon 卖家社区，库存管理和供应链话题活跃</td></tr>
+<tr><td>r/FulfillmentByAmazon</td><td>Reddit</td><td>FBA 卖家社区，库存问题、IPI Score 讨论多</td></tr>
+<tr><td>Amazon Seller Forums</td><td>Amazon</td><td>官方论坛，FBA 政策更新和仓储限制第一手信息</td></tr>
+<tr><td>知无不言</td><td>知乎</td><td>中文跨境电商社区，供应链和物流经验丰富</td></tr>
+<tr><td>创蓝论坛</td><td>独立站点</td><td>中国卖家社区，头程物流和供应商管理实操案例多</td></tr>
+<tr><td>eComCrew</td><td>Podcast + 社区</td><td>英文电商社区，库存管理最佳实践和工具推荐</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="8-用-openclaw-自动化库存管理"><a class="header" href="#8-用-openclaw-自动化库存管理">8. 用 OpenClaw 自动化库存管理</a></h2>
+<h3 id="81-场景ai-agent-自动库存预警与补货建议"><a class="header" href="#81-场景ai-agent-自动库存预警与补货建议">8.1 场景：AI Agent 自动库存预警与补货建议</a></h3>
+<pre><code>你对 OpenClaw 说：
+"每天早上 8 点检查库存和销售数据，
+计算安全库存和预计断货日期，生成补货建议，库存低于安全线时发送预警"
+
+OpenClaw 自动执行：
+1. [Heartbeat] 每天 8:00 触发
+2. [Skill: google-sheets] 读取库存和销售数据
+3. [LLM] 计算安全库存和预计断货日期
+4. [LLM] 生成补货建议（数量、时间、紧急度）
+5. [Skill: slack] 库存低于安全线时发送预警
+</code></pre>
+<h3 id="82-需要的-skills-和-mcp-server"><a class="header" href="#82-需要的-skills-和-mcp-server">8.2 需要的 Skills 和 MCP Server</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>组件</th><th>用途</th><th>链接</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>google-sheets</strong> Skill</td><td>读写库存和销售数据</td><td><a href="https://clawhub.ai/">ClawHub</a></td></tr>
+<tr><td><strong>slack</strong> Skill</td><td>发送库存预警通知</td><td><a href="https://clawhub.ai/">ClawHub</a></td></tr>
+<tr><td><strong>memory</strong> Skill</td><td>存储历史库存数据和补货规则</td><td><a href="https://docs.openclaw.com/">OpenClaw Docs</a></td></tr>
+<tr><td><strong>filesystem MCP</strong></td><td>读取本地库存报告文件</td><td><a href="https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem">MCP Filesystem</a></td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="83-相关资源"><a class="header" href="#83-相关资源">8.3 相关资源</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>资源</th><th>说明</th><th>链接</th></tr>
+</thead>
+<tbody>
+<tr><td>OpenClaw 官方文档</td><td>安装和配置指南</td><td><a href="https://docs.openclaw.com/">docs.openclaw.com</a></td></tr>
+<tr><td>ClawHub Skills 市场</td><td>搜索和安装 Agent Skills</td><td><a href="https://clawhub.ai/">clawhub.ai</a></td></tr>
+<tr><td>OpenClaw MCP 集成</td><td>连接 MCP Server</td><td><a href="https://rebeccamdeprey.com/blog/build-openclaw-skill-with-mcp">Build Skill with MCP</a></td></tr>
+<tr><td>F4 自动化与 Agent</td><td>Agent 基础模块</td><td><a href="../0-foundations/f4-agent-automation.html">F4 模块</a></td></tr>
+</tbody>
+</table>
+</div>
+<p>Content rephrased for compliance with licensing restrictions. Sources cited inline.</p>
+<hr>
+<h2 id="9-完成标志"><a class="header" href="#9-完成标志">9. 完成标志</a></h2>
+<ul>
+<li><input disabled="" type="checkbox"> 用 AI 建立一个产品的完整补货决策模型（含安全库存计算、补货点、三种场景分析）</li>
+<li><input disabled="" type="checkbox"> 用 AI 分析你的 IPI Score，制定具体的改善方案并执行至少 1 个月</li>
+<li><input disabled="" type="checkbox"> 用 AI 制定一次大促备货计划（Prime Day 或 BFCM），包含 8 周时间线</li>
+<li><input disabled="" type="checkbox"> 建立月度补货 SOP 并执行至少 2 个月，记录补货准确率</li>
+<li><input disabled="" type="checkbox"> 用 AI 处理至少一批滞销库存，对比处理前后的仓储费变化</li>
+<li><input disabled="" type="checkbox"> 用 AI 评估供应商交期风险，建立至少一个备选供应商方案</li>
+</ul>
+<p>完成以上所有项目后，你已经掌握了 AI 辅助库存管理的核心技能。接下来进入 <a href="a6-compliance.html">A6 合规与风控</a>，学习如何用 AI 应对 Amazon 合规挑战。</p>
+<hr>
+<h2 id="附录快速参考卡片"><a class="header" href="#附录快速参考卡片">附录：快速参考卡片</a></h2>
+<h3 id="prompt-速查表"><a class="header" href="#prompt-速查表">Prompt 速查表</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>场景</th><th>Prompt 模板</th><th>所在章节</th></tr>
+</thead>
+<tbody>
+<tr><td>补货决策分析</td><td>补货决策分析</td><td><a href="#31-补货决策分析">3.1</a></td></tr>
+<tr><td>多 SKU 批量补货</td><td>多 SKU 批量补货优先级（变体 A）</td><td><a href="#31-补货决策分析">3.1</a></td></tr>
+<tr><td>新品首批备货</td><td>新品首批备货量估算（变体 B）</td><td><a href="#31-补货决策分析">3.1</a></td></tr>
+<tr><td>安全库存计算</td><td>安全库存计算</td><td><a href="#32-安全库存计算">3.2</a></td></tr>
+<tr><td>季节性需求预测</td><td>季节性需求预测</td><td><a href="#33-季节性需求预测">3.3</a></td></tr>
+<tr><td>大促备货策略</td><td>大促备货策略（Prime Day/BFCM）</td><td><a href="#34-大促备货策略prime-day--bfcm">3.4</a></td></tr>
+<tr><td>多站点库存分配</td><td>多站点库存分配</td><td><a href="#35-多站点库存分配">3.5</a></td></tr>
+<tr><td>滞销库存处理</td><td>滞销库存处理策略</td><td><a href="#36-滞销库存处理策略">3.6</a></td></tr>
+<tr><td>供应商交期评估</td><td>供应商交期风险评估</td><td><a href="#37-供应商交期风险评估">3.7</a></td></tr>
+<tr><td>IPI Score 改善</td><td>IPI Score 改善方案</td><td><a href="#38-ipi-score-改善方案">3.8</a></td></tr>
+<tr><td>多渠道库存分配</td><td>多渠道库存分配</td><td><a href="#62-多渠道库存同步amazon--shopify--独立站">6.2</a></td></tr>
+<tr><td>头程物流决策</td><td>头程物流方式选择</td><td><a href="#63-头程物流优化海运-vs-空运-vs-铁路">6.3</a></td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="工具速查表"><a class="header" href="#工具速查表">工具速查表</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>需求</th><th>推荐工具</th><th>免费替代</th></tr>
+</thead>
+<tbody>
+<tr><td>补货计算</td><td>SoStocked / RestockPro</td><td>ChatGPT + Excel</td></tr>
+<tr><td>需求预测</td><td>SoStocked / Forecastly</td><td>ChatGPT + 季节性 Prompt</td></tr>
+<tr><td>IPI 监控</td><td>Amazon Inventory Dashboard</td><td>Amazon 官方工具（免费）</td></tr>
+<tr><td>库龄管理</td><td>RestockPro</td><td>Amazon Inventory Age 报告</td></tr>
+<tr><td>利润追踪</td><td>Inventory Lab</td><td>Excel + FBA Revenue Calculator</td></tr>
+<tr><td>时间序列预测</td><td>Prophet（开源）</td><td>ChatGPT 手动分析</td></tr>
+<tr><td>库存数据 API</td><td>python-amazon-sp-api（开源）</td><td>Seller Central 手动导出</td></tr>
+<tr><td>多渠道同步</td><td>SoStocked / SellerCloud</td><td>手动管理 + Google Sheets</td></tr>
+<tr><td>供应商管理</td><td>RestockPro</td><td>Excel + ChatGPT</td></tr>
+<tr><td>物流追踪</td><td>Flexport / Freightos</td><td>Excel 追踪表</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="安全库存与补货公式速查"><a class="header" href="#安全库存与补货公式速查">安全库存与补货公式速查</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>公式</th><th>表达式</th><th>说明</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>安全库存</strong></td><td>Z × σ_d × √L</td><td>Z=服务水平系数，σ_d=日销量标准差，L=Lead Time天数</td></tr>
+<tr><td><strong>补货点</strong></td><td>日均销量 × Lead Time + 安全库存</td><td>库存降到此水位时下单补货</td></tr>
+<tr><td><strong>经济订货量 (EOQ)</strong></td><td>√(2DS/H)</td><td>D=年需求量，S=单次订货成本，H=单位年持有成本</td></tr>
+<tr><td><strong>库存周转率</strong></td><td>年销售额 ÷ 平均库存价值</td><td>越高越好，说明库存流转快</td></tr>
+<tr><td><strong>库存可支撑天数</strong></td><td>(当前库存 + 在途库存) ÷ 日均销量</td><td>低于 Lead Time + 安全天数时需要补货</td></tr>
+<tr><td><strong>缺货成本</strong></td><td>断货天数 × 日均销量 × 单件利润 + 排名恢复成本</td><td>用于评估缺货的真实损失</td></tr>
+<tr><td><strong>滞销成本</strong></td><td>库存数量 × 月仓储费 × 滞销月数 + 资金占用成本</td><td>用于评估持有滞销库存的真实成本</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="服务水平系数-z-速查"><a class="header" href="#服务水平系数-z-速查">服务水平系数 (Z) 速查</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>服务水平</th><th>Z 值</th><th>含义</th><th>适用场景</th></tr>
+</thead>
+<tbody>
+<tr><td>90%</td><td>1.28</td><td>允许 10% 概率缺货</td><td>低利润、可替代性强的产品</td></tr>
+<tr><td>95%</td><td>1.65</td><td>允许 5% 概率缺货</td><td>大多数产品的推荐值</td></tr>
+<tr><td>97.5%</td><td>1.96</td><td>允许 2.5% 概率缺货</td><td>高利润、缺货成本高的产品</td></tr>
+<tr><td>99%</td><td>2.33</td><td>允许 1% 概率缺货</td><td>核心爆款、不能断货的产品</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="库存健康检查清单"><a class="header" href="#库存健康检查清单">库存健康检查清单</a></h3>
+<pre><code>每周检查：
+IPI Score 是否 ≥ 400？
+是否有 Stranded Inventory？→ 立即修复
+是否有 SKU 库存 &lt; 14 天销量？→ 紧急补货
+在途库存状态是否正常？→ 追踪物流
+
+每月检查：
+库龄 &gt; 90 天的 SKU 清单 → 制定处理方案
+库龄 &gt; 180 天的 SKU → 紧急清仓
+各 SKU 的 Sell-through Rate → 低于 3 的需要关注
+补货计划执行情况 → 是否按时下单和到货
+供应商交期记录 → 更新交期数据
+
+每季度检查：
+安全库存参数是否需要调整？（销量变化、Lead Time 变化）
+供应商评估 → 是否需要发展备选供应商？
+库存资金占比 → 是否超过 60%？
+下一个大促的备货计划 → 提前 8 周启动
+</code></pre>
+<h3 id="库存决策树"><a class="header" href="#库存决策树">库存决策树</a></h3>
+<pre><code>需要补货决策
+库存可支撑天数 &lt; Lead Time + 安全天数？
+是 → 紧急补货（考虑空运）
+否 ↓
+库存可支撑天数 &lt; Lead Time + 安全天数 + 30 天？
+是 → 常规补货（海运）
+否 ↓
+未来 3 个月有大促？
+是 → 启动大促备货 SOP
+否 ↓
+库龄 &gt; 90 天的库存占比 &gt; 20%？
+是 → 先处理滞销，再考虑补货
+否 ↓
+库存水位健康 → 下月再检查
+</code></pre>
+<hr>
+<blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path A 总览</a></p>
+<p><strong>Path A</strong>: <a href="a1-product-research.html">A1 选品</a> · <a href="a2-listing-optimization.html">A2 Listing</a> · <a href="a3-advertising.html">A3 广告</a> · <a href="a4-customer-service.html">A4 客服</a> · <a href="a5-inventory.html">A5 库存</a> · <a href="a6-compliance.html">A6 合规</a></p>
+<p><strong>快速跳转</strong>: <a href="../0-foundations/">Path 0 基础</a> · <a href="../b-developers/">Path B 技术</a> · <a href="../c-managers/">Path C 管理</a> · <a href="../d-platforms/">Path D 多平台</a> · <a href="../e-social-media/">Path E 社交媒体</a></p>
+</blockquote>
+<!-- nav:prev-next -->
+<hr>
+<p><a href="a4-customer-service.html">&lt; A4 客服</a> | <a href="README.html">Path 总览</a> | <a href="a6-compliance.html">A6 合规 &gt;</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../a-operators/a4-customer-service.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../a-operators/a6-compliance.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../a-operators/a4-customer-service.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../a-operators/a6-compliance.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../mermaid-217b66ef.min.js"></script>
+        <script src="../mermaid-init-d4730691.js"></script>
+
+
+
+    </div>
+    </body>
+</html>

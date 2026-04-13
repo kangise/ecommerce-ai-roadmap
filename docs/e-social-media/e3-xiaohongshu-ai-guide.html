@@ -1,0 +1,802 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>小红书 - 跨境电商 AI 实战知识库</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="跨境电商 AI 实操手册 — 56 篇指南，从选品到增长，每个环节都有可直接复制的 Prompt">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../custom-467616e9.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "ayu";
+            window.path_to_searchindex_js = "../searchindex-656d55b3.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-e97a050e.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">跨境电商 AI 实战知识库</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap" title="Git repository" aria-label="Git repository">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
+                        </a>
+                        <a href="https://github.com/kangise/ecommerce-ai-roadmap/edit/main/src/src/e-social-media/e3-xiaohongshu-ai-guide.md" title="Suggest an edit" aria-label="Suggest an edit" rel="edit">
+                            <span class=fa-svg id="git-edit-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M421.7 220.3l-11.3 11.3-22.6 22.6-205 205c-6.6 6.6-14.8 11.5-23.8 14.1L30.8 511c-8.4 2.5-17.5 .2-23.7-6.1S-1.5 489.7 1 481.2L38.7 353.1c2.6-9 7.5-17.2 14.1-23.8l205-205 22.6-22.6 11.3-11.3 33.9 33.9 62.1 62.1 33.9 33.9zM96 353.9l-9.3 9.3c-.9 .9-1.6 2.1-2 3.4l-25.3 86 86-25.3c1.3-.4 2.5-1.1 3.4-2l9.3-9.3H112c-8.8 0-16-7.2-16-16V353.9zM453.3 19.3l39.4 39.4c25 25 25 65.5 0 90.5l-14.5 14.5-22.6 22.6-11.3 11.3-33.9-33.9-62.1-62.1L314.3 67.7l11.3-11.3 22.6-22.6 14.5-14.5c25-25 65.5-25 90.5 0z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="e3-小红书-ai-运营指南--xiaohongshu-rednote-ai-playbook"><a class="header" href="#e3-小红书-ai-运营指南--xiaohongshu-rednote-ai-playbook">E3. 小红书 AI 运营指南 | Xiaohongshu (RedNote) AI Playbook</a></h1>
+<blockquote>
+<p><strong>路径</strong>: Path E: 社交媒体 · <strong>模块</strong>: E3
+<strong>最后更新</strong>: 2026-03-14
+<strong>难度</strong>: 中级
+<strong>预计时间</strong>: 2-3 小时
+<strong>前置模块</strong>: <a href="../0-foundations/">Path 0 基础</a></p>
+</blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path E 总览</a></p>
+<hr>
+<h2 id="章节导航"><a class="header" href="#章节导航">章节导航</a></h2>
+<ol>
+<li><a href="#1-小红书平台机制与算法">小红书平台机制与算法</a></li>
+<li><a href="#2-ai-种草笔记创作方法论">AI 种草笔记创作方法论</a></li>
+<li><a href="#3-小红书-seo">小红书 SEO</a></li>
+<li><a href="#4-kolkoc-合作-ai-方法论">KOL/KOC 合作 AI 方法论</a></li>
+<li><a href="#5-小红书电商闭环">小红书电商闭环</a></li>
+<li><a href="#6-跨境品牌入驻小红书">跨境品牌入驻小红书</a></li>
+<li><a href="#7-prompt-模板">Prompt 模板</a></li>
+<li><a href="#8-常见陷阱">常见陷阱</a></li>
+<li><a href="#9-完成标志">完成标志</a></li>
+</ol>
+<hr>
+<h2 id="本模块你将产出"><a class="header" href="#本模块你将产出">本模块你将产出</a></h2>
+<ul>
+<li>一套 AI 驱动的小红书种草笔记批量生产流程</li>
+<li>一套 KOL/KOC 筛选和合作方法论</li>
+<li>一套小红书 SEO 优化策略</li>
+<li>一套小红书专用 Prompt 模板库</li>
+</ul>
+<blockquote>
+<p><strong>核心理念</strong>：小红书是“种草决策平台“。用户来小红书不是为了娱乐，而是为了做购买决策。转化率 21.4%（远超其他平台 6-8%），3-3.5 亿 MAU，79% 女性用户，搜索渗透率 70%。AI 在小红书的核心价值是帮你生产“真实感“的种草内容不像广告，像朋友推荐。</p>
+</blockquote>
+<hr>
+<h2 id="1-小红书平台机制与算法"><a class="header" href="#1-小红书平台机制与算法">1. 小红书平台机制与算法</a></h2>
+<h3 id="11-ces-评分机制"><a class="header" href="#11-ces-评分机制">1.1 CES 评分机制</a></h3>
+<p>小红书的内容分发基于 CES（Community Engagement Score）：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>互动行为</th><th>权重</th><th>说明</th></tr>
+</thead>
+<tbody>
+<tr><td>点赞</td><td>1 分</td><td>基础互动</td></tr>
+<tr><td>收藏</td><td>1 分</td><td>表示内容有价值（类似 Instagram Save）</td></tr>
+<tr><td>评论</td><td>4 分</td><td>深度互动，算法最看重</td></tr>
+<tr><td>转发</td><td>4 分</td><td>内容传播力</td></tr>
+<tr><td>关注</td><td>8 分</td><td>最高权重，说明内容让用户想持续关注</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>关键洞察</strong>：评论权重是点赞的 4 倍。所以小红书运营的核心不是追求点赞，而是引导评论。AI 可以帮你设计引导评论的文案策略。</p>
+</blockquote>
+<h3 id="12-流量分发逻辑"><a class="header" href="#12-流量分发逻辑">1.2 流量分发逻辑</a></h3>
+<pre><code>小红书流量三大入口：
+发现页推荐（60-70% 流量）
+基于用户兴趣标签推荐
+新笔记有 200-500 的初始曝光池
+CES 达标后进入更大流量池
+AI 应用：优化封面+标题提升点击率
+
+搜索（20-25% 流量）
+用户主动搜索关键词
+搜索渗透率 70%（远超其他平台）
+排名因素：关键词匹配+CES+账号权重
+AI 应用：关键词研究+笔记 SEO
+
+关注页（10-15% 流量）
+已关注用户的内容
+粉丝粘性维护
+</code></pre>
+<h3 id="13-与-instagramtiktok-的本质区别"><a class="header" href="#13-与-instagramtiktok-的本质区别">1.3 与 Instagram/TikTok 的本质区别</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>维度</th><th>小红书</th><th>Instagram</th><th>TikTok</th></tr>
+</thead>
+<tbody>
+<tr><td>用户意图</td><td>种草+决策（“买不买”）</td><td>灵感+生活方式</td><td>娱乐+消遣</td></tr>
+<tr><td>内容风格</td><td>真实、口语化、像朋友分享</td><td>精致、美学、aspirational</td><td>娱乐、快节奏、Hook</td></tr>
+<tr><td>核心内容</td><td>图文笔记（70%）+ 短视频</td><td>Reels + Carousel</td><td>短视频</td></tr>
+<tr><td>搜索行为</td><td>极强（70% 用户搜索）</td><td>弱</td><td>中等</td></tr>
+<tr><td>转化路径</td><td>笔记→搜索→购买</td><td>Reels→Shop→购买</td><td>视频→小黄车→购买</td></tr>
+<tr><td>信任机制</td><td>素人真实分享 &gt; 达人推荐</td><td>达人推荐 &gt; 品牌内容</td><td>内容质量 &gt; 粉丝量</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="2-ai-种草笔记创作方法论"><a class="header" href="#2-ai-种草笔记创作方法论">2. AI 种草笔记创作方法论</a></h2>
+<h3 id="21-笔记类型矩阵"><a class="header" href="#21-笔记类型矩阵">2.1 笔记类型矩阵</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>类型</th><th>结构</th><th>适合场景</th><th>转化效果</th></tr>
+</thead>
+<tbody>
+<tr><td>好物分享</td><td>封面+使用体验+优缺点+推荐</td><td>新品推广</td><td></td></tr>
+<tr><td>教程攻略</td><td>封面+步骤+技巧+产品植入</td><td>建立专业形象</td><td></td></tr>
+<tr><td>测评对比</td><td>封面+多产品对比+推荐</td><td>差异化竞争</td><td></td></tr>
+<tr><td>合集清单</td><td>封面+“X 个必买好物”+逐个介绍</td><td>品类覆盖</td><td></td></tr>
+<tr><td>避雷/踩坑</td><td>封面+问题描述+解决方案</td><td>引发共鸣</td><td></td></tr>
+<tr><td>开箱</td><td>封面+拆包过程+第一印象</td><td>新品首发</td><td></td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="22-ai-生成种草笔记-prompt"><a class="header" href="#22-ai-生成种草笔记-prompt">2.2 AI 生成种草笔记 Prompt</a></h3>
+<pre><code>你是一个小红书爆款笔记创作专家。你的文风真实、口语化、像闺蜜分享好物。
+
+产品信息：
+- 产品名：[名称]
+- 品类：[X]
+- 价格：[X] 元
+- 核心卖点：[3 个]
+- 目标人群：[年龄、场景、痛点]
+
+请生成 3 篇不同角度的种草笔记，每篇包含：
+
+1. 封面标题（不超过 20 字，包含数字或痛点）
+- 公式参考："数字+痛点+解决方案"或"身份+场景+好物"
+
+2. 正文（300-500 字）
+- 开头：用痛点或场景引入（不要直接说产品）
+- 中间：使用体验（第一人称，口语化，带 emoji）
+- 结尾：总结推荐+引导评论（"你们觉得呢？"）
+
+3. 标签策略（15-20 个）
+- 热门标签 5 个
+- 品类标签 5 个
+- 长尾标签 5-10 个
+
+4. 封面图建议
+- 图片风格（实拍/对比/清单）
+- 文字叠加内容
+
+3 个角度：
+- 角度 1：痛点解决型（"终于找到了..."）
+- 角度 2：场景种草型（"[场景] 必备好物"）
+- 角度 3：对比测评型（"用了 X 款，最推荐这个"）
+
+要求：
+- 语气真实自然，不像广告
+- 适当使用 emoji（每段 2-3 个）
+- 不使用"最好""第一""绝对"等绝对化用语（违反广告法）
+- 包含引导评论的互动设计
+</code></pre>
+<h3 id="23-封面设计策略"><a class="header" href="#23-封面设计策略">2.3 封面设计策略</a></h3>
+<p>小红书封面决定 80% 的点击率：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>封面类型</th><th>适用场景</th><th>设计要点</th></tr>
+</thead>
+<tbody>
+<tr><td>产品实拍</td><td>好物分享</td><td>干净背景+产品特写+文字标题</td></tr>
+<tr><td>对比图</td><td>测评对比</td><td>左右分栏+Before/After</td></tr>
+<tr><td>清单图</td><td>合集推荐</td><td>多产品拼图+编号</td></tr>
+<tr><td>文字图</td><td>攻略/教程</td><td>大字标题+简洁背景</td></tr>
+<tr><td>使用场景</td><td>场景种草</td><td>真实使用场景+自然光</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>AI 辅助</strong>：用 Canva AI 或美图秀秀生成封面模板，用 ChatGPT 生成封面文字。</p>
+</blockquote>
+<hr>
+<h2 id="3-小红书-seo"><a class="header" href="#3-小红书-seo">3. 小红书 SEO</a></h2>
+<h3 id="31-关键词布局策略"><a class="header" href="#31-关键词布局策略">3.1 关键词布局策略</a></h3>
+<pre><code>小红书 SEO 关键词布局：
+标题：核心关键词必须出现（权重最高）
+正文前 200 字：包含 2-3 个关键词（自然融入）
+正文中：长尾关键词分散布局
+标签：热门词+长尾词组合
+评论区：在自己的评论中补充关键词
+</code></pre>
+<h3 id="32-ai-关键词研究"><a class="header" href="#32-ai-关键词研究">3.2 AI 关键词研究</a></h3>
+<pre><code>你是一个小红书 SEO 专家。
+
+我的产品品类是：[品类]
+目标人群：[描述]
+
+请帮我做小红书关键词研究：
+
+1. 核心关键词（3-5 个）：搜索量大、竞争激烈
+2. 长尾关键词（10-15 个）：搜索量中等、竞争较小
+3. 场景关键词（5-10 个）：用户搜索的使用场景
+4. 痛点关键词（5-10 个）：用户搜索的问题/痛点
+5. 竞品关键词（3-5 个）：竞品品牌名+品类词
+
+每个关键词标注：
+- 预估搜索热度（高/中/低）
+- 推荐笔记类型
+- 标题使用建议
+</code></pre>
+<hr>
+<h2 id="4-kolkoc-合作-ai-方法论"><a class="header" href="#4-kolkoc-合作-ai-方法论">4. KOL/KOC 合作 AI 方法论</a></h2>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="e1-instagram-facebook-ai-guide.html">E1 Instagram</a> Instagram 达人合作方法论参考 E1，达人筛选评分模型和 Creative Brief 模板可互相借鉴。</p>
+</blockquote>
+<h3 id="41-小红书达人层级"><a class="header" href="#41-小红书达人层级">4.1 小红书达人层级</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>层级</th><th>粉丝量</th><th>特点</th><th>合作方式</th><th>预算</th></tr>
+</thead>
+<tbody>
+<tr><td>KOC（素人）</td><td>&lt;1 万</td><td>真实感强、性价比高</td><td>产品置换/小额报酬</td><td>0-500 元/篇</td></tr>
+<tr><td>腰部达人</td><td>1-10 万</td><td>有一定影响力、互动率高</td><td>付费合作</td><td>500-5000 元/篇</td></tr>
+<tr><td>头部 KOL</td><td>10-100 万</td><td>影响力大、品牌背书</td><td>付费合作+佣金</td><td>5000-50000 元/篇</td></tr>
+<tr><td>顶流 KOL</td><td>&gt;100 万</td><td>明星效应</td><td>品牌代言级</td><td>50000+ 元/篇</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>小红书特色</strong>：与 TikTok 不同，小红书上 KOC（素人）的种草效果往往比大 KOL 更好，因为用户更信任“真实用户“的分享。建议预算分配：60% KOC + 30% 腰部 + 10% 头部。</p>
+</blockquote>
+<h3 id="42-ai-达人筛选"><a class="header" href="#42-ai-达人筛选">4.2 AI 达人筛选</a></h3>
+<pre><code>你是一个小红书达人合作专家。
+
+我的产品：[名称]，品类 [X]，价格 [X] 元
+目标人群：[描述]
+预算：[X] 元/月
+
+请帮我设计达人合作方案：
+
+1. 达人筛选标准（评分模型）
+- 内容相关性（权重 30%）
+- 互动率（权重 25%）：评论数/点赞数比值
+- 粉丝画像匹配度（权重 20%）
+- 笔记质量（权重 15%）
+- 性价比（权重 10%）
+
+2. 推荐的达人组合（基于预算）
+- KOC 数量和预算分配
+- 腰部达人数量和预算分配
+- 头部 KOL 数量和预算分配
+
+3. 达人邀约话术模板（中文，小红书私信风格）
+
+4. Brief 模板（给达人的创作指南）
+- 产品卖点（必须提及）
+- 内容方向建议（不限制创作自由）
+- 禁止事项（违禁词、竞品提及）
+- 发布时间建议
+</code></pre>
+<hr>
+<h2 id="5-小红书电商闭环"><a class="header" href="#5-小红书电商闭环">5. 小红书电商闭环</a></h2>
+<h3 id="51-小红书店铺-vs-引流到外部"><a class="header" href="#51-小红书店铺-vs-引流到外部">5.1 小红书店铺 vs 引流到外部</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>方式</th><th>优势</th><th>劣势</th><th>适合</th></tr>
+</thead>
+<tbody>
+<tr><td>小红书店铺</td><td>站内闭环、转化路径短</td><td>佣金较高、流量有限</td><td>品牌直营</td></tr>
+<tr><td>引流到天猫/京东</td><td>流量大、信任度高</td><td>跳转流失</td><td>国内品牌</td></tr>
+<tr><td>引流到独立站</td><td>利润高、数据自有</td><td>信任门槛高</td><td>跨境品牌</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="52-笔记挂链接的转化优化"><a class="header" href="#52-笔记挂链接的转化优化">5.2 笔记挂链接的转化优化</a></h3>
+<ul>
+<li>笔记中自然提及产品，不要硬推</li>
+<li>评论区置顶购买链接</li>
+<li>合集笔记挂多个产品链接</li>
+<li>直播间挂链接（小红书直播偏“慢直播“风格）</li>
+</ul>
+<hr>
+<h2 id="6-跨境品牌入驻小红书"><a class="header" href="#6-跨境品牌入驻小红书">6. 跨境品牌入驻小红书</a></h2>
+<h3 id="61-品牌号认证"><a class="header" href="#61-品牌号认证">6.1 品牌号认证</a></h3>
+<ul>
+<li>企业认证需要营业执照（海外企业可用）</li>
+<li>认证后获得品牌标识、数据分析、广告投放权限</li>
+<li>费用：600 元/年</li>
+</ul>
+<h3 id="62-内容本地化策略"><a class="header" href="#62-内容本地化策略">6.2 内容本地化策略</a></h3>
+<blockquote>
+<p><strong>相关阅读</strong>: <a href="../a-operators/a2-listing-optimization.html">A2 Listing 优化</a> 多语言本地化方法论参考 A2，跨境品牌的内容本地化框架可复用。</p>
+</blockquote>
+<blockquote>
+<p><strong>核心原则</strong>：不是翻译，是重新创作。</p>
+</blockquote>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>维度</th><th>错误做法</th><th>正确做法</th></tr>
+</thead>
+<tbody>
+<tr><td>语言</td><td>直接翻译英文文案</td><td>用中文重新写，口语化、接地气</td></tr>
+<tr><td>图片</td><td>用欧美模特图</td><td>用亚洲面孔或产品实拍</td></tr>
+<tr><td>卖点</td><td>强调技术参数</td><td>强调使用场景和情感价值</td></tr>
+<tr><td>价格</td><td>直接标美元</td><td>换算人民币，对比国内同类产品</td></tr>
+<tr><td>信任</td><td>强调品牌历史</td><td>强调真实用户评价和使用体验</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="63-合规注意事项"><a class="header" href="#63-合规注意事项">6.3 合规注意事项</a></h3>
+<ul>
+<li>广告法：不能使用“最““第一”“绝对“等绝对化用语</li>
+<li>化妆品：需要备案号才能在小红书销售</li>
+<li>食品：需要中文标签和进口许可</li>
+<li>医疗器械：严格限制宣传</li>
+</ul>
+<hr>
+<h2 id="7-prompt-模板"><a class="header" href="#7-prompt-模板">7. Prompt 模板</a></h2>
+<h3 id="71-小红书账号定位"><a class="header" href="#71-小红书账号定位">7.1 小红书账号定位</a></h3>
+<pre><code>你是一个小红书品牌运营专家。
+
+品牌信息：
+- 品牌名：[名称]
+- 品类：[X]
+- 目标人群：[描述]
+- 品牌调性：[描述]
+
+请帮我设计小红书账号定位：
+1. 账号名称建议（3 个选项）
+2. 账号简介（不超过 100 字）
+3. 内容定位（主要发什么类型的笔记）
+4. 内容比例（好物分享:教程:测评:日常 = ?:?:?:?）
+5. 发布频率建议
+6. 第一个月的 8 篇笔记选题
+</code></pre>
+<h3 id="72-评论区互动话术"><a class="header" href="#72-评论区互动话术">7.2 评论区互动话术</a></h3>
+<pre><code>请为以下小红书笔记生成评论区互动话术：
+
+笔记主题：[描述]
+产品：[名称]
+
+生成：
+1. 置顶评论（引导讨论+补充信息）
+2. 5 个回复模板（针对常见问题/好评/质疑）
+3. 3 个引导互动的追问（提升评论数）
+</code></pre>
+<hr>
+<h2 id="8-常见陷阱"><a class="header" href="#8-常见陷阱">8. 常见陷阱</a></h2>
+<h3 id="陷阱-1笔记太像广告"><a class="header" href="#陷阱-1笔记太像广告">陷阱 1：笔记太像广告</a></h3>
+<p>小红书用户对广告极度敏感。AI 生成的内容必须经过“去广告化“处理加入个人体验、真实感受、小缺点。</p>
+<h3 id="陷阱-2忽略评论区运营"><a class="header" href="#陷阱-2忽略评论区运营">陷阱 2：忽略评论区运营</a></h3>
+<p>评论权重是点赞的 4 倍。发完笔记后必须积极回复评论、引导讨论。</p>
+<h3 id="陷阱-3使用违禁词"><a class="header" href="#陷阱-3使用违禁词">陷阱 3：使用违禁词</a></h3>
+<p>“最好”“第一”“绝对有效“等绝对化用语违反广告法，笔记会被限流甚至删除。</p>
+<h3 id="陷阱-4只投头部-kol"><a class="header" href="#陷阱-4只投头部-kol">陷阱 4：只投头部 KOL</a></h3>
+<p>小红书上 KOC 的种草效果往往更好。100 个 KOC 的效果可能超过 1 个头部 KOL。</p>
+<hr>
+<h2 id="85-小红书算法深度解析"><a class="header" href="#85-小红书算法深度解析">8.5 小红书算法深度解析</a></h2>
+<h3 id="笔记生命周期与流量池机制"><a class="header" href="#笔记生命周期与流量池机制">笔记生命周期与流量池机制</a></h3>
+<pre><code>小红书笔记流量分发机制：
+
+阶段 1：初始曝光池（发布后 0-2 小时）
+系统分配 200-500 次曝光
+基于账号权重和内容质量预判
+关键指标：点击率（封面+标题的吸引力）
+如果点击率 &gt;5%，进入下一个流量池
+
+阶段 2：扩展曝光池（2-24 小时）
+曝光扩展到 1000-5000
+关键指标：互动率（CES 评分）
+评论权重 4 分 &gt; 收藏 1 分 &gt; 点赞 1 分
+如果 CES 达标，继续扩展
+如果 CES 不达标，停止推荐
+
+阶段 3：大流量池（24 小时-7 天）
+曝光可达 1 万-10 万+
+进入发现页热门推荐
+搜索排名提升
+持续获得长尾流量
+
+阶段 4：长尾流量（7 天-数月）
+搜索流量为主
+优质笔记可以持续获得流量数月
+关键词排名稳定后，成为"常青内容"
+这是小红书与 TikTok 的最大区别（TikTok 内容寿命短）
+</code></pre>
+<h3 id="提升-ces-评分的实操技巧"><a class="header" href="#提升-ces-评分的实操技巧">提升 CES 评分的实操技巧</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>互动类型</th><th>权重</th><th>提升策略</th></tr>
+</thead>
+<tbody>
+<tr><td>评论（4分）</td><td>最高</td><td>在正文末尾提问（“你们觉得呢？”“你用过吗？”）；在评论区自己先评论引导讨论；回复每一条评论</td></tr>
+<tr><td>转发（4分）</td><td>最高</td><td>创作“值得分享给朋友“的内容（清单/攻略/避雷）；在正文中引导“转发给需要的朋友“</td></tr>
+<tr><td>关注（8分）</td><td>单次最高</td><td>系列内容（“关注我看下一篇”）；个人简介突出价值主张</td></tr>
+<tr><td>收藏（1分）</td><td>基础</td><td>创作“值得收藏“的内容（教程/清单/对比表）；引导“先收藏再看“</td></tr>
+<tr><td>点赞（1分）</td><td>基础</td><td>内容质量的基础指标</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="ai-优化-ces-评分-prompt"><a class="header" href="#ai-优化-ces-评分-prompt">AI 优化 CES 评分 Prompt</a></h3>
+<pre><code>你是一个小红书算法优化专家。
+
+以下是我最近 5 篇笔记的数据：
+| 笔记标题 | 曝光 | 点击率 | 点赞 | 收藏 | 评论 | 转发 | CES |
+[粘贴数据]
+
+请分析：
+1. 哪篇笔记的 CES 最高？为什么？
+2. 哪篇笔记的点击率最高？封面/标题有什么特征？
+3. 评论数最多的笔记有什么共同点？
+4. 如何提升评论数？（具体的文案引导策略）
+5. 如何提升收藏数？（什么类型的内容最容易被收藏）
+6. 下 5 篇笔记的选题建议（基于数据趋势）
+</code></pre>
+<hr>
+<h2 id="86-小红书内容创作进阶"><a class="header" href="#86-小红书内容创作进阶">8.6 小红书内容创作进阶</a></h2>
+<h3 id="爆款笔记标题公式库"><a class="header" href="#爆款笔记标题公式库">爆款笔记标题公式库</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>公式</th><th>示例</th><th>适用场景</th><th>预估点击率</th></tr>
+</thead>
+<tbody>
+<tr><td>数字+痛点+解决</td><td>“5 个让皮肤变好的习惯，第 3 个太重要了”</td><td>教程/攻略</td><td></td></tr>
+<tr><td>身份+场景+好物</td><td>“打工人通勤必备的 3 个神器”</td><td>好物推荐</td><td></td></tr>
+<tr><td>对比+结论</td><td>“用了 10 款颈挂风扇，只推荐这 2 款”</td><td>测评对比</td><td></td></tr>
+<tr><td>反常识+真相</td><td>“别再买 XX 了！90% 的人都选错了”</td><td>避雷/科普</td><td></td></tr>
+<tr><td>时间+效果</td><td>“坚持 30 天，变化太大了”</td><td>Before/After</td><td></td></tr>
+<tr><td>价格+惊喜</td><td>“￥99 买到了 ￥500 的效果”</td><td>性价比推荐</td><td></td></tr>
+<tr><td>后悔+推荐</td><td>“后悔没早买！用了就回不去了”</td><td>好物种草</td><td></td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="小红书正文写作框架"><a class="header" href="#小红书正文写作框架">小红书正文写作框架</a></h3>
+<pre><code>爆款笔记正文结构（300-500 字）：
+
+第 1 段：场景引入（50-80 字）
+用痛点或场景开头，不要直接说产品
+示例："每次出门 5 分钟就汗流浃背，夏天真的太难了"
+用第一人称，口语化
+包含 1-2 个 emoji
+
+第 2 段：产品引出（50-80 字）
+自然过渡到产品
+示例："直到朋友推荐了这个颈挂风扇，我的夏天才算得救了！"
+不要用"广告""推荐"等词
+像朋友分享一样自然
+
+第 3 段：使用体验（100-150 字）
+详细描述使用感受
+包含具体细节（"风力有 3 档，最大档真的很凉"）
+提到 1-2 个小缺点（增加真实感）
+使用场景描述（"通勤/运动/逛街都能用"）
+多用 emoji 和口语化表达
+
+第 4 段：总结推荐（50-80 字）
+总结核心推荐理由
+价格信息（"￥XX 就能买到"）
+适合人群
+引导互动（"你们夏天怎么降温的？评论区告诉我！"）
+
+标签区（15-20 个标签）：
+热门标签 5 个（#好物推荐 #夏日必备）
+品类标签 5 个（#颈挂风扇 #便携风扇）
+场景标签 5 个（#通勤好物 #户外装备）
+长尾标签 5 个（#夏天出门神器 #不到百元好物）
+</code></pre>
+<h3 id="小红书视频笔记-vs-图文笔记"><a class="header" href="#小红书视频笔记-vs-图文笔记">小红书视频笔记 vs 图文笔记</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>维度</th><th>图文笔记</th><th>视频笔记</th></tr>
+</thead>
+<tbody>
+<tr><td>占比</td><td>~70%</td><td>~30%（增长中）</td></tr>
+<tr><td>制作成本</td><td>低（手机拍照+文字）</td><td>中（需要拍摄+剪辑）</td></tr>
+<tr><td>互动率</td><td>中等</td><td>较高（视频更容易引发评论）</td></tr>
+<tr><td>搜索权重</td><td>高（文字内容被索引）</td><td>中（字幕被索引但权重较低）</td></tr>
+<tr><td>适合内容</td><td>清单/攻略/对比/测评</td><td>开箱/教程/使用演示/Vlog</td></tr>
+<tr><td>AI 辅助</td><td>AI 生成文案+封面文字</td><td>AI 生成脚本+字幕</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>建议</strong>：图文笔记和视频笔记 7:3 的比例。图文笔记用于 SEO 和搜索流量，视频笔记用于推荐流量和互动。</p>
+</blockquote>
+<hr>
+<h2 id="87-小红书数据分析与优化"><a class="header" href="#87-小红书数据分析与优化">8.7 小红书数据分析与优化</a></h2>
+<h3 id="关键指标体系"><a class="header" href="#关键指标体系">关键指标体系</a></h3>
+<pre><code>小红书运营关键指标：
+
+一、笔记指标
+曝光量（Impressions）
+点击率（CTR）= 点击/曝光 → 衡量封面+标题吸引力
+互动率 = (点赞+收藏+评论+转发)/曝光 → 衡量内容质量
+CES 评分 = 点赞×1 + 收藏×1 + 评论×4 + 转发×4 + 关注×8
+收藏率 = 收藏/曝光 → 衡量内容"值得保存"程度
+评论率 = 评论/曝光 → 衡量内容"引发讨论"程度
+
+二、账号指标
+粉丝增长（日/周/月）
+粉丝画像（年龄/性别/地区/兴趣）
+账号权重（影响初始曝光池大小）
+内容垂直度（是否持续发布同品类内容）
+
+三、转化指标（如果有店铺）
+笔记→店铺点击率
+店铺浏览→加购率
+加购→购买率
+客单价和 ROI
+</code></pre>
+<h3 id="ai-月度复盘-prompt"><a class="header" href="#ai-月度复盘-prompt">AI 月度复盘 Prompt</a></h3>
+<pre><code>你是一个小红书数据分析专家。
+
+以下是我的小红书账号本月数据：
+
+账号数据：
+- 粉丝数：[X]（本月 +[X]）
+- 发布笔记数：[X]
+- 总曝光：[X]
+- 平均互动率：[X]%
+
+本月 Top 5 笔记：
+| 标题 | 类型 | 曝光 | 点赞 | 收藏 | 评论 | CES |
+[粘贴数据]
+
+本月 Bottom 5 笔记：
+| 标题 | 类型 | 曝光 | 点赞 | 收藏 | 评论 | CES |
+[粘贴数据]
+
+请分析：
+1. 本月整体表现评估（与上月对比）
+2. 爆款笔记的共同特征（标题/封面/内容类型/发布时间）
+3. 低效笔记的问题诊断
+4. 内容策略调整建议
+5. 下月的 8 篇笔记选题建议（基于数据趋势和季节性）
+6. KOL/KOC 合作效果评估（如果有）
+7. 需要关注的风险（如互动率下降、粉丝增长放缓）
+</code></pre>
+<hr>
+<h2 id="9-完成标志"><a class="header" href="#9-完成标志">9. 完成标志</a></h2>
+<ul>
+<li><input disabled="" type="checkbox"> 完成小红书账号定位和设置</li>
+<li><input disabled="" type="checkbox"> 用 AI 批量生成 10+ 篇种草笔记</li>
+<li><input disabled="" type="checkbox"> 建立关键词库和 SEO 优化流程</li>
+<li><input disabled="" type="checkbox"> 制定 KOL/KOC 合作方案并执行</li>
+<li><input disabled="" type="checkbox"> 用 AI 分析笔记数据并优化策略</li>
+</ul>
+<hr>
+<blockquote>
+<p><a href="../../README.html">Hub 首页</a> · <a href="README.html">Path E 总览</a></p>
+<p><strong>Path E</strong>: <a href="e1-instagram-facebook-ai-guide.html">E1 Instagram</a> · <a href="e2-youtube-ai-guide.html">E2 YouTube</a> · <a href="e3-xiaohongshu-ai-guide.html">E3 小红书</a> · <a href="e4-pinterest-ai-guide.html">E4 Pinterest</a> · <a href="e5-whatsapp-business-ai-guide.html">E5 WhatsApp</a> · <a href="e6-reddit-ai-guide.html">E6 Reddit</a> · <a href="e7-social-media-cross-channel.html">E7 跨渠道</a></p>
+<p><strong>快速跳转</strong>: <a href="../0-foundations/">Path 0 基础</a> · <a href="../a-operators/">Path A 运营</a> · <a href="../b-developers/">Path B 技术</a> · <a href="../c-managers/">Path C 管理</a> · <a href="../d-platforms/">Path D 多平台</a></p>
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../e-social-media/e2-youtube-ai-guide.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../e-social-media/e4-pinterest-ai-guide.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../e-social-media/e2-youtube-ai-guide.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../e-social-media/e4-pinterest-ai-guide.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../mermaid-217b66ef.min.js"></script>
+        <script src="../mermaid-init-d4730691.js"></script>
+
+
+
+    </div>
+    </body>
+</html>
