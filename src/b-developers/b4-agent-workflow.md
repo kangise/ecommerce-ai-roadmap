@@ -7,7 +7,6 @@
 > **预计时间**: 每天 1 小时，2-3 周
 ---
 
-[Hub 首页](../../README.md) · [Path B 总览](README.md)
 
 ```mermaid
 flowchart LR
@@ -1055,8 +1054,6 @@ LLM 推理引擎 工具
 (大脑) (ReAct) (手脚)
 
 
-
-
 记忆 状态管理 环境
 (Memory) (State) (APIs)
 
@@ -1093,15 +1090,4 @@ LLM 推理引擎 工具
 > **成本控制建议**：日常监控类 Agent 用 GPT-4o-mini 就够了。只有需要深度分析（如竞品策略分析、复杂报告生成）时才用 GPT-4o。
 ---
 
----
-> [Hub 首页](../../README.md) · [Path B 总览](README.md)
->
-> **Path B**: [B1 数据](b1-data-pipeline.md) · [B2 预测](b2-prediction-models.md) · [B3 RAG](b3-rag-knowledge-base.md) · [B4 Agent](b4-agent-workflow.md) · [B5 部署](b5-local-model-deploy.md)
->
-> **快速跳转**: [Path 0 基础](../0-foundations/) · [Path A 运营](../a-operators/) · [Path C 管理](../c-managers/) · [Path D 多平台](../d-platforms/) · [Path E 社交媒体](../e-social-media/)
-
-<!-- nav:prev-next -->
-
----
-
-[< B3 RAG](b3-rag-knowledge-base.md) | [Path 总览](README.md) | [B5 部署 >](b5-local-model-deploy.md)
+(b3-rag-knowledge-base.md) | [Path 总览](README.md) | [B5 部署 >](b5-local-model-deploy.md)

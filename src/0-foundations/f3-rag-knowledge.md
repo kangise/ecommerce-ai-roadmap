@@ -8,7 +8,6 @@
 
 ---
 
-[Hub 首页](../../README.md) · [Path 0 总览](README.md)
 
 ```mermaid
 flowchart LR
@@ -576,10 +575,3 @@ Content rephrased for compliance with licensing restrictions. Sources: [RAG Arch
 - [ ] 了解至少一种不写代码的 RAG 方案（ChatGPT 文件上传 / Claude Projects）
 
 完成以上所有项目后，你已经理解了让 AI 使用私有数据的核心技术。接下来进入 [F4 自动化与 Agent](f4-agent-automation.md)，学习如何让 AI 不只回答问题，还能执行任务。
-
----
-> [Hub 首页](../../README.md) · [Path 0 总览](README.md) · [AI 全景评估](ai-landscape.md)
->
-> **Path 0**: [F1 AI 演进](f1-ai-evolution.md) · [F2 Prompt 工程](f2-prompt-engineering.md) · [F3 RAG 知识库](f3-rag-knowledge.md) · [F4 Agent 自动化](f4-agent-automation.md) · [F5 RPA 自动化](f5-rpa-automation.md) · [AI 全景](ai-landscape.md)
->
-> **快速跳转**: [Path A 运营](../a-operators/) · [Path B 技术](../b-developers/) · [Path C 管理](../c-managers/) · [Path D 多平台](../d-platforms/) · [Path E 社交媒体](../e-social-media/)

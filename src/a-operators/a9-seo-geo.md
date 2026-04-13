@@ -6,7 +6,6 @@
 > **预计时间**: 每天 30 分钟，2-3 周
 > **前置模块**: [A2 Listing 优化](a2-listing-optimization.md)
 
-[Hub 首页](../../README.md) · [Path A 总览](README.md)
 
 ---
 
@@ -298,15 +297,4 @@ Content rephrased for compliance with licensing restrictions.
 - [ ] 评估 Agentic Commerce 准备度
 - [ ] 建立月度 GEO 审计流程
 
----
-> [Hub 首页](../../README.md) · [Path A 总览](README.md)
->
-> **Path A**: [A1 选品](a1-product-research.md) · [A2 Listing](a2-listing-optimization.md) · [A3 广告](a3-advertising.md) · [A4 客服](a4-customer-service.md) · [A5 库存](a5-inventory.md) · [A6 合规](a6-compliance.md) · [A7 视觉](a7-visual-content.md) · [A8 定价](a8-pricing-strategy.md) · [A9 SEO/GEO](a9-seo-geo.md) · [A10 品牌](a10-brand-building.md) · [A11 财务](a11-financial-analysis.md) · [A12 知识产权](a12-ip-protection.md)
->
-> **快速跳转**: [Path 0 基础](../0-foundations/) · [Path B 技术](../b-developers/) · [Path C 管理](../c-managers/) · [Path D 多平台](../d-platforms/) · [Path E 社交媒体](../e-social-media/)
-
-<!-- nav:prev-next -->
-
----
-
-[< A8 定价](a8-pricing-strategy.md) | [Path 总览](README.md) | [A10 品牌 >](a10-brand-building.md)
+(a8-pricing-strategy.md) | [Path 总览](README.md) | [A10 品牌 >](a10-brand-building.md)

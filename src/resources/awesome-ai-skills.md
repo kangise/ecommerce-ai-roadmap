@@ -4,7 +4,6 @@
 > 让 AI 按照你的规范工作，不再每次重复解释。
 > 最后更新: 2026-03-15
 
-[Hub 首页](../README.md) · [Awesome MCP & Agent](awesome-mcp-agents.md) · [B6 MCP 集成](../paths/b-developers/b6-mcp-agentic-workflow.md) · [F4 Agent 自动化](../paths/0-foundations/f4-agent-automation.md)
 
 ---
 
@@ -228,4 +227,3 @@ echo "你是一个 Python 电商开发专家..." > .cursorrules
 
 ---
 
-> [Hub 首页](../README.md) · [Awesome MCP & Agent](awesome-mcp-agents.md) · [B6 MCP 集成](../paths/b-developers/b6-mcp-agentic-workflow.md) · [F4 Agent 自动化](../paths/0-foundations/f4-agent-automation.md)

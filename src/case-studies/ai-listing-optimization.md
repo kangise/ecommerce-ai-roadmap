@@ -1,6 +1,6 @@
 # 案例：AI Listing 优化 — 从 4 小时/SKU 到 45 分钟/SKU
 
-> Domain: 内容与转化 · 关联模块: [A2 Listing 优化](../../paths/a-operators/a2-listing-optimization.md)
+> Domain: 内容与转化 · 关联模块: [A2 Listing 优化](../a-operators/a2-listing-optimization.md)
 
 ---
 

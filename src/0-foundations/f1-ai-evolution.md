@@ -8,7 +8,6 @@
 
 ---
 
-[Hub 首页](../../README.md) · [Path 0 总览](README.md)
 
 ```mermaid
 flowchart LR
@@ -840,10 +839,3 @@ SEO 关键词优化（文本分析）
 | Fine-tuning | Fine-tuning | 用特定数据进一步训练模型 |
 | 涌现能力 | Emergent Abilities | 模型规模增大后突然出现的新能力 |
 | 上下文窗口 | Context Window | AI 一次能处理的最大文本长度 |
-
----
-> [Hub 首页](../../README.md) · [Path 0 总览](README.md) · [AI 全景评估](ai-landscape.md)
->
-> **Path 0**: [F1 AI 演进](f1-ai-evolution.md) · [F2 Prompt 工程](f2-prompt-engineering.md) · [F3 RAG 知识库](f3-rag-knowledge.md) · [F4 Agent 自动化](f4-agent-automation.md) · [F5 RPA 自动化](f5-rpa-automation.md) · [AI 全景](ai-landscape.md)
->
-> **快速跳转**: [Path A 运营](../a-operators/) · [Path B 技术](../b-developers/) · [Path C 管理](../c-managers/) · [Path D 多平台](../d-platforms/) · [Path E 社交媒体](../e-social-media/)

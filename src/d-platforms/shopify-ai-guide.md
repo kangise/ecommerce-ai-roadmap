@@ -6,7 +6,6 @@
 > **预计时间**: 3-4 小时
 > **前置模块**: [Path 0 基础](../0-foundations/) · [A1 选品](../a-operators/a1-product-research.md) · [A2 Listing](../a-operators/a2-listing-optimization.md)
 
-[Hub 首页](../../README.md) · [Path D 总览](README.md)
 
 ---
 
@@ -732,7 +731,7 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 
 ---
 
-[返回 Path D 总览](README.md) | [返回 Hub 首页](../../README.md) | [下一模块: D2 TikTok Shop AI 指南](tiktok-shop-ai-guide.md)
+[返回 Path D 总览](README.md) | [返回 Hub 首页](../README.md) | [下一模块: D2 TikTok Shop AI 指南](tiktok-shop-ai-guide.md)
 
 
 ---
@@ -2220,10 +2219,3 @@ Shopify 数据:
 | 定价和 Amazon 一样 | Shopify 的成本结构不同（无佣金但有 CAC） | 重新计算利润模型 |
 | 期望立即见效 | Shopify 不像 Amazon 有自带流量 | 前 3 个月是投入期，6 个月见效 |
 | 买太多 App | 每个 App 都有月费，加起来很贵 | 起步只需要 3-4 个核心 App |
-
----
-> [Hub 首页](../../README.md) · [Path D 总览](README.md) · [平台对比](platform-comparison.md)
->
-> **Path D**: [D1 Shopify](shopify-ai-guide.md) · [D2 TikTok](tiktok-shop-ai-guide.md) · [D3 跨平台](cross-platform-strategy.md) · [D4 Walmart](d4-walmart-ai-guide.md) · [D5 Temu](d5-temu-seller-guide.md) · [D6 东南亚](d6-southeast-asia-ai-guide.md) · [D7 拉美](d7-mercado-libre-ai-guide.md) · [D8 日本](d8-rakuten-japan-ai-guide.md) · [D9 eBay](d9-ebay-ai-guide.md) · [D10 AliExpress](d10-aliexpress-ai-guide.md) · [D11 韩国](d11-coupang-korea-ai-guide.md) · [D12 Faire](d12-faire-wholesale-ai-guide.md) · [D13 欧洲](d13-europe-marketplaces-guide.md)
->
-> **快速跳转**: [Path 0 基础](../0-foundations/) · [Path A 运营](../a-operators/) · [Path B 技术](../b-developers/) · [Path C 管理](../c-managers/) · [Path E 社交媒体](../e-social-media/)

@@ -8,7 +8,6 @@
 
 ---
 
-[Hub 首页](../../README.md) · [Path 0 总览](README.md)
 
 ```mermaid
 flowchart LR
@@ -345,20 +344,13 @@ Edge（边）：节点之间的连接和条件判断
 获取数据 → 分析变化 → 判断重要性
 
 
-
-
 重要变化 不重要
-
 
 
 深入分析 记录日志
 
 
-
-
 生成报告
-
-
 
 
 发送通知
@@ -732,10 +724,3 @@ Month 5-6：Agent 优化
 | 运营人 | [Path A: AI 提效实战](../a-operators/) | 用 AI 工具把运营效率提升 3-10 倍 |
 | 技术人 | [Path B: AI 系统构建](../b-developers/) | 构建 AI 驱动的电商工具和系统 |
 | 管理者 | [Path C: AI 战略落地](../c-managers/) | 制定可执行的团队 AI 落地计划 |
-
----
-> [Hub 首页](../../README.md) · [Path 0 总览](README.md) · [AI 全景评估](ai-landscape.md)
->
-> **Path 0**: [F1 AI 演进](f1-ai-evolution.md) · [F2 Prompt 工程](f2-prompt-engineering.md) · [F3 RAG 知识库](f3-rag-knowledge.md) · [F4 Agent 自动化](f4-agent-automation.md) · [F5 RPA 自动化](f5-rpa-automation.md) · [AI 全景](ai-landscape.md)
->
-> **快速跳转**: [Path A 运营](../a-operators/) · [Path B 技术](../b-developers/) · [Path C 管理](../c-managers/) · [Path D 多平台](../d-platforms/) · [Path E 社交媒体](../e-social-media/)

@@ -6,7 +6,6 @@
 > **预计时间**: 1 小时
 > **前置模块**: [F1 AI 的前世今生](f1-ai-evolution.md)
 
-[Hub 首页](../../README.md) · [Path 0 总览](README.md)
 
 ---
 
@@ -579,10 +578,3 @@ Amazon Seller Central 登录凭证
 > - 运营人 → [Path A: AI 提效实战](../a-operators/) 从 A1 选品开始
 > - 技术人 → [Path B: AI 系统构建](../b-developers/) 从 B1 Python 数据分析开始
 > - 管理者 → [Path C: AI 战略落地](../c-managers/) 从 C1 AI 战略开始
-
----
-> [Hub 首页](../../README.md) · [Path 0 总览](README.md) · [AI 全景评估](ai-landscape.md)
->
-> **Path 0**: [F1 AI 演进](f1-ai-evolution.md) · [F2 Prompt 工程](f2-prompt-engineering.md) · [F3 RAG 知识库](f3-rag-knowledge.md) · [F4 Agent 自动化](f4-agent-automation.md) · [F5 RPA 自动化](f5-rpa-automation.md) · [F6 AI 工具评测](f6-ai-tools-comparison.md) · [AI 全景](ai-landscape.md)
->
-> **快速跳转**: [Path A 运营](../a-operators/) · [Path B 技术](../b-developers/) · [Path C 管理](../c-managers/) · [Path D 多平台](../d-platforms/) · [Path E 社交媒体](../e-social-media/)

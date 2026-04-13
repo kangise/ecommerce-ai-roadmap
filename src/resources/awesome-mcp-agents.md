@@ -3,7 +3,6 @@
 > 电商 AI 自动化必备的 MCP Server、Agent 框架和外部资源集合。
 > 最后更新: 2026-03-15
 
-[Hub 首页](../README.md) · [B6 MCP 集成指南](../paths/b-developers/b6-mcp-agentic-workflow.md) · [B4 AI Agent 指南](../paths/b-developers/b4-agent-workflow.md) · [F4 Agent 自动化基础](../paths/0-foundations/f4-agent-automation.md)
 
 ---
 
@@ -202,4 +201,3 @@ $500+/月 → 企业级方案（Alhena/ZyG）
 
 ---
 
-> [Hub 首页](../README.md) · [B6 MCP 集成指南](../paths/b-developers/b6-mcp-agentic-workflow.md) · [B4 AI Agent 指南](../paths/b-developers/b4-agent-workflow.md) · [F4 Agent 自动化基础](../paths/0-foundations/f4-agent-automation.md)

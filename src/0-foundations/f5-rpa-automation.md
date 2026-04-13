@@ -6,7 +6,6 @@
 > **预计时间**: 2-3 小时
 > **前置模块**: [F4 自动化与 Agent](f4-agent-automation.md)
 
-[Hub 首页](../../README.md) · [Path 0 总览](README.md)
 
 ---
 
@@ -668,10 +667,3 @@ n8n AI 节点类型：
 - [ ] 制定你的自动化优先级清单
 
 > **下一步**：如果你想深入构建 AI Agent 系统，进入 [Path B: B4 AI Agent 与自动化](../b-developers/b4-agent-workflow.md)。如果你想先用好现有工具，回到 [Path A](../a-operators/) 把 AI 应用到具体运营场景。
-
----
-> [Hub 首页](../../README.md) · [Path 0 总览](README.md) · [AI 全景评估](ai-landscape.md)
->
-> **Path 0**: [F1 AI 演进](f1-ai-evolution.md) · [F2 Prompt 工程](f2-prompt-engineering.md) · [F3 RAG 知识库](f3-rag-knowledge.md) · [F4 Agent 自动化](f4-agent-automation.md) · [F5 RPA 自动化](f5-rpa-automation.md) · [AI 全景](ai-landscape.md)
->
-> **快速跳转**: [Path A 运营](../a-operators/) · [Path B 技术](../b-developers/) · [Path C 管理](../c-managers/) · [Path D 多平台](../d-platforms/) · [Path E 社交媒体](../e-social-media/)

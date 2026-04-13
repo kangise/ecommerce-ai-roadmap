@@ -6,7 +6,6 @@
 > **预计时间**: 集中 3-4 小时
 > **前置模块**: [C1 AI 能力评估](c1-ai-assessment.md)
 
-[Hub 首页](../../README.md) · [Path C 总览](README.md)
 
 ---
 
@@ -276,15 +275,4 @@ Content rephrased for compliance with licensing restrictions.
 - [ ] 评估 Agentic Commerce 准备度（自己 vs 竞品）
 - [ ] 用 AI 完成一次季度战略复盘
 
----
-> [Hub 首页](../../README.md) · [Path C 总览](README.md)
->
-> **Path C**: [C1 AI 评估](c1-ai-assessment.md) · [C2 团队建设](c2-team-building.md) · [C3 ROI 评估](c3-roi-evaluation.md) · [C4 风险治理](c4-ai-risk-governance.md) · [C5 竞争情报](c5-competitive-intelligence.md)
->
-> **快速跳转**: [Path 0 基础](../0-foundations/) · [Path A 运营](../a-operators/) · [Path B 技术](../b-developers/) · [Path D 多平台](../d-platforms/) · [Path E 社交媒体](../e-social-media/)
-
-<!-- nav:prev-next -->
-
----
-
-[< C4 风险](c4-ai-risk-governance.md) | [Path 总览](README.md)
+(c4-ai-risk-governance.md) | [Path 总览](README.md)

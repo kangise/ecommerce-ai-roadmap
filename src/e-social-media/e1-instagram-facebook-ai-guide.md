@@ -6,7 +6,6 @@
 > **预计时间**: 2-3 小时
 > **前置模块**: [Path 0 基础](../0-foundations/) · [Path A 运营](../a-operators/)（至少完成 A1-A3）
 
-[Hub 首页](../../README.md) · [Path E 总览](README.md)
 
 ---
 
@@ -1004,10 +1003,3 @@ Week 4: 测试发布时间
 - [ ] 建立一套可复用的 Meta 生态 Prompt 模板库
 
 > **下一步**：完成 E1 后，建议继续 [E2 YouTube AI 运营](e2-youtube-ai-guide.md)，把视频内容能力从短视频扩展到长视频。或者直接跳到 [E7 跨渠道协同](e7-social-media-cross-channel.md)，学习如何把 Instagram 内容高效复用到其他平台。
-
----
-> [Hub 首页](../../README.md) · [Path E 总览](README.md)
->
-> **Path E**: [E1 Instagram](e1-instagram-facebook-ai-guide.md) · [E2 YouTube](e2-youtube-ai-guide.md) · [E3 小红书](e3-xiaohongshu-ai-guide.md) · [E4 Pinterest](e4-pinterest-ai-guide.md) · [E5 WhatsApp](e5-whatsapp-business-ai-guide.md) · [E6 Reddit](e6-reddit-ai-guide.md) · [E7 跨渠道](e7-social-media-cross-channel.md)
->
-> **快速跳转**: [Path 0 基础](../0-foundations/) · [Path A 运营](../a-operators/) · [Path B 技术](../b-developers/) · [Path C 管理](../c-managers/) · [Path D 多平台](../d-platforms/)

@@ -6,7 +6,6 @@
 > **预计时间**: 每天 1 小时，2 周
 > **前置模块**: [B1 数据采集与处理](b1-data-pipeline.md)
 
-[Hub 首页](../../README.md) · [Path B 总览](README.md)
 
 ---
 
@@ -838,15 +837,4 @@ print(f"分析结果已导出到 {output_dir}/")
 - [ ] 构建 Streamlit Dashboard 展示分析结果
 - [ ] 完成一次竞品 Review 对比分析
 
----
-> [Hub 首页](../../README.md) · [Path B 总览](README.md)
->
-> **Path B**: [B1 数据管道](b1-data-pipeline.md) · [B2 预测模型](b2-prediction-models.md) · [B3 RAG 知识库](b3-rag-knowledge-base.md) · [B4 AI Agent](b4-agent-workflow.md) · [B5 本地模型](b5-local-model-deploy.md) · [B6 MCP 集成](b6-mcp-agentic-workflow.md) · [B7 Review NLP](b7-review-nlp-system.md)
->
-> **快速跳转**: [Path 0 基础](../0-foundations/) · [Path A 运营](../a-operators/) · [Path C 管理](../c-managers/) · [Path D 多平台](../d-platforms/) · [Path E 社交媒体](../e-social-media/)
-
-<!-- nav:prev-next -->
-
----
-
-[< B6 MCP](b6-mcp-agentic-workflow.md) | [Path 总览](README.md) | [B8 Dashboard >](b8-ecommerce-dashboard.md)
+(b6-mcp-agentic-workflow.md) | [Path 总览](README.md) | [B8 Dashboard >](b8-ecommerce-dashboard.md)

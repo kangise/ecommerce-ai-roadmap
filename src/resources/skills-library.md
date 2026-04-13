@@ -3,7 +3,6 @@
 > Skills 是把 AI 能力固化成可复用模块的方式。写一次，团队所有人都能用同样的质量标准调用 AI。
 > 支持 Kiro Skills、Claude Code SKILL.md、Cursor Rules、Copilot Skills。
 
-[Hub 首页](../README.md)
 
 ---
 

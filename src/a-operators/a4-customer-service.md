@@ -6,7 +6,6 @@
 > **预计时间**: 每天 30 分钟，1-2 周
 ---
 
-[Hub 首页](../../README.md) · [Path A 总览](README.md)
 
 ```mermaid
 flowchart LR
@@ -1119,15 +1118,4 @@ AI 查询订单系统 → 返回状态
 预期不符 → 公开回复 + 检查 Listing 是否需要更准确的描述
 ```
 
----
-> [Hub 首页](../../README.md) · [Path A 总览](README.md)
->
-> **Path A**: [A1 选品](a1-product-research.md) · [A2 Listing](a2-listing-optimization.md) · [A3 广告](a3-advertising.md) · [A4 客服](a4-customer-service.md) · [A5 库存](a5-inventory.md) · [A6 合规](a6-compliance.md)
->
-> **快速跳转**: [Path 0 基础](../0-foundations/) · [Path B 技术](../b-developers/) · [Path C 管理](../c-managers/) · [Path D 多平台](../d-platforms/) · [Path E 社交媒体](../e-social-media/)
-
-<!-- nav:prev-next -->
-
----
-
-[< A3 广告](a3-advertising.md) | [Path 总览](README.md) | [A5 库存 >](a5-inventory.md)
+(a3-advertising.md) | [Path 总览](README.md) | [A5 库存 >](a5-inventory.md)

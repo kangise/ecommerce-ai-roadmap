@@ -6,7 +6,6 @@
 > **预计时间**: 1.5-2 小时
 > **前置模块**: [Path 0 基础](../0-foundations/)
 
-[Hub 首页](../../README.md) · [Path E 总览](README.md)
 
 ---
 
@@ -506,10 +505,3 @@ Bottom 5 Pin 表现：
 - [ ] 用 AI 批量生成 30+ 个 Pin
 - [ ] 设置 Product Catalog + Rich Pins
 - [ ] 运行 Pinterest Shopping Ads 并优化
-
----
-> [Hub 首页](../../README.md) · [Path E 总览](README.md)
->
-> **Path E**: [E1 Instagram](e1-instagram-facebook-ai-guide.md) · [E2 YouTube](e2-youtube-ai-guide.md) · [E3 小红书](e3-xiaohongshu-ai-guide.md) · [E4 Pinterest](e4-pinterest-ai-guide.md) · [E5 WhatsApp](e5-whatsapp-business-ai-guide.md) · [E6 Reddit](e6-reddit-ai-guide.md) · [E7 跨渠道](e7-social-media-cross-channel.md)
->
-> **快速跳转**: [Path 0 基础](../0-foundations/) · [Path A 运营](../a-operators/) · [Path B 技术](../b-developers/) · [Path C 管理](../c-managers/) · [Path D 多平台](../d-platforms/)

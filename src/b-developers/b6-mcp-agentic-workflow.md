@@ -6,7 +6,6 @@
 > **预计时间**: 每天 1 小时，2-3 周
 > **前置模块**: [B4 AI Agent 与自动化](b4-agent-workflow.md)
 
-[Hub 首页](../../README.md) · [Path B 总览](README.md)
 
 ---
 
@@ -479,7 +478,6 @@ asyncio.run(stdio_server(server))
 
 Orchestrator Agent
 （协调所有子 Agent，分配任务）
-
 
 
 广告 库存 客服
@@ -1001,15 +999,4 @@ await self.platforms[name].update_daily_budget(new_budget)
 - [ ] 实现一个每日自动化运营 Agent（至少包含 2 个 MCP 连接）
 - [ ] 建立 MCP 安全最佳实践（权限控制 + 审计日志）
 
----
-> [Hub 首页](../../README.md) · [Path B 总览](README.md)
->
-> **Path B**: [B1 数据管道](b1-data-pipeline.md) · [B2 预测模型](b2-prediction-models.md) · [B3 RAG 知识库](b3-rag-knowledge-base.md) · [B4 AI Agent](b4-agent-workflow.md) · [B5 本地模型](b5-local-model-deploy.md) · [B6 MCP 集成](b6-mcp-agentic-workflow.md) · [B7 Review NLP](b7-review-nlp-system.md)
->
-> **快速跳转**: [Path 0 基础](../0-foundations/) · [Path A 运营](../a-operators/) · [Path C 管理](../c-managers/) · [Path D 多平台](../d-platforms/) · [Path E 社交媒体](../e-social-media/)
-
-<!-- nav:prev-next -->
-
----
-
-[< B5 部署](b5-local-model-deploy.md) | [Path 总览](README.md) | [B7 NLP >](b7-review-nlp-system.md)
+(b5-local-model-deploy.md) | [Path 总览](README.md) | [B7 NLP >](b7-review-nlp-system.md)

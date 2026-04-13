@@ -8,7 +8,6 @@
 
 ---
 
-[Hub 首页](../../README.md) · [学习路径总览](../README.md)
 
 ## 为什么需要 Path 0
 
@@ -66,4 +65,4 @@ style F4 fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ---
 
-[返回 Hub 首页](../../README.md) · [返回学习路径总览](../README.md)
+[返回 Hub 首页](../README.md) · [返回学习路径总览](../README.md)

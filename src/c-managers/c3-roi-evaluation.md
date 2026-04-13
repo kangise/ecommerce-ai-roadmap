@@ -7,7 +7,6 @@
 > **前置模块**: [C1 AI 能力评估与规划](c1-ai-assessment.md)、[C2 团队 AI 技能建设](c2-team-building.md)
 ---
 
-[Hub 首页](../../README.md) · [Path C 总览](README.md)
 
 ```mermaid
 flowchart LR
@@ -1107,15 +1106,4 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 | 竞争分析 | 竞争对手 AI 使用情报 | [5.4](#54-竞争对手-ai-使用情报分析) |
 | 成本优化 | AI 成本优化分析 | [5.5](#55-ai-成本优化分析) |
 
----
-> [Hub 首页](../../README.md) · [Path C 总览](README.md)
->
-> **Path C**: [C1 评估](c1-ai-assessment.md) · [C2 建设](c2-team-building.md) · [C3 ROI](c3-roi-evaluation.md)
->
-> **快速跳转**: [Path 0 基础](../0-foundations/) · [Path A 运营](../a-operators/) · [Path B 技术](../b-developers/) · [Path D 多平台](../d-platforms/) · [Path E 社交媒体](../e-social-media/)
-
-<!-- nav:prev-next -->
-
----
-
-[< C2 团队](c2-team-building.md) | [Path 总览](README.md) | [C4 风险 >](c4-ai-risk-governance.md)
+(c2-team-building.md) | [Path 总览](README.md) | [C4 风险 >](c4-ai-risk-governance.md)

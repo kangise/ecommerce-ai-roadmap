@@ -3,7 +3,6 @@
 > **最后更新**: 2026-03-14
 > **用途**: 快速了解每个平台的核心特征、与 Amazon 的差异、AI 应用重点，帮你决定优先进入哪个平台
 
-[Hub 首页](../../README.md) · [Path D 总览](README.md)
 
 ---
 
@@ -400,10 +399,3 @@ Year 3: 规模化 + 品牌化
 | 全平台 | 6-10 人 | $5000-15000 | |
 
 > **AI 的价值**：AI 可以让 2-3 人的团队管理 4-5 个平台。核心是用 AI 自动化 Listing 创建、广告优化、数据分析、内容生成，把人力集中在策略决策和客户关系上。
-
----
-> [Hub 首页](../../README.md) · [Path D 总览](README.md) · [平台对比](platform-comparison.md)
->
-> **Path D**: [D1 Shopify](shopify-ai-guide.md) · [D2 TikTok](tiktok-shop-ai-guide.md) · [D3 跨平台](cross-platform-strategy.md) · [D4 Walmart](d4-walmart-ai-guide.md) · [D5 Temu](d5-temu-seller-guide.md) · [D6 东南亚](d6-southeast-asia-ai-guide.md) · [D7 拉美](d7-mercado-libre-ai-guide.md) · [D8 日本](d8-rakuten-japan-ai-guide.md) · [D9 eBay](d9-ebay-ai-guide.md) · [D10 AliExpress](d10-aliexpress-ai-guide.md) · [D11 韩国](d11-coupang-korea-ai-guide.md) · [D12 Faire](d12-faire-wholesale-ai-guide.md) · [D13 欧洲](d13-europe-marketplaces-guide.md)
->
-> **快速跳转**: [Path 0 基础](../0-foundations/) · [Path A 运营](../a-operators/) · [Path B 技术](../b-developers/) · [Path C 管理](../c-managers/) · [Path E 社交媒体](../e-social-media/)

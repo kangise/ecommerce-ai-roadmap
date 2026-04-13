@@ -8,7 +8,6 @@
 
 ---
 
-[Hub 首页](../../README.md) · [Path 0 总览](README.md)
 
 ```mermaid
 flowchart LR
@@ -809,10 +808,3 @@ Content rephrased for compliance with licensing restrictions. Source: [Prompt En
 - [ ] 理解 Context Engineering 的概念和实践原则
 
 完成以上所有项目后，你已经掌握了和 AI 高效沟通的核心技能。接下来进入 [F3 知识库与 RAG](f3-rag-knowledge.md)，学习如何让 AI 理解你的私有数据。
-
----
-> [Hub 首页](../../README.md) · [Path 0 总览](README.md) · [AI 全景评估](ai-landscape.md)
->
-> **Path 0**: [F1 AI 演进](f1-ai-evolution.md) · [F2 Prompt 工程](f2-prompt-engineering.md) · [F3 RAG 知识库](f3-rag-knowledge.md) · [F4 Agent 自动化](f4-agent-automation.md) · [F5 RPA 自动化](f5-rpa-automation.md) · [AI 全景](ai-landscape.md)
->
-> **快速跳转**: [Path A 运营](../a-operators/) · [Path B 技术](../b-developers/) · [Path C 管理](../c-managers/) · [Path D 多平台](../d-platforms/) · [Path E 社交媒体](../e-social-media/)

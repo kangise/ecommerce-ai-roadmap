@@ -5,7 +5,6 @@
 > **难度**: 入门
 > **预计时间**: 1-2 小时
 
-[Hub 首页](../../README.md) · [Path C 总览](README.md)
 
 ```mermaid
 flowchart LR
@@ -451,15 +450,4 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 | 规模化 | 全员使用 | 3-6 月 | 建 Prompt 库、做培训、定规范 | 80%+ 的人每天用 AI |
 | 系统化 | 融入流程 | 6-12 月 | API 集成、自动化、持续优化 | 关键流程自动化 >60% |
 
----
-> [Hub 首页](../../README.md) · [Path C 总览](README.md)
->
-> **Path C**: [C1 评估](c1-ai-assessment.md) · [C2 建设](c2-team-building.md) · [C3 ROI](c3-roi-evaluation.md)
->
-> **快速跳转**: [Path 0 基础](../0-foundations/) · [Path A 运营](../a-operators/) · [Path B 技术](../b-developers/) · [Path D 多平台](../d-platforms/) · [Path E 社交媒体](../e-social-media/)
-
-<!-- nav:prev-next -->
-
----
-
-[Path 总览](README.md) | [C2 团队 >](c2-team-building.md)
+(README.md) | [C2 团队 >](c2-team-building.md)

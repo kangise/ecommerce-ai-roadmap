@@ -6,7 +6,6 @@
 > **预计时间**: 每天 30 分钟，1-2 周
 ---
 
-[Hub 首页](../../README.md) · [Path A 总览](README.md)
 
 ```mermaid
 flowchart LR
@@ -846,9 +845,6 @@ Amazon Shopify 独立站
 FBA 仓库 自发货 自发货
 
 
-
-
-
 库存中心系统
 (总库存池)
 
@@ -1142,15 +1138,4 @@ IPI Score 是否 ≥ 400？
 库存水位健康 → 下月再检查
 ```
 
----
-> [Hub 首页](../../README.md) · [Path A 总览](README.md)
->
-> **Path A**: [A1 选品](a1-product-research.md) · [A2 Listing](a2-listing-optimization.md) · [A3 广告](a3-advertising.md) · [A4 客服](a4-customer-service.md) · [A5 库存](a5-inventory.md) · [A6 合规](a6-compliance.md)
->
-> **快速跳转**: [Path 0 基础](../0-foundations/) · [Path B 技术](../b-developers/) · [Path C 管理](../c-managers/) · [Path D 多平台](../d-platforms/) · [Path E 社交媒体](../e-social-media/)
-
-<!-- nav:prev-next -->
-
----
-
-[< A4 客服](a4-customer-service.md) | [Path 总览](README.md) | [A6 合规 >](a6-compliance.md)
+(a4-customer-service.md) | [Path 总览](README.md) | [A6 合规 >](a6-compliance.md)

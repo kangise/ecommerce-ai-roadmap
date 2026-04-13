@@ -9,7 +9,6 @@
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/b1-data-pipeline.ipynb) 直接在 Colab 运行配套 Notebook
 ---
 
-[Hub 首页](../../README.md) · [Path B 总览](README.md)
 
 ```mermaid
 flowchart LR
@@ -1679,15 +1678,4 @@ TO 'output.parquet' (FORMAT PARQUET);
 - [ ] 已添加市场标识列（Market）
 - [ ] 数据质量检查通过（缺失值、重复行、异常值）
 
----
-> [Hub 首页](../../README.md) · [Path B 总览](README.md)
->
-> **Path B**: [B1 数据](b1-data-pipeline.md) · [B2 预测](b2-prediction-models.md) · [B3 RAG](b3-rag-knowledge-base.md) · [B4 Agent](b4-agent-workflow.md) · [B5 部署](b5-local-model-deploy.md)
->
-> **快速跳转**: [Path 0 基础](../0-foundations/) · [Path A 运营](../a-operators/) · [Path C 管理](../c-managers/) · [Path D 多平台](../d-platforms/) · [Path E 社交媒体](../e-social-media/)
-
-<!-- nav:prev-next -->
-
----
-
-[Path 总览](README.md) | [B2 预测 >](b2-prediction-models.md)
+(README.md) | [B2 预测 >](b2-prediction-models.md)

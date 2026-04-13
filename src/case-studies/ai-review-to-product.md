@@ -1,6 +1,6 @@
 # 案例：AI Review 分析驱动选品改进 — 差评变产品优势
 
-> Domain: 选品与市场 + 客户运营 · 关联模块: [A1 选品](../../paths/a-operators/a1-product-research.md) · [A4 客服](../../paths/a-operators/a4-customer-service.md)
+> Domain: 选品与市场 + 客户运营 · 关联模块: [A1 选品](../a-operators/a1-product-research.md) · [A4 客服](../a-operators/a4-customer-service.md)
 
 ---
 

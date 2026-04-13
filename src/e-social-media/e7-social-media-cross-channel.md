@@ -6,7 +6,6 @@
 > **预计时间**: 2 小时
 > **前置模块**: 至少完成 E1-E2 中的一个
 
-[Hub 首页](../../README.md) · [Path E 总览](README.md)
 
 ---
 
@@ -380,10 +379,3 @@ Amazon 品牌搜索量（过去 12 周）：
 4. 预估社交媒体对 Amazon 销售的间接贡献比例
 ```
 ```
-
----
-> [Hub 首页](../../README.md) · [Path E 总览](README.md)
->
-> **Path E**: [E1 Instagram](e1-instagram-facebook-ai-guide.md) · [E2 YouTube](e2-youtube-ai-guide.md) · [E3 小红书](e3-xiaohongshu-ai-guide.md) · [E4 Pinterest](e4-pinterest-ai-guide.md) · [E5 WhatsApp](e5-whatsapp-business-ai-guide.md) · [E6 Reddit](e6-reddit-ai-guide.md) · [E7 跨渠道](e7-social-media-cross-channel.md)
->
-> **快速跳转**: [Path 0 基础](../0-foundations/) · [Path A 运营](../a-operators/) · [Path B 技术](../b-developers/) · [Path C 管理](../c-managers/) · [Path D 多平台](../d-platforms/)

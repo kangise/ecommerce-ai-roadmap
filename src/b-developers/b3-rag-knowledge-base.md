@@ -7,7 +7,6 @@
 > **预计时间**: 每天 1 小时，2-3 周
 ---
 
-[Hub 首页](../../README.md) · [Path B 总览](README.md)
 
 ```mermaid
 flowchart LR
@@ -1277,50 +1276,38 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 RAG 系统架构
 
 
-
 产品手册 政策文档 Review 数据
 (.pdf/.md) (.pdf/.docx) (.csv)
 
 
-
-
 文档加载 (SimpleDirectoryReader)
-
 
 
 文本分块 (SentenceSplitter)
 chunk_size=512, overlap=50
 
 
-
 向量化 (Embedding Model)
 OpenAI / BGE / Ollama
-
 
 
 向量数据库 (Chroma / FAISS)
 持久化存储，支持增量更新
 
 
-
 索引阶段（离线） 查询阶段（在线）
-
 
 
 用户提问
 
 
-
 相似度搜索 (Top-K) + Re-ranking
-
 
 
 Prompt 构造 + LLM 生成回答
 
 
-
 回答 + 引用来源
-
 
 
 ```
@@ -1437,15 +1424,4 @@ A: 三个方向：(1) 用 Chroma 持久化避免重建索引；(2) 减小 top_k 
 **Q: 数据量很大（10 万+ 文档）怎么办？**
 A: 本地 Chroma 可能不够用，考虑迁移到 Pinecone（云托管）或 Qdrant（自托管）。同时优化 chunk_size 和 Embedding 模型选择。
 
----
-> [Hub 首页](../../README.md) · [Path B 总览](README.md)
->
-> **Path B**: [B1 数据](b1-data-pipeline.md) · [B2 预测](b2-prediction-models.md) · [B3 RAG](b3-rag-knowledge-base.md) · [B4 Agent](b4-agent-workflow.md) · [B5 部署](b5-local-model-deploy.md)
->
-> **快速跳转**: [Path 0 基础](../0-foundations/) · [Path A 运营](../a-operators/) · [Path C 管理](../c-managers/) · [Path D 多平台](../d-platforms/) · [Path E 社交媒体](../e-social-media/)
-
-<!-- nav:prev-next -->
-
----
-
-[< B2 预测](b2-prediction-models.md) | [Path 总览](README.md) | [B4 Agent >](b4-agent-workflow.md)
+(b2-prediction-models.md) | [Path 总览](README.md) | [B4 Agent >](b4-agent-workflow.md)

@@ -1,6 +1,6 @@
 # 案例：AI 广告优化 — ACOS 从 35% 降到 18%
 
-> Domain: 流量与获客 · 关联模块: [A3 广告优化](../../paths/a-operators/a3-advertising.md)
+> Domain: 流量与获客 · 关联模块: [A3 广告优化](../a-operators/a3-advertising.md)
 
 ---
 

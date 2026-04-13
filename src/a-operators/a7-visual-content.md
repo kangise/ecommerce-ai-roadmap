@@ -6,7 +6,6 @@
 > **预计时间**: 每天 30 分钟，1-2 周
 > **前置模块**: [A2 Listing 与内容创作](a2-listing-optimization.md)
 
-[Hub 首页](../../README.md) · [Path A 总览](README.md)
 
 ---
 
@@ -409,15 +408,4 @@ Midjourney 等工具生成的图片版权归属仍有争议。商业使用建议
 - [ ] 掌握至少 2 个 AI 图片工具和 1 个 AI 视频工具
 - [ ] 完成一次 AI 图片 vs 传统摄影的成本对比
 
----
-> [Hub 首页](../../README.md) · [Path A 总览](README.md)
->
-> **Path A**: [A1 选品](a1-product-research.md) · [A2 Listing](a2-listing-optimization.md) · [A3 广告](a3-advertising.md) · [A4 客服](a4-customer-service.md) · [A5 库存](a5-inventory.md) · [A6 合规](a6-compliance.md) · [A7 视觉内容](a7-visual-content.md)
->
-> **快速跳转**: [Path 0 基础](../0-foundations/) · [Path B 技术](../b-developers/) · [Path C 管理](../c-managers/) · [Path D 多平台](../d-platforms/) · [Path E 社交媒体](../e-social-media/)
-
-<!-- nav:prev-next -->
-
----
-
-[< A6 合规](a6-compliance.md) | [Path 总览](README.md) | [A8 定价 >](a8-pricing-strategy.md)
+(a6-compliance.md) | [Path 总览](README.md) | [A8 定价 >](a8-pricing-strategy.md)
