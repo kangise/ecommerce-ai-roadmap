@@ -33,3 +33,12 @@
 | 社交媒体 | 全角色 | 7 个社交渠道 AI 运营指南 |
 
 想先了解 AI 能做什么？从 [AI 基础](0-foundations/ai-landscape.md) 开始。
+
+## 关于 Prompt
+
+本知识库中的所有 Prompt 模板均基于以下模型测试：
+
+- ChatGPT (GPT-4o) — 2026 年 3 月
+- Claude (Opus 4 / Sonnet 4) — 2026 年 3 月
+
+Prompt 在不同模型上的表现可能有差异。如果某个 Prompt 效果不理想，尝试换一个模型，或在 Prompt 开头补充更多上下文。AI 模型迭代很快，建议定期验证 Prompt 的有效性。
