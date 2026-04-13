@@ -2,6 +2,12 @@
 
 > 跨境电商 AI 实战知识库 — AAAI China Chapter 开源项目
 
+<div align="center">
+
+### 📖 [在线阅读 Read Online](https://kangise.github.io/ecommerce-ai-roadmap/)
+
+</div>
+
 [![AAAI China Chapter](https://img.shields.io/badge/AAAI_China_Chapter-Initiative-blue)](https://github.com/kangise/ecommerce-ai-roadmap)
 [![Stars](https://img.shields.io/github/stars/kangise/ecommerce-ai-roadmap?style=social)](https://github.com/kangise/ecommerce-ai-roadmap)
 [![License: CC0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
