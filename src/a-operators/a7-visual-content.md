@@ -46,7 +46,7 @@ Content rephrased for compliance with licensing restrictions.
 | 生活方式图 vs 白底图转化率提升 | 22-30% | A/B 测试研究 |
 | AI 视频生成市场规模（2025） | $71.68 亿 | Fortune Business Insights |
 | AI 视频市场预计（2032） | $256 亿 | Fortune Business Insights |
-| Amazon 产品视频对转化率的影响 | +9.7% | Amazon 内部数据 |
+| Amazon 产品视频对转化率的影响 | +9.7% | 行业研究 |
 | 有视频的 Listing 停留时间 | +2x | 行业基准 |
 
 ### 1.2 AI 视觉内容的三个层次
