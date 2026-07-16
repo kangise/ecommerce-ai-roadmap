@@ -192,7 +192,7 @@ Layer 3（Agent）：
 
 ## 3. MCP 协议详解
 
-> **完整工具集**: [ Awesome MCP & Agent 工具集](../../docs/awesome-mcp-agents.md) 电商 MCP Server、Agent 框架、外部 Awesome Lists 的完整列表。包含 Shopify/Amazon/Google Ads/Meta Ads 等 30+ MCP Server 和 7 大 Agent 框架。
+> **完整工具集**: [ Awesome MCP & Agent 工具集](../resources/awesome-mcp-agents.md) 电商 MCP Server、Agent 框架、外部 Awesome Lists 的完整列表。包含 Shopify/Amazon/Google Ads/Meta Ads 等 30+ MCP Server 和 7 大 Agent 框架。
 
 ### 3.1 MCP 的核心概念
 

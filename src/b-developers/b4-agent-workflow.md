@@ -49,7 +49,7 @@ AI Agent 系统 自动执行多步骤运营任务（如每日数据检查 → �
 
 > **相关阅读**: [A3 广告优化](../a-operators/a3-advertising.md) 广告监控自动化的业务应用场景详见 A3。 · [F4 自动化与 Agent](../0-foundations/f4-agent-automation.md) Agent 基础理论详见 F4
 >
-> **工具集**: [ Awesome MCP & Agent 工具集](../../docs/awesome-mcp-agents.md) 电商 MCP Server、Agent 框架、外部资源的完整列表
+> **工具集**: [ Awesome MCP & Agent 工具集](../resources/awesome-mcp-agents.md) 电商 MCP Server、Agent 框架、外部资源的完整列表
 
 ### 1.1 什么是 AI Agent
 

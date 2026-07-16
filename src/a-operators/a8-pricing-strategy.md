@@ -506,7 +506,7 @@ HTML Dashboard（可视化）
 劣势：需要技术能力，需要维护
 ```
 
-> **相关阅读**: [B1 Python 数据分析](../b-developers/b1-python-data.md) Python 数据分析基础 · [F5 RPA 自动化](../0-foundations/f5-rpa-automation.md) 自动化工具搭建
+> **相关阅读**: [B1 Python 数据分析](../b-developers/b1-data-pipeline.md) Python 数据分析基础 · [F5 RPA 自动化](../0-foundations/f5-rpa-automation.md) 自动化工具搭建
 
 ---
 

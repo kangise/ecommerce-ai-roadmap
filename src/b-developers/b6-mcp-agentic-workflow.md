@@ -70,7 +70,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ## 2. 电商 MCP 生态
 
-> **完整工具集**: [ Awesome MCP & Agent 工具集](../../docs/awesome-mcp-agents.md) 电商 MCP Server、Agent 框架、外部资源的完整列表
+> **完整工具集**: [ Awesome MCP & Agent 工具集](../resources/awesome-mcp-agents.md) 电商 MCP Server、Agent 框架、外部资源的完整列表
 
 ### 2.1 已有的电商 MCP Server
 
