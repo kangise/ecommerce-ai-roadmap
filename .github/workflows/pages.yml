@@ -1,4 +1,4 @@
-name: Deploy Jekyll site to Pages
+name: Deploy mdBook site to Pages
 
 on:
   push:
@@ -17,28 +17,33 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      # Pinned to the version verified locally against this book.toml
+      MDBOOK_VERSION: "0.5.4"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.1'
-          bundler-cache: true
-          cache-version: 0
-      
+
+      - name: Install mdBook
+        run: |
+          curl -sSL "https://github.com/rust-lang/mdBook/releases/download/v${MDBOOK_VERSION}/mdbook-v${MDBOOK_VERSION}-x86_64-unknown-linux-gnu.tar.gz" \
+            | tar -xz -C /usr/local/bin
+
       - name: Setup Pages
         id: pages
-        uses: actions/configure-pages@v4
-      
-      - name: Build with Jekyll
-        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
-        env:
-          JEKYLL_ENV: production
-      
+        uses: actions/configure-pages@v5
+        with:
+          # Best-effort switch of the Pages source to "GitHub Actions"
+          enablement: true
+
+      - name: Build with mdBook
+        run: mdbook build
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+        with:
+          # book.toml sets build-dir = "docs"
+          path: ./docs
 
   deploy:
     environment:
