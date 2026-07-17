@@ -1,0 +1,107 @@
+<svg viewBox="0 0 1200 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t d" font-family="sans-serif">
+  <title id="t">越境EC AI 実践ナレッジベース — コンテンツマップ</title>
+  <desc id="d">AI 基礎、店舗運営、マーケットプレイス、ソーシャル、開発者、マネジメントの 6 トラック・56 本の実践ガイド。すべてにコピペで使えるプロンプト付き。CC0。</desc>
+  <defs>
+    <clipPath id="round"><rect width="1200" height="720" rx="18"/></clipPath>
+    <style>
+      text{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic","Noto Sans CJK JP","Meiryo",sans-serif}
+      .h1{font-size:40px;font-weight:800;fill:#ffffff}
+      .h2{font-size:20px;fill:#c7d2fe}
+      .cred{font-size:14px;fill:#a5b4fc}
+      .badge{font-size:20px;font-weight:800;fill:#ffffff}
+      .title{font-size:22px;font-weight:700;fill:#1e293b}
+      .count{font-size:14px;fill:#64748b}
+      .row{font-size:15.5px;fill:#334155}
+      .desc{font-size:13px;fill:#94a3b8;font-style:italic}
+      .val{font-size:15.5px;fill:#334155}
+      .valb{font-size:15.5px;font-weight:700;fill:#4338ca}
+    </style>
+  </defs>
+
+  <g clip-path="url(#round)">
+    <rect width="1200" height="720" fill="#f1f5f9"/>
+
+    <!-- Hero band -->
+    <rect width="1200" height="152" fill="#0f0e2e"/>
+    <text class="h1" x="56" y="64">越境EC AI 実践ナレッジベース</text>
+    <text class="h2" x="58" y="106">実践ガイド 56 本 · すべてコピペで使えるプロンプト付き · CC0 完全無料</text>
+    <text class="cred" x="1152" y="134" text-anchor="end">An AAAI China Chapter Initiative</text>
+
+    <!-- ===== Row 1 ===== -->
+    <g transform="translate(40,180)">
+      <rect width="357" height="208" rx="12" fill="#ffffff" stroke="#e2e8f0"/>
+      <circle cx="36" cy="38" r="19" fill="#4338ca"/>
+      <text class="badge" x="36" y="45" text-anchor="middle">0</text>
+      <text class="title" x="64" y="45">AI 基礎</text>
+      <text class="count" x="339" y="42" text-anchor="end">7 本</text>
+      <line x1="18" y1="66" x2="339" y2="66" stroke="#eef2f6"/>
+      <text class="row" x="22" y="104">AI リテラシー · プロンプト · RAG</text>
+      <text class="row" x="22" y="140">Agent · RPA · ツール比較</text>
+      <text class="desc" x="22" y="180">コーディング不要</text>
+    </g>
+    <g transform="translate(421,180)">
+      <rect width="357" height="208" rx="12" fill="#ffffff" stroke="#e2e8f0"/>
+      <circle cx="36" cy="38" r="19" fill="#4338ca"/>
+      <text class="badge" x="36" y="45" text-anchor="middle">A</text>
+      <text class="title" x="64" y="45">店舗運営</text>
+      <text class="count" x="339" y="42" text-anchor="end">13 本</text>
+      <line x1="18" y1="66" x2="339" y2="66" stroke="#eef2f6"/>
+      <text class="row" x="22" y="104">リサーチ → コンテンツ → 集客</text>
+      <text class="row" x="22" y="140">価格 · 広告 · CS · コンプラ</text>
+      <text class="desc" x="22" y="180">Amazon 中心のフルファネル</text>
+    </g>
+    <g transform="translate(802,180)">
+      <rect width="357" height="208" rx="12" fill="#ffffff" stroke="#e2e8f0"/>
+      <circle cx="36" cy="38" r="19" fill="#4338ca"/>
+      <text class="badge" x="36" y="45" text-anchor="middle">D</text>
+      <text class="title" x="64" y="45">マーケットプレイス</text>
+      <text class="count" x="339" y="42" text-anchor="end">14 本</text>
+      <line x1="18" y1="66" x2="339" y2="66" stroke="#eef2f6"/>
+      <text class="row" x="22" y="104">Shopify · TikTok Shop · Walmart</text>
+      <text class="row" x="22" y="140">eBay · Temu · アジア · 欧州 · 中南米</text>
+      <text class="desc" x="22" y="180">13+ プラットフォームの攻略法</text>
+    </g>
+
+    <!-- ===== Row 2 ===== -->
+    <g transform="translate(40,412)">
+      <rect width="357" height="208" rx="12" fill="#ffffff" stroke="#e2e8f0"/>
+      <circle cx="36" cy="38" r="19" fill="#4338ca"/>
+      <text class="badge" x="36" y="45" text-anchor="middle">E</text>
+      <text class="title" x="64" y="45">ソーシャル</text>
+      <text class="count" x="339" y="42" text-anchor="end">7 本</text>
+      <line x1="18" y1="66" x2="339" y2="66" stroke="#eef2f6"/>
+      <text class="row" x="22" y="104">Instagram · YouTube · 小紅書</text>
+      <text class="row" x="22" y="140">Pinterest · WhatsApp · Reddit</text>
+      <text class="desc" x="22" y="180">購買ジャーニー全体に接点を</text>
+    </g>
+    <g transform="translate(421,412)">
+      <rect width="357" height="208" rx="12" fill="#ffffff" stroke="#e2e8f0"/>
+      <circle cx="36" cy="38" r="19" fill="#4338ca"/>
+      <text class="badge" x="36" y="45" text-anchor="middle">B</text>
+      <text class="title" x="64" y="45">開発者トラック</text>
+      <text class="count" x="339" y="42" text-anchor="end">9 本</text>
+      <line x1="18" y1="66" x2="339" y2="66" stroke="#eef2f6"/>
+      <text class="row" x="22" y="104">データ基盤 → 予測 → RAG → Agent</text>
+      <text class="row" x="22" y="140">MCP · ローカル運用 · ダッシュボード</text>
+      <text class="desc" x="22" y="180">繰り返し判断をシステム化</text>
+    </g>
+    <g transform="translate(802,412)">
+      <rect width="357" height="208" rx="12" fill="#ffffff" stroke="#e2e8f0"/>
+      <circle cx="36" cy="38" r="19" fill="#4338ca"/>
+      <text class="badge" x="36" y="45" text-anchor="middle">C</text>
+      <text class="title" x="64" y="45">マネジメント</text>
+      <text class="count" x="339" y="42" text-anchor="end">5 本</text>
+      <line x1="18" y1="66" x2="339" y2="66" stroke="#eef2f6"/>
+      <text class="row" x="22" y="104">AI 成熟度診断 · 育成 · ROI</text>
+      <text class="row" x="22" y="140">リスクガバナンス · 競合分析</text>
+      <text class="desc" x="22" y="180">AI 活用を組織に定着させる</text>
+    </g>
+
+    <!-- Value strip -->
+    <line x1="40" y1="648" x2="1160" y2="648" stroke="#e2e8f0"/>
+    <text x="600" y="686" text-anchor="middle" class="val">
+      <tspan>Colab ノートブック </tspan><tspan class="valb">18</tspan><tspan> 本ワンクリック実行    ·    実績: </tspan><tspan class="valb">ACOS 35% → 18%</tspan><tspan> · Listing </tspan><tspan class="valb">4h → 45min</tspan><tspan>    ·    </tspan><tspan class="valb">CC0</tspan><tspan> 商用利用も無料</tspan>
+    </text>
+  </g>
+  <rect x="0.5" y="0.5" width="1199" height="719" rx="18" fill="none" stroke="#e2e8f0"/>
+</svg>

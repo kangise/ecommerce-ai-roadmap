@@ -1,0 +1,22 @@
+[book]
+title = "AI × Cross-Border E-Commerce Knowledge Hub"
+authors = ["kangise"]
+description = "56 hands-on AI guides for cross-border e-commerce — copy-paste prompts for every step from sourcing to growth"
+language = "en"
+src = "src"
+
+[build]
+build-dir = "book"
+
+[output.html]
+default-theme = "light"
+preferred-dark-theme = "ayu"
+git-repository-url = "https://github.com/kangise/ecommerce-ai-roadmap"
+edit-url-template = "https://github.com/kangise/ecommerce-ai-roadmap/edit/main/i18n/en/src/{path}"
+no-section-label = false
+additional-css = ["custom.css"]
+additional-js = ["mermaid.min.js", "mermaid-init.js", "lang-switcher.js"]
+
+[output.html.fold]
+enable = true
+level = 1

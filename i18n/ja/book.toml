@@ -1,0 +1,22 @@
+[book]
+title = "越境EC AI 実践ナレッジベース"
+authors = ["kangise"]
+description = "越境EC の AI 実践ガイド 56 本 — 商品リサーチから成長まで、そのままコピーして使えるプロンプト付き"
+language = "ja"
+src = "src"
+
+[build]
+build-dir = "book"
+
+[output.html]
+default-theme = "light"
+preferred-dark-theme = "ayu"
+git-repository-url = "https://github.com/kangise/ecommerce-ai-roadmap"
+edit-url-template = "https://github.com/kangise/ecommerce-ai-roadmap/edit/main/i18n/ja/src/{path}"
+no-section-label = false
+additional-css = ["custom.css"]
+additional-js = ["mermaid.min.js", "mermaid-init.js", "lang-switcher.js"]
+
+[output.html.fold]
+enable = true
+level = 1

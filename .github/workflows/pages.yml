@@ -36,8 +36,11 @@ jobs:
           # Best-effort switch of the Pages source to "GitHub Actions"
           enablement: true
 
-      - name: Build with mdBook
-        run: mdbook build
+      - name: Build with mdBook (zh, then en/ja into subdirs)
+        run: |
+          mdbook build
+          mdbook build i18n/en --dest-dir ../../docs/en
+          mdbook build i18n/ja --dest-dir ../../docs/ja
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

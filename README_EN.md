@@ -4,7 +4,7 @@
 
 <div align="center">
 
-### 📖 [Read Online](https://kangise.github.io/ecommerce-ai-roadmap/) (Chinese)
+### 📖 [Read Online](https://kangise.github.io/ecommerce-ai-roadmap/en/)
 
 </div>
 
@@ -13,9 +13,9 @@
 [![License: CC0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
 
 **56 hands-on guides · 6 tracks · 18 runnable Colab notebooks · copy-paste prompts in every guide.**
-Original content, not a link aggregator. Guides are written in Chinese — the prompts inside are bilingual-friendly and work in any LLM.
+Original content, not a link aggregator. The [English online edition](https://kangise.github.io/ecommerce-ai-roadmap/en/) is being translated chapter by chapter — untranslated pages link back to the Chinese original.
 
-🇺🇸 English | 🇨🇳 [中文](README.md)
+🇺🇸 English | 🇨🇳 [中文](README.md) | 🇯🇵 [日本語](README_JA.md)
 
 <p align="center">
   <img src="assets/content-map-en.svg" alt="Content map — 56 guides across 6 tracks" width="100%">

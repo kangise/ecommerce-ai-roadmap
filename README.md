@@ -12,7 +12,7 @@
 [![Stars](https://img.shields.io/github/stars/kangise/ecommerce-ai-roadmap?style=social)](https://github.com/kangise/ecommerce-ai-roadmap)
 [![License: CC0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
 
-🇨🇳 中文 | 🇺🇸 [English](README_EN.md)
+🇨🇳 中文 | 🇺🇸 [English](README_EN.md) | 🇯🇵 [日本語](README_JA.md)
 
 ---
 

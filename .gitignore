@@ -216,3 +216,6 @@ confidential/
 
 # mdBook build (docs/ is committed for GitHub Pages)
 # book/
+# mdBook local build output for translated books (CI builds into docs/)
+i18n/en/book/
+i18n/ja/book/
