@@ -832,4 +832,4 @@ Complete all of the above and you've mastered AI-assisted sourcing. Next: [A2 Li
 | Multi-marketplace data | SellerSprite | |
 | Supplier search | 1688 / Alibaba | 1688 (free) |
 
-[< Preface](README.md) | [A2 Listing >](a2-listing-optimization.md)
+[< Preface](../README.md) | [A2 Listing >](a2-listing-optimization.md)

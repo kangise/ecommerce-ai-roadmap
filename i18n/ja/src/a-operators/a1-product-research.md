@@ -832,4 +832,4 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 | 多サイトデータ | SellerSprite | |
 | サプライヤー検索 | 1688 / Alibaba | 1688(元々無料) |
 
-[< はじめに](README.md) | [A2 Listing >](a2-listing-optimization.md)
+[< はじめに](../README.md) | [A2 Listing >](a2-listing-optimization.md)
