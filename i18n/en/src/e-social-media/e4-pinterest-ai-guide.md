@@ -1,5 +1,507 @@
-# Pinterest
+# E4. Pinterest AI Playbook
 
-> 🚧 **Translation in progress.** This chapter is not yet available in English — in the meantime, read the [Chinese original](https://kangise.github.io/ecommerce-ai-roadmap/e-social-media/e4-pinterest-ai-guide.html).
+> **Track**: Path E: Social Media · **Module**: E4
+> **Last updated**: 2026-03-14
+> **Difficulty**: Intermediate
+> **Estimated time**: 1.5-2 hours
+> **Prerequisites**: [Path 0 Foundations](../0-foundations/)
 
-<!-- i18n-stub -->
+
+---
+
+## Chapter Navigation
+
+1. [Pinterest's Unique Positioning](#1-pinterests-unique-positioning)
+2. [Pinterest SEO Methodology](#2-pinterest-seo-methodology)
+3. [AI Visual Content Creation](#3-ai-visual-content-creation)
+4. [Pinterest Shopping Ads](#4-pinterest-shopping-ads)
+5. [Data Analysis](#5-data-analysis)
+6. [Prompt Templates](#6-prompt-templates)
+7. [Common Pitfalls](#7-common-pitfalls)
+8. [Completion Checklist](#8-completion-checklist)
+
+---
+
+## What You Will Produce in This Module
+
+- A Pinterest SEO keyword and Pin optimization strategy
+- An AI batch-generation workflow for Pin content
+- A Pinterest Shopping Ads optimization plan
+- A Pinterest-specific prompt-template library
+
+> **Core idea**: Pinterest isn't social media, it's a visual search engine. 619 million MAU, 80 billion monthly searches. Users come to Pinterest to search for inspiration, with extremely high purchase intent. Strongest categories: home, fashion, beauty, DIY, weddings, food. AI's core value on Pinterest is helping you mass-produce high-quality visual content and optimize search ranking.
+
+---
+
+## 1. Pinterest's Unique Positioning
+
+### 1.1 Pinterest vs Other Platforms
+
+| Dimension | Pinterest | Instagram | Google |
+|-----------|-----------|-----------|--------|
+| Essence | Visual search engine | Social media | Text search engine |
+| User intent | Search + planning + purchase | Discovery + social | Search + research |
+| Content lifespan | Extremely long (a Pin keeps getting traffic for months or even years) | Short (24-48 hours) | Long (SEO evergreen) |
+| Competition | Relatively low (many sellers ignore Pinterest) | Extremely high | Extremely high |
+| Strongest categories | Home/fashion/beauty/DIY/weddings/food | All categories | All categories |
+| User persona | Mostly women 25-44, high spending power | 18-34 | All ages |
+
+### 1.2 Pinterest User Behavior Characteristics
+
+- Users search 3-6 months ahead (Christmas gift searches start in July)
+- 97% of searches don't include a brand name (users are looking for inspiration, not a specific brand)
+- 85% of users buy after discovering a new brand on Pinterest
+- Average of 5-10 Pins saved per session
+
+---
+
+## 2. Pinterest SEO Methodology
+
+> **Related reading**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md) — the general SEO methodology is covered in A2; the keyword-research and content-optimization framework is reusable on Pinterest.
+
+### 2.1 Pinterest Search Ranking Factors
+
+```
+Pinterest SEO ranking factors:
+Pin quality
+Image quality and size (2:3 vertical is best)
+Title keyword match
+Description keyword density
+Rich Pin data completeness
+
+Engagement signals
+Save count (most important)
+Click-through count
+Close-up count (zoomed-in views)
+Comment count
+
+Account weight
+Account activity (posting frequency)
+Account age
+Follower count
+Domain verification status
+
+Freshness
+New Pins get an initial recommendation boost
+Reposting the same image gets deprioritized
+Regularly posting new content is important
+```
+
+### 2.2 Board Strategy
+
+Boards are the foundational structure of Pinterest SEO:
+
+```
+You are a Pinterest SEO expert.
+
+My brand sells [category], target market [US/EU].
+
+Please help me design a Pinterest Board structure:
+
+1. 8-12 Boards, each including:
+- Board name (includes a keyword, no more than 30 characters)
+- Board description (includes 3-5 keywords, no more than 500 characters)
+- Recommended Pin count (at least 20 Pins per Board)
+
+2. Board category suggestions:
+- Product Boards (by category/series)
+- Inspiration Boards (use scenarios/lifestyle)
+- Tutorial Boards (How-to/Tips)
+- Seasonal Boards (holidays/seasons)
+
+3. The first 5 Pin topics for each Board
+```
+
+---
+
+## 3. AI Visual Content Creation
+
+### 3.1 Pin Design Best Practices
+
+| Element | Best practice | AI assistance |
+|---------|---------------|---------------|
+| Size | 1000x1500px (2:3 vertical) | Canva AI auto-adjust |
+| Text overlay | Large title + short description, no more than 20% of the image area | AI-generated copy |
+| Brand element | Logo or brand color, consistent placement | Templatize |
+| Image style | Bright, clean, lifestyle feel | Midjourney generates scenes |
+| CTA | "Shop Now" / "Learn More" / "Get the Look" | AI picks the best CTA |
+
+### 3.2 AI Batch-Generate Pin Content
+
+```
+You are a Pinterest content creation expert.
+
+Product: [name], category [X]
+Target keywords: [3-5]
+Target audience: [describe]
+
+Please generate 10 different Pin concepts for this product:
+
+Each Pin includes:
+1. Pin title (no more than 100 characters, includes keywords)
+2. Pin description (no more than 500 characters, naturally weaves in 3-5 keywords)
+3. Image creative description (visual content, style, color scheme)
+4. Text-overlay content (no more than 8 words)
+5. Recommended Board
+6. Best posting time (consider seasonality)
+
+The 10 Pin angles:
+- 3 product-showcase type (different scenarios)
+- 2 tutorial type (usage tips)
+- 2 inspiration type (lifestyle)
+- 2 list type ("X reasons to choose...")
+- 1 seasonal (current season/upcoming holiday)
+```
+
+### 3.3 Idea Pins (Similar to Stories)
+
+Idea Pins are Pinterest's multi-page content format, suited for tutorials and step-based content:
+
+```
+Please design a 5-page Idea Pin for [product]:
+
+Theme: [e.g., "5 steps to build the perfect home office desk"]
+
+Each page includes:
+1. Visual description
+2. Text content (short, large font)
+3. Product-placement approach (natural, not hard-sell)
+
+Structure:
+- Page 1: cover (Hook title)
+- Pages 2-4: steps/content
+- Page 5: summary + product recommendation
+```
+
+---
+
+## 4. Pinterest Shopping Ads
+
+> **Related reading**: [E1 Instagram](e1-instagram-facebook-ai-guide.md) — the Meta Ads comparison is covered in E1; the budget-allocation strategy for Pinterest Ads and Meta Ads can be cross-referenced.
+
+### 4.1 Ad Types
+
+| Type | Description | Best for |
+|------|-------------|----------|
+| Standard Pins | Promote an ordinary Pin | Brand awareness |
+| Shopping Pins | Auto-generated from the Product Catalog | Product conversion |
+| Collection Ads | Hero image + multiple product images | Category promotion |
+| Idea Ads | Promote Idea Pins | Tutorials/inspiration |
+
+### 4.2 Product Catalog Optimization
+
+> **Related reading**: [D1 Shopify](../d-platforms/shopify-ai-guide.md) — Pinterest integrates natively with Shopify; for Product Catalog sync and Shopping setup, see D1.
+
+Pinterest Shopping depends on the Product Catalog (native Shopify integration):
+
+```
+You are a Pinterest Shopping optimization expert.
+
+I have a batch of products that need Pinterest Product Catalog optimization:
+
+Product info:
+- Title: [current title]
+- Description: [current description]
+- Category: [X]
+
+Please optimize for Pinterest format:
+1. Pinterest product title (includes search keywords, natural language)
+2. Pinterest product description (lifestyle-oriented, includes use scenarios)
+3. Recommended Product Group classification
+4. Suggested product attributes to add (color, material, style, etc.)
+```
+
+### 4.3 Pinterest Ads vs Meta Ads Budget Allocation
+
+| Dimension | Pinterest Ads | Meta Ads |
+|-----------|---------------|----------|
+| CPC | Usually lower ($0.10-0.50) | Medium ($0.50-2.00) |
+| Conversion intent | High (users are searching for products) | Medium (users are browsing social) |
+| Strongest categories | Home/fashion/beauty/DIY | All categories |
+| Audience size | Smaller (619 million MAU) | Extremely large (3 billion MAU) |
+| Recommendation | Prioritize when category matches | Main spend when scaling |
+
+---
+
+## 5. Data Analysis
+
+### 5.1 Key Metrics
+
+| Metric | Description | Benchmark |
+|--------|-------------|-----------|
+| Impressions | Pin display count | Depends on keyword competition |
+| Saves | Save count (most important) | Save Rate > 1% is good |
+| Outbound Clicks | Clicks to your external website | CTR > 0.5% is good |
+| Pin Clicks | Clicks to zoom in | Indicates the content is appealing |
+| Engagement Rate | (Saves+Clicks)/Impressions | > 2% is good |
+
+### 5.2 AI Data Analysis Prompt
+
+```
+Here is my Pinterest account's data over the past 30 days:
+- Total impressions: [X]
+- Total saves: [X]
+- Total outbound clicks: [X]
+- Top 5 Pin performance: [list]
+- Bottom 5 Pin performance: [list]
+
+Please analyze and give optimization suggestions.
+```
+
+---
+
+## 6. Prompt Templates
+
+### 6.1 Seasonal Content Planning
+
+```
+Please generate a Pinterest seasonal content calendar (next 6 months) for a [category] brand.
+
+Consider:
+- Pinterest users search 3-6 months ahead
+- Major holidays and shopping seasons
+- The category's seasonal trends
+
+For each month provide:
+- 3-5 Pin topics
+- Recommended keywords
+- Best posting time
+```
+
+---
+
+## 7. Common Pitfalls
+
+### Pitfall 1: Running Pinterest Like Social Media
+Pinterest is a search engine. You don't need to post Stories daily or reply to comments. The focus is SEO and content quality.
+
+### Pitfall 2: Ignoring the Seasonal Lead Time
+Pinterest users search 3-6 months ahead. Christmas content needs to start posting in July.
+
+### Pitfall 3: Reusing the Same Image
+Pinterest deprioritizes duplicate images. Each Pin needs a unique visual design.
+
+### Pitfall 4: Not Setting Up Rich Pins
+Rich Pins auto-sync product price and inventory info, boosting SEO and conversion. They're a must.
+
+---
+
+## 7.5 Pinterest Algorithm In-Depth Analysis
+
+### Pinterest Recommendation Algorithm Mechanism
+
+```
+Pinterest recommendation algorithm (completely different from Instagram/TikTok):
+
+Core logic: Pinterest is a search engine, not social media
+Search relevance
+Match between keywords in the Pin title/description and the user's search term
+Keywords in the Board name and description
+Image visual content (Pinterest has image-recognition AI)
+Rich Pin structured data
+
+Pin quality score
+Image quality (resolution, composition, color)
+Click-through rate (CTR)
+Save rate (the most important engagement metric)
+Close-up rate (users zooming in)
+Outbound click rate (clicks to your external website)
+
+Domain authority
+Verified domains have higher weight
+The domain's historical Pin performance
+The domain's content-quality score
+
+Freshness
+New Pins get an initial recommendation boost
+Reposting the same image gets deprioritized
+Regularly posting new content is important
+
+Pinner quality
+Account activity
+Historical Pins' average performance
+Follower count and engagement rate
+Content consistency
+```
+
+### Pinterest Seasonal Content Strategy (Key Difference)
+
+Pinterest users search 3-6 months ahead — this is the biggest difference from all other platforms:
+
+| Holiday/season | When users start searching | Suggested content-posting time | Search peak |
+|----------------|----------------------------|--------------------------------|-------------|
+| Valentine's Day | November | Early December | Jan-Feb |
+| Spring home reno | December | January | Mar-Apr |
+| Summer outdoors | February | March | May-Jul |
+| Back to school | April | May | Jul-Aug |
+| Halloween | June | July | Sep-Oct |
+| Thanksgiving | July | August | Oct-Nov |
+| Christmas | July | August | Oct-Dec |
+| New Year | October | November | Dec-Jan |
+
+**AI Seasonal Content Planning Prompt (enhanced):**
+
+```
+You are a Pinterest seasonal content strategy expert.
+
+My category: [X]
+Current month: [X]
+Target market: [US/EU]
+
+Please generate a Pinterest seasonal content calendar for the next 6 months:
+
+For each month provide:
+1. The content themes to post that month (targeting holidays/seasons 3-6 months out)
+2. 5 Pin topics (title + description + keywords)
+3. Recommended Board classification
+4. Popular search-term forecast
+5. Long-tail opportunities competitors may ignore
+
+Note:
+- Pinterest users search 3-6 months ahead
+- Content posted now is for traffic 3-6 months later
+- Seasonal content's Save rate is usually 2-3x higher than evergreen content
+```
+
+---
+
+## 7.6 Pinterest Shopping In-Depth Practice
+
+### Product Catalog Setup and Optimization
+
+```
+Pinterest Product Catalog setup process:
+
+Step 1: Verify the domain
+Verify your website domain in the Pinterest Business dashboard
+Supports Shopify one-click verification
+After verification, all content Pinned from your website is linked to your account
+
+Step 2: Create the Product Catalog
+Method 1: Shopify integration (recommended, auto-sync)
+Method 2: Manually upload a Data Feed (CSV/XML)
+Method 3: Via the Catalog Manager API
+Product data requirements: title, description, price, image URL, product URL, inventory status
+
+Step 3: Optimize the Product Feed
+Title: include search keywords (match Pinterest search habits)
+Description: lifestyle-oriented (not Amazon-style parameter lists)
+Image: vertical 2:3, lifestyle-scene images preferred
+Price: accurate, updated in real time
+Category classification: choose the most precise Google Product Category
+Custom labels: for ad grouping (seasonal/price band/margin)
+
+Step 4: Set up Rich Pins
+Product Rich Pins: auto-display price, inventory status, purchase link
+Requires adding Open Graph or Schema.org markup on the website
+Shopify supports it automatically
+Verify: use the Pinterest Rich Pin Validator
+```
+
+### Pinterest Shopping Ads In-Depth Optimization
+
+```
+You are a Pinterest Shopping Ads optimization expert.
+
+My product catalog: [X] products
+Monthly ad budget: $[X]
+Target ROAS: [X]
+
+Please design a Pinterest Shopping Ads strategy:
+
+1. Campaign structure
+- Group by category/season/margin
+- Suggested product count per Ad Group
+- Budget allocation ratio
+
+2. Targeting strategy
+- Keyword targeting (search ads)
+- Interest targeting (discovery ads)
+- Audience targeting (website-visitor remarketing)
+- Actalike audiences (similar to Lookalike)
+
+3. Bidding strategy
+- Automatic bidding vs manual bidding
+- Suggested CPC range by category
+- Seasonal bid adjustments
+
+4. Creative optimization
+- Standard Shopping Pin vs Collection Ad
+- Image-style suggestions (Pinterest user preferences)
+- Copy optimization (title + description)
+
+5. Data analysis
+- Key metrics: ROAS, CPC, CTR, Save Rate
+- Optimization frequency: check weekly, major adjustments monthly
+- A/B testing plan
+```
+
+### Pinterest vs Meta Ads Detailed Comparison
+
+| Dimension | Pinterest Ads | Meta Ads (Instagram/FB) |
+|-----------|---------------|-------------------------|
+| User intent | High (actively searching products/inspiration) | Medium (passively browsing social content) |
+| Average CPC | $0.10-0.50 | $0.50-2.00 |
+| Average CPM | $2-5 | $5-15 |
+| Conversion path | Search→Save→click→purchase (longer but high intent) | Browse→click→purchase (shorter but low intent) |
+| Strongest categories | Home/fashion/beauty/DIY/weddings/food | All categories |
+| Audience size | 619 million MAU | 3 billion MAU |
+| Content lifespan | Long (a Pin keeps getting traffic for months) | Short (no traffic once the ad stops) |
+| Remarketing | Supported (website visitors + Pin engagers) | Supported (more mature) |
+| AI optimization | Basic (auto-bidding + audience expansion) | Mature (Advantage+ fully automated) |
+
+> **Budget-allocation suggestion**: If your category is among Pinterest's strong categories (home/fashion/beauty/DIY), allocate 20-30% of your social ad budget to Pinterest. Pinterest's CPC is lower, user purchase intent is higher, and the long-term ROI is usually better than Meta Ads.
+
+---
+
+## 7.7 Pinterest Data Analysis In-Depth Guide
+
+### AI Data Analysis Prompt (enhanced)
+
+```
+You are a Pinterest data-analysis expert.
+
+Here is my Pinterest account's data over the past 30 days:
+
+Account data:
+- Total impressions: [X]
+- Total saves: [X] (Save Rate: [X]%)
+- Total outbound clicks: [X] (Outbound CTR: [X]%)
+- Total Pin clicks: [X]
+- Follower growth: +[X]
+- Pins published: [X]
+
+Top 5 Pin performance:
+| Pin title | Board | Impressions | Saves | Outbound clicks | Save Rate |
+[paste data]
+
+Bottom 5 Pin performance:
+| Pin title | Board | Impressions | Saves | Outbound clicks | Save Rate |
+[paste data]
+
+Ad data (if any):
+- Total spend: $[X]
+- ROAS: [X]
+- CPC: $[X]
+- Best ad group: [describe]
+
+Please analyze:
+1. Overall performance assessment (compared with Pinterest industry benchmarks: Save Rate >1% is good, Outbound CTR >0.5% is good)
+2. What do the best-performing Pins have in common? (image style/title/Board/keywords)
+3. Where are the problems with the worst-performing Pins?
+4. Does the Board strategy need adjustment?
+5. Keyword-strategy optimization suggestions
+6. Seasonal content-planning suggestions (based on the current month)
+7. Ad-optimization suggestions (if there is ad data)
+8. 10 Pin-topic suggestions for next month
+```
+
+---
+
+## 8. Completion Checklist
+
+- [ ] Set up a Pinterest Business account + domain verification
+- [ ] Create 8-12 optimized Boards
+- [ ] Use AI to batch-generate 30+ Pins
+- [ ] Set up the Product Catalog + Rich Pins
+- [ ] Run Pinterest Shopping Ads and optimize
