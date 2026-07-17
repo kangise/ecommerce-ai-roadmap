@@ -1,5 +1,272 @@
-# AliExpress
+# D10. AliExpress AI ガイド
 
-> 🚧 **翻訳準備中です。** この章はまだ日本語に翻訳されていません。それまでは[中国語の原文](https://kangise.github.io/ecommerce-ai-roadmap/d-platforms/d10-aliexpress-ai-guide.html)をご覧ください。
+> **トラック**: Path D: マルチプラットフォーム · **モジュール**: D10
+> **最終更新**: 2026-03-14
+> **難易度**: 入門
+> **所要時間**: 1 時間
 
-<!-- i18n-stub -->
+
+---
+
+> GMV $25B+(Top 5 品目)、159M MAU。中国セラーのネイティブプラットフォーム、南欧市場(スペイン、フランス、ポルトガル)でトップランク。だが Temu に越境シェアを分流されている — 2018 年から 33% 低下。
+
+## 1. AliExpress の現状とポジショニング
+
+### 1.1 AliExpress vs Temu
+
+> **関連リーディング**: [D5 Temu セラー戦略](d5-temu-seller-guide.md) Temu の詳細分析は D5 を参照、フルマネージド/セミマネージドモデルの対比と出店意思決定フレームワークを含む。
+
+| 次元 | AliExpress | Temu |
+|------|------------|------|
+| モデル | セラー自主運営 | プラットフォームが価格・トラフィックを制御 |
+| 価格決定権 | セラーが価格設定 | プラットフォームが価格設定 |
+| ブランド空間 | あり(ブランド旗艦店) | ほぼなし |
+| 物流 | セラー選択(菜鳥/自己発送) | プラットフォーム統一 |
+| 利益余地 | 中程度 | 極めて低い |
+| 成長トレンド | 鈍化 | 爆発的成長 |
+
+### 1.2 AliExpress の差別化の強み
+
+- フルマネージドモデル(AliExpress Choice): Temu に似るがセラーがより制御を持つ
+- ブランド旗艦店: ブランドのあるセラーに適する
+- 南欧市場が強い: スペイン、フランス、ポルトガルの市場シェアが高い
+- Alibaba 生態系: 1688、Cainiao 物流と連携
+
+## 2. AliExpress 費用構造と出店障壁
+
+### 2.1 出店条件
+
+AliExpress は現在、以下の国/地域のセラーに出店を開放している: 中国大陸、ロシア、スペイン、イタリア、トルコ、フランス、ブラジルなど([Wise](https://wise.com/us/blog/sell-on-aliexpress))。出店には営業許可証、法人身分証、税務情報などの提供が必要。
+
+Content rephrased for compliance with licensing restrictions.
+
+| 出店タイプ | 説明 | 向く |
+|------------|------|------|
+| 普通セラー | 自主運営、自ら価格設定と発送 | 運営能力のあるセラー |
+| AliExpress Choice | フルマネージド/セミマネージドモデル | サプライチェーン型セラー |
+| ブランド旗艦店 | ブランド認証後に開設 | 登録商標のあるブランド |
+
+### 2.2 手数料と費用
+
+AliExpress の手数料は品目により異なり、一般に 5%-9% の間([WorldOfCalculator](https://worldofcalculator.com/aliexpress-fee-calculator/)):
+
+| 品目 | 手数料率 | 説明 |
+|------|----------|------|
+| 消費電子 | 5-7% | 競争激しい |
+| ホーム・ガーデン | 7-8% | 標準費率 |
+| アパレルアクセサリー | 5-8% | 季節性が強い |
+| 美容・パーソナルケア | 5-8% | 成長が速い |
+| 自動車部品 | 5-8% | 利益余地が大きい |
+
+> **注意**: AliExpress は月額を取らない(Amazon と異なる)、だが AliExpress Choice モデルではプラットフォームが価格からより高い割合を抜く。
+
+Content rephrased for compliance with licensing restrictions.
+
+### 2.3 AliExpress サプライヤー選定基準
+
+業界のベストプラクティス([Alibaba Insights](https://www.alibaba.com/product-insights/dropshipping-hacks-you-need-to-know-in-2026-top-20-best-selling-aliexpress-items-revealed.html))によると、成功セラーは 3 大支柱に注目する: サプライチェーンの強靭性、マイクロニッチの権威、アフター体験のエンジニアリング。サプライヤーを選ぶ際は評価 ≥4.8、直近 90 日の注文 ≥2000、動画検証済み倉庫のあるサプライヤーを優先。
+
+Content rephrased for compliance with licensing restrictions.
+
+## 3. AI 応用シーン
+
+### 3.1 AliExpress Choice(フルマネージドモデル)深度解析
+
+AliExpress Choice は AliExpress が Temu に対抗するフルマネージドモデル:
+
+| 次元 | AliExpress Choice | Temu フルマネージド | AliExpress 普通 |
+|------|-------------------|---------------------|-----------------|
+| 価格決定権 | プラットフォーム推奨価、セラーが微調整可 | プラットフォームが完全制御 | セラー自主 |
+| 物流 | プラットフォーム統一(5-10 日) | プラットフォーム統一(7-15 日) | セラー選択 |
+| トラフィック | Choice タグ加重 | プラットフォーム配分 | 自然+広告 |
+| 返品 | プラットフォームが処理 | プラットフォームが処理 | セラーが処理 |
+| 向く | 一定のブランドのあるセラー | 純サプライチェーンセラー | 運営能力の強いセラー |
+
+### 2.2 多言語 Listing 最適化
+
+> **関連リーディング**: [A2 Listing 最適化](../a-operators/a2-listing-optimization.md) 多言語ローカライズ方法論は A2 を参照、Listing 最適化フレームワークを AliExpress 多言語版に適応可能。
+
+AliExpress はグローバルをカバーし、多言語が核心的なニーズ。AliExpress は南欧市場(スペイン、フランス、ポルトガル)でトップランク([Marketplace Universe](https://marketplace-universe.com/aliexpress-europe/))、これらの市場が重点的な最適化の方向。
+
+```
+あなたは AliExpress 多言語 Listing 最適化の専門家です。
+
+製品: [名称]
+品目: [X]
+主なターゲット市場: [スペイン/フランス/ロシア/ブラジル]
+
+以下の言語版の Listing を生成してください:
+
+1. スペイン語(スペイン市場、AliExpress はスペインで Top 3)
+2. フランス語(フランス市場)
+3. ロシア語(ロシア/CIS 市場)
+4. ブラジルポルトガル語(ブラジル市場)
+
+各版に含む:
+- タイトル(AliExpress タイトル形式: ブランド+製品+核心属性+キーワード、≤128 文字)
+- 説明(構造化、使用シーンと仕様を含む)
+- 5 つのセールスポイント
+- 10 個の現地言語検索キーワード
+
+AliExpress の特殊性に注意:
+- タイトルは Amazon より長くできる(128 文字)
+- 説明は HTML 形式に対応
+- 南欧市場(スペイン/フランス/ポルトガル)が AliExpress 最強の市場
+- ロシア市場は制裁の影響を受けるが今も需要あり
+```
+
+### 2.3 AliExpress 広告システム
+
+| 広告タイプ | 説明 | 課金 | 向く |
+|------------|------|------|------|
+| Search Ads | 検索結果広告 | CPC | 精確なキーワード投下 |
+| Display Ads | サイト内ディスプレイ | CPM | ブランド露出 |
+| Affiliate Program | インフルエンサー推進 | 成約ごとの手数料 | ソーシャルメディア集客 |
+| Super Deals | プラットフォームプロモ活動 | 大幅割引が必要 | 販売量を上げる |
+
+### 2.4 AliExpress 2026 年の変化
+
+外部報道([ad-hoc-news.de](https://www.ad-hoc-news.de/news/ueberblick/aliexpress-in-2026-is-the-ultra-cheap-marketplace-still-worth-it-for-us/68641516))に基づくと、AliExpress は 2025-2026 年に以下の重要な変化がある:
+
+- 買い手保護ルールの厳格化(より厳格な返金と争議処理)
+- 米国市場の物流改善(配送時間短縮)
+- 偽物と侵害の取締り強化(USTR 審査のプレッシャー)
+- TikTok と YouTube 駆動のトラフィック成長(ソーシャルメディアシーディング→AliExpress 購入)
+
+> **実事例: TikTok Haul が AliExpress の成長を駆動**
+> 2026 年、AliExpress は再びホットな話題になった、主に TikTok 開封動画(hauls)、YouTube Shorts、米国転売者が Etsy/Amazon/Depop で AliExpress 商品を転売するトレンドのため([Ad-Hoc News](https://www.ad-hoc-news.de/boerse/news/ueberblick/aliexpress-in-2026-cheap-dupe-paradise-or-shipping-nightmare-for-u-s/68623881))。だが同時に米国税関ルール、州税、送料が厳格化しており、セラーはコンプライアンスにより注意が必要。
+
+Content rephrased for compliance with licensing restrictions.
+
+### 2.5 AliExpress vs Temu 競争戦略
+
+```
+あなたは越境 EC プラットフォーム戦略の専門家です。
+
+私は現在 AliExpress で [品目] を販売、月販 [X] 件。
+Temu 上の同品目競合価格は私より [X]% 低い。
+
+分析してください:
+1. Temu にも同時出店すべきか?(自分で自分を打たないか)
+2. Temu に出店しないなら、AliExpress で Temu 競争にどう対応するか?
+3. AliExpress Choice に加入する価値はあるか?
+- Choice の優位: トラフィック加重、5-10 日配送、プラットフォーム推進
+- Choice の劣位: 価格が圧される、利益余地が小さい
+4. ブランド化戦略(AliExpress ブランド旗艦店)に転換すべきか?
+5. 南欧市場(スペイン/フランス)の差別化機会
+6. ソーシャルメディア集客戦略(TikTok/YouTube → AliExpress)
+```
+
+### 3.6 AliExpress セラーツール
+
+| ツール | 用途 | 価格 |
+|--------|------|------|
+| AliExpress Seller Center | 公式バックエンド | 無料 |
+| AliExpress Affiliate Program | インフルエンサー推進 | 手数料最高 9%([Creator Hero](https://www.creator-hero.com/blog/aliexpress-affiliate-program-in-depth-review-pros-and-cons)) |
+| 1688 データ分析 | サプライチェーン選品 | 無料 |
+| ChatGPT/Claude | 多言語 Listing 生成 | $20/月 |
+| AliDropship | Dropshipping 自動化 | 一度きり $89 |
+| CJDropshipping | サプライチェーン+代行発送 | 無料登録 |
+
+Content rephrased for compliance with licensing restrictions.
+
+## 4. AliExpress 物流方案詳解
+
+### 4.1 物流オプション対比
+
+| 物流方案 | 配送時間 | 費用 | 向く | ランキングへの影響 |
+|----------|----------|------|------|--------------------|
+| 菜鳥エコノミー | 20-40 日 | 最低 | 低価の軽小件 | 低 |
+| 菜鳥スタンダード | 15-25 日 | 中程度 | 大半の製品 | 中 |
+| AliExpress スタンダード配送 | 12-20 日 | 中程度 | Choice タグ製品 | 中高 |
+| AliExpress Choice 配送 | 5-10 日 | 高め(プラットフォーム補助) | Choice フルマネージド | 最高 |
+| 海外倉発送 | 3-7 日 | 最高 | 高頻度リピート品 | 最高 |
+| セラー自己発送(DHL/FedEx) | 5-15 日 | 高 | 高価値製品 | 中 |
+
+### 4.2 海外倉配置戦略
+
+```
+あなたは AliExpress 物流戦略の専門家です。
+
+私の製品: [品目]
+月販売量: [X] 件
+主な市場: [スペイン/フランス/ブラジル/米国]
+製品重量: [X] kg
+製品サイズ: [X] cm
+
+分析してください:
+1. 海外倉を使う価値はあるか?(コスト vs 転換率向上)
+2. 推奨の海外倉位置(欧州/米国/ブラジル)
+3. 海外倉 vs 菜鳥直送のコスト対比
+4. 在庫備蓄戦略(海外倉は事前備蓄が必要)
+5. 返品処理方案(海外倉返品 vs 直送返品)
+6. AliExpress Choice 配送 vs 自建海外倉の選択
+```
+
+## 5. AliExpress 南欧市場深度戦略
+
+### 5.1 南欧市場データ
+
+AliExpress は南欧市場(スペイン、フランス、ポルトガル)でトップランク([Marketplace Universe](https://marketplace-universe.com/aliexpress-europe/))、これらの市場には独自の消費特徴がある:
+
+| 市場 | AliExpress の地位 | 消費特徴 | 人気品目 |
+|------|-------------------|----------|----------|
+| スペイン | Top 3 EC プラットフォーム | 価格敏感、モバイルショッピング比率が高い | ファッション、電子、ホーム |
+| フランス | Top 5 EC プラットフォーム | 品質重視、環境意識が強い | 美容、ファッション、ホーム |
+| ポルトガル | Top 3 EC プラットフォーム | スペインに似るが市場がより小さい | 電子、ホーム |
+| ブラジル | 重要市場 | 分割払い文化、物流の課題 | 電子、ファッション |
+| ロシア/CIS | かつて最大の市場 | 制裁の影響を受けるが今も需要あり | 電子、工具 |
+
+### 5.2 南欧市場ローカライズ Prompt
+
+```
+あなたは AliExpress 南欧市場運営の専門家です。
+
+私の製品: [名称]
+品目: [X]
+現在の主な市場: [中国直送]
+
+南欧市場参入戦略を策定してください:
+
+1. 市場選択(スペイン vs フランス vs ポルトガル、優先順位付け)
+2. 価格戦略
+- 現地の購買力と競合価格を考慮
+- 国ごとに差別化価格が必要か
+- 送料無料閾値の設定(南欧消費者は送料無料に敏感)
+3. 物流方案
+- 菜鳥直送 vs 欧州海外倉
+- 配送時間の転換率への影響
+4. ローカライズ要件
+- スペイン語/フランス語/ポルトガル語 Listing
+- 現地の祝日プロモカレンダー
+- 現地消費者が好む決済方式
+5. 競争分析
+- 南欧での Temu との競争
+- Amazon.es / Amazon.fr との差別化
+6. コンプライアンス要件
+- EU CE 認証
+- EPR(生産者拡大責任)
+- VAT 登録
+```
+
+### 5.3 AliExpress の信頼度の課題
+
+2026 年グローバル EC 誠実度指数([Alibaba Insights](https://www.alibaba.com/product-insights/best-aliexpress-alternatives-in-2026-top-platforms-for-global-online-shopping.html))によると、AliExpress は「製品真正性への信頼」で 62/100 のスコアで、Temu(79)、Shein(76)、Amazon Global(84)に遅れている。これはセラーが信頼構築に追加の努力が必要なことを意味する:
+
+Content rephrased for compliance with licensing restrictions.
+
+| 信頼構築戦略 | 説明 | 効果 |
+|--------------|------|------|
+| ブランド旗艦店 | ブランド認証を申請、公式標識を得る | 高 |
+| 動画展示 | 製品実撮動画、工場動画 | 高 |
+| 詳細な説明 | サイズ図、材質説明、使用チュートリアルを含む | 中高 |
+| 迅速な返信 | 24 時間以内に買い手メッセージに返信 | 中 |
+| アフター保証 | 明確な返品交換ポリシー | 中高 |
+| ソーシャルプルーフ | 買い手にレビュー+写真投稿を促す | 高 |
+
+## 6. 完了チェック
+
+- [ ] AliExpress vs Temu の選択を評価
+- [ ] 出店する場合: 多言語 Listing を完了
+- [ ] AliExpress Ads を設定
+- [ ] 物流方案を選択(菜鳥 vs 自己発送)
