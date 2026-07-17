@@ -18,7 +18,7 @@ Original content, not a link aggregator. Guides are written in Chinese — the p
 🇺🇸 English | 🇨🇳 [中文](README.md)
 
 <p align="center">
-  <img src="assets/content-map.svg" alt="Content map — 56 guides across 6 tracks" width="100%">
+  <img src="assets/content-map-en.svg" alt="Content map — 56 guides across 6 tracks" width="100%">
 </p>
 
 ---
