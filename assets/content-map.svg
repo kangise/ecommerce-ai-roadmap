@@ -1,0 +1,113 @@
+<svg viewBox="0 0 1200 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t d" font-family="sans-serif">
+  <title id="t">跨境电商 AI 实战知识库 — 内容全景图</title>
+  <desc id="d">56 篇实战指南，覆盖 AI 基础、运营、多平台、社交媒体、技术构建、团队管理六大路径，每篇都有可复制的 Prompt，CC0 免费。</desc>
+  <defs>
+    <clipPath id="round"><rect width="1200" height="720" rx="18"/></clipPath>
+    <style>
+      text{font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC","Source Han Sans SC",sans-serif}
+      .h1{font-size:42px;font-weight:800;fill:#ffffff}
+      .h2{font-size:20px;fill:#c7d2fe}
+      .cred{font-size:14px;fill:#a5b4fc}
+      .badge{font-size:20px;font-weight:800;fill:#ffffff}
+      .title{font-size:22px;font-weight:700;fill:#1e293b}
+      .count{font-size:14px;fill:#64748b}
+      .row{font-size:15.5px;fill:#334155}
+      .desc{font-size:13px;fill:#94a3b8;font-style:italic}
+      .val{font-size:15.5px;fill:#334155}
+      .valb{font-size:15.5px;font-weight:700;fill:#4338ca}
+    </style>
+  </defs>
+
+  <g clip-path="url(#round)">
+    <rect width="1200" height="720" fill="#f1f5f9"/>
+
+    <!-- Hero band -->
+    <rect width="1200" height="152" fill="#0f0e2e"/>
+    <text class="h1" x="56" y="66">跨境电商 AI 实战知识库</text>
+    <text class="h2" x="58" y="108">56 篇实战指南 · 每篇都有可直接复制的 Prompt · CC0 完全免费</text>
+    <text class="cred" x="1152" y="42" text-anchor="end">An AAAI China Chapter Initiative</text>
+
+    <!-- ===== Row 1 ===== -->
+    <!-- 0 · AI 基础 -->
+    <g transform="translate(40,180)">
+      <rect width="357" height="208" rx="12" fill="#ffffff" stroke="#e2e8f0"/>
+      <circle cx="36" cy="38" r="19" fill="#4338ca"/>
+      <text class="badge" x="36" y="45" text-anchor="middle">0</text>
+      <text class="title" x="64" y="45">AI 基础</text>
+      <text class="count" x="339" y="42" text-anchor="end">7 篇</text>
+      <line x1="18" y1="66" x2="339" y2="66" stroke="#eef2f6"/>
+      <text class="row" x="22" y="104">AI 认知 · Prompt 工程 · RAG</text>
+      <text class="row" x="22" y="140">Agent · RPA · 工具对比</text>
+      <text class="desc" x="22" y="180">不写代码也能上手</text>
+    </g>
+    <!-- A · 运营主线 -->
+    <g transform="translate(421,180)">
+      <rect width="357" height="208" rx="12" fill="#ffffff" stroke="#e2e8f0"/>
+      <circle cx="36" cy="38" r="19" fill="#4338ca"/>
+      <text class="badge" x="36" y="45" text-anchor="middle">A</text>
+      <text class="title" x="64" y="45">运营主线</text>
+      <text class="count" x="339" y="42" text-anchor="end">13 篇</text>
+      <line x1="18" y1="66" x2="339" y2="66" stroke="#eef2f6"/>
+      <text class="row" x="22" y="104">选品 → 供应链 → 内容 → 流量</text>
+      <text class="row" x="22" y="140">定价 · 广告 · SEO/GEO · 客服 · 合规</text>
+      <text class="desc" x="22" y="180">以 Amazon 为主线的全链路</text>
+    </g>
+    <!-- D · 多平台 -->
+    <g transform="translate(802,180)">
+      <rect width="357" height="208" rx="12" fill="#ffffff" stroke="#e2e8f0"/>
+      <circle cx="36" cy="38" r="19" fill="#4338ca"/>
+      <text class="badge" x="36" y="45" text-anchor="middle">D</text>
+      <text class="title" x="64" y="45">多平台</text>
+      <text class="count" x="339" y="42" text-anchor="end">14 篇</text>
+      <line x1="18" y1="66" x2="339" y2="66" stroke="#eef2f6"/>
+      <text class="row" x="22" y="104">Shopify · TikTok Shop · Walmart</text>
+      <text class="row" x="22" y="140">eBay · Temu · 日韩 · 东南亚 · 欧拉美</text>
+      <text class="desc" x="22" y="180">13+ 平台的差异化打法</text>
+    </g>
+
+    <!-- ===== Row 2 ===== -->
+    <!-- E · 社交媒体 -->
+    <g transform="translate(40,412)">
+      <rect width="357" height="208" rx="12" fill="#ffffff" stroke="#e2e8f0"/>
+      <circle cx="36" cy="38" r="19" fill="#4338ca"/>
+      <text class="badge" x="36" y="45" text-anchor="middle">E</text>
+      <text class="title" x="64" y="45">社交媒体</text>
+      <text class="count" x="339" y="42" text-anchor="end">7 篇</text>
+      <line x1="18" y1="66" x2="339" y2="66" stroke="#eef2f6"/>
+      <text class="row" x="22" y="104">Instagram · YouTube · 小红书</text>
+      <text class="row" x="22" y="140">Pinterest · WhatsApp · Reddit</text>
+      <text class="desc" x="22" y="180">把触点串成用户旅程</text>
+    </g>
+    <!-- B · 技术构建 -->
+    <g transform="translate(421,412)">
+      <rect width="357" height="208" rx="12" fill="#ffffff" stroke="#e2e8f0"/>
+      <circle cx="36" cy="38" r="19" fill="#4338ca"/>
+      <text class="badge" x="36" y="45" text-anchor="middle">B</text>
+      <text class="title" x="64" y="45">技术构建</text>
+      <text class="count" x="339" y="42" text-anchor="end">9 篇</text>
+      <line x1="18" y1="66" x2="339" y2="66" stroke="#eef2f6"/>
+      <text class="row" x="22" y="104">数据管道 → 预测 → RAG → Agent</text>
+      <text class="row" x="22" y="140">MCP · 本地部署 · Review NLP · Dashboard</text>
+      <text class="desc" x="22" y="180">把重复判断变成系统</text>
+    </g>
+    <!-- C · 团队管理 -->
+    <g transform="translate(802,412)">
+      <rect width="357" height="208" rx="12" fill="#ffffff" stroke="#e2e8f0"/>
+      <circle cx="36" cy="38" r="19" fill="#4338ca"/>
+      <text class="badge" x="36" y="45" text-anchor="middle">C</text>
+      <text class="title" x="64" y="45">团队管理</text>
+      <text class="count" x="339" y="42" text-anchor="end">5 篇</text>
+      <line x1="18" y1="66" x2="339" y2="66" stroke="#eef2f6"/>
+      <text class="row" x="22" y="104">能力评估 · 团队建设 · ROI</text>
+      <text class="row" x="22" y="140">风险治理 · 竞争情报</text>
+      <text class="desc" x="22" y="180">让 AI 在团队真正落地</text>
+    </g>
+
+    <!-- Value strip -->
+    <line x1="40" y1="648" x2="1160" y2="648" stroke="#e2e8f0"/>
+    <text x="600" y="686" text-anchor="middle" class="val">
+      <tspan class="valb">18</tspan><tspan> 个 Colab Notebook 一键运行     ·     真实案例 </tspan><tspan class="valb">ACOS 35% → 18%</tspan><tspan> · Listing 4h → 45min     ·     </tspan><tspan class="valb">CC0</tspan><tspan> 公共领域,免费商用</tspan>
+    </text>
+  </g>
+  <rect x="0.5" y="0.5" width="1199" height="719" rx="18" fill="none" stroke="#e2e8f0"/>
+</svg>

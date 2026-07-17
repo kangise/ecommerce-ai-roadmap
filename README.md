@@ -12,12 +12,16 @@
 [![Stars](https://img.shields.io/github/stars/kangise/ecommerce-ai-roadmap?style=social)](https://github.com/kangise/ecommerce-ai-roadmap)
 [![License: CC0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
 
+🇨🇳 中文 | 🇺🇸 [English](README_EN.md)
+
 ---
 
 
 跨境电商 AI 实操手册 — 56 篇指南，从选品到增长，每个环节都有可直接复制的 Prompt。
 
-<!-- 这里后续放一张内容体系全景图 -->
+<p align="center">
+  <img src="assets/content-map.svg" alt="内容全景图 — 56 篇指南 · 六大路径" width="100%">
+</p>
 
 ---
 
