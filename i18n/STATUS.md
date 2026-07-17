@@ -3,7 +3,7 @@
 zh is the source of truth (`src/`). Regenerate this table with
 `python3 scripts/gen_i18n_stubs.py --status`.
 
-**EN: 33/66 · JA: 33/66**
+**EN: 34/66 · JA: 34/66**
 
 | Chapter | EN | JA |
 |---------|----|----|
@@ -30,7 +30,7 @@ zh is the source of truth (`src/`). Regenerate this table with
 | `a-operators/a13-ai-growth-hack.md` | ✅ | ✅ |
 | `b-developers/b1-data-pipeline.md` | ✅ | ✅ |
 | `b-developers/b2-prediction-models.md` | ✅ | ✅ |
-| `b-developers/b3-rag-knowledge-base.md` | 🚧 | 🚧 |
+| `b-developers/b3-rag-knowledge-base.md` | ✅ | ✅ |
 | `b-developers/b4-agent-workflow.md` | 🚧 | 🚧 |
 | `b-developers/b5-local-model-deploy.md` | 🚧 | 🚧 |
 | `b-developers/b6-mcp-agentic-workflow.md` | 🚧 | 🚧 |
