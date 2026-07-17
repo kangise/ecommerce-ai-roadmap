@@ -3,7 +3,7 @@
 zh is the source of truth (`src/`). Regenerate this table with
 `python3 scripts/gen_i18n_stubs.py --status`.
 
-**EN: 63/66 · JA: 63/66**
+**EN: 64/66 · JA: 64/66**
 
 | Chapter | EN | JA |
 |---------|----|----|
@@ -60,7 +60,7 @@ zh is the source of truth (`src/`). Regenerate this table with
 | `e-social-media/e2-youtube-ai-guide.md` | ✅ | ✅ |
 | `e-social-media/e3-xiaohongshu-ai-guide.md` | ✅ | ✅ |
 | `e-social-media/e4-pinterest-ai-guide.md` | ✅ | ✅ |
-| `e-social-media/e5-whatsapp-business-ai-guide.md` | 🚧 | 🚧 |
+| `e-social-media/e5-whatsapp-business-ai-guide.md` | ✅ | ✅ |
 | `e-social-media/e6-reddit-ai-guide.md` | 🚧 | 🚧 |
 | `e-social-media/e7-social-media-cross-channel.md` | 🚧 | 🚧 |
 | `case-studies/ai-listing-optimization.md` | ✅ | ✅ |
