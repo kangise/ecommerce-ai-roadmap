@@ -1,5 +1,305 @@
-# 韓国 — Coupang
+# D11. Coupang 韓国 EC AI ガイド
 
-> 🚧 **翻訳準備中です。** この章はまだ日本語に翻訳されていません。それまでは[中国語の原文](https://kangise.github.io/ecommerce-ai-roadmap/d-platforms/d11-coupang-korea-ai-guide.html)をご覧ください。
+> **トラック**: Path D: マルチプラットフォーム · **モジュール**: D11
+> **最終更新**: 2026-03-14
+> **難易度**: 中級
+> **所要時間**: 1 時間
 
-<!-- i18n-stub -->
+
+---
+
+> 収入 $36.8B(2025)、2460 万のアクティブユーザー。韓国の EC 市場は $230B+、2027 年に $336B に達すると予測。「韓国の Amazon」と呼ばれ、Rocket Delivery(翌日達/当日達)が核心競争力。越境出店の障壁はやや高い。
+
+## 1. Coupang 核心的特徴
+
+| 次元 | Coupang | Amazon JP |
+|------|---------|-----------|
+| 市場 | 韓国(単一市場) | 日本(単一市場) |
+| 物流 | Rocket Delivery(超高速) | FBA |
+| ユーザー | 2460 万のアクティブユーザー | - |
+| 越境フレンドリー度 | 低い(韓国語+ローカライズ要件が高い) | 中 |
+| 成長 | 14% YoY | 安定 |
+| 特色 | Coupang Play(ストリーミング)、Coupang Eats | - |
+
+## 2. 韓国市場の特徴
+
+### 2.1 韓国消費者像
+
+| 次元 | 特徴 | セラーへの影響 |
+|------|------|----------------|
+| 配送期待 | 翌日達が標準、当日達がますます一般的 | Coupang Rocket Delivery か同等の物流が必須 |
+| 品質要求 | 極めて高い、瑕疵にゼロトレランス | 品質検査基準を他市場より厳格に |
+| ブランド嗜好 | 韓国本土ブランド > 日本 > 欧米 > 中国 | 中国ブランドは追加の信頼構築が必要 |
+| デザイン審美 | シンプル、精緻、韓国系スタイル | 製品画像と梱包を韓国審美に適応する必要 |
+| 価格感度 | 中程度(品質にプレミアムを払う) | Temu のような極致の低価は不要 |
+| 返品習慣 | 返品率が高め(特にアパレル品目) | 価格設定で返品コストを考慮する必要 |
+| ソーシャルの影響 | Naver Blog + Instagram + YouTube | 韓国 KOL マーケティングが重要 |
+| 決済方式 | クレジットカードが主 + Coupang Pay | COD は不要 |
+
+### 2.2 韓国 EC 市場の競争構図
+
+| プラットフォーム | 市場シェア | 特徴 |
+|------------------|------------|------|
+| Coupang | 最大 | Rocket Delivery、全品目 |
+| Naver Shopping | 第二 | 検索エンジン+ショッピング、Google Shopping に類似 |
+| 11st (11번가) | 第三 | SK グループ傘下 |
+| Gmarket/Auction | 第四 | eBay Korea(Emart に買収された) |
+| SSG.com | 第五 | 新世界グループ傘下 |
+
+## 3. 韓国語 Listing AI 最適化(強化版)
+
+> **関連リーディング**: [A2 Listing 最適化](../a-operators/a2-listing-optimization.md) Listing 最適化の汎用方法論は A2 を参照、核心最適化フレームワークを韓国語 Listing に適応可能。
+
+```
+あなたは韓国 EC Listing 最適化の専門家で、韓国語 EC コピーに精通しています。
+
+製品: [名称]
+品目: [X]
+セールスポイント: [5 個]
+価格: $[X]（約 ₩[X]）
+
+完全な Coupang 韓国語 Listing を生成してください:
+
+1. 商品名(상품명、50-100 文字)
+- 形式: ブランド(브랜드) + 商品名(상품명) + 核心属性(핵심속성)
+- 韓国語検索ホット語を含む
+- Coupang タイトルは長すぎない(Amazon より短い)
+
+2. 詳細説明(상세설명、500-800 字)
+- 敬語(존댓말)を使う
+- 品質(품질)と安全(안전)を強調
+- 詳細な使用方法と注意事項を含む
+- 韓国消費者は認証情報(KC 認証など)を見るのを好む
+
+3. 主要特徴(주요특징、5 つの Bullet Points)
+- 各々ベネフィットで始める
+- 具体的なデータ(サイズ/重量/材質)を含む
+
+4. 推奨キーワード(추천 키워드、10 個)
+- 韓国語品目語
+- 韓国語機能語
+- 韓国語シーン語
+
+5. 画像ガイド(이미지 가이드)
+- 韓国消費者が好む画像スタイル
+- 必ず含むインフォグラフィック(サイズ図、材質説明、認証マーク)
+
+注意:
+- 韓国消費者は「正規品」(정품)の表示を重視
+- KC 認証(韓国安全認証)を強調
+- A/S(アフターサービス)情報を含む
+- 敬語(존댓말)を使い、タメ口(반말)を使わない
+- 韓国消費者は「送料無料」(무료배송)に敏感
+```
+
+## 4. Coupang 特有の運営の違い
+
+### 4.1 Rocket Delivery(로켓배송)
+
+Coupang の核心競争力は Rocket Delivery([Coupang Q4 2025 Earnings](https://www.marketbeat.com/instant-alerts/coupang-q4-earnings-call-highlights-2026-02-27/)):
+- 翌日達(大半の地域)
+- 当日達(ソウルなど大都市)
+- 早朝配送(새벽배송、早朝 7 時前に到着)
+- 100+ の物流センターが韓国人口の 70% をカバー(7 マイル内)
+
+| 物流オプション | 説明 | ランキングへの影響 | 向く |
+|----------------|------|--------------------|------|
+| Rocket Delivery | Coupang 倉庫+配送 | ランキングを大幅向上 | 販売量が安定した製品 |
+| Rocket Growth | 越境セラー専用(海外倉→韓国) | 一定の加重 | 越境セラーの第一選択 |
+| セラー自己発送 | セラーが自ら配送 | ランキングが低め | テスト段階 |
+
+### 4.2 Coupang 2025 Q4 主要データ
+
+Coupang の Q4 2025 決算レポート([MarketBeat](https://www.marketbeat.com/instant-alerts/coupang-q4-earnings-call-highlights-2026-02-27/))に基づく:
+
+| 指標 | データ |
+|------|--------|
+| Q4 収入 | $8.8B(+11% YoY、恒常為替 +14%) |
+| 通年収入 | $34.5B(+14% YoY) |
+| アクティブユーザー | 2460 万(+8% YoY) |
+| Product Commerce 収入 | +8% YoY |
+| Developing Offerings 収入 | +32% YoY(Eats、台湾、Farfetch を含む) |
+| 2026 Q1 ガイダンス | 恒常為替収入成長 5-10% |
+
+> **注意**: Coupang は 2025 年に重大なデータ漏洩事件を経験(3300 万アカウントが影響)、Q4 利益が 97% 低下した。会社は影響を受けたユーザーに約 $12 億のクーポンを発行する。これは短期的にプラットフォーム信頼度に影響するかもしれないが、長期的には Coupang の韓国での市場地位は今も堅固。
+
+Content rephrased for compliance with licensing restrictions.
+
+### 4.3 Coupang 広告システム
+
+| 広告タイプ | 説明 | 課金 | 最低入札 |
+|------------|------|------|----------|
+| 検索広告(검색광고) | 検索結果ページ | CPC | ₩70〜 |
+| ディスプレイ広告(디스플레이광고) | サイト内ディスプレイ枠 | CPM | Campaign による |
+| ブランド広告(브랜드광고) | ブランド専区 | CPC | ブランド認証が必要 |
+| Rocket Growth 広告(로켓그로스 광고) | Rocket Growth セラー専用 | CPC | 越境セラー利用可 |
+
+```
+あなたは Coupang 広告最適化の専門家です。
+
+私の製品: [名称]
+品目: [X]
+日予算: ₩[X]
+現在の ROAS: [X]
+
+最適化してください:
+1. 韓国語キーワード戦略
+- 品目語(카테고리)
+- ブランド語(브랜드)
+- 機能語(기능)
+- ロングテール語
+2. 入札戦略(Coupang CPC の競争程度)
+3. 広告タイプの組み合わせ(検索+ディスプレイの予算配分)
+4. Rocket Delivery との連携戦略
+5. 季節性調整(韓国ショッピング祝日: 빼빼로데이、크리스마스、설날)
+```
+
+### 4.3 KC 認証要件
+
+> **関連リーディング**: [A6 コンプライアンスとリスク管理](../a-operators/a6-compliance.md) マルチ市場コンプライアンス方法論は A6 を参照、認証とコンプライアンスフレームワークを韓国 KC 認証に再利用可能。
+
+韓国は輸入製品に厳格な認証要件がある:
+
+| 認証 | 適用品目 | 説明 |
+|------|----------|------|
+| KC 安全認証 | 電子製品、児童用品、家電 | 強制、なければ販売不可 |
+| KC 電磁両立性 | 電子/電気製品 | 強制 |
+| 食品認証(식품인증) | 食品、健康食品 | 韓国 FDA の承認が必要 |
+| 化粧品認証(화장품인증) | 化粧品 | MFDS 登録が必要 |
+
+## 5. 越境出店実操
+
+### 5.1 Coupang Global Selling プラットフォーム
+
+Coupang はスケーラブルな国際拡張エンジンを構築しており、その新しい輸出プラットフォームが鍵([AInvest](https://www.ainvest.com/news/coupang-export-platform-scalable-gateway-336-billion-global-market-2602/))。韓国の EC 市場は 2024 年の $230B から 2027 年に $336B に成長すると予測される。
+
+Coupang Global Selling 公式プラットフォーム([globalsellers.coupang.com](https://globalsellers.coupang.com/))が国際セラーに出店チャネルを提供する。
+
+Content rephrased for compliance with licensing restrictions.
+
+### 5.2 出店パス詳解
+
+> **実事例: 京都ブランド SOU・SOU が Coupang 経由で韓国に参入**
+> 日本京都の伝統繊維ブランド SOU・SOU は Coupang Global Selling 経由で韓国市場に成功裏に参入した。SOU・SOU は日本の伝統柄と現代デザインの融合で知られ、Coupang 加入後に急速に韓国消費者に愛されるブランドになり、伝統に根ざしたスタイルが国境を越えられることを証明した([Coupang Global Sellers](https://globalsellers.coupang.com/en/newsroom/sou%E3%83%BBsou-bringing-kyotos-colorful-seasons-to-korea/))。
+
+Content rephrased for compliance with licensing restrictions.
+
+> **実事例: MITSUYA、自動車輸出から日本消費財の越境へ**
+> 日本の会社 MITSUYA CO., LTD. は当初、日本の自動車と部品を輸出する会社だった。顧客ニーズの変化に伴い、会社は日本消費財の国際販売に拡張し、2007 年に本格的な海外直購サービスを開始した。Coupang プラットフォームを通じて、MITSUYA は日本の職人精神の製品を韓国市場にもたらした([Coupang Global Sellers](https://globalsellers.coupang.com/en/meet-a-seller/delivering-japanese-craftsmanship-to-korea-with-heart/))。
+
+Content rephrased for compliance with licensing restrictions.
+
+| パス | 説明 | 障壁 | 費用 | 向く |
+|------|------|------|------|------|
+| Coupang Global Seller | Coupang で直接国際セラーアカウントを登録 | 有効な営業許可証、銀行口座が必要 | 月額なし、手数料による | 一定の運営能力のあるセラー |
+| Rocket Growth | 越境物流方案(海外倉→韓国倉→Rocket Delivery) | 海外倉能力が必要 | 物流費+手数料 | Rocket Delivery タグを得たいセラー |
+| 韓国代運営 | 韓国現地の代運営業者経由で出店・運営 | 低い(代運営業者がすべて処理) | 代運営費 15-30% | 韓国語能力のないセラー |
+| 韓国現地会社 | 韓国法人実体を登録、現地セラーとして出店 | 高い(韓国会社が必要) | 登録費+運営費 | 韓国市場を長期深耕 |
+
+### 5.3 Global Seller 出店要件
+
+Coupang と業界資料([SellToKorea](https://selltokorea.com/faq/))によると:
+
+| 要件 | 説明 |
+|------|------|
+| 営業許可証 | 有効な企業営業許可証 |
+| 銀行口座 | 支払いを受け取る銀行口座 |
+| 韓国語 Listing | 製品説明に韓国語を含む必要 |
+| 製品画像 | 明瞭な製品画像 |
+| 韓国輸入法規 | 韓国輸入規定に適合 |
+| 品目認証 | 特定品目に追加認証(KC など)が必要な可能性 |
+
+### 5.4 Rocket Growth 深度解析
+
+Rocket Growth は Coupang が越境セラー向けに設計した 3PL サービス([Kontactic](https://www.kontactic.com/blog/how-to-sell-on-coupang-foreign-brand))。Rocket Growth で履行される製品は Rocket Delivery タグを得て、これが転換率と検索可視性を著しく高める。
+
+Content rephrased for compliance with licensing restrictions.
+
+```
+Rocket Growth ワークフロー:
+
+Step 1: セラーが製品を海外倉に送る(中国/米国/日本)
+↓
+Step 2: Coupang が海外倉から韓国 Coupang 倉庫へ調達
+↓
+Step 3: 製品が Rocket Delivery タグを得る
+↓
+Step 4: 買い手が注文後、Coupang が韓国倉庫から発送
+↓
+Step 5: 翌日達/当日達で買い手に配送
+
+利点:
+Rocket Delivery タグを得る(ランキング大幅向上)
+配送速度が現地セラーと同じ
+返品は Coupang が処理
+買い手の信頼度が高い
+
+欠点:
+事前に海外倉に備蓄が必要
+在庫管理が複雑
+物流コストが高め
+滞留在庫のリスク
+```
+
+### 5.5 Coupang 戦略動向(2026)
+
+Coupang は 2025-2026 年にいくつかの重要な戦略方向がある:
+
+| 方向 | 説明 | セラーへの影響 |
+|------|------|----------------|
+| 輸出プラットフォーム | Coupang がグローバル SMB 向けの輸出プラットフォームを投入 | 韓国製品の海外進出の機会 |
+| 台湾拡張 | Developing Offerings 収入 +32% YoY | 将来台湾市場を開放するかも |
+| Farfetch 統合 | Farfetch を買収し高級品領域へ参入 | 高級品目の新機会 |
+| $1B 株式買い戻し | 会社の将来の成長への自信を示す | プラットフォームの安定性 |
+| Rocket WOW 会員 | 1400 万会員([AInvest](https://www.ainvest.com/news/coupang-global-scalability-assessing-tam-tech-moat-growth-investors-2601/)) | 高価値ユーザー層 |
+
+Content rephrased for compliance with licensing restrictions.
+
+### 5.6 韓国市場マーケティングチャネル
+
+| チャネル | 説明 | 向く | AI 応用 |
+|----------|------|------|---------|
+| Naver Blog | 韓国最大の検索エンジンのブログプラットフォーム | 製品レビュー、SEO | AI が韓国語ブログ記事を生成 |
+| Instagram | 韓国の若者が最もよく使うソーシャルプラットフォーム | ビジュアル品目(ファッション/美容) | AI が韓国語 Caption を生成 |
+| YouTube | 韓国第二の検索エンジン | 製品レビュー、開封 | AI が韓国語スクリプトを生成 |
+| KakaoTalk | 韓国の国民通信 App | CS、マーケティングプッシュ | AI Chatbot |
+| Naver Shopping Live | ライブ販売 | リアルタイム販売 | AI 補助ライブスクリプト |
+
+```
+あなたは韓国市場マーケティングの専門家です。
+
+私のブランド: [名称]
+品目: [X]
+ターゲットユーザー: [年齢/性別]
+月予算: ₩[X]
+
+韓国市場マーケティング方案を策定してください:
+
+1. チャネル優先度(Naver Blog > Instagram > YouTube > KakaoTalk)
+2. KOL/KOC 協働戦略
+- 韓国 KOL の特徴(真正性と詳細なレビューを重視)
+- 推奨の協働モデル(製品贈呈/有料協働/手数料分成)
+- 予算配分の提案
+3. Naver SEO 戦略
+- 韓国語キーワードリサーチ
+- Naver Blog コンテンツ戦略
+- Naver Shopping 最適化
+4. 韓国祝日マーケティングカレンダー
+- 설날(旧正月、1-2月)
+- 빼빼로데이(11月11日、光棍節に類似)
+- 크리스마스(クリスマス)
+- 추석(中秋節)
+- 어버이날(父母の日、5月8日)
+5. コンテンツローカライズ要件
+- 韓国審美嗜好
+- 韓国語コピースタイル
+- 韓国消費者の信頼構築
+```
+
+## 6. 完了チェック
+
+- [ ] 韓国市場の機会と KC 認証要件を評価
+- [ ] 出店パスを確認(Coupang Global / 代運営)
+- [ ] 韓国語 Listing 最適化を完了
+- [ ] Rocket Delivery か Rocket Growth を設定
+- [ ] Coupang 検索広告を起動
