@@ -3,7 +3,7 @@
 zh is the source of truth (`src/`). Regenerate this table with
 `python3 scripts/gen_i18n_stubs.py --status`.
 
-**EN: 52/66 · JA: 52/66**
+**EN: 53/66 · JA: 53/66**
 
 | Chapter | EN | JA |
 |---------|----|----|
@@ -45,7 +45,7 @@ zh is the source of truth (`src/`). Regenerate this table with
 | `d-platforms/d4-walmart-ai-guide.md` | ✅ | ✅ |
 | `d-platforms/d5-temu-seller-guide.md` | ✅ | ✅ |
 | `d-platforms/d6-southeast-asia-ai-guide.md` | ✅ | ✅ |
-| `d-platforms/d7-mercado-libre-ai-guide.md` | 🚧 | 🚧 |
+| `d-platforms/d7-mercado-libre-ai-guide.md` | ✅ | ✅ |
 | `d-platforms/d8-rakuten-japan-ai-guide.md` | 🚧 | 🚧 |
 | `d-platforms/d9-ebay-ai-guide.md` | 🚧 | 🚧 |
 | `d-platforms/d10-aliexpress-ai-guide.md` | 🚧 | 🚧 |
