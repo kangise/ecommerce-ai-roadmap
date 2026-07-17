@@ -22,6 +22,7 @@ jobs:
           args: >-
             --offline --no-progress
             README.md
+            README_EN.md
             src/**/*.md
             roadmap/**/*.md
             notebooks/**/*.md
