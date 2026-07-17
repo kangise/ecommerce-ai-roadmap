@@ -3,7 +3,7 @@
 zh is the source of truth (`src/`). Regenerate this table with
 `python3 scripts/gen_i18n_stubs.py --status`.
 
-**EN: 41/66 · JA: 41/66**
+**EN: 42/66 · JA: 42/66**
 
 | Chapter | EN | JA |
 |---------|----|----|
@@ -38,7 +38,7 @@ zh is the source of truth (`src/`). Regenerate this table with
 | `b-developers/b8-ecommerce-dashboard.md` | ✅ | ✅ |
 | `b-developers/b9-ai-image-pipeline.md` | ✅ | ✅ |
 | `c-managers/c1-ai-assessment.md` | ✅ | ✅ |
-| `c-managers/c2-team-building.md` | 🚧 | 🚧 |
+| `c-managers/c2-team-building.md` | ✅ | ✅ |
 | `c-managers/c3-roi-evaluation.md` | 🚧 | 🚧 |
 | `c-managers/c4-ai-risk-governance.md` | 🚧 | 🚧 |
 | `c-managers/c5-competitive-intelligence.md` | 🚧 | 🚧 |
