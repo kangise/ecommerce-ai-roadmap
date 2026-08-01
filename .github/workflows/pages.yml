@@ -38,9 +38,20 @@ jobs:
 
       - name: Build with mdBook (zh, then en/ja into subdirs)
         run: |
+          # --dest-dir resolves against the working directory, not the book root,
+          # so these must be plain docs/en and docs/ja. With ../../ they landed
+          # outside the repo and the EN/JA sites silently never shipped.
+          # zh must build first: mdBook wipes its dest dir, which is docs/.
           mdbook build
-          mdbook build i18n/en --dest-dir ../../docs/en
-          mdbook build i18n/ja --dest-dir ../../docs/ja
+          mdbook build i18n/en --dest-dir docs/en
+          mdbook build i18n/ja --dest-dir docs/ja
+
+      - name: Verify all three books are in the artifact
+        run: |
+          for f in docs/index.html docs/en/index.html docs/ja/index.html; do
+            test -s "$f" || { echo "::error::missing $f — the trilingual build is incomplete"; exit 1; }
+          done
+          echo "zh/en/ja all present"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
