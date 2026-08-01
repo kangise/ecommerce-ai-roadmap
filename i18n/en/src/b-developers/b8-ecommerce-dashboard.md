@@ -1,7 +1,7 @@
 # B8. E-Commerce Data Visualization & Real-Time Dashboard
 
 > **Track**: Path B: Developers · **Module**: B8
-> **Last updated**: 2026-03-15
+> **Last updated**: 2026-07-31
 > **Level**: Intermediate
 > **Time**: 1 hour a day, 1–2 weeks
 > **Prerequisite**: [B1 Data Collection & Processing](b1-data-pipeline.md)
@@ -11,7 +11,7 @@
 
 ## Chapter Navigation
 
-1. [Why build your own dashboard](#1-why-build-your-own-dashboard) · 2. [Tech-stack choice](#2-tech-stack-choice) · 3. [Streamlit quick start](#3-streamlit-quick-start) · 4. [Core e-commerce dashboard modules](#4-core-e-commerce-dashboard-modules) · 5. [Multi-platform data integration](#5-multi-platform-data-integration) · 6. [AI-enhanced dashboard](#6-ai-enhanced-dashboard) · 7. [Deploy and share](#7-deploy-and-share) · 8. [Completion checklist](#8-completion-checklist)
+1. [Why build your own dashboard](#1-why-build-your-own-dashboard) · 2. [Tech-stack choice](#2-tech-stack-choice) · 3. [Streamlit quick start](#3-streamlit-quick-start) · 4. [Core e-commerce dashboard modules](#4-core-e-commerce-dashboard-modules) · 5. [Multi-platform data integration](#5-multi-platform-data-integration) · 6. [AI-enhanced dashboard](#6-ai-enhanced-dashboard) · 7. [Deploy and share](#7-deploy-and-share) · 8. [Common Traps](#8-common-traps) · 9. [Completion checklist](#9-completion-checklist)
 
 ---
 
@@ -617,7 +617,27 @@ git add -A && git commit -m "add dashboard" && git push
 
 ---
 
-## 8. Completion Checklist
+## 8. Common Traps
+
+### 8.1 Putting every metric on it
+
+Forty charts is the same as no priority. A useful dashboard answers "do I need to do something today," not "how much data do I have."
+
+### 8.2 No baseline
+
+A number alone means nothing. Year-over-year, period-over-period, a target line, an industry benchmark — you need at least one reference or the viewer can't tell whether to worry.
+
+### 8.3 Not labeling data latency
+
+Whether the number is live or from yesterday changes the decision. Unlabeled, someone will make a same-day repricing call on T-1 data.
+
+### 8.4 Building something only you can read
+
+The dashboard is for the team. Field naming, metric definitions, and what the alert colors mean all belong next to the chart, not in your head.
+
+---
+
+## 9. Completion Checklist
 
 - [ ] Built a Streamlit dashboard with 4+ modules
 - [ ] Integrated data from at least 2 platforms (Amazon + Shopify)

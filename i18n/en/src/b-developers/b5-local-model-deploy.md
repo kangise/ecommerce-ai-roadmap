@@ -1,7 +1,7 @@
 # B5. Local Model Deployment & Fine-tuning
 
 > **Track**: Path B: Developers · **Module**: B5
-> **Last updated**: 2026-03-12
+> **Last updated**: 2026-07-31
 > **Level**: Advanced
 > **Prerequisite**: B1 data-pipeline basics (Python), B3 basic RAG concepts, B4 Agent basics
 > **Time**: 1 hour a day, 3–4 weeks
@@ -35,7 +35,7 @@ A local AI service — run an LLM on your own machine to protect business-data p
 
 After this module you'll be able to:
 - Understand why to deploy an LLM locally, and when to choose local vs cloud
-- Run open-source models (Qwen2.5, Llama 3.1, Mistral, etc.) locally with one Ollama command
+- Run open-weight models (Qwen3, Gemma 3, DeepSeek R1, etc.) locally with one Ollama command
 - Choose the right model for your task (Chinese ability, code ability, reasoning ability)
 - Call a local Ollama model with Python, integrate into existing workflows
 - Build a fully local RAG system (data never leaves your machine)
@@ -76,7 +76,7 @@ Not all scenarios fit local deployment. The key is trading off data privacy, cos
 ```
 What's your scenario?
 Data contains trade secrets (cost, profit, suppliers) → local deployment
-Need the highest-quality reasoning (complex analysis, creative writing) → cloud API (GPT-4o/Claude)
+Need the highest-quality reasoning (complex analysis, creative writing) → the T1 frontier tier of a cloud API
 High-frequency calls (10,000+/day) → local deployment (clear cost advantage)
 Occasional use (dozens/day) → cloud API (skip the ops cost)
 Need offline use → local deployment
@@ -89,7 +89,7 @@ Not sure → validate the need with a cloud API first, then migrate to local
 | Dimension | Local deployment | Cloud API |
 |-----------|------------------|-----------|
 | Data privacy | data never leaves your machine | data sent to a third-party server |
-| Inference quality | 7B model ~ GPT-3.5, 70B near GPT-4 | GPT-4o/Claude 3.5 highest level |
+| Inference quality | 8B is usable, 30B+ approaches the cloud T2 workhorse tier | T1 frontier tier, highest level |
 | Cost (low-frequency) | high hardware cost, free use | billed per token, low total cost |
 | Cost (high-frequency) | one-time hardware, free long-term | cost grows linearly with call volume |
 | Latency | depends on hardware (M4 Pro ~40 tokens/s) | network latency + inference latency |
@@ -169,7 +169,7 @@ Reference docs: [Ollama official docs](https://ollama.com/) | [vLLM official doc
 pip install transformers huggingface_hub
 
 # Download a model locally
-huggingface-cli download Qwen/Qwen2.5-7B-Instruct --local-dir ./models/qwen2.5-7b
+huggingface-cli download Qwen/Qwen3-8B --local-dir ./models/qwen3-8b
 
 # Search models
 huggingface-cli search models --query "e-commerce chinese"
@@ -206,11 +206,11 @@ ollama --version
 **Download and run a model:**
 
 ```bash
-# Download and run Qwen2.5 7B (recommended: good at both Chinese/English)
-ollama run qwen2.5:7b
+# Download and run Qwen3 8B (recommended: good at both Chinese/English)
+ollama run qwen3:8b
 
-# Download and run Llama 3.1 8B (Meta open-source, excellent English)
-ollama run llama3.1:8b
+# Download and run Gemma 3 12B (Google open-weight, and takes image input)
+ollama run gemma3:12b
 
 # Download and run Mistral 7B (European team, strong code ability)
 ollama run mistral:7b
@@ -238,7 +238,7 @@ The competitive landscape of the action-camera category in the US market can be 
 
 > **How Ollama works**: Ollama uses llama.cpp for inference under the hood, auto-detecting your hardware (Mac Metal GPU / NVIDIA CUDA) and choosing the optimal inference mode. Model files are stored in the `~/.ollama/models/` directory.
 
-### 3.2 Model-selection guide: Qwen2.5 vs Llama 3.1 vs Mistral
+### 3.2 Model-selection guide: Qwen3 vs Gemma 3 vs DeepSeek R1
 
 Choosing the right model matters more than choosing the right framework. Different models perform very differently on different tasks.
 
@@ -246,43 +246,43 @@ Choosing the right model matters more than choosing the right framework. Differe
 
 | Model | Params | Chinese | English | Code | Reasoning | Recommended scenario |
 |-------|--------|---------|---------|------|-----------|----------------------|
-| Qwen2.5 | 0.5B–72B | best | excellent | excellent | excellent | first choice for Chinese e-commerce |
-| Llama 3.1 | 8B–405B | good | best | excellent | excellent | English-first scenarios |
+| Qwen3 | 0.6B–235B | best | excellent | excellent | excellent | first choice for Chinese e-commerce, Apache 2.0 |
+| Gemma 3 | 270M–27B | good | best | excellent | excellent | English-first; 4B and up take image input |
 | Mistral | 7B–8x22B | good | excellent | best | good | code generation, technical docs |
 | Gemma 2 | 2B–27B | good | excellent | good | good | lightweight, mobile |
 | Phi-3 | 3.8B–14B | fair | excellent | excellent | excellent | small-model high performance |
-| DeepSeek-V2 | 16B–236B | excellent | excellent | best | excellent | code and math reasoning |
+| DeepSeek R1 | 1.5B–671B | excellent | excellent | best | excellent | tasks needing a reasoning chain, MIT |
 
 **E-commerce recommendations:**
 
 ```
 What's your main language?
-Chinese-first (Chinese sellers, Chinese Reviews) → Qwen2.5:7b
-English-first (US market, English Listings) → Llama3.1:8b
-Mixed Chinese-English → Qwen2.5:7b (good at both)
-Need code/data analysis → DeepSeek-Coder or Qwen2.5-Coder
+Chinese-first (Chinese sellers, Chinese Reviews) → qwen3:8b
+English-first (US market, English Listings) → gemma3:12b
+Mixed Chinese-English → qwen3:8b (good at both)
+Need code/data analysis → qwen2.5-coder:7b, or Qwen3-Coder if you have the GPU
 
 Your hardware?
-8GB RAM (base Mac M1/M2) → 7B model (qwen2.5:7b)
+8GB RAM (base Mac M1/M2) → 7B model (qwen3:8b)
 16GB RAM → 7B or 14B model
 32GB+ RAM → can try a 32B model
-64GB+ RAM → 70B model (near GPT-4 level)
+64GB+ RAM → 32B model (near the cloud T2 workhorse tier)
 ```
 
 **Ollama model-download commands:**
 
 ```bash
 # First choice for Chinese e-commerce
-ollama pull qwen2.5:7b
+ollama pull qwen3:8b
 
 # English scenarios / Meta ecosystem
-ollama pull llama3.1:8b
+ollama pull gemma3:12b
 
 # Code generation
 ollama pull qwen2.5-coder:7b
 
 # Lightweight (runs on a laptop)
-ollama pull qwen2.5:3b
+ollama pull qwen3:4b
 ollama pull phi3:3.8b
 
 # Embedding models (for RAG)
@@ -301,7 +301,7 @@ Ollama provides an OpenAI-compatible REST API, callable with any HTTP client. Th
 
 import ollama
 
-def analyze_review(review_text: str, model: str = "qwen2.5:7b") -> str:
+def analyze_review(review_text: str, model: str = "qwen3:8b") -> str:
 """Analyze a customer Review with a local LLM, extracting product-improvement directions."""
 response = ollama.chat(
 model=model,
@@ -320,7 +320,7 @@ options={"temperature": 0.1}, # low temperature, more deterministic output
 )
 return response["message"]["content"]
 
-def batch_analyze_reviews(reviews: list[str], model: str = "qwen2.5:7b") -> list[dict]:
+def batch_analyze_reviews(reviews: list[str], model: str = "qwen3:8b") -> list[dict]:
 """Batch-analyze a list of Reviews."""
 results = []
 for i, review in enumerate(reviews):
@@ -357,7 +357,7 @@ base_url="http://localhost:11434/v1",
 api_key="ollama", # Ollama doesn't need a real API key
 )
 
-def generate_listing(product_info: str, model: str = "qwen2.5:7b") -> str:
+def generate_listing(product_info: str, model: str = "qwen3:8b") -> str:
 """Generate a product Listing with a local LLM."""
 response = client.chat.completions.create(
 model=model,
@@ -378,7 +378,13 @@ return response.choices[0].message.content
 
 # Switching to cloud OpenAI takes only two lines:
 # client = OpenAI(api_key="sk-...") # change to your OpenAI API key
-# model = "gpt-4o-mini" # change to the OpenAI model name
+# model = "gpt-5.6-luna" # change to the OpenAI model name
+
+<copy_discipline>
+- Never write a feature, material, certification, or result the product doesn't actually have. Any attribute I didn't state above must not appear in the copy — this is the number-one cause of listing takedowns and false-advertising complaints
+- If you need a selling point I didn't supply, list what you need from me rather than improvising
+- Flag any claim touching efficacy, safety, environmental, or patent language separately so I can verify it by hand
+</copy_discipline>
 ```
 
 > **The value of seamless switching**: use local Ollama in dev (free, data-safe), switch to OpenAI after launch as needed (higher quality). The code only changes the `base_url` and `model` parameters.
@@ -390,7 +396,7 @@ For long-text generation (reports, Listings), streaming lets the user see real-t
 ```python
 import ollama
 
-def stream_generate(prompt: str, model: str = "qwen2.5:7b"):
+def stream_generate(prompt: str, model: str = "qwen3:8b"):
 """Stream text generation, outputting each token in real time."""
 stream = ollama.chat(
 model=model,
@@ -429,7 +435,7 @@ from llama_index.vector_stores.chroma import ChromaVectorStore
 
 def build_local_rag(
 docs_dir: str,
-llm_model: str = "qwen2.5:7b",
+llm_model: str = "qwen3:8b",
 embed_model: str = "nomic-embed-text",
 collection_name: str = "local_knowledge",
 persist_dir: str = "chroma_db",
@@ -439,7 +445,7 @@ Build a fully local RAG system.
 
 Prerequisite:
 1. Ollama installed and running (ollama serve)
-2. Model downloaded: ollama pull qwen2.5:7b
+2. Model downloaded: ollama pull qwen3:8b
 3. Embedding downloaded: ollama pull nomic-embed-text
 
 All data processed locally, no external API calls.
@@ -574,6 +580,12 @@ import json
 with open("train_data.jsonl", "w", encoding="utf-8") as f:
 for item in training_data:
 f.write(json.dumps(item, ensure_ascii=False) + "\n")
+
+<copy_discipline>
+- Never write a feature, material, certification, or result the product doesn't actually have. Any attribute I didn't state above must not appear in the copy — this is the number-one cause of listing takedowns and false-advertising complaints
+- If you need a selling point I didn't supply, list what you need from me rather than improvising
+- Flag any claim touching efficacy, safety, environmental, or patent language separately so I can verify it by hand
+</copy_discipline>
 ```
 
 **LoRA fine-tuning with Unsloth (recommended, 2× faster):**
@@ -589,7 +601,7 @@ from datasets import load_dataset
 
 # 1. Load the base model (auto-applies 4-bit quantization, saving VRAM)
 model, tokenizer = FastLanguageModel.from_pretrained(
-model_name="unsloth/Qwen2.5-7B-Instruct-bnb-4bit",
+model_name="unsloth/Qwen3-8B-bnb-4bit",
 max_seq_length=2048,
 load_in_4bit=True, # 4-bit quantization, a 7B model needs only ~5GB VRAM
 )
@@ -682,6 +694,12 @@ ollama create ecommerce-expert -f Modelfile
 
 # Run the fine-tuned model
 ollama run ecommerce-expert
+
+<copy_discipline>
+- Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
+- For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
+- Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
+</copy_discipline>
 ```
 
 > **Fine-tuning data-volume guide**:
@@ -705,7 +723,7 @@ docker run --runtime nvidia --gpus all \
 -v ~/.cache/huggingface:/root/.cache/huggingface \
 -p 8000:8000 \
 vllm/vllm-openai:latest \
---model Qwen/Qwen2.5-7B-Instruct \
+--model Qwen/Qwen3-8B \
 --max-model-len 4096
 ```
 
@@ -714,7 +732,7 @@ vllm/vllm-openai:latest \
 ```bash
 # Method 1: command-line start (OpenAI-compatible API)
 python -m vllm.entrypoints.openai.api_server \
---model Qwen/Qwen2.5-7B-Instruct \
+--model Qwen/Qwen3-8B \
 --host 0.0.0.0 \
 --port 8000 \
 --max-model-len 4096 \
@@ -723,7 +741,7 @@ python -m vllm.entrypoints.openai.api_server \
 # After the service starts, call with an OpenAI client:
 # curl http://localhost:8000/v1/chat/completions \
 # -H "Content-Type: application/json" \
-# -d '{"model": "Qwen/Qwen2.5-7B-Instruct", "messages": [...]}'
+# -d '{"model": "Qwen/Qwen3-8B", "messages": [...]}'
 ```
 
 **Call the vLLM service from Python:**
@@ -735,7 +753,7 @@ from openai import OpenAI
 client = OpenAI(base_url="http://localhost:8000/v1", api_key="not-needed")
 
 response = client.chat.completions.create(
-model="Qwen/Qwen2.5-7B-Instruct",
+model="Qwen/Qwen3-8B",
 messages=[
 {"role": "system", "content": "You are an e-commerce data-analysis expert."},
 {"role": "user", "content": "Analyze the possible causes of this month's 15% sales drop"},
@@ -783,10 +801,10 @@ Apple Silicon Macs are currently the most cost-effective local-LLM development p
 sysctl -n hw.memsize | awk '{print $1/1024/1024/1024 " GB"}'
 
 # Choose a model by memory
-# 8GB → ollama run qwen2.5:3b or phi3:3.8b
-# 16GB → ollama run qwen2.5:7b (recommended)
-# 32GB → ollama run qwen2.5:14b or qwen2.5:32b (Q4)
-# 64GB → ollama run qwen2.5:72b (Q4)
+# 8GB → ollama run qwen3:4b or phi3:3.8b
+# 16GB → ollama run qwen3:8b (recommended)
+# 32GB → ollama run qwen3:14b or qwen3:32b (Q4)
+# 64GB → ollama run qwen3:32b (Q4)
 
 # Monitor memory and GPU use during inference
 # Open Activity Monitor → GPU History
@@ -815,9 +833,9 @@ Inference VRAM ≈ model params(B) × quant bits / 8 + 2GB overhead
 Fine-tuning VRAM ≈ inference VRAM × 1.5 (LoRA) or × 4 (full fine-tuning)
 
 Examples:
-- Qwen2.5-7B Q4 inference: 7 × 4 / 8 + 2 = 5.5GB → RTX 3060 is enough
-- Qwen2.5-7B Q4 LoRA fine-tuning: 5.5 × 1.5 = 8.25GB → RTX 3060 barely
-- Qwen2.5-7B FP16 full fine-tuning: 7 × 16 / 8 × 4 = 56GB → needs an A100
+- Qwen3-8B Q4 inference: 7 × 4 / 8 + 2 = 5.5GB → RTX 3060 is enough
+- Qwen3-8B Q4 LoRA fine-tuning: 5.5 × 1.5 = 8.25GB → RTX 3060 barely
+- Qwen3-8B FP16 full fine-tuning: 7 × 16 / 8 × 4 = 56GB → needs an A100
 ```
 
 ### 4.3 Cloud GPU (on-demand, no hardware to buy)
@@ -853,10 +871,10 @@ Don't want to buy hardware? Cloud GPUs are billed hourly, use and go.
 
 | Task | Wrong choice | Right choice |
 |------|--------------|--------------|
-| Chinese Review analysis | llama3.1:8b (weak Chinese) | qwen2.5:7b (strong Chinese) |
-| Complex data analysis | phi3:3.8b (too small) | qwen2.5:14b or larger |
+| Chinese Review analysis | gemma3:12b (weak Chinese) | qwen3:8b (strong Chinese) |
+| Complex data analysis | phi3:3.8b (too small) | qwen3:14b or larger |
 | Code generation | mistral:7b (mediocre code) | qwen2.5-coder:7b |
-| Simple classification | qwen2.5:72b (overkill) | qwen2.5:3b (enough and fast) |
+| Simple classification | qwen3:32b (overkill) | qwen3:4b (enough and fast) |
 
 **Rule of thumb**: test with a small model (3B–7B) first, switch to a bigger model if not good enough. Don't start with the biggest model — big models are slow and resource-hungry.
 
@@ -871,10 +889,10 @@ Don't want to buy hardware? Cloud GPUs are billed hourly, use and go.
 ollama ps # view running models and their memory use
 
 # 2. Stop unneeded models
-ollama stop qwen2.5:14b
+ollama stop qwen3:14b
 
 # 3. Use a smaller quantized version
-ollama run qwen2.5:7b-q4_0 # Q4 quantization, more memory-saving than default
+ollama run qwen3:8b # Q4 quantization, more memory-saving than default
 
 # 4. Limit Ollama's memory use (Mac)
 # Set in ~/.ollama/config:
@@ -970,11 +988,11 @@ CPU only → GGUF (llama.cpp optimized)
 ```bash
 # 1. Download a GGUF file from HuggingFace
 # Search: https://huggingface.co/models?search=gguf
-# E.g., download the Q4_K_M quantized version of Qwen2.5-7B
+# E.g., download the Q4_K_M quantized version of Qwen3-8B
 
 # 2. Create a Modelfile
 cat > Modelfile << 'EOF'
-FROM ./qwen2.5-7b-instruct-q4_k_m.gguf
+FROM ./qwen3-8b-q4_k_m.gguf
 TEMPLATE """<|im_start|>system
 {{ .System }}<|im_end|>
 <|im_start|>user
@@ -1015,12 +1033,12 @@ Model merging is a technique to "combine" the strengths of multiple models witho
 cat > merge_config.yml << 'EOF'
 slices:
 - sources:
-- model: Qwen/Qwen2.5-7B-Instruct
+- model: Qwen/Qwen3-8B
 layer_range: [0, 28]
 - model: your-ecommerce-lora-model
 layer_range: [0, 28]
 merge_method: slerp
-base_model: Qwen/Qwen2.5-7B-Instruct
+base_model: Qwen/Qwen3-8B
 parameters:
 t:
 - filter: self_attn
@@ -1044,8 +1062,8 @@ Ollama's Modelfile is like a Dockerfile, letting you customize the model's behav
 ```bash
 # Create an e-commerce-specific model config
 cat > Modelfile.ecommerce << 'EOF'
-# Based on Qwen2.5 7B
-FROM qwen2.5:7b
+# Based on Qwen3 8B
+FROM qwen3:8b
 
 # Set the system prompt
 SYSTEM """You are a professional cross-border e-commerce AI assistant. You're expert in:
@@ -1087,7 +1105,7 @@ from concurrent.futures import ThreadPoolExecutor
 def batch_analyze(
 items: list[str],
 system_prompt: str,
-model: str = "qwen2.5:7b",
+model: str = "qwen3:8b",
 max_workers: int = 2,
 ) -> list[dict]:
 """
@@ -1133,7 +1151,7 @@ return results
 # )
 ```
 
-**Batch-processing performance reference (Mac M3 Pro 36GB, Qwen2.5:7b):**
+**Batch-processing performance reference (Mac M3 Pro 36GB, qwen3:8b):**
 
 | Data volume | Avg time per item | Total time |
 |-------------|-------------------|------------|
@@ -1169,7 +1187,7 @@ return results
 ## 9. Completion Checklist
 
 - [ ] Installed Ollama locally and successfully ran an LLM (3.1)
-- [ ] Can state the strengths and use cases of Qwen2.5 / Llama 3.1 / Mistral (3.2)
+- [ ] Can state the strengths and use cases of Qwen3 / Gemma 3 / DeepSeek R1 (3.2)
 - [ ] Called a local Ollama with Python to complete an e-commerce task (like Review analysis) (3.3)
 - [ ] Built a fully local RAG system (Ollama + Chroma) (3.4)
 - [ ] Understood the principle of LoRA fine-tuning, able to prepare a fine-tuning dataset (3.5)
@@ -1184,12 +1202,12 @@ return results
 
 | Model | Publisher | Param options | License | Chinese | English | Code | Ollama command |
 |-------|-----------|---------------|---------|---------|---------|------|----------------|
-| Qwen2.5 | Alibaba Cloud | 0.5B/1.5B/3B/7B/14B/32B/72B | Apache 2.0 | ✓ | ✓ | ✓ | `ollama run qwen2.5:7b` |
-| Llama 3.1 | Meta | 8B/70B/405B | Llama 3.1 License | ✓ | ✓ | ✓ | `ollama run llama3.1:8b` |
+| Qwen3 | Alibaba Cloud | 0.6B/1.7B/4B/8B/14B/30B/32B/235B | Apache 2.0 | ✓ | ✓ | ✓ | `ollama run qwen3:8b` |
+| Gemma 3 | Google | 270M/1B/4B/12B/27B | Gemma License | ✓ | ✓ | ✓ | `ollama run gemma3:12b` |
 | Mistral | Mistral AI | 7B/8x7B/8x22B | Apache 2.0 | ✓ | ✓ | ✓ | `ollama run mistral:7b` |
 | Gemma 2 | Google | 2B/9B/27B | Gemma License | ✓ | ✓ | ✓ | `ollama run gemma2:9b` |
 | Phi-3 | Microsoft | 3.8B/7B/14B | MIT | ✓ | ✓ | ✓ | `ollama run phi3:3.8b` |
-| DeepSeek-V2 | DeepSeek | 16B/236B | DeepSeek License | ✓ | ✓ | ✓ | `ollama run deepseek-v2:16b` |
+| DeepSeek R1 | DeepSeek | 1.5B-671B | MIT | ✓ | ✓ | ✓ | `ollama run deepseek-r1` |
 | Yi-1.5 | 01.AI | 6B/9B/34B | Apache 2.0 | ✓ | ✓ | ✓ | `ollama run yi:34b` |
 | ChatGLM4 | Zhipu AI | 9B | GLM-4 License | ✓ | ✓ | ✓ | `ollama run glm4:9b` |
 
@@ -1213,20 +1231,20 @@ return results
 | Task | Command/code |
 |------|--------------|
 | Install Ollama (macOS) | `brew install ollama` or download from [ollama.com](https://ollama.com/) |
-| Download a model | `ollama pull qwen2.5:7b` |
-| Run a model (interactive) | `ollama run qwen2.5:7b` |
+| Download a model | `ollama pull qwen3:8b` |
+| Run a model (interactive) | `ollama run qwen3:8b` |
 | View downloaded models | `ollama list` |
 | View running models | `ollama ps` |
-| Delete a model | `ollama rm qwen2.5:7b` |
+| Delete a model | `ollama rm qwen3:8b` |
 | Start the Ollama service | `ollama serve` |
-| Call Ollama from Python | `ollama.chat(model="qwen2.5:7b", messages=[...])` |
+| Call Ollama from Python | `ollama.chat(model="qwen3:8b", messages=[...])` |
 | OpenAI-compatible call | `OpenAI(base_url="http://localhost:11434/v1")` |
 | Create a custom model | `ollama create my-model -f Modelfile` |
 | Install fine-tuning deps | `pip install unsloth trl transformers datasets` |
 | Install RAG deps | `pip install llama-index llama-index-llms-ollama chromadb` |
 | Install vLLM | `pip install vllm` |
 | Start the vLLM service | `python -m vllm.entrypoints.openai.api_server --model ...` |
-| Download a HuggingFace model | `huggingface-cli download Qwen/Qwen2.5-7B-Instruct` |
+| Download a HuggingFace model | `huggingface-cli download Qwen/Qwen3-8B` |
 | Check Mac memory | `sysctl -n hw.memsize \| awk '{print $1/1024/1024/1024 " GB"}'` |
 | Check GPU (NVIDIA) | `nvidia-smi` |
 
@@ -1234,12 +1252,12 @@ return results
 
 | E-commerce task | Recommended model | Recommended quant | Min hardware |
 |-----------------|-------------------|-------------------|--------------|
-| Chinese Review analysis | Qwen2.5:7b | Q4_K_M | 8GB RAM |
-| English Listing generation | Llama3.1:8b | Q4_K_M | 8GB RAM |
-| Mixed Chinese-English tasks | Qwen2.5:7b | Q4_K_M | 8GB RAM |
-| Data-analysis code generation | Qwen2.5-Coder:7b | Q4_K_M | 8GB RAM |
-| Complex business analysis | Qwen2.5:14b | Q4_K_M | 16GB RAM |
-| High-quality report generation | Qwen2.5:32b | Q4_K_M | 32GB RAM |
+| Chinese Review analysis | qwen3:8b | Q4_K_M | 8GB RAM |
+| English Listing generation | gemma3:12b | Q4_K_M | 8GB RAM |
+| Mixed Chinese-English tasks | qwen3:8b | Q4_K_M | 8GB RAM |
+| Data-analysis code generation | qwen2.5-coder:7b | Q4_K_M | 8GB RAM |
+| Complex business analysis | qwen3:14b | Q4_K_M | 16GB RAM |
+| High-quality report generation | qwen3:32b | Q4_K_M | 32GB RAM |
 | Local RAG embedding | nomic-embed-text | | 4GB RAM |
 | Local RAG embedding (Chinese-optimized) | bge-large | | 4GB RAM |
 

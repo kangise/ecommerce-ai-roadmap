@@ -1,7 +1,7 @@
 # D11. Coupang Korea E-Commerce AI Guide
 
 > **Track**: Path D: Multi-Platform · **Module**: D11
-> **Last updated**: 2026-03-14
+> **Last updated**: 2026-07-31
 > **Difficulty**: Intermediate
 > **Estimated time**: 1 hour
 
@@ -9,6 +9,25 @@
 ---
 
 > Revenue $36.8B (2025), 24.6 million active users. The Korean e-commerce market is $230B+, expected to reach $336B by 2027. Called "the Amazon of Korea," with Rocket Delivery (next-day/same-day) as the core competency. Cross-border onboarding has a fairly high barrier.
+
+## Chapter Navigation
+
+1. [Coupang Core Characteristics](#1-coupang-core-characteristics) · 2. [Korean Market Characteristics](#2-korean-market-characteristics) · 3. [Korean Listing AI Optimization (Enhanced Version)](#3-korean-listing-ai-optimization-enhanced-version) · 4. [Coupang-Specific Operational Differences](#4-coupang-specific-operational-differences) · 5. [Cross-Border Onboarding in Practice](#5-cross-border-onboarding-in-practice) · 6. [Common Traps](#6-common-traps) · 7. [Completion Checklist](#7-completion-checklist)
+
+---
+
+## What You'll Learn
+
+Korea has the most demanding fulfillment expectations of any single market, and Coupang's rules are built around that.
+
+After this module you'll be able to:
+- Understand Coupang's core mechanics and its hard fulfillment requirements
+- Read Korean consumer characteristics and category preferences
+- Produce listings with AI that match Korean language conventions
+- Complete cross-border onboarding and avoid Coupang-specific operational traps
+
+---
+
 
 ## 1. Coupang Core Characteristics
 
@@ -90,6 +109,18 @@ Note:
 - Include A/S (after-sales service) info
 - Use honorifics (존댓말), not casual speech (반말)
 - Korean consumers are very sensitive to "free shipping" (무료배송)
+
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
+
+<copy_discipline>
+- Never write a feature, material, certification, or result the product doesn't actually have. Any attribute I didn't state above must not appear in the copy — this is the number-one cause of listing takedowns and false-advertising complaints
+- If you need a selling point I didn't supply, list what you need from me rather than improvising
+- Flag any claim touching efficacy, safety, environmental, or patent language separately so I can verify it by hand
+</copy_discipline>
 ```
 
 ## 4. Coupang-Specific Operational Differences
@@ -294,9 +325,35 @@ Please create a Korean market marketing plan:
 - Korean aesthetic preferences
 - Korean copy style
 - Korean consumer trust building
+
+<copy_discipline>
+- Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
+- For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
+- Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
+</copy_discipline>
 ```
 
-## 6. Completion Checklist
+## 6. Common Traps
+
+### 6.1 Underestimating fulfillment requirements
+
+Coupang's rules are built around delivery speed, and missing the standard directly hits exposure. This isn't "bonus points for doing well" — it's "penalties for falling short." Confirm your fulfillment can meet the bar before onboarding.
+
+### 6.2 Machine-translating Korean
+
+Korean shoppers are sensitive to how local the copy reads; machine-translation artifacts damage trust directly. Similar to the Japanese market in this respect.
+
+### 6.3 Ignoring competition with Coupang's own retail
+
+Platform-owned inventory in your category affects both your traffic and your pricing room. Factor it in during product selection.
+
+### 6.4 Not working out the cash tied up by the settlement cycle
+
+The settlement cycle determines how much working capital you need — a hard constraint when stocking for peak season.
+
+---
+
+## 7. Completion Checklist
 
 - [ ] Assess Korean market opportunities and KC certification requirements
 - [ ] Confirm the onboarding path (Coupang Global / agency)

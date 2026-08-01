@@ -33,7 +33,7 @@ B4 --> B5["B5 本地模型\n部署微调"]
 | [B6. MCP 集成与 Agentic 工作流](b6-mcp-agentic-workflow.md) | MCP/Agentic | 高级 | 2-3周 | 用 MCP 连接 Amazon Ads/Shopify，对话式运营 |
 | [B7. Review 智能分析系统](b7-review-nlp-system.md) | NLP/主题建模 | 中级 | 2周 | BERTopic 主题建模 + 情感分析 + LLM 洞察 |
 | [B8. 电商数据可视化 Dashboard](b8-ecommerce-dashboard.md) | Streamlit/Plotly | 中级 | 1-2周 | 多平台运营 Dashboard + AI 异常检测 |
-| [B9. AI 产品图片/视频生成](b9-ai-image-pipeline.md) | ComfyUI/DALL-E/Flux | 高级 | 2-3周 | 产品图批量生成 Pipeline + 视频生成 |
+| [B9. AI 产品图片/视频生成](b9-ai-image-pipeline.md) | ComfyUI/GPT Image 2/FLUX.2 | 高级 | 2-3周 | 产品图批量生成 Pipeline + 视频生成 |
 
 ---
 
@@ -49,6 +49,18 @@ B4 --> B5["B5 本地模型\n部署微调"]
 [ ] B7. NLP：用 BERTopic 对 1000+ 条 Review 做主题建模
 [ ] B8. Dashboard：构建包含 4+ 模块的 Streamlit 运营 Dashboard
 [ ] B9. 图片：为一个产品生成完整 AI 图片集并通过 Amazon 合规检查
+
+<数据纪律>
+- 涉及市场数据、搜索量、竞品表现、法规条款、费率的具体数字或事实，只能来自我提供的信息。**我没给的不要凭记忆补**——这类事实变化快，你记忆里的版本可能已经过期
+- 需要某个事实才能判断时，告诉我该去哪个官方来源核实，然后停下来问我
+- 每个结论标注来源：[我提供的信息] 或 [模型推测]
+</数据纪律>
+
+<文案纪律>
+- 不要写出产品实际不具备的功能、材质、认证或效果。我在上面没写的属性，一律不要出现在文案里
+- 面向客户发出的内容（回复、邮件、模板）不要做出我无权承诺的保证：退款金额、赔偿、时效、平台政策例外，这些必须由我确认后才能写进去
+- 涉及疗效、安全、环保、专利的表述单独标出，提示我人工核对
+</文案纪律>
 ```
 
 **Path B 总完成标志：** 完成 B1-B4 中至少 3 个模块，你已经具备构建 AI 电商工具的能力。B5 为进阶选修。

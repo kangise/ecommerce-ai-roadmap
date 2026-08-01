@@ -1,7 +1,7 @@
 # B9. AI 产品图片与视频生成 Pipeline
 
 > **路径**: Path B: 技术人 · **模块**: B9
-> **最后更新**: 2026-03-15
+> **最后更新**: 2026-07-31
 > **难度**: 高级
 > **预计时间**: 每天 1 小时，2-3 周
 > **前置模块**: 无（独立模块，但建议了解 [A7 视觉内容](../a-operators/a7-visual-content.md)）
@@ -11,14 +11,14 @@
 
 ## 章节导航
 
-1. [为什么需要 AI 图片 Pipeline](#1-为什么需要-ai-图片-pipeline) · 2. [技术栈选择](#2-技术栈选择) · 3. [ComfyUI 产品图工作流](#3-comfyui-产品图工作流) · 4. [API 方案](#4-api-方案midjourneydall-eflux) · 5. [批量生成 Pipeline](#5-批量生成-pipeline) · 6. [视频生成](#6-ai-视频生成) · 7. [质量控制与合规](#7-质量控制与合规) · 8. [完成标志](#8-完成标志)
+1. [为什么需要 AI 图片 Pipeline](#1-为什么需要-ai-图片-pipeline) · 2. [技术栈选择](#2-技术栈选择) · 3. [ComfyUI 产品图工作流](#3-comfyui-产品图工作流) · 4. [云端 API 方案](#4-云端-api-方案) · 5. [批量生成 Pipeline](#5-批量生成-pipeline) · 6. [视频生成](#6-ai-视频生成) · 7. [质量控制与合规](#7-质量控制与合规) · 8. [常见陷阱](#8-常见陷阱) · 9. [完成标志](#9-完成标志)
 
 ---
 
 ## 本模块你将构建
 
 - 一个 ComfyUI 产品图生成工作流（白底主图 + 场景图 + 信息图）
-- 一个 API 驱动的批量图片生成 Pipeline（Midjourney/DALL-E/Flux）
+- 一个 API 驱动的批量图片生成 Pipeline（Midjourney/GPT Image 2/FLUX.2）
 - 一个产品视频自动生成系统
 - 品牌视觉一致性保障机制
 
@@ -61,7 +61,7 @@
 |------|------|------|------|------|
 | ComfyUI（本地） | 完全控制、可自动化、免费 | 需要 GPU、学习曲线陡 | 硬件成本 | 大量图片、技术团队 |
 | Midjourney | 质量最高、风格多样 | 无 API（需要 Discord）、不可控 | $10-30/月 | 少量高质量图片 |
-| DALL-E 3（API） | 有 API、可编程 | 质量中等、风格有限 | 按量付费 | 批量生成、自动化 |
+| GPT Image 2（API） | 有 API、可编程 | 质量中等、风格有限 | 按量付费 | 批量生成、自动化 |
 | Flux（本地/API） | 开源、质量高、可微调 | 需要 GPU | 免费/按量 | 技术团队、定制化 |
 | Adobe Firefly | 商业安全、有赔偿保障 | 功能有限 | $10/月起 | 商业使用、合规优先 |
 | Canva AI | 简单易用、模板丰富 | 灵活性低 | $13/月 | 非技术人员 |
@@ -74,7 +74,7 @@
 主图/场景图生成：
 ComfyUI + Flux（本地，完全控制）
 或 Midjourney（云端，质量最高）
-或 DALL-E 3 API（可编程，批量生成）
+或 GPT Image 2 API（可编程，批量生成）
 
 后处理：
 rembg（Python 去背景）
@@ -271,9 +271,9 @@ print(prompt["positive"])
 
 ---
 
-## 4. API 方案（Midjourney/DALL-E/Flux）
+## 4. 云端 API 方案
 
-### 4.1 DALL-E 3 批量生成
+### 4.1 GPT Image 2 批量生成
 
 ```python
 from openai import OpenAI
@@ -288,7 +288,7 @@ style: str = "white_background",
 size: str = "1024x1024",
 output_dir: str = "output"
 ) -> str:
-"""用 DALL-E 3 生成产品图"""
+"""用 GPT Image 2 生成产品图"""
 
 prompts = {
 "white_background": f"Professional product photography of {product_description}, centered on pure white background, studio lighting, high resolution, commercial quality",
@@ -297,7 +297,7 @@ prompts = {
 }
 
 response = client.images.generate(
-model="dall-e-3",
+model="gpt-image-2",
 prompt=prompts[style],
 size=size,
 quality="hd",
@@ -396,7 +396,7 @@ self.target_platforms = ["amazon", "shopify"]
 class ProductImagePipeline:
 """电商产品图批量生成 Pipeline"""
 
-def __init__(self, method: str = "dalle", output_dir: str = "output/images"):
+def __init__(self, method: str = "openai", output_dir: str = "output/images"):
 self.method = method
 self.output_dir = output_dir
 Path(output_dir).mkdir(parents=True, exist_ok=True)
@@ -511,17 +511,17 @@ def _generate_image(self, request, template, output_path, **kwargs):
 """生成单张图片（根据 method 选择不同的生成方式）"""
 prompt = generate_prompt(template, request.product_description, **kwargs)
 
-if self.method == "dalle":
-return self._dalle_generate(prompt, output_path)
+if self.method == "openai":
+return self._openai_generate(prompt, output_path)
 elif self.method == "comfyui":
 return self._comfyui_generate(prompt, request.source_image, output_path)
 else:
 raise ValueError(f"Unknown method: {self.method}")
 
-def _dalle_generate(self, prompt, output_path):
-"""DALL-E 3 生成"""
+def _openai_generate(self, prompt, output_path):
+"""GPT Image 2 生成"""
 response = client.images.generate(
-model="dall-e-3",
+model="gpt-image-2",
 prompt=prompt["positive"],
 size="1024x1024",
 quality="hd",
@@ -564,7 +564,7 @@ f.write(report)
 
 # === 使用示例 ===
 if __name__ == "__main__":
-pipeline = ProductImagePipeline(method="dalle")
+pipeline = ProductImagePipeline(method="openai")
 
 products = [
 ProductImageRequest(
@@ -588,6 +588,18 @@ target_platforms=["amazon", "instagram"]
 ]
 
 results = pipeline.batch_generate(products)
+
+<数据纪律>
+- 涉及市场数据、搜索量、竞品表现、法规条款、费率的具体数字或事实，只能来自我提供的信息。**我没给的不要凭记忆补**——这类事实变化快，你记忆里的版本可能已经过期
+- 需要某个事实才能判断时，告诉我该去哪个官方来源核实，然后停下来问我
+- 每个结论标注来源：[我提供的信息] 或 [模型推测]
+</数据纪律>
+
+<文案纪律>
+- 不要写出产品实际不具备的功能、材质、认证或效果。我在上面没写的属性，一律不要出现在文案里
+- 面向客户发出的内容（回复、邮件、模板）不要做出我无权承诺的保证：退款金额、赔偿、时效、平台政策例外，这些必须由我确认后才能写进去
+- 涉及疗效、安全、环保、专利的表述单独标出，提示我人工核对
+</文案纪律>
 ```
 
 ### 5.2 A/B 测试图片变体
@@ -619,7 +631,7 @@ f"{compositions[i % len(compositions)]}, "
 f"pure white background, high resolution 8k"
 )
 
-img = generate_with_dalle(variant_prompt, f"variant_{i+1}.jpg")
+img = generate_with_gpt_image(variant_prompt, f"variant_{i+1}.jpg")
 variants.append({
 "variant": i + 1,
 "angle": angles[i % len(angles)],
@@ -639,10 +651,10 @@ return variants
 
 | 类型 | 时长 | 用途 | AI 工具 |
 |------|------|------|---------|
-| 产品展示 | 15-30s | Amazon 视频、Shopify | Runway Gen-3 / Pika |
+| 产品展示 | 15-30s | Amazon 视频、Shopify | Kling 3 / Seedance 2 |
 | 使用教程 | 30-60s | A+ Content、YouTube | Synthesia / HeyGen |
-| 社交短视频 | 15-60s | TikTok/Reels/Shorts | CapCut AI / Runway |
-| 广告视频 | 6-15s | PPC 视频广告 | Runway / Sora |
+| 社交短视频 | 15-60s | TikTok/Reels/Shorts | CapCut AI / Runway Gen-4.5 |
+| 广告视频 | 6-15s | PPC 视频广告 | Runway Gen-4.5 / Veo 3.1 |
 
 ### 6.2 产品展示视频生成
 
@@ -720,7 +732,27 @@ return {
 
 ---
 
-## 8. 完成标志
+## 8. 常见陷阱
+
+### 8.1 用文生图做产品主图
+
+文生图会重新「想象」你的产品，细节、比例、logo 都会偏。产品本身必须用图生图/图生视频，从真实产品照出发。这既是质量问题也是合规问题。
+
+### 8.2 生成图不留元数据
+
+哪张图是 AI 生成的、用什么工具、什么时候——这些在欧盟 AI 法案的透明度义务下是要能说清的。见 [A6 §5](../a-operators/a6-compliance.md)。
+
+### 8.3 批量生成不做人工筛
+
+AI 出图的合格率没有想象中高，尤其是手、文字、反光、材质这几类。管道里必须有人工抽检环节，比例可以低但不能没有。
+
+### 8.4 忽略各平台的图片规格
+
+主图白底、尺寸下限、文字占比限制——各平台规则不同，生成时不带约束，最后要么被拒要么重做。
+
+---
+
+## 9. 完成标志
 
 - [ ] 搭建 ComfyUI 或选择 API 方案
 - [ ] 为一个产品生成完整图片集（主图+场景图+信息图）

@@ -1,7 +1,7 @@
 # B9. AI 製品画像・動画生成 Pipeline
 
 > **トラック**: Path B: 技術 · **モジュール**: B9
-> **最終更新**: 2026-03-15
+> **最終更新**: 2026-07-31
 > **難易度**: 上級
 > **所要時間**: 1 日 1 時間、2〜3 週間
 > **前提モジュール**: なし(独立モジュール、ただし [A7 視覚コンテンツ](../a-operators/a7-visual-content.md) の理解を推奨)
@@ -11,14 +11,14 @@
 
 ## 章ナビゲーション
 
-1. [なぜ AI 画像 Pipeline が必要か](#1-なぜ-ai-画像-pipeline-が必要か) · 2. [技術スタックの選択](#2-技術スタックの選択) · 3. [ComfyUI 製品画像ワークフロー](#3-comfyui-製品画像ワークフロー) · 4. [API 方案](#4-api-方案midjourneydall-eflux) · 5. [バッチ生成 Pipeline](#5-バッチ生成-pipeline) · 6. [動画生成](#6-ai-動画生成) · 7. [品質管理とコンプライアンス](#7-品質管理とコンプライアンス) · 8. [完了チェック](#8-完了チェック)
+1. [なぜ AI 画像 Pipeline が必要か](#1-なぜ-ai-画像-pipeline-が必要か) · 2. [技術スタックの選択](#2-技術スタックの選択) · 3. [ComfyUI 製品画像ワークフロー](#3-comfyui-製品画像ワークフロー) · 4. [クラウド API 方式](#4-クラウド-api-方式) · 5. [バッチ生成 Pipeline](#5-バッチ生成-pipeline) · 6. [動画生成](#6-ai-動画生成) · 7. [品質管理とコンプライアンス](#7-品質管理とコンプライアンス) · 8. [よくある罠](#8-よくある罠) · 9. [完了チェック](#9-完了チェック)
 
 ---
 
 ## このモジュールで構築するもの
 
 - ComfyUI 製品画像生成ワークフロー(白背景メイン画像 + シーン画像 + インフォグラフィック)
-- API 駆動のバッチ画像生成 Pipeline(Midjourney/DALL-E/Flux)
+- API 駆動のバッチ画像生成 Pipeline(Midjourney/GPT Image 2/FLUX.2)
 - 製品動画の自動生成システム
 - ブランドビジュアルの一貫性保証メカニズム
 
@@ -61,7 +61,7 @@
 |------|------|------|--------|------|
 | ComfyUI(ローカル) | 完全制御、自動化可能、無料 | GPU が必要、学習曲線が急 | ハードウェアコスト | 大量画像、技術チーム |
 | Midjourney | 品質最高、スタイル多様 | API なし(Discord が必要)、制御不可 | $10-30/月 | 少量の高品質画像 |
-| DALL-E 3(API) | API あり、プログラム可能 | 品質中程度、スタイルに制限 | 従量課金 | バッチ生成、自動化 |
+| GPT Image 2(API) | API あり、プログラム可能 | 品質中程度、スタイルに制限 | 従量課金 | バッチ生成、自動化 |
 | Flux(ローカル/API) | オープンソース、高品質、微調整可能 | GPU が必要 | 無料/従量 | 技術チーム、カスタマイズ |
 | Adobe Firefly | 商用安全、賠償保証あり | 機能に制限 | $10/月〜 | 商用利用、コンプライアンス優先 |
 | Canva AI | シンプルで使いやすい、テンプレート豊富 | 柔軟性が低い | $13/月 | 非技術者 |
@@ -74,7 +74,7 @@
 メイン画像/シーン画像の生成:
 ComfyUI + Flux(ローカル、完全制御)
 または Midjourney(クラウド、品質最高)
-または DALL-E 3 API(プログラム可能、バッチ生成)
+または GPT Image 2 API(プログラム可能、バッチ生成)
 
 後処理:
 rembg(Python 背景除去)
@@ -271,9 +271,9 @@ print(prompt["positive"])
 
 ---
 
-## 4. API 方案(Midjourney/DALL-E/Flux)
+## 4. クラウド API 方式
 
-### 4.1 DALL-E 3 バッチ生成
+### 4.1 GPT Image 2 バッチ生成
 
 ```python
 from openai import OpenAI
@@ -288,7 +288,7 @@ style: str = "white_background",
 size: str = "1024x1024",
 output_dir: str = "output"
 ) -> str:
-"""DALL-E 3 で製品画像を生成"""
+"""GPT Image 2 で製品画像を生成"""
 
 prompts = {
 "white_background": f"Professional product photography of {product_description}, centered on pure white background, studio lighting, high resolution, commercial quality",
@@ -297,7 +297,7 @@ prompts = {
 }
 
 response = client.images.generate(
-model="dall-e-3",
+model="gpt-image-2",
 prompt=prompts[style],
 size=size,
 quality="hd",
@@ -396,7 +396,7 @@ self.target_platforms = ["amazon", "shopify"]
 class ProductImagePipeline:
 """EC 製品画像バッチ生成 Pipeline"""
 
-def __init__(self, method: str = "dalle", output_dir: str = "output/images"):
+def __init__(self, method: str = "openai", output_dir: str = "output/images"):
 self.method = method
 self.output_dir = output_dir
 Path(output_dir).mkdir(parents=True, exist_ok=True)
@@ -511,17 +511,17 @@ def _generate_image(self, request, template, output_path, **kwargs):
 """単一画像を生成(method に応じて生成方式を選択)"""
 prompt = generate_prompt(template, request.product_description, **kwargs)
 
-if self.method == "dalle":
-return self._dalle_generate(prompt, output_path)
+if self.method == "openai":
+return self._openai_generate(prompt, output_path)
 elif self.method == "comfyui":
 return self._comfyui_generate(prompt, request.source_image, output_path)
 else:
 raise ValueError(f"Unknown method: {self.method}")
 
-def _dalle_generate(self, prompt, output_path):
-"""DALL-E 3 生成"""
+def _openai_generate(self, prompt, output_path):
+"""GPT Image 2 生成"""
 response = client.images.generate(
-model="dall-e-3",
+model="gpt-image-2",
 prompt=prompt["positive"],
 size="1024x1024",
 quality="hd",
@@ -564,7 +564,7 @@ f.write(report)
 
 # === 使用例 ===
 if __name__ == "__main__":
-pipeline = ProductImagePipeline(method="dalle")
+pipeline = ProductImagePipeline(method="openai")
 
 products = [
 ProductImageRequest(
@@ -619,7 +619,7 @@ f"{compositions[i % len(compositions)]}, "
 f"pure white background, high resolution 8k"
 )
 
-img = generate_with_dalle(variant_prompt, f"variant_{i+1}.jpg")
+img = generate_with_gpt_image(variant_prompt, f"variant_{i+1}.jpg")
 variants.append({
 "variant": i + 1,
 "angle": angles[i % len(angles)],
@@ -642,7 +642,7 @@ return variants
 | 製品展示 | 15-30s | Amazon 動画、Shopify | Runway Gen-3 / Pika |
 | 使用チュートリアル | 30-60s | A+ Content、YouTube | Synthesia / HeyGen |
 | ソーシャルショート動画 | 15-60s | TikTok/Reels/Shorts | CapCut AI / Runway |
-| 広告動画 | 6-15s | PPC 動画広告 | Runway / Sora |
+| 広告動画 | 6-15s | PPC 動画広告 | Runway Gen-4.5 / Veo 3.1 |
 
 ### 6.2 製品展示動画の生成
 
@@ -720,7 +720,27 @@ return {
 
 ---
 
-## 8. 完了チェック
+## 8. よくある罠
+
+### 8.1 メイン商品画像をテキストから生成する
+
+テキストからの生成はあなたの商品を想像し直すため、細部・比率・ロゴがずれる。商品そのものは実物写真を起点に、画像から画像/画像から動画で作ること。品質だけでなくコンプライアンスの問題でもある。
+
+### 8.2 生成画像のメタデータを残さない
+
+どの画像が AI 生成か、どのツールで、いつ — EU AI 法の透明性義務の下では説明できる必要がある。[A6 §5](../a-operators/a6-compliance.md) を参照。
+
+### 8.3 一括生成して人手の選別をしない
+
+AI の出力歩留まりは思われているより低く、特に手・文字・反射・素材表現で顕著だ。パイプラインには人手の抜き取り確認の工程が要る。比率は低くてよいがゼロにはできない。
+
+### 8.4 プラットフォームごとの画像規格を無視する
+
+メイン画像の白背景、最小寸法、文字の占有率制限 — 規則はプラットフォームごとに違う。制約なしで生成すれば、却下されるか作り直しになる。
+
+---
+
+## 9. 完了チェック
 
 - [ ] ComfyUI を構築するか API 方案を選択
 - [ ] 1 つの製品向けに完全な画像セットを生成(メイン画像+シーン画像+インフォグラフィック)

@@ -1,7 +1,7 @@
 # B4. AI Agent 与工作流自动化 | AI Agent & Workflow Automation
 
 > **路径**: Path B: 技术人 · **模块**: B4
-> **最后更新**: 2026-03-12
+> **最后更新**: 2026-07-31
 > **难度**: 高级
 > **前提**: B1 数据管道基础（Python、文件处理）、B3 RAG 基本概念
 > **预计时间**: 每天 1 小时，2-3 周
@@ -24,9 +24,9 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ---
 
-## 本模块章节导航
+## 章节导航
 
-1. [Agent 方法论](#1-agent-方法论) · 2. [工具全景](#2-工具全景) · 3. [代码实战](#3-代码实战) · 4. [电商 Agent 应用](#4-电商-agent-应用场景) · 5. [常见陷阱](#5-常见陷阱) · 6. [进阶技术](#6-进阶技术) · 7. [学习资源](#7-学习资源)
+1. [Agent 方法论](#1-agent-方法论) · 2. [工具全景](#2-工具全景) · 3. [代码实战](#3-代码实战) · 4. [电商 Agent 应用](#4-电商-agent-应用场景) · 5. [常见陷阱](#5-常见陷阱) · 6. [Token 成本工程](#6-token-成本工程) · 7. [进阶技术](#7-进阶技术) · 8. [学习资源](#8-学习资源)
 
 
 ## 本模块你将构建
@@ -302,7 +302,7 @@ return {
 }
 
 # 2. 创建 Agent
-llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+llm = ChatOpenAI(model="gpt-5.6-luna", temperature=0)  # T3 高速档，型号见 model-matrix.md
 tools = [get_sales_data, detect_anomaly]
 agent = create_react_agent(llm, tools)
 
@@ -393,7 +393,7 @@ inventory_data: str
 review_data: str
 report: str
 
-llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+llm = ChatOpenAI(model="gpt-5.6-luna", temperature=0)  # T3 高速档，型号见 model-matrix.md
 
 SYSTEM_PROMPT = """你是电商运营日报 Agent。收集数据后生成日报，包含：
 - 销售概览（收入、订单、同比变化）
@@ -504,7 +504,7 @@ has_alerts: bool
 forecast_results: list[str]
 alert_content: str
 
-llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+llm = ChatOpenAI(model="gpt-5.6-luna", temperature=0)  # T3 高速档，型号见 model-matrix.md
 
 def check_inventory(state: InventoryState) -> dict:
 data = check_all_inventory.invoke({})
@@ -546,6 +546,12 @@ workflow.add_edge("generate_alert", END)
 inventory_agent = workflow.compile()
 
 # result = inventory_agent.invoke({"messages": [], "forecast_results": []})
+
+<文案纪律>
+- 不要写出产品实际不具备的功能、材质、认证或效果。我在上面没写的属性，一律不要出现在文案里
+- 面向客户发出的内容（回复、邮件、模板）不要做出我无权承诺的保证：退款金额、赔偿、时效、平台政策例外，这些必须由我确认后才能写进去
+- 涉及疗效、安全、环保、专利的表述单独标出，提示我人工核对
+</文案纪律>
 ```
 
 **工作流图（带条件分支）：**
@@ -616,7 +622,7 @@ has_negative: bool
 analysis_results: list[dict]
 alert_report: str
 
-llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+llm = ChatOpenAI(model="gpt-5.6-luna", temperature=0)  # T3 高速档，型号见 model-matrix.md
 
 def fetch_reviews(state: ReviewState) -> dict:
 data = fetch_new_reviews.invoke({"hours": 24})
@@ -728,6 +734,18 @@ verbose=True,
 
 # result = crew.kickoff()
 # print(result)
+
+<数据纪律>
+- 涉及市场数据、搜索量、竞品表现、法规条款、费率的具体数字或事实，只能来自我提供的信息。**我没给的不要凭记忆补**——这类事实变化快，你记忆里的版本可能已经过期
+- 需要某个事实才能判断时，告诉我该去哪个官方来源核实，然后停下来问我
+- 每个结论标注来源：[我提供的信息] 或 [模型推测]
+</数据纪律>
+
+<文案纪律>
+- 不要写出产品实际不具备的功能、材质、认证或效果。我在上面没写的属性，一律不要出现在文案里——这是 Listing 被下架和被投诉虚假宣传的头号原因
+- 需要某个卖点才能写好但我没提供时，先列出你需要我补充什么，不要自行发挥
+- 涉及疗效、安全、环保、专利的表述，单独标出来提示我人工核对
+</文案纪律>
 ```
 
 **多 Agent 协作流程：**
@@ -841,26 +859,32 @@ return json.dumps({"error": f"查询失败: {str(e)}"})
 
 **原因**：
 - Agent 循环次数过多
-- 使用了昂贵的模型（GPT-4o）做简单任务
+- 用前沿档模型做简单任务
 - 工具返回了大量数据，每次都发给 LLM
 
 **解决方案**：
 
 | 策略 | 做法 | 节省 |
 |------|------|------|
-| 模型分级 | 简单判断用 GPT-4o-mini，复杂分析用 GPT-4o | 50-80% |
+| 模型分级 | 简单判断用 T3 高速档，复杂分析用 T1 前沿档 | 50-80% |
 | 限制迭代 | 设置 recursion_limit | 避免失控 |
 | 数据裁剪 | 工具返回摘要而非全量数据 | 30-50% |
 | 固定流程 | 能用 Chain 的不用 Agent | 60-80% |
 
 ```python
 # 成本控制示例：模型分级
-cheap_llm = ChatOpenAI(model="gpt-4o-mini", temperature=0) # $0.15/1M tokens
-expensive_llm = ChatOpenAI(model="gpt-4o", temperature=0) # $2.50/1M tokens
+# 型号见 resources/model-matrix.md，换代时只改这两行
+CHEAP_MODEL = "gpt-5.6-luna"      # T3 高速档
+STRONG_MODEL = "gpt-5.6-sol"      # T1 前沿档
+
+cheap_llm = ChatOpenAI(model=CHEAP_MODEL, temperature=0)
+expensive_llm = ChatOpenAI(model=STRONG_MODEL, temperature=0)
 
 # 数据收集和简单判断用便宜模型
 # 最终报告生成用贵模型
 ```
+
+档位之间的价差通常在一个数量级左右，所以"能用低档位就别用高档位"是 Agent 成本控制里最有效的一条。当前各档位型号与价格见 [模型矩阵](../resources/model-matrix.md)。
 
 ### 5.4 幻觉传播
 
@@ -874,9 +898,80 @@ expensive_llm = ChatOpenAI(model="gpt-4o", temperature=0) # $2.50/1M tokens
 
 ---
 
-## 6. 进阶技术
+## 6. Token 成本工程
 
-### 6.1 Human-in-the-loop：关键决策前等待人工确认
+§5.3 讲了"用低档位模型"这个最粗的成本杠杆。但当 Agent 跑到一定量级，真正决定账单的往往不是模型档位，而是**你反复发送了多少重复内容**。这一节讲怎么把这部分省掉。
+
+### 6.1 先搞清楚钱花在哪
+
+Agent 的一次运行里，token 消耗通常是这个分布：
+
+| 部分 | 占比（典型） | 每轮是否重复发送 |
+|------|------------|----------------|
+| System prompt + 工具定义 | 30-60% | **每轮都重发** |
+| 少样本示例 / 业务规则文档 | 10-30% | **每轮都重发** |
+| 对话历史 | 随轮次增长 | 每轮都重发且越来越长 |
+| 本轮真正的新输入 | 5-15% | 否 |
+| 模型输出 | 5-20% | 否 |
+
+关键事实：**一个 10 轮的 Agent 循环，你的 system prompt 被完整发送了 10 次。** 如果它有 3000 token，那就是 3 万 token 的重复账单，而它的内容一个字都没变。
+
+### 6.2 Prompt Caching：最大的一个杠杆
+
+主流厂商都提供了缓存机制，原理一致：**把 prompt 里不变的前缀标记出来，服务端缓存它的计算结果，后续请求命中缓存的部分按大幅折扣计价。**
+
+用法上的共同点：
+
+- **缓存的是前缀**。所以 prompt 的组织顺序很关键——不变的内容（system prompt、工具定义、业务规则、少样本示例）必须放在最前面，可变的内容（用户输入、当轮数据）放最后。顺序反了，缓存完全失效
+- **有最小长度门槛**。太短的 prompt 不值得缓存，厂商会直接忽略
+- **有 TTL**。缓存有存活时间，长时间不用会失效，下一次请求重新按全价计算并重建缓存
+- **命中读取远比重新输入便宜**，这是省钱的来源
+
+对电商 Agent 来说，收益最大的场景是：
+
+```
+把这些放进可缓存的前缀：
+  - 你的品类知识、品牌调性规范
+  - Listing 撰写规则、合规禁用词清单
+  - 少样本示例（好的/坏的 Listing 对照）
+  - 工具定义
+
+把这些放在缓存之后：
+  - 当前这个 SKU 的数据
+  - 用户本轮的具体问题
+```
+
+批量处理 500 个 SKU 时，前缀只算一次全价，后面 499 次都走缓存价。
+
+> 具体的折扣比例、最小 token 数、TTL 长度各家不同且会变，见[模型矩阵](../resources/model-matrix.md)里的官方链接自行核对——这正是本库不把这类数字写进正文的原因。
+
+### 6.3 另外四个杠杆
+
+**Batch API**：不需要实时返回的任务（夜里跑全站 Listing 体检、批量翻译、历史 Review 重新打标），走批处理接口通常有显著折扣。代价是延迟从秒级变成小时级。电商场景里大量任务其实都不需要实时。
+
+**裁剪工具返回值**。§5.3 提过一句，这里展开：Agent 调用 `get_sales_data` 拿回 500 行明细，然后把 500 行全塞给 LLM——但 LLM 只需要知道"哪个 SKU 异常"。让工具在返回前先聚合，token 能降一个数量级。**规则是：能用 Python 算的，不要花钱让 LLM 算。**
+
+**压缩对话历史**。长循环的 Agent 里历史会无限膨胀。常见做法是保留最近 N 轮原文 + 更早的内容压成摘要。LangGraph 的 checkpointer 配合一个摘要节点就能实现。
+
+**控制输出长度**。输出 token 通常比输入贵好几倍。要求 JSON 而不是散文、明确限制字数，都是直接省钱。让模型"简要说明理由"和"详细阐述理由"，账单能差一倍。
+
+### 6.4 一个务实的排查顺序
+
+成本超预期时按这个顺序查，从收益大到收益小：
+
+1. **有没有该用 Chain 却用了 Agent** —— 流程固定的任务用 Agent 是纯浪费（§1.2）
+2. **循环轮次是不是失控** —— 先设 `recursion_limit`
+3. **prompt 前缀有没有走缓存** —— 检查不变内容是否在最前面
+4. **工具返回值有没有裁剪** —— 看看是不是把原始数据整个喂进去了
+5. **档位是不是选高了** —— 最后才动这个，因为降档位会掉质量，前四条不会
+
+前四条都是**纯赚**：省钱且不损失任何输出质量。第 5 条才需要权衡。
+
+---
+
+## 7. 进阶技术
+
+### 7.1 Human-in-the-loop：关键决策前等待人工确认
 
 有些决策不能完全交给 AI，比如发送客户邮件、调整价格、提交补货订单。Human-in-the-loop 让 Agent 在关键节点暂停，等待人工确认。
 
@@ -923,7 +1018,7 @@ app = workflow.compile(checkpointer=memory, interrupt_before=["execute"])
 
 > **何时需要 Human-in-the-loop**：涉及金钱（补货、广告预算调整）、客户沟通（发送邮件）、不可逆操作（删除数据）时，一定要加人工确认。
 
-### 6.2 Agent 记忆：跨会话保持上下文
+### 7.2 Agent 记忆：跨会话保持上下文
 
 默认情况下，Agent 每次运行都是"失忆"的。用 LangGraph 的 `MemorySaver` 可以跨会话保持上下文：
 
@@ -933,7 +1028,7 @@ from langgraph.prebuilt import create_react_agent
 from langchain_openai import ChatOpenAI
 
 memory = MemorySaver()
-agent = create_react_agent(ChatOpenAI(model="gpt-4o-mini"), tools=[], checkpointer=memory)
+agent = create_react_agent(ChatOpenAI(model="gpt-5.6-luna"), tools=[], checkpointer=memory)
 
 config = {"configurable": {"thread_id": "session-001"}}
 # 第一次：agent.invoke({"messages": [("user", "主力产品是运动相机 X1")]}, config)
@@ -941,9 +1036,9 @@ config = {"configurable": {"thread_id": "session-001"}}
 # Agent 记得"主力产品是运动相机 X1"
 ```
 
-### 6.3 多模态 Agent：处理图片和文件
+### 7.3 多模态 Agent：处理图片和文件
 
-多模态 Agent 可以分析产品图片、竞品截图等。用 GPT-4o 的视觉能力：
+多模态 Agent 可以分析产品图片、竞品截图等。主流厂商的 T1/T2 档模型现在都原生支持图像输入：
 
 ```python
 from langchain_openai import ChatOpenAI
@@ -951,8 +1046,8 @@ from langchain_core.messages import HumanMessage
 import base64
 
 def analyze_product_image(image_path: str) -> str:
-"""用 GPT-4o 分析产品图片，提取卖点和改进建议。"""
-llm = ChatOpenAI(model="gpt-4o", temperature=0)
+"""用带视觉能力的模型分析产品图片，提取卖点和改进建议。"""
+llm = ChatOpenAI(model="gpt-5.6-terra", temperature=0)  # T2 主力档，视觉任务够用
 with open(image_path, "rb") as f:
 image_data = base64.b64encode(f.read()).decode("utf-8")
 
@@ -962,11 +1057,17 @@ message = HumanMessage(content=[
 "image_url": {"url": f"data:image/jpeg;base64,{image_data}"}},
 ])
 return llm.invoke([message]).content
+
+<数据纪律>
+- 涉及市场数据、搜索量、竞品表现、法规条款、费率的具体数字或事实，只能来自我提供的信息。**我没给的不要凭记忆补**——这类事实变化快，你记忆里的版本可能已经过期
+- 需要某个事实才能判断时，告诉我该去哪个官方来源核实，然后停下来问我
+- 每个结论标注来源：[我提供的信息] 或 [模型推测]
+</数据纪律>
 ```
 
 ---
 
-## 7. 学习资源
+## 8. 学习资源
 
 | 资源 | 类型 | 说明 | 链接 |
 |------|------|------|------|
@@ -997,7 +1098,7 @@ return llm.invoke([message]).content
 
 ## 10. 附录
 
-### 9.1 Agent 架构速查
+### 11.1 Agent 架构速查
 
 ```
 
@@ -1014,7 +1115,7 @@ LLM 推理引擎 工具
 
 ```
 
-### 9.2 代码速查表
+### 11.2 代码速查表
 
 | 任务 | 代码 |
 |------|------|
@@ -1031,17 +1132,19 @@ LLM 推理引擎 工具
 | CrewAI 定义任务 | `Task(description=..., agent=...)` |
 | CrewAI 组建团队 | `Crew(agents=[...], tasks=[...])` |
 
-### 9.3 成本估算参考
+### 11.3 成本估算参考
 
-| 场景 | 模型 | 每次运行 LLM 调用次数 | 估算成本 |
-|------|------|----------------------|----------|
-| 日报 Agent | GPT-4o-mini | 2-3 次 | ~$0.01 |
-| 库存预警 Agent | GPT-4o-mini | 2-5 次 | ~$0.02 |
-| Review 监控 Agent | GPT-4o-mini | 3-6 次 | ~$0.03 |
-| 多 Agent 协作（CrewAI） | GPT-4o-mini | 6-10 次 | ~$0.05 |
-| 多 Agent 协作（CrewAI） | GPT-4o | 6-10 次 | ~$0.50 |
+| 场景 | 建议档位 | 每次运行 LLM 调用次数 | 相对成本 |
+|------|---------|----------------------|----------|
+| 日报 Agent | T3 高速档 | 2-3 次 | 1× |
+| 库存预警 Agent | T3 高速档 | 2-5 次 | 2× |
+| Review 监控 Agent | T3 高速档 | 3-6 次 | 3× |
+| 多 Agent 协作（CrewAI） | T3 高速档 | 6-10 次 | 5× |
+| 多 Agent 协作（CrewAI） | T1 前沿档 | 6-10 次 | 50× |
 
-> **成本控制建议**：日常监控类 Agent 用 GPT-4o-mini 就够了。只有需要深度分析（如竞品策略分析、复杂报告生成）时才用 GPT-4o。
+这里用相对倍数而不是美元金额，是因为 API 价格变动很快——仅 2026-07-30 一天，OpenAI 就把高速档降了 80%。倍数关系比绝对金额稳定得多。要算实际花费，用 [模型矩阵](../resources/model-matrix.md) 里的当前单价乘一遍即可。
+
+> **成本控制建议**：日常监控类 Agent 用 T3 高速档就够了。只有需要深度分析（如竞品策略分析、复杂报告生成）时才上 T1 前沿档——注意上表最后两行是同一个任务，换档位差 10 倍。
 ---
 
 (b3-rag-knowledge-base.md) | [Path 总览](README.md) | [B5 部署 >](b5-local-model-deploy.md)

@@ -1,7 +1,7 @@
 # B3. RAG 知识库系统 | RAG Knowledge Base System
 
 > **路径**: Path B: 技术人 · **模块**: B3
-> **最后更新**: 2026-03-12
+> **最后更新**: 2026-07-31
 > **难度**: 中级 → 进阶
 > **前提**: B1 数据管道基础（Python、文件处理）、B2 基本 ML 概念
 > **预计时间**: 每天 1 小时，2-3 周
@@ -24,7 +24,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ---
 
-## 本模块章节导航
+## 章节导航
 
 1. [RAG 方法论](#1-rag-方法论) · 2. [工具全景](#2-工具全景) · 3. [技术栈选择](#3-技术栈选择详解) · 4. [代码实战](#4-代码实战) · 5. [电商 RAG 应用](#5-电商-rag-应用场景) · 6. [常见陷阱](#6-常见陷阱) · 7. [进阶技术](#7-进阶技术) · 8. [学习资源](#8-学习资源)
 
@@ -131,7 +131,7 @@ RAG 的核心优势是**数据新鲜度**和**可解释性**：你可以随时�
 | 文本分块 | 固定大小、按句子、按语义 | 固定大小（512 tokens） | 语义分块 |
 | Embedding 模型 | OpenAI text-embedding-3-small, BGE, E5 | OpenAI（最简单） | BGE-large（开源免费） |
 | 向量数据库 | Chroma, FAISS, Pinecone, Weaviate | Chroma（最简单） | Pinecone（托管服务） |
-| LLM | OpenAI GPT-4o, Claude, Ollama 本地模型 | OpenAI GPT-4o-mini | Ollama + Qwen2.5（本地免费） |
+| LLM | 云端 T1/T2 档，或 Ollama 本地模型 | 云端 T3 高速档 | Ollama + qwen3:8b（本地免费） |
 
 ---
 
@@ -595,8 +595,8 @@ return len(new_documents)
 # 1. 安装 Ollama（macOS） 从 https://ollama.com/download 下载
 
 # 2. 下载模型
-ollama pull qwen2.5:7b # 推荐：中英文都好，7B 参数
-ollama pull llama3.1:8b # Meta 开源，英文优秀
+ollama pull qwen3:8b # 推荐：中英文都好，7B 参数
+ollama pull gemma3:12b # Meta 开源，英文优秀
 ollama pull nomic-embed-text # Embedding 模型（免费替代 OpenAI）
 
 # 3. 验证
@@ -612,7 +612,7 @@ from llama_index.embeddings.ollama import OllamaEmbedding
 
 def build_local_rag(
 docs_dir: str,
-llm_model: str = "qwen2.5:7b",
+llm_model: str = "qwen3:8b",
 embed_model: str = "nomic-embed-text",
 ollama_base_url: str = "http://localhost:11434",
 ) -> VectorStoreIndex:
@@ -621,7 +621,7 @@ ollama_base_url: str = "http://localhost:11434",
 
 前提：
 1. 已安装 Ollama
-2. 已下载 LLM 模型: ollama pull qwen2.5:7b
+2. 已下载 LLM 模型: ollama pull qwen3:8b
 3. 已下载 Embedding 模型: ollama pull nomic-embed-text
 """
 # 配置本地 LLM
@@ -664,7 +664,7 @@ return index
 |------|-------------------|-------------------|
 | 数据隐私 | 数据不出本机 | 数据发送到 OpenAI 服务器 |
 | 成本 | 免费（电费除外） | 按 token 计费 |
-| 回答质量 | 7B 模型约 GPT-3.5 水平 | GPT-4o 水平最高 |
+| 回答质量 | 8B 本地模型可用 | 云端 T1 前沿档最高 |
 | 速度 | 取决于硬件（M1 Mac 约 30 tokens/s） | 快（云端 GPU） |
 | 离线使用 | 无需网络 | 需要网络 |
 | 硬件要求 | 7B 模型需 8GB+ RAM | 无要求 |
@@ -1017,10 +1017,10 @@ ANTI_HALLUCINATION_PROMPT = """基于以下文档回答问题。
 
 | 模型 | 上下文窗口 | 建议 top_k |
 |------|-----------|-----------|
-| GPT-4o-mini | 128k tokens | 5-10 |
-| GPT-4o | 128k tokens | 5-10 |
-| Qwen2.5 7B | 32k tokens | 3-5 |
-| Llama 3.1 8B | 128k tokens | 5-8 |
+| 云端 T3 高速档 | 1M+ tokens | 5-10 |
+| 云端 T1 前沿档 | 1M+ tokens | 5-10 |
+| Qwen3 8B | 32k tokens | 3-5 |
+| Gemma 3 12B | 128k tokens | 5-8 |
 
 **计算公式**：`top_k × chunk_size < 模型上下文窗口的 50%`（留一半给 Prompt 和回答）
 
@@ -1308,7 +1308,7 @@ index = VectorStoreIndex.from_vector_store(vector_store)
 # === Ollama 本地 RAG ===
 from llama_index.llms.ollama import Ollama
 from llama_index.embeddings.ollama import OllamaEmbedding
-Settings.llm = Ollama(model="qwen2.5:7b", request_timeout=120)
+Settings.llm = Ollama(model="qwen3:8b", request_timeout=120)
 Settings.embed_model = OllamaEmbedding(model_name="nomic-embed-text")
 
 # === 元数据过滤 ===
@@ -1378,7 +1378,7 @@ A: 用 Chroma 的增量更新功能（`index.insert(new_doc)`），不需要重�
 A: 用支持多语言的 Embedding 模型（如 OpenAI `text-embedding-3-small` 或 `paraphrase-multilingual-MiniLM-L12-v2`）。中英文混合文档可以放在同一个索引中。
 
 **Q: RAG 系统的响应速度怎么优化？**
-A: 三个方向：(1) 用 Chroma 持久化避免重建索引；(2) 减小 top_k 减少 LLM 输入量；(3) 用更快的 LLM（GPT-4o-mini 比 GPT-4o 快 3 倍）。
+A: 三个方向：(1) 用 Chroma 持久化避免重建索引；(2) 减小 top_k 减少 LLM 输入量；(3) 换更低档位的 LLM（T3 高速档通常比 T1 前沿档快 3 倍以上）。
 
 **Q: 数据量很大（10 万+ 文档）怎么办？**
 A: 本地 Chroma 可能不够用，考虑迁移到 Pinecone（云托管）或 Qdrant（自托管）。同时优化 chunk_size 和 Embedding 模型选择。

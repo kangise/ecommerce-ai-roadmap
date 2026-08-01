@@ -1,7 +1,7 @@
 # D10. AliExpress AI Guide
 
 > **Track**: Path D: Multi-Platform · **Module**: D10
-> **Last updated**: 2026-03-14
+> **Last updated**: 2026-07-31
 > **Difficulty**: Beginner
 > **Estimated time**: 1 hour
 
@@ -9,6 +9,25 @@
 ---
 
 > GMV $25B+ (Top 5 categories), 159M MAU. The native platform for Chinese sellers, ranking near the top in Southern European markets (Spain, France, Portugal). But it's losing cross-border share to Temu — down 33% from 2018.
+
+## Chapter Navigation
+
+1. [AliExpress Current Status and Positioning](#1-aliexpress-current-status-and-positioning) · 2. [AliExpress Fee Structure and Onboarding Barriers](#2-aliexpress-fee-structure-and-onboarding-barriers) · 3. [AI Application Scenarios](#3-ai-application-scenarios) · 4. [AliExpress Logistics Options Explained](#4-aliexpress-logistics-options-explained) · 5. [AliExpress Southern Europe Market In-Depth Strategy](#5-aliexpress-southern-europe-market-in-depth-strategy) · 6. [Common Traps](#6-common-traps) · 7. [Completion Checklist](#7-completion-checklist)
+
+---
+
+## What You'll Learn
+
+AliExpress has repositioned considerably in recent years; the fee structure and logistics options decide whether you still make money.
+
+After this module you'll be able to:
+- Judge whether AliExpress's current positioning suits your category
+- Work out the fee structure and entry requirements before onboarding, not after
+- Apply AI concretely to sourcing, listings, and multilingual work
+- Weigh the logistics options and build a strategy for the Southern European market
+
+---
+
 
 ## 1. AliExpress Current Status and Positioning
 
@@ -113,6 +132,12 @@ Note AliExpress's specifics:
 - Descriptions support HTML formatting
 - Southern European markets (Spain/France/Portugal) are AliExpress's strongest markets
 - The Russia market, though affected by sanctions, still has demand
+
+<copy_discipline>
+- Never write a feature, material, certification, or result the product doesn't actually have. Any attribute I didn't state above must not appear in the copy — this is the number-one cause of listing takedowns and false-advertising complaints
+- If you need a selling point I didn't supply, list what you need from me rather than improvising
+- Flag any claim touching efficacy, safety, environmental, or patent language separately so I can verify it by hand
+</copy_discipline>
 ```
 
 ### 2.3 AliExpress Ad System
@@ -247,6 +272,12 @@ Please create a Southern Europe market-entry strategy:
 - EU CE certification
 - EPR (Extended Producer Responsibility)
 - VAT registration
+
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
 ```
 
 ### 5.3 The AliExpress Trust Challenge
@@ -264,7 +295,27 @@ Content rephrased for compliance with licensing restrictions.
 | After-sales guarantee | A clear returns/exchanges policy | Medium-high |
 | Social proof | Encourage buyers to leave reviews + post photos | High |
 
-## 6. Completion Checklist
+## 6. Common Traps
+
+### 6.1 Judging the platform on a years-old impression
+
+AliExpress has repositioned considerably. Deciding whether to sell there on an old impression will skew your judgment. Look at the current category structure and buyer profile first.
+
+### 6.2 Onboarding before working out the full fee structure
+
+Commission, fulfillment, promotion, and returns together usually land some distance from your pre-onboarding estimate. List every fee line and compute landed cost before you list, not after.
+
+### 6.3 Picking the wrong logistics option
+
+Speed and cost differ enough between options to eat your margin outright, and it affects conversion rather than just cost. Choose per category by price point and weight — don't run one option store-wide.
+
+### 6.4 Scaling multilingual coverage with machine translation
+
+Broad language coverage is an AliExpress advantage, but machine-translated copy visibly depresses conversion in mature markets like Southern Europe. Better to do fewer languages well than to blanket everything with machine output.
+
+---
+
+## 7. Completion Checklist
 
 - [ ] Assess the AliExpress vs Temu choice
 - [ ] If onboarding: complete the multilingual Listing

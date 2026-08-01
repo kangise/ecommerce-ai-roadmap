@@ -1,7 +1,7 @@
 # B1. Data Collection & Processing Automation
 
 > **Track**: Path B: Developers · **Module**: B1
-> **Last updated**: 2026-03-12
+> **Last updated**: 2026-07-31
 > **Level**: Intermediate
 > **Prerequisite**: Python basics (variables, functions, lists, dicts)
 > **Time**: 1 hour a day, 1–2 weeks
@@ -28,7 +28,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ## Chapter Navigation
 
-1. [Data-engineering methodology](#1-data-engineering-methodology) · 2. [pandas data processing](#2-core-skill-pandas-data-processing) · 3. [SP-API data collection](#3-sp-api-data-collection) · 4. [Browser automation](#4-browser-automation-selenium--playwright) · 5. [Data storage & queries](#5-data-storage--queries) · 6. [Data visualization](#6-data-visualization--reporting) · 7. [Hands-on project](#7-hands-on-project-build-a-complete-data-pipeline) · 8. [Learning resources](#8-learning-resources)
+1. [Data-Engineering Methodology](#1-data-engineering-methodology) · 2. [Core Skill](#2-core-skill-pandas-data-processing) · 3. [SP-API Data Collection](#3-sp-api-data-collection) · 4. [Browser Automation](#4-browser-automation-selenium--playwright) · 5. [Data Storage &amp; Queries](#5-data-storage--queries) · 6. [Data Visualization &amp; Reporting](#6-data-visualization--reporting) · 7. [Hands-On Project](#7-hands-on-project-build-a-complete-data-pipeline) · 8. [Learning Resources](#8-learning-resources) · 9. [Common Traps](#9-common-traps) · 10. [Completion Checklist](#10-completion-checklist)
 
 
 ## What You'll Build
@@ -1245,6 +1245,12 @@ f.write(html)
 
 print(f"HTML report generated: {output_path}")
 return output_path
+
+<copy_discipline>
+- Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
+- For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
+- Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
+</copy_discipline>
 ```
 
 > **Why self-contained HTML?** One .html file is the complete report, sent directly via email, Slack, or WeChat. The recipient double-clicks to view, no software to install. Chart.js loads from a CDN, so the file itself is only a few KB.
@@ -1536,6 +1542,26 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 | [awesome-pandas](https://github.com/tommyod/awesome-pandas) | 500+ | curated pandas learning resources |
 | [DuckDB](https://github.com/duckdb/duckdb) | 20k+ | embedded analytical-database source |
 | [Playwright Python](https://github.com/microsoft/playwright-python) | 10k+ | browser-automation framework |
+
+## 9. Common Traps
+
+### 9.1 Assuming the report format is stable
+
+Platforms rename columns, change language, and change encoding. Without schema validation, the pipeline will one day silently write bad data downstream. **Validate column names and row counts on every read and fail loudly on mismatch** — better than computing a wrong conclusion.
+
+### 9.2 Treating summary rows as data rows
+
+Amazon reports often carry a Total row at the end; not filtering it doubles every statistic. This is the most common silent error there is.
+
+### 9.3 Merging before normalizing time zone and currency
+
+Combining multi-marketplace data where dates are in local time and amounts in local currency produces meaningless totals. Normalize to one baseline before loading.
+
+### 9.4 A pipeline that isn't idempotent
+
+Re-run it and it writes again. Design so identical input produces identical results no matter how many times it runs — otherwise you won't dare retry after a failure.
+
+---
 
 ## 10. Completion Checklist
 

@@ -1,12 +1,12 @@
 # Cross-Border E-Commerce Platform Comparison
 
-> **Last updated**: 2026-03-14
+> **Last updated**: 2026-07-31
 > **Purpose**: Quickly understand each platform's core characteristics, differences from Amazon, and AI application focus, to help you decide which platform to enter first
 
 
 ---
 
-## Page Navigation
+## Chapter Navigation
 
 1. [Platform Landscape Matrix](#1-platform-landscape-matrix)
 2. [Each Platform vs Amazon Core-Difference Cheat Sheet](#2-each-platform-vs-amazon-core-difference-cheat-sheet)
@@ -274,6 +274,12 @@ Please recommend the top 3 platforms I should enter first, and for each give:
 3. Estimated return (3 months/6 months/12 months)
 4. Main risks
 5. First-step action
+
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
 ```
 
 ### 4.2 Choose Based on Category

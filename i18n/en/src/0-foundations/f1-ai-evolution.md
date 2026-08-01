@@ -1,7 +1,7 @@
 # F1. The Evolution of AI
 
 > **Track**: Path 0: AI Foundations · **Module**: F1
-> **Last updated**: 2026-03-12
+> **Last updated**: 2026-07-31
 > **Level**: Beginner
 > **Time**: 2 hours
 > **Prerequisites**: none — zero background needed
@@ -25,7 +25,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ## Chapter Navigation
 
-1. [First principles](#1-first-principles-what-is-an-llm-actually-doing) · 2. [How we got here](#2-how-we-got-here-from-rules-to-intelligence) · 3. [Transformers](#3-inside-the-transformer-attention-is-all-you-need) · 4. [Large language models](#4-large-language-models-from-gpt-to-multimodal) · 5. [Multimodality & reasoning](#5-multimodality--reasoning-ais-sensory-upgrade) · 6. [The agent era](#6-the-agent-era-from-conversation-to-action) · 7. [The e-commerce lens](#7-the-e-commerce-lens-ais-role-at-every-step) · 8. [Capability boundaries](#8-ais-capability-boundaries-what-it-can-and-cant-do) · 9. [What's next](#9-whats-next) · 10. [Learning resources](#10-learning-resources) · 11. [Completion checklist](#11-completion-checklist)
+1. [First principles](#1-first-principles-what-is-an-llm-actually-doing) · 2. [How we got here](#2-how-we-got-here-from-rules-to-intelligence) · 3. [Transformers](#3-inside-the-transformer-attention-is-all-you-need) · 4. [Large language models](#4-large-language-models-from-gpt-to-multimodal) · 5. [Multimodality & reasoning](#5-multimodality--reasoning-ais-sensory-upgrade) · 6. [The agent era](#6-the-agent-era-from-conversation-to-action) · 7. [The e-commerce lens](#7-the-e-commerce-lens-ais-role-at-every-step) · 8. [Capability boundaries](#8-ais-capability-boundaries-what-it-can-and-cant-do) · 9. [What's next](#9-whats-next) · 10. [Learning resources](#10-learning-resources) · 11. [Common Traps](#11-common-traps) · 12. [Completion checklist](#12-completion-checklist)
 
 
 ## What You'll Understand
@@ -438,6 +438,12 @@ E-commerce: product-video analysis, voice support
 Text, image, audio, video seamlessly interchangeable
 Image and video generation
 E-commerce: auto-generate main images and A+ content
+
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
 ```
 
 ### 5.2 Multimodal applications in cross-border e-commerce
@@ -524,6 +530,18 @@ AI:
 4. Generates a structured report
 5. Emails it to you
 6. Repeats automatically next week
+
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
+
+<copy_discipline>
+- Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
+- For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
+- Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
+</copy_discipline>
 ```
 
 ### 6.2 An agent's core capabilities
@@ -661,6 +679,18 @@ Automation/agents
 Simple automation → Zapier/Make + AI
 Medium → MCP + Claude/GPT
 Advanced → LangGraph/CrewAI (see Path B)
+
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
+
+<copy_discipline>
+- Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
+- For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
+- Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
+</copy_discipline>
 ```
 
 ---
@@ -768,7 +798,23 @@ Track vertical e-commerce AI tools
 
 ---
 
-## 11. Completion Checklist
+## 11. Common Traps
+
+### 11.1 Treating "the model updated" as "the methodology changed"
+
+The technology moves fast, but the boundary of what's actually possible shifts more slowly than the release cadence. Tearing up your workflow every time a version ships is the most common waste of time in this field. The test: **could you not do this task before, and can you now?** If not, don't touch anything.
+
+### 11.2 Inferring current capability from historical model behavior
+
+GPT-3, Claude 2, and the rest appear in this chapter as subject matter. Judging what's possible today from their old limits (short context, no tool use) will leave you badly over-conservative. Current capability lives in the [model matrix](../resources/model-matrix.md).
+
+### 11.3 Watching capability without watching the cost curve
+
+A task that didn't pencil out two years ago and does today often changed because unit price fell an order of magnitude, not because the model got smarter. Read both curves together when assessing feasibility.
+
+---
+
+## 12. Completion Checklist
 
 - [ ] Can explain in your own words that "an LLM is a next-token predictor"
 - [ ] Understand the Transformer's self-attention (intuition, not math)

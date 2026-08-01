@@ -1,7 +1,7 @@
 # AI Application Landscape for Cross-Border E-Commerce
 
 > **Position**: Path 0 Foundations → the big picture before diving into any hands-on track
-> **Last updated**: 2026-03-12
+> **Last updated**: 2026-07-31
 > **Level**: Beginner
 > **Time**: 30 minutes
 > **Prerequisite**: ideally read [F1 The Evolution of AI](f1-ai-evolution.md) first
@@ -328,6 +328,12 @@ Before (no AI):
 5. Build segments manually in Klaviyo (1 h)
 6. Repeat for every sequence
 Total: 2–3 hours per email | 8–12 hours for a 4-email sequence
+
+<copy_discipline>
+- Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
+- For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
+- Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
+</copy_discipline>
 ```
 
 After (with AI):

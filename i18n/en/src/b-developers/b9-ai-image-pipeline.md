@@ -1,7 +1,7 @@
 # B9. AI Product Image & Video Generation Pipeline
 
 > **Track**: Path B: Technical · **Module**: B9
-> **Last updated**: 2026-03-15
+> **Last updated**: 2026-07-31
 > **Difficulty**: Advanced
 > **Estimated time**: 1 hour/day, 2-3 weeks
 > **Prerequisites**: None (standalone module, but understanding [A7 Visual Content](../a-operators/a7-visual-content.md) is recommended)
@@ -11,14 +11,14 @@
 
 ## Chapter Navigation
 
-1. [Why You Need an AI Image Pipeline](#1-why-you-need-an-ai-image-pipeline) · 2. [Tech Stack Selection](#2-tech-stack-selection) · 3. [ComfyUI Product Image Workflow](#3-comfyui-product-image-workflow) · 4. [API Approaches](#4-api-approaches-midjourneydall-eflux) · 5. [Batch Generation Pipeline](#5-batch-generation-pipeline) · 6. [Video Generation](#6-ai-video-generation) · 7. [Quality Control & Compliance](#7-quality-control--compliance) · 8. [Completion Checklist](#8-completion-checklist)
+1. [Why You Need an AI Image Pipeline](#1-why-you-need-an-ai-image-pipeline) · 2. [Tech Stack Selection](#2-tech-stack-selection) · 3. [ComfyUI Product Image Workflow](#3-comfyui-product-image-workflow) · 4. [Cloud API Approaches](#4-cloud-api-approaches) · 5. [Batch Generation Pipeline](#5-batch-generation-pipeline) · 6. [Video Generation](#6-ai-video-generation) · 7. [Quality Control & Compliance](#7-quality-control--compliance) · 8. [Common Traps](#8-common-traps) · 9. [Completion Checklist](#9-completion-checklist)
 
 ---
 
 ## What You Will Build in This Module
 
 - A ComfyUI product image generation workflow (white-background hero + scene shots + infographics)
-- An API-driven batch image generation pipeline (Midjourney/DALL-E/Flux)
+- An API-driven batch image generation pipeline (Midjourney/GPT Image 2/FLUX.2)
 - An automated product video generation system
 - A brand visual consistency assurance mechanism
 
@@ -61,7 +61,7 @@
 |--------|------|------|------|----------|
 | ComfyUI (local) | Full control, automatable, free | Requires GPU, steep learning curve | Hardware cost | High volume, technical teams |
 | Midjourney | Highest quality, diverse styles | No API (needs Discord), less controllable | $10-30/month | Small volume of high-quality images |
-| DALL-E 3 (API) | Has API, programmable | Medium quality, limited styles | Pay-as-you-go | Batch generation, automation |
+| GPT Image 2 (API) | Has API, programmable | Medium quality, limited styles | Pay-as-you-go | Batch generation, automation |
 | Flux (local/API) | Open source, high quality, fine-tunable | Requires GPU | Free/pay-as-you-go | Technical teams, customization |
 | Adobe Firefly | Commercially safe, indemnity guarantee | Limited features | From $10/month | Commercial use, compliance-first |
 | Canva AI | Simple and easy, rich templates | Low flexibility | $13/month | Non-technical users |
@@ -74,7 +74,7 @@ Recommended AI image tech stack:
 Hero / scene image generation:
 ComfyUI + Flux (local, full control)
 or Midjourney (cloud, highest quality)
-or DALL-E 3 API (programmable, batch generation)
+or GPT Image 2 API (programmable, batch generation)
 
 Post-processing:
 rembg (Python background removal)
@@ -267,13 +267,25 @@ prompt = generate_prompt(
 product="wireless bluetooth earbuds with charging case"
 )
 print(prompt["positive"])
+
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
+
+<copy_discipline>
+- Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
+- For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
+- Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
+</copy_discipline>
 ```
 
 ---
 
-## 4. API Approaches (Midjourney/DALL-E/Flux)
+## 4. Cloud API Approaches
 
-### 4.1 DALL-E 3 Batch Generation
+### 4.1 GPT Image 2 Batch Generation
 
 ```python
 from openai import OpenAI
@@ -288,7 +300,7 @@ style: str = "white_background",
 size: str = "1024x1024",
 output_dir: str = "output"
 ) -> str:
-"""Generate a product image with DALL-E 3"""
+"""Generate a product image with GPT Image 2"""
 
 prompts = {
 "white_background": f"Professional product photography of {product_description}, centered on pure white background, studio lighting, high resolution, commercial quality",
@@ -297,7 +309,7 @@ prompts = {
 }
 
 response = client.images.generate(
-model="dall-e-3",
+model="gpt-image-2",
 prompt=prompts[style],
 size=size,
 quality="hd",
@@ -326,6 +338,12 @@ for product in products:
 for style in ["white_background", "lifestyle"]:
 path = generate_product_image(product, style)
 print(f"Generated: {path}")
+
+<copy_discipline>
+- Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
+- For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
+- Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
+</copy_discipline>
 ```
 
 ### 4.2 Background Removal + White-Background Compositing
@@ -396,7 +414,7 @@ self.target_platforms = ["amazon", "shopify"]
 class ProductImagePipeline:
 """E-commerce product image batch generation pipeline"""
 
-def __init__(self, method: str = "dalle", output_dir: str = "output/images"):
+def __init__(self, method: str = "openai", output_dir: str = "output/images"):
 self.method = method
 self.output_dir = output_dir
 Path(output_dir).mkdir(parents=True, exist_ok=True)
@@ -511,17 +529,17 @@ def _generate_image(self, request, template, output_path, **kwargs):
 """Generate a single image (chooses the generation method based on self.method)"""
 prompt = generate_prompt(template, request.product_description, **kwargs)
 
-if self.method == "dalle":
-return self._dalle_generate(prompt, output_path)
+if self.method == "openai":
+return self._openai_generate(prompt, output_path)
 elif self.method == "comfyui":
 return self._comfyui_generate(prompt, request.source_image, output_path)
 else:
 raise ValueError(f"Unknown method: {self.method}")
 
-def _dalle_generate(self, prompt, output_path):
-"""DALL-E 3 generation"""
+def _openai_generate(self, prompt, output_path):
+"""GPT Image 2 generation"""
 response = client.images.generate(
-model="dall-e-3",
+model="gpt-image-2",
 prompt=prompt["positive"],
 size="1024x1024",
 quality="hd",
@@ -564,7 +582,7 @@ f.write(report)
 
 # === Usage example ===
 if __name__ == "__main__":
-pipeline = ProductImagePipeline(method="dalle")
+pipeline = ProductImagePipeline(method="openai")
 
 products = [
 ProductImageRequest(
@@ -588,6 +606,18 @@ target_platforms=["amazon", "instagram"]
 ]
 
 results = pipeline.batch_generate(products)
+
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
+
+<copy_discipline>
+- Never write a feature, material, certification, or result the product doesn't actually have. Any attribute I didn't state above must not appear in the copy — this is the number-one cause of listing takedowns and false-advertising complaints
+- If you need a selling point I didn't supply, list what you need from me rather than improvising
+- Flag any claim touching efficacy, safety, environmental, or patent language separately so I can verify it by hand
+</copy_discipline>
 ```
 
 ### 5.2 A/B Testing Image Variants
@@ -619,7 +649,7 @@ f"{compositions[i % len(compositions)]}, "
 f"pure white background, high resolution 8k"
 )
 
-img = generate_with_dalle(variant_prompt, f"variant_{i+1}.jpg")
+img = generate_with_gpt_image(variant_prompt, f"variant_{i+1}.jpg")
 variants.append({
 "variant": i + 1,
 "angle": angles[i % len(angles)],
@@ -629,6 +659,12 @@ variants.append({
 })
 
 return variants
+
+<copy_discipline>
+- Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
+- For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
+- Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
+</copy_discipline>
 ```
 
 ---
@@ -639,10 +675,10 @@ return variants
 
 | Type | Duration | Purpose | AI tool |
 |------|----------|---------|---------|
-| Product showcase | 15-30s | Amazon video, Shopify | Runway Gen-3 / Pika |
+| Product showcase | 15-30s | Amazon video, Shopify | Kling 3 / Seedance 2 |
 | Usage tutorial | 30-60s | A+ Content, YouTube | Synthesia / HeyGen |
-| Social short video | 15-60s | TikTok/Reels/Shorts | CapCut AI / Runway |
-| Ad video | 6-15s | PPC video ads | Runway / Sora |
+| Social short video | 15-60s | TikTok/Reels/Shorts | CapCut AI / Runway Gen-4.5 |
+| Ad video | 6-15s | PPC video ads | Runway Gen-4.5 / Veo 3.1 |
 
 ### 6.2 Product Showcase Video Generation
 
@@ -720,7 +756,27 @@ return {
 
 ---
 
-## 8. Completion Checklist
+## 8. Common Traps
+
+### 8.1 Using text-to-image for the main product shot
+
+Text-to-image re-imagines your product; details, proportions, and logo drift. The product itself must go image-to-image or image-to-video from a real photo. This is a compliance issue as much as a quality one.
+
+### 8.2 Not keeping metadata on generated images
+
+Which image is AI-generated, with what tool, when — under the EU AI Act's transparency duties you need to be able to answer this. See [A6 §5](../a-operators/a6-compliance.md).
+
+### 8.3 Batch generating with no human screening
+
+AI image yield is lower than people assume, especially on hands, text, reflections, and material rendering. The pipeline needs a human spot-check stage; the rate can be low but not zero.
+
+### 8.4 Ignoring per-platform image specs
+
+White background for the main image, minimum dimensions, text-coverage limits — rules differ by platform. Generate without those constraints and you'll either be rejected or redo the work.
+
+---
+
+## 9. Completion Checklist
 
 - [ ] Set up ComfyUI or choose an API approach
 - [ ] Generate a complete image set for one product (hero + scene + infographic)

@@ -1,7 +1,7 @@
 # D8. Rakuten Japan E-Commerce AI Guide
 
 > **Track**: Path D: Multi-Platform · **Module**: D8
-> **Last updated**: 2026-03-14
+> **Last updated**: 2026-07-31
 > **Difficulty**: Intermediate
 > **Estimated time**: 1.5 hours
 
@@ -9,6 +9,25 @@
 ---
 
 > Rakuten GMV ~$31B, the Japanese e-commerce market is $258B (2025). Japan's second-largest e-commerce platform (after Amazon JP). Partnering with YouTube Shopping in 2026. The operating logic is completely different from Amazon JP — Rakuten is more like an "online mall," and sellers have a high degree of customization.
+
+## Chapter Navigation
+
+1. [Rakuten vs Amazon JP Core Differences](#1-rakuten-vs-amazon-jp-core-differences) · 2. [Rakuten-Specific Operational Differences](#2-rakuten-specific-operational-differences) · 3. [Japanese Listing AI Optimization](#3-japanese-listing-ai-optimization) · 4. [Cross-Border Onboarding in Practice](#4-cross-border-onboarding-in-practice) · 5. [Common Traps](#5-common-traps) · 6. [Completion Checklist](#6-completion-checklist)
+
+---
+
+## What You'll Learn
+
+Japan has high AOV and stable repeat purchase, but Rakuten plays by rules that are nothing like Amazon JP's.
+
+After this module you'll be able to:
+- State the core differences between Rakuten and Amazon JP in traffic logic and store weighting
+- Write listings with AI that match Japanese business writing conventions (keigo, structure, information density)
+- Work Rakuten's store-specific mechanics (Super SALE, points, store design)
+- Complete the cross-border onboarding process
+
+---
+
 
 ## 1. Rakuten vs Amazon JP Core Differences
 
@@ -77,6 +96,12 @@ Note:
 - The email shouldn't be too long (Japanese users prefer conciseness)
 - Must include an unsubscribe link (required by Japanese law)
 - Points-related info has the highest open rate
+
+<copy_discipline>
+- Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
+- For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
+- Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
+</copy_discipline>
 ```
 
 ### 2.4 Event Mechanism
@@ -210,6 +235,12 @@ Please help me decide between Rakuten vs Amazon JP:
 - Which platform to onboard first?
 - Should I onboard both platforms at the same time?
 - Resource-allocation suggestions
+
+<copy_discipline>
+- Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
+- For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
+- Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
+</copy_discipline>
 ```
 
 ## 3. Japanese Listing AI Optimization
@@ -268,6 +299,12 @@ Note:
 - Japanese consumers like detailed usage instructions and precautions
 - Include the "free shipping" (送料無料) mark (if applicable)
 - Mention the points multiplier (ポイント倍)
+
+<copy_discipline>
+- Never write a feature, material, certification, or result the product doesn't actually have. Any attribute I didn't state above must not appear in the copy — this is the number-one cause of listing takedowns and false-advertising complaints
+- If you need a selling point I didn't supply, list what you need from me rather than improvising
+- Flag any claim touching efficacy, safety, environmental, or patent language separately so I can verify it by hand
+</copy_discipline>
 ```
 
 ### 3.3 Rakuten Store-Page Design
@@ -331,7 +368,27 @@ Please optimize:
 | Standard Plan | ¥50,000/month | 2-4.5% | Medium scale |
 | Mega Shop Plan | ¥100,000/month | 2-4.5% | Large scale/many SKUs |
 
-## 5. Completion Checklist
+## 5. Common Traps
+
+### 5.1 Running Rakuten with an Amazon mindset
+
+Rakuten is **store-centric**, not product-centric. Traffic goes to the store, not the individual item. Operating each SKU as a standalone listing forfeits the platform's main traffic mechanism.
+
+### 5.2 Machine-translating Japanese
+
+Get the keigo level or the business register wrong and Japanese shoppers will simply read you as an untrustworthy merchant. This is where Japan differs most from other markets — "unnatural" copy is a hard failure here, not a minor blemish.
+
+### 5.3 Skipping the points (ポイント) campaigns
+
+Sitting out the points-multiplier campaigns during major sales means voluntarily exiting the sale traffic. Price the points cost in up front rather than deciding when the campaign arrives.
+
+### 5.4 Under-investing in store design
+
+The Rakuten store page carries most of the brand-trust weight. Ship with a default template and your conversion will sit visibly below comparable sellers.
+
+---
+
+## 6. Completion Checklist
 
 - [ ] Complete Rakuten onboarding application
 - [ ] Design a custom store page

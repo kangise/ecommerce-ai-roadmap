@@ -1,7 +1,7 @@
 # F3. 知识库与 RAG | Knowledge Base & RAG
 
 > **路径**: Path 0: AI 基础先行 · **模块**: F3
-> **最后更新**: 2026-03-12
+> **最后更新**: 2026-07-31
 > **难度**: 中级
 > **预计时间**: 2 小时
 > **前置模块**: [F1 AI 的前世今生](f1-ai-evolution.md)、[F2 Prompt 工程](f2-prompt-engineering.md)
@@ -23,9 +23,9 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ---
 
-## 本模块章节导航
+## 章节导航
 
-1. [为什么 AI 不知道你的产品](#1-为什么-ai-不知道你的产品信息) · 2. [Embedding 原理](#2-embedding-原理让-ai-理解语义) · 3. [向量数据库](#3-向量数据库存储和检索语义) · 4. [RAG 架构](#4-rag-架构完整的工作流程) · 5. [实操概览](#5-实操概览搭建产品知识库) · 6. [RAG 优化技巧](#6-rag-优化技巧) · 7. [常见问题](#7-常见问题) · 8. [学习资源](#8-学习资源)
+1. [为什么 AI 不知道你的产品信息](#1-为什么-ai-不知道你的产品信息) · 2. [Embedding 原理](#2-embedding-原理让-ai-理解语义) · 3. [向量数据库](#3-向量数据库存储和检索语义) · 4. [RAG 架构](#4-rag-架构完整的工作流程) · 5. [实操概览](#5-实操概览搭建产品知识库) · 6. [RAG 优化技巧](#6-rag-优化技巧) · 7. [常见问题](#7-常见问题) · 8. [学习资源](#8-学习资源) · 9. [常见陷阱](#9-常见陷阱) · 10. [完成标志](#10-完成标志)
 
 
 ## 本模块你将理解
@@ -368,7 +368,7 @@ RAG 系统中，发送给 LLM 的 Prompt 通常包含三个部分：
 Embedding 成本：$0.02（一次性）
 向量数据库：$0（Chroma 本地）
 每月查询量：1000 次
-LLM 成本：$5-10/月（GPT-4o-mini）
+LLM 成本：$5-10/月（T3 高速档）
 总月度成本：$5-10
 
 对比人工成本：
@@ -497,7 +497,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [RAG Arch
 | "我的数据量很小（<10 个文档），需要 RAG 吗？" | 不需要。直接上传到 ChatGPT/Claude 就够了。RAG 的价值在数据量大（50+ 文档）时才明显。 |
 | "RAG 能保证 100% 准确吗？" | 不能。RAG 减少幻觉但不能消除。检索可能漏掉关键信息，LLM 也可能误解检索内容。始终需要人工审核关键回答。 |
 | "多语言文档可以放在同一个知识库吗？" | 可以，但建议用支持多语言的 Embedding 模型（如 BGE-M3）。或者按语言分别建立索引。 |
-| "RAG 系统需要多少钱？" | 最低成本：Chroma（免费）+ OpenAI Embedding（$0.02/M tokens）+ OpenAI GPT-4o-mini（$0.15/M tokens）。1000 次查询约 $1-2。 |
+| "RAG 系统需要多少钱？" | 最低成本：Chroma（免费）+ OpenAI Embedding（$0.02/M tokens）+ T3 高速档 LLM。1000 次查询约 $1-2。 |
 | "数据安全怎么办？" | 用本地 Embedding 模型（BGE-M3）+ 本地 LLM（Ollama）+ 本地向量数据库（Chroma），数据完全不出服务器。 |
 
 ### 7.2 什么时候不需要 RAG
@@ -529,6 +529,26 @@ Content rephrased for compliance with licensing restrictions. Sources: [RAG Arch
 | [B3 RAG 知识库模块](../b-developers/b3-rag-knowledge-base.md) | ecommerce-ai-roadmap | 本 Hub 的技术实操模块，完整代码 |
 | [Vector Databases 2026 Guide](https://iterathon.tech/blog/vector-databases-ai-applications-guide) | Iterathon | 向量数据库选型和生产部署指南 |
 | [Retrieval-Augmented Generation (RAG) Paper](https://arxiv.org/abs/2005.11401) | Meta AI | RAG 原始论文（2020），理解理论基础 |
+
+## 9. 常见陷阱
+
+### 9.1 以为 RAG 能消除幻觉
+
+RAG 减少的是「凭空编造」，不能消除「检索到了但理解错了」和「检索不到却硬答」。真正的防线是在 Prompt 里要求标注来源，并允许模型回答「资料里没有」。
+
+### 9.2 切块（chunking）策略照抄默认值
+
+默认的固定长度切块会把一张规格表或一段合规条文拦腰截断，检索出来的片段自然答不对。电商场景里，按语义单元（一个 SKU、一条政策、一个 FAQ）切通常比按字数切好得多。
+
+### 9.3 知识库只建不维护
+
+产品参数、平台政策、运费规则都在变。RAG 系统最常见的失败不是技术问题，而是里面的资料过期了半年没人更新，结果比不用还危险。
+
+### 9.4 用 RAG 做本该用数据库做的事
+
+「上个月哪个 SKU 卖得最好」是一个 SQL 查询，不是一个语义检索问题。把结构化查询塞进 RAG，既慢又不准。
+
+---
 
 ## 10. 完成标志
 

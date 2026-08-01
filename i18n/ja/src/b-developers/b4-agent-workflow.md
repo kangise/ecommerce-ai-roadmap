@@ -1,7 +1,7 @@
 # B4. AI Agent とワークフロー自動化
 
 > **トラック**: Path B: 技術 · **モジュール**: B4
-> **最終更新**: 2026-03-12
+> **最終更新**: 2026-07-31
 > **難易度**: 上級
 > **前提**: B1 データパイプラインの基礎(Python、ファイル処理)、B3 の RAG 基本概念
 > **所要時間**: 1 日 1 時間、2〜3 週間
@@ -24,9 +24,9 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ---
 
-## この章のナビゲーション
+## 章ナビゲーション
 
-1. [Agent 方法論](#1-agent-方法論) · 2. [ツール全景](#2-ツール全景) · 3. [コード実践](#3-コード実践) · 4. [EC Agent 応用](#4-ec-agent-応用シーン) · 5. [よくある罠](#5-よくある罠) · 6. [上級テクニック](#6-上級テクニック) · 7. [学習リソース](#7-学習リソース)
+1. [Agent 方法論](#1-agent-方法論) · 2. [ツール全景](#2-ツール全景) · 3. [コード実践](#3-コード実践) · 4. [EC Agent 応用](#4-ec-agent-応用シーン) · 5. [よくある罠](#5-よくある罠) · 6. [Token コスト工学](#6-token-コスト工学) · 7. [上級テクニック](#7-上級テクニック) · 8. [学習リソース](#8-学習リソース)
 
 
 ## このモジュールで構築するもの
@@ -302,7 +302,7 @@ return {
 }
 
 # 2. Agent を作成
-llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+llm = ChatOpenAI(model="gpt-5.6-luna", temperature=0)  # T3 tier — see model-matrix.md
 tools = [get_sales_data, detect_anomaly]
 agent = create_react_agent(llm, tools)
 
@@ -393,7 +393,7 @@ inventory_data: str
 review_data: str
 report: str
 
-llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+llm = ChatOpenAI(model="gpt-5.6-luna", temperature=0)  # T3 tier — see model-matrix.md
 
 SYSTEM_PROMPT = """あなたは EC 運営日報 Agent です。データ収集後、以下を含む日報を生成:
 - 販売概要(収入、注文、前年比変化)
@@ -434,6 +434,12 @@ app = workflow.compile()
 
 # result = app.invoke({"messages": []})
 # print(result["report"])
+
+<データ規律>
+- 市場データ・検索量・競合の実績・法令条文・料率に関する具体的な数字や事実は、私が提供した情報にあるものだけを使う。**渡していない部分を記憶で埋めないこと** — この種の事実は変化が速く、記憶にある版は古い可能性がある
+- 判断にある事実が必要なときは、どの公式ソースで確認すべきかを伝え、そこで止まって私に尋ねること
+- 結論ごとに出典を付す: [私が提供した情報] または [モデル推測]
+</データ規律>
 ```
 
 **ワークフローグラフの構造:**
@@ -504,7 +510,7 @@ has_alerts: bool
 forecast_results: list[str]
 alert_content: str
 
-llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+llm = ChatOpenAI(model="gpt-5.6-luna", temperature=0)  # T3 tier — see model-matrix.md
 
 def check_inventory(state: InventoryState) -> dict:
 data = check_all_inventory.invoke({})
@@ -546,6 +552,12 @@ workflow.add_edge("generate_alert", END)
 inventory_agent = workflow.compile()
 
 # result = inventory_agent.invoke({"messages": [], "forecast_results": []})
+
+<コピー規律>
+- 商品が実際には持たない機能・素材・認証・効果を書かないこと。上で私が挙げていない属性は本文に出さない
+- 顧客に送る内容(返信・メール・テンプレート)では、私が承認していない約束をしないこと。返金額・補償・期日・プラットフォーム規約の例外は、私の確認を経てから入れる
+- 効能・安全・環境・特許に関わる表現は別途印を付け、人手での確認を促すこと
+</コピー規律>
 ```
 
 **ワークフローグラフ(条件分岐付き):**
@@ -616,7 +628,7 @@ has_negative: bool
 analysis_results: list[dict]
 alert_report: str
 
-llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+llm = ChatOpenAI(model="gpt-5.6-luna", temperature=0)  # T3 tier — see model-matrix.md
 
 def fetch_reviews(state: ReviewState) -> dict:
 data = fetch_new_reviews.invoke({"hours": 24})
@@ -656,6 +668,12 @@ review_agent = workflow.compile()
 
 # result = review_agent.invoke({"messages": [], "analysis_results": []})
 # print(result.get("alert_report", "低評価なし、すべて正常"))
+
+<データ規律>
+- 市場データ・検索量・競合の実績・法令条文・料率に関する具体的な数字や事実は、私が提供した情報にあるものだけを使う。**渡していない部分を記憶で埋めないこと** — この種の事実は変化が速く、記憶にある版は古い可能性がある
+- 判断にある事実が必要なときは、どの公式ソースで確認すべきかを伝え、そこで止まって私に尋ねること
+- 結論ごとに出典を付す: [私が提供した情報] または [モデル推測]
+</データ規律>
 ```
 
 > **安全上の懸念を優先**: Review 監視で最も重要なのは安全関連の低評価(「発熱」「漏電」「発火」など)の識別。この種の問題は製品取り下げやリコールにつながりうるので、最高優先度で処理必須。
@@ -728,6 +746,12 @@ verbose=True,
 
 # result = crew.kickoff()
 # print(result)
+
+<データ規律>
+- 市場データ・検索量・競合の実績・法令条文・料率に関する具体的な数字や事実は、私が提供した情報にあるものだけを使う。**渡していない部分を記憶で埋めないこと** — この種の事実は変化が速く、記憶にある版は古い可能性がある
+- 判断にある事実が必要なときは、どの公式ソースで確認すべきかを伝え、そこで止まって私に尋ねること
+- 結論ごとに出典を付す: [私が提供した情報] または [モデル推測]
+</データ規律>
 ```
 
 **マルチ Agent 協業フロー:**
@@ -841,22 +865,26 @@ return json.dumps({"error": f"照会失敗: {str(e)}"})
 
 **原因**:
 - Agent のループ回数が多すぎる
-- 高価なモデル(GPT-4o)を簡単なタスクに使った
+- フロンティア級のモデルを簡単なタスクに使った
 - ツールが大量のデータを返し、毎回 LLM に送っている
 
 **解決策**:
 
 | 戦略 | やり方 | 節約 |
 |------|--------|------|
-| モデル階層化 | 簡単な判断は GPT-4o-mini、複雑な分析は GPT-4o | 50-80% |
+| モデル階層化 | 簡単な判断は T3 高速級、複雑な分析は T1 フロンティア級 | 50-80% |
 | 反復を制限 | recursion_limit を設定 | 暴走を回避 |
 | データ削減 | ツールが全量でなく要約を返す | 30-50% |
 | 固定フロー | Chain が使えるなら Agent を使わない | 60-80% |
 
 ```python
 # コスト制御の例: モデル階層化
-cheap_llm = ChatOpenAI(model="gpt-4o-mini", temperature=0) # $0.15/1M tokens
-expensive_llm = ChatOpenAI(model="gpt-4o", temperature=0) # $2.50/1M tokens
+# モデル ID は resources/model-matrix.md に集約。世代交代時はこの 2 行だけ変更する
+CHEAP_MODEL = "gpt-5.6-luna"      # T3 高速級
+STRONG_MODEL = "gpt-5.6-sol"      # T1 フロンティア級
+
+cheap_llm = ChatOpenAI(model=CHEAP_MODEL, temperature=0)
+expensive_llm = ChatOpenAI(model=STRONG_MODEL, temperature=0)
 
 # データ収集と簡単な判断は安いモデル
 # 最終レポート生成は高いモデル
@@ -874,9 +902,80 @@ expensive_llm = ChatOpenAI(model="gpt-4o", temperature=0) # $2.50/1M tokens
 
 ---
 
-## 6. 上級テクニック
+## 6. Token コスト工学
 
-### 6.1 Human-in-the-loop: 重要判断の前に人手確認を待つ
+§5.3 では「低い級のモデルを使う」という最も大まかなレバーを扱った。しかし Agent がある程度の規模で回り始めると、請求額を実際に決めるのはモデルの級ではなく、**同じ内容を何度繰り返し送っているか**であることが多い。この節ではその分をどう削るかを扱う。
+
+### 6.1 まず金がどこに消えているかを把握する
+
+Agent の 1 回の実行で、トークン消費はおおむね次のように分布する:
+
+| 部分 | 典型的な割合 | 毎ターン再送されるか |
+|------|------------|-------------------|
+| System prompt + ツール定義 | 30-60% | **毎ターン再送** |
+| Few-shot 例 / 業務ルール文書 | 10-30% | **毎ターン再送** |
+| 会話履歴 | ターン数とともに増加 | 毎ターン再送、しかも増え続ける |
+| そのターンの本当に新しい入力 | 5-15% | いいえ |
+| モデルの出力 | 5-20% | いいえ |
+
+重要な事実: **10 ターンの Agent ループでは、system prompt が丸ごと 10 回送信されている。** それが 3,000 トークンなら、一字も変わっていない内容に対して 3 万トークン分の請求が立つ。
+
+### 6.2 Prompt Caching: 最大のレバー
+
+主要ベンダーはいずれもキャッシュ機構を提供しており、原理は共通だ。**プロンプトのうち変化しない前置き部分を指定すると、サーバ側がその計算結果をキャッシュし、以降のリクエストでヒットした部分は大幅な割引価格で課金される。**
+
+実務上の共通点:
+
+- **キャッシュされるのは前置き(prefix)**。したがってプロンプトの並び順が決定的に重要になる。不変の内容(system prompt、ツール定義、業務ルール、few-shot 例)を必ず先頭に、可変の内容(ユーザー入力、そのターンのデータ)を末尾に置く。順序が逆だとキャッシュは一切効かない
+- **最小長の閾値がある**。短すぎるプロンプトはキャッシュする価値がなく、ベンダー側が無視する
+- **TTL がある**。キャッシュには生存時間があり、しばらく使わないと失効する。次のリクエストは全額課金でキャッシュを作り直す
+- **キャッシュからの読み出しは新規入力よりはるかに安い** — 節約の源はここにある
+
+EC の Agent では、最も効果が大きい構成はこうなる:
+
+```
+キャッシュ対象の前置きに入れるもの:
+  - 自社のカテゴリ知識、ブランドトーンの規定
+  - Listing 執筆ルール、コンプライアンス上の禁止語リスト
+  - Few-shot 例(良い Listing / 悪い Listing の対比)
+  - ツール定義
+
+キャッシュより後ろに置くもの:
+  - 現在の SKU のデータ
+  - そのターンのユーザーの具体的な質問
+```
+
+500 SKU をバッチ処理する場合、前置きは 1 回だけ全額課金され、残り 499 回はキャッシュ価格で済む。
+
+> 具体的な割引率、最小トークン数、TTL の長さはベンダーごとに異なり、かつ変動する。[モデルマトリクス](../resources/model-matrix.md)の公式リンクから自分で確認すること。本書がこの種の数字を本文に書かないのは、まさにこの理由による。
+
+### 6.3 その他の 4 つのレバー
+
+**Batch API**: リアルタイム性が不要なタスク(夜間に全 Listing を点検する、一括翻訳、過去レビューのラベル付け直し)は、バッチ処理エンドポイント経由で相当な割引が効くのが通例だ。代償はレイテンシが秒単位から時間単位になること。EC の作業には、実のところリアルタイムを必要としないものが多い。
+
+**ツールの戻り値を刈り込む。** §5.3 で一言触れた点の展開。Agent が `get_sales_data` を呼んで明細 500 行を受け取り、その 500 行をまるごと LLM に渡す — しかし LLM が知る必要があるのは「どの SKU が異常か」だけだ。ツール側で集約してから返せば、トークンは一桁減る。**原則は、Python で計算できることに LLM の金を払わない。**
+
+**会話履歴を圧縮する。** 長いループでは履歴が際限なく膨らむ。直近 N ターンは原文のまま保持し、それより古い分は要約に畳む、というのが一般的な手法だ。LangGraph の checkpointer に要約ノードを組み合わせれば実現できる。
+
+**出力長を制御する。** 出力トークンは通常、入力の数倍高い。散文ではなく JSON を要求すること、文字数の上限を明示することは、そのまま節約になる。「理由を簡潔に述べよ」と「理由を詳細に述べよ」では請求額が倍違うこともある。
+
+### 6.4 現実的な切り分け順序
+
+コストが予算を超えたときは、効果の大きい順にこの順序で当たる:
+
+1. **Chain で足りるところに Agent を使っていないか** — 流れが固定のタスクに Agent を使うのは純粋な無駄(§1.2)
+2. **ループ回数が暴走していないか** — まず `recursion_limit` を設定する
+3. **プロンプトの前置きはキャッシュに乗っているか** — 不変の内容が本当に先頭にあるか確認する
+4. **ツールの戻り値は刈り込まれているか** — 生データをそのまま流し込んでいないか見る
+5. **級が高すぎないか** — これは最後に触る。級を下げると品質が落ちるが、上の 4 つは落ちない
+
+最初の 4 つは**純粋な得**だ。出力品質を一切犠牲にせずコストが下がる。トレードオフが発生するのは 5 番だけ。
+
+---
+
+## 7. 上級テクニック
+
+### 7.1 Human-in-the-loop: 重要判断の前に人手確認を待つ
 
 一部の判断は完全に AI に委ねられない、顧客メールの送信、価格の調整、補充発注の提出など。Human-in-the-loop は Agent を重要ノードで一時停止させ、人手確認を待つ。
 
@@ -923,7 +1022,7 @@ app = workflow.compile(checkpointer=memory, interrupt_before=["execute"])
 
 > **いつ Human-in-the-loop が必要か**: 金銭が絡む(補充、広告予算調整)、顧客連絡(メール送信)、不可逆な操作(データ削除)のときは、必ず人手確認を加える。
 
-### 6.2 Agent メモリ: セッションをまたいで文脈を保持
+### 7.2 Agent メモリ: セッションをまたいで文脈を保持
 
 デフォルトでは、Agent は実行のたびに「記憶喪失」。LangGraph の `MemorySaver` でセッションをまたいで文脈を保持できる:
 
@@ -933,7 +1032,7 @@ from langgraph.prebuilt import create_react_agent
 from langchain_openai import ChatOpenAI
 
 memory = MemorySaver()
-agent = create_react_agent(ChatOpenAI(model="gpt-4o-mini"), tools=[], checkpointer=memory)
+agent = create_react_agent(ChatOpenAI(model="gpt-5.6-luna"), tools=[], checkpointer=memory)
 
 config = {"configurable": {"thread_id": "session-001"}}
 # 1 回目: agent.invoke({"messages": [("user", "主力製品はアクションカメラ X1")]}, config)
@@ -941,9 +1040,9 @@ config = {"configurable": {"thread_id": "session-001"}}
 # Agent は「主力製品はアクションカメラ X1」を覚えている
 ```
 
-### 6.3 マルチモーダル Agent: 画像とファイルを処理
+### 7.3 マルチモーダル Agent: 画像とファイルを処理
 
-マルチモーダル Agent は製品画像、競合スクショなどを分析できる。GPT-4o の視覚能力を使う:
+マルチモーダル Agent は製品画像、競合スクショなどを分析できる。主要ベンダーの T1/T2 級は現在いずれも画像入力にネイティブ対応している:
 
 ```python
 from langchain_openai import ChatOpenAI
@@ -951,8 +1050,8 @@ from langchain_core.messages import HumanMessage
 import base64
 
 def analyze_product_image(image_path: str) -> str:
-"""GPT-4o で製品画像を分析、訴求点と改善提案を抽出。"""
-llm = ChatOpenAI(model="gpt-4o", temperature=0)
+"""視覚対応モデルで製品画像を分析、訴求点と改善提案を抽出。"""
+llm = ChatOpenAI(model="gpt-5.6-terra", temperature=0)  # T2 主力級で視覚タスクは十分
 with open(image_path, "rb") as f:
 image_data = base64.b64encode(f.read()).decode("utf-8")
 
@@ -966,7 +1065,7 @@ return llm.invoke([message]).content
 
 ---
 
-## 7. 学習リソース
+## 8. 学習リソース
 
 | リソース | 種類 | 説明 | リンク |
 |----------|------|------|--------|
@@ -997,7 +1096,7 @@ return llm.invoke([message]).content
 
 ## 10. 付録
 
-### 9.1 Agent アーキテクチャ早見表
+### 10.1 Agent アーキテクチャ早見表
 
 ```
 
@@ -1014,7 +1113,7 @@ LLM 推論エンジン ツール
 
 ```
 
-### 9.2 コード早見表
+### 10.2 コード早見表
 
 | タスク | コード |
 |--------|--------|
@@ -1031,17 +1130,19 @@ LLM 推論エンジン ツール
 | CrewAI タスク定義 | `Task(description=..., agent=...)` |
 | CrewAI チーム組成 | `Crew(agents=[...], tasks=[...])` |
 
-### 9.3 コスト見積もりの参考
+### 10.3 コスト見積もりの参考
 
 | シーン | モデル | 1 回の実行の LLM 呼び出し回数 | 見積もりコスト |
 |--------|--------|-------------------------------|----------------|
-| 日報 Agent | GPT-4o-mini | 2-3 回 | ~$0.01 |
-| 在庫警告 Agent | GPT-4o-mini | 2-5 回 | ~$0.02 |
-| Review 監視 Agent | GPT-4o-mini | 3-6 回 | ~$0.03 |
-| マルチ Agent 協業(CrewAI) | GPT-4o-mini | 6-10 回 | ~$0.05 |
-| マルチ Agent 協業(CrewAI) | GPT-4o | 6-10 回 | ~$0.50 |
+| 日報 Agent | T3 高速級 | 2-3 回 | 1× |
+| 在庫警告 Agent | T3 高速級 | 2-5 回 | 2× |
+| Review 監視 Agent | T3 高速級 | 3-6 回 | 3× |
+| マルチ Agent 協業(CrewAI) | T3 高速級 | 6-10 回 | 5× |
+| マルチ Agent 協業(CrewAI) | T1 フロンティア級 | 6-10 回 | 50× |
 
-> **コスト制御の提案**: 日常監視系の Agent は GPT-4o-mini で十分。深い分析(競合戦略分析、複雑なレポート生成など)が必要なときだけ GPT-4o を使う。
+ここでドル金額ではなく相対倍率を使っているのは、API 価格の変動が速いためだ。2026-07-30 の 1 日だけで OpenAI は高速級を 80% 値下げしている。倍率の関係は絶対額よりはるかに安定している。実際の費用は [モデルマトリクス](../resources/model-matrix.md) の現行単価を掛ければ出る。
+
+> **コスト制御の提案**: 日常監視系の Agent は T3 高速級で十分。深い分析(競合戦略分析、複雑なレポート生成など)が必要なときだけ T1 フロンティア級を使う。上表の最後の 2 行は同じタスクで、級を変えるだけで 10 倍の差が出る点に注意。
 ---
 
 [< B3 RAG 知識ベース](b3-rag-knowledge-base.md) | [Path 総覧](../README.md) | [B5 ローカルモデル配備 >](b5-local-model-deploy.md)

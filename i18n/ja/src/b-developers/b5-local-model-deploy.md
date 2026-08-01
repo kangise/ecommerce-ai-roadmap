@@ -1,7 +1,7 @@
 # B5. ローカルモデルの配備とファインチューニング
 
 > **トラック**: Path B: 技術 · **モジュール**: B5
-> **最終更新**: 2026-03-12
+> **最終更新**: 2026-07-31
 > **難易度**: 上級
 > **前提**: B1 データパイプラインの基礎(Python)、B3 の RAG 基本概念、B4 の Agent 基礎
 > **所要時間**: 1 日 1 時間、3〜4 週間
@@ -24,7 +24,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ---
 
-## この章のナビゲーション
+## 章ナビゲーション
 
 1. [ローカル配備の方法論](#1-ローカル配備の方法論) · 2. [ツール全景](#2-ツール全景) · 3. [コード実践](#3-コード実践) · 4. [ハードウェア購入ガイド](#4-ハードウェア購入ガイド) · 5. [よくある罠](#5-よくある罠) · 6. [上級テクニック](#6-上級テクニック) · 7. [学習リソース](#7-学習リソース)
 
@@ -35,7 +35,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 修了後には:
 - なぜ LLM をローカル配備するか、いつローカル vs クラウドを選ぶかを理解できる
-- Ollama で 1 行のコマンドで Qwen2.5、Llama 3.1、Mistral などのオープンソースモデルをローカル実行できる
+- Ollama で 1 行のコマンドで Qwen3、Gemma 3、DeepSeek R1 などのオープンウェイトモデルをローカル実行できる
 - タスクのニーズに応じて適切なモデルを選べる(中国語能力、コード能力、推論能力)
 - Python でローカルの Ollama モデルを呼び、既存のワークフローに統合できる
 - 完全ローカルの RAG システムを構築できる(データが本機を出ない)
@@ -76,7 +76,7 @@ EC データは大量の商業機密を含む: 製品コスト、サプライヤ
 ```
 あなたのシーンは何?
 データが商業機密を含む(コスト、利益、サプライヤー) → ローカル配備
-最高品質の推論が必要(複雑な分析、創造的な執筆) → クラウド API(GPT-4o/Claude)
+最高品質の推論が必要(複雑な分析、創造的な執筆) → クラウド API の T1 フロンティア級
 高頻度の呼び出し(毎日 10000+ 回) → ローカル配備(コスト優位が明確)
 たまに使う(毎日数十回) → クラウド API(運用コストを省く)
 オフライン利用が必要 → ローカル配備
@@ -89,7 +89,7 @@ EC データは大量の商業機密を含む: 製品コスト、サプライヤ
 | 次元 | ローカル配備 | クラウド API |
 |------|--------------|--------------|
 | データプライバシー | データが本機を出ない | データが第三者サーバーに送られる |
-| 推論品質 | 7B モデルは約 GPT-3.5 水準、70B は GPT-4 に近い | GPT-4o/Claude 3.5 が最高水準 |
+| 推論品質 | 8B で実用、30B+ はクラウドの T2 主力級に近い | T1 フロンティア級が最高水準 |
 | コスト(低頻度) | ハードウェア投入が高い、利用は無料 | token 課金、総コストが低い |
 | コスト(高頻度) | ハードウェア一度の投入、長期無料 | コストが呼び出し量に応じて線形に増加 |
 | 遅延 | ハードウェア次第(M4 Pro 約 40 tokens/s) | ネット遅延 + 推論遅延 |
@@ -169,7 +169,7 @@ EC データは大量の商業機密を含む: 製品コスト、サプライヤ
 pip install transformers huggingface_hub
 
 # モデルをローカルにダウンロード
-huggingface-cli download Qwen/Qwen2.5-7B-Instruct --local-dir ./models/qwen2.5-7b
+huggingface-cli download Qwen/Qwen3-8B --local-dir ./models/qwen3-8b
 
 # モデルを検索
 huggingface-cli search models --query "e-commerce chinese"
@@ -206,11 +206,11 @@ ollama --version
 **モデルをダウンロードして実行:**
 
 ```bash
-# Qwen2.5 7B をダウンロードして実行(推奨: 中英どちらも良い)
-ollama run qwen2.5:7b
+# Qwen3 8B をダウンロードして実行(推奨: 中英どちらも良い)
+ollama run qwen3:8b
 
-# Llama 3.1 8B をダウンロードして実行(Meta オープンソース、英語が優秀)
-ollama run llama3.1:8b
+# Gemma 3 12B をダウンロードして実行(Google オープンウェイト、画像入力にも対応)
+ollama run gemma3:12b
 
 # Mistral 7B をダウンロードして実行(欧州チーム、コード能力が強い)
 ollama run mistral:7b
@@ -238,7 +238,7 @@ ollama rm mistral:7b
 
 > **Ollama の動作原理**: Ollama は裏で llama.cpp を使って推論し、あなたのハードウェア(Mac Metal GPU / NVIDIA CUDA)を自動検知して最適な推論方式を選ぶ。モデルファイルは `~/.ollama/models/` ディレクトリに保存される。
 
-### 3.2 モデル選択ガイド: Qwen2.5 vs Llama 3.1 vs Mistral
+### 3.2 モデル選択ガイド: Qwen3 vs Gemma 3 vs DeepSeek R1
 
 適切なモデルを選ぶことは適切なフレームワークを選ぶより重要。モデルごとに異なるタスクでの性能差が大きい。
 
@@ -246,43 +246,43 @@ ollama rm mistral:7b
 
 | モデル | パラメータ数 | 中国語能力 | 英語能力 | コード能力 | 推論能力 | 推奨シーン |
 |--------|--------------|------------|----------|------------|----------|------------|
-| Qwen2.5 | 0.5B-72B | 最良 | 優秀 | 優秀 | 優秀 | 中国語 EC シーンの第一選択 |
-| Llama 3.1 | 8B-405B | 良好 | 最良 | 優秀 | 優秀 | 英語主体のシーン |
+| Qwen3 | 0.6B-235B | 最良 | 優秀 | 優秀 | 優秀 | 中国語 EC シーンの第一選択、Apache 2.0 |
+| Gemma 3 | 270M-27B | 良好 | 最良 | 優秀 | 優秀 | 英語主体、4B 以上は画像入力に対応 |
 | Mistral | 7B-8x22B | 良好 | 優秀 | 最良 | 良好 | コード生成、技術文書 |
 | Gemma 2 | 2B-27B | 良好 | 優秀 | 良好 | 良好 | 軽量、モバイル |
 | Phi-3 | 3.8B-14B | 一般 | 優秀 | 優秀 | 優秀 | 小モデル高性能 |
-| DeepSeek-V2 | 16B-236B | 優秀 | 優秀 | 最良 | 優秀 | コードと数学推論 |
+| DeepSeek R1 | 1.5B-671B | 優秀 | 優秀 | 最良 | 優秀 | 推論チェーンが必要なタスク、MIT ライセンス |
 
 **EC シーンの推奨:**
 
 ```
 あなたの主要言語は何?
-中国語主体(中国セラー、中国語 Review) → Qwen2.5:7b
-英語主体(米国市場、英語 Listing) → Llama3.1:8b
-中英混合 → Qwen2.5:7b(中英どちらも良い)
-コード/データ分析を書く必要 → DeepSeek-Coder か Qwen2.5-Coder
+中国語主体(中国セラー、中国語 Review) → qwen3:8b
+英語主体(米国市場、英語 Listing) → gemma3:12b
+中英混合 → qwen3:8b(中英どちらも良い)
+コード/データ分析を書く必要 → qwen2.5-coder:7b、GPU があれば Qwen3-Coder
 
 あなたのハードウェア条件?
-8GB RAM(Mac M1/M2 ベース版) → 7B モデル(qwen2.5:7b)
+8GB RAM(Mac M1/M2 ベース版) → 7B モデル(qwen3:8b)
 16GB RAM → 7B か 14B モデル
 32GB+ RAM → 32B モデルを試せる
-64GB+ RAM → 70B モデル(GPT-4 に近い水準)
+64GB+ RAM → 32B モデル(クラウドの T2 主力級に近い水準)
 ```
 
 **Ollama モデルダウンロードコマンド:**
 
 ```bash
 # EC 中国語シーンの第一選択
-ollama pull qwen2.5:7b
+ollama pull qwen3:8b
 
 # 英語シーン / Meta エコシステム
-ollama pull llama3.1:8b
+ollama pull gemma3:12b
 
 # コード生成
 ollama pull qwen2.5-coder:7b
 
 # 軽量(ノート PC でも動く)
-ollama pull qwen2.5:3b
+ollama pull qwen3:4b
 ollama pull phi3:3.8b
 
 # Embedding モデル(RAG 用)
@@ -301,7 +301,7 @@ Ollama は OpenAI 互換の REST API を提供し、任意の HTTP クライア�
 
 import ollama
 
-def analyze_review(review_text: str, model: str = "qwen2.5:7b") -> str:
+def analyze_review(review_text: str, model: str = "qwen3:8b") -> str:
 """ローカル LLM で顧客 Review を分析し、製品改善の方向を抽出。"""
 response = ollama.chat(
 model=model,
@@ -320,7 +320,7 @@ options={"temperature": 0.1}, # 低温度、より決定論的な出力
 )
 return response["message"]["content"]
 
-def batch_analyze_reviews(reviews: list[str], model: str = "qwen2.5:7b") -> list[dict]:
+def batch_analyze_reviews(reviews: list[str], model: str = "qwen3:8b") -> list[dict]:
 """Review リストを一括分析。"""
 results = []
 for i, review in enumerate(reviews):
@@ -357,7 +357,7 @@ base_url="http://localhost:11434/v1",
 api_key="ollama", # Ollama は本物の API key 不要
 )
 
-def generate_listing(product_info: str, model: str = "qwen2.5:7b") -> str:
+def generate_listing(product_info: str, model: str = "qwen3:8b") -> str:
 """ローカル LLM で製品 Listing を生成。"""
 response = client.chat.completions.create(
 model=model,
@@ -378,7 +378,7 @@ return response.choices[0].message.content
 
 # クラウド OpenAI への切替は 2 行変えるだけ:
 # client = OpenAI(api_key="sk-...") # OpenAI API key に変更
-# model = "gpt-4o-mini" # OpenAI モデル名に変更
+# model = "gpt-5.6-luna" # OpenAI モデル名に変更
 ```
 
 > **シームレスな切替の価値**: 開発段階はローカル Ollama(無料、データ安全)、リリース後は必要に応じて OpenAI に切替(品質がより高い)。コードは `base_url` と `model` の 2 パラメータを変えるだけ。
@@ -390,7 +390,7 @@ return response.choices[0].message.content
 ```python
 import ollama
 
-def stream_generate(prompt: str, model: str = "qwen2.5:7b"):
+def stream_generate(prompt: str, model: str = "qwen3:8b"):
 """ストリーミングでテキストを生成、各 token をリアルタイム出力。"""
 stream = ollama.chat(
 model=model,
@@ -429,7 +429,7 @@ from llama_index.vector_stores.chroma import ChromaVectorStore
 
 def build_local_rag(
 docs_dir: str,
-llm_model: str = "qwen2.5:7b",
+llm_model: str = "qwen3:8b",
 embed_model: str = "nomic-embed-text",
 collection_name: str = "local_knowledge",
 persist_dir: str = "chroma_db",
@@ -439,7 +439,7 @@ persist_dir: str = "chroma_db",
 
 前提:
 1. Ollama インストール済み・実行中(ollama serve)
-2. モデルダウンロード済み: ollama pull qwen2.5:7b
+2. モデルダウンロード済み: ollama pull qwen3:8b
 3. Embedding ダウンロード済み: ollama pull nomic-embed-text
 
 すべてのデータを本機で処理、いかなる外部 API も呼ばない。
@@ -589,7 +589,7 @@ from datasets import load_dataset
 
 # 1. ベースモデルをロード(4-bit 量子化を自動適用、VRAM 節約)
 model, tokenizer = FastLanguageModel.from_pretrained(
-model_name="unsloth/Qwen2.5-7B-Instruct-bnb-4bit",
+model_name="unsloth/Qwen3-8B-bnb-4bit",
 max_seq_length=2048,
 load_in_4bit=True, # 4-bit 量子化、7B モデルは ~5GB VRAM だけ
 )
@@ -682,6 +682,12 @@ ollama create ecommerce-expert -f Modelfile
 
 # ファインチューニング後のモデルを実行
 ollama run ecommerce-expert
+
+<コピー規律>
+- 商品が実際には持たない機能・素材・認証・効果を書かないこと。上で私が挙げていない属性は本文に出さない — Listing の削除と虚偽広告の申立ての最大の原因がこれだ
+- 良い文面のためにある訴求点が必要で、それを私が渡していない場合は、何を補ってほしいかを列挙し、勝手に補わないこと
+- 効能・安全・環境・特許に関わる表現は別途印を付け、私が人手で確認できるようにすること
+</コピー規律>
 ```
 
 > **ファインチューニングのデータ量ガイド**:
@@ -705,7 +711,7 @@ docker run --runtime nvidia --gpus all \
 -v ~/.cache/huggingface:/root/.cache/huggingface \
 -p 8000:8000 \
 vllm/vllm-openai:latest \
---model Qwen/Qwen2.5-7B-Instruct \
+--model Qwen/Qwen3-8B \
 --max-model-len 4096
 ```
 
@@ -714,7 +720,7 @@ vllm/vllm-openai:latest \
 ```bash
 # 方式 1: コマンドラインで起動(OpenAI 互換 API)
 python -m vllm.entrypoints.openai.api_server \
---model Qwen/Qwen2.5-7B-Instruct \
+--model Qwen/Qwen3-8B \
 --host 0.0.0.0 \
 --port 8000 \
 --max-model-len 4096 \
@@ -723,7 +729,7 @@ python -m vllm.entrypoints.openai.api_server \
 # サービス起動後、OpenAI クライアントで呼ぶ:
 # curl http://localhost:8000/v1/chat/completions \
 # -H "Content-Type: application/json" \
-# -d '{"model": "Qwen/Qwen2.5-7B-Instruct", "messages": [...]}'
+# -d '{"model": "Qwen/Qwen3-8B", "messages": [...]}'
 ```
 
 **Python で vLLM サービスを呼ぶ:**
@@ -735,7 +741,7 @@ from openai import OpenAI
 client = OpenAI(base_url="http://localhost:8000/v1", api_key="not-needed")
 
 response = client.chat.completions.create(
-model="Qwen/Qwen2.5-7B-Instruct",
+model="Qwen/Qwen3-8B",
 messages=[
 {"role": "system", "content": "あなたは EC データ分析の専門家です。"},
 {"role": "user", "content": "今月の販売が 15% 下がった考えられる原因を分析"},
@@ -783,10 +789,10 @@ Apple Silicon Mac は現在最もコスパの高いローカル LLM 開発プラ
 sysctl -n hw.memsize | awk '{print $1/1024/1024/1024 " GB"}'
 
 # メモリに応じてモデルを選択
-# 8GB → ollama run qwen2.5:3b か phi3:3.8b
-# 16GB → ollama run qwen2.5:7b(推奨)
-# 32GB → ollama run qwen2.5:14b か qwen2.5:32b (Q4)
-# 64GB → ollama run qwen2.5:72b (Q4)
+# 8GB → ollama run qwen3:4b か phi3:3.8b
+# 16GB → ollama run qwen3:8b(推奨)
+# 32GB → ollama run qwen3:14b か qwen3:32b (Q4)
+# 64GB → ollama run qwen3:32b (Q4)
 
 # 推論時のメモリと GPU 使用を監視
 # Activity Monitor → GPU History を開く
@@ -815,9 +821,9 @@ sysctl -n hw.memsize | awk '{print $1/1024/1024/1024 " GB"}'
 ファインチューニング VRAM ≈ 推論 VRAM × 1.5(LoRA)か × 4(全量ファインチューニング)
 
 例:
-- Qwen2.5-7B Q4 推論: 7 × 4 / 8 + 2 = 5.5GB → RTX 3060 で十分
-- Qwen2.5-7B Q4 LoRA ファインチューニング: 5.5 × 1.5 = 8.25GB → RTX 3060 ぎりぎり
-- Qwen2.5-7B FP16 全量ファインチューニング: 7 × 16 / 8 × 4 = 56GB → A100 が必要
+- Qwen3-8B Q4 推論: 7 × 4 / 8 + 2 = 5.5GB → RTX 3060 で十分
+- Qwen3-8B Q4 LoRA ファインチューニング: 5.5 × 1.5 = 8.25GB → RTX 3060 ぎりぎり
+- Qwen3-8B FP16 全量ファインチューニング: 7 × 16 / 8 × 4 = 56GB → A100 が必要
 ```
 
 ### 4.3 クラウド GPU(オンデマンド、ハードウェア購入不要)
@@ -853,10 +859,10 @@ sysctl -n hw.memsize | awk '{print $1/1024/1024/1024 " GB"}'
 
 | タスク | 誤った選択 | 正しい選択 |
 |--------|------------|------------|
-| 中国語 Review 分析 | llama3.1:8b(中国語が弱い) | qwen2.5:7b(中国語が強い) |
-| 複雑なデータ分析 | phi3:3.8b(小さすぎ) | qwen2.5:14b かそれ以上 |
+| 中国語 Review 分析 | gemma3:12b(中国語が弱い) | qwen3:8b(中国語が強い) |
+| 複雑なデータ分析 | phi3:3.8b(小さすぎ) | qwen3:14b かそれ以上 |
 | コード生成 | mistral:7b(コードが一般的) | qwen2.5-coder:7b |
-| 簡単な分類タスク | qwen2.5:72b(鶏を割くに牛刀) | qwen2.5:3b(十分で速い) |
+| 簡単な分類タスク | qwen3:32b(鶏を割くに牛刀) | qwen3:4b(十分で速い) |
 
 **経験則**: まず小モデル(3B-7B)でテスト、効果が足りなければ大モデルに換える。いきなり最大のモデルを使わない 大モデルは遅くリソースを食う。
 
@@ -871,10 +877,10 @@ sysctl -n hw.memsize | awk '{print $1/1024/1024/1024 " GB"}'
 ollama ps # 実行中のモデルとそのメモリ占有を確認
 
 # 2. 不要なモデルを停止
-ollama stop qwen2.5:14b
+ollama stop qwen3:14b
 
 # 3. より小さい量子化版を使う
-ollama run qwen2.5:7b-q4_0 # Q4 量子化、デフォルトよりメモリ節約
+ollama run qwen3:8b # Q4 量子化、デフォルトよりメモリ節約
 
 # 4. Ollama が使うメモリを制限(Mac)
 # ~/.ollama/config で設定:
@@ -970,11 +976,11 @@ CPU only → GGUF(llama.cpp 最適化)
 ```bash
 # 1. HuggingFace から GGUF ファイルをダウンロード
 # 検索: https://huggingface.co/models?search=gguf
-# 例えば Qwen2.5-7B の Q4_K_M 量子化版をダウンロード
+# 例えば Qwen3-8B の Q4_K_M 量子化版をダウンロード
 
 # 2. Modelfile を作成
 cat > Modelfile << 'EOF'
-FROM ./qwen2.5-7b-instruct-q4_k_m.gguf
+FROM ./qwen3-8b-q4_k_m.gguf
 TEMPLATE """<|im_start|>system
 {{ .System }}<|im_end|>
 <|im_start|>user
@@ -1015,12 +1021,12 @@ ollama run my-qwen
 cat > merge_config.yml << 'EOF'
 slices:
 - sources:
-- model: Qwen/Qwen2.5-7B-Instruct
+- model: Qwen/Qwen3-8B
 layer_range: [0, 28]
 - model: your-ecommerce-lora-model
 layer_range: [0, 28]
 merge_method: slerp
-base_model: Qwen/Qwen2.5-7B-Instruct
+base_model: Qwen/Qwen3-8B
 parameters:
 t:
 - filter: self_attn
@@ -1044,8 +1050,8 @@ Ollama の Modelfile は Dockerfile に類似、モデルの挙動をカスタ�
 ```bash
 # EC 専用モデル設定を作成
 cat > Modelfile.ecommerce << 'EOF'
-# Qwen2.5 7B ベース
-FROM qwen2.5:7b
+# Qwen3 8B ベース
+FROM qwen3:8b
 
 # システムプロンプトを設定
 SYSTEM """あなたはプロフェッショナルな越境EC AI アシスタントです。以下に精通:
@@ -1073,6 +1079,12 @@ ollama create ecommerce-assistant -f Modelfile.ecommerce
 
 # 使用
 ollama run ecommerce-assistant "ACoS が 18% から 25% に上がった考えられる原因を分析"
+
+<コピー規律>
+- 商品が実際には持たない機能・素材・認証・効果を書かないこと。上で私が挙げていない属性は本文に出さない — Listing の削除と虚偽広告の申立ての最大の原因がこれだ
+- 良い文面のためにある訴求点が必要で、それを私が渡していない場合は、何を補ってほしいかを列挙し、勝手に補わないこと
+- 効能・安全・環境・特許に関わる表現は別途印を付け、私が人手で確認できるようにすること
+</コピー規律>
 ```
 
 ### 6.4 バッチ推論の最適化
@@ -1087,7 +1099,7 @@ from concurrent.futures import ThreadPoolExecutor
 def batch_analyze(
 items: list[str],
 system_prompt: str,
-model: str = "qwen2.5:7b",
+model: str = "qwen3:8b",
 max_workers: int = 2,
 ) -> list[dict]:
 """
@@ -1133,7 +1145,7 @@ return results
 # )
 ```
 
-**バッチ処理の性能参考(Mac M3 Pro 36GB, Qwen2.5:7b):**
+**バッチ処理の性能参考(Mac M3 Pro 36GB, qwen3:8b):**
 
 | データ量 | 1 件あたり平均所要 | 総所要 |
 |----------|--------------------|--------|
@@ -1169,7 +1181,7 @@ return results
 ## 9. 完了チェック
 
 - [ ] ローカルに Ollama をインストールし LLM を成功して実行(3.1)
-- [ ] Qwen2.5 / Llama 3.1 / Mistral それぞれの優位と適用シーンを言える(3.2)
+- [ ] Qwen3 / Gemma 3 / DeepSeek R1 それぞれの優位と適用シーンを言える(3.2)
 - [ ] Python でローカル Ollama を呼び EC タスク(Review 分析など)を完了(3.3)
 - [ ] 完全ローカルの RAG システムを構築(Ollama + Chroma)(3.4)
 - [ ] LoRA ファインチューニングの原理を理解、ファインチューニングデータセットを準備できる(3.5)
@@ -1184,12 +1196,12 @@ return results
 
 | モデル | 公開者 | パラメータ数選択肢 | ライセンス | 中国語 | 英語 | コード | Ollama コマンド |
 |--------|--------|--------------------|------------|--------|------|--------|-----------------|
-| Qwen2.5 | Alibaba Cloud | 0.5B/1.5B/3B/7B/14B/32B/72B | Apache 2.0 | ✓ | ✓ | ✓ | `ollama run qwen2.5:7b` |
-| Llama 3.1 | Meta | 8B/70B/405B | Llama 3.1 License | ✓ | ✓ | ✓ | `ollama run llama3.1:8b` |
+| Qwen3 | Alibaba Cloud | 0.6B/1.7B/4B/8B/14B/30B/32B/235B | Apache 2.0 | ✓ | ✓ | ✓ | `ollama run qwen3:8b` |
+| Gemma 3 | Google | 270M/1B/4B/12B/27B | Gemma License | ✓ | ✓ | ✓ | `ollama run gemma3:12b` |
 | Mistral | Mistral AI | 7B/8x7B/8x22B | Apache 2.0 | ✓ | ✓ | ✓ | `ollama run mistral:7b` |
 | Gemma 2 | Google | 2B/9B/27B | Gemma License | ✓ | ✓ | ✓ | `ollama run gemma2:9b` |
 | Phi-3 | Microsoft | 3.8B/7B/14B | MIT | ✓ | ✓ | ✓ | `ollama run phi3:3.8b` |
-| DeepSeek-V2 | DeepSeek | 16B/236B | DeepSeek License | ✓ | ✓ | ✓ | `ollama run deepseek-v2:16b` |
+| DeepSeek R1 | DeepSeek | 1.5B-671B | MIT | ✓ | ✓ | ✓ | `ollama run deepseek-r1` |
 | Yi-1.5 | 01.AI | 6B/9B/34B | Apache 2.0 | ✓ | ✓ | ✓ | `ollama run yi:34b` |
 | ChatGLM4 | Zhipu AI | 9B | GLM-4 License | ✓ | ✓ | ✓ | `ollama run glm4:9b` |
 
@@ -1213,20 +1225,20 @@ return results
 | タスク | コマンド/コード |
 |--------|-----------------|
 | Ollama をインストール (macOS) | `brew install ollama` か [ollama.com](https://ollama.com/) からダウンロード |
-| モデルをダウンロード | `ollama pull qwen2.5:7b` |
-| モデルを実行(対話) | `ollama run qwen2.5:7b` |
+| モデルをダウンロード | `ollama pull qwen3:8b` |
+| モデルを実行(対話) | `ollama run qwen3:8b` |
 | ダウンロード済みモデルを確認 | `ollama list` |
 | 実行中モデルを確認 | `ollama ps` |
-| モデルを削除 | `ollama rm qwen2.5:7b` |
+| モデルを削除 | `ollama rm qwen3:8b` |
 | Ollama サービスを起動 | `ollama serve` |
-| Python で Ollama を呼ぶ | `ollama.chat(model="qwen2.5:7b", messages=[...])` |
+| Python で Ollama を呼ぶ | `ollama.chat(model="qwen3:8b", messages=[...])` |
 | OpenAI 互換呼び出し | `OpenAI(base_url="http://localhost:11434/v1")` |
 | カスタムモデルを作成 | `ollama create my-model -f Modelfile` |
 | ファインチューニング依存をインストール | `pip install unsloth trl transformers datasets` |
 | RAG 依存をインストール | `pip install llama-index llama-index-llms-ollama chromadb` |
 | vLLM をインストール | `pip install vllm` |
 | vLLM サービスを起動 | `python -m vllm.entrypoints.openai.api_server --model ...` |
-| HuggingFace モデルをダウンロード | `huggingface-cli download Qwen/Qwen2.5-7B-Instruct` |
+| HuggingFace モデルをダウンロード | `huggingface-cli download Qwen/Qwen3-8B` |
 | Mac メモリを確認 | `sysctl -n hw.memsize \| awk '{print $1/1024/1024/1024 " GB"}'` |
 | GPU を確認 (NVIDIA) | `nvidia-smi` |
 
@@ -1234,12 +1246,12 @@ return results
 
 | EC タスク | 推奨モデル | 推奨量子化 | 最低ハードウェア |
 |-----------|------------|------------|------------------|
-| 中国語 Review 分析 | Qwen2.5:7b | Q4_K_M | 8GB RAM |
-| 英語 Listing 生成 | Llama3.1:8b | Q4_K_M | 8GB RAM |
-| 中英混合タスク | Qwen2.5:7b | Q4_K_M | 8GB RAM |
-| データ分析コード生成 | Qwen2.5-Coder:7b | Q4_K_M | 8GB RAM |
-| 複雑なビジネス分析 | Qwen2.5:14b | Q4_K_M | 16GB RAM |
-| 高品質レポート生成 | Qwen2.5:32b | Q4_K_M | 32GB RAM |
+| 中国語 Review 分析 | qwen3:8b | Q4_K_M | 8GB RAM |
+| 英語 Listing 生成 | gemma3:12b | Q4_K_M | 8GB RAM |
+| 中英混合タスク | qwen3:8b | Q4_K_M | 8GB RAM |
+| データ分析コード生成 | qwen2.5-coder:7b | Q4_K_M | 8GB RAM |
+| 複雑なビジネス分析 | qwen3:14b | Q4_K_M | 16GB RAM |
+| 高品質レポート生成 | qwen3:32b | Q4_K_M | 32GB RAM |
 | ローカル RAG Embedding | nomic-embed-text | | 4GB RAM |
 | ローカル RAG Embedding(中国語最適化) | bge-large | | 4GB RAM |
 

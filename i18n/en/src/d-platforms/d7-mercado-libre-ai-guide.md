@@ -1,7 +1,7 @@
 # D7. Mercado Libre Latin America E-Commerce AI Guide
 
 > **Track**: Path D: Multi-Platform · **Module**: D7
-> **Last updated**: 2026-03-14
+> **Last updated**: 2026-07-31
 > **Difficulty**: Intermediate
 > **Estimated time**: 1.5 hours
 
@@ -9,6 +9,25 @@
 ---
 
 > GMV $65B (2025), 120 million annual buyers, revenue +39% YoY. Latin America's largest e-commerce platform, the fastest-growing regional market. Core markets: Brazil (largest), Mexico, Argentina, Colombia.
+
+## Chapter Navigation
+
+1. [Latin America Market Overview](#1-latin-america-market-overview) · 2. [Spanish/Portuguese Listing AI Optimization](#2-spanishportuguese-listing-ai-optimization) · 3. [Mercado Libre-Specific Operational Differences](#3-mercado-libre-specific-operational-differences) · 4. [Cross-Border Onboarding](#4-cross-border-onboarding) · 5. [Mercado Libre Global Selling In-Depth Guide](#5-mercado-libre-global-selling-in-depth-guide) · 6. [Common Traps](#6-common-traps) · 7. [Completion Checklist](#7-completion-checklist)
+
+---
+
+## What You'll Learn
+
+Latin America is the fastest-growing region with far lower competitive density than North America; language and payments are the main barriers.
+
+After this module you'll be able to:
+- Read the differences between LatAm country markets and know which site to start with
+- Produce Spanish/Portuguese listings with AI that read natively rather than machine-translated
+- Grasp where Mercado Libre's rules and operating rhythm diverge from Amazon's
+- Complete cross-border onboarding and use Global Selling to expand across countries
+
+---
+
 
 ## 1. Latin America Market Overview
 
@@ -85,6 +104,12 @@ Note:
 - Latin American consumers care extremely about installment-payment options
 - Free shipping (frete grátis / envío gratis) is a key conversion factor
 - Don't use European Portuguese/Spanish expressions
+
+<copy_discipline>
+- Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
+- For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
+- Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
+</copy_discipline>
 ```
 
 ## 3. Mercado Libre-Specific Operational Differences
@@ -323,7 +348,27 @@ Please help me analyze Latin America market product-selection opportunities:
 | ChatGPT/Claude | Spanish/Portuguese Listing generation | $20/month |
 | CrystalZoom | Mercado Libre data tool | Paid |
 
-## 6. Completion Checklist
+## 6. Common Traps
+
+### 6.1 Treating Spanish as one language
+
+Word choice differs enough between Mexico, Argentina, and Chile to move conversion — a term that's everyday in one country may get no searches in another. And **Brazil is Portuguese, not Spanish** — the most common mistake new sellers make. When localizing with AI, specify the country, never just "Spanish."
+
+### 6.2 Not offering installments (cuotas)
+
+LatAm shoppers rely on installment payments far more than European or US buyers. On anything above a low price point, no installments means conversion collapses. This is infrastructure, not a promotion.
+
+### 6.3 Promising delivery on European/US assumptions
+
+Customs uncertainty is much higher than in North America. If the delivery window on your listing assumes the ideal case, your negative reviews will cluster on logistics. Be conservative.
+
+### 6.4 Ignoring that Mercado Envios is mandatory, and its fee structure
+
+Treating it as optional when modeling costs leaves your margins short. Work this into landed cost before you onboard.
+
+---
+
+## 7. Completion Checklist
 
 - [ ] Complete Latin America market analysis and country selection
 - [ ] Onboard Mercado Libre (Brazil and/or Mexico)

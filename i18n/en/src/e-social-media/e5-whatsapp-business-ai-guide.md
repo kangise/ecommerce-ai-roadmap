@@ -1,7 +1,7 @@
 # E5. WhatsApp Business AI Customer Service and Marketing Guide
 
 > **Track**: Path E: Social Media · **Module**: E5
-> **Last updated**: 2026-03-14
+> **Last updated**: 2026-07-31
 > **Difficulty**: Intermediate
 > **Estimated time**: 1-1.5 hours
 > **Prerequisites**: [A4 Customer Service & After-Sales](../a-operators/a4-customer-service.md)
@@ -16,7 +16,7 @@
 3. [WhatsApp Marketing Automation](#3-whatsapp-marketing-automation)
 4. [After-Sales Automation](#4-after-sales-automation)
 5. [Prompt Templates](#5-prompt-templates)
-6. [Common Pitfalls](#6-common-pitfalls)
+6. [Common Traps](#6-common-traps)
 7. [Completion Checklist](#7-completion-checklist)
 
 ---
@@ -137,6 +137,12 @@ Requirements:
 - Include emoji (in moderation)
 - Each message no more than 300 characters (WhatsApp reading habits)
 - Include clear next-step guidance
+
+<copy_discipline>
+- Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
+- For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
+- Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
+</copy_discipline>
 ```
 
 ---
@@ -235,6 +241,8 @@ Strong dissatisfaction → transfer to a human immediately + flag for priority h
 
 ## 5. Prompt Templates
 
+> **Prompt conventions used here**: the templates below work as-is, but for anything involving numbers, forecasts, or recommendations, paste in [the data-discipline block from F2 §4.3](../0-foundations/f2-prompt-engineering.md#43-the-data-discipline-block-ready-to-paste). It forbids the model from inventing data you didn't supply — the most common failure mode for this class of prompt.
+
 ### 5.1 Chatbot Conversation Design
 
 ```
@@ -255,11 +263,17 @@ For each node provide:
 - Bot message text
 - The user's possible reply options (Quick Reply buttons)
 - Next-step logic
+
+<copy_discipline>
+- Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
+- For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
+- Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
+</copy_discipline>
 ```
 
 ---
 
-## 6. Common Pitfalls
+## 6. Common Traps
 
 ### Pitfall 1: Message Frequency Too High
 WhatsApp is a private space. More than 2 marketing messages per week leads to mass unsubscribes.
@@ -338,6 +352,12 @@ Please design a repurchase-automation plan:
 - Reply rate
 - Repurchase conversion rate
 - ROI per message
+
+<copy_discipline>
+- Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
+- For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
+- Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
+</copy_discipline>
 ```
 
 ### WhatsApp Catalog Optimization
@@ -417,6 +437,12 @@ Please design an AI sales consultant plan:
 - Message-frequency limits
 - Unsubscribe mechanism
 - Data privacy (GDPR/LGPD)
+
+<copy_discipline>
+- Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
+- For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
+- Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
+</copy_discipline>
 ```
 
 ### WhatsApp Flows (2026 New Feature)

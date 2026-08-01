@@ -1,7 +1,7 @@
 # F4. Automation & AI Agents
 
 > **Track**: Path 0: AI Foundations · **Module**: F4
-> **Last updated**: 2026-03-12
+> **Last updated**: 2026-07-31
 > **Level**: Intermediate
 > **Time**: 2 hours
 > **Prerequisites**: [F1 The Evolution of AI](f1-ai-evolution.md), [F2 Prompt Engineering](f2-prompt-engineering.md), [F3 Knowledge & RAG](f3-rag-knowledge.md)
@@ -25,7 +25,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ## Chapter Navigation
 
-1. [From prompt to agent](#1-from-prompt-to-agent-four-levels-of-ai-capability) · 2. [The three-layer automation model](#2-the-three-layer-automation-model) · 3. [MCP in detail](#3-mcp-in-detail) · 4. [Agent framework landscape](#4-agent-framework-landscape) · 5. [10 e-commerce agent scenarios](#5-10-cross-border-e-commerce-agent-scenarios) · 6. [Security & risk](#6-security--risk) · 7. [Implementation roadmap](#7-implementation-roadmap) · 8. [Learning resources](#8-learning-resources) · 9. [Completion checklist](#9-completion-checklist)
+1. [From prompt to agent](#1-from-prompt-to-agent-four-levels-of-ai-capability) · 2. [The three-layer automation model](#2-the-three-layer-automation-model) · 3. [MCP in detail](#3-mcp-in-detail) · 4. [Agent framework landscape](#4-agent-framework-landscape) · 5. [10 e-commerce agent scenarios](#5-10-cross-border-e-commerce-agent-scenarios) · 6. [Security & risk](#6-security--risk) · 7. [Implementation roadmap](#7-implementation-roadmap) · 8. [Learning resources](#8-learning-resources) · 9. [Common Traps](#9-common-traps) · 10. [Completion checklist](#10-completion-checklist)
 
 
 ## What You'll Understand
@@ -89,7 +89,7 @@ Three conditions matured simultaneously in 2025:
 
 | Condition | 2023 state | 2025–2026 state |
 |-----------|-----------|------------------|
-| **Model capability** | GPT-4 just released, limited reasoning | GPT-4o/Claude Opus 4 — reasoning greatly improved |
+| **Model capability** | GPT-4 just released, limited reasoning | the T1 frontier tier handles multi-step reasoning reliably |
 | **Tool protocol** | every tool needs custom integration | MCP standardizes it — plug and play |
 | **Framework maturity** | LangChain early, buggy | LangGraph/CrewAI production-ready |
 
@@ -186,6 +186,18 @@ Assess the impact on us
 Generate a response plan (match price? adjust ads? increase promotion?)
 Draft an execution plan
 Output: analysis report + response plan (executed after human review)
+
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
+
+<copy_discipline>
+- Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
+- For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
+- Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
+</copy_discipline>
 ```
 
 ---
@@ -635,7 +647,27 @@ Output: an agent system + team usage norms
 
 ---
 
-## 9. Completion Checklist
+## 9. Common Traps
+
+### 9.1 Using an Agent for the sake of using an Agent
+
+A fixed process is simpler, cheaper, and more controllable as a Chain. An Agent earns its cost when there's genuine uncertainty — you don't know what it'll hit mid-run and the AI has to judge.
+
+### 9.2 Granting write access from day one
+
+Letting an Agent reprice, order, or send messages costs far more when it errs than the time it saves. Run read-only first, watch its judgment quality for a while, then open up gradually.
+
+### 9.3 Not setting an iteration cap
+
+Runaway loops are the most common cause of runaway cost. `recursion_limit` is mandatory, not optional.
+
+### 9.4 Feeding raw tool output straight to the model
+
+The tool returns 500 rows and the model only needs to know which one is anomalous. Aggregate in code first. **If code can compute it, don't pay a model to.**
+
+---
+
+## 10. Completion Checklist
 
 - [ ] Understand the four levels of AI capability (conversation → multi-turn → tool-augmented → agent)
 - [ ] Can distinguish the three automation layers (script → workflow → agent) and judge when to use which

@@ -1,7 +1,7 @@
 # B5. 本地模型部署与微调 | Local Model Deployment & Fine-tuning
 
 > **路径**: Path B: 技术人 · **模块**: B5
-> **最后更新**: 2026-03-12
+> **最后更新**: 2026-07-31
 > **难度**: 高级
 > **前提**: B1 数据管道基础（Python）、B3 RAG 基本概念、B4 Agent 基础
 > **预计时间**: 每天 1 小时，3-4 周
@@ -24,7 +24,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ---
 
-## 本模块章节导航
+## 章节导航
 
 1. [本地部署方法论](#1-本地部署方法论) · 2. [工具全景](#2-工具全景) · 3. [代码实战](#3-代码实战) · 4. [硬件选购指南](#4-硬件选购指南) · 5. [常见陷阱](#5-常见陷阱) · 6. [进阶技术](#6-进阶技术) · 7. [学习资源](#7-学习资源)
 
@@ -35,7 +35,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 完成本模块后，你将能够：
 - 理解为什么要在本地部署 LLM，以及何时选择本地 vs 云端
-- 用 Ollama 一行命令在本地运行 Qwen2.5、Llama 3.1、Mistral 等开源模型
+- 用 Ollama 一行命令在本地运行 Qwen3、Gemma 3、DeepSeek R1 等开放权重模型
 - 根据任务需求选择合适的模型（中文能力、代码能力、推理能力）
 - 用 Python 调用本地 Ollama 模型，集成到现有工作流
 - 构建完全本地的 RAG 系统（数据不出本机）
@@ -76,7 +76,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 ```
 你的场景是什么？
 数据包含商业机密（成本、利润、供应商） → 本地部署
-需要最高质量的推理（复杂分析、创意写作） → 云端 API（GPT-4o/Claude）
+需要最高质量的推理（复杂分析、创意写作） → 云端 API 的 T1 前沿档
 高频调用（每天 10000+ 次） → 本地部署（成本优势明显）
 偶尔使用（每天几十次） → 云端 API（省去运维成本）
 需要离线使用 → 本地部署
@@ -89,7 +89,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 | 维度 | 本地部署 | 云端 API |
 |------|----------|----------|
 | 数据隐私 | 数据不出本机 | 数据发送到第三方服务器 |
-| 推理质量 | 7B 模型约 GPT-3.5 水平，70B 接近 GPT-4 | GPT-4o/Claude 3.5 最高水平 |
+| 推理质量 | 8B 模型可用，30B+ 接近云端 T2 主力档 | T1 前沿档最高水平 |
 | 成本（低频） | 硬件投入高，使用免费 | 按 token 计费，总成本低 |
 | 成本（高频） | 硬件一次投入，长期免费 | 成本随调用量线性增长 |
 | 延迟 | 取决于硬件（M4 Pro 约 40 tokens/s） | 网络延迟 + 推理延迟 |
@@ -169,7 +169,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 pip install transformers huggingface_hub
 
 # 下载模型到本地
-huggingface-cli download Qwen/Qwen2.5-7B-Instruct --local-dir ./models/qwen2.5-7b
+huggingface-cli download Qwen/Qwen3-8B --local-dir ./models/qwen3-8b
 
 # 搜索模型
 huggingface-cli search models --query "e-commerce chinese"
@@ -206,11 +206,11 @@ ollama --version
 **下载并运行模型：**
 
 ```bash
-# 下载并运行 Qwen2.5 7B（推荐：中英文都好）
-ollama run qwen2.5:7b
+# 下载并运行 Qwen3 8B（推荐：中英文都好）
+ollama run qwen3:8b
 
-# 下载并运行 Llama 3.1 8B（Meta 开源，英文优秀）
-ollama run llama3.1:8b
+# 下载并运行 Gemma 3 12B（Google 开放权重，且支持图像输入）
+ollama run gemma3:12b
 
 # 下载并运行 Mistral 7B（欧洲团队，代码能力强）
 ollama run mistral:7b
@@ -238,7 +238,7 @@ ollama rm mistral:7b
 
 > **Ollama 的工作原理**：Ollama 底层使用 llama.cpp 进行推理，自动检测你的硬件（Mac Metal GPU / NVIDIA CUDA），选择最优的推理方式。模型文件存储在 `~/.ollama/models/` 目录下。
 
-### 3.2 模型选择指南：Qwen2.5 vs Llama 3.1 vs Mistral
+### 3.2 模型选择指南：Qwen3 vs Gemma 3 vs DeepSeek R1
 
 选对模型比选对框架更重要。不同模型在不同任务上表现差异很大。
 
@@ -246,43 +246,43 @@ ollama rm mistral:7b
 
 | 模型 | 参数量 | 中文能力 | 英文能力 | 代码能力 | 推理能力 | 推荐场景 |
 |------|--------|----------|----------|----------|----------|----------|
-| Qwen2.5 | 0.5B-72B | 最佳 | 优秀 | 优秀 | 优秀 | 中文电商场景首选 |
-| Llama 3.1 | 8B-405B | 良好 | 最佳 | 优秀 | 优秀 | 英文为主的场景 |
+| Qwen3 | 0.6B-235B | 最佳 | 优秀 | 优秀 | 优秀 | 中文电商场景首选，Apache 2.0 |
+| Gemma 3 | 270M-27B | 良好 | 最佳 | 优秀 | 优秀 | 英文为主，4B 以上支持图像输入 |
 | Mistral | 7B-8x22B | 良好 | 优秀 | 最佳 | 良好 | 代码生成、技术文档 |
 | Gemma 2 | 2B-27B | 良好 | 优秀 | 良好 | 良好 | 轻量级、移动端 |
 | Phi-3 | 3.8B-14B | 一般 | 优秀 | 优秀 | 优秀 | 小模型高性能 |
-| DeepSeek-V2 | 16B-236B | 优秀 | 优秀 | 最佳 | 优秀 | 代码和数学推理 |
+| DeepSeek R1 | 1.5B-671B | 优秀 | 优秀 | 最佳 | 优秀 | 需要推理链的任务，MIT 许可 |
 
 **电商场景推荐：**
 
 ```
 你的主要语言是什么？
-中文为主（中国卖家、中文 Review） → Qwen2.5:7b
-英文为主（美国市场、英文 Listing） → Llama3.1:8b
-中英混合 → Qwen2.5:7b（中英文都好）
-需要写代码/数据分析 → DeepSeek-Coder 或 Qwen2.5-Coder
+中文为主（中国卖家、中文 Review） → qwen3:8b
+英文为主（美国市场、英文 Listing） → gemma3:12b
+中英混合 → qwen3:8b（中英文都好）
+需要写代码/数据分析 → qwen2.5-coder:7b，或有卡的话上 Qwen3-Coder
 
 你的硬件条件？
-8GB RAM（Mac M1/M2 基础款） → 7B 模型（qwen2.5:7b）
+8GB RAM（Mac M1/M2 基础款） → 7B 模型（qwen3:8b）
 16GB RAM → 7B 或 14B 模型
 32GB+ RAM → 可以尝试 32B 模型
-64GB+ RAM → 70B 模型（接近 GPT-4 水平）
+64GB+ RAM → 32B 模型（接近云端 T2 主力档水平）
 ```
 
 **Ollama 模型下载命令：**
 
 ```bash
 # 电商中文场景首选
-ollama pull qwen2.5:7b
+ollama pull qwen3:8b
 
 # 英文场景 / Meta 生态
-ollama pull llama3.1:8b
+ollama pull gemma3:12b
 
 # 代码生成
 ollama pull qwen2.5-coder:7b
 
 # 轻量级（笔记本也能跑）
-ollama pull qwen2.5:3b
+ollama pull qwen3:4b
 ollama pull phi3:3.8b
 
 # Embedding 模型（用于 RAG）
@@ -301,7 +301,7 @@ Ollama 提供 OpenAI 兼容的 REST API，可以用任何 HTTP 客户端调用�
 
 import ollama
 
-def analyze_review(review_text: str, model: str = "qwen2.5:7b") -> str:
+def analyze_review(review_text: str, model: str = "qwen3:8b") -> str:
 """用本地 LLM 分析客户 Review，提取产品改进方向。"""
 response = ollama.chat(
 model=model,
@@ -320,7 +320,7 @@ options={"temperature": 0.1}, # 低温度，更确定性的输出
 )
 return response["message"]["content"]
 
-def batch_analyze_reviews(reviews: list[str], model: str = "qwen2.5:7b") -> list[dict]:
+def batch_analyze_reviews(reviews: list[str], model: str = "qwen3:8b") -> list[dict]:
 """批量分析 Review 列表。"""
 results = []
 for i, review in enumerate(reviews):
@@ -357,7 +357,7 @@ base_url="http://localhost:11434/v1",
 api_key="ollama", # Ollama 不需要真实 API key
 )
 
-def generate_listing(product_info: str, model: str = "qwen2.5:7b") -> str:
+def generate_listing(product_info: str, model: str = "qwen3:8b") -> str:
 """用本地 LLM 生成产品 Listing。"""
 response = client.chat.completions.create(
 model=model,
@@ -378,7 +378,13 @@ return response.choices[0].message.content
 
 # 切换到云端 OpenAI 只需改两行：
 # client = OpenAI(api_key="sk-...") # 改为 OpenAI API key
-# model = "gpt-4o-mini" # 改为 OpenAI 模型名
+# model = "gpt-5.6-luna" # 改为 OpenAI 模型名
+
+<文案纪律>
+- 不要写出产品实际不具备的功能、材质、认证或效果。我在上面没写的属性，一律不要出现在文案里——这是 Listing 被下架和被投诉虚假宣传的头号原因
+- 需要某个卖点才能写好但我没提供时，先列出你需要我补充什么，不要自行发挥
+- 涉及疗效、安全、环保、专利的表述，单独标出来提示我人工核对
+</文案纪律>
 ```
 
 > **无缝切换的价值**：开发阶段用本地 Ollama（免费、数据安全），上线后根据需要切换到 OpenAI（质量更高）。代码只需改 `base_url` 和 `model` 两个参数。
@@ -390,7 +396,7 @@ return response.choices[0].message.content
 ```python
 import ollama
 
-def stream_generate(prompt: str, model: str = "qwen2.5:7b"):
+def stream_generate(prompt: str, model: str = "qwen3:8b"):
 """流式生成文本，实时输出每个 token。"""
 stream = ollama.chat(
 model=model,
@@ -429,7 +435,7 @@ from llama_index.vector_stores.chroma import ChromaVectorStore
 
 def build_local_rag(
 docs_dir: str,
-llm_model: str = "qwen2.5:7b",
+llm_model: str = "qwen3:8b",
 embed_model: str = "nomic-embed-text",
 collection_name: str = "local_knowledge",
 persist_dir: str = "chroma_db",
@@ -439,7 +445,7 @@ persist_dir: str = "chroma_db",
 
 前提：
 1. 已安装 Ollama 并运行（ollama serve）
-2. 已下载模型：ollama pull qwen2.5:7b
+2. 已下载模型：ollama pull qwen3:8b
 3. 已下载 Embedding：ollama pull nomic-embed-text
 
 所有数据在本地处理，不调用任何外部 API。
@@ -589,7 +595,7 @@ from datasets import load_dataset
 
 # 1. 加载基础模型（自动应用 4-bit 量化，节省显存）
 model, tokenizer = FastLanguageModel.from_pretrained(
-model_name="unsloth/Qwen2.5-7B-Instruct-bnb-4bit",
+model_name="unsloth/Qwen3-8B-bnb-4bit",
 max_seq_length=2048,
 load_in_4bit=True, # 4-bit 量化，7B 模型只需 ~5GB 显存
 )
@@ -705,7 +711,7 @@ docker run --runtime nvidia --gpus all \
 -v ~/.cache/huggingface:/root/.cache/huggingface \
 -p 8000:8000 \
 vllm/vllm-openai:latest \
---model Qwen/Qwen2.5-7B-Instruct \
+--model Qwen/Qwen3-8B \
 --max-model-len 4096
 ```
 
@@ -714,7 +720,7 @@ vllm/vllm-openai:latest \
 ```bash
 # 方式 1：命令行启动（OpenAI 兼容 API）
 python -m vllm.entrypoints.openai.api_server \
---model Qwen/Qwen2.5-7B-Instruct \
+--model Qwen/Qwen3-8B \
 --host 0.0.0.0 \
 --port 8000 \
 --max-model-len 4096 \
@@ -723,7 +729,7 @@ python -m vllm.entrypoints.openai.api_server \
 # 服务启动后，用 OpenAI 客户端调用：
 # curl http://localhost:8000/v1/chat/completions \
 # -H "Content-Type: application/json" \
-# -d '{"model": "Qwen/Qwen2.5-7B-Instruct", "messages": [...]}'
+# -d '{"model": "Qwen/Qwen3-8B", "messages": [...]}'
 ```
 
 **Python 调用 vLLM 服务：**
@@ -735,7 +741,7 @@ from openai import OpenAI
 client = OpenAI(base_url="http://localhost:8000/v1", api_key="not-needed")
 
 response = client.chat.completions.create(
-model="Qwen/Qwen2.5-7B-Instruct",
+model="Qwen/Qwen3-8B",
 messages=[
 {"role": "system", "content": "你是电商数据分析专家。"},
 {"role": "user", "content": "分析这个月销售下降 15% 的可能原因"},
@@ -783,10 +789,10 @@ Apple Silicon Mac 是目前性价比最高的本地 LLM 开发平台。统一内
 sysctl -n hw.memsize | awk '{print $1/1024/1024/1024 " GB"}'
 
 # 根据内存选择模型
-# 8GB → ollama run qwen2.5:3b 或 phi3:3.8b
-# 16GB → ollama run qwen2.5:7b（推荐）
-# 32GB → ollama run qwen2.5:14b 或 qwen2.5:32b (Q4)
-# 64GB → ollama run qwen2.5:72b (Q4)
+# 8GB → ollama run qwen3:4b 或 phi3:3.8b
+# 16GB → ollama run qwen3:8b（推荐）
+# 32GB → ollama run qwen3:14b 或 qwen3:32b (Q4)
+# 64GB → ollama run qwen3:32b (Q4)
 
 # 监控推理时的内存和 GPU 使用
 # 打开 Activity Monitor → GPU History
@@ -815,9 +821,9 @@ sysctl -n hw.memsize | awk '{print $1/1024/1024/1024 " GB"}'
 微调显存 ≈ 推理显存 × 1.5（LoRA）或 × 4（全量微调）
 
 示例：
-- Qwen2.5-7B Q4 推理：7 × 4 / 8 + 2 = 5.5GB → RTX 3060 够用
-- Qwen2.5-7B Q4 LoRA 微调：5.5 × 1.5 = 8.25GB → RTX 3060 勉强
-- Qwen2.5-7B FP16 全量微调：7 × 16 / 8 × 4 = 56GB → 需要 A100
+- Qwen3-8B Q4 推理：7 × 4 / 8 + 2 = 5.5GB → RTX 3060 够用
+- Qwen3-8B Q4 LoRA 微调：5.5 × 1.5 = 8.25GB → RTX 3060 勉强
+- Qwen3-8B FP16 全量微调：7 × 16 / 8 × 4 = 56GB → 需要 A100
 ```
 
 ### 4.3 云 GPU（按需使用，无需购买硬件）
@@ -853,10 +859,10 @@ sysctl -n hw.memsize | awk '{print $1/1024/1024/1024 " GB"}'
 
 | 任务 | 错误选择 | 正确选择 |
 |------|----------|----------|
-| 中文 Review 分析 | llama3.1:8b（中文弱） | qwen2.5:7b（中文强） |
-| 复杂数据分析 | phi3:3.8b（太小） | qwen2.5:14b 或更大 |
+| 中文 Review 分析 | gemma3:12b（中文弱） | qwen3:8b（中文强） |
+| 复杂数据分析 | phi3:3.8b（太小） | qwen3:14b 或更大 |
 | 代码生成 | mistral:7b（代码一般） | qwen2.5-coder:7b |
-| 简单分类任务 | qwen2.5:72b（杀鸡用牛刀） | qwen2.5:3b（够用且快） |
+| 简单分类任务 | qwen3:32b（杀鸡用牛刀） | qwen3:4b（够用且快） |
 
 **经验法则**：先用小模型（3B-7B）测试，效果不够再换大模型。不要一上来就用最大的模型 大模型慢且占资源。
 
@@ -871,10 +877,10 @@ sysctl -n hw.memsize | awk '{print $1/1024/1024/1024 " GB"}'
 ollama ps # 查看正在运行的模型及其内存占用
 
 # 2. 停止不需要的模型
-ollama stop qwen2.5:14b
+ollama stop qwen3:14b
 
 # 3. 使用更小的量化版本
-ollama run qwen2.5:7b-q4_0 # Q4 量化，比默认更省内存
+ollama run qwen3:8b # Q4 量化，比默认更省内存
 
 # 4. 限制 Ollama 使用的内存（Mac）
 # 在 ~/.ollama/config 中设置：
@@ -970,11 +976,11 @@ CPU only → GGUF（llama.cpp 优化）
 ```bash
 # 1. 从 HuggingFace 下载 GGUF 文件
 # 搜索：https://huggingface.co/models?search=gguf
-# 例如下载 Qwen2.5-7B 的 Q4_K_M 量化版本
+# 例如下载 Qwen3-8B 的 Q4_K_M 量化版本
 
 # 2. 创建 Modelfile
 cat > Modelfile << 'EOF'
-FROM ./qwen2.5-7b-instruct-q4_k_m.gguf
+FROM ./qwen3-8b-q4_k_m.gguf
 TEMPLATE """<|im_start|>system
 {{ .System }}<|im_end|>
 <|im_start|>user
@@ -1015,12 +1021,12 @@ ollama run my-qwen
 cat > merge_config.yml << 'EOF'
 slices:
 - sources:
-- model: Qwen/Qwen2.5-7B-Instruct
+- model: Qwen/Qwen3-8B
 layer_range: [0, 28]
 - model: your-ecommerce-lora-model
 layer_range: [0, 28]
 merge_method: slerp
-base_model: Qwen/Qwen2.5-7B-Instruct
+base_model: Qwen/Qwen3-8B
 parameters:
 t:
 - filter: self_attn
@@ -1044,8 +1050,8 @@ Ollama 的 Modelfile 类似 Dockerfile，让你自定义模型的行为：系统
 ```bash
 # 创建电商专用模型配置
 cat > Modelfile.ecommerce << 'EOF'
-# 基于 Qwen2.5 7B
-FROM qwen2.5:7b
+# 基于 Qwen3 8B
+FROM qwen3:8b
 
 # 设置系统提示词
 SYSTEM """你是一个专业的跨境电商 AI 助手。你精通：
@@ -1087,7 +1093,7 @@ from concurrent.futures import ThreadPoolExecutor
 def batch_analyze(
 items: list[str],
 system_prompt: str,
-model: str = "qwen2.5:7b",
+model: str = "qwen3:8b",
 max_workers: int = 2,
 ) -> list[dict]:
 """
@@ -1133,7 +1139,7 @@ return results
 # )
 ```
 
-**批量处理性能参考（Mac M3 Pro 36GB, Qwen2.5:7b）：**
+**批量处理性能参考（Mac M3 Pro 36GB, qwen3:8b）：**
 
 | 数据量 | 平均每条耗时 | 总耗时 |
 |--------|-------------|--------|
@@ -1169,7 +1175,7 @@ return results
 ## 9. 完成标志
 
 - [ ] 在本地安装 Ollama 并成功运行一个 LLM（3.1）
-- [ ] 能说出 Qwen2.5 / Llama 3.1 / Mistral 各自的优势和适用场景（3.2）
+- [ ] 能说出 Qwen3 / Gemma 3 / DeepSeek R1 各自的优势和适用场景（3.2）
 - [ ] 用 Python 调用本地 Ollama 完成一个电商任务（如 Review 分析）（3.3）
 - [ ] 构建一个完全本地的 RAG 系统（Ollama + Chroma）（3.4）
 - [ ] 理解 LoRA 微调的原理，能准备微调数据集（3.5）
@@ -1184,12 +1190,12 @@ return results
 
 | 模型 | 发布方 | 参数量选项 | 许可证 | 中文 | 英文 | 代码 | Ollama 命令 |
 |------|--------|-----------|--------|------|------|------|-------------|
-| Qwen2.5 | 阿里云 | 0.5B/1.5B/3B/7B/14B/32B/72B | Apache 2.0 | | | | `ollama run qwen2.5:7b` |
-| Llama 3.1 | Meta | 8B/70B/405B | Llama 3.1 License | | | | `ollama run llama3.1:8b` |
+| Qwen3 | 阿里云 | 0.6B/1.7B/4B/8B/14B/30B/32B/235B | Apache 2.0 | | | | `ollama run qwen3:8b` |
+| Gemma 3 | Google | 270M/1B/4B/12B/27B | Gemma License | | | | `ollama run gemma3:12b` |
 | Mistral | Mistral AI | 7B/8x7B/8x22B | Apache 2.0 | | | | `ollama run mistral:7b` |
 | Gemma 2 | Google | 2B/9B/27B | Gemma License | | | | `ollama run gemma2:9b` |
 | Phi-3 | Microsoft | 3.8B/7B/14B | MIT | | | | `ollama run phi3:3.8b` |
-| DeepSeek-V2 | DeepSeek | 16B/236B | DeepSeek License | | | | `ollama run deepseek-v2:16b` |
+| DeepSeek R1 | DeepSeek | 1.5B-671B | MIT | | | | `ollama run deepseek-r1` |
 | Yi-1.5 | 零一万物 | 6B/9B/34B | Apache 2.0 | | | | `ollama run yi:34b` |
 | ChatGLM4 | 智谱 AI | 9B | GLM-4 License | | | | `ollama run glm4:9b` |
 
@@ -1213,20 +1219,20 @@ return results
 | 任务 | 命令/代码 |
 |------|-----------|
 | 安装 Ollama (macOS) | `brew install ollama` 或从 [ollama.com](https://ollama.com/) 下载 |
-| 下载模型 | `ollama pull qwen2.5:7b` |
-| 运行模型（交互） | `ollama run qwen2.5:7b` |
+| 下载模型 | `ollama pull qwen3:8b` |
+| 运行模型（交互） | `ollama run qwen3:8b` |
 | 查看已下载模型 | `ollama list` |
 | 查看运行中模型 | `ollama ps` |
-| 删除模型 | `ollama rm qwen2.5:7b` |
+| 删除模型 | `ollama rm qwen3:8b` |
 | 启动 Ollama 服务 | `ollama serve` |
-| Python 调用 Ollama | `ollama.chat(model="qwen2.5:7b", messages=[...])` |
+| Python 调用 Ollama | `ollama.chat(model="qwen3:8b", messages=[...])` |
 | OpenAI 兼容调用 | `OpenAI(base_url="http://localhost:11434/v1")` |
 | 创建自定义模型 | `ollama create my-model -f Modelfile` |
 | 安装微调依赖 | `pip install unsloth trl transformers datasets` |
 | 安装 RAG 依赖 | `pip install llama-index llama-index-llms-ollama chromadb` |
 | 安装 vLLM | `pip install vllm` |
 | 启动 vLLM 服务 | `python -m vllm.entrypoints.openai.api_server --model ...` |
-| 下载 HuggingFace 模型 | `huggingface-cli download Qwen/Qwen2.5-7B-Instruct` |
+| 下载 HuggingFace 模型 | `huggingface-cli download Qwen/Qwen3-8B` |
 | 检查 Mac 内存 | `sysctl -n hw.memsize \| awk '{print $1/1024/1024/1024 " GB"}'` |
 | 检查 GPU (NVIDIA) | `nvidia-smi` |
 
@@ -1234,12 +1240,12 @@ return results
 
 | 电商任务 | 推荐模型 | 推荐量化 | 最低硬件 |
 |----------|----------|----------|----------|
-| 中文 Review 分析 | Qwen2.5:7b | Q4_K_M | 8GB RAM |
-| 英文 Listing 生成 | Llama3.1:8b | Q4_K_M | 8GB RAM |
-| 中英混合任务 | Qwen2.5:7b | Q4_K_M | 8GB RAM |
-| 数据分析代码生成 | Qwen2.5-Coder:7b | Q4_K_M | 8GB RAM |
-| 复杂商业分析 | Qwen2.5:14b | Q4_K_M | 16GB RAM |
-| 高质量报告生成 | Qwen2.5:32b | Q4_K_M | 32GB RAM |
+| 中文 Review 分析 | qwen3:8b | Q4_K_M | 8GB RAM |
+| 英文 Listing 生成 | gemma3:12b | Q4_K_M | 8GB RAM |
+| 中英混合任务 | qwen3:8b | Q4_K_M | 8GB RAM |
+| 数据分析代码生成 | qwen2.5-coder:7b | Q4_K_M | 8GB RAM |
+| 复杂商业分析 | qwen3:14b | Q4_K_M | 16GB RAM |
+| 高质量报告生成 | qwen3:32b | Q4_K_M | 32GB RAM |
 | 本地 RAG Embedding | nomic-embed-text | | 4GB RAM |
 | 本地 RAG Embedding（中文优化） | bge-large | | 4GB RAM |
 

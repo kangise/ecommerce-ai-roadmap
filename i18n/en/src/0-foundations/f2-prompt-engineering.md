@@ -1,7 +1,7 @@
 # F2. Prompt Engineering
 
 > **Track**: Path 0: AI Foundations · **Module**: F2
-> **Last updated**: 2026-03-12
+> **Last updated**: 2026-07-31
 > **Level**: Beginner → Intermediate
 > **Time**: 3 hours
 > **Prerequisite**: [F1 The Evolution of AI](f1-ai-evolution.md)
@@ -25,7 +25,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ## Chapter Navigation
 
-1. [Why prompts matter](#1-why-prompts-matter) · 2. [The CRISP framework](#2-the-crisp-framework-a-method-for-structured-prompts) · 3. [Six advanced techniques](#3-six-advanced-prompt-techniques) · 4. [Template library](#4-cross-border-e-commerce-prompt-template-library-20) · 5. [Common mistakes & fixes](#5-common-mistakes--fixes) · 6. [Advanced: context engineering](#6-advanced-from-prompt-engineering-to-context-engineering) · 7. [Learning resources](#7-learning-resources)
+1. [Why prompts matter](#1-why-prompts-matter) · 2. [The CRISP framework](#2-the-crisp-framework-a-method-for-structured-prompts) · 3. [Six advanced techniques](#3-six-advanced-prompt-techniques) · 4. [Conventions used here](#4-the-prompt-conventions-used-in-this-book) · 5. [From prompt to skill](#5-from-prompt-to-skill-writing-for-the-agent-era) · 6. [Template library](#6-cross-border-e-commerce-prompt-template-library-20) · 7. [Common mistakes & fixes](#7-common-mistakes--fixes) · 8. [Advanced: context engineering](#8-advanced-from-prompt-engineering-to-context-engineering) · 9. [Learning resources](#9-learning-resources)
 
 
 ## What You'll Master
@@ -388,12 +388,190 @@ Constraints:
 
 ---
 
-## 4. Cross-Border E-Commerce Prompt Template Library (20+)
+## 4. The prompt conventions used in this book
+
+Before the templates, here is the structure every prompt in this book follows. This isn't formatting fussiness — each block maps to a failure someone actually hit.
+
+### 4.1 The six blocks
+
+```
+<role>one line: professional identity and point of view</role>
+
+<input_data>
+[paste your raw data here]
+</input_data>
+
+<task>
+1. Numbered list of what to do
+2. One action per line — don't pack several into one
+</task>
+
+<data_discipline>
+- Use only numbers that appear in <input_data>. If it isn't there, write "missing" — do not estimate
+- If you need something I didn't provide, ask me before assuming
+- Distinguish "derived from input data" from "inferred from general knowledge"; label the latter
+</data_discipline>
+
+<output_format>
+Name the table columns or JSON fields — don't leave the shape to the model
+</output_format>
+
+<self_check>
+Verify before delivering: (1) ... (2) ... (3) ...
+</self_check>
+```
+
+### 4.2 Why each block earns its place
+
+**The `<input_data>` boundary** is the easiest to skip and the most directly consequential. When you paste 500 rows of keyword data or 200 reviews, without a boundary marker any sentence in that data reading "ignore the above instructions" gets executed — a competitor can poison your analysis with one line in a review. With explicit open/close tags, the model knows the content inside is material to process, not commands to follow.
+
+**`<data_discipline>` is the most important block here, and the one this book previously lacked.** Ask a language model "roughly what's the monthly sales volume in this category" and it will almost always hand you a plausible-looking number — one it does not actually know. Sourcing, restocking, and pricing decisions have real money behind them; one fabricated volume figure can leave you sitting on tens of thousands in inventory. So every prompt in this book that touches numbers enforces: **if it isn't in the input, say so; never estimate; and if you must infer, label it.**
+
+**`<self_check>` moves acceptance criteria upstream.** Rather than checking the output against your rules afterward, state them in the prompt — "title must be 200 characters or fewer", "search_terms must not repeat the bullets" — and let the model screen its own work first. In practice this cuts rework noticeably.
+
+### 4.3 The data-discipline block, ready to paste
+
+This is the most reused snippet in the book. Paste it into any prompt involving numbers, forecasts, or recommendations:
+
+```
+<data_discipline>
+- Use only the data I provide. Any number I did not give you is "missing" — do not estimate it and do not draw on industry averages from memory
+- If you lack the basis for a judgment, list the data you still need and stop to ask me. Do not lead with a conclusion
+- Tag every conclusion with its source: [input data] or [model inference]
+- Any claim about money, volume, or ranking must trace back to a specific line of what I gave you
+</data_discipline>
+```
+
+### 4.4 Label the capability tier
+
+Every prompt in this book notes a suggested capability tier (T1 frontier / T2 workhorse / T3 fast); see the [model matrix](../resources/model-matrix.md). The rule of thumb: **multi-step reasoning and genuine trade-offs go to T1; bulk generation and format conversion go to T2/T3.** Hand a complex prompt to a low tier and the usual symptom is that it completes only the first two of your numbered tasks.
+
+---
+
+## 5. From Prompt to Skill: writing for the agent era
+
+The four sections above cover writing a good prompt. But in 2026 what you actually ship is often not a block of text pasted into a chat box — it's **an instruction that gets invoked repeatedly**. This section covers how the same content differs across three delivery forms, and how to migrate this book's 300-plus prompts into them.
+
+### 5.1 Three delivery forms
+
+| Form | What it looks like | Who runs it | When to choose it |
+|------|-------------------|-------------|-------------------|
+| **Conversational** | A block of text pasted into ChatGPT/Claude | A human, manually | One-off tasks, exploration, results you'll judge on the spot |
+| **System prompt** | Fixed in the system slot of an API call | Your code, in bulk | The same task run hundreds or thousands of times over uniform input |
+| **Skill file** | A standalone file with trigger conditions; the agent decides when to use it | The agent, autonomously | The task is one step in a flow and the agent must decide whether to do it |
+
+**The key realization: the content barely changes; the location and the boundaries do.** The six blocks from §4 — role, input data, task, data discipline, output format, self-check — exist in all three forms. What differs:
+
+- Conversational: all six live in one block of text, and you paste the data by hand
+- System prompt: role/task/data-discipline/output-format are fixed in the system slot; input data is passed in by code each call
+- Skill file: add a layer describing *when I should be used*, plus a declaration of *what tools I need*
+
+### 5.2 The same task in three forms
+
+Take [listing generation from A2](../a-operators/a2-listing-optimization.md).
+
+**Conversational** (how most prompts in this book currently look):
+
+```
+<role>Amazon listing expert</role>
+<keyword_data>[paste your Helium 10 export here]</keyword_data>
+<task>Generate title, bullets, description, Search Terms</task>
+<data_discipline>Use only the keywords above; don't fill gaps from memory</data_discipline>
+```
+
+**System prompt** (when you need to run 500 SKUs):
+
+```python
+SYSTEM = """<role>Amazon listing expert</role>
+<task>…</task>
+<data_discipline>…</data_discipline>
+<output_format>JSON: {title, bullets[5], description, search_terms[5]}</output_format>"""
+
+# Keyword data is no longer pasted by hand — it's passed in per call
+for sku in skus:
+    call(system=SYSTEM, user=f"<keyword_data>{sku.keywords}</keyword_data>")
+```
+
+Two things changed here: **output must become JSON** (otherwise downstream can't use it), and **keyword data goes from hand-pasted to program-read**. That is what "eliminating the human data shuttle" concretely means.
+
+**Skill file** (the agent decides when to generate a listing):
+
+```markdown
+---
+name: listing-generator
+description: Use when a new SKU needs an Amazon listing generated or rewritten.
+  Requires keyword data (with monthly volume) and product information to work.
+---
+
+<role>Amazon listing expert</role>
+
+<preflight_check>
+Before running, confirm you have: (1) keyword data (10+ terms with volume),
+(2) product information (including selling points).
+If either is missing, do not generate — ask the user for it.
+</preflight_check>
+
+<task>…</task>
+<data_discipline>…</data_discipline>
+<output_format>…</output_format>
+<human_confirmation_required>Output is not published directly — wait for human review</human_confirmation_required>
+```
+
+Three things are new: **description determines when the agent thinks to use it**, **preflight check prevents running on incomplete data**, and **human confirmation gates the irreversible action**.
+
+### 5.3 Agents make data discipline more important, not less
+
+This deserves its own section because intuition runs the other way.
+
+In conversation, the model invents a sales figure, you read it, you may get suspicious, you discard it — the cost is your time.
+
+In agent mode, that same invented figure **gets acted on**: bids adjusted, a support email sent, a restock order submitted. You may not notice until the invoice or the inventory tells you. **The blast radius goes from "one bad read" to "a chain of bad actions."**
+
+So when you migrate any prompt in this book into a skill file, carry the `<data_discipline>` block over **verbatim**, and add one more rule:
+
+```
+<on_failure>
+If data is insufficient or validation fails, stop and report. Do not continue
+downstream actions using an assumed value.
+</on_failure>
+```
+
+In conversation, a model that "guesses and keeps talking" costs you a wasted read. In agent mode it will carry that guess all the way through execution.
+
+### 5.4 Which tasks belong to an agent, and which don't
+
+The test isn't how complex the task is — it's **whether a mistake can be taken back**.
+
+| Property | Safe for autonomous agent | Requires a human gate |
+|----------|--------------------------|----------------------|
+| Reversibility | Fixable (drafts, labeling, classification) | Irreversible (delisting, refunds, sent emails, submitted orders) |
+| Exposure | Stays internal | Visible to customers or the platform |
+| Money | No funds involved | Touches funds or inventory commitments |
+| Frequency | High-volume, repetitive | Infrequent, different every time |
+
+**A practical starting order**: let the agent do read-only work first (pull data, analyze, draft), run it for a week or two until you have a real feel for its judgment, then open up write access one item at a time. People who do it the other way round usually hit an incident needing manual cleanup in week one.
+
+### 5.5 Migration checklist for this book's prompts
+
+When converting any prompt here into an agent skill, work down this list:
+
+- [ ] Keep `<data_discipline>` verbatim, and add the "stop on failure" rule
+- [ ] Change `<output_format>` to something machine-parseable (JSON/table) — no prose
+- [ ] Add a `description`: state **when to use it** and **what data it needs first**
+- [ ] Add a preflight check: on incomplete data, ask rather than generate
+- [ ] Identify irreversible actions and gate every one on human confirmation
+- [ ] Name the data source: where does the agent read the data this prompt originally asked you to paste? No data source means don't agentify it yet
+
+> That last item is the easiest to skip and it decides whether agentifying actually saves work or just moves the manual step somewhere else. See [A14 Agentifying Operations](../a-operators/a14-operations-agent.md).
+
+---
+
+## 6. Cross-Border E-Commerce Prompt Template Library (20+)
 
 > **Related**: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md) for listing prompt templates in depth
 
 
-### 4.1 Product research & market analysis (5)
+### 6.1 Product research & market analysis (5)
 
 **Template 1: competitor review pain-point extraction**
 ```
@@ -435,7 +613,7 @@ Task: multi-dimension comparison
 Output: comparison table + ranked recommendation + negotiation strategy
 ```
 
-### 4.2 Listings & content (5)
+### 6.2 Listings & content (5)
 
 **Template 6: full listing generation**
 ```
@@ -477,7 +655,7 @@ Task: distill 3 core selling points + a one-line USP
 Output: selling points + supporting evidence + usage scenarios
 ```
 
-### 4.3 Advertising & marketing (4)
+### 6.3 Advertising & marketing (4)
 
 > **Related**: [A3 Advertising Optimization](../a-operators/a3-advertising.md) for ad-analysis templates in depth
 
@@ -513,7 +691,7 @@ Task: write the Amazon Brand Story content
 Output: brand story copy (200–300 words) + image suggestions
 ```
 
-### 4.4 Customer service & after-sales (3)
+### 6.4 Customer service & after-sales (3)
 
 **Template 15: bulk negative-review analysis**
 ```
@@ -539,7 +717,7 @@ Task: write the Plan of Action
 Output: Root Cause + Immediate Actions + Preventive Measures
 ```
 
-### 4.5 Operations management (4)
+### 6.5 Operations management (4)
 
 **Template 18: restock decision analysis**
 ```
@@ -576,9 +754,9 @@ Output: comparison table + certification cost estimate + common pitfalls
 
 ---
 
-## 5. Common Mistakes & Fixes
+## 7. Common Mistakes & Fixes
 
-### 5.1 The ten prompt mistakes
+### 7.1 The ten prompt mistakes
 
 | # | Mistake | Example | Fix | Fixed version |
 |---|---------|---------|-----|---------------|
@@ -593,7 +771,7 @@ Output: comparison table + certification cost estimate + common pitfalls
 | 9 | **Not iterating** | give up after one bad output | give feedback | "Title's too long — cut to under 150 characters" |
 | 10 | **Not saving good prompts** | rewrite from scratch each time | build a template library | store proven prompts in a shared team doc |
 
-### 5.2 A repair walkthrough: from bad to good
+### 7.2 A repair walkthrough: from bad to good
 
 **Original prompt (bad):**
 ```
@@ -638,11 +816,11 @@ End with an overall score and an explicit recommendation.
 If a dimension is uncertain, say so.
 ```
 
-### 5.3 Prompt differences across models
+### 7.3 Prompt differences across models
 
 | Model | Prompt preference | Notes |
 |-------|-------------------|-------|
-| ChatGPT (GPT-4o) | accepts any format; responds well to natural language | long prompts work well; give plenty of context |
+| ChatGPT | accepts any format; responds well to natural language | long prompts work well; give plenty of context |
 | Claude (Sonnet/Opus) | prefers structure; XML tags work great | organize with `<context>` `<instructions>` etc. |
 | Gemini | responds well to concise prompts | the huge context window is the edge — load in lots of reference material |
 | DeepSeek | strong with Chinese prompts | great value for high-volume calls |
@@ -668,11 +846,11 @@ Table with: pain point, frequency, representative quote, improvement.
 
 ---
 
-## 6. Advanced: From Prompt Engineering to Context Engineering
+## 8. Advanced: From Prompt Engineering to Context Engineering
 
 > **Related**: [D6 Southeast Asia AI Guide](../d-platforms/d6-southeast-asia-ai-guide.md) for multilingual prompt applications
 
-### 6.1 The 2026 shift: context engineering
+### 8.1 The 2026 shift: context engineering
 
 In mid-2025, Andrej Karpathy (formerly OpenAI) framed it memorably: the LLM is like a CPU, the context window is like RAM, and you are the operating system responsible for loading the right information.
 
@@ -697,7 +875,7 @@ How is multi-turn context managed?
 Fits: complex workflows, agents, long-running projects
 ```
 
-### 6.2 Context engineering in practice
+### 8.2 Context engineering in practice
 
 **Principle 1: layer the information**
 
@@ -745,9 +923,9 @@ Content rephrased for compliance with licensing restrictions. Source: [Prompt En
 
 ---
 
-## 7. Learning Resources
+## 9. Learning Resources
 
-### 7.1 Essential reading
+### 9.1 Essential reading
 
 | Resource | Source | Why |
 |----------|--------|-----|
@@ -756,7 +934,7 @@ Content rephrased for compliance with licensing restrictions. Source: [Prompt En
 | [ChatGPT Prompt Engineering for Developers](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/) | DeepLearning.AI | free 1.5 h hands-on course |
 | [12 Advanced Prompt Engineering Techniques](https://www.aipromptlibrary.app/blog/advanced-prompt-engineering-techniques) | AI Prompt Library | a current roundup of advanced techniques |
 
-### 7.2 Practice plan
+### 9.2 Practice plan
 
 | Stage | Do | Time |
 |-------|----|------|
@@ -765,7 +943,7 @@ Content rephrased for compliance with licensing restrictions. Source: [Prompt En
 | Week 3 | build a personal template library (10+ prompts) | one 2 h block |
 | Ongoing | after each AI session, reflect on how the prompt could improve | 2 min each |
 
-## 9. Completion Checklist
+## 10. Completion Checklist
 
 - [ ] Can write structured prompts with the CRISP framework
 - [ ] Have used at least 3 advanced techniques (CoT, few-shot, role-playing, ...)

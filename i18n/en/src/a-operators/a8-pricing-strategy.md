@@ -1,7 +1,7 @@
 # A8. AI Pricing Strategy
 
 > **Track**: Path A: Operators · **Module**: A8
-> **Last updated**: 2026-03-14
+> **Last updated**: 2026-07-31
 > **Level**: Intermediate
 > **Time**: 30 minutes a day, 1–2 weeks
 > **Prerequisites**: [A1 Product Research & Market Insight](a1-product-research.md), [A3 Advertising](a3-advertising.md)
@@ -208,6 +208,12 @@ Analyze the price trend with ChatGPT/Claude
 Identify seasonal patterns
 Predict the best repricing timing
 Generate a competitor pricing-strategy report
+
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
 ```
 
 ### 3.4 Price-change notification system
@@ -363,6 +369,8 @@ Advice: reference Japanese local competitor pricing, not a US-price conversion
 
 ## 6. AI Pricing Prompt Templates
 
+> **Prompt conventions used here**: the templates below work as-is, but for anything involving numbers, forecasts, or recommendations, paste in [the data-discipline block from F2 §4.3](../0-foundations/f2-prompt-engineering.md#43-the-data-discipline-block-ready-to-paste). It forbids the model from inventing data you didn't supply — the most common failure mode for this class of prompt.
+
 ### 6.1 Competitor-price analysis prompt
 
 ```
@@ -392,6 +400,12 @@ Analyze:
 4. Suggested pricing strategy (hold/raise/cut)
 5. If repricing, the suggested target price and rationale
 6. Projected impact on BSR and profit after the reprice
+
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
 ```
 
 ### 6.2 Pricing-strategy advice prompt
@@ -421,6 +435,12 @@ Provide:
 3. Promo-pricing advice (next major promo node)
 4. Multi-platform pricing advice (Amazon/Walmart/Shopify)
 5. Risk notes and cautions
+
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
 ```
 
 ### 6.3 Promo ROI calculation prompt
@@ -452,6 +472,12 @@ Compute:
 4. Break-even point (how much sales to avoid a loss)
 5. Post-promo BSR-lift estimate and long-term gains
 6. Whether to run this promo plan
+
+<data_discipline>
+- Any figure involving money, volume, ranking, or fee rates must come from what I supplied above. Anything I didn't give you is "missing" — **do not estimate, and do not draw on industry averages or platform fee rates from memory**. Those go stale, and I may spend real money on them
+- When you need a figure to continue, tell me where to look it up and which field to read, then stop and wait for me to supply it
+- Tag every conclusion with its source: [supplied by me] or [model inference]. For inferences, state what the inference rests on
+</data_discipline>
 ```
 
 ---

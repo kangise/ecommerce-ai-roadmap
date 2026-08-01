@@ -1,7 +1,7 @@
 # B7. Review Intelligence System: NLP + Topic Modeling + Sentiment Analysis
 
 > **Track**: Path B: Developers · **Module**: B7
-> **Last updated**: 2026-03-15
+> **Last updated**: 2026-07-31
 > **Level**: Intermediate
 > **Time**: 1 hour a day, 2 weeks
 > **Prerequisite**: [B1 Data Collection & Processing](b1-data-pipeline.md)
@@ -11,7 +11,7 @@
 
 ## Chapter Navigation
 
-1. [Why you need a Review NLP system](#1-why-you-need-a-review-nlp-system) · 2. [Tech-stack choice](#2-tech-stack-choice) · 3. [Data collection & preprocessing](#3-data-collection--preprocessing) · 4. [Sentiment analysis in practice](#4-sentiment-analysis-in-practice) · 5. [BERTopic topic modeling](#5-bertopic-topic-modeling) · 6. [LLM-enhanced analysis](#6-llm-enhanced-analysis) · 7. [Build a complete pipeline](#7-build-a-complete-pipeline) · 8. [Completion checklist](#8-completion-checklist)
+1. [Why you need a Review NLP system](#1-why-you-need-a-review-nlp-system) · 2. [Tech-stack choice](#2-tech-stack-choice) · 3. [Data collection & preprocessing](#3-data-collection--preprocessing) · 4. [Sentiment analysis in practice](#4-sentiment-analysis-in-practice) · 5. [BERTopic topic modeling](#5-bertopic-topic-modeling) · 6. [LLM-enhanced analysis](#6-llm-enhanced-analysis) · 7. [Build a complete pipeline](#7-build-a-complete-pipeline) · 8. [Common Traps](#8-common-traps) · 9. [Completion checklist](#9-completion-checklist)
 
 ---
 
@@ -320,6 +320,12 @@ neg_topic_info = negative_topic_model.get_topic_info()
 print("=== Top 10 core negative-review problems ===")
 for _, row in neg_topic_info.head(10).iterrows():
 print(f"Topic {row['Topic']}: {row['Name']} ({row['Count']} reviews)")
+
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
 ```
 
 ### 5.3 Topic-trend analysis
@@ -477,6 +483,12 @@ messages=[{"role": "user", "content": prompt}]
 )
 
 return response.content[0].text
+
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
 ```
 
 ### 6.2 Competitor-Review comparison analysis
@@ -511,6 +523,12 @@ Analyze:
 4. Differentiation-positioning advice
 """
 return llm_call(prompt)
+
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
 ```
 
 ---
@@ -792,6 +810,12 @@ st.markdown("""
 - `verified`: verified purchase (True/False)
 - `helpful_votes`: helpful-vote count (optional)
 """)
+
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
 ```
 
 Run: `streamlit run review_dashboard.py`
@@ -828,7 +852,27 @@ print(f"Analysis results exported to {output_dir}/")
 
 ---
 
-## 8. Completion Checklist
+## 8. Common Traps
+
+### 8.1 Substituting sentiment polarity for problem localization
+
+Knowing 30% is negative carries no action. What's useful is "of the negatives, how much is shipping, how much is quality, how much is expectation mismatch" — the taxonomy has to map to actions you can take.
+
+### 8.2 Ignoring language and market differences
+
+The distribution of complaints for the same product varies widely by market; mixing them dilutes both. Run per marketplace.
+
+### 8.3 Concluding on too small a sample
+
+Three mentions of a complaint across 20 reviews could be noise or signal. Set a minimum sample threshold so anecdotes don't drive product decisions.
+
+### 8.4 Analyzing only the negatives
+
+Five-star reviews contain what customers actually value — which is what your listing copy should say. Reading only the negatives keeps you patching weaknesses without knowing your strengths.
+
+---
+
+## 9. Completion Checklist
 
 - [ ] Built a Review-collection and cleaning pipeline
 - [ ] Implemented a two-layer VADER + BERT sentiment analysis

@@ -1,7 +1,7 @@
 # A7. AI Visual Content Creation
 
 > **Track**: Path A: Operators · **Module**: A7
-> **Last updated**: 2026-03-14
+> **Last updated**: 2026-07-31
 > **Level**: Intermediate
 > **Time**: 30 minutes a day, 1–2 weeks
 > **Prerequisite**: [A2 Listing & Content Creation](a2-listing-optimization.md)
@@ -60,7 +60,7 @@ Good for: existing product photos needing quick optimization
 
 Level 2: AI-generated scene images (intermediate)
 Real product photo + AI-generated background/scene
-Tools: Midjourney, DALL-E, Ideogram, PhotoRoom AI Staging
+Tools: Midjourney, Nano Banana Pro, Ideogram, PhotoRoom AI Staging
 No studio, no models needed
 Good for: needing lifestyle images on a limited budget
 
@@ -69,6 +69,12 @@ Generate product images from text descriptions
 Generate videos from product images
 AI virtual models (apparel category)
 Good for: pre-launch concept validation, batch social-media content production
+
+<copy_discipline>
+- Never write a feature, material, certification, or result the product doesn't actually have. Any attribute I didn't state above must not appear in the copy — this is the number-one cause of listing takedowns and false-advertising complaints
+- If you need a selling point I didn't supply, list what you need from me rather than improvising
+- Flag any claim touching efficacy, safety, environmental, or patent language separately so I can verify it by hand
+</copy_discipline>
 ```
 
 ---
@@ -80,7 +86,7 @@ Good for: pre-launch concept validation, batch social-media content production
 | Tool | Core function | Price | Best for |
 |------|---------------|-------|----------|
 | **Midjourney** | high-quality AI image generation | from $10/mo | creative scene and lifestyle images |
-| **DALL-E 3** (ChatGPT) | text → image | $20/mo (ChatGPT Plus) | quick concept validation |
+| **GPT Image 2** (ChatGPT) | text → image | $20/mo (ChatGPT Plus) | quick concept validation |
 | **Ideogram** | accurate text rendering | free/paid | images containing text (labels, packaging) |
 | **PhotoRoom** | background removal + AI scenes | free/Pro $10/mo | product white-background → scene image |
 | **Canva AI** | image editing + AI generation | free/Pro $13/mo | an all-rounder for non-designers |
@@ -122,6 +128,12 @@ Method 2: Midjourney (highest quality)
 3. Generate 4 variants, pick the best
 4. Fine-tune in Photoshop/Canva
 Time: 5–10 min/image
+
+<copy_discipline>
+- Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
+- For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
+- Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
+</copy_discipline>
 ```
 
 **Midjourney product-scene image prompt template:**
@@ -152,6 +164,12 @@ Midjourney prompt format requirements:
 - Include lighting (soft lighting, studio lighting, natural light)
 - Include style (photorealistic, commercial photography, lifestyle)
 - Include technical parameters (--ar 1:1 --v 6.1 --s 250)
+
+<copy_discipline>
+- Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
+- For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
+- Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
+</copy_discipline>
 ```
 
 ### 2.3 Infographic / selling-point image AI generation
@@ -174,6 +192,12 @@ Canva AI prompt:
 4. [selling point 4]
 5. [selling point 5]
 Style: clean, modern, white background with accent color [brand color]"
+
+<copy_discipline>
+- Never write a feature, material, certification, or result the product doesn't actually have. Any attribute I didn't state above must not appear in the copy — this is the number-one cause of listing takedowns and false-advertising complaints
+- If you need a selling point I didn't supply, list what you need from me rather than improvising
+- Flag any claim touching efficacy, safety, environmental, or patent language separately so I can verify it by hand
+</copy_discipline>
 ```
 
 ---
@@ -185,8 +209,10 @@ Style: clean, modern, white background with accent color [brand color]"
 | Tool | Core function | Price | Best for |
 |------|---------------|-------|----------|
 | **CapCut** | video editing + AI features | free/Pro $8/mo | TikTok/Reels short videos |
-| **Runway Gen-3** | text/image → video | from $12/mo | high-quality product-demo videos |
-| **Pika** | image → animated video | free/Pro $8/mo | animated product showcases |
+| **Runway Gen-4.5** | image/text → video, strong editing control | subscription | ads needing tight creative control |
+| **Veo 3.1** (Google Flow) | text/image → video, generates audio | subscription | cinematic shots, finished clips with sound |
+| **Kling 3** | image → video, strong motion realism | subscription | animated product showcases |
+| **Seedance 2** | image → video, longer shot planning | subscription | ads, brand scenes, storyboard-driven work |
 | **Magic Hour** | product image → ad video | paid | batch ad-creative generation |
 | **Canva Video** | template-based video creation | free/Pro $13/mo | non-professionals |
 | **InVideo AI** | AI auto-generates video | from $25/mo | complete product videos |
@@ -314,6 +340,8 @@ AI way: 4 days + $50–100 (tool subscriptions)
 
 ## 6. Prompt Templates
 
+> **Prompt conventions used here**: the templates below work as-is, but for anything involving numbers, forecasts, or recommendations, paste in [the data-discipline block from F2 §4.3](../0-foundations/f2-prompt-engineering.md#43-the-data-discipline-block-ready-to-paste). It forbids the model from inventing data you didn't supply — the most common failure mode for this class of prompt.
+
 ### 6.1 Midjourney e-commerce product-image prompt library
 
 **White-background product image:**
@@ -353,6 +381,12 @@ Generate a video script with:
 3. Duration marks
 4. Recommended AI tools (which tool to generate each shot)
 5. Background-music style advice
+
+<copy_discipline>
+- Never write a feature, material, certification, or result the product doesn't actually have. Any attribute I didn't state above must not appear in the copy — this is the number-one cause of listing takedowns and false-advertising complaints
+- If you need a selling point I didn't supply, list what you need from me rather than improvising
+- Flag any claim touching efficacy, safety, environmental, or patent language separately so I can verify it by hand
+</copy_discipline>
 ```
 
 ---

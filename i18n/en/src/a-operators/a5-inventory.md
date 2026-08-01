@@ -1,7 +1,7 @@
 # A5. Inventory & Supply Chain
 
 > **Track**: Path A: Operators · **Module**: A5
-> **Last updated**: 2026-03-12
+> **Last updated**: 2026-07-31
 > **Level**: Advanced
 > **Time**: 30 minutes a day, 1–2 weeks
 ---
@@ -180,7 +180,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [goaura.c
 
 | Tool | Use | Link |
 |------|-----|------|
-| ChatGPT / Claude | restock calculation, safety-stock analysis, promo-stocking strategy, IPI improvement plans | [chat.openai.com](https://chat.openai.com/) / [claude.ai](https://claude.ai/) |
+| ChatGPT / Claude | restock calculation, safety-stock analysis, promo-stocking strategy, IPI improvement plans | [chatgpt.com](https://chatgpt.com/) / [claude.ai](https://claude.ai/) |
 | Amazon Restock Inventory | official restock-suggestion tool, gives restock quantity and timing from sales trends | Seller Central → Inventory → Restock Inventory |
 | Amazon FBA Revenue Calculator | compute FBA fees and margins to aid inventory decisions | [sellercentral.amazon.com/hz/fba/profitabilitycalculator](https://sellercentral.amazon.com/hz/fba/profitabilitycalculator/index) |
 | Amazon Inventory Dashboard | inventory-health dashboard, IPI Score, age distribution, Stranded Inventory | Seller Central → Inventory → Inventory Dashboard |
@@ -215,6 +215,8 @@ If you manage 50+ SKUs or need precise seasonal forecasts, open-source tools can
 ---
 
 ## 3. Prompt Template Library (for Inventory)
+
+> **Prompt conventions used here**: the templates below work as-is, but for anything involving numbers, forecasts, or recommendations, paste in [the data-discipline block from F2 §4.3](../0-foundations/f2-prompt-engineering.md#43-the-data-discipline-block-ready-to-paste). It forbids the model from inventing data you didn't supply — the most common failure mode for this class of prompt.
 
 > This section gives a deep breakdown of each template, common mistakes, and advanced variants.
 
@@ -278,6 +280,12 @@ Please:
 3. Optimal restock allocation under the budget limit
 4. How the allocation changes if the budget increases 20%/50%
 5. Which SKUs can defer restock? What's the risk of deferring?
+
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
 ```
 
 > **Why use it**: with limited capital, not all SKUs can restock at once. Prioritize high-profit, high-stockout-risk SKUs; defer low-profit, well-stocked ones. AI can do this multivariable optimization.
@@ -301,6 +309,12 @@ Analyze:
 3. Capital needed for the first batch
 4. If the first batch sells faster/slower than expected, the second-batch restock strategy
 5. New-product inventory risk notes (what if it doesn't sell? what if it sells too fast?)
+
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
 ```
 
 > **Why use it**: a new product has no historical data, so estimate from competitor data and market analysis. The first-batch principle is "better too little than too much" — test the market with a small batch, and restock heavily only after confirming it sells.
@@ -381,6 +395,12 @@ Analyze:
 4. Risk notes:
 - If seasonality is weaker/stronger than expected, how to adjust?
 - What external factors could affect the seasonal pattern?
+
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
 ```
 
 ---
@@ -564,6 +584,12 @@ Analyze:
 5. Supplier-management advice:
 - How to communicate with the supplier to reduce delays?
 - What lead-time guarantee clauses should the contract include?
+
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
 ```
 
 ---
@@ -934,6 +960,12 @@ Analyze:
 3. Recommended plan (balancing cost and speed)
 4. Recommend a hybrid (e.g., 70% ocean + 30% air)?
 5. If logistics is [X] days late, the impact on inventory and the response
+
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
 ```
 
 > **The core principle of first-leg logistics**: ocean for routine restocks to control cost, air for emergencies to avoid stockouts. Reserve a 10–20% air-freight budget as contingency for each ocean shipment.

@@ -1,7 +1,7 @@
 # F3. Knowledge Bases & RAG
 
 > **Track**: Path 0: AI Foundations · **Module**: F3
-> **Last updated**: 2026-03-12
+> **Last updated**: 2026-07-31
 > **Level**: Intermediate
 > **Time**: 2 hours
 > **Prerequisites**: [F1 The Evolution of AI](f1-ai-evolution.md), [F2 Prompt Engineering](f2-prompt-engineering.md)
@@ -25,7 +25,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ## Chapter Navigation
 
-1. [Why AI doesn't know your products](#1-why-ai-doesnt-know-your-product-information) · 2. [How embeddings work](#2-embeddings-teaching-ai-to-understand-meaning) · 3. [Vector databases](#3-vector-databases-storing-and-retrieving-meaning) · 4. [RAG architecture](#4-rag-architecture-the-full-workflow) · 5. [Hands-on overview](#5-hands-on-overview-building-a-product-knowledge-base) · 6. [RAG optimization](#6-rag-optimization-techniques) · 7. [FAQ](#7-faq) · 8. [Learning resources](#8-learning-resources)
+1. [Why AI Doesn’t Know Your Product Information](#1-why-ai-doesnt-know-your-product-information) · 2. [Embeddings](#2-embeddings-teaching-ai-to-understand-meaning) · 3. [Vector Databases](#3-vector-databases-storing-and-retrieving-meaning) · 4. [RAG Architecture](#4-rag-architecture-the-full-workflow) · 5. [Hands-On Overview](#5-hands-on-overview-building-a-product-knowledge-base) · 6. [RAG Optimization Techniques](#6-rag-optimization-techniques) · 7. [FAQ](#7-faq) · 8. [Learning Resources](#8-learning-resources) · 9. [Common Traps](#9-common-traps) · 10. [Completion Checklist](#10-completion-checklist)
 
 
 ## What You'll Understand
@@ -368,7 +368,7 @@ Volume: 50 product manuals + 500 FAQs ≈ 200 pages
 Embedding cost: $0.02 (one-time)
 Vector DB: $0 (local Chroma)
 Monthly queries: 1,000
-LLM cost: $5–10/mo (GPT-4o-mini)
+LLM cost: $5–10/mo (T3 fast tier)
 Total monthly cost: $5–10
 
 Against labor:
@@ -497,7 +497,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [RAG Arch
 | "My data is tiny (<10 documents) — do I need RAG?" | No. Uploading to ChatGPT/Claude is enough. RAG's value shows at larger volumes (50+ documents). |
 | "Does RAG guarantee 100% accuracy?" | No. RAG reduces hallucination but can't eliminate it. Retrieval can miss key information, and the LLM can misread retrieved content. Human-review critical answers. |
 | "Can multilingual documents share one knowledge base?" | Yes — use a multilingual embedding model (e.g., BGE-M3), or index per language. |
-| "How much does a RAG system cost?" | Minimum: Chroma (free) + OpenAI embeddings ($0.02/M tokens) + GPT-4o-mini ($0.15/M tokens). ~$1–2 per 1,000 queries. |
+| "How much does a RAG system cost?" | Minimum: Chroma (free) + OpenAI embeddings ($0.02/M tokens) + a T3 fast-tier LLM. ~$1–2 per 1,000 queries. |
 | "What about data security?" | Local embedding model (BGE-M3) + local LLM (Ollama) + local vector DB (Chroma) — data never leaves your servers. |
 
 ### 7.2 When you don't need RAG
@@ -529,6 +529,26 @@ Content rephrased for compliance with licensing restrictions. Sources: [RAG Arch
 | [B3 RAG Knowledge Base module](../b-developers/b3-rag-knowledge-base.md) | ecommerce-ai-roadmap | this hub's hands-on module, complete code |
 | [Vector Databases 2026 Guide](https://iterathon.tech/blog/vector-databases-ai-applications-guide) | Iterathon | selection and production deployment |
 | [Retrieval-Augmented Generation (RAG) paper](https://arxiv.org/abs/2005.11401) | Meta AI | the original RAG paper (2020) — theoretical grounding |
+
+## 9. Common Traps
+
+### 9.1 Assuming RAG eliminates hallucination
+
+RAG reduces invention from nothing. It does not eliminate "retrieved it but misread it" or "found nothing and answered anyway." The real defense is requiring source attribution in the prompt and permitting the model to answer "not in the material."
+
+### 9.2 Copying default chunking settings
+
+Fixed-length chunking cuts a spec table or a compliance clause in half, and the retrieved fragment naturally can't answer the question. For e-commerce, chunking by semantic unit (one SKU, one policy, one FAQ) usually beats chunking by character count.
+
+### 9.3 Building the knowledge base and never maintaining it
+
+Product specs, platform policies, and shipping rules all change. The most common RAG failure isn't technical — it's that nobody updated the material for six months, which makes it more dangerous than not having it.
+
+### 9.4 Using RAG for what belongs in a database
+
+"Which SKU sold best last month" is a SQL query, not a semantic retrieval problem. Forcing structured queries through RAG is both slower and less accurate.
+
+---
 
 ## 10. Completion Checklist
 

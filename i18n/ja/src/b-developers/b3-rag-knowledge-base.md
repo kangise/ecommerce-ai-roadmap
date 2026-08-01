@@ -1,7 +1,7 @@
 # B3. RAG 知識ベースシステム
 
 > **トラック**: Path B: 技術 · **モジュール**: B3
-> **最終更新**: 2026-03-12
+> **最終更新**: 2026-07-31
 > **難易度**: 中級 → 上級
 > **前提**: B1 データパイプラインの基礎(Python、ファイル処理)、B2 の基本 ML 概念
 > **所要時間**: 1 日 1 時間、2〜3 週間
@@ -24,7 +24,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ---
 
-## この章のナビゲーション
+## 章ナビゲーション
 
 1. [RAG 方法論](#1-rag-方法論) · 2. [ツール全景](#2-ツール全景) · 3. [技術スタックの選択詳解](#3-技術スタックの選択詳解) · 4. [コード実践](#4-コード実践) · 5. [EC RAG 応用](#5-ec-rag-応用シーン) · 6. [よくある罠](#6-よくある罠) · 7. [上級テクニック](#7-上級テクニック) · 8. [学習リソース](#8-学習リソース)
 
@@ -131,7 +131,7 @@ AI に特定のスタイル/形式で出力させる → Fine-tuning
 | テキスト分割 | 固定サイズ、文単位、意味単位 | 固定サイズ(512 tokens) | 意味分割 |
 | Embedding モデル | OpenAI text-embedding-3-small, BGE, E5 | OpenAI(最も簡単) | BGE-large(オープンソース無料) |
 | ベクトルデータベース | Chroma, FAISS, Pinecone, Weaviate | Chroma(最も簡単) | Pinecone(マネージドサービス) |
-| LLM | OpenAI GPT-4o, Claude, Ollama ローカルモデル | OpenAI GPT-4o-mini | Ollama + Qwen2.5(ローカル無料) |
+| LLM | クラウド T1/T2 級、または Ollama ローカルモデル | クラウド T3 高速級 | Ollama + qwen3:8b(ローカル無料) |
 
 ---
 
@@ -595,8 +595,8 @@ EC データ(製品コスト、サプライヤー情報、販売データ)は商
 # 1. Ollama をインストール(macOS) https://ollama.com/download からダウンロード
 
 # 2. モデルをダウンロード
-ollama pull qwen2.5:7b # 推奨: 中英どちらも良い、7B パラメータ
-ollama pull llama3.1:8b # Meta オープンソース、英語が優秀
+ollama pull qwen3:8b # 推奨: 中英どちらも良い、7B パラメータ
+ollama pull gemma3:12b # Meta オープンソース、英語が優秀
 ollama pull nomic-embed-text # Embedding モデル(OpenAI の無料代替)
 
 # 3. 検証
@@ -612,7 +612,7 @@ from llama_index.embeddings.ollama import OllamaEmbedding
 
 def build_local_rag(
 docs_dir: str,
-llm_model: str = "qwen2.5:7b",
+llm_model: str = "qwen3:8b",
 embed_model: str = "nomic-embed-text",
 ollama_base_url: str = "http://localhost:11434",
 ) -> VectorStoreIndex:
@@ -621,7 +621,7 @@ ollama_base_url: str = "http://localhost:11434",
 
 前提:
 1. Ollama インストール済み
-2. LLM モデルダウンロード済み: ollama pull qwen2.5:7b
+2. LLM モデルダウンロード済み: ollama pull qwen3:8b
 3. Embedding モデルダウンロード済み: ollama pull nomic-embed-text
 """
 # ローカル LLM を設定
@@ -664,7 +664,7 @@ return index
 |------|------------------------|------------------------|
 | データプライバシー | データが本機を出ない | データを OpenAI サーバーに送信 |
 | コスト | 無料(電気代を除く) | token 課金 |
-| 回答品質 | 7B モデルは約 GPT-3.5 水準 | GPT-4o 水準が最高 |
+| 回答品質 | 8B ローカルモデルで実用 | クラウド T1 フロンティア級が最高 |
 | 速度 | ハードウェア次第(M1 Mac 約 30 tokens/s) | 速い(クラウド GPU) |
 | オフライン利用 | ネット不要 | ネットが必要 |
 | ハードウェア要件 | 7B モデルは 8GB+ RAM が必要 | 要件なし |
@@ -1017,10 +1017,10 @@ ANTI_HALLUCINATION_PROMPT = """以下の文書に基づいて質問に答えて�
 
 | モデル | コンテキストウィンドウ | 推奨 top_k |
 |--------|------------------------|------------|
-| GPT-4o-mini | 128k tokens | 5-10 |
-| GPT-4o | 128k tokens | 5-10 |
-| Qwen2.5 7B | 32k tokens | 3-5 |
-| Llama 3.1 8B | 128k tokens | 5-8 |
+| クラウド T3 高速級 | 1M+ tokens | 5-10 |
+| クラウド T1 フロンティア級 | 1M+ tokens | 5-10 |
+| Qwen3 8B | 32k tokens | 3-5 |
+| Gemma 3 12B | 128k tokens | 5-8 |
 
 **計算式**: `top_k × chunk_size < モデルのコンテキストウィンドウの 50%`(半分を Prompt と回答に残す)
 
@@ -1308,7 +1308,7 @@ index = VectorStoreIndex.from_vector_store(vector_store)
 # === Ollama ローカル RAG ===
 from llama_index.llms.ollama import Ollama
 from llama_index.embeddings.ollama import OllamaEmbedding
-Settings.llm = Ollama(model="qwen2.5:7b", request_timeout=120)
+Settings.llm = Ollama(model="qwen3:8b", request_timeout=120)
 Settings.embed_model = OllamaEmbedding(model_name="nomic-embed-text")
 
 # === メタデータフィルタ ===
@@ -1378,7 +1378,7 @@ A: Chroma の増分更新機能(`index.insert(new_doc)`)を使い、インデッ
 A: 多言語対応の Embedding モデル(OpenAI `text-embedding-3-small` や `paraphrase-multilingual-MiniLM-L12-v2` など)を使う。中英混合文書は同じインデックスに入れられる。
 
 **Q: RAG システムの応答速度はどう最適化する?**
-A: 3 方向: (1) Chroma 永続化でインデックス再構築を回避;(2) top_k を減らして LLM 入力量を減らす;(3) より速い LLM を使う(GPT-4o-mini は GPT-4o より 3 倍速い)。
+A: 3 方向: (1) Chroma 永続化でインデックス再構築を回避;(2) top_k を減らして LLM 入力量を減らす;(3) 級を下げる(T3 高速級は T1 フロンティア級より 3 倍以上速いのが普通)。
 
 **Q: データ量が非常に大きい(10 万+ 文書)場合は?**
 A: ローカル Chroma では足りないかも、Pinecone(クラウドマネージド)か Qdrant(セルフホスト)への移行を検討。同時に chunk_size と Embedding モデルの選択を最適化。
