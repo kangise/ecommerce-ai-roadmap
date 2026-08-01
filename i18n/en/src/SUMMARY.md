@@ -31,6 +31,7 @@
 - [Financial Analysis](a-operators/a11-financial-analysis.md)
 - [IP Protection](a-operators/a12-ip-protection.md)
 - [AI Growth Hacking](a-operators/a13-ai-growth-hack.md)
+- [Agentifying Operations](a-operators/a14-operations-agent.md)
 
 ---
 
@@ -101,6 +102,7 @@
 
 # Resources
 
+- [Model Matrix](resources/model-matrix.md)
 - [Awesome AI Skills & Rules](resources/awesome-ai-skills.md)
 - [Awesome MCP & Agent Tools](resources/awesome-mcp-agents.md)
 - [Skills Library](resources/skills-library.md)

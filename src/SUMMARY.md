@@ -31,6 +31,7 @@
 - [财务分析](a-operators/a11-financial-analysis.md)
 - [知识产权](a-operators/a12-ip-protection.md)
 - [AI Growth Hack](a-operators/a13-ai-growth-hack.md)
+- [运营 Agent 化](a-operators/a14-operations-agent.md)
 
 ---
 
@@ -101,6 +102,7 @@
 
 # 资源
 
+- [模型矩阵](resources/model-matrix.md)
 - [AI Skills 合集](resources/awesome-ai-skills.md)
 - [MCP 与 Agent 工具集](resources/awesome-mcp-agents.md)
 - [Skills Library](resources/skills-library.md)

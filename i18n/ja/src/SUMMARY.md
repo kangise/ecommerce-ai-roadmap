@@ -31,6 +31,7 @@
 - [財務分析](a-operators/a11-financial-analysis.md)
 - [知的財産保護](a-operators/a12-ip-protection.md)
 - [AI グロースハック](a-operators/a13-ai-growth-hack.md)
+- [運用の Agent 化](a-operators/a14-operations-agent.md)
 
 ---
 
@@ -101,6 +102,7 @@
 
 # リソース
 
+- [モデルマトリクス](resources/model-matrix.md)
 - [AI Skills・Rules コレクション](resources/awesome-ai-skills.md)
 - [MCP・Agent ツール集](resources/awesome-mcp-agents.md)
 - [Skills Library](resources/skills-library.md)
