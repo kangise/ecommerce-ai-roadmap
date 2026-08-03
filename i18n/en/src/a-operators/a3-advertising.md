@@ -48,6 +48,10 @@ After this module you'll be able to:
 
 ## 1. Advertising Methodology: the Basics Before AI
 
+<!-- claims: illustrative -->
+
+> The amounts and percentages in this section are worked examples that show how the formulas and trade-offs behave. They are not measured market values.
+
 > **Related**: [D4 Walmart AI Guide](../d-platforms/d4-walmart-ai-guide.md) for Walmart Connect ads (first-price auction) · [E1 Instagram/Facebook AI Guide](../e-social-media/e1-instagram-facebook-ai-guide.md) for Meta Advantage+ AI creative generation and optimization · [E7 Cross-Channel Strategy](../e-social-media/e7-social-media-cross-channel.md) for cross-channel attribution and budget-allocation frameworks.
 
 ### 1.1 The first principle of Amazon advertising
@@ -151,6 +155,10 @@ What AI is weak at:
 
 ## 2. AI Tool Landscape: What to Use for Advertising
 
+<!-- claims: verified 2026-08 -->
+
+> Tool prices in this section were checked in 2026-08. SaaS pricing moves often — verify on the vendor's own site before you commit.
+
 ### 2.1 Paid tools reviewed
 
 | Tool | Price | Core capability | For whom | AI features |
@@ -219,6 +227,10 @@ If you manage 10+ campaigns or need bulk operations, the API can:
 ---
 
 ## 3. Prompt Template Library (for Advertising)
+
+<!-- claims: illustrative -->
+
+> The amounts and percentages in this section are worked examples that show how the formulas and trade-offs behave. They are not measured market values.
 
 > **Prompt conventions used here**: the templates below work as-is, but for anything involving numbers, forecasts, or recommendations, paste in [the data-discipline block from F2 §4.3](../0-foundations/f2-prompt-engineering.md#43-the-data-discipline-block-ready-to-paste). It forbids the model from inventing data you didn't supply — the most common failure mode for this class of prompt.
 
@@ -777,6 +789,10 @@ Target-marketplace special considerations:
 
 ## 4. The Advertising Workflow
 
+<!-- claims: benchmark -->
+
+> The multipliers and ranges here are starting suggestions to give you somewhere to begin, not measured averages. Replace them with your own numbers after the first peak event.
+
 ### 4.1 New-product ad launch SOP (30-day plan)
 
 This SOP standardizes the flow from zero to stable operation for new-product ads. Each step notes the tool and prompt.
@@ -912,6 +928,10 @@ Promos are the highest-spend but also highest-ROI period. The strategy has three
 ---
 
 ## 6. Advanced Techniques
+
+<!-- claims: illustrative -->
+
+> The amounts and percentages in this section are worked examples that show how the formulas and trade-offs behave. They are not measured market values.
 
 ### 6.1 Amazon Ads MCP Server (2026 trend)
 

@@ -236,7 +236,7 @@ TikTok's true value far exceeds its direct GMV. When a creator recommends your p
 Method 1: Brand search-volume comparison
 - Record the creator video's release date and view count
 - Compare the change in brand search volume in Amazon Brand Analytics
-- If Amazon brand search volume rises 30% after a creator video reaches 100K views, that 30% increment is TikTok's indirect contribution
+- For example: if Amazon brand search volume lifts after a creator video takes off, that increment can be attributed to TikTok. The proportion differs for every brand — work it out from your own Brand Analytics data
 
 Method 2: Time-series analysis
 - Use AI to analyze the time-series correlation between TikTok content-release volume/views and Amazon brand search volume
@@ -329,7 +329,7 @@ After agentifying, the data you're asked to paste above should be read from here
 
 ### 5.1 The First Principle of Ad-Budget Allocation
 
-The core principle of cross-platform ad-budget allocation is "marginal ROAS equilibrium" — the last $1 of ad spend on each platform should bring the same return.
+The core principle of cross-platform ad-budget allocation is "marginal ROAS equilibrium" — the last unit of ad spend on each platform should bring the same return.
 
 ```
 If Amazon PPC's marginal ROAS is 3.0 (spend $1 more, earn $3 more)
@@ -455,7 +455,7 @@ Advantages:
 - Shopify has a native MCF App, one-click integration
 
 Disadvantages:
-- MCF fees are 10-15% higher than FBA (Amazon prioritizes its own orders)
+- MCF costs more per unit than FBA (rates verified 2026-08; they vary by size tier and destination — go by Amazon's own fee schedule)
 - Defaults to Amazon packaging (you can request unbranded packaging, but can't use your own branded packaging)
 - When FBA inventory is tight, MCF orders may be delayed
 
@@ -650,6 +650,10 @@ Overall recommendation: Which platform to list first? The listing order and time
 
 ## 10. Case Study
 
+<!-- claims: illustrative -->
+
+> This section is a composite walk-through. The numbers show the structure and trade-offs between platforms; they are not measurements from a specific brand. Modelling off these ratios will mislead you — rerun them with your own category, average order value and fee rates.
+
 ### 10.1 Consumer Electronics Brand: Amazon -> Three-Platform Coordination
 
 Background:
@@ -753,7 +757,7 @@ Reasons for the margin improvement:
 
 During big sales (BFCM, Prime Day), the effect of three-platform linkage far exceeds each operating independently:
 - TikTok pre-sale seeding -> Amazon brand search volume surges during the big sale -> the highest-converting traffic
-- Shopify email warm-up -> email revenue can account for 40-50% on the big-sale day
+- Shopify email warm-up -> on the day itself, email is often the single largest channel. The share depends on your list size and how active it is; estimate from your own last peak event
 - Amazon big-sale traffic overflow -> some users search the brand name and find the Shopify independent site
 
 ### 13.2 BFCM Three-Platform Coordination Timeline
@@ -841,6 +845,10 @@ But linkage needs to start 6 weeks in advance, and this prompt helps you plan sy
 ---
 
 ## 14. Cross-Platform Team Organization and Collaboration Rhythm
+
+<!-- claims: benchmark -->
+
+> These revenue bands are a rough reference for sizing a team, not survey data. Margins vary a lot by category — work from your own revenue per head.
 
 ### 14.1 Team Structure for Different Sizes
 

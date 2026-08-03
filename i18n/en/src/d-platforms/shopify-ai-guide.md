@@ -863,6 +863,10 @@ After completing the above, you have mastered the core AI-operations skills for 
 
 ## 13. Case Studies: Shopify Independent-Site AI Adoption in Practice
 
+<!-- claims: illustrative -->
+
+> This section is a composite walk-through. The numbers show the structure and trade-offs between platforms; they are not measurements from a specific brand. Modelling off these ratios will mislead you — rerun them with your own category, average order value and fee rates.
+
 ### 13.1 Case One: A DTC Brand from 0 to $50K/Month
 
 **Background:**
@@ -1771,7 +1775,7 @@ Why Shopify Audiences is better than a self-built Lookalike:
 
 Usage conditions: Shopify Plus or a Shopify advanced plan, with the corresponding ad-channel App installed.
 
-Actual effect data: according to Shopify's official data, merchants using Audiences see an average CAC reduction of 20-50% and a ROAS increase of 30-60%.
+Actual effect data: Shopify publishes CAC and ROAS improvement ranges on its [Audiences page](https://www.shopify.com/audiences). That is the vendor's own framing, with the sample and method undisclosed — read it as a ceiling, not an expectation.
 
 ---
 
@@ -2039,7 +2043,7 @@ If each step improves 20%:
 60% x 7.2% x 72% x 60% = 1.87% (overall improvement 108%)
 ```
 
-Key insight: you don't need to make a huge improvement in any one step. Each step improving 20% doubles the overall conversion rate.
+Key insight: you don't need to make a huge improvement in any one step. Conversion compounds — lift five steps by a fifth each, for example, and the total doubles.
 
 ### 24.2 The AI Optimization Method for Each Funnel Step
 
@@ -2369,7 +2373,7 @@ Congratulations! Your order qualifies for free shipping
 {%- endif -%}
 ```
 
-Why it works: a dynamic free-shipping notice can boost order value 10-15%. The multi-market version ensures each market sees the correct currency and threshold.
+Why it works: a dynamic free-shipping notice pushes orders up towards the threshold and usually raises order value — by how much depends on where you set it, so A/B it once live. The multi-market version ensures each market sees the correct currency and threshold.
 
 Snippet 2: enhanced Product Schema (GEO optimization)
 
@@ -2433,7 +2437,7 @@ Snippet 3: automatically generate FAQ Schema
 {%- endif -%}
 ```
 
-Why it works: FAQ Schema makes your product show FAQ rich snippets in Google search results, boosting click-through rate 20-30%. At the same time, AI search engines can directly extract answers from the FAQ Schema to recommend your product.
+Why it works: FAQ Schema makes your product show FAQ rich snippets in Google search results, taking up more of the page and so usually earning more clicks — the size of the lift varies a lot by keyword and competition, so compare Search Console before and after. At the same time, AI search engines can directly extract answers from the FAQ Schema to recommend your product.
 
 ---
 

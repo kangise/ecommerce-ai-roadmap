@@ -48,6 +48,10 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ## 1. 広告の方法論: AI の前に理解すべき基礎
 
+<!-- claims: illustrative -->
+
+> 本節の金額と百分率は式とトレードオフの動きを示すための計算例であり、市場の実測値ではない。
+
 > **関連**: [D4 Walmart AI ガイド](../d-platforms/d4-walmart-ai-guide.md) Walmart Connect 広告(第一価格入札)は D4 へ · [E1 Instagram/Facebook AI ガイド](../e-social-media/e1-instagram-facebook-ai-guide.md) Meta Advantage+ AI 広告素材生成と最適化は E1 へ · [E7 クロスチャネル戦略](../e-social-media/e7-social-media-cross-channel.md) クロスチャネルのアトリビューションと予算配分フレームは E7 へ。
 
 ### 1.1 Amazon 広告の第一原理
@@ -151,6 +155,10 @@ AI が苦手なこと:
 
 ## 2. AI ツール全景: 広告段階で何を使うか
 
+<!-- claims: verified 2026-08 -->
+
+> 本節のツール価格は 2026-08 時点で確認したもの。SaaS の価格は頻繁に変わるため、契約前に各社の公式サイトで再確認すること。
+
 ### 2.1 有料ツールの詳細評価
 
 | ツール | 価格 | 中核能力 | 向く相手 | AI 機能 |
@@ -219,6 +227,10 @@ Content rephrased for compliance with licensing restrictions. Sources: [deepbi.c
 ---
 
 ## 3. プロンプトテンプレート集(広告専用)
+
+<!-- claims: illustrative -->
+
+> 本節の金額と百分率は式とトレードオフの動きを示すための計算例であり、市場の実測値ではない。
 
 > **本書のプロンプト記法の約束**: 以下のテンプレートはそのまま使えるが、数値・予測・推薦が絡む場面では [F2 §4.3 のデータ規律ブロック](../0-foundations/f2-prompt-engineering.md#43-そのまま貼れるデータ規律ブロック)を貼り込むことを勧める。渡していないデータをモデルが捏造するのを禁じるもので、この種のプロンプトが最も事故を起こしやすい箇所だ。
 
@@ -825,6 +837,10 @@ Agent 化した後、上で貼り付けを求めているデータはここか�
 
 ## 4. 広告実践ワークフロー
 
+<!-- claims: benchmark -->
+
+> ここの倍率と幅は出発点としての推奨値であり、実測平均ではない。最初のセールを回したら自分の数値に置き換えること。
+
 ### 4.1 新商品広告立ち上げ SOP(30 日計画)
 
 この SOP は新商品広告をゼロから安定運用までの流れを標準化します。各ステップに使用ツールとプロンプトを明記。
@@ -960,6 +976,10 @@ Step 4: 変化を記録(5 分)
 ---
 
 ## 6. 上級テクニック
+
+<!-- claims: illustrative -->
+
+> 本節の金額と百分率は式とトレードオフの動きを示すための計算例であり、市場の実測値ではない。
 
 ### 6.1 Amazon Ads MCP Server(2026 新トレンド)
 

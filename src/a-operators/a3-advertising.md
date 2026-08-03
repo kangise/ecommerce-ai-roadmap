@@ -48,6 +48,10 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ## 1. 广告方法论：AI 之前你需要理解的基础
 
+<!-- claims: illustrative -->
+
+> 本节的金额和百分比是演算示例，用来说明公式和取舍关系，不是市场实测值。
+
 > **相关阅读**: [D4 Walmart AI 指南](../d-platforms/d4-walmart-ai-guide.md) Walmart Connect 广告（第一价格竞价）详见 D4 · [E1 Instagram/Facebook AI 指南](../e-social-media/e1-instagram-facebook-ai-guide.md) Meta Advantage+ AI 广告素材生成和优化详见 E1。 · [E7 跨渠道协同](../e-social-media/e7-social-media-cross-channel.md) 跨渠道广告归因和预算分配框架详见 E7。
 
 ### 1.1 Amazon 广告的第一性原理
@@ -151,6 +155,10 @@ AI 不擅长的：
 
 ## 2. AI 工具全景：广告阶段用什么
 
+<!-- claims: verified 2026-08 -->
+
+> 本节的工具价格核验日期: 2026-08。SaaS 定价变动频繁，下单前请到各家官网复核。
+
 ### 2.1 付费工具深度评测
 
 | 工具 | 价格 | 核心能力 | 适合谁 | AI 功能 |
@@ -219,6 +227,10 @@ Content rephrased for compliance with licensing restrictions. Sources: [deepbi.c
 ---
 
 ## 3. Prompt 模板库（广告专用）
+
+<!-- claims: illustrative -->
+
+> 本节的金额和百分比是演算示例，用来说明公式和取舍关系，不是市场实测值。
 
 > **本库 Prompt 写法约定**：下面的模板可直接用，但涉及数字、预测、推荐的场景，建议把 [F2 §4.3 的数据纪律块](../0-foundations/f2-prompt-engineering.md#43-可以直接粘的数据纪律块)粘进去——它禁止模型编造你没提供的数据，是这类 Prompt 最容易出事的地方。
 
@@ -930,6 +942,10 @@ Week 4（评估期）：
 
 ## 4. 广告实战工作流
 
+<!-- claims: benchmark -->
+
+> 本节的倍数和幅度是起步建议值，用来给你一个出发点，不是实测均值。第一次大促跑完后用自己的数据替换。
+
 ### 4.1 新品广告启动 SOP（30 天计划）
 
 这套 SOP 把新品广告从零开始到稳定运行的流程标准化。每一步都标注了使用的工具和 Prompt。
@@ -1065,6 +1081,10 @@ Step 4: 记录变化（5 分钟）
 ---
 
 ## 6. 进阶技巧
+
+<!-- claims: illustrative -->
+
+> 本节的金额和百分比是演算示例，用来说明公式和取舍关系，不是市场实测值。
 
 ### 6.1 Amazon Ads MCP Server（2026 新趋势）
 
