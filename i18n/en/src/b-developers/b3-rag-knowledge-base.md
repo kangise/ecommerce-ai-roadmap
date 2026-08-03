@@ -251,10 +251,10 @@ response = query_engine.query("What is the return policy?")
 print("Answer:", response)
 print("\n--- Citation sources ---")
 for node in response.source_nodes:
-print(f"File: {node.metadata.get('file_name', 'unknown')}")
-print(f"Similarity: {node.score:.4f}")
-print(f"Content: {node.text[:200]}...")
-print()
+    print(f"File: {node.metadata.get('file_name', 'unknown')}")
+    print(f"Similarity: {node.score:.4f}")
+    print(f"Content: {node.text[:200]}...")
+    print()
 ```
 
 > **Explainability**: a big advantage of RAG is that every answer traces back to source docs. This matters a lot in e-commerce — when a CS agent uses AI to answer a customer, the answer must be verifiable.
@@ -267,105 +267,105 @@ Real scenario: you have a pile of product manuals (PDF/Word/Markdown) and want A
 import os
 from pathlib import Path
 from llama_index.core import (
-VectorStoreIndex,
-SimpleDirectoryReader,
-Settings,
-StorageContext,
-load_index_from_storage,
+    VectorStoreIndex,
+    SimpleDirectoryReader,
+    Settings,
+    StorageContext,
+    load_index_from_storage,
 )
 from llama_index.core.node_parser import SentenceSplitter
 
 def build_product_faq(
-docs_dir: str,
-chunk_size: int = 512,
-chunk_overlap: int = 50,
-persist_dir: str = "storage/product_faq"
+    docs_dir: str,
+    chunk_size: int = 512,
+    chunk_overlap: int = 50,
+    persist_dir: str = "storage/product_faq"
 ) -> VectorStoreIndex:
-"""
-Build an FAQ knowledge base from product docs.
+    """
+    Build an FAQ knowledge base from product docs.
 
-Args:
-docs_dir: product-docs directory (supports .txt, .pdf, .md, .docx, .csv)
-chunk_size: chunk size (tokens)
-chunk_overlap: chunk-overlap size
-persist_dir: index-persistence directory
+    Args:
+        docs_dir: product-docs directory (supports .txt, .pdf, .md, .docx, .csv)
+        chunk_size: chunk size (tokens)
+        chunk_overlap: chunk-overlap size
+        persist_dir: index-persistence directory
 
-Returns:
-the built vector index
-"""
-# Check for an existing persisted index
-if Path(persist_dir).exists():
-print("Loading existing index...")
-storage_context = StorageContext.from_defaults(persist_dir=persist_dir)
-index = load_index_from_storage(storage_context)
-print("Index loaded")
-return index
+    Returns:
+        the built vector index
+    """
+    # Check for an existing persisted index
+    if Path(persist_dir).exists():
+        print("Loading existing index...")
+        storage_context = StorageContext.from_defaults(persist_dir=persist_dir)
+        index = load_index_from_storage(storage_context)
+        print("Index loaded")
+        return index
 
-# 1. Load docs
-print(f"Loading docs from {docs_dir}...")
-documents = SimpleDirectoryReader(
-docs_dir,
-recursive=True,
-filename_as_id=True,
-).load_data()
-print(f"Loaded {len(documents)} documents")
+    # 1. Load docs
+    print(f"Loading docs from {docs_dir}...")
+    documents = SimpleDirectoryReader(
+        docs_dir,
+        recursive=True,
+        filename_as_id=True,
+    ).load_data()
+    print(f"Loaded {len(documents)} documents")
 
-# 2. Configure the chunking strategy
-text_splitter = SentenceSplitter(
-chunk_size=chunk_size,
-chunk_overlap=chunk_overlap,
-)
-Settings.text_splitter = text_splitter
+    # 2. Configure the chunking strategy
+    text_splitter = SentenceSplitter(
+        chunk_size=chunk_size,
+        chunk_overlap=chunk_overlap,
+    )
+    Settings.text_splitter = text_splitter
 
-# 3. Build the index
-print("Building the vector index...")
-index = VectorStoreIndex.from_documents(documents, show_progress=True)
+    # 3. Build the index
+    print("Building the vector index...")
+    index = VectorStoreIndex.from_documents(documents, show_progress=True)
 
-# 4. Persist (no rebuild next time)
-index.storage_context.persist(persist_dir=persist_dir)
-print(f"Index saved to {persist_dir}")
+    # 4. Persist (no rebuild next time)
+    index.storage_context.persist(persist_dir=persist_dir)
+    print(f"Index saved to {persist_dir}")
 
-return index
+    return index
 
 def query_product_faq(
-index: VectorStoreIndex,
-question: str,
-top_k: int = 3,
-response_mode: str = "compact"
+    index: VectorStoreIndex,
+    question: str,
+    top_k: int = 3,
+    response_mode: str = "compact"
 ) -> dict:
-"""
-Query the product-FAQ knowledge base.
+    """
+    Query the product-FAQ knowledge base.
 
-Args:
-index: vector index
-question: user question
-top_k: number of doc chunks to retrieve
-response_mode: answer mode
-- "compact": compress all retrieved content into a concise answer (recommended)
-- "refine": refine the answer chunk by chunk (more accurate but slower)
-- "tree_summarize": tree summarization (for long answers)
-"""
-query_engine = index.as_query_engine(
-similarity_top_k=top_k,
-response_mode=response_mode,
-)
+    Args:
+        index: vector index
+        question: user question
+        top_k: number of doc chunks to retrieve
+        response_mode: answer mode
+            - "compact": compress all retrieved content into a concise answer (recommended)
+            - "refine": refine the answer chunk by chunk (more accurate but slower)
+            - "tree_summarize": tree summarization (for long answers)
+    """
+    query_engine = index.as_query_engine(
+        similarity_top_k=top_k,
+        response_mode=response_mode,
+    )
 
-response = query_engine.query(question)
+    response = query_engine.query(question)
 
-sources = []
-for node in response.source_nodes:
-sources.append({
-"file": node.metadata.get("file_name", "unknown"),
-"score": round(node.score, 4) if node.score else None,
-"text_preview": node.text[:300],
-})
+    sources = []
+    for node in response.source_nodes:
+        sources.append({
+            "file": node.metadata.get("file_name", "unknown"),
+            "score": round(node.score, 4) if node.score else None,
+            "text_preview": node.text[:300],
+        })
 
-return {
-"question": question,
-"answer": str(response),
-"sources": sources,
-"num_sources": len(sources),
-}
+    return {
+        "question": question,
+        "answer": str(response),
+        "sources": sources,
+        "num_sources": len(sources),
+    }
 
 # Usage example
 # index = build_product_faq("data/product_docs", chunk_size=512)
@@ -394,117 +394,117 @@ from llama_index.core.node_parser import SentenceSplitter
 import pandas as pd
 
 def load_review_data(csv_path: str, text_col: str = "review_text",
-max_reviews: int = 1000) -> list:
-"""Convert Review CSV data into LlamaIndex Document objects."""
-df = pd.read_csv(csv_path)
+                     max_reviews: int = 1000) -> list:
+    """Convert Review CSV data into LlamaIndex Document objects."""
+    df = pd.read_csv(csv_path)
 
-if len(df) > max_reviews:
-df = df.sort_values("rating", ascending=True).head(max_reviews)
+    if len(df) > max_reviews:
+        df = df.sort_values("rating", ascending=True).head(max_reviews)
 
-documents = []
-for _, row in df.iterrows():
-text = str(row.get(text_col, ""))
-if len(text.strip()) < 10:
-continue
+    documents = []
+    for _, row in df.iterrows():
+        text = str(row.get(text_col, ""))
+        if len(text.strip()) < 10:
+            continue
 
-metadata = {
-"source": "customer_review",
-"rating": int(row.get("rating", 0)),
-"asin": str(row.get("asin", "")),
-"date": str(row.get("date", "")),
-}
-doc = Document(text=text, metadata=metadata)
-documents.append(doc)
+        metadata = {
+            "source": "customer_review",
+            "rating": int(row.get("rating", 0)),
+            "asin": str(row.get("asin", "")),
+            "date": str(row.get("date", "")),
+        }
+        doc = Document(text=text, metadata=metadata)
+        documents.append(doc)
 
-print(f"Loaded {len(documents)} reviews")
-return documents
+    print(f"Loaded {len(documents)} reviews")
+    return documents
 
 def build_multi_source_rag(
-product_docs_dir: str = None,
-policy_docs_dir: str = None,
-review_csv: str = None,
-sop_docs_dir: str = None,
-chunk_size: int = 512,
+    product_docs_dir: str = None,
+    policy_docs_dir: str = None,
+    review_csv: str = None,
+    sop_docs_dir: str = None,
+    chunk_size: int = 512,
 ) -> VectorStoreIndex:
-"""
-Build a multi-data-source RAG index.
-Merge multiple document types into the same vector index;
-each document carries a source metadata for easy filtering and tracing.
-"""
-all_documents = []
+    """
+    Build a multi-data-source RAG index.
+    Merge multiple document types into the same vector index;
+    each document carries a source metadata for easy filtering and tracing.
+    """
+    all_documents = []
 
-if product_docs_dir:
-docs = SimpleDirectoryReader(product_docs_dir).load_data()
-for doc in docs:
-doc.metadata["source"] = "product_manual"
-all_documents.extend(docs)
-print(f"Product docs: {len(docs)}")
+    if product_docs_dir:
+        docs = SimpleDirectoryReader(product_docs_dir).load_data()
+        for doc in docs:
+            doc.metadata["source"] = "product_manual"
+        all_documents.extend(docs)
+        print(f"Product docs: {len(docs)}")
 
-if policy_docs_dir:
-docs = SimpleDirectoryReader(policy_docs_dir).load_data()
-for doc in docs:
-doc.metadata["source"] = "policy"
-all_documents.extend(docs)
-print(f"Policy docs: {len(docs)}")
+    if policy_docs_dir:
+        docs = SimpleDirectoryReader(policy_docs_dir).load_data()
+        for doc in docs:
+            doc.metadata["source"] = "policy"
+        all_documents.extend(docs)
+        print(f"Policy docs: {len(docs)}")
 
-if review_csv:
-review_docs = load_review_data(review_csv)
-all_documents.extend(review_docs)
+    if review_csv:
+        review_docs = load_review_data(review_csv)
+        all_documents.extend(review_docs)
 
-if sop_docs_dir:
-docs = SimpleDirectoryReader(sop_docs_dir).load_data()
-for doc in docs:
-doc.metadata["source"] = "sop"
-all_documents.extend(docs)
-print(f"SOP docs: {len(docs)}")
+    if sop_docs_dir:
+        docs = SimpleDirectoryReader(sop_docs_dir).load_data()
+        for doc in docs:
+            doc.metadata["source"] = "sop"
+        all_documents.extend(docs)
+        print(f"SOP docs: {len(docs)}")
 
-print(f"\nTotal: {len(all_documents)} documents")
+    print(f"\nTotal: {len(all_documents)} documents")
 
-Settings.text_splitter = SentenceSplitter(chunk_size=chunk_size, chunk_overlap=50)
-index = VectorStoreIndex.from_documents(all_documents, show_progress=True)
+    Settings.text_splitter = SentenceSplitter(chunk_size=chunk_size, chunk_overlap=50)
+    index = VectorStoreIndex.from_documents(all_documents, show_progress=True)
 
-print("Multi-source RAG index built")
-return index
+    print("Multi-source RAG index built")
+    return index
 
 def query_with_source_filter(
-index: VectorStoreIndex,
-question: str,
-source_filter: str = None,
-top_k: int = 5,
+    index: VectorStoreIndex,
+    question: str,
+    source_filter: str = None,
+    top_k: int = 5,
 ) -> dict:
-"""
-Query with data-source filtering.
+    """
+    Query with data-source filtering.
 
-Args:
-source_filter: data-source filter
-- None: search all sources
-- "product_manual": search product docs only
-- "policy": search policy docs only
-- "customer_review": search Reviews only
-- "sop": search SOPs only
-"""
-from llama_index.core.vector_stores import (
-MetadataFilter, MetadataFilters, FilterOperator,
-)
+    Args:
+        source_filter: data-source filter
+            - None: search all sources
+            - "product_manual": search product docs only
+            - "policy": search policy docs only
+            - "customer_review": search Reviews only
+            - "sop": search SOPs only
+    """
+    from llama_index.core.vector_stores import (
+        MetadataFilter, MetadataFilters, FilterOperator,
+    )
 
-filters = None
-if source_filter:
-filters = MetadataFilters(filters=[
-MetadataFilter(key="source", operator=FilterOperator.EQ, value=source_filter)
-])
+    filters = None
+    if source_filter:
+        filters = MetadataFilters(filters=[
+            MetadataFilter(key="source", operator=FilterOperator.EQ, value=source_filter)
+        ])
 
-query_engine = index.as_query_engine(similarity_top_k=top_k, filters=filters)
-response = query_engine.query(question)
+    query_engine = index.as_query_engine(similarity_top_k=top_k, filters=filters)
+    response = query_engine.query(question)
 
-sources = []
-for node in response.source_nodes:
-sources.append({
-"source_type": node.metadata.get("source", "unknown"),
-"file": node.metadata.get("file_name", ""),
-"score": round(node.score, 4) if node.score else None,
-})
+    sources = []
+    for node in response.source_nodes:
+        sources.append({
+            "source_type": node.metadata.get("source", "unknown"),
+            "file": node.metadata.get("file_name", ""),
+            "score": round(node.score, 4) if node.score else None,
+        })
 
-return {"question": question, "answer": str(response), "sources": sources}
+    return {"question": question, "answer": str(response), "sources": sources}
 
 # Usage example
 # index = build_multi_source_rag(
@@ -528,54 +528,54 @@ from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, StorageCon
 from llama_index.vector_stores.chroma import ChromaVectorStore
 
 def create_chroma_index(
-docs_dir: str,
-collection_name: str = "product_knowledge",
-persist_dir: str = "chroma_db",
+    docs_dir: str,
+    collection_name: str = "product_knowledge",
+    persist_dir: str = "chroma_db",
 ) -> VectorStoreIndex:
-"""
-Create a persisted vector index with Chroma.
+    """
+    Create a persisted vector index with Chroma.
 
-Chroma's advantages:
-- Data persisted to disk, survives restart
-- Supports incrementally adding docs (no need to rebuild the whole index)
-- Supports metadata filtering
-- Zero-config, embedded operation
-"""
-chroma_client = chromadb.PersistentClient(path=persist_dir)
-chroma_collection = chroma_client.get_or_create_collection(name=collection_name)
+    Chroma's advantages:
+    - Data persisted to disk, survives restart
+    - Supports incrementally adding docs (no need to rebuild the whole index)
+    - Supports metadata filtering
+    - Zero-config, embedded operation
+    """
+    chroma_client = chromadb.PersistentClient(path=persist_dir)
+    chroma_collection = chroma_client.get_or_create_collection(name=collection_name)
 
-print(f"Collection '{collection_name}': {chroma_collection.count()} existing vectors")
+    print(f"Collection '{collection_name}': {chroma_collection.count()} existing vectors")
 
-vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
-storage_context = StorageContext.from_defaults(vector_store=vector_store)
+    vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
+    storage_context = StorageContext.from_defaults(vector_store=vector_store)
 
-documents = SimpleDirectoryReader(docs_dir).load_data()
-index = VectorStoreIndex.from_documents(
-documents, storage_context=storage_context, show_progress=True
-)
+    documents = SimpleDirectoryReader(docs_dir).load_data()
+    index = VectorStoreIndex.from_documents(
+        documents, storage_context=storage_context, show_progress=True
+    )
 
-print(f"Index built, {chroma_collection.count()} vectors total")
-return index
+    print(f"Index built, {chroma_collection.count()} vectors total")
+    return index
 
 def load_existing_chroma_index(
-collection_name: str = "product_knowledge",
-persist_dir: str = "chroma_db",
+    collection_name: str = "product_knowledge",
+    persist_dir: str = "chroma_db",
 ) -> VectorStoreIndex:
-"""Load an existing Chroma index (no rebuild)."""
-chroma_client = chromadb.PersistentClient(path=persist_dir)
-chroma_collection = chroma_client.get_collection(name=collection_name)
-vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
-index = VectorStoreIndex.from_vector_store(vector_store)
-print(f"Loaded existing index: {chroma_collection.count()} vectors")
-return index
+    """Load an existing Chroma index (no rebuild)."""
+    chroma_client = chromadb.PersistentClient(path=persist_dir)
+    chroma_collection = chroma_client.get_collection(name=collection_name)
+    vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
+    index = VectorStoreIndex.from_vector_store(vector_store)
+    print(f"Loaded existing index: {chroma_collection.count()} vectors")
+    return index
 
 def add_documents_to_index(index: VectorStoreIndex, new_docs_dir: str) -> int:
-"""Incrementally add new docs to the existing index. No need to rebuild the whole index."""
-new_documents = SimpleDirectoryReader(new_docs_dir).load_data()
-for doc in new_documents:
-index.insert(doc)
-print(f"Added {len(new_documents)} documents to the index")
-return len(new_documents)
+    """Incrementally add new docs to the existing index. No need to rebuild the whole index."""
+    new_documents = SimpleDirectoryReader(new_docs_dir).load_data()
+    for doc in new_documents:
+        index.insert(doc)
+    print(f"Added {len(new_documents)} documents to the index")
+    return len(new_documents)
 
 # Usage example
 # index = create_chroma_index("data/product_docs", persist_dir="chroma_db")
@@ -611,46 +611,46 @@ from llama_index.llms.ollama import Ollama
 from llama_index.embeddings.ollama import OllamaEmbedding
 
 def build_local_rag(
-docs_dir: str,
-llm_model: str = "qwen3:8b",
-embed_model: str = "nomic-embed-text",
-ollama_base_url: str = "http://localhost:11434",
+    docs_dir: str,
+    llm_model: str = "qwen3:8b",
+    embed_model: str = "nomic-embed-text",
+    ollama_base_url: str = "http://localhost:11434",
 ) -> VectorStoreIndex:
-"""
-Build a fully local RAG system (no external API calls at all).
+    """
+    Build a fully local RAG system (no external API calls at all).
 
-Prerequisite:
-1. Ollama installed
-2. LLM model downloaded: ollama pull qwen3:8b
-3. Embedding model downloaded: ollama pull nomic-embed-text
-"""
-# Configure the local LLM
-llm = Ollama(
-model=llm_model,
-base_url=ollama_base_url,
-request_timeout=120.0,
-temperature=0.1,
-)
+    Prerequisite:
+    1. Ollama installed
+    2. LLM model downloaded: ollama pull qwen3:8b
+    3. Embedding model downloaded: ollama pull nomic-embed-text
+    """
+    # Configure the local LLM
+    llm = Ollama(
+        model=llm_model,
+        base_url=ollama_base_url,
+        request_timeout=120.0,
+        temperature=0.1,
+    )
 
-# Configure the local embedding
-embed = OllamaEmbedding(
-model_name=embed_model,
-base_url=ollama_base_url,
-)
+    # Configure the local embedding
+    embed = OllamaEmbedding(
+        model_name=embed_model,
+        base_url=ollama_base_url,
+    )
 
-# Set global config (replaces OpenAI)
-Settings.llm = llm
-Settings.embed_model = embed
+    # Set global config (replaces OpenAI)
+    Settings.llm = llm
+    Settings.embed_model = embed
 
-# Load docs and build the index
-documents = SimpleDirectoryReader(docs_dir).load_data()
-print(f"Loaded {len(documents)} documents")
+    # Load docs and build the index
+    documents = SimpleDirectoryReader(docs_dir).load_data()
+    print(f"Loaded {len(documents)} documents")
 
-index = VectorStoreIndex.from_documents(documents, show_progress=True)
+    index = VectorStoreIndex.from_documents(documents, show_progress=True)
 
-print(f"Local RAG built (LLM: {llm_model}, Embed: {embed_model})")
-print("All data processed locally, not sent to any external service")
-return index
+    print(f"Local RAG built (LLM: {llm_model}, Embed: {embed_model})")
+    print("All data processed locally, not sent to any external service")
+    return index
 
 # Usage example
 # index = build_local_rag("data/product_docs")
@@ -690,71 +690,71 @@ RAG evaluation has three core dimensions:
 
 from ragas import evaluate
 from ragas.metrics import (
-faithfulness, answer_relevancy,
-context_precision, context_recall,
+    faithfulness, answer_relevancy,
+    context_precision, context_recall,
 )
 from datasets import Dataset
 
 def evaluate_rag_quality(
-questions: list[str],
-answers: list[str],
-contexts: list[list[str]],
-ground_truths: list[str] = None,
+    questions: list[str],
+    answers: list[str],
+    contexts: list[list[str]],
+    ground_truths: list[str] = None,
 ) -> dict:
-"""
-Evaluate RAG-system quality with the RAGAS framework.
+    """
+    Evaluate RAG-system quality with the RAGAS framework.
 
-Args:
-questions: list of test questions
-answers: list of the RAG system's answers
-contexts: list of contexts retrieved for each question
-ground_truths: reference answers (optional; more accurate evaluation if provided)
-"""
-data = {
-"question": questions,
-"answer": answers,
-"contexts": contexts,
-}
+    Args:
+        questions: list of test questions
+        answers: list of the RAG system's answers
+        contexts: list of contexts retrieved for each question
+        ground_truths: reference answers (optional; more accurate evaluation if provided)
+    """
+    data = {
+        "question": questions,
+        "answer": answers,
+        "contexts": contexts,
+    }
 
-metrics = [faithfulness, answer_relevancy, context_precision]
+    metrics = [faithfulness, answer_relevancy, context_precision]
 
-if ground_truths:
-data["ground_truth"] = ground_truths
-metrics.append(context_recall)
+    if ground_truths:
+        data["ground_truth"] = ground_truths
+        metrics.append(context_recall)
 
-dataset = Dataset.from_dict(data)
-result = evaluate(dataset=dataset, metrics=metrics)
+    dataset = Dataset.from_dict(data)
+    result = evaluate(dataset=dataset, metrics=metrics)
 
-print("RAG evaluation results:")
-print(f"Faithfulness: {result['faithfulness']:.3f}")
-print(f"Answer Relevancy: {result['answer_relevancy']:.3f}")
-print(f"Context Precision: {result['context_precision']:.3f}")
-if ground_truths:
-print(f"Context Recall: {result['context_recall']:.3f}")
+    print("RAG evaluation results:")
+    print(f"Faithfulness: {result['faithfulness']:.3f}")
+    print(f"Answer Relevancy: {result['answer_relevancy']:.3f}")
+    print(f"Context Precision: {result['context_precision']:.3f}")
+    if ground_truths:
+        print(f"Context Recall: {result['context_recall']:.3f}")
 
-return dict(result)
+    return dict(result)
 
 def create_eval_dataset(index, eval_questions: list[dict]) -> tuple:
-"""
-Generate an evaluation dataset from the RAG system.
+    """
+    Generate an evaluation dataset from the RAG system.
 
-Args:
-eval_questions: [{"question": "...", "ground_truth": "..."}, ...]
-"""
-questions, answers, contexts, ground_truths = [], [], [], []
-query_engine = index.as_query_engine(similarity_top_k=3)
+    Args:
+        eval_questions: [{"question": "...", "ground_truth": "..."}, ...]
+    """
+    questions, answers, contexts, ground_truths = [], [], [], []
+    query_engine = index.as_query_engine(similarity_top_k=3)
 
-for item in eval_questions:
-q = item["question"]
-response = query_engine.query(q)
+    for item in eval_questions:
+        q = item["question"]
+        response = query_engine.query(q)
 
-questions.append(q)
-answers.append(str(response))
-contexts.append([node.text for node in response.source_nodes])
-if "ground_truth" in item:
-ground_truths.append(item["ground_truth"])
+        questions.append(q)
+        answers.append(str(response))
+        contexts.append([node.text for node in response.source_nodes])
+        if "ground_truth" in item:
+            ground_truths.append(item["ground_truth"])
 
-return questions, answers, contexts, ground_truths or None
+    return questions, answers, contexts, ground_truths or None
 
 # Usage example
 # eval_questions = [
@@ -799,7 +799,7 @@ from llama_index.core.prompts import PromptTemplate
 
 # Custom CS prompt — controls answer style and boundaries
 CUSTOMER_SERVICE_PROMPT = PromptTemplate(
-"""You are a professional e-commerce CS assistant. Answer the customer's question based on the product docs below.
+    """You are a professional e-commerce CS assistant. Answer the customer's question based on the product docs below.
 
 Rules:
 1. Answer only based on the provided doc content, don't make up information
@@ -816,40 +816,40 @@ Answer:"""
 )
 
 def build_customer_service_bot(docs_dir: str, chunk_size: int = 256) -> VectorStoreIndex:
-"""
-Build a CS Q&A bot.
+    """
+    Build a CS Q&A bot.
 
-Special config for CS scenarios:
-- smaller chunk_size (256): CS questions are usually very specific, small-chunk retrieval is more precise
-- larger top_k (5): retrieve a few more passages to reduce misses
-- custom prompt: control answer style and safety boundaries
-"""
-from llama_index.core.node_parser import SentenceSplitter
+    Special config for CS scenarios:
+    - smaller chunk_size (256): CS questions are usually very specific, small-chunk retrieval is more precise
+    - larger top_k (5): retrieve a few more passages to reduce misses
+    - custom prompt: control answer style and safety boundaries
+    """
+    from llama_index.core.node_parser import SentenceSplitter
 
-Settings.text_splitter = SentenceSplitter(chunk_size=chunk_size, chunk_overlap=30)
-documents = SimpleDirectoryReader(docs_dir, recursive=True).load_data()
-index = VectorStoreIndex.from_documents(documents, show_progress=True)
+    Settings.text_splitter = SentenceSplitter(chunk_size=chunk_size, chunk_overlap=30)
+    documents = SimpleDirectoryReader(docs_dir, recursive=True).load_data()
+    index = VectorStoreIndex.from_documents(documents, show_progress=True)
 
-print(f"CS knowledge base built: {len(documents)} documents")
-return index
+    print(f"CS knowledge base built: {len(documents)} documents")
+    return index
 
 def answer_customer_question(index: VectorStoreIndex, question: str) -> dict:
-"""Answer a customer question, with source traceability."""
-query_engine = index.as_query_engine(
-similarity_top_k=5,
-text_qa_template=CUSTOMER_SERVICE_PROMPT,
-)
-response = query_engine.query(question)
+    """Answer a customer question, with source traceability."""
+    query_engine = index.as_query_engine(
+        similarity_top_k=5,
+        text_qa_template=CUSTOMER_SERVICE_PROMPT,
+    )
+    response = query_engine.query(question)
 
-return {
-"question": question,
-"answer": str(response),
-"confidence": "high" if response.source_nodes
-and response.source_nodes[0].score
-and response.source_nodes[0].score > 0.8
-else "medium",
-"sources": [node.metadata.get("file_name", "") for node in response.source_nodes],
-}
+    return {
+        "question": question,
+        "answer": str(response),
+        "confidence": "high" if response.source_nodes
+                      and response.source_nodes[0].score
+                      and response.source_nodes[0].score > 0.8
+                      else "medium",
+        "sources": [node.metadata.get("file_name", "") for node in response.source_nodes],
+    }
 
 # Usage example
 # index = build_customer_service_bot("data/customer_service_docs")
@@ -865,33 +865,33 @@ Amazon's policy docs are many and long, and the compliance team often needs to l
 
 ```python
 def build_compliance_rag(policy_docs_dir: str, chunk_size: int = 1024) -> VectorStoreIndex:
-"""
-Build a compliance-policy lookup system.
+    """
+    Build a compliance-policy lookup system.
 
-Special handling for policy docs:
-- larger chunk_size (1024): policy clauses are usually long, need full context
-- larger overlap (100): avoid truncating clauses
-"""
-from llama_index.core.node_parser import SentenceSplitter
+    Special handling for policy docs:
+    - larger chunk_size (1024): policy clauses are usually long, need full context
+    - larger overlap (100): avoid truncating clauses
+    """
+    from llama_index.core.node_parser import SentenceSplitter
 
-Settings.text_splitter = SentenceSplitter(chunk_size=chunk_size, chunk_overlap=100)
+    Settings.text_splitter = SentenceSplitter(chunk_size=chunk_size, chunk_overlap=100)
 
-documents = SimpleDirectoryReader(policy_docs_dir, recursive=True).load_data()
+    documents = SimpleDirectoryReader(policy_docs_dir, recursive=True).load_data()
 
-for doc in documents:
-filename = doc.metadata.get("file_name", "")
-if "fba" in filename.lower():
-doc.metadata["policy_area"] = "FBA"
-elif "advertising" in filename.lower():
-doc.metadata["policy_area"] = "Advertising"
-elif "brand" in filename.lower():
-doc.metadata["policy_area"] = "Brand Registry"
-else:
-doc.metadata["policy_area"] = "General"
+    for doc in documents:
+        filename = doc.metadata.get("file_name", "")
+        if "fba" in filename.lower():
+            doc.metadata["policy_area"] = "FBA"
+        elif "advertising" in filename.lower():
+            doc.metadata["policy_area"] = "Advertising"
+        elif "brand" in filename.lower():
+            doc.metadata["policy_area"] = "Brand Registry"
+        else:
+            doc.metadata["policy_area"] = "General"
 
-index = VectorStoreIndex.from_documents(documents, show_progress=True)
-print(f"Compliance knowledge base built: {len(documents)} policy documents")
-return index
+    index = VectorStoreIndex.from_documents(documents, show_progress=True)
+    print(f"Compliance knowledge base built: {len(documents)} policy documents")
+    return index
 
 # Usage example
 # index = build_compliance_rag("data/amazon_policies")
@@ -905,24 +905,24 @@ New hires need to learn a lot of operations knowledge. RAG can turn training doc
 
 ```python
 def build_training_rag(
-sop_dir: str = None, case_study_dir: str = None, faq_dir: str = None,
+    sop_dir: str = None, case_study_dir: str = None, faq_dir: str = None,
 ) -> VectorStoreIndex:
-"""
-Build an internal-training knowledge base.
-Data sources: SOP docs, case library, FAQ
-"""
-all_docs = []
+    """
+    Build an internal-training knowledge base.
+    Data sources: SOP docs, case library, FAQ
+    """
+    all_docs = []
 
-for dir_path, doc_type in [(sop_dir, "sop"), (case_study_dir, "case_study"), (faq_dir, "faq")]:
-if dir_path:
-docs = SimpleDirectoryReader(dir_path).load_data()
-for d in docs:
-d.metadata["doc_type"] = doc_type
-all_docs.extend(docs)
+    for dir_path, doc_type in [(sop_dir, "sop"), (case_study_dir, "case_study"), (faq_dir, "faq")]:
+        if dir_path:
+            docs = SimpleDirectoryReader(dir_path).load_data()
+            for d in docs:
+                d.metadata["doc_type"] = doc_type
+            all_docs.extend(docs)
 
-index = VectorStoreIndex.from_documents(all_docs, show_progress=True)
-print(f"Training knowledge base: {len(all_docs)} documents")
-return index
+    index = VectorStoreIndex.from_documents(all_docs, show_progress=True)
+    print(f"Training knowledge base: {len(all_docs)} documents")
+    return index
 
 # Usage example
 # index = build_training_rag(sop_dir="data/sop", case_study_dir="data/cases", faq_dir="data/faq")
@@ -951,23 +951,23 @@ This is the most common RAG-system problem. 80% of the time a poor answer is due
 
 ```python
 def debug_retrieval(index, question: str, top_k: int = 5):
-"""
-Debug the retrieval result — see what the RAG actually retrieved.
-When answer quality is poor, check the retrieval step with this function first.
-"""
-retriever = index.as_retriever(similarity_top_k=top_k)
-nodes = retriever.retrieve(question)
+    """
+    Debug the retrieval result — see what the RAG actually retrieved.
+    When answer quality is poor, check the retrieval step with this function first.
+    """
+    retriever = index.as_retriever(similarity_top_k=top_k)
+    nodes = retriever.retrieve(question)
 
-print(f"Question: {question}")
-print(f"Retrieved {len(nodes)} document chunks:\n")
+    print(f"Question: {question}")
+    print(f"Retrieved {len(nodes)} document chunks:\n")
 
-for i, node in enumerate(nodes):
-score = f"{node.score:.4f}" if node.score else "N/A"
-file_name = node.metadata.get("file_name", "unknown")
-print(f"[{i+1}] Similarity: {score} | File: {file_name}")
-print(f"Content: {node.text[:200]}...")
-print()
-return nodes
+    for i, node in enumerate(nodes):
+        score = f"{node.score:.4f}" if node.score else "N/A"
+        file_name = node.metadata.get("file_name", "unknown")
+        print(f"[{i+1}] Similarity: {score} | File: {file_name}")
+        print(f"Content: {node.text[:200]}...")
+        print()
+    return nodes
 ```
 
 ### 6.2 Wrong chunk size
@@ -1041,37 +1041,37 @@ from llama_index.retrievers.bm25 import BM25Retriever
 from llama_index.core.retrievers import QueryFusionRetriever
 
 def build_hybrid_search(
-docs_dir: str,
-vector_top_k: int = 3,
-bm25_top_k: int = 3,
+    docs_dir: str,
+    vector_top_k: int = 3,
+    bm25_top_k: int = 3,
 ) -> tuple:
-"""
-Build hybrid search (vector + BM25 keyword).
+    """
+    Build hybrid search (vector + BM25 keyword).
 
-How it works:
-1. Vector search: finds semantically similar docs ("camera waterproof" → "the camera can be used underwater")
-2. BM25 search: finds keyword-matched docs ("B0XXXXX" → docs containing that ASIN)
-3. Fusion ranking: merge the two result lists with Reciprocal Rank Fusion
-"""
-documents = SimpleDirectoryReader(docs_dir).load_data()
-index = VectorStoreIndex.from_documents(documents, show_progress=True)
+    How it works:
+    1. Vector search: finds semantically similar docs ("camera waterproof" → "the camera can be used underwater")
+    2. BM25 search: finds keyword-matched docs ("B0XXXXX" → docs containing that ASIN)
+    3. Fusion ranking: merge the two result lists with Reciprocal Rank Fusion
+    """
+    documents = SimpleDirectoryReader(docs_dir).load_data()
+    index = VectorStoreIndex.from_documents(documents, show_progress=True)
 
-vector_retriever = index.as_retriever(similarity_top_k=vector_top_k)
+    vector_retriever = index.as_retriever(similarity_top_k=vector_top_k)
 
-from llama_index.core.node_parser import SentenceSplitter
-splitter = SentenceSplitter(chunk_size=512)
-nodes = splitter.get_nodes_from_documents(documents)
-bm25_retriever = BM25Retriever.from_defaults(nodes=nodes, similarity_top_k=bm25_top_k)
+    from llama_index.core.node_parser import SentenceSplitter
+    splitter = SentenceSplitter(chunk_size=512)
+    nodes = splitter.get_nodes_from_documents(documents)
+    bm25_retriever = BM25Retriever.from_defaults(nodes=nodes, similarity_top_k=bm25_top_k)
 
-hybrid_retriever = QueryFusionRetriever(
-retrievers=[vector_retriever, bm25_retriever],
-similarity_top_k=vector_top_k + bm25_top_k,
-num_queries=1,
-mode="reciprocal_rerank",
-)
+    hybrid_retriever = QueryFusionRetriever(
+        retrievers=[vector_retriever, bm25_retriever],
+        similarity_top_k=vector_top_k + bm25_top_k,
+        num_queries=1,
+        mode="reciprocal_rerank",
+    )
 
-print("Hybrid search built (vector + BM25)")
-return hybrid_retriever, index
+    print("Hybrid search built (vector + BM25)")
+    return hybrid_retriever, index
 
 # Usage example
 # retriever, index = build_hybrid_search("data/product_docs")
@@ -1090,29 +1090,29 @@ from llama_index.core import VectorStoreIndex
 from llama_index.core.postprocessor import SentenceTransformerRerank
 
 def query_with_reranking(
-index: VectorStoreIndex,
-question: str,
-initial_top_k: int = 10,
-final_top_k: int = 3,
-rerank_model: str = "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    index: VectorStoreIndex,
+    question: str,
+    initial_top_k: int = 10,
+    final_top_k: int = 3,
+    rerank_model: str = "cross-encoder/ms-marco-MiniLM-L-6-v2",
 ) -> str:
-"""
-Query with Re-ranking.
+    """
+    Query with Re-ranking.
 
-Flow:
-1. First retrieve initial_top_k candidate docs with vector search (coarse filter)
-2. Re-score the candidates with a Cross-Encoder model (fine sort)
-3. Take the final_top_k most relevant docs to generate the answer
-"""
-reranker = SentenceTransformerRerank(model=rerank_model, top_n=final_top_k)
+    Flow:
+    1. First retrieve initial_top_k candidate docs with vector search (coarse filter)
+    2. Re-score the candidates with a Cross-Encoder model (fine sort)
+    3. Take the final_top_k most relevant docs to generate the answer
+    """
+    reranker = SentenceTransformerRerank(model=rerank_model, top_n=final_top_k)
 
-query_engine = index.as_query_engine(
-similarity_top_k=initial_top_k,
-node_postprocessors=[reranker],
-)
+    query_engine = index.as_query_engine(
+        similarity_top_k=initial_top_k,
+        node_postprocessors=[reranker],
+    )
 
-response = query_engine.query(question)
-return str(response)
+    response = query_engine.query(question)
+    return str(response)
 ```
 
 ### 7.3 Agent + RAG
@@ -1125,55 +1125,55 @@ from llama_index.core.tools import QueryEngineTool, ToolMetadata
 from llama_index.core.agent import ReActAgent
 
 def build_rag_agent(
-product_docs_dir: str,
-policy_docs_dir: str,
-review_docs_dir: str,
+    product_docs_dir: str,
+    policy_docs_dir: str,
+    review_docs_dir: str,
 ) -> ReActAgent:
-"""
-Build a RAG Agent — auto-selects the data source to answer questions.
+    """
+    Build a RAG Agent — auto-selects the data source to answer questions.
 
-The Agent auto-judges which knowledge base to query based on the question:
-- Product-related questions → query product docs
-- Policy-related questions → query policy docs
-- Customer-feedback questions → query Review data
-"""
-product_index = VectorStoreIndex.from_documents(
-SimpleDirectoryReader(product_docs_dir).load_data()
-)
-policy_index = VectorStoreIndex.from_documents(
-SimpleDirectoryReader(policy_docs_dir).load_data()
-)
-review_index = VectorStoreIndex.from_documents(
-SimpleDirectoryReader(review_docs_dir).load_data()
-)
+    The Agent auto-judges which knowledge base to query based on the question:
+    - Product-related questions → query product docs
+    - Policy-related questions → query policy docs
+    - Customer-feedback questions → query Review data
+    """
+    product_index = VectorStoreIndex.from_documents(
+        SimpleDirectoryReader(product_docs_dir).load_data()
+    )
+    policy_index = VectorStoreIndex.from_documents(
+        SimpleDirectoryReader(policy_docs_dir).load_data()
+    )
+    review_index = VectorStoreIndex.from_documents(
+        SimpleDirectoryReader(review_docs_dir).load_data()
+    )
 
-tools = [
-QueryEngineTool(
-query_engine=product_index.as_query_engine(),
-metadata=ToolMetadata(
-name="product_knowledge",
-description="Query product specs, features, usage, and other product-related info.",
-),
-),
-QueryEngineTool(
-query_engine=policy_index.as_query_engine(),
-metadata=ToolMetadata(
-name="policy_knowledge",
-description="Query Amazon policies, compliance requirements, return rules, etc.",
-),
-),
-QueryEngineTool(
-query_engine=review_index.as_query_engine(),
-metadata=ToolMetadata(
-name="review_insights",
-description="Query customer reviews, feedback, complaints, etc.",
-),
-),
-]
+    tools = [
+        QueryEngineTool(
+            query_engine=product_index.as_query_engine(),
+            metadata=ToolMetadata(
+                name="product_knowledge",
+                description="Query product specs, features, usage, and other product-related info.",
+            ),
+        ),
+        QueryEngineTool(
+            query_engine=policy_index.as_query_engine(),
+            metadata=ToolMetadata(
+                name="policy_knowledge",
+                description="Query Amazon policies, compliance requirements, return rules, etc.",
+            ),
+        ),
+        QueryEngineTool(
+            query_engine=review_index.as_query_engine(),
+            metadata=ToolMetadata(
+                name="review_insights",
+                description="Query customer reviews, feedback, complaints, etc.",
+            ),
+        ),
+    ]
 
-agent = ReActAgent.from_tools(tools, verbose=True)
-print("RAG Agent built (3 knowledge-base tools)")
-return agent
+    agent = ReActAgent.from_tools(tools, verbose=True)
+    print("RAG Agent built (3 knowledge-base tools)")
+    return agent
 
 # Usage example
 # agent = build_rag_agent("data/product_docs", "data/policy_docs", "data/review_docs")
@@ -1284,7 +1284,7 @@ response = engine.query("your question") # ask
 
 # === View retrieval sources ===
 for node in response.source_nodes:
-print(node.metadata["file_name"], node.score, node.text[:100])
+    print(node.metadata["file_name"], node.score, node.text[:100])
 
 # === Custom chunking ===
 from llama_index.core.node_parser import SentenceSplitter
@@ -1314,7 +1314,7 @@ Settings.embed_model = OllamaEmbedding(model_name="nomic-embed-text")
 # === Metadata filtering ===
 from llama_index.core.vector_stores import MetadataFilter, MetadataFilters, FilterOperator
 filters = MetadataFilters(filters=[
-MetadataFilter(key="source", operator=FilterOperator.EQ, value="policy")
+    MetadataFilter(key="source", operator=FilterOperator.EQ, value="policy")
 ])
 engine = index.as_query_engine(filters=filters)
 
@@ -1328,8 +1328,8 @@ from ragas import evaluate
 from ragas.metrics import faithfulness, answer_relevancy
 from datasets import Dataset
 dataset = Dataset.from_dict({
-"question": questions, "answer": answers,
-"contexts": contexts, "ground_truth": truths,
+    "question": questions, "answer": answers,
+    "contexts": contexts, "ground_truth": truths,
 })
 result = evaluate(dataset=dataset, metrics=[faithfulness, answer_relevancy])
 ```

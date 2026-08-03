@@ -251,10 +251,10 @@ response = query_engine.query("返品ポリシーは何?")
 print("回答:", response)
 print("\n--- 引用元 ---")
 for node in response.source_nodes:
-print(f"ファイル: {node.metadata.get('file_name', 'unknown')}")
-print(f"類似度: {node.score:.4f}")
-print(f"内容: {node.text[:200]}...")
-print()
+    print(f"ファイル: {node.metadata.get('file_name', 'unknown')}")
+    print(f"類似度: {node.score:.4f}")
+    print(f"内容: {node.text[:200]}...")
+    print()
 ```
 
 > **説明可能性**: RAG の大きな利点は各回答がソース文書に遡れること。EC シーンで非常に重要 CS 担当が AI で顧客の質問に答えるとき、回答に根拠があることを確保する必要がある。
@@ -267,105 +267,105 @@ print()
 import os
 from pathlib import Path
 from llama_index.core import (
-VectorStoreIndex,
-SimpleDirectoryReader,
-Settings,
-StorageContext,
-load_index_from_storage,
+    VectorStoreIndex,
+    SimpleDirectoryReader,
+    Settings,
+    StorageContext,
+    load_index_from_storage,
 )
 from llama_index.core.node_parser import SentenceSplitter
 
 def build_product_faq(
-docs_dir: str,
-chunk_size: int = 512,
-chunk_overlap: int = 50,
-persist_dir: str = "storage/product_faq"
+    docs_dir: str,
+    chunk_size: int = 512,
+    chunk_overlap: int = 50,
+    persist_dir: str = "storage/product_faq"
 ) -> VectorStoreIndex:
-"""
-製品文書から FAQ 知識ベースを構築する。
+    """
+    製品文書から FAQ 知識ベースを構築する。
 
-Args:
-docs_dir: 製品文書ディレクトリ(.txt, .pdf, .md, .docx, .csv 対応)
-chunk_size: 分割サイズ(tokens)
-chunk_overlap: 分割の重複サイズ
-persist_dir: インデックス永続化ディレクトリ
+    Args:
+        docs_dir: 製品文書ディレクトリ(.txt, .pdf, .md, .docx, .csv 対応)
+        chunk_size: 分割サイズ(tokens)
+        chunk_overlap: 分割の重複サイズ
+        persist_dir: インデックス永続化ディレクトリ
 
-Returns:
-構築されたベクトルインデックス
-"""
-# 既存の永続化インデックスをチェック
-if Path(persist_dir).exists():
-print("既存インデックスをロード...")
-storage_context = StorageContext.from_defaults(persist_dir=persist_dir)
-index = load_index_from_storage(storage_context)
-print("インデックスのロード完了")
-return index
+    Returns:
+        構築されたベクトルインデックス
+    """
+    # 既存の永続化インデックスをチェック
+    if Path(persist_dir).exists():
+        print("既存インデックスをロード...")
+        storage_context = StorageContext.from_defaults(persist_dir=persist_dir)
+        index = load_index_from_storage(storage_context)
+        print("インデックスのロード完了")
+        return index
 
-# 1. 文書をロード
-print(f"{docs_dir} から文書をロード...")
-documents = SimpleDirectoryReader(
-docs_dir,
-recursive=True,
-filename_as_id=True,
-).load_data()
-print(f"{len(documents)} 個の文書をロード")
+    # 1. 文書をロード
+    print(f"{docs_dir} から文書をロード...")
+    documents = SimpleDirectoryReader(
+        docs_dir,
+        recursive=True,
+        filename_as_id=True,
+    ).load_data()
+    print(f"{len(documents)} 個の文書をロード")
 
-# 2. 分割戦略を設定
-text_splitter = SentenceSplitter(
-chunk_size=chunk_size,
-chunk_overlap=chunk_overlap,
-)
-Settings.text_splitter = text_splitter
+    # 2. 分割戦略を設定
+    text_splitter = SentenceSplitter(
+        chunk_size=chunk_size,
+        chunk_overlap=chunk_overlap,
+    )
+    Settings.text_splitter = text_splitter
 
-# 3. インデックスを構築
-print("ベクトルインデックスを構築...")
-index = VectorStoreIndex.from_documents(documents, show_progress=True)
+    # 3. インデックスを構築
+    print("ベクトルインデックスを構築...")
+    index = VectorStoreIndex.from_documents(documents, show_progress=True)
 
-# 4. 永続化(次回は再構築不要)
-index.storage_context.persist(persist_dir=persist_dir)
-print(f"インデックスを {persist_dir} に保存")
+    # 4. 永続化(次回は再構築不要)
+    index.storage_context.persist(persist_dir=persist_dir)
+    print(f"インデックスを {persist_dir} に保存")
 
-return index
+    return index
 
 def query_product_faq(
-index: VectorStoreIndex,
-question: str,
-top_k: int = 3,
-response_mode: str = "compact"
+    index: VectorStoreIndex,
+    question: str,
+    top_k: int = 3,
+    response_mode: str = "compact"
 ) -> dict:
-"""
-製品 FAQ 知識ベースを照会する。
+    """
+    製品 FAQ 知識ベースを照会する。
 
-Args:
-index: ベクトルインデックス
-question: ユーザーの質問
-top_k: 検索する文書ブロック数
-response_mode: 回答モード
-- "compact": すべての検索内容を圧縮して簡潔に回答(推奨)
-- "refine": ブロックごとに回答を精錬(より正確だが遅い)
-- "tree_summarize": 木状の要約(長い回答に向く)
-"""
-query_engine = index.as_query_engine(
-similarity_top_k=top_k,
-response_mode=response_mode,
-)
+    Args:
+        index: ベクトルインデックス
+        question: ユーザーの質問
+        top_k: 検索する文書ブロック数
+        response_mode: 回答モード
+            - "compact": すべての検索内容を圧縮して簡潔に回答(推奨)
+            - "refine": ブロックごとに回答を精錬(より正確だが遅い)
+            - "tree_summarize": 木状の要約(長い回答に向く)
+    """
+    query_engine = index.as_query_engine(
+        similarity_top_k=top_k,
+        response_mode=response_mode,
+    )
 
-response = query_engine.query(question)
+    response = query_engine.query(question)
 
-sources = []
-for node in response.source_nodes:
-sources.append({
-"file": node.metadata.get("file_name", "unknown"),
-"score": round(node.score, 4) if node.score else None,
-"text_preview": node.text[:300],
-})
+    sources = []
+    for node in response.source_nodes:
+        sources.append({
+            "file": node.metadata.get("file_name", "unknown"),
+            "score": round(node.score, 4) if node.score else None,
+            "text_preview": node.text[:300],
+        })
 
-return {
-"question": question,
-"answer": str(response),
-"sources": sources,
-"num_sources": len(sources),
-}
+    return {
+        "question": question,
+        "answer": str(response),
+        "sources": sources,
+        "num_sources": len(sources),
+    }
 
 # 使用例
 # index = build_product_faq("data/product_docs", chunk_size=512)
@@ -394,117 +394,117 @@ from llama_index.core.node_parser import SentenceSplitter
 import pandas as pd
 
 def load_review_data(csv_path: str, text_col: str = "review_text",
-max_reviews: int = 1000) -> list:
-"""Review CSV データを LlamaIndex Document オブジェクトに変換する。"""
-df = pd.read_csv(csv_path)
+                     max_reviews: int = 1000) -> list:
+    """Review CSV データを LlamaIndex Document オブジェクトに変換する。"""
+    df = pd.read_csv(csv_path)
 
-if len(df) > max_reviews:
-df = df.sort_values("rating", ascending=True).head(max_reviews)
+    if len(df) > max_reviews:
+        df = df.sort_values("rating", ascending=True).head(max_reviews)
 
-documents = []
-for _, row in df.iterrows():
-text = str(row.get(text_col, ""))
-if len(text.strip()) < 10:
-continue
+    documents = []
+    for _, row in df.iterrows():
+        text = str(row.get(text_col, ""))
+        if len(text.strip()) < 10:
+            continue
 
-metadata = {
-"source": "customer_review",
-"rating": int(row.get("rating", 0)),
-"asin": str(row.get("asin", "")),
-"date": str(row.get("date", "")),
-}
-doc = Document(text=text, metadata=metadata)
-documents.append(doc)
+        metadata = {
+            "source": "customer_review",
+            "rating": int(row.get("rating", 0)),
+            "asin": str(row.get("asin", "")),
+            "date": str(row.get("date", "")),
+        }
+        doc = Document(text=text, metadata=metadata)
+        documents.append(doc)
 
-print(f"{len(documents)} 件の Review をロード")
-return documents
+    print(f"{len(documents)} 件の Review をロード")
+    return documents
 
 def build_multi_source_rag(
-product_docs_dir: str = None,
-policy_docs_dir: str = None,
-review_csv: str = None,
-sop_docs_dir: str = None,
-chunk_size: int = 512,
+    product_docs_dir: str = None,
+    policy_docs_dir: str = None,
+    review_csv: str = None,
+    sop_docs_dir: str = None,
+    chunk_size: int = 512,
 ) -> VectorStoreIndex:
-"""
-マルチデータ源 RAG インデックスを構築する。
-複数の文書タイプを同じベクトルインデックスに統合、
-各文書に source メタデータを持たせ、フィルタと追跡を容易にする。
-"""
-all_documents = []
+    """
+    マルチデータ源 RAG インデックスを構築する。
+    複数の文書タイプを同じベクトルインデックスに統合、
+    各文書に source メタデータを持たせ、フィルタと追跡を容易にする。
+    """
+    all_documents = []
 
-if product_docs_dir:
-docs = SimpleDirectoryReader(product_docs_dir).load_data()
-for doc in docs:
-doc.metadata["source"] = "product_manual"
-all_documents.extend(docs)
-print(f"製品文書: {len(docs)} 個")
+    if product_docs_dir:
+        docs = SimpleDirectoryReader(product_docs_dir).load_data()
+        for doc in docs:
+            doc.metadata["source"] = "product_manual"
+        all_documents.extend(docs)
+        print(f"製品文書: {len(docs)} 個")
 
-if policy_docs_dir:
-docs = SimpleDirectoryReader(policy_docs_dir).load_data()
-for doc in docs:
-doc.metadata["source"] = "policy"
-all_documents.extend(docs)
-print(f"ポリシー文書: {len(docs)} 個")
+    if policy_docs_dir:
+        docs = SimpleDirectoryReader(policy_docs_dir).load_data()
+        for doc in docs:
+            doc.metadata["source"] = "policy"
+        all_documents.extend(docs)
+        print(f"ポリシー文書: {len(docs)} 個")
 
-if review_csv:
-review_docs = load_review_data(review_csv)
-all_documents.extend(review_docs)
+    if review_csv:
+        review_docs = load_review_data(review_csv)
+        all_documents.extend(review_docs)
 
-if sop_docs_dir:
-docs = SimpleDirectoryReader(sop_docs_dir).load_data()
-for doc in docs:
-doc.metadata["source"] = "sop"
-all_documents.extend(docs)
-print(f"SOP 文書: {len(docs)} 個")
+    if sop_docs_dir:
+        docs = SimpleDirectoryReader(sop_docs_dir).load_data()
+        for doc in docs:
+            doc.metadata["source"] = "sop"
+        all_documents.extend(docs)
+        print(f"SOP 文書: {len(docs)} 個")
 
-print(f"\n合計: {len(all_documents)} 個の文書")
+    print(f"\n合計: {len(all_documents)} 個の文書")
 
-Settings.text_splitter = SentenceSplitter(chunk_size=chunk_size, chunk_overlap=50)
-index = VectorStoreIndex.from_documents(all_documents, show_progress=True)
+    Settings.text_splitter = SentenceSplitter(chunk_size=chunk_size, chunk_overlap=50)
+    index = VectorStoreIndex.from_documents(all_documents, show_progress=True)
 
-print("マルチ源 RAG インデックス構築完了")
-return index
+    print("マルチ源 RAG インデックス構築完了")
+    return index
 
 def query_with_source_filter(
-index: VectorStoreIndex,
-question: str,
-source_filter: str = None,
-top_k: int = 5,
+    index: VectorStoreIndex,
+    question: str,
+    source_filter: str = None,
+    top_k: int = 5,
 ) -> dict:
-"""
-データ源フィルタ付きのクエリ。
+    """
+    データ源フィルタ付きのクエリ。
 
-Args:
-source_filter: データ源フィルタ
-- None: 全データ源を検索
-- "product_manual": 製品文書のみ検索
-- "policy": ポリシー文書のみ検索
-- "customer_review": Review のみ検索
-- "sop": SOP のみ検索
-"""
-from llama_index.core.vector_stores import (
-MetadataFilter, MetadataFilters, FilterOperator,
-)
+    Args:
+        source_filter: データ源フィルタ
+            - None: 全データ源を検索
+            - "product_manual": 製品文書のみ検索
+            - "policy": ポリシー文書のみ検索
+            - "customer_review": Review のみ検索
+            - "sop": SOP のみ検索
+    """
+    from llama_index.core.vector_stores import (
+        MetadataFilter, MetadataFilters, FilterOperator,
+    )
 
-filters = None
-if source_filter:
-filters = MetadataFilters(filters=[
-MetadataFilter(key="source", operator=FilterOperator.EQ, value=source_filter)
-])
+    filters = None
+    if source_filter:
+        filters = MetadataFilters(filters=[
+            MetadataFilter(key="source", operator=FilterOperator.EQ, value=source_filter)
+        ])
 
-query_engine = index.as_query_engine(similarity_top_k=top_k, filters=filters)
-response = query_engine.query(question)
+    query_engine = index.as_query_engine(similarity_top_k=top_k, filters=filters)
+    response = query_engine.query(question)
 
-sources = []
-for node in response.source_nodes:
-sources.append({
-"source_type": node.metadata.get("source", "unknown"),
-"file": node.metadata.get("file_name", ""),
-"score": round(node.score, 4) if node.score else None,
-})
+    sources = []
+    for node in response.source_nodes:
+        sources.append({
+            "source_type": node.metadata.get("source", "unknown"),
+            "file": node.metadata.get("file_name", ""),
+            "score": round(node.score, 4) if node.score else None,
+        })
 
-return {"question": question, "answer": str(response), "sources": sources}
+    return {"question": question, "answer": str(response), "sources": sources}
 
 # 使用例
 # index = build_multi_source_rag(
@@ -528,54 +528,54 @@ from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, StorageCon
 from llama_index.vector_stores.chroma import ChromaVectorStore
 
 def create_chroma_index(
-docs_dir: str,
-collection_name: str = "product_knowledge",
-persist_dir: str = "chroma_db",
+    docs_dir: str,
+    collection_name: str = "product_knowledge",
+    persist_dir: str = "chroma_db",
 ) -> VectorStoreIndex:
-"""
-Chroma で永続化ベクトルインデックスを作成する。
+    """
+    Chroma で永続化ベクトルインデックスを作成する。
 
-Chroma の利点:
-- データをディスクに永続化、再起動しても失わない
-- 文書の増分追加に対応(インデックス全体の再構築不要)
-- メタデータフィルタに対応
-- ゼロ設定、組み込み実行
-"""
-chroma_client = chromadb.PersistentClient(path=persist_dir)
-chroma_collection = chroma_client.get_or_create_collection(name=collection_name)
+    Chroma の利点:
+    - データをディスクに永続化、再起動しても失わない
+    - 文書の増分追加に対応(インデックス全体の再構築不要)
+    - メタデータフィルタに対応
+    - ゼロ設定、組み込み実行
+    """
+    chroma_client = chromadb.PersistentClient(path=persist_dir)
+    chroma_collection = chroma_client.get_or_create_collection(name=collection_name)
 
-print(f"Collection '{collection_name}': {chroma_collection.count()} 個の既存ベクトル")
+    print(f"Collection '{collection_name}': {chroma_collection.count()} 個の既存ベクトル")
 
-vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
-storage_context = StorageContext.from_defaults(vector_store=vector_store)
+    vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
+    storage_context = StorageContext.from_defaults(vector_store=vector_store)
 
-documents = SimpleDirectoryReader(docs_dir).load_data()
-index = VectorStoreIndex.from_documents(
-documents, storage_context=storage_context, show_progress=True
-)
+    documents = SimpleDirectoryReader(docs_dir).load_data()
+    index = VectorStoreIndex.from_documents(
+        documents, storage_context=storage_context, show_progress=True
+    )
 
-print(f"インデックス構築完了、計 {chroma_collection.count()} 個のベクトル")
-return index
+    print(f"インデックス構築完了、計 {chroma_collection.count()} 個のベクトル")
+    return index
 
 def load_existing_chroma_index(
-collection_name: str = "product_knowledge",
-persist_dir: str = "chroma_db",
+    collection_name: str = "product_knowledge",
+    persist_dir: str = "chroma_db",
 ) -> VectorStoreIndex:
-"""既存の Chroma インデックスをロード(再構築しない)。"""
-chroma_client = chromadb.PersistentClient(path=persist_dir)
-chroma_collection = chroma_client.get_collection(name=collection_name)
-vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
-index = VectorStoreIndex.from_vector_store(vector_store)
-print(f"既存インデックスをロード: {chroma_collection.count()} 個のベクトル")
-return index
+    """既存の Chroma インデックスをロード(再構築しない)。"""
+    chroma_client = chromadb.PersistentClient(path=persist_dir)
+    chroma_collection = chroma_client.get_collection(name=collection_name)
+    vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
+    index = VectorStoreIndex.from_vector_store(vector_store)
+    print(f"既存インデックスをロード: {chroma_collection.count()} 個のベクトル")
+    return index
 
 def add_documents_to_index(index: VectorStoreIndex, new_docs_dir: str) -> int:
-"""既存インデックスに新文書を増分追加する。インデックス全体の再構築は不要。"""
-new_documents = SimpleDirectoryReader(new_docs_dir).load_data()
-for doc in new_documents:
-index.insert(doc)
-print(f"{len(new_documents)} 個の文書をインデックスに新規追加")
-return len(new_documents)
+    """既存インデックスに新文書を増分追加する。インデックス全体の再構築は不要。"""
+    new_documents = SimpleDirectoryReader(new_docs_dir).load_data()
+    for doc in new_documents:
+        index.insert(doc)
+    print(f"{len(new_documents)} 個の文書をインデックスに新規追加")
+    return len(new_documents)
 
 # 使用例
 # index = create_chroma_index("data/product_docs", persist_dir="chroma_db")
@@ -611,46 +611,46 @@ from llama_index.llms.ollama import Ollama
 from llama_index.embeddings.ollama import OllamaEmbedding
 
 def build_local_rag(
-docs_dir: str,
-llm_model: str = "qwen3:8b",
-embed_model: str = "nomic-embed-text",
-ollama_base_url: str = "http://localhost:11434",
+    docs_dir: str,
+    llm_model: str = "qwen3:8b",
+    embed_model: str = "nomic-embed-text",
+    ollama_base_url: str = "http://localhost:11434",
 ) -> VectorStoreIndex:
-"""
-完全ローカルの RAG システムを構築する(いかなる外部 API も呼ばない)。
+    """
+    完全ローカルの RAG システムを構築する(いかなる外部 API も呼ばない)。
 
-前提:
-1. Ollama インストール済み
-2. LLM モデルダウンロード済み: ollama pull qwen3:8b
-3. Embedding モデルダウンロード済み: ollama pull nomic-embed-text
-"""
-# ローカル LLM を設定
-llm = Ollama(
-model=llm_model,
-base_url=ollama_base_url,
-request_timeout=120.0,
-temperature=0.1,
-)
+    前提:
+    1. Ollama インストール済み
+    2. LLM モデルダウンロード済み: ollama pull qwen3:8b
+    3. Embedding モデルダウンロード済み: ollama pull nomic-embed-text
+    """
+    # ローカル LLM を設定
+    llm = Ollama(
+        model=llm_model,
+        base_url=ollama_base_url,
+        request_timeout=120.0,
+        temperature=0.1,
+    )
 
-# ローカル Embedding を設定
-embed = OllamaEmbedding(
-model_name=embed_model,
-base_url=ollama_base_url,
-)
+    # ローカル Embedding を設定
+    embed = OllamaEmbedding(
+        model_name=embed_model,
+        base_url=ollama_base_url,
+    )
 
-# グローバル設定(OpenAI を代替)
-Settings.llm = llm
-Settings.embed_model = embed
+    # グローバル設定(OpenAI を代替)
+    Settings.llm = llm
+    Settings.embed_model = embed
 
-# 文書をロードしインデックスを構築
-documents = SimpleDirectoryReader(docs_dir).load_data()
-print(f"{len(documents)} 個の文書をロード")
+    # 文書をロードしインデックスを構築
+    documents = SimpleDirectoryReader(docs_dir).load_data()
+    print(f"{len(documents)} 個の文書をロード")
 
-index = VectorStoreIndex.from_documents(documents, show_progress=True)
+    index = VectorStoreIndex.from_documents(documents, show_progress=True)
 
-print(f"ローカル RAG 構築完了(LLM: {llm_model}, Embed: {embed_model})")
-print("すべてのデータをローカルで処理、外部サービスに送信していない")
-return index
+    print(f"ローカル RAG 構築完了(LLM: {llm_model}, Embed: {embed_model})")
+    print("すべてのデータをローカルで処理、外部サービスに送信していない")
+    return index
 
 # 使用例
 # index = build_local_rag("data/product_docs")
@@ -690,71 +690,71 @@ RAG 評価には 3 つの核心次元がある:
 
 from ragas import evaluate
 from ragas.metrics import (
-faithfulness, answer_relevancy,
-context_precision, context_recall,
+    faithfulness, answer_relevancy,
+    context_precision, context_recall,
 )
 from datasets import Dataset
 
 def evaluate_rag_quality(
-questions: list[str],
-answers: list[str],
-contexts: list[list[str]],
-ground_truths: list[str] = None,
+    questions: list[str],
+    answers: list[str],
+    contexts: list[list[str]],
+    ground_truths: list[str] = None,
 ) -> dict:
-"""
-RAGAS フレームワークで RAG システムの品質を評価する。
+    """
+    RAGAS フレームワークで RAG システムの品質を評価する。
 
-Args:
-questions: テスト質問のリスト
-answers: RAG システムの回答のリスト
-contexts: 各質問で検索した文脈のリスト
-ground_truths: 標準回答(オプション、あれば評価がより正確)
-"""
-data = {
-"question": questions,
-"answer": answers,
-"contexts": contexts,
-}
+    Args:
+        questions: テスト質問のリスト
+        answers: RAG システムの回答のリスト
+        contexts: 各質問で検索した文脈のリスト
+        ground_truths: 標準回答(オプション、あれば評価がより正確)
+    """
+    data = {
+        "question": questions,
+        "answer": answers,
+        "contexts": contexts,
+    }
 
-metrics = [faithfulness, answer_relevancy, context_precision]
+    metrics = [faithfulness, answer_relevancy, context_precision]
 
-if ground_truths:
-data["ground_truth"] = ground_truths
-metrics.append(context_recall)
+    if ground_truths:
+        data["ground_truth"] = ground_truths
+        metrics.append(context_recall)
 
-dataset = Dataset.from_dict(data)
-result = evaluate(dataset=dataset, metrics=metrics)
+    dataset = Dataset.from_dict(data)
+    result = evaluate(dataset=dataset, metrics=metrics)
 
-print("RAG 評価結果:")
-print(f"Faithfulness(忠実度): {result['faithfulness']:.3f}")
-print(f"Answer Relevancy(関連性): {result['answer_relevancy']:.3f}")
-print(f"Context Precision(文脈精度): {result['context_precision']:.3f}")
-if ground_truths:
-print(f"Context Recall(文脈再現): {result['context_recall']:.3f}")
+    print("RAG 評価結果:")
+    print(f"Faithfulness(忠実度): {result['faithfulness']:.3f}")
+    print(f"Answer Relevancy(関連性): {result['answer_relevancy']:.3f}")
+    print(f"Context Precision(文脈精度): {result['context_precision']:.3f}")
+    if ground_truths:
+        print(f"Context Recall(文脈再現): {result['context_recall']:.3f}")
 
-return dict(result)
+    return dict(result)
 
 def create_eval_dataset(index, eval_questions: list[dict]) -> tuple:
-"""
-RAG システムから評価データセットを生成する。
+    """
+    RAG システムから評価データセットを生成する。
 
-Args:
-eval_questions: [{"question": "...", "ground_truth": "..."}, ...]
-"""
-questions, answers, contexts, ground_truths = [], [], [], []
-query_engine = index.as_query_engine(similarity_top_k=3)
+    Args:
+        eval_questions: [{"question": "...", "ground_truth": "..."}, ...]
+    """
+    questions, answers, contexts, ground_truths = [], [], [], []
+    query_engine = index.as_query_engine(similarity_top_k=3)
 
-for item in eval_questions:
-q = item["question"]
-response = query_engine.query(q)
+    for item in eval_questions:
+        q = item["question"]
+        response = query_engine.query(q)
 
-questions.append(q)
-answers.append(str(response))
-contexts.append([node.text for node in response.source_nodes])
-if "ground_truth" in item:
-ground_truths.append(item["ground_truth"])
+        questions.append(q)
+        answers.append(str(response))
+        contexts.append([node.text for node in response.source_nodes])
+        if "ground_truth" in item:
+            ground_truths.append(item["ground_truth"])
 
-return questions, answers, contexts, ground_truths or None
+    return questions, answers, contexts, ground_truths or None
 
 # 使用例
 # eval_questions = [
@@ -799,7 +799,7 @@ from llama_index.core.prompts import PromptTemplate
 
 # カスタム CS Prompt 回答スタイルと境界を制御
 CUSTOMER_SERVICE_PROMPT = PromptTemplate(
-"""あなたはプロフェッショナルな EC CS アシスタントです。以下の製品文書に基づいて顧客の質問に答えてください。
+    """あなたはプロフェッショナルな EC CS アシスタントです。以下の製品文書に基づいて顧客の質問に答えてください。
 
 ルール:
 1. 提供された文書内容のみに基づいて回答し、情報を捏造しない
@@ -816,40 +816,40 @@ CUSTOMER_SERVICE_PROMPT = PromptTemplate(
 )
 
 def build_customer_service_bot(docs_dir: str, chunk_size: int = 256) -> VectorStoreIndex:
-"""
-CS Q&A ボットを構築する。
+    """
+    CS Q&A ボットを構築する。
 
-CS シーンの特殊設定:
-- chunk_size が小さめ(256): CS の質問は通常とても具体的、小ブロック検索がより精確
-- top_k が大きめ(5): 数個多く検索し、漏れを減らす
-- カスタム Prompt: 回答スタイルと安全境界を制御
-"""
-from llama_index.core.node_parser import SentenceSplitter
+    CS シーンの特殊設定:
+    - chunk_size が小さめ(256): CS の質問は通常とても具体的、小ブロック検索がより精確
+    - top_k が大きめ(5): 数個多く検索し、漏れを減らす
+    - カスタム Prompt: 回答スタイルと安全境界を制御
+    """
+    from llama_index.core.node_parser import SentenceSplitter
 
-Settings.text_splitter = SentenceSplitter(chunk_size=chunk_size, chunk_overlap=30)
-documents = SimpleDirectoryReader(docs_dir, recursive=True).load_data()
-index = VectorStoreIndex.from_documents(documents, show_progress=True)
+    Settings.text_splitter = SentenceSplitter(chunk_size=chunk_size, chunk_overlap=30)
+    documents = SimpleDirectoryReader(docs_dir, recursive=True).load_data()
+    index = VectorStoreIndex.from_documents(documents, show_progress=True)
 
-print(f"CS 知識ベース構築完了: {len(documents)} 個の文書")
-return index
+    print(f"CS 知識ベース構築完了: {len(documents)} 個の文書")
+    return index
 
 def answer_customer_question(index: VectorStoreIndex, question: str) -> dict:
-"""顧客の質問に回答、ソース追跡付き。"""
-query_engine = index.as_query_engine(
-similarity_top_k=5,
-text_qa_template=CUSTOMER_SERVICE_PROMPT,
-)
-response = query_engine.query(question)
+    """顧客の質問に回答、ソース追跡付き。"""
+    query_engine = index.as_query_engine(
+        similarity_top_k=5,
+        text_qa_template=CUSTOMER_SERVICE_PROMPT,
+    )
+    response = query_engine.query(question)
 
-return {
-"question": question,
-"answer": str(response),
-"confidence": "high" if response.source_nodes
-and response.source_nodes[0].score
-and response.source_nodes[0].score > 0.8
-else "medium",
-"sources": [node.metadata.get("file_name", "") for node in response.source_nodes],
-}
+    return {
+        "question": question,
+        "answer": str(response),
+        "confidence": "high" if response.source_nodes
+                      and response.source_nodes[0].score
+                      and response.source_nodes[0].score > 0.8
+                      else "medium",
+        "sources": [node.metadata.get("file_name", "") for node in response.source_nodes],
+    }
 
 # 使用例
 # index = build_customer_service_bot("data/customer_service_docs")
@@ -865,33 +865,33 @@ Amazon のポリシー文書は多くて長く、コンプライアンスチー�
 
 ```python
 def build_compliance_rag(policy_docs_dir: str, chunk_size: int = 1024) -> VectorStoreIndex:
-"""
-コンプライアンスポリシー照会システムを構築する。
+    """
+    コンプライアンスポリシー照会システムを構築する。
 
-ポリシー文書の特殊処理:
-- chunk_size が大きめ(1024): ポリシー条項は通常長く、完全な文脈が必要
-- overlap を大きめ(100): 条項の切断を回避
-"""
-from llama_index.core.node_parser import SentenceSplitter
+    ポリシー文書の特殊処理:
+    - chunk_size が大きめ(1024): ポリシー条項は通常長く、完全な文脈が必要
+    - overlap を大きめ(100): 条項の切断を回避
+    """
+    from llama_index.core.node_parser import SentenceSplitter
 
-Settings.text_splitter = SentenceSplitter(chunk_size=chunk_size, chunk_overlap=100)
+    Settings.text_splitter = SentenceSplitter(chunk_size=chunk_size, chunk_overlap=100)
 
-documents = SimpleDirectoryReader(policy_docs_dir, recursive=True).load_data()
+    documents = SimpleDirectoryReader(policy_docs_dir, recursive=True).load_data()
 
-for doc in documents:
-filename = doc.metadata.get("file_name", "")
-if "fba" in filename.lower():
-doc.metadata["policy_area"] = "FBA"
-elif "advertising" in filename.lower():
-doc.metadata["policy_area"] = "Advertising"
-elif "brand" in filename.lower():
-doc.metadata["policy_area"] = "Brand Registry"
-else:
-doc.metadata["policy_area"] = "General"
+    for doc in documents:
+        filename = doc.metadata.get("file_name", "")
+        if "fba" in filename.lower():
+            doc.metadata["policy_area"] = "FBA"
+        elif "advertising" in filename.lower():
+            doc.metadata["policy_area"] = "Advertising"
+        elif "brand" in filename.lower():
+            doc.metadata["policy_area"] = "Brand Registry"
+        else:
+            doc.metadata["policy_area"] = "General"
 
-index = VectorStoreIndex.from_documents(documents, show_progress=True)
-print(f"コンプライアンス知識ベース構築完了: {len(documents)} 個のポリシー文書")
-return index
+    index = VectorStoreIndex.from_documents(documents, show_progress=True)
+    print(f"コンプライアンス知識ベース構築完了: {len(documents)} 個のポリシー文書")
+    return index
 
 # 使用例
 # index = build_compliance_rag("data/amazon_policies")
@@ -905,24 +905,24 @@ return index
 
 ```python
 def build_training_rag(
-sop_dir: str = None, case_study_dir: str = None, faq_dir: str = None,
+    sop_dir: str = None, case_study_dir: str = None, faq_dir: str = None,
 ) -> VectorStoreIndex:
-"""
-社内研修知識ベースを構築する。
-データ源: SOP 文書、事例ライブラリ、FAQ
-"""
-all_docs = []
+    """
+    社内研修知識ベースを構築する。
+    データ源: SOP 文書、事例ライブラリ、FAQ
+    """
+    all_docs = []
 
-for dir_path, doc_type in [(sop_dir, "sop"), (case_study_dir, "case_study"), (faq_dir, "faq")]:
-if dir_path:
-docs = SimpleDirectoryReader(dir_path).load_data()
-for d in docs:
-d.metadata["doc_type"] = doc_type
-all_docs.extend(docs)
+    for dir_path, doc_type in [(sop_dir, "sop"), (case_study_dir, "case_study"), (faq_dir, "faq")]:
+        if dir_path:
+            docs = SimpleDirectoryReader(dir_path).load_data()
+            for d in docs:
+                d.metadata["doc_type"] = doc_type
+            all_docs.extend(docs)
 
-index = VectorStoreIndex.from_documents(all_docs, show_progress=True)
-print(f"研修知識ベース: {len(all_docs)} 個の文書")
-return index
+    index = VectorStoreIndex.from_documents(all_docs, show_progress=True)
+    print(f"研修知識ベース: {len(all_docs)} 個の文書")
+    return index
 
 # 使用例
 # index = build_training_rag(sop_dir="data/sop", case_study_dir="data/cases", faq_dir="data/faq")
@@ -951,23 +951,23 @@ return index
 
 ```python
 def debug_retrieval(index, question: str, top_k: int = 5):
-"""
-検索結果をデバッグ RAG が実際に何を検索したか確認。
-回答品質が悪いとき、まずこの関数で検索段階を確認。
-"""
-retriever = index.as_retriever(similarity_top_k=top_k)
-nodes = retriever.retrieve(question)
+    """
+    検索結果をデバッグ RAG が実際に何を検索したか確認。
+    回答品質が悪いとき、まずこの関数で検索段階を確認。
+    """
+    retriever = index.as_retriever(similarity_top_k=top_k)
+    nodes = retriever.retrieve(question)
 
-print(f"質問: {question}")
-print(f"{len(nodes)} 個の文書ブロックを検索:\n")
+    print(f"質問: {question}")
+    print(f"{len(nodes)} 個の文書ブロックを検索:\n")
 
-for i, node in enumerate(nodes):
-score = f"{node.score:.4f}" if node.score else "N/A"
-file_name = node.metadata.get("file_name", "unknown")
-print(f"[{i+1}] 類似度: {score} | ファイル: {file_name}")
-print(f"内容: {node.text[:200]}...")
-print()
-return nodes
+    for i, node in enumerate(nodes):
+        score = f"{node.score:.4f}" if node.score else "N/A"
+        file_name = node.metadata.get("file_name", "unknown")
+        print(f"[{i+1}] 類似度: {score} | ファイル: {file_name}")
+        print(f"内容: {node.text[:200]}...")
+        print()
+    return nodes
 ```
 
 ### 6.2 Chunk サイズが不適切
@@ -1041,37 +1041,37 @@ from llama_index.retrievers.bm25 import BM25Retriever
 from llama_index.core.retrievers import QueryFusionRetriever
 
 def build_hybrid_search(
-docs_dir: str,
-vector_top_k: int = 3,
-bm25_top_k: int = 3,
+    docs_dir: str,
+    vector_top_k: int = 3,
+    bm25_top_k: int = 3,
 ) -> tuple:
-"""
-ハイブリッド検索(ベクトル + BM25 キーワード)を構築する。
+    """
+    ハイブリッド検索(ベクトル + BM25 キーワード)を構築する。
 
-動作原理:
-1. ベクトル検索: 意味的に類似した文書を探す(「カメラ 防水」 → 「カメラは水中で使える」)
-2. BM25 検索: キーワードマッチの文書を探す(「B0XXXXX」 → その ASIN を含む文書)
-3. 融合ランキング: Reciprocal Rank Fusion で 2 つの結果リストを統合
-"""
-documents = SimpleDirectoryReader(docs_dir).load_data()
-index = VectorStoreIndex.from_documents(documents, show_progress=True)
+    動作原理:
+    1. ベクトル検索: 意味的に類似した文書を探す(「カメラ 防水」 → 「カメラは水中で使える」)
+    2. BM25 検索: キーワードマッチの文書を探す(「B0XXXXX」 → その ASIN を含む文書)
+    3. 融合ランキング: Reciprocal Rank Fusion で 2 つの結果リストを統合
+    """
+    documents = SimpleDirectoryReader(docs_dir).load_data()
+    index = VectorStoreIndex.from_documents(documents, show_progress=True)
 
-vector_retriever = index.as_retriever(similarity_top_k=vector_top_k)
+    vector_retriever = index.as_retriever(similarity_top_k=vector_top_k)
 
-from llama_index.core.node_parser import SentenceSplitter
-splitter = SentenceSplitter(chunk_size=512)
-nodes = splitter.get_nodes_from_documents(documents)
-bm25_retriever = BM25Retriever.from_defaults(nodes=nodes, similarity_top_k=bm25_top_k)
+    from llama_index.core.node_parser import SentenceSplitter
+    splitter = SentenceSplitter(chunk_size=512)
+    nodes = splitter.get_nodes_from_documents(documents)
+    bm25_retriever = BM25Retriever.from_defaults(nodes=nodes, similarity_top_k=bm25_top_k)
 
-hybrid_retriever = QueryFusionRetriever(
-retrievers=[vector_retriever, bm25_retriever],
-similarity_top_k=vector_top_k + bm25_top_k,
-num_queries=1,
-mode="reciprocal_rerank",
-)
+    hybrid_retriever = QueryFusionRetriever(
+        retrievers=[vector_retriever, bm25_retriever],
+        similarity_top_k=vector_top_k + bm25_top_k,
+        num_queries=1,
+        mode="reciprocal_rerank",
+    )
 
-print("ハイブリッド検索構築完了(ベクトル + BM25)")
-return hybrid_retriever, index
+    print("ハイブリッド検索構築完了(ベクトル + BM25)")
+    return hybrid_retriever, index
 
 # 使用例
 # retriever, index = build_hybrid_search("data/product_docs")
@@ -1090,29 +1090,29 @@ from llama_index.core import VectorStoreIndex
 from llama_index.core.postprocessor import SentenceTransformerRerank
 
 def query_with_reranking(
-index: VectorStoreIndex,
-question: str,
-initial_top_k: int = 10,
-final_top_k: int = 3,
-rerank_model: str = "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    index: VectorStoreIndex,
+    question: str,
+    initial_top_k: int = 10,
+    final_top_k: int = 3,
+    rerank_model: str = "cross-encoder/ms-marco-MiniLM-L-6-v2",
 ) -> str:
-"""
-Re-ranking 付きのクエリ。
+    """
+    Re-ranking 付きのクエリ。
 
-フロー:
-1. まずベクトル検索で initial_top_k 個の候補文書を検索(粗選別)
-2. Cross-Encoder モデルで候補文書を再スコアリング(精選別)
-3. final_top_k 個の最も関連する文書で回答を生成
-"""
-reranker = SentenceTransformerRerank(model=rerank_model, top_n=final_top_k)
+    フロー:
+    1. まずベクトル検索で initial_top_k 個の候補文書を検索(粗選別)
+    2. Cross-Encoder モデルで候補文書を再スコアリング(精選別)
+    3. final_top_k 個の最も関連する文書で回答を生成
+    """
+    reranker = SentenceTransformerRerank(model=rerank_model, top_n=final_top_k)
 
-query_engine = index.as_query_engine(
-similarity_top_k=initial_top_k,
-node_postprocessors=[reranker],
-)
+    query_engine = index.as_query_engine(
+        similarity_top_k=initial_top_k,
+        node_postprocessors=[reranker],
+    )
 
-response = query_engine.query(question)
-return str(response)
+    response = query_engine.query(question)
+    return str(response)
 ```
 
 ### 7.3 Agent + RAG
@@ -1125,55 +1125,55 @@ from llama_index.core.tools import QueryEngineTool, ToolMetadata
 from llama_index.core.agent import ReActAgent
 
 def build_rag_agent(
-product_docs_dir: str,
-policy_docs_dir: str,
-review_docs_dir: str,
+    product_docs_dir: str,
+    policy_docs_dir: str,
+    review_docs_dir: str,
 ) -> ReActAgent:
-"""
-RAG Agent を構築 データ源を自動選択して質問に答える。
+    """
+    RAG Agent を構築 データ源を自動選択して質問に答える。
 
-Agent は質問内容に応じてどの知識ベースを照会すべきか自動判断:
-- 製品関連の質問 → 製品文書を照会
-- ポリシー関連の質問 → ポリシー文書を照会
-- 顧客フィードバックの質問 → Review データを照会
-"""
-product_index = VectorStoreIndex.from_documents(
-SimpleDirectoryReader(product_docs_dir).load_data()
-)
-policy_index = VectorStoreIndex.from_documents(
-SimpleDirectoryReader(policy_docs_dir).load_data()
-)
-review_index = VectorStoreIndex.from_documents(
-SimpleDirectoryReader(review_docs_dir).load_data()
-)
+    Agent は質問内容に応じてどの知識ベースを照会すべきか自動判断:
+    - 製品関連の質問 → 製品文書を照会
+    - ポリシー関連の質問 → ポリシー文書を照会
+    - 顧客フィードバックの質問 → Review データを照会
+    """
+    product_index = VectorStoreIndex.from_documents(
+        SimpleDirectoryReader(product_docs_dir).load_data()
+    )
+    policy_index = VectorStoreIndex.from_documents(
+        SimpleDirectoryReader(policy_docs_dir).load_data()
+    )
+    review_index = VectorStoreIndex.from_documents(
+        SimpleDirectoryReader(review_docs_dir).load_data()
+    )
 
-tools = [
-QueryEngineTool(
-query_engine=product_index.as_query_engine(),
-metadata=ToolMetadata(
-name="product_knowledge",
-description="製品仕様、機能、使い方など製品関連情報を照会。",
-),
-),
-QueryEngineTool(
-query_engine=policy_index.as_query_engine(),
-metadata=ToolMetadata(
-name="policy_knowledge",
-description="Amazon ポリシー、コンプライアンス要件、返品規則などを照会。",
-),
-),
-QueryEngineTool(
-query_engine=review_index.as_query_engine(),
-metadata=ToolMetadata(
-name="review_insights",
-description="顧客レビュー、フィードバック、苦情などの情報を照会。",
-),
-),
-]
+    tools = [
+        QueryEngineTool(
+            query_engine=product_index.as_query_engine(),
+            metadata=ToolMetadata(
+                name="product_knowledge",
+                description="製品仕様、機能、使い方など製品関連情報を照会。",
+            ),
+        ),
+        QueryEngineTool(
+            query_engine=policy_index.as_query_engine(),
+            metadata=ToolMetadata(
+                name="policy_knowledge",
+                description="Amazon ポリシー、コンプライアンス要件、返品規則などを照会。",
+            ),
+        ),
+        QueryEngineTool(
+            query_engine=review_index.as_query_engine(),
+            metadata=ToolMetadata(
+                name="review_insights",
+                description="顧客レビュー、フィードバック、苦情などの情報を照会。",
+            ),
+        ),
+    ]
 
-agent = ReActAgent.from_tools(tools, verbose=True)
-print("RAG Agent 構築完了(3 つの知識ベースツール)")
-return agent
+    agent = ReActAgent.from_tools(tools, verbose=True)
+    print("RAG Agent 構築完了(3 つの知識ベースツール)")
+    return agent
 
 # 使用例
 # agent = build_rag_agent("data/product_docs", "data/policy_docs", "data/review_docs")
@@ -1284,7 +1284,7 @@ response = engine.query("あなたの質問") # 質問
 
 # === 検索元を確認 ===
 for node in response.source_nodes:
-print(node.metadata["file_name"], node.score, node.text[:100])
+    print(node.metadata["file_name"], node.score, node.text[:100])
 
 # === カスタム分割 ===
 from llama_index.core.node_parser import SentenceSplitter
@@ -1314,7 +1314,7 @@ Settings.embed_model = OllamaEmbedding(model_name="nomic-embed-text")
 # === メタデータフィルタ ===
 from llama_index.core.vector_stores import MetadataFilter, MetadataFilters, FilterOperator
 filters = MetadataFilters(filters=[
-MetadataFilter(key="source", operator=FilterOperator.EQ, value="policy")
+    MetadataFilter(key="source", operator=FilterOperator.EQ, value="policy")
 ])
 engine = index.as_query_engine(filters=filters)
 
@@ -1328,8 +1328,8 @@ from ragas import evaluate
 from ragas.metrics import faithfulness, answer_relevancy
 from datasets import Dataset
 dataset = Dataset.from_dict({
-"question": questions, "answer": answers,
-"contexts": contexts, "ground_truth": truths,
+    "question": questions, "answer": answers,
+    "contexts": contexts, "ground_truth": truths,
 })
 result = evaluate(dataset=dataset, metrics=[faithfulness, answer_relevancy])
 ```
