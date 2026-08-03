@@ -704,6 +704,14 @@ Month 1+: C3 ROI evaluation (prove value with data)
 
 ---
 
+## When this doesn't work
+
+- **You want to turn the maturity scores straight into a schedule.** These scores rate what AI can currently do in each function; they say nothing about whether your team can land it. Two teams looking at the same high-maturity function — one with SP-API access, one exporting spreadsheets by hand — face very different odds. The score tells you whether it is worth trying, not what to do first. For ordering, combine it with the [data-source grading in A14](../a-operators/a14-operations-agent.md).
+- **Your category is far from the mainstream assumptions.** This landscape assumes standardised products, a reasonable volume of reviews, and traffic from a marketplace. If you sell custom-made goods, B2B in bulk, or infrequent items in the four figures, several of these judgements invert — review analysis, for instance, has no input at all in a category selling a handful of units a month.
+- **The assessment date is far behind you.** Maturity moves, and it moves one way. The value of this page is in which functions are not ready yet, and that is exactly the part that goes stale fastest. When you see a function rated immature, check the date first, then spend ten minutes testing it yourself.
+
+---
+
 ## Where to Next?
 
 | Your situation | Recommended next step |

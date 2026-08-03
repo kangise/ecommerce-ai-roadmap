@@ -945,6 +945,15 @@ Content rephrased for compliance with licensing restrictions. Source: [Prompt En
 | Week 3 | build a personal template library (10+ prompts) | one 2 h block |
 | Ongoing | after each AI session, reflect on how the prompt could improve | 2 min each |
 
+## When this doesn't work
+
+- **You want deterministic output, not good output.** Pulling an invoice total, rewriting SKU codes by a fixed rule — a regex or a few lines of code is steadier than a prompt. Prompts are good at ambiguous input, not at replacing deterministic logic. The same prompt run twice does not produce identical text, and where you need byte-for-byte reproducibility that is a defect, not a feature.
+- **The model simply does not know.** Your stock levels, last week's search-term report, a policy one platform changed three days ago — no amount of prompt craft conjures those. What you need is RAG or pasting the data in (see [F3](f3-rag-knowledge.md)). Polishing the wording only makes the invention more convincing.
+- **The task runs hundreds or thousands of times.** Hand-tuning a single prompt does not pay off at that volume and does not hold up. Move to a template with a fixed input format plus sampled human review, or to a skill file (§5 of this chapter). The test is simple: if you do not intend to read every output, do not expect prompt wording to guarantee quality.
+- **You cannot afford the failure.** Legal letters that go out, customs declarations, compensation promised to a customer — these are not cases where a good enough prompt clears the bar. A human review step is required. A data-discipline block stops the model inventing numbers; it does not stop it misreading your intent somewhere you did not think to look.
+
+---
+
 ## 10. Completion Checklist
 
 - [ ] Can write structured prompts with the CRISP framework

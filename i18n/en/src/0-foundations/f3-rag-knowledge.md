@@ -555,6 +555,15 @@ Product specs, platform policies, and shipping rules all change. The most common
 
 ---
 
+## When this doesn't work
+
+- **You have fewer than a few dozen documents.** RAG earns its keep by finding the relevant few passages in a large body of text. With a dozen product manuals, putting all of them in the context window is simpler and more accurate — today's context windows hold hundreds of thousands of characters, and the retrieval layer only adds a new place to fail.
+- **The answer needs an aggregate, not a location.** "Which three of our products have the highest return rate" is not a question retrieval can answer — it returns a few similar passages, not a total. Query a database for that. Retrieval-based QA is good at "where did we say X", not at "how much X is there in total".
+- **The documents themselves are wrong or stale.** RAG faithfully surfaces whatever you gave it. Leave a two-year-old fee schedule in the knowledge base and it will confidently quote two-year-old fees to a customer. Auditing the documents before you launch matters far more than tuning chunk_size.
+- **You are liable when the answer is wrong.** A support bot replying to customers directly, compliance answers feeding a declaration — in those settings RAG's habit of inventing when retrieval comes up empty is a real risk. Either add human review, or instruct the prompt to say it does not know and then actually test that it does (the support prompt in §7 exists for this).
+
+---
+
 ## 10. Completion Checklist
 
 - [ ] Can explain why AI doesn't know your product information

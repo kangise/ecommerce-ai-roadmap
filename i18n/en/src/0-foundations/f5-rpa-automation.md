@@ -707,6 +707,15 @@ Writing an API key directly into an n8n or Make node means it leaks the moment y
 
 ---
 
+## When this doesn't work
+
+- **The process is not stable yet.** Automation freezes whatever your process currently is. If you are still changing your sourcing criteria or bid-adjustment rules every week, automation becomes a burden — every logic change means rebuilding the workflow. Run it by hand for three or four cycles first, and automate once the steps stop moving.
+- **The upstream is a web console with no API, and its pages change.** RPA works by simulating clicks; one layout change in Seller Central and your flow breaks. Before automating something like report downloads, check whether SP-API has a report type for it. If an API exists, do not use RPA.
+- **A mistake costs more than the time saved.** Automatic repricing, automatic stock edits, automatic customer replies — get the logic wrong on any of these and the damage lands before you notice. Either stop at "produce a suggestion for a human to approve", or add safety valves (a cap on the amount, a cap on the size of a change). Do not run them fully unattended.
+- **It saves less than an hour a week.** Building an n8n workflow and then maintaining it costs far more than the half hour of the initial build. Do the arithmetic first: how many times a week does this run, and how many minutes does each run save? Below an hour a week, doing it by hand wins.
+
+---
+
 ## 10. Completion Checklist
 
 - [ ] Understand the differences and fit of RPA, workflow automation, and AI agents

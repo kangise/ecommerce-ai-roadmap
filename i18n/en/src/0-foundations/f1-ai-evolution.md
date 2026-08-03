@@ -837,6 +837,14 @@ Complete all of the above and you have a solid AI foundation. Next: [F2 Prompt E
 
 ---
 
+## When this doesn't work
+
+- **You want it as a basis for choosing a model.** This chapter covers where model capability comes from and why hallucination happens — the underlying mechanics, not a selection guide. To pick a model, use the [model matrix](../resources/model-matrix.md) and [F6](f6-ai-tools-comparison.md). Those carry a verification date; this chapter does not.
+- **You are looking for whether AI can do X.** Understanding transformers will not tell you whether AI can write your listings. Capability boundaries come from testing, not from reasoning down from first principles. The [AI landscape assessment](ai-landscape.md) rates maturity by business function, which is a sounder basis than deduction.
+- **The technical detail does not change any decision you make.** If you neither write code nor choose the stack, the mathematics of attention will not be useful to you. The part of this chapter that pays off is why a model invents things confidently — that alone carries most day-to-day judgement. The rest you can skip.
+
+---
+
 ## Appendix: Glossary
 
 | Term | Full name | One-line explanation |

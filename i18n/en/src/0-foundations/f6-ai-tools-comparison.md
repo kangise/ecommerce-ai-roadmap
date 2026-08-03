@@ -641,6 +641,15 @@ Model names change fast, and the web-app naming isn't the API naming. Write capa
 
 ---
 
+## When this doesn't work
+
+- **You want a ranking that stays valid.** The comparison in this chapter carries a verification date because it is certain to go stale. Vendors change pricing and capability tiers every few weeks, and any "which is best" conclusion has a shelf life measured in months. What stays valid is the method — run your own three real tasks through them rather than copying someone else's verdict.
+- **Your bottleneck is not the tool.** A stronger model does not fix not knowing what to ask. If the output is poor because you did not supply enough context, or because the task itself is underspecified, switching tools just changes how you are disappointed. Get the prompt right first ([F2](f2-prompt-engineering.md)), then judge whether the tool is at fault.
+- **The data cannot leave your premises.** Every cloud tool in these tables is out under that constraint, whatever it scored. Go to [B5 local model deployment](../b-developers/b5-local-model-deploy.md) instead — local models really are a tier weaker, but they are the only option that meets the constraint, and a comparison cannot help you here.
+- **The team already uses something and is fluent in it.** Migration cost — rebuilding the prompt library, retraining, accounts and billing — usually exceeds the capability gap between tools. Unless the incumbent has a hard gap (it does not support a language you need, or cannot handle your file format), "somewhat better" is not worth the switch.
+
+---
+
 ## 8. Completion Checklist
 
 - [ ] Know the main categories and representative tools of 2026 e-commerce AI

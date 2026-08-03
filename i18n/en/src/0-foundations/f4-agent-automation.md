@@ -667,6 +667,15 @@ The tool returns 500 rows and the model only needs to know which one is anomalou
 
 ---
 
+## When this doesn't work
+
+- **The task is one step, or the steps never vary.** "Translate this review into German" does not need an agent; one API call does it. An agent's cost comes from multi-turn reasoning and tool calls, and you only get something for that cost when what to do next genuinely depends on what came back. Fixed sequences are cheaper and more predictable in a workflow tool (see [F5](f5-rpa-automation.md)).
+- **The data your tools return is unreliable.** An agent decides its next step from what a tool returned. If your inventory API lags, or a report endpoint occasionally returns empty, the agent will not notice the data is wrong — it will carry it forward, confidently, at every step. Fix the reliability of the data source before agentifying anything on top of it.
+- **The action is irreversible and nobody approves it.** Automatic repricing, placing purchase orders, replying to customer complaints — one wrong judgement and the damage is done. The right shape for these is an agent that proposes and a human who confirms (the human-in-the-loop example in this chapter), not full autonomy. The test is whether a mistake can be undone, not how unlikely it is.
+- **You cannot yet say what it saves.** Building and maintaining an agent costs far more than a script. If you cannot name the specific actions it replaces each week and how many minutes each used to take, you are probably paying for the architecture itself. Write those actions down first (the task triage table in [A14](../a-operators/a14-operations-agent.md)), then decide.
+
+---
+
 ## Congratulations — you've finished Path 0!
 
 You've built a solid AI foundation. You now understand:
