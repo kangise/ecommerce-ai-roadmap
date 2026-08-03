@@ -530,60 +530,60 @@ from sp_api.base import Marketplaces
 import pandas as pd
 
 def fetch_inventory(
-credentials: dict,
-marketplace: Marketplaces = Marketplaces.US,
-granularity: str = "Marketplace"
+    credentials: dict,
+    marketplace: Marketplaces = Marketplaces.US,
+    granularity: str = "Marketplace"
 ) -> pd.DataFrame:
-"""
-FBA 在庫サマリデータを取得する。
+    """
+    FBA 在庫サマリデータを取得する。
 
-Args:
-credentials: SP-API 認証情報
-marketplace: 対象市場
-granularity: 粒度 ("Marketplace" か "Country")
+    Args:
+        credentials: SP-API 認証情報
+        marketplace: 対象市場
+        granularity: 粒度 ("Marketplace" か "Country")
 
-Returns:
-在庫 DataFrame、販売可能数・不可能数などを含む
-"""
-inv_api = Inventories(
-credentials=credentials, marketplace=marketplace
-)
+    Returns:
+        在庫 DataFrame、販売可能数・不可能数などを含む
+    """
+    inv_api = Inventories(
+        credentials=credentials, marketplace=marketplace
+    )
 
-all_items = []
-next_token = None
+    all_items = []
+    next_token = None
 
-while True:
-kwargs = {
-"granularityType": granularity,
-"granularityId": marketplace.marketplace_id,
-"marketplaceIds": [marketplace.marketplace_id],
-}
-if next_token:
-kwargs["nextToken"] = next_token
+    while True:
+        kwargs = {
+            "granularityType": granularity,
+            "granularityId": marketplace.marketplace_id,
+            "marketplaceIds": [marketplace.marketplace_id],
+        }
+        if next_token:
+            kwargs["nextToken"] = next_token
 
-response = inv_api.get_inventory_summary_marketplace(**kwargs)
+        response = inv_api.get_inventory_summary_marketplace(**kwargs)
 
-summaries = response.payload.get("inventorySummaries", [])
-all_items.extend(summaries)
+        summaries = response.payload.get("inventorySummaries", [])
+        all_items.extend(summaries)
 
-next_token = response.payload.get("nextToken")
-if not next_token:
-break
+        next_token = response.payload.get("nextToken")
+        if not next_token:
+            break
 
-if not all_items:
-return pd.DataFrame()
+    if not all_items:
+        return pd.DataFrame()
 
-df = pd.json_normalize(all_items)
+    df = pd.json_normalize(all_items)
 
-# 在庫健全性フラグを追加
-if "totalQuantity" in df.columns:
-df["stock_status"] = df["totalQuantity"].apply(
-lambda x: "欠品" if x == 0
-else "低在庫" if x < 50
-else "正常"
-)
+    # 在庫健全性フラグを追加
+    if "totalQuantity" in df.columns:
+        df["stock_status"] = df["totalQuantity"].apply(
+            lambda x: "欠品" if x == 0
+            else "低在庫" if x < 50
+            else "正常"
+        )
 
-return df
+    return df
 
 # 使用例
 # inventory = fetch_inventory(credentials, Marketplaces.US)
@@ -709,72 +709,72 @@ from pathlib import Path
 
 # ログを設定
 logging.basicConfig(
-level=logging.INFO,
-format="%(asctime)s [%(levelname)s] %(message)s",
-handlers=[
-logging.FileHandler("pipeline.log"),
-logging.StreamHandler()
-]
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[
+        logging.FileHandler("pipeline.log"),
+        logging.StreamHandler()
+    ]
 )
 logger = logging.getLogger(__name__)
 
 def daily_data_collection():
-"""毎日のデータ収集タスク"""
-today = datetime.now().strftime("%Y%m%d")
-output_dir = Path(f"data/raw/{today}")
-output_dir.mkdir(parents=True, exist_ok=True)
+    """毎日のデータ収集タスク"""
+    today = datetime.now().strftime("%Y%m%d")
+    output_dir = Path(f"data/raw/{today}")
+    output_dir.mkdir(parents=True, exist_ok=True)
 
-logger.info(f"毎日のデータ収集を開始: {today}")
+    logger.info(f"毎日のデータ収集を開始: {today}")
 
-try:
-# 1. 注文データを取得
-orders = fetch_orders(credentials, days_back=1)
-orders.to_csv(output_dir / "orders.csv", index=False)
-logger.info(f"注文データ: {len(orders)} 行")
+    try:
+        # 1. 注文データを取得
+        orders = fetch_orders(credentials, days_back=1)
+        orders.to_csv(output_dir / "orders.csv", index=False)
+        logger.info(f"注文データ: {len(orders)} 行")
 
-# 2. 在庫データを取得
-inventory = fetch_inventory(credentials)
-inventory.to_csv(output_dir / "inventory.csv", index=False)
-logger.info(f"在庫データ: {len(inventory)} 行")
+        # 2. 在庫データを取得
+        inventory = fetch_inventory(credentials)
+        inventory.to_csv(output_dir / "inventory.csv", index=False)
+        logger.info(f"在庫データ: {len(inventory)} 行")
 
-# 3. 低在庫警告をチェック
-low_stock = inventory[
-inventory.get("stock_status", "") != "正常"
-] if "stock_status" in inventory.columns else pd.DataFrame()
+        # 3. 低在庫警告をチェック
+        low_stock = inventory[
+            inventory.get("stock_status", "") != "正常"
+        ] if "stock_status" in inventory.columns else pd.DataFrame()
 
-if len(low_stock) > 0:
-logger.warning(f"{len(low_stock)} 個の SKU の在庫が異常!")
-# ここにメール/Slack 通知を追加できる
+        if len(low_stock) > 0:
+            logger.warning(f"{len(low_stock)} 個の SKU の在庫が異常!")
+            # ここにメール/Slack 通知を追加できる
 
-logger.info(f"毎日の収集完了: {output_dir}")
+        logger.info(f"毎日の収集完了: {output_dir}")
 
-except Exception as e:
-logger.error(f"収集失敗: {e}", exc_info=True)
+    except Exception as e:
+        logger.error(f"収集失敗: {e}", exc_info=True)
 
 def weekly_report_generation():
-"""毎週のレポート生成タスク"""
-logger.info("週報の生成を開始...")
-try:
-# 今週の毎日データを結合
-# ... generate_weekly_report() を呼ぶ
-logger.info("週報の生成完了")
-except Exception as e:
-logger.error(f"週報の生成失敗: {e}", exc_info=True)
+    """毎週のレポート生成タスク"""
+    logger.info("週報の生成を開始...")
+    try:
+        # 今週の毎日データを結合
+        # ... generate_weekly_report() を呼ぶ
+        logger.info("週報の生成完了")
+    except Exception as e:
+        logger.error(f"週報の生成失敗: {e}", exc_info=True)
 
 # 定時タスクを設定
 schedule.every().day.at("08:00").do(daily_data_collection)
 schedule.every().monday.at("09:00").do(weekly_report_generation)
 
 if __name__ == "__main__":
-logger.info("データパイプライン起動")
-logger.info(f"定時タスク: 毎日 08:00 収集, 毎週月曜 09:00 週報生成")
+    logger.info("データパイプライン起動")
+    logger.info(f"定時タスク: 毎日 08:00 収集, 毎週月曜 09:00 週報生成")
 
-# 起動時にまず一度実行
-daily_data_collection()
+    # 起動時にまず一度実行
+    daily_data_collection()
 
-while True:
-schedule.run_pending()
-time.sleep(60)
+    while True:
+        schedule.run_pending()
+        time.sleep(60)
 ```
 
 > **本番環境の推奨**: `schedule` ライブラリは開発と小規模利用に向く。本番環境ではシステムレベルの cron(macOS/Linux)か Windows Task Scheduler を推奨、より安定で Python プロセスの継続実行に依存しない。
@@ -1379,68 +1379,68 @@ from transform.metrics import calculate_metrics, merge_reports
 from report.html_report import generate_html_dashboard
 
 def run(date_str: str = None, markets: list = None):
-"""
-完全なデータパイプラインを実行する。
+    """
+    完全なデータパイプラインを実行する。
 
-Args:
-date_str: データ日付 (YYYYMMDD)、デフォルトは今日
-markets: 処理する市場のリスト、デフォルトは全部
-"""
-date_str = date_str or datetime.now().strftime("%Y%m%d")
-markets = markets or list(MARKETS.keys())
+    Args:
+        date_str: データ日付 (YYYYMMDD)、デフォルトは今日
+        markets: 処理する市場のリスト、デフォルトは全部
+    """
+    date_str = date_str or datetime.now().strftime("%Y%m%d")
+    markets = markets or list(MARKETS.keys())
 
-print(f"Pipeline 起動: {date_str}, 市場: {markets}")
+    print(f"Pipeline 起動: {date_str}, 市場: {markets}")
 
-# === Extract ===
-raw_dir = RAW_DATA_DIR / date_str
-raw_dir.mkdir(parents=True, exist_ok=True)
+    # === Extract ===
+    raw_dir = RAW_DATA_DIR / date_str
+    raw_dir.mkdir(parents=True, exist_ok=True)
 
-# 手動ダウンロードしたレポートファイルをチェック
-report_files = {}
-for market in markets:
-pattern = f"*{market.lower()}*business*report*"
-found = list(raw_dir.glob(pattern))
-if found:
-report_files[market] = str(found[0])
-print(f"{market} レポートを発見: {found[0].name}")
+    # 手動ダウンロードしたレポートファイルをチェック
+    report_files = {}
+    for market in markets:
+        pattern = f"*{market.lower()}*business*report*"
+        found = list(raw_dir.glob(pattern))
+        if found:
+            report_files[market] = str(found[0])
+            print(f"{market} レポートを発見: {found[0].name}")
 
-if not report_files:
-print("レポートファイルが見つからず、SP-API での取得を試行...")
-# ここで SP-API 収集ロジックを呼べる
-return
+    if not report_files:
+        print("レポートファイルが見つからず、SP-API での取得を試行...")
+        # ここで SP-API 収集ロジックを呼べる
+        return
 
-# === Transform ===
-merged = merge_reports(report_files)
-print(f"結合完了: {len(merged)} 行")
+    # === Transform ===
+    merged = merge_reports(report_files)
+    print(f"結合完了: {len(merged)} 行")
 
-# 市場別に集計
-market_summary = calculate_metrics(merged, group_by=["Market"])
+    # 市場別に集計
+    market_summary = calculate_metrics(merged, group_by=["Market"])
 
-# 処理後のデータを保存
-from config import PROCESSED_DATA_DIR
-processed_dir = PROCESSED_DATA_DIR / date_str
-processed_dir.mkdir(parents=True, exist_ok=True)
-merged.to_parquet(processed_dir / "merged.parquet", index=False)
+    # 処理後のデータを保存
+    from config import PROCESSED_DATA_DIR
+    processed_dir = PROCESSED_DATA_DIR / date_str
+    processed_dir.mkdir(parents=True, exist_ok=True)
+    merged.to_parquet(processed_dir / "merged.parquet", index=False)
 
-# === Load & Report ===
-output_path = OUTPUT_DIR / f"report_{date_str}.html"
-generate_html_dashboard(
-merged,
-title=f"業務レポート {date_str}",
-output_path=str(output_path)
-)
+    # === Load & Report ===
+    output_path = OUTPUT_DIR / f"report_{date_str}.html"
+    generate_html_dashboard(
+        merged,
+        title=f"業務レポート {date_str}",
+        output_path=str(output_path)
+    )
 
-print(f"\nPipeline 完了!")
-print(f"処理データ: {processed_dir / 'merged.parquet'}")
-print(f"出力レポート: {output_path}")
+    print(f"\nPipeline 完了!")
+    print(f"処理データ: {processed_dir / 'merged.parquet'}")
+    print(f"出力レポート: {output_path}")
 
 if __name__ == "__main__":
-parser = argparse.ArgumentParser(description="データパイプライン")
-parser.add_argument("--date", help="データ日付 YYYYMMDD")
-parser.add_argument("--markets", nargs="+", help="市場リスト")
-args = parser.parse_args()
+    parser = argparse.ArgumentParser(description="データパイプライン")
+    parser.add_argument("--date", help="データ日付 YYYYMMDD")
+    parser.add_argument("--markets", nargs="+", help="市場リスト")
+    args = parser.parse_args()
 
-run(date_str=args.date, markets=args.markets)
+    run(date_str=args.date, markets=args.markets)
 ```
 
 ```bash

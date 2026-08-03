@@ -530,60 +530,60 @@ from sp_api.base import Marketplaces
 import pandas as pd
 
 def fetch_inventory(
-credentials: dict,
-marketplace: Marketplaces = Marketplaces.US,
-granularity: str = "Marketplace"
+    credentials: dict,
+    marketplace: Marketplaces = Marketplaces.US,
+    granularity: str = "Marketplace"
 ) -> pd.DataFrame:
-"""
-获取 FBA 库存汇总数据。
+    """
+    获取 FBA 库存汇总数据。
 
-Args:
-credentials: SP-API 凭证
-marketplace: 目标市场
-granularity: 粒度 ("Marketplace" 或 "Country")
+    Args:
+        credentials: SP-API 凭证
+        marketplace: 目标市场
+        granularity: 粒度 ("Marketplace" 或 "Country")
 
-Returns:
-库存 DataFrame，包含可售数量、不可售数量等
-"""
-inv_api = Inventories(
-credentials=credentials, marketplace=marketplace
-)
+    Returns:
+        库存 DataFrame，包含可售数量、不可售数量等
+    """
+    inv_api = Inventories(
+        credentials=credentials, marketplace=marketplace
+    )
 
-all_items = []
-next_token = None
+    all_items = []
+    next_token = None
 
-while True:
-kwargs = {
-"granularityType": granularity,
-"granularityId": marketplace.marketplace_id,
-"marketplaceIds": [marketplace.marketplace_id],
-}
-if next_token:
-kwargs["nextToken"] = next_token
+    while True:
+        kwargs = {
+            "granularityType": granularity,
+            "granularityId": marketplace.marketplace_id,
+            "marketplaceIds": [marketplace.marketplace_id],
+        }
+        if next_token:
+            kwargs["nextToken"] = next_token
 
-response = inv_api.get_inventory_summary_marketplace(**kwargs)
+        response = inv_api.get_inventory_summary_marketplace(**kwargs)
 
-summaries = response.payload.get("inventorySummaries", [])
-all_items.extend(summaries)
+        summaries = response.payload.get("inventorySummaries", [])
+        all_items.extend(summaries)
 
-next_token = response.payload.get("nextToken")
-if not next_token:
-break
+        next_token = response.payload.get("nextToken")
+        if not next_token:
+            break
 
-if not all_items:
-return pd.DataFrame()
+    if not all_items:
+        return pd.DataFrame()
 
-df = pd.json_normalize(all_items)
+    df = pd.json_normalize(all_items)
 
-# 添加库存健康标记
-if "totalQuantity" in df.columns:
-df["stock_status"] = df["totalQuantity"].apply(
-lambda x: " 断货" if x == 0
-else " 低库存" if x < 50
-else " 正常"
-)
+    # 添加库存健康标记
+    if "totalQuantity" in df.columns:
+        df["stock_status"] = df["totalQuantity"].apply(
+            lambda x: " 断货" if x == 0
+            else " 低库存" if x < 50
+            else " 正常"
+        )
 
-return df
+    return df
 
 # 使用示例
 # inventory = fetch_inventory(credentials, Marketplaces.US)
@@ -709,72 +709,72 @@ from pathlib import Path
 
 # 配置日志
 logging.basicConfig(
-level=logging.INFO,
-format="%(asctime)s [%(levelname)s] %(message)s",
-handlers=[
-logging.FileHandler("pipeline.log"),
-logging.StreamHandler()
-]
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[
+        logging.FileHandler("pipeline.log"),
+        logging.StreamHandler()
+    ]
 )
 logger = logging.getLogger(__name__)
 
 def daily_data_collection():
-"""每日数据采集任务"""
-today = datetime.now().strftime("%Y%m%d")
-output_dir = Path(f"data/raw/{today}")
-output_dir.mkdir(parents=True, exist_ok=True)
+    """每日数据采集任务"""
+    today = datetime.now().strftime("%Y%m%d")
+    output_dir = Path(f"data/raw/{today}")
+    output_dir.mkdir(parents=True, exist_ok=True)
 
-logger.info(f"开始每日数据采集: {today}")
+    logger.info(f"开始每日数据采集: {today}")
 
-try:
-# 1. 获取订单数据
-orders = fetch_orders(credentials, days_back=1)
-orders.to_csv(output_dir / "orders.csv", index=False)
-logger.info(f"订单数据: {len(orders)} 行")
+    try:
+        # 1. 获取订单数据
+        orders = fetch_orders(credentials, days_back=1)
+        orders.to_csv(output_dir / "orders.csv", index=False)
+        logger.info(f"订单数据: {len(orders)} 行")
 
-# 2. 获取库存数据
-inventory = fetch_inventory(credentials)
-inventory.to_csv(output_dir / "inventory.csv", index=False)
-logger.info(f"库存数据: {len(inventory)} 行")
+        # 2. 获取库存数据
+        inventory = fetch_inventory(credentials)
+        inventory.to_csv(output_dir / "inventory.csv", index=False)
+        logger.info(f"库存数据: {len(inventory)} 行")
 
-# 3. 检查低库存预警
-low_stock = inventory[
-inventory.get("stock_status", "") != " 正常"
-] if "stock_status" in inventory.columns else pd.DataFrame()
+        # 3. 检查低库存预警
+        low_stock = inventory[
+            inventory.get("stock_status", "") != " 正常"
+        ] if "stock_status" in inventory.columns else pd.DataFrame()
 
-if len(low_stock) > 0:
-logger.warning(f" {len(low_stock)} 个 SKU 库存异常！")
-# 可以在这里加邮件/Slack 通知
+        if len(low_stock) > 0:
+            logger.warning(f" {len(low_stock)} 个 SKU 库存异常！")
+            # 可以在这里加邮件/Slack 通知
 
-logger.info(f" 每日采集完成: {output_dir}")
+        logger.info(f" 每日采集完成: {output_dir}")
 
-except Exception as e:
-logger.error(f" 采集失败: {e}", exc_info=True)
+    except Exception as e:
+        logger.error(f" 采集失败: {e}", exc_info=True)
 
 def weekly_report_generation():
-"""每周报告生成任务"""
-logger.info("开始生成周报...")
-try:
-# 合并本周的每日数据
-# ... 调用 generate_weekly_report()
-logger.info(" 周报生成完成")
-except Exception as e:
-logger.error(f" 周报生成失败: {e}", exc_info=True)
+    """每周报告生成任务"""
+    logger.info("开始生成周报...")
+    try:
+        # 合并本周的每日数据
+        # ... 调用 generate_weekly_report()
+        logger.info(" 周报生成完成")
+    except Exception as e:
+        logger.error(f" 周报生成失败: {e}", exc_info=True)
 
 # 设置定时任务
 schedule.every().day.at("08:00").do(daily_data_collection)
 schedule.every().monday.at("09:00").do(weekly_report_generation)
 
 if __name__ == "__main__":
-logger.info(" 数据管道启动")
-logger.info(f"定时任务: 每日 08:00 采集, 每周一 09:00 生成周报")
+    logger.info(" 数据管道启动")
+    logger.info(f"定时任务: 每日 08:00 采集, 每周一 09:00 生成周报")
 
-# 启动时先执行一次
-daily_data_collection()
+    # 启动时先执行一次
+    daily_data_collection()
 
-while True:
-schedule.run_pending()
-time.sleep(60)
+    while True:
+        schedule.run_pending()
+        time.sleep(60)
 ```
 
 > **生产环境建议**：`schedule` 库适合开发和小规模使用。生产环境推荐用系统级 cron（macOS/Linux）或 Windows Task Scheduler，更稳定且不依赖 Python 进程持续运行。
@@ -1385,68 +1385,68 @@ from transform.metrics import calculate_metrics, merge_reports
 from report.html_report import generate_html_dashboard
 
 def run(date_str: str = None, markets: list = None):
-"""
-执行完整的数据管道。
+    """
+    执行完整的数据管道。
 
-Args:
-date_str: 数据日期 (YYYYMMDD)，默认今天
-markets: 要处理的市场列表，默认全部
-"""
-date_str = date_str or datetime.now().strftime("%Y%m%d")
-markets = markets or list(MARKETS.keys())
+    Args:
+        date_str: 数据日期 (YYYYMMDD)，默认今天
+        markets: 要处理的市场列表，默认全部
+    """
+    date_str = date_str or datetime.now().strftime("%Y%m%d")
+    markets = markets or list(MARKETS.keys())
 
-print(f" Pipeline 启动: {date_str}, 市场: {markets}")
+    print(f" Pipeline 启动: {date_str}, 市场: {markets}")
 
-# === Extract ===
-raw_dir = RAW_DATA_DIR / date_str
-raw_dir.mkdir(parents=True, exist_ok=True)
+    # === Extract ===
+    raw_dir = RAW_DATA_DIR / date_str
+    raw_dir.mkdir(parents=True, exist_ok=True)
 
-# 检查是否有手动下载的报告文件
-report_files = {}
-for market in markets:
-pattern = f"*{market.lower()}*business*report*"
-found = list(raw_dir.glob(pattern))
-if found:
-report_files[market] = str(found[0])
-print(f" 找到 {market} 报告: {found[0].name}")
+    # 检查是否有手动下载的报告文件
+    report_files = {}
+    for market in markets:
+        pattern = f"*{market.lower()}*business*report*"
+        found = list(raw_dir.glob(pattern))
+        if found:
+            report_files[market] = str(found[0])
+            print(f" 找到 {market} 报告: {found[0].name}")
 
-if not report_files:
-print(" 未找到报告文件，尝试通过 SP-API 获取...")
-# 这里可以调用 SP-API 采集逻辑
-return
+    if not report_files:
+        print(" 未找到报告文件，尝试通过 SP-API 获取...")
+        # 这里可以调用 SP-API 采集逻辑
+        return
 
-# === Transform ===
-merged = merge_reports(report_files)
-print(f" 合并完成: {len(merged)} 行")
+    # === Transform ===
+    merged = merge_reports(report_files)
+    print(f" 合并完成: {len(merged)} 行")
 
-# 按市场汇总
-market_summary = calculate_metrics(merged, group_by=["Market"])
+    # 按市场汇总
+    market_summary = calculate_metrics(merged, group_by=["Market"])
 
-# 保存处理后的数据
-from config import PROCESSED_DATA_DIR
-processed_dir = PROCESSED_DATA_DIR / date_str
-processed_dir.mkdir(parents=True, exist_ok=True)
-merged.to_parquet(processed_dir / "merged.parquet", index=False)
+    # 保存处理后的数据
+    from config import PROCESSED_DATA_DIR
+    processed_dir = PROCESSED_DATA_DIR / date_str
+    processed_dir.mkdir(parents=True, exist_ok=True)
+    merged.to_parquet(processed_dir / "merged.parquet", index=False)
 
-# === Load & Report ===
-output_path = OUTPUT_DIR / f"report_{date_str}.html"
-generate_html_dashboard(
-merged,
-title=f"业务报告 {date_str}",
-output_path=str(output_path)
-)
+    # === Load & Report ===
+    output_path = OUTPUT_DIR / f"report_{date_str}.html"
+    generate_html_dashboard(
+        merged,
+        title=f"业务报告 {date_str}",
+        output_path=str(output_path)
+    )
 
-print(f"\n Pipeline 完成!")
-print(f" 处理数据: {processed_dir / 'merged.parquet'}")
-print(f" 输出报告: {output_path}")
+    print(f"\n Pipeline 完成!")
+    print(f" 处理数据: {processed_dir / 'merged.parquet'}")
+    print(f" 输出报告: {output_path}")
 
 if __name__ == "__main__":
-parser = argparse.ArgumentParser(description="数据管道")
-parser.add_argument("--date", help="数据日期 YYYYMMDD")
-parser.add_argument("--markets", nargs="+", help="市场列表")
-args = parser.parse_args()
+    parser = argparse.ArgumentParser(description="数据管道")
+    parser.add_argument("--date", help="数据日期 YYYYMMDD")
+    parser.add_argument("--markets", nargs="+", help="市场列表")
+    args = parser.parse_args()
 
-run(date_str=args.date, markets=args.markets)
+    run(date_str=args.date, markets=args.markets)
 ```
 
 ```bash

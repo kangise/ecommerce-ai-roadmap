@@ -530,60 +530,60 @@ from sp_api.base import Marketplaces
 import pandas as pd
 
 def fetch_inventory(
-credentials: dict,
-marketplace: Marketplaces = Marketplaces.US,
-granularity: str = "Marketplace"
+    credentials: dict,
+    marketplace: Marketplaces = Marketplaces.US,
+    granularity: str = "Marketplace"
 ) -> pd.DataFrame:
-"""
-Fetch FBA inventory summary data.
+    """
+    Fetch FBA inventory summary data.
 
-Args:
-credentials: SP-API credentials
-marketplace: target market
-granularity: granularity ("Marketplace" or "Country")
+    Args:
+        credentials: SP-API credentials
+        marketplace: target market
+        granularity: granularity ("Marketplace" or "Country")
 
-Returns:
-inventory DataFrame with sellable/unsellable quantities, etc.
-"""
-inv_api = Inventories(
-credentials=credentials, marketplace=marketplace
-)
+    Returns:
+        inventory DataFrame with sellable/unsellable quantities, etc.
+    """
+    inv_api = Inventories(
+        credentials=credentials, marketplace=marketplace
+    )
 
-all_items = []
-next_token = None
+    all_items = []
+    next_token = None
 
-while True:
-kwargs = {
-"granularityType": granularity,
-"granularityId": marketplace.marketplace_id,
-"marketplaceIds": [marketplace.marketplace_id],
-}
-if next_token:
-kwargs["nextToken"] = next_token
+    while True:
+        kwargs = {
+            "granularityType": granularity,
+            "granularityId": marketplace.marketplace_id,
+            "marketplaceIds": [marketplace.marketplace_id],
+        }
+        if next_token:
+            kwargs["nextToken"] = next_token
 
-response = inv_api.get_inventory_summary_marketplace(**kwargs)
+        response = inv_api.get_inventory_summary_marketplace(**kwargs)
 
-summaries = response.payload.get("inventorySummaries", [])
-all_items.extend(summaries)
+        summaries = response.payload.get("inventorySummaries", [])
+        all_items.extend(summaries)
 
-next_token = response.payload.get("nextToken")
-if not next_token:
-break
+        next_token = response.payload.get("nextToken")
+        if not next_token:
+            break
 
-if not all_items:
-return pd.DataFrame()
+    if not all_items:
+        return pd.DataFrame()
 
-df = pd.json_normalize(all_items)
+    df = pd.json_normalize(all_items)
 
-# Add an inventory-health flag
-if "totalQuantity" in df.columns:
-df["stock_status"] = df["totalQuantity"].apply(
-lambda x: "out of stock" if x == 0
-else "low stock" if x < 50
-else "normal"
-)
+    # Add an inventory-health flag
+    if "totalQuantity" in df.columns:
+        df["stock_status"] = df["totalQuantity"].apply(
+            lambda x: "out of stock" if x == 0
+            else "low stock" if x < 50
+            else "normal"
+        )
 
-return df
+    return df
 
 # Usage example
 # inventory = fetch_inventory(credentials, Marketplaces.US)
@@ -709,72 +709,72 @@ from pathlib import Path
 
 # Configure logging
 logging.basicConfig(
-level=logging.INFO,
-format="%(asctime)s [%(levelname)s] %(message)s",
-handlers=[
-logging.FileHandler("pipeline.log"),
-logging.StreamHandler()
-]
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[
+        logging.FileHandler("pipeline.log"),
+        logging.StreamHandler()
+    ]
 )
 logger = logging.getLogger(__name__)
 
 def daily_data_collection():
-"""Daily data-collection task"""
-today = datetime.now().strftime("%Y%m%d")
-output_dir = Path(f"data/raw/{today}")
-output_dir.mkdir(parents=True, exist_ok=True)
+    """Daily data-collection task"""
+    today = datetime.now().strftime("%Y%m%d")
+    output_dir = Path(f"data/raw/{today}")
+    output_dir.mkdir(parents=True, exist_ok=True)
 
-logger.info(f"Starting daily data collection: {today}")
+    logger.info(f"Starting daily data collection: {today}")
 
-try:
-# 1. Fetch order data
-orders = fetch_orders(credentials, days_back=1)
-orders.to_csv(output_dir / "orders.csv", index=False)
-logger.info(f"Order data: {len(orders)} rows")
+    try:
+        # 1. Fetch order data
+        orders = fetch_orders(credentials, days_back=1)
+        orders.to_csv(output_dir / "orders.csv", index=False)
+        logger.info(f"Order data: {len(orders)} rows")
 
-# 2. Fetch inventory data
-inventory = fetch_inventory(credentials)
-inventory.to_csv(output_dir / "inventory.csv", index=False)
-logger.info(f"Inventory data: {len(inventory)} rows")
+        # 2. Fetch inventory data
+        inventory = fetch_inventory(credentials)
+        inventory.to_csv(output_dir / "inventory.csv", index=False)
+        logger.info(f"Inventory data: {len(inventory)} rows")
 
-# 3. Check low-stock alerts
-low_stock = inventory[
-inventory.get("stock_status", "") != "normal"
-] if "stock_status" in inventory.columns else pd.DataFrame()
+        # 3. Check low-stock alerts
+        low_stock = inventory[
+            inventory.get("stock_status", "") != "normal"
+        ] if "stock_status" in inventory.columns else pd.DataFrame()
 
-if len(low_stock) > 0:
-logger.warning(f"{len(low_stock)} SKUs have abnormal stock!")
-# You can add email/Slack notifications here
+        if len(low_stock) > 0:
+            logger.warning(f"{len(low_stock)} SKUs have abnormal stock!")
+            # You can add email/Slack notifications here
 
-logger.info(f"Daily collection done: {output_dir}")
+        logger.info(f"Daily collection done: {output_dir}")
 
-except Exception as e:
-logger.error(f"Collection failed: {e}", exc_info=True)
+    except Exception as e:
+        logger.error(f"Collection failed: {e}", exc_info=True)
 
 def weekly_report_generation():
-"""Weekly report-generation task"""
-logger.info("Starting weekly report...")
-try:
-# Merge this week's daily data
-# ... call generate_weekly_report()
-logger.info("Weekly report done")
-except Exception as e:
-logger.error(f"Weekly report failed: {e}", exc_info=True)
+    """Weekly report-generation task"""
+    logger.info("Starting weekly report...")
+    try:
+        # Merge this week's daily data
+        # ... call generate_weekly_report()
+        logger.info("Weekly report done")
+    except Exception as e:
+        logger.error(f"Weekly report failed: {e}", exc_info=True)
 
 # Set scheduled tasks
 schedule.every().day.at("08:00").do(daily_data_collection)
 schedule.every().monday.at("09:00").do(weekly_report_generation)
 
 if __name__ == "__main__":
-logger.info("Data pipeline started")
-logger.info(f"Scheduled: daily 08:00 collection, Monday 09:00 weekly report")
+    logger.info("Data pipeline started")
+    logger.info(f"Scheduled: daily 08:00 collection, Monday 09:00 weekly report")
 
-# Run once at startup
-daily_data_collection()
+    # Run once at startup
+    daily_data_collection()
 
-while True:
-schedule.run_pending()
-time.sleep(60)
+    while True:
+        schedule.run_pending()
+        time.sleep(60)
 ```
 
 > **Production advice**: the `schedule` library fits development and small-scale use. For production, prefer system-level cron (macOS/Linux) or Windows Task Scheduler — more stable and doesn't depend on a Python process running continuously.
@@ -1379,68 +1379,68 @@ from transform.metrics import calculate_metrics, merge_reports
 from report.html_report import generate_html_dashboard
 
 def run(date_str: str = None, markets: list = None):
-"""
-Run the full data pipeline.
+    """
+    Run the full data pipeline.
 
-Args:
-date_str: data date (YYYYMMDD), defaults to today
-markets: list of markets to process, defaults to all
-"""
-date_str = date_str or datetime.now().strftime("%Y%m%d")
-markets = markets or list(MARKETS.keys())
+    Args:
+        date_str: data date (YYYYMMDD), defaults to today
+        markets: list of markets to process, defaults to all
+    """
+    date_str = date_str or datetime.now().strftime("%Y%m%d")
+    markets = markets or list(MARKETS.keys())
 
-print(f"Pipeline started: {date_str}, markets: {markets}")
+    print(f"Pipeline started: {date_str}, markets: {markets}")
 
-# === Extract ===
-raw_dir = RAW_DATA_DIR / date_str
-raw_dir.mkdir(parents=True, exist_ok=True)
+    # === Extract ===
+    raw_dir = RAW_DATA_DIR / date_str
+    raw_dir.mkdir(parents=True, exist_ok=True)
 
-# Check for manually downloaded report files
-report_files = {}
-for market in markets:
-pattern = f"*{market.lower()}*business*report*"
-found = list(raw_dir.glob(pattern))
-if found:
-report_files[market] = str(found[0])
-print(f"Found {market} report: {found[0].name}")
+    # Check for manually downloaded report files
+    report_files = {}
+    for market in markets:
+        pattern = f"*{market.lower()}*business*report*"
+        found = list(raw_dir.glob(pattern))
+        if found:
+            report_files[market] = str(found[0])
+            print(f"Found {market} report: {found[0].name}")
 
-if not report_files:
-print("No report files found, trying SP-API...")
-# You can call the SP-API collection logic here
-return
+    if not report_files:
+        print("No report files found, trying SP-API...")
+        # You can call the SP-API collection logic here
+        return
 
-# === Transform ===
-merged = merge_reports(report_files)
-print(f"Merge done: {len(merged)} rows")
+    # === Transform ===
+    merged = merge_reports(report_files)
+    print(f"Merge done: {len(merged)} rows")
 
-# Summarize by market
-market_summary = calculate_metrics(merged, group_by=["Market"])
+    # Summarize by market
+    market_summary = calculate_metrics(merged, group_by=["Market"])
 
-# Save the processed data
-from config import PROCESSED_DATA_DIR
-processed_dir = PROCESSED_DATA_DIR / date_str
-processed_dir.mkdir(parents=True, exist_ok=True)
-merged.to_parquet(processed_dir / "merged.parquet", index=False)
+    # Save the processed data
+    from config import PROCESSED_DATA_DIR
+    processed_dir = PROCESSED_DATA_DIR / date_str
+    processed_dir.mkdir(parents=True, exist_ok=True)
+    merged.to_parquet(processed_dir / "merged.parquet", index=False)
 
-# === Load & Report ===
-output_path = OUTPUT_DIR / f"report_{date_str}.html"
-generate_html_dashboard(
-merged,
-title=f"Business Report {date_str}",
-output_path=str(output_path)
-)
+    # === Load & Report ===
+    output_path = OUTPUT_DIR / f"report_{date_str}.html"
+    generate_html_dashboard(
+        merged,
+        title=f"Business Report {date_str}",
+        output_path=str(output_path)
+    )
 
-print(f"\nPipeline done!")
-print(f"Processed data: {processed_dir / 'merged.parquet'}")
-print(f"Output report: {output_path}")
+    print(f"\nPipeline done!")
+    print(f"Processed data: {processed_dir / 'merged.parquet'}")
+    print(f"Output report: {output_path}")
 
 if __name__ == "__main__":
-parser = argparse.ArgumentParser(description="Data pipeline")
-parser.add_argument("--date", help="data date YYYYMMDD")
-parser.add_argument("--markets", nargs="+", help="market list")
-args = parser.parse_args()
+    parser = argparse.ArgumentParser(description="Data pipeline")
+    parser.add_argument("--date", help="data date YYYYMMDD")
+    parser.add_argument("--markets", nargs="+", help="market list")
+    args = parser.parse_args()
 
-run(date_str=args.date, markets=args.markets)
+    run(date_str=args.date, markets=args.markets)
 ```
 
 ```bash
