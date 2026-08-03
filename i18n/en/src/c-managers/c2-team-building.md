@@ -992,6 +992,15 @@ After completing all the above, your team has established basic AI-usage capabil
 
 ---
 
+## When this doesn't work
+
+- **The tools are not in people's hands yet.** However good the training, if they return to their desk with no account, no budget, or a security policy in the way, what they learned is gone in a week. Solve availability first — accounts, expensing, compliance sign-off — then train. In the other order, training is a one-off entertainment.
+- **The exercises are not tied to real work.** Generic prompting courses retain badly because there is nothing to apply immediately afterwards. What works is having each person take the most tedious repetitive task on their own desk as homework and report back in two weeks. The output of training should be specific actions replaced, not hours attended.
+- **Management does not use it themselves.** Teams read accurately which requirements are real and which are theatre. If managers do not use AI in meetings, reporting and daily decisions, adoption stalls at the level needed to pass inspection. This is not a culture slogan; it is an observable cause.
+- **You make usage rate the goal.** "At least once a day" is easy to satisfy and easy to distort — people will ask questions they did not need to ask in order to hit it. Measure the actions replaced and the time saved instead. That number cannot be faked.
+
+---
+
 ## Appendix: Quick Reference Card
 
 ### Training Phase Cheat Sheet

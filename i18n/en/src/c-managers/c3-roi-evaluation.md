@@ -1125,6 +1125,15 @@ After completing all the above, you have established a complete AI ROI evaluatio
 
 ---
 
+## When this doesn't work
+
+- **You have no baseline from before AI.** The denominator of ROI is what it used to cost. If nobody recorded how long that action took, its error rate, or how often it was redone, a baseline estimated afterwards drifts in the flattering direction. To compute ROI seriously, measure for a fortnight before you roll anything out.
+- **The benefit is a loss avoided.** One stockout prevented, one complaint avoided, one declaration not filed wrong — these cannot be observed directly, only modelled. Reporting ROI from a model easily becomes convincing yourself. Judge these projects on process measures — response time, coverage, errors caught in review — rather than on financial return.
+- **The window is too short.** The learning curve makes the first weeks less efficient, not more, while the tool cost lands immediately. ROI inside a quarter is usually negative, and that does not mean the project failed. Set the evaluation window to cover the full learning period plus at least one business cycle.
+- **The time saved has nowhere to go.** "Ten hours a week saved" is only a gain if those hours produce something else. With the same people doing the same work, saved time gets absorbed by the work itself and nothing happens financially. State where the saved hours went as part of the ROI.
+
+---
+
 ## Appendix: Quick Reference Card
 
 ### ROI Formula Cheat Sheet

@@ -364,6 +364,15 @@ How and how often you collect competitor data has compliance limits. Scaling wit
 
 ---
 
+## When this doesn't work
+
+- **What you monitor is the public surface.** A competitor's prices, listings and reviews are public; their cost structure, inventory depth and real margin are not. A "competitor strategy" inferred from public signals is often your own imagination. Label inferences as inferences rather than treating them as intelligence.
+- **You monitor faster than you can react.** Scraping competitor prices daily while pricing decisions happen in a weekly meeting means six of those days produce nothing but noise and maintenance. Fix the decision cadence first, then set the monitoring frequency to match.
+- **The scraping itself carries risk.** High-frequency scraping can breach a site's terms and can trigger its defences. Prefer official APIs and public data sources; where you must scrape, control the rate, identify yourself, and stay out of anything behind a login. This is a legal question as much as a technical one.
+- **AI-search visibility has no stable measurement yet.** The same question, asked of the same engine at a different time, from a different account or a different region, can return a different answer. Concluding "our AI visibility improved" from a handful of samples is unreliable. To track it, fix the question set, fix the cadence, sample repeatedly and read the trend — not a single result.
+
+---
+
 ## 8. Completion Checklist
 
 - [ ] Establish a competitor monitoring system (price + Listing + reviews + advertising)

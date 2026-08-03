@@ -451,6 +451,15 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 
 ---
 
+## When this doesn't work
+
+- **Nobody on the team has actually used AI yet.** A capability assessment asks which functions are worth investing in, but if the people scoring have only heard about AI, what you get is imagination rather than assessment. Have each key role use it for a fortnight first — otherwise you are rating your own expectations.
+- **The assessment carries no constraints.** "This function suits AI" has to be followed by whether you can get the data, who will do the work, and who covers the mistakes. A priority ranking without those three stalls at the first function when the plan meets reality. Fill the constraints in with the [data-source grading in A14](../a-operators/a14-operations-agent.md).
+- **The organisation is still moving.** Mid-reorganisation, with the business direction unsettled or a key role vacant, any AI plan you produce expires within a quarter. What that stage needs is a few cheap pilots that build judgement, not a finished plan.
+- **You intend to use the scores as a KPI.** A maturity score is a coordinate for your own use, not a performance measure. Attach it to appraisals and teams start optimising the score rather than the business — the most common way this kind of framework dies.
+
+---
+
 ## Appendix: Quick Reference Card
 
 ### Prompt Cheat Sheet

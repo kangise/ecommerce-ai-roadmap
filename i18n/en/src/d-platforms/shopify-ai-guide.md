@@ -2441,6 +2441,15 @@ Why it works: FAQ Schema makes your product show FAQ rich snippets in Google sea
 
 ---
 
+## When this doesn't work
+
+- **You have no traffic plan.** Shopify gives you a shop, not shoppers. On Amazon the platform's own search sends people; on your own site nothing does — every visitor is bought or earned. Work out where the first thousand visitors come from before you open. If you cannot answer that, do not open yet.
+- **One SKU and naturally low repeat purchase.** A storefront's economics rest on repeat purchase and order value amortising acquisition cost. In categories bought once and never again, acquisition never pays back and staying on the marketplace suits you better. The test is whether customer lifetime value covers acquisition cost, not whether you want your own brand.
+- **Nobody owns day-to-day operations.** A storefront is your own stack: theme updates, app conflicts, failed payments, a checkout that errors, SEO broken by an edit — nothing catches these for you. Without someone looking at site health every week, problems drop orders quietly for as long as they go unnoticed.
+- **The AI feature in this chapter just launched.** Shopify's AI capabilities and their interfaces move quickly, and availability, which plan includes them, and the shape of the API may all have changed since this was written. Confirm the feature exists and your plan has it in your own admin before building on it.
+
+---
+
 ## 28. The Complete Methodology of Migrating from Amazon to Shopify
 
 ### 28.1 Migration Decision Framework

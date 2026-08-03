@@ -401,6 +401,15 @@ What the document says and what the team does are two different things. Spot-che
 
 ---
 
+## When this doesn't work
+
+- **The governance document has no enforcement point.** A well-written AI usage policy that does not land in an approval flow, a tool configuration or a safety valve in code is paper for indemnity. Every red line should answer where it gets stopped and by whom. A clause that cannot answer that does not exist.
+- **The rules are strict enough that nobody follows them.** Requiring human review of every AI output collapses against real throughput — people quietly switch to personal accounts. Tiering is what survives: low risk passes, medium risk is sampled, high risk is always reviewed. Blanket strictness is not governance, and it adds a false sense of safety.
+- **The regulation is still moving.** The clauses cited in this chapter have effective dates, and some are not yet in the official journal. Schedule compliance work against the official text, not against this chapter's summary. Seeing a specific date should send you back to the source — that habit is what the chapter is trying to teach.
+- **The risk lives with your vendors, not with you.** Where your SaaS sends data, whether it trains on yours, who is liable when something goes wrong — those live in the contract and the DPA, not in your internal policy. Govern procurement before you govern agents.
+
+---
+
 ## 9. Completion Checklist
 
 - [ ] Complete the team AI usage risk assessment

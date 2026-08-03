@@ -1723,6 +1723,15 @@ Example (standard version $100/month):
 
 ---
 
+## When this doesn't work
+
+- **The product has no three-second story.** Traffic on TikTok comes from content being watched through, not from a keyword being searched. Products with nothing visual to change, compare or surprise with — purely functional consumables, spec-driven B2B parts — do not carry content here, and forcing it converts budget into views.
+- **The price sits above the impulse range.** Higher-priced items need repeated exposure and real explanation, and a short video gives you a one-shot handful of seconds. Use TikTok for awareness and convert elsewhere; selling directly in-app gives you high view counts and very few orders.
+- **Your supply chain cannot absorb a spike.** TikTok traffic arrives in pulses — one video takes off and orders can multiply within a couple of days and then fall back. Stock and fulfilment that cannot keep up buys you negative reviews and a lower shop score, and both recover slowly on this platform. Confirm you can absorb a spike before scaling.
+- **Platform rules and ad products changed recently.** TikTok Shop's commissions, creator rules and advertising products (GMV Max and the like) are adjusted often and not in step across countries. Take the mechanics described here from your own market's current back end, especially the automated ad types that take bidding out of your hands.
+
+---
+
 ## 26. Case Study: The Complete Path from 0 to Monthly GMV $100K
 
 <!-- claims: illustrative -->
