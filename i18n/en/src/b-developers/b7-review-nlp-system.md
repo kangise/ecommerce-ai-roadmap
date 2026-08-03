@@ -148,39 +148,39 @@ import spacy
 nlp = spacy.load("en_core_web_sm")
 
 def clean_review(text: str) -> str:
-"""Clean the Review text"""
-if not text or not isinstance(text, str):
-return ""
+    """Clean the Review text"""
+    if not text or not isinstance(text, str):
+        return ""
 
-# Remove HTML tags
-text = re.sub(r'<[^>]+>', '', text)
-# Remove URLs
-text = re.sub(r'http\S+', '', text)
-# Remove extra whitespace
-text = re.sub(r'\s+', ' ', text).strip()
+    # Remove HTML tags
+    text = re.sub(r'<[^>]+>', '', text)
+    # Remove URLs
+    text = re.sub(r'http\S+', '', text)
+    # Remove extra whitespace
+    text = re.sub(r'\s+', ' ', text).strip()
 
-return text
+    return text
 
 def preprocess_reviews(df: pd.DataFrame) -> pd.DataFrame:
-"""Preprocess the Review DataFrame"""
-# Clean text
-df['clean_body'] = df['body'].apply(clean_review)
-df['clean_title'] = df['title'].apply(clean_review)
+    """Preprocess the Review DataFrame"""
+    # Clean text
+    df['clean_body'] = df['body'].apply(clean_review)
+    df['clean_title'] = df['title'].apply(clean_review)
 
-# Merge title and body
-df['full_text'] = df['clean_title'] + '. ' + df['clean_body']
+    # Merge title and body
+    df['full_text'] = df['clean_title'] + '. ' + df['clean_body']
 
-# Filter empty text
-df = df[df['full_text'].str.len() > 10]
+    # Filter empty text
+    df = df[df['full_text'].str.len() > 10]
 
-# Tag sentiment labels (rough classification based on star rating)
-df['sentiment_label'] = df['rating'].map({
-1: 'negative', 2: 'negative',
-3: 'neutral',
-4: 'positive', 5: 'positive'
-})
+    # Tag sentiment labels (rough classification based on star rating)
+    df['sentiment_label'] = df['rating'].map({
+        1: 'negative', 2: 'negative',
+        3: 'neutral',
+        4: 'positive', 5: 'positive'
+    })
 
-return df
+    return df
 ```
 
 ---
@@ -204,24 +204,24 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 analyzer = SentimentIntensityAnalyzer()
 
 def vader_sentiment(text: str) -> dict:
-"""VADER sentiment analysis (good for English Reviews)"""
-scores = analyzer.polarity_scores(text)
+    """VADER sentiment analysis (good for English Reviews)"""
+    scores = analyzer.polarity_scores(text)
 
-# Judge the sentiment
-if scores['compound'] >= 0.05:
-label = 'positive'
-elif scores['compound'] <= -0.05:
-label = 'negative'
-else:
-label = 'neutral'
+    # Judge the sentiment
+    if scores['compound'] >= 0.05:
+        label = 'positive'
+    elif scores['compound'] <= -0.05:
+        label = 'negative'
+    else:
+        label = 'neutral'
 
-return {
-'label': label,
-'score': scores['compound'],
-'positive': scores['pos'],
-'negative': scores['neg'],
-'neutral': scores['neu']
-}
+    return {
+        'label': label,
+        'score': scores['compound'],
+        'positive': scores['pos'],
+        'negative': scores['neg'],
+        'neutral': scores['neu']
+    }
 
 # Batch analysis
 df['vader'] = df['full_text'].apply(vader_sentiment)
@@ -236,21 +236,21 @@ from transformers import pipeline
 
 # Load a pre-trained sentiment-analysis model
 sentiment_pipeline = pipeline(
-"sentiment-analysis",
-model="distilbert-base-uncased-finetuned-sst-2-english",
-device=0 # GPU; use -1 if no GPU
+    "sentiment-analysis",
+    model="distilbert-base-uncased-finetuned-sst-2-english",
+    device=0 # GPU; use -1 if no GPU
 )
 
 def bert_sentiment(texts: list, batch_size: int = 32) -> list:
-"""Batch BERT sentiment analysis"""
-results = sentiment_pipeline(texts, batch_size=batch_size, truncation=True)
-return [
-{
-'label': r['label'].lower(),
-'score': r['score'] if r['label'] == 'POSITIVE' else -r['score']
-}
-for r in results
-]
+    """Batch BERT sentiment analysis"""
+    results = sentiment_pipeline(texts, batch_size=batch_size, truncation=True)
+    return [
+        {
+            'label': r['label'].lower(),
+            'score': r['score'] if r['label'] == 'POSITIVE' else -r['score']
+        }
+        for r in results
+    ]
 
 # Batch processing (10x faster than one by one)
 texts = df['full_text'].tolist()
@@ -280,11 +280,11 @@ embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
 
 # Create the BERTopic model
 topic_model = BERTopic(
-embedding_model=embedding_model,
-nr_topics="auto", # auto-determine the number of topics
-min_topic_size=10, # minimum topic size
-language="english",
-verbose=True
+    embedding_model=embedding_model,
+    nr_topics="auto", # auto-determine the number of topics
+    min_topic_size=10, # minimum topic size
+    language="english",
+    verbose=True
 )
 
 # Train the model
@@ -296,8 +296,8 @@ print(topic_info.head(20))
 
 # View each topic's keywords
 for topic_id in range(min(10, len(topic_info))):
-print(f"\nTopic {topic_id}:")
-print(topic_model.get_topic(topic_id))
+    print(f"\nTopic {topic_id}:")
+    print(topic_model.get_topic(topic_id))
 ```
 
 ### 5.2 Negative-review dedicated topic analysis
@@ -307,10 +307,10 @@ print(topic_model.get_topic(topic_id))
 negative_reviews = df[df['rating'] <= 2]['full_text'].tolist()
 
 negative_topic_model = BERTopic(
-embedding_model=embedding_model,
-nr_topics=10, # limit the number of topics
-min_topic_size=5,
-language="english"
+    embedding_model=embedding_model,
+    nr_topics=10, # limit the number of topics
+    min_topic_size=5,
+    language="english"
 )
 
 neg_topics, neg_probs = negative_topic_model.fit_transform(negative_reviews)
@@ -319,7 +319,7 @@ neg_topics, neg_probs = negative_topic_model.fit_transform(negative_reviews)
 neg_topic_info = negative_topic_model.get_topic_info()
 print("=== Top 10 core negative-review problems ===")
 for _, row in neg_topic_info.head(10).iterrows():
-print(f"Topic {row['Topic']}: {row['Name']} ({row['Count']} reviews)")
+    print(f"Topic {row['Topic']}: {row['Name']} ({row['Count']} reviews)")
 ```
 
 ### 5.3 Topic-trend analysis
@@ -349,27 +349,27 @@ Content rephrased for compliance with licensing restrictions.
 ```python
 # Advanced technique 1: topic analysis grouped by category
 def analyze_by_category(df: pd.DataFrame, categories: list):
-"""Do topic analysis per category, discovering category-specific problems"""
-results = {}
-for cat in categories:
-cat_df = df[df['category'] == cat]
-if len(cat_df) < 50:
-continue
+    """Do topic analysis per category, discovering category-specific problems"""
+    results = {}
+    for cat in categories:
+        cat_df = df[df['category'] == cat]
+        if len(cat_df) < 50:
+            continue
 
-model = BERTopic(
-embedding_model=embedding_model,
-nr_topics=8,
-min_topic_size=5
-)
-topics, _ = model.fit_transform(cat_df['full_text'].tolist())
-results[cat] = {
-'model': model,
-'topics': model.get_topic_info(),
-'negative_topics': cat_df[cat_df['rating'] <= 2].groupby(
-pd.Series(topics)[cat_df['rating'] <= 2].values
-).size().sort_values(ascending=False)
-}
-return results
+        model = BERTopic(
+            embedding_model=embedding_model,
+            nr_topics=8,
+            min_topic_size=5
+        )
+        topics, _ = model.fit_transform(cat_df['full_text'].tolist())
+        results[cat] = {
+            'model': model,
+            'topics': model.get_topic_info(),
+            'negative_topics': cat_df[cat_df['rating'] <= 2].groupby(
+                pd.Series(topics)[cat_df['rating'] <= 2].values
+            ).size().sort_values(ascending=False)
+        }
+    return results
 
 # Advanced technique 2: multilingual Review analysis
 from sentence_transformers import SentenceTransformer
@@ -378,8 +378,8 @@ from sentence_transformers import SentenceTransformer
 multilingual_model = SentenceTransformer("paraphrase-multilingual-MiniLM-L12-v2")
 
 multilingual_topic_model = BERTopic(
-embedding_model=multilingual_model,
-language="multilingual"
+    embedding_model=multilingual_model,
+    language="multilingual"
 )
 
 # Can analyze English, German, and Japanese Reviews at once
@@ -388,46 +388,46 @@ topics, _ = multilingual_topic_model.fit_transform(all_reviews['full_text'].toli
 
 # Advanced technique 3: auto-generate topic labels (with an LLM)
 def auto_label_topics(topic_model, top_n_topics=20):
-"""Use an LLM to generate human-readable labels for BERTopic-discovered topics"""
-labels = {}
-for topic_id in range(top_n_topics):
-keywords = topic_model.get_topic(topic_id)
-if not keywords:
-continue
+    """Use an LLM to generate human-readable labels for BERTopic-discovered topics"""
+    labels = {}
+    for topic_id in range(top_n_topics):
+        keywords = topic_model.get_topic(topic_id)
+        if not keywords:
+            continue
 
-keyword_str = ", ".join([w for w, _ in keywords[:10]])
+        keyword_str = ", ".join([w for w, _ in keywords[:10]])
 
-prompt = f"""
+        prompt = f"""
 Here are the keywords of a topic extracted from product Reviews:
 {keyword_str}
 
 Describe this topic with a short label (3-6 words).
 Return only the label, no explanation.
 """
-label = llm_call(prompt).strip()
-labels[topic_id] = label
+        label = llm_call(prompt).strip()
+        labels[topic_id] = label
 
-return labels
+    return labels
 
 # Advanced technique 4: Review quality scoring
 def score_review_quality(df: pd.DataFrame) -> pd.DataFrame:
-"""Assess a Review's information quality (to filter high-value Reviews)"""
-df['word_count'] = df['full_text'].str.split().str.len()
-df['has_specific_detail'] = df['full_text'].str.contains(
-r'\d+\s*(day|week|month|hour|minute|inch|cm|kg|lb|oz)',
-case=False, regex=True
-)
-df['has_comparison'] = df['full_text'].str.contains(
-r'(better than|worse than|compared to|vs|versus|unlike)',
-case=False, regex=True
-)
-df['quality_score'] = (
-(df['word_count'] > 30).astype(int) * 2 +
-df['has_specific_detail'].astype(int) * 3 +
-df['has_comparison'].astype(int) * 3 +
-(df['helpful_votes'] > 0).astype(int) * 2
-)
-return df
+    """Assess a Review's information quality (to filter high-value Reviews)"""
+    df['word_count'] = df['full_text'].str.split().str.len()
+    df['has_specific_detail'] = df['full_text'].str.contains(
+        r'\d+\s*(day|week|month|hour|minute|inch|cm|kg|lb|oz)',
+        case=False, regex=True
+    )
+    df['has_comparison'] = df['full_text'].str.contains(
+        r'(better than|worse than|compared to|vs|versus|unlike)',
+        case=False, regex=True
+    )
+    df['quality_score'] = (
+        (df['word_count'] > 30).astype(int) * 2 +
+        df['has_specific_detail'].astype(int) * 3 +
+        df['has_comparison'].astype(int) * 3 +
+        (df['helpful_votes'] > 0).astype(int) * 2
+    )
+    return df
 ```
 
 ---
@@ -444,8 +444,8 @@ import anthropic # or openai
 client = anthropic.Anthropic()
 
 def generate_review_insights(topic_info: dict, sample_reviews: list) -> str:
-"""Use an LLM to generate executable insights from Review topics"""
-prompt = f"""
+    """Use an LLM to generate executable insights from Review topics"""
+    prompt = f"""
 You are an e-commerce product-analysis expert. Below is the NLP-analysis result of Amazon Reviews.
 
 Product: [product name]
@@ -470,28 +470,28 @@ Generate:
 6. Prioritized action list (do the highest-ROI improvements first)
 """
 
-response = client.messages.create(
-model="claude-sonnet-4-20250514",
-max_tokens=2000,
-messages=[{"role": "user", "content": prompt}]
-)
+    response = client.messages.create(
+        model="claude-sonnet-5",  # T2 tier — see model-matrix.md
+        max_tokens=2000,
+        messages=[{"role": "user", "content": prompt}]
+    )
 
-return response.content[0].text
+    return response.content[0].text
 ```
 
 ### 6.2 Competitor-Review comparison analysis
 
 ```python
 def competitive_review_analysis(my_reviews: pd.DataFrame,
-competitor_reviews: pd.DataFrame) -> str:
-"""Compare your own and competitor Review topics"""
+                                competitor_reviews: pd.DataFrame) -> str:
+    """Compare your own and competitor Review topics"""
 
-# Do topic modeling separately
-my_topics = run_bertopic(my_reviews)
-comp_topics = run_bertopic(competitor_reviews)
+    # Do topic modeling separately
+    my_topics = run_bertopic(my_reviews)
+    comp_topics = run_bertopic(competitor_reviews)
 
-# Comparative analysis with an LLM
-prompt = f"""
+    # Comparative analysis with an LLM
+    prompt = f"""
 Compare the Review-analysis results of two products:
 
 My product:
@@ -510,7 +510,7 @@ Analyze:
 3. Which of my negatives has the competitor already solved
 4. Differentiation-positioning advice
 """
-return llm_call(prompt)
+    return llm_call(prompt)
 ```
 
 ---
@@ -521,67 +521,67 @@ return llm_call(prompt)
 
 ```python
 class ReviewAnalysisPipeline:
-"""A complete Review-analysis pipeline"""
+    """A complete Review-analysis pipeline"""
 
-def __init__(self, embedding_model="all-MiniLM-L6-v2"):
-self.embedding_model = SentenceTransformer(embedding_model)
-self.sentiment_pipeline = pipeline(
-"sentiment-analysis",
-model="distilbert-base-uncased-finetuned-sst-2-english"
-)
-self.topic_model = None
+    def __init__(self, embedding_model="all-MiniLM-L6-v2"):
+        self.embedding_model = SentenceTransformer(embedding_model)
+        self.sentiment_pipeline = pipeline(
+            "sentiment-analysis",
+            model="distilbert-base-uncased-finetuned-sst-2-english"
+        )
+        self.topic_model = None
 
-def run(self, reviews_df: pd.DataFrame) -> dict:
-"""Run the full analysis"""
-# Step 1: preprocess
-df = preprocess_reviews(reviews_df)
+    def run(self, reviews_df: pd.DataFrame) -> dict:
+        """Run the full analysis"""
+        # Step 1: preprocess
+        df = preprocess_reviews(reviews_df)
 
-# Step 2: sentiment analysis
-sentiments = self.sentiment_pipeline(
-df['full_text'].tolist(),
-batch_size=32, truncation=True
-)
-df['sentiment'] = [s['label'].lower() for s in sentiments]
+        # Step 2: sentiment analysis
+        sentiments = self.sentiment_pipeline(
+            df['full_text'].tolist(),
+            batch_size=32, truncation=True
+        )
+        df['sentiment'] = [s['label'].lower() for s in sentiments]
 
-# Step 3: topic modeling
-self.topic_model = BERTopic(
-embedding_model=self.embedding_model,
-nr_topics="auto",
-min_topic_size=5
-)
-topics, _ = self.topic_model.fit_transform(df['full_text'].tolist())
-df['topic'] = topics
+        # Step 3: topic modeling
+        self.topic_model = BERTopic(
+            embedding_model=self.embedding_model,
+            nr_topics="auto",
+            min_topic_size=5
+        )
+        topics, _ = self.topic_model.fit_transform(df['full_text'].tolist())
+        df['topic'] = topics
 
-# Step 4: aggregate
-results = {
-'total_reviews': len(df),
-'avg_rating': df['rating'].mean(),
-'sentiment_dist': df['sentiment'].value_counts().to_dict(),
-'rating_dist': df['rating'].value_counts().to_dict(),
-'topics': self.topic_model.get_topic_info().to_dict(),
-'negative_topics': self._get_negative_topics(df),
-'positive_topics': self._get_positive_topics(df),
-'trends': self._get_trends(df)
-}
+        # Step 4: aggregate
+        results = {
+            'total_reviews': len(df),
+            'avg_rating': df['rating'].mean(),
+            'sentiment_dist': df['sentiment'].value_counts().to_dict(),
+            'rating_dist': df['rating'].value_counts().to_dict(),
+            'topics': self.topic_model.get_topic_info().to_dict(),
+            'negative_topics': self._get_negative_topics(df),
+            'positive_topics': self._get_positive_topics(df),
+            'trends': self._get_trends(df)
+        }
 
-# Step 5: LLM insights
-results['insights'] = generate_review_insights(results,
-df[df['rating'] <= 2].sample(min(15, len(df[df['rating'] <= 2])))
-)
+        # Step 5: LLM insights
+        results['insights'] = generate_review_insights(results,
+            df[df['rating'] <= 2].sample(min(15, len(df[df['rating'] <= 2])))
+        )
 
-return results
+        return results
 
-def _get_negative_topics(self, df):
-neg = df[df['rating'] <= 2]
-return neg.groupby('topic').size().sort_values(ascending=False).head(10)
+    def _get_negative_topics(self, df):
+        neg = df[df['rating'] <= 2]
+        return neg.groupby('topic').size().sort_values(ascending=False).head(10)
 
-def _get_positive_topics(self, df):
-pos = df[df['rating'] >= 4]
-return pos.groupby('topic').size().sort_values(ascending=False).head(10)
+    def _get_positive_topics(self, df):
+        pos = df[df['rating'] >= 4]
+        return pos.groupby('topic').size().sort_values(ascending=False).head(10)
 
-def _get_trends(self, df):
-df['month'] = pd.to_datetime(df['date']).dt.to_period('M')
-return df.groupby('month')['rating'].mean()
+    def _get_trends(self, df):
+        df['month'] = pd.to_datetime(df['date']).dt.to_period('M')
+        return df.groupby('month')['rating'].mean()
 ```
 
 ### 7.2 Streamlit dashboard (full implementation)
@@ -602,188 +602,188 @@ st.title("Review Intelligence System")
 
 # === Sidebar ===
 with st.sidebar:
-st.header("Data upload")
-uploaded_file = st.file_uploader("Upload a Review CSV", type="csv")
+    st.header("Data upload")
+    uploaded_file = st.file_uploader("Upload a Review CSV", type="csv")
+
+    if uploaded_file:
+        st.header("Analysis settings")
+        min_rating = st.slider("Min rating filter", 1, 5, 1)
+        max_rating = st.slider("Max rating filter", 1, 5, 5)
+        num_topics = st.slider("Number of topics", 5, 30, 10)
+        analysis_type = st.selectbox(
+            "Analysis type",
+            ["All Reviews", "Negatives only (1-2 stars)", "Positives only (4-5 stars)", "Neutral (3 stars)"]
+        )
 
 if uploaded_file:
-st.header("Analysis settings")
-min_rating = st.slider("Min rating filter", 1, 5, 1)
-max_rating = st.slider("Max rating filter", 1, 5, 5)
-num_topics = st.slider("Number of topics", 5, 30, 10)
-analysis_type = st.selectbox(
-"Analysis type",
-["All Reviews", "Negatives only (1-2 stars)", "Positives only (4-5 stars)", "Neutral (3 stars)"]
-)
+    df = pd.read_csv(uploaded_file)
+    df = preprocess_reviews(df)
 
-if uploaded_file:
-df = pd.read_csv(uploaded_file)
-df = preprocess_reviews(df)
+    # Filter
+    df_filtered = df[(df['rating'] >= min_rating) & (df['rating'] <= max_rating)]
 
-# Filter
-df_filtered = df[(df['rating'] >= min_rating) & (df['rating'] <= max_rating)]
+    # === Tab 1: overview ===
+    tab1, tab2, tab3, tab4, tab5 = st.tabs([
+        "Overview", "Sentiment analysis", "Topic modeling", "Trends", "AI insights"
+    ])
 
-# === Tab 1: overview ===
-tab1, tab2, tab3, tab4, tab5 = st.tabs([
-"Overview", "Sentiment analysis", "Topic modeling", "Trends", "AI insights"
-])
+    with tab1:
+        # KPI cards
+        col1, col2, col3, col4, col5 = st.columns(5)
+        col1.metric("Total Reviews", f"{len(df_filtered):,}")
+        col2.metric("Average rating", f"{df_filtered['rating'].mean():.2f}")
+        col3.metric("Negative rate", f"{(df_filtered['rating'] <= 2).mean()*100:.1f}%")
+        col4.metric("Positive rate", f"{(df_filtered['rating'] >= 4).mean()*100:.1f}%")
+        col5.metric("Verified purchase", f"{df_filtered['verified'].mean()*100:.0f}%")
 
-with tab1:
-# KPI cards
-col1, col2, col3, col4, col5 = st.columns(5)
-col1.metric("Total Reviews", f"{len(df_filtered):,}")
-col2.metric("Average rating", f"{df_filtered['rating'].mean():.2f}")
-col3.metric("Negative rate", f"{(df_filtered['rating'] <= 2).mean()*100:.1f}%")
-col4.metric("Positive rate", f"{(df_filtered['rating'] >= 4).mean()*100:.1f}%")
-col5.metric("Verified purchase", f"{df_filtered['verified'].mean()*100:.0f}%")
+        # Rating distribution
+        col1, col2 = st.columns(2)
+        with col1:
+            rating_dist = df_filtered['rating'].value_counts().sort_index()
+            fig = px.bar(x=rating_dist.index, y=rating_dist.values,
+                         labels={'x': 'Rating', 'y': 'Count'},
+                         title="Rating distribution",
+                         color=rating_dist.index,
+                         color_continuous_scale=['red', 'orange', 'yellow', 'lightgreen', 'green'])
+            st.plotly_chart(fig, use_container_width=True)
 
-# Rating distribution
-col1, col2 = st.columns(2)
-with col1:
-rating_dist = df_filtered['rating'].value_counts().sort_index()
-fig = px.bar(x=rating_dist.index, y=rating_dist.values,
-labels={'x': 'Rating', 'y': 'Count'},
-title="Rating distribution",
-color=rating_dist.index,
-color_continuous_scale=['red', 'orange', 'yellow', 'lightgreen', 'green'])
-st.plotly_chart(fig, use_container_width=True)
+        with col2:
+            # Word cloud
+            all_text = ' '.join(df_filtered['full_text'].tolist())
+            wc = WordCloud(width=800, height=400, background_color='white',
+                           max_words=100, colormap='viridis').generate(all_text)
+            fig_wc, ax = plt.subplots(figsize=(10, 5))
+            ax.imshow(wc, interpolation='bilinear')
+            ax.axis('off')
+            st.pyplot(fig_wc)
 
-with col2:
-# Word cloud
-all_text = ' '.join(df_filtered['full_text'].tolist())
-wc = WordCloud(width=800, height=400, background_color='white',
-max_words=100, colormap='viridis').generate(all_text)
-fig_wc, ax = plt.subplots(figsize=(10, 5))
-ax.imshow(wc, interpolation='bilinear')
-ax.axis('off')
-st.pyplot(fig_wc)
+    with tab2:
+        st.subheader("Sentiment analysis")
 
-with tab2:
-st.subheader("Sentiment analysis")
+        # Run sentiment analysis
+        with st.spinner("Analyzing sentiment..."):
+            sentiments = bert_sentiment(df_filtered['full_text'].tolist())
+            df_filtered['sentiment'] = [s['label'] for s in sentiments]
+            df_filtered['sentiment_score'] = [s['score'] for s in sentiments]
 
-# Run sentiment analysis
-with st.spinner("Analyzing sentiment..."):
-sentiments = bert_sentiment(df_filtered['full_text'].tolist())
-df_filtered['sentiment'] = [s['label'] for s in sentiments]
-df_filtered['sentiment_score'] = [s['score'] for s in sentiments]
+        # Sentiment distribution
+        col1, col2 = st.columns(2)
+        with col1:
+            sent_dist = df_filtered['sentiment'].value_counts()
+            fig = px.pie(values=sent_dist.values, names=sent_dist.index,
+                         title="Sentiment distribution",
+                         color_discrete_map={'positive': 'green', 'negative': 'red', 'neutral': 'gray'})
+            st.plotly_chart(fig, use_container_width=True)
 
-# Sentiment distribution
-col1, col2 = st.columns(2)
-with col1:
-sent_dist = df_filtered['sentiment'].value_counts()
-fig = px.pie(values=sent_dist.values, names=sent_dist.index,
-title="Sentiment distribution",
-color_discrete_map={'positive': 'green', 'negative': 'red', 'neutral': 'gray'})
-st.plotly_chart(fig, use_container_width=True)
+        with col2:
+            # Sentiment vs rating relationship
+            fig = px.box(df_filtered, x='rating', y='sentiment_score',
+                         title="Sentiment score vs rating",
+                         labels={'rating': 'Rating', 'sentiment_score': 'Sentiment score'})
+            st.plotly_chart(fig, use_container_width=True)
 
-with col2:
-# Sentiment vs rating relationship
-fig = px.box(df_filtered, x='rating', y='sentiment_score',
-title="Sentiment score vs rating",
-labels={'rating': 'Rating', 'sentiment_score': 'Sentiment score'})
-st.plotly_chart(fig, use_container_width=True)
+        # The most extreme Reviews by sentiment
+        st.subheader("Most positive Reviews")
+        top_positive = df_filtered.nlargest(3, 'sentiment_score')
+        for _, row in top_positive.iterrows():
+            st.success(f"{row['rating']} | {row['full_text'][:200]}...")
 
-# The most extreme Reviews by sentiment
-st.subheader("Most positive Reviews")
-top_positive = df_filtered.nlargest(3, 'sentiment_score')
-for _, row in top_positive.iterrows():
-st.success(f"{row['rating']} | {row['full_text'][:200]}...")
+        st.subheader("Most negative Reviews")
+        top_negative = df_filtered.nsmallest(3, 'sentiment_score')
+        for _, row in top_negative.iterrows():
+            st.error(f"{row['rating']} | {row['full_text'][:200]}...")
 
-st.subheader("Most negative Reviews")
-top_negative = df_filtered.nsmallest(3, 'sentiment_score')
-for _, row in top_negative.iterrows():
-st.error(f"{row['rating']} | {row['full_text'][:200]}...")
+    with tab3:
+        st.subheader("Topic modeling (BERTopic)")
 
-with tab3:
-st.subheader("Topic modeling (BERTopic)")
+        with st.spinner("Extracting topics..."):
+            topic_model = BERTopic(
+                embedding_model=embedding_model,
+                nr_topics=num_topics,
+                min_topic_size=5
+            )
+            topics, probs = topic_model.fit_transform(df_filtered['full_text'].tolist())
+            df_filtered['topic'] = topics
 
-with st.spinner("Extracting topics..."):
-topic_model = BERTopic(
-embedding_model=embedding_model,
-nr_topics=num_topics,
-min_topic_size=5
-)
-topics, probs = topic_model.fit_transform(df_filtered['full_text'].tolist())
-df_filtered['topic'] = topics
+        # Topic overview
+        topic_info = topic_model.get_topic_info()
+        st.dataframe(topic_info[['Topic', 'Count', 'Name']].head(20),
+                     use_container_width=True)
 
-# Topic overview
-topic_info = topic_model.get_topic_info()
-st.dataframe(topic_info[['Topic', 'Count', 'Name']].head(20),
-use_container_width=True)
+        # Topic visualization
+        try:
+            fig = topic_model.visualize_barchart(top_n_topics=10)
+            st.plotly_chart(fig, use_container_width=True)
+        except:
+            pass
 
-# Topic visualization
-try:
-fig = topic_model.visualize_barchart(top_n_topics=10)
-st.plotly_chart(fig, use_container_width=True)
-except:
-pass
+        # Negative-review dedicated topics
+        st.subheader("Core negative-review problems")
+        neg_df = df_filtered[df_filtered['rating'] <= 2]
+        if len(neg_df) > 10:
+            neg_topic_counts = neg_df.groupby('topic').size().sort_values(ascending=False)
+            for topic_id in neg_topic_counts.head(5).index:
+                if topic_id == -1:
+                    continue
+                keywords = topic_model.get_topic(topic_id)
+                keyword_str = ", ".join([w for w, _ in keywords[:5]])
+                count = neg_topic_counts[topic_id]
+                st.warning(f"**Topic {topic_id}** ({count} negatives): {keyword_str}")
 
-# Negative-review dedicated topics
-st.subheader("Core negative-review problems")
-neg_df = df_filtered[df_filtered['rating'] <= 2]
-if len(neg_df) > 10:
-neg_topic_counts = neg_df.groupby('topic').size().sort_values(ascending=False)
-for topic_id in neg_topic_counts.head(5).index:
-if topic_id == -1:
-continue
-keywords = topic_model.get_topic(topic_id)
-keyword_str = ", ".join([w for w, _ in keywords[:5]])
-count = neg_topic_counts[topic_id]
-st.warning(f"**Topic {topic_id}** ({count} negatives): {keyword_str}")
+                # Show example Reviews for this topic
+                examples = neg_df[neg_df['topic'] == topic_id]['full_text'].head(2)
+                for ex in examples:
+                    st.caption(f" → {ex[:150]}...")
 
-# Show example Reviews for this topic
-examples = neg_df[neg_df['topic'] == topic_id]['full_text'].head(2)
-for ex in examples:
-st.caption(f" → {ex[:150]}...")
+    with tab4:
+        st.subheader("Trend analysis")
 
-with tab4:
-st.subheader("Trend analysis")
+        df_filtered['month'] = pd.to_datetime(df_filtered['date']).dt.to_period('M').astype(str)
 
-df_filtered['month'] = pd.to_datetime(df_filtered['date']).dt.to_period('M').astype(str)
+        # Monthly rating trend
+        monthly = df_filtered.groupby('month').agg({
+            'rating': 'mean',
+            'full_text': 'count'
+        }).reset_index()
+        monthly.columns = ['Month', 'Average rating', 'Review count']
 
-# Monthly rating trend
-monthly = df_filtered.groupby('month').agg({
-'rating': 'mean',
-'full_text': 'count'
-}).reset_index()
-monthly.columns = ['Month', 'Average rating', 'Review count']
+        fig = go.Figure()
+        fig.add_trace(go.Bar(x=monthly['Month'], y=monthly['Review count'], name='Review count'))
+        fig.add_trace(go.Scatter(x=monthly['Month'], y=monthly['Average rating'],
+                                 name='Average rating', yaxis='y2', mode='lines+markers'))
+        fig.update_layout(
+            title="Monthly Review trend",
+            yaxis=dict(title='Review count'),
+            yaxis2=dict(title='Average rating', overlaying='y', side='right', range=[1, 5])
+        )
+        st.plotly_chart(fig, use_container_width=True)
 
-fig = go.Figure()
-fig.add_trace(go.Bar(x=monthly['Month'], y=monthly['Review count'], name='Review count'))
-fig.add_trace(go.Scatter(x=monthly['Month'], y=monthly['Average rating'],
-name='Average rating', yaxis='y2', mode='lines+markers'))
-fig.update_layout(
-title="Monthly Review trend",
-yaxis=dict(title='Review count'),
-yaxis2=dict(title='Average rating', overlaying='y', side='right', range=[1, 5])
-)
-st.plotly_chart(fig, use_container_width=True)
+    with tab5:
+        st.subheader("AI insights")
 
-with tab5:
-st.subheader("AI insights")
+        if st.button("Generate AI analysis report"):
+            with st.spinner("AI is analyzing..."):
+                insights = generate_review_insights({
+                    'total_reviews': len(df_filtered),
+                    'avg_rating': df_filtered['rating'].mean(),
+                    'negative_topics': str(neg_topic_counts.head(5).to_dict()) if 'neg_topic_counts' in dir() else "N/A",
+                    'positive_topics': "N/A",
+                    'date_range': f"{df_filtered['date'].min()} to {df_filtered['date'].max()}"
+                }, df_filtered[df_filtered['rating'] <= 2].head(10).to_dict())
 
-if st.button("Generate AI analysis report"):
-with st.spinner("AI is analyzing..."):
-insights = generate_review_insights({
-'total_reviews': len(df_filtered),
-'avg_rating': df_filtered['rating'].mean(),
-'negative_topics': str(neg_topic_counts.head(5).to_dict()) if 'neg_topic_counts' in dir() else "N/A",
-'positive_topics': "N/A",
-'date_range': f"{df_filtered['date'].min()} to {df_filtered['date'].max()}"
-}, df_filtered[df_filtered['rating'] <= 2].head(10).to_dict())
+            st.markdown(insights)
 
-st.markdown(insights)
-
-# Download the report
-st.download_button(
-"Download the analysis report",
-insights,
-file_name=f"review_analysis_{datetime.now().strftime('%Y%m%d')}.md",
-mime="text/markdown"
-)
+            # Download the report
+            st.download_button(
+                "Download the analysis report",
+                insights,
+                file_name=f"review_analysis_{datetime.now().strftime('%Y%m%d')}.md",
+                mime="text/markdown"
+            )
 
 else:
-st.info("Please upload a Review CSV file on the left to start analysis")
-st.markdown("""
+    st.info("Please upload a Review CSV file on the left to start analysis")
+    st.markdown("""
 **CSV file format requirements:**
 - `rating`: rating (1-5)
 - `title`: Review title
@@ -800,30 +800,30 @@ Run: `streamlit run review_dashboard.py`
 
 ```python
 def export_analysis_results(df: pd.DataFrame, topic_model, output_dir: str = "output"):
-"""Export the complete analysis results"""
-from pathlib import Path
-Path(output_dir).mkdir(exist_ok=True)
+    """Export the complete analysis results"""
+    from pathlib import Path
+    Path(output_dir).mkdir(exist_ok=True)
 
-# 1. Export the annotated Review data
-df.to_csv(f"{output_dir}/reviews_analyzed.csv", index=False)
+    # 1. Export the annotated Review data
+    df.to_csv(f"{output_dir}/reviews_analyzed.csv", index=False)
 
-# 2. Export the topic summary
-topic_info = topic_model.get_topic_info()
-topic_info.to_csv(f"{output_dir}/topics_summary.csv", index=False)
+    # 2. Export the topic summary
+    topic_info = topic_model.get_topic_info()
+    topic_info.to_csv(f"{output_dir}/topics_summary.csv", index=False)
 
-# 3. Export negative-topic details
-neg_df = df[df['rating'] <= 2]
-neg_topics = neg_df.groupby('topic').agg({
-'full_text': 'count',
-'rating': 'mean'
-}).sort_values('full_text', ascending=False)
-neg_topics.to_csv(f"{output_dir}/negative_topics.csv")
+    # 3. Export negative-topic details
+    neg_df = df[df['rating'] <= 2]
+    neg_topics = neg_df.groupby('topic').agg({
+        'full_text': 'count',
+        'rating': 'mean'
+    }).sort_values('full_text', ascending=False)
+    neg_topics.to_csv(f"{output_dir}/negative_topics.csv")
 
-# 4. Generate an HTML report
-html_report = topic_model.visualize_topics()
-html_report.write_html(f"{output_dir}/topic_visualization.html")
+    # 4. Generate an HTML report
+    html_report = topic_model.visualize_topics()
+    html_report.write_html(f"{output_dir}/topic_visualization.html")
 
-print(f"Analysis results exported to {output_dir}/")
+    print(f"Analysis results exported to {output_dir}/")
 ```
 
 ---
