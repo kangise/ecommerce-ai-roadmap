@@ -452,6 +452,8 @@ Every prompt in this book notes a suggested capability tier (T1 frontier / T2 wo
 
 The four sections above cover writing a good prompt. But in 2026 what you actually ship is often not a block of text pasted into a chat box — it's **an instruction that gets invoked repeatedly**. This section covers how the same content differs across three delivery forms, and how to migrate this book's 300-plus prompts into them.
 
+> **Related resources**: [Skills Library](../resources/skills-library.md) the skill files collected in this repo · [AI IDE Skills Collection](../resources/awesome-ai-skills.md) rules and steering files for Cursor / Kiro / Claude Code
+
 ### 5.1 Three delivery forms
 
 | Form | What it looks like | Who runs it | When to choose it |

@@ -42,6 +42,8 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ---
 
+> **相关案例**: [AI Review 驱动选品](../case-studies/ai-review-to-product.md) 一个从差评挖痛点到定义新品的完整走查，可以对照本章的方法论看。
+
 ## 1. 选品方法论：AI 之前你需要理解的基础
 
 > **相关阅读**: [AI 应用全景评估](../0-foundations/ai-landscape.md) AI 在选品环节的成熟度评估 · [D4 Walmart AI 指南](../d-platforms/d4-walmart-ai-guide.md) Walmart 品类机会分析和竞争程度评估详见 D4。 · [E4 Pinterest AI 指南](../e-social-media/e4-pinterest-ai-guide.md) Pinterest 趋势数据可辅助选品方向验证，详见 E4。

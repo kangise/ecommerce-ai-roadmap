@@ -452,6 +452,8 @@ C. 情感诉求（享受音乐、专注工作）"
 
 前面四节讲的是"怎么写一段好 Prompt"。但 2026 年你真正要交付的，往往不是一段贴进对话框的文字，而是**一份能被反复调用的指令**。这一节讲同一份内容在三种形态下的写法差异，以及本库这 300 多个 Prompt 该怎么迁过去。
 
+> **相关资源**: [Skills 库](../resources/skills-library.md) 本库整理好的技能文件 · [AI IDE Skills 集合](../resources/awesome-ai-skills.md) Cursor/Kiro/Claude Code 的 Rules 与 Steering File 参考
+
 ### 5.1 三种交付形态
 
 | 形态 | 长什么样 | 谁在用 | 什么时候选它 |

@@ -28,6 +28,8 @@ Content rephrased for compliance with licensing restrictions.
 
 ---
 
+> **関連リソース**: [競合分析リソース集](../resources/competitive-analysis.md) ツール一覧とそのまま使える分析フレーム。
+
 ## 1. AI 競合インテリジェンスの新パラダイム
 
 ### 1.1 従来型 vs AI 競合インテリジェンス

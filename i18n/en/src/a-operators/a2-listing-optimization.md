@@ -46,6 +46,8 @@ After this module you'll be able to:
 
 ---
 
+> **Related case study**: [AI Listing Optimization](../case-studies/ai-listing-optimization.md) a full walk-through from keywords to finished copy — the templates in this chapter appear there in applied form.
+
 ## 1. Listing Methodology: the Basics Before AI
 
 ### 1.1 Amazon Search Algorithm Evolution: from A9 to COSMO + Rufus

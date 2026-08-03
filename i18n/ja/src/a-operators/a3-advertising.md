@@ -44,6 +44,8 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ---
 
+> **関連ケース**: [AI 広告最適化](../case-studies/ai-ppc-optimization.md) 実際の検索語レポートを分析から入札調整まで通した事例。
+
 ## 1. 広告の方法論: AI の前に理解すべき基礎
 
 > **関連**: [D4 Walmart AI ガイド](../d-platforms/d4-walmart-ai-guide.md) Walmart Connect 広告(第一価格入札)は D4 へ · [E1 Instagram/Facebook AI ガイド](../e-social-media/e1-instagram-facebook-ai-guide.md) Meta Advantage+ AI 広告素材生成と最適化は E1 へ · [E7 クロスチャネル戦略](../e-social-media/e7-social-media-cross-channel.md) クロスチャネルのアトリビューションと予算配分フレームは E7 へ。

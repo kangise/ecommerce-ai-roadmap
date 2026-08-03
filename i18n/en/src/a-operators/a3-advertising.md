@@ -44,6 +44,8 @@ After this module you'll be able to:
 
 ---
 
+> **Related case study**: [AI Advertising Optimization](../case-studies/ai-ppc-optimization.md) a real search-term report taken from analysis through to bid changes.
+
 ## 1. Advertising Methodology: the Basics Before AI
 
 > **Related**: [D4 Walmart AI Guide](../d-platforms/d4-walmart-ai-guide.md) for Walmart Connect ads (first-price auction) · [E1 Instagram/Facebook AI Guide](../e-social-media/e1-instagram-facebook-ai-guide.md) for Meta Advantage+ AI creative generation and optimization · [E7 Cross-Channel Strategy](../e-social-media/e7-social-media-cross-channel.md) for cross-channel attribution and budget-allocation frameworks.

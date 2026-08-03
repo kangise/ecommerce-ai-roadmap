@@ -46,6 +46,8 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ---
 
+> **相关案例**: [AI Listing 优化](../case-studies/ai-listing-optimization.md) 一个关键词到成稿的完整走查，本章的模板在那里有落地版本。
+
 ## 1. Listing 方法论：AI 之前你需要理解的基础
 
 ### 1.1 Amazon 搜索算法演进：从 A9 到 COSMO + Rufus

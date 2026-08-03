@@ -49,6 +49,8 @@ After this module you'll be able to:
 
 ---
 
+> **Related case study**: [HS Code Classification System](../case-studies/hs-code-classification.md) a worked technical design for automating customs classification — one of the few compliance steps worth automating.
+
 ## 1. Compliance Methodology: the Basics Before AI
 
 ### 1.1 The first principle of cross-border e-commerce compliance

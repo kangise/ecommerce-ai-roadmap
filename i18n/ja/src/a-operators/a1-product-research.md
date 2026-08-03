@@ -42,6 +42,8 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ---
 
+> **関連ケース**: [AI Review 起点の商品選定](../case-studies/ai-review-to-product.md) 低評価から痛点を掘り新商品を定義するまでの通し事例。本章の方法論と対照して読める。
+
 ## 1. 選品の方法論: AI の前に理解すべき基礎
 
 > **関連**: [AI 活用成熟度マップ](../0-foundations/ai-landscape.md) 選品段階での AI 成熟度評価 · [D4 Walmart AI ガイド](../d-platforms/d4-walmart-ai-guide.md) Walmart のカテゴリ機会と競争度評価は D4 へ · [E4 Pinterest AI ガイド](../e-social-media/e4-pinterest-ai-guide.md) Pinterest のトレンドデータで選品方向を検証、詳細は E4 へ。

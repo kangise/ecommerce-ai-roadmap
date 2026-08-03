@@ -47,6 +47,7 @@ style F5 fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 | [F3. ナレッジベースと RAG](f3-rag-knowledge.md) | Embedding、ベクトル DB、RAG アーキテクチャ | 自社データを AI に理解させる方法 | 2 時間 |
 | [F4. 自動化と Agent](f4-agent-automation.md) | スクリプトから Agent までの 3 層 | AI Agent に何ができるか、どう使うか | 2 時間 |
 | [F5. RPA とローコード自動化](f5-rpa-automation.md) | n8n / Zapier / Make / Defy 実践 | 具体的なツールで自動化ワークフローを組む | 2〜3 時間 |
+| [F6. AI ツール比較](f6-ai-tools-comparison.md) | ChatGPT / Claude / Gemini などの横断比較 | 各ツールの得意分野と選び方 | 1 時間(逐次参照) |
 
 ## 学習の進め方
 

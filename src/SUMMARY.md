@@ -6,6 +6,7 @@
 
 # AI 基础
 
+- [Path 0 总览](0-foundations/README.md)
 - [AI 全景评估](0-foundations/ai-landscape.md)
 - [AI 技术演进](0-foundations/f1-ai-evolution.md)
 - [Prompt 工程](0-foundations/f2-prompt-engineering.md)
@@ -18,6 +19,7 @@
 
 # 运营路径
 
+- [Path A 总览](a-operators/README.md)
 - [选品与市场洞察](a-operators/a1-product-research.md)
 - [Listing 优化](a-operators/a2-listing-optimization.md)
 - [广告优化](a-operators/a3-advertising.md)
@@ -37,6 +39,7 @@
 
 # 技术路径
 
+- [Path B 总览](b-developers/README.md)
 - [数据管道](b-developers/b1-data-pipeline.md)
 - [预测模型](b-developers/b2-prediction-models.md)
 - [RAG 知识库](b-developers/b3-rag-knowledge-base.md)
@@ -51,6 +54,7 @@
 
 # 管理路径
 
+- [Path C 总览](c-managers/README.md)
 - [AI 能力评估](c-managers/c1-ai-assessment.md)
 - [团队建设](c-managers/c2-team-building.md)
 - [ROI 评估](c-managers/c3-roi-evaluation.md)
@@ -61,6 +65,7 @@
 
 # 多平台
 
+- [Path D 总览](d-platforms/README.md)
 - [Walmart](d-platforms/d4-walmart-ai-guide.md)
 - [Temu](d-platforms/d5-temu-seller-guide.md)
 - [东南亚 (Shopee + Lazada)](d-platforms/d6-southeast-asia-ai-guide.md)
@@ -80,6 +85,7 @@
 
 # 社交媒体
 
+- [Path E 总览](e-social-media/README.md)
 - [Instagram / Facebook](e-social-media/e1-instagram-facebook-ai-guide.md)
 - [YouTube](e-social-media/e2-youtube-ai-guide.md)
 - [小红书](e-social-media/e3-xiaohongshu-ai-guide.md)

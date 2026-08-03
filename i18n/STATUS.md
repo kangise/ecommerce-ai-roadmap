@@ -3,11 +3,12 @@
 zh is the source of truth (`src/`). Regenerate this table with
 `python3 scripts/gen_i18n_stubs.py --status`.
 
-**EN: 68/68 · JA: 68/68**
+**EN: 71/74 · JA: 71/74**
 
 | Chapter | EN | JA |
 |---------|----|----|
 | `README.md` | ✅ | ✅ |
+| `0-foundations/README.md` | ✅ | ✅ |
 | `0-foundations/ai-landscape.md` | ✅ | ✅ |
 | `0-foundations/f1-ai-evolution.md` | ✅ | ✅ |
 | `0-foundations/f2-prompt-engineering.md` | ✅ | ✅ |
@@ -15,6 +16,7 @@ zh is the source of truth (`src/`). Regenerate this table with
 | `0-foundations/f4-agent-automation.md` | ✅ | ✅ |
 | `0-foundations/f5-rpa-automation.md` | ✅ | ✅ |
 | `0-foundations/f6-ai-tools-comparison.md` | ✅ | ✅ |
+| `a-operators/README.md` | ✅ | ✅ |
 | `a-operators/a1-product-research.md` | ✅ | ✅ |
 | `a-operators/a2-listing-optimization.md` | ✅ | ✅ |
 | `a-operators/a3-advertising.md` | ✅ | ✅ |
@@ -29,6 +31,7 @@ zh is the source of truth (`src/`). Regenerate this table with
 | `a-operators/a12-ip-protection.md` | ✅ | ✅ |
 | `a-operators/a13-ai-growth-hack.md` | ✅ | ✅ |
 | `a-operators/a14-operations-agent.md` | ✅ | ✅ |
+| `b-developers/README.md` | 🚧 | 🚧 |
 | `b-developers/b1-data-pipeline.md` | ✅ | ✅ |
 | `b-developers/b2-prediction-models.md` | ✅ | ✅ |
 | `b-developers/b3-rag-knowledge-base.md` | ✅ | ✅ |
@@ -38,11 +41,13 @@ zh is the source of truth (`src/`). Regenerate this table with
 | `b-developers/b7-review-nlp-system.md` | ✅ | ✅ |
 | `b-developers/b8-ecommerce-dashboard.md` | ✅ | ✅ |
 | `b-developers/b9-ai-image-pipeline.md` | ✅ | ✅ |
+| `c-managers/README.md` | ✅ | ✅ |
 | `c-managers/c1-ai-assessment.md` | ✅ | ✅ |
 | `c-managers/c2-team-building.md` | ✅ | ✅ |
 | `c-managers/c3-roi-evaluation.md` | ✅ | ✅ |
 | `c-managers/c4-ai-risk-governance.md` | ✅ | ✅ |
 | `c-managers/c5-competitive-intelligence.md` | ✅ | ✅ |
+| `d-platforms/README.md` | 🚧 | 🚧 |
 | `d-platforms/d4-walmart-ai-guide.md` | ✅ | ✅ |
 | `d-platforms/d5-temu-seller-guide.md` | ✅ | ✅ |
 | `d-platforms/d6-southeast-asia-ai-guide.md` | ✅ | ✅ |
@@ -57,6 +62,7 @@ zh is the source of truth (`src/`). Regenerate this table with
 | `d-platforms/tiktok-shop-ai-guide.md` | ✅ | ✅ |
 | `d-platforms/cross-platform-strategy.md` | ✅ | ✅ |
 | `d-platforms/platform-comparison.md` | ✅ | ✅ |
+| `e-social-media/README.md` | 🚧 | 🚧 |
 | `e-social-media/e1-instagram-facebook-ai-guide.md` | ✅ | ✅ |
 | `e-social-media/e2-youtube-ai-guide.md` | ✅ | ✅ |
 | `e-social-media/e3-xiaohongshu-ai-guide.md` | ✅ | ✅ |

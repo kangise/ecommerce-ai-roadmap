@@ -44,6 +44,8 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ---
 
+> **相关案例**: [AI 广告优化](../case-studies/ai-ppc-optimization.md) 一份真实搜索词报告从分析到调价的完整走查。
+
 ## 1. 广告方法论：AI 之前你需要理解的基础
 
 > **相关阅读**: [D4 Walmart AI 指南](../d-platforms/d4-walmart-ai-guide.md) Walmart Connect 广告（第一价格竞价）详见 D4 · [E1 Instagram/Facebook AI 指南](../e-social-media/e1-instagram-facebook-ai-guide.md) Meta Advantage+ AI 广告素材生成和优化详见 E1。 · [E7 跨渠道协同](../e-social-media/e7-social-media-cross-channel.md) 跨渠道广告归因和预算分配框架详见 E7。

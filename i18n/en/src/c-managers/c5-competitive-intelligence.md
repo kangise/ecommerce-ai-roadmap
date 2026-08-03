@@ -28,6 +28,8 @@ Content rephrased for compliance with licensing restrictions.
 
 ---
 
+> **Related resource**: [Competitive Analysis Library](../resources/competitive-analysis.md) tool list and analysis frameworks you can apply directly.
+
 ## 1. The New Paradigm of AI Competitive Intelligence
 
 ### 1.1 Traditional vs AI Competitive Intelligence

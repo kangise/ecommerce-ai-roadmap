@@ -44,6 +44,8 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ---
 
+> **関連ケース**: [多言語レコメンドシステム](../case-studies/multilingual-recommendation.md) もう一つのモデリング事例。言語と文化をまたぐ推薦で、本章の時系列予測と補完関係にある。
+
 ## 1. 予測方法論
 
 > **関連**: [A5 在庫とサプライチェーン](../a-operators/a5-inventory.md) 販売予測の在庫補充判断への応用は A5 へ · [D3 クロスプラットフォーム AI 協同戦略](../d-platforms/cross-platform-strategy.md) クロスプラットフォーム需要予測は D3 へ。

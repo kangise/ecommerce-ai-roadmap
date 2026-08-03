@@ -42,6 +42,8 @@ After this module you'll be able to:
 
 ---
 
+> **Related case study**: [AI Review-Driven Sourcing](../case-studies/ai-review-to-product.md) a full walk-through from mining complaints to defining a new product — read it alongside the methodology here.
+
 ## 1. Sourcing Methodology: the Basics Before AI
 
 > **Related**: [AI Landscape Assessment](../0-foundations/ai-landscape.md) for AI maturity in sourcing · [D4 Walmart AI Guide](../d-platforms/d4-walmart-ai-guide.md) for Walmart category opportunity and competition assessment · [E4 Pinterest AI Guide](../e-social-media/e4-pinterest-ai-guide.md) for validating sourcing direction with Pinterest trend data.

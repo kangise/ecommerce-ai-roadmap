@@ -6,6 +6,7 @@
 
 # AI Foundations
 
+- [Path 0 Overview](0-foundations/README.md)
 - [AI Landscape Assessment](0-foundations/ai-landscape.md)
 - [The Evolution of AI](0-foundations/f1-ai-evolution.md)
 - [Prompt Engineering](0-foundations/f2-prompt-engineering.md)
@@ -18,6 +19,7 @@
 
 # Operator Track
 
+- [Path A Overview](a-operators/README.md)
 - [Product Research & Market Insights](a-operators/a1-product-research.md)
 - [Listing Optimization](a-operators/a2-listing-optimization.md)
 - [Advertising Optimization](a-operators/a3-advertising.md)
@@ -51,6 +53,7 @@
 
 # Management Track
 
+- [Path C Overview](c-managers/README.md)
 - [AI Capability Assessment](c-managers/c1-ai-assessment.md)
 - [Team Building](c-managers/c2-team-building.md)
 - [ROI Evaluation](c-managers/c3-roi-evaluation.md)

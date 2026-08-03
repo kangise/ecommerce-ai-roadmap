@@ -50,6 +50,8 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ---
 
+> **相关案例**: [HS Code 分类系统](../case-studies/hs-code-classification.md) 把海关编码归类做成模型的技术方案示例——合规里少数值得自动化的环节之一。
+
 ## 1. 合规方法论：AI 之前你需要理解的基础
 
 ### 1.1 跨境电商合规的第一性原理

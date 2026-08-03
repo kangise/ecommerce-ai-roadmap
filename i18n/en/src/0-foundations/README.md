@@ -47,6 +47,7 @@ style F5 fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 | [F3. Knowledge Bases & RAG](f3-rag-knowledge.md) | Embeddings, vector databases, RAG architecture | How to make AI understand your private data | 2 hours |
 | [F4. Automation & Agents](f4-agent-automation.md) | The three layers from script to agent | What an AI agent can do, and how to use one | 2 hours |
 | [F5. RPA & Low-Code Automation](f5-rpa-automation.md) | n8n / Zapier / Make / Defy in practice | Building automation workflows with concrete tools | 2–3 hours |
+| [F6. AI Tool Comparison](f6-ai-tools-comparison.md) | ChatGPT / Claude / Gemini and others, side by side | What each tool is actually good at, and which to reach for | 1 hour (reference) |
 
 ## How to study this
 

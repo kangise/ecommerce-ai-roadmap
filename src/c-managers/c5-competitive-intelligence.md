@@ -28,6 +28,8 @@ Content rephrased for compliance with licensing restrictions.
 
 ---
 
+> **相关资源**: [竞品分析资源库](../resources/competitive-analysis.md) 工具清单与可直接套用的分析框架。
+
 ## 1. AI 竞争情报的新范式
 
 ### 1.1 传统 vs AI 竞争情报

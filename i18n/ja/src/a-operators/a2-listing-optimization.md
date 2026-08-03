@@ -46,6 +46,8 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ---
 
+> **関連ケース**: [AI Listing 最適化](../case-studies/ai-listing-optimization.md) キーワードから完成原稿までの通し事例。本章のテンプレートの適用版がある。
+
 ## 1. Listing の方法論: AI の前に理解すべき基礎
 
 ### 1.1 Amazon 検索アルゴリズムの進化: A9 から COSMO + Rufus へ

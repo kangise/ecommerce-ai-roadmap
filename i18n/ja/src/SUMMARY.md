@@ -6,6 +6,7 @@
 
 # AI 基礎
 
+- [Path 0 概要](0-foundations/README.md)
 - [AI 活用成熟度マップ](0-foundations/ai-landscape.md)
 - [AI 技術の変遷](0-foundations/f1-ai-evolution.md)
 - [プロンプトエンジニアリング](0-foundations/f2-prompt-engineering.md)
@@ -18,6 +19,7 @@
 
 # 店舗運営トラック
 
+- [Path A 概要](a-operators/README.md)
 - [商品リサーチと市場インサイト](a-operators/a1-product-research.md)
 - [商品ページ最適化](a-operators/a2-listing-optimization.md)
 - [広告最適化](a-operators/a3-advertising.md)
@@ -51,6 +53,7 @@
 
 # マネジメントトラック
 
+- [Path C 概要](c-managers/README.md)
 - [AI 能力アセスメント](c-managers/c1-ai-assessment.md)
 - [チームビルディング](c-managers/c2-team-building.md)
 - [ROI 評価](c-managers/c3-roi-evaluation.md)

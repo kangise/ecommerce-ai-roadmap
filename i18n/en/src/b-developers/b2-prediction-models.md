@@ -44,6 +44,8 @@ After this module you'll be able to:
 
 ---
 
+> **Related case study**: [Multilingual Recommendation System](../case-studies/multilingual-recommendation.md) another modelling walk-through — cross-language, cross-culture recommendation, complementary to the time-series forecasting here.
+
 ## 1. Forecasting Methodology
 
 > **Related**: [A5 Inventory & Supply Chain](../a-operators/a5-inventory.md) for applying sales forecasts to restock decisions · [D3 Cross-Platform AI Strategy](../d-platforms/cross-platform-strategy.md) for cross-platform demand forecasting.
