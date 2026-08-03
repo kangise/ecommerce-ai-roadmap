@@ -1132,18 +1132,6 @@ Step 5: effect tracking and reuse
 - Track the true ROI of each creator with a dedicated coupon code
 - High-performing videos -> Spark Ads amplification (ROI can multiply 3-5x)
 - Creator review content -> product-page social proof
-
-<data_discipline>
-- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
-- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
-- Tag every conclusion with its source: [supplied by me] or [model inference]
-</data_discipline>
-
-<copy_discipline>
-- Never write a feature, material, certification, or result the product doesn't actually have. Any attribute I didn't state above must not appear in the copy — this is the number-one cause of listing takedowns and false-advertising complaints
-- If you need a selling point I didn't supply, list what you need from me rather than improvising
-- Flag any claim touching efficacy, safety, environmental, or patent language separately so I can verify it by hand
-</copy_discipline>
 ```
 
 Creator-outreach prompt (personalized version):

@@ -1,21 +1,16 @@
-# ecommerce-ai-roadmap: AI × Cross-Border E-Commerce Knowledge Hub
+# AI × Cross-Border E-Commerce Knowledge Hub
 
-> Practical AI playbooks for cross-border e-commerce — an AAAI China Chapter open-source initiative
+> **Other prompt collections tell you what AI can do. This one also tells you when it's making things up.**
 
-<div align="center">
+🇺🇸 English | 🇨🇳 [中文](README.md) | 🇯🇵 [日本語](README_JA.md) · 📖 **[Read online](https://kangise.github.io/ecommerce-ai-roadmap/en/)**
 
-### 📖 [Read Online](https://kangise.github.io/ecommerce-ai-roadmap/en/)
+---
 
-</div>
+Ask an AI "roughly what's the monthly sales volume in this category" and it will almost always hand you a plausible-looking number — **one it does not actually know**.
 
-[![AAAI China Chapter](https://img.shields.io/badge/AAAI_China_Chapter-Initiative-blue)](https://github.com/kangise/ecommerce-ai-roadmap)
-[![Stars](https://img.shields.io/github/stars/kangise/ecommerce-ai-roadmap?style=social)](https://github.com/kangise/ecommerce-ai-roadmap)
-[![License: CC0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
+Sourcing, restocking, and pricing have real money behind them. One fabricated volume figure can leave you sitting on tens of thousands in inventory. Agents make this worse: the model no longer just tells you the number, it acts on it — repricing, ordering, sending.
 
-**56 hands-on guides · 6 tracks · 18 runnable Colab notebooks · copy-paste prompts in every guide.**
-Original content, not a link aggregator. The [English online edition](https://kangise.github.io/ecommerce-ai-roadmap/en/) is being translated chapter by chapter — untranslated pages link back to the Chinese original.
-
-🇺🇸 English | 🇨🇳 [中文](README.md) | 🇯🇵 [日本語](README_JA.md)
+So in this hub, **330+ prompts carry guardrails** wherever numbers, external facts, or customer-facing copy are involved: what the model may not invent, when it must stop and ask you, and how every conclusion gets a source tag.
 
 <p align="center">
   <img src="assets/content-map-en.svg" alt="Content map — 56 guides across 6 tracks" width="100%">
@@ -23,22 +18,57 @@ Original content, not a link aggregator. The [English online edition](https://ka
 
 ---
 
-## Try It in 30 Seconds
+## See the difference in 30 seconds
 
-Copy the prompt below into [ChatGPT](https://chat.openai.com/) or [Claude](https://claude.ai/) and get an instant market analysis:
+Paste this into [ChatGPT](https://chatgpt.com/) or [Claude](https://claude.ai/):
 
 ```
-You are a senior cross-border e-commerce expert with deep knowledge of the Amazon marketplace.
-I want to sell a portable neck fan on Amazon US.
-Please provide a quick market feasibility analysis including:
-1. Category characteristics (seasonality, competition level, price range)
-2. Top 3 competitors' key selling points and main pain points from negative reviews
-3. 3 potential differentiation angles
-4. Risk alerts (compliance, patents, seasonal inventory risks)
-Present key data comparisons in table format.
+<role>Cross-border sourcing consultant fluent in the Amazon US market</role>
+
+<product>Portable neck fan, target marketplace Amazon US</product>
+
+<task>
+1. What does the competitive structure of this category look like? What decides who wins
+2. Which directions could differentiation come from
+3. What data must I verify before entering? For each, name where to look it up and which field to read
+4. Risk alerts (compliance, patents, seasonal inventory)
+</task>
+
+<data_discipline>
+- **Do not give specific monthly volume, price, or market-size figures.** You do not have
+  live market data, and an invented number leads me to stock the wrong product
+- When you need a figure to judge, tell me where to look it up, then stop
+- Tag each conclusion: [category-level inference] or [needs data from me]
+</data_discipline>
 ```
 
-Every one of the 56 guides ships prompts like this. Ten of the most-used ones are [right below](#top-10-prompts-ready-to-use).
+**Notice there are no invented numbers in the answer** — instead it tells you which figures you need to pull from Helium 10 yourself. That's the difference between this hub and a prompt dump: not fancier wording, but **a clear line around where AI should stop**.
+
+---
+
+## Why use this
+
+- **330+ prompts with guardrails** — data discipline (no inventing figures), copy discipline (no claiming features the product lacks, no promising refunds you never authorized), input boundaries (a pasted competitor review can't hijack your analysis as an instruction)
+- **Trilingual and complete, not "in progress"** — 68 chapters each in Chinese, English, and Japanese; switch languages from the top-right of any page on the [online edition](https://kangise.github.io/ecommerce-ai-roadmap/en/)
+- **Content that doesn't rot in three months** — chapters describe capability tiers; model ids and prices live on one [model matrix](i18n/en/src/resources/model-matrix.md) page with a verification date
+- **Built for the agent era** — not just prompts, but [how to migrate them into skill files](i18n/en/src/0-foundations/f2-prompt-engineering.md) and [which actions must never go to an agent](i18n/en/src/a-operators/a14-operations-agent.md)
+- **CC0** — take it, no attribution required
+
+[![License: CC0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
+[![Stars](https://img.shields.io/github/stars/kangise/ecommerce-ai-roadmap?style=social)](https://github.com/kangise/ecommerce-ai-roadmap)
+[![AAAI China Chapter](https://img.shields.io/badge/AAAI_China_Chapter-Initiative-blue)](https://github.com/kangise/ecommerce-ai-roadmap)
+
+---
+
+## Where to start
+
+| You are | Start here |
+|---------|-----------|
+| Wanting to know what AI can actually do | [AI Landscape Assessment](https://kangise.github.io/ecommerce-ai-roadmap/en/0-foundations/ai-landscape.html) — 30 minutes on maturity per step |
+| An operator, ready to use it today | [A1 Product Research](https://kangise.github.io/ecommerce-ai-roadmap/en/a-operators/a1-product-research.html) · [A2 Listings](https://kangise.github.io/ecommerce-ai-roadmap/en/a-operators/a2-listing-optimization.html) · [A3 Ads](https://kangise.github.io/ecommerce-ai-roadmap/en/a-operators/a3-advertising.html) |
+| Already using AI, want automation | [A14 Agentifying Operations](https://kangise.github.io/ecommerce-ai-roadmap/en/a-operators/a14-operations-agent.html) — decide which steps are worth it first |
+| Technical, building your own | [B4 Agent Workflow](https://kangise.github.io/ecommerce-ai-roadmap/en/b-developers/b4-agent-workflow.html) · [B6 MCP Integration](https://kangise.github.io/ecommerce-ai-roadmap/en/b-developers/b6-mcp-agentic-workflow.html) |
+| Facing compliance right now | [Tariffs & de minimis](https://kangise.github.io/ecommerce-ai-roadmap/en/a-operators/a11-financial-analysis.html) · [EU AI Act](https://kangise.github.io/ecommerce-ai-roadmap/en/a-operators/a6-compliance.html) |
 
 ---
 
@@ -170,7 +200,7 @@ Note information currency and recommend confirming with certification bodies.
 
 18 Jupyter notebooks that run directly on Google Colab — zero setup required:
 
-[Product Research](notebooks/a1-product-research.ipynb) · [Multilingual Listing](notebooks/a2-multilingual-listing.ipynb) · [Advertising](notebooks/a3-advertising.ipynb) · [Negative Reviews](notebooks/a4-negative-review-analysis.ipynb) · [Inventory Reorder](notebooks/a5-inventory-reorder.ipynb) · [Compliance Checker](notebooks/a6-compliance-checker.ipynb) · [Price Tracker](notebooks/a8-price-tracker.ipynb) · [GEO Audit](notebooks/a9-geo-audit.ipynb) · [Brand Audit](notebooks/a10-brand-audit.ipynb) · [Profit Calculator](notebooks/a11-profit-calculator.ipynb) · [Patent Search](notebooks/a12-ip-patent-search.ipynb) · [Data Pipeline](notebooks/b1-data-pipeline.ipynb) · [Sales Forecast](notebooks/b2-sales-forecast.ipynb) · [Review NLP](notebooks/b7-review-analysis.ipynb) · [Dashboard](notebooks/b8-dashboard-demo.ipynb) · [ROI Evaluation](notebooks/c3-roi-evaluation.ipynb) · [Cross-Platform Content](notebooks/d3-cross-platform-content.ipynb) · [Social Calendar](notebooks/e1-social-content-calendar.ipynb)
+[Product Research](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a1-product-research.ipynb) · [Multilingual Listing](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a2-multilingual-listing.ipynb) · [Advertising](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a3-advertising.ipynb) · [Negative Reviews](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a4-negative-review-analysis.ipynb) · [Inventory Reorder](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a5-inventory-reorder.ipynb) · [Compliance Checker](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a6-compliance-checker.ipynb) · [Price Tracker](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a8-price-tracker.ipynb) · [GEO Audit](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a9-geo-audit.ipynb) · [Brand Audit](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a10-brand-audit.ipynb) · [Profit Calculator](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a11-profit-calculator.ipynb) · [Patent Search](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a12-ip-patent-search.ipynb) · [Data Pipeline](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/b1-data-pipeline.ipynb) · [Sales Forecast](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/b2-sales-forecast.ipynb) · [Review NLP](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/b7-review-analysis.ipynb) · [Dashboard](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/b8-dashboard-demo.ipynb) · [ROI Evaluation](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/c3-roi-evaluation.ipynb) · [Cross-Platform Content](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/d3-cross-platform-content.ipynb) · [Social Calendar](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/e1-social-content-calendar.ipynb)
 
 ## Case Studies
 

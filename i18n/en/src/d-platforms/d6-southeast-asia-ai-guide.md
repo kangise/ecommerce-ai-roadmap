@@ -301,6 +301,13 @@ Please optimize my Shopee Ads:
 3. Ad-type combination (budget allocation of Search + Discovery)
 4. Ad-strategy adjustment during events (how much to raise bids during big sales)
 5. Coordination strategy with Shopee Flash Sale
+
+<calculation_discipline>
+- Use only the numbers I supplied above. Do not assume any parameter I didn't give you (interest rates, industry averages, platform fee rates, exchange rates) — list what's missing and ask
+- **Write out the formula before substituting numbers** so I can check each step. Don't give only the final result
+- For conclusions involving money or inventory, note which input they're most sensitive to — which number, if I change it, flips the conclusion
+- If you can't complete the calculation, stop and say what's missing. Do not fill gaps with assumed values
+</calculation_discipline>
 ```
 
 ### 4.2 Southeast Asia Live-Commerce In-Depth Guide

@@ -320,12 +320,6 @@ neg_topic_info = negative_topic_model.get_topic_info()
 print("=== Top 10 core negative-review problems ===")
 for _, row in neg_topic_info.head(10).iterrows():
 print(f"Topic {row['Topic']}: {row['Name']} ({row['Count']} reviews)")
-
-<data_discipline>
-- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
-- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
-- Tag every conclusion with its source: [supplied by me] or [model inference]
-</data_discipline>
 ```
 
 ### 5.3 Topic-trend analysis
@@ -483,12 +477,6 @@ messages=[{"role": "user", "content": prompt}]
 )
 
 return response.content[0].text
-
-<data_discipline>
-- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
-- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
-- Tag every conclusion with its source: [supplied by me] or [model inference]
-</data_discipline>
 ```
 
 ### 6.2 Competitor-Review comparison analysis
@@ -523,12 +511,6 @@ Analyze:
 4. Differentiation-positioning advice
 """
 return llm_call(prompt)
-
-<data_discipline>
-- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
-- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
-- Tag every conclusion with its source: [supplied by me] or [model inference]
-</data_discipline>
 ```
 
 ---
@@ -810,12 +792,6 @@ st.markdown("""
 - `verified`: verified purchase (True/False)
 - `helpful_votes`: helpful-vote count (optional)
 """)
-
-<data_discipline>
-- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
-- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
-- Tag every conclusion with its source: [supplied by me] or [model inference]
-</data_discipline>
 ```
 
 Run: `streamlit run review_dashboard.py`

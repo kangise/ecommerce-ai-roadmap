@@ -240,6 +240,13 @@ Please analyze:
 3. The cost-reduction room from bulk purchasing?
 4. Packaging-simplification plan (Temu doesn't need exquisite packaging)
 5. Are there alternative suppliers/origins that can lower cost?
+
+<calculation_discipline>
+- Use only the numbers I supplied above. Do not assume any parameter I didn't give you (interest rates, industry averages, platform fee rates, exchange rates) — list what's missing and ask
+- **Write out the formula before substituting numbers** so I can check each step. Don't give only the final result
+- For conclusions involving money or inventory, note which input they're most sensitive to — which number, if I change it, flips the conclusion
+- If you can't complete the calculation, stop and say what's missing. Do not fill gaps with assumed values
+</calculation_discipline>
 ```
 
 ---

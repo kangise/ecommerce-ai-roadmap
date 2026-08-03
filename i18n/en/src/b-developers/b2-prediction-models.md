@@ -458,18 +458,6 @@ print("Chart saved: output/forecast.png")
 #
 # # 5. Visualize
 # plot_forecast(model, forecast, actual_df=prophet_df, title="ASIN-B0XXXXX sales forecast")
-
-<data_discipline>
-- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
-- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
-- Tag every conclusion with its source: [supplied by me] or [model inference]
-</data_discipline>
-
-<copy_discipline>
-- Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
-- For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
-- Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
-</copy_discipline>
 ```
 
 > **changepoint_prior_scale tuning guide**: this is Prophet's most important hyperparameter. E-commerce data changes fast, so start from 0.1. If the forecast curve is too smooth (can't keep up with trend changes), raise it to 0.2–0.3; if too jumpy (overfitting noise), lower it to 0.01–0.05.

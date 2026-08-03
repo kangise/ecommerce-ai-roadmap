@@ -69,12 +69,6 @@ Generate product images from text descriptions
 Generate videos from product images
 AI virtual models (apparel category)
 Good for: pre-launch concept validation, batch social-media content production
-
-<copy_discipline>
-- Never write a feature, material, certification, or result the product doesn't actually have. Any attribute I didn't state above must not appear in the copy — this is the number-one cause of listing takedowns and false-advertising complaints
-- If you need a selling point I didn't supply, list what you need from me rather than improvising
-- Flag any claim touching efficacy, safety, environmental, or patent language separately so I can verify it by hand
-</copy_discipline>
 ```
 
 ---

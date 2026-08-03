@@ -950,18 +950,6 @@ If you have technical ability or a technical team, automate sentiment monitoring
 # 4. Generate a weekly sentiment-trend report
 
 # For detailed implementation, see the relevant modules in Path B: Developers
-
-<data_discipline>
-- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
-- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
-- Tag every conclusion with its source: [supplied by me] or [model inference]
-</data_discipline>
-
-<copy_discipline>
-- Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
-- For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
-- Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
-</copy_discipline>
 ```
 
 > **The core value of sentiment monitoring**: shift from "reactively discovering negatives" to "proactively monitoring sentiment change." If one week's negative-sentiment share suddenly rises, it may be a product-batch issue, a shipping problem, or a competitor attack — investigate immediately.

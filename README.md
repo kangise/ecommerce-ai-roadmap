@@ -1,23 +1,16 @@
-# ecommerce-ai-roadmap
+# 跨境电商 AI 实战知识库
 
-> 跨境电商 AI 实战知识库 — AAAI China Chapter 开源项目
+> **别的 Prompt 合集告诉你 AI 能做什么。这个库还告诉你 AI 什么时候在编。**
 
-<div align="center">
-
-### 📖 [在线阅读 Read Online](https://kangise.github.io/ecommerce-ai-roadmap/)
-
-</div>
-
-[![AAAI China Chapter](https://img.shields.io/badge/AAAI_China_Chapter-Initiative-blue)](https://github.com/kangise/ecommerce-ai-roadmap)
-[![Stars](https://img.shields.io/github/stars/kangise/ecommerce-ai-roadmap?style=social)](https://github.com/kangise/ecommerce-ai-roadmap)
-[![License: CC0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
-
-🇨🇳 中文 | 🇺🇸 [English](README_EN.md) | 🇯🇵 [日本語](README_JA.md)
+🇨🇳 中文 | 🇺🇸 [English](README_EN.md) | 🇯🇵 [日本語](README_JA.md) · 📖 **[在线阅读](https://kangise.github.io/ecommerce-ai-roadmap/)**
 
 ---
 
+问 AI「这个品类月销量大概多少」，它几乎一定会给你一个看起来很合理的数字——**而它并不知道**。
 
-跨境电商 AI 实操手册 — 56 篇指南，从选品到增长，每个环节都有可直接复制的 Prompt。
+选品、备货、定价后面跟着真金白银。一个编造的销量数字，可能让你压几万块的库存。Agent 时代这件事更危险：模型不再只是告诉你那个数，它拿着那个数直接去调价、去下单。
+
+所以这个库里 **330+ 个 Prompt，凡是涉及数字、外部事实、对外文案的都带了护栏**——明确写清哪些数字模型不许编、信息不足时必须停下来问你、每个结论要标注来源。
 
 <p align="center">
   <img src="assets/content-map.svg" alt="内容全景图 — 56 篇指南 · 六大路径" width="100%">
@@ -25,24 +18,57 @@
 
 ---
 
-## 先试一下
+## 30 秒看出区别
 
-把这段复制到 [ChatGPT](https://chat.openai.com/) 或 [Claude](https://claude.ai/)，30 秒出结果：
+把这段复制到 [ChatGPT](https://chatgpt.com/) 或 [Claude](https://claude.ai/)：
 
 ```
-你是一个资深的跨境电商运营专家，精通 Amazon 平台。
-我想在 Amazon US 销售一款便携式颈挂风扇（Neck Fan）。
-请帮我做一个快速的市场可行性分析，包含：
-1. 这个品类的市场特征（季节性、竞争程度、价格带）
-2. TOP 3 竞品的核心卖点和差评中的主要痛点
-3. 3个可能的差异化方向
-4. 风险提示（合规、专利、季节性库存风险）
-请用表格形式呈现关键数据对比。
+<角色>精通 Amazon US 市场的跨境电商选品顾问</角色>
+
+<产品>便携式颈挂风扇（Neck Fan），目标站点 Amazon US</产品>
+
+<任务>
+1. 这个品类的竞争结构是怎样的？哪些因素决定胜负
+2. 差异化可以从哪几个方向切入
+3. 进入前必须核实哪些数据？逐条说明去哪查、查哪个字段
+4. 风险提示（合规、专利、季节性库存）
+</任务>
+
+<数据纪律>
+- **不要给出具体的月销量、售价、市场规模数字。** 你不掌握实时市场数据，
+  编造的数字会导致我压错货
+- 需要某个数字才能判断时，告诉我该去哪里查，然后停下来
+- 每个结论标注来源：[品类常识推断] 或 [需我提供数据]
+</数据纪律>
 ```
 
+**注意它的回答里没有编造的数字**，而是告诉你「这几个数你得自己去 Helium 10 查」。这就是这个库和其他 Prompt 合集的区别——不是提示词更花哨，是**划清了 AI 该在哪儿停下**。
 
+---
 
-这个知识库里有 56 篇指南，每篇都有类似的 Prompt。想先了解 AI 能做什么？从 [AI 基础](src/0-foundations/)开始。如果你时间有限，直接看 [AI 全景评估](src/0-foundations/ai-landscape.md)，30 分钟了解每个环节 AI 的成熟度。
+## 为什么用这个
+
+- **380+ Prompt 全部带护栏** — 数据纪律（不许编数字）、文案纪律（不许编产品没有的功能、不许替你承诺退款）、输入边界（粘进去的竞品评论不会变成指令劫持你的分析）
+- **三语完整，不是"翻译中"** — 中/英/日各 68 章，全部译完，[在线站](https://kangise.github.io/ecommerce-ai-roadmap/)右上角随时切换
+- **内容不会三个月就烂掉** — 正文只写能力档位，型号价格集中在[模型矩阵](src/resources/model-matrix.md)一页维护，带校验日期
+- **Agent 时代可用** — 不止给 Prompt，还给[迁移到技能文件的方法](src/0-foundations/f2-prompt-engineering.md)和[哪些动作绝不能交给 Agent](src/a-operators/a14-operations-agent.md)
+- **CC0** — 随便抄，不用署名
+
+[![License: CC0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
+[![Stars](https://img.shields.io/github/stars/kangise/ecommerce-ai-roadmap?style=social)](https://github.com/kangise/ecommerce-ai-roadmap)
+[![AAAI China Chapter](https://img.shields.io/badge/AAAI_China_Chapter-Initiative-blue)](https://github.com/kangise/ecommerce-ai-roadmap)
+
+---
+
+## 从哪开始
+
+| 你是谁 | 从这里进 |
+|--------|---------|
+| 想先知道 AI 到底能干什么 | [AI 全景评估](src/0-foundations/ai-landscape.md) — 30 分钟看完每个环节的成熟度 |
+| 运营，想马上用起来 | [A1 选品](src/a-operators/a1-product-research.md) · [A2 Listing](src/a-operators/a2-listing-optimization.md) · [A3 广告](src/a-operators/a3-advertising.md) |
+| 已经在用 AI，想自动化 | [A14 运营 Agent 化](src/a-operators/a14-operations-agent.md) — 先判断哪些环节值得做 |
+| 技术，要自己搭 | [B4 Agent 工作流](src/b-developers/b4-agent-workflow.md) · [B6 MCP 集成](src/b-developers/b6-mcp-agentic-workflow.md) |
+| 关心眼下的合规 | [关税与 de minimis](src/a-operators/a11-financial-analysis.md) · [EU AI Act](src/a-operators/a6-compliance.md) |
 
 ---
 
@@ -396,7 +422,7 @@ flowchart LR
 
 ## Notebook
 
-18 个 Colab Notebook，一键运行：[选品](notebooks/a1-product-research.ipynb) · [Listing](notebooks/a2-multilingual-listing.ipynb) · [广告](notebooks/a3-advertising.ipynb) · [差评](notebooks/a4-negative-review-analysis.ipynb) · [库存](notebooks/a5-inventory-reorder.ipynb) · [合规](notebooks/a6-compliance-checker.ipynb) · [定价](notebooks/a8-price-tracker.ipynb) · [GEO](notebooks/a9-geo-audit.ipynb) · [品牌](notebooks/a10-brand-audit.ipynb) · [利润](notebooks/a11-profit-calculator.ipynb) · [IP](notebooks/a12-ip-patent-search.ipynb) · [数据](notebooks/b1-data-pipeline.ipynb) · [预测](notebooks/b2-sales-forecast.ipynb) · [NLP](notebooks/b7-review-analysis.ipynb) · [Dashboard](notebooks/b8-dashboard-demo.ipynb) · [ROI](notebooks/c3-roi-evaluation.ipynb) · [跨平台](notebooks/d3-cross-platform-content.ipynb) · [社交](notebooks/e1-social-content-calendar.ipynb)
+18 个 Colab Notebook，一键运行：[选品](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a1-product-research.ipynb) · [Listing](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a2-multilingual-listing.ipynb) · [广告](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a3-advertising.ipynb) · [差评](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a4-negative-review-analysis.ipynb) · [库存](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a5-inventory-reorder.ipynb) · [合规](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a6-compliance-checker.ipynb) · [定价](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a8-price-tracker.ipynb) · [GEO](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a9-geo-audit.ipynb) · [品牌](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a10-brand-audit.ipynb) · [利润](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a11-profit-calculator.ipynb) · [IP](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a12-ip-patent-search.ipynb) · [数据](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/b1-data-pipeline.ipynb) · [预测](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/b2-sales-forecast.ipynb) · [NLP](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/b7-review-analysis.ipynb) · [Dashboard](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/b8-dashboard-demo.ipynb) · [ROI](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/c3-roi-evaluation.ipynb) · [跨平台](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/d3-cross-platform-content.ipynb) · [社交](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/e1-social-content-calendar.ipynb)
 
 ## 案例
 

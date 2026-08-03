@@ -1,21 +1,16 @@
-# ecommerce-ai-roadmap: AI × 越境EC ナレッジハブ
+# AI × 越境EC ナレッジハブ
 
-> 越境EC のための実践的 AI プレイブック — AAAI China Chapter オープンソースプロジェクト
+> **他のプロンプト集は AI に何ができるかを教える。ここはさらに、AI がいつ作り話をしているかを教える。**
 
-<div align="center">
+🇯🇵 日本語 | 🇨🇳 [中文](README.md) | 🇺🇸 [English](README_EN.md) · 📖 **[オンラインで読む](https://kangise.github.io/ecommerce-ai-roadmap/ja/)**
 
-### 📖 [オンラインで読む](https://kangise.github.io/ecommerce-ai-roadmap/ja/) (日本語)
+---
 
-</div>
+AI に「このカテゴリの月間販売数はどれくらい?」と聞けば、ほぼ確実にもっともらしい数字が返ってくる — **本当は知らないのに**。
 
-[![AAAI China Chapter](https://img.shields.io/badge/AAAI_China_Chapter-Initiative-blue)](https://github.com/kangise/ecommerce-ai-roadmap)
-[![Stars](https://img.shields.io/github/stars/kangise/ecommerce-ai-roadmap?style=social)](https://github.com/kangise/ecommerce-ai-roadmap)
-[![License: CC0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
+商品選定・仕入れ・価格設定の先には実際の資金が動いている。捏造された販売数の数字ひとつで、数十万円分の在庫を抱えることになりかねない。Agent 時代はさらに危うい。モデルはその数字を伝えるだけでなく、それを使って値付けし、発注し、送信する。
 
-**実践ガイド 56 本 · 6 トラック · ワンクリックで動く Colab ノートブック 18 本 · 全ガイドにコピペで使えるプロンプト付き。**
-リンク集ではなく、オリジナルの実践コンテンツです。ガイド本文は中国語(日本語版は順次翻訳中)、プロンプトはどの LLM でもそのまま使えます。
-
-🇯🇵 日本語 | 🇨🇳 [中文](README.md) | 🇺🇸 [English](README_EN.md)
+だから本ハブでは、**330 以上のプロンプトに護りを入れてある**。数字・外部の事実・顧客に出す文面が絡むところではすべて、何を捏造してはいけないか、情報不足のときどこで止まって尋ねるか、結論にどう出典を付すかを明記している。
 
 <p align="center">
   <img src="assets/content-map-ja.svg" alt="コンテンツマップ — 6 トラック · 56 ガイド" width="100%">
@@ -23,22 +18,57 @@
 
 ---
 
-## 30 秒で試す
+## 30 秒で違いが分かる
 
-以下を [ChatGPT](https://chat.openai.com/) または [Claude](https://claude.ai/) に貼り付けてください。すぐに市場分析が返ってきます:
+以下を [ChatGPT](https://chatgpt.com/) または [Claude](https://claude.ai/) に貼り付けてください:
 
 ```
-あなたは Amazon マーケットプレイスに精通した、経験豊富な越境EC の専門家です。
-Amazon US でポータブルネックファン(首掛け扇風機)を販売したいと考えています。
-以下を含む市場性のクイック分析をお願いします:
-1. このカテゴリの市場特性(季節性、競争の激しさ、価格帯)
-2. 上位 3 競合の主要な訴求ポイントと、低評価レビューに見られる主な不満点
-3. 差別化の方向性を 3 つ
-4. リスクの注意点(コンプライアンス、特許、季節在庫のリスク)
-主要データの比較は表形式で提示してください。
+<役割>Amazon US 市場に精通した越境EC の選品コンサルタント</役割>
+
+<商品>ポータブルネックファン(首掛け扇風機)、対象は Amazon US</商品>
+
+<タスク>
+1. このカテゴリの競争構造はどうなっているか。勝敗を決める要因は何か
+2. 差別化はどの方向から切り込めるか
+3. 参入前に検証すべきデータは何か。各項目について、どこで何の項目を調べるかを示す
+4. リスクの注意点(コンプライアンス、特許、季節在庫)
+</タスク>
+
+<データ規律>
+- **月間販売数・価格・市場規模の具体的な数字は出さないこと。** あなたはリアルタイムの
+  市場データを持っておらず、捏造された数字は誤った仕入れにつながる
+- 判断にある数字が必要なときは、どこで調べるべきかを伝えて、そこで止まること
+- 結論ごとに印を付す: [カテゴリ常識からの推論] または [私からのデータが必要]
+</データ規律>
 ```
 
-56 本のガイドすべてに、このようなプロンプトが付属しています。特に使用頻度の高い 10 本は[下記](#すぐ使えるプロンプト-top-10)にまとめました。
+**回答に捏造された数字が一つもないことに注目してほしい。** 代わりに「この数字は Helium 10 で自分で調べる必要がある」と教えてくれる。これが本ハブと単なるプロンプト集の違いだ。凝った言い回しではなく、**AI がどこで止まるべきかの線が引いてある**ことにある。
+
+---
+
+## なぜこれを使うのか
+
+- **330 以上のプロンプトに護りを内蔵** — データ規律(数字を捏造しない)、コピー規律(商品にない機能を書かない、承認していない返金を約束しない)、入力境界(貼り付けた競合レビューが指示として分析を乗っ取れない)
+- **3 言語すべて完訳、「翻訳中」ではない** — 中国語・英語・日本語それぞれ 68 章。[オンライン版](https://kangise.github.io/ecommerce-ai-roadmap/ja/)の右上でいつでも切り替えられる
+- **3 か月で古びない構成** — 本文は能力級だけを書き、型番と価格は確認日付きの[モデルマトリクス](i18n/ja/src/resources/model-matrix.md)1 ページに集約
+- **Agent 時代に使える** — プロンプトだけでなく、[スキルファイルへの移行方法](i18n/ja/src/0-foundations/f2-prompt-engineering.md)と[絶対に Agent に渡してはいけない動作](i18n/ja/src/a-operators/a14-operations-agent.md)まで
+- **CC0** — 自由に使える。クレジット表記も不要
+
+[![License: CC0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
+[![Stars](https://img.shields.io/github/stars/kangise/ecommerce-ai-roadmap?style=social)](https://github.com/kangise/ecommerce-ai-roadmap)
+[![AAAI China Chapter](https://img.shields.io/badge/AAAI_China_Chapter-Initiative-blue)](https://github.com/kangise/ecommerce-ai-roadmap)
+
+---
+
+## どこから始めるか
+
+| あなたは | ここから |
+|---------|---------|
+| AI に何ができるかまず知りたい | [AI 活用成熟度マップ](https://kangise.github.io/ecommerce-ai-roadmap/ja/0-foundations/ai-landscape.html) — 各工程の成熟度が 30 分で分かる |
+| 運用担当、今日から使いたい | [A1 商品リサーチ](https://kangise.github.io/ecommerce-ai-roadmap/ja/a-operators/a1-product-research.html) · [A2 商品ページ](https://kangise.github.io/ecommerce-ai-roadmap/ja/a-operators/a2-listing-optimization.html) · [A3 広告](https://kangise.github.io/ecommerce-ai-roadmap/ja/a-operators/a3-advertising.html) |
+| すでに AI を使っていて自動化したい | [A14 運用の Agent 化](https://kangise.github.io/ecommerce-ai-roadmap/ja/a-operators/a14-operations-agent.html) — まずどの工程が値するかを判断する |
+| 技術側、自分で組む | [B4 Agent ワークフロー](https://kangise.github.io/ecommerce-ai-roadmap/ja/b-developers/b4-agent-workflow.html) · [B6 MCP 統合](https://kangise.github.io/ecommerce-ai-roadmap/ja/b-developers/b6-mcp-agentic-workflow.html) |
+| 目下のコンプライアンスが気になる | [関税と de minimis](https://kangise.github.io/ecommerce-ai-roadmap/ja/a-operators/a11-financial-analysis.html) · [EU AI Act](https://kangise.github.io/ecommerce-ai-roadmap/ja/a-operators/a6-compliance.html) |
 
 ---
 
@@ -170,7 +200,7 @@ Plan of Action を書いてください: Root Cause(問題の認識)、Immediate
 
 Google Colab でそのまま動く Jupyter ノートブック 18 本 — セットアップ不要:
 
-[商品リサーチ](notebooks/a1-product-research.ipynb) · [多言語商品ページ](notebooks/a2-multilingual-listing.ipynb) · [広告](notebooks/a3-advertising.ipynb) · [低評価レビュー](notebooks/a4-negative-review-analysis.ipynb) · [在庫補充](notebooks/a5-inventory-reorder.ipynb) · [コンプライアンス](notebooks/a6-compliance-checker.ipynb) · [価格トラッカー](notebooks/a8-price-tracker.ipynb) · [GEO 監査](notebooks/a9-geo-audit.ipynb) · [ブランド監査](notebooks/a10-brand-audit.ipynb) · [利益計算](notebooks/a11-profit-calculator.ipynb) · [特許検索](notebooks/a12-ip-patent-search.ipynb) · [データパイプライン](notebooks/b1-data-pipeline.ipynb) · [売上予測](notebooks/b2-sales-forecast.ipynb) · [レビュー NLP](notebooks/b7-review-analysis.ipynb) · [ダッシュボード](notebooks/b8-dashboard-demo.ipynb) · [ROI 評価](notebooks/c3-roi-evaluation.ipynb) · [クロスプラットフォーム](notebooks/d3-cross-platform-content.ipynb) · [SNS カレンダー](notebooks/e1-social-content-calendar.ipynb)
+[商品リサーチ](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a1-product-research.ipynb) · [多言語商品ページ](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a2-multilingual-listing.ipynb) · [広告](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a3-advertising.ipynb) · [低評価レビュー](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a4-negative-review-analysis.ipynb) · [在庫補充](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a5-inventory-reorder.ipynb) · [コンプライアンス](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a6-compliance-checker.ipynb) · [価格トラッカー](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a8-price-tracker.ipynb) · [GEO 監査](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a9-geo-audit.ipynb) · [ブランド監査](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a10-brand-audit.ipynb) · [利益計算](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a11-profit-calculator.ipynb) · [特許検索](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a12-ip-patent-search.ipynb) · [データパイプライン](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/b1-data-pipeline.ipynb) · [売上予測](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/b2-sales-forecast.ipynb) · [レビュー NLP](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/b7-review-analysis.ipynb) · [ダッシュボード](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/b8-dashboard-demo.ipynb) · [ROI 評価](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/c3-roi-evaluation.ipynb) · [クロスプラットフォーム](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/d3-cross-platform-content.ipynb) · [SNS カレンダー](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/e1-social-content-calendar.ipynb)
 
 ## 事例研究
 

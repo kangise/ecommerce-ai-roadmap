@@ -267,18 +267,6 @@ prompt = generate_prompt(
 product="wireless bluetooth earbuds with charging case"
 )
 print(prompt["positive"])
-
-<data_discipline>
-- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
-- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
-- Tag every conclusion with its source: [supplied by me] or [model inference]
-</data_discipline>
-
-<copy_discipline>
-- Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
-- For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
-- Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
-</copy_discipline>
 ```
 
 ---
@@ -338,12 +326,6 @@ for product in products:
 for style in ["white_background", "lifestyle"]:
 path = generate_product_image(product, style)
 print(f"Generated: {path}")
-
-<copy_discipline>
-- Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
-- For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
-- Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
-</copy_discipline>
 ```
 
 ### 4.2 Background Removal + White-Background Compositing
@@ -606,18 +588,6 @@ target_platforms=["amazon", "instagram"]
 ]
 
 results = pipeline.batch_generate(products)
-
-<data_discipline>
-- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
-- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
-- Tag every conclusion with its source: [supplied by me] or [model inference]
-</data_discipline>
-
-<copy_discipline>
-- Never write a feature, material, certification, or result the product doesn't actually have. Any attribute I didn't state above must not appear in the copy — this is the number-one cause of listing takedowns and false-advertising complaints
-- If you need a selling point I didn't supply, list what you need from me rather than improvising
-- Flag any claim touching efficacy, safety, environmental, or patent language separately so I can verify it by hand
-</copy_discipline>
 ```
 
 ### 5.2 A/B Testing Image Variants
@@ -659,12 +629,6 @@ variants.append({
 })
 
 return variants
-
-<copy_discipline>
-- Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
-- For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
-- Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
-</copy_discipline>
 ```
 
 ---

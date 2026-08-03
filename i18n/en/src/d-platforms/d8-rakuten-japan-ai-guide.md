@@ -176,6 +176,13 @@ Please create a YouTube Shopping strategy:
 - YouTube → Rakuten conversion tracking
 - Creator ROI analysis
 - Comparison with other traffic channels
+
+<calculation_discipline>
+- Use only the numbers I supplied above. Do not assume any parameter I didn't give you (interest rates, industry averages, platform fee rates, exchange rates) — list what's missing and ask
+- **Write out the formula before substituting numbers** so I can check each step. Don't give only the final result
+- For conclusions involving money or inventory, note which input they're most sensitive to — which number, if I change it, flips the conclusion
+- If you can't complete the calculation, stop and say what's missing. Do not fill gaps with assumed values
+</calculation_discipline>
 ```
 
 ### 2.6 Rakuten Initial Setup Fee
@@ -348,6 +355,13 @@ Please optimize:
 2. Bidding strategy (Rakuten RPP minimum ¥25/click)
 3. Coordination with Super Sale/Marathon events
 4. Points-multiplier setting suggestions (ROI comparison of raising the points multiplier vs a price cut)
+
+<calculation_discipline>
+- Use only the numbers I supplied above. Do not assume any parameter I didn't give you (interest rates, industry averages, platform fee rates, exchange rates) — list what's missing and ask
+- **Write out the formula before substituting numbers** so I can check each step. Don't give only the final result
+- For conclusions involving money or inventory, note which input they're most sensitive to — which number, if I change it, flips the conclusion
+- If you can't complete the calculation, stop and say what's missing. Do not fill gaps with assumed values
+</calculation_discipline>
 ```
 
 ## 4. Cross-Border Onboarding in Practice

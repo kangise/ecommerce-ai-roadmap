@@ -224,12 +224,6 @@ Step 5: scheduled publishing (Meta Business Suite)
 ↓ AI-recommended best publishing time
 Step 6: data retrospective (weekly)
 ↓ AI analyzes which content performs well, adjust next week's strategy
-
-<copy_discipline>
-- Never write a feature, material, certification, or result the product doesn't actually have. Any attribute I didn't state above must not appear in the copy — this is the number-one cause of listing takedowns and false-advertising complaints
-- If you need a selling point I didn't supply, list what you need from me rather than improvising
-- Flag any claim touching efficacy, safety, environmental, or patent language separately so I can verify it by hand
-</copy_discipline>
 ```
 
 > **Efficiency comparison**: Manually making 1 Reels takes about 2-3 hours. With AI assistance, script 5 minutes + editing 15 minutes + copy 5 minutes = 25 minutes/Reels. You can steadily produce 10-15 per week.

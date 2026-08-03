@@ -379,12 +379,6 @@ return response.choices[0].message.content
 # 切换到云端 OpenAI 只需改两行：
 # client = OpenAI(api_key="sk-...") # 改为 OpenAI API key
 # model = "gpt-5.6-luna" # 改为 OpenAI 模型名
-
-<文案纪律>
-- 不要写出产品实际不具备的功能、材质、认证或效果。我在上面没写的属性，一律不要出现在文案里——这是 Listing 被下架和被投诉虚假宣传的头号原因
-- 需要某个卖点才能写好但我没提供时，先列出你需要我补充什么，不要自行发挥
-- 涉及疗效、安全、环保、专利的表述，单独标出来提示我人工核对
-</文案纪律>
 ```
 
 > **无缝切换的价值**：开发阶段用本地 Ollama（免费、数据安全），上线后根据需要切换到 OpenAI（质量更高）。代码只需改 `base_url` 和 `model` 两个参数。

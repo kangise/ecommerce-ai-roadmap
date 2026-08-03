@@ -108,12 +108,6 @@ AI analyzes competitor Listing weaknesses
 AI generates differentiated selling points
 AI simulates user search intent
 Output: product positioning and core selling points
-
-<data_discipline>
-- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
-- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
-- Tag every conclusion with its source: [supplied by me] or [model inference]
-</data_discipline>
 ```
 
 ### 2.2 AI product-research prompt (one-click)

@@ -1245,12 +1245,6 @@ f.write(html)
 
 print(f"HTML report generated: {output_path}")
 return output_path
-
-<copy_discipline>
-- Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
-- For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
-- Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
-</copy_discipline>
 ```
 
 > **Why self-contained HTML?** One .html file is the complete report, sent directly via email, Slack, or WeChat. The recipient double-clicks to view, no software to install. Chart.js loads from a CDN, so the file itself is only a few KB.

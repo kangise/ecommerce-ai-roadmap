@@ -379,12 +379,6 @@ return response.choices[0].message.content
 # Switching to cloud OpenAI takes only two lines:
 # client = OpenAI(api_key="sk-...") # change to your OpenAI API key
 # model = "gpt-5.6-luna" # change to the OpenAI model name
-
-<copy_discipline>
-- Never write a feature, material, certification, or result the product doesn't actually have. Any attribute I didn't state above must not appear in the copy — this is the number-one cause of listing takedowns and false-advertising complaints
-- If you need a selling point I didn't supply, list what you need from me rather than improvising
-- Flag any claim touching efficacy, safety, environmental, or patent language separately so I can verify it by hand
-</copy_discipline>
 ```
 
 > **The value of seamless switching**: use local Ollama in dev (free, data-safe), switch to OpenAI after launch as needed (higher quality). The code only changes the `base_url` and `model` parameters.
@@ -580,12 +574,6 @@ import json
 with open("train_data.jsonl", "w", encoding="utf-8") as f:
 for item in training_data:
 f.write(json.dumps(item, ensure_ascii=False) + "\n")
-
-<copy_discipline>
-- Never write a feature, material, certification, or result the product doesn't actually have. Any attribute I didn't state above must not appear in the copy — this is the number-one cause of listing takedowns and false-advertising complaints
-- If you need a selling point I didn't supply, list what you need from me rather than improvising
-- Flag any claim touching efficacy, safety, environmental, or patent language separately so I can verify it by hand
-</copy_discipline>
 ```
 
 **LoRA fine-tuning with Unsloth (recommended, 2× faster):**
@@ -694,12 +682,6 @@ ollama create ecommerce-expert -f Modelfile
 
 # Run the fine-tuned model
 ollama run ecommerce-expert
-
-<copy_discipline>
-- Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
-- For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
-- Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
-</copy_discipline>
 ```
 
 > **Fine-tuning data-volume guide**:
