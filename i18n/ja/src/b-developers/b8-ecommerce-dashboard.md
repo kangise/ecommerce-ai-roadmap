@@ -76,26 +76,26 @@ st.title("EC 運営ダッシュボード")
 
 # サイドバー: 日付選択
 with st.sidebar:
-st.header("フィルタ条件")
-date_range = st.date_input(
-"日付範囲",
-value=(datetime.now() - timedelta(days=30), datetime.now())
-)
-marketplace = st.selectbox("市場", ["All", "US", "EU", "JP"])
+    st.header("フィルタ条件")
+    date_range = st.date_input(
+        "日付範囲",
+        value=(datetime.now() - timedelta(days=30), datetime.now())
+    )
+    marketplace = st.selectbox("市場", ["All", "US", "EU", "JP"])
 
 # データロード
 @st.cache_data
 def load_data():
-# あなたのデータ源に置換(CSV/API/データベース)
-df = pd.read_csv("sales_data.csv", parse_dates=["date"])
-return df
+    # あなたのデータ源に置換(CSV/API/データベース)
+    df = pd.read_csv("sales_data.csv", parse_dates=["date"])
+    return df
 
 df = load_data()
 
 # KPI カード
 col1, col2, col3, col4 = st.columns(4)
 col1.metric("総収入", f"${df['revenue'].sum():,.0f}",
-f"{(df['revenue'].sum() / df['revenue_prev'].sum() - 1)*100:+.1f}%")
+            f"{(df['revenue'].sum() / df['revenue_prev'].sum() - 1)*100:+.1f}%")
 col2.metric("総注文", f"{df['orders'].sum():,}")
 col3.metric("平均客単価", f"${df['revenue'].sum() / df['orders'].sum():.2f}")
 col4.metric("広告 ROAS", f"{df['ad_revenue'].sum() / df['ad_spend'].sum():.1f}x")
@@ -109,18 +109,18 @@ st.plotly_chart(fig, use_container_width=True)
 # カテゴリ分布
 col1, col2 = st.columns(2)
 with col1:
-st.subheader("カテゴリ収入分布")
-cat_data = df.groupby("category")["revenue"].sum().reset_index()
-fig2 = px.pie(cat_data, values="revenue", names="category")
-st.plotly_chart(fig2, use_container_width=True)
+    st.subheader("カテゴリ収入分布")
+    cat_data = df.groupby("category")["revenue"].sum().reset_index()
+    fig2 = px.pie(cat_data, values="revenue", names="category")
+    st.plotly_chart(fig2, use_container_width=True)
 
 with col2:
-st.subheader("在庫健全度")
-inv_data = df.groupby("sku")[["inventory_days", "daily_sales"]].mean().reset_index()
-inv_data["status"] = inv_data["inventory_days"].apply(
-lambda x: "緊急" if x < 7 else ("注意" if x < 14 else "正常")
-)
-st.dataframe(inv_data, use_container_width=True)
+    st.subheader("在庫健全度")
+    inv_data = df.groupby("sku")[["inventory_days", "daily_sales"]].mean().reset_index()
+    inv_data["status"] = inv_data["inventory_days"].apply(
+        lambda x: "緊急" if x < 7 else ("注意" if x < 14 else "正常")
+    )
+    st.dataframe(inv_data, use_container_width=True)
 ```
 
 実行: `streamlit run dashboard.py`
@@ -175,52 +175,52 @@ AI Insights(AI 洞察)
 
 ```python
 def render_advertising_tab(df_ads: pd.DataFrame):
-"""広告分析 Tab"""
-st.header("広告分析")
+    """広告分析 Tab"""
+    st.header("広告分析")
 
-# KPI
-col1, col2, col3, col4 = st.columns(4)
-total_spend = df_ads['spend'].sum()
-total_sales = df_ads['attributed_sales'].sum()
-col1.metric("総費用", f"${total_spend:,.0f}")
-col2.metric("広告売上", f"${total_sales:,.0f}")
-col3.metric("ACOS", f"{total_spend/total_sales*100:.1f}%")
-col4.metric("ROAS", f"{total_sales/total_spend:.1f}x")
+    # KPI
+    col1, col2, col3, col4 = st.columns(4)
+    total_spend = df_ads['spend'].sum()
+    total_sales = df_ads['attributed_sales'].sum()
+    col1.metric("総費用", f"${total_spend:,.0f}")
+    col2.metric("広告売上", f"${total_sales:,.0f}")
+    col3.metric("ACOS", f"{total_spend/total_sales*100:.1f}%")
+    col4.metric("ROAS", f"{total_sales/total_spend:.1f}x")
 
-# Campaign ランキング
-st.subheader("Campaign パフォーマンスランキング")
-campaign_data = df_ads.groupby("campaign_name").agg({
-"spend": "sum",
-"attributed_sales": "sum",
-"clicks": "sum",
-"impressions": "sum"
-}).reset_index()
-campaign_data["acos"] = campaign_data["spend"] / campaign_data["attributed_sales"] * 100
-campaign_data["roas"] = campaign_data["attributed_sales"] / campaign_data["spend"]
-campaign_data["ctr"] = campaign_data["clicks"] / campaign_data["impressions"] * 100
+    # Campaign ランキング
+    st.subheader("Campaign パフォーマンスランキング")
+    campaign_data = df_ads.groupby("campaign_name").agg({
+        "spend": "sum",
+        "attributed_sales": "sum",
+        "clicks": "sum",
+        "impressions": "sum"
+    }).reset_index()
+    campaign_data["acos"] = campaign_data["spend"] / campaign_data["attributed_sales"] * 100
+    campaign_data["roas"] = campaign_data["attributed_sales"] / campaign_data["spend"]
+    campaign_data["ctr"] = campaign_data["clicks"] / campaign_data["impressions"] * 100
 
-# ACOS をカラーコーディング
-st.dataframe(
-campaign_data.sort_values("spend", ascending=False),
-use_container_width=True,
-column_config={
-"acos": st.column_config.ProgressColumn(
-"ACOS %", min_value=0, max_value=100, format="%.1f%%"
-)
-}
-)
+    # ACOS をカラーコーディング
+    st.dataframe(
+        campaign_data.sort_values("spend", ascending=False),
+        use_container_width=True,
+        column_config={
+            "acos": st.column_config.ProgressColumn(
+                "ACOS %", min_value=0, max_value=100, format="%.1f%%"
+            )
+        }
+    )
 
-# キーワード散布図(費用 vs 転換)
-st.subheader("キーワードパフォーマンス散布図")
-fig = px.scatter(
-df_ads.groupby("keyword").agg({"spend": "sum", "attributed_sales": "sum", "clicks": "sum"}).reset_index(),
-x="spend", y="attributed_sales", size="clicks",
-hover_name="keyword",
-title="費用 vs 売上(バブルサイズ=クリック数)"
-)
-fig.add_shape(type="line", x0=0, y0=0, x1=df_ads["spend"].max(),
-y1=df_ads["spend"].max()/0.25, line=dict(dash="dash", color="red"))
-st.plotly_chart(fig, use_container_width=True)
+    # キーワード散布図(費用 vs 転換)
+    st.subheader("キーワードパフォーマンス散布図")
+    fig = px.scatter(
+        df_ads.groupby("keyword").agg({"spend": "sum", "attributed_sales": "sum", "clicks": "sum"}).reset_index(),
+        x="spend", y="attributed_sales", size="clicks",
+        hover_name="keyword",
+        title="費用 vs 売上(バブルサイズ=クリック数)"
+    )
+    fig.add_shape(type="line", x0=0, y0=0, x1=df_ads["spend"].max(),
+                  y1=df_ads["spend"].max()/0.25, line=dict(dash="dash", color="red"))
+    st.plotly_chart(fig, use_container_width=True)
 ```
 
 ---
@@ -251,49 +251,49 @@ from sp_api.base import Marketplaces
 from datetime import datetime, timedelta
 
 def get_amazon_orders(days_back: int = 30) -> pd.DataFrame:
-"""Amazon SP-API から注文データを取得"""
-orders_api = Orders(marketplace=Marketplaces.US)
+    """Amazon SP-API から注文データを取得"""
+    orders_api = Orders(marketplace=Marketplaces.US)
 
-created_after = (datetime.now() - timedelta(days=days_back)).isoformat()
+    created_after = (datetime.now() - timedelta(days=days_back)).isoformat()
 
-all_orders = []
-response = orders_api.get_orders(
-CreatedAfter=created_after,
-OrderStatuses=["Shipped", "Unshipped"]
-)
+    all_orders = []
+    response = orders_api.get_orders(
+        CreatedAfter=created_after,
+        OrderStatuses=["Shipped", "Unshipped"]
+    )
 
-all_orders.extend(response.payload.get("Orders", []))
+    all_orders.extend(response.payload.get("Orders", []))
 
-# ページネーションを処理
-while response.payload.get("NextToken"):
-response = orders_api.get_orders(
-CreatedAfter=created_after,
-NextToken=response.payload["NextToken"]
-)
-all_orders.extend(response.payload.get("Orders", []))
+    # ページネーションを処理
+    while response.payload.get("NextToken"):
+        response = orders_api.get_orders(
+            CreatedAfter=created_after,
+            NextToken=response.payload["NextToken"]
+        )
+        all_orders.extend(response.payload.get("Orders", []))
 
-# DataFrame に変換
-df = pd.DataFrame(all_orders)
-df["OrderDate"] = pd.to_datetime(df["PurchaseDate"])
-df["Revenue"] = df["OrderTotal"].apply(
-lambda x: float(x["Amount"]) if isinstance(x, dict) else 0
-)
+    # DataFrame に変換
+    df = pd.DataFrame(all_orders)
+    df["OrderDate"] = pd.to_datetime(df["PurchaseDate"])
+    df["Revenue"] = df["OrderTotal"].apply(
+        lambda x: float(x["Amount"]) if isinstance(x, dict) else 0
+    )
 
-return df
+    return df
 
 def get_amazon_inventory() -> pd.DataFrame:
-"""FBA 在庫データを取得"""
-reports_api = Reports(marketplace=Marketplaces.US)
+    """FBA 在庫データを取得"""
+    reports_api = Reports(marketplace=Marketplaces.US)
 
-# FBA 在庫レポートをリクエスト
-report = reports_api.create_report(
-reportType="GET_FBA_MYI_UNSUPPRESSED_INVENTORY_DATA"
-)
+    # FBA 在庫レポートをリクエスト
+    report = reports_api.create_report(
+        reportType="GET_FBA_MYI_UNSUPPRESSED_INVENTORY_DATA"
+    )
 
-# レポート生成を待ってダウンロード
-# ... (report status をポーリング)
+    # レポート生成を待ってダウンロード
+    # ... (report status をポーリング)
 
-return pd.read_csv(report_file, sep="\t")
+    return pd.read_csv(report_file, sep="\t")
 ```
 
 ### 5.2 統一データモデル
@@ -301,40 +301,40 @@ return pd.read_csv(report_file, sep="\t")
 ```python
 # 統一されたクロスプラットフォーム販売データモデル
 unified_schema = {
-"date": "datetime",
-"platform": "str", # amazon_us / shopify / walmart
-"sku": "str",
-"product_name": "str",
-"revenue": "float",
-"orders": "int",
-"units": "int",
-"refunds": "float",
-"ad_spend": "float",
-"ad_revenue": "float",
-"cogs": "float", # 製品コスト
-"fba_fees": "float", # プラットフォーム費用
-"net_profit": "float" # 純利益
+    "date": "datetime",
+    "platform": "str", # amazon_us / shopify / walmart
+    "sku": "str",
+    "product_name": "str",
+    "revenue": "float",
+    "orders": "int",
+    "units": "int",
+    "refunds": "float",
+    "ad_spend": "float",
+    "ad_revenue": "float",
+    "cogs": "float", # 製品コスト
+    "fba_fees": "float", # プラットフォーム費用
+    "net_profit": "float" # 純利益
 }
 
 def merge_platforms(amazon_df, shopify_df, walmart_df=None):
-"""マルチプラットフォームデータを統一形式に結合"""
-dfs = []
+    """マルチプラットフォームデータを統一形式に結合"""
+    dfs = []
 
-# Amazon
-amazon_df["platform"] = "amazon_us"
-amazon_df = amazon_df.rename(columns={...}) # 列名をマッピング
-dfs.append(amazon_df)
+    # Amazon
+    amazon_df["platform"] = "amazon_us"
+    amazon_df = amazon_df.rename(columns={...}) # 列名をマッピング
+    dfs.append(amazon_df)
 
-# Shopify
-shopify_df["platform"] = "shopify"
-shopify_df = shopify_df.rename(columns={...})
-dfs.append(shopify_df)
+    # Shopify
+    shopify_df["platform"] = "shopify"
+    shopify_df = shopify_df.rename(columns={...})
+    dfs.append(shopify_df)
 
-if walmart_df is not None:
-walmart_df["platform"] = "walmart"
-dfs.append(walmart_df)
+    if walmart_df is not None:
+        walmart_df["platform"] = "walmart"
+        dfs.append(walmart_df)
 
-return pd.concat(dfs, ignore_index=True)
+    return pd.concat(dfs, ignore_index=True)
 ```
 
 ---
@@ -366,21 +366,21 @@ Content rephrased for compliance with licensing restrictions.
 
 ```python
 def detect_anomalies(df: pd.DataFrame, metric: str, threshold: float = 2.0):
-"""Z-Score ベースの異常検知"""
-mean = df[metric].rolling(window=7).mean()
-std = df[metric].rolling(window=7).std()
-z_score = (df[metric] - mean) / std
+    """Z-Score ベースの異常検知"""
+    mean = df[metric].rolling(window=7).mean()
+    std = df[metric].rolling(window=7).std()
+    z_score = (df[metric] - mean) / std
 
-anomalies = df[abs(z_score) > threshold].copy()
-anomalies["direction"] = z_score.apply(lambda x: "異常に高い" if x > 0 else "異常に低い")
+    anomalies = df[abs(z_score) > threshold].copy()
+    anomalies["direction"] = z_score.apply(lambda x: "異常に高い" if x > 0 else "異常に低い")
 
-return anomalies
+    return anomalies
 
 # ダッシュボードで表示
 anomalies = detect_anomalies(daily_data, "revenue")
 if len(anomalies) > 0:
-st.warning(f"{len(anomalies)} 個の異常データ点を発見")
-st.dataframe(anomalies[["date", "revenue", "direction"]])
+    st.warning(f"{len(anomalies)} 個の異常データ点を発見")
+    st.dataframe(anomalies[["date", "revenue", "direction"]])
 ```
 
 ### 6.2 異常検知(複数の方法)
@@ -390,189 +390,189 @@ import numpy as np
 
 # 方法 1: Z-Score 異常検知(シンプルで有効)
 def detect_zscore_anomalies(df: pd.DataFrame, metric: str,
-window: int = 7, threshold: float = 2.0):
-"""ローリング Z-Score ベースの異常検知"""
-mean = df[metric].rolling(window=window).mean()
-std = df[metric].rolling(window=window).std()
-z_score = (df[metric] - mean) / std
+                            window: int = 7, threshold: float = 2.0):
+    """ローリング Z-Score ベースの異常検知"""
+    mean = df[metric].rolling(window=window).mean()
+    std = df[metric].rolling(window=window).std()
+    z_score = (df[metric] - mean) / std
 
-anomalies = df[abs(z_score) > threshold].copy()
-anomalies["z_score"] = z_score[abs(z_score) > threshold]
-anomalies["direction"] = anomalies["z_score"].apply(
-lambda x: "異常に高い" if x > 0 else "異常に低い"
-)
-return anomalies
+    anomalies = df[abs(z_score) > threshold].copy()
+    anomalies["z_score"] = z_score[abs(z_score) > threshold]
+    anomalies["direction"] = anomalies["z_score"].apply(
+        lambda x: "異常に高い" if x > 0 else "異常に低い"
+    )
+    return anomalies
 
 # 方法 2: IQR 異常検知(非正規分布により頑健)
 def detect_iqr_anomalies(df: pd.DataFrame, metric: str, multiplier: float = 1.5):
-"""四分位範囲ベースの異常検知"""
-Q1 = df[metric].quantile(0.25)
-Q3 = df[metric].quantile(0.75)
-IQR = Q3 - Q1
+    """四分位範囲ベースの異常検知"""
+    Q1 = df[metric].quantile(0.25)
+    Q3 = df[metric].quantile(0.75)
+    IQR = Q3 - Q1
 
-lower = Q1 - multiplier * IQR
-upper = Q3 + multiplier * IQR
+    lower = Q1 - multiplier * IQR
+    upper = Q3 + multiplier * IQR
 
-anomalies = df[(df[metric] < lower) | (df[metric] > upper)].copy()
-anomalies["direction"] = anomalies[metric].apply(
-lambda x: "異常に高い" if x > upper else "異常に低い"
-)
-return anomalies
+    anomalies = df[(df[metric] < lower) | (df[metric] > upper)].copy()
+    anomalies["direction"] = anomalies[metric].apply(
+        lambda x: "異常に高い" if x > upper else "異常に低い"
+    )
+    return anomalies
 
 # 方法 3: 前年比/前月比 異常検知(EC で最も実用的)
 def detect_period_anomalies(df: pd.DataFrame, metric: str,
-threshold_pct: float = 0.3):
-"""前年比/前月比の変化ベースの異常検知"""
-df = df.copy()
-df['wow_change'] = df[metric].pct_change(periods=7) # 前週比
-df['mom_change'] = df[metric].pct_change(periods=30) # 前月比
+                            threshold_pct: float = 0.3):
+    """前年比/前月比の変化ベースの異常検知"""
+    df = df.copy()
+    df['wow_change'] = df[metric].pct_change(periods=7) # 前週比
+    df['mom_change'] = df[metric].pct_change(periods=30) # 前月比
 
-anomalies = df[
-(abs(df['wow_change']) > threshold_pct) |
-(abs(df['mom_change']) > threshold_pct)
-].copy()
+    anomalies = df[
+        (abs(df['wow_change']) > threshold_pct) |
+        (abs(df['mom_change']) > threshold_pct)
+    ].copy()
 
-return anomalies
+    return anomalies
 
 # ダッシュボードに統合
 def render_anomaly_alerts(df: pd.DataFrame):
-"""ダッシュボードで異常警告を表示"""
-metrics_to_check = {
-"revenue": {"threshold": 2.0, "label": "収入"},
-"orders": {"threshold": 2.0, "label": "注文"},
-"acos": {"threshold": 1.5, "label": "ACOS"},
-"conversion_rate": {"threshold": 2.0, "label": "転換率"}
-}
+    """ダッシュボードで異常警告を表示"""
+    metrics_to_check = {
+        "revenue": {"threshold": 2.0, "label": "収入"},
+        "orders": {"threshold": 2.0, "label": "注文"},
+        "acos": {"threshold": 1.5, "label": "ACOS"},
+        "conversion_rate": {"threshold": 2.0, "label": "転換率"}
+    }
 
-all_anomalies = []
-for metric, config in metrics_to_check.items():
-if metric in df.columns:
-anomalies = detect_zscore_anomalies(df, metric, threshold=config["threshold"])
-for _, row in anomalies.iterrows():
-all_anomalies.append({
-"日付": row["date"],
-"指標": config["label"],
-"方向": row["direction"],
-"値": row[metric],
-"Z-Score": f"{row['z_score']:.1f}"
-})
+    all_anomalies = []
+    for metric, config in metrics_to_check.items():
+        if metric in df.columns:
+            anomalies = detect_zscore_anomalies(df, metric, threshold=config["threshold"])
+            for _, row in anomalies.iterrows():
+                all_anomalies.append({
+                    "日付": row["date"],
+                    "指標": config["label"],
+                    "方向": row["direction"],
+                    "値": row[metric],
+                    "Z-Score": f"{row['z_score']:.1f}"
+                })
 
-if all_anomalies:
-st.warning(f"{len(all_anomalies)} 個の異常データ点を発見")
-st.dataframe(pd.DataFrame(all_anomalies), use_container_width=True)
-else:
-st.success("すべての指標が正常")
+    if all_anomalies:
+        st.warning(f"{len(all_anomalies)} 個の異常データ点を発見")
+        st.dataframe(pd.DataFrame(all_anomalies), use_container_width=True)
+    else:
+        st.success("すべての指標が正常")
 ```
 
 ### 6.3 利益分析モジュール
 
 ```python
 def render_profitability_tab(df: pd.DataFrame):
-"""利益分析 Tab"""
-st.header("利益分析")
+    """利益分析 Tab"""
+    st.header("利益分析")
 
-# SKU レベルの利益計算
-df['gross_profit'] = df['revenue'] - df['cogs'] - df['fba_fees'] - df['ad_spend']
-df['gross_margin'] = df['gross_profit'] / df['revenue'] * 100
-df['net_profit'] = df['gross_profit'] - df['other_costs']
-df['net_margin'] = df['net_profit'] / df['revenue'] * 100
+    # SKU レベルの利益計算
+    df['gross_profit'] = df['revenue'] - df['cogs'] - df['fba_fees'] - df['ad_spend']
+    df['gross_margin'] = df['gross_profit'] / df['revenue'] * 100
+    df['net_profit'] = df['gross_profit'] - df['other_costs']
+    df['net_margin'] = df['net_profit'] / df['revenue'] * 100
 
-# 利益ウォーターフォール図
-st.subheader("利益ウォーターフォール図(ユニットエコノミクス)")
-avg_price = df['revenue'].sum() / df['units'].sum()
-avg_cogs = df['cogs'].sum() / df['units'].sum()
-avg_fba = df['fba_fees'].sum() / df['units'].sum()
-avg_ad = df['ad_spend'].sum() / df['units'].sum()
-avg_other = df['other_costs'].sum() / df['units'].sum()
-avg_profit = avg_price - avg_cogs - avg_fba - avg_ad - avg_other
+    # 利益ウォーターフォール図
+    st.subheader("利益ウォーターフォール図(ユニットエコノミクス)")
+    avg_price = df['revenue'].sum() / df['units'].sum()
+    avg_cogs = df['cogs'].sum() / df['units'].sum()
+    avg_fba = df['fba_fees'].sum() / df['units'].sum()
+    avg_ad = df['ad_spend'].sum() / df['units'].sum()
+    avg_other = df['other_costs'].sum() / df['units'].sum()
+    avg_profit = avg_price - avg_cogs - avg_fba - avg_ad - avg_other
 
-waterfall_data = pd.DataFrame({
-'item': ['売価', 'COGS', 'FBA 費用', '広告費', 'その他コスト', '純利益'],
-'amount': [avg_price, -avg_cogs, -avg_fba, -avg_ad, -avg_other, avg_profit]
-})
+    waterfall_data = pd.DataFrame({
+        'item': ['売価', 'COGS', 'FBA 費用', '広告費', 'その他コスト', '純利益'],
+        'amount': [avg_price, -avg_cogs, -avg_fba, -avg_ad, -avg_other, avg_profit]
+    })
 
-fig = px.bar(waterfall_data, x='item', y='amount',
-color='amount', color_continuous_scale=['red', 'green'],
-title=f"1 件あたり利益の分解(平均純利益: ${avg_profit:.2f})")
-st.plotly_chart(fig, use_container_width=True)
+    fig = px.bar(waterfall_data, x='item', y='amount',
+                 color='amount', color_continuous_scale=['red', 'green'],
+                 title=f"1 件あたり利益の分解(平均純利益: ${avg_profit:.2f})")
+    st.plotly_chart(fig, use_container_width=True)
 
-# SKU 利益ランキング
-st.subheader("SKU 利益ランキング")
-sku_profit = df.groupby('sku').agg({
-'revenue': 'sum',
-'gross_profit': 'sum',
-'net_profit': 'sum',
-'units': 'sum'
-}).reset_index()
-sku_profit['margin'] = sku_profit['net_profit'] / sku_profit['revenue'] * 100
-sku_profit = sku_profit.sort_values('net_profit', ascending=False)
+    # SKU 利益ランキング
+    st.subheader("SKU 利益ランキング")
+    sku_profit = df.groupby('sku').agg({
+        'revenue': 'sum',
+        'gross_profit': 'sum',
+        'net_profit': 'sum',
+        'units': 'sum'
+    }).reset_index()
+    sku_profit['margin'] = sku_profit['net_profit'] / sku_profit['revenue'] * 100
+    sku_profit = sku_profit.sort_values('net_profit', ascending=False)
 
-# 赤字 SKU をマーク
-st.dataframe(
-sku_profit.style.applymap(
-lambda x: 'color: red' if isinstance(x, (int, float)) and x < 0 else '',
-subset=['net_profit', 'margin']
-),
-use_container_width=True
-)
+    # 赤字 SKU をマーク
+    st.dataframe(
+        sku_profit.style.applymap(
+            lambda x: 'color: red' if isinstance(x, (int, float)) and x < 0 else '',
+            subset=['net_profit', 'margin']
+        ),
+        use_container_width=True
+    )
 ```
 
 ### 6.4 在庫健全度モジュール
 
 ```python
 def render_inventory_tab(df_inv: pd.DataFrame):
-"""在庫健全度 Tab"""
-st.header("在庫健全度")
+    """在庫健全度 Tab"""
+    st.header("在庫健全度")
 
-# 販売可能日数を計算
-df_inv['days_of_supply'] = df_inv['quantity'] / df_inv['daily_sales'].replace(0, 0.1)
+    # 販売可能日数を計算
+    df_inv['days_of_supply'] = df_inv['quantity'] / df_inv['daily_sales'].replace(0, 0.1)
 
-# 在庫状態の分類
-def classify_inventory(days):
-if days < 7:
-return "緊急補充"
-elif days < 14:
-return "まもなく欠品"
-elif days < 30:
-return "要注意"
-elif days < 90:
-return "健全"
-else:
-return "在庫過多"
+    # 在庫状態の分類
+    def classify_inventory(days):
+        if days < 7:
+            return "緊急補充"
+        elif days < 14:
+            return "まもなく欠品"
+        elif days < 30:
+            return "要注意"
+        elif days < 90:
+            return "健全"
+        else:
+            return "在庫過多"
 
-df_inv['status'] = df_inv['days_of_supply'].apply(classify_inventory)
+    df_inv['status'] = df_inv['days_of_supply'].apply(classify_inventory)
 
-# 状態分布
-col1, col2 = st.columns(2)
-with col1:
-status_counts = df_inv['status'].value_counts()
-fig = px.pie(values=status_counts.values, names=status_counts.index,
-title="在庫状態分布")
-st.plotly_chart(fig, use_container_width=True)
+    # 状態分布
+    col1, col2 = st.columns(2)
+    with col1:
+        status_counts = df_inv['status'].value_counts()
+        fig = px.pie(values=status_counts.values, names=status_counts.index,
+                     title="在庫状態分布")
+        st.plotly_chart(fig, use_container_width=True)
 
-with col2:
-# 緊急補充リスト
-urgent = df_inv[df_inv['days_of_supply'] < 14].sort_values('days_of_supply')
-st.subheader(f"補充が必要な SKU ({len(urgent)} 個)")
-st.dataframe(urgent[['sku', 'product_name', 'quantity',
-'daily_sales', 'days_of_supply', 'status']],
-use_container_width=True)
+    with col2:
+        # 緊急補充リスト
+        urgent = df_inv[df_inv['days_of_supply'] < 14].sort_values('days_of_supply')
+        st.subheader(f"補充が必要な SKU ({len(urgent)} 個)")
+        st.dataframe(urgent[['sku', 'product_name', 'quantity',
+                             'daily_sales', 'days_of_supply', 'status']],
+                     use_container_width=True)
 
-# 長期倉庫料の警告
-st.subheader("長期倉庫料の警告")
-long_storage = df_inv[df_inv['days_in_warehouse'] > 180]
-if len(long_storage) > 0:
-estimated_fee = long_storage['quantity'].sum() * 6.90 # $6.90/立方フィート/月
-st.warning(f"{len(long_storage)} 個の SKU が倉庫内 180 日超、推定月倉庫料: ${estimated_fee:,.0f}")
-st.dataframe(long_storage[['sku', 'quantity', 'days_in_warehouse']])
+    # 長期倉庫料の警告
+    st.subheader("長期倉庫料の警告")
+    long_storage = df_inv[df_inv['days_in_warehouse'] > 180]
+    if len(long_storage) > 0:
+        estimated_fee = long_storage['quantity'].sum() * 6.90 # $6.90/立方フィート/月
+        st.warning(f"{len(long_storage)} 個の SKU が倉庫内 180 日超、推定月倉庫料: ${estimated_fee:,.0f}")
+        st.dataframe(long_storage[['sku', 'quantity', 'days_in_warehouse']])
 ```
 
 ### 6.5 AI 自動洞察
 
 ```python
 def generate_ai_insights(data_summary: dict) -> str:
-"""LLM でデータ洞察を生成"""
-prompt = f"""
+    """LLM でデータ洞察を生成"""
+    prompt = f"""
 あなたは EC データ分析の専門家です。以下は過去 7 日の運営データのサマリです:
 
 {data_summary}
@@ -584,8 +584,8 @@ prompt = f"""
 
 日本語で簡潔に回答、各項目は 2 文を超えない。
 """
-# LLM API を呼ぶ
-return llm_call(prompt)
+    # LLM API を呼ぶ
+    return llm_call(prompt)
 ```
 
 ---

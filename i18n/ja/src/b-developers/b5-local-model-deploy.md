@@ -302,32 +302,32 @@ Ollama は OpenAI 互換の REST API を提供し、任意の HTTP クライア�
 import ollama
 
 def analyze_review(review_text: str, model: str = "qwen3:8b") -> str:
-"""ローカル LLM で顧客 Review を分析し、製品改善の方向を抽出。"""
-response = ollama.chat(
-model=model,
-messages=[
-{
-"role": "system",
-"content": "あなたは EC 製品分析の専門家です。顧客 Review を分析し、抽出:\n"
-"1. 核心問題(一文)\n"
-"2. 問題カテゴリ(品質/機能/物流/価格/その他)\n"
-"3. 改善提案\n"
-"日本語で回答、簡潔明瞭に。",
-},
-{"role": "user", "content": f"この Review を分析してください:\n{review_text}"},
-],
-options={"temperature": 0.1}, # 低温度、より決定論的な出力
-)
-return response["message"]["content"]
+    """ローカル LLM で顧客 Review を分析し、製品改善の方向を抽出。"""
+    response = ollama.chat(
+        model=model,
+        messages=[
+            {
+                "role": "system",
+                "content": "あなたは EC 製品分析の専門家です。顧客 Review を分析し、抽出:\n"
+                "1. 核心問題(一文)\n"
+                "2. 問題カテゴリ(品質/機能/物流/価格/その他)\n"
+                "3. 改善提案\n"
+                "日本語で回答、簡潔明瞭に。",
+            },
+            {"role": "user", "content": f"この Review を分析してください:\n{review_text}"},
+        ],
+        options={"temperature": 0.1}, # 低温度、より決定論的な出力
+    )
+    return response["message"]["content"]
 
 def batch_analyze_reviews(reviews: list[str], model: str = "qwen3:8b") -> list[dict]:
-"""Review リストを一括分析。"""
-results = []
-for i, review in enumerate(reviews):
-print(f"Review {i+1}/{len(reviews)} を分析中...")
-analysis = analyze_review(review, model)
-results.append({"review": review, "analysis": analysis})
-return results
+    """Review リストを一括分析。"""
+    results = []
+    for i, review in enumerate(reviews):
+        print(f"Review {i+1}/{len(reviews)} を分析中...")
+        analysis = analyze_review(review, model)
+        results.append({"review": review, "analysis": analysis})
+    return results
 
 # 使用例
 # reviews = [
@@ -353,28 +353,28 @@ from openai import OpenAI
 
 # ローカル Ollama サービスを指す(OpenAI サーバーでなく)
 client = OpenAI(
-base_url="http://localhost:11434/v1",
-api_key="ollama", # Ollama は本物の API key 不要
+    base_url="http://localhost:11434/v1",
+    api_key="ollama", # Ollama は本物の API key 不要
 )
 
 def generate_listing(product_info: str, model: str = "qwen3:8b") -> str:
-"""ローカル LLM で製品 Listing を生成。"""
-response = client.chat.completions.create(
-model=model,
-messages=[
-{
-"role": "system",
-"content": "あなたは Amazon Listing 最適化の専門家です。製品情報から生成:\n"
-"1. タイトル(コアキーワードを含む、<200 文字)\n"
-"2. 5 個の Bullet Points\n"
-"3. 製品説明(<2000 文字)\n"
-"英語で出力、Amazon スタイルガイドに準拠。",
-},
-{"role": "user", "content": f"製品情報:\n{product_info}"},
-],
-temperature=0.3,
-)
-return response.choices[0].message.content
+    """ローカル LLM で製品 Listing を生成。"""
+    response = client.chat.completions.create(
+        model=model,
+        messages=[
+            {
+                "role": "system",
+                "content": "あなたは Amazon Listing 最適化の専門家です。製品情報から生成:\n"
+                "1. タイトル(コアキーワードを含む、<200 文字)\n"
+                "2. 5 個の Bullet Points\n"
+                "3. 製品説明(<2000 文字)\n"
+                "英語で出力、Amazon スタイルガイドに準拠。",
+            },
+            {"role": "user", "content": f"製品情報:\n{product_info}"},
+        ],
+        temperature=0.3,
+    )
+    return response.choices[0].message.content
 
 # クラウド OpenAI への切替は 2 行変えるだけ:
 # client = OpenAI(api_key="sk-...") # OpenAI API key に変更
@@ -391,21 +391,21 @@ return response.choices[0].message.content
 import ollama
 
 def stream_generate(prompt: str, model: str = "qwen3:8b"):
-"""ストリーミングでテキストを生成、各 token をリアルタイム出力。"""
-stream = ollama.chat(
-model=model,
-messages=[{"role": "user", "content": prompt}],
-stream=True,
-)
+    """ストリーミングでテキストを生成、各 token をリアルタイム出力。"""
+    stream = ollama.chat(
+        model=model,
+        messages=[{"role": "user", "content": prompt}],
+        stream=True,
+    )
 
-full_response = ""
-for chunk in stream:
-token = chunk["message"]["content"]
-print(token, end="", flush=True)
-full_response += token
+    full_response = ""
+    for chunk in stream:
+        token = chunk["message"]["content"]
+        print(token, end="", flush=True)
+        full_response += token
 
-print() # 改行
-return full_response
+    print() # 改行
+    return full_response
 
 # stream_generate("Insta360 X4 の米国市場での競争優位を 200 字で分析")
 ```
@@ -420,78 +420,78 @@ B3 モジュールの RAG 知識と組み合わせ、完全ローカルの RAG �
 
 import chromadb
 from llama_index.core import (
-VectorStoreIndex, SimpleDirectoryReader,
-Settings, StorageContext,
+    VectorStoreIndex, SimpleDirectoryReader,
+    Settings, StorageContext,
 )
 from llama_index.llms.ollama import Ollama
 from llama_index.embeddings.ollama import OllamaEmbedding
 from llama_index.vector_stores.chroma import ChromaVectorStore
 
 def build_local_rag(
-docs_dir: str,
-llm_model: str = "qwen3:8b",
-embed_model: str = "nomic-embed-text",
-collection_name: str = "local_knowledge",
-persist_dir: str = "chroma_db",
+    docs_dir: str,
+    llm_model: str = "qwen3:8b",
+    embed_model: str = "nomic-embed-text",
+    collection_name: str = "local_knowledge",
+    persist_dir: str = "chroma_db",
 ) -> VectorStoreIndex:
-"""
-完全ローカルの RAG システムを構築する。
+    """
+    完全ローカルの RAG システムを構築する。
 
-前提:
-1. Ollama インストール済み・実行中(ollama serve)
-2. モデルダウンロード済み: ollama pull qwen3:8b
-3. Embedding ダウンロード済み: ollama pull nomic-embed-text
+    前提:
+    1. Ollama インストール済み・実行中(ollama serve)
+    2. モデルダウンロード済み: ollama pull qwen3:8b
+    3. Embedding ダウンロード済み: ollama pull nomic-embed-text
 
-すべてのデータを本機で処理、いかなる外部 API も呼ばない。
-"""
-# ローカル LLM を設定
-Settings.llm = Ollama(
-model=llm_model,
-request_timeout=120.0,
-temperature=0.1,
-)
+    すべてのデータを本機で処理、いかなる外部 API も呼ばない。
+    """
+    # ローカル LLM を設定
+    Settings.llm = Ollama(
+        model=llm_model,
+        request_timeout=120.0,
+        temperature=0.1,
+    )
 
-# ローカル Embedding を設定
-Settings.embed_model = OllamaEmbedding(model_name=embed_model)
+    # ローカル Embedding を設定
+    Settings.embed_model = OllamaEmbedding(model_name=embed_model)
 
-# Chroma 永続化保存を設定
-chroma_client = chromadb.PersistentClient(path=persist_dir)
-chroma_collection = chroma_client.get_or_create_collection(collection_name)
-vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
-storage_context = StorageContext.from_defaults(vector_store=vector_store)
+    # Chroma 永続化保存を設定
+    chroma_client = chromadb.PersistentClient(path=persist_dir)
+    chroma_collection = chroma_client.get_or_create_collection(collection_name)
+    vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
+    storage_context = StorageContext.from_defaults(vector_store=vector_store)
 
-# 文書をロードしインデックスを構築
-documents = SimpleDirectoryReader(docs_dir, recursive=True).load_data()
-print(f"{len(documents)} 個の文書をロード")
+    # 文書をロードしインデックスを構築
+    documents = SimpleDirectoryReader(docs_dir, recursive=True).load_data()
+    print(f"{len(documents)} 個の文書をロード")
 
-index = VectorStoreIndex.from_documents(
-documents, storage_context=storage_context, show_progress=True,
-)
+    index = VectorStoreIndex.from_documents(
+        documents, storage_context=storage_context, show_progress=True,
+    )
 
-print(f"ローカル RAG 構築完了")
-print(f"LLM: {llm_model} | Embedding: {embed_model}")
-print(f"ベクトルDB: {persist_dir} ({chroma_collection.count()} 個のベクトル)")
-print(f"すべてのデータを本機で処理、外部サービスに送信していない")
-return index
+    print(f"ローカル RAG 構築完了")
+    print(f"LLM: {llm_model} | Embedding: {embed_model}")
+    print(f"ベクトルDB: {persist_dir} ({chroma_collection.count()} 個のベクトル)")
+    print(f"すべてのデータを本機で処理、外部サービスに送信していない")
+    return index
 
 def query_local_rag(index: VectorStoreIndex, question: str, top_k: int = 3) -> dict:
-"""ローカル RAG システムを照会。"""
-query_engine = index.as_query_engine(similarity_top_k=top_k)
-response = query_engine.query(question)
+    """ローカル RAG システムを照会。"""
+    query_engine = index.as_query_engine(similarity_top_k=top_k)
+    response = query_engine.query(question)
 
-sources = []
-for node in response.source_nodes:
-sources.append({
-"file": node.metadata.get("file_name", "unknown"),
-"score": round(node.score, 4) if node.score else None,
-"preview": node.text[:200],
-})
+    sources = []
+    for node in response.source_nodes:
+        sources.append({
+            "file": node.metadata.get("file_name", "unknown"),
+            "score": round(node.score, 4) if node.score else None,
+            "preview": node.text[:200],
+        })
 
-return {
-"question": question,
-"answer": str(response),
-"sources": sources,
-}
+    return {
+        "question": question,
+        "answer": str(response),
+        "sources": sources,
+    }
 
 # 使用例
 # index = build_local_rag("data/product_docs")
@@ -550,30 +550,30 @@ LoRA ファインチューニング: 元パラメータを凍結、~1% のアダ
 # JSONL ファイルとして保存
 
 training_data = [
-{
-"instruction": "この Amazon Review を分析し、製品問題と改善提案を抽出。",
-"input": "2 週間で壊れた、レンズがぼやける、防水も効かない。CS の態度はまあまあだが問題を解決できない。",
-"output": "**製品問題**:\n1. 耐久性が悪い(2 週間で損壊)\n2. レンズ品質の問題(ぼやける)\n"
-"3. 防水性能が基準未達\n\n**改善提案**:\n1. 品質検査を強化、レンズと防水シールを重点検査\n"
-"2. 保証期間を延長し顧客の信頼を高める\n3. Listing で防水等級を正確に記述、過度な宣伝を回避",
-},
-{
-"instruction": "製品情報から Amazon Listing の 5 個の Bullet Points を生成。",
-"input": "製品: アクションカメラ X1、4K60fps、防水 10m、電池 2 時間、重量 120g、"
-"音声制御対応、付属品豊富",
-"output": "[4K Ultra HD] Capture stunning 4K video at 60fps...\n"
-"[Waterproof to 33ft] Built-in waterproof design...\n"
-"[2-Hour Battery Life] Extended battery for all-day...\n"
-"[Voice Control] Hands-free operation with voice...\n"
-"[Complete Accessory Kit] Includes mounting brackets...",
-},
-# ... 200-500 件の類似データを準備
+    {
+        "instruction": "この Amazon Review を分析し、製品問題と改善提案を抽出。",
+        "input": "2 週間で壊れた、レンズがぼやける、防水も効かない。CS の態度はまあまあだが問題を解決できない。",
+        "output": "**製品問題**:\n1. 耐久性が悪い(2 週間で損壊)\n2. レンズ品質の問題(ぼやける)\n"
+        "3. 防水性能が基準未達\n\n**改善提案**:\n1. 品質検査を強化、レンズと防水シールを重点検査\n"
+        "2. 保証期間を延長し顧客の信頼を高める\n3. Listing で防水等級を正確に記述、過度な宣伝を回避",
+    },
+    {
+        "instruction": "製品情報から Amazon Listing の 5 個の Bullet Points を生成。",
+        "input": "製品: アクションカメラ X1、4K60fps、防水 10m、電池 2 時間、重量 120g、"
+        "音声制御対応、付属品豊富",
+        "output": "[4K Ultra HD] Capture stunning 4K video at 60fps...\n"
+        "[Waterproof to 33ft] Built-in waterproof design...\n"
+        "[2-Hour Battery Life] Extended battery for all-day...\n"
+        "[Voice Control] Hands-free operation with voice...\n"
+        "[Complete Accessory Kit] Includes mounting brackets...",
+    },
+    # ... 200-500 件の類似データを準備
 ]
 
 import json
 with open("train_data.jsonl", "w", encoding="utf-8") as f:
-for item in training_data:
-f.write(json.dumps(item, ensure_ascii=False) + "\n")
+    for item in training_data:
+        f.write(json.dumps(item, ensure_ascii=False) + "\n")
 ```
 
 **Unsloth で LoRA ファインチューニング(推奨、2 倍速い):**
@@ -589,57 +589,57 @@ from datasets import load_dataset
 
 # 1. ベースモデルをロード(4-bit 量子化を自動適用、VRAM 節約)
 model, tokenizer = FastLanguageModel.from_pretrained(
-model_name="unsloth/Qwen3-8B-bnb-4bit",
-max_seq_length=2048,
-load_in_4bit=True, # 4-bit 量子化、7B モデルは ~5GB VRAM だけ
+    model_name="unsloth/Qwen3-8B-bnb-4bit",
+    max_seq_length=2048,
+    load_in_4bit=True, # 4-bit 量子化、7B モデルは ~5GB VRAM だけ
 )
 
 # 2. LoRA アダプターを追加
 model = FastLanguageModel.get_peft_model(
-model,
-r=16, # LoRA ランク(大きいほど強いが遅い、8-32 推奨)
-target_modules=["q_proj", "k_proj", "v_proj", "o_proj",
-"gate_proj", "up_proj", "down_proj"],
-lora_alpha=16, # スケーリング係数(通常 r と等しい)
-lora_dropout=0, # Dropout(Unsloth 最適化後は 0 に設定)
-bias="none",
-use_gradient_checkpointing="unsloth", # さらに VRAM 節約
+    model,
+    r=16, # LoRA ランク(大きいほど強いが遅い、8-32 推奨)
+    target_modules=["q_proj", "k_proj", "v_proj", "o_proj",
+                    "gate_proj", "up_proj", "down_proj"],
+    lora_alpha=16, # スケーリング係数(通常 r と等しい)
+    lora_dropout=0, # Dropout(Unsloth 最適化後は 0 に設定)
+    bias="none",
+    use_gradient_checkpointing="unsloth", # さらに VRAM 節約
 )
 
 # 3. 訓練データを準備
 # データ形式: 各データは完全な対話
 def format_prompt(example):
-return {
-"text": f"""<|im_start|>system
+    return {
+        "text": f"""<|im_start|>system
 あなたは EC 運営 AI アシスタントで、Amazon 運営、Listing 最適化、Review 分析に精通。<|im_end|>
 <|im_start|>user
 {example['instruction']}
 {example['input']}<|im_end|>
 <|im_start|>assistant
 {example['output']}<|im_end|>"""
-}
+    }
 
 dataset = load_dataset("json", data_files="train_data.jsonl", split="train")
 dataset = dataset.map(format_prompt)
 
 # 4. 訓練パラメータを設定
 trainer = SFTTrainer(
-model=model,
-tokenizer=tokenizer,
-train_dataset=dataset,
-dataset_text_field="text",
-max_seq_length=2048,
-args=TrainingArguments(
-per_device_train_batch_size=2,
-gradient_accumulation_steps=4, # 実効 batch_size = 8
-warmup_steps=5,
-max_steps=60, # 小データセットは 60 ステップで十分(約 500 件)
-learning_rate=2e-4,
-fp16=True, # 混合精度訓練
-logging_steps=10,
-output_dir="outputs",
-optim="adamw_8bit", # 8-bit オプティマイザ、VRAM 節約
-),
+    model=model,
+    tokenizer=tokenizer,
+    train_dataset=dataset,
+    dataset_text_field="text",
+    max_seq_length=2048,
+    args=TrainingArguments(
+        per_device_train_batch_size=2,
+        gradient_accumulation_steps=4, # 実効 batch_size = 8
+        warmup_steps=5,
+        max_steps=60, # 小データセットは 60 ステップで十分(約 500 件)
+        learning_rate=2e-4,
+        fp16=True, # 混合精度訓練
+        logging_steps=10,
+        output_dir="outputs",
+        optim="adamw_8bit", # 8-bit オプティマイザ、VRAM 節約
+    ),
 )
 
 # 5. 訓練を開始
@@ -653,9 +653,9 @@ print("LoRA アダプターを lora_ecommerce/ に保存")
 
 # 7. GGUF 形式にエクスポート(Ollama で使える)
 model.save_pretrained_gguf(
-"model_gguf",
-tokenizer,
-quantization_method="q4_k_m", # 4-bit 量子化
+    "model_gguf",
+    tokenizer,
+    quantization_method="q4_k_m", # 4-bit 量子化
 )
 print("GGUF モデルをエクスポート、Ollama でロード可能")
 ```
@@ -1085,45 +1085,45 @@ import json
 from concurrent.futures import ThreadPoolExecutor
 
 def batch_analyze(
-items: list[str],
-system_prompt: str,
-model: str = "qwen3:8b",
-max_workers: int = 2,
+    items: list[str],
+    system_prompt: str,
+    model: str = "qwen3:8b",
+    max_workers: int = 2,
 ) -> list[dict]:
-"""
-ローカル LLM をバッチ呼び出しで分析。
+    """
+    ローカル LLM をバッチ呼び出しで分析。
 
-最適化戦略:
-1. 短文を統合: 複数の短い Review を 1 つのリクエストに統合
-2. 並行リクエスト: Ollama は限定的な並行に対応
-3. 構造化出力: JSON 形式を要求、後続処理を容易に
-"""
+    最適化戦略:
+    1. 短文を統合: 複数の短い Review を 1 つのリクエストに統合
+    2. 並行リクエスト: Ollama は限定的な並行に対応
+    3. 構造化出力: JSON 形式を要求、後続処理を容易に
+    """
 
-def analyze_single(item: str) -> dict:
-try:
-response = ollama.chat(
-model=model,
-messages=[
-{"role": "system", "content": system_prompt},
-{"role": "user", "content": item},
-],
-options={"temperature": 0.1},
-format="json", # JSON 出力を要求
-)
-return {"input": item, "output": json.loads(response["message"]["content"])}
-except Exception as e:
-return {"input": item, "error": str(e)}
+    def analyze_single(item: str) -> dict:
+        try:
+            response = ollama.chat(
+                model=model,
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": item},
+                ],
+                options={"temperature": 0.1},
+                format="json", # JSON 出力を要求
+            )
+            return {"input": item, "output": json.loads(response["message"]["content"])}
+        except Exception as e:
+            return {"input": item, "error": str(e)}
 
-# 並行処理(Ollama はデフォルトで 1 並行リクエスト対応、設定で調整可)
-results = []
-with ThreadPoolExecutor(max_workers=max_workers) as executor:
-futures = [executor.submit(analyze_single, item) for item in items]
-for i, future in enumerate(futures):
-results.append(future.result())
-if (i + 1) % 10 == 0:
-print(f"進捗: {i+1}/{len(items)}")
+    # 並行処理(Ollama はデフォルトで 1 並行リクエスト対応、設定で調整可)
+    results = []
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = [executor.submit(analyze_single, item) for item in items]
+        for i, future in enumerate(futures):
+            results.append(future.result())
+            if (i + 1) % 10 == 0:
+                print(f"進捗: {i+1}/{len(items)}")
 
-return results
+    return results
 
 # 使用例
 # reviews = ["Review 1...", "Review 2...", ...] # 1000 件の Review

@@ -302,32 +302,32 @@ Ollama provides an OpenAI-compatible REST API, callable with any HTTP client. Th
 import ollama
 
 def analyze_review(review_text: str, model: str = "qwen3:8b") -> str:
-"""Analyze a customer Review with a local LLM, extracting product-improvement directions."""
-response = ollama.chat(
-model=model,
-messages=[
-{
-"role": "system",
-"content": "You are an e-commerce product-analysis expert. Analyze the customer Review and extract:\n"
-"1. Core problem (one sentence)\n"
-"2. Problem category (quality/function/logistics/price/other)\n"
-"3. Improvement advice\n"
-"Answer in English, concise and clear.",
-},
-{"role": "user", "content": f"Analyze this Review:\n{review_text}"},
-],
-options={"temperature": 0.1}, # low temperature, more deterministic output
-)
-return response["message"]["content"]
+    """Analyze a customer Review with a local LLM, extracting product-improvement directions."""
+    response = ollama.chat(
+        model=model,
+        messages=[
+            {
+                "role": "system",
+                "content": "You are an e-commerce product-analysis expert. Analyze the customer Review and extract:\n"
+                "1. Core problem (one sentence)\n"
+                "2. Problem category (quality/function/logistics/price/other)\n"
+                "3. Improvement advice\n"
+                "Answer in English, concise and clear.",
+            },
+            {"role": "user", "content": f"Analyze this Review:\n{review_text}"},
+        ],
+        options={"temperature": 0.1}, # low temperature, more deterministic output
+    )
+    return response["message"]["content"]
 
 def batch_analyze_reviews(reviews: list[str], model: str = "qwen3:8b") -> list[dict]:
-"""Batch-analyze a list of Reviews."""
-results = []
-for i, review in enumerate(reviews):
-print(f"Analyzing Review {i+1}/{len(reviews)}...")
-analysis = analyze_review(review, model)
-results.append({"review": review, "analysis": analysis})
-return results
+    """Batch-analyze a list of Reviews."""
+    results = []
+    for i, review in enumerate(reviews):
+        print(f"Analyzing Review {i+1}/{len(reviews)}...")
+        analysis = analyze_review(review, model)
+        results.append({"review": review, "analysis": analysis})
+    return results
 
 # Usage example
 # reviews = [
@@ -353,28 +353,28 @@ from openai import OpenAI
 
 # Point to the local Ollama service (not OpenAI's servers)
 client = OpenAI(
-base_url="http://localhost:11434/v1",
-api_key="ollama", # Ollama doesn't need a real API key
+    base_url="http://localhost:11434/v1",
+    api_key="ollama", # Ollama doesn't need a real API key
 )
 
 def generate_listing(product_info: str, model: str = "qwen3:8b") -> str:
-"""Generate a product Listing with a local LLM."""
-response = client.chat.completions.create(
-model=model,
-messages=[
-{
-"role": "system",
-"content": "You are an Amazon Listing optimization expert. From the product info, generate:\n"
-"1. Title (with core keywords, <200 chars)\n"
-"2. 5 Bullet Points\n"
-"3. Product description (<2000 chars)\n"
-"Output in English, following Amazon's style guide.",
-},
-{"role": "user", "content": f"Product info:\n{product_info}"},
-],
-temperature=0.3,
-)
-return response.choices[0].message.content
+    """Generate a product Listing with a local LLM."""
+    response = client.chat.completions.create(
+        model=model,
+        messages=[
+            {
+                "role": "system",
+                "content": "You are an Amazon Listing optimization expert. From the product info, generate:\n"
+                "1. Title (with core keywords, <200 chars)\n"
+                "2. 5 Bullet Points\n"
+                "3. Product description (<2000 chars)\n"
+                "Output in English, following Amazon's style guide.",
+            },
+            {"role": "user", "content": f"Product info:\n{product_info}"},
+        ],
+        temperature=0.3,
+    )
+    return response.choices[0].message.content
 
 # Switching to cloud OpenAI takes only two lines:
 # client = OpenAI(api_key="sk-...") # change to your OpenAI API key
@@ -391,21 +391,21 @@ For long-text generation (reports, Listings), streaming lets the user see real-t
 import ollama
 
 def stream_generate(prompt: str, model: str = "qwen3:8b"):
-"""Stream text generation, outputting each token in real time."""
-stream = ollama.chat(
-model=model,
-messages=[{"role": "user", "content": prompt}],
-stream=True,
-)
+    """Stream text generation, outputting each token in real time."""
+    stream = ollama.chat(
+        model=model,
+        messages=[{"role": "user", "content": prompt}],
+        stream=True,
+    )
 
-full_response = ""
-for chunk in stream:
-token = chunk["message"]["content"]
-print(token, end="", flush=True)
-full_response += token
+    full_response = ""
+    for chunk in stream:
+        token = chunk["message"]["content"]
+        print(token, end="", flush=True)
+        full_response += token
 
-print() # newline
-return full_response
+    print() # newline
+    return full_response
 
 # stream_generate("Analyze Insta360 X4's competitive advantages in the US market in 200 words")
 ```
@@ -420,78 +420,78 @@ Combining the RAG knowledge from the B3 module, build a fully local RAG system. 
 
 import chromadb
 from llama_index.core import (
-VectorStoreIndex, SimpleDirectoryReader,
-Settings, StorageContext,
+    VectorStoreIndex, SimpleDirectoryReader,
+    Settings, StorageContext,
 )
 from llama_index.llms.ollama import Ollama
 from llama_index.embeddings.ollama import OllamaEmbedding
 from llama_index.vector_stores.chroma import ChromaVectorStore
 
 def build_local_rag(
-docs_dir: str,
-llm_model: str = "qwen3:8b",
-embed_model: str = "nomic-embed-text",
-collection_name: str = "local_knowledge",
-persist_dir: str = "chroma_db",
+    docs_dir: str,
+    llm_model: str = "qwen3:8b",
+    embed_model: str = "nomic-embed-text",
+    collection_name: str = "local_knowledge",
+    persist_dir: str = "chroma_db",
 ) -> VectorStoreIndex:
-"""
-Build a fully local RAG system.
+    """
+    Build a fully local RAG system.
 
-Prerequisite:
-1. Ollama installed and running (ollama serve)
-2. Model downloaded: ollama pull qwen3:8b
-3. Embedding downloaded: ollama pull nomic-embed-text
+    Prerequisite:
+    1. Ollama installed and running (ollama serve)
+    2. Model downloaded: ollama pull qwen3:8b
+    3. Embedding downloaded: ollama pull nomic-embed-text
 
-All data processed locally, no external API calls.
-"""
-# Configure the local LLM
-Settings.llm = Ollama(
-model=llm_model,
-request_timeout=120.0,
-temperature=0.1,
-)
+    All data processed locally, no external API calls.
+    """
+    # Configure the local LLM
+    Settings.llm = Ollama(
+        model=llm_model,
+        request_timeout=120.0,
+        temperature=0.1,
+    )
 
-# Configure the local embedding
-Settings.embed_model = OllamaEmbedding(model_name=embed_model)
+    # Configure the local embedding
+    Settings.embed_model = OllamaEmbedding(model_name=embed_model)
 
-# Configure Chroma persistent storage
-chroma_client = chromadb.PersistentClient(path=persist_dir)
-chroma_collection = chroma_client.get_or_create_collection(collection_name)
-vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
-storage_context = StorageContext.from_defaults(vector_store=vector_store)
+    # Configure Chroma persistent storage
+    chroma_client = chromadb.PersistentClient(path=persist_dir)
+    chroma_collection = chroma_client.get_or_create_collection(collection_name)
+    vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
+    storage_context = StorageContext.from_defaults(vector_store=vector_store)
 
-# Load docs and build the index
-documents = SimpleDirectoryReader(docs_dir, recursive=True).load_data()
-print(f"Loaded {len(documents)} documents")
+    # Load docs and build the index
+    documents = SimpleDirectoryReader(docs_dir, recursive=True).load_data()
+    print(f"Loaded {len(documents)} documents")
 
-index = VectorStoreIndex.from_documents(
-documents, storage_context=storage_context, show_progress=True,
-)
+    index = VectorStoreIndex.from_documents(
+        documents, storage_context=storage_context, show_progress=True,
+    )
 
-print(f"Local RAG built")
-print(f"LLM: {llm_model} | Embedding: {embed_model}")
-print(f"Vector DB: {persist_dir} ({chroma_collection.count()} vectors)")
-print(f"All data processed locally, not sent to any external service")
-return index
+    print(f"Local RAG built")
+    print(f"LLM: {llm_model} | Embedding: {embed_model}")
+    print(f"Vector DB: {persist_dir} ({chroma_collection.count()} vectors)")
+    print(f"All data processed locally, not sent to any external service")
+    return index
 
 def query_local_rag(index: VectorStoreIndex, question: str, top_k: int = 3) -> dict:
-"""Query the local RAG system."""
-query_engine = index.as_query_engine(similarity_top_k=top_k)
-response = query_engine.query(question)
+    """Query the local RAG system."""
+    query_engine = index.as_query_engine(similarity_top_k=top_k)
+    response = query_engine.query(question)
 
-sources = []
-for node in response.source_nodes:
-sources.append({
-"file": node.metadata.get("file_name", "unknown"),
-"score": round(node.score, 4) if node.score else None,
-"preview": node.text[:200],
-})
+    sources = []
+    for node in response.source_nodes:
+        sources.append({
+            "file": node.metadata.get("file_name", "unknown"),
+            "score": round(node.score, 4) if node.score else None,
+            "preview": node.text[:200],
+        })
 
-return {
-"question": question,
-"answer": str(response),
-"sources": sources,
-}
+    return {
+        "question": question,
+        "answer": str(response),
+        "sources": sources,
+    }
 
 # Usage example
 # index = build_local_rag("data/product_docs")
@@ -550,30 +550,30 @@ LoRA fine-tuning: freeze the original parameters, train only ~1% adapter paramet
 # Save as a JSONL file
 
 training_data = [
-{
-"instruction": "Analyze this Amazon Review, extract product problems and improvement advice.",
-"input": "It broke after two weeks, blurry lens, and the waterproofing doesn't work. CS attitude was okay but couldn't solve the problem.",
-"output": "**Product problems**:\n1. Poor durability (broke in two weeks)\n2. Lens-quality issue (blurry)\n"
-"3. Waterproofing doesn't meet spec\n\n**Improvement advice**:\n1. Strengthen QC, focus on lens and waterproof sealing\n"
-"2. Extend the warranty to boost customer confidence\n3. Accurately describe the waterproof rating in the Listing, avoid over-claiming",
-},
-{
-"instruction": "Generate 5 Bullet Points for an Amazon Listing from the product info.",
-"input": "Product: Action Camera X1, 4K60fps, waterproof 10m, 2-hour battery, weight 120g, "
-"voice control, rich accessories",
-"output": "[4K Ultra HD] Capture stunning 4K video at 60fps...\n"
-"[Waterproof to 33ft] Built-in waterproof design...\n"
-"[2-Hour Battery Life] Extended battery for all-day...\n"
-"[Voice Control] Hands-free operation with voice...\n"
-"[Complete Accessory Kit] Includes mounting brackets...",
-},
-# ... prepare 200-500 similar entries
+    {
+        "instruction": "Analyze this Amazon Review, extract product problems and improvement advice.",
+        "input": "It broke after two weeks, blurry lens, and the waterproofing doesn't work. CS attitude was okay but couldn't solve the problem.",
+        "output": "**Product problems**:\n1. Poor durability (broke in two weeks)\n2. Lens-quality issue (blurry)\n"
+        "3. Waterproofing doesn't meet spec\n\n**Improvement advice**:\n1. Strengthen QC, focus on lens and waterproof sealing\n"
+        "2. Extend the warranty to boost customer confidence\n3. Accurately describe the waterproof rating in the Listing, avoid over-claiming",
+    },
+    {
+        "instruction": "Generate 5 Bullet Points for an Amazon Listing from the product info.",
+        "input": "Product: Action Camera X1, 4K60fps, waterproof 10m, 2-hour battery, weight 120g, "
+        "voice control, rich accessories",
+        "output": "[4K Ultra HD] Capture stunning 4K video at 60fps...\n"
+        "[Waterproof to 33ft] Built-in waterproof design...\n"
+        "[2-Hour Battery Life] Extended battery for all-day...\n"
+        "[Voice Control] Hands-free operation with voice...\n"
+        "[Complete Accessory Kit] Includes mounting brackets...",
+    },
+    # ... prepare 200-500 similar entries
 ]
 
 import json
 with open("train_data.jsonl", "w", encoding="utf-8") as f:
-for item in training_data:
-f.write(json.dumps(item, ensure_ascii=False) + "\n")
+    for item in training_data:
+        f.write(json.dumps(item, ensure_ascii=False) + "\n")
 ```
 
 **LoRA fine-tuning with Unsloth (recommended, 2× faster):**
@@ -589,57 +589,57 @@ from datasets import load_dataset
 
 # 1. Load the base model (auto-applies 4-bit quantization, saving VRAM)
 model, tokenizer = FastLanguageModel.from_pretrained(
-model_name="unsloth/Qwen3-8B-bnb-4bit",
-max_seq_length=2048,
-load_in_4bit=True, # 4-bit quantization, a 7B model needs only ~5GB VRAM
+    model_name="unsloth/Qwen3-8B-bnb-4bit",
+    max_seq_length=2048,
+    load_in_4bit=True, # 4-bit quantization, a 7B model needs only ~5GB VRAM
 )
 
 # 2. Add the LoRA adapter
 model = FastLanguageModel.get_peft_model(
-model,
-r=16, # LoRA rank (larger is stronger but slower, 8-32 recommended)
-target_modules=["q_proj", "k_proj", "v_proj", "o_proj",
-"gate_proj", "up_proj", "down_proj"],
-lora_alpha=16, # scaling factor (usually equals r)
-lora_dropout=0, # dropout (set to 0 after Unsloth optimization)
-bias="none",
-use_gradient_checkpointing="unsloth", # further save VRAM
+    model,
+    r=16, # LoRA rank (larger is stronger but slower, 8-32 recommended)
+    target_modules=["q_proj", "k_proj", "v_proj", "o_proj",
+                    "gate_proj", "up_proj", "down_proj"],
+    lora_alpha=16, # scaling factor (usually equals r)
+    lora_dropout=0, # dropout (set to 0 after Unsloth optimization)
+    bias="none",
+    use_gradient_checkpointing="unsloth", # further save VRAM
 )
 
 # 3. Prepare training data
 # Data format: each entry is a complete conversation
 def format_prompt(example):
-return {
-"text": f"""<|im_start|>system
+    return {
+        "text": f"""<|im_start|>system
 You are an e-commerce operations AI assistant, expert in Amazon operations, Listing optimization, Review analysis.<|im_end|>
 <|im_start|>user
 {example['instruction']}
 {example['input']}<|im_end|>
 <|im_start|>assistant
 {example['output']}<|im_end|>"""
-}
+    }
 
 dataset = load_dataset("json", data_files="train_data.jsonl", split="train")
 dataset = dataset.map(format_prompt)
 
 # 4. Configure training parameters
 trainer = SFTTrainer(
-model=model,
-tokenizer=tokenizer,
-train_dataset=dataset,
-dataset_text_field="text",
-max_seq_length=2048,
-args=TrainingArguments(
-per_device_train_batch_size=2,
-gradient_accumulation_steps=4, # effective batch_size = 8
-warmup_steps=5,
-max_steps=60, # 60 steps is enough for a small dataset (~500 entries)
-learning_rate=2e-4,
-fp16=True, # mixed-precision training
-logging_steps=10,
-output_dir="outputs",
-optim="adamw_8bit", # 8-bit optimizer, saves VRAM
-),
+    model=model,
+    tokenizer=tokenizer,
+    train_dataset=dataset,
+    dataset_text_field="text",
+    max_seq_length=2048,
+    args=TrainingArguments(
+        per_device_train_batch_size=2,
+        gradient_accumulation_steps=4, # effective batch_size = 8
+        warmup_steps=5,
+        max_steps=60, # 60 steps is enough for a small dataset (~500 entries)
+        learning_rate=2e-4,
+        fp16=True, # mixed-precision training
+        logging_steps=10,
+        output_dir="outputs",
+        optim="adamw_8bit", # 8-bit optimizer, saves VRAM
+    ),
 )
 
 # 5. Start training
@@ -653,9 +653,9 @@ print("LoRA adapter saved to lora_ecommerce/")
 
 # 7. Export to GGUF format (usable in Ollama)
 model.save_pretrained_gguf(
-"model_gguf",
-tokenizer,
-quantization_method="q4_k_m", # 4-bit quantization
+    "model_gguf",
+    tokenizer,
+    quantization_method="q4_k_m", # 4-bit quantization
 )
 print("GGUF model exported, loadable with Ollama")
 ```
@@ -1085,45 +1085,45 @@ import json
 from concurrent.futures import ThreadPoolExecutor
 
 def batch_analyze(
-items: list[str],
-system_prompt: str,
-model: str = "qwen3:8b",
-max_workers: int = 2,
+    items: list[str],
+    system_prompt: str,
+    model: str = "qwen3:8b",
+    max_workers: int = 2,
 ) -> list[dict]:
-"""
-Batch-call the local LLM for analysis.
+    """
+    Batch-call the local LLM for analysis.
 
-Optimization strategies:
-1. Merge short texts: combine several short Reviews into one request
-2. Parallel requests: Ollama supports limited concurrency
-3. Structured output: require JSON format for easy downstream processing
-"""
+    Optimization strategies:
+    1. Merge short texts: combine several short Reviews into one request
+    2. Parallel requests: Ollama supports limited concurrency
+    3. Structured output: require JSON format for easy downstream processing
+    """
 
-def analyze_single(item: str) -> dict:
-try:
-response = ollama.chat(
-model=model,
-messages=[
-{"role": "system", "content": system_prompt},
-{"role": "user", "content": item},
-],
-options={"temperature": 0.1},
-format="json", # require JSON output
-)
-return {"input": item, "output": json.loads(response["message"]["content"])}
-except Exception as e:
-return {"input": item, "error": str(e)}
+    def analyze_single(item: str) -> dict:
+        try:
+            response = ollama.chat(
+                model=model,
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": item},
+                ],
+                options={"temperature": 0.1},
+                format="json", # require JSON output
+            )
+            return {"input": item, "output": json.loads(response["message"]["content"])}
+        except Exception as e:
+            return {"input": item, "error": str(e)}
 
-# Parallel processing (Ollama supports 1 parallel request by default, adjustable in config)
-results = []
-with ThreadPoolExecutor(max_workers=max_workers) as executor:
-futures = [executor.submit(analyze_single, item) for item in items]
-for i, future in enumerate(futures):
-results.append(future.result())
-if (i + 1) % 10 == 0:
-print(f"Progress: {i+1}/{len(items)}")
+    # Parallel processing (Ollama supports 1 parallel request by default, adjustable in config)
+    results = []
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = [executor.submit(analyze_single, item) for item in items]
+        for i, future in enumerate(futures):
+            results.append(future.result())
+            if (i + 1) % 10 == 0:
+                print(f"Progress: {i+1}/{len(items)}")
 
-return results
+    return results
 
 # Usage example
 # reviews = ["Review 1...", "Review 2...", ...] # 1000 Reviews

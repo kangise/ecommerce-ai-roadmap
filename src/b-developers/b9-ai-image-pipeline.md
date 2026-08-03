@@ -336,34 +336,34 @@ from PIL import Image
 import io
 
 def create_amazon_main_image(input_path: str, output_path: str):
-"""创建 Amazon 合规的白底主图"""
-# 读取图片
-with open(input_path, "rb") as f:
-input_data = f.read()
+    """创建 Amazon 合规的白底主图"""
+    # 读取图片
+    with open(input_path, "rb") as f:
+        input_data = f.read()
 
-# 去背景
-output_data = remove(input_data)
+    # 去背景
+    output_data = remove(input_data)
 
-# 创建白底画布
-fg = Image.open(io.BytesIO(output_data)).convert("RGBA")
+    # 创建白底画布
+    fg = Image.open(io.BytesIO(output_data)).convert("RGBA")
 
-# 计算产品占比（Amazon 要求 85%+）
-bbox = fg.getbbox()
-product_w = bbox[2] - bbox[0]
-product_h = bbox[3] - bbox[1]
+    # 计算产品占比（Amazon 要求 85%+）
+    bbox = fg.getbbox()
+    product_w = bbox[2] - bbox[0]
+    product_h = bbox[3] - bbox[1]
 
-# 创建正方形白底（产品占 85%）
-canvas_size = int(max(product_w, product_h) / 0.85)
-canvas = Image.new("RGBA", (canvas_size, canvas_size), (255, 255, 255, 255))
+    # 创建正方形白底（产品占 85%）
+    canvas_size = int(max(product_w, product_h) / 0.85)
+    canvas = Image.new("RGBA", (canvas_size, canvas_size), (255, 255, 255, 255))
 
-# 居中放置产品
-offset_x = (canvas_size - product_w) // 2 - bbox[0]
-offset_y = (canvas_size - product_h) // 2 - bbox[1]
-canvas.paste(fg, (offset_x, offset_y), fg)
+    # 居中放置产品
+    offset_x = (canvas_size - product_w) // 2 - bbox[0]
+    offset_y = (canvas_size - product_h) // 2 - bbox[1]
+    canvas.paste(fg, (offset_x, offset_y), fg)
 
-# 保存为 RGB（Amazon 不接受透明背景）
-canvas.convert("RGB").save(output_path, "JPEG", quality=95)
-print(f"Amazon main image saved: {output_path}")
+    # 保存为 RGB（Amazon 不接受透明背景）
+    canvas.convert("RGB").save(output_path, "JPEG", quality=95)
+    print(f"Amazon main image saved: {output_path}")
 ```
 
 ---
@@ -594,41 +594,41 @@ results = pipeline.batch_generate(products)
 
 ```python
 def generate_ab_test_variants(request: ProductImageRequest,
-num_variants: int = 3) -> list:
-"""为 A/B 测试生成多个主图变体"""
-variants = []
+                              num_variants: int = 3) -> list:
+    """为 A/B 测试生成多个主图变体"""
+    variants = []
 
-# 变体 1：不同角度
-angles = ["front view centered", "45 degree angle", "slight top-down angle"]
+    # 变体 1：不同角度
+    angles = ["front view centered", "45 degree angle", "slight top-down angle"]
 
-# 变体 2：不同光照
-lightings = ["soft studio lighting", "dramatic side lighting", "bright even lighting"]
+    # 变体 2：不同光照
+    lightings = ["soft studio lighting", "dramatic side lighting", "bright even lighting"]
 
-# 变体 3：不同构图
-compositions = [
-"product fills 85% of frame",
-"product fills 70% with more white space",
-"product with subtle shadow underneath"
-]
+    # 变体 3：不同构图
+    compositions = [
+        "product fills 85% of frame",
+        "product fills 70% with more white space",
+        "product with subtle shadow underneath"
+    ]
 
-for i in range(num_variants):
-variant_prompt = (
-f"professional product photography, {request.product_description}, "
-f"{angles[i % len(angles)]}, {lightings[i % len(lightings)]}, "
-f"{compositions[i % len(compositions)]}, "
-f"pure white background, high resolution 8k"
-)
+    for i in range(num_variants):
+        variant_prompt = (
+            f"professional product photography, {request.product_description}, "
+            f"{angles[i % len(angles)]}, {lightings[i % len(lightings)]}, "
+            f"{compositions[i % len(compositions)]}, "
+            f"pure white background, high resolution 8k"
+        )
 
-img = generate_with_gpt_image(variant_prompt, f"variant_{i+1}.jpg")
-variants.append({
-"variant": i + 1,
-"angle": angles[i % len(angles)],
-"lighting": lightings[i % len(lightings)],
-"composition": compositions[i % len(compositions)],
-"image": img
-})
+        img = generate_with_gpt_image(variant_prompt, f"variant_{i+1}.jpg")
+        variants.append({
+            "variant": i + 1,
+            "angle": angles[i % len(angles)],
+            "lighting": lightings[i % len(lightings)],
+            "composition": compositions[i % len(compositions)],
+            "image": img
+        })
 
-return variants
+    return variants
 ```
 
 ---
@@ -651,27 +651,27 @@ return variants
 import runway
 
 def generate_product_video(
-product_image: str,
-motion_prompt: str = "slow 360 degree rotation, studio lighting",
-duration: int = 4 # 秒
+    product_image: str,
+    motion_prompt: str = "slow 360 degree rotation, studio lighting",
+    duration: int = 4 # 秒
 ) -> str:
-"""从产品图生成展示视频"""
+    """从产品图生成展示视频"""
 
-task = runway.image_to_video.create(
-model="gen3a_turbo",
-prompt_image=product_image,
-prompt_text=motion_prompt,
-duration=duration
-)
+    task = runway.image_to_video.create(
+        model="gen3a_turbo",
+        prompt_image=product_image,
+        prompt_text=motion_prompt,
+        duration=duration
+    )
 
-# 等待生成完成
-task = runway.tasks.retrieve(task.id)
-while task.status != "SUCCEEDED":
-import time
-time.sleep(5)
-task = runway.tasks.retrieve(task.id)
+    # 等待生成完成
+    task = runway.tasks.retrieve(task.id)
+    while task.status != "SUCCEEDED":
+        import time
+        time.sleep(5)
+        task = runway.tasks.retrieve(task.id)
 
-return task.output[0] # 视频 URL
+    return task.output[0] # 视频 URL
 ```
 
 ---
@@ -682,31 +682,31 @@ return task.output[0] # 视频 URL
 
 ```python
 def check_amazon_compliance(image_path: str) -> dict:
-"""检查图片是否符合 Amazon 要求"""
-img = Image.open(image_path)
-issues = []
+    """检查图片是否符合 Amazon 要求"""
+    img = Image.open(image_path)
+    issues = []
 
-# 尺寸检查（最小 1000px）
-if min(img.size) < 1000:
-issues.append(f"尺寸不足: {img.size}，最小需要 1000x1000")
+    # 尺寸检查（最小 1000px）
+    if min(img.size) < 1000:
+        issues.append(f"尺寸不足: {img.size}，最小需要 1000x1000")
 
-# 白底检查（主图）
-pixels = list(img.getdata())
-corners = [pixels[0], pixels[img.width-1],
-pixels[-img.width], pixels[-1]]
-for i, corner in enumerate(corners):
-if not all(c > 240 for c in corner[:3]):
-issues.append(f"角落 {i} 不是纯白: {corner}")
+    # 白底检查（主图）
+    pixels = list(img.getdata())
+    corners = [pixels[0], pixels[img.width-1],
+               pixels[-img.width], pixels[-1]]
+    for i, corner in enumerate(corners):
+        if not all(c > 240 for c in corner[:3]):
+            issues.append(f"角落 {i} 不是纯白: {corner}")
 
-# 产品占比检查
-# ... (检查产品是否占画面 85%+)
+    # 产品占比检查
+    # ... (检查产品是否占画面 85%+)
 
-return {
-"compliant": len(issues) == 0,
-"issues": issues,
-"size": img.size,
-"format": img.format
-}
+    return {
+        "compliant": len(issues) == 0,
+        "issues": issues,
+        "size": img.size,
+        "format": img.format
+    }
 ```
 
 ### 7.2 品牌一致性检查

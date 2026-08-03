@@ -336,34 +336,34 @@ from PIL import Image
 import io
 
 def create_amazon_main_image(input_path: str, output_path: str):
-"""Create an Amazon-compliant white-background hero image"""
-# Read the image
-with open(input_path, "rb") as f:
-input_data = f.read()
+    """Create an Amazon-compliant white-background hero image"""
+    # Read the image
+    with open(input_path, "rb") as f:
+        input_data = f.read()
 
-# Remove the background
-output_data = remove(input_data)
+    # Remove the background
+    output_data = remove(input_data)
 
-# Create a white-background canvas
-fg = Image.open(io.BytesIO(output_data)).convert("RGBA")
+    # Create a white-background canvas
+    fg = Image.open(io.BytesIO(output_data)).convert("RGBA")
 
-# Compute the product's proportion (Amazon requires 85%+)
-bbox = fg.getbbox()
-product_w = bbox[2] - bbox[0]
-product_h = bbox[3] - bbox[1]
+    # Compute the product's proportion (Amazon requires 85%+)
+    bbox = fg.getbbox()
+    product_w = bbox[2] - bbox[0]
+    product_h = bbox[3] - bbox[1]
 
-# Create a square white background (product occupies 85%)
-canvas_size = int(max(product_w, product_h) / 0.85)
-canvas = Image.new("RGBA", (canvas_size, canvas_size), (255, 255, 255, 255))
+    # Create a square white background (product occupies 85%)
+    canvas_size = int(max(product_w, product_h) / 0.85)
+    canvas = Image.new("RGBA", (canvas_size, canvas_size), (255, 255, 255, 255))
 
-# Center the product
-offset_x = (canvas_size - product_w) // 2 - bbox[0]
-offset_y = (canvas_size - product_h) // 2 - bbox[1]
-canvas.paste(fg, (offset_x, offset_y), fg)
+    # Center the product
+    offset_x = (canvas_size - product_w) // 2 - bbox[0]
+    offset_y = (canvas_size - product_h) // 2 - bbox[1]
+    canvas.paste(fg, (offset_x, offset_y), fg)
 
-# Save as RGB (Amazon does not accept transparent backgrounds)
-canvas.convert("RGB").save(output_path, "JPEG", quality=95)
-print(f"Amazon main image saved: {output_path}")
+    # Save as RGB (Amazon does not accept transparent backgrounds)
+    canvas.convert("RGB").save(output_path, "JPEG", quality=95)
+    print(f"Amazon main image saved: {output_path}")
 ```
 
 ---
@@ -594,41 +594,41 @@ results = pipeline.batch_generate(products)
 
 ```python
 def generate_ab_test_variants(request: ProductImageRequest,
-num_variants: int = 3) -> list:
-"""Generate multiple hero-image variants for A/B testing"""
-variants = []
+                              num_variants: int = 3) -> list:
+    """Generate multiple hero-image variants for A/B testing"""
+    variants = []
 
-# Variant 1: different angles
-angles = ["front view centered", "45 degree angle", "slight top-down angle"]
+    # Variant 1: different angles
+    angles = ["front view centered", "45 degree angle", "slight top-down angle"]
 
-# Variant 2: different lighting
-lightings = ["soft studio lighting", "dramatic side lighting", "bright even lighting"]
+    # Variant 2: different lighting
+    lightings = ["soft studio lighting", "dramatic side lighting", "bright even lighting"]
 
-# Variant 3: different composition
-compositions = [
-"product fills 85% of frame",
-"product fills 70% with more white space",
-"product with subtle shadow underneath"
-]
+    # Variant 3: different composition
+    compositions = [
+        "product fills 85% of frame",
+        "product fills 70% with more white space",
+        "product with subtle shadow underneath"
+    ]
 
-for i in range(num_variants):
-variant_prompt = (
-f"professional product photography, {request.product_description}, "
-f"{angles[i % len(angles)]}, {lightings[i % len(lightings)]}, "
-f"{compositions[i % len(compositions)]}, "
-f"pure white background, high resolution 8k"
-)
+    for i in range(num_variants):
+        variant_prompt = (
+            f"professional product photography, {request.product_description}, "
+            f"{angles[i % len(angles)]}, {lightings[i % len(lightings)]}, "
+            f"{compositions[i % len(compositions)]}, "
+            f"pure white background, high resolution 8k"
+        )
 
-img = generate_with_gpt_image(variant_prompt, f"variant_{i+1}.jpg")
-variants.append({
-"variant": i + 1,
-"angle": angles[i % len(angles)],
-"lighting": lightings[i % len(lightings)],
-"composition": compositions[i % len(compositions)],
-"image": img
-})
+        img = generate_with_gpt_image(variant_prompt, f"variant_{i+1}.jpg")
+        variants.append({
+            "variant": i + 1,
+            "angle": angles[i % len(angles)],
+            "lighting": lightings[i % len(lightings)],
+            "composition": compositions[i % len(compositions)],
+            "image": img
+        })
 
-return variants
+    return variants
 ```
 
 ---
@@ -651,27 +651,27 @@ return variants
 import runway
 
 def generate_product_video(
-product_image: str,
-motion_prompt: str = "slow 360 degree rotation, studio lighting",
-duration: int = 4 # seconds
+    product_image: str,
+    motion_prompt: str = "slow 360 degree rotation, studio lighting",
+    duration: int = 4 # seconds
 ) -> str:
-"""Generate a showcase video from a product image"""
+    """Generate a showcase video from a product image"""
 
-task = runway.image_to_video.create(
-model="gen3a_turbo",
-prompt_image=product_image,
-prompt_text=motion_prompt,
-duration=duration
-)
+    task = runway.image_to_video.create(
+        model="gen3a_turbo",
+        prompt_image=product_image,
+        prompt_text=motion_prompt,
+        duration=duration
+    )
 
-# Wait for generation to complete
-task = runway.tasks.retrieve(task.id)
-while task.status != "SUCCEEDED":
-import time
-time.sleep(5)
-task = runway.tasks.retrieve(task.id)
+    # Wait for generation to complete
+    task = runway.tasks.retrieve(task.id)
+    while task.status != "SUCCEEDED":
+        import time
+        time.sleep(5)
+        task = runway.tasks.retrieve(task.id)
 
-return task.output[0] # Video URL
+    return task.output[0] # Video URL
 ```
 
 ---
@@ -682,31 +682,31 @@ return task.output[0] # Video URL
 
 ```python
 def check_amazon_compliance(image_path: str) -> dict:
-"""Check whether an image meets Amazon requirements"""
-img = Image.open(image_path)
-issues = []
+    """Check whether an image meets Amazon requirements"""
+    img = Image.open(image_path)
+    issues = []
 
-# Size check (minimum 1000px)
-if min(img.size) < 1000:
-issues.append(f"Insufficient size: {img.size}, minimum 1000x1000 required")
+    # Size check (minimum 1000px)
+    if min(img.size) < 1000:
+        issues.append(f"Insufficient size: {img.size}, minimum 1000x1000 required")
 
-# White-background check (hero image)
-pixels = list(img.getdata())
-corners = [pixels[0], pixels[img.width-1],
-pixels[-img.width], pixels[-1]]
-for i, corner in enumerate(corners):
-if not all(c > 240 for c in corner[:3]):
-issues.append(f"Corner {i} is not pure white: {corner}")
+    # White-background check (hero image)
+    pixels = list(img.getdata())
+    corners = [pixels[0], pixels[img.width-1],
+               pixels[-img.width], pixels[-1]]
+    for i, corner in enumerate(corners):
+        if not all(c > 240 for c in corner[:3]):
+            issues.append(f"Corner {i} is not pure white: {corner}")
 
-# Product proportion check
-# ... (check whether the product occupies 85%+ of the frame)
+    # Product proportion check
+    # ... (check whether the product occupies 85%+ of the frame)
 
-return {
-"compliant": len(issues) == 0,
-"issues": issues,
-"size": img.size,
-"format": img.format
-}
+    return {
+        "compliant": len(issues) == 0,
+        "issues": issues,
+        "size": img.size,
+        "format": img.format
+    }
 ```
 
 ### 7.2 Brand Consistency Check

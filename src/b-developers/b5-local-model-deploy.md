@@ -302,32 +302,32 @@ Ollama 提供 OpenAI 兼容的 REST API，可以用任何 HTTP 客户端调用�
 import ollama
 
 def analyze_review(review_text: str, model: str = "qwen3:8b") -> str:
-"""用本地 LLM 分析客户 Review，提取产品改进方向。"""
-response = ollama.chat(
-model=model,
-messages=[
-{
-"role": "system",
-"content": "你是电商产品分析专家。分析客户 Review，提取：\n"
-"1. 核心问题（一句话）\n"
-"2. 问题类别（质量/功能/物流/价格/其他）\n"
-"3. 改进建议\n"
-"用中文回答，简洁明了。",
-},
-{"role": "user", "content": f"请分析这条 Review：\n{review_text}"},
-],
-options={"temperature": 0.1}, # 低温度，更确定性的输出
-)
-return response["message"]["content"]
+    """用本地 LLM 分析客户 Review，提取产品改进方向。"""
+    response = ollama.chat(
+        model=model,
+        messages=[
+            {
+                "role": "system",
+                "content": "你是电商产品分析专家。分析客户 Review，提取：\n"
+                "1. 核心问题（一句话）\n"
+                "2. 问题类别（质量/功能/物流/价格/其他）\n"
+                "3. 改进建议\n"
+                "用中文回答，简洁明了。",
+            },
+            {"role": "user", "content": f"请分析这条 Review：\n{review_text}"},
+        ],
+        options={"temperature": 0.1}, # 低温度，更确定性的输出
+    )
+    return response["message"]["content"]
 
 def batch_analyze_reviews(reviews: list[str], model: str = "qwen3:8b") -> list[dict]:
-"""批量分析 Review 列表。"""
-results = []
-for i, review in enumerate(reviews):
-print(f"分析 Review {i+1}/{len(reviews)}...")
-analysis = analyze_review(review, model)
-results.append({"review": review, "analysis": analysis})
-return results
+    """批量分析 Review 列表。"""
+    results = []
+    for i, review in enumerate(reviews):
+        print(f"分析 Review {i+1}/{len(reviews)}...")
+        analysis = analyze_review(review, model)
+        results.append({"review": review, "analysis": analysis})
+    return results
 
 # 使用示例
 # reviews = [
@@ -353,28 +353,28 @@ from openai import OpenAI
 
 # 指向本地 Ollama 服务（而非 OpenAI 服务器）
 client = OpenAI(
-base_url="http://localhost:11434/v1",
-api_key="ollama", # Ollama 不需要真实 API key
+    base_url="http://localhost:11434/v1",
+    api_key="ollama", # Ollama 不需要真实 API key
 )
 
 def generate_listing(product_info: str, model: str = "qwen3:8b") -> str:
-"""用本地 LLM 生成产品 Listing。"""
-response = client.chat.completions.create(
-model=model,
-messages=[
-{
-"role": "system",
-"content": "你是 Amazon Listing 优化专家。根据产品信息生成：\n"
-"1. 标题（含核心关键词，<200 字符）\n"
-"2. 5 个 Bullet Points\n"
-"3. 产品描述（<2000 字符）\n"
-"用英文输出，符合 Amazon 风格指南。",
-},
-{"role": "user", "content": f"产品信息：\n{product_info}"},
-],
-temperature=0.3,
-)
-return response.choices[0].message.content
+    """用本地 LLM 生成产品 Listing。"""
+    response = client.chat.completions.create(
+        model=model,
+        messages=[
+            {
+                "role": "system",
+                "content": "你是 Amazon Listing 优化专家。根据产品信息生成：\n"
+                "1. 标题（含核心关键词，<200 字符）\n"
+                "2. 5 个 Bullet Points\n"
+                "3. 产品描述（<2000 字符）\n"
+                "用英文输出，符合 Amazon 风格指南。",
+            },
+            {"role": "user", "content": f"产品信息：\n{product_info}"},
+        ],
+        temperature=0.3,
+    )
+    return response.choices[0].message.content
 
 # 切换到云端 OpenAI 只需改两行：
 # client = OpenAI(api_key="sk-...") # 改为 OpenAI API key
@@ -391,21 +391,21 @@ return response.choices[0].message.content
 import ollama
 
 def stream_generate(prompt: str, model: str = "qwen3:8b"):
-"""流式生成文本，实时输出每个 token。"""
-stream = ollama.chat(
-model=model,
-messages=[{"role": "user", "content": prompt}],
-stream=True,
-)
+    """流式生成文本，实时输出每个 token。"""
+    stream = ollama.chat(
+        model=model,
+        messages=[{"role": "user", "content": prompt}],
+        stream=True,
+    )
 
-full_response = ""
-for chunk in stream:
-token = chunk["message"]["content"]
-print(token, end="", flush=True)
-full_response += token
+    full_response = ""
+    for chunk in stream:
+        token = chunk["message"]["content"]
+        print(token, end="", flush=True)
+        full_response += token
 
-print() # 换行
-return full_response
+    print() # 换行
+    return full_response
 
 # stream_generate("用 200 字分析 Insta360 X4 在美国市场的竞争优势")
 ```
@@ -420,78 +420,78 @@ return full_response
 
 import chromadb
 from llama_index.core import (
-VectorStoreIndex, SimpleDirectoryReader,
-Settings, StorageContext,
+    VectorStoreIndex, SimpleDirectoryReader,
+    Settings, StorageContext,
 )
 from llama_index.llms.ollama import Ollama
 from llama_index.embeddings.ollama import OllamaEmbedding
 from llama_index.vector_stores.chroma import ChromaVectorStore
 
 def build_local_rag(
-docs_dir: str,
-llm_model: str = "qwen3:8b",
-embed_model: str = "nomic-embed-text",
-collection_name: str = "local_knowledge",
-persist_dir: str = "chroma_db",
+    docs_dir: str,
+    llm_model: str = "qwen3:8b",
+    embed_model: str = "nomic-embed-text",
+    collection_name: str = "local_knowledge",
+    persist_dir: str = "chroma_db",
 ) -> VectorStoreIndex:
-"""
-构建完全本地的 RAG 系统。
+    """
+    构建完全本地的 RAG 系统。
 
-前提：
-1. 已安装 Ollama 并运行（ollama serve）
-2. 已下载模型：ollama pull qwen3:8b
-3. 已下载 Embedding：ollama pull nomic-embed-text
+    前提：
+    1. 已安装 Ollama 并运行（ollama serve）
+    2. 已下载模型：ollama pull qwen3:8b
+    3. 已下载 Embedding：ollama pull nomic-embed-text
 
-所有数据在本地处理，不调用任何外部 API。
-"""
-# 配置本地 LLM
-Settings.llm = Ollama(
-model=llm_model,
-request_timeout=120.0,
-temperature=0.1,
-)
+    所有数据在本地处理，不调用任何外部 API。
+    """
+    # 配置本地 LLM
+    Settings.llm = Ollama(
+        model=llm_model,
+        request_timeout=120.0,
+        temperature=0.1,
+    )
 
-# 配置本地 Embedding
-Settings.embed_model = OllamaEmbedding(model_name=embed_model)
+    # 配置本地 Embedding
+    Settings.embed_model = OllamaEmbedding(model_name=embed_model)
 
-# 配置 Chroma 持久化存储
-chroma_client = chromadb.PersistentClient(path=persist_dir)
-chroma_collection = chroma_client.get_or_create_collection(collection_name)
-vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
-storage_context = StorageContext.from_defaults(vector_store=vector_store)
+    # 配置 Chroma 持久化存储
+    chroma_client = chromadb.PersistentClient(path=persist_dir)
+    chroma_collection = chroma_client.get_or_create_collection(collection_name)
+    vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
+    storage_context = StorageContext.from_defaults(vector_store=vector_store)
 
-# 加载文档并构建索引
-documents = SimpleDirectoryReader(docs_dir, recursive=True).load_data()
-print(f" 加载了 {len(documents)} 个文档")
+    # 加载文档并构建索引
+    documents = SimpleDirectoryReader(docs_dir, recursive=True).load_data()
+    print(f" 加载了 {len(documents)} 个文档")
 
-index = VectorStoreIndex.from_documents(
-documents, storage_context=storage_context, show_progress=True,
-)
+    index = VectorStoreIndex.from_documents(
+        documents, storage_context=storage_context, show_progress=True,
+    )
 
-print(f" 本地 RAG 构建完成")
-print(f" LLM: {llm_model} | Embedding: {embed_model}")
-print(f" 向量数据库: {persist_dir} ({chroma_collection.count()} 个向量)")
-print(f" 所有数据在本地处理，未发送到任何外部服务")
-return index
+    print(f" 本地 RAG 构建完成")
+    print(f" LLM: {llm_model} | Embedding: {embed_model}")
+    print(f" 向量数据库: {persist_dir} ({chroma_collection.count()} 个向量)")
+    print(f" 所有数据在本地处理，未发送到任何外部服务")
+    return index
 
 def query_local_rag(index: VectorStoreIndex, question: str, top_k: int = 3) -> dict:
-"""查询本地 RAG 系统。"""
-query_engine = index.as_query_engine(similarity_top_k=top_k)
-response = query_engine.query(question)
+    """查询本地 RAG 系统。"""
+    query_engine = index.as_query_engine(similarity_top_k=top_k)
+    response = query_engine.query(question)
 
-sources = []
-for node in response.source_nodes:
-sources.append({
-"file": node.metadata.get("file_name", "unknown"),
-"score": round(node.score, 4) if node.score else None,
-"preview": node.text[:200],
-})
+    sources = []
+    for node in response.source_nodes:
+        sources.append({
+            "file": node.metadata.get("file_name", "unknown"),
+            "score": round(node.score, 4) if node.score else None,
+            "preview": node.text[:200],
+        })
 
-return {
-"question": question,
-"answer": str(response),
-"sources": sources,
-}
+    return {
+        "question": question,
+        "answer": str(response),
+        "sources": sources,
+    }
 
 # 使用示例
 # index = build_local_rag("data/product_docs")
@@ -550,30 +550,30 @@ LoRA 微调：冻结原始参数，只训练 ~1% 的适配器参数 → 一张�
 # 保存为 JSONL 文件
 
 training_data = [
-{
-"instruction": "分析这条 Amazon Review，提取产品问题和改进建议。",
-"input": "买了两周就坏了，镜头模糊，防水也不行。客服态度还可以但是解决不了问题。",
-"output": "**产品问题**：\n1. 耐用性差（两周损坏）\n2. 镜头质量问题（模糊）\n"
-"3. 防水性能不达标\n\n**改进建议**：\n1. 加强产品质检，重点检测镜头和防水密封\n"
-"2. 延长质保期以提升客户信心\n3. 在 Listing 中准确描述防水等级，避免过度宣传",
-},
-{
-"instruction": "根据产品信息生成 Amazon Listing 的 5 个 Bullet Points。",
-"input": "产品：运动相机 X1，4K60fps，防水 10 米，电池 2 小时，重量 120g，"
-"支持语音控制，配件丰富",
-"output": " 【4K Ultra HD】Capture stunning 4K video at 60fps...\n"
-" 【Waterproof to 33ft】Built-in waterproof design...\n"
-" 【2-Hour Battery Life】Extended battery for all-day...\n"
-" 【Voice Control】Hands-free operation with voice...\n"
-" 【Complete Accessory Kit】Includes mounting brackets...",
-},
-# ... 准备 200-500 条类似数据
+    {
+        "instruction": "分析这条 Amazon Review，提取产品问题和改进建议。",
+        "input": "买了两周就坏了，镜头模糊，防水也不行。客服态度还可以但是解决不了问题。",
+        "output": "**产品问题**：\n1. 耐用性差（两周损坏）\n2. 镜头质量问题（模糊）\n"
+        "3. 防水性能不达标\n\n**改进建议**：\n1. 加强产品质检，重点检测镜头和防水密封\n"
+        "2. 延长质保期以提升客户信心\n3. 在 Listing 中准确描述防水等级，避免过度宣传",
+    },
+    {
+        "instruction": "根据产品信息生成 Amazon Listing 的 5 个 Bullet Points。",
+        "input": "产品：运动相机 X1，4K60fps，防水 10 米，电池 2 小时，重量 120g，"
+        "支持语音控制，配件丰富",
+        "output": " 【4K Ultra HD】Capture stunning 4K video at 60fps...\n"
+        " 【Waterproof to 33ft】Built-in waterproof design...\n"
+        " 【2-Hour Battery Life】Extended battery for all-day...\n"
+        " 【Voice Control】Hands-free operation with voice...\n"
+        " 【Complete Accessory Kit】Includes mounting brackets...",
+    },
+    # ... 准备 200-500 条类似数据
 ]
 
 import json
 with open("train_data.jsonl", "w", encoding="utf-8") as f:
-for item in training_data:
-f.write(json.dumps(item, ensure_ascii=False) + "\n")
+    for item in training_data:
+        f.write(json.dumps(item, ensure_ascii=False) + "\n")
 ```
 
 **用 Unsloth 进行 LoRA 微调（推荐，速度快 2 倍）：**
@@ -589,57 +589,57 @@ from datasets import load_dataset
 
 # 1. 加载基础模型（自动应用 4-bit 量化，节省显存）
 model, tokenizer = FastLanguageModel.from_pretrained(
-model_name="unsloth/Qwen3-8B-bnb-4bit",
-max_seq_length=2048,
-load_in_4bit=True, # 4-bit 量化，7B 模型只需 ~5GB 显存
+    model_name="unsloth/Qwen3-8B-bnb-4bit",
+    max_seq_length=2048,
+    load_in_4bit=True, # 4-bit 量化，7B 模型只需 ~5GB 显存
 )
 
 # 2. 添加 LoRA 适配器
 model = FastLanguageModel.get_peft_model(
-model,
-r=16, # LoRA 秩（越大越强但越慢，推荐 8-32）
-target_modules=["q_proj", "k_proj", "v_proj", "o_proj",
-"gate_proj", "up_proj", "down_proj"],
-lora_alpha=16, # 缩放因子（通常等于 r）
-lora_dropout=0, # Dropout（Unsloth 优化后设为 0）
-bias="none",
-use_gradient_checkpointing="unsloth", # 进一步节省显存
+    model,
+    r=16, # LoRA 秩（越大越强但越慢，推荐 8-32）
+    target_modules=["q_proj", "k_proj", "v_proj", "o_proj",
+                    "gate_proj", "up_proj", "down_proj"],
+    lora_alpha=16, # 缩放因子（通常等于 r）
+    lora_dropout=0, # Dropout（Unsloth 优化后设为 0）
+    bias="none",
+    use_gradient_checkpointing="unsloth", # 进一步节省显存
 )
 
 # 3. 准备训练数据
 # 数据格式：每条数据是一个完整的对话
 def format_prompt(example):
-return {
-"text": f"""<|im_start|>system
+    return {
+        "text": f"""<|im_start|>system
 你是电商运营 AI 助手，精通 Amazon 运营、Listing 优化、Review 分析。<|im_end|>
 <|im_start|>user
 {example['instruction']}
 {example['input']}<|im_end|>
 <|im_start|>assistant
 {example['output']}<|im_end|>"""
-}
+    }
 
 dataset = load_dataset("json", data_files="train_data.jsonl", split="train")
 dataset = dataset.map(format_prompt)
 
 # 4. 配置训练参数
 trainer = SFTTrainer(
-model=model,
-tokenizer=tokenizer,
-train_dataset=dataset,
-dataset_text_field="text",
-max_seq_length=2048,
-args=TrainingArguments(
-per_device_train_batch_size=2,
-gradient_accumulation_steps=4, # 等效 batch_size = 8
-warmup_steps=5,
-max_steps=60, # 小数据集 60 步足够（约 500 条数据）
-learning_rate=2e-4,
-fp16=True, # 混合精度训练
-logging_steps=10,
-output_dir="outputs",
-optim="adamw_8bit", # 8-bit 优化器，节省显存
-),
+    model=model,
+    tokenizer=tokenizer,
+    train_dataset=dataset,
+    dataset_text_field="text",
+    max_seq_length=2048,
+    args=TrainingArguments(
+        per_device_train_batch_size=2,
+        gradient_accumulation_steps=4, # 等效 batch_size = 8
+        warmup_steps=5,
+        max_steps=60, # 小数据集 60 步足够（约 500 条数据）
+        learning_rate=2e-4,
+        fp16=True, # 混合精度训练
+        logging_steps=10,
+        output_dir="outputs",
+        optim="adamw_8bit", # 8-bit 优化器，节省显存
+    ),
 )
 
 # 5. 开始训练
@@ -653,9 +653,9 @@ print(" LoRA 适配器已保存到 lora_ecommerce/")
 
 # 7. 导出为 GGUF 格式（可以在 Ollama 中使用）
 model.save_pretrained_gguf(
-"model_gguf",
-tokenizer,
-quantization_method="q4_k_m", # 4-bit 量化
+    "model_gguf",
+    tokenizer,
+    quantization_method="q4_k_m", # 4-bit 量化
 )
 print(" GGUF 模型已导出，可用 Ollama 加载")
 ```
@@ -1085,45 +1085,45 @@ import json
 from concurrent.futures import ThreadPoolExecutor
 
 def batch_analyze(
-items: list[str],
-system_prompt: str,
-model: str = "qwen3:8b",
-max_workers: int = 2,
+    items: list[str],
+    system_prompt: str,
+    model: str = "qwen3:8b",
+    max_workers: int = 2,
 ) -> list[dict]:
-"""
-批量调用本地 LLM 分析。
+    """
+    批量调用本地 LLM 分析。
 
-优化策略：
-1. 合并短文本：把多条短 Review 合并成一个请求
-2. 并行请求：Ollama 支持有限并发
-3. 结构化输出：要求 JSON 格式，方便后续处理
-"""
+    优化策略：
+    1. 合并短文本：把多条短 Review 合并成一个请求
+    2. 并行请求：Ollama 支持有限并发
+    3. 结构化输出：要求 JSON 格式，方便后续处理
+    """
 
-def analyze_single(item: str) -> dict:
-try:
-response = ollama.chat(
-model=model,
-messages=[
-{"role": "system", "content": system_prompt},
-{"role": "user", "content": item},
-],
-options={"temperature": 0.1},
-format="json", # 要求 JSON 输出
-)
-return {"input": item, "output": json.loads(response["message"]["content"])}
-except Exception as e:
-return {"input": item, "error": str(e)}
+    def analyze_single(item: str) -> dict:
+        try:
+            response = ollama.chat(
+                model=model,
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": item},
+                ],
+                options={"temperature": 0.1},
+                format="json", # 要求 JSON 输出
+            )
+            return {"input": item, "output": json.loads(response["message"]["content"])}
+        except Exception as e:
+            return {"input": item, "error": str(e)}
 
-# 并行处理（Ollama 默认支持 1 个并行请求，可在配置中调整）
-results = []
-with ThreadPoolExecutor(max_workers=max_workers) as executor:
-futures = [executor.submit(analyze_single, item) for item in items]
-for i, future in enumerate(futures):
-results.append(future.result())
-if (i + 1) % 10 == 0:
-print(f"进度: {i+1}/{len(items)}")
+    # 并行处理（Ollama 默认支持 1 个并行请求，可在配置中调整）
+    results = []
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = [executor.submit(analyze_single, item) for item in items]
+        for i, future in enumerate(futures):
+            results.append(future.result())
+            if (i + 1) % 10 == 0:
+                print(f"进度: {i+1}/{len(items)}")
 
-return results
+    return results
 
 # 使用示例
 # reviews = ["Review 1...", "Review 2...", ...] # 1000 条 Review
