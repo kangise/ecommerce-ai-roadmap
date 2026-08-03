@@ -1,6 +1,6 @@
 # Path A: 运营人 AI 提效实战
 
-> 最后更新: 2026-03-10
+> 最后更新: 2026-08-04
 
 ## 概述
 
@@ -30,6 +30,7 @@
 | [A11. 财务分析](a11-financial-analysis.md) | 财务管理 | 中级 | 1周 | AI 利润计算、现金流预测、多平台 ROI |
 | [A12. 知识产权](a12-ip-protection.md) | IP 保护 | 中级 | 1周 | AI 专利检索、商标监控、品牌保护 |
 | [A13. AI Growth Hack](a13-ai-growth-hack.md) | 全栈增长 | 高级 | 持续迭代 | AI 全链路增长飞轮、Agentic Commerce |
+| [A14. 运营的 Agent 化](a14-operations-agent.md) | Agent 落地 | 高级 | 1-2周 | 数据源分级、任务红黄绿分流、Prompt 转 Skill |
 
 ---
 
@@ -44,6 +45,6 @@
 [ ] A6. 合规：为一个产品生成完整的多市场合规清单
 ```
 
-**Path A 总完成标志：** 完成以上 6 个模块的所有 checklist 项，你已经建立了一套系统化的 AI 辅助运营工作流。
+**Path A 总完成标志：** 完成上面 6 个核心模块的 checklist，你已经有了一套系统化的 AI 辅助运营工作流。A7–A14 按需取用，不必按顺序读完。
 
 ---
