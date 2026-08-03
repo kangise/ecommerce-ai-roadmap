@@ -944,6 +944,15 @@ Key principles:
 
 ---
 
+## When this doesn't work
+
+- **You have no GTIN, or the category needs approval.** Walmart is stricter than Amazon on product identifiers and on gating some categories; unbranded goods with no code stop before they list. Confirm your products can meet its item-data requirements before assessing anything else — nothing downstream matters if this fails.
+- **You copy the Amazon listing across.** Search logic, attribute fields and image rules differ on both sides, and a straight copy neither ranks nor converts. The adaptation steps in this chapter are not an optional polish; they are the precondition for getting volume.
+- **In-store returns are a cost you have not modelled.** Walmart buyers expect to return to a store, and that path is new for a cross-border seller — who receives it, how it is processed, how returned units get resold. Walk that path before entering, or returns will eat margin in a way you did not plan for.
+- **You are running on Amazon advertising instincts.** Walmart Connect's auction dynamics, match behaviour and reporting definitions differ from Amazon Ads, and transplanting an Amazon bidding strategy usually produces the wrong conclusion. Treat the first weeks as a new platform to be measured, not as existing experience to apply.
+
+---
+
 ## 7. Completion Checklist
 
 - [ ] Complete Walmart seller registration

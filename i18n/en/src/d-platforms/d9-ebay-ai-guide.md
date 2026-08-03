@@ -401,6 +401,15 @@ Recommerce is eBay's strength category, but condition descriptions and refurbish
 
 ---
 
+## When this doesn't work
+
+- **You sell standard new goods.** eBay's edge is in second-hand, refurbished, discontinued, collectible and spare parts. New standardised products here compete against Amazon's fulfilment experience without gaining eBay's category advantage — usually hard work for little return. Decide first whether your category has a structural reason to be here.
+- **You cannot show condition convincingly.** Second-hand and refurbished sales rest on the buyer believing you described the flaws honestly. That runs on real detail photographs and an explicit condition grade; generated imagery works against you here. Disputes from a vague description cost far more than a few extra photographs.
+- **You treat auction as the default.** Auctions suit scarce items, items that are hard to price, and items with an atmosphere of competition. Run ordinary stock through an auction and you land below your fixed price while lengthening turnover. Work out whether the item trades on scarcity or on reliable supply before choosing the format.
+- **You are running on Amazon ranking and advertising instincts.** Search ordering, promotional tools and buyer behaviour all differ — particularly negotiation, multi-item bundling and seller reputation, none of which exist on Amazon in that form. Treat the early period as a new platform to learn rather than existing experience to apply.
+
+---
+
 ## 5. Completion Checklist
 
 - [ ] Assess eBay category opportunities (especially used/refurbished/collectibles)

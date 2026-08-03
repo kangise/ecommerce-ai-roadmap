@@ -365,6 +365,15 @@ Please recommend the top 3 platforms I should enter first, and for each give:
 
 ---
 
+## When this doesn't work
+
+- **You want to pick a platform straight off the table.** This comparison gives you the structural differences between platforms; it does not carry your constraints — capital, category, language capability, whether you can incorporate locally, whether you have a local return address. Two sellers reading the same table can reach opposite conclusions. The table narrows the candidates; it does not decide.
+- **The rates and policies in it have gone stale.** Commissions, logistics fees and entry requirements are adjusted by each platform independently and out of step. Check any specific number against that platform's own page. What stays valid here is which dimensions to look at, not the values filled into them.
+- **Your category is an exception on that platform.** A platform's overall profile is not how your category performs on it. Second-hand being strong on eBay does not make your second-hand category strong; social commerce suiting fast-moving goods does not mean it suits yours. Once you have candidates, look at what the leading sellers in your category are doing there — more useful than the platform profile.
+- **You compared entry cost but not exit cost.** The cost of launching on a platform is easy to estimate and the cost of leaving is easy to miss — clearing stock, the sunk shop rating and reviews, deregistering a local entity and its tax filings. Work out how you would withdraw before you go in.
+
+---
+
 ## 8. Multi-Platform Expansion Roadmap
 
 > **Related reading**: [D3 Cross-Platform AI Strategy](cross-platform-strategy.md) — the cross-platform coordination strategy is detailed in D3

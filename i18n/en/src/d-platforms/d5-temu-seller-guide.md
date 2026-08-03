@@ -566,6 +566,15 @@ Rule adjustments here run more frequently than on mature platforms. Reading anno
 
 ---
 
+## When this doesn't work
+
+- **You are reading this as an onboarding guide.** This chapter is competitive analysis and an entry decision, not operational optimisation. Whether to enter and how to do well once inside are different questions; only the first is covered here.
+- **Your cost structure cannot support the price band.** Under the fully-managed model the platform sets the retail price and you control only the supply price. If there is no headroom left after your supply price, there is no "work it up through good operations" option once you are in. That is structural, not a matter of skill.
+- **Your brand is the core asset.** In an environment led by low prices and platform-allocated traffic, brand premium does not transmit to the buyer, while a low-price association can compress your pricing room on other channels. Sellers already building a brand need to model that reverse effect before entering, not only the incremental volume here.
+- **Capacity and cash flow cannot match the platform's rhythm.** Stocking, settlement cycles and the restock pressure after a spike all run on the platform's timing, not yours. Sellers with inflexible capacity or tight cash are most likely to come apart precisely when things are selling well.
+
+---
+
 ## 6. Completion Checklist
 
 - [ ] Complete the Temu onboarding decision assessment

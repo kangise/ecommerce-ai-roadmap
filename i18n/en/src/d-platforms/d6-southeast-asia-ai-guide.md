@@ -679,6 +679,15 @@ TikTok Shop is growing extremely fast in Southeast Asia and is eating into Shope
 
 ---
 
+## When this doesn't work
+
+- **You localised only the language.** What differs in Southeast Asia sits beyond language: the share of cash on delivery, the reliability of last-mile delivery, habits around livestream and chat-based shopping, and how religious calendars move categories. Translating the listing into Indonesian is step one; adapting payment and logistics is what decides whether it sells.
+- **You have no local returns or support coverage.** Refusal and return are normal here rather than exceptional. Without a local return address and support in the local time zone, return cost and response delay degrade your shop score together. Decide who owns both before entering.
+- **You use one playbook across several countries.** Indonesia, Vietnam, Thailand and the Philippines differ in payment habits, platform rules and tax thresholds, and platform policies are not synchronised between sites. This chapter covers what they share; confirm the specifics country by country.
+- **Your volume does not justify local investment.** A local entity, local warehousing, local support and local creator partnerships are the entry cost of this market. While monthly volume is still starting out, cross-border shipping with the platform's own logistics usually fits better. Localise once the volume is there.
+
+---
+
 ## 7. Completion Checklist
 
 - [ ] Complete Southeast Asia market analysis and country selection

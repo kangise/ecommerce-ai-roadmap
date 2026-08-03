@@ -368,6 +368,15 @@ Treating it as optional when modeling costs leaves your margins short. Work this
 
 ---
 
+## When this doesn't work
+
+- **You did Spanish but not Portuguese.** Brazil is a distinct block within this market — language, tax regime and customs process all differ from the Spanish-speaking countries. One Spanish content set for all of Latin America either writes off the largest single market or serves it in Portuguese that reads wrong.
+- **Import duty and customs are not worked out.** Import handling is complex across several Latin American countries and the rules move; clearance time and duties directly set both customer experience and landed cost. Until that is settled, front-end optimisation spins in place.
+- **Instalments are not in your pricing.** Instalment payment is one of the mainstream methods here, and it changes both how buyers perceive price and when cash reaches you. Pricing without accounting for the instalment structure misreads conversion and cash flow at the same time.
+- **Aftersales depends on a distant time zone.** Buyers expect responses in local language and local hours, and the platform's service metrics record how fast you reply. Without local or near-time-zone support, that metric drags on shop performance continuously.
+
+---
+
 ## 7. Completion Checklist
 
 - [ ] Complete Latin America market analysis and country selection

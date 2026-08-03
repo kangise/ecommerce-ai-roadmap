@@ -930,6 +930,15 @@ Content rephrased for compliance with licensing restrictions. Source: [eDesk Man
 
 ---
 
+## When this doesn't work
+
+- **The first platform is not running smoothly yet.** Cross-platform work amplifies a model that already works. While conversion, stock and advertising on your main platform are still being sorted out, adding a second one duplicates the same problems and thins out the team. The test is whether the main platform runs for a week without you watching it.
+- **Do not run joint budgets you cannot attribute.** "TikTok seeding lifts Amazon search" has no platform-level join; all you have in between is temporal correlation. Allocating budget by "synergy contribution" on unreliable attribution is allocating by feel. Allocate honestly by single-platform ROI and treat the cross-platform effect as upside.
+- **Inventory is not one pool.** With separate stock per platform, different fulfilment and different return paths, the real cost of moving units between them is far above what the spreadsheet suggests. Before building a unified inventory view, confirm how many days a transfer takes, what it costs and who executes it.
+- **The team is too small.** Every additional platform adds a back end, a rulebook, a support register and a compliance surface. A team of three to five running more than three platforms usually fails to reach a passing standard on any of them. Go deep on one rather than thin across several.
+
+---
+
 ## 12. Completion Checklist
 
 - [ ] Understand the role division and coordination logic of the three platforms

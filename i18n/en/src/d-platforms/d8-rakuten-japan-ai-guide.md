@@ -402,6 +402,15 @@ The Rakuten store page carries most of the brand-trust weight. Ship with a defau
 
 ---
 
+## When this doesn't work
+
+- **Your Japanese is merely correct.** This market is sensitive to honorific level, sentence rhythm and the handling of loanwords, and traces of machine translation cost you trust directly. It shows most in support replies — a wrong politeness level reads worse than no reply. A native speaker has to pass over the final text.
+- **You transplant Amazon's shop and operating model.** Shops here are merchant-operated: page structure, promotional mechanics and the points system follow a different logic from Amazon's. Carrying an Amazon listing mindset across usually does not take, and the shop needs rebuilding on the platform's own model.
+- **You apply standard cross-border aftersales.** Japanese buyers generally expect more of packaging integrity, dispatch speed, documentation and response, and falling short shows up in reviews and is hard to recover. Confirm your fulfilment chain can reach that level consistently before entering, rather than listing first and finding out.
+- **Your volume does not support local operations.** Local support, local returns and maintaining Japanese content are ongoing costs. At low volume, testing through Amazon JP first is usually safer than opening a second Japanese channel at the same time.
+
+---
+
 ## 6. Completion Checklist
 
 - [ ] Complete Rakuten onboarding application
