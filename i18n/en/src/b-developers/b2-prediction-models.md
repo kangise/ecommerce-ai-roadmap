@@ -243,201 +243,201 @@ matplotlib.rcParams["axes.unicode_minus"] = False
 # ============================================================
 
 def prepare_prophet_data(
-df: pd.DataFrame,
-date_col: str = "date",
-value_col: str = "units"
+    df: pd.DataFrame,
+    date_col: str = "date",
+    value_col: str = "units"
 ) -> pd.DataFrame:
-"""
-Convert business data to the format Prophet requires.
+    """
+    Convert business data to the format Prophet requires.
 
-Prophet requires two columns:
-- ds: date column (datetime type)
-- y: target column (numeric type)
+    Prophet requires two columns:
+    - ds: date column (datetime type)
+    - y: target column (numeric type)
 
-Args:
-df: raw data
-date_col: date column name
-value_col: target column name
+    Args:
+        df: raw data
+        date_col: date column name
+        value_col: target column name
 
-Returns:
-DataFrame in Prophet format
-"""
-prophet_df = df[[date_col, value_col]].copy()
-prophet_df.columns = ["ds", "y"]
+    Returns:
+        DataFrame in Prophet format
+    """
+    prophet_df = df[[date_col, value_col]].copy()
+    prophet_df.columns = ["ds", "y"]
 
-# Ensure the date format is correct
-prophet_df["ds"] = pd.to_datetime(prophet_df["ds"])
-prophet_df["y"] = pd.to_numeric(prophet_df["y"], errors="coerce")
+    # Ensure the date format is correct
+    prophet_df["ds"] = pd.to_datetime(prophet_df["ds"])
+    prophet_df["y"] = pd.to_numeric(prophet_df["y"], errors="coerce")
 
-# Sort by date and dedup (sum multiple records on the same day)
-prophet_df = prophet_df.groupby("ds")["y"].sum().reset_index()
-prophet_df = prophet_df.sort_values("ds").reset_index(drop=True)
+    # Sort by date and dedup (sum multiple records on the same day)
+    prophet_df = prophet_df.groupby("ds")["y"].sum().reset_index()
+    prophet_df = prophet_df.sort_values("ds").reset_index(drop=True)
 
-# Fill missing dates (with 0, later replaceable via stockout logic)
-date_range = pd.date_range(
-start=prophet_df["ds"].min(),
-end=prophet_df["ds"].max(),
-freq="D"
-)
-prophet_df = (
-prophet_df
-.set_index("ds")
-.reindex(date_range)
-.fillna(0)
-.reset_index()
-.rename(columns={"index": "ds"})
-)
+    # Fill missing dates (with 0, later replaceable via stockout logic)
+    date_range = pd.date_range(
+        start=prophet_df["ds"].min(),
+        end=prophet_df["ds"].max(),
+        freq="D"
+    )
+    prophet_df = (
+        prophet_df
+        .set_index("ds")
+        .reindex(date_range)
+        .fillna(0)
+        .reset_index()
+        .rename(columns={"index": "ds"})
+    )
 
-print(f"Data prep done: {len(prophet_df)} days")
-print(f"Date range: {prophet_df['ds'].min().date()} → {prophet_df['ds'].max().date()}")
-print(f"Daily avg sales: {prophet_df['y'].mean():.1f}")
+    print(f"Data prep done: {len(prophet_df)} days")
+    print(f"Date range: {prophet_df['ds'].min().date()} → {prophet_df['ds'].max().date()}")
+    print(f"Daily avg sales: {prophet_df['y'].mean():.1f}")
 
-return prophet_df
+    return prophet_df
 
 # ============================================================
 # Step 2: train the model
 # ============================================================
 
 def train_prophet(
-df: pd.DataFrame,
-yearly: bool = True,
-weekly: bool = True,
-daily: bool = False,
-changepoint_prior: float = 0.05
+    df: pd.DataFrame,
+    yearly: bool = True,
+    weekly: bool = True,
+    daily: bool = False,
+    changepoint_prior: float = 0.05
 ) -> Prophet:
-"""
-Train a Prophet model.
+    """
+    Train a Prophet model.
 
-Args:
-df: Prophet-format data (ds, y columns)
-yearly: enable yearly seasonality
-weekly: enable weekly seasonality
-daily: enable daily seasonality (usually not needed)
-changepoint_prior: trend-changepoint sensitivity
-- larger value, easier to capture trend changes (but may overfit)
-- smaller value, smoother trend (but may underfit)
-- default 0.05, e-commerce suggests 0.1-0.3 (changes faster)
+    Args:
+        df: Prophet-format data (ds, y columns)
+        yearly: enable yearly seasonality
+        weekly: enable weekly seasonality
+        daily: enable daily seasonality (usually not needed)
+        changepoint_prior: trend-changepoint sensitivity
+            - larger value, easier to capture trend changes (but may overfit)
+            - smaller value, smoother trend (but may underfit)
+            - default 0.05, e-commerce suggests 0.1-0.3 (changes faster)
 
-Returns:
-the trained Prophet model
-"""
-model = Prophet(
-yearly_seasonality=yearly,
-weekly_seasonality=weekly,
-daily_seasonality=daily,
-changepoint_prior_scale=changepoint_prior,
-interval_width=0.8, # 80% confidence interval
-)
+    Returns:
+        the trained Prophet model
+    """
+    model = Prophet(
+        yearly_seasonality=yearly,
+        weekly_seasonality=weekly,
+        daily_seasonality=daily,
+        changepoint_prior_scale=changepoint_prior,
+        interval_width=0.8, # 80% confidence interval
+    )
 
-model.fit(df)
-print("Model training done")
+    model.fit(df)
+    print("Model training done")
 
-return model
+    return model
 
 # ============================================================
 # Step 3: generate the forecast
 # ============================================================
 
 def make_forecast(
-model: Prophet,
-periods: int = 90,
-freq: str = "D"
+    model: Prophet,
+    periods: int = 90,
+    freq: str = "D"
 ) -> pd.DataFrame:
-"""
-Generate a forecast for the next N days.
+    """
+    Generate a forecast for the next N days.
 
-Args:
-model: the trained Prophet model
-periods: days to forecast
-freq: frequency (D=day, W=week, M=month)
+    Args:
+        model: the trained Prophet model
+        periods: days to forecast
+        freq: frequency (D=day, W=week, M=month)
 
-Returns:
-forecast-result DataFrame with:
-- ds: date
-- yhat: forecast value
-- yhat_lower: forecast lower bound
-- yhat_upper: forecast upper bound
-- trend: trend component
-- weekly: weekly-seasonality component
-- yearly: yearly-seasonality component
-"""
-future = model.make_future_dataframe(periods=periods, freq=freq)
-forecast = model.predict(future)
+    Returns:
+        forecast-result DataFrame with:
+        - ds: date
+        - yhat: forecast value
+        - yhat_lower: forecast lower bound
+        - yhat_upper: forecast upper bound
+        - trend: trend component
+        - weekly: weekly-seasonality component
+        - yearly: yearly-seasonality component
+    """
+    future = model.make_future_dataframe(periods=periods, freq=freq)
+    forecast = model.predict(future)
 
-# The forecast can't be negative (sales min is 0)
-forecast["yhat"] = forecast["yhat"].clip(lower=0)
-forecast["yhat_lower"] = forecast["yhat_lower"].clip(lower=0)
+    # The forecast can't be negative (sales min is 0)
+    forecast["yhat"] = forecast["yhat"].clip(lower=0)
+    forecast["yhat_lower"] = forecast["yhat_lower"].clip(lower=0)
 
-print(f"Forecast done: next {periods} days")
-print(f"Forecast mean: {forecast['yhat'].tail(periods).mean():.1f}")
-print(f"Forecast interval: [{forecast['yhat_lower'].tail(periods).mean():.1f}, "
-f"{forecast['yhat_upper'].tail(periods).mean():.1f}]")
+    print(f"Forecast done: next {periods} days")
+    print(f"Forecast mean: {forecast['yhat'].tail(periods).mean():.1f}")
+    print(f"Forecast interval: [{forecast['yhat_lower'].tail(periods).mean():.1f}, "
+          f"{forecast['yhat_upper'].tail(periods).mean():.1f}]")
 
-return forecast
+    return forecast
 
 # ============================================================
 # Step 4: visualization
 # ============================================================
 
 def plot_forecast(
-model: Prophet,
-forecast: pd.DataFrame,
-actual_df: pd.DataFrame = None,
-title: str = "SKU Sales Forecast"
+    model: Prophet,
+    forecast: pd.DataFrame,
+    actual_df: pd.DataFrame = None,
+    title: str = "SKU Sales Forecast"
 ):
-"""
-Plot the forecast result.
+    """
+    Plot the forecast result.
 
-Args:
-model: Prophet model
-forecast: forecast result
-actual_df: actual data (for comparison)
-title: chart title
-"""
-fig, axes = plt.subplots(2, 1, figsize=(14, 10))
+    Args:
+        model: Prophet model
+        forecast: forecast result
+        actual_df: actual data (for comparison)
+        title: chart title
+    """
+    fig, axes = plt.subplots(2, 1, figsize=(14, 10))
 
-# Chart 1: forecast vs actual
-ax1 = axes[0]
-ax1.plot(forecast["ds"], forecast["yhat"], color="#1a73e8", label="Forecast")
-ax1.fill_between(
-forecast["ds"],
-forecast["yhat_lower"],
-forecast["yhat_upper"],
-alpha=0.2, color="#1a73e8", label="80% confidence interval"
-)
+    # Chart 1: forecast vs actual
+    ax1 = axes[0]
+    ax1.plot(forecast["ds"], forecast["yhat"], color="#1a73e8", label="Forecast")
+    ax1.fill_between(
+        forecast["ds"],
+        forecast["yhat_lower"],
+        forecast["yhat_upper"],
+        alpha=0.2, color="#1a73e8", label="80% confidence interval"
+    )
 
-if actual_df is not None:
-ax1.scatter(
-actual_df["ds"], actual_df["y"],
-color="#333", s=10, alpha=0.5, label="Actual"
-)
+    if actual_df is not None:
+        ax1.scatter(
+            actual_df["ds"], actual_df["y"],
+            color="#333", s=10, alpha=0.5, label="Actual"
+        )
 
-ax1.set_title(title, fontsize=14, fontweight="bold")
-ax1.set_ylabel("Units")
-ax1.legend()
-ax1.grid(True, alpha=0.3)
+    ax1.set_title(title, fontsize=14, fontweight="bold")
+    ax1.set_ylabel("Units")
+    ax1.legend()
+    ax1.grid(True, alpha=0.3)
 
-# Chart 2: component decomposition
-ax2 = axes[1]
-ax2.plot(forecast["ds"], forecast["trend"], label="Trend", color="#e8710a")
-if "weekly" in forecast.columns:
-ax2_twin = ax2.twinx()
-weekly_data = forecast.drop_duplicates(subset=["ds"]).tail(90)
-ax2_twin.plot(
-weekly_data["ds"], weekly_data["weekly"],
-label="Weekly seasonality", color="#0d652d", alpha=0.7
-)
-ax2_twin.set_ylabel("Weekly seasonality")
+    # Chart 2: component decomposition
+    ax2 = axes[1]
+    ax2.plot(forecast["ds"], forecast["trend"], label="Trend", color="#e8710a")
+    if "weekly" in forecast.columns:
+        ax2_twin = ax2.twinx()
+        weekly_data = forecast.drop_duplicates(subset=["ds"]).tail(90)
+        ax2_twin.plot(
+            weekly_data["ds"], weekly_data["weekly"],
+            label="Weekly seasonality", color="#0d652d", alpha=0.7
+        )
+        ax2_twin.set_ylabel("Weekly seasonality")
 
-ax2.set_title("Trend decomposition", fontsize=14, fontweight="bold")
-ax2.set_ylabel("Trend")
-ax2.legend(loc="upper left")
-ax2.grid(True, alpha=0.3)
+    ax2.set_title("Trend decomposition", fontsize=14, fontweight="bold")
+    ax2.set_ylabel("Trend")
+    ax2.legend(loc="upper left")
+    ax2.grid(True, alpha=0.3)
 
-plt.tight_layout()
-plt.savefig("output/forecast.png", dpi=150, bbox_inches="tight")
-plt.show()
-print("Chart saved: output/forecast.png")
+    plt.tight_layout()
+    plt.savefig("output/forecast.png", dpi=150, bbox_inches="tight")
+    plt.show()
+    print("Chart saved: output/forecast.png")
 
 # ============================================================
 # Full usage example
@@ -470,176 +470,176 @@ The basic Prophet model ignores the most important e-commerce factor: promo even
 
 ```python
 def create_ecommerce_holidays(years: list[int]) -> pd.DataFrame:
-"""
-Create an e-commerce promo calendar.
+    """
+    Create an e-commerce promo calendar.
 
-Prophet's holidays parameter accepts a DataFrame with:
-- holiday: event name
-- ds: event date
-- lower_window: days of impact before the event (negative)
-- upper_window: days of impact after the event
-"""
-holidays = []
+    Prophet's holidays parameter accepts a DataFrame with:
+    - holiday: event name
+    - ds: event date
+    - lower_window: days of impact before the event (negative)
+    - upper_window: days of impact after the event
+    """
+    holidays = []
 
-for year in years:
-# Prime Day (usually mid-July, lasts 2 days)
-holidays.append({
-"holiday": "prime_day",
-"ds": f"{year}-07-12",
-"lower_window": -3, # impact starts 3 days early (warm-up)
-"upper_window": 2, # 2 days of aftershock after it ends
-})
+    for year in years:
+        # Prime Day (usually mid-July, lasts 2 days)
+        holidays.append({
+            "holiday": "prime_day",
+            "ds": f"{year}-07-12",
+            "lower_window": -3, # impact starts 3 days early (warm-up)
+            "upper_window": 2, # 2 days of aftershock after it ends
+        })
 
-# Black Friday (fourth Friday of November)
-# Simplified: fixed near 11-24
-holidays.append({
-"holiday": "black_friday",
-"ds": f"{year}-11-24",
-"lower_window": -7, # BFCM week starts a week early
-"upper_window": 3, # a few days after Cyber Monday
-})
+        # Black Friday (fourth Friday of November)
+        # Simplified: fixed near 11-24
+        holidays.append({
+            "holiday": "black_friday",
+            "ds": f"{year}-11-24",
+            "lower_window": -7, # BFCM week starts a week early
+            "upper_window": 3, # a few days after Cyber Monday
+        })
 
-# Cyber Monday
-holidays.append({
-"holiday": "cyber_monday",
-"ds": f"{year}-11-27",
-"lower_window": 0,
-"upper_window": 1,
-})
+        # Cyber Monday
+        holidays.append({
+            "holiday": "cyber_monday",
+            "ds": f"{year}-11-27",
+            "lower_window": 0,
+            "upper_window": 1,
+        })
 
-# Singles' Day (impacts Chinese sellers)
-holidays.append({
-"holiday": "singles_day",
-"ds": f"{year}-11-11",
-"lower_window": -3,
-"upper_window": 1,
-})
+        # Singles' Day (impacts Chinese sellers)
+        holidays.append({
+            "holiday": "singles_day",
+            "ds": f"{year}-11-11",
+            "lower_window": -3,
+            "upper_window": 1,
+        })
 
-# Pre-Christmas shopping season
-holidays.append({
-"holiday": "christmas_shopping",
-"ds": f"{year}-12-15",
-"lower_window": -5,
-"upper_window": 10,
-})
+        # Pre-Christmas shopping season
+        holidays.append({
+            "holiday": "christmas_shopping",
+            "ds": f"{year}-12-15",
+            "lower_window": -5,
+            "upper_window": 10,
+        })
 
-# Post-New-Year dip
-holidays.append({
-"holiday": "post_newyear_dip",
-"ds": f"{year}-01-05",
-"lower_window": -5,
-"upper_window": 10,
-})
+        # Post-New-Year dip
+        holidays.append({
+            "holiday": "post_newyear_dip",
+            "ds": f"{year}-01-05",
+            "lower_window": -5,
+            "upper_window": 10,
+        })
 
-return pd.DataFrame(holidays)
+    return pd.DataFrame(holidays)
 
 def train_prophet_with_holidays(
-df: pd.DataFrame,
-holidays: pd.DataFrame = None,
-changepoint_prior: float = 0.1
+    df: pd.DataFrame,
+    holidays: pd.DataFrame = None,
+    changepoint_prior: float = 0.1
 ) -> Prophet:
-"""
-Train a Prophet model with holiday effects.
-"""
-if holidays is None:
-years = list(range(
-df["ds"].dt.year.min(),
-df["ds"].dt.year.max() + 2 # include the forecast year
-))
-holidays = create_ecommerce_holidays(years)
+    """
+    Train a Prophet model with holiday effects.
+    """
+    if holidays is None:
+        years = list(range(
+            df["ds"].dt.year.min(),
+            df["ds"].dt.year.max() + 2 # include the forecast year
+        ))
+        holidays = create_ecommerce_holidays(years)
 
-model = Prophet(
-yearly_seasonality=True,
-weekly_seasonality=True,
-daily_seasonality=False,
-changepoint_prior_scale=changepoint_prior,
-holidays=holidays,
-holidays_prior_scale=10.0, # holiday-effect sensitivity
-interval_width=0.8,
-)
+    model = Prophet(
+        yearly_seasonality=True,
+        weekly_seasonality=True,
+        daily_seasonality=False,
+        changepoint_prior_scale=changepoint_prior,
+        holidays=holidays,
+        holidays_prior_scale=10.0, # holiday-effect sensitivity
+        interval_width=0.8,
+    )
 
-model.fit(df)
-print(f"Model training done (with {len(holidays)} holiday events)")
+    model.fit(df)
+    print(f"Model training done (with {len(holidays)} holiday events)")
 
-return model
+    return model
 ```
 
 **Adding external regressors (ad spend, competitor price):**
 
 ```python
 def train_prophet_with_regressors(
-df: pd.DataFrame,
-regressor_cols: list[str] = None
+    df: pd.DataFrame,
+    regressor_cols: list[str] = None
 ) -> Prophet:
-"""
-Train a Prophet model with external regressors.
+    """
+    Train a Prophet model with external regressors.
 
-External variables can be:
-- ad_spend: ad spend (more spend, higher sales)
-- competitor_price: competitor price (competitor price up, your sales may rise)
-- bsr_rank: BSR rank (higher rank, more exposure)
-- coupon_active: whether a coupon is active (0/1)
+    External variables can be:
+    - ad_spend: ad spend (more spend, higher sales)
+    - competitor_price: competitor price (competitor price up, your sales may rise)
+    - bsr_rank: BSR rank (higher rank, more exposure)
+    - coupon_active: whether a coupon is active (0/1)
 
-Note: at forecast time you must also provide future values of the external variables!
-"""
-years = list(range(
-df["ds"].dt.year.min(),
-df["ds"].dt.year.max() + 2
-))
-holidays = create_ecommerce_holidays(years)
+    Note: at forecast time you must also provide future values of the external variables!
+    """
+    years = list(range(
+        df["ds"].dt.year.min(),
+        df["ds"].dt.year.max() + 2
+    ))
+    holidays = create_ecommerce_holidays(years)
 
-model = Prophet(
-yearly_seasonality=True,
-weekly_seasonality=True,
-changepoint_prior_scale=0.1,
-holidays=holidays,
-interval_width=0.8,
-)
+    model = Prophet(
+        yearly_seasonality=True,
+        weekly_seasonality=True,
+        changepoint_prior_scale=0.1,
+        holidays=holidays,
+        interval_width=0.8,
+    )
 
-# Add external regressors
-regressor_cols = regressor_cols or []
-for col in regressor_cols:
-if col in df.columns:
-model.add_regressor(col, standardize=True)
-print(f"Added regressor: {col}")
+    # Add external regressors
+    regressor_cols = regressor_cols or []
+    for col in regressor_cols:
+        if col in df.columns:
+            model.add_regressor(col, standardize=True)
+            print(f"Added regressor: {col}")
 
-model.fit(df)
-print("Model training done (with external variables)")
+    model.fit(df)
+    print("Model training done (with external variables)")
 
-return model
+    return model
 
 def forecast_with_regressors(
-model: Prophet,
-periods: int = 90,
-future_regressors: pd.DataFrame = None
+    model: Prophet,
+    periods: int = 90,
+    future_regressors: pd.DataFrame = None
 ) -> pd.DataFrame:
-"""
-Forecast with external variables.
+    """
+    Forecast with external variables.
 
-Args:
-model: the trained model
-periods: days to forecast
-future_regressors: future values of the external variables
-if not provided, filled with the historical mean (not recommended, lowers accuracy)
-"""
-future = model.make_future_dataframe(periods=periods)
+    Args:
+        model: the trained model
+        periods: days to forecast
+        future_regressors: future values of the external variables
+            if not provided, filled with the historical mean (not recommended, lowers accuracy)
+    """
+    future = model.make_future_dataframe(periods=periods)
 
-# Merge future external variables
-if future_regressors is not None:
-future = future.merge(future_regressors, on="ds", how="left")
+    # Merge future external variables
+    if future_regressors is not None:
+        future = future.merge(future_regressors, on="ds", how="left")
 
-# Fill missing external variables with the historical mean
-for col in future.columns:
-if col not in ["ds"] and future[col].isna().any():
-fill_value = future[col].dropna().mean()
-future[col] = future[col].fillna(fill_value)
-print(f"{col} has missing values, filled with mean {fill_value:.2f}")
+    # Fill missing external variables with the historical mean
+    for col in future.columns:
+        if col not in ["ds"] and future[col].isna().any():
+            fill_value = future[col].dropna().mean()
+            future[col] = future[col].fillna(fill_value)
+            print(f"{col} has missing values, filled with mean {fill_value:.2f}")
 
-forecast = model.predict(future)
-forecast["yhat"] = forecast["yhat"].clip(lower=0)
-forecast["yhat_lower"] = forecast["yhat_lower"].clip(lower=0)
+    forecast = model.predict(future)
+    forecast["yhat"] = forecast["yhat"].clip(lower=0)
+    forecast["yhat_lower"] = forecast["yhat_lower"].clip(lower=0)
 
-return forecast
+    return forecast
 
 # Usage example
 # df = prepare_prophet_data(raw_df)
@@ -667,73 +667,73 @@ AutoGluon is Amazon's open-source AutoML framework. Its time-series module can a
 from autogluon.timeseries import TimeSeriesDataFrame, TimeSeriesPredictor
 
 def autogluon_forecast(
-df: pd.DataFrame,
-date_col: str = "date",
-value_col: str = "units",
-item_col: str = "asin",
-prediction_length: int = 30,
-time_limit: int = 300
+    df: pd.DataFrame,
+    date_col: str = "date",
+    value_col: str = "units",
+    item_col: str = "asin",
+    prediction_length: int = 30,
+    time_limit: int = 300
 ) -> pd.DataFrame:
-"""
-Auto-forecast multiple SKUs' sales with AutoGluon.
+    """
+    Auto-forecast multiple SKUs' sales with AutoGluon.
 
-AutoGluon's strengths:
-- Zero-config: no need to pick a model or tune parameters
-- Multi-SKU: one training run forecasts all SKUs at once
-- Auto-ensemble: auto-tries multiple models and ensembles the best
+    AutoGluon's strengths:
+    - Zero-config: no need to pick a model or tune parameters
+    - Multi-SKU: one training run forecasts all SKUs at once
+    - Auto-ensemble: auto-tries multiple models and ensembles the best
 
-Args:
-df: DataFrame with date, sales, SKU ID
-date_col: date column name
-value_col: target column name
-item_col: SKU-ID column name
-prediction_length: days to forecast
-time_limit: training time limit (seconds)
+    Args:
+        df: DataFrame with date, sales, SKU ID
+        date_col: date column name
+        value_col: target column name
+        item_col: SKU-ID column name
+        prediction_length: days to forecast
+        time_limit: training time limit (seconds)
 
-Returns:
-forecast-result DataFrame
-"""
-# 1. Convert to AutoGluon format
-ag_df = df.rename(columns={
-date_col: "timestamp",
-value_col: "target",
-item_col: "item_id"
-})
-ag_df["timestamp"] = pd.to_datetime(ag_df["timestamp"])
+    Returns:
+        forecast-result DataFrame
+    """
+    # 1. Convert to AutoGluon format
+    ag_df = df.rename(columns={
+        date_col: "timestamp",
+        value_col: "target",
+        item_col: "item_id"
+    })
+    ag_df["timestamp"] = pd.to_datetime(ag_df["timestamp"])
 
-ts_df = TimeSeriesDataFrame.from_data_frame(
-ag_df,
-id_column="item_id",
-timestamp_column="timestamp"
-)
+    ts_df = TimeSeriesDataFrame.from_data_frame(
+        ag_df,
+        id_column="item_id",
+        timestamp_column="timestamp"
+    )
 
-print(f"Data: {ts_df.num_items} SKUs, "
-f"{len(ts_df)} records")
+    print(f"Data: {ts_df.num_items} SKUs, "
+          f"{len(ts_df)} records")
 
-# 2. Train (AutoGluon auto-selects the best model)
-predictor = TimeSeriesPredictor(
-prediction_length=prediction_length,
-target="target",
-eval_metric="MAPE", # use MAPE as the eval metric
-)
+    # 2. Train (AutoGluon auto-selects the best model)
+    predictor = TimeSeriesPredictor(
+        prediction_length=prediction_length,
+        target="target",
+        eval_metric="MAPE", # use MAPE as the eval metric
+    )
 
-predictor.fit(
-train_data=ts_df,
-time_limit=time_limit, # limit training time
-presets="medium_quality", # fast / medium / high / best
-)
+    predictor.fit(
+        train_data=ts_df,
+        time_limit=time_limit, # limit training time
+        presets="medium_quality", # fast / medium / high / best
+    )
 
-# 3. View the model leaderboard
-leaderboard = predictor.leaderboard(ts_df)
-print("\nModel leaderboard:")
-print(leaderboard[["model", "score_val"]].to_string(index=False))
+    # 3. View the model leaderboard
+    leaderboard = predictor.leaderboard(ts_df)
+    print("\nModel leaderboard:")
+    print(leaderboard[["model", "score_val"]].to_string(index=False))
 
-# 4. Generate the forecast
-predictions = predictor.predict(ts_df)
+    # 4. Generate the forecast
+    predictions = predictor.predict(ts_df)
 
-print(f"\nForecast done: {ts_df.num_items} SKUs × {prediction_length} days")
+    print(f"\nForecast done: {ts_df.num_items} SKUs × {prediction_length} days")
 
-return predictions
+    return predictions
 
 # Usage example
 # df = pd.read_csv("data/daily_sales_all_skus.csv")
@@ -768,121 +768,121 @@ from sentence_transformers import SentenceTransformer
 import pandas as pd
 
 def analyze_review_topics(
-reviews: list[str],
-language: str = "english",
-nr_topics: int = "auto",
-min_topic_size: int = 10
+    reviews: list[str],
+    language: str = "english",
+    nr_topics: int = "auto",
+    min_topic_size: int = 10
 ) -> tuple:
-"""
-Auto-discover topics in Review text with BERTopic.
+    """
+    Auto-discover topics in Review text with BERTopic.
 
-How it works:
-1. Convert each Review to a vector with Sentence-BERT
-2. Reduce dimensions with UMAP
-3. Cluster with HDBSCAN
-4. Extract each topic's keywords with c-TF-IDF
+    How it works:
+    1. Convert each Review to a vector with Sentence-BERT
+    2. Reduce dimensions with UMAP
+    3. Cluster with HDBSCAN
+    4. Extract each topic's keywords with c-TF-IDF
 
-Args:
-reviews: list of Review text
-language: language ("english" or "chinese")
-nr_topics: number of topics ("auto" to auto-determine)
-min_topic_size: minimum topic size (topics with fewer reviews are merged)
+    Args:
+        reviews: list of Review text
+        language: language ("english" or "chinese")
+        nr_topics: number of topics ("auto" to auto-determine)
+        min_topic_size: minimum topic size (topics with fewer reviews are merged)
 
-Returns:
-(topic_model, topics, probs)
-- topic_model: the trained BERTopic model
-- topics: each Review's topic number
-- probs: each Review's probability of belonging to each topic
-"""
-# Choose the embedding model
-if language == "chinese":
-embedding_model = SentenceTransformer(
-"paraphrase-multilingual-MiniLM-L12-v2"
-)
-else:
-embedding_model = SentenceTransformer(
-"all-MiniLM-L6-v2"
-)
+    Returns:
+        (topic_model, topics, probs)
+        - topic_model: the trained BERTopic model
+        - topics: each Review's topic number
+        - probs: each Review's probability of belonging to each topic
+    """
+    # Choose the embedding model
+    if language == "chinese":
+        embedding_model = SentenceTransformer(
+            "paraphrase-multilingual-MiniLM-L12-v2"
+        )
+    else:
+        embedding_model = SentenceTransformer(
+            "all-MiniLM-L6-v2"
+        )
 
-# Create the BERTopic model
-topic_model = BERTopic(
-embedding_model=embedding_model,
-nr_topics=nr_topics,
-min_topic_size=min_topic_size,
-language=language,
-verbose=True
-)
+    # Create the BERTopic model
+    topic_model = BERTopic(
+        embedding_model=embedding_model,
+        nr_topics=nr_topics,
+        min_topic_size=min_topic_size,
+        language=language,
+        verbose=True
+    )
 
-# Train
-topics, probs = topic_model.fit_transform(reviews)
+    # Train
+    topics, probs = topic_model.fit_transform(reviews)
 
-# Print a topic overview
-topic_info = topic_model.get_topic_info()
-print("\nDiscovered topics:")
-for _, row in topic_info.head(10).iterrows():
-if row["Topic"] != -1: # -1 is an outlier
-print(f"Topic {row['Topic']}: {row['Name']} "
-f"({row['Count']} reviews)")
+    # Print a topic overview
+    topic_info = topic_model.get_topic_info()
+    print("\nDiscovered topics:")
+    for _, row in topic_info.head(10).iterrows():
+        if row["Topic"] != -1: # -1 is an outlier
+            print(f"Topic {row['Topic']}: {row['Name']} "
+                  f"({row['Count']} reviews)")
 
-return topic_model, topics, probs
+    return topic_model, topics, probs
 
 def get_topic_summary(
-topic_model: BERTopic,
-reviews: list[str],
-topics: list[int],
-ratings: list[int] = None
+    topic_model: BERTopic,
+    reviews: list[str],
+    topics: list[int],
+    ratings: list[int] = None
 ) -> pd.DataFrame:
-"""
-Generate a topic-summary report.
+    """
+    Generate a topic-summary report.
 
-Args:
-topic_model: the trained model
-reviews: Review text
-topics: topic numbers
-ratings: ratings (1–5), to analyze each topic's sentiment tendency
+    Args:
+        topic_model: the trained model
+        reviews: Review text
+        topics: topic numbers
+        ratings: ratings (1–5), to analyze each topic's sentiment tendency
 
-Returns:
-topic-summary DataFrame
-"""
-summary_data = []
-topic_info = topic_model.get_topic_info()
+    Returns:
+        topic-summary DataFrame
+    """
+    summary_data = []
+    topic_info = topic_model.get_topic_info()
 
-for _, row in topic_info.iterrows():
-topic_id = row["Topic"]
-if topic_id == -1:
-continue
+    for _, row in topic_info.iterrows():
+        topic_id = row["Topic"]
+        if topic_id == -1:
+            continue
 
-# Get this topic's keywords
-keywords = topic_model.get_topic(topic_id)
-keyword_str = ", ".join([w for w, _ in keywords[:5]])
+        # Get this topic's keywords
+        keywords = topic_model.get_topic(topic_id)
+        keyword_str = ", ".join([w for w, _ in keywords[:5]])
 
-# Get this topic's Review indices
-topic_mask = [t == topic_id for t in topics]
-topic_reviews = [r for r, m in zip(reviews, topic_mask) if m]
+        # Get this topic's Review indices
+        topic_mask = [t == topic_id for t in topics]
+        topic_reviews = [r for r, m in zip(reviews, topic_mask) if m]
 
-entry = {
-"topic_id": topic_id,
-"keywords": keyword_str,
-"review_count": len(topic_reviews),
-"sample_review": topic_reviews[0][:200] if topic_reviews else "",
-}
+        entry = {
+            "topic_id": topic_id,
+            "keywords": keyword_str,
+            "review_count": len(topic_reviews),
+            "sample_review": topic_reviews[0][:200] if topic_reviews else "",
+        }
 
-# If ratings exist, compute this topic's average rating
-if ratings:
-topic_ratings = [r for r, m in zip(ratings, topic_mask) if m]
-entry["avg_rating"] = round(sum(topic_ratings) / len(topic_ratings), 2) if topic_ratings else None
-entry["negative_pct"] = round(
-sum(1 for r in topic_ratings if r <= 2) / len(topic_ratings) * 100, 1
-) if topic_ratings else None
+        # If ratings exist, compute this topic's average rating
+        if ratings:
+            topic_ratings = [r for r, m in zip(ratings, topic_mask) if m]
+            entry["avg_rating"] = round(sum(topic_ratings) / len(topic_ratings), 2) if topic_ratings else None
+            entry["negative_pct"] = round(
+                sum(1 for r in topic_ratings if r <= 2) / len(topic_ratings) * 100, 1
+            ) if topic_ratings else None
 
-summary_data.append(entry)
+        summary_data.append(entry)
 
-summary = pd.DataFrame(summary_data)
+    summary = pd.DataFrame(summary_data)
 
-if "avg_rating" in summary.columns:
-summary = summary.sort_values("avg_rating", ascending=True)
+    if "avg_rating" in summary.columns:
+        summary = summary.sort_values("avg_rating", ascending=True)
 
-return summary
+    return summary
 
 # Usage example
 # reviews_df = pd.read_csv("data/reviews.csv")
@@ -916,87 +916,87 @@ The forecast itself isn't the goal — the restock decision is. This section con
 
 ```python
 def forecast_to_reorder(
-forecast: pd.DataFrame,
-current_stock: int,
-lead_time_days: int = 30,
-safety_stock_days: int = 14,
-moq: int = 100
+    forecast: pd.DataFrame,
+    current_stock: int,
+    lead_time_days: int = 30,
+    safety_stock_days: int = 14,
+    moq: int = 100
 ) -> dict:
-"""
-Turn a forecast into a restock suggestion.
+    """
+    Turn a forecast into a restock suggestion.
 
-Args:
-forecast: Prophet forecast result
-current_stock: current inventory quantity
-lead_time_days: supplier lead time (days)
-safety_stock_days: safety-stock days
-moq: minimum order quantity
+    Args:
+        forecast: Prophet forecast result
+        current_stock: current inventory quantity
+        lead_time_days: supplier lead time (days)
+        safety_stock_days: safety-stock days
+        moq: minimum order quantity
 
-Returns:
-a restock-suggestion dict
-"""
-# Take future forecast data
-future_data = forecast[forecast["ds"] > pd.Timestamp.now()]
+    Returns:
+        a restock-suggestion dict
+    """
+    # Take future forecast data
+    future_data = forecast[forecast["ds"] > pd.Timestamp.now()]
 
-if future_data.empty:
-return {"error": "no future forecast data"}
+    if future_data.empty:
+        return {"error": "no future forecast data"}
 
-# Compute daily-average forecast sales (use the upper bound for a conservative estimate)
-daily_forecast = future_data["yhat"].mean()
-daily_upper = future_data["yhat_upper"].mean()
+    # Compute daily-average forecast sales (use the upper bound for a conservative estimate)
+    daily_forecast = future_data["yhat"].mean()
+    daily_upper = future_data["yhat_upper"].mean()
 
-# Safety stock = safety days × daily upper-bound sales
-safety_stock = int(safety_stock_days * daily_upper)
+    # Safety stock = safety days × daily upper-bound sales
+    safety_stock = int(safety_stock_days * daily_upper)
 
-# Expected consumption during Lead Time
-lt_consumption = int(lead_time_days * daily_forecast)
+    # Expected consumption during Lead Time
+    lt_consumption = int(lead_time_days * daily_forecast)
 
-# Reorder point = Lead Time consumption + safety stock
-reorder_point = lt_consumption + safety_stock
+    # Reorder point = Lead Time consumption + safety stock
+    reorder_point = lt_consumption + safety_stock
 
-# Days of cover the current stock supports
-days_of_stock = int(current_stock / daily_forecast) if daily_forecast > 0 else 999
+    # Days of cover the current stock supports
+    days_of_stock = int(current_stock / daily_forecast) if daily_forecast > 0 else 999
 
-# Suggested order quantity = 90-day forecast demand - current stock + safety stock
-forecast_90d = int(future_data["yhat"].head(90).sum())
-suggested_qty = max(forecast_90d - current_stock + safety_stock, 0)
+    # Suggested order quantity = 90-day forecast demand - current stock + safety stock
+    forecast_90d = int(future_data["yhat"].head(90).sum())
+    suggested_qty = max(forecast_90d - current_stock + safety_stock, 0)
 
-# Round up to a multiple of MOQ
-if suggested_qty > 0:
-suggested_qty = max(
-((suggested_qty + moq - 1) // moq) * moq,
-moq
-)
+    # Round up to a multiple of MOQ
+    if suggested_qty > 0:
+        suggested_qty = max(
+            ((suggested_qty + moq - 1) // moq) * moq,
+            moq
+        )
 
-# Urgency judgment
-if current_stock <= reorder_point * 0.5:
-urgency = "urgent restock"
-elif current_stock <= reorder_point:
-urgency = "restock suggested"
-else:
-urgency = "stock sufficient"
+    # Urgency judgment
+    if current_stock <= reorder_point * 0.5:
+        urgency = "urgent restock"
+    elif current_stock <= reorder_point:
+        urgency = "restock suggested"
+    else:
+        urgency = "stock sufficient"
 
-result = {
-"urgency": urgency,
-"current_stock": current_stock,
-"days_of_stock": days_of_stock,
-"daily_forecast": round(daily_forecast, 1),
-"safety_stock": safety_stock,
-"reorder_point": reorder_point,
-"suggested_qty": suggested_qty,
-"forecast_90d": forecast_90d,
-"lead_time_days": lead_time_days,
-}
+    result = {
+        "urgency": urgency,
+        "current_stock": current_stock,
+        "days_of_stock": days_of_stock,
+        "daily_forecast": round(daily_forecast, 1),
+        "safety_stock": safety_stock,
+        "reorder_point": reorder_point,
+        "suggested_qty": suggested_qty,
+        "forecast_90d": forecast_90d,
+        "lead_time_days": lead_time_days,
+    }
 
-print(f"\nRestock suggestion:")
-print(f"Status: {urgency}")
-print(f"Current stock: {current_stock} units (covers {days_of_stock} days)")
-print(f"Daily forecast: {daily_forecast:.1f} units/day")
-print(f"Safety stock: {safety_stock} units")
-print(f"Reorder point: {reorder_point} units")
-print(f"Suggested order: {suggested_qty} units (MOQ={moq})")
+    print(f"\nRestock suggestion:")
+    print(f"Status: {urgency}")
+    print(f"Current stock: {current_stock} units (covers {days_of_stock} days)")
+    print(f"Daily forecast: {daily_forecast:.1f} units/day")
+    print(f"Safety stock: {safety_stock} units")
+    print(f"Reorder point: {reorder_point} units")
+    print(f"Suggested order: {suggested_qty} units (MOQ={moq})")
 
-return result
+    return result
 
 # Usage example
 # reorder = forecast_to_reorder(
@@ -1087,56 +1087,56 @@ Backtesting is the most reliable way to validate a forecasting model: use histor
 
 ```python
 def backtest_prophet(
-df: pd.DataFrame,
-initial_days: int = 180,
-horizon_days: int = 30,
-period_days: int = 30
+    df: pd.DataFrame,
+    initial_days: int = 180,
+    horizon_days: int = 30,
+    period_days: int = 30
 ) -> pd.DataFrame:
-"""
-Prophet backtest: rolling-window validation.
+    """
+    Prophet backtest: rolling-window validation.
 
-How it works:
-1. Train on the first initial_days days
-2. Forecast the next horizon_days days
-3. Compare with actuals
-4. Slide the window forward period_days days, repeat
+    How it works:
+    1. Train on the first initial_days days
+    2. Forecast the next horizon_days days
+    3. Compare with actuals
+    4. Slide the window forward period_days days, repeat
 
-Args:
-df: Prophet-format data
-initial_days: initial training-data days
-horizon_days: days to forecast each time
-period_days: window-sliding step
+    Args:
+        df: Prophet-format data
+        initial_days: initial training-data days
+        horizon_days: days to forecast each time
+        period_days: window-sliding step
 
-Returns:
-backtest-result DataFrame
-"""
-from prophet.diagnostics import cross_validation, performance_metrics
+    Returns:
+        backtest-result DataFrame
+    """
+    from prophet.diagnostics import cross_validation, performance_metrics
 
-model = Prophet(
-yearly_seasonality=True,
-weekly_seasonality=True,
-changepoint_prior_scale=0.1,
-interval_width=0.8,
-)
-model.fit(df)
+    model = Prophet(
+        yearly_seasonality=True,
+        weekly_seasonality=True,
+        changepoint_prior_scale=0.1,
+        interval_width=0.8,
+    )
+    model.fit(df)
 
-# Cross-validation
-cv_results = cross_validation(
-model,
-initial=f"{initial_days} days",
-period=f"{period_days} days",
-horizon=f"{horizon_days} days"
-)
+    # Cross-validation
+    cv_results = cross_validation(
+        model,
+        initial=f"{initial_days} days",
+        period=f"{period_days} days",
+        horizon=f"{horizon_days} days"
+    )
 
-# Compute performance metrics
-perf = performance_metrics(cv_results)
+    # Compute performance metrics
+    perf = performance_metrics(cv_results)
 
-print("Backtest results:")
-print(f"MAE: {perf['mae'].mean():.2f}")
-print(f"RMSE: {perf['rmse'].mean():.2f}")
-print(f"MAPE: {perf['mape'].mean() * 100:.2f}%")
+    print("Backtest results:")
+    print(f"MAE: {perf['mae'].mean():.2f}")
+    print(f"RMSE: {perf['rmse'].mean():.2f}")
+    print(f"MAPE: {perf['mape'].mean() * 100:.2f}%")
 
-return cv_results, perf
+    return cv_results, perf
 
 # Usage example
 # cv_results, perf = backtest_prophet(prophet_df, initial_days=180, horizon_days=30)
@@ -1204,97 +1204,97 @@ from pathlib import Path
 
 from src.data_prep import prepare_prophet_data, handle_stockout
 from src.prophet_model import (
-train_prophet_with_holidays,
-make_forecast,
-plot_forecast
+    train_prophet_with_holidays,
+    make_forecast,
+    plot_forecast
 )
 from src.evaluator import evaluate_forecast, backtest_prophet
 from src.reorder import forecast_to_reorder
 
 def run(
-data_path: str,
-asin: str = None,
-forecast_days: int = 90,
-current_stock: int = None,
-lead_time: int = 30
+    data_path: str,
+    asin: str = None,
+    forecast_days: int = 90,
+    current_stock: int = None,
+    lead_time: int = 30
 ):
-"""
-Full forecast flow: data prep → training → forecasting → evaluation → restock suggestion
-"""
-print(f"Starting the forecast flow")
+    """
+    Full forecast flow: data prep → training → forecasting → evaluation → restock suggestion
+    """
+    print(f"Starting the forecast flow")
 
-# 1. Load data
-df = pd.read_csv(data_path)
-if asin and "asin" in df.columns:
-df = df[df["asin"] == asin]
-print(f"SKU: {asin}")
+    # 1. Load data
+    df = pd.read_csv(data_path)
+    if asin and "asin" in df.columns:
+        df = df[df["asin"] == asin]
+        print(f"SKU: {asin}")
 
-# 2. Data prep
-prophet_df = prepare_prophet_data(df, date_col="date", value_col="units")
-prophet_df = handle_stockout(prophet_df, units_col="y")
+    # 2. Data prep
+    prophet_df = prepare_prophet_data(df, date_col="date", value_col="units")
+    prophet_df = handle_stockout(prophet_df, units_col="y")
 
-# 3. Train (with holiday effects)
-model = train_prophet_with_holidays(prophet_df, changepoint_prior=0.1)
+    # 3. Train (with holiday effects)
+    model = train_prophet_with_holidays(prophet_df, changepoint_prior=0.1)
 
-# 4. Forecast
-forecast = make_forecast(model, periods=forecast_days)
+    # 4. Forecast
+    forecast = make_forecast(model, periods=forecast_days)
 
-# 5. Evaluate (use the last 30 days for validation)
-if len(prophet_df) > 30:
-train_df = prophet_df.iloc[:-30]
-test_df = prophet_df.iloc[-30:]
+    # 5. Evaluate (use the last 30 days for validation)
+    if len(prophet_df) > 30:
+        train_df = prophet_df.iloc[:-30]
+        test_df = prophet_df.iloc[-30:]
 
-eval_model = train_prophet_with_holidays(train_df)
-eval_forecast = make_forecast(eval_model, periods=30)
+        eval_model = train_prophet_with_holidays(train_df)
+        eval_forecast = make_forecast(eval_model, periods=30)
 
-eval_pred = eval_forecast.tail(30)["yhat"].values
-eval_actual = test_df["y"].values
-metrics = evaluate_forecast(
-pd.Series(eval_actual), pd.Series(eval_pred)
-)
+        eval_pred = eval_forecast.tail(30)["yhat"].values
+        eval_actual = test_df["y"].values
+        metrics = evaluate_forecast(
+            pd.Series(eval_actual), pd.Series(eval_pred)
+        )
 
-# 6. Visualize
-output_dir = Path("output")
-output_dir.mkdir(exist_ok=True)
+    # 6. Visualize
+    output_dir = Path("output")
+    output_dir.mkdir(exist_ok=True)
 
-plot_forecast(
-model, forecast, actual_df=prophet_df,
-title=f"{'ASIN ' + asin if asin else 'SKU'} sales forecast ({forecast_days}d)"
-)
+    plot_forecast(
+        model, forecast, actual_df=prophet_df,
+        title=f"{'ASIN ' + asin if asin else 'SKU'} sales forecast ({forecast_days}d)"
+    )
 
-# 7. Save the forecast result
-forecast_output = forecast[["ds", "yhat", "yhat_lower", "yhat_upper"]].tail(forecast_days)
-forecast_output.to_csv(
-output_dir / f"forecast_{asin or 'sku'}_{forecast_days}d.csv",
-index=False
-)
+    # 7. Save the forecast result
+    forecast_output = forecast[["ds", "yhat", "yhat_lower", "yhat_upper"]].tail(forecast_days)
+    forecast_output.to_csv(
+        output_dir / f"forecast_{asin or 'sku'}_{forecast_days}d.csv",
+        index=False
+    )
 
-# 8. Restock suggestion
-if current_stock is not None:
-reorder = forecast_to_reorder(
-forecast,
-current_stock=current_stock,
-lead_time_days=lead_time
-)
+    # 8. Restock suggestion
+    if current_stock is not None:
+        reorder = forecast_to_reorder(
+            forecast,
+            current_stock=current_stock,
+            lead_time_days=lead_time
+        )
 
-print(f"\nForecast done! Results saved to output/")
+    print(f"\nForecast done! Results saved to output/")
 
 if __name__ == "__main__":
-parser = argparse.ArgumentParser(description="SKU sales forecast")
-parser.add_argument("--data", required=True, help="sales-data CSV path")
-parser.add_argument("--asin", help="ASIN")
-parser.add_argument("--days", type=int, default=90, help="days to forecast")
-parser.add_argument("--stock", type=int, help="current stock")
-parser.add_argument("--lead-time", type=int, default=30, help="lead time (days)")
-args = parser.parse_args()
+    parser = argparse.ArgumentParser(description="SKU sales forecast")
+    parser.add_argument("--data", required=True, help="sales-data CSV path")
+    parser.add_argument("--asin", help="ASIN")
+    parser.add_argument("--days", type=int, default=90, help="days to forecast")
+    parser.add_argument("--stock", type=int, help="current stock")
+    parser.add_argument("--lead-time", type=int, default=30, help="lead time (days)")
+    args = parser.parse_args()
 
-run(
-data_path=args.data,
-asin=args.asin,
-forecast_days=args.days,
-current_stock=args.stock,
-lead_time=args.lead_time
-)
+    run(
+        data_path=args.data,
+        asin=args.asin,
+        forecast_days=args.days,
+        current_stock=args.stock,
+        lead_time=args.lead_time
+    )
 ```
 
 ```bash

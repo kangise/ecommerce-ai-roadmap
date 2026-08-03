@@ -242,201 +242,201 @@ matplotlib.rcParams["axes.unicode_minus"] = False
 # ============================================================
 
 def prepare_prophet_data(
-df: pd.DataFrame,
-date_col: str = "date",
-value_col: str = "units"
+    df: pd.DataFrame,
+    date_col: str = "date",
+    value_col: str = "units"
 ) -> pd.DataFrame:
-"""
-業務データを Prophet が要求する形式に変換する。
+    """
+    業務データを Prophet が要求する形式に変換する。
 
-Prophet は 2 列を要求:
-- ds: 日付列(datetime 型)
-- y: 目標値列(数値型)
+    Prophet は 2 列を要求:
+    - ds: 日付列(datetime 型)
+    - y: 目標値列(数値型)
 
-Args:
-df: 元データ
-date_col: 日付列名
-value_col: 目標値列名
+    Args:
+        df: 元データ
+        date_col: 日付列名
+        value_col: 目標値列名
 
-Returns:
-Prophet 形式の DataFrame
-"""
-prophet_df = df[[date_col, value_col]].copy()
-prophet_df.columns = ["ds", "y"]
+    Returns:
+        Prophet 形式の DataFrame
+    """
+    prophet_df = df[[date_col, value_col]].copy()
+    prophet_df.columns = ["ds", "y"]
 
-# 日付形式が正しいことを確保
-prophet_df["ds"] = pd.to_datetime(prophet_df["ds"])
-prophet_df["y"] = pd.to_numeric(prophet_df["y"], errors="coerce")
+    # 日付形式が正しいことを確保
+    prophet_df["ds"] = pd.to_datetime(prophet_df["ds"])
+    prophet_df["y"] = pd.to_numeric(prophet_df["y"], errors="coerce")
 
-# 日付でソートし重複除去(同日複数レコードは合計)
-prophet_df = prophet_df.groupby("ds")["y"].sum().reset_index()
-prophet_df = prophet_df.sort_values("ds").reset_index(drop=True)
+    # 日付でソートし重複除去(同日複数レコードは合計)
+    prophet_df = prophet_df.groupby("ds")["y"].sum().reset_index()
+    prophet_df = prophet_df.sort_values("ds").reset_index(drop=True)
 
-# 欠損日を補完(0 で埋め、後で欠品処理ロジックで置換可)
-date_range = pd.date_range(
-start=prophet_df["ds"].min(),
-end=prophet_df["ds"].max(),
-freq="D"
-)
-prophet_df = (
-prophet_df
-.set_index("ds")
-.reindex(date_range)
-.fillna(0)
-.reset_index()
-.rename(columns={"index": "ds"})
-)
+    # 欠損日を補完(0 で埋め、後で欠品処理ロジックで置換可)
+    date_range = pd.date_range(
+        start=prophet_df["ds"].min(),
+        end=prophet_df["ds"].max(),
+        freq="D"
+    )
+    prophet_df = (
+        prophet_df
+        .set_index("ds")
+        .reindex(date_range)
+        .fillna(0)
+        .reset_index()
+        .rename(columns={"index": "ds"})
+    )
 
-print(f"データ準備完了: {len(prophet_df)} 日")
-print(f"日付範囲: {prophet_df['ds'].min().date()} → {prophet_df['ds'].max().date()}")
-print(f"日均販売: {prophet_df['y'].mean():.1f}")
+    print(f"データ準備完了: {len(prophet_df)} 日")
+    print(f"日付範囲: {prophet_df['ds'].min().date()} → {prophet_df['ds'].max().date()}")
+    print(f"日均販売: {prophet_df['y'].mean():.1f}")
 
-return prophet_df
+    return prophet_df
 
 # ============================================================
 # Step 2: モデルを訓練
 # ============================================================
 
 def train_prophet(
-df: pd.DataFrame,
-yearly: bool = True,
-weekly: bool = True,
-daily: bool = False,
-changepoint_prior: float = 0.05
+    df: pd.DataFrame,
+    yearly: bool = True,
+    weekly: bool = True,
+    daily: bool = False,
+    changepoint_prior: float = 0.05
 ) -> Prophet:
-"""
-Prophet モデルを訓練する。
+    """
+    Prophet モデルを訓練する。
 
-Args:
-df: Prophet 形式データ(ds, y の 2 列)
-yearly: 年季節性を有効化するか
-weekly: 週季節性を有効化するか
-daily: 日季節性を有効化するか(通常は不要)
-changepoint_prior: トレンド変化点の感度
-- 値が大きいほど、トレンド変化を捉えやすい(が過学習しうる)
-- 値が小さいほど、トレンドが滑らか(が過小学習しうる)
-- デフォルト 0.05、EC シーンは 0.1-0.3 推奨(変化が速い)
+    Args:
+        df: Prophet 形式データ(ds, y の 2 列)
+        yearly: 年季節性を有効化するか
+        weekly: 週季節性を有効化するか
+        daily: 日季節性を有効化するか(通常は不要)
+        changepoint_prior: トレンド変化点の感度
+            - 値が大きいほど、トレンド変化を捉えやすい(が過学習しうる)
+            - 値が小さいほど、トレンドが滑らか(が過小学習しうる)
+            - デフォルト 0.05、EC シーンは 0.1-0.3 推奨(変化が速い)
 
-Returns:
-訓練済みの Prophet モデル
-"""
-model = Prophet(
-yearly_seasonality=yearly,
-weekly_seasonality=weekly,
-daily_seasonality=daily,
-changepoint_prior_scale=changepoint_prior,
-interval_width=0.8, # 80% 信頼区間
-)
+    Returns:
+        訓練済みの Prophet モデル
+    """
+    model = Prophet(
+        yearly_seasonality=yearly,
+        weekly_seasonality=weekly,
+        daily_seasonality=daily,
+        changepoint_prior_scale=changepoint_prior,
+        interval_width=0.8, # 80% 信頼区間
+    )
 
-model.fit(df)
-print("モデル訓練完了")
+    model.fit(df)
+    print("モデル訓練完了")
 
-return model
+    return model
 
 # ============================================================
 # Step 3: 予測を生成
 # ============================================================
 
 def make_forecast(
-model: Prophet,
-periods: int = 90,
-freq: str = "D"
+    model: Prophet,
+    periods: int = 90,
+    freq: str = "D"
 ) -> pd.DataFrame:
-"""
-今後 N 日の予測を生成する。
+    """
+    今後 N 日の予測を生成する。
 
-Args:
-model: 訓練済みの Prophet モデル
-periods: 予測日数
-freq: 頻度(D=日, W=週, M=月)
+    Args:
+        model: 訓練済みの Prophet モデル
+        periods: 予測日数
+        freq: 頻度(D=日, W=週, M=月)
 
-Returns:
-予測結果 DataFrame、以下を含む:
-- ds: 日付
-- yhat: 予測値
-- yhat_lower: 予測下界
-- yhat_upper: 予測上界
-- trend: トレンド成分
-- weekly: 週季節性成分
-- yearly: 年季節性成分
-"""
-future = model.make_future_dataframe(periods=periods, freq=freq)
-forecast = model.predict(future)
+    Returns:
+        予測結果 DataFrame、以下を含む:
+        - ds: 日付
+        - yhat: 予測値
+        - yhat_lower: 予測下界
+        - yhat_upper: 予測上界
+        - trend: トレンド成分
+        - weekly: 週季節性成分
+        - yearly: 年季節性成分
+    """
+    future = model.make_future_dataframe(periods=periods, freq=freq)
+    forecast = model.predict(future)
 
-# 予測値は負にできない(販売の最小は 0)
-forecast["yhat"] = forecast["yhat"].clip(lower=0)
-forecast["yhat_lower"] = forecast["yhat_lower"].clip(lower=0)
+    # 予測値は負にできない(販売の最小は 0)
+    forecast["yhat"] = forecast["yhat"].clip(lower=0)
+    forecast["yhat_lower"] = forecast["yhat_lower"].clip(lower=0)
 
-print(f"予測完了: 今後 {periods} 日")
-print(f"予測平均: {forecast['yhat'].tail(periods).mean():.1f}")
-print(f"予測区間: [{forecast['yhat_lower'].tail(periods).mean():.1f}, "
-f"{forecast['yhat_upper'].tail(periods).mean():.1f}]")
+    print(f"予測完了: 今後 {periods} 日")
+    print(f"予測平均: {forecast['yhat'].tail(periods).mean():.1f}")
+    print(f"予測区間: [{forecast['yhat_lower'].tail(periods).mean():.1f}, "
+          f"{forecast['yhat_upper'].tail(periods).mean():.1f}]")
 
-return forecast
+    return forecast
 
 # ============================================================
 # Step 4: 可視化
 # ============================================================
 
 def plot_forecast(
-model: Prophet,
-forecast: pd.DataFrame,
-actual_df: pd.DataFrame = None,
-title: str = "SKU 販売予測"
+    model: Prophet,
+    forecast: pd.DataFrame,
+    actual_df: pd.DataFrame = None,
+    title: str = "SKU 販売予測"
 ):
-"""
-予測結果図を描画する。
+    """
+    予測結果図を描画する。
 
-Args:
-model: Prophet モデル
-forecast: 予測結果
-actual_df: 実データ(比較用)
-title: グラフタイトル
-"""
-fig, axes = plt.subplots(2, 1, figsize=(14, 10))
+    Args:
+        model: Prophet モデル
+        forecast: 予測結果
+        actual_df: 実データ(比較用)
+        title: グラフタイトル
+    """
+    fig, axes = plt.subplots(2, 1, figsize=(14, 10))
 
-# 図 1: 予測 vs 実績
-ax1 = axes[0]
-ax1.plot(forecast["ds"], forecast["yhat"], color="#1a73e8", label="予測値")
-ax1.fill_between(
-forecast["ds"],
-forecast["yhat_lower"],
-forecast["yhat_upper"],
-alpha=0.2, color="#1a73e8", label="80% 信頼区間"
-)
+    # 図 1: 予測 vs 実績
+    ax1 = axes[0]
+    ax1.plot(forecast["ds"], forecast["yhat"], color="#1a73e8", label="予測値")
+    ax1.fill_between(
+        forecast["ds"],
+        forecast["yhat_lower"],
+        forecast["yhat_upper"],
+        alpha=0.2, color="#1a73e8", label="80% 信頼区間"
+    )
 
-if actual_df is not None:
-ax1.scatter(
-actual_df["ds"], actual_df["y"],
-color="#333", s=10, alpha=0.5, label="実績値"
-)
+    if actual_df is not None:
+        ax1.scatter(
+            actual_df["ds"], actual_df["y"],
+            color="#333", s=10, alpha=0.5, label="実績値"
+        )
 
-ax1.set_title(title, fontsize=14, fontweight="bold")
-ax1.set_ylabel("販売量 (Units)")
-ax1.legend()
-ax1.grid(True, alpha=0.3)
+    ax1.set_title(title, fontsize=14, fontweight="bold")
+    ax1.set_ylabel("販売量 (Units)")
+    ax1.legend()
+    ax1.grid(True, alpha=0.3)
 
-# 図 2: 成分分解
-ax2 = axes[1]
-ax2.plot(forecast["ds"], forecast["trend"], label="トレンド", color="#e8710a")
-if "weekly" in forecast.columns:
-ax2_twin = ax2.twinx()
-weekly_data = forecast.drop_duplicates(subset=["ds"]).tail(90)
-ax2_twin.plot(
-weekly_data["ds"], weekly_data["weekly"],
-label="週季節性", color="#0d652d", alpha=0.7
-)
-ax2_twin.set_ylabel("週季節性")
+    # 図 2: 成分分解
+    ax2 = axes[1]
+    ax2.plot(forecast["ds"], forecast["trend"], label="トレンド", color="#e8710a")
+    if "weekly" in forecast.columns:
+        ax2_twin = ax2.twinx()
+        weekly_data = forecast.drop_duplicates(subset=["ds"]).tail(90)
+        ax2_twin.plot(
+            weekly_data["ds"], weekly_data["weekly"],
+            label="週季節性", color="#0d652d", alpha=0.7
+        )
+        ax2_twin.set_ylabel("週季節性")
 
-ax2.set_title("トレンド分解", fontsize=14, fontweight="bold")
-ax2.set_ylabel("トレンド")
-ax2.legend(loc="upper left")
-ax2.grid(True, alpha=0.3)
+    ax2.set_title("トレンド分解", fontsize=14, fontweight="bold")
+    ax2.set_ylabel("トレンド")
+    ax2.legend(loc="upper left")
+    ax2.grid(True, alpha=0.3)
 
-plt.tight_layout()
-plt.savefig("output/forecast.png", dpi=150, bbox_inches="tight")
-plt.show()
-print("グラフを保存しました: output/forecast.png")
+    plt.tight_layout()
+    plt.savefig("output/forecast.png", dpi=150, bbox_inches="tight")
+    plt.show()
+    print("グラフを保存しました: output/forecast.png")
 
 # ============================================================
 # 完全な使用例
@@ -469,176 +469,176 @@ print("グラフを保存しました: output/forecast.png")
 
 ```python
 def create_ecommerce_holidays(years: list[int]) -> pd.DataFrame:
-"""
-EC 大型セールカレンダーを作成する。
+    """
+    EC 大型セールカレンダーを作成する。
 
-Prophet の holidays パラメータは以下を含む DataFrame を受け取る:
-- holiday: イベント名
-- ds: イベント日付
-- lower_window: イベント前の影響日数(負数)
-- upper_window: イベント後の影響日数
-"""
-holidays = []
+    Prophet の holidays パラメータは以下を含む DataFrame を受け取る:
+    - holiday: イベント名
+    - ds: イベント日付
+    - lower_window: イベント前の影響日数(負数)
+    - upper_window: イベント後の影響日数
+    """
+    holidays = []
 
-for year in years:
-# Prime Day(通常 7 月中旬、2 日間持続)
-holidays.append({
-"holiday": "prime_day",
-"ds": f"{year}-07-12",
-"lower_window": -3, # 3 日前から影響開始(予熱期)
-"upper_window": 2, # 終了後 2 日も余波あり
-})
+    for year in years:
+        # Prime Day(通常 7 月中旬、2 日間持続)
+        holidays.append({
+            "holiday": "prime_day",
+            "ds": f"{year}-07-12",
+            "lower_window": -3, # 3 日前から影響開始(予熱期)
+            "upper_window": 2, # 終了後 2 日も余波あり
+        })
 
-# Black Friday(11 月第 4 金曜)
-# 簡略化: 11-24 付近に固定
-holidays.append({
-"holiday": "black_friday",
-"ds": f"{year}-11-24",
-"lower_window": -7, # BFCM 週は 1 週間前から開始
-"upper_window": 3, # Cyber Monday 後の数日
-})
+        # Black Friday(11 月第 4 金曜)
+        # 簡略化: 11-24 付近に固定
+        holidays.append({
+            "holiday": "black_friday",
+            "ds": f"{year}-11-24",
+            "lower_window": -7, # BFCM 週は 1 週間前から開始
+            "upper_window": 3, # Cyber Monday 後の数日
+        })
 
-# Cyber Monday
-holidays.append({
-"holiday": "cyber_monday",
-"ds": f"{year}-11-27",
-"lower_window": 0,
-"upper_window": 1,
-})
+        # Cyber Monday
+        holidays.append({
+            "holiday": "cyber_monday",
+            "ds": f"{year}-11-27",
+            "lower_window": 0,
+            "upper_window": 1,
+        })
 
-# 独身の日(中国セラーに影響)
-holidays.append({
-"holiday": "singles_day",
-"ds": f"{year}-11-11",
-"lower_window": -3,
-"upper_window": 1,
-})
+        # 独身の日(中国セラーに影響)
+        holidays.append({
+            "holiday": "singles_day",
+            "ds": f"{year}-11-11",
+            "lower_window": -3,
+            "upper_window": 1,
+        })
 
-# クリスマス前の買い物シーズン
-holidays.append({
-"holiday": "christmas_shopping",
-"ds": f"{year}-12-15",
-"lower_window": -5,
-"upper_window": 10,
-})
+        # クリスマス前の買い物シーズン
+        holidays.append({
+            "holiday": "christmas_shopping",
+            "ds": f"{year}-12-15",
+            "lower_window": -5,
+            "upper_window": 10,
+        })
 
-# 新年後の低迷期
-holidays.append({
-"holiday": "post_newyear_dip",
-"ds": f"{year}-01-05",
-"lower_window": -5,
-"upper_window": 10,
-})
+        # 新年後の低迷期
+        holidays.append({
+            "holiday": "post_newyear_dip",
+            "ds": f"{year}-01-05",
+            "lower_window": -5,
+            "upper_window": 10,
+        })
 
-return pd.DataFrame(holidays)
+    return pd.DataFrame(holidays)
 
 def train_prophet_with_holidays(
-df: pd.DataFrame,
-holidays: pd.DataFrame = None,
-changepoint_prior: float = 0.1
+    df: pd.DataFrame,
+    holidays: pd.DataFrame = None,
+    changepoint_prior: float = 0.1
 ) -> Prophet:
-"""
-祝日効果付きの Prophet モデルを訓練する。
-"""
-if holidays is None:
-years = list(range(
-df["ds"].dt.year.min(),
-df["ds"].dt.year.max() + 2 # 予測年を含む
-))
-holidays = create_ecommerce_holidays(years)
+    """
+    祝日効果付きの Prophet モデルを訓練する。
+    """
+    if holidays is None:
+        years = list(range(
+            df["ds"].dt.year.min(),
+            df["ds"].dt.year.max() + 2 # 予測年を含む
+        ))
+        holidays = create_ecommerce_holidays(years)
 
-model = Prophet(
-yearly_seasonality=True,
-weekly_seasonality=True,
-daily_seasonality=False,
-changepoint_prior_scale=changepoint_prior,
-holidays=holidays,
-holidays_prior_scale=10.0, # 祝日効果の感度
-interval_width=0.8,
-)
+    model = Prophet(
+        yearly_seasonality=True,
+        weekly_seasonality=True,
+        daily_seasonality=False,
+        changepoint_prior_scale=changepoint_prior,
+        holidays=holidays,
+        holidays_prior_scale=10.0, # 祝日効果の感度
+        interval_width=0.8,
+    )
 
-model.fit(df)
-print(f"モデル訓練完了({len(holidays)} 個の祝日イベント含む)")
+    model.fit(df)
+    print(f"モデル訓練完了({len(holidays)} 個の祝日イベント含む)")
 
-return model
+    return model
 ```
 
 **外部回帰変数を追加(広告費用、競合価格):**
 
 ```python
 def train_prophet_with_regressors(
-df: pd.DataFrame,
-regressor_cols: list[str] = None
+    df: pd.DataFrame,
+    regressor_cols: list[str] = None
 ) -> Prophet:
-"""
-外部回帰変数付きの Prophet モデルを訓練する。
+    """
+    外部回帰変数付きの Prophet モデルを訓練する。
 
-外部変数は以下がありうる:
-- ad_spend: 広告費用(投入が多いほど販売が高い)
-- competitor_price: 競合価格(競合が値上げ、自分の販売が上がりうる)
-- bsr_rank: BSR 順位(順位が高いほど露出が多い)
-- coupon_active: クーポンの有無(0/1)
+    外部変数は以下がありうる:
+    - ad_spend: 広告費用(投入が多いほど販売が高い)
+    - competitor_price: 競合価格(競合が値上げ、自分の販売が上がりうる)
+    - bsr_rank: BSR 順位(順位が高いほど露出が多い)
+    - coupon_active: クーポンの有無(0/1)
 
-注意: 予測時にも未来の外部変数値を提供する必要がある!
-"""
-years = list(range(
-df["ds"].dt.year.min(),
-df["ds"].dt.year.max() + 2
-))
-holidays = create_ecommerce_holidays(years)
+    注意: 予測時にも未来の外部変数値を提供する必要がある!
+    """
+    years = list(range(
+        df["ds"].dt.year.min(),
+        df["ds"].dt.year.max() + 2
+    ))
+    holidays = create_ecommerce_holidays(years)
 
-model = Prophet(
-yearly_seasonality=True,
-weekly_seasonality=True,
-changepoint_prior_scale=0.1,
-holidays=holidays,
-interval_width=0.8,
-)
+    model = Prophet(
+        yearly_seasonality=True,
+        weekly_seasonality=True,
+        changepoint_prior_scale=0.1,
+        holidays=holidays,
+        interval_width=0.8,
+    )
 
-# 外部回帰変数を追加
-regressor_cols = regressor_cols or []
-for col in regressor_cols:
-if col in df.columns:
-model.add_regressor(col, standardize=True)
-print(f"回帰変数を追加: {col}")
+    # 外部回帰変数を追加
+    regressor_cols = regressor_cols or []
+    for col in regressor_cols:
+        if col in df.columns:
+            model.add_regressor(col, standardize=True)
+            print(f"回帰変数を追加: {col}")
 
-model.fit(df)
-print("モデル訓練完了(外部変数含む)")
+    model.fit(df)
+    print("モデル訓練完了(外部変数含む)")
 
-return model
+    return model
 
 def forecast_with_regressors(
-model: Prophet,
-periods: int = 90,
-future_regressors: pd.DataFrame = None
+    model: Prophet,
+    periods: int = 90,
+    future_regressors: pd.DataFrame = None
 ) -> pd.DataFrame:
-"""
-外部変数付きの予測。
+    """
+    外部変数付きの予測。
 
-Args:
-model: 訓練済みモデル
-periods: 予測日数
-future_regressors: 未来の外部変数値
-提供しない場合は履歴平均で埋める(非推奨、精度が下がる)
-"""
-future = model.make_future_dataframe(periods=periods)
+    Args:
+        model: 訓練済みモデル
+        periods: 予測日数
+        future_regressors: 未来の外部変数値
+            提供しない場合は履歴平均で埋める(非推奨、精度が下がる)
+    """
+    future = model.make_future_dataframe(periods=periods)
 
-# 未来の外部変数をマージ
-if future_regressors is not None:
-future = future.merge(future_regressors, on="ds", how="left")
+    # 未来の外部変数をマージ
+    if future_regressors is not None:
+        future = future.merge(future_regressors, on="ds", how="left")
 
-# 欠損の外部変数を履歴平均で埋める
-for col in future.columns:
-if col not in ["ds"] and future[col].isna().any():
-fill_value = future[col].dropna().mean()
-future[col] = future[col].fillna(fill_value)
-print(f"{col} に欠損値、平均 {fill_value:.2f} で補完")
+    # 欠損の外部変数を履歴平均で埋める
+    for col in future.columns:
+        if col not in ["ds"] and future[col].isna().any():
+            fill_value = future[col].dropna().mean()
+            future[col] = future[col].fillna(fill_value)
+            print(f"{col} に欠損値、平均 {fill_value:.2f} で補完")
 
-forecast = model.predict(future)
-forecast["yhat"] = forecast["yhat"].clip(lower=0)
-forecast["yhat_lower"] = forecast["yhat_lower"].clip(lower=0)
+    forecast = model.predict(future)
+    forecast["yhat"] = forecast["yhat"].clip(lower=0)
+    forecast["yhat_lower"] = forecast["yhat_lower"].clip(lower=0)
 
-return forecast
+    return forecast
 
 # 使用例
 # df = prepare_prophet_data(raw_df)
@@ -666,73 +666,73 @@ AutoGluon は Amazon がオープンソース化した自動化機械学習フ�
 from autogluon.timeseries import TimeSeriesDataFrame, TimeSeriesPredictor
 
 def autogluon_forecast(
-df: pd.DataFrame,
-date_col: str = "date",
-value_col: str = "units",
-item_col: str = "asin",
-prediction_length: int = 30,
-time_limit: int = 300
+    df: pd.DataFrame,
+    date_col: str = "date",
+    value_col: str = "units",
+    item_col: str = "asin",
+    prediction_length: int = 30,
+    time_limit: int = 300
 ) -> pd.DataFrame:
-"""
-AutoGluon で複数 SKU の販売を自動予測する。
+    """
+    AutoGluon で複数 SKU の販売を自動予測する。
 
-AutoGluon の強み:
-- ゼロ設定: モデル選択やパラメータ調整が不要
-- 複数 SKU: 一度の訓練で全 SKU を同時予測
-- 自動アンサンブル: 複数モデルを自動で試し最適結果をアンサンブル
+    AutoGluon の強み:
+    - ゼロ設定: モデル選択やパラメータ調整が不要
+    - 複数 SKU: 一度の訓練で全 SKU を同時予測
+    - 自動アンサンブル: 複数モデルを自動で試し最適結果をアンサンブル
 
-Args:
-df: 日付、販売量、SKU ID を含む DataFrame
-date_col: 日付列名
-value_col: 目標値列名
-item_col: SKU ID 列名
-prediction_length: 予測日数
-time_limit: 訓練時間の制限(秒)
+    Args:
+        df: 日付、販売量、SKU ID を含む DataFrame
+        date_col: 日付列名
+        value_col: 目標値列名
+        item_col: SKU ID 列名
+        prediction_length: 予測日数
+        time_limit: 訓練時間の制限(秒)
 
-Returns:
-予測結果 DataFrame
-"""
-# 1. AutoGluon 形式に変換
-ag_df = df.rename(columns={
-date_col: "timestamp",
-value_col: "target",
-item_col: "item_id"
-})
-ag_df["timestamp"] = pd.to_datetime(ag_df["timestamp"])
+    Returns:
+        予測結果 DataFrame
+    """
+    # 1. AutoGluon 形式に変換
+    ag_df = df.rename(columns={
+        date_col: "timestamp",
+        value_col: "target",
+        item_col: "item_id"
+    })
+    ag_df["timestamp"] = pd.to_datetime(ag_df["timestamp"])
 
-ts_df = TimeSeriesDataFrame.from_data_frame(
-ag_df,
-id_column="item_id",
-timestamp_column="timestamp"
-)
+    ts_df = TimeSeriesDataFrame.from_data_frame(
+        ag_df,
+        id_column="item_id",
+        timestamp_column="timestamp"
+    )
 
-print(f"データ: {ts_df.num_items} 個の SKU, "
-f"{len(ts_df)} レコード")
+    print(f"データ: {ts_df.num_items} 個の SKU, "
+          f"{len(ts_df)} レコード")
 
-# 2. 訓練(AutoGluon が最適モデルを自動選択)
-predictor = TimeSeriesPredictor(
-prediction_length=prediction_length,
-target="target",
-eval_metric="MAPE", # MAPE を評価指標に
-)
+    # 2. 訓練(AutoGluon が最適モデルを自動選択)
+    predictor = TimeSeriesPredictor(
+        prediction_length=prediction_length,
+        target="target",
+        eval_metric="MAPE", # MAPE を評価指標に
+    )
 
-predictor.fit(
-train_data=ts_df,
-time_limit=time_limit, # 訓練時間を制限
-presets="medium_quality", # fast / medium / high / best
-)
+    predictor.fit(
+        train_data=ts_df,
+        time_limit=time_limit, # 訓練時間を制限
+        presets="medium_quality", # fast / medium / high / best
+    )
 
-# 3. モデルランキングを確認
-leaderboard = predictor.leaderboard(ts_df)
-print("\nモデルランキング:")
-print(leaderboard[["model", "score_val"]].to_string(index=False))
+    # 3. モデルランキングを確認
+    leaderboard = predictor.leaderboard(ts_df)
+    print("\nモデルランキング:")
+    print(leaderboard[["model", "score_val"]].to_string(index=False))
 
-# 4. 予測を生成
-predictions = predictor.predict(ts_df)
+    # 4. 予測を生成
+    predictions = predictor.predict(ts_df)
 
-print(f"\n予測完了: {ts_df.num_items} 個の SKU × {prediction_length} 日")
+    print(f"\n予測完了: {ts_df.num_items} 個の SKU × {prediction_length} 日")
 
-return predictions
+    return predictions
 
 # 使用例
 # df = pd.read_csv("data/daily_sales_all_skus.csv")
@@ -767,121 +767,121 @@ from sentence_transformers import SentenceTransformer
 import pandas as pd
 
 def analyze_review_topics(
-reviews: list[str],
-language: str = "english",
-nr_topics: int = "auto",
-min_topic_size: int = 10
+    reviews: list[str],
+    language: str = "english",
+    nr_topics: int = "auto",
+    min_topic_size: int = 10
 ) -> tuple:
-"""
-BERTopic で Review テキストから主題を自動発見する。
+    """
+    BERTopic で Review テキストから主題を自動発見する。
 
-動作原理:
-1. Sentence-BERT で各 Review をベクトルに変換
-2. UMAP で次元削減
-3. HDBSCAN でクラスタリング
-4. c-TF-IDF で各主題のキーワードを抽出
+    動作原理:
+    1. Sentence-BERT で各 Review をベクトルに変換
+    2. UMAP で次元削減
+    3. HDBSCAN でクラスタリング
+    4. c-TF-IDF で各主題のキーワードを抽出
 
-Args:
-reviews: Review テキストのリスト
-language: 言語 ("english" か "chinese")
-nr_topics: 主題数("auto" で自動決定)
-min_topic_size: 最小主題サイズ(Review 数がこれ未満の主題は統合される)
+    Args:
+        reviews: Review テキストのリスト
+        language: 言語 ("english" か "chinese")
+        nr_topics: 主題数("auto" で自動決定)
+        min_topic_size: 最小主題サイズ(Review 数がこれ未満の主題は統合される)
 
-Returns:
-(topic_model, topics, probs)
-- topic_model: 訓練済みの BERTopic モデル
-- topics: 各 Review の主題番号
-- probs: 各 Review が各主題に属する確率
-"""
-# 埋め込みモデルを選択
-if language == "chinese":
-embedding_model = SentenceTransformer(
-"paraphrase-multilingual-MiniLM-L12-v2"
-)
-else:
-embedding_model = SentenceTransformer(
-"all-MiniLM-L6-v2"
-)
+    Returns:
+        (topic_model, topics, probs)
+        - topic_model: 訓練済みの BERTopic モデル
+        - topics: 各 Review の主題番号
+        - probs: 各 Review が各主題に属する確率
+    """
+    # 埋め込みモデルを選択
+    if language == "chinese":
+        embedding_model = SentenceTransformer(
+            "paraphrase-multilingual-MiniLM-L12-v2"
+        )
+    else:
+        embedding_model = SentenceTransformer(
+            "all-MiniLM-L6-v2"
+        )
 
-# BERTopic モデルを作成
-topic_model = BERTopic(
-embedding_model=embedding_model,
-nr_topics=nr_topics,
-min_topic_size=min_topic_size,
-language=language,
-verbose=True
-)
+    # BERTopic モデルを作成
+    topic_model = BERTopic(
+        embedding_model=embedding_model,
+        nr_topics=nr_topics,
+        min_topic_size=min_topic_size,
+        language=language,
+        verbose=True
+    )
 
-# 訓練
-topics, probs = topic_model.fit_transform(reviews)
+    # 訓練
+    topics, probs = topic_model.fit_transform(reviews)
 
-# 主題概要を出力
-topic_info = topic_model.get_topic_info()
-print("\n発見された主題:")
-for _, row in topic_info.head(10).iterrows():
-if row["Topic"] != -1: # -1 は外れ値
-print(f"主題 {row['Topic']}: {row['Name']} "
-f"({row['Count']} 件の Review)")
+    # 主題概要を出力
+    topic_info = topic_model.get_topic_info()
+    print("\n発見された主題:")
+    for _, row in topic_info.head(10).iterrows():
+        if row["Topic"] != -1: # -1 は外れ値
+            print(f"主題 {row['Topic']}: {row['Name']} "
+                  f"({row['Count']} 件の Review)")
 
-return topic_model, topics, probs
+    return topic_model, topics, probs
 
 def get_topic_summary(
-topic_model: BERTopic,
-reviews: list[str],
-topics: list[int],
-ratings: list[int] = None
+    topic_model: BERTopic,
+    reviews: list[str],
+    topics: list[int],
+    ratings: list[int] = None
 ) -> pd.DataFrame:
-"""
-主題サマリレポートを生成する。
+    """
+    主題サマリレポートを生成する。
 
-Args:
-topic_model: 訓練済みモデル
-reviews: Review テキスト
-topics: 主題番号
-ratings: 評価(1-5)、各主題の感情傾向の分析用
+    Args:
+        topic_model: 訓練済みモデル
+        reviews: Review テキスト
+        topics: 主題番号
+        ratings: 評価(1-5)、各主題の感情傾向の分析用
 
-Returns:
-主題サマリ DataFrame
-"""
-summary_data = []
-topic_info = topic_model.get_topic_info()
+    Returns:
+        主題サマリ DataFrame
+    """
+    summary_data = []
+    topic_info = topic_model.get_topic_info()
 
-for _, row in topic_info.iterrows():
-topic_id = row["Topic"]
-if topic_id == -1:
-continue
+    for _, row in topic_info.iterrows():
+        topic_id = row["Topic"]
+        if topic_id == -1:
+            continue
 
-# その主題のキーワードを取得
-keywords = topic_model.get_topic(topic_id)
-keyword_str = ", ".join([w for w, _ in keywords[:5]])
+        # その主題のキーワードを取得
+        keywords = topic_model.get_topic(topic_id)
+        keyword_str = ", ".join([w for w, _ in keywords[:5]])
 
-# その主題の Review インデックスを取得
-topic_mask = [t == topic_id for t in topics]
-topic_reviews = [r for r, m in zip(reviews, topic_mask) if m]
+        # その主題の Review インデックスを取得
+        topic_mask = [t == topic_id for t in topics]
+        topic_reviews = [r for r, m in zip(reviews, topic_mask) if m]
 
-entry = {
-"topic_id": topic_id,
-"keywords": keyword_str,
-"review_count": len(topic_reviews),
-"sample_review": topic_reviews[0][:200] if topic_reviews else "",
-}
+        entry = {
+            "topic_id": topic_id,
+            "keywords": keyword_str,
+            "review_count": len(topic_reviews),
+            "sample_review": topic_reviews[0][:200] if topic_reviews else "",
+        }
 
-# 評価データがあれば、その主題の平均評価を計算
-if ratings:
-topic_ratings = [r for r, m in zip(ratings, topic_mask) if m]
-entry["avg_rating"] = round(sum(topic_ratings) / len(topic_ratings), 2) if topic_ratings else None
-entry["negative_pct"] = round(
-sum(1 for r in topic_ratings if r <= 2) / len(topic_ratings) * 100, 1
-) if topic_ratings else None
+        # 評価データがあれば、その主題の平均評価を計算
+        if ratings:
+            topic_ratings = [r for r, m in zip(ratings, topic_mask) if m]
+            entry["avg_rating"] = round(sum(topic_ratings) / len(topic_ratings), 2) if topic_ratings else None
+            entry["negative_pct"] = round(
+                sum(1 for r in topic_ratings if r <= 2) / len(topic_ratings) * 100, 1
+            ) if topic_ratings else None
 
-summary_data.append(entry)
+        summary_data.append(entry)
 
-summary = pd.DataFrame(summary_data)
+    summary = pd.DataFrame(summary_data)
 
-if "avg_rating" in summary.columns:
-summary = summary.sort_values("avg_rating", ascending=True)
+    if "avg_rating" in summary.columns:
+        summary = summary.sort_values("avg_rating", ascending=True)
 
-return summary
+    return summary
 
 # 使用例
 # reviews_df = pd.read_csv("data/reviews.csv")
@@ -915,87 +915,87 @@ return summary
 
 ```python
 def forecast_to_reorder(
-forecast: pd.DataFrame,
-current_stock: int,
-lead_time_days: int = 30,
-safety_stock_days: int = 14,
-moq: int = 100
+    forecast: pd.DataFrame,
+    current_stock: int,
+    lead_time_days: int = 30,
+    safety_stock_days: int = 14,
+    moq: int = 100
 ) -> dict:
-"""
-予測結果を補充提案に変換する。
+    """
+    予測結果を補充提案に変換する。
 
-Args:
-forecast: Prophet 予測結果
-current_stock: 現在の在庫数
-lead_time_days: サプライヤーの納期(日)
-safety_stock_days: 安全在庫日数
-moq: 最小発注量
+    Args:
+        forecast: Prophet 予測結果
+        current_stock: 現在の在庫数
+        lead_time_days: サプライヤーの納期(日)
+        safety_stock_days: 安全在庫日数
+        moq: 最小発注量
 
-Returns:
-補充提案の辞書
-"""
-# 未来の予測データを取得
-future_data = forecast[forecast["ds"] > pd.Timestamp.now()]
+    Returns:
+        補充提案の辞書
+    """
+    # 未来の予測データを取得
+    future_data = forecast[forecast["ds"] > pd.Timestamp.now()]
 
-if future_data.empty:
-return {"error": "未来の予測データなし"}
+    if future_data.empty:
+        return {"error": "未来の予測データなし"}
 
-# 日均予測販売を計算(上界で保守的に見積もり)
-daily_forecast = future_data["yhat"].mean()
-daily_upper = future_data["yhat_upper"].mean()
+    # 日均予測販売を計算(上界で保守的に見積もり)
+    daily_forecast = future_data["yhat"].mean()
+    daily_upper = future_data["yhat_upper"].mean()
 
-# 安全在庫 = 安全日数 × 日均販売上界
-safety_stock = int(safety_stock_days * daily_upper)
+    # 安全在庫 = 安全日数 × 日均販売上界
+    safety_stock = int(safety_stock_days * daily_upper)
 
-# Lead Time 期間の予想消費
-lt_consumption = int(lead_time_days * daily_forecast)
+    # Lead Time 期間の予想消費
+    lt_consumption = int(lead_time_days * daily_forecast)
 
-# 再発注点 = Lead Time 消費 + 安全在庫
-reorder_point = lt_consumption + safety_stock
+    # 再発注点 = Lead Time 消費 + 安全在庫
+    reorder_point = lt_consumption + safety_stock
 
-# 現在在庫が支えられる日数
-days_of_stock = int(current_stock / daily_forecast) if daily_forecast > 0 else 999
+    # 現在在庫が支えられる日数
+    days_of_stock = int(current_stock / daily_forecast) if daily_forecast > 0 else 999
 
-# 提案発注量 = 90 日予測需要 - 現在在庫 + 安全在庫
-forecast_90d = int(future_data["yhat"].head(90).sum())
-suggested_qty = max(forecast_90d - current_stock + safety_stock, 0)
+    # 提案発注量 = 90 日予測需要 - 現在在庫 + 安全在庫
+    forecast_90d = int(future_data["yhat"].head(90).sum())
+    suggested_qty = max(forecast_90d - current_stock + safety_stock, 0)
 
-# MOQ の倍数に切り上げ
-if suggested_qty > 0:
-suggested_qty = max(
-((suggested_qty + moq - 1) // moq) * moq,
-moq
-)
+    # MOQ の倍数に切り上げ
+    if suggested_qty > 0:
+        suggested_qty = max(
+            ((suggested_qty + moq - 1) // moq) * moq,
+            moq
+        )
 
-# 緊急度の判断
-if current_stock <= reorder_point * 0.5:
-urgency = "緊急補充"
-elif current_stock <= reorder_point:
-urgency = "補充推奨"
-else:
-urgency = "在庫十分"
+    # 緊急度の判断
+    if current_stock <= reorder_point * 0.5:
+        urgency = "緊急補充"
+    elif current_stock <= reorder_point:
+        urgency = "補充推奨"
+    else:
+        urgency = "在庫十分"
 
-result = {
-"urgency": urgency,
-"current_stock": current_stock,
-"days_of_stock": days_of_stock,
-"daily_forecast": round(daily_forecast, 1),
-"safety_stock": safety_stock,
-"reorder_point": reorder_point,
-"suggested_qty": suggested_qty,
-"forecast_90d": forecast_90d,
-"lead_time_days": lead_time_days,
-}
+    result = {
+        "urgency": urgency,
+        "current_stock": current_stock,
+        "days_of_stock": days_of_stock,
+        "daily_forecast": round(daily_forecast, 1),
+        "safety_stock": safety_stock,
+        "reorder_point": reorder_point,
+        "suggested_qty": suggested_qty,
+        "forecast_90d": forecast_90d,
+        "lead_time_days": lead_time_days,
+    }
 
-print(f"\n補充提案:")
-print(f"状態: {urgency}")
-print(f"現在在庫: {current_stock} 件(あと {days_of_stock} 日支えられる)")
-print(f"日均予測: {daily_forecast:.1f} 件/日")
-print(f"安全在庫: {safety_stock} 件")
-print(f"再発注点: {reorder_point} 件")
-print(f"提案発注: {suggested_qty} 件(MOQ={moq})")
+    print(f"\n補充提案:")
+    print(f"状態: {urgency}")
+    print(f"現在在庫: {current_stock} 件(あと {days_of_stock} 日支えられる)")
+    print(f"日均予測: {daily_forecast:.1f} 件/日")
+    print(f"安全在庫: {safety_stock} 件")
+    print(f"再発注点: {reorder_point} 件")
+    print(f"提案発注: {suggested_qty} 件(MOQ={moq})")
 
-return result
+    return result
 
 # 使用例
 # reorder = forecast_to_reorder(
@@ -1086,56 +1086,56 @@ def evaluate_forecast(
 
 ```python
 def backtest_prophet(
-df: pd.DataFrame,
-initial_days: int = 180,
-horizon_days: int = 30,
-period_days: int = 30
+    df: pd.DataFrame,
+    initial_days: int = 180,
+    horizon_days: int = 30,
+    period_days: int = 30
 ) -> pd.DataFrame:
-"""
-Prophet バックテスト: ローリングウィンドウ検証。
+    """
+    Prophet バックテスト: ローリングウィンドウ検証。
 
-原理:
-1. 最初の initial_days 日のデータで訓練
-2. 今後 horizon_days 日を予測
-3. 実績値と比較
-4. ウィンドウを前へ period_days 日スライド、繰り返し
+    原理:
+    1. 最初の initial_days 日のデータで訓練
+    2. 今後 horizon_days 日を予測
+    3. 実績値と比較
+    4. ウィンドウを前へ period_days 日スライド、繰り返し
 
-Args:
-df: Prophet 形式データ
-initial_days: 初期訓練データの日数
-horizon_days: 毎回予測する日数
-period_days: ウィンドウのスライド歩幅
+    Args:
+        df: Prophet 形式データ
+        initial_days: 初期訓練データの日数
+        horizon_days: 毎回予測する日数
+        period_days: ウィンドウのスライド歩幅
 
-Returns:
-バックテスト結果 DataFrame
-"""
-from prophet.diagnostics import cross_validation, performance_metrics
+    Returns:
+        バックテスト結果 DataFrame
+    """
+    from prophet.diagnostics import cross_validation, performance_metrics
 
-model = Prophet(
-yearly_seasonality=True,
-weekly_seasonality=True,
-changepoint_prior_scale=0.1,
-interval_width=0.8,
-)
-model.fit(df)
+    model = Prophet(
+        yearly_seasonality=True,
+        weekly_seasonality=True,
+        changepoint_prior_scale=0.1,
+        interval_width=0.8,
+    )
+    model.fit(df)
 
-# クロスバリデーション
-cv_results = cross_validation(
-model,
-initial=f"{initial_days} days",
-period=f"{period_days} days",
-horizon=f"{horizon_days} days"
-)
+    # クロスバリデーション
+    cv_results = cross_validation(
+        model,
+        initial=f"{initial_days} days",
+        period=f"{period_days} days",
+        horizon=f"{horizon_days} days"
+    )
 
-# 性能指標を計算
-perf = performance_metrics(cv_results)
+    # 性能指標を計算
+    perf = performance_metrics(cv_results)
 
-print("バックテスト結果:")
-print(f"MAE: {perf['mae'].mean():.2f}")
-print(f"RMSE: {perf['rmse'].mean():.2f}")
-print(f"MAPE: {perf['mape'].mean() * 100:.2f}%")
+    print("バックテスト結果:")
+    print(f"MAE: {perf['mae'].mean():.2f}")
+    print(f"RMSE: {perf['rmse'].mean():.2f}")
+    print(f"MAPE: {perf['mape'].mean() * 100:.2f}%")
 
-return cv_results, perf
+    return cv_results, perf
 
 # 使用例
 # cv_results, perf = backtest_prophet(prophet_df, initial_days=180, horizon_days=30)
@@ -1203,97 +1203,97 @@ from pathlib import Path
 
 from src.data_prep import prepare_prophet_data, handle_stockout
 from src.prophet_model import (
-train_prophet_with_holidays,
-make_forecast,
-plot_forecast
+    train_prophet_with_holidays,
+    make_forecast,
+    plot_forecast
 )
 from src.evaluator import evaluate_forecast, backtest_prophet
 from src.reorder import forecast_to_reorder
 
 def run(
-data_path: str,
-asin: str = None,
-forecast_days: int = 90,
-current_stock: int = None,
-lead_time: int = 30
+    data_path: str,
+    asin: str = None,
+    forecast_days: int = 90,
+    current_stock: int = None,
+    lead_time: int = 30
 ):
-"""
-完全な予測フロー: データ準備 → 訓練 → 予測 → 評価 → 補充提案
-"""
-print(f"予測フローを開始")
+    """
+    完全な予測フロー: データ準備 → 訓練 → 予測 → 評価 → 補充提案
+    """
+    print(f"予測フローを開始")
 
-# 1. データをロード
-df = pd.read_csv(data_path)
-if asin and "asin" in df.columns:
-df = df[df["asin"] == asin]
-print(f"SKU: {asin}")
+    # 1. データをロード
+    df = pd.read_csv(data_path)
+    if asin and "asin" in df.columns:
+        df = df[df["asin"] == asin]
+        print(f"SKU: {asin}")
 
-# 2. データ準備
-prophet_df = prepare_prophet_data(df, date_col="date", value_col="units")
-prophet_df = handle_stockout(prophet_df, units_col="y")
+    # 2. データ準備
+    prophet_df = prepare_prophet_data(df, date_col="date", value_col="units")
+    prophet_df = handle_stockout(prophet_df, units_col="y")
 
-# 3. 訓練(祝日効果付き)
-model = train_prophet_with_holidays(prophet_df, changepoint_prior=0.1)
+    # 3. 訓練(祝日効果付き)
+    model = train_prophet_with_holidays(prophet_df, changepoint_prior=0.1)
 
-# 4. 予測
-forecast = make_forecast(model, periods=forecast_days)
+    # 4. 予測
+    forecast = make_forecast(model, periods=forecast_days)
 
-# 5. 評価(最後の 30 日で検証)
-if len(prophet_df) > 30:
-train_df = prophet_df.iloc[:-30]
-test_df = prophet_df.iloc[-30:]
+    # 5. 評価(最後の 30 日で検証)
+    if len(prophet_df) > 30:
+        train_df = prophet_df.iloc[:-30]
+        test_df = prophet_df.iloc[-30:]
 
-eval_model = train_prophet_with_holidays(train_df)
-eval_forecast = make_forecast(eval_model, periods=30)
+        eval_model = train_prophet_with_holidays(train_df)
+        eval_forecast = make_forecast(eval_model, periods=30)
 
-eval_pred = eval_forecast.tail(30)["yhat"].values
-eval_actual = test_df["y"].values
-metrics = evaluate_forecast(
-pd.Series(eval_actual), pd.Series(eval_pred)
-)
+        eval_pred = eval_forecast.tail(30)["yhat"].values
+        eval_actual = test_df["y"].values
+        metrics = evaluate_forecast(
+            pd.Series(eval_actual), pd.Series(eval_pred)
+        )
 
-# 6. 可視化
-output_dir = Path("output")
-output_dir.mkdir(exist_ok=True)
+    # 6. 可視化
+    output_dir = Path("output")
+    output_dir.mkdir(exist_ok=True)
 
-plot_forecast(
-model, forecast, actual_df=prophet_df,
-title=f"{'ASIN ' + asin if asin else 'SKU'} 販売予測 ({forecast_days}日)"
-)
+    plot_forecast(
+        model, forecast, actual_df=prophet_df,
+        title=f"{'ASIN ' + asin if asin else 'SKU'} 販売予測 ({forecast_days}日)"
+    )
 
-# 7. 予測結果を保存
-forecast_output = forecast[["ds", "yhat", "yhat_lower", "yhat_upper"]].tail(forecast_days)
-forecast_output.to_csv(
-output_dir / f"forecast_{asin or 'sku'}_{forecast_days}d.csv",
-index=False
-)
+    # 7. 予測結果を保存
+    forecast_output = forecast[["ds", "yhat", "yhat_lower", "yhat_upper"]].tail(forecast_days)
+    forecast_output.to_csv(
+        output_dir / f"forecast_{asin or 'sku'}_{forecast_days}d.csv",
+        index=False
+    )
 
-# 8. 補充提案
-if current_stock is not None:
-reorder = forecast_to_reorder(
-forecast,
-current_stock=current_stock,
-lead_time_days=lead_time
-)
+    # 8. 補充提案
+    if current_stock is not None:
+        reorder = forecast_to_reorder(
+            forecast,
+            current_stock=current_stock,
+            lead_time_days=lead_time
+        )
 
-print(f"\n予測完了!結果は output/ に保存済み")
+    print(f"\n予測完了!結果は output/ に保存済み")
 
 if __name__ == "__main__":
-parser = argparse.ArgumentParser(description="SKU 販売予測")
-parser.add_argument("--data", required=True, help="販売データ CSV パス")
-parser.add_argument("--asin", help="ASIN")
-parser.add_argument("--days", type=int, default=90, help="予測日数")
-parser.add_argument("--stock", type=int, help="現在在庫")
-parser.add_argument("--lead-time", type=int, default=30, help="納期(日)")
-args = parser.parse_args()
+    parser = argparse.ArgumentParser(description="SKU 販売予測")
+    parser.add_argument("--data", required=True, help="販売データ CSV パス")
+    parser.add_argument("--asin", help="ASIN")
+    parser.add_argument("--days", type=int, default=90, help="予測日数")
+    parser.add_argument("--stock", type=int, help="現在在庫")
+    parser.add_argument("--lead-time", type=int, default=30, help="納期(日)")
+    args = parser.parse_args()
 
-run(
-data_path=args.data,
-asin=args.asin,
-forecast_days=args.days,
-current_stock=args.stock,
-lead_time=args.lead_time
-)
+    run(
+        data_path=args.data,
+        asin=args.asin,
+        forecast_days=args.days,
+        current_stock=args.stock,
+        lead_time=args.lead_time
+    )
 ```
 
 ```bash
