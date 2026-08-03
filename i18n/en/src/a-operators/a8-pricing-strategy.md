@@ -571,6 +571,15 @@ New-product price too high → no reviews to support it, consumers won't buy. To
 
 ---
 
+## When this doesn't work
+
+- **You do not hold the Buy Box.** Dynamic pricing on a hijacked listing is a war of attrition against algorithms that are faster than you and do not need a margin. Where several sellers are fighting over one ASIN, the end state of a price war is that nobody earns anything. Differentiate your way out of the comparison instead — bundles, exclusive variants, brand registry — rather than repricing faster.
+- **Your cost structure is not settled.** The floor under dynamic pricing is your real break-even. Plenty of sellers count purchase cost and freight as "cost" and leave out return losses, long-term storage, amortised advertising and currency movement. Run automated repricing off the wrong floor and you will lose money, reliably, at prices you believe are profitable. Get the [margin model in A11](a11-financial-analysis.md) solid first.
+- **The category is not price-sensitive.** Where there is brand premium, a patent, or buyers filtering on function rather than price, cutting price does not buy volume — it just hands over margin. The test is cheap: move the price 5% each way for a fortnight and watch conversion. If it does not move, the lever this chapter describes does not exist for you.
+- **The platform limits how often or how far you may move price.** Several platforms police short-term price movement — it can trigger review, cost you Buy Box eligibility, or be read as price manipulation. Confirm the rules before automating, and cap both the size and the frequency of changes in your script. That cap is a safety valve, not an option.
+
+---
+
 ## 9. Completion Checklist
 
 - [ ] Analyzed at least 5 competitors' price data with AI, generating a price-band analysis report

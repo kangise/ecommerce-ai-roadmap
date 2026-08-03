@@ -280,6 +280,15 @@ Agentify five steps simultaneously and you can't tell which one caused the probl
 
 ---
 
+## When this doesn't work
+
+- **The data source is class C.** The data-source grading at the start of this chapter is not a formality. Agentify something with no API and no reliable export and you will spend most of your time maintaining scrapers rather than operating. For class C, the order is: solve data access first, then talk about automation.
+- **The task is in the red zone.** Irreversible actions — moving money, changing prices, promising something to a customer, deleting data — should not run unattended regardless of how accurate the agent is. The right shape for red-zone tasks is agent proposes, human confirms. This is not conservatism: the cost of an error is independent of its probability.
+- **The time saved is less than the maintenance.** An agent needs data connections, tools, error handling, and periodic work to keep up with platform API changes. If the action it replaces costs you twenty minutes a week, the arithmetic does not work. Use the task triage table in this chapter to measure what each action actually costs before picking one.
+- **Nobody on the team reads agent traces yet.** Agents fail silently — they carry wrong data confidently through to the end. With no one reading the trace and no anomaly alerting, agentifying only swaps human error for automation error you cannot see. Build the "how would we know it went wrong" mechanism before you go live.
+
+---
+
 ## 7. Completion Checklist
 
 - [ ] Completed the §2 data-source audit, with each step classified A/B/C

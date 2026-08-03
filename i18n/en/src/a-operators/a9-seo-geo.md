@@ -424,6 +424,15 @@ Bulk low-quality content bought traffic for a while in the old SEO era; now it g
 
 ---
 
+## When this doesn't work
+
+- **The product page does not convert.** SEO and GEO solve being seen, not being bought. Push traffic up while conversion stays flat and you burn ad budget faster and hurt your organic rank — platforms rank on conversion, not on traffic. Fix conversion with [A2](a2-listing-optimization.md) first, then scale traffic.
+- **You are chasing an answer engine that just appeared.** Ranking logic in AI search is still moving fast: crawling behaviour, citation preferences and structured-data support differ between vendors and change without notice. Any specific "optimise for X" technique has a shelf life in months. What holds is complete, accurate product data — that is the input every engine consumes.
+- **The category has little search volume to begin with.** In a niche long-tail nobody searches, ranking first still brings no orders. Traffic has to come from somewhere else — social, creators, vertical communities — and [Path E](../e-social-media/) will serve you better than this chapter. Check how many impressions that term actually gets in your search-term report before investing.
+- **The buyer is an agent, not a person.** Shopping agents filter on structured attributes and silently drop anything that fails the filter; no amount of good copy gets you into the candidate set. What you need is complete attribute coverage — size, material, certification, compatible models — not keyword density. §5 of this chapter is about exactly that; do not read it as a supplementary trick on top of traditional SEO.
+
+---
+
 ## 10. Completion Checklist
 
 - [ ] Completed an Amazon Listing SEO audit

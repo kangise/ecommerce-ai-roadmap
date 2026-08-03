@@ -599,6 +599,15 @@ Some growth tactics (incentivized reviews, fake scarcity, misleading comparisons
 
 ---
 
+## When this doesn't work
+
+- **Growth is bottlenecked on product or supply.** A growth flywheel spins faster what already turns; it cannot spin something with no product-market fit. Low repeat rate, high negative-review rate, frequent stockouts — in those conditions more traffic only surfaces the problem sooner. Look at retention and repeat purchase before talking about growth.
+- **You run too many experiments at once.** Each tactic here holds up on its own; run them together and nothing is attributable. Change three channels, the creative and the landing page in the same week and you will not know what caused the result either way. A small team learns faster running one variable at a time than running the whole flywheel.
+- **You read "AI end to end" as not hiring.** What gets automated is execution, not judgement. Every stage of the flywheel needs someone to define what good looks like, watch for anomalies and decide when to change direction. With one or two people, the number of actions you can automate is capped by the number you can review.
+- **Platform rules forbid some of these tactics.** Driving off-platform reviews, incentivised discounts, cross-platform traffic routing — the lines differ by platform and enforcement intensity moves. Confirm any growth tactic is compliant on your primary platform before scaling it. A suspended account has no growth curve.
+
+---
+
 ## 11. Completion Checklist
 
 - [ ] Completed one full product-research analysis with AI (Phase 1)

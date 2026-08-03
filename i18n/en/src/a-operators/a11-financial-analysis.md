@@ -521,6 +521,15 @@ Tariffs, platform fees, and freight all move. See [§3 Tariffs and de minimis](#
 
 ---
 
+## When this doesn't work
+
+- **Platform fees changed recently.** Commission, FBA tiers, storage fees and tariff rules move every year, and a model's memory of them necessarily lags. Every calculation template here has to take your current fee detail, exported from the back end, as its input — not whatever the AI fills in from experience. A rate wrong by a percentage point can invert the margin conclusion.
+- **You let the AI do the arithmetic.** Language models make mistakes in multi-step numeric work, and the mistakes are not obvious. Use AI here to build the structure, enumerate what needs computing and point out costs you missed; do the numbers in a spreadsheet or a script. Any final figure a model produced deserves a pass with a calculator.
+- **The cost items are not all collected.** Return losses, currency movement, promotional co-funding, long-term storage, disposal fees — these are chronically absent from margin sheets, and missing one skews the answer. Reconcile the cost list before running anything, and mark an item "unknown" rather than silently treating it as zero.
+- **You want tax or accounting advice.** VAT registration thresholds, input deduction, transfer pricing, permanent-establishment tests — these are professional questions, they differ by country and they change often. This chapter can get your data into a shape an accountant can use; it does not replace the accountant.
+
+---
+
 ## 9. Completion Checklist
 
 - [ ] Computed the true profit of at least 5 SKUs with AI (including all hidden costs)

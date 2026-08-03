@@ -444,6 +444,15 @@ Listing dates, design process, supply-chain documentation — you can't reconstr
 
 ---
 
+## When this doesn't work
+
+- **You have already received a complaint or a letter.** This chapter covers monitoring and risk screening before anything happens. Once a formal process starts, every sentence you write may become evidence, and an AI-drafted appeal or defence has to pass through a lawyer. At that stage, writing it yourself is worse than not writing.
+- **A patent search will drive a production decision.** Public databases show granted and published patents; they do not show applications still inside the 18-month confidentiality window. "Found no conflict" is not "there is no conflict", least of all in design-dense categories. Before committing serious money, get a freedom-to-operate search from a firm that will sign it.
+- **Infringement judgement needs the physical article.** Similarity in design and trademark turns on overall visual impression and likelihood of consumer confusion, not on handing two text descriptions to a model. AI can queue up the suspicious items; a person — preferably a lawyer — has to judge them against the physical goods or high-resolution images.
+- **You are enforcing across borders.** Trademarks and patents are territorial: a US registration does nothing in the EU, and a Chinese utility model has no US equivalent. AI readily blends rules from different jurisdictions into one answer. Confirm each market's action against that market's own rules.
+
+---
+
 ## 9. Completion Checklist
 
 - [ ] Completed a patent-risk screen for at least 1 product
