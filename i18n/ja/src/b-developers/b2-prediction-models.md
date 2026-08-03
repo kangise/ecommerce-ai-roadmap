@@ -81,31 +81,31 @@ matplotlib.rcParams["font.sans-serif"] = ["PingFang SC", "Heiti TC", "Arial"]
 matplotlib.rcParams["axes.unicode_minus"] = False
 
 def decompose_sales(df: pd.DataFrame, date_col: str = "date", value_col: str = "units"):
-"""
-販売時系列をトレンド、季節性、ノイズの 3 成分に分解する。
+    """
+    販売時系列をトレンド、季節性、ノイズの 3 成分に分解する。
 
-Args:
-df: 日付と販売量を含む DataFrame
-date_col: 日付列名
-value_col: 販売量列名
-"""
-ts = df.set_index(date_col)[value_col]
-ts = ts.asfreq("D").fillna(method="ffill") # 欠損日を補完
+    Args:
+        df: 日付と販売量を含む DataFrame
+        date_col: 日付列名
+        value_col: 販売量列名
+    """
+    ts = df.set_index(date_col)[value_col]
+    ts = ts.asfreq("D").fillna(method="ffill") # 欠損日を補完
 
-# 乗法分解、周期=7(週季節性)
-result = seasonal_decompose(ts, model="multiplicative", period=7)
+    # 乗法分解、周期=7(週季節性)
+    result = seasonal_decompose(ts, model="multiplicative", period=7)
 
-fig, axes = plt.subplots(4, 1, figsize=(12, 8), sharex=True)
-result.observed.plot(ax=axes[0], title="元データ (Observed)")
-result.trend.plot(ax=axes[1], title="トレンド (Trend)")
-result.seasonal.plot(ax=axes[2], title="季節性 (Seasonality)")
-result.resid.plot(ax=axes[3], title="ノイズ (Residual)")
+    fig, axes = plt.subplots(4, 1, figsize=(12, 8), sharex=True)
+    result.observed.plot(ax=axes[0], title="元データ (Observed)")
+    result.trend.plot(ax=axes[1], title="トレンド (Trend)")
+    result.seasonal.plot(ax=axes[2], title="季節性 (Seasonality)")
+    result.resid.plot(ax=axes[3], title="ノイズ (Residual)")
 
-plt.tight_layout()
-plt.savefig("output/decomposition.png", dpi=150)
-plt.show()
+    plt.tight_layout()
+    plt.savefig("output/decomposition.png", dpi=150)
+    plt.show()
 
-return result
+    return result
 
 # 使用例
 # df = pd.read_csv("data/daily_sales.csv")
@@ -131,41 +131,41 @@ EC の販売予測は従来の小売より難しい、いくつかの独特な�
 
 ```python
 def handle_stockout(df: pd.DataFrame, units_col: str = "units") -> pd.DataFrame:
-"""
-欠品期間のゼロ販売データを処理する。
+    """
+    欠品期間のゼロ販売データを処理する。
 
-欠品期間の販売 0 は需要 0 を意味しない。
-戦略: 欠品前後の平均販売で埋め、モデルが「特定の日は需要 0」と学ぶのを避ける。
-"""
-df = df.copy()
+    欠品期間の販売 0 は需要 0 を意味しない。
+    戦略: 欠品前後の平均販売で埋め、モデルが「特定の日は需要 0」と学ぶのを避ける。
+    """
+    df = df.copy()
 
-# 連続ゼロ販売をフラグ(欠品の可能性)
-df["is_zero"] = df[units_col] == 0
-df["zero_streak"] = (
-df["is_zero"]
-.groupby((~df["is_zero"]).cumsum())
-.cumsum()
-)
+    # 連続ゼロ販売をフラグ(欠品の可能性)
+    df["is_zero"] = df[units_col] == 0
+    df["zero_streak"] = (
+        df["is_zero"]
+        .groupby((~df["is_zero"]).cumsum())
+        .cumsum()
+    )
 
-# 連続 3 日以上のゼロ販売は欠品とみなす(真のゼロ需要でなく)
-stockout_mask = df["zero_streak"] >= 3
+    # 連続 3 日以上のゼロ販売は欠品とみなす(真のゼロ需要でなく)
+    stockout_mask = df["zero_streak"] >= 3
 
-if stockout_mask.any():
-# 前後各 7 日の非ゼロ平均で埋める
-rolling_mean = (
-df[~stockout_mask][units_col]
-.rolling(window=7, min_periods=1)
-.mean()
-)
-df.loc[stockout_mask, units_col] = rolling_mean.reindex(
-df.index
-).ffill().bfill()
+    if stockout_mask.any():
+        # 前後各 7 日の非ゼロ平均で埋める
+        rolling_mean = (
+            df[~stockout_mask][units_col]
+            .rolling(window=7, min_periods=1)
+            .mean()
+        )
+        df.loc[stockout_mask, units_col] = rolling_mean.reindex(
+            df.index
+        ).ffill().bfill()
 
-stockout_days = stockout_mask.sum()
-print(f"{stockout_days} 日の欠品疑いを検出、ローリング平均で補完済み")
+        stockout_days = stockout_mask.sum()
+        print(f"{stockout_days} 日の欠品疑いを検出、ローリング平均で補完済み")
 
-df = df.drop(columns=["is_zero", "zero_streak"])
-return df
+    df = df.drop(columns=["is_zero", "zero_streak"])
+    return df
 ```
 
 ### 1.3 いつ簡単なルール vs いつ ML モデルを使うか
@@ -1024,51 +1024,51 @@ return result
 
 ```python
 def evaluate_forecast(
-actual: pd.Series,
-predicted: pd.Series
+    actual: pd.Series,
+    predicted: pd.Series
 ) -> dict:
-"""
-予測評価指標を計算する。
+    """
+    予測評価指標を計算する。
 
-Args:
-actual: 実績値
-predicted: 予測値
+    Args:
+        actual: 実績値
+        predicted: 予測値
 
-Returns:
-評価指標の辞書
-"""
-actual = actual.values
-predicted = predicted.values
+    Returns:
+        評価指標の辞書
+    """
+    actual = actual.values
+    predicted = predicted.values
 
-mae = np.mean(np.abs(actual - predicted))
-rmse = np.sqrt(np.mean((actual - predicted) ** 2))
+    mae = np.mean(np.abs(actual - predicted))
+    rmse = np.sqrt(np.mean((actual - predicted) ** 2))
 
-# MAPE(実績値が 0 の日を除外)
-nonzero_mask = actual > 0
-if nonzero_mask.any():
-mape = np.mean(
-np.abs((actual[nonzero_mask] - predicted[nonzero_mask])
-/ actual[nonzero_mask])
-) * 100
-else:
-mape = float("inf")
+    # MAPE(実績値が 0 の日を除外)
+    nonzero_mask = actual > 0
+    if nonzero_mask.any():
+        mape = np.mean(
+            np.abs((actual[nonzero_mask] - predicted[nonzero_mask])
+                   / actual[nonzero_mask])
+        ) * 100
+    else:
+        mape = float("inf")
 
-# WAPE(より頑健)
-wape = np.sum(np.abs(actual - predicted)) / np.sum(actual) * 100 if np.sum(actual) > 0 else float("inf")
+    # WAPE(より頑健)
+    wape = np.sum(np.abs(actual - predicted)) / np.sum(actual) * 100 if np.sum(actual) > 0 else float("inf")
 
-metrics = {
-"MAE": round(mae, 2),
-"RMSE": round(rmse, 2),
-"MAPE": round(mape, 2),
-"WAPE": round(wape, 2),
-}
+    metrics = {
+        "MAE": round(mae, 2),
+        "RMSE": round(rmse, 2),
+        "MAPE": round(mape, 2),
+        "WAPE": round(wape, 2),
+    }
 
-print("評価結果:")
-for k, v in metrics.items():
-unit = "%" if k in ("MAPE", "WAPE") else "units"
-print(f"{k}: {v} {unit}")
+    print("評価結果:")
+    for k, v in metrics.items():
+        unit = "%" if k in ("MAPE", "WAPE") else "units"
+        print(f"{k}: {v} {unit}")
 
-return metrics
+    return metrics
 ```
 
 **MAPE 参考ベンチマーク(EC シーン):**

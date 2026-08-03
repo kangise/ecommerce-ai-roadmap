@@ -314,27 +314,27 @@ from mcp import ClientSession, StdioServerParameters
 import asyncio
 
 async def shopify_mcp_demo():
-"""Shopify MCP Server に接続し製品を照会"""
-server_params = StdioServerParameters(
-command="npx",
-args=["-y", "@shopify/storefront-mcp-server"],
-env={
-"SHOPIFY_STORE_URL": "your-store.myshopify.com",
-"SHOPIFY_ACCESS_TOKEN": "your-access-token"
-}
-)
+    """Shopify MCP Server に接続し製品を照会"""
+    server_params = StdioServerParameters(
+        command="npx",
+        args=["-y", "@shopify/storefront-mcp-server"],
+        env={
+            "SHOPIFY_STORE_URL": "your-store.myshopify.com",
+            "SHOPIFY_ACCESS_TOKEN": "your-access-token"
+        }
+    )
 
-async with ClientSession(server_params) as session:
-# 利用可能ツールを列挙
-tools = await session.list_tools()
-print(f"利用可能ツール: {[t.name for t in tools]}")
+    async with ClientSession(server_params) as session:
+        # 利用可能ツールを列挙
+        tools = await session.list_tools()
+        print(f"利用可能ツール: {[t.name for t in tools]}")
 
-# 低在庫製品を照会
-result = await session.call_tool(
-"get_products",
-{"query": "inventory_quantity:<10"}
-)
-print(f"低在庫製品: {result}")
+        # 低在庫製品を照会
+        result = await session.call_tool(
+            "get_products",
+            {"query": "inventory_quantity:<10"}
+        )
+        print(f"低在庫製品: {result}")
 
 asyncio.run(shopify_mcp_demo())
 ```
@@ -384,69 +384,69 @@ server = Server("ecommerce-data")
 
 @server.list_tools()
 async def list_tools():
-"""利用可能ツールを定義"""
-return [
-Tool(
-name="get_daily_sales",
-description="指定した日付範囲の販売データを取得",
-inputSchema={
-"type": "object",
-"properties": {
-"start_date": {"type": "string", "description": "開始日 YYYY-MM-DD"},
-"end_date": {"type": "string", "description": "終了日 YYYY-MM-DD"},
-"marketplace": {"type": "string", "description": "市場 US/EU/JP"}
-},
-"required": ["start_date", "end_date"]
-}
-),
-Tool(
-name="get_acos_alerts",
-description="ACOS が超過した広告 Campaign を取得",
-inputSchema={
-"type": "object",
-"properties": {
-"threshold": {"type": "number", "description": "ACOS 閾値(%)"}
-},
-"required": ["threshold"]
-}
-),
-Tool(
-name="get_inventory_alerts",
-description="在庫警告を取得(安全在庫を下回る SKU)",
-inputSchema={
-"type": "object",
-"properties": {
-"days_threshold": {"type": "integer", "description": "販売可能日数の閾値"}
-}
-}
-)
-]
+    """利用可能ツールを定義"""
+    return [
+        Tool(
+            name="get_daily_sales",
+            description="指定した日付範囲の販売データを取得",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "start_date": {"type": "string", "description": "開始日 YYYY-MM-DD"},
+                    "end_date": {"type": "string", "description": "終了日 YYYY-MM-DD"},
+                    "marketplace": {"type": "string", "description": "市場 US/EU/JP"}
+                },
+                "required": ["start_date", "end_date"]
+            }
+        ),
+        Tool(
+            name="get_acos_alerts",
+            description="ACOS が超過した広告 Campaign を取得",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "threshold": {"type": "number", "description": "ACOS 閾値(%)"}
+                },
+                "required": ["threshold"]
+            }
+        ),
+        Tool(
+            name="get_inventory_alerts",
+            description="在庫警告を取得(安全在庫を下回る SKU)",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "days_threshold": {"type": "integer", "description": "販売可能日数の閾値"}
+                }
+            }
+        )
+    ]
 
 @server.call_tool()
 async def call_tool(name: str, arguments: dict):
-"""ツール呼び出しを処理"""
-if name == "get_daily_sales":
-# あなたのデータ源に接続(CSV/データベース/API)
-sales_data = query_sales_data(
-arguments["start_date"],
-arguments["end_date"],
-arguments.get("marketplace", "US")
-)
-return [TextContent(type="text", text=json.dumps(sales_data))]
+    """ツール呼び出しを処理"""
+    if name == "get_daily_sales":
+        # あなたのデータ源に接続(CSV/データベース/API)
+        sales_data = query_sales_data(
+            arguments["start_date"],
+            arguments["end_date"],
+            arguments.get("marketplace", "US")
+        )
+        return [TextContent(type="text", text=json.dumps(sales_data))]
 
-elif name == "get_acos_alerts":
-alerts = query_acos_alerts(arguments["threshold"])
-return [TextContent(type="text", text=json.dumps(alerts))]
+    elif name == "get_acos_alerts":
+        alerts = query_acos_alerts(arguments["threshold"])
+        return [TextContent(type="text", text=json.dumps(alerts))]
 
-elif name == "get_inventory_alerts":
-alerts = query_inventory_alerts(arguments.get("days_threshold", 14))
-return [TextContent(type="text", text=json.dumps(alerts))]
+    elif name == "get_inventory_alerts":
+        alerts = query_inventory_alerts(arguments.get("days_threshold", 14))
+        return [TextContent(type="text", text=json.dumps(alerts))]
 
 # Server を起動
 if __name__ == "__main__":
-import asyncio
-from mcp.server.stdio import stdio_server
-asyncio.run(stdio_server(server))
+    import asyncio
+    from mcp.server.stdio import stdio_server
+    asyncio.run(stdio_server(server))
 ```
 
 ### 5.2 Claude/Kiro に登録
@@ -505,180 +505,180 @@ import json
 from datetime import datetime, timedelta
 
 class DailyOpsState(TypedDict):
-"""Agent 状態定義"""
-sales_data: dict
-ad_alerts: list
-inventory_alerts: list
-review_alerts: list
-daily_report: str
-actions_taken: Annotated[list, operator.add]
-errors: Annotated[list, operator.add]
+    """Agent 状態定義"""
+    sales_data: dict
+    ad_alerts: list
+    inventory_alerts: list
+    review_alerts: list
+    daily_report: str
+    actions_taken: Annotated[list, operator.add]
+    errors: Annotated[list, operator.add]
 
 # === Step 1: 販売データチェック ===
 async def check_sales(state: DailyOpsState) -> DailyOpsState:
-"""MCP で昨日の販売データを取得"""
-try:
-yesterday = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
-today = datetime.now().strftime("%Y-%m-%d")
+    """MCP で昨日の販売データを取得"""
+    try:
+        yesterday = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
+        today = datetime.now().strftime("%Y-%m-%d")
 
-# カスタム MCP Server を呼ぶ
-sales = await mcp_call("my-ecommerce", "get_daily_sales", {
-"start_date": yesterday,
-"end_date": today,
-"marketplace": "US"
-})
+        # カスタム MCP Server を呼ぶ
+        sales = await mcp_call("my-ecommerce", "get_daily_sales", {
+            "start_date": yesterday,
+            "end_date": today,
+            "marketplace": "US"
+        })
 
-# キー指標を計算
-prev_week = await mcp_call("my-ecommerce", "get_daily_sales", {
-"start_date": (datetime.now() - timedelta(days=8)).strftime("%Y-%m-%d"),
-"end_date": (datetime.now() - timedelta(days=7)).strftime("%Y-%m-%d")
-})
+        # キー指標を計算
+        prev_week = await mcp_call("my-ecommerce", "get_daily_sales", {
+            "start_date": (datetime.now() - timedelta(days=8)).strftime("%Y-%m-%d"),
+            "end_date": (datetime.now() - timedelta(days=7)).strftime("%Y-%m-%d")
+        })
 
-sales_data = {
-"date": yesterday,
-"revenue": sales["total_revenue"],
-"orders": sales["total_orders"],
-"units": sales["total_units"],
-"wow_change": (sales["total_revenue"] - prev_week["total_revenue"])
-/ prev_week["total_revenue"] * 100,
-"top_products": sales.get("top_products", [])[:5],
-"anomalies": []
-}
+        sales_data = {
+            "date": yesterday,
+            "revenue": sales["total_revenue"],
+            "orders": sales["total_orders"],
+            "units": sales["total_units"],
+            "wow_change": (sales["total_revenue"] - prev_week["total_revenue"])
+                          / prev_week["total_revenue"] * 100,
+            "top_products": sales.get("top_products", [])[:5],
+            "anomalies": []
+        }
 
-# 異常検知
-if abs(sales_data["wow_change"]) > 30:
-sales_data["anomalies"].append(
-f"収入の前週比変化 {sales_data['wow_change']:+.1f}%(閾値 ±30%)"
-)
+        # 異常検知
+        if abs(sales_data["wow_change"]) > 30:
+            sales_data["anomalies"].append(
+                f"収入の前週比変化 {sales_data['wow_change']:+.1f}%(閾値 ±30%)"
+            )
 
-state["sales_data"] = sales_data
-state["actions_taken"] = [f"販売データを取得: ${sales_data['revenue']:,.0f}"]
+        state["sales_data"] = sales_data
+        state["actions_taken"] = [f"販売データを取得: ${sales_data['revenue']:,.0f}"]
 
-except Exception as e:
-state["errors"] = [f"販売データ取得失敗: {str(e)}"]
+    except Exception as e:
+        state["errors"] = [f"販売データ取得失敗: {str(e)}"]
 
-return state
+    return state
 
 # === Step 2: 広告チェック ===
 async def check_ads(state: DailyOpsState) -> DailyOpsState:
-"""Amazon Ads MCP で広告パフォーマンスをチェック"""
-try:
-# ACOS が超過した Campaign を取得
-campaigns = await mcp_call("amazon-ads", "list_campaigns", {
-"status": "ENABLED"
-})
+    """Amazon Ads MCP で広告パフォーマンスをチェック"""
+    try:
+        # ACOS が超過した Campaign を取得
+        campaigns = await mcp_call("amazon-ads", "list_campaigns", {
+            "status": "ENABLED"
+        })
 
-alerts = []
-for campaign in campaigns:
-perf = await mcp_call("amazon-ads", "get_performance", {
-"campaign_id": campaign["id"],
-"days": 7
-})
+        alerts = []
+        for campaign in campaigns:
+            perf = await mcp_call("amazon-ads", "get_performance", {
+                "campaign_id": campaign["id"],
+                "days": 7
+            })
 
-acos = perf["spend"] / max(perf["sales"], 0.01) * 100
+            acos = perf["spend"] / max(perf["sales"], 0.01) * 100
 
-if acos > 40:
-alerts.append({
-"campaign": campaign["name"],
-"acos": acos,
-"spend": perf["spend"],
-"sales": perf["sales"],
-"severity": "high" if acos > 60 else "medium"
-})
+            if acos > 40:
+                alerts.append({
+                    "campaign": campaign["name"],
+                    "acos": acos,
+                    "spend": perf["spend"],
+                    "sales": perf["sales"],
+                    "severity": "high" if acos > 60 else "medium"
+                })
 
-# 予算枯渇をチェック
-if perf.get("budget_utilization", 0) > 95:
-alerts.append({
-"campaign": campaign["name"],
-"issue": "予算が午後前に枯渇",
-"utilization": perf["budget_utilization"],
-"severity": "medium"
-})
+            # 予算枯渇をチェック
+            if perf.get("budget_utilization", 0) > 95:
+                alerts.append({
+                    "campaign": campaign["name"],
+                    "issue": "予算が午後前に枯渇",
+                    "utilization": perf["budget_utilization"],
+                    "severity": "medium"
+                })
 
-state["ad_alerts"] = alerts
-state["actions_taken"] = [
-f"広告をチェック: {len(campaigns)} 個の Campaign, {len(alerts)} 個の警告"
-]
+        state["ad_alerts"] = alerts
+        state["actions_taken"] = [
+            f"広告をチェック: {len(campaigns)} 個の Campaign, {len(alerts)} 個の警告"
+        ]
 
-except Exception as e:
-state["errors"] = [f"広告チェック失敗: {str(e)}"]
+    except Exception as e:
+        state["errors"] = [f"広告チェック失敗: {str(e)}"]
 
-return state
+    return state
 
 # === Step 3: 在庫チェック ===
 async def check_inventory(state: DailyOpsState) -> DailyOpsState:
-"""Shopify/Amazon MCP で在庫をチェック"""
-try:
-inventory = await mcp_call("shopify", "get_inventory_levels", {})
+    """Shopify/Amazon MCP で在庫をチェック"""
+    try:
+        inventory = await mcp_call("shopify", "get_inventory_levels", {})
 
-alerts = []
-for item in inventory:
-days_of_supply = item["quantity"] / max(item["daily_sales"], 0.1)
+        alerts = []
+        for item in inventory:
+            days_of_supply = item["quantity"] / max(item["daily_sales"], 0.1)
 
-if days_of_supply < 14:
-alerts.append({
-"sku": item["sku"],
-"product": item["title"],
-"quantity": item["quantity"],
-"days_of_supply": round(days_of_supply, 1),
-"daily_sales": item["daily_sales"],
-"severity": "high" if days_of_supply < 7 else "medium",
-"reorder_qty": int(item["daily_sales"] * 45) # 45 日補充量
-})
+            if days_of_supply < 14:
+                alerts.append({
+                    "sku": item["sku"],
+                    "product": item["title"],
+                    "quantity": item["quantity"],
+                    "days_of_supply": round(days_of_supply, 1),
+                    "daily_sales": item["daily_sales"],
+                    "severity": "high" if days_of_supply < 7 else "medium",
+                    "reorder_qty": int(item["daily_sales"] * 45) # 45 日補充量
+                })
 
-state["inventory_alerts"] = alerts
-state["actions_taken"] = [
-f"在庫をチェック: {len(alerts)} 個の SKU が補充必要"
-]
+        state["inventory_alerts"] = alerts
+        state["actions_taken"] = [
+            f"在庫をチェック: {len(alerts)} 個の SKU が補充必要"
+        ]
 
-except Exception as e:
-state["errors"] = [f"在庫チェック失敗: {str(e)}"]
+    except Exception as e:
+        state["errors"] = [f"在庫チェック失敗: {str(e)}"]
 
-return state
+    return state
 
 # === Step 4: Review チェック ===
 async def check_reviews(state: DailyOpsState) -> DailyOpsState:
-"""新しい低評価をチェック"""
-try:
-new_reviews = await mcp_call("my-ecommerce", "get_recent_reviews", {
-"days": 1,
-"max_rating": 3
-})
+    """新しい低評価をチェック"""
+    try:
+        new_reviews = await mcp_call("my-ecommerce", "get_recent_reviews", {
+            "days": 1,
+            "max_rating": 3
+        })
 
-alerts = []
-for review in new_reviews:
-alerts.append({
-"asin": review["asin"],
-"rating": review["rating"],
-"title": review["title"][:50],
-"severity": "high" if review["rating"] <= 2 else "low"
-})
+        alerts = []
+        for review in new_reviews:
+            alerts.append({
+                "asin": review["asin"],
+                "rating": review["rating"],
+                "title": review["title"][:50],
+                "severity": "high" if review["rating"] <= 2 else "low"
+            })
 
-state["review_alerts"] = alerts
-state["actions_taken"] = [
-f"Review をチェック: {len(alerts)} 件の新規低評価"
-]
+        state["review_alerts"] = alerts
+        state["actions_taken"] = [
+            f"Review をチェック: {len(alerts)} 件の新規低評価"
+        ]
 
-except Exception as e:
-state["errors"] = [f"Review チェック失敗: {str(e)}"]
+    except Exception as e:
+        state["errors"] = [f"Review チェック失敗: {str(e)}"]
 
-return state
+    return state
 
 # === Step 5: レポートを生成 ===
 async def generate_report(state: DailyOpsState) -> DailyOpsState:
-"""LLM で毎日の運営レポートを生成"""
+    """LLM で毎日の運営レポートを生成"""
 
-report_data = {
-"date": state.get("sales_data", {}).get("date", "N/A"),
-"sales": state.get("sales_data", {}),
-"ad_alerts": state.get("ad_alerts", []),
-"inventory_alerts": state.get("inventory_alerts", []),
-"review_alerts": state.get("review_alerts", []),
-"actions": state.get("actions_taken", []),
-"errors": state.get("errors", [])
-}
+    report_data = {
+        "date": state.get("sales_data", {}).get("date", "N/A"),
+        "sales": state.get("sales_data", {}),
+        "ad_alerts": state.get("ad_alerts", []),
+        "inventory_alerts": state.get("inventory_alerts", []),
+        "review_alerts": state.get("review_alerts", []),
+        "actions": state.get("actions_taken", []),
+        "errors": state.get("errors", [])
+    }
 
-prompt = f"""
+    prompt = f"""
 あなたは EC 運営 AI アシスタントです。以下のデータに基づいて簡潔な毎日の運営レポートを生成してください。
 
 データ:
@@ -700,32 +700,32 @@ prompt = f"""
 (実行したチェック、遭遇したエラー)
 """
 
-report = await llm_call(prompt)
-state["daily_report"] = report
+    report = await llm_call(prompt)
+    state["daily_report"] = report
 
-return state
+    return state
 
 # === 決定ルーティング ===
 def should_auto_fix(state: DailyOpsState) -> Literal["auto_fix", "report"]:
-"""問題を自動修復するか決定"""
-high_severity = sum(
-1 for a in state.get("ad_alerts", []) if a.get("severity") == "high"
-)
-if high_severity > 0:
-return "auto_fix"
-return "report"
+    """問題を自動修復するか決定"""
+    high_severity = sum(
+        1 for a in state.get("ad_alerts", []) if a.get("severity") == "high"
+    )
+    if high_severity > 0:
+        return "auto_fix"
+    return "report"
 
 # === 自動修復 ===
 async def auto_fix_ads(state: DailyOpsState) -> DailyOpsState:
-"""高深刻度の広告問題を自動修復"""
-for alert in state.get("ad_alerts", []):
-if alert.get("severity") == "high" and alert.get("acos", 0) > 60:
-# 入札を自動で 20% 下げる(人手確認が必要)
-state["actions_taken"] = [
-f"提案: Campaign '{alert['campaign']}' ACOS={alert['acos']:.0f}%、"
-f"入札を 20% 下げることを提案(人手確認が必要)"
-]
-return state
+    """高深刻度の広告問題を自動修復"""
+    for alert in state.get("ad_alerts", []):
+        if alert.get("severity") == "high" and alert.get("acos", 0) > 60:
+            # 入札を自動で 20% 下げる(人手確認が必要)
+            state["actions_taken"] = [
+                f"提案: Campaign '{alert['campaign']}' ACOS={alert['acos']:.0f}%、"
+                f"入札を 20% 下げることを提案(人手確認が必要)"
+            ]
+    return state
 
 # === ワークフローを構築 ===
 workflow = StateGraph(DailyOpsState)
@@ -752,30 +752,30 @@ app = workflow.compile()
 
 # === 実行 ===
 async def run_daily_ops():
-"""毎朝 8 時に実行"""
-initial_state = {
-"sales_data": {},
-"ad_alerts": [],
-"inventory_alerts": [],
-"review_alerts": [],
-"daily_report": "",
-"actions_taken": [],
-"errors": []
-}
+    """毎朝 8 時に実行"""
+    initial_state = {
+        "sales_data": {},
+        "ad_alerts": [],
+        "inventory_alerts": [],
+        "review_alerts": [],
+        "daily_report": "",
+        "actions_taken": [],
+        "errors": []
+    }
 
-result = await app.ainvoke(initial_state)
+    result = await app.ainvoke(initial_state)
 
-# レポートを出力
-print(result["daily_report"])
+    # レポートを出力
+    print(result["daily_report"])
 
-# Slack/メールに送信
-# await send_to_slack(result["daily_report"])
+    # Slack/メールに送信
+    # await send_to_slack(result["daily_report"])
 
-return result
+    return result
 
 if __name__ == "__main__":
-import asyncio
-asyncio.run(run_daily_ops())
+    import asyncio
+    asyncio.run(run_daily_ops())
 ```
 
 ### 6.3 定時スケジューリング
@@ -824,64 +824,64 @@ audit_logger = logging.getLogger("mcp_audit")
 audit_logger.setLevel(logging.INFO)
 handler = logging.FileHandler("mcp_audit.log")
 handler.setFormatter(logging.Formatter(
-"%(asctime)s | %(levelname)s | %(message)s"
+    "%(asctime)s | %(levelname)s | %(message)s"
 ))
 audit_logger.addHandler(handler)
 
 def audit_mcp_call(func):
-"""MCP 呼び出しの監査デコレータ"""
-@wraps(func)
-async def wrapper(name: str, arguments: dict, *args, **kwargs):
-# 呼び出しを記録
-audit_logger.info(f"CALL | tool={name} | args={arguments}")
+    """MCP 呼び出しの監査デコレータ"""
+    @wraps(func)
+    async def wrapper(name: str, arguments: dict, *args, **kwargs):
+        # 呼び出しを記録
+        audit_logger.info(f"CALL | tool={name} | args={arguments}")
 
-try:
-result = await func(name, arguments, *args, **kwargs)
-audit_logger.info(f"SUCCESS | tool={name} | result_size={len(str(result))}")
-return result
-except Exception as e:
-audit_logger.error(f"ERROR | tool={name} | error={str(e)}")
-raise
+        try:
+            result = await func(name, arguments, *args, **kwargs)
+            audit_logger.info(f"SUCCESS | tool={name} | result_size={len(str(result))}")
+            return result
+        except Exception as e:
+            audit_logger.error(f"ERROR | tool={name} | error={str(e)}")
+            raise
 
-return wrapper
+    return wrapper
 
 # 使用
 @audit_mcp_call
 async def call_tool(name: str, arguments: dict):
-# ... MCP 呼び出しロジック
-pass
+    # ... MCP 呼び出しロジック
+    pass
 ```
 
 ### 7.3 人手確認メカニズム
 
 ```python
 class HumanInTheLoop:
-"""書き込み操作の人手確認メカニズム"""
+    """書き込み操作の人手確認メカニズム"""
 
-WRITE_OPERATIONS = {
-"update_bid", "create_campaign", "create_negative",
-"update_campaign", "delete_keyword",
-"create_product", "update_order", "update_inventory"
-}
+    WRITE_OPERATIONS = {
+        "update_bid", "create_campaign", "create_negative",
+        "update_campaign", "delete_keyword",
+        "create_product", "update_order", "update_inventory"
+    }
 
-@staticmethod
-async def confirm(tool_name: str, arguments: dict) -> bool:
-"""人手確認が必要かチェック"""
-if tool_name not in HumanInTheLoop.WRITE_OPERATIONS:
-return True # 読み取り操作は自動通過
+    @staticmethod
+    async def confirm(tool_name: str, arguments: dict) -> bool:
+        """人手確認が必要かチェック"""
+        if tool_name not in HumanInTheLoop.WRITE_OPERATIONS:
+            return True # 読み取り操作は自動通過
 
-print(f"\n書き込み操作の確認リクエスト:")
-print(f"ツール: {tool_name}")
-print(f"パラメータ: {arguments}")
+        print(f"\n書き込み操作の確認リクエスト:")
+        print(f"ツール: {tool_name}")
+        print(f"パラメータ: {arguments}")
 
-response = input("実行を確認? (y/n): ").strip().lower()
+        response = input("実行を確認? (y/n): ").strip().lower()
 
-if response == 'y':
-audit_logger.info(f"CONFIRMED | tool={tool_name}")
-return True
-else:
-audit_logger.info(f"REJECTED | tool={tool_name}")
-return False
+        if response == 'y':
+            audit_logger.info(f"CONFIRMED | tool={tool_name}")
+            return True
+        else:
+            audit_logger.info(f"REJECTED | tool={tool_name}")
+            return False
 ```
 
 ### 7.4 よくあるリスクと防止
@@ -898,32 +898,32 @@ return False
 ```python
 # 予算セーフティバルブの例
 class BudgetSafetyValve:
-"""AI の自動操作による予算超過を防止"""
+    """AI の自動操作による予算超過を防止"""
 
-def __init__(self, max_daily_spend_change: float = 100.0,
-max_single_bid_change: float = 2.0):
-self.max_daily_spend_change = max_daily_spend_change
-self.max_single_bid_change = max_single_bid_change
-self.daily_changes = 0.0
+    def __init__(self, max_daily_spend_change: float = 100.0,
+                 max_single_bid_change: float = 2.0):
+        self.max_daily_spend_change = max_daily_spend_change
+        self.max_single_bid_change = max_single_bid_change
+        self.daily_changes = 0.0
 
-def check_bid_change(self, current_bid: float, new_bid: float) -> bool:
-"""入札変更が安全範囲内かチェック"""
-change = abs(new_bid - current_bid)
+    def check_bid_change(self, current_bid: float, new_bid: float) -> bool:
+        """入札変更が安全範囲内かチェック"""
+        change = abs(new_bid - current_bid)
 
-if change > self.max_single_bid_change:
-audit_logger.warning(
-f"BID_BLOCKED | change=${change:.2f} > max=${self.max_single_bid_change}"
-)
-return False
+        if change > self.max_single_bid_change:
+            audit_logger.warning(
+                f"BID_BLOCKED | change=${change:.2f} > max=${self.max_single_bid_change}"
+            )
+            return False
 
-self.daily_changes += change
-if self.daily_changes > self.max_daily_spend_change:
-audit_logger.warning(
-f"DAILY_LIMIT | total_changes=${self.daily_changes:.2f}"
-)
-return False
+        self.daily_changes += change
+        if self.daily_changes > self.max_daily_spend_change:
+            audit_logger.warning(
+                f"DAILY_LIMIT | total_changes=${self.daily_changes:.2f}"
+            )
+            return False
 
-return True
+        return True
 ```
 
 ---
@@ -949,44 +949,44 @@ Content rephrased for compliance with licensing restrictions.
 ```python
 # コンセプトコード: マルチプラットフォーム広告の統一管理
 class MultiPlatformAdManager:
-"""MCP でマルチプラットフォーム広告を統一管理"""
+    """MCP でマルチプラットフォーム広告を統一管理"""
 
-def __init__(self):
-self.platforms = {
-"amazon": AmazonAdsMCP(),
-"meta": MetaAdsMCP(),
-"google": GoogleAdsMCP()
-}
+    def __init__(self):
+        self.platforms = {
+            "amazon": AmazonAdsMCP(),
+            "meta": MetaAdsMCP(),
+            "google": GoogleAdsMCP()
+        }
 
-async def get_cross_platform_report(self, days: int = 7) -> dict:
-"""クロスプラットフォーム広告レポート"""
-reports = {}
-for name, mcp in self.platforms.items():
-reports[name] = await mcp.get_performance(days=days)
+    async def get_cross_platform_report(self, days: int = 7) -> dict:
+        """クロスプラットフォーム広告レポート"""
+        reports = {}
+        for name, mcp in self.platforms.items():
+            reports[name] = await mcp.get_performance(days=days)
 
-# 統一フォーマット
-unified = {
-"total_spend": sum(r["spend"] for r in reports.values()),
-"total_revenue": sum(r["revenue"] for r in reports.values()),
-"by_platform": reports,
-"overall_roas": sum(r["revenue"] for r in reports.values()) /
-sum(r["spend"] for r in reports.values())
-}
-return unified
+        # 統一フォーマット
+        unified = {
+            "total_spend": sum(r["spend"] for r in reports.values()),
+            "total_revenue": sum(r["revenue"] for r in reports.values()),
+            "by_platform": reports,
+            "overall_roas": sum(r["revenue"] for r in reports.values()) /
+                            sum(r["spend"] for r in reports.values())
+        }
+        return unified
 
-async def rebalance_budget(self, total_budget: float):
-"""ROAS に基づいてクロスプラットフォーム予算を自動再配分"""
-report = await self.get_cross_platform_report()
+    async def rebalance_budget(self, total_budget: float):
+        """ROAS に基づいてクロスプラットフォーム予算を自動再配分"""
+        report = await self.get_cross_platform_report()
 
-# ROAS で加重配分
-total_roas = sum(
-r["revenue"] / r["spend"] for r in report["by_platform"].values()
-)
+        # ROAS で加重配分
+        total_roas = sum(
+            r["revenue"] / r["spend"] for r in report["by_platform"].values()
+        )
 
-for name, r in report["by_platform"].items():
-platform_roas = r["revenue"] / r["spend"]
-new_budget = total_budget * (platform_roas / total_roas)
-await self.platforms[name].update_daily_budget(new_budget)
+        for name, r in report["by_platform"].items():
+            platform_roas = r["revenue"] / r["spend"]
+            new_budget = total_budget * (platform_roas / total_roas)
+            await self.platforms[name].update_daily_budget(new_budget)
 ```
 
 ---

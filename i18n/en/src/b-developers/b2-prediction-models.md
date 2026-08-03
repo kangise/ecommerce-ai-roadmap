@@ -81,31 +81,31 @@ matplotlib.rcParams["font.sans-serif"] = ["PingFang SC", "Heiti TC", "Arial"]
 matplotlib.rcParams["axes.unicode_minus"] = False
 
 def decompose_sales(df: pd.DataFrame, date_col: str = "date", value_col: str = "units"):
-"""
-Decompose a sales time series into trend, seasonality, and noise.
+    """
+    Decompose a sales time series into trend, seasonality, and noise.
 
-Args:
-df: DataFrame with date and sales
-date_col: date column name
-value_col: sales column name
-"""
-ts = df.set_index(date_col)[value_col]
-ts = ts.asfreq("D").fillna(method="ffill") # fill in missing dates
+    Args:
+        df: DataFrame with date and sales
+        date_col: date column name
+        value_col: sales column name
+    """
+    ts = df.set_index(date_col)[value_col]
+    ts = ts.asfreq("D").fillna(method="ffill") # fill in missing dates
 
-# Multiplicative decomposition, period=7 (weekly seasonality)
-result = seasonal_decompose(ts, model="multiplicative", period=7)
+    # Multiplicative decomposition, period=7 (weekly seasonality)
+    result = seasonal_decompose(ts, model="multiplicative", period=7)
 
-fig, axes = plt.subplots(4, 1, figsize=(12, 8), sharex=True)
-result.observed.plot(ax=axes[0], title="Observed")
-result.trend.plot(ax=axes[1], title="Trend")
-result.seasonal.plot(ax=axes[2], title="Seasonality")
-result.resid.plot(ax=axes[3], title="Residual")
+    fig, axes = plt.subplots(4, 1, figsize=(12, 8), sharex=True)
+    result.observed.plot(ax=axes[0], title="Observed")
+    result.trend.plot(ax=axes[1], title="Trend")
+    result.seasonal.plot(ax=axes[2], title="Seasonality")
+    result.resid.plot(ax=axes[3], title="Residual")
 
-plt.tight_layout()
-plt.savefig("output/decomposition.png", dpi=150)
-plt.show()
+    plt.tight_layout()
+    plt.savefig("output/decomposition.png", dpi=150)
+    plt.show()
 
-return result
+    return result
 
 # Usage example
 # df = pd.read_csv("data/daily_sales.csv")
@@ -131,42 +131,42 @@ E-commerce sales forecasting is harder than traditional retail because of severa
 
 ```python
 def handle_stockout(df: pd.DataFrame, units_col: str = "units") -> pd.DataFrame:
-"""
-Handle zero-sales data during stockouts.
+    """
+    Handle zero-sales data during stockouts.
 
-Zero sales during a stockout doesn't mean zero demand.
-Strategy: fill with the average sales before/after, so the model
-doesn't learn "demand is 0 on certain days."
-"""
-df = df.copy()
+    Zero sales during a stockout doesn't mean zero demand.
+    Strategy: fill with the average sales before/after, so the model
+    doesn't learn "demand is 0 on certain days."
+    """
+    df = df.copy()
 
-# Flag consecutive zero sales (possibly a stockout)
-df["is_zero"] = df[units_col] == 0
-df["zero_streak"] = (
-df["is_zero"]
-.groupby((~df["is_zero"]).cumsum())
-.cumsum()
-)
+    # Flag consecutive zero sales (possibly a stockout)
+    df["is_zero"] = df[units_col] == 0
+    df["zero_streak"] = (
+        df["is_zero"]
+        .groupby((~df["is_zero"]).cumsum())
+        .cumsum()
+    )
 
-# 3+ consecutive zero-sales days is treated as a stockout (not real zero demand)
-stockout_mask = df["zero_streak"] >= 3
+    # 3+ consecutive zero-sales days is treated as a stockout (not real zero demand)
+    stockout_mask = df["zero_streak"] >= 3
 
-if stockout_mask.any():
-# Fill with the non-zero mean of the surrounding 7 days
-rolling_mean = (
-df[~stockout_mask][units_col]
-.rolling(window=7, min_periods=1)
-.mean()
-)
-df.loc[stockout_mask, units_col] = rolling_mean.reindex(
-df.index
-).ffill().bfill()
+    if stockout_mask.any():
+        # Fill with the non-zero mean of the surrounding 7 days
+        rolling_mean = (
+            df[~stockout_mask][units_col]
+            .rolling(window=7, min_periods=1)
+            .mean()
+        )
+        df.loc[stockout_mask, units_col] = rolling_mean.reindex(
+            df.index
+        ).ffill().bfill()
 
-stockout_days = stockout_mask.sum()
-print(f"Detected {stockout_days} suspected stockout days, filled with rolling mean")
+        stockout_days = stockout_mask.sum()
+        print(f"Detected {stockout_days} suspected stockout days, filled with rolling mean")
 
-df = df.drop(columns=["is_zero", "zero_streak"])
-return df
+    df = df.drop(columns=["is_zero", "zero_streak"])
+    return df
 ```
 
 ### 1.3 When to use simple rules vs ML models
@@ -1025,51 +1025,51 @@ return result
 
 ```python
 def evaluate_forecast(
-actual: pd.Series,
-predicted: pd.Series
+    actual: pd.Series,
+    predicted: pd.Series
 ) -> dict:
-"""
-Compute forecast-evaluation metrics.
+    """
+    Compute forecast-evaluation metrics.
 
-Args:
-actual: actual values
-predicted: forecast values
+    Args:
+        actual: actual values
+        predicted: forecast values
 
-Returns:
-metrics dict
-"""
-actual = actual.values
-predicted = predicted.values
+    Returns:
+        metrics dict
+    """
+    actual = actual.values
+    predicted = predicted.values
 
-mae = np.mean(np.abs(actual - predicted))
-rmse = np.sqrt(np.mean((actual - predicted) ** 2))
+    mae = np.mean(np.abs(actual - predicted))
+    rmse = np.sqrt(np.mean((actual - predicted) ** 2))
 
-# MAPE (filter out days where actual is 0)
-nonzero_mask = actual > 0
-if nonzero_mask.any():
-mape = np.mean(
-np.abs((actual[nonzero_mask] - predicted[nonzero_mask])
-/ actual[nonzero_mask])
-) * 100
-else:
-mape = float("inf")
+    # MAPE (filter out days where actual is 0)
+    nonzero_mask = actual > 0
+    if nonzero_mask.any():
+        mape = np.mean(
+            np.abs((actual[nonzero_mask] - predicted[nonzero_mask])
+                   / actual[nonzero_mask])
+        ) * 100
+    else:
+        mape = float("inf")
 
-# WAPE (more robust)
-wape = np.sum(np.abs(actual - predicted)) / np.sum(actual) * 100 if np.sum(actual) > 0 else float("inf")
+    # WAPE (more robust)
+    wape = np.sum(np.abs(actual - predicted)) / np.sum(actual) * 100 if np.sum(actual) > 0 else float("inf")
 
-metrics = {
-"MAE": round(mae, 2),
-"RMSE": round(rmse, 2),
-"MAPE": round(mape, 2),
-"WAPE": round(wape, 2),
-}
+    metrics = {
+        "MAE": round(mae, 2),
+        "RMSE": round(rmse, 2),
+        "MAPE": round(mape, 2),
+        "WAPE": round(wape, 2),
+    }
 
-print("Evaluation results:")
-for k, v in metrics.items():
-unit = "%" if k in ("MAPE", "WAPE") else "units"
-print(f"{k}: {v} {unit}")
+    print("Evaluation results:")
+    for k, v in metrics.items():
+        unit = "%" if k in ("MAPE", "WAPE") else "units"
+        print(f"{k}: {v} {unit}")
 
-return metrics
+    return metrics
 ```
 
 **MAPE reference benchmarks (e-commerce):**

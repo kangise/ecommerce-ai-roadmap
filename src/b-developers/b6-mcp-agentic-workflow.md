@@ -314,27 +314,27 @@ from mcp import ClientSession, StdioServerParameters
 import asyncio
 
 async def shopify_mcp_demo():
-"""连接 Shopify MCP Server 并查询产品"""
-server_params = StdioServerParameters(
-command="npx",
-args=["-y", "@shopify/storefront-mcp-server"],
-env={
-"SHOPIFY_STORE_URL": "your-store.myshopify.com",
-"SHOPIFY_ACCESS_TOKEN": "your-access-token"
-}
-)
+    """连接 Shopify MCP Server 并查询产品"""
+    server_params = StdioServerParameters(
+        command="npx",
+        args=["-y", "@shopify/storefront-mcp-server"],
+        env={
+            "SHOPIFY_STORE_URL": "your-store.myshopify.com",
+            "SHOPIFY_ACCESS_TOKEN": "your-access-token"
+        }
+    )
 
-async with ClientSession(server_params) as session:
-# 列出可用工具
-tools = await session.list_tools()
-print(f"可用工具: {[t.name for t in tools]}")
+    async with ClientSession(server_params) as session:
+        # 列出可用工具
+        tools = await session.list_tools()
+        print(f"可用工具: {[t.name for t in tools]}")
 
-# 查询低库存产品
-result = await session.call_tool(
-"get_products",
-{"query": "inventory_quantity:<10"}
-)
-print(f"低库存产品: {result}")
+        # 查询低库存产品
+        result = await session.call_tool(
+            "get_products",
+            {"query": "inventory_quantity:<10"}
+        )
+        print(f"低库存产品: {result}")
 
 asyncio.run(shopify_mcp_demo())
 ```
@@ -384,69 +384,69 @@ server = Server("ecommerce-data")
 
 @server.list_tools()
 async def list_tools():
-"""定义可用工具"""
-return [
-Tool(
-name="get_daily_sales",
-description="获取指定日期范围的销售数据",
-inputSchema={
-"type": "object",
-"properties": {
-"start_date": {"type": "string", "description": "开始日期 YYYY-MM-DD"},
-"end_date": {"type": "string", "description": "结束日期 YYYY-MM-DD"},
-"marketplace": {"type": "string", "description": "市场 US/EU/JP"}
-},
-"required": ["start_date", "end_date"]
-}
-),
-Tool(
-name="get_acos_alerts",
-description="获取 ACOS 超标的广告 Campaign",
-inputSchema={
-"type": "object",
-"properties": {
-"threshold": {"type": "number", "description": "ACOS 阈值（%）"}
-},
-"required": ["threshold"]
-}
-),
-Tool(
-name="get_inventory_alerts",
-description="获取库存预警（低于安全库存的 SKU）",
-inputSchema={
-"type": "object",
-"properties": {
-"days_threshold": {"type": "integer", "description": "可售天数阈值"}
-}
-}
-)
-]
+    """定义可用工具"""
+    return [
+        Tool(
+            name="get_daily_sales",
+            description="获取指定日期范围的销售数据",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "start_date": {"type": "string", "description": "开始日期 YYYY-MM-DD"},
+                    "end_date": {"type": "string", "description": "结束日期 YYYY-MM-DD"},
+                    "marketplace": {"type": "string", "description": "市场 US/EU/JP"}
+                },
+                "required": ["start_date", "end_date"]
+            }
+        ),
+        Tool(
+            name="get_acos_alerts",
+            description="获取 ACOS 超标的广告 Campaign",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "threshold": {"type": "number", "description": "ACOS 阈值（%）"}
+                },
+                "required": ["threshold"]
+            }
+        ),
+        Tool(
+            name="get_inventory_alerts",
+            description="获取库存预警（低于安全库存的 SKU）",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "days_threshold": {"type": "integer", "description": "可售天数阈值"}
+                }
+            }
+        )
+    ]
 
 @server.call_tool()
 async def call_tool(name: str, arguments: dict):
-"""处理工具调用"""
-if name == "get_daily_sales":
-# 连接你的数据源（CSV/数据库/API）
-sales_data = query_sales_data(
-arguments["start_date"],
-arguments["end_date"],
-arguments.get("marketplace", "US")
-)
-return [TextContent(type="text", text=json.dumps(sales_data))]
+    """处理工具调用"""
+    if name == "get_daily_sales":
+        # 连接你的数据源（CSV/数据库/API）
+        sales_data = query_sales_data(
+            arguments["start_date"],
+            arguments["end_date"],
+            arguments.get("marketplace", "US")
+        )
+        return [TextContent(type="text", text=json.dumps(sales_data))]
 
-elif name == "get_acos_alerts":
-alerts = query_acos_alerts(arguments["threshold"])
-return [TextContent(type="text", text=json.dumps(alerts))]
+    elif name == "get_acos_alerts":
+        alerts = query_acos_alerts(arguments["threshold"])
+        return [TextContent(type="text", text=json.dumps(alerts))]
 
-elif name == "get_inventory_alerts":
-alerts = query_inventory_alerts(arguments.get("days_threshold", 14))
-return [TextContent(type="text", text=json.dumps(alerts))]
+    elif name == "get_inventory_alerts":
+        alerts = query_inventory_alerts(arguments.get("days_threshold", 14))
+        return [TextContent(type="text", text=json.dumps(alerts))]
 
 # 启动 Server
 if __name__ == "__main__":
-import asyncio
-from mcp.server.stdio import stdio_server
-asyncio.run(stdio_server(server))
+    import asyncio
+    from mcp.server.stdio import stdio_server
+    asyncio.run(stdio_server(server))
 ```
 
 ### 5.2 注册到 Claude/Kiro
@@ -505,180 +505,180 @@ import json
 from datetime import datetime, timedelta
 
 class DailyOpsState(TypedDict):
-"""Agent 状态定义"""
-sales_data: dict
-ad_alerts: list
-inventory_alerts: list
-review_alerts: list
-daily_report: str
-actions_taken: Annotated[list, operator.add]
-errors: Annotated[list, operator.add]
+    """Agent 状态定义"""
+    sales_data: dict
+    ad_alerts: list
+    inventory_alerts: list
+    review_alerts: list
+    daily_report: str
+    actions_taken: Annotated[list, operator.add]
+    errors: Annotated[list, operator.add]
 
 # === Step 1: 销售数据检查 ===
 async def check_sales(state: DailyOpsState) -> DailyOpsState:
-"""通过 MCP 获取昨日销售数据"""
-try:
-yesterday = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
-today = datetime.now().strftime("%Y-%m-%d")
+    """通过 MCP 获取昨日销售数据"""
+    try:
+        yesterday = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
+        today = datetime.now().strftime("%Y-%m-%d")
 
-# 调用自定义 MCP Server
-sales = await mcp_call("my-ecommerce", "get_daily_sales", {
-"start_date": yesterday,
-"end_date": today,
-"marketplace": "US"
-})
+        # 调用自定义 MCP Server
+        sales = await mcp_call("my-ecommerce", "get_daily_sales", {
+            "start_date": yesterday,
+            "end_date": today,
+            "marketplace": "US"
+        })
 
-# 计算关键指标
-prev_week = await mcp_call("my-ecommerce", "get_daily_sales", {
-"start_date": (datetime.now() - timedelta(days=8)).strftime("%Y-%m-%d"),
-"end_date": (datetime.now() - timedelta(days=7)).strftime("%Y-%m-%d")
-})
+        # 计算关键指标
+        prev_week = await mcp_call("my-ecommerce", "get_daily_sales", {
+            "start_date": (datetime.now() - timedelta(days=8)).strftime("%Y-%m-%d"),
+            "end_date": (datetime.now() - timedelta(days=7)).strftime("%Y-%m-%d")
+        })
 
-sales_data = {
-"date": yesterday,
-"revenue": sales["total_revenue"],
-"orders": sales["total_orders"],
-"units": sales["total_units"],
-"wow_change": (sales["total_revenue"] - prev_week["total_revenue"])
-/ prev_week["total_revenue"] * 100,
-"top_products": sales.get("top_products", [])[:5],
-"anomalies": []
-}
+        sales_data = {
+            "date": yesterday,
+            "revenue": sales["total_revenue"],
+            "orders": sales["total_orders"],
+            "units": sales["total_units"],
+            "wow_change": (sales["total_revenue"] - prev_week["total_revenue"])
+                          / prev_week["total_revenue"] * 100,
+            "top_products": sales.get("top_products", [])[:5],
+            "anomalies": []
+        }
 
-# 异常检测
-if abs(sales_data["wow_change"]) > 30:
-sales_data["anomalies"].append(
-f"收入周环比变化 {sales_data['wow_change']:+.1f}%（阈值 ±30%）"
-)
+        # 异常检测
+        if abs(sales_data["wow_change"]) > 30:
+            sales_data["anomalies"].append(
+                f"收入周环比变化 {sales_data['wow_change']:+.1f}%（阈值 ±30%）"
+            )
 
-state["sales_data"] = sales_data
-state["actions_taken"] = [f" 获取销售数据: ${sales_data['revenue']:,.0f}"]
+        state["sales_data"] = sales_data
+        state["actions_taken"] = [f" 获取销售数据: ${sales_data['revenue']:,.0f}"]
 
-except Exception as e:
-state["errors"] = [f" 销售数据获取失败: {str(e)}"]
+    except Exception as e:
+        state["errors"] = [f" 销售数据获取失败: {str(e)}"]
 
-return state
+    return state
 
 # === Step 2: 广告检查 ===
 async def check_ads(state: DailyOpsState) -> DailyOpsState:
-"""通过 Amazon Ads MCP 检查广告表现"""
-try:
-# 获取 ACOS 超标的 Campaign
-campaigns = await mcp_call("amazon-ads", "list_campaigns", {
-"status": "ENABLED"
-})
+    """通过 Amazon Ads MCP 检查广告表现"""
+    try:
+        # 获取 ACOS 超标的 Campaign
+        campaigns = await mcp_call("amazon-ads", "list_campaigns", {
+            "status": "ENABLED"
+        })
 
-alerts = []
-for campaign in campaigns:
-perf = await mcp_call("amazon-ads", "get_performance", {
-"campaign_id": campaign["id"],
-"days": 7
-})
+        alerts = []
+        for campaign in campaigns:
+            perf = await mcp_call("amazon-ads", "get_performance", {
+                "campaign_id": campaign["id"],
+                "days": 7
+            })
 
-acos = perf["spend"] / max(perf["sales"], 0.01) * 100
+            acos = perf["spend"] / max(perf["sales"], 0.01) * 100
 
-if acos > 40:
-alerts.append({
-"campaign": campaign["name"],
-"acos": acos,
-"spend": perf["spend"],
-"sales": perf["sales"],
-"severity": "high" if acos > 60 else "medium"
-})
+            if acos > 40:
+                alerts.append({
+                    "campaign": campaign["name"],
+                    "acos": acos,
+                    "spend": perf["spend"],
+                    "sales": perf["sales"],
+                    "severity": "high" if acos > 60 else "medium"
+                })
 
-# 检查预算耗尽
-if perf.get("budget_utilization", 0) > 95:
-alerts.append({
-"campaign": campaign["name"],
-"issue": "预算在下午前耗尽",
-"utilization": perf["budget_utilization"],
-"severity": "medium"
-})
+            # 检查预算耗尽
+            if perf.get("budget_utilization", 0) > 95:
+                alerts.append({
+                    "campaign": campaign["name"],
+                    "issue": "预算在下午前耗尽",
+                    "utilization": perf["budget_utilization"],
+                    "severity": "medium"
+                })
 
-state["ad_alerts"] = alerts
-state["actions_taken"] = [
-f" 检查广告: {len(campaigns)} 个 Campaign, {len(alerts)} 个告警"
-]
+        state["ad_alerts"] = alerts
+        state["actions_taken"] = [
+            f" 检查广告: {len(campaigns)} 个 Campaign, {len(alerts)} 个告警"
+        ]
 
-except Exception as e:
-state["errors"] = [f" 广告检查失败: {str(e)}"]
+    except Exception as e:
+        state["errors"] = [f" 广告检查失败: {str(e)}"]
 
-return state
+    return state
 
 # === Step 3: 库存检查 ===
 async def check_inventory(state: DailyOpsState) -> DailyOpsState:
-"""通过 Shopify/Amazon MCP 检查库存"""
-try:
-inventory = await mcp_call("shopify", "get_inventory_levels", {})
+    """通过 Shopify/Amazon MCP 检查库存"""
+    try:
+        inventory = await mcp_call("shopify", "get_inventory_levels", {})
 
-alerts = []
-for item in inventory:
-days_of_supply = item["quantity"] / max(item["daily_sales"], 0.1)
+        alerts = []
+        for item in inventory:
+            days_of_supply = item["quantity"] / max(item["daily_sales"], 0.1)
 
-if days_of_supply < 14:
-alerts.append({
-"sku": item["sku"],
-"product": item["title"],
-"quantity": item["quantity"],
-"days_of_supply": round(days_of_supply, 1),
-"daily_sales": item["daily_sales"],
-"severity": "high" if days_of_supply < 7 else "medium",
-"reorder_qty": int(item["daily_sales"] * 45) # 45 天补货量
-})
+            if days_of_supply < 14:
+                alerts.append({
+                    "sku": item["sku"],
+                    "product": item["title"],
+                    "quantity": item["quantity"],
+                    "days_of_supply": round(days_of_supply, 1),
+                    "daily_sales": item["daily_sales"],
+                    "severity": "high" if days_of_supply < 7 else "medium",
+                    "reorder_qty": int(item["daily_sales"] * 45) # 45 天补货量
+                })
 
-state["inventory_alerts"] = alerts
-state["actions_taken"] = [
-f" 检查库存: {len(alerts)} 个 SKU 需要补货"
-]
+        state["inventory_alerts"] = alerts
+        state["actions_taken"] = [
+            f" 检查库存: {len(alerts)} 个 SKU 需要补货"
+        ]
 
-except Exception as e:
-state["errors"] = [f" 库存检查失败: {str(e)}"]
+    except Exception as e:
+        state["errors"] = [f" 库存检查失败: {str(e)}"]
 
-return state
+    return state
 
 # === Step 4: Review 检查 ===
 async def check_reviews(state: DailyOpsState) -> DailyOpsState:
-"""检查新的差评"""
-try:
-new_reviews = await mcp_call("my-ecommerce", "get_recent_reviews", {
-"days": 1,
-"max_rating": 3
-})
+    """检查新的差评"""
+    try:
+        new_reviews = await mcp_call("my-ecommerce", "get_recent_reviews", {
+            "days": 1,
+            "max_rating": 3
+        })
 
-alerts = []
-for review in new_reviews:
-alerts.append({
-"asin": review["asin"],
-"rating": review["rating"],
-"title": review["title"][:50],
-"severity": "high" if review["rating"] <= 2 else "low"
-})
+        alerts = []
+        for review in new_reviews:
+            alerts.append({
+                "asin": review["asin"],
+                "rating": review["rating"],
+                "title": review["title"][:50],
+                "severity": "high" if review["rating"] <= 2 else "low"
+            })
 
-state["review_alerts"] = alerts
-state["actions_taken"] = [
-f" 检查 Review: {len(alerts)} 条新差评"
-]
+        state["review_alerts"] = alerts
+        state["actions_taken"] = [
+            f" 检查 Review: {len(alerts)} 条新差评"
+        ]
 
-except Exception as e:
-state["errors"] = [f" Review 检查失败: {str(e)}"]
+    except Exception as e:
+        state["errors"] = [f" Review 检查失败: {str(e)}"]
 
-return state
+    return state
 
 # === Step 5: 生成报告 ===
 async def generate_report(state: DailyOpsState) -> DailyOpsState:
-"""用 LLM 生成每日运营报告"""
+    """用 LLM 生成每日运营报告"""
 
-report_data = {
-"date": state.get("sales_data", {}).get("date", "N/A"),
-"sales": state.get("sales_data", {}),
-"ad_alerts": state.get("ad_alerts", []),
-"inventory_alerts": state.get("inventory_alerts", []),
-"review_alerts": state.get("review_alerts", []),
-"actions": state.get("actions_taken", []),
-"errors": state.get("errors", [])
-}
+    report_data = {
+        "date": state.get("sales_data", {}).get("date", "N/A"),
+        "sales": state.get("sales_data", {}),
+        "ad_alerts": state.get("ad_alerts", []),
+        "inventory_alerts": state.get("inventory_alerts", []),
+        "review_alerts": state.get("review_alerts", []),
+        "actions": state.get("actions_taken", []),
+        "errors": state.get("errors", [])
+    }
 
-prompt = f"""
+    prompt = f"""
 你是一个电商运营 AI 助手。请基于以下数据生成简洁的每日运营报告。
 
 数据：
@@ -700,32 +700,32 @@ prompt = f"""
 （执行的检查、遇到的错误）
 """
 
-report = await llm_call(prompt)
-state["daily_report"] = report
+    report = await llm_call(prompt)
+    state["daily_report"] = report
 
-return state
+    return state
 
 # === 决策路由 ===
 def should_auto_fix(state: DailyOpsState) -> Literal["auto_fix", "report"]:
-"""决定是否自动修复问题"""
-high_severity = sum(
-1 for a in state.get("ad_alerts", []) if a.get("severity") == "high"
-)
-if high_severity > 0:
-return "auto_fix"
-return "report"
+    """决定是否自动修复问题"""
+    high_severity = sum(
+        1 for a in state.get("ad_alerts", []) if a.get("severity") == "high"
+    )
+    if high_severity > 0:
+        return "auto_fix"
+    return "report"
 
 # === 自动修复 ===
 async def auto_fix_ads(state: DailyOpsState) -> DailyOpsState:
-"""自动修复高严重度的广告问题"""
-for alert in state.get("ad_alerts", []):
-if alert.get("severity") == "high" and alert.get("acos", 0) > 60:
-# 自动降低出价 20%（需要人工确认）
-state["actions_taken"] = [
-f" 建议: Campaign '{alert['campaign']}' ACOS={alert['acos']:.0f}%，"
-f"建议降低出价 20%（需要人工确认）"
-]
-return state
+    """自动修复高严重度的广告问题"""
+    for alert in state.get("ad_alerts", []):
+        if alert.get("severity") == "high" and alert.get("acos", 0) > 60:
+            # 自动降低出价 20%（需要人工确认）
+            state["actions_taken"] = [
+                f" 建议: Campaign '{alert['campaign']}' ACOS={alert['acos']:.0f}%，"
+                f"建议降低出价 20%（需要人工确认）"
+            ]
+    return state
 
 # === 构建工作流 ===
 workflow = StateGraph(DailyOpsState)
@@ -752,30 +752,30 @@ app = workflow.compile()
 
 # === 运行 ===
 async def run_daily_ops():
-"""每天早上 8 点运行"""
-initial_state = {
-"sales_data": {},
-"ad_alerts": [],
-"inventory_alerts": [],
-"review_alerts": [],
-"daily_report": "",
-"actions_taken": [],
-"errors": []
-}
+    """每天早上 8 点运行"""
+    initial_state = {
+        "sales_data": {},
+        "ad_alerts": [],
+        "inventory_alerts": [],
+        "review_alerts": [],
+        "daily_report": "",
+        "actions_taken": [],
+        "errors": []
+    }
 
-result = await app.ainvoke(initial_state)
+    result = await app.ainvoke(initial_state)
 
-# 输出报告
-print(result["daily_report"])
+    # 输出报告
+    print(result["daily_report"])
 
-# 发送到 Slack/邮件
-# await send_to_slack(result["daily_report"])
+    # 发送到 Slack/邮件
+    # await send_to_slack(result["daily_report"])
 
-return result
+    return result
 
 if __name__ == "__main__":
-import asyncio
-asyncio.run(run_daily_ops())
+    import asyncio
+    asyncio.run(run_daily_ops())
 ```
 
 ### 6.3 定时调度
@@ -824,64 +824,64 @@ audit_logger = logging.getLogger("mcp_audit")
 audit_logger.setLevel(logging.INFO)
 handler = logging.FileHandler("mcp_audit.log")
 handler.setFormatter(logging.Formatter(
-"%(asctime)s | %(levelname)s | %(message)s"
+    "%(asctime)s | %(levelname)s | %(message)s"
 ))
 audit_logger.addHandler(handler)
 
 def audit_mcp_call(func):
-"""MCP 调用审计装饰器"""
-@wraps(func)
-async def wrapper(name: str, arguments: dict, *args, **kwargs):
-# 记录调用
-audit_logger.info(f"CALL | tool={name} | args={arguments}")
+    """MCP 调用审计装饰器"""
+    @wraps(func)
+    async def wrapper(name: str, arguments: dict, *args, **kwargs):
+        # 记录调用
+        audit_logger.info(f"CALL | tool={name} | args={arguments}")
 
-try:
-result = await func(name, arguments, *args, **kwargs)
-audit_logger.info(f"SUCCESS | tool={name} | result_size={len(str(result))}")
-return result
-except Exception as e:
-audit_logger.error(f"ERROR | tool={name} | error={str(e)}")
-raise
+        try:
+            result = await func(name, arguments, *args, **kwargs)
+            audit_logger.info(f"SUCCESS | tool={name} | result_size={len(str(result))}")
+            return result
+        except Exception as e:
+            audit_logger.error(f"ERROR | tool={name} | error={str(e)}")
+            raise
 
-return wrapper
+    return wrapper
 
 # 使用
 @audit_mcp_call
 async def call_tool(name: str, arguments: dict):
-# ... MCP 调用逻辑
-pass
+    # ... MCP 调用逻辑
+    pass
 ```
 
 ### 7.3 人工确认机制
 
 ```python
 class HumanInTheLoop:
-"""写操作的人工确认机制"""
+    """写操作的人工确认机制"""
 
-WRITE_OPERATIONS = {
-"update_bid", "create_campaign", "create_negative",
-"update_campaign", "delete_keyword",
-"create_product", "update_order", "update_inventory"
-}
+    WRITE_OPERATIONS = {
+        "update_bid", "create_campaign", "create_negative",
+        "update_campaign", "delete_keyword",
+        "create_product", "update_order", "update_inventory"
+    }
 
-@staticmethod
-async def confirm(tool_name: str, arguments: dict) -> bool:
-"""检查是否需要人工确认"""
-if tool_name not in HumanInTheLoop.WRITE_OPERATIONS:
-return True # 读操作自动通过
+    @staticmethod
+    async def confirm(tool_name: str, arguments: dict) -> bool:
+        """检查是否需要人工确认"""
+        if tool_name not in HumanInTheLoop.WRITE_OPERATIONS:
+            return True # 读操作自动通过
 
-print(f"\n 写操作确认请求:")
-print(f" 工具: {tool_name}")
-print(f" 参数: {arguments}")
+        print(f"\n 写操作确认请求:")
+        print(f" 工具: {tool_name}")
+        print(f" 参数: {arguments}")
 
-response = input(" 确认执行？(y/n): ").strip().lower()
+        response = input(" 确认执行？(y/n): ").strip().lower()
 
-if response == 'y':
-audit_logger.info(f"CONFIRMED | tool={tool_name}")
-return True
-else:
-audit_logger.info(f"REJECTED | tool={tool_name}")
-return False
+        if response == 'y':
+            audit_logger.info(f"CONFIRMED | tool={tool_name}")
+            return True
+        else:
+            audit_logger.info(f"REJECTED | tool={tool_name}")
+            return False
 ```
 
 ### 7.4 常见风险与防范
@@ -898,32 +898,32 @@ return False
 ```python
 # 预算安全阀示例
 class BudgetSafetyValve:
-"""防止 AI 自动操作导致预算超支"""
+    """防止 AI 自动操作导致预算超支"""
 
-def __init__(self, max_daily_spend_change: float = 100.0,
-max_single_bid_change: float = 2.0):
-self.max_daily_spend_change = max_daily_spend_change
-self.max_single_bid_change = max_single_bid_change
-self.daily_changes = 0.0
+    def __init__(self, max_daily_spend_change: float = 100.0,
+                 max_single_bid_change: float = 2.0):
+        self.max_daily_spend_change = max_daily_spend_change
+        self.max_single_bid_change = max_single_bid_change
+        self.daily_changes = 0.0
 
-def check_bid_change(self, current_bid: float, new_bid: float) -> bool:
-"""检查出价变更是否在安全范围内"""
-change = abs(new_bid - current_bid)
+    def check_bid_change(self, current_bid: float, new_bid: float) -> bool:
+        """检查出价变更是否在安全范围内"""
+        change = abs(new_bid - current_bid)
 
-if change > self.max_single_bid_change:
-audit_logger.warning(
-f"BID_BLOCKED | change=${change:.2f} > max=${self.max_single_bid_change}"
-)
-return False
+        if change > self.max_single_bid_change:
+            audit_logger.warning(
+                f"BID_BLOCKED | change=${change:.2f} > max=${self.max_single_bid_change}"
+            )
+            return False
 
-self.daily_changes += change
-if self.daily_changes > self.max_daily_spend_change:
-audit_logger.warning(
-f"DAILY_LIMIT | total_changes=${self.daily_changes:.2f}"
-)
-return False
+        self.daily_changes += change
+        if self.daily_changes > self.max_daily_spend_change:
+            audit_logger.warning(
+                f"DAILY_LIMIT | total_changes=${self.daily_changes:.2f}"
+            )
+            return False
 
-return True
+        return True
 ```
 
 ---
@@ -949,44 +949,44 @@ Content rephrased for compliance with licensing restrictions.
 ```python
 # 概念代码：多平台广告统一管理
 class MultiPlatformAdManager:
-"""通过 MCP 统一管理多平台广告"""
+    """通过 MCP 统一管理多平台广告"""
 
-def __init__(self):
-self.platforms = {
-"amazon": AmazonAdsMCP(),
-"meta": MetaAdsMCP(),
-"google": GoogleAdsMCP()
-}
+    def __init__(self):
+        self.platforms = {
+            "amazon": AmazonAdsMCP(),
+            "meta": MetaAdsMCP(),
+            "google": GoogleAdsMCP()
+        }
 
-async def get_cross_platform_report(self, days: int = 7) -> dict:
-"""跨平台广告报告"""
-reports = {}
-for name, mcp in self.platforms.items():
-reports[name] = await mcp.get_performance(days=days)
+    async def get_cross_platform_report(self, days: int = 7) -> dict:
+        """跨平台广告报告"""
+        reports = {}
+        for name, mcp in self.platforms.items():
+            reports[name] = await mcp.get_performance(days=days)
 
-# 统一格式
-unified = {
-"total_spend": sum(r["spend"] for r in reports.values()),
-"total_revenue": sum(r["revenue"] for r in reports.values()),
-"by_platform": reports,
-"overall_roas": sum(r["revenue"] for r in reports.values()) /
-sum(r["spend"] for r in reports.values())
-}
-return unified
+        # 统一格式
+        unified = {
+            "total_spend": sum(r["spend"] for r in reports.values()),
+            "total_revenue": sum(r["revenue"] for r in reports.values()),
+            "by_platform": reports,
+            "overall_roas": sum(r["revenue"] for r in reports.values()) /
+                            sum(r["spend"] for r in reports.values())
+        }
+        return unified
 
-async def rebalance_budget(self, total_budget: float):
-"""基于 ROAS 自动重新分配跨平台预算"""
-report = await self.get_cross_platform_report()
+    async def rebalance_budget(self, total_budget: float):
+        """基于 ROAS 自动重新分配跨平台预算"""
+        report = await self.get_cross_platform_report()
 
-# 按 ROAS 加权分配
-total_roas = sum(
-r["revenue"] / r["spend"] for r in report["by_platform"].values()
-)
+        # 按 ROAS 加权分配
+        total_roas = sum(
+            r["revenue"] / r["spend"] for r in report["by_platform"].values()
+        )
 
-for name, r in report["by_platform"].items():
-platform_roas = r["revenue"] / r["spend"]
-new_budget = total_budget * (platform_roas / total_roas)
-await self.platforms[name].update_daily_budget(new_budget)
+        for name, r in report["by_platform"].items():
+            platform_roas = r["revenue"] / r["spend"]
+            new_budget = total_budget * (platform_roas / total_roas)
+            await self.platforms[name].update_daily_budget(new_budget)
 ```
 
 ---

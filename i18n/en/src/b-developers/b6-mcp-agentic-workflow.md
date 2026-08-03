@@ -320,27 +320,27 @@ from mcp import ClientSession, StdioServerParameters
 import asyncio
 
 async def shopify_mcp_demo():
-"""Connect to the Shopify MCP Server and query products"""
-server_params = StdioServerParameters(
-command="npx",
-args=["-y", "@shopify/storefront-mcp-server"],
-env={
-"SHOPIFY_STORE_URL": "your-store.myshopify.com",
-"SHOPIFY_ACCESS_TOKEN": "your-access-token"
-}
-)
+    """Connect to the Shopify MCP Server and query products"""
+    server_params = StdioServerParameters(
+        command="npx",
+        args=["-y", "@shopify/storefront-mcp-server"],
+        env={
+            "SHOPIFY_STORE_URL": "your-store.myshopify.com",
+            "SHOPIFY_ACCESS_TOKEN": "your-access-token"
+        }
+    )
 
-async with ClientSession(server_params) as session:
-# List available tools
-tools = await session.list_tools()
-print(f"Available tools: {[t.name for t in tools]}")
+    async with ClientSession(server_params) as session:
+        # List available tools
+        tools = await session.list_tools()
+        print(f"Available tools: {[t.name for t in tools]}")
 
-# Query low-stock products
-result = await session.call_tool(
-"get_products",
-{"query": "inventory_quantity:<10"}
-)
-print(f"Low-stock products: {result}")
+        # Query low-stock products
+        result = await session.call_tool(
+            "get_products",
+            {"query": "inventory_quantity:<10"}
+        )
+        print(f"Low-stock products: {result}")
 
 asyncio.run(shopify_mcp_demo())
 ```
@@ -396,69 +396,69 @@ server = Server("ecommerce-data")
 
 @server.list_tools()
 async def list_tools():
-"""Define available tools"""
-return [
-Tool(
-name="get_daily_sales",
-description="Get sales data for a given date range",
-inputSchema={
-"type": "object",
-"properties": {
-"start_date": {"type": "string", "description": "start date YYYY-MM-DD"},
-"end_date": {"type": "string", "description": "end date YYYY-MM-DD"},
-"marketplace": {"type": "string", "description": "marketplace US/EU/JP"}
-},
-"required": ["start_date", "end_date"]
-}
-),
-Tool(
-name="get_acos_alerts",
-description="Get ad campaigns exceeding the ACOS threshold",
-inputSchema={
-"type": "object",
-"properties": {
-"threshold": {"type": "number", "description": "ACOS threshold (%)"}
-},
-"required": ["threshold"]
-}
-),
-Tool(
-name="get_inventory_alerts",
-description="Get inventory alerts (SKUs below safety stock)",
-inputSchema={
-"type": "object",
-"properties": {
-"days_threshold": {"type": "integer", "description": "days-of-cover threshold"}
-}
-}
-)
-]
+    """Define available tools"""
+    return [
+        Tool(
+            name="get_daily_sales",
+            description="Get sales data for a given date range",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "start_date": {"type": "string", "description": "start date YYYY-MM-DD"},
+                    "end_date": {"type": "string", "description": "end date YYYY-MM-DD"},
+                    "marketplace": {"type": "string", "description": "marketplace US/EU/JP"}
+                },
+                "required": ["start_date", "end_date"]
+            }
+        ),
+        Tool(
+            name="get_acos_alerts",
+            description="Get ad campaigns exceeding the ACOS threshold",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "threshold": {"type": "number", "description": "ACOS threshold (%)"}
+                },
+                "required": ["threshold"]
+            }
+        ),
+        Tool(
+            name="get_inventory_alerts",
+            description="Get inventory alerts (SKUs below safety stock)",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "days_threshold": {"type": "integer", "description": "days-of-cover threshold"}
+                }
+            }
+        )
+    ]
 
 @server.call_tool()
 async def call_tool(name: str, arguments: dict):
-"""Handle tool calls"""
-if name == "get_daily_sales":
-# Connect your data source (CSV/database/API)
-sales_data = query_sales_data(
-arguments["start_date"],
-arguments["end_date"],
-arguments.get("marketplace", "US")
-)
-return [TextContent(type="text", text=json.dumps(sales_data))]
+    """Handle tool calls"""
+    if name == "get_daily_sales":
+        # Connect your data source (CSV/database/API)
+        sales_data = query_sales_data(
+            arguments["start_date"],
+            arguments["end_date"],
+            arguments.get("marketplace", "US")
+        )
+        return [TextContent(type="text", text=json.dumps(sales_data))]
 
-elif name == "get_acos_alerts":
-alerts = query_acos_alerts(arguments["threshold"])
-return [TextContent(type="text", text=json.dumps(alerts))]
+    elif name == "get_acos_alerts":
+        alerts = query_acos_alerts(arguments["threshold"])
+        return [TextContent(type="text", text=json.dumps(alerts))]
 
-elif name == "get_inventory_alerts":
-alerts = query_inventory_alerts(arguments.get("days_threshold", 14))
-return [TextContent(type="text", text=json.dumps(alerts))]
+    elif name == "get_inventory_alerts":
+        alerts = query_inventory_alerts(arguments.get("days_threshold", 14))
+        return [TextContent(type="text", text=json.dumps(alerts))]
 
 # Start the Server
 if __name__ == "__main__":
-import asyncio
-from mcp.server.stdio import stdio_server
-asyncio.run(stdio_server(server))
+    import asyncio
+    from mcp.server.stdio import stdio_server
+    asyncio.run(stdio_server(server))
 ```
 
 ### 5.2 Register with Claude/Kiro
@@ -517,180 +517,180 @@ import json
 from datetime import datetime, timedelta
 
 class DailyOpsState(TypedDict):
-"""Agent state definition"""
-sales_data: dict
-ad_alerts: list
-inventory_alerts: list
-review_alerts: list
-daily_report: str
-actions_taken: Annotated[list, operator.add]
-errors: Annotated[list, operator.add]
+    """Agent state definition"""
+    sales_data: dict
+    ad_alerts: list
+    inventory_alerts: list
+    review_alerts: list
+    daily_report: str
+    actions_taken: Annotated[list, operator.add]
+    errors: Annotated[list, operator.add]
 
 # === Step 1: sales-data check ===
 async def check_sales(state: DailyOpsState) -> DailyOpsState:
-"""Get yesterday's sales data via MCP"""
-try:
-yesterday = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
-today = datetime.now().strftime("%Y-%m-%d")
+    """Get yesterday's sales data via MCP"""
+    try:
+        yesterday = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
+        today = datetime.now().strftime("%Y-%m-%d")
 
-# Call the custom MCP Server
-sales = await mcp_call("my-ecommerce", "get_daily_sales", {
-"start_date": yesterday,
-"end_date": today,
-"marketplace": "US"
-})
+        # Call the custom MCP Server
+        sales = await mcp_call("my-ecommerce", "get_daily_sales", {
+            "start_date": yesterday,
+            "end_date": today,
+            "marketplace": "US"
+        })
 
-# Compute key metrics
-prev_week = await mcp_call("my-ecommerce", "get_daily_sales", {
-"start_date": (datetime.now() - timedelta(days=8)).strftime("%Y-%m-%d"),
-"end_date": (datetime.now() - timedelta(days=7)).strftime("%Y-%m-%d")
-})
+        # Compute key metrics
+        prev_week = await mcp_call("my-ecommerce", "get_daily_sales", {
+            "start_date": (datetime.now() - timedelta(days=8)).strftime("%Y-%m-%d"),
+            "end_date": (datetime.now() - timedelta(days=7)).strftime("%Y-%m-%d")
+        })
 
-sales_data = {
-"date": yesterday,
-"revenue": sales["total_revenue"],
-"orders": sales["total_orders"],
-"units": sales["total_units"],
-"wow_change": (sales["total_revenue"] - prev_week["total_revenue"])
-/ prev_week["total_revenue"] * 100,
-"top_products": sales.get("top_products", [])[:5],
-"anomalies": []
-}
+        sales_data = {
+            "date": yesterday,
+            "revenue": sales["total_revenue"],
+            "orders": sales["total_orders"],
+            "units": sales["total_units"],
+            "wow_change": (sales["total_revenue"] - prev_week["total_revenue"])
+                          / prev_week["total_revenue"] * 100,
+            "top_products": sales.get("top_products", [])[:5],
+            "anomalies": []
+        }
 
-# Anomaly detection
-if abs(sales_data["wow_change"]) > 30:
-sales_data["anomalies"].append(
-f"Revenue WoW change {sales_data['wow_change']:+.1f}% (threshold ±30%)"
-)
+        # Anomaly detection
+        if abs(sales_data["wow_change"]) > 30:
+            sales_data["anomalies"].append(
+                f"Revenue WoW change {sales_data['wow_change']:+.1f}% (threshold ±30%)"
+            )
 
-state["sales_data"] = sales_data
-state["actions_taken"] = [f"Got sales data: ${sales_data['revenue']:,.0f}"]
+        state["sales_data"] = sales_data
+        state["actions_taken"] = [f"Got sales data: ${sales_data['revenue']:,.0f}"]
 
-except Exception as e:
-state["errors"] = [f"Sales-data fetch failed: {str(e)}"]
+    except Exception as e:
+        state["errors"] = [f"Sales-data fetch failed: {str(e)}"]
 
-return state
+    return state
 
 # === Step 2: ad check ===
 async def check_ads(state: DailyOpsState) -> DailyOpsState:
-"""Check ad performance via the Amazon Ads MCP"""
-try:
-# Get campaigns exceeding the ACOS threshold
-campaigns = await mcp_call("amazon-ads", "list_campaigns", {
-"status": "ENABLED"
-})
+    """Check ad performance via the Amazon Ads MCP"""
+    try:
+        # Get campaigns exceeding the ACOS threshold
+        campaigns = await mcp_call("amazon-ads", "list_campaigns", {
+            "status": "ENABLED"
+        })
 
-alerts = []
-for campaign in campaigns:
-perf = await mcp_call("amazon-ads", "get_performance", {
-"campaign_id": campaign["id"],
-"days": 7
-})
+        alerts = []
+        for campaign in campaigns:
+            perf = await mcp_call("amazon-ads", "get_performance", {
+                "campaign_id": campaign["id"],
+                "days": 7
+            })
 
-acos = perf["spend"] / max(perf["sales"], 0.01) * 100
+            acos = perf["spend"] / max(perf["sales"], 0.01) * 100
 
-if acos > 40:
-alerts.append({
-"campaign": campaign["name"],
-"acos": acos,
-"spend": perf["spend"],
-"sales": perf["sales"],
-"severity": "high" if acos > 60 else "medium"
-})
+            if acos > 40:
+                alerts.append({
+                    "campaign": campaign["name"],
+                    "acos": acos,
+                    "spend": perf["spend"],
+                    "sales": perf["sales"],
+                    "severity": "high" if acos > 60 else "medium"
+                })
 
-# Check budget exhaustion
-if perf.get("budget_utilization", 0) > 95:
-alerts.append({
-"campaign": campaign["name"],
-"issue": "budget exhausted before afternoon",
-"utilization": perf["budget_utilization"],
-"severity": "medium"
-})
+            # Check budget exhaustion
+            if perf.get("budget_utilization", 0) > 95:
+                alerts.append({
+                    "campaign": campaign["name"],
+                    "issue": "budget exhausted before afternoon",
+                    "utilization": perf["budget_utilization"],
+                    "severity": "medium"
+                })
 
-state["ad_alerts"] = alerts
-state["actions_taken"] = [
-f"Checked ads: {len(campaigns)} campaigns, {len(alerts)} alerts"
-]
+        state["ad_alerts"] = alerts
+        state["actions_taken"] = [
+            f"Checked ads: {len(campaigns)} campaigns, {len(alerts)} alerts"
+        ]
 
-except Exception as e:
-state["errors"] = [f"Ad check failed: {str(e)}"]
+    except Exception as e:
+        state["errors"] = [f"Ad check failed: {str(e)}"]
 
-return state
+    return state
 
 # === Step 3: inventory check ===
 async def check_inventory(state: DailyOpsState) -> DailyOpsState:
-"""Check inventory via the Shopify/Amazon MCP"""
-try:
-inventory = await mcp_call("shopify", "get_inventory_levels", {})
+    """Check inventory via the Shopify/Amazon MCP"""
+    try:
+        inventory = await mcp_call("shopify", "get_inventory_levels", {})
 
-alerts = []
-for item in inventory:
-days_of_supply = item["quantity"] / max(item["daily_sales"], 0.1)
+        alerts = []
+        for item in inventory:
+            days_of_supply = item["quantity"] / max(item["daily_sales"], 0.1)
 
-if days_of_supply < 14:
-alerts.append({
-"sku": item["sku"],
-"product": item["title"],
-"quantity": item["quantity"],
-"days_of_supply": round(days_of_supply, 1),
-"daily_sales": item["daily_sales"],
-"severity": "high" if days_of_supply < 7 else "medium",
-"reorder_qty": int(item["daily_sales"] * 45) # 45-day restock quantity
-})
+            if days_of_supply < 14:
+                alerts.append({
+                    "sku": item["sku"],
+                    "product": item["title"],
+                    "quantity": item["quantity"],
+                    "days_of_supply": round(days_of_supply, 1),
+                    "daily_sales": item["daily_sales"],
+                    "severity": "high" if days_of_supply < 7 else "medium",
+                    "reorder_qty": int(item["daily_sales"] * 45) # 45-day restock quantity
+                })
 
-state["inventory_alerts"] = alerts
-state["actions_taken"] = [
-f"Checked inventory: {len(alerts)} SKUs need restocking"
-]
+        state["inventory_alerts"] = alerts
+        state["actions_taken"] = [
+            f"Checked inventory: {len(alerts)} SKUs need restocking"
+        ]
 
-except Exception as e:
-state["errors"] = [f"Inventory check failed: {str(e)}"]
+    except Exception as e:
+        state["errors"] = [f"Inventory check failed: {str(e)}"]
 
-return state
+    return state
 
 # === Step 4: Review check ===
 async def check_reviews(state: DailyOpsState) -> DailyOpsState:
-"""Check new negative reviews"""
-try:
-new_reviews = await mcp_call("my-ecommerce", "get_recent_reviews", {
-"days": 1,
-"max_rating": 3
-})
+    """Check new negative reviews"""
+    try:
+        new_reviews = await mcp_call("my-ecommerce", "get_recent_reviews", {
+            "days": 1,
+            "max_rating": 3
+        })
 
-alerts = []
-for review in new_reviews:
-alerts.append({
-"asin": review["asin"],
-"rating": review["rating"],
-"title": review["title"][:50],
-"severity": "high" if review["rating"] <= 2 else "low"
-})
+        alerts = []
+        for review in new_reviews:
+            alerts.append({
+                "asin": review["asin"],
+                "rating": review["rating"],
+                "title": review["title"][:50],
+                "severity": "high" if review["rating"] <= 2 else "low"
+            })
 
-state["review_alerts"] = alerts
-state["actions_taken"] = [
-f"Checked Reviews: {len(alerts)} new negatives"
-]
+        state["review_alerts"] = alerts
+        state["actions_taken"] = [
+            f"Checked Reviews: {len(alerts)} new negatives"
+        ]
 
-except Exception as e:
-state["errors"] = [f"Review check failed: {str(e)}"]
+    except Exception as e:
+        state["errors"] = [f"Review check failed: {str(e)}"]
 
-return state
+    return state
 
 # === Step 5: generate the report ===
 async def generate_report(state: DailyOpsState) -> DailyOpsState:
-"""Generate the daily operations report with an LLM"""
+    """Generate the daily operations report with an LLM"""
 
-report_data = {
-"date": state.get("sales_data", {}).get("date", "N/A"),
-"sales": state.get("sales_data", {}),
-"ad_alerts": state.get("ad_alerts", []),
-"inventory_alerts": state.get("inventory_alerts", []),
-"review_alerts": state.get("review_alerts", []),
-"actions": state.get("actions_taken", []),
-"errors": state.get("errors", [])
-}
+    report_data = {
+        "date": state.get("sales_data", {}).get("date", "N/A"),
+        "sales": state.get("sales_data", {}),
+        "ad_alerts": state.get("ad_alerts", []),
+        "inventory_alerts": state.get("inventory_alerts", []),
+        "review_alerts": state.get("review_alerts", []),
+        "actions": state.get("actions_taken", []),
+        "errors": state.get("errors", [])
+    }
 
-prompt = f"""
+    prompt = f"""
 You are an e-commerce operations AI assistant. Generate a concise daily operations report from the data below.
 
 Data:
@@ -712,32 +712,32 @@ Report format:
 (checks performed, errors encountered)
 """
 
-report = await llm_call(prompt)
-state["daily_report"] = report
+    report = await llm_call(prompt)
+    state["daily_report"] = report
 
-return state
+    return state
 
 # === Decision routing ===
 def should_auto_fix(state: DailyOpsState) -> Literal["auto_fix", "report"]:
-"""Decide whether to auto-fix problems"""
-high_severity = sum(
-1 for a in state.get("ad_alerts", []) if a.get("severity") == "high"
-)
-if high_severity > 0:
-return "auto_fix"
-return "report"
+    """Decide whether to auto-fix problems"""
+    high_severity = sum(
+        1 for a in state.get("ad_alerts", []) if a.get("severity") == "high"
+    )
+    if high_severity > 0:
+        return "auto_fix"
+    return "report"
 
 # === Auto-fix ===
 async def auto_fix_ads(state: DailyOpsState) -> DailyOpsState:
-"""Auto-fix high-severity ad problems"""
-for alert in state.get("ad_alerts", []):
-if alert.get("severity") == "high" and alert.get("acos", 0) > 60:
-# Auto-lower the bid 20% (needs human confirmation)
-state["actions_taken"] = [
-f"Suggestion: Campaign '{alert['campaign']}' ACOS={alert['acos']:.0f}%, "
-f"suggest lowering the bid 20% (needs human confirmation)"
-]
-return state
+    """Auto-fix high-severity ad problems"""
+    for alert in state.get("ad_alerts", []):
+        if alert.get("severity") == "high" and alert.get("acos", 0) > 60:
+            # Auto-lower the bid 20% (needs human confirmation)
+            state["actions_taken"] = [
+                f"Suggestion: Campaign '{alert['campaign']}' ACOS={alert['acos']:.0f}%, "
+                f"suggest lowering the bid 20% (needs human confirmation)"
+            ]
+    return state
 
 # === Build the workflow ===
 workflow = StateGraph(DailyOpsState)
@@ -764,30 +764,30 @@ app = workflow.compile()
 
 # === Run ===
 async def run_daily_ops():
-"""Run at 8 AM every day"""
-initial_state = {
-"sales_data": {},
-"ad_alerts": [],
-"inventory_alerts": [],
-"review_alerts": [],
-"daily_report": "",
-"actions_taken": [],
-"errors": []
-}
+    """Run at 8 AM every day"""
+    initial_state = {
+        "sales_data": {},
+        "ad_alerts": [],
+        "inventory_alerts": [],
+        "review_alerts": [],
+        "daily_report": "",
+        "actions_taken": [],
+        "errors": []
+    }
 
-result = await app.ainvoke(initial_state)
+    result = await app.ainvoke(initial_state)
 
-# Output the report
-print(result["daily_report"])
+    # Output the report
+    print(result["daily_report"])
 
-# Send to Slack/email
-# await send_to_slack(result["daily_report"])
+    # Send to Slack/email
+    # await send_to_slack(result["daily_report"])
 
-return result
+    return result
 
 if __name__ == "__main__":
-import asyncio
-asyncio.run(run_daily_ops())
+    import asyncio
+    asyncio.run(run_daily_ops())
 ```
 
 ### 6.3 Scheduled dispatch
@@ -836,64 +836,64 @@ audit_logger = logging.getLogger("mcp_audit")
 audit_logger.setLevel(logging.INFO)
 handler = logging.FileHandler("mcp_audit.log")
 handler.setFormatter(logging.Formatter(
-"%(asctime)s | %(levelname)s | %(message)s"
+    "%(asctime)s | %(levelname)s | %(message)s"
 ))
 audit_logger.addHandler(handler)
 
 def audit_mcp_call(func):
-"""MCP-call audit decorator"""
-@wraps(func)
-async def wrapper(name: str, arguments: dict, *args, **kwargs):
-# Log the call
-audit_logger.info(f"CALL | tool={name} | args={arguments}")
+    """MCP-call audit decorator"""
+    @wraps(func)
+    async def wrapper(name: str, arguments: dict, *args, **kwargs):
+        # Log the call
+        audit_logger.info(f"CALL | tool={name} | args={arguments}")
 
-try:
-result = await func(name, arguments, *args, **kwargs)
-audit_logger.info(f"SUCCESS | tool={name} | result_size={len(str(result))}")
-return result
-except Exception as e:
-audit_logger.error(f"ERROR | tool={name} | error={str(e)}")
-raise
+        try:
+            result = await func(name, arguments, *args, **kwargs)
+            audit_logger.info(f"SUCCESS | tool={name} | result_size={len(str(result))}")
+            return result
+        except Exception as e:
+            audit_logger.error(f"ERROR | tool={name} | error={str(e)}")
+            raise
 
-return wrapper
+    return wrapper
 
 # Use
 @audit_mcp_call
 async def call_tool(name: str, arguments: dict):
-# ... MCP-call logic
-pass
+    # ... MCP-call logic
+    pass
 ```
 
 ### 7.3 Human-confirmation mechanism
 
 ```python
 class HumanInTheLoop:
-"""Human-confirmation mechanism for write operations"""
+    """Human-confirmation mechanism for write operations"""
 
-WRITE_OPERATIONS = {
-"update_bid", "create_campaign", "create_negative",
-"update_campaign", "delete_keyword",
-"create_product", "update_order", "update_inventory"
-}
+    WRITE_OPERATIONS = {
+        "update_bid", "create_campaign", "create_negative",
+        "update_campaign", "delete_keyword",
+        "create_product", "update_order", "update_inventory"
+    }
 
-@staticmethod
-async def confirm(tool_name: str, arguments: dict) -> bool:
-"""Check whether human confirmation is needed"""
-if tool_name not in HumanInTheLoop.WRITE_OPERATIONS:
-return True # read operations auto-pass
+    @staticmethod
+    async def confirm(tool_name: str, arguments: dict) -> bool:
+        """Check whether human confirmation is needed"""
+        if tool_name not in HumanInTheLoop.WRITE_OPERATIONS:
+            return True # read operations auto-pass
 
-print(f"\nWrite-operation confirmation request:")
-print(f"Tool: {tool_name}")
-print(f"Args: {arguments}")
+        print(f"\nWrite-operation confirmation request:")
+        print(f"Tool: {tool_name}")
+        print(f"Args: {arguments}")
 
-response = input("Confirm execution? (y/n): ").strip().lower()
+        response = input("Confirm execution? (y/n): ").strip().lower()
 
-if response == 'y':
-audit_logger.info(f"CONFIRMED | tool={tool_name}")
-return True
-else:
-audit_logger.info(f"REJECTED | tool={tool_name}")
-return False
+        if response == 'y':
+            audit_logger.info(f"CONFIRMED | tool={tool_name}")
+            return True
+        else:
+            audit_logger.info(f"REJECTED | tool={tool_name}")
+            return False
 ```
 
 ### 7.4 Common risks and prevention
@@ -910,32 +910,32 @@ return False
 ```python
 # Budget-safety-valve example
 class BudgetSafetyValve:
-"""Prevent AI auto-operations from overspending the budget"""
+    """Prevent AI auto-operations from overspending the budget"""
 
-def __init__(self, max_daily_spend_change: float = 100.0,
-max_single_bid_change: float = 2.0):
-self.max_daily_spend_change = max_daily_spend_change
-self.max_single_bid_change = max_single_bid_change
-self.daily_changes = 0.0
+    def __init__(self, max_daily_spend_change: float = 100.0,
+                 max_single_bid_change: float = 2.0):
+        self.max_daily_spend_change = max_daily_spend_change
+        self.max_single_bid_change = max_single_bid_change
+        self.daily_changes = 0.0
 
-def check_bid_change(self, current_bid: float, new_bid: float) -> bool:
-"""Check whether a bid change is within the safe range"""
-change = abs(new_bid - current_bid)
+    def check_bid_change(self, current_bid: float, new_bid: float) -> bool:
+        """Check whether a bid change is within the safe range"""
+        change = abs(new_bid - current_bid)
 
-if change > self.max_single_bid_change:
-audit_logger.warning(
-f"BID_BLOCKED | change=${change:.2f} > max=${self.max_single_bid_change}"
-)
-return False
+        if change > self.max_single_bid_change:
+            audit_logger.warning(
+                f"BID_BLOCKED | change=${change:.2f} > max=${self.max_single_bid_change}"
+            )
+            return False
 
-self.daily_changes += change
-if self.daily_changes > self.max_daily_spend_change:
-audit_logger.warning(
-f"DAILY_LIMIT | total_changes=${self.daily_changes:.2f}"
-)
-return False
+        self.daily_changes += change
+        if self.daily_changes > self.max_daily_spend_change:
+            audit_logger.warning(
+                f"DAILY_LIMIT | total_changes=${self.daily_changes:.2f}"
+            )
+            return False
 
-return True
+        return True
 ```
 
 ---
@@ -961,44 +961,44 @@ Content rephrased for compliance with licensing restrictions.
 ```python
 # Conceptual code: unified multi-platform ad management
 class MultiPlatformAdManager:
-"""Unified multi-platform ad management via MCP"""
+    """Unified multi-platform ad management via MCP"""
 
-def __init__(self):
-self.platforms = {
-"amazon": AmazonAdsMCP(),
-"meta": MetaAdsMCP(),
-"google": GoogleAdsMCP()
-}
+    def __init__(self):
+        self.platforms = {
+            "amazon": AmazonAdsMCP(),
+            "meta": MetaAdsMCP(),
+            "google": GoogleAdsMCP()
+        }
 
-async def get_cross_platform_report(self, days: int = 7) -> dict:
-"""Cross-platform ad report"""
-reports = {}
-for name, mcp in self.platforms.items():
-reports[name] = await mcp.get_performance(days=days)
+    async def get_cross_platform_report(self, days: int = 7) -> dict:
+        """Cross-platform ad report"""
+        reports = {}
+        for name, mcp in self.platforms.items():
+            reports[name] = await mcp.get_performance(days=days)
 
-# Unified format
-unified = {
-"total_spend": sum(r["spend"] for r in reports.values()),
-"total_revenue": sum(r["revenue"] for r in reports.values()),
-"by_platform": reports,
-"overall_roas": sum(r["revenue"] for r in reports.values()) /
-sum(r["spend"] for r in reports.values())
-}
-return unified
+        # Unified format
+        unified = {
+            "total_spend": sum(r["spend"] for r in reports.values()),
+            "total_revenue": sum(r["revenue"] for r in reports.values()),
+            "by_platform": reports,
+            "overall_roas": sum(r["revenue"] for r in reports.values()) /
+                            sum(r["spend"] for r in reports.values())
+        }
+        return unified
 
-async def rebalance_budget(self, total_budget: float):
-"""Auto-reallocate cross-platform budget based on ROAS"""
-report = await self.get_cross_platform_report()
+    async def rebalance_budget(self, total_budget: float):
+        """Auto-reallocate cross-platform budget based on ROAS"""
+        report = await self.get_cross_platform_report()
 
-# Allocate weighted by ROAS
-total_roas = sum(
-r["revenue"] / r["spend"] for r in report["by_platform"].values()
-)
+        # Allocate weighted by ROAS
+        total_roas = sum(
+            r["revenue"] / r["spend"] for r in report["by_platform"].values()
+        )
 
-for name, r in report["by_platform"].items():
-platform_roas = r["revenue"] / r["spend"]
-new_budget = total_budget * (platform_roas / total_roas)
-await self.platforms[name].update_daily_budget(new_budget)
+        for name, r in report["by_platform"].items():
+            platform_roas = r["revenue"] / r["spend"]
+            new_budget = total_budget * (platform_roas / total_roas)
+            await self.platforms[name].update_daily_budget(new_budget)
 ```
 
 ---

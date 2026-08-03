@@ -81,31 +81,31 @@ matplotlib.rcParams["font.sans-serif"] = ["PingFang SC", "Heiti TC", "Arial"]
 matplotlib.rcParams["axes.unicode_minus"] = False
 
 def decompose_sales(df: pd.DataFrame, date_col: str = "date", value_col: str = "units"):
-"""
-将销量时间序列分解为趋势、季节性、噪声三个成分。
+    """
+    将销量时间序列分解为趋势、季节性、噪声三个成分。
 
-Args:
-df: 包含日期和销量的 DataFrame
-date_col: 日期列名
-value_col: 销量列名
-"""
-ts = df.set_index(date_col)[value_col]
-ts = ts.asfreq("D").fillna(method="ffill") # 补齐缺失日期
+    Args:
+        df: 包含日期和销量的 DataFrame
+        date_col: 日期列名
+        value_col: 销量列名
+    """
+    ts = df.set_index(date_col)[value_col]
+    ts = ts.asfreq("D").fillna(method="ffill") # 补齐缺失日期
 
-# 乘法分解，周期=7（周季节性）
-result = seasonal_decompose(ts, model="multiplicative", period=7)
+    # 乘法分解，周期=7（周季节性）
+    result = seasonal_decompose(ts, model="multiplicative", period=7)
 
-fig, axes = plt.subplots(4, 1, figsize=(12, 8), sharex=True)
-result.observed.plot(ax=axes[0], title="原始数据 (Observed)")
-result.trend.plot(ax=axes[1], title="趋势 (Trend)")
-result.seasonal.plot(ax=axes[2], title="季节性 (Seasonality)")
-result.resid.plot(ax=axes[3], title="噪声 (Residual)")
+    fig, axes = plt.subplots(4, 1, figsize=(12, 8), sharex=True)
+    result.observed.plot(ax=axes[0], title="原始数据 (Observed)")
+    result.trend.plot(ax=axes[1], title="趋势 (Trend)")
+    result.seasonal.plot(ax=axes[2], title="季节性 (Seasonality)")
+    result.resid.plot(ax=axes[3], title="噪声 (Residual)")
 
-plt.tight_layout()
-plt.savefig("output/decomposition.png", dpi=150)
-plt.show()
+    plt.tight_layout()
+    plt.savefig("output/decomposition.png", dpi=150)
+    plt.show()
 
-return result
+    return result
 
 # 使用示例
 # df = pd.read_csv("data/daily_sales.csv")
@@ -131,41 +131,41 @@ return result
 
 ```python
 def handle_stockout(df: pd.DataFrame, units_col: str = "units") -> pd.DataFrame:
-"""
-处理断货期间的零销量数据。
+    """
+    处理断货期间的零销量数据。
 
-断货期间销量为 0 不代表需求为 0。
-策略：用断货前后的平均销量填充，避免模型学到"某些天需求为 0"。
-"""
-df = df.copy()
+    断货期间销量为 0 不代表需求为 0。
+    策略：用断货前后的平均销量填充，避免模型学到"某些天需求为 0"。
+    """
+    df = df.copy()
 
-# 标记连续零销量（可能是断货）
-df["is_zero"] = df[units_col] == 0
-df["zero_streak"] = (
-df["is_zero"]
-.groupby((~df["is_zero"]).cumsum())
-.cumsum()
-)
+    # 标记连续零销量（可能是断货）
+    df["is_zero"] = df[units_col] == 0
+    df["zero_streak"] = (
+        df["is_zero"]
+        .groupby((~df["is_zero"]).cumsum())
+        .cumsum()
+    )
 
-# 连续 3 天以上零销量视为断货（而非真实零需求）
-stockout_mask = df["zero_streak"] >= 3
+    # 连续 3 天以上零销量视为断货（而非真实零需求）
+    stockout_mask = df["zero_streak"] >= 3
 
-if stockout_mask.any():
-# 用前后各 7 天的非零均值填充
-rolling_mean = (
-df[~stockout_mask][units_col]
-.rolling(window=7, min_periods=1)
-.mean()
-)
-df.loc[stockout_mask, units_col] = rolling_mean.reindex(
-df.index
-).ffill().bfill()
+    if stockout_mask.any():
+        # 用前后各 7 天的非零均值填充
+        rolling_mean = (
+            df[~stockout_mask][units_col]
+            .rolling(window=7, min_periods=1)
+            .mean()
+        )
+        df.loc[stockout_mask, units_col] = rolling_mean.reindex(
+            df.index
+        ).ffill().bfill()
 
-stockout_days = stockout_mask.sum()
-print(f" 检测到 {stockout_days} 天疑似断货，已用滚动均值填充")
+        stockout_days = stockout_mask.sum()
+        print(f" 检测到 {stockout_days} 天疑似断货，已用滚动均值填充")
 
-df = df.drop(columns=["is_zero", "zero_streak"])
-return df
+    df = df.drop(columns=["is_zero", "zero_streak"])
+    return df
 ```
 
 ### 1.3 何时用简单规则 vs 何时用 ML 模型
@@ -1024,51 +1024,51 @@ return result
 
 ```python
 def evaluate_forecast(
-actual: pd.Series,
-predicted: pd.Series
+    actual: pd.Series,
+    predicted: pd.Series
 ) -> dict:
-"""
-计算预测评估指标。
+    """
+    计算预测评估指标。
 
-Args:
-actual: 实际值
-predicted: 预测值
+    Args:
+        actual: 实际值
+        predicted: 预测值
 
-Returns:
-评估指标字典
-"""
-actual = actual.values
-predicted = predicted.values
+    Returns:
+        评估指标字典
+    """
+    actual = actual.values
+    predicted = predicted.values
 
-mae = np.mean(np.abs(actual - predicted))
-rmse = np.sqrt(np.mean((actual - predicted) ** 2))
+    mae = np.mean(np.abs(actual - predicted))
+    rmse = np.sqrt(np.mean((actual - predicted) ** 2))
 
-# MAPE（过滤掉实际值为 0 的天）
-nonzero_mask = actual > 0
-if nonzero_mask.any():
-mape = np.mean(
-np.abs((actual[nonzero_mask] - predicted[nonzero_mask])
-/ actual[nonzero_mask])
-) * 100
-else:
-mape = float("inf")
+    # MAPE（过滤掉实际值为 0 的天）
+    nonzero_mask = actual > 0
+    if nonzero_mask.any():
+        mape = np.mean(
+            np.abs((actual[nonzero_mask] - predicted[nonzero_mask])
+                   / actual[nonzero_mask])
+        ) * 100
+    else:
+        mape = float("inf")
 
-# WAPE（更稳健）
-wape = np.sum(np.abs(actual - predicted)) / np.sum(actual) * 100 if np.sum(actual) > 0 else float("inf")
+    # WAPE（更稳健）
+    wape = np.sum(np.abs(actual - predicted)) / np.sum(actual) * 100 if np.sum(actual) > 0 else float("inf")
 
-metrics = {
-"MAE": round(mae, 2),
-"RMSE": round(rmse, 2),
-"MAPE": round(mape, 2),
-"WAPE": round(wape, 2),
-}
+    metrics = {
+        "MAE": round(mae, 2),
+        "RMSE": round(rmse, 2),
+        "MAPE": round(mape, 2),
+        "WAPE": round(wape, 2),
+    }
 
-print(" 评估结果:")
-for k, v in metrics.items():
-unit = "%" if k in ("MAPE", "WAPE") else "units"
-print(f" {k}: {v} {unit}")
+    print(" 评估结果:")
+    for k, v in metrics.items():
+        unit = "%" if k in ("MAPE", "WAPE") else "units"
+        print(f" {k}: {v} {unit}")
 
-return metrics
+    return metrics
 ```
 
 **MAPE 参考基准（电商场景）：**
