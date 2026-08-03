@@ -923,6 +923,15 @@ Complete all of the above and you've mastered AI-assisted sourcing. Next: [A2 Li
 
 ---
 
+## When this doesn't work
+
+- **You want a final yes-or-no on the product.** AI can lay out competitor reviews, keywords and the margin structure, but whether it is worth your money depends on your cost of capital, your supplier relationships and your appetite for risk — none of which it knows. It assembles what the decision needs; it does not sign off on it.
+- **The category has too few reviews.** Pain-point mining takes negative reviews as its input. In a niche selling single-digit units a month with a few dozen reviews in total, the "frequent complaints" the AI surfaces are two or three people's personal experience. Go and talk to target buyers instead of asking a model to generalise from a sample that cannot support it.
+- **The data comes from third-party estimates.** Sales and search volumes in Helium 10 or Jungle Scout are modelled, not the platform's real numbers. Feed estimates in, ask for margins and payback periods out, and the error compounds all the way through. These tools are far safer for relative ranking (A beats B) than for absolute claims (800 units a month).
+- **The category is not won on information.** Some categories turn on tooling, exclusive licences, or a slot in a particular factory's schedule. No amount of analysis closes that gap against someone who already holds the resource. Work out what the moat in your category actually is; if the answer is not "understanding buyers better", this chapter has limited leverage.
+
+---
+
 ## Appendix: Quick-Reference Cards
 
 ### Prompt cheat sheet

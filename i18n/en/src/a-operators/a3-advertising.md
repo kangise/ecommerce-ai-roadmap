@@ -1175,6 +1175,15 @@ Complete all of the above and you've mastered AI-assisted ad optimization. Next:
 
 ---
 
+## When this doesn't work
+
+- **Your account does not have the volume for the statistics.** The tiered analysis here assumes a few thousand search-term rows a week. Below a few thousand dollars a month in ad spend, clicks per keyword are in single digits, and "0% conversion" may just mean its turn has not come. Decide monthly rather than weekly on those accounts, and widen your thresholds.
+- **Wasted spend is already low.** Negative keywords and bid cuts earn their return by removing spend that was doing nothing. If terms with over $10 spent and no orders are already under a tenth of your spend, pushing ACOS further starts cutting traffic that works — ACOS falls and so does revenue. Measure your waste ratio before setting an expectation ([the case study](../case-studies/ai-ppc-optimization.md) goes into this).
+- **The product is new and still gathering data.** In a new product's first month the goal is enough impressions and clicks for the algorithm to place it, not a low ACOS. Applying mature-product rules here throttles the bids, the data never accumulates and the rank never lifts. A launch needs a different set of thresholds entirely.
+- **The platform has taken bidding away from you.** In fully automated placements like GMV Max or Advantage+, all you control is budget, creative and objective — keyword-level work does not exist. The search-term analysis in this chapter has nothing to act on there. Control the inputs (audiences, creative, exclusions) instead of the bids.
+
+---
+
 ## Appendix: Quick-Reference Cards
 
 ### Prompt cheat sheet

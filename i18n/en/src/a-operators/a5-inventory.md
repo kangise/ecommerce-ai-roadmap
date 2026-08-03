@@ -1042,6 +1042,15 @@ Complete all of the above and you've mastered AI-assisted inventory management. 
 
 ---
 
+## When this doesn't work
+
+- **You have less than a year of sales history.** Both seasonal decomposition and safety-stock maths need at least one full annual cycle. With a few months of data the model reads a one-off promotion spike as a seasonal pattern, and stocking to it leaves you sitting on inventory through the next quiet season. Use a conservative fixed days-of-cover during launch, and bring the model in once the data supports it.
+- **Lead times themselves are unstable.** Reorder-point maths assumes lead time is a known quantity. If your factory swings between 30 and 75 days with demand, the precision in the number you compute is fictional. Manage the variability as the primary risk instead — more safety stock, a second supplier — rather than chasing forecast accuracy.
+- **You have had stockouts or storage limits.** Zero sales during a stockout is not zero demand, and sales under a storage cap are not real demand either. Feed that straight into a forecast and it learns those weeks were simply quiet. The stockout handling in this chapter recovers part of it, but contamination from platform storage limits or losing the Buy Box to a hijacker is something you have to flag yourself.
+- **Demand in your category is driven by external events.** Holiday gifting, exam-season supplies, anything riding a trend — that demand is a function of events, not a continuation of a time series. Forecast models lag a cycle behind, reliably, in these categories. Add the calendar events as explicit external regressors, or plan production by event and skip the model.
+
+---
+
 ## Appendix: Quick-Reference Cards
 
 ### Prompt cheat sheet

@@ -1390,6 +1390,15 @@ Complete all of the above and you've mastered AI-assisted listing creation and o
 
 ---
 
+## When this doesn't work
+
+- **The product has no differentiation.** Listing work can articulate your advantages; it cannot articulate ones you do not have. Against a competitor at the same price with the same rating selling the same thing, better copy earns you a marginal edge, not a change in position. That is a signal to go back to [A1](a1-product-research.md), not to keep rewriting bullets.
+- **Your keyword data is guesswork.** Every template here assumes you have search-volume data. Without a tool like Helium 10 or Cerebro, asking AI to "suggest keywords" gets you terms it finds plausible, not terms people actually search. The free search-term report in Seller Central is real and a week behind — still better than what a model invents.
+- **The main image or the price is the bottleneck.** On mobile, buyers see the image and the price first, then the title; many never expand the bullets at all. If your click-through is fine but conversion is not, the problem is probably the image or the rating, and rewriting copy buys you little. Use session and conversion data to find the step that is actually failing.
+- **The category is tightly regulated on claims.** In supplements, medical devices or children's products, what you may write is set by regulation, not by conversion rate. AI-generated "high-converting copy" routinely crosses the line — implied efficacy, absolute superlatives, uncertified claims. These categories need a human compliance pass ([A6](a6-compliance.md)); a copy-discipline block catches only part of it.
+
+---
+
 ## Appendix: Quick-Reference Cards
 
 ### Prompt cheat sheet

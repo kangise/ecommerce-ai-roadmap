@@ -1204,6 +1204,15 @@ Complete all of the above and you've mastered AI-assisted compliance management.
 
 ---
 
+## When this doesn't work
+
+- **You need legal advice someone is accountable for.** This chapter helps you organise requirements, generate checklists and structure an appeal. It is not legal advice, and nobody is liable for what a model produced. Where a recall, a regulatory investigation or litigation is in play, the first step is a lawyer, not a chat window.
+- **The regulation changed recently.** Training data has a cut-off, and compliance is one of the fastest-moving areas there is — both de minimis and the EU AI Act, covered in this chapter, have been adjusted repeatedly in the last year or two. Any specific clause, rate or effective date from a model has to be checked against the official source. So do the dates in this chapter.
+- **The barrier in your category is a laboratory, not a document.** Children's toys, electronics and cosmetics get in on third-party test reports and certificates, not on a complete list of requirements. AI can tell you which tests you need; it cannot run them. Time and cost in these categories go mostly to lab scheduling — plan around that.
+- **You are entering several markets at once.** National requirements differ and do not compose (CE is not FCC, UKCA split off from CE, Japan's PSE is a third thing). Asking AI for one "global compliance checklist" reliably drops a requirement unique to one market. Do one market at a time and check each line against that market's official guidance.
+
+---
+
 ## Appendix: Compliance Quick-Reference
 
 ### Market × category matrix

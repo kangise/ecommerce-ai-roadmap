@@ -1164,6 +1164,15 @@ Complete all of the above and you've mastered AI-assisted CS management. Next: [
 
 ---
 
+## When this doesn't work
+
+- **The root cause is the product.** AI support can make replies faster and better worded; it cannot change the fact that the thing breaks after two weeks. When the same quality complaint keeps recurring, refining reply templates is mopping the floor under a leaking bucket. Route it back to the product through the [pain-point analysis in A1](a1-product-research.md).
+- **The promise requires authority you have to actually hold.** Refund amounts, compensation, exceptions to timelines or platform policy — these are not wording problems, they are authorisation problems. If AI replies to customers directly, pin the promisable range down in the prompt and test what it does when pushed past it. A copy-discipline block stops invented promises; it does not stop the model reading your vague phrasing as permission.
+- **An appeal is won on evidence, not on prose.** Amazon's performance team looks at whether the root-cause analysis and corrective actions are specific and checkable, not at how sincere the writing sounds. AI can give a plan of action a clean structure, but without real batch numbers, supplier corrective records and a changed QC process, tidy structure changes nothing.
+- **Multilingual replies have no native-speaker review.** AI-translated support replies are grammatically fine, but errors in politeness level, the calibration of an apology, or Japanese honorifics read worse than not replying at all. This bites hardest in German and Japanese. Have a native speaker review a batch of templates before you scale, then use the approved set.
+
+---
+
 ## Appendix: Quick-Reference Cards
 
 ### Prompt cheat sheet
