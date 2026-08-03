@@ -46,6 +46,10 @@ AI ツールで CS を「受動的な火消し」から「能動的な防御」�
 
 ## 1. CS の方法論: AI の前に理解すべき基礎
 
+<!-- claims: verified 2026-08 -->
+
+> 本節で引く各プラットフォームの基準値と料率は 2026-08 時点で確認したもの。予告なく変わるため、セラーアカウント内の公式説明を優先すること。
+
 > **関連**: [E5 WhatsApp Business AI ガイド](../e-social-media/e5-whatsapp-business-ai-guide.md) WhatsApp AI Chatbot の CS 自動化は E5 へ · [D9 eBay AI ガイド](../d-platforms/d9-ebay-ai-guide.md) eBay 中古品の状態説明 AI 生成は D9 へ · [E1 Instagram/Facebook AI ガイド](../e-social-media/e1-instagram-facebook-ai-guide.md) Instagram/Facebook の DM とコメント自動返信戦略は E1 へ。
 
 ### 1.1 Amazon CS の第一原理
@@ -117,6 +121,10 @@ AI が苦手なこと:
 
 ## 2. AI ツール全景: CS 段階で何を使うか
 
+<!-- claims: verified 2026-08 -->
+
+> 本節のツール価格は 2026-08 時点で確認したもの。SaaS の価格は頻繁に変わるため、契約前に各社の公式サイトで再確認すること。
+
 ### 2.1 有料ツールの詳細評価
 
 | ツール | 価格 | 中核能力 | 向く相手 | AI 機能 |
@@ -184,6 +192,10 @@ Content rephrased for compliance with licensing restrictions. Sources: [eDesk AI
 ---
 
 ## 3. プロンプトテンプレート集(CS 専用)
+
+<!-- claims: illustrative -->
+
+> 本節の数字は流れを示すために作った通し用の値であり、実測データではない。
 
 > **本書のプロンプト記法の約束**: 以下のテンプレートはそのまま使えるが、数値・予測・推薦が絡む場面では [F2 §4.3 のデータ規律ブロック](../0-foundations/f2-prompt-engineering.md#43-そのまま貼れるデータ規律ブロック)を貼り込むことを勧める。渡していないデータをモデルが捏造するのを禁じるもので、この種のプロンプトが最も事故を起こしやすい箇所だ。
 

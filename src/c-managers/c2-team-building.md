@@ -825,6 +825,10 @@ Workshop 信息：
 
 ## 8. 案例分析：团队 AI 技能建设实战
 
+<!-- claims: illustrative -->
+
+> 这是一个复合案例：数字说明的是做法和量级，不是某个团队的实测数据。团队规模、原有工具熟练度不同，节省幅度会差很远。
+
 ### 8.1 案例一：10 人运营团队的 AI 技能建设
 
 **背景：**
@@ -974,6 +978,10 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 ---
 
 ## 11. 完成标志
+
+<!-- claims: benchmark -->
+
+> 这里的比例是建议达成的目标线，不是行业实测均值。
 
 - [ ] 完成全员 AI 基础 workshop（100% 参与率）
 - [ ] 每个岗位完成至少 1 次专项培训

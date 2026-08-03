@@ -47,6 +47,10 @@ AI Agent システム 多段の運営タスクを自動実行(毎日のデータ
 
 ## 1. Agent 方法論
 
+<!-- claims: illustrative -->
+
+> 本節の数字は流れを示すために作った通し用の値であり、実測データではない。
+
 > **関連**: [A3 広告最適化](../a-operators/a3-advertising.md) 広告監視自動化の業務応用シーンは A3 へ · [F4 自動化と Agent](../0-foundations/f4-agent-automation.md) Agent 基礎理論は F4 へ。
 >
 > **ツール集**: [Awesome MCP & Agent ツール集](../resources/awesome-mcp-agents.md) EC MCP Server、Agent フレームワーク、外部リソースの完全なリスト
@@ -248,6 +252,10 @@ Agent は万能ではない。多くのシーンは簡単な Python スクリプ
 ---
 
 ## 3. コード実践
+
+<!-- claims: illustrative -->
+
+> 本節の数字は流れを示すために作った通し用の値であり、実測データではない。
 
 ### 3.1 最小 Agent: LangGraph でツールを呼べる Agent を構築
 
@@ -790,6 +798,10 @@ verbose=True,
 
 ## 5. よくある罠
 
+<!-- claims: illustrative -->
+
+> 本節の数字は流れを示すために作った通し用の値であり、実測データではない。
+
 ### 5.1 Agent の無限ループ
 
 **症状**: Agent が同じツールを繰り返し呼ぶ、または 2 つのツール間を行き来し、永遠に終わらない。
@@ -879,6 +891,10 @@ expensive_llm = ChatOpenAI(model=STRONG_MODEL, temperature=0)
 ---
 
 ## 6. Token コスト工学
+
+<!-- claims: illustrative -->
+
+> 本節の数字は流れを示すために作った通し用の値であり、実測データではない。
 
 §5.3 では「低い級のモデルを使う」という最も大まかなレバーを扱った。しかし Agent がある程度の規模で回り始めると、請求額を実際に決めるのはモデルの級ではなく、**同じ内容を何度繰り返し送っているか**であることが多い。この節ではその分をどう削るかを扱う。
 

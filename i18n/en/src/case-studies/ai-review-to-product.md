@@ -2,6 +2,10 @@
 
 > Domain: Product Research + Customer Operations · Related modules: [A1 Product Research](../a-operators/a1-product-research.md) · [A4 Customer Service](../a-operators/a4-customer-service.md)
 
+<!-- claims: illustrative -->
+
+> **This is a composite case.** The numbers show how the path from complaints to a product definition runs; they are not one brand's measured results. Your category's review volume and how concentrated the complaints are will both differ — do not treat these ratios as an expectation.
+
 ---
 
 ## Background

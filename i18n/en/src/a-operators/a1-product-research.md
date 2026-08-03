@@ -87,6 +87,10 @@ What AI is weak at:
 
 ## 2. AI Tool Landscape: What to Use for Sourcing
 
+<!-- claims: verified 2026-08 -->
+
+> Tool prices in this section were checked in 2026-08. SaaS pricing moves often — verify on the vendor's own site before you commit.
+
 ### 2.1 Paid tools reviewed
 
 | Tool | Price | Core capability | For whom | Data accuracy | AI features |
@@ -608,6 +612,10 @@ Note:
 ---
 
 ## 4. The Sourcing Workflow
+
+<!-- claims: benchmark -->
+
+> These ranges are starting filters, not a measured distribution. Narrow them with your own data after one cycle.
 
 ### 4.1 The complete sourcing SOP (7 steps)
 

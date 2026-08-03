@@ -2,6 +2,10 @@
 
 > Domain: Content & Conversion · Related module: [A2 Listing Optimization](../a-operators/a2-listing-optimization.md)
 
+<!-- claims: illustrative -->
+
+> **This is a composite case.** The numbers illustrate the process and the trade-offs; they are not measurements from one specific listing. The same approach lands very differently across categories and competition levels — setting KPIs from these figures will disappoint you.
+
 ---
 
 ## Background

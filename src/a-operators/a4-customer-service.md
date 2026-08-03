@@ -46,6 +46,10 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ## 1. 客服方法论：AI 之前你需要理解的基础
 
+<!-- claims: verified 2026-08 -->
+
+> 本节引用的平台指标要求与费率核验日期: 2026-08。平台随时会调，以各自后台的官方说明为准。
+
 > **相关阅读**: [E5 WhatsApp Business AI 指南](../e-social-media/e5-whatsapp-business-ai-guide.md) WhatsApp AI Chatbot 客服自动化详见 E5。 · [D9 eBay AI 指南](../d-platforms/d9-ebay-ai-guide.md) eBay 二手品品相描述 AI 生成详见 D9 · [E1 Instagram/Facebook AI 指南](../e-social-media/e1-instagram-facebook-ai-guide.md) Instagram/Facebook DM 和评论自动回复策略详见 E1。
 
 ### 1.1 Amazon 客服的第一性原理
@@ -117,6 +121,10 @@ AI 不擅长的：
 
 ## 2. AI 工具全景：客服阶段用什么
 
+<!-- claims: verified 2026-08 -->
+
+> 本节的工具价格核验日期: 2026-08。SaaS 定价变动频繁，下单前请到各家官网复核。
+
 ### 2.1 付费工具深度评测
 
 | 工具 | 价格 | 核心能力 | 适合谁 | AI 功能 |
@@ -184,6 +192,10 @@ Content rephrased for compliance with licensing restrictions. Sources: [eDesk AI
 ---
 
 ## 3. Prompt 模板库（客服专用）
+
+<!-- claims: illustrative -->
+
+> 本节的数字是为说明流程而构造的走查值，不是实测数据。
 
 > **本库 Prompt 写法约定**：下面的模板可直接用，但涉及数字、预测、推荐的场景，建议把 [F2 §4.3 的数据纪律块](../0-foundations/f2-prompt-engineering.md#43-可以直接粘的数据纪律块)粘进去——它禁止模型编造你没提供的数据，是这类 Prompt 最容易出事的地方。
 

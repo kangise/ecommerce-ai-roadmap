@@ -2,6 +2,10 @@
 
 > Domain: 选品与市场 + 客户运营 · 关联模块: [A1 选品](../a-operators/a1-product-research.md) · [A4 客服](../a-operators/a4-customer-service.md)
 
+<!-- claims: illustrative -->
+
+> **这是一个复合案例**：数字用来说明从差评到新品定义这条链路怎么走，不是某个品牌的实测结果。你的品类 Review 量、差评集中度都不一样，别把这里的比例当成预期值。
+
 ---
 
 ## 背景

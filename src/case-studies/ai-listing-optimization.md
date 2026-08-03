@@ -2,6 +2,10 @@
 
 > Domain: 内容与转化 · 关联模块: [A2 Listing 优化](../a-operators/a2-listing-optimization.md)
 
+<!-- claims: illustrative -->
+
+> **这是一个复合案例**：数字用来说明流程和取舍，不是某个具体listing的实测数据。同样的做法在不同品类、不同竞争强度下结果差很多，照抄数字去定 KPI 会失望。
+
 ---
 
 ## 背景

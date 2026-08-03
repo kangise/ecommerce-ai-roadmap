@@ -45,6 +45,10 @@ After this module you'll be able to:
 
 ## 1. First Principles: What Is an LLM Actually Doing
 
+<!-- claims: illustrative -->
+
+> The numbers in this section are constructed to illustrate the point, not measured.
+
 ### 1.1 The one-sentence explanation
 
 **A large language model is, at its core, an extremely powerful "next-word predictor."**
@@ -218,7 +222,7 @@ A Transformer doesn't process sequentially — it looks at **all the words at on
 Like not reading the report line by line, but skimming the whole thing first, marking which key sections relate to which, then jumping straight to the most relevant parts.
 
 This seemingly simple change delivered two revolutionary advantages:
-1. **Parallel computation**: all words processed simultaneously — training 10–100× faster
+1. **Parallel computation**: all words processed simultaneously — training runs one to two orders of magnitude faster than a word-by-word recurrent RNN
 2. **Long-range dependencies**: the link between word 1 and word 500 never gets lost
 
 > **Key insight**: the Transformer isn't "a better RNN" — it's a different idea entirely. Its success proves a general truth: sometimes the best way to solve a problem isn't improving the existing method, but coming at it from a completely different angle.
@@ -227,6 +231,10 @@ This seemingly simple change delivered two revolutionary advantages:
 ---
 
 ## 3. Inside the Transformer: Attention Is All You Need
+
+<!-- claims: illustrative -->
+
+> The numbers in this section are constructed to illustrate the point, not measured.
 
 ### 3.1 Core components
 

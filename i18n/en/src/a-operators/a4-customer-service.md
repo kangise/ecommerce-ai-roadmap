@@ -46,6 +46,10 @@ After this module you'll be able to:
 
 ## 1. Customer-Service Methodology: the Basics Before AI
 
+<!-- claims: verified 2026-08 -->
+
+> Platform thresholds and fees quoted in this section were checked in 2026-08. Platforms change them without notice — go by the official page in your seller account.
+
 > **Related**: [E5 WhatsApp Business AI Guide](../e-social-media/e5-whatsapp-business-ai-guide.md) for WhatsApp AI-chatbot CS automation · [D9 eBay AI Guide](../d-platforms/d9-ebay-ai-guide.md) for AI-generated condition descriptions of used items · [E1 Instagram/Facebook AI Guide](../e-social-media/e1-instagram-facebook-ai-guide.md) for Instagram/Facebook DM and comment auto-reply strategy.
 
 ### 1.1 The first principle of Amazon customer service
@@ -117,6 +121,10 @@ What AI is weak at:
 
 ## 2. AI Tool Landscape: What to Use for Customer Service
 
+<!-- claims: verified 2026-08 -->
+
+> Tool prices in this section were checked in 2026-08. SaaS pricing moves often — verify on the vendor's own site before you commit.
+
 ### 2.1 Paid tools reviewed
 
 | Tool | Price | Core capability | For whom | AI features |
@@ -184,6 +192,10 @@ If you manage 10+ ASINs or get 100+ reviews a month, open-source tools can:
 ---
 
 ## 3. Prompt Template Library (for Customer Service)
+
+<!-- claims: illustrative -->
+
+> The numbers in this section are walk-through values constructed to show the flow, not measurements.
 
 > **Prompt conventions used here**: the templates below work as-is, but for anything involving numbers, forecasts, or recommendations, paste in [the data-discipline block from F2 §4.3](../0-foundations/f2-prompt-engineering.md#43-the-data-discipline-block-ready-to-paste). It forbids the model from inventing data you didn't supply — the most common failure mode for this class of prompt.
 

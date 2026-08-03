@@ -312,6 +312,10 @@ Need custom GPTs/Projects
 
 ## 4. Recommended Tool Stacks
 
+<!-- claims: verified 2026-08 -->
+
+> Tool prices in this section were checked in 2026-08. SaaS pricing moves often — verify on the vendor's own site before you commit.
+
 ### 4.1 By budget
 
 **$0/month — zero-cost start**

@@ -47,6 +47,10 @@ After this module you'll be able to:
 
 ## 1. Agent Methodology
 
+<!-- claims: illustrative -->
+
+> The numbers in this section are walk-through values constructed to show the flow, not measurements.
+
 > **Related**: [A3 Advertising](../a-operators/a3-advertising.md) for the business applications of ad-monitoring automation · [F4 Automation & Agents](../0-foundations/f4-agent-automation.md) for Agent fundamentals.
 >
 > **Toolset**: [Awesome MCP & Agent Toolset](../resources/awesome-mcp-agents.md) for a full list of e-commerce MCP servers, Agent frameworks, and external resources.
@@ -248,6 +252,10 @@ Scheduled trigger (daily 9:00)
 ---
 
 ## 3. Hands-On Code
+
+<!-- claims: illustrative -->
+
+> The numbers in this section are walk-through values constructed to show the flow, not measurements.
 
 ### 3.1 Minimal Agent: build a tool-calling Agent with LangGraph
 
@@ -790,6 +798,10 @@ verbose=True,
 
 ## 5. Common Traps
 
+<!-- claims: illustrative -->
+
+> The numbers in this section are walk-through values constructed to show the flow, not measurements.
+
 ### 5.1 Agent infinite loop
 
 **Symptom**: the Agent repeatedly calls the same tool, or ping-pongs between two tools, never ending.
@@ -879,6 +891,10 @@ expensive_llm = ChatOpenAI(model=STRONG_MODEL, temperature=0)
 ---
 
 ## 6. Token Cost Engineering
+
+<!-- claims: illustrative -->
+
+> The numbers in this section are walk-through values constructed to show the flow, not measurements.
 
 §5.3 covered the blunt lever: use a lower tier. But once an Agent runs at any volume, the bill is usually driven less by the model tier than by **how much identical content you send over and over**. This section is about removing that.
 

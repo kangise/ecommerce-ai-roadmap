@@ -2,6 +2,10 @@
 
 > Domain: Traffic & Acquisition · Related module: [A3 Advertising Optimization](../a-operators/a3-advertising.md)
 
+<!-- claims: illustrative -->
+
+> **This is a composite case.** The numbers describe a pattern seen across several accounts, not one account's actual ledger. The ACOS 35% → 18% result holds only because roughly a quarter of that spend was pure waste to begin with — measure your own waste ratio with the reproduction checklist below before deciding this is worth running.
+
 ---
 
 ## Background

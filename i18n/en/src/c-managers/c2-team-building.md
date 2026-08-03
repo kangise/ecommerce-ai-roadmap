@@ -821,6 +821,10 @@ This is normal. Different positions have different AI use cases and difficulty:
 
 ## 8. Case Studies: Team AI Skill Building in Practice
 
+<!-- claims: illustrative -->
+
+> This is a composite case. The numbers describe the approach and the order of magnitude, not one team's measurements. Team size and existing tool fluency change the savings a great deal.
+
 ### 8.1 Case One: AI Skill Building for a 10-Person Operations Team
 
 **Background:**
@@ -970,6 +974,10 @@ Someone tunes a genuinely good prompt; with no shared place for it, it walks out
 ---
 
 ## 11. Completion Checklist
+
+<!-- claims: benchmark -->
+
+> These proportions are targets worth aiming at, not measured industry averages.
 
 - [ ] Complete the all-hands AI basics workshop (100% participation)
 - [ ] Each position completes at least 1 specialized training

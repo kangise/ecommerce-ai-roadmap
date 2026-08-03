@@ -47,6 +47,10 @@ AI Agent 系统 自动执行多步骤运营任务（如每日数据检查 → �
 
 ## 1. Agent 方法论
 
+<!-- claims: illustrative -->
+
+> 本节的数字是为说明流程而构造的走查值，不是实测数据。
+
 > **相关阅读**: [A3 广告优化](../a-operators/a3-advertising.md) 广告监控自动化的业务应用场景详见 A3。 · [F4 自动化与 Agent](../0-foundations/f4-agent-automation.md) Agent 基础理论详见 F4
 >
 > **工具集**: [ Awesome MCP & Agent 工具集](../resources/awesome-mcp-agents.md) 电商 MCP Server、Agent 框架、外部资源的完整列表
@@ -248,6 +252,10 @@ Agent 不是万能的。很多场景用简单的 Python 脚本就能解决，不
 ---
 
 ## 3. 代码实战
+
+<!-- claims: illustrative -->
+
+> 本节的数字是为说明流程而构造的走查值，不是实测数据。
 
 ### 3.1 最简 Agent：用 LangGraph 构建一个能调用工具的 Agent
 
@@ -790,6 +798,10 @@ verbose=True,
 
 ## 5. 常见陷阱
 
+<!-- claims: illustrative -->
+
+> 本节的数字是为说明流程而构造的走查值，不是实测数据。
+
 ### 5.1 Agent 无限循环
 
 **症状**：Agent 反复调用同一个工具，或者在两个工具之间来回切换，永远不结束。
@@ -881,6 +893,10 @@ expensive_llm = ChatOpenAI(model=STRONG_MODEL, temperature=0)
 ---
 
 ## 6. Token 成本工程
+
+<!-- claims: illustrative -->
+
+> 本节的数字是为说明流程而构造的走查值，不是实测数据。
 
 §5.3 讲了"用低档位模型"这个最粗的成本杠杆。但当 Agent 跑到一定量级，真正决定账单的往往不是模型档位，而是**你反复发送了多少重复内容**。这一节讲怎么把这部分省掉。
 

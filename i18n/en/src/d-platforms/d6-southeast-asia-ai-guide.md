@@ -609,6 +609,10 @@ After agentifying, the data you're asked to paste above should be read from here
 
 ## 6.3 Southeast Asia E-Commerce Common Traps
 
+<!-- claims: verified 2026-08 -->
+
+> Platform thresholds and fees quoted in this section were checked in 2026-08. Platforms change them without notice — go by the official page in your seller account.
+
 ### Pitfall 1: Ignoring the COD Rejection Problem
 
 The COD (cash on delivery) ratio in Indonesia, Vietnam, and the Philippines is as high as 40-60%, with a COD rejection rate of 5-15%.
