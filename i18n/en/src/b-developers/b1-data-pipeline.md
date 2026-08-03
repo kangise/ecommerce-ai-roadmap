@@ -307,35 +307,35 @@ Chain the above together to generate a complete HTML weekly report:
 from datetime import datetime
 
 def generate_weekly_report(
-report_files: dict[str, str],
-output_path: str = "weekly_report.html"
+    report_files: dict[str, str],
+    output_path: str = "weekly_report.html"
 ) -> str:
-"""
-Generate an HTML weekly report from raw reports.
+    """
+    Generate an HTML weekly report from raw reports.
 
-Full pipeline: read → merge → clean → compute → output
-"""
-# 1. Read and merge
-merged = merge_reports(report_files)
+    Full pipeline: read → merge → clean → compute → output
+    """
+    # 1. Read and merge
+    merged = merge_reports(report_files)
 
-# 2. Summarize by market
-market_summary = calculate_metrics(merged, group_by=["Market"])
+    # 2. Summarize by market
+    market_summary = calculate_metrics(merged, group_by=["Market"])
 
-# 3. Summarize by category (if a Category column exists)
-category_summary = None
-if "Category" in merged.columns:
-category_summary = calculate_metrics(
-merged, group_by=["Category"]
-).sort_values("GMS", ascending=False)
+    # 3. Summarize by category (if a Category column exists)
+    category_summary = None
+    if "Category" in merged.columns:
+        category_summary = calculate_metrics(
+            merged, group_by=["Category"]
+        ).sort_values("GMS", ascending=False)
 
-# 4. Compute overall metrics
-total_gms = merged["GMS"].sum() if "GMS" in merged.columns else 0
-total_units = merged["Units Ordered"].sum()
-overall_asp = total_gms / total_units if total_units > 0 else 0
+    # 4. Compute overall metrics
+    total_gms = merged["GMS"].sum() if "GMS" in merged.columns else 0
+    total_units = merged["Units Ordered"].sum()
+    overall_asp = total_gms / total_units if total_units > 0 else 0
 
-# 5. Generate HTML
-report_date = datetime.now().strftime("%Y-%m-%d")
-html = f"""<!DOCTYPE html>
+    # 5. Generate HTML
+    report_date = datetime.now().strftime("%Y-%m-%d")
+    html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -371,20 +371,20 @@ th {{ background: #f5f5f5; text-align: left; }}
 <h2>By Market</h2>
 {market_summary.to_html(index=False)}
 """
-if category_summary is not None:
-html += f"""
+    if category_summary is not None:
+        html += f"""
 <h2>By Category</h2>
 {category_summary.to_html(index=False)}
 """
-html += """
+    html += """
 </body>
 </html>"""
 
-with open(output_path, "w", encoding="utf-8") as f:
-f.write(html)
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write(html)
 
-print(f"Weekly report generated: {output_path}")
-return output_path
+    print(f"Weekly report generated: {output_path}")
+    return output_path
 
 # Usage example
 # generate_weekly_report(
@@ -452,65 +452,65 @@ from datetime import datetime, timedelta
 import pandas as pd
 
 def fetch_orders(
-credentials: dict,
-marketplace: Marketplaces = Marketplaces.US,
-days_back: int = 7
+    credentials: dict,
+    marketplace: Marketplaces = Marketplaces.US,
+    days_back: int = 7
 ) -> pd.DataFrame:
-"""
-Fetch order data for the last N days.
+    """
+    Fetch order data for the last N days.
 
-Args:
-credentials: SP-API credentials dict
-marketplace: target market
-days_back: days to look back
+    Args:
+        credentials: SP-API credentials dict
+        marketplace: target market
+        days_back: days to look back
 
-Returns:
-orders DataFrame
-"""
-orders_api = Orders(credentials=credentials, marketplace=marketplace)
+    Returns:
+        orders DataFrame
+    """
+    orders_api = Orders(credentials=credentials, marketplace=marketplace)
 
-created_after = (
-datetime.utcnow() - timedelta(days=days_back)
-).isoformat()
+    created_after = (
+        datetime.utcnow() - timedelta(days=days_back)
+    ).isoformat()
 
-all_orders = []
-next_token = None
+    all_orders = []
+    next_token = None
 
-while True:
-if next_token:
-response = orders_api.get_orders(
-NextToken=next_token
-)
-else:
-response = orders_api.get_orders(
-CreatedAfter=created_after,
-OrderStatuses=["Shipped", "Unshipped"],
-MaxResultsPerPage=100
-)
+    while True:
+        if next_token:
+            response = orders_api.get_orders(
+                NextToken=next_token
+            )
+        else:
+            response = orders_api.get_orders(
+                CreatedAfter=created_after,
+                OrderStatuses=["Shipped", "Unshipped"],
+                MaxResultsPerPage=100
+            )
 
-orders = response.payload.get("Orders", [])
-all_orders.extend(orders)
+        orders = response.payload.get("Orders", [])
+        all_orders.extend(orders)
 
-next_token = response.payload.get("NextToken")
-if not next_token:
-break
+        next_token = response.payload.get("NextToken")
+        if not next_token:
+            break
 
-# Convert to DataFrame
-if not all_orders:
-return pd.DataFrame()
+    # Convert to DataFrame
+    if not all_orders:
+        return pd.DataFrame()
 
-df = pd.json_normalize(all_orders)
+    df = pd.json_normalize(all_orders)
 
-# Clean key fields
-if "OrderTotal.Amount" in df.columns:
-df["OrderTotal.Amount"] = pd.to_numeric(
-df["OrderTotal.Amount"], errors="coerce"
-)
+    # Clean key fields
+    if "OrderTotal.Amount" in df.columns:
+        df["OrderTotal.Amount"] = pd.to_numeric(
+            df["OrderTotal.Amount"], errors="coerce"
+        )
 
-if "PurchaseDate" in df.columns:
-df["PurchaseDate"] = pd.to_datetime(df["PurchaseDate"])
+    if "PurchaseDate" in df.columns:
+        df["PurchaseDate"] = pd.to_datetime(df["PurchaseDate"])
 
-return df
+    return df
 
 # Usage example
 # from sp_api.base import Marketplaces
@@ -604,82 +604,82 @@ import gzip
 import pandas as pd
 
 def request_advertising_report(
-credentials: dict,
-marketplace: Marketplaces = Marketplaces.US,
-report_type: str = "GET_FLAT_FILE_ALL_ORDERS_DATA_BY_ORDER_DATE_GENERAL",
-days_back: int = 7
+    credentials: dict,
+    marketplace: Marketplaces = Marketplaces.US,
+    report_type: str = "GET_FLAT_FILE_ALL_ORDERS_DATA_BY_ORDER_DATE_GENERAL",
+    days_back: int = 7
 ) -> pd.DataFrame:
-"""
-Request and download an SP-API report (async flow).
+    """
+    Request and download an SP-API report (async flow).
 
-SP-API report flow:
-1. Create the report request → get a reportId
-2. Poll the report status → wait for DONE
-3. Get the report document → download the content
+    SP-API report flow:
+    1. Create the report request → get a reportId
+    2. Poll the report status → wait for DONE
+    3. Get the report document → download the content
 
-Args:
-credentials: SP-API credentials
-marketplace: target market
-report_type: report type (see SP-API docs)
-days_back: days to look back
-"""
-reports_api = Reports(
-credentials=credentials, marketplace=marketplace
-)
+    Args:
+        credentials: SP-API credentials
+        marketplace: target market
+        report_type: report type (see SP-API docs)
+        days_back: days to look back
+    """
+    reports_api = Reports(
+        credentials=credentials, marketplace=marketplace
+    )
 
-from datetime import datetime, timedelta
-start_date = (
-datetime.utcnow() - timedelta(days=days_back)
-).strftime("%Y-%m-%dT00:00:00Z")
-end_date = datetime.utcnow().strftime("%Y-%m-%dT23:59:59Z")
+    from datetime import datetime, timedelta
+    start_date = (
+        datetime.utcnow() - timedelta(days=days_back)
+    ).strftime("%Y-%m-%dT00:00:00Z")
+    end_date = datetime.utcnow().strftime("%Y-%m-%dT23:59:59Z")
 
-# Step 1: create the report request
-create_response = reports_api.create_report(
-reportType=report_type,
-dataStartTime=start_date,
-dataEndTime=end_date,
-marketplaceIds=[marketplace.marketplace_id]
-)
-report_id = create_response.payload["reportId"]
-print(f"Report request created: {report_id}")
+    # Step 1: create the report request
+    create_response = reports_api.create_report(
+        reportType=report_type,
+        dataStartTime=start_date,
+        dataEndTime=end_date,
+        marketplaceIds=[marketplace.marketplace_id]
+    )
+    report_id = create_response.payload["reportId"]
+    print(f"Report request created: {report_id}")
 
-# Step 2: poll status (wait up to 5 minutes)
-max_wait = 300 # seconds
-elapsed = 0
-poll_interval = 15
+    # Step 2: poll status (wait up to 5 minutes)
+    max_wait = 300 # seconds
+    elapsed = 0
+    poll_interval = 15
 
-while elapsed < max_wait:
-status_response = reports_api.get_report(report_id)
-status = status_response.payload["processingStatus"]
+    while elapsed < max_wait:
+        status_response = reports_api.get_report(report_id)
+        status = status_response.payload["processingStatus"]
 
-if status == "DONE":
-doc_id = status_response.payload["reportDocumentId"]
-print(f"Report generation done: {doc_id}")
-break
-elif status in ("CANCELLED", "FATAL"):
-raise RuntimeError(f"Report generation failed: {status}")
+        if status == "DONE":
+            doc_id = status_response.payload["reportDocumentId"]
+            print(f"Report generation done: {doc_id}")
+            break
+        elif status in ("CANCELLED", "FATAL"):
+            raise RuntimeError(f"Report generation failed: {status}")
 
-print(f"Waiting... ({elapsed}s, status: {status})")
-time.sleep(poll_interval)
-elapsed += poll_interval
-else:
-raise TimeoutError("Report generation timed out (5 minutes)")
+        print(f"Waiting... ({elapsed}s, status: {status})")
+        time.sleep(poll_interval)
+        elapsed += poll_interval
+    else:
+        raise TimeoutError("Report generation timed out (5 minutes)")
 
-# Step 3: download the report document
-doc_response = reports_api.get_report_document(
-doc_id, download=True
-)
+    # Step 3: download the report document
+    doc_response = reports_api.get_report_document(
+        doc_id, download=True
+    )
 
-# Parse the content (usually TSV format)
-content = doc_response.payload.get("document", "")
-if isinstance(content, bytes):
-content = content.decode("utf-8")
+    # Parse the content (usually TSV format)
+    content = doc_response.payload.get("document", "")
+    if isinstance(content, bytes):
+        content = content.decode("utf-8")
 
-from io import StringIO
-df = pd.read_csv(StringIO(content), sep="\t")
+    from io import StringIO
+    df = pd.read_csv(StringIO(content), sep="\t")
 
-print(f"Fetched {len(df)} rows")
-return df
+    print(f"Fetched {len(df)} rows")
+    return df
 
 # Usage example
 # ad_report = request_advertising_report(
@@ -825,90 +825,90 @@ from pathlib import Path
 import time
 
 def download_business_report(
-email: str,
-password: str,
-marketplace_url: str = "https://sellercentral.amazon.com",
-download_dir: str = "downloads",
-otp_callback=None
+    email: str,
+    password: str,
+    marketplace_url: str = "https://sellercentral.amazon.com",
+    download_dir: str = "downloads",
+    otp_callback=None
 ) -> str:
-"""
-Auto-log in to Seller Central and download the Business Report.
+    """
+    Auto-log in to Seller Central and download the Business Report.
 
-Args:
-email: Seller Central login email
-password: login password
-marketplace_url: Seller Central URL
-download_dir: download directory
-otp_callback: OTP-code callback function (for 2FA)
+    Args:
+        email: Seller Central login email
+        password: login password
+        marketplace_url: Seller Central URL
+        download_dir: download directory
+        otp_callback: OTP-code callback function (for 2FA)
 
-Returns:
-the downloaded file's path
+    Returns:
+        the downloaded file's path
 
-Note:
-- Amazon has anti-bot mechanisms; frequent logins may trigger verification
-- Prefer headful mode (non-headless) to reduce detection probability
-- 2FA needs manual input or handling via the OTP callback
-"""
-download_path = Path(download_dir).resolve()
-download_path.mkdir(parents=True, exist_ok=True)
+    Note:
+    - Amazon has anti-bot mechanisms; frequent logins may trigger verification
+    - Prefer headful mode (non-headless) to reduce detection probability
+    - 2FA needs manual input or handling via the OTP callback
+    """
+    download_path = Path(download_dir).resolve()
+    download_path.mkdir(parents=True, exist_ok=True)
 
-with sync_playwright() as p:
-# Use headful mode (visible browser window)
-browser = p.chromium.launch(
-headless=False, # set True to run headless, but easier to detect
-slow_mo=500 # 500ms between steps, to mimic human operation
-)
+    with sync_playwright() as p:
+        # Use headful mode (visible browser window)
+        browser = p.chromium.launch(
+            headless=False, # set True to run headless, but easier to detect
+            slow_mo=500 # 500ms between steps, to mimic human operation
+        )
 
-context = browser.new_context(
-accept_downloads=True,
-viewport={"width": 1280, "height": 800}
-)
-page = context.new_page()
+        context = browser.new_context(
+            accept_downloads=True,
+            viewport={"width": 1280, "height": 800}
+        )
+        page = context.new_page()
 
-try:
-# 1. Navigate to the login page
-page.goto(marketplace_url)
-page.wait_for_load_state("networkidle")
+        try:
+            # 1. Navigate to the login page
+            page.goto(marketplace_url)
+            page.wait_for_load_state("networkidle")
 
-# 2. Log in
-page.fill("#ap_email", email)
-page.click("#continue")
-page.fill("#ap_password", password)
-page.click("#signInSubmit")
+            # 2. Log in
+            page.fill("#ap_email", email)
+            page.click("#continue")
+            page.fill("#ap_password", password)
+            page.click("#signInSubmit")
 
-# 3. Handle 2FA (if needed)
-if page.locator("#auth-mfa-otpcode").is_visible(timeout=5000):
-if otp_callback:
-otp = otp_callback()
-else:
-otp = input("Enter the 2FA code: ")
-page.fill("#auth-mfa-otpcode", otp)
-page.click("#auth-signin-button")
+            # 3. Handle 2FA (if needed)
+            if page.locator("#auth-mfa-otpcode").is_visible(timeout=5000):
+                if otp_callback:
+                    otp = otp_callback()
+                else:
+                    otp = input("Enter the 2FA code: ")
+                page.fill("#auth-mfa-otpcode", otp)
+                page.click("#auth-signin-button")
 
-page.wait_for_load_state("networkidle")
+            page.wait_for_load_state("networkidle")
 
-# 4. Navigate to the Business Report page
-report_url = (
-f"{marketplace_url}/business-reports"
-"/ref=xx_sitemetric_dnav_xx"
-)
-page.goto(report_url)
-page.wait_for_load_state("networkidle")
+            # 4. Navigate to the Business Report page
+            report_url = (
+                f"{marketplace_url}/business-reports"
+                "/ref=xx_sitemetric_dnav_xx"
+            )
+            page.goto(report_url)
+            page.wait_for_load_state("networkidle")
 
-# 5. Click the download button
-with page.expect_download() as download_info:
-# Select "Detail Page Sales and Traffic"
-page.click("text=Download")
+            # 5. Click the download button
+            with page.expect_download() as download_info:
+                # Select "Detail Page Sales and Traffic"
+                page.click("text=Download")
 
-download = download_info.value
-dest = str(download_path / download.suggested_filename)
-download.save_as(dest)
+            download = download_info.value
+            dest = str(download_path / download.suggested_filename)
+            download.save_as(dest)
 
-print(f"Report downloaded: {dest}")
-return dest
+            print(f"Report downloaded: {dest}")
+            return dest
 
-finally:
-browser.close()
+        finally:
+            browser.close()
 
 # Usage example
 # filepath = download_business_report(
@@ -1101,56 +1101,56 @@ st.title("E-Commerce Dashboard")
 
 # Sidebar: file upload
 uploaded_file = st.sidebar.file_uploader(
-"Upload a Business Report", type=["csv", "xlsx"]
+    "Upload a Business Report", type=["csv", "xlsx"]
 )
 
 if uploaded_file:
-# Read the data
-if uploaded_file.name.endswith(".csv"):
-df = pd.read_csv(uploaded_file, encoding="utf-8-sig")
+    # Read the data
+    if uploaded_file.name.endswith(".csv"):
+        df = pd.read_csv(uploaded_file, encoding="utf-8-sig")
+    else:
+        df = pd.read_excel(uploaded_file, engine="openpyxl")
+
+    st.sidebar.success(f"Loaded {len(df)} rows")
+
+    # Core-metric cards
+    col1, col2, col3, col4 = st.columns(4)
+
+    total_units = df["Units Ordered"].sum() if "Units Ordered" in df.columns else 0
+    total_gms = df["GMS"].sum() if "GMS" in df.columns else 0
+    asp = total_gms / total_units if total_units > 0 else 0
+
+    col1.metric("Total Units", f"{total_units:,}")
+    col2.metric("Total GMS", f"${total_gms:,.2f}")
+    col3.metric("ASP", f"${asp:.2f}")
+    col4.metric("SKU Count", f"{df['ASIN'].nunique() if 'ASIN' in df.columns else 0}")
+
+    # Filter by dimension
+    if "Market" in df.columns:
+        selected_market = st.sidebar.multiselect(
+            "Select markets", df["Market"].unique(), default=df["Market"].unique()
+        )
+        df = df[df["Market"].isin(selected_market)]
+
+    # Data table
+    st.subheader("Data detail")
+    st.dataframe(df, use_container_width=True)
+
+    # DuckDB custom query
+    st.subheader("Custom SQL query")
+    query = st.text_area(
+        "Enter SQL (table name is df)",
+        value='SELECT Market, SUM("Units Ordered") as units FROM df GROUP BY Market'
+    )
+    if st.button("Run query"):
+        try:
+            result = duckdb.sql(query).fetchdf()
+            st.dataframe(result)
+        except Exception as e:
+            st.error(f"Query error: {e}")
+
 else:
-df = pd.read_excel(uploaded_file, engine="openpyxl")
-
-st.sidebar.success(f"Loaded {len(df)} rows")
-
-# Core-metric cards
-col1, col2, col3, col4 = st.columns(4)
-
-total_units = df["Units Ordered"].sum() if "Units Ordered" in df.columns else 0
-total_gms = df["GMS"].sum() if "GMS" in df.columns else 0
-asp = total_gms / total_units if total_units > 0 else 0
-
-col1.metric("Total Units", f"{total_units:,}")
-col2.metric("Total GMS", f"${total_gms:,.2f}")
-col3.metric("ASP", f"${asp:.2f}")
-col4.metric("SKU Count", f"{df['ASIN'].nunique() if 'ASIN' in df.columns else 0}")
-
-# Filter by dimension
-if "Market" in df.columns:
-selected_market = st.sidebar.multiselect(
-"Select markets", df["Market"].unique(), default=df["Market"].unique()
-)
-df = df[df["Market"].isin(selected_market)]
-
-# Data table
-st.subheader("Data detail")
-st.dataframe(df, use_container_width=True)
-
-# DuckDB custom query
-st.subheader("Custom SQL query")
-query = st.text_area(
-"Enter SQL (table name is df)",
-value='SELECT Market, SUM("Units Ordered") as units FROM df GROUP BY Market'
-)
-if st.button("Run query"):
-try:
-result = duckdb.sql(query).fetchdf()
-st.dataframe(result)
-except Exception as e:
-st.error(f"Query error: {e}")
-
-else:
-st.info("Please upload a Business Report file on the left")
+    st.info("Please upload a Business Report file on the left")
 ```
 
 > **Streamlit's advantages**: zero front-end code, auto-refresh, built-in chart components, one-click deploy to [Streamlit Cloud](https://streamlit.io/cloud) (free). Great for internal team dashboards.
@@ -1161,25 +1161,25 @@ For reports shared via email or IM, self-contained HTML is the best format. Load
 
 ```python
 def generate_html_dashboard(
-df: pd.DataFrame,
-title: str = "Business Report",
-output_path: str = "report.html"
+    df: pd.DataFrame,
+    title: str = "Business Report",
+    output_path: str = "report.html"
 ):
-"""
-Generate a self-contained HTML report with Chart.js interactive charts.
-Open directly in a browser, no dependencies needed.
-"""
-# Prepare chart data
-if "Market" in df.columns and "GMS" in df.columns:
-market_data = df.groupby("Market")["GMS"].sum().reset_index()
-labels = market_data["Market"].tolist()
-values = market_data["GMS"].tolist()
-else:
-labels, values = [], []
+    """
+    Generate a self-contained HTML report with Chart.js interactive charts.
+    Open directly in a browser, no dependencies needed.
+    """
+    # Prepare chart data
+    if "Market" in df.columns and "GMS" in df.columns:
+        market_data = df.groupby("Market")["GMS"].sum().reset_index()
+        labels = market_data["Market"].tolist()
+        values = market_data["GMS"].tolist()
+    else:
+        labels, values = [], []
 
-import json
+    import json
 
-html = f"""<!DOCTYPE html>
+    html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -1240,11 +1240,11 @@ plugins: {{ legend: {{ display: false }} }}
 </body>
 </html>"""
 
-with open(output_path, "w", encoding="utf-8") as f:
-f.write(html)
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write(html)
 
-print(f"HTML report generated: {output_path}")
-return output_path
+    print(f"HTML report generated: {output_path}")
+    return output_path
 ```
 
 > **Why self-contained HTML?** One .html file is the complete report, sent directly via email, Slack, or WeChat. The recipient double-clicks to view, no software to install. Chart.js loads from a CDN, so the file itself is only a few KB.

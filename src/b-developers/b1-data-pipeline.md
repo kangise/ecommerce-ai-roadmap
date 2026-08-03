@@ -307,35 +307,35 @@ def calculate_metrics(df: pd.DataFrame, group_by: list[str]) -> pd.DataFrame:
 from datetime import datetime
 
 def generate_weekly_report(
-report_files: dict[str, str],
-output_path: str = "weekly_report.html"
+    report_files: dict[str, str],
+    output_path: str = "weekly_report.html"
 ) -> str:
-"""
-从原始报告生成 HTML 周报。
+    """
+    从原始报告生成 HTML 周报。
 
-完整 pipeline: 读取 → 合并 → 清洗 → 计算 → 输出
-"""
-# 1. 读取和合并
-merged = merge_reports(report_files)
+    完整 pipeline: 读取 → 合并 → 清洗 → 计算 → 输出
+    """
+    # 1. 读取和合并
+    merged = merge_reports(report_files)
 
-# 2. 按市场汇总
-market_summary = calculate_metrics(merged, group_by=["Market"])
+    # 2. 按市场汇总
+    market_summary = calculate_metrics(merged, group_by=["Market"])
 
-# 3. 按品类汇总（如果有品类列）
-category_summary = None
-if "Category" in merged.columns:
-category_summary = calculate_metrics(
-merged, group_by=["Category"]
-).sort_values("GMS", ascending=False)
+    # 3. 按品类汇总（如果有品类列）
+    category_summary = None
+    if "Category" in merged.columns:
+        category_summary = calculate_metrics(
+            merged, group_by=["Category"]
+        ).sort_values("GMS", ascending=False)
 
-# 4. 计算整体指标
-total_gms = merged["GMS"].sum() if "GMS" in merged.columns else 0
-total_units = merged["Units Ordered"].sum()
-overall_asp = total_gms / total_units if total_units > 0 else 0
+    # 4. 计算整体指标
+    total_gms = merged["GMS"].sum() if "GMS" in merged.columns else 0
+    total_units = merged["Units Ordered"].sum()
+    overall_asp = total_gms / total_units if total_units > 0 else 0
 
-# 5. 生成 HTML
-report_date = datetime.now().strftime("%Y-%m-%d")
-html = f"""<!DOCTYPE html>
+    # 5. 生成 HTML
+    report_date = datetime.now().strftime("%Y-%m-%d")
+    html = f"""<!DOCTYPE html>
 <html lang="zh">
 <head>
 <meta charset="UTF-8">
@@ -371,20 +371,20 @@ th {{ background: #f5f5f5; text-align: left; }}
 <h2>按市场 | By Market</h2>
 {market_summary.to_html(index=False)}
 """
-if category_summary is not None:
-html += f"""
+    if category_summary is not None:
+        html += f"""
 <h2>按品类 | By Category</h2>
 {category_summary.to_html(index=False)}
 """
-html += """
+    html += """
 </body>
 </html>"""
 
-with open(output_path, "w", encoding="utf-8") as f:
-f.write(html)
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write(html)
 
-print(f" 周报已生成: {output_path}")
-return output_path
+    print(f" 周报已生成: {output_path}")
+    return output_path
 
 # 使用示例
 # generate_weekly_report(
@@ -452,65 +452,65 @@ from datetime import datetime, timedelta
 import pandas as pd
 
 def fetch_orders(
-credentials: dict,
-marketplace: Marketplaces = Marketplaces.US,
-days_back: int = 7
+    credentials: dict,
+    marketplace: Marketplaces = Marketplaces.US,
+    days_back: int = 7
 ) -> pd.DataFrame:
-"""
-获取最近 N 天的订单数据。
+    """
+    获取最近 N 天的订单数据。
 
-Args:
-credentials: SP-API 凭证字典
-marketplace: 目标市场
-days_back: 回溯天数
+    Args:
+        credentials: SP-API 凭证字典
+        marketplace: 目标市场
+        days_back: 回溯天数
 
-Returns:
-订单 DataFrame
-"""
-orders_api = Orders(credentials=credentials, marketplace=marketplace)
+    Returns:
+        订单 DataFrame
+    """
+    orders_api = Orders(credentials=credentials, marketplace=marketplace)
 
-created_after = (
-datetime.utcnow() - timedelta(days=days_back)
-).isoformat()
+    created_after = (
+        datetime.utcnow() - timedelta(days=days_back)
+    ).isoformat()
 
-all_orders = []
-next_token = None
+    all_orders = []
+    next_token = None
 
-while True:
-if next_token:
-response = orders_api.get_orders(
-NextToken=next_token
-)
-else:
-response = orders_api.get_orders(
-CreatedAfter=created_after,
-OrderStatuses=["Shipped", "Unshipped"],
-MaxResultsPerPage=100
-)
+    while True:
+        if next_token:
+            response = orders_api.get_orders(
+                NextToken=next_token
+            )
+        else:
+            response = orders_api.get_orders(
+                CreatedAfter=created_after,
+                OrderStatuses=["Shipped", "Unshipped"],
+                MaxResultsPerPage=100
+            )
 
-orders = response.payload.get("Orders", [])
-all_orders.extend(orders)
+        orders = response.payload.get("Orders", [])
+        all_orders.extend(orders)
 
-next_token = response.payload.get("NextToken")
-if not next_token:
-break
+        next_token = response.payload.get("NextToken")
+        if not next_token:
+            break
 
-# 转换为 DataFrame
-if not all_orders:
-return pd.DataFrame()
+    # 转换为 DataFrame
+    if not all_orders:
+        return pd.DataFrame()
 
-df = pd.json_normalize(all_orders)
+    df = pd.json_normalize(all_orders)
 
-# 清洗关键字段
-if "OrderTotal.Amount" in df.columns:
-df["OrderTotal.Amount"] = pd.to_numeric(
-df["OrderTotal.Amount"], errors="coerce"
-)
+    # 清洗关键字段
+    if "OrderTotal.Amount" in df.columns:
+        df["OrderTotal.Amount"] = pd.to_numeric(
+            df["OrderTotal.Amount"], errors="coerce"
+        )
 
-if "PurchaseDate" in df.columns:
-df["PurchaseDate"] = pd.to_datetime(df["PurchaseDate"])
+    if "PurchaseDate" in df.columns:
+        df["PurchaseDate"] = pd.to_datetime(df["PurchaseDate"])
 
-return df
+    return df
 
 # 使用示例
 # from sp_api.base import Marketplaces
@@ -604,82 +604,82 @@ import gzip
 import pandas as pd
 
 def request_advertising_report(
-credentials: dict,
-marketplace: Marketplaces = Marketplaces.US,
-report_type: str = "GET_FLAT_FILE_ALL_ORDERS_DATA_BY_ORDER_DATE_GENERAL",
-days_back: int = 7
+    credentials: dict,
+    marketplace: Marketplaces = Marketplaces.US,
+    report_type: str = "GET_FLAT_FILE_ALL_ORDERS_DATA_BY_ORDER_DATE_GENERAL",
+    days_back: int = 7
 ) -> pd.DataFrame:
-"""
-请求并下载 SP-API 报告（异步流程）。
+    """
+    请求并下载 SP-API 报告（异步流程）。
 
-SP-API 报告流程：
-1. 创建报告请求 → 获取 reportId
-2. 轮询报告状态 → 等待 DONE
-3. 获取报告文档 → 下载内容
+    SP-API 报告流程：
+    1. 创建报告请求 → 获取 reportId
+    2. 轮询报告状态 → 等待 DONE
+    3. 获取报告文档 → 下载内容
 
-Args:
-credentials: SP-API 凭证
-marketplace: 目标市场
-report_type: 报告类型（参考 SP-API 文档）
-days_back: 回溯天数
-"""
-reports_api = Reports(
-credentials=credentials, marketplace=marketplace
-)
+    Args:
+        credentials: SP-API 凭证
+        marketplace: 目标市场
+        report_type: 报告类型（参考 SP-API 文档）
+        days_back: 回溯天数
+    """
+    reports_api = Reports(
+        credentials=credentials, marketplace=marketplace
+    )
 
-from datetime import datetime, timedelta
-start_date = (
-datetime.utcnow() - timedelta(days=days_back)
-).strftime("%Y-%m-%dT00:00:00Z")
-end_date = datetime.utcnow().strftime("%Y-%m-%dT23:59:59Z")
+    from datetime import datetime, timedelta
+    start_date = (
+        datetime.utcnow() - timedelta(days=days_back)
+    ).strftime("%Y-%m-%dT00:00:00Z")
+    end_date = datetime.utcnow().strftime("%Y-%m-%dT23:59:59Z")
 
-# Step 1: 创建报告请求
-create_response = reports_api.create_report(
-reportType=report_type,
-dataStartTime=start_date,
-dataEndTime=end_date,
-marketplaceIds=[marketplace.marketplace_id]
-)
-report_id = create_response.payload["reportId"]
-print(f" 报告请求已创建: {report_id}")
+    # Step 1: 创建报告请求
+    create_response = reports_api.create_report(
+        reportType=report_type,
+        dataStartTime=start_date,
+        dataEndTime=end_date,
+        marketplaceIds=[marketplace.marketplace_id]
+    )
+    report_id = create_response.payload["reportId"]
+    print(f" 报告请求已创建: {report_id}")
 
-# Step 2: 轮询状态（最多等 5 分钟）
-max_wait = 300 # 秒
-elapsed = 0
-poll_interval = 15
+    # Step 2: 轮询状态（最多等 5 分钟）
+    max_wait = 300 # 秒
+    elapsed = 0
+    poll_interval = 15
 
-while elapsed < max_wait:
-status_response = reports_api.get_report(report_id)
-status = status_response.payload["processingStatus"]
+    while elapsed < max_wait:
+        status_response = reports_api.get_report(report_id)
+        status = status_response.payload["processingStatus"]
 
-if status == "DONE":
-doc_id = status_response.payload["reportDocumentId"]
-print(f" 报告生成完成: {doc_id}")
-break
-elif status in ("CANCELLED", "FATAL"):
-raise RuntimeError(f"报告生成失败: {status}")
+        if status == "DONE":
+            doc_id = status_response.payload["reportDocumentId"]
+            print(f" 报告生成完成: {doc_id}")
+            break
+        elif status in ("CANCELLED", "FATAL"):
+            raise RuntimeError(f"报告生成失败: {status}")
 
-print(f" 等待中... ({elapsed}s, 状态: {status})")
-time.sleep(poll_interval)
-elapsed += poll_interval
-else:
-raise TimeoutError("报告生成超时（5分钟）")
+        print(f" 等待中... ({elapsed}s, 状态: {status})")
+        time.sleep(poll_interval)
+        elapsed += poll_interval
+    else:
+        raise TimeoutError("报告生成超时（5分钟）")
 
-# Step 3: 下载报告文档
-doc_response = reports_api.get_report_document(
-doc_id, download=True
-)
+    # Step 3: 下载报告文档
+    doc_response = reports_api.get_report_document(
+        doc_id, download=True
+    )
 
-# 解析内容（通常是 TSV 格式）
-content = doc_response.payload.get("document", "")
-if isinstance(content, bytes):
-content = content.decode("utf-8")
+    # 解析内容（通常是 TSV 格式）
+    content = doc_response.payload.get("document", "")
+    if isinstance(content, bytes):
+        content = content.decode("utf-8")
 
-from io import StringIO
-df = pd.read_csv(StringIO(content), sep="\t")
+    from io import StringIO
+    df = pd.read_csv(StringIO(content), sep="\t")
 
-print(f" 获取到 {len(df)} 行数据")
-return df
+    print(f" 获取到 {len(df)} 行数据")
+    return df
 
 # 使用示例
 # ad_report = request_advertising_report(
@@ -825,90 +825,90 @@ from pathlib import Path
 import time
 
 def download_business_report(
-email: str,
-password: str,
-marketplace_url: str = "https://sellercentral.amazon.com",
-download_dir: str = "downloads",
-otp_callback=None
+    email: str,
+    password: str,
+    marketplace_url: str = "https://sellercentral.amazon.com",
+    download_dir: str = "downloads",
+    otp_callback=None
 ) -> str:
-"""
-自动登录 Seller Central 并下载 Business Report。
+    """
+    自动登录 Seller Central 并下载 Business Report。
 
-Args:
-email: Seller Central 登录邮箱
-password: 登录密码
-marketplace_url: Seller Central URL
-download_dir: 下载目录
-otp_callback: OTP 验证码回调函数（用于两步验证）
+    Args:
+        email: Seller Central 登录邮箱
+        password: 登录密码
+        marketplace_url: Seller Central URL
+        download_dir: 下载目录
+        otp_callback: OTP 验证码回调函数（用于两步验证）
 
-Returns:
-下载文件的路径
+    Returns:
+        下载文件的路径
 
-注意：
-- Amazon 有反爬机制，频繁登录可能触发验证
-- 建议使用 headful 模式（非 headless）减少被检测概率
-- 两步验证需要手动输入或通过 OTP 回调处理
-"""
-download_path = Path(download_dir).resolve()
-download_path.mkdir(parents=True, exist_ok=True)
+    注意：
+    - Amazon 有反爬机制，频繁登录可能触发验证
+    - 建议使用 headful 模式（非 headless）减少被检测概率
+    - 两步验证需要手动输入或通过 OTP 回调处理
+    """
+    download_path = Path(download_dir).resolve()
+    download_path.mkdir(parents=True, exist_ok=True)
 
-with sync_playwright() as p:
-# 使用 headful 模式（可见浏览器窗口）
-browser = p.chromium.launch(
-headless=False, # 设为 True 可无头运行，但更容易被检测
-slow_mo=500 # 每步操作间隔 500ms，模拟人类操作
-)
+    with sync_playwright() as p:
+        # 使用 headful 模式（可见浏览器窗口）
+        browser = p.chromium.launch(
+            headless=False, # 设为 True 可无头运行，但更容易被检测
+            slow_mo=500 # 每步操作间隔 500ms，模拟人类操作
+        )
 
-context = browser.new_context(
-accept_downloads=True,
-viewport={"width": 1280, "height": 800}
-)
-page = context.new_page()
+        context = browser.new_context(
+            accept_downloads=True,
+            viewport={"width": 1280, "height": 800}
+        )
+        page = context.new_page()
 
-try:
-# 1. 导航到登录页
-page.goto(marketplace_url)
-page.wait_for_load_state("networkidle")
+        try:
+            # 1. 导航到登录页
+            page.goto(marketplace_url)
+            page.wait_for_load_state("networkidle")
 
-# 2. 登录
-page.fill("#ap_email", email)
-page.click("#continue")
-page.fill("#ap_password", password)
-page.click("#signInSubmit")
+            # 2. 登录
+            page.fill("#ap_email", email)
+            page.click("#continue")
+            page.fill("#ap_password", password)
+            page.click("#signInSubmit")
 
-# 3. 处理两步验证（如果需要）
-if page.locator("#auth-mfa-otpcode").is_visible(timeout=5000):
-if otp_callback:
-otp = otp_callback()
-else:
-otp = input("请输入两步验证码: ")
-page.fill("#auth-mfa-otpcode", otp)
-page.click("#auth-signin-button")
+            # 3. 处理两步验证（如果需要）
+            if page.locator("#auth-mfa-otpcode").is_visible(timeout=5000):
+                if otp_callback:
+                    otp = otp_callback()
+                else:
+                    otp = input("请输入两步验证码: ")
+                page.fill("#auth-mfa-otpcode", otp)
+                page.click("#auth-signin-button")
 
-page.wait_for_load_state("networkidle")
+            page.wait_for_load_state("networkidle")
 
-# 4. 导航到 Business Report 页面
-report_url = (
-f"{marketplace_url}/business-reports"
-"/ref=xx_sitemetric_dnav_xx"
-)
-page.goto(report_url)
-page.wait_for_load_state("networkidle")
+            # 4. 导航到 Business Report 页面
+            report_url = (
+                f"{marketplace_url}/business-reports"
+                "/ref=xx_sitemetric_dnav_xx"
+            )
+            page.goto(report_url)
+            page.wait_for_load_state("networkidle")
 
-# 5. 点击下载按钮
-with page.expect_download() as download_info:
-# 选择 "Detail Page Sales and Traffic"
-page.click("text=Download")
+            # 5. 点击下载按钮
+            with page.expect_download() as download_info:
+                # 选择 "Detail Page Sales and Traffic"
+                page.click("text=Download")
 
-download = download_info.value
-dest = str(download_path / download.suggested_filename)
-download.save_as(dest)
+            download = download_info.value
+            dest = str(download_path / download.suggested_filename)
+            download.save_as(dest)
 
-print(f" 报告已下载: {dest}")
-return dest
+            print(f" 报告已下载: {dest}")
+            return dest
 
-finally:
-browser.close()
+        finally:
+            browser.close()
 
 # 使用示例
 # filepath = download_business_report(
@@ -1101,56 +1101,56 @@ st.title(" 电商数据看板 | E-Commerce Dashboard")
 
 # 侧边栏：文件上传
 uploaded_file = st.sidebar.file_uploader(
-"上传 Business Report", type=["csv", "xlsx"]
+    "上传 Business Report", type=["csv", "xlsx"]
 )
 
 if uploaded_file:
-# 读取数据
-if uploaded_file.name.endswith(".csv"):
-df = pd.read_csv(uploaded_file, encoding="utf-8-sig")
+    # 读取数据
+    if uploaded_file.name.endswith(".csv"):
+        df = pd.read_csv(uploaded_file, encoding="utf-8-sig")
+    else:
+        df = pd.read_excel(uploaded_file, engine="openpyxl")
+
+    st.sidebar.success(f" 已加载 {len(df)} 行数据")
+
+    # 核心指标卡片
+    col1, col2, col3, col4 = st.columns(4)
+
+    total_units = df["Units Ordered"].sum() if "Units Ordered" in df.columns else 0
+    total_gms = df["GMS"].sum() if "GMS" in df.columns else 0
+    asp = total_gms / total_units if total_units > 0 else 0
+
+    col1.metric("Total Units", f"{total_units:,}")
+    col2.metric("Total GMS", f"${total_gms:,.2f}")
+    col3.metric("ASP", f"${asp:.2f}")
+    col4.metric("SKU Count", f"{df['ASIN'].nunique() if 'ASIN' in df.columns else 0}")
+
+    # 按维度筛选
+    if "Market" in df.columns:
+        selected_market = st.sidebar.multiselect(
+            "选择市场", df["Market"].unique(), default=df["Market"].unique()
+        )
+        df = df[df["Market"].isin(selected_market)]
+
+    # 数据表格
+    st.subheader(" 数据明细")
+    st.dataframe(df, use_container_width=True)
+
+    # DuckDB 自定义查询
+    st.subheader(" 自定义 SQL 查询")
+    query = st.text_area(
+        "输入 SQL（表名为 df）",
+        value='SELECT Market, SUM("Units Ordered") as units FROM df GROUP BY Market'
+    )
+    if st.button("执行查询"):
+        try:
+            result = duckdb.sql(query).fetchdf()
+            st.dataframe(result)
+        except Exception as e:
+            st.error(f"查询错误: {e}")
+
 else:
-df = pd.read_excel(uploaded_file, engine="openpyxl")
-
-st.sidebar.success(f" 已加载 {len(df)} 行数据")
-
-# 核心指标卡片
-col1, col2, col3, col4 = st.columns(4)
-
-total_units = df["Units Ordered"].sum() if "Units Ordered" in df.columns else 0
-total_gms = df["GMS"].sum() if "GMS" in df.columns else 0
-asp = total_gms / total_units if total_units > 0 else 0
-
-col1.metric("Total Units", f"{total_units:,}")
-col2.metric("Total GMS", f"${total_gms:,.2f}")
-col3.metric("ASP", f"${asp:.2f}")
-col4.metric("SKU Count", f"{df['ASIN'].nunique() if 'ASIN' in df.columns else 0}")
-
-# 按维度筛选
-if "Market" in df.columns:
-selected_market = st.sidebar.multiselect(
-"选择市场", df["Market"].unique(), default=df["Market"].unique()
-)
-df = df[df["Market"].isin(selected_market)]
-
-# 数据表格
-st.subheader(" 数据明细")
-st.dataframe(df, use_container_width=True)
-
-# DuckDB 自定义查询
-st.subheader(" 自定义 SQL 查询")
-query = st.text_area(
-"输入 SQL（表名为 df）",
-value='SELECT Market, SUM("Units Ordered") as units FROM df GROUP BY Market'
-)
-if st.button("执行查询"):
-try:
-result = duckdb.sql(query).fetchdf()
-st.dataframe(result)
-except Exception as e:
-st.error(f"查询错误: {e}")
-
-else:
-st.info(" 请在左侧上传 Business Report 文件")
+    st.info(" 请在左侧上传 Business Report 文件")
 ```
 
 > **Streamlit 的优势**：零前端代码、自动刷新、内置图表组件、一键部署到 [Streamlit Cloud](https://streamlit.io/cloud)（免费）。非常适合给团队做内部数据看板。
@@ -1161,25 +1161,25 @@ st.info(" 请在左侧上传 Business Report 文件")
 
 ```python
 def generate_html_dashboard(
-df: pd.DataFrame,
-title: str = "业务报告",
-output_path: str = "report.html"
+    df: pd.DataFrame,
+    title: str = "业务报告",
+    output_path: str = "report.html"
 ):
-"""
-生成自包含的 HTML 报告，含 Chart.js 交互图表。
-直接在浏览器打开，无需任何依赖。
-"""
-# 准备图表数据
-if "Market" in df.columns and "GMS" in df.columns:
-market_data = df.groupby("Market")["GMS"].sum().reset_index()
-labels = market_data["Market"].tolist()
-values = market_data["GMS"].tolist()
-else:
-labels, values = [], []
+    """
+    生成自包含的 HTML 报告，含 Chart.js 交互图表。
+    直接在浏览器打开，无需任何依赖。
+    """
+    # 准备图表数据
+    if "Market" in df.columns and "GMS" in df.columns:
+        market_data = df.groupby("Market")["GMS"].sum().reset_index()
+        labels = market_data["Market"].tolist()
+        values = market_data["GMS"].tolist()
+    else:
+        labels, values = [], []
 
-import json
+    import json
 
-html = f"""<!DOCTYPE html>
+    html = f"""<!DOCTYPE html>
 <html lang="zh">
 <head>
 <meta charset="UTF-8">
@@ -1240,11 +1240,11 @@ plugins: {{ legend: {{ display: false }} }}
 </body>
 </html>"""
 
-with open(output_path, "w", encoding="utf-8") as f:
-f.write(html)
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write(html)
 
-print(f" HTML 报告已生成: {output_path}")
-return output_path
+    print(f" HTML 报告已生成: {output_path}")
+    return output_path
 ```
 
 > **为什么用自包含 HTML？** 一个 .html 文件就是完整的报告，可以通过邮件、Slack、微信直接发送。接收者双击打开即可查看，不需要安装任何软件。Chart.js 从 CDN 加载，文件本身只有几 KB。

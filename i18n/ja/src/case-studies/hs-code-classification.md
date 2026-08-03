@@ -45,7 +45,7 @@ L[過去の分類データ] --> E
 
 ### コア技術スタック
 
-```python
+```text
 # 主要依存パッケージ
 transformers==4.21.0
 scikit-learn==1.1.2
@@ -66,30 +66,30 @@ from transformers import AutoTokenizer, AutoModel
 import torch
 
 class HSCodeDataProcessor:
-def __init__(self, model_name='bert-base-multilingual-cased'):
-self.tokenizer = AutoTokenizer.from_pretrained(model_name)
-self.model = AutoModel.from_pretrained(model_name)
+    def __init__(self, model_name='bert-base-multilingual-cased'):
+        self.tokenizer = AutoTokenizer.from_pretrained(model_name)
+        self.model = AutoModel.from_pretrained(model_name)
 
-def preprocess_text(self, text):
-"""テキスト前処理"""
-# クリーニングと正規化
-text = text.lower().strip()
-# 重要な情報は残しつつ特殊文字を除去
-text = re.sub(r'[^\w\s\-\.]', ' ', text)
-return text
+    def preprocess_text(self, text):
+        """テキスト前処理"""
+        # クリーニングと正規化
+        text = text.lower().strip()
+        # 重要な情報は残しつつ特殊文字を除去
+        text = re.sub(r'[^\w\s\-\.]', ' ', text)
+        return text
 
-def extract_features(self, product_descriptions):
-"""BERT 特徴量の抽出"""
-features = []
-for desc in product_descriptions:
-inputs = self.tokenizer(desc, return_tensors='pt',
-max_length=512, truncation=True, padding=True)
-with torch.no_grad():
-outputs = self.model(**inputs)
-# [CLS] トークンの埋め込みを文表現として使用
-cls_embedding = outputs.last_hidden_state[:, 0, :].numpy()
-features.append(cls_embedding.flatten())
-return np.array(features)
+    def extract_features(self, product_descriptions):
+        """BERT 特徴量の抽出"""
+        features = []
+        for desc in product_descriptions:
+            inputs = self.tokenizer(desc, return_tensors='pt',
+                                    max_length=512, truncation=True, padding=True)
+            with torch.no_grad():
+                outputs = self.model(**inputs)
+            # [CLS] トークンの埋め込みを文表現として使用
+            cls_embedding = outputs.last_hidden_state[:, 0, :].numpy()
+            features.append(cls_embedding.flatten())
+        return np.array(features)
 ```
 
 ### 2. モデル学習
@@ -100,69 +100,69 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, accuracy_score
 
 class HSCodeClassifier:
-def __init__(self):
-self.processor = HSCodeDataProcessor()
-self.classifier = RandomForestClassifier(
-n_estimators=200,
-max_depth=20,
-min_samples_split=5,
-random_state=42
-)
-self.label_encoder = LabelEncoder()
+    def __init__(self):
+        self.processor = HSCodeDataProcessor()
+        self.classifier = RandomForestClassifier(
+            n_estimators=200,
+            max_depth=20,
+            min_samples_split=5,
+            random_state=42
+        )
+        self.label_encoder = LabelEncoder()
 
-def train(self, df):
-"""モデルの学習"""
-# 特徴量抽出
-X = self.processor.extract_features(df['product_description'])
-y = self.label_encoder.fit_transform(df['hs_code'])
+    def train(self, df):
+        """モデルの学習"""
+        # 特徴量抽出
+        X = self.processor.extract_features(df['product_description'])
+        y = self.label_encoder.fit_transform(df['hs_code'])
 
-# 学習/テスト分割
-X_train, X_test, y_train, y_test = train_test_split(
-X, y, test_size=0.2, random_state=42, stratify=y
-)
+        # 学習/テスト分割
+        X_train, X_test, y_train, y_test = train_test_split(
+            X, y, test_size=0.2, random_state=42, stratify=y
+        )
 
-# 学習
-self.classifier.fit(X_train, y_train)
+        # 学習
+        self.classifier.fit(X_train, y_train)
 
-# 評価
-y_pred = self.classifier.predict(X_test)
-accuracy = accuracy_score(y_test, y_pred)
-print(f"テスト精度: {accuracy:.3f}")
+        # 評価
+        y_pred = self.classifier.predict(X_test)
+        accuracy = accuracy_score(y_test, y_pred)
+        print(f"テスト精度: {accuracy:.3f}")
 
-return accuracy
+        return accuracy
 
-def predict_with_confidence(self, product_description):
-"""HS コードと信頼度を予測"""
-features = self.processor.extract_features([product_description])
+    def predict_with_confidence(self, product_description):
+        """HS コードと信頼度を予測"""
+        features = self.processor.extract_features([product_description])
 
-# 予測確率
-probabilities = self.classifier.predict_proba(features)[0]
-predicted_class = np.argmax(probabilities)
-confidence = probabilities[predicted_class]
+        # 予測確率
+        probabilities = self.classifier.predict_proba(features)[0]
+        predicted_class = np.argmax(probabilities)
+        confidence = probabilities[predicted_class]
 
-# HS コードへ逆変換
-hs_code = self.label_encoder.inverse_transform([predicted_class])[0]
+        # HS コードへ逆変換
+        hs_code = self.label_encoder.inverse_transform([predicted_class])[0]
 
-return {
-'hs_code': hs_code,
-'confidence': float(confidence),
-'top_3_predictions': self._get_top_predictions(probabilities, 3)
-}
+        return {
+            'hs_code': hs_code,
+            'confidence': float(confidence),
+            'top_3_predictions': self._get_top_predictions(probabilities, 3)
+        }
 
-def _get_top_predictions(self, probabilities, top_k):
-"""上位 K 件の予測を返す"""
-top_indices = np.argsort(probabilities)[-top_k:][::-1]
-top_predictions = []
+    def _get_top_predictions(self, probabilities, top_k):
+        """上位 K 件の予測を返す"""
+        top_indices = np.argsort(probabilities)[-top_k:][::-1]
+        top_predictions = []
 
-for idx in top_indices:
-hs_code = self.label_encoder.inverse_transform([idx])[0]
-confidence = probabilities[idx]
-top_predictions.append({
-'hs_code': hs_code,
-'confidence': float(confidence)
-})
+        for idx in top_indices:
+            hs_code = self.label_encoder.inverse_transform([idx])[0]
+            confidence = probabilities[idx]
+            top_predictions.append({
+                'hs_code': hs_code,
+                'confidence': float(confidence)
+            })
 
-return top_predictions
+        return top_predictions
 ```
 
 ### 3. API サービス
@@ -181,46 +181,46 @@ classifier = HSCodeClassifier()
 classifier.load_model('models/hs_classifier.pkl')
 
 class ProductRequest(BaseModel):
-product_description: str
-product_category: str = None
-brand: str = None
+    product_description: str
+    product_category: str = None
+    brand: str = None
 
 class ClassificationResponse(BaseModel):
-hs_code: str
-confidence: float
-top_3_predictions: list
-processing_time: float
+    hs_code: str
+    confidence: float
+    top_3_predictions: list
+    processing_time: float
 
 @app.post("/classify", response_model=ClassificationResponse)
 async def classify_product(request: ProductRequest):
-"""製品の HS コードを分類"""
-start_time = time.time()
+    """製品の HS コードを分類"""
+    start_time = time.time()
 
-try:
-# キャッシュ確認
-cache_key = f"hs_classify:{hash(request.product_description)}"
-cached_result = redis_client.get(cache_key)
+    try:
+        # キャッシュ確認
+        cache_key = f"hs_classify:{hash(request.product_description)}"
+        cached_result = redis_client.get(cache_key)
 
-if cached_result:
-result = json.loads(cached_result)
-else:
-# 分類を実行
-result = classifier.predict_with_confidence(request.product_description)
+        if cached_result:
+            result = json.loads(cached_result)
+        else:
+            # 分類を実行
+            result = classifier.predict_with_confidence(request.product_description)
 
-# 結果をキャッシュ(24 時間)
-redis_client.setex(cache_key, 86400, json.dumps(result))
+            # 結果をキャッシュ(24 時間)
+            redis_client.setex(cache_key, 86400, json.dumps(result))
 
-processing_time = time.time() - start_time
-result['processing_time'] = processing_time
+        processing_time = time.time() - start_time
+        result['processing_time'] = processing_time
 
-return ClassificationResponse(**result)
+        return ClassificationResponse(**result)
 
-except Exception as e:
-raise HTTPException(status_code=500, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/health")
 async def health_check():
-return {"status": "healthy", "timestamp": time.time()}
+    return {"status": "healthy", "timestamp": time.time()}
 ```
 
 ### 4. デプロイ設定
@@ -302,66 +302,66 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 ### 1. データ拡張
 ```python
 def augment_training_data(df):
-"""データ拡張戦略"""
-augmented_data = []
+    """データ拡張戦略"""
+    augmented_data = []
 
-for _, row in df.iterrows():
-original_desc = row['product_description']
-hs_code = row['hs_code']
+    for _, row in df.iterrows():
+        original_desc = row['product_description']
+        hs_code = row['hs_code']
 
-# 同義語置換
-augmented_desc = synonym_replacement(original_desc)
-augmented_data.append({'product_description': augmented_desc, 'hs_code': hs_code})
+        # 同義語置換
+        augmented_desc = synonym_replacement(original_desc)
+        augmented_data.append({'product_description': augmented_desc, 'hs_code': hs_code})
 
-# ランダム削除
-augmented_desc = random_deletion(original_desc, p=0.1)
-augmented_data.append({'product_description': augmented_desc, 'hs_code': hs_code})
+        # ランダム削除
+        augmented_desc = random_deletion(original_desc, p=0.1)
+        augmented_data.append({'product_description': augmented_desc, 'hs_code': hs_code})
 
-return pd.DataFrame(augmented_data)
+    return pd.DataFrame(augmented_data)
 ```
 
 ### 2. アクティブラーニング
 ```python
 class ActiveLearningPipeline:
-def __init__(self, classifier, uncertainty_threshold=0.7):
-self.classifier = classifier
-self.uncertainty_threshold = uncertainty_threshold
-self.uncertain_samples = []
+    def __init__(self, classifier, uncertainty_threshold=0.7):
+        self.classifier = classifier
+        self.uncertainty_threshold = uncertainty_threshold
+        self.uncertain_samples = []
 
-def identify_uncertain_samples(self, new_data):
-"""不確実なサンプルの特定"""
-for sample in new_data:
-result = self.classifier.predict_with_confidence(sample)
-if result['confidence'] < self.uncertainty_threshold:
-self.uncertain_samples.append(sample)
+    def identify_uncertain_samples(self, new_data):
+        """不確実なサンプルの特定"""
+        for sample in new_data:
+            result = self.classifier.predict_with_confidence(sample)
+            if result['confidence'] < self.uncertainty_threshold:
+                self.uncertain_samples.append(sample)
 
-def retrain_with_feedback(self, labeled_samples):
-"""フィードバックデータによる再学習"""
-# 新たにラベル付けしたデータを学習セットに追加
-# モデルを再学習
-pass
+    def retrain_with_feedback(self, labeled_samples):
+        """フィードバックデータによる再学習"""
+        # 新たにラベル付けしたデータを学習セットに追加
+        # モデルを再学習
+        pass
 ```
 
 ### 3. モデルアンサンブル
 ```python
 class EnsembleHSClassifier:
-def __init__(self):
-self.models = [
-RandomForestClassifier(n_estimators=200),
-XGBClassifier(n_estimators=200),
-LogisticRegression(max_iter=1000)
-]
+    def __init__(self):
+        self.models = [
+            RandomForestClassifier(n_estimators=200),
+            XGBClassifier(n_estimators=200),
+            LogisticRegression(max_iter=1000)
+        ]
 
-def predict_ensemble(self, features):
-"""アンサンブル予測"""
-predictions = []
-for model in self.models:
-pred = model.predict_proba(features)
-predictions.append(pred)
+    def predict_ensemble(self, features):
+        """アンサンブル予測"""
+        predictions = []
+        for model in self.models:
+            pred = model.predict_proba(features)
+            predictions.append(pred)
 
-# 確率の平均
-avg_prob = np.mean(predictions, axis=0)
-return avg_prob
+        # 確率の平均
+        avg_prob = np.mean(predictions, axis=0)
+        return avg_prob
 ```
 
 ## 監視とメンテナンス
@@ -378,15 +378,15 @@ classification_accuracy = Histogram('hs_classification_accuracy', 'Classificatio
 
 @app.middleware("http")
 async def monitor_requests(request, call_next):
-start_time = time.time()
-classification_requests.inc()
+    start_time = time.time()
+    classification_requests.inc()
 
-response = await call_next(request)
+    response = await call_next(request)
 
-duration = time.time() - start_time
-classification_duration.observe(duration)
+    duration = time.time() - start_time
+    classification_duration.observe(duration)
 
-return response
+    return response
 ```
 
 ### 2. データドリフト検知
@@ -394,25 +394,25 @@ return response
 from scipy import stats
 
 class DataDriftDetector:
-def __init__(self, reference_data):
-self.reference_features = self._extract_features(reference_data)
+    def __init__(self, reference_data):
+        self.reference_features = self._extract_features(reference_data)
 
-def detect_drift(self, new_data, threshold=0.05):
-"""データドリフトの検知"""
-new_features = self._extract_features(new_data)
+    def detect_drift(self, new_data, threshold=0.05):
+        """データドリフトの検知"""
+        new_features = self._extract_features(new_data)
 
-# KS 検定で分布の変化を検出
-for i in range(new_features.shape[1]):
-statistic, p_value = stats.ks_2samp(
-self.reference_features[:, i],
-new_features[:, i]
-)
+        # KS 検定で分布の変化を検出
+        for i in range(new_features.shape[1]):
+            statistic, p_value = stats.ks_2samp(
+                self.reference_features[:, i],
+                new_features[:, i]
+            )
 
-if p_value < threshold:
-logging.warning(f"Feature {i} shows significant drift (p={p_value})")
-return True
+            if p_value < threshold:
+                logging.warning(f"Feature {i} shows significant drift (p={p_value})")
+                return True
 
-return False
+        return False
 ```
 
 ## デプロイと運用

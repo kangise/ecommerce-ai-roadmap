@@ -307,35 +307,35 @@ def calculate_metrics(df: pd.DataFrame, group_by: list[str]) -> pd.DataFrame:
 from datetime import datetime
 
 def generate_weekly_report(
-report_files: dict[str, str],
-output_path: str = "weekly_report.html"
+    report_files: dict[str, str],
+    output_path: str = "weekly_report.html"
 ) -> str:
-"""
-生レポートから HTML 週報を生成する。
+    """
+    生レポートから HTML 週報を生成する。
 
-完全パイプライン: 読み込み → 結合 → クレンジング → 計算 → 出力
-"""
-# 1. 読み込みと結合
-merged = merge_reports(report_files)
+    完全パイプライン: 読み込み → 結合 → クレンジング → 計算 → 出力
+    """
+    # 1. 読み込みと結合
+    merged = merge_reports(report_files)
 
-# 2. 市場別に集計
-market_summary = calculate_metrics(merged, group_by=["Market"])
+    # 2. 市場別に集計
+    market_summary = calculate_metrics(merged, group_by=["Market"])
 
-# 3. カテゴリ別に集計(Category 列があれば)
-category_summary = None
-if "Category" in merged.columns:
-category_summary = calculate_metrics(
-merged, group_by=["Category"]
-).sort_values("GMS", ascending=False)
+    # 3. カテゴリ別に集計(Category 列があれば)
+    category_summary = None
+    if "Category" in merged.columns:
+        category_summary = calculate_metrics(
+            merged, group_by=["Category"]
+        ).sort_values("GMS", ascending=False)
 
-# 4. 全体指標を計算
-total_gms = merged["GMS"].sum() if "GMS" in merged.columns else 0
-total_units = merged["Units Ordered"].sum()
-overall_asp = total_gms / total_units if total_units > 0 else 0
+    # 4. 全体指標を計算
+    total_gms = merged["GMS"].sum() if "GMS" in merged.columns else 0
+    total_units = merged["Units Ordered"].sum()
+    overall_asp = total_gms / total_units if total_units > 0 else 0
 
-# 5. HTML を生成
-report_date = datetime.now().strftime("%Y-%m-%d")
-html = f"""<!DOCTYPE html>
+    # 5. HTML を生成
+    report_date = datetime.now().strftime("%Y-%m-%d")
+    html = f"""<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -371,20 +371,20 @@ th {{ background: #f5f5f5; text-align: left; }}
 <h2>市場別 | By Market</h2>
 {market_summary.to_html(index=False)}
 """
-if category_summary is not None:
-html += f"""
+    if category_summary is not None:
+        html += f"""
 <h2>カテゴリ別 | By Category</h2>
 {category_summary.to_html(index=False)}
 """
-html += """
+    html += """
 </body>
 </html>"""
 
-with open(output_path, "w", encoding="utf-8") as f:
-f.write(html)
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write(html)
 
-print(f"週報を生成しました: {output_path}")
-return output_path
+    print(f"週報を生成しました: {output_path}")
+    return output_path
 
 # 使用例
 # generate_weekly_report(
@@ -452,65 +452,65 @@ from datetime import datetime, timedelta
 import pandas as pd
 
 def fetch_orders(
-credentials: dict,
-marketplace: Marketplaces = Marketplaces.US,
-days_back: int = 7
+    credentials: dict,
+    marketplace: Marketplaces = Marketplaces.US,
+    days_back: int = 7
 ) -> pd.DataFrame:
-"""
-直近 N 日の注文データを取得する。
+    """
+    直近 N 日の注文データを取得する。
 
-Args:
-credentials: SP-API 認証情報の辞書
-marketplace: 対象市場
-days_back: 遡る日数
+    Args:
+        credentials: SP-API 認証情報の辞書
+        marketplace: 対象市場
+        days_back: 遡る日数
 
-Returns:
-注文 DataFrame
-"""
-orders_api = Orders(credentials=credentials, marketplace=marketplace)
+    Returns:
+        注文 DataFrame
+    """
+    orders_api = Orders(credentials=credentials, marketplace=marketplace)
 
-created_after = (
-datetime.utcnow() - timedelta(days=days_back)
-).isoformat()
+    created_after = (
+        datetime.utcnow() - timedelta(days=days_back)
+    ).isoformat()
 
-all_orders = []
-next_token = None
+    all_orders = []
+    next_token = None
 
-while True:
-if next_token:
-response = orders_api.get_orders(
-NextToken=next_token
-)
-else:
-response = orders_api.get_orders(
-CreatedAfter=created_after,
-OrderStatuses=["Shipped", "Unshipped"],
-MaxResultsPerPage=100
-)
+    while True:
+        if next_token:
+            response = orders_api.get_orders(
+                NextToken=next_token
+            )
+        else:
+            response = orders_api.get_orders(
+                CreatedAfter=created_after,
+                OrderStatuses=["Shipped", "Unshipped"],
+                MaxResultsPerPage=100
+            )
 
-orders = response.payload.get("Orders", [])
-all_orders.extend(orders)
+        orders = response.payload.get("Orders", [])
+        all_orders.extend(orders)
 
-next_token = response.payload.get("NextToken")
-if not next_token:
-break
+        next_token = response.payload.get("NextToken")
+        if not next_token:
+            break
 
-# DataFrame に変換
-if not all_orders:
-return pd.DataFrame()
+    # DataFrame に変換
+    if not all_orders:
+        return pd.DataFrame()
 
-df = pd.json_normalize(all_orders)
+    df = pd.json_normalize(all_orders)
 
-# キーフィールドをクレンジング
-if "OrderTotal.Amount" in df.columns:
-df["OrderTotal.Amount"] = pd.to_numeric(
-df["OrderTotal.Amount"], errors="coerce"
-)
+    # キーフィールドをクレンジング
+    if "OrderTotal.Amount" in df.columns:
+        df["OrderTotal.Amount"] = pd.to_numeric(
+            df["OrderTotal.Amount"], errors="coerce"
+        )
 
-if "PurchaseDate" in df.columns:
-df["PurchaseDate"] = pd.to_datetime(df["PurchaseDate"])
+    if "PurchaseDate" in df.columns:
+        df["PurchaseDate"] = pd.to_datetime(df["PurchaseDate"])
 
-return df
+    return df
 
 # 使用例
 # from sp_api.base import Marketplaces
@@ -604,82 +604,82 @@ import gzip
 import pandas as pd
 
 def request_advertising_report(
-credentials: dict,
-marketplace: Marketplaces = Marketplaces.US,
-report_type: str = "GET_FLAT_FILE_ALL_ORDERS_DATA_BY_ORDER_DATE_GENERAL",
-days_back: int = 7
+    credentials: dict,
+    marketplace: Marketplaces = Marketplaces.US,
+    report_type: str = "GET_FLAT_FILE_ALL_ORDERS_DATA_BY_ORDER_DATE_GENERAL",
+    days_back: int = 7
 ) -> pd.DataFrame:
-"""
-SP-API レポートをリクエストしてダウンロードする(非同期フロー)。
+    """
+    SP-API レポートをリクエストしてダウンロードする(非同期フロー)。
 
-SP-API レポートフロー:
-1. レポートリクエストを作成 → reportId を取得
-2. レポート状態をポーリング → DONE を待つ
-3. レポートドキュメントを取得 → 内容をダウンロード
+    SP-API レポートフロー:
+    1. レポートリクエストを作成 → reportId を取得
+    2. レポート状態をポーリング → DONE を待つ
+    3. レポートドキュメントを取得 → 内容をダウンロード
 
-Args:
-credentials: SP-API 認証情報
-marketplace: 対象市場
-report_type: レポートタイプ(SP-API ドキュメント参照)
-days_back: 遡る日数
-"""
-reports_api = Reports(
-credentials=credentials, marketplace=marketplace
-)
+    Args:
+        credentials: SP-API 認証情報
+        marketplace: 対象市場
+        report_type: レポートタイプ(SP-API ドキュメント参照)
+        days_back: 遡る日数
+    """
+    reports_api = Reports(
+        credentials=credentials, marketplace=marketplace
+    )
 
-from datetime import datetime, timedelta
-start_date = (
-datetime.utcnow() - timedelta(days=days_back)
-).strftime("%Y-%m-%dT00:00:00Z")
-end_date = datetime.utcnow().strftime("%Y-%m-%dT23:59:59Z")
+    from datetime import datetime, timedelta
+    start_date = (
+        datetime.utcnow() - timedelta(days=days_back)
+    ).strftime("%Y-%m-%dT00:00:00Z")
+    end_date = datetime.utcnow().strftime("%Y-%m-%dT23:59:59Z")
 
-# Step 1: レポートリクエストを作成
-create_response = reports_api.create_report(
-reportType=report_type,
-dataStartTime=start_date,
-dataEndTime=end_date,
-marketplaceIds=[marketplace.marketplace_id]
-)
-report_id = create_response.payload["reportId"]
-print(f"レポートリクエストを作成: {report_id}")
+    # Step 1: レポートリクエストを作成
+    create_response = reports_api.create_report(
+        reportType=report_type,
+        dataStartTime=start_date,
+        dataEndTime=end_date,
+        marketplaceIds=[marketplace.marketplace_id]
+    )
+    report_id = create_response.payload["reportId"]
+    print(f"レポートリクエストを作成: {report_id}")
 
-# Step 2: 状態をポーリング(最大 5 分待機)
-max_wait = 300 # 秒
-elapsed = 0
-poll_interval = 15
+    # Step 2: 状態をポーリング(最大 5 分待機)
+    max_wait = 300 # 秒
+    elapsed = 0
+    poll_interval = 15
 
-while elapsed < max_wait:
-status_response = reports_api.get_report(report_id)
-status = status_response.payload["processingStatus"]
+    while elapsed < max_wait:
+        status_response = reports_api.get_report(report_id)
+        status = status_response.payload["processingStatus"]
 
-if status == "DONE":
-doc_id = status_response.payload["reportDocumentId"]
-print(f"レポート生成完了: {doc_id}")
-break
-elif status in ("CANCELLED", "FATAL"):
-raise RuntimeError(f"レポート生成失敗: {status}")
+        if status == "DONE":
+            doc_id = status_response.payload["reportDocumentId"]
+            print(f"レポート生成完了: {doc_id}")
+            break
+        elif status in ("CANCELLED", "FATAL"):
+            raise RuntimeError(f"レポート生成失敗: {status}")
 
-print(f"待機中... ({elapsed}s, 状態: {status})")
-time.sleep(poll_interval)
-elapsed += poll_interval
-else:
-raise TimeoutError("レポート生成タイムアウト(5分)")
+        print(f"待機中... ({elapsed}s, 状態: {status})")
+        time.sleep(poll_interval)
+        elapsed += poll_interval
+    else:
+        raise TimeoutError("レポート生成タイムアウト(5分)")
 
-# Step 3: レポートドキュメントをダウンロード
-doc_response = reports_api.get_report_document(
-doc_id, download=True
-)
+    # Step 3: レポートドキュメントをダウンロード
+    doc_response = reports_api.get_report_document(
+        doc_id, download=True
+    )
 
-# 内容を解析(通常 TSV 形式)
-content = doc_response.payload.get("document", "")
-if isinstance(content, bytes):
-content = content.decode("utf-8")
+    # 内容を解析(通常 TSV 形式)
+    content = doc_response.payload.get("document", "")
+    if isinstance(content, bytes):
+        content = content.decode("utf-8")
 
-from io import StringIO
-df = pd.read_csv(StringIO(content), sep="\t")
+    from io import StringIO
+    df = pd.read_csv(StringIO(content), sep="\t")
 
-print(f"{len(df)} 行のデータを取得")
-return df
+    print(f"{len(df)} 行のデータを取得")
+    return df
 
 # 使用例
 # ad_report = request_advertising_report(
@@ -825,90 +825,90 @@ from pathlib import Path
 import time
 
 def download_business_report(
-email: str,
-password: str,
-marketplace_url: str = "https://sellercentral.amazon.com",
-download_dir: str = "downloads",
-otp_callback=None
+    email: str,
+    password: str,
+    marketplace_url: str = "https://sellercentral.amazon.com",
+    download_dir: str = "downloads",
+    otp_callback=None
 ) -> str:
-"""
-Seller Central に自動ログインし Business Report をダウンロードする。
+    """
+    Seller Central に自動ログインし Business Report をダウンロードする。
 
-Args:
-email: Seller Central ログインメール
-password: ログインパスワード
-marketplace_url: Seller Central の URL
-download_dir: ダウンロードディレクトリ
-otp_callback: OTP コードのコールバック関数(二段階認証用)
+    Args:
+        email: Seller Central ログインメール
+        password: ログインパスワード
+        marketplace_url: Seller Central の URL
+        download_dir: ダウンロードディレクトリ
+        otp_callback: OTP コードのコールバック関数(二段階認証用)
 
-Returns:
-ダウンロードしたファイルのパス
+    Returns:
+        ダウンロードしたファイルのパス
 
-注意:
-- Amazon にはアンチボット機構があり、頻繁なログインは検証をトリガーしうる
-- headful モード(非 headless)の使用を推奨、検知確率を下げる
-- 二段階認証は手動入力か OTP コールバックで処理が必要
-"""
-download_path = Path(download_dir).resolve()
-download_path.mkdir(parents=True, exist_ok=True)
+    注意:
+    - Amazon にはアンチボット機構があり、頻繁なログインは検証をトリガーしうる
+    - headful モード(非 headless)の使用を推奨、検知確率を下げる
+    - 二段階認証は手動入力か OTP コールバックで処理が必要
+    """
+    download_path = Path(download_dir).resolve()
+    download_path.mkdir(parents=True, exist_ok=True)
 
-with sync_playwright() as p:
-# headful モードを使用(可視のブラウザウィンドウ)
-browser = p.chromium.launch(
-headless=False, # True で無頭実行だが検知されやすい
-slow_mo=500 # 各操作の間隔 500ms、人間の操作を模倣
-)
+    with sync_playwright() as p:
+        # headful モードを使用(可視のブラウザウィンドウ)
+        browser = p.chromium.launch(
+            headless=False, # True で無頭実行だが検知されやすい
+            slow_mo=500 # 各操作の間隔 500ms、人間の操作を模倣
+        )
 
-context = browser.new_context(
-accept_downloads=True,
-viewport={"width": 1280, "height": 800}
-)
-page = context.new_page()
+        context = browser.new_context(
+            accept_downloads=True,
+            viewport={"width": 1280, "height": 800}
+        )
+        page = context.new_page()
 
-try:
-# 1. ログインページへ遷移
-page.goto(marketplace_url)
-page.wait_for_load_state("networkidle")
+        try:
+            # 1. ログインページへ遷移
+            page.goto(marketplace_url)
+            page.wait_for_load_state("networkidle")
 
-# 2. ログイン
-page.fill("#ap_email", email)
-page.click("#continue")
-page.fill("#ap_password", password)
-page.click("#signInSubmit")
+            # 2. ログイン
+            page.fill("#ap_email", email)
+            page.click("#continue")
+            page.fill("#ap_password", password)
+            page.click("#signInSubmit")
 
-# 3. 二段階認証を処理(必要な場合)
-if page.locator("#auth-mfa-otpcode").is_visible(timeout=5000):
-if otp_callback:
-otp = otp_callback()
-else:
-otp = input("二段階認証コードを入力: ")
-page.fill("#auth-mfa-otpcode", otp)
-page.click("#auth-signin-button")
+            # 3. 二段階認証を処理(必要な場合)
+            if page.locator("#auth-mfa-otpcode").is_visible(timeout=5000):
+                if otp_callback:
+                    otp = otp_callback()
+                else:
+                    otp = input("二段階認証コードを入力: ")
+                page.fill("#auth-mfa-otpcode", otp)
+                page.click("#auth-signin-button")
 
-page.wait_for_load_state("networkidle")
+            page.wait_for_load_state("networkidle")
 
-# 4. Business Report ページへ遷移
-report_url = (
-f"{marketplace_url}/business-reports"
-"/ref=xx_sitemetric_dnav_xx"
-)
-page.goto(report_url)
-page.wait_for_load_state("networkidle")
+            # 4. Business Report ページへ遷移
+            report_url = (
+                f"{marketplace_url}/business-reports"
+                "/ref=xx_sitemetric_dnav_xx"
+            )
+            page.goto(report_url)
+            page.wait_for_load_state("networkidle")
 
-# 5. ダウンロードボタンをクリック
-with page.expect_download() as download_info:
-# "Detail Page Sales and Traffic" を選択
-page.click("text=Download")
+            # 5. ダウンロードボタンをクリック
+            with page.expect_download() as download_info:
+                # "Detail Page Sales and Traffic" を選択
+                page.click("text=Download")
 
-download = download_info.value
-dest = str(download_path / download.suggested_filename)
-download.save_as(dest)
+            download = download_info.value
+            dest = str(download_path / download.suggested_filename)
+            download.save_as(dest)
 
-print(f"レポートをダウンロード: {dest}")
-return dest
+            print(f"レポートをダウンロード: {dest}")
+            return dest
 
-finally:
-browser.close()
+        finally:
+            browser.close()
 
 # 使用例
 # filepath = download_business_report(
@@ -1101,56 +1101,56 @@ st.title("EC データダッシュボード | E-Commerce Dashboard")
 
 # サイドバー: ファイルアップロード
 uploaded_file = st.sidebar.file_uploader(
-"Business Report をアップロード", type=["csv", "xlsx"]
+    "Business Report をアップロード", type=["csv", "xlsx"]
 )
 
 if uploaded_file:
-# データを読み込み
-if uploaded_file.name.endswith(".csv"):
-df = pd.read_csv(uploaded_file, encoding="utf-8-sig")
+    # データを読み込み
+    if uploaded_file.name.endswith(".csv"):
+        df = pd.read_csv(uploaded_file, encoding="utf-8-sig")
+    else:
+        df = pd.read_excel(uploaded_file, engine="openpyxl")
+
+    st.sidebar.success(f"{len(df)} 行のデータを読み込みました")
+
+    # 核心指標カード
+    col1, col2, col3, col4 = st.columns(4)
+
+    total_units = df["Units Ordered"].sum() if "Units Ordered" in df.columns else 0
+    total_gms = df["GMS"].sum() if "GMS" in df.columns else 0
+    asp = total_gms / total_units if total_units > 0 else 0
+
+    col1.metric("Total Units", f"{total_units:,}")
+    col2.metric("Total GMS", f"${total_gms:,.2f}")
+    col3.metric("ASP", f"${asp:.2f}")
+    col4.metric("SKU Count", f"{df['ASIN'].nunique() if 'ASIN' in df.columns else 0}")
+
+    # 次元で絞り込み
+    if "Market" in df.columns:
+        selected_market = st.sidebar.multiselect(
+            "市場を選択", df["Market"].unique(), default=df["Market"].unique()
+        )
+        df = df[df["Market"].isin(selected_market)]
+
+    # データテーブル
+    st.subheader("データ明細")
+    st.dataframe(df, use_container_width=True)
+
+    # DuckDB カスタムクエリ
+    st.subheader("カスタム SQL クエリ")
+    query = st.text_area(
+        "SQL を入力(テーブル名は df)",
+        value='SELECT Market, SUM("Units Ordered") as units FROM df GROUP BY Market'
+    )
+    if st.button("クエリを実行"):
+        try:
+            result = duckdb.sql(query).fetchdf()
+            st.dataframe(result)
+        except Exception as e:
+            st.error(f"クエリエラー: {e}")
+
 else:
-df = pd.read_excel(uploaded_file, engine="openpyxl")
-
-st.sidebar.success(f"{len(df)} 行のデータを読み込みました")
-
-# 核心指標カード
-col1, col2, col3, col4 = st.columns(4)
-
-total_units = df["Units Ordered"].sum() if "Units Ordered" in df.columns else 0
-total_gms = df["GMS"].sum() if "GMS" in df.columns else 0
-asp = total_gms / total_units if total_units > 0 else 0
-
-col1.metric("Total Units", f"{total_units:,}")
-col2.metric("Total GMS", f"${total_gms:,.2f}")
-col3.metric("ASP", f"${asp:.2f}")
-col4.metric("SKU Count", f"{df['ASIN'].nunique() if 'ASIN' in df.columns else 0}")
-
-# 次元で絞り込み
-if "Market" in df.columns:
-selected_market = st.sidebar.multiselect(
-"市場を選択", df["Market"].unique(), default=df["Market"].unique()
-)
-df = df[df["Market"].isin(selected_market)]
-
-# データテーブル
-st.subheader("データ明細")
-st.dataframe(df, use_container_width=True)
-
-# DuckDB カスタムクエリ
-st.subheader("カスタム SQL クエリ")
-query = st.text_area(
-"SQL を入力(テーブル名は df)",
-value='SELECT Market, SUM("Units Ordered") as units FROM df GROUP BY Market'
-)
-if st.button("クエリを実行"):
-try:
-result = duckdb.sql(query).fetchdf()
-st.dataframe(result)
-except Exception as e:
-st.error(f"クエリエラー: {e}")
-
-else:
-st.info("左側で Business Report ファイルをアップロードしてください")
+    st.info("左側で Business Report ファイルをアップロードしてください")
 ```
 
 > **Streamlit の利点**: フロントエンドコード不要、自動リフレッシュ、組み込みグラフコンポーネント、[Streamlit Cloud](https://streamlit.io/cloud)(無料)へワンクリックデプロイ。チームの社内データダッシュボードに最適。
@@ -1161,25 +1161,25 @@ st.info("左側で Business Report ファイルをアップロードしてくだ
 
 ```python
 def generate_html_dashboard(
-df: pd.DataFrame,
-title: str = "業務レポート",
-output_path: str = "report.html"
+    df: pd.DataFrame,
+    title: str = "業務レポート",
+    output_path: str = "report.html"
 ):
-"""
-Chart.js インタラクティブグラフ付きの自己完結 HTML レポートを生成する。
-ブラウザで直接開け、依存関係不要。
-"""
-# グラフデータを準備
-if "Market" in df.columns and "GMS" in df.columns:
-market_data = df.groupby("Market")["GMS"].sum().reset_index()
-labels = market_data["Market"].tolist()
-values = market_data["GMS"].tolist()
-else:
-labels, values = [], []
+    """
+    Chart.js インタラクティブグラフ付きの自己完結 HTML レポートを生成する。
+    ブラウザで直接開け、依存関係不要。
+    """
+    # グラフデータを準備
+    if "Market" in df.columns and "GMS" in df.columns:
+        market_data = df.groupby("Market")["GMS"].sum().reset_index()
+        labels = market_data["Market"].tolist()
+        values = market_data["GMS"].tolist()
+    else:
+        labels, values = [], []
 
-import json
+    import json
 
-html = f"""<!DOCTYPE html>
+    html = f"""<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -1240,11 +1240,11 @@ plugins: {{ legend: {{ display: false }} }}
 </body>
 </html>"""
 
-with open(output_path, "w", encoding="utf-8") as f:
-f.write(html)
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write(html)
 
-print(f"HTML レポートを生成: {output_path}")
-return output_path
+    print(f"HTML レポートを生成: {output_path}")
+    return output_path
 ```
 
 > **なぜ自己完結 HTML か?** 1 つの .html ファイルが完全なレポートで、メール、Slack、微信で直接送れる。受信者はダブルクリックで閲覧でき、ソフトのインストール不要。Chart.js は CDN からロードされ、ファイル自体は数 KB だけ。
