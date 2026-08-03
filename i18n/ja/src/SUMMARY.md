@@ -39,6 +39,7 @@
 
 # 開発者トラック
 
+- [Path B 概要](b-developers/README.md)
 - [データパイプライン](b-developers/b1-data-pipeline.md)
 - [予測モデル](b-developers/b2-prediction-models.md)
 - [RAG ナレッジベース](b-developers/b3-rag-knowledge-base.md)
@@ -64,6 +65,7 @@
 
 # マーケットプレイス
 
+- [Path D 概要](d-platforms/README.md)
 - [Walmart](d-platforms/d4-walmart-ai-guide.md)
 - [Temu](d-platforms/d5-temu-seller-guide.md)
 - [東南アジア (Shopee + Lazada)](d-platforms/d6-southeast-asia-ai-guide.md)
@@ -83,6 +85,7 @@
 
 # ソーシャルメディア
 
+- [Path E 概要](e-social-media/README.md)
 - [Instagram / Facebook](e-social-media/e1-instagram-facebook-ai-guide.md)
 - [YouTube](e-social-media/e2-youtube-ai-guide.md)
 - [小紅書 (RED)](e-social-media/e3-xiaohongshu-ai-guide.md)

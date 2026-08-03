@@ -39,6 +39,7 @@
 
 # Developer Track
 
+- [Path B Overview](b-developers/README.md)
 - [Data Pipeline](b-developers/b1-data-pipeline.md)
 - [Prediction Models](b-developers/b2-prediction-models.md)
 - [RAG Knowledge Base](b-developers/b3-rag-knowledge-base.md)
@@ -64,6 +65,7 @@
 
 # Marketplaces
 
+- [Path D Overview](d-platforms/README.md)
 - [Walmart](d-platforms/d4-walmart-ai-guide.md)
 - [Temu](d-platforms/d5-temu-seller-guide.md)
 - [Southeast Asia (Shopee + Lazada)](d-platforms/d6-southeast-asia-ai-guide.md)
@@ -83,6 +85,7 @@
 
 # Social Media
 
+- [Path E Overview](e-social-media/README.md)
 - [Instagram / Facebook](e-social-media/e1-instagram-facebook-ai-guide.md)
 - [YouTube](e-social-media/e2-youtube-ai-guide.md)
 - [Xiaohongshu (RED)](e-social-media/e3-xiaohongshu-ai-guide.md)

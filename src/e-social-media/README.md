@@ -1,12 +1,12 @@
 # Path E: 社交媒体 AI 运营 从引流到种草
 
-> 最后更新: 2026-03-14
+> 最后更新: 2026-08-04
 
 ## 概述
 
 Path A-D 聚焦电商平台本身的运营。但流量从哪来？2026 年，社交媒体已经不只是"发帖引流"它是产品发现、品牌建设、用户信任的核心战场。
 
-全球社交媒体广告市场 2026 年达 $2340 亿（[SQ Magazine](https://sqmagazine.co.uk/social-media-marketing-statistics/)），社交电商消费预计突破 $1000 亿。40% 的 TikTok 用户直接在平台内购买，Instagram Shoppable Reels 互动率比普通帖高 30%，Pinterest 月搜索量 800 亿次。
+全球社交媒体广告市场 2026 年达 $2340 亿（[SQ Magazine](https://sqmagazine.co.uk/social-media-marketing-statistics/)）。社交电商的规模、站内成交占比、可购内容的互动增益，各家口径差异很大，本路径不引用这类未经核实的数字——需要具体量级时，去各平台的官方商业报告取数，并记下取数日期。
 
 本路径帮你用 AI 系统化地运营社交媒体渠道，把"发帖"变成可复制、可规模化的引流体系。
 
@@ -32,13 +32,11 @@ Path A-D 聚焦电商平台本身的运营。但流量从哪来？2026 年，社
 
 | 维度 | Instagram | YouTube | 小红书 | Pinterest | Facebook | WhatsApp | Reddit |
 |------|-----------|---------|--------|-----------|----------|----------|--------|
-| **MAU** | ~30亿 | ~27亿 | 3-3.5亿 | 6.19亿 | ~30亿 | ~30亿 | ~10亿 |
 | **核心用户** | 18-34岁，全球 | 全年龄，全球 | 18-35岁女性，中国 | 25-44岁女性，欧美 | 25-54岁，全球 | 全年龄，拉美/东南亚/中东 | 18-35岁男性，欧美 |
 | **内容形态** | Reels/Stories/Carousel | 长视频/Shorts | 图文笔记/短视频 | Pin 图片/Idea Pins | 帖子/Reels/Groups | 消息/Catalog | 帖子/评论 |
 | **电商功能** | Instagram Shop/标签 | Shopping/Affiliate | 店铺/笔记挂链 | Shopping Ads/Rich Pins | Shops/Marketplace | Catalog/支付 | AI 购物搜索（测试中） |
 | **用户意图** | 发现+灵感 | 研究+学习 | 种草+决策 | 搜索+规划 | 社交+发现 | 沟通+交易 | 研究+验证 |
 | **AI 核心场景** | Reels 脚本/广告素材 | 视频脚本/SEO | 种草文案/KOL 匹配 | 视觉内容/SEO | Advantage+ 广告 | Chatbot/自动化 | 口碑监控/内容 |
-| **对跨境卖家价值** | | | | | | | |
 
 ---
 
