@@ -1070,7 +1070,7 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 
 ## 8.5 Bonus: Bulk AI Ad-Creative Generation & Cross-Channel Attribution
 
-> This section adds a cross-platform ad-creative AI methodology and attribution framework. For platform-specific applications, see [E1 Meta Ads](../e-social-media/e1-instagram-facebook-ai-guide.md#6-meta-advantage-ai-广告深度指南), [E2 YouTube Ads](../e-social-media/e2-youtube-ai-guide.md#6-youtube-ads-ai-优化), [D4 Walmart Connect](../d-platforms/d4-walmart-ai-guide.md#3-walmart-connect-广告).
+> This section adds a cross-platform ad-creative AI methodology and attribution framework. For platform-specific applications, see [E1 Meta Ads](../e-social-media/e1-instagram-facebook-ai-guide.md#6-meta-advantage-ai-advertising-in-depth-guide), [E2 YouTube Ads](../e-social-media/e2-youtube-ai-guide.md#6-youtube-ads-ai-optimization), [D4 Walmart Connect](../d-platforms/d4-walmart-ai-guide.md#3-walmart-connect-advertising).
 
 ### Bulk AI ad-creative generation workflow (general)
 

@@ -132,76 +132,76 @@ import numpy as np
 from pathlib import Path
 
 def load_business_report(filepath: str, market: str = "US") -> pd.DataFrame:
-"""
-Read an Amazon Business Report CSV/Excel, handling common data issues.
+    """
+    Read an Amazon Business Report CSV/Excel, handling common data issues.
 
-Args:
-filepath: report file path (supports .csv and .xlsx)
-market: market ID (US, DE, FR, IT, ES, UK, JP)
+    Args:
+        filepath: report file path (supports .csv and .xlsx)
+        market: market ID (US, DE, FR, IT, ES, UK, JP)
 
-Returns:
-cleaned DataFrame
-"""
-path = Path(filepath)
+    Returns:
+        cleaned DataFrame
+    """
+    path = Path(filepath)
 
-# 1. Choose encoding by market
-encoding_map = {
-"US": "utf-8-sig",
-"UK": "utf-8-sig",
-"DE": "utf-8-sig",
-"FR": "utf-8-sig",
-"IT": "utf-8-sig",
-"ES": "utf-8-sig",
-"JP": "cp932", # JP marketplace uses a Shift-JIS variant
-}
-encoding = encoding_map.get(market, "utf-8-sig")
+    # 1. Choose encoding by market
+    encoding_map = {
+        "US": "utf-8-sig",
+        "UK": "utf-8-sig",
+        "DE": "utf-8-sig",
+        "FR": "utf-8-sig",
+        "IT": "utf-8-sig",
+        "ES": "utf-8-sig",
+        "JP": "cp932", # JP marketplace uses a Shift-JIS variant
+    }
+    encoding = encoding_map.get(market, "utf-8-sig")
 
-# 2. Read the file
-if path.suffix == ".csv":
-df = pd.read_csv(filepath, encoding=encoding)
-elif path.suffix in (".xlsx", ".xls"):
-df = pd.read_excel(filepath, engine="openpyxl")
-else:
-raise ValueError(f"Unsupported file format: {path.suffix}")
+    # 2. Read the file
+    if path.suffix == ".csv":
+        df = pd.read_csv(filepath, encoding=encoding)
+    elif path.suffix in (".xlsx", ".xls"):
+        df = pd.read_excel(filepath, engine="openpyxl")
+    else:
+        raise ValueError(f"Unsupported file format: {path.suffix}")
 
-# 3. Unify column names (handle multilingual column-name differences)
-column_mapping = {
-# German column-name mapping
-"Bestellte Einheiten": "Units Ordered",
-"Sitzungen": "Sessions",
-"Seitenaufrufe": "Page Views",
-# Japanese column-name mapping
-"注文された商品の売上": "Ordered Product Sales",
-"セッション": "Sessions",
-# General cleanup
-"(Child) ASIN": "ASIN",
-"Child ASIN": "ASIN",
-}
-df = df.rename(columns=column_mapping)
+    # 3. Unify column names (handle multilingual column-name differences)
+    column_mapping = {
+        # German column-name mapping
+        "Bestellte Einheiten": "Units Ordered",
+        "Sitzungen": "Sessions",
+        "Seitenaufrufe": "Page Views",
+        # Japanese column-name mapping
+        "注文された商品の売上": "Ordered Product Sales",
+        "セッション": "Sessions",
+        # General cleanup
+        "(Child) ASIN": "ASIN",
+        "Child ASIN": "ASIN",
+    }
+    df = df.rename(columns=column_mapping)
 
-# 4. Clean numeric columns (strip commas, currency symbols)
-numeric_cols = ["Units Ordered", "Ordered Product Sales",
-"Sessions", "Page Views"]
-for col in numeric_cols:
-if col in df.columns:
-df[col] = (
-df[col]
-.astype(str)
-.str.replace(",", "", regex=False)
-.str.replace(r"[$€¥£]", "", regex=True)
-.str.strip()
-)
-df[col] = pd.to_numeric(df[col], errors="coerce").fillna(0)
+    # 4. Clean numeric columns (strip commas, currency symbols)
+    numeric_cols = ["Units Ordered", "Ordered Product Sales",
+                    "Sessions", "Page Views"]
+    for col in numeric_cols:
+        if col in df.columns:
+            df[col] = (
+                df[col]
+                .astype(str)
+                .str.replace(",", "", regex=False)
+                .str.replace(r"[$€¥£]", "", regex=True)
+                .str.strip()
+            )
+            df[col] = pd.to_numeric(df[col], errors="coerce").fillna(0)
 
-# 5. Filter invalid rows (summary rows, blank rows)
-if "ASIN" in df.columns:
-df = df[df["ASIN"].notna() & (df["ASIN"] != "")]
-df = df[~df["ASIN"].str.contains("Total|合計", na=False)]
+    # 5. Filter invalid rows (summary rows, blank rows)
+    if "ASIN" in df.columns:
+        df = df[df["ASIN"].notna() & (df["ASIN"] != "")]
+        df = df[~df["ASIN"].str.contains("Total|合計", na=False)]
 
-# 6. Add a market ID
-df["Market"] = market
+    # 6. Add a market ID
+    df["Market"] = market
 
-return df
+    return df
 
 # Usage example
 # df_us = load_business_report("reports/us_business_report.csv", market="US")

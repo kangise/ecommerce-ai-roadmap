@@ -23,7 +23,7 @@ Welcome to ecommerce-ai-roadmap! Here's how you can contribute.
 3. 提交 Issue，维护者会审核并转化为正式模板文件
 4. 你会被标注为贡献者
 
-当前 Prompt 模板库覆盖 7 个分类、22 个模板，详见 [prompts/](paths/a-operators/)。
+Prompt 模板分布在各章节中，运营侧集中在 [运营路径](src/a-operators/)，通用模板见 [F2 §6](src/0-foundations/f2-prompt-engineering.md)。
 
 ### 多平台运营经验（ 新增方向）
 
@@ -48,7 +48,7 @@ Path E 社交媒体指南特别需要：
 
 ### 翻译贡献（ 新增方向）
 
-我们正在建设多语言版本（[翻译架构](/.translation/ARCHITECTURE.md)），欢迎：
+中英日三语已全部完成（各 68 章，见 [i18n/STATUS.md](i18n/STATUS.md)）。欢迎：
 - 英文翻译：paths/ 下的核心模块
 - 日文翻译：特别是 Amazon JP 和 Rakuten 相关内容
 - 西班牙语翻译：特别是 Mercado Libre 相关内容
@@ -73,7 +73,7 @@ Path E 社交媒体指南特别需要：
 
 - **补充学习资源** 发现好的课程、视频、工具？提交 PR
 - **修正内容** 信息过时或描述不准确？帮忙修正
-- **翻译** 帮助完善英文/日文/西班牙文版本（详见 [翻译架构](/.translation/ARCHITECTURE.md)）
+- **翻译** 校对现有英日译文，或提议新语种（流程见 [scripts/gen_i18n_stubs.py](scripts/gen_i18n_stubs.py)）
 - **数据验证** 帮忙验证平台费率、市场数据等数字的准确性
 
 ---
@@ -109,6 +109,62 @@ Path E 社交媒体指南特别需要：
 
 **分享此模板**: `直接链接 URL`
 **来源**: [ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap)
+```
+
+---
+
+---
+
+## 写作约定 | Writing Conventions
+
+新增或改写章节前请先读这一节。这些约定不是格式偏好，每一条对应一个真实踩过的坑。完整说明见 [F2 §4-5](src/0-foundations/f2-prompt-engineering.md)。
+
+### 1. 正文不写模型型号
+
+写**能力档位**（T1 前沿 / T2 主力 / T3 高速 / T4 本地），不写具体型号。型号、价格、上下文长度集中在 [模型矩阵](src/resources/model-matrix.md)，带校验日期。
+
+> 换代时只改矩阵一个文件，不必翻 60 多章。唯一例外是 `f1-ai-evolution`——那章讲历史，型号是叙述对象。
+
+### 2. Prompt 六块结构 + 护栏
+
+```
+<角色> <输入数据> <任务> <数据纪律> <输出格式> <自检>
+```
+
+**`<数据纪律>` 是必须的**，只要 Prompt 涉及数字、外部事实或对外文案。按场景选：
+
+| 块 | 用在 | 防什么 |
+|---|---|---|
+| `<数据纪律>` | 问外部事实、要估算 | 模型编造销量/税率/搜索量，读者拿去做决策 |
+| `<文案纪律>` | 生成对外文案 | 编造产品没有的功能认证；替卖家承诺退款时效 |
+| `<输入数据边界>` | 需要粘贴数据 | 粘进去的竞品评论里一句"忽略以上要求"劫持分析 |
+| `<计算纪律>` | 财务/库存计算 | 用假设的参数补齐，结果无法复核 |
+
+可直接粘贴的块见 [F2 §4.3](src/0-foundations/f2-prompt-engineering.md)。
+
+### 3. 章节骨架
+
+指南章需要四件套：章节导航 · 本模块你将 · 常见陷阱 · 完成标志。案例页和资源页不套用这个模板。
+
+### 4. 三语同步
+
+`src/` 是中文源，`i18n/en/src` 和 `i18n/ja/src` 结构完全对应。**改中文就要同步改英日**，否则 `python3 scripts/gen_i18n_stubs.py --status` 会掉。
+
+### 5. 动章节编号时
+
+改 `## N.` 会连带影响三处：导航项、导航的序号标签、所有 `### N.x` 子节号。可靠做法是先构建，再从产物 HTML 的 `id="..."` 反向核对：
+
+```bash
+mdbook build && mdbook build i18n/en && mdbook build i18n/ja
+```
+
+注意标题里的冒号在锚点中会变成连字符。
+
+### 6. 提交前自检
+
+```bash
+mdbook build . && mdbook build i18n/en && mdbook build i18n/ja   # 三本书都要 0 ERROR
+python3 scripts/gen_i18n_stubs.py --status                        # 三语章节数须相等
 ```
 
 ---

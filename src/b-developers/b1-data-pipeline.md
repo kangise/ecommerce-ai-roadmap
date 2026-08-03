@@ -132,76 +132,76 @@ import numpy as np
 from pathlib import Path
 
 def load_business_report(filepath: str, market: str = "US") -> pd.DataFrame:
-"""
-读取 Amazon Business Report CSV/Excel，处理常见数据问题。
+    """
+    读取 Amazon Business Report CSV/Excel，处理常见数据问题。
 
-Args:
-filepath: 报告文件路径（支持 .csv 和 .xlsx）
-market: 市场标识 (US, DE, FR, IT, ES, UK, JP)
+    Args:
+        filepath: 报告文件路径（支持 .csv 和 .xlsx）
+        market: 市场标识 (US, DE, FR, IT, ES, UK, JP)
 
-Returns:
-清洗后的 DataFrame
-"""
-path = Path(filepath)
+    Returns:
+        清洗后的 DataFrame
+    """
+    path = Path(filepath)
 
-# 1. 根据市场选择编码
-encoding_map = {
-"US": "utf-8-sig",
-"UK": "utf-8-sig",
-"DE": "utf-8-sig",
-"FR": "utf-8-sig",
-"IT": "utf-8-sig",
-"ES": "utf-8-sig",
-"JP": "cp932", # 日本站用 Shift-JIS 变体
-}
-encoding = encoding_map.get(market, "utf-8-sig")
+    # 1. 根据市场选择编码
+    encoding_map = {
+        "US": "utf-8-sig",
+        "UK": "utf-8-sig",
+        "DE": "utf-8-sig",
+        "FR": "utf-8-sig",
+        "IT": "utf-8-sig",
+        "ES": "utf-8-sig",
+        "JP": "cp932", # 日本站用 Shift-JIS 变体
+    }
+    encoding = encoding_map.get(market, "utf-8-sig")
 
-# 2. 读取文件
-if path.suffix == ".csv":
-df = pd.read_csv(filepath, encoding=encoding)
-elif path.suffix in (".xlsx", ".xls"):
-df = pd.read_excel(filepath, engine="openpyxl")
-else:
-raise ValueError(f"不支持的文件格式: {path.suffix}")
+    # 2. 读取文件
+    if path.suffix == ".csv":
+        df = pd.read_csv(filepath, encoding=encoding)
+    elif path.suffix in (".xlsx", ".xls"):
+        df = pd.read_excel(filepath, engine="openpyxl")
+    else:
+        raise ValueError(f"不支持的文件格式: {path.suffix}")
 
-# 3. 统一列名（处理多语言列名差异）
-column_mapping = {
-# 德语列名映射
-"Bestellte Einheiten": "Units Ordered",
-"Sitzungen": "Sessions",
-"Seitenaufrufe": "Page Views",
-# 日语列名映射
-"注文された商品の売上": "Ordered Product Sales",
-"セッション": "Sessions",
-# 通用清理
-"(Child) ASIN": "ASIN",
-"Child ASIN": "ASIN",
-}
-df = df.rename(columns=column_mapping)
+    # 3. 统一列名（处理多语言列名差异）
+    column_mapping = {
+        # 德语列名映射
+        "Bestellte Einheiten": "Units Ordered",
+        "Sitzungen": "Sessions",
+        "Seitenaufrufe": "Page Views",
+        # 日语列名映射
+        "注文された商品の売上": "Ordered Product Sales",
+        "セッション": "Sessions",
+        # 通用清理
+        "(Child) ASIN": "ASIN",
+        "Child ASIN": "ASIN",
+    }
+    df = df.rename(columns=column_mapping)
 
-# 4. 清洗数值列（去除逗号、货币符号）
-numeric_cols = ["Units Ordered", "Ordered Product Sales",
-"Sessions", "Page Views"]
-for col in numeric_cols:
-if col in df.columns:
-df[col] = (
-df[col]
-.astype(str)
-.str.replace(",", "", regex=False)
-.str.replace(r"[$€¥£]", "", regex=True)
-.str.strip()
-)
-df[col] = pd.to_numeric(df[col], errors="coerce").fillna(0)
+    # 4. 清洗数值列（去除逗号、货币符号）
+    numeric_cols = ["Units Ordered", "Ordered Product Sales",
+                    "Sessions", "Page Views"]
+    for col in numeric_cols:
+        if col in df.columns:
+            df[col] = (
+                df[col]
+                .astype(str)
+                .str.replace(",", "", regex=False)
+                .str.replace(r"[$€¥£]", "", regex=True)
+                .str.strip()
+            )
+            df[col] = pd.to_numeric(df[col], errors="coerce").fillna(0)
 
-# 5. 过滤无效行（汇总行、空行）
-if "ASIN" in df.columns:
-df = df[df["ASIN"].notna() & (df["ASIN"] != "")]
-df = df[~df["ASIN"].str.contains("Total|合計", na=False)]
+    # 5. 过滤无效行（汇总行、空行）
+    if "ASIN" in df.columns:
+        df = df[df["ASIN"].notna() & (df["ASIN"] != "")]
+        df = df[~df["ASIN"].str.contains("Total|合計", na=False)]
 
-# 6. 添加市场标识
-df["Market"] = market
+    # 6. 添加市场标识
+    df["Market"] = market
 
-return df
+    return df
 
 # 使用示例
 # df_us = load_business_report("reports/us_business_report.csv", market="US")

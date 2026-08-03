@@ -1118,7 +1118,7 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 
 ## 8.5 補足: AI 広告素材の一括生成とクロスチャネルアトリビューション
 
-> 本節はクロスプラットフォームの汎用的な広告素材 AI 生成方法論とアトリビューション体系を補足します。プラットフォーム別の応用は [E1 Meta Ads](../e-social-media/e1-instagram-facebook-ai-guide.md#6-meta-advantage-ai-广告深度指南)、[E2 YouTube Ads](../e-social-media/e2-youtube-ai-guide.md#6-youtube-ads-ai-优化)、[D4 Walmart Connect](../d-platforms/d4-walmart-ai-guide.md#3-walmart-connect-广告) 参照。
+> 本節はクロスプラットフォームの汎用的な広告素材 AI 生成方法論とアトリビューション体系を補足します。プラットフォーム別の応用は [E1 Meta Ads](../e-social-media/e1-instagram-facebook-ai-guide.md#6-meta-advantage-ai-広告深度ガイド)、[E2 YouTube Ads](../e-social-media/e2-youtube-ai-guide.md#6-youtube-ads-ai-最適化)、[D4 Walmart Connect](../d-platforms/d4-walmart-ai-guide.md#3-walmart-connect-広告) 参照。
 
 ### AI 広告素材の一括生成ワークフロー(汎用)
 

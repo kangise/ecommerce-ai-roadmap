@@ -132,76 +132,76 @@ import numpy as np
 from pathlib import Path
 
 def load_business_report(filepath: str, market: str = "US") -> pd.DataFrame:
-"""
-Amazon Business Report の CSV/Excel を読み込み、よくあるデータ問題に対処する。
+    """
+    Amazon Business Report の CSV/Excel を読み込み、よくあるデータ問題に対処する。
 
-Args:
-filepath: レポートファイルのパス(.csv と .xlsx 対応)
-market: 市場ID (US, DE, FR, IT, ES, UK, JP)
+    Args:
+        filepath: レポートファイルのパス(.csv と .xlsx 対応)
+        market: 市場ID (US, DE, FR, IT, ES, UK, JP)
 
-Returns:
-クレンジング済みの DataFrame
-"""
-path = Path(filepath)
+    Returns:
+        クレンジング済みの DataFrame
+    """
+    path = Path(filepath)
 
-# 1. 市場に応じてエンコーディングを選択
-encoding_map = {
-"US": "utf-8-sig",
-"UK": "utf-8-sig",
-"DE": "utf-8-sig",
-"FR": "utf-8-sig",
-"IT": "utf-8-sig",
-"ES": "utf-8-sig",
-"JP": "cp932", # JP サイトは Shift-JIS の変種を使う
-}
-encoding = encoding_map.get(market, "utf-8-sig")
+    # 1. 市場に応じてエンコーディングを選択
+    encoding_map = {
+        "US": "utf-8-sig",
+        "UK": "utf-8-sig",
+        "DE": "utf-8-sig",
+        "FR": "utf-8-sig",
+        "IT": "utf-8-sig",
+        "ES": "utf-8-sig",
+        "JP": "cp932", # JP サイトは Shift-JIS の変種を使う
+    }
+    encoding = encoding_map.get(market, "utf-8-sig")
 
-# 2. ファイルを読み込み
-if path.suffix == ".csv":
-df = pd.read_csv(filepath, encoding=encoding)
-elif path.suffix in (".xlsx", ".xls"):
-df = pd.read_excel(filepath, engine="openpyxl")
-else:
-raise ValueError(f"非対応のファイル形式: {path.suffix}")
+    # 2. ファイルを読み込み
+    if path.suffix == ".csv":
+        df = pd.read_csv(filepath, encoding=encoding)
+    elif path.suffix in (".xlsx", ".xls"):
+        df = pd.read_excel(filepath, engine="openpyxl")
+    else:
+        raise ValueError(f"非対応のファイル形式: {path.suffix}")
 
-# 3. 列名を統一(多言語の列名差異に対処)
-column_mapping = {
-# ドイツ語列名のマッピング
-"Bestellte Einheiten": "Units Ordered",
-"Sitzungen": "Sessions",
-"Seitenaufrufe": "Page Views",
-# 日本語列名のマッピング
-"注文された商品の売上": "Ordered Product Sales",
-"セッション": "Sessions",
-# 汎用クリーンアップ
-"(Child) ASIN": "ASIN",
-"Child ASIN": "ASIN",
-}
-df = df.rename(columns=column_mapping)
+    # 3. 列名を統一(多言語の列名差異に対処)
+    column_mapping = {
+        # ドイツ語列名のマッピング
+        "Bestellte Einheiten": "Units Ordered",
+        "Sitzungen": "Sessions",
+        "Seitenaufrufe": "Page Views",
+        # 日本語列名のマッピング
+        "注文された商品の売上": "Ordered Product Sales",
+        "セッション": "Sessions",
+        # 汎用クリーンアップ
+        "(Child) ASIN": "ASIN",
+        "Child ASIN": "ASIN",
+    }
+    df = df.rename(columns=column_mapping)
 
-# 4. 数値列をクレンジング(カンマ、通貨記号を除去)
-numeric_cols = ["Units Ordered", "Ordered Product Sales",
-"Sessions", "Page Views"]
-for col in numeric_cols:
-if col in df.columns:
-df[col] = (
-df[col]
-.astype(str)
-.str.replace(",", "", regex=False)
-.str.replace(r"[$€¥£]", "", regex=True)
-.str.strip()
-)
-df[col] = pd.to_numeric(df[col], errors="coerce").fillna(0)
+    # 4. 数値列をクレンジング(カンマ、通貨記号を除去)
+    numeric_cols = ["Units Ordered", "Ordered Product Sales",
+                    "Sessions", "Page Views"]
+    for col in numeric_cols:
+        if col in df.columns:
+            df[col] = (
+                df[col]
+                .astype(str)
+                .str.replace(",", "", regex=False)
+                .str.replace(r"[$€¥£]", "", regex=True)
+                .str.strip()
+            )
+            df[col] = pd.to_numeric(df[col], errors="coerce").fillna(0)
 
-# 5. 無効な行を除外(集計行、空行)
-if "ASIN" in df.columns:
-df = df[df["ASIN"].notna() & (df["ASIN"] != "")]
-df = df[~df["ASIN"].str.contains("Total|合計", na=False)]
+    # 5. 無効な行を除外(集計行、空行)
+    if "ASIN" in df.columns:
+        df = df[df["ASIN"].notna() & (df["ASIN"] != "")]
+        df = df[~df["ASIN"].str.contains("Total|合計", na=False)]
 
-# 6. 市場IDを追加
-df["Market"] = market
+    # 6. 市場IDを追加
+    df["Market"] = market
 
-return df
+    return df
 
 # 使用例
 # df_us = load_business_report("reports/us_business_report.csv", market="US")

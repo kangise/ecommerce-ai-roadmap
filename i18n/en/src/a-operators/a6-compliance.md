@@ -1180,7 +1180,7 @@ After agentifying, the data you're asked to paste above should be read from here
 | JP | Act against Unjustifiable Premiums and Misleading Representations | ban "superiority misrepresentation" and "advantageous misrepresentation"; comparative ads need objective data |
 | DE | UWG | Germany's Act Against Unfair Competition, stricter than the EU |
 
-> For detailed per-market compliance requirements, see this module's [3.1 Multi-Market Compliance Comparison](#31-multi-market-compliance-comparison-deep-version). For specific social-platform ad guides, see [E1 Meta Ads](../e-social-media/e1-instagram-facebook-ai-guide.md#6-meta-advantage-ai-广告深度指南).
+> For detailed per-market compliance requirements, see this module's [3.1 Multi-Market Compliance Comparison](#31-multi-market-compliance-comparison-deep-version). For specific social-platform ad guides, see [E1 Meta Ads](../e-social-media/e1-instagram-facebook-ai-guide.md#6-meta-advantage-ai-advertising-in-depth-guide).
 
 ---
 
