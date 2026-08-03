@@ -216,75 +216,75 @@ def load_business_report(filepath: str, market: str = "US") -> pd.DataFrame:
 
 ```python
 def merge_reports(report_files: dict[str, str]) -> pd.DataFrame:
-"""
-複数市場の Business Report を結合する。
+    """
+    複数市場の Business Report を結合する。
 
-Args:
-report_files: {market: filepath} 辞書
-例 {"US": "us_report.csv", "DE": "de_report.csv"}
+    Args:
+        report_files: {market: filepath} 辞書
+            例 {"US": "us_report.csv", "DE": "de_report.csv"}
 
-Returns:
-結合後の DataFrame
-"""
-frames = []
-for market, filepath in report_files.items():
-df = load_business_report(filepath, market=market)
-frames.append(df)
+    Returns:
+        結合後の DataFrame
+    """
+    frames = []
+    for market, filepath in report_files.items():
+        df = load_business_report(filepath, market=market)
+        frames.append(df)
 
-merged = pd.concat(frames, ignore_index=True)
-return merged
+    merged = pd.concat(frames, ignore_index=True)
+    return merged
 
 def calculate_metrics(df: pd.DataFrame, group_by: list[str]) -> pd.DataFrame:
-"""
-指定した次元で核心指標を計算する。
+    """
+    指定した次元で核心指標を計算する。
 
-重要原則: 比率指標は基礎指標から再計算必須!
-- ASP = GMS / Units(ASP 列を平均してはいけない)
-- CR = Units / Sessions(CR 列を平均してはいけない)
-- Buy Box % = 加重平均(Sessions で加重)
+    重要原則: 比率指標は基礎指標から再計算必須!
+    - ASP = GMS / Units(ASP 列を平均してはいけない)
+    - CR = Units / Sessions(CR 列を平均してはいけない)
+    - Buy Box % = 加重平均(Sessions で加重)
 
-Args:
-df: 基礎指標を含む DataFrame
-group_by: グルーピング次元のリスト、例 ["Market", "Category"]
+    Args:
+        df: 基礎指標を含む DataFrame
+        group_by: グルーピング次元のリスト、例 ["Market", "Category"]
 
-Returns:
-集計後の DataFrame
-"""
-# まず行レベルの GMS を計算
-if "GMS" not in df.columns:
-if "Ordered Product Sales" in df.columns:
-df["GMS"] = df["Ordered Product Sales"]
-elif "Units Ordered" in df.columns and "Unit Price" in df.columns:
-df["GMS"] = df["Units Ordered"] * df["Unit Price"]
+    Returns:
+        集計後の DataFrame
+    """
+    # まず行レベルの GMS を計算
+    if "GMS" not in df.columns:
+        if "Ordered Product Sales" in df.columns:
+            df["GMS"] = df["Ordered Product Sales"]
+        elif "Units Ordered" in df.columns and "Unit Price" in df.columns:
+            df["GMS"] = df["Units Ordered"] * df["Unit Price"]
 
-# 次元別に基礎指標を集計
-agg_dict = {
-"Units Ordered": "sum",
-"GMS": "sum",
-"Sessions": "sum",
-"Page Views": "sum",
-}
-# 存在する列だけ集計
-agg_dict = {k: v for k, v in agg_dict.items() if k in df.columns}
+    # 次元別に基礎指標を集計
+    agg_dict = {
+        "Units Ordered": "sum",
+        "GMS": "sum",
+        "Sessions": "sum",
+        "Page Views": "sum",
+    }
+    # 存在する列だけ集計
+    agg_dict = {k: v for k, v in agg_dict.items() if k in df.columns}
 
-summary = df.groupby(group_by).agg(agg_dict).reset_index()
+    summary = df.groupby(group_by).agg(agg_dict).reset_index()
 
-# 基礎指標から比率指標を再計算
-if "GMS" in summary.columns and "Units Ordered" in summary.columns:
-summary["ASP"] = np.where(
-summary["Units Ordered"] > 0,
-summary["GMS"] / summary["Units Ordered"],
-0
-)
+    # 基礎指標から比率指標を再計算
+    if "GMS" in summary.columns and "Units Ordered" in summary.columns:
+        summary["ASP"] = np.where(
+            summary["Units Ordered"] > 0,
+            summary["GMS"] / summary["Units Ordered"],
+            0
+        )
 
-if "Units Ordered" in summary.columns and "Sessions" in summary.columns:
-summary["CR"] = np.where(
-summary["Sessions"] > 0,
-summary["Units Ordered"] / summary["Sessions"],
-0
-)
+    if "Units Ordered" in summary.columns and "Sessions" in summary.columns:
+        summary["CR"] = np.where(
+            summary["Sessions"] > 0,
+            summary["Units Ordered"] / summary["Sessions"],
+            0
+        )
 
-return summary.round(2)
+    return summary.round(2)
 
 # 使用例
 # reports = {"US": "us_report.csv", "DE": "de_report.csv", "JP": "jp_report.csv"}
@@ -1045,40 +1045,40 @@ matplotlib.rcParams["font.sans-serif"] = ["PingFang SC", "Heiti TC", "Arial"]
 matplotlib.rcParams["axes.unicode_minus"] = False
 
 def plot_market_comparison(df: pd.DataFrame, metric: str = "GMS"):
-"""
-複数市場の指標比較の棒グラフを描画する。
+    """
+    複数市場の指標比較の棒グラフを描画する。
 
-Args:
-df: Market 列と指標列を含む DataFrame
-metric: 比較する指標名
-"""
-fig, ax = plt.subplots(figsize=(10, 6))
+    Args:
+        df: Market 列と指標列を含む DataFrame
+        metric: 比較する指標名
+    """
+    fig, ax = plt.subplots(figsize=(10, 6))
 
-colors = {"US": "#FF9900", "DE": "#003399", "JP": "#BC002D"}
+    colors = {"US": "#FF9900", "DE": "#003399", "JP": "#BC002D"}
 
-bars = ax.bar(
-df["Market"],
-df[metric],
-color=[colors.get(m, "#666") for m in df["Market"]]
-)
+    bars = ax.bar(
+        df["Market"],
+        df[metric],
+        color=[colors.get(m, "#666") for m in df["Market"]]
+    )
 
-# 棒の上に数値を表示
-for bar in bars:
-height = bar.get_height()
-ax.text(
-bar.get_x() + bar.get_width() / 2., height,
-f"${height:,.0f}" if metric == "GMS" else f"{height:,.0f}",
-ha="center", va="bottom", fontweight="bold"
-)
+    # 棒の上に数値を表示
+    for bar in bars:
+        height = bar.get_height()
+        ax.text(
+            bar.get_x() + bar.get_width() / 2., height,
+            f"${height:,.0f}" if metric == "GMS" else f"{height:,.0f}",
+            ha="center", va="bottom", fontweight="bold"
+        )
 
-ax.set_title(f"市場別 {metric} 比較", fontsize=14, fontweight="bold")
-ax.set_ylabel(metric)
-ax.spines["top"].set_visible(False)
-ax.spines["right"].set_visible(False)
+    ax.set_title(f"市場別 {metric} 比較", fontsize=14, fontweight="bold")
+    ax.set_ylabel(metric)
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
 
-plt.tight_layout()
-plt.savefig(f"output/{metric}_by_market.png", dpi=150)
-plt.show()
+    plt.tight_layout()
+    plt.savefig(f"output/{metric}_by_market.png", dpi=150)
+    plt.show()
 
 # 使用例
 # market_data = calculate_metrics(merged, group_by=["Market"])
@@ -1344,24 +1344,24 @@ OUTPUT_DIR = ROOT_DIR / "output"
 
 # SP-API 認証情報(環境変数から読み込み)
 SP_API_CREDENTIALS = {
-"refresh_token": os.getenv("SP_API_REFRESH_TOKEN", ""),
-"lwa_app_id": os.getenv("SP_API_CLIENT_ID", ""),
-"lwa_client_secret": os.getenv("SP_API_CLIENT_SECRET", ""),
-"aws_access_key": os.getenv("AWS_ACCESS_KEY", ""),
-"aws_secret_key": os.getenv("AWS_SECRET_KEY", ""),
-"role_arn": os.getenv("SP_API_ROLE_ARN", ""),
+    "refresh_token": os.getenv("SP_API_REFRESH_TOKEN", ""),
+    "lwa_app_id": os.getenv("SP_API_CLIENT_ID", ""),
+    "lwa_client_secret": os.getenv("SP_API_CLIENT_SECRET", ""),
+    "aws_access_key": os.getenv("AWS_ACCESS_KEY", ""),
+    "aws_secret_key": os.getenv("AWS_SECRET_KEY", ""),
+    "role_arn": os.getenv("SP_API_ROLE_ARN", ""),
 }
 
 # 市場設定
 MARKETS = {
-"US": {"encoding": "utf-8-sig", "currency": "USD"},
-"DE": {"encoding": "utf-8-sig", "currency": "EUR"},
-"JP": {"encoding": "cp932", "currency": "JPY"},
+    "US": {"encoding": "utf-8-sig", "currency": "USD"},
+    "DE": {"encoding": "utf-8-sig", "currency": "EUR"},
+    "JP": {"encoding": "cp932", "currency": "JPY"},
 }
 
 # ディレクトリの存在を確保
 for d in [RAW_DATA_DIR, PROCESSED_DATA_DIR, OUTPUT_DIR]:
-d.mkdir(parents=True, exist_ok=True)
+    d.mkdir(parents=True, exist_ok=True)
 ```
 
 **Step 3: メイン pipeline スクリプト**
@@ -1468,38 +1468,38 @@ python3 run_pipeline.py --markets US DE # US と DE のみ処理
 ```python
 # 1. DataFrame の構造を素早く確認
 def inspect(df: pd.DataFrame, name: str = "df"):
-"""DataFrame の構造とデータ品質を素早く確認"""
-print(f"\n{'='*50}")
-print(f"{name}: {df.shape[0]} 行 × {df.shape[1]} 列")
-print(f"列名: {list(df.columns)}")
-print(f"データ型:\n{df.dtypes}")
-print(f"欠損値:\n{df.isnull().sum()[df.isnull().sum() > 0]}")
-print(f"最初の 3 行:\n{df.head(3)}")
-print(f"{'='*50}\n")
+    """DataFrame の構造とデータ品質を素早く確認"""
+    print(f"\n{'='*50}")
+    print(f"{name}: {df.shape[0]} 行 × {df.shape[1]} 列")
+    print(f"列名: {list(df.columns)}")
+    print(f"データ型:\n{df.dtypes}")
+    print(f"欠損値:\n{df.isnull().sum()[df.isnull().sum() > 0]}")
+    print(f"最初の 3 行:\n{df.head(3)}")
+    print(f"{'='*50}\n")
 
 # 2. 安全な数値変換
 def safe_numeric(series: pd.Series) -> pd.Series:
-"""列を安全に数値へ変換、変換できないものは NaN に"""
-return pd.to_numeric(
-series.astype(str)
-.str.replace(",", "")
-.str.replace(r"[$€¥£%]", "", regex=True)
-.str.strip(),
-errors="coerce"
-)
+    """列を安全に数値へ変換、変換できないものは NaN に"""
+    return pd.to_numeric(
+        series.astype(str)
+        .str.replace(",", "")
+        .str.replace(r"[$€¥£%]", "", regex=True)
+        .str.strip(),
+        errors="coerce"
+    )
 
 # 3. データ品質チェック
 def quality_check(df: pd.DataFrame) -> dict:
-"""データ品質レポートを返す"""
-return {
-"total_rows": len(df),
-"null_pct": (df.isnull().sum() / len(df) * 100).to_dict(),
-"duplicate_rows": df.duplicated().sum(),
-"negative_values": {
-col: (df[col] < 0).sum()
-for col in df.select_dtypes(include="number").columns
-}
-}
+    """データ品質レポートを返す"""
+    return {
+        "total_rows": len(df),
+        "null_pct": (df.isnull().sum() / len(df) * 100).to_dict(),
+        "duplicate_rows": df.duplicated().sum(),
+        "negative_values": {
+            col: (df[col] < 0).sum()
+            for col in df.select_dtypes(include="number").columns
+        }
+    }
 ```
 
 ---

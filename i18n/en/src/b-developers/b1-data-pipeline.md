@@ -216,75 +216,75 @@ Cross-border operations often need to merge reports from multiple markets and ti
 
 ```python
 def merge_reports(report_files: dict[str, str]) -> pd.DataFrame:
-"""
-Merge Business Reports from multiple markets.
+    """
+    Merge Business Reports from multiple markets.
 
-Args:
-report_files: a {market: filepath} dict
-e.g. {"US": "us_report.csv", "DE": "de_report.csv"}
+    Args:
+        report_files: a {market: filepath} dict
+            e.g. {"US": "us_report.csv", "DE": "de_report.csv"}
 
-Returns:
-merged DataFrame
-"""
-frames = []
-for market, filepath in report_files.items():
-df = load_business_report(filepath, market=market)
-frames.append(df)
+    Returns:
+        merged DataFrame
+    """
+    frames = []
+    for market, filepath in report_files.items():
+        df = load_business_report(filepath, market=market)
+        frames.append(df)
 
-merged = pd.concat(frames, ignore_index=True)
-return merged
+    merged = pd.concat(frames, ignore_index=True)
+    return merged
 
 def calculate_metrics(df: pd.DataFrame, group_by: list[str]) -> pd.DataFrame:
-"""
-Compute core metrics by the given dimensions.
+    """
+    Compute core metrics by the given dimensions.
 
-Key principle: ratio metrics MUST be recomputed from base metrics!
-- ASP = GMS / Units (don't average the ASP column)
-- CR = Units / Sessions (don't average the CR column)
-- Buy Box % = weighted average (weighted by Sessions)
+    Key principle: ratio metrics MUST be recomputed from base metrics!
+    - ASP = GMS / Units (don't average the ASP column)
+    - CR = Units / Sessions (don't average the CR column)
+    - Buy Box % = weighted average (weighted by Sessions)
 
-Args:
-df: DataFrame with base metrics
-group_by: list of grouping dimensions, e.g. ["Market", "Category"]
+    Args:
+        df: DataFrame with base metrics
+        group_by: list of grouping dimensions, e.g. ["Market", "Category"]
 
-Returns:
-aggregated DataFrame
-"""
-# Compute row-level GMS first
-if "GMS" not in df.columns:
-if "Ordered Product Sales" in df.columns:
-df["GMS"] = df["Ordered Product Sales"]
-elif "Units Ordered" in df.columns and "Unit Price" in df.columns:
-df["GMS"] = df["Units Ordered"] * df["Unit Price"]
+    Returns:
+        aggregated DataFrame
+    """
+    # Compute row-level GMS first
+    if "GMS" not in df.columns:
+        if "Ordered Product Sales" in df.columns:
+            df["GMS"] = df["Ordered Product Sales"]
+        elif "Units Ordered" in df.columns and "Unit Price" in df.columns:
+            df["GMS"] = df["Units Ordered"] * df["Unit Price"]
 
-# Aggregate base metrics by dimension
-agg_dict = {
-"Units Ordered": "sum",
-"GMS": "sum",
-"Sessions": "sum",
-"Page Views": "sum",
-}
-# Only aggregate columns that exist
-agg_dict = {k: v for k, v in agg_dict.items() if k in df.columns}
+    # Aggregate base metrics by dimension
+    agg_dict = {
+        "Units Ordered": "sum",
+        "GMS": "sum",
+        "Sessions": "sum",
+        "Page Views": "sum",
+    }
+    # Only aggregate columns that exist
+    agg_dict = {k: v for k, v in agg_dict.items() if k in df.columns}
 
-summary = df.groupby(group_by).agg(agg_dict).reset_index()
+    summary = df.groupby(group_by).agg(agg_dict).reset_index()
 
-# Recompute ratio metrics from base metrics
-if "GMS" in summary.columns and "Units Ordered" in summary.columns:
-summary["ASP"] = np.where(
-summary["Units Ordered"] > 0,
-summary["GMS"] / summary["Units Ordered"],
-0
-)
+    # Recompute ratio metrics from base metrics
+    if "GMS" in summary.columns and "Units Ordered" in summary.columns:
+        summary["ASP"] = np.where(
+            summary["Units Ordered"] > 0,
+            summary["GMS"] / summary["Units Ordered"],
+            0
+        )
 
-if "Units Ordered" in summary.columns and "Sessions" in summary.columns:
-summary["CR"] = np.where(
-summary["Sessions"] > 0,
-summary["Units Ordered"] / summary["Sessions"],
-0
-)
+    if "Units Ordered" in summary.columns and "Sessions" in summary.columns:
+        summary["CR"] = np.where(
+            summary["Sessions"] > 0,
+            summary["Units Ordered"] / summary["Sessions"],
+            0
+        )
 
-return summary.round(2)
+    return summary.round(2)
 
 # Usage example
 # reports = {"US": "us_report.csv", "DE": "de_report.csv", "JP": "jp_report.csv"}
@@ -1045,40 +1045,40 @@ matplotlib.rcParams["font.sans-serif"] = ["PingFang SC", "Heiti TC", "Arial"]
 matplotlib.rcParams["axes.unicode_minus"] = False
 
 def plot_market_comparison(df: pd.DataFrame, metric: str = "GMS"):
-"""
-Plot a multi-market metric-comparison bar chart.
+    """
+    Plot a multi-market metric-comparison bar chart.
 
-Args:
-df: DataFrame with a Market column and the metric column
-metric: the metric name to compare
-"""
-fig, ax = plt.subplots(figsize=(10, 6))
+    Args:
+        df: DataFrame with a Market column and the metric column
+        metric: the metric name to compare
+    """
+    fig, ax = plt.subplots(figsize=(10, 6))
 
-colors = {"US": "#FF9900", "DE": "#003399", "JP": "#BC002D"}
+    colors = {"US": "#FF9900", "DE": "#003399", "JP": "#BC002D"}
 
-bars = ax.bar(
-df["Market"],
-df[metric],
-color=[colors.get(m, "#666") for m in df["Market"]]
-)
+    bars = ax.bar(
+        df["Market"],
+        df[metric],
+        color=[colors.get(m, "#666") for m in df["Market"]]
+    )
 
-# Show the value above each bar
-for bar in bars:
-height = bar.get_height()
-ax.text(
-bar.get_x() + bar.get_width() / 2., height,
-f"${height:,.0f}" if metric == "GMS" else f"{height:,.0f}",
-ha="center", va="bottom", fontweight="bold"
-)
+    # Show the value above each bar
+    for bar in bars:
+        height = bar.get_height()
+        ax.text(
+            bar.get_x() + bar.get_width() / 2., height,
+            f"${height:,.0f}" if metric == "GMS" else f"{height:,.0f}",
+            ha="center", va="bottom", fontweight="bold"
+        )
 
-ax.set_title(f"{metric} by Market", fontsize=14, fontweight="bold")
-ax.set_ylabel(metric)
-ax.spines["top"].set_visible(False)
-ax.spines["right"].set_visible(False)
+    ax.set_title(f"{metric} by Market", fontsize=14, fontweight="bold")
+    ax.set_ylabel(metric)
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
 
-plt.tight_layout()
-plt.savefig(f"output/{metric}_by_market.png", dpi=150)
-plt.show()
+    plt.tight_layout()
+    plt.savefig(f"output/{metric}_by_market.png", dpi=150)
+    plt.show()
 
 # Usage example
 # market_data = calculate_metrics(merged, group_by=["Market"])
@@ -1344,24 +1344,24 @@ OUTPUT_DIR = ROOT_DIR / "output"
 
 # SP-API credentials (read from environment variables)
 SP_API_CREDENTIALS = {
-"refresh_token": os.getenv("SP_API_REFRESH_TOKEN", ""),
-"lwa_app_id": os.getenv("SP_API_CLIENT_ID", ""),
-"lwa_client_secret": os.getenv("SP_API_CLIENT_SECRET", ""),
-"aws_access_key": os.getenv("AWS_ACCESS_KEY", ""),
-"aws_secret_key": os.getenv("AWS_SECRET_KEY", ""),
-"role_arn": os.getenv("SP_API_ROLE_ARN", ""),
+    "refresh_token": os.getenv("SP_API_REFRESH_TOKEN", ""),
+    "lwa_app_id": os.getenv("SP_API_CLIENT_ID", ""),
+    "lwa_client_secret": os.getenv("SP_API_CLIENT_SECRET", ""),
+    "aws_access_key": os.getenv("AWS_ACCESS_KEY", ""),
+    "aws_secret_key": os.getenv("AWS_SECRET_KEY", ""),
+    "role_arn": os.getenv("SP_API_ROLE_ARN", ""),
 }
 
 # Market config
 MARKETS = {
-"US": {"encoding": "utf-8-sig", "currency": "USD"},
-"DE": {"encoding": "utf-8-sig", "currency": "EUR"},
-"JP": {"encoding": "cp932", "currency": "JPY"},
+    "US": {"encoding": "utf-8-sig", "currency": "USD"},
+    "DE": {"encoding": "utf-8-sig", "currency": "EUR"},
+    "JP": {"encoding": "cp932", "currency": "JPY"},
 }
 
 # Ensure directories exist
 for d in [RAW_DATA_DIR, PROCESSED_DATA_DIR, OUTPUT_DIR]:
-d.mkdir(parents=True, exist_ok=True)
+    d.mkdir(parents=True, exist_ok=True)
 ```
 
 **Step 3: the main pipeline script**
@@ -1468,38 +1468,38 @@ python3 run_pipeline.py --markets US DE # process only US and DE
 ```python
 # 1. Quickly inspect a DataFrame's structure
 def inspect(df: pd.DataFrame, name: str = "df"):
-"""Quickly inspect a DataFrame's structure and data quality"""
-print(f"\n{'='*50}")
-print(f"{name}: {df.shape[0]} rows × {df.shape[1]} cols")
-print(f"Columns: {list(df.columns)}")
-print(f"Dtypes:\n{df.dtypes}")
-print(f"Missing:\n{df.isnull().sum()[df.isnull().sum() > 0]}")
-print(f"First 3 rows:\n{df.head(3)}")
-print(f"{'='*50}\n")
+    """Quickly inspect a DataFrame's structure and data quality"""
+    print(f"\n{'='*50}")
+    print(f"{name}: {df.shape[0]} rows × {df.shape[1]} cols")
+    print(f"Columns: {list(df.columns)}")
+    print(f"Dtypes:\n{df.dtypes}")
+    print(f"Missing:\n{df.isnull().sum()[df.isnull().sum() > 0]}")
+    print(f"First 3 rows:\n{df.head(3)}")
+    print(f"{'='*50}\n")
 
 # 2. Safe numeric conversion
 def safe_numeric(series: pd.Series) -> pd.Series:
-"""Safely convert a column to numeric, unconvertible values become NaN"""
-return pd.to_numeric(
-series.astype(str)
-.str.replace(",", "")
-.str.replace(r"[$€¥£%]", "", regex=True)
-.str.strip(),
-errors="coerce"
-)
+    """Safely convert a column to numeric, unconvertible values become NaN"""
+    return pd.to_numeric(
+        series.astype(str)
+        .str.replace(",", "")
+        .str.replace(r"[$€¥£%]", "", regex=True)
+        .str.strip(),
+        errors="coerce"
+    )
 
 # 3. Data-quality check
 def quality_check(df: pd.DataFrame) -> dict:
-"""Return a data-quality report"""
-return {
-"total_rows": len(df),
-"null_pct": (df.isnull().sum() / len(df) * 100).to_dict(),
-"duplicate_rows": df.duplicated().sum(),
-"negative_values": {
-col: (df[col] < 0).sum()
-for col in df.select_dtypes(include="number").columns
-}
-}
+    """Return a data-quality report"""
+    return {
+        "total_rows": len(df),
+        "null_pct": (df.isnull().sum() / len(df) * 100).to_dict(),
+        "duplicate_rows": df.duplicated().sum(),
+        "negative_values": {
+            col: (df[col] < 0).sum()
+            for col in df.select_dtypes(include="number").columns
+        }
+    }
 ```
 
 ---

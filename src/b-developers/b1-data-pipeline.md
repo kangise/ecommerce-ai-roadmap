@@ -216,75 +216,75 @@ def load_business_report(filepath: str, market: str = "US") -> pd.DataFrame:
 
 ```python
 def merge_reports(report_files: dict[str, str]) -> pd.DataFrame:
-"""
-合并多个市场的 Business Report。
+    """
+    合并多个市场的 Business Report。
 
-Args:
-report_files: {market: filepath} 字典
-例如 {"US": "us_report.csv", "DE": "de_report.csv"}
+    Args:
+        report_files: {market: filepath} 字典
+            例如 {"US": "us_report.csv", "DE": "de_report.csv"}
 
-Returns:
-合并后的 DataFrame
-"""
-frames = []
-for market, filepath in report_files.items():
-df = load_business_report(filepath, market=market)
-frames.append(df)
+    Returns:
+        合并后的 DataFrame
+    """
+    frames = []
+    for market, filepath in report_files.items():
+        df = load_business_report(filepath, market=market)
+        frames.append(df)
 
-merged = pd.concat(frames, ignore_index=True)
-return merged
+    merged = pd.concat(frames, ignore_index=True)
+    return merged
 
 def calculate_metrics(df: pd.DataFrame, group_by: list[str]) -> pd.DataFrame:
-"""
-按指定维度计算核心指标。
+    """
+    按指定维度计算核心指标。
 
-关键原则：比率指标必须从基础指标重算！
-- ASP = GMS / Units（不能对 ASP 列求平均）
-- CR = Units / Sessions（不能对 CR 列求平均）
-- Buy Box % = 加权平均（按 Sessions 加权）
+    关键原则：比率指标必须从基础指标重算！
+    - ASP = GMS / Units（不能对 ASP 列求平均）
+    - CR = Units / Sessions（不能对 CR 列求平均）
+    - Buy Box % = 加权平均（按 Sessions 加权）
 
-Args:
-df: 包含基础指标的 DataFrame
-group_by: 分组维度列表，如 ["Market", "Category"]
+    Args:
+        df: 包含基础指标的 DataFrame
+        group_by: 分组维度列表，如 ["Market", "Category"]
 
-Returns:
-汇总后的 DataFrame
-"""
-# 先计算行级 GMS
-if "GMS" not in df.columns:
-if "Ordered Product Sales" in df.columns:
-df["GMS"] = df["Ordered Product Sales"]
-elif "Units Ordered" in df.columns and "Unit Price" in df.columns:
-df["GMS"] = df["Units Ordered"] * df["Unit Price"]
+    Returns:
+        汇总后的 DataFrame
+    """
+    # 先计算行级 GMS
+    if "GMS" not in df.columns:
+        if "Ordered Product Sales" in df.columns:
+            df["GMS"] = df["Ordered Product Sales"]
+        elif "Units Ordered" in df.columns and "Unit Price" in df.columns:
+            df["GMS"] = df["Units Ordered"] * df["Unit Price"]
 
-# 按维度汇总基础指标
-agg_dict = {
-"Units Ordered": "sum",
-"GMS": "sum",
-"Sessions": "sum",
-"Page Views": "sum",
-}
-# 只聚合存在的列
-agg_dict = {k: v for k, v in agg_dict.items() if k in df.columns}
+    # 按维度汇总基础指标
+    agg_dict = {
+        "Units Ordered": "sum",
+        "GMS": "sum",
+        "Sessions": "sum",
+        "Page Views": "sum",
+    }
+    # 只聚合存在的列
+    agg_dict = {k: v for k, v in agg_dict.items() if k in df.columns}
 
-summary = df.groupby(group_by).agg(agg_dict).reset_index()
+    summary = df.groupby(group_by).agg(agg_dict).reset_index()
 
-# 从基础指标重算比率指标
-if "GMS" in summary.columns and "Units Ordered" in summary.columns:
-summary["ASP"] = np.where(
-summary["Units Ordered"] > 0,
-summary["GMS"] / summary["Units Ordered"],
-0
-)
+    # 从基础指标重算比率指标
+    if "GMS" in summary.columns and "Units Ordered" in summary.columns:
+        summary["ASP"] = np.where(
+            summary["Units Ordered"] > 0,
+            summary["GMS"] / summary["Units Ordered"],
+            0
+        )
 
-if "Units Ordered" in summary.columns and "Sessions" in summary.columns:
-summary["CR"] = np.where(
-summary["Sessions"] > 0,
-summary["Units Ordered"] / summary["Sessions"],
-0
-)
+    if "Units Ordered" in summary.columns and "Sessions" in summary.columns:
+        summary["CR"] = np.where(
+            summary["Sessions"] > 0,
+            summary["Units Ordered"] / summary["Sessions"],
+            0
+        )
 
-return summary.round(2)
+    return summary.round(2)
 
 # 使用示例
 # reports = {"US": "us_report.csv", "DE": "de_report.csv", "JP": "jp_report.csv"}
@@ -1045,40 +1045,40 @@ matplotlib.rcParams["font.sans-serif"] = ["PingFang SC", "Heiti TC", "Arial"]
 matplotlib.rcParams["axes.unicode_minus"] = False
 
 def plot_market_comparison(df: pd.DataFrame, metric: str = "GMS"):
-"""
-绘制多市场指标对比柱状图。
+    """
+    绘制多市场指标对比柱状图。
 
-Args:
-df: 包含 Market 和指标列的 DataFrame
-metric: 要对比的指标名
-"""
-fig, ax = plt.subplots(figsize=(10, 6))
+    Args:
+        df: 包含 Market 和指标列的 DataFrame
+        metric: 要对比的指标名
+    """
+    fig, ax = plt.subplots(figsize=(10, 6))
 
-colors = {"US": "#FF9900", "DE": "#003399", "JP": "#BC002D"}
+    colors = {"US": "#FF9900", "DE": "#003399", "JP": "#BC002D"}
 
-bars = ax.bar(
-df["Market"],
-df[metric],
-color=[colors.get(m, "#666") for m in df["Market"]]
-)
+    bars = ax.bar(
+        df["Market"],
+        df[metric],
+        color=[colors.get(m, "#666") for m in df["Market"]]
+    )
 
-# 在柱子上方显示数值
-for bar in bars:
-height = bar.get_height()
-ax.text(
-bar.get_x() + bar.get_width() / 2., height,
-f"${height:,.0f}" if metric == "GMS" else f"{height:,.0f}",
-ha="center", va="bottom", fontweight="bold"
-)
+    # 在柱子上方显示数值
+    for bar in bars:
+        height = bar.get_height()
+        ax.text(
+            bar.get_x() + bar.get_width() / 2., height,
+            f"${height:,.0f}" if metric == "GMS" else f"{height:,.0f}",
+            ha="center", va="bottom", fontweight="bold"
+        )
 
-ax.set_title(f"各市场 {metric} 对比", fontsize=14, fontweight="bold")
-ax.set_ylabel(metric)
-ax.spines["top"].set_visible(False)
-ax.spines["right"].set_visible(False)
+    ax.set_title(f"各市场 {metric} 对比", fontsize=14, fontweight="bold")
+    ax.set_ylabel(metric)
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
 
-plt.tight_layout()
-plt.savefig(f"output/{metric}_by_market.png", dpi=150)
-plt.show()
+    plt.tight_layout()
+    plt.savefig(f"output/{metric}_by_market.png", dpi=150)
+    plt.show()
 
 # 使用示例
 # market_data = calculate_metrics(merged, group_by=["Market"])
@@ -1350,24 +1350,24 @@ OUTPUT_DIR = ROOT_DIR / "output"
 
 # SP-API 凭证（从环境变量读取）
 SP_API_CREDENTIALS = {
-"refresh_token": os.getenv("SP_API_REFRESH_TOKEN", ""),
-"lwa_app_id": os.getenv("SP_API_CLIENT_ID", ""),
-"lwa_client_secret": os.getenv("SP_API_CLIENT_SECRET", ""),
-"aws_access_key": os.getenv("AWS_ACCESS_KEY", ""),
-"aws_secret_key": os.getenv("AWS_SECRET_KEY", ""),
-"role_arn": os.getenv("SP_API_ROLE_ARN", ""),
+    "refresh_token": os.getenv("SP_API_REFRESH_TOKEN", ""),
+    "lwa_app_id": os.getenv("SP_API_CLIENT_ID", ""),
+    "lwa_client_secret": os.getenv("SP_API_CLIENT_SECRET", ""),
+    "aws_access_key": os.getenv("AWS_ACCESS_KEY", ""),
+    "aws_secret_key": os.getenv("AWS_SECRET_KEY", ""),
+    "role_arn": os.getenv("SP_API_ROLE_ARN", ""),
 }
 
 # 市场配置
 MARKETS = {
-"US": {"encoding": "utf-8-sig", "currency": "USD"},
-"DE": {"encoding": "utf-8-sig", "currency": "EUR"},
-"JP": {"encoding": "cp932", "currency": "JPY"},
+    "US": {"encoding": "utf-8-sig", "currency": "USD"},
+    "DE": {"encoding": "utf-8-sig", "currency": "EUR"},
+    "JP": {"encoding": "cp932", "currency": "JPY"},
 }
 
 # 确保目录存在
 for d in [RAW_DATA_DIR, PROCESSED_DATA_DIR, OUTPUT_DIR]:
-d.mkdir(parents=True, exist_ok=True)
+    d.mkdir(parents=True, exist_ok=True)
 ```
 
 **Step 3: 主 pipeline 脚本**
@@ -1474,38 +1474,38 @@ python3 run_pipeline.py --markets US DE # 只处理 US 和 DE
 ```python
 # 1. 快速检查 DataFrame 结构
 def inspect(df: pd.DataFrame, name: str = "df"):
-"""快速检查 DataFrame 的结构和数据质量"""
-print(f"\n{'='*50}")
-print(f" {name}: {df.shape[0]} 行 × {df.shape[1]} 列")
-print(f"列名: {list(df.columns)}")
-print(f"数据类型:\n{df.dtypes}")
-print(f"缺失值:\n{df.isnull().sum()[df.isnull().sum() > 0]}")
-print(f"前 3 行:\n{df.head(3)}")
-print(f"{'='*50}\n")
+    """快速检查 DataFrame 的结构和数据质量"""
+    print(f"\n{'='*50}")
+    print(f" {name}: {df.shape[0]} 行 × {df.shape[1]} 列")
+    print(f"列名: {list(df.columns)}")
+    print(f"数据类型:\n{df.dtypes}")
+    print(f"缺失值:\n{df.isnull().sum()[df.isnull().sum() > 0]}")
+    print(f"前 3 行:\n{df.head(3)}")
+    print(f"{'='*50}\n")
 
 # 2. 安全的数值转换
 def safe_numeric(series: pd.Series) -> pd.Series:
-"""安全地将列转换为数值，无法转换的变为 NaN"""
-return pd.to_numeric(
-series.astype(str)
-.str.replace(",", "")
-.str.replace(r"[$€¥£%]", "", regex=True)
-.str.strip(),
-errors="coerce"
-)
+    """安全地将列转换为数值，无法转换的变为 NaN"""
+    return pd.to_numeric(
+        series.astype(str)
+        .str.replace(",", "")
+        .str.replace(r"[$€¥£%]", "", regex=True)
+        .str.strip(),
+        errors="coerce"
+    )
 
 # 3. 数据质量检查
 def quality_check(df: pd.DataFrame) -> dict:
-"""返回数据质量报告"""
-return {
-"total_rows": len(df),
-"null_pct": (df.isnull().sum() / len(df) * 100).to_dict(),
-"duplicate_rows": df.duplicated().sum(),
-"negative_values": {
-col: (df[col] < 0).sum()
-for col in df.select_dtypes(include="number").columns
-}
-}
+    """返回数据质量报告"""
+    return {
+        "total_rows": len(df),
+        "null_pct": (df.isnull().sum() / len(df) * 100).to_dict(),
+        "duplicate_rows": df.duplicated().sum(),
+        "negative_values": {
+            col: (df[col] < 0).sum()
+            for col in df.select_dtypes(include="number").columns
+        }
+    }
 ```
 
 ---
