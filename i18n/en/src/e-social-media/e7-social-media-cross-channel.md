@@ -308,6 +308,15 @@ Follower growth, views, and engagement rate can all be unrelated to sales. You n
 
 ---
 
+## When this doesn't work
+
+- **No single channel works yet.** Cross-channel reuse amplifies content that already performs. Before the first channel has found a format that reliably lands, publishing one piece everywhere just copies something that does not work into five places — and makes it harder to see where the problem is.
+- **"Publish once, post everywhere" became mechanical transfer.** Format, length, context and community norms differ per platform, and transferred content is second-best on all of them. What is reusable is the core — the proposition, the story, the raw assets — not the finished piece. The adaptation steps in this chapter are not optional polish.
+- **Your attribution model is finer than your data.** Cross-channel attribution models can be made very sophisticated, but the inputs are per-platform definitions that cannot be deduplicated across inconsistent time windows. Model precision beyond data precision is self-consolation. Prefer a coarser read — incrementality tests, channel on/off comparisons — over a beautiful attribution number with nothing supporting it.
+- **You do not have the people to run every channel daily.** Each channel needs publishing, replies, monitoring and keeping up with changing community norms. Channels opened beyond your headcount become dormant accounts, and a dormant account damages the brand more than not being there. Set the number of channels from headcount, not from opportunity.
+
+---
+
 ## 7.5 Cross-Platform Content-Reuse In-Depth Workflow
 
 ### The Complete SOP from One Core Asset to 7 Platforms

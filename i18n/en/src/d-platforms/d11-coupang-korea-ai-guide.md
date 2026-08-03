@@ -365,6 +365,15 @@ The settlement cycle determines how much working capital you need — a hard con
 
 ---
 
+## When this doesn't work
+
+- **Your Korean is merely legible.** This market is sensitive to register and honorific level, traces of machine translation cost trust directly, and it shows most in support replies. A native speaker has to pass over the final text — the same rule as Japan, and not optional.
+- **You are not using the platform's own logistics.** Buyer expectations on delivery speed here are set by the platform's in-house network. Running third-party or cross-border direct shipping puts you behind on a gap that shows up immediately in conversion and reviews. When assessing this market, the logistics decision ranks above listing optimisation.
+- **The category needs Korean certification.** Electronics, cosmetics, food and children's products each carry local entry requirements that do not transfer from US or EU schemes. Certification time and cost belong in the entry decision, not as something to sort out after listing.
+- **Your volume cannot carry a local entity and returns.** A local company, a local return address and Korean-language support are ongoing costs. At low volume those fixed costs consume everything this market produces. Work out the break-even volume before deciding to enter.
+
+---
+
 ## 7. Completion Checklist
 
 - [ ] Assess Korean market opportunities and KC certification requirements

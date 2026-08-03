@@ -471,6 +471,15 @@ Please analyze Reddit's impact on my AI-search visibility:
 
 ---
 
+## When this doesn't work
+
+- **You want to market here.** This community recognises marketing quickly and is hostile to it; a young account posting only its own product gets handled by moderators and users at once. What works here is answering questions, offering something useful and observing real demand — not placement. If that is not clear to you, do not enter.
+- **Nobody will participate under a real identity over time.** What works rests on an account with history and credibility, and that takes months of genuine participation. Farming an account with AI-generated replies is likely to be spotted, and once spotted the channel closes permanently.
+- **You need attributable conversions.** The value here is mostly demand insight and word of mouth; the purchase usually happens elsewhere and cannot be traced. Judging this channel on conversion data produces the conclusion that it has no value, and then cuts a place that should have been used for user research.
+- **Your category has no active community.** Some categories have deep discussion communities and others have none at all. Search your category terms before entering and see whether there is sustained, genuine conversation. If there is not, this is an empty room.
+
+---
+
 ## 7. Completion Checklist
 
 - [ ] Identify 5-10 target Subreddits

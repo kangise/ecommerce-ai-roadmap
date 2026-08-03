@@ -1091,6 +1091,15 @@ Recording template:
 
 ---
 
+## When this doesn't work
+
+- **The product has nothing to look at.** The Meta ecosystem runs on the image. Functional consumables, spec-driven industrial parts, standardised goods that look like every other one — content here costs far more than it returns. Put that budget on the search side, where people arrive with a stated need, rather than into a feed hoping to move someone.
+- **Automated delivery is not getting enough signal.** Tools like Advantage+ learn from conversion data. With the pixel misconfigured, events unmapped or conversion volume too thin, what they learn is noise. A new account should get conversion tracking working and accumulate events first, not rush into full automation.
+- **An algorithm change reset your experience.** Creative formats, placement weighting and the granularity available for targeting have all moved in recent years, and a structure that worked last year may not hold now. This chapter teaches the reasoning; the specific delivery structure has to be re-validated after each change.
+- **You need conversions now rather than assets later.** Social returns over the long run through content assets and an audience pool. If what you need is orders this month, search advertising gets there far faster. The test is how long you can wait — if it is less than a quarter, this is not where the money should go right now.
+
+---
+
 ## 12. Completion Checklist
 
 After completing this module, you should be able to:

@@ -459,6 +459,15 @@ WhatsApp Flows lets you create structured interactive experiences within WhatsAp
 
 ---
 
+## When this doesn't work
+
+- **Your target market does not communicate here.** This app is a primary channel in Latin America, Southeast Asia and the Middle East; it is not in North America or Japan. Building this out where users simply do not use it spends configuration effort and receives no conversations.
+- **You have no local-language, local-hours coverage.** Conversational commerce turns on response speed and tone. AI can hold the common questions, but if escalation to a person means waiting half a day or getting English only, the automation in front of it fails with it. Decide who covers which hours before launching.
+- **You have not understood the template and initiation rules.** Business-initiated conversations carry template review, timing windows and fee rules, and these are not identical across countries. Blasting messages the way you imagine it works readily triggers limits or a ban. Confirm the rules against current official documentation for your market.
+- **You use it as a broadcast channel.** This is private conversational space, and the resentment cost of promotional blasts is far above email's. Building it into an efficient support and aftersales channel returns more reliably; building it into a marketing broadcast costs you the channel itself.
+
+---
+
 ## 7. Completion Checklist
 
 - [ ] Set up a WhatsApp Business account

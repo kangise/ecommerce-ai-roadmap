@@ -315,6 +315,15 @@ Broad language coverage is an AliExpress advantage, but machine-translated copy 
 
 ---
 
+## When this doesn't work
+
+- **Under the fully-managed model you do not set price.** The platform prices, subsidises and decides exposure; what you control is supply price and capacity. "Operational optimisation" means something much narrower here than on Amazon. Accept that premise first, then judge whether the channel is worth it.
+- **Brand premium does not reach the buyer.** Buyers here decide mainly on price and rating, and brand story and visual systems have almost nowhere to land. Sellers already building a brand should model the reverse effect of a low-price association on pricing room elsewhere, not only the incremental volume here.
+- **You have not done European compliance in advance.** Southern Europe is a focus region for this platform, and EU product compliance, VAT, packaging law and extended producer responsibility differ by country. Confirm the target country's requirements before scaling ([A6](../a-operators/a6-compliance.md)) — paying it late is cheaper than being taken down.
+- **Your delivery times cannot hold.** The platform's delivery promise feeds directly into exposure and rating, and cross-border direct shipping varies far more than local warehousing. Before running this channel on direct shipping, confirm your reliability can meet the platform's threshold.
+
+---
+
 ## 7. Completion Checklist
 
 - [ ] Assess the AliExpress vs Temu choice

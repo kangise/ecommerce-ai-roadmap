@@ -429,6 +429,15 @@ In fashion, sizing that isn't aligned to the platform standard adds another laye
 
 ---
 
+## When this doesn't work
+
+- **You treat Europe as one market.** Germany, France, Italy, Spain and the Netherlands differ in buyer habits, return expectations, payment methods and which platforms matter. What the EU harmonises is the regulatory framework, not consumer behaviour. One content set and one price across Europe is usually second-best in every country.
+- **Compliance cost is not in your unit economics.** VAT registration, packaging law, WEEE, extended producer responsibility, EPR numbers — these are continuing registration and filing obligations, not one-off actions. A unit model without them produces a fictional margin (see [A6](../a-operators/a6-compliance.md)).
+- **You estimated returns from US experience.** Return rates in several European markets are structurally higher than in the US, especially in apparel and footwear, and the statutory return window is longer. Modelling European margin on US return assumptions overstates it systematically.
+- **You have no local return address and no local-language support.** On most European platforms these two feed directly into buyer trust and your platform rating. Cross-border shipping with English-only support is a configuration that starts but does not scale — plan the local coverage before the volume arrives.
+
+---
+
 ## 8. Completion Checklist
 
 - [ ] Assess German/European market opportunities

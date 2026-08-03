@@ -621,6 +621,15 @@ After agentifying, the data you're asked to paste above should be read from here
 
 ---
 
+## When this doesn't work
+
+- **Your customers are not in China.** This platform's users and its commercial loop are domestic. A seller targeting Western markets invests here and gets data that looks fine attached to an audience they cannot use. Establish where your target market and this platform's users actually overlap first.
+- **You have no native Chinese content capability.** Discovery posts here demand a lot of the writing, and AI-generated or machine-translated notes get read as marketing quickly. Once they are, organic reach drops away. Without someone who can write it themselves, this channel does not get off the ground.
+- **Compliance and qualifications are not in place.** A cross-border entity opening a shop, running ads or working with creators here each carry their own requirements, and some categories need additional approval. These are not content questions but preconditions for operating at all, and belong before you invest in production.
+- **Creator results cannot be attributed.** Conversion paths here are often cross-platform — a post is seen, the search happens elsewhere, the order lands somewhere third. Judging creator ROI on one platform's data systematically over- or under-states it. Either accept indirect indicators (search volume, shop visits) as your read, or do not bet budget on precise attribution.
+
+---
+
 ## 9. Completion Checklist
 
 - [ ] Complete Xiaohongshu account positioning and setup

@@ -828,6 +828,15 @@ Some links above are affiliate links. I may earn a small commission if you purch
 
 ---
 
+## When this doesn't work
+
+- **The product does not sustain ten minutes.** Long-form earns its place through depth — installation, comparison, long-term use, troubleshooting. A product you can explain in one sentence stretched into a long video just loses retention. Those suit Shorts, or text and images. Do not pick the format to suit the platform.
+- **Nobody will appear on camera and you have no substitute.** Trust here is built on a person. Videos assembled from stock footage with an AI voice-over get identified in the comments, and once identified the cost in trust exceeds the production you saved. Either find someone willing to appear, or choose a channel that does not require a personality.
+- **You cannot sustain the publishing cadence.** Channel growth comes from consistent publishing building algorithmic trust, and a channel dormant for months essentially starts over. What to estimate when assessing this channel is how many pieces you can reliably produce each week, not how good the first one could be. Without consistency, do not start the channel.
+- **You need conversions this month.** Going from nothing to a channel that moves volume usually takes quarters. For short-term orders, buy search or feed advertising and treat YouTube as a long-term asset. Those two should not come from the same budget line, nor be judged by the same metric.
+
+---
+
 ## 11. Completion Checklist
 
 - [ ] Build a YouTube keyword-research workflow

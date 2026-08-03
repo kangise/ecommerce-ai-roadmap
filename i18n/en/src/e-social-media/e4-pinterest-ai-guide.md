@@ -597,6 +597,15 @@ After agentifying, the data you're asked to paste above should be read from here
 
 ---
 
+## When this doesn't work
+
+- **Your category is not part of visual planning.** Users here are preparing for something ahead — a renovation, a wedding, an outfit, a gift, a baby. Immediate-consumption goods, purely functional parts and B2B products have no corresponding moment here, and effort finds no demand to meet.
+- **Your image assets cannot sustain publishing.** The format demands a lot of high-quality vertical visuals, and one product needs several scenes and compositions. A seller with a handful of main images exhausts the library quickly. Confirm your visual production capacity before starting.
+- **You need conversions this quarter.** Content here has a long tail — a single piece can bring traffic months later. That is an advantage and it also means slow onset. Buy short-term orders elsewhere and treat this as a search asset that accrues.
+- **The path to a landing page is not built.** Traffic here has to go somewhere to convert. Without a storefront, or with a product page that does not receive it well, what you build up leaks at the hand-off. Fix the landing page and the checkout path before scaling content investment.
+
+---
+
 ## 8. Completion Checklist
 
 - [ ] Set up a Pinterest Business account + domain verification

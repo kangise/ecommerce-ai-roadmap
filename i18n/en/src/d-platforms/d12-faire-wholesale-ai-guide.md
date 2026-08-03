@@ -400,6 +400,15 @@ Set MOQ too high and small store owners walk; set it too low and fulfillment cos
 
 ---
 
+## When this doesn't work
+
+- **The product has no retail validation.** Wholesale buyers — shop owners — order on the premise that the item sells through at their end. A product with no retail data and no brand recognition struggles to convince anyone to commit shelf space. Get the retail numbers first, then go wholesale.
+- **Your cost structure leaves no room for a wholesale price.** Wholesale typically sits around half of retail, and your cost has to leave a margin below that. Sellers used to DTC pricing often discover the structure does not work here. That is a cost problem, not a negotiation problem.
+- **Your production does not suit small, frequent orders.** Wholesale buyers place small orders, reorder often, and need reliable lead times. A supply chain built for large runs stalls on minimum order quantities and production scheduling. Confirm you can take small orders before entering.
+- **Nobody owns buyer relationships.** Wholesale is a relationship business: repeat orders come from continued contact, not from an algorithm. Without someone regularly following up on how a shop is selling through and when they will reorder, there is no second order after the first. AI can assist that work; it cannot replace it.
+
+---
+
 ## 5. Completion Checklist
 
 - [ ] Assess whether the product suits Faire
