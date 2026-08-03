@@ -301,6 +301,10 @@ Good Brief vs bad Brief:
 
 ## 4. Live Commerce & AI
 
+<!-- claims: benchmark -->
+
+> These are reference thresholds for judging your own numbers, not measured market averages. Categories differ a lot — after one full cycle, replace them with your own medians.
+
 > **Related reading**: [D6 Southeast Asia AI Guide](d6-southeast-asia-ai-guide.md) — Southeast Asian live-commerce is detailed in D6
 
 ### 4.1 Why Livestreaming Is TikTok Shop's Main GMV Source
@@ -422,7 +426,7 @@ Core principle: TikTok Shop's product page isn't the place to "persuade users to
 
 Key 1 -- the hero image must be a lifestyle-scene image (not a white-background image)
 
-TikTok's product card appears below videos and in search results. A white-background image looks like an ad in the TikTok feed, with a low click rate. A lifestyle-scene image looks like content, with a 2-3x higher click rate.
+TikTok's product card appears below videos and in search results. A white-background image looks like an ad in the TikTok feed, with a low click rate. A lifestyle-scene image looks like content and is usually clicked noticeably more — how much more is a question for your own A/B data.
 
 Key 2 -- the title should be like a short-video title (not an Amazon title)
 
@@ -731,6 +735,10 @@ Content rephrased for compliance with licensing restrictions. Sources: [KOL Spri
 ---
 
 ## 11. Case Study
+
+<!-- claims: illustrative -->
+
+> The numbers in this section show structure and order of magnitude. They are not measurements from a specific brand. Budgeting off these ratios will mislead you — rerun them against your own category and average order value.
 
 ### 11.1 Case: The Playbook from 0 to Monthly GMV $100K on TikTok Shop
 
@@ -1332,7 +1340,7 @@ Update weekly, do a creator-matrix adjustment monthly:
 
 ### 19.1 TikTok Is Becoming a Search Engine
 
-40%+ of Gen Z users prioritize searching for products on TikTok rather than Google. The core differences between TikTok search and Google search:
+A substantial share of younger users start product searches on TikTok rather than Google. The percentage usually quoted traces back to a 2022 remark by a Google executive and is repeated with varying wording — treat it as directional, not as an input to a model. The core differences between TikTok search and Google search:
 
 | Dimension | Google search | TikTok search |
 |-----------|---------------|---------------|
@@ -1383,7 +1391,7 @@ This "seeding -> search -> purchase" path can be validated with the following da
 
 ### 20.3 Dual-Channel Pricing Strategy
 
-TikTok Shop's commission (5-8%) is far lower than Amazon's (15%+FBA). But you can't simply sell cheaper on TikTok:
+TikTok Shop's commission is far lower than Amazon's referral fee plus FBA (rates verified 2026-08; both vary by category — check each platform's own fee schedule before you commit). But you can't simply sell cheaper on TikTok:
 
 | Strategy | Approach | Risk |
 |----------|----------|------|
@@ -1467,6 +1475,10 @@ Disadvantage: less authentic than a real person, suits standard products, not ca
 ---
 
 ## 22. TikTok Shop Product-Selection Methodology: What Products Suit TikTok
+
+<!-- claims: benchmark -->
+
+> These are reference thresholds for judging your own numbers, not measured market averages. Categories differ a lot — after one full cycle, replace them with your own medians.
 
 ### 22.1 The 5 Necessary Conditions for a Viral TikTok Product
 
@@ -1554,6 +1566,10 @@ Assessing with the wrong dimensions leads to "an Amazon best-seller that doesn't
 ---
 
 ## 23. TikTok Shop Advertising In-Depth Strategy
+
+<!-- claims: benchmark -->
+
+> These are reference thresholds for judging your own numbers, not measured market averages. Categories differ a lot — after one full cycle, replace them with your own medians.
 
 ### 23.1 Spark Ads: TikTok's Most Unique Ad Format
 
@@ -1670,6 +1686,10 @@ After agentifying, the data you're asked to paste above should be read from here
 
 ## 25. TikTok Shop AI Tool In-Depth Review
 
+<!-- claims: verified 2026-08 -->
+
+> Tool subscription prices in this section were checked in 2026-08. SaaS pricing moves often — verify on the vendor's own site before you commit.
+
 ### 25.1 Tool Combination Recommendations by Budget
 
 $20/month (minimalist version):
@@ -1704,6 +1724,10 @@ Example (standard version $100/month):
 ---
 
 ## 26. Case Study: The Complete Path from 0 to Monthly GMV $100K
+
+<!-- claims: illustrative -->
+
+> The numbers in this section show structure and order of magnitude. They are not measurements from a specific brand. Budgeting off these ratios will mislead you — rerun them against your own category and average order value.
 
 ### 26.1 Case: A Beauty Brand on TikTok Shop US
 
