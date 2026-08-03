@@ -637,6 +637,15 @@ The dashboard is for the team. Field naming, metric definitions, and what the al
 
 ---
 
+## When this doesn't work
+
+- **You are the only one looking at it.** The cost of a self-built dashboard is maintenance: data sources change, platforms add fields, things break. For one person, a notebook that runs or a Google Sheet on a refresh schedule is usually enough, and the time saved outweighs what a nicer chart buys you.
+- **Metric definitions are not agreed yet.** When three people compute "margin" three ways, the dashboard becomes the arena for that argument rather than the record of a consensus. Write the definitions down and fix them first — what is in the numerator and denominator, and on which time basis — then visualise. Skip this and every reading of the numbers restarts the alignment.
+- **The data is too stale for the dashboard to drive a decision.** A dashboard refreshed each morning is no use where you need to react hourly — stock on a peak-sale day, an ad budget running out. Before building, check three frequencies: how often the data changes, how often you look, and how quickly you can act. If they do not line up, the dashboard is decoration.
+- **Off-the-shelf BI already covers it.** Platform-native reports, Shopify analytics, or a cheap BI SaaS handle most routine metrics. Build your own because only you can join the cross-platform data, or because no tool computes the metric you need — not because you want a dashboard of your own.
+
+---
+
 ## 9. Completion Checklist
 
 - [ ] Built a Streamlit dashboard with 4+ modules

@@ -1086,6 +1086,15 @@ def analyze_product_image(image_path: str) -> str:
 
 ---
 
+## When this doesn't work
+
+- **The steps are fixed.** Same order, same branches every time — that does not need an agent, it needs a workflow. An agent's cost is having the model decide the next step afresh each time, and you only get value for that when the decision actually varies. Fixed sequences are cheaper and more predictable in something like n8n (see [F5](../0-foundations/f5-rpa-automation.md)).
+- **Tool return values are unreliable.** An agent decides its next step from what a tool returned. A lagging inventory API, an endpoint that occasionally returns empty, a field that is sometimes missing — the agent will not notice the data is wrong. It will carry it confidently all the way through. Fix the data source before layering an agent on it.
+- **The action is irreversible and nothing confirms it.** Changing prices, placing orders, messaging a customer — one wrong judgement and the damage is done. The right shape is agent proposes, human confirms (the human-in-the-loop example in this chapter). The test is whether it can be undone, not how unlikely the error is.
+- **Nobody will read the execution trace.** Agents fail silently. In a ten-turn loop, turn three can go wrong and the final output still reads plausibly. With no trace, no anomaly alerting and no periodic spot check, agentifying just swaps visible human error for invisible automated error.
+
+---
+
 ## 10. Appendix
 
 ### 10.1 Agent-architecture quick reference

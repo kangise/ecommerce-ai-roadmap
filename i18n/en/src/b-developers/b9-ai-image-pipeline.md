@@ -740,6 +740,15 @@ White background for the main image, minimum dimensions, text-coverage limits â€
 
 ---
 
+## When this doesn't work
+
+- **The image has to represent the physical object honestly.** Generation cannot show what a material feels like. Anything in the main or detail images conveying material, colour or size must be photographed; keep generated imagery to scene and atmosphere. A buyer receiving something that does not match pays you in returns and negative reviews, and some platforms treat it as a misleading image.
+- **A set has to read as the same product.** Generation is stochastic â€” lighting, colour temperature and orientation drift between runs. Placed side by side, main, lifestyle, detail and A+ images that drift hurt conversion more than one merely mediocre image. Consistency means fixing the seed, running img2img from one reference, or shooting for real and treating afterwards.
+- **The platform's AI-content policy changed recently.** Main-image rules and AI-content labelling requirements have been moving for a few years, and the EU AI Act's transparency clause reaches directly into this (see [A6](../a-operators/a6-compliance.md)). Confirm your target platform's current position before running a batch. Do not apply last year's understanding to this year's volume.
+- **You do not have enough SKUs to justify the pipeline.** Batch generation plus post-processing plus compliance checking amortises across dozens or hundreds of SKUs. With a dozen, generating them one at a time in an off-the-shelf tool and picking by hand is faster than maintaining a pipeline.
+
+---
+
 ## 9. Completion Checklist
 
 - [ ] Set up ComfyUI or choose an API approach

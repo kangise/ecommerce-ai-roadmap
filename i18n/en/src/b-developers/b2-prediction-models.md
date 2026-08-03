@@ -1371,6 +1371,15 @@ Complete all of the above and you've mastered the core skills of e-commerce fore
 
 ---
 
+## When this doesn't work
+
+- **You have less than one full annual cycle of history.** Prophet's yearly seasonality needs at least a year to learn. With a few months it reads a promotion spike or a stockout as a pattern. A moving average plus human judgement is more reliable there; bring the model in when the data supports it.
+- **Demand is event-driven rather than a continuing series.** Holiday gifting, accessories riding a product launch, anything following a trend — next period's demand is not a function of last period's. Time-series models lag a cycle behind, reliably, in these categories. Either add the events as explicit external regressors, or plan production by event.
+- **Better accuracy does not change any decision.** For example: shaving a few points off MAPE sounds like progress, but if your reorder quantity has a minimum and your lead time runs in months, that difference does not change what you order. Work out how much accuracy would have to improve before you would decide differently, then decide whether tuning is worth it.
+- **You have too few SKUs, or they are too new.** On an account with a dozen SKUs, eyeballing the trend with some experience is usually no worse than a model and carries no maintenance. Batch forecasting with something like AutoGluon starts paying off in the hundreds or thousands of SKUs.
+
+---
+
 ## Appendix
 
 ### Appendix A: model-selection decision tree

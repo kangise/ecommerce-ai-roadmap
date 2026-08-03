@@ -1570,6 +1570,15 @@ Complete all of the above and you've mastered the core skills of an e-commerce d
 
 ---
 
+## When this doesn't work
+
+- **Your data still fits in tens of thousands of rows.** The pipeline in this chapter is over-engineering for data Excel can still open. A few tens of thousands of rows is one pandas script; DuckDB, Parquet and a scheduler exist so you do not have to rewrite when the file stops opening. The test is how long a manual pass takes and how often you repeat it, not how professional the stack looks.
+- **The upstream is flaky and you have not handled failure.** SP-API throttles, times out, and returns empty when a report is not ready. The difference between a script that runs and a pipeline that holds is exactly that handling. A scheduled job with no retries, no resume and no failure alert will quietly drop several days of data while you are not looking.
+- **It is a one-off analysis.** When you need to answer one question — which SKUs lost money last quarter — exporting a CSV and analysing it is ten times faster than building a pipeline. Pipeline cost only amortises across repeated runs. Do not build infrastructure for a single pass.
+- **An off-the-shelf tool already covers it.** Multi-platform aggregation, stock sync and reporting all have mature SaaS, usually costing less per month than the time you will spend maintaining your own. Build it yourself because no tool does the thing you need, or because the data cannot go to a third party — not because your own code feels more controllable.
+
+---
+
 ## Appendix: Code Cheat Sheet
 
 ### Common pandas operations

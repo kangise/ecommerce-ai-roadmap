@@ -853,6 +853,15 @@ Five-star reviews contain what customers actually value — which is what your l
 
 ---
 
+## When this doesn't work
+
+- **You have fewer than a few hundred reviews.** BERTopic finds topics by clustering, and with too small a sample the "topics" are a few reviews that happen to resemble each other. Below a few hundred, reading them is faster and more accurate than modelling. This system starts paying off in the thousands.
+- **The categories do not map to actions you can take.** Knowing what share is negative has no action value. What helps is how much of the negative is logistics, how much is quality and how much is mismatched expectation — because those three map to changing carrier, going back to the factory, and rewriting the listing. Decide which dimension you intend to act on before modelling, then make the classification follow it.
+- **You model several languages together.** Differences in phrasing between languages dominate the clustering, and you end up with a German cluster and a Japanese cluster rather than a battery-problem cluster. Either model per language, or use a multilingual embedding model and verify that the same issue in two languages really does land together.
+- **The review data itself is skewed.** Platforms filter, sellers solicit, competitors plant negatives. Sentiment trends built on that reflect the review ecosystem, not product quality. When a rating shifts suddenly, rule out your own campaigns and anomalous reviews before treating it as a product signal.
+
+---
+
 ## 9. Completion Checklist
 
 - [ ] Built a Review-collection and cleaning pipeline

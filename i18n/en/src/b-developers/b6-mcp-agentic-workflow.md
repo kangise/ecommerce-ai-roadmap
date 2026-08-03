@@ -1068,6 +1068,15 @@ Get the flow working in a sandbox or secondary account first. An Agent's debuggi
 
 ---
 
+## When this doesn't work
+
+- **The platform has no MCP server and no API either.** MCP wraps an existing API into a form a model can call. Where the upstream has no interface at all, MCP cannot help — the options there are Computer Use (slow, expensive, brittle) or accepting manual work. Do not write your own API wrapper just so you can put MCP on top; that stacks two maintenance burdens.
+- **Write operations have no confirmation step.** MCP lets a model change your ads, stock and orders directly. One misunderstanding costs real money, and conversational operation is especially prone to reference errors — which "that one" did "drop that one a bit" mean? Write operations need human confirmation or a safety valve (a cap on amount, a cap on change size). The HumanInTheLoop example in this chapter exists for this.
+- **A third-party MCP server is asking for broad permissions.** Installing a community MCP server hands your platform credentials to somebody else's code. Before production, look at what scopes it requests, whether the source is open, and whether it sends credentials anywhere. Give read-only where read-only will do, and scope it down where you can.
+- **You are only saving a couple of clicks.** MCP earns its keep by turning a multi-step, cross-system operation into one sentence. If it only replaces logging in and clicking twice, configuration and maintenance cost more than the time saved. Check how often that action runs each week and how many systems it spans before wiring it up.
+
+---
+
 ## 11. Completion Checklist
 
 - [ ] Successfully configured the Amazon Ads MCP Server and queried ad data with Claude

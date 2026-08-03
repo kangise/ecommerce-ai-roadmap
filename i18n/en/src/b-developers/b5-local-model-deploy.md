@@ -1183,6 +1183,15 @@ def batch_analyze(
 
 ---
 
+## When this doesn't work
+
+- **The data is allowed to leave your premises.** The main reason to run locally is compliance and privacy. Without that constraint, a cloud API wins on capability, reliability and unit cost — local models are a tier weaker, and you carry the GPU, the operations and the model updates yourself. Do not choose local because it feels more controllable.
+- **The task needs frontier-tier reasoning.** An 8B-class local model is fine for classification, extraction and translation; it visibly struggles with multi-step reasoning, complex instruction following and long-context analysis. Test by running your three hardest real tasks through it. Do not go by benchmark scores.
+- **Concurrency has grown and you have no serving framework.** Ollama suits one person. Once several people share it or it takes production traffic, skipping something like vLLM — with batching and KV caching — costs you an order of magnitude in throughput and wastes VRAM. This is not an optional optimisation; it is the line between usable and not.
+- **You expect fine-tuning to fix missing knowledge.** Fine-tuning changes style and format; it does not teach the model your stock levels or your policies. "The model does not know our returns process" is a RAG problem (see [B3](b3-rag-knowledge-base.md)). Pouring knowledge in through fine-tuning is expensive, unreliable, and has to be redone every time the data changes.
+
+---
+
 ## 10. Appendix
 
 ### 9.1 Open-source model comparison table

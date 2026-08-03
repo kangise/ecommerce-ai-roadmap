@@ -1231,6 +1231,15 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 Complete all of the above and you've mastered the core skills of a RAG knowledge-base system. Next: [B4 Agent Workflow](b4-agent-workflow.md) — build an autonomous decision-making AI Agent.
 ---
 
+## When this doesn't work
+
+- **You have few enough documents to paste in whole.** Today's context windows hold hundreds of thousands of characters. A few dozen product manuals pasted directly are more accurate and easier to maintain than a retrieval chain — the retrieval layer only adds a stage that can fail. The boundary section in [F3](../0-foundations/f3-rag-knowledge.md) makes the same point.
+- **The question needs an aggregate, not a location.** "The five SKUs with the lowest margin" is not something retrieval answers — it returns similar passages, not a total. Query a database. Retrieval QA is good at "where did we say X", not at "how much X is there".
+- **Nobody maintains the knowledge base.** RAG faithfully returns what you gave it. One stale fee schedule, policy document or SOP and the system will confidently serve the stale answer — and it is harder to catch than someone leafing through the wrong file. Decide who updates the documents and how often before you launch. That matters more than chunk_size.
+- **The answers go straight to customers with no fallback.** When retrieval comes up empty, the model invents. For external use you have to instruct the prompt to say it does not know, test that it actually does on edge questions, and keep a path for a human to take over. Adding the instruction without testing it is the same as not doing it.
+
+---
+
 ## Appendix
 
 <!-- claims: illustrative -->
