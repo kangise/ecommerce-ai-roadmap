@@ -343,7 +343,7 @@ def merge_platforms(amazon_df, shopify_df, walmart_df=None):
 
 ### 6.1 EC 核心 KPI 体系
 
-業界のベストプラクティス([ThoughtSpot](https://www.thoughtspot.com/data-trends/ecommerce-kpis-metrics)、[Feedcast](https://feedcast.ai/en/blog/ultimate-guide-to-e-commerce-kpi-dashboards))によると、EC ダッシュボードは以下の KPI を追跡すべき:
+業界のベストプラクティス([ThoughtSpot](https://www.thoughtspot.com/data-trends/ecommerce-kpis-metrics)、[Feedcast](https://web.archive.org/web/20260307053526/https://feedcast.ai/en/blog/ultimate-guide-to-e-commerce-kpi-dashboards))によると、EC ダッシュボードは以下の KPI を追跡すべき:
 
 | カテゴリ | KPI | 公式 | 健全な範囲 | 異常閾値 |
 |----------|-----|------|------------|----------|

@@ -29,7 +29,7 @@
 |------|-------|------|------|
 | awesome-mcp-servers (PipedreamHQ) | 热门 | 最全面的 MCP Server 集合，按类别分类 | [GitHub](https://github.com/PipedreamHQ/awesome-mcp-servers) |
 | awesome-mcp-servers (appcypher) | 热门 | 社区维护的 MCP Server 列表 | [GitHub](https://github.com/appcypher/awesome-mcp-servers) |
-| awesome-mcp-list (MobinX) | 精简版 | 简洁的 MCP Server 列表 | [GitHub](https://github.com/MobinX/awesome-mcp-servers) |
+| awesome-mcp-list (MobinX) | 精简版 | 简洁的 MCP Server 列表 | [GitHub](https://github.com/MobinX/awesome-mcp-list) |
 | awesome-mcp-servers (habitoai) | 分类详细 | 按数据源和工具类型分类 | [GitHub](https://github.com/habitoai/awesome-mcp-servers) |
 
 ### 目录网站（可搜索/可浏览）
@@ -78,8 +78,8 @@ Content rephrased for compliance with licensing restrictions.
 | Server | 作者 | 功能 | 链接 |
 |--------|------|------|------|
 | Amazon Ads MCP | Amazon 官方 | SP/SB/SD Campaign 管理、报告、优化 | [intentwise.com](https://www.intentwise.com/blog/amazon-ai/explained-what-is-the-amazon-mcp/) |
-| amazon-ads-mcp-server | MarketplaceAdPros | SP/SB/SD 资源、报告、推荐 | [Playbooks](https://playbooks.com/mcp/marketplaceadpros-amazon-ads) |
-| amazon_ads_mcp | kuudoai | Campaign CRUD、报告、AMC 工作流 | [Playbooks](https://playbooks.com/mcp/kuudoai/amazon_ads_mcp) |
+| amazon-ads-mcp-server | MarketplaceAdPros | SP/SB/SD 资源、报告、推荐 | [GitHub](https://github.com/MarketplaceAdPros/amazon-ads-mcp-server) |
+| amazon_ads_mcp | kuudoai | Campaign CRUD、报告、AMC 工作流 | [GitHub](https://github.com/kuudoai/amazon_ads_mcp) |
 | Adspirerserver | Adspirer | Amazon 广告数据分析+洞察 | [MCPlane](https://mcplane.com/mcp_servers/adspirerserver) |
 
 ### 其他电商平台

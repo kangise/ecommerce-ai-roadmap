@@ -1378,7 +1378,7 @@ GA4 数据（过去 30 天）：
 |------|------|------|
 | Shopify Blog | 官方电商运营指南 | [shopify.com/blog](https://www.shopify.com/blog) |
 | Shopify Academy | 免费电商课程 | [shopify.com/learn](https://www.shopify.com/learn) |
-| Shopify AI Features | Shopify Magic/Sidekick 文档 | [shopify.dev](https://shopify.dev/docs/apps/build/ai) |
+| Shopify AI Features | Shopify Magic/Sidekick 文档 | [shopify.dev](https://www.shopify.com/magic) |
 | Shopify GEO Playbook | AI 搜索引擎优化指南 | [shopify.com/enterprise/blog/generative-engine-optimization](https://www.shopify.com/enterprise/blog/generative-engine-optimization) |
 
 ### 18.2 第三方学习资源

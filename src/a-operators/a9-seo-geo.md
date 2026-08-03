@@ -193,7 +193,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ### 4.3 GEO 五大支柱（电商版）
 
-根据 2026 年 GEO 实践指南（[TheCommerceShop](https://thecommerceshop.com/manufacturers/blog/5-pillars-of-geo-for-ecommerce/)，[Prefixbox](https://www.prefixbox.com/blog/guide-to-generative-engine-optimization/)），电商 GEO 优化有五大支柱：
+根据 2026 年 GEO 实践指南（TheCommerceShop（原文已下线，2026-08 复核），[Prefixbox](https://www.prefixbox.com/blog/guide-to-generative-engine-optimization/)），电商 GEO 优化有五大支柱：
 
 | 支柱 | 说明 | 实操 |
 |------|------|------|

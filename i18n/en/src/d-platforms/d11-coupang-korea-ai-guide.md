@@ -249,7 +249,7 @@ According to Coupang and industry material ([SellToKorea](https://selltokorea.co
 
 ### 5.4 Rocket Growth In-Depth Analysis
 
-Rocket Growth is a 3PL service Coupang designed for cross-border sellers ([Kontactic](https://www.kontactic.com/blog/how-to-sell-on-coupang-foreign-brand)). Products fulfilled through Rocket Growth get the Rocket Delivery tag, which significantly boosts the conversion rate and search visibility.
+Rocket Growth is a 3PL service Coupang designed for cross-border sellers ([Kontactic](https://web.archive.org/web/20260412055042/https://www.kontactic.com/blog/how-to-sell-on-coupang-foreign-brand)). Products fulfilled through Rocket Growth get the Rocket Delivery tag, which significantly boosts the conversion rate and search visibility.
 
 Content rephrased for compliance with licensing restrictions.
 

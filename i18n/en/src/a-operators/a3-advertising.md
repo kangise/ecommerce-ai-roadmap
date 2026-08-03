@@ -201,7 +201,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [deepbi.c
 
 | Tool/API | Use | GitHub/link |
 |----------|-----|-------------|
-| Amazon Advertising API | bulk-manage ads via API (create, adjust bids, download reports) | [advertising.amazon.com/API](https://advertising.amazon.com/API/) |
+| Amazon Advertising API | bulk-manage ads via API (create, adjust bids, download reports) | [advertising.amazon.com/API](https://advertising.amazon.com/API/docs/en-us/) |
 | python-amazon-sp-api | SP-API Python wrapper, incl. ad-related endpoints | [github.com/saleweaver/python-amazon-sp-api](https://github.com/saleweaver/python-amazon-sp-api) |
 | pandas + matplotlib | search-term-report analysis and visualization | the standard Python data stack |
 

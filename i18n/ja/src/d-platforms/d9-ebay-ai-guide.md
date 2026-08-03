@@ -228,7 +228,7 @@ Agent 化した後、上で貼り付けを求めているデータはここか�
 
 ### 2.7 eBay 2026 オークション戦略の復興
 
-2026 年 eBay はオークション機能を再強化している([Ad-Hoc News](https://www.ad-hoc-news.de/news/ueberblick/ebay-auktion-2026-why-smart-sellers-are-winning-again/68676758)):
+2026 年 eBay はオークション機能を再強化している(Ad-Hoc News、原文はオフライン、2026-08 再確認):
 
 - AI 駆動の最適化ツールがセラーの最適なオークションパラメータ設定を手伝う
 - 虚偽 Listing への執行を強化
@@ -321,7 +321,7 @@ eBay はコレクション領域で独自の優位がある(eBay Vault、Authent
 eBay 上の Recommerce(中古/リファービッシュ)は GMV の 40%+ を占め、これは eBay 最も独自の市場:
 
 > **実事例: 欧州 Recommerce 市場が €120B に達する**
-> Cross-Border Commerce Europe のデータによると、欧州 Recommerce 市場は 2025 年に €1200 億に達すると予測され、うち中古商品取引の 75% は既にアパレル品目を超え、電子製品、家具、自動車などをカバーしている([UK Entrepreneur](https://uk.entrepreneur.com/technology/refurbished-tech-gains-traction-on-temu-as-recommerce/495821))。eBay は Q4 2025 決算レポートで C2C 市場と Recommerce の力強い成長を強調した([Bitget](https://www.bitget.com/news/detail/12560605218758))。
+> Cross-Border Commerce Europe のデータによると、欧州 Recommerce 市場は 2025 年に €1200 億に達すると予測され、うち中古商品取引の 75% は既にアパレル品目を超え、電子製品、家具、自動車などをカバーしている([UK Entrepreneur](https://uk.entrepreneur.com/technology/refurbished-tech-gains-traction-on-temu-as-recommerce/495821))。eBay は Q4 2025 決算レポートで C2C 市場と Recommerce の力強い成長を強調した(Bitget、原文はオフライン、2026-08 再確認)。
 
 Content rephrased for compliance with licensing restrictions.
 

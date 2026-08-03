@@ -145,7 +145,7 @@ AliExpress の特殊性に注意:
 
 ### 2.4 AliExpress 2026 年の変化
 
-外部報道([ad-hoc-news.de](https://www.ad-hoc-news.de/news/ueberblick/aliexpress-in-2026-is-the-ultra-cheap-marketplace-still-worth-it-for-us/68641516))に基づくと、AliExpress は 2025-2026 年に以下の重要な変化がある:
+外部報道(ad-hoc-news.de、原文はオフライン、2026-08 再確認)に基づくと、AliExpress は 2025-2026 年に以下の重要な変化がある:
 
 - 買い手保護ルールの厳格化(より厳格な返金と争議処理)
 - 米国市場の物流改善(配送時間短縮)
@@ -153,7 +153,7 @@ AliExpress の特殊性に注意:
 - TikTok と YouTube 駆動のトラフィック成長(ソーシャルメディアシーディング→AliExpress 購入)
 
 > **実事例: TikTok Haul が AliExpress の成長を駆動**
-> 2026 年、AliExpress は再びホットな話題になった、主に TikTok 開封動画(hauls)、YouTube Shorts、米国転売者が Etsy/Amazon/Depop で AliExpress 商品を転売するトレンドのため([Ad-Hoc News](https://www.ad-hoc-news.de/boerse/news/ueberblick/aliexpress-in-2026-cheap-dupe-paradise-or-shipping-nightmare-for-u-s/68623881))。だが同時に米国税関ルール、州税、送料が厳格化しており、セラーはコンプライアンスにより注意が必要。
+> 2026 年、AliExpress は再びホットな話題になった、主に TikTok 開封動画(hauls)、YouTube Shorts、米国転売者が Etsy/Amazon/Depop で AliExpress 商品を転売するトレンドのため(Ad-Hoc News、原文はオフライン、2026-08 再確認)。だが同時に米国税関ルール、州税、送料が厳格化しており、セラーはコンプライアンスにより注意が必要。
 
 Content rephrased for compliance with licensing restrictions.
 

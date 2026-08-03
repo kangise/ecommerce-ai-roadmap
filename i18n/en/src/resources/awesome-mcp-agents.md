@@ -29,7 +29,7 @@
 |------|-------|-------------|------|
 | awesome-mcp-servers (PipedreamHQ) | popular | The most comprehensive MCP server collection, categorized | [GitHub](https://github.com/PipedreamHQ/awesome-mcp-servers) |
 | awesome-mcp-servers (appcypher) | popular | Community-maintained MCP server list | [GitHub](https://github.com/appcypher/awesome-mcp-servers) |
-| awesome-mcp-list (MobinX) | concise | A lean MCP server list | [GitHub](https://github.com/MobinX/awesome-mcp-servers) |
+| awesome-mcp-list (MobinX) | concise | A lean MCP server list | [GitHub](https://github.com/MobinX/awesome-mcp-list) |
 | awesome-mcp-servers (habitoai) | detailed taxonomy | Categorized by data source and tool type | [GitHub](https://github.com/habitoai/awesome-mcp-servers) |
 
 ### Directory sites (searchable/browsable)
@@ -78,8 +78,8 @@ Content rephrased for compliance with licensing restrictions.
 | Server | Author | Capabilities | Link |
 |--------|--------|--------------|------|
 | Amazon Ads MCP | Amazon (official) | SP/SB/SD campaign management, reports, optimization | [intentwise.com](https://www.intentwise.com/blog/amazon-ai/explained-what-is-the-amazon-mcp/) |
-| amazon-ads-mcp-server | MarketplaceAdPros | SP/SB/SD resources, reports, recommendations | [Playbooks](https://playbooks.com/mcp/marketplaceadpros-amazon-ads) |
-| amazon_ads_mcp | kuudoai | Campaign CRUD, reports, AMC workflows | [Playbooks](https://playbooks.com/mcp/kuudoai/amazon_ads_mcp) |
+| amazon-ads-mcp-server | MarketplaceAdPros | SP/SB/SD resources, reports, recommendations | [GitHub](https://github.com/MarketplaceAdPros/amazon-ads-mcp-server) |
+| amazon_ads_mcp | kuudoai | Campaign CRUD, reports, AMC workflows | [GitHub](https://github.com/kuudoai/amazon_ads_mcp) |
 | Adspirerserver | Adspirer | Amazon ads analytics + insights | [MCPlane](https://mcplane.com/mcp_servers/adspirerserver) |
 
 ### Other platforms

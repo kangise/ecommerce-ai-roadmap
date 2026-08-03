@@ -117,11 +117,11 @@ Content rephrased for compliance with licensing restrictions.
 }
 ```
 
-> **Note**: you must first register an app in the Amazon Advertising API and get credentials. See the [Amazon Ads API docs](https://advertising.amazon.com/API/docs/en-us).
+> **Note**: you must first register an app in the Amazon Advertising API and get credentials. See the [Amazon Ads API docs](https://advertising.amazon.com/API/docs/en-us/docs/en-us).
 
 ### 3.2 Available tools of the Amazon Ads MCP
 
-The Amazon Ads MCP Server provides complete ad-management capabilities. Per MarketplaceAdPros's implementation ([Playbooks.com](https://playbooks.com/mcp/marketplaceadpros-amazon-ads)), the available tools include:
+The Amazon Ads MCP Server provides complete ad-management capabilities. Per MarketplaceAdPros's implementation ([GitHub](https://github.com/MarketplaceAdPros/amazon-ads-mcp-server)), the available tools include:
 
 | Tool category | Tool name | Function | Example conversation |
 |---------------|-----------|----------|----------------------|
@@ -139,7 +139,7 @@ The Amazon Ads MCP Server provides complete ad-management capabilities. Per Mark
 | Profile | list_profiles | get ad accounts | "List all available ad profiles" |
 | | get_regions | get region info | "Show the available marketplace regions" |
 
-Content rephrased for compliance with licensing restrictions. Source: [Playbooks.com](https://playbooks.com/mcp/marketplaceadpros-amazon-ads).
+Content rephrased for compliance with licensing restrictions. Source: [GitHub](https://github.com/MarketplaceAdPros/amazon-ads-mcp-server).
 
 > **Real case: Amazon Ads MCP officially released 2026.2**
 > On February 2, 2026, Amazon announced the Ads MCP Server open beta. Sellers with API credentials can, via tools like Claude, ChatGPT, or Gemini, create campaigns, optimize bids, pull reports, and expand across marketplaces with simple commands ([ClearAds Agency](https://clearadsagency.com/what-is-amazons-mcp-server-and-how-does-it-change-advertising-for-sellers/)).

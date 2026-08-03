@@ -201,7 +201,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [deepbi.c
 
 | ツール/API | 用途 | GitHub/リンク |
 |------------|------|---------------|
-| Amazon Advertising API | API で広告を一括管理(作成、入札調整、レポートダウンロード) | [advertising.amazon.com/API](https://advertising.amazon.com/API/) |
+| Amazon Advertising API | API で広告を一括管理(作成、入札調整、レポートダウンロード) | [advertising.amazon.com/API](https://advertising.amazon.com/API/docs/en-us/) |
 | python-amazon-sp-api | SP-API Python ラッパー、広告関連インターフェースを含む | [github.com/saleweaver/python-amazon-sp-api](https://github.com/saleweaver/python-amazon-sp-api) |
 | pandas + matplotlib | 検索語レポートのデータ分析と可視化 | Python 標準データ分析スタック |
 

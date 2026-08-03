@@ -29,7 +29,7 @@
 |------|-------|------|--------|
 | awesome-mcp-servers (PipedreamHQ) | 人気 | 最も網羅的な MCP Server 集、カテゴリ分類 | [GitHub](https://github.com/PipedreamHQ/awesome-mcp-servers) |
 | awesome-mcp-servers (appcypher) | 人気 | コミュニティ維持の MCP Server リスト | [GitHub](https://github.com/appcypher/awesome-mcp-servers) |
-| awesome-mcp-list (MobinX) | 簡潔版 | シンプルな MCP Server リスト | [GitHub](https://github.com/MobinX/awesome-mcp-servers) |
+| awesome-mcp-list (MobinX) | 簡潔版 | シンプルな MCP Server リスト | [GitHub](https://github.com/MobinX/awesome-mcp-list) |
 | awesome-mcp-servers (habitoai) | 分類が詳細 | データソースとツール種別で分類 | [GitHub](https://github.com/habitoai/awesome-mcp-servers) |
 
 ### ディレクトリサイト(検索・閲覧可能)
@@ -78,8 +78,8 @@ Content rephrased for compliance with licensing restrictions.
 | Server | 作者 | 機能 | リンク |
 |--------|------|------|--------|
 | Amazon Ads MCP | Amazon 公式 | SP/SB/SD キャンペーン管理、レポート、最適化 | [intentwise.com](https://www.intentwise.com/blog/amazon-ai/explained-what-is-the-amazon-mcp/) |
-| amazon-ads-mcp-server | MarketplaceAdPros | SP/SB/SD リソース、レポート、レコメンド | [Playbooks](https://playbooks.com/mcp/marketplaceadpros-amazon-ads) |
-| amazon_ads_mcp | kuudoai | キャンペーン CRUD、レポート、AMC ワークフロー | [Playbooks](https://playbooks.com/mcp/kuudoai/amazon_ads_mcp) |
+| amazon-ads-mcp-server | MarketplaceAdPros | SP/SB/SD リソース、レポート、レコメンド | [GitHub](https://github.com/MarketplaceAdPros/amazon-ads-mcp-server) |
+| amazon_ads_mcp | kuudoai | キャンペーン CRUD、レポート、AMC ワークフロー | [GitHub](https://github.com/kuudoai/amazon_ads_mcp) |
 | Adspirerserver | Adspirer | Amazon 広告データ分析+インサイト | [MCPlane](https://mcplane.com/mcp_servers/adspirerserver) |
 
 ### その他の EC プラットフォーム

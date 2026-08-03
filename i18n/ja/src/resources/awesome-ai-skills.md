@@ -96,9 +96,9 @@ Cursor Rules は AI コード生成のカスタムルールを定義します([P
 
 | Rule | 向き | ソース |
 |------|------|--------|
-| Python Projects Guide | Python の EC スクリプト開発 | [PatrickJS](https://github.com/PatrickJS/awesome-cursorrules/blob/main/rules/python-projects-guide-cursorrules-prompt-file/.cursorrules) |
-| Python Flask JSON | Flask API 開発 | [PatrickJS](https://github.com/PatrickJS/awesome-cursorrules/blob/main/rules/python-flask-json-guide-cursorrules-prompt-file/.cursorrules) |
-| React TypeScript shadcn/ui | Shopify フロントエンド / ダッシュボード | [PatrickJS](https://github.com/PatrickJS/awesome-cursorrules/blob/main/rules/cursor-ai-react-typescript-shadcn-ui-cursorrules-p/.cursorrules) |
+| Python Projects Guide | Python の EC スクリプト開発 | [PatrickJS](https://github.com/PatrickJS/awesome-cursorrules) |
+| Python Flask JSON | Flask API 開発 | [PatrickJS](https://github.com/PatrickJS/awesome-cursorrules) |
+| React TypeScript shadcn/ui | Shopify フロントエンド / ダッシュボード | [PatrickJS](https://github.com/PatrickJS/awesome-cursorrules) |
 | Security Rules | AI セキュアコーディング | [GitHub Topics](https://github.com/topics/cursorrules) |
 
 ---

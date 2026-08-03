@@ -343,7 +343,7 @@ def merge_platforms(amazon_df, shopify_df, walmart_df=None):
 
 ### 6.1 The core e-commerce KPI system
 
-Per industry best practices ([ThoughtSpot](https://www.thoughtspot.com/data-trends/ecommerce-kpis-metrics), [Feedcast](https://feedcast.ai/en/blog/ultimate-guide-to-e-commerce-kpi-dashboards)), an e-commerce dashboard should track these KPIs:
+Per industry best practices ([ThoughtSpot](https://www.thoughtspot.com/data-trends/ecommerce-kpis-metrics), [Feedcast](https://web.archive.org/web/20260307053526/https://feedcast.ai/en/blog/ultimate-guide-to-e-commerce-kpi-dashboards)), an e-commerce dashboard should track these KPIs:
 
 | Category | KPI | Formula | Healthy range | Anomaly threshold |
 |----------|-----|---------|---------------|-------------------|

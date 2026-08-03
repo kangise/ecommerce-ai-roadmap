@@ -196,7 +196,7 @@ Content rephrased for compliance with licensing restrictions.
 
 > **Related reading**: [A1 Product Selection & Market Research](../a-operators/a1-product-research.md) — the product-selection and pricing methodology is referenced in A1, the market-research framework can help determine the wholesale-pricing strategy.
 
-Faire's fee structure ([B2Bridge](https://b2bridge.io/blog/faire-wholesale-pricing/)):
+Faire's fee structure ([B2Bridge](https://web.archive.org/web/20260216012550/https://b2bridge.io/blog/faire-wholesale-pricing/)):
 
 | Fee item | Amount | Description |
 |----------|--------|-------------|

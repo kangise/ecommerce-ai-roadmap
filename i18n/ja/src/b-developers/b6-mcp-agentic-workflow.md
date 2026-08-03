@@ -117,11 +117,11 @@ Content rephrased for compliance with licensing restrictions.
 }
 ```
 
-> **注意**: 先に Amazon Advertising API でアプリを登録し認証情報を取得する必要がある。[Amazon Ads API ドキュメント](https://advertising.amazon.com/API/docs/en-us) 参照。
+> **注意**: 先に Amazon Advertising API でアプリを登録し認証情報を取得する必要がある。[Amazon Ads API ドキュメント](https://advertising.amazon.com/API/docs/en-us/docs/en-us) 参照。
 
 ### 3.2 Amazon Ads MCP の利用可能ツール
 
-Amazon Ads MCP Server は完全な広告管理能力を提供する。MarketplaceAdPros の実装([Playbooks.com](https://playbooks.com/mcp/marketplaceadpros-amazon-ads))によると、利用可能ツールには:
+Amazon Ads MCP Server は完全な広告管理能力を提供する。MarketplaceAdPros の実装([GitHub](https://github.com/MarketplaceAdPros/amazon-ads-mcp-server))によると、利用可能ツールには:
 
 | ツールカテゴリ | ツール名 | 機能 | 対話例 |
 |----------------|----------|------|--------|
@@ -139,7 +139,7 @@ Amazon Ads MCP Server は完全な広告管理能力を提供する。Marketplac
 | Profile | list_profiles | 広告アカウントを取得 | 「すべての利用可能な広告 Profile を列挙」 |
 | | get_regions | 地域情報を取得 | 「利用可能な市場地域を表示」 |
 
-Content rephrased for compliance with licensing restrictions. Source: [Playbooks.com](https://playbooks.com/mcp/marketplaceadpros-amazon-ads).
+Content rephrased for compliance with licensing restrictions. Source: [GitHub](https://github.com/MarketplaceAdPros/amazon-ads-mcp-server).
 
 > **実事例: Amazon Ads MCP 2026.2 正式発表**
 > 2026 年 2 月 2 日、Amazon は Ads MCP Server のオープンベータを発表した。API 認証情報を持つセラーは Claude、ChatGPT、Gemini などのツールで、簡単なコマンドで Campaign を作成、入札を最適化、レポートを取得、市場横断で拡張できる([ClearAds Agency](https://clearadsagency.com/what-is-amazons-mcp-server-and-how-does-it-change-advertising-for-sellers/))。

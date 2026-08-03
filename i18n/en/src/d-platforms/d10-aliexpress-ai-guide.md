@@ -151,7 +151,7 @@ Note AliExpress's specifics:
 
 ### 2.4 AliExpress Changes in 2026
 
-Based on external reports ([ad-hoc-news.de](https://www.ad-hoc-news.de/news/ueberblick/aliexpress-in-2026-is-the-ultra-cheap-marketplace-still-worth-it-for-us/68641516)), AliExpress has the following important changes in 2025-2026:
+Based on external reports (ad-hoc-news.de — original offline, rechecked 2026-08), AliExpress has the following important changes in 2025-2026:
 
 - Buyer-protection rules tightened (stricter refund and dispute handling)
 - US-market logistics improved (delivery time shortened)
@@ -159,7 +159,7 @@ Based on external reports ([ad-hoc-news.de](https://www.ad-hoc-news.de/news/uebe
 - TikTok- and YouTube-driven traffic growth (social-media seeding → AliExpress purchase)
 
 > **Real case: TikTok Hauls drive AliExpress growth**
-> In 2026 AliExpress became a hot topic again, mainly because of TikTok unboxing videos (hauls), YouTube Shorts, and the trend of US resellers reselling AliExpress goods on Etsy/Amazon/Depop ([Ad-Hoc News](https://www.ad-hoc-news.de/boerse/news/ueberblick/aliexpress-in-2026-cheap-dupe-paradise-or-shipping-nightmare-for-u-s/68623881)). But at the same time, US customs rules, state taxes, and shipping fees are tightening, and sellers need to pay more attention to compliance.
+> In 2026 AliExpress became a hot topic again, mainly because of TikTok unboxing videos (hauls), YouTube Shorts, and the trend of US resellers reselling AliExpress goods on Etsy/Amazon/Depop (Ad-Hoc News — original offline, rechecked 2026-08). But at the same time, US customs rules, state taxes, and shipping fees are tightening, and sellers need to pay more attention to compliance.
 
 Content rephrased for compliance with licensing restrictions.
 

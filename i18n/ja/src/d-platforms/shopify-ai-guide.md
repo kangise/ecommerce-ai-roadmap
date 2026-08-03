@@ -1332,7 +1332,7 @@ GA4 データ(過去 30 日):
 |----------|------|--------|
 | Shopify Blog | 公式 EC 運営ガイド | [shopify.com/blog](https://www.shopify.com/blog) |
 | Shopify Academy | 無料 EC コース | [shopify.com/learn](https://www.shopify.com/learn) |
-| Shopify AI Features | Shopify Magic/Sidekick ドキュメント | [shopify.dev](https://shopify.dev/docs/apps/build/ai) |
+| Shopify AI Features | Shopify Magic/Sidekick ドキュメント | [shopify.dev](https://www.shopify.com/magic) |
 | Shopify GEO Playbook | AI 検索エンジン最適化ガイド | [shopify.com/enterprise/blog/generative-engine-optimization](https://www.shopify.com/enterprise/blog/generative-engine-optimization) |
 
 ### 18.2 第三者学習リソース

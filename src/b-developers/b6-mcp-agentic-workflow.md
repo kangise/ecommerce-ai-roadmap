@@ -117,11 +117,11 @@ Content rephrased for compliance with licensing restrictions.
 }
 ```
 
-> **注意**：需要先在 Amazon Advertising API 注册应用并获取凭证。详见 [Amazon Ads API 文档](https://advertising.amazon.com/API/docs/en-us)。
+> **注意**：需要先在 Amazon Advertising API 注册应用并获取凭证。详见 [Amazon Ads API 文档](https://advertising.amazon.com/API/docs/en-us/docs/en-us)。
 
 ### 3.2 Amazon Ads MCP 可用工具
 
-Amazon Ads MCP Server 提供了完整的广告管理能力。根据 MarketplaceAdPros 的实现（[Playbooks.com](https://playbooks.com/mcp/marketplaceadpros-amazon-ads)），可用工具包括：
+Amazon Ads MCP Server 提供了完整的广告管理能力。根据 MarketplaceAdPros 的实现（[GitHub](https://github.com/MarketplaceAdPros/amazon-ads-mcp-server)），可用工具包括：
 
 | 工具类别 | 工具名 | 功能 | 示例对话 |
 |----------|--------|------|---------|
@@ -139,7 +139,7 @@ Amazon Ads MCP Server 提供了完整的广告管理能力。根据 MarketplaceA
 | Profile | list_profiles | 获取广告账户 | "列出所有可用的广告 Profile" |
 | | get_regions | 获取区域信息 | "显示可用的市场区域" |
 
-Content rephrased for compliance with licensing restrictions. Source: [Playbooks.com](https://playbooks.com/mcp/marketplaceadpros-amazon-ads).
+Content rephrased for compliance with licensing restrictions. Source: [GitHub](https://github.com/MarketplaceAdPros/amazon-ads-mcp-server).
 
 > **真实案例：Amazon Ads MCP 2026.2 正式发布**
 > 2026 年 2 月 2 日，Amazon 宣布 Ads MCP Server 开放测试版。拥有 API 凭证的卖家可以通过 Claude、ChatGPT 或 Gemini 等工具，用简单的命令创建 Campaign、优化出价、拉取报告、跨市场扩展（[ClearAds Agency](https://clearadsagency.com/what-is-amazons-mcp-server-and-how-does-it-change-advertising-for-sellers/)）。

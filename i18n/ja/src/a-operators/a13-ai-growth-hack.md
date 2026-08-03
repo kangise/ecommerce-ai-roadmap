@@ -424,7 +424,7 @@ Layer 1: 製品の障壁
 Content rephrased for compliance with licensing restrictions.
 
 > **実事例: Claude MCP が Amazon 広告を管理**
-> Model Context Protocol(MCP)を通じて、ブランドは自律エージェントを展開し、Amazon 広告をリアルタイムで考え、行動し、最適化している。これはもはや「広告を管理する」でなく「対話式 Campaign 管理」([Stormy.ai](https://stormy.ai/blog/scale-amazon-ads-claude-mcp-playbook))。
+> Model Context Protocol(MCP)を通じて、ブランドは自律エージェントを展開し、Amazon 広告をリアルタイムで考え、行動し、最適化している。これはもはや「広告を管理する」でなく「対話式 Campaign 管理」(Stormy.ai、原文はオフライン、2026-08 再確認)。
 
 Content rephrased for compliance with licensing restrictions.
 

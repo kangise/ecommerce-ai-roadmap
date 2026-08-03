@@ -343,7 +343,7 @@ def merge_platforms(amazon_df, shopify_df, walmart_df=None):
 
 ### 6.1 电商核心 KPI 体系
 
-根据行业最佳实践（[ThoughtSpot](https://www.thoughtspot.com/data-trends/ecommerce-kpis-metrics)，[Feedcast](https://feedcast.ai/en/blog/ultimate-guide-to-e-commerce-kpi-dashboards)），电商 Dashboard 应该追踪以下 KPI：
+根据行业最佳实践（[ThoughtSpot](https://www.thoughtspot.com/data-trends/ecommerce-kpis-metrics)，[Feedcast](https://web.archive.org/web/20260307053526/https://feedcast.ai/en/blog/ultimate-guide-to-e-commerce-kpi-dashboards)），电商 Dashboard 应该追踪以下 KPI：
 
 | 类别 | KPI | 公式 | 健康范围 | 异常阈值 |
 |------|-----|------|---------|---------|

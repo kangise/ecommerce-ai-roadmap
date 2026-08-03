@@ -201,7 +201,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [deepbi.c
 
 | 工具/API | 用途 | GitHub/链接 |
 |----------|------|-------------|
-| Amazon Advertising API | 通过 API 批量管理广告（创建、调整出价、下载报告） | [advertising.amazon.com/API](https://advertising.amazon.com/API/) |
+| Amazon Advertising API | 通过 API 批量管理广告（创建、调整出价、下载报告） | [advertising.amazon.com/API](https://advertising.amazon.com/API/docs/en-us/) |
 | python-amazon-sp-api | SP-API Python 封装，含广告相关接口 | [github.com/saleweaver/python-amazon-sp-api](https://github.com/saleweaver/python-amazon-sp-api) |
 | pandas + matplotlib | 搜索词报告数据分析和可视化 | Python 标准数据分析栈 |
 

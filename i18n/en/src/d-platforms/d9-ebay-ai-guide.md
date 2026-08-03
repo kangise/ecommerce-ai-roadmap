@@ -234,7 +234,7 @@ After agentifying, the data you're asked to paste above should be read from here
 
 ### 2.7 eBay 2026 Auction Strategy Revival
 
-In 2026 eBay is re-strengthening the auction feature ([Ad-Hoc News](https://www.ad-hoc-news.de/news/ueberblick/ebay-auktion-2026-why-smart-sellers-are-winning-again/68676758)):
+In 2026 eBay is re-strengthening the auction feature (Ad-Hoc News — original offline, rechecked 2026-08):
 
 - AI-driven optimization tools help sellers set optimal auction parameters
 - Strengthened enforcement against fake Listings
@@ -327,7 +327,7 @@ eBay has a unique advantage in the collectibles field (eBay Vault, Authenticity 
 Recommerce (used/refurbished) on eBay accounts for 40%+ of GMV, this is eBay's most unique market:
 
 > **Real case: The European Recommerce market reaches €120B**
-> According to Cross-Border Commerce Europe data, the European Recommerce market is expected to reach €120 billion in 2025, of which 75% of used-goods transactions have moved beyond the apparel category, covering electronics, furniture, cars, and more ([UK Entrepreneur](https://uk.entrepreneur.com/technology/refurbished-tech-gains-traction-on-temu-as-recommerce/495821)). In its Q4 2025 earnings report, eBay emphasized the strong growth of the C2C market and Recommerce ([Bitget](https://www.bitget.com/news/detail/12560605218758)).
+> According to Cross-Border Commerce Europe data, the European Recommerce market is expected to reach €120 billion in 2025, of which 75% of used-goods transactions have moved beyond the apparel category, covering electronics, furniture, cars, and more ([UK Entrepreneur](https://uk.entrepreneur.com/technology/refurbished-tech-gains-traction-on-temu-as-recommerce/495821)). In its Q4 2025 earnings report, eBay emphasized the strong growth of the C2C market and Recommerce (Bitget — original offline, rechecked 2026-08).
 
 Content rephrased for compliance with licensing restrictions.
 

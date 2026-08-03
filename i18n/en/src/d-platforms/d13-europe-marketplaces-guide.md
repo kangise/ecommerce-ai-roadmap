@@ -160,7 +160,7 @@ Content rephrased for compliance with licensing restrictions.
 ### 3.3 Onboarding Requirements
 
 > **Real case: Zalando AI recommendations boost add-to-cart rate by 13%**
-> Zalando's AI recommendation system has already produced quantifiable results: AI recommendations increased the number of items users add to cart by 13%, while the return rate dropped 8% (thanks to better size suggestions) ([Ad-Hoc News](https://www.ad-hoc-news.de/news/ueberblick/zalando-kleider-ai-powered-fashion-revolution/68671487)). This means for brands selling on Zalando, the more complete the product data (size, material, fit), the higher the probability of AI recommendation and the lower the return rate.
+> Zalando's AI recommendation system has already produced quantifiable results: AI recommendations increased the number of items users add to cart by 13%, while the return rate dropped 8% (thanks to better size suggestions) (Ad-Hoc News — original offline, rechecked 2026-08). This means for brands selling on Zalando, the more complete the product data (size, material, fit), the higher the probability of AI recommendation and the lower the return rate.
 
 Content rephrased for compliance with licensing restrictions.
 

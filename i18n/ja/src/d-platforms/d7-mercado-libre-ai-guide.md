@@ -206,7 +206,7 @@ CBT 越境直送
 
 Content rephrased for compliance with licensing restrictions.
 
-Mercado Libre の Q4 2025 決算レポート([Morningstar](https://www.morningstar.com/news/business-wire/20260224265595/))に基づく:
+Mercado Libre の Q4 2025 決算レポート(Morningstar、原文はオフライン、2026-08 再確認)に基づく:
 
 | 指標 | Q4 2025 データ | YoY 変化 |
 |------|----------------|----------|
@@ -226,7 +226,7 @@ Mercado Libre の Q4 2025 決算レポート([Morningstar](https://www.morningst
 
 > **セラーへの示唆**: Mercado Libre は無料配送と物流インフラに大きく投資している。Mercado Envios Full を使うセラーが最大のトラフィック紅利を得る。中南米の EC 浸透率はわずか 12-15%(vs 米国 27%、中国 35%+)、成長余地が巨大。
 
-Content rephrased for compliance with licensing restrictions. Sources: [Morningstar](https://www.morningstar.com/news/business-wire/20260224265595/), [Finimize](https://finimize.com/content/meli-asset-snapshot).
+Content rephrased for compliance with licensing restrictions. Sources: Morningstar(原文はオフライン、2026-08 再確認), [Finimize](https://finimize.com/content/meli-asset-snapshot).
 
 ### 4.3 中南米市場特有の課題
 

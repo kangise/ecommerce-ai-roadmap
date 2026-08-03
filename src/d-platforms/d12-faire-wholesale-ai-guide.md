@@ -196,7 +196,7 @@ Content rephrased for compliance with licensing restrictions.
 
 > **相关阅读**: [A1 选品与市场调研](../a-operators/a1-product-research.md) 选品和定价方法论参考 A1，市场调研框架可帮助确定批发定价策略。
 
-Faire 的费用结构（[B2Bridge](https://b2bridge.io/blog/faire-wholesale-pricing/)）：
+Faire 的费用结构（[B2Bridge](https://web.archive.org/web/20260216012550/https://b2bridge.io/blog/faire-wholesale-pricing/)）：
 
 | 费用项 | 金额 | 说明 |
 |--------|------|------|

@@ -805,7 +805,10 @@ async def monitor_requests(request, call_next):
 
 ## 相关资源
 
-- [源代码仓库](https://github.com/cbec-ai-hub/multilingual-recommender)
-- [模型训练笔记](https://github.com/cbec-ai-hub/multilingual-recommender/blob/main/notebooks/model_training.ipynb)
-- [API文档](https://api.example.com/recommender/docs)
-- [性能基准测试](https://github.com/cbec-ai-hub/multilingual-recommender/blob/main/benchmarks/)
+本章是技术方案示例，没有配套代码仓库和训练笔记。上面的代码块可以直接复制运行，依赖清单见文首。
+
+- [LightFM 文档](https://making.lyst.com/lightfm/docs/home.html) 本章的混合推荐模型
+- [spaCy 语言模型列表](https://spacy.io/usage/models) 各语种分词与实体识别模型的下载与选型
+- [Sentence-Transformers](https://www.sbert.net/) 多语言句子嵌入，本章用的是 paraphrase-multilingual-MiniLM
+- [MLflow 文档](https://mlflow.org/docs/latest/index.html) 多语种模型的实验追踪与版本管理
+- [FastAPI 文档](https://fastapi.tiangolo.com/) 本章的服务化部分

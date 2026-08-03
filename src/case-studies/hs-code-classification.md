@@ -470,7 +470,10 @@ class DataDriftDetector:
 
 ## 相关资源
 
-- [源代码仓库](https://github.com/cbec-ai-hub/hs-code-classifier)
-- [API文档](https://api.example.com/docs)
-- 部署指南（待补充）
-- 性能基准测试（待补充）
+本章是技术方案示例，没有配套代码仓库。上面的代码块可以直接复制运行，依赖清单见文首。
+
+- [WCO 协调制度（HS）官方页面](https://www.wcoomd.org/en/topics/nomenclature/instrument-and-tools/hs-nomenclature-2022-edition.aspx) 编码体系与章节结构的权威定义
+- [美国 HTS 在线检索](https://hts.usitc.gov/) 查具体商品的美国税则号列，可用来校验模型输出
+- [Hugging Face Transformers 文档](https://huggingface.co/docs/transformers) 本章的 BERT 特征提取部分
+- [scikit-learn 监督学习指南](https://scikit-learn.org/stable/supervised_learning.html) 随机森林与集成方法
+- [FastAPI 文档](https://fastapi.tiangolo.com/) 本章的服务化部分

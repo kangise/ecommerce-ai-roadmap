@@ -188,7 +188,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ### 4.3 GEO の 5 大支柱(EC 版)
 
-2026 年の GEO 実践ガイド([TheCommerceShop](https://thecommerceshop.com/manufacturers/blog/5-pillars-of-geo-for-ecommerce/)、[Prefixbox](https://www.prefixbox.com/blog/guide-to-generative-engine-optimization/))によると、EC の GEO 最適化には 5 大支柱がある:
+2026 年の GEO 実践ガイド(TheCommerceShop(原文はオフライン、2026-08 再確認)、[Prefixbox](https://www.prefixbox.com/blog/guide-to-generative-engine-optimization/))によると、EC の GEO 最適化には 5 大支柱がある:
 
 | 支柱 | 説明 | 実操 |
 |------|------|------|

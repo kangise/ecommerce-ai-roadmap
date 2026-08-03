@@ -385,7 +385,7 @@ WhatsApp Catalogのベストプラクティス：
 
 ### WhatsApp AIセールスコンサルタントモード（2026トレンド）
 
-2026年、WhatsAppマーケティングは「受動的なカスタマーサービス」から「能動的なAIセールスコンサルタント」へ移行しつつあります（[Qualimero](https://qualimero.com/en/blog/whatsapp-bot-api-guide-ai-sales-service-2025)）。AIセールスコンサルタントは質問に答えるだけでなく、能動的に商品をレコメンドし、購入へ誘導し、コンバージョンを高めます。
+2026年、WhatsAppマーケティングは「受動的なカスタマーサービス」から「能動的なAIセールスコンサルタント」へ移行しつつあります（[Qualimero](https://web.archive.org/web/20260122204219/https://qualimero.com/en/blog/whatsapp-bot-api-guide-ai-sales-service-2025)）。AIセールスコンサルタントは質問に答えるだけでなく、能動的に商品をレコメンドし、購入へ誘導し、コンバージョンを高めます。
 
 ライセンス制限に準拠するため内容を言い換えています。
 

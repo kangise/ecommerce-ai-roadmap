@@ -188,7 +188,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ### 4.3 The five pillars of GEO (e-commerce edition)
 
-Per the 2026 GEO practice guides ([TheCommerceShop](https://thecommerceshop.com/manufacturers/blog/5-pillars-of-geo-for-ecommerce/), [Prefixbox](https://www.prefixbox.com/blog/guide-to-generative-engine-optimization/)), e-commerce GEO has five pillars:
+Per the 2026 GEO practice guides (TheCommerceShop (original offline, rechecked 2026-08), [Prefixbox](https://www.prefixbox.com/blog/guide-to-generative-engine-optimization/)), e-commerce GEO has five pillars:
 
 | Pillar | Notes | Practice |
 |--------|-------|----------|

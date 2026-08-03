@@ -1380,7 +1380,7 @@ Please output:
 |----------|-------------|------|
 | Shopify Blog | Official e-commerce operations guide | [shopify.com/blog](https://www.shopify.com/blog) |
 | Shopify Academy | Free e-commerce courses | [shopify.com/learn](https://www.shopify.com/learn) |
-| Shopify AI Features | Shopify Magic/Sidekick documentation | [shopify.dev](https://shopify.dev/docs/apps/build/ai) |
+| Shopify AI Features | Shopify Magic/Sidekick documentation | [shopify.dev](https://www.shopify.com/magic) |
 | Shopify GEO Playbook | AI search-engine optimization guide | [shopify.com/enterprise/blog/generative-engine-optimization](https://www.shopify.com/enterprise/blog/generative-engine-optimization) |
 
 ### 18.2 Third-Party Learning Resources

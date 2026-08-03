@@ -212,7 +212,7 @@ CBT 跨境直邮
 
 Content rephrased for compliance with licensing restrictions.
 
-基于 Mercado Libre Q4 2025 财报（[Morningstar](https://www.morningstar.com/news/business-wire/20260224265595/)）：
+基于 Mercado Libre Q4 2025 财报（Morningstar，原文已下线，2026-08 复核）：
 
 | 指标 | Q4 2025 数据 | YoY 变化 |
 |------|-------------|----------|
@@ -232,7 +232,7 @@ Content rephrased for compliance with licensing restrictions.
 
 > **对卖家的启示**：Mercado Libre 正在大力投资免费配送和物流基础设施。使用 Mercado Envios Full 的卖家将获得最大的流量红利。拉美电商渗透率仅 12-15%（vs 美国 27%、中国 35%+），增长空间巨大。
 
-Content rephrased for compliance with licensing restrictions. Sources: [Morningstar](https://www.morningstar.com/news/business-wire/20260224265595/), [Finimize](https://finimize.com/content/meli-asset-snapshot).
+Content rephrased for compliance with licensing restrictions. Sources: Morningstar（原文已下线，2026-08 复核）, [Finimize](https://finimize.com/content/meli-asset-snapshot).
 
 ### 4.3 拉美市场特有挑战
 

@@ -157,7 +157,7 @@ AliExpress 覆盖全球，多语言是核心需求。AliExpress 在南欧市场�
 
 ### 2.4 AliExpress 2026 年的变化
 
-基于外网报道（[ad-hoc-news.de](https://www.ad-hoc-news.de/news/ueberblick/aliexpress-in-2026-is-the-ultra-cheap-marketplace-still-worth-it-for-us/68641516)），AliExpress 在 2025-2026 年有以下重要变化：
+基于外网报道（ad-hoc-news.de，原文已下线，2026-08 复核），AliExpress 在 2025-2026 年有以下重要变化：
 
 - 买家保护规则收紧（更严格的退款和争议处理）
 - 美国市场物流改善（配送时间缩短）
@@ -165,7 +165,7 @@ AliExpress 覆盖全球，多语言是核心需求。AliExpress 在南欧市场�
 - TikTok 和 YouTube 驱动的流量增长（社交媒体种草→AliExpress 购买）
 
 > **真实案例：TikTok Haul 驱动 AliExpress 增长**
-> 2026 年 AliExpress 再次成为热门话题，主要因为 TikTok 开箱视频（hauls）、YouTube Shorts 和美国转卖者在 Etsy/Amazon/Depop 上翻卖 AliExpress 商品的趋势（[Ad-Hoc News](https://www.ad-hoc-news.de/boerse/news/ueberblick/aliexpress-in-2026-cheap-dupe-paradise-or-shipping-nightmare-for-u-s/68623881)）。但同时美国海关规则、州税和运费正在收紧，卖家需要更加注意合规。
+> 2026 年 AliExpress 再次成为热门话题，主要因为 TikTok 开箱视频（hauls）、YouTube Shorts 和美国转卖者在 Etsy/Amazon/Depop 上翻卖 AliExpress 商品的趋势（Ad-Hoc News，原文已下线，2026-08 复核）。但同时美国海关规则、州税和运费正在收紧，卖家需要更加注意合规。
 
 Content rephrased for compliance with licensing restrictions.
 

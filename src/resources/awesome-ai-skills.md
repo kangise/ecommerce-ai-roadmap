@@ -96,9 +96,9 @@ Cursor Rules 定义 AI 代码生成的自定义规则（[PatrickJS](https://gith
 
 | Rule | 适合 | 来源 |
 |------|------|------|
-| Python Projects Guide | Python 电商脚本开发 | [PatrickJS](https://github.com/PatrickJS/awesome-cursorrules/blob/main/rules/python-projects-guide-cursorrules-prompt-file/.cursorrules) |
-| Python Flask JSON | Flask API 开发 | [PatrickJS](https://github.com/PatrickJS/awesome-cursorrules/blob/main/rules/python-flask-json-guide-cursorrules-prompt-file/.cursorrules) |
-| React TypeScript shadcn/ui | Shopify 前端/Dashboard | [PatrickJS](https://github.com/PatrickJS/awesome-cursorrules/blob/main/rules/cursor-ai-react-typescript-shadcn-ui-cursorrules-p/.cursorrules) |
+| Python Projects Guide | Python 电商脚本开发 | [PatrickJS](https://github.com/PatrickJS/awesome-cursorrules) |
+| Python Flask JSON | Flask API 开发 | [PatrickJS](https://github.com/PatrickJS/awesome-cursorrules) |
+| React TypeScript shadcn/ui | Shopify 前端/Dashboard | [PatrickJS](https://github.com/PatrickJS/awesome-cursorrules) |
 | Security Rules | AI 安全编码 | [GitHub Topics](https://github.com/topics/cursorrules) |
 
 ---

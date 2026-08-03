@@ -385,7 +385,7 @@ WhatsApp Catalog 最佳实践：
 
 ### WhatsApp AI 销售顾问模式（2026 趋势）
 
-2026 年 WhatsApp 营销正在从"被动客服"转向"主动 AI 销售顾问"（[Qualimero](https://qualimero.com/en/blog/whatsapp-bot-api-guide-ai-sales-service-2025)）。AI 销售顾问不只是回答问题，而是主动推荐产品、引导购买、提升转化。
+2026 年 WhatsApp 营销正在从"被动客服"转向"主动 AI 销售顾问"（[Qualimero](https://web.archive.org/web/20260122204219/https://qualimero.com/en/blog/whatsapp-bot-api-guide-ai-sales-service-2025)）。AI 销售顾问不只是回答问题，而是主动推荐产品、引导购买、提升转化。
 
 Content rephrased for compliance with licensing restrictions.
 

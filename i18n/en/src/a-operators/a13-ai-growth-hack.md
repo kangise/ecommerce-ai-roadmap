@@ -424,7 +424,7 @@ In 2026, AI-agent shopping is reshaping e-commerce. Your brand needs to be ready
 Content rephrased for compliance with licensing restrictions.
 
 > **Real case: Claude MCP manages Amazon ads**
-> Through the Model Context Protocol (MCP), brands are deploying autonomous agents to think, act, and optimize Amazon ads in real time. This is no longer "managing ads" but "conversational campaign management" ([Stormy.ai](https://stormy.ai/blog/scale-amazon-ads-claude-mcp-playbook)).
+> Through the Model Context Protocol (MCP), brands are deploying autonomous agents to think, act, and optimize Amazon ads in real time. This is no longer "managing ads" but "conversational campaign management" (Stormy.ai — original offline, rechecked 2026-08).
 
 Content rephrased for compliance with licensing restrictions.
 

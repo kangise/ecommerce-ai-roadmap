@@ -212,7 +212,7 @@ Not recommended (except in the testing phase)
 
 Content rephrased for compliance with licensing restrictions.
 
-Based on Mercado Libre's Q4 2025 earnings report ([Morningstar](https://www.morningstar.com/news/business-wire/20260224265595/)):
+Based on Mercado Libre's Q4 2025 earnings report (Morningstar — original offline, rechecked 2026-08):
 
 | Metric | Q4 2025 data | YoY change |
 |--------|--------------|------------|
@@ -232,7 +232,7 @@ Key strategic investment directions:
 
 > **Implication for sellers**: Mercado Libre is heavily investing in free shipping and logistics infrastructure. Sellers using Mercado Envios Full will get the biggest traffic dividend. Latin American e-commerce penetration is only 12-15% (vs US 27%, China 35%+), leaving huge growth room.
 
-Content rephrased for compliance with licensing restrictions. Sources: [Morningstar](https://www.morningstar.com/news/business-wire/20260224265595/), [Finimize](https://finimize.com/content/meli-asset-snapshot).
+Content rephrased for compliance with licensing restrictions. Sources: Morningstar (original offline, rechecked 2026-08), [Finimize](https://finimize.com/content/meli-asset-snapshot).
 
 ### 4.3 Latin America Market-Specific Challenges
 

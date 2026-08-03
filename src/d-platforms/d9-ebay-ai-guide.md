@@ -233,7 +233,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ### 2.7 eBay 2026 拍卖策略复兴
 
-2026 年 eBay 正在重新强化拍卖功能（[Ad-Hoc News](https://www.ad-hoc-news.de/news/ueberblick/ebay-auktion-2026-why-smart-sellers-are-winning-again/68676758)）：
+2026 年 eBay 正在重新强化拍卖功能（Ad-Hoc News，原文已下线，2026-08 复核）：
 
 - AI 驱动的优化工具帮助卖家设置最优拍卖参数
 - 加强对虚假 Listing 的执法
@@ -332,7 +332,7 @@ eBay 在收藏品领域有独特优势（eBay Vault、Authenticity Guarantee）�
 eBay 上 Recommerce（二手/翻新）占 GMV 40%+，这是 eBay 最独特的市场：
 
 > **真实案例：欧洲 Recommerce 市场达 €120B**
-> 根据 Cross-Border Commerce Europe 的数据，欧洲 Recommerce 市场预计 2025 年达到 €1200 亿，其中 75% 的二手商品交易已超越服装品类，覆盖电子产品、家具和汽车等（[UK Entrepreneur](https://uk.entrepreneur.com/technology/refurbished-tech-gains-traction-on-temu-as-recommerce/495821)）。eBay 在 Q4 2025 财报中强调了 C2C 市场和 Recommerce 的强劲增长（[Bitget](https://www.bitget.com/news/detail/12560605218758)）。
+> 根据 Cross-Border Commerce Europe 的数据，欧洲 Recommerce 市场预计 2025 年达到 €1200 亿，其中 75% 的二手商品交易已超越服装品类，覆盖电子产品、家具和汽车等（[UK Entrepreneur](https://uk.entrepreneur.com/technology/refurbished-tech-gains-traction-on-temu-as-recommerce/495821)）。eBay 在 Q4 2025 财报中强调了 C2C 市场和 Recommerce 的强劲增长（Bitget，原文已下线，2026-08 复核）。
 
 Content rephrased for compliance with licensing restrictions.
 

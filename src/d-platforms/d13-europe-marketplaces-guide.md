@@ -160,7 +160,7 @@ Content rephrased for compliance with licensing restrictions.
 ### 3.3 入驻要求
 
 > **真实案例：Zalando AI 推荐提升 13% 加购率**
-> Zalando 的 AI 推荐系统已经产生了可量化的效果：AI 推荐使用户加购商品数量增加 13%，同时退货率下降 8%（得益于更好的尺码建议）（[Ad-Hoc News](https://www.ad-hoc-news.de/news/ueberblick/zalando-kleider-ai-powered-fashion-revolution/68671487)）。这意味着在 Zalando 上销售的品牌，产品数据越完整（尺码、材质、版型），被 AI 推荐的概率越高，退货率也越低。
+> Zalando 的 AI 推荐系统已经产生了可量化的效果：AI 推荐使用户加购商品数量增加 13%，同时退货率下降 8%（得益于更好的尺码建议）（Ad-Hoc News，原文已下线，2026-08 复核）。这意味着在 Zalando 上销售的品牌，产品数据越完整（尺码、材质、版型），被 AI 推荐的概率越高，退货率也越低。
 
 Content rephrased for compliance with licensing restrictions.
 

@@ -470,7 +470,10 @@ This design walks the full path to an HS-code classification system. The key poi
 
 ## Related Resources
 
-- [Source repository](https://github.com/cbec-ai-hub/hs-code-classifier)
-- [API docs](https://api.example.com/docs)
-- Deployment guide (TBD)
-- Performance benchmarks (TBD)
+This chapter is a worked technical design, not a shipped project — there is no companion repository. The code blocks above run as written; the dependency list is at the top of the chapter.
+
+- [WCO Harmonized System](https://www.wcoomd.org/en/topics/nomenclature/instrument-and-tools/hs-nomenclature-2022-edition.aspx) the authoritative definition of the coding system and its chapter structure
+- [US HTS search](https://hts.usitc.gov/) look up the US tariff line for a specific product — useful for checking model output
+- [Hugging Face Transformers docs](https://huggingface.co/docs/transformers) the BERT feature-extraction part of this chapter
+- [scikit-learn supervised learning guide](https://scikit-learn.org/stable/supervised_learning.html) random forests and ensemble methods
+- [FastAPI docs](https://fastapi.tiangolo.com/) the serving layer in this chapter

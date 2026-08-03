@@ -242,7 +242,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ### 5.4 Rocket Growth 深度解析
 
-Rocket Growth 是 Coupang 为跨境卖家设计的 3PL 服务（[Kontactic](https://www.kontactic.com/blog/how-to-sell-on-coupang-foreign-brand)）。通过 Rocket Growth 履约的产品会获得 Rocket Delivery 标签，这会显著提升转化率和搜索可见度。
+Rocket Growth 是 Coupang 为跨境卖家设计的 3PL 服务（[Kontactic](https://web.archive.org/web/20260412055042/https://www.kontactic.com/blog/how-to-sell-on-coupang-foreign-brand)）。通过 Rocket Growth 履约的产品会获得 Rocket Delivery 标签，这会显著提升转化率和搜索可见度。
 
 Content rephrased for compliance with licensing restrictions.
 

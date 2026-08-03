@@ -96,9 +96,9 @@ Cursor Rules define custom rules for AI code generation ([PatrickJS](https://git
 
 | Rule | Fits | Source |
 |------|------|--------|
-| Python Projects Guide | Python e-commerce scripting | [PatrickJS](https://github.com/PatrickJS/awesome-cursorrules/blob/main/rules/python-projects-guide-cursorrules-prompt-file/.cursorrules) |
-| Python Flask JSON | Flask API development | [PatrickJS](https://github.com/PatrickJS/awesome-cursorrules/blob/main/rules/python-flask-json-guide-cursorrules-prompt-file/.cursorrules) |
-| React TypeScript shadcn/ui | Shopify frontend / dashboards | [PatrickJS](https://github.com/PatrickJS/awesome-cursorrules/blob/main/rules/cursor-ai-react-typescript-shadcn-ui-cursorrules-p/.cursorrules) |
+| Python Projects Guide | Python e-commerce scripting | [PatrickJS](https://github.com/PatrickJS/awesome-cursorrules) |
+| Python Flask JSON | Flask API development | [PatrickJS](https://github.com/PatrickJS/awesome-cursorrules) |
+| React TypeScript shadcn/ui | Shopify frontend / dashboards | [PatrickJS](https://github.com/PatrickJS/awesome-cursorrules) |
 | Security Rules | Secure AI coding | [GitHub Topics](https://github.com/topics/cursorrules) |
 
 ---

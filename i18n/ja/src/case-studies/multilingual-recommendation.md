@@ -805,7 +805,10 @@ async def monitor_requests(request, call_next):
 
 ## 関連リソース
 
-- [ソースコードリポジトリ](https://github.com/cbec-ai-hub/multilingual-recommender)
-- [モデル学習ノートブック](https://github.com/cbec-ai-hub/multilingual-recommender/blob/main/notebooks/model_training.ipynb)
-- [API ドキュメント](https://api.example.com/recommender/docs)
-- [性能ベンチマーク](https://github.com/cbec-ai-hub/multilingual-recommender/blob/main/benchmarks/)
+本章は技術方式のサンプルであり、付属のコードリポジトリも学習ノートブックもない。上のコードブロックはそのまま実行でき、依存関係は章の冒頭にある。
+
+- [LightFM ドキュメント](https://making.lyst.com/lightfm/docs/home.html) 本章のハイブリッド推薦モデル
+- [spaCy モデル一覧](https://spacy.io/usage/models) 言語ごとの分かち書き・固有表現モデルの入手と選定
+- [Sentence-Transformers](https://www.sbert.net/) 多言語文埋め込み。本章では paraphrase-multilingual-MiniLM を使う
+- [MLflow ドキュメント](https://mlflow.org/docs/latest/index.html) 多言語モデルの実験追跡とバージョン管理
+- [FastAPI ドキュメント](https://fastapi.tiangolo.com/) 本章のサービス化の部分

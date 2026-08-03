@@ -805,7 +805,10 @@ This design walks the full path to a multilingual product recommendation system.
 
 ## Related Resources
 
-- [Source repository](https://github.com/cbec-ai-hub/multilingual-recommender)
-- [Training notebook](https://github.com/cbec-ai-hub/multilingual-recommender/blob/main/notebooks/model_training.ipynb)
-- [API docs](https://api.example.com/recommender/docs)
-- [Benchmarks](https://github.com/cbec-ai-hub/multilingual-recommender/blob/main/benchmarks/)
+This chapter is a worked technical design, not a shipped project — there is no companion repository or training notebook. The code blocks above run as written; the dependency list is at the top of the chapter.
+
+- [LightFM docs](https://making.lyst.com/lightfm/docs/home.html) the hybrid recommendation model used here
+- [spaCy model list](https://spacy.io/usage/models) downloading and choosing per-language tokenisation and NER models
+- [Sentence-Transformers](https://www.sbert.net/) multilingual sentence embeddings — this chapter uses paraphrase-multilingual-MiniLM
+- [MLflow docs](https://mlflow.org/docs/latest/index.html) experiment tracking and versioning across language variants
+- [FastAPI docs](https://fastapi.tiangolo.com/) the serving layer in this chapter

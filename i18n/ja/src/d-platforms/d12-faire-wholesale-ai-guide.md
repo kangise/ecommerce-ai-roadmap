@@ -196,7 +196,7 @@ Content rephrased for compliance with licensing restrictions.
 
 > **関連リーディング**: [A1 選品と市場調査](../a-operators/a1-product-research.md) 選品と価格設定方法論は A1 を参照、市場調査フレームワークが卸売価格戦略の決定を手伝える。
 
-Faire の費用構造([B2Bridge](https://b2bridge.io/blog/faire-wholesale-pricing/)):
+Faire の費用構造([B2Bridge](https://web.archive.org/web/20260216012550/https://b2bridge.io/blog/faire-wholesale-pricing/)):
 
 | 費用項目 | 金額 | 説明 |
 |----------|------|------|

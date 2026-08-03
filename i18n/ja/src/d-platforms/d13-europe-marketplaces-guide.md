@@ -160,7 +160,7 @@ Content rephrased for compliance with licensing restrictions.
 ### 3.3 出店要件
 
 > **実事例: Zalando AI 推薦がカート追加率を 13% 向上**
-> Zalando の AI 推薦システムは既に定量化可能な効果を生んでいる: AI 推薦がユーザーのカート追加商品数を 13% 増やし、同時に返品率が 8% 低下した(より良いサイズ提案のおかげ)([Ad-Hoc News](https://www.ad-hoc-news.de/news/ueberblick/zalando-kleider-ai-powered-fashion-revolution/68671487))。これは Zalando で販売するブランドは、製品データが完全なほど(サイズ、材質、シルエット)AI に推薦される確率が高く、返品率も低いことを意味する。
+> Zalando の AI 推薦システムは既に定量化可能な効果を生んでいる: AI 推薦がユーザーのカート追加商品数を 13% 増やし、同時に返品率が 8% 低下した(より良いサイズ提案のおかげ)(Ad-Hoc News、原文はオフライン、2026-08 再確認)。これは Zalando で販売するブランドは、製品データが完全なほど(サイズ、材質、シルエット)AI に推薦される確率が高く、返品率も低いことを意味する。
 
 Content rephrased for compliance with licensing restrictions.
 

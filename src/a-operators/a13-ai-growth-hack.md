@@ -441,7 +441,7 @@ Layer 1: 产品壁垒
 Content rephrased for compliance with licensing restrictions.
 
 > **真实案例：Claude MCP 管理 Amazon 广告**
-> 通过 Model Context Protocol（MCP），品牌正在部署自主代理来实时思考、行动和优化 Amazon 广告。这不再是"管理广告"，而是"对话式 Campaign 管理"（[Stormy.ai](https://stormy.ai/blog/scale-amazon-ads-claude-mcp-playbook)）。
+> 通过 Model Context Protocol（MCP），品牌正在部署自主代理来实时思考、行动和优化 Amazon 广告。这不再是"管理广告"，而是"对话式 Campaign 管理"（Stormy.ai，原文已下线，2026-08 复核）。
 
 Content rephrased for compliance with licensing restrictions.
 
