@@ -681,6 +681,11 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 
 ## 6. ROI 评估实战案例
 
+<!-- claims: illustrative -->
+
+> 本节的数字是为说明而构造的，不是实测值。
+
+
 ### 6.1 案例一：10 人团队的 6 个月 ROI 评估
 
 **背景：**

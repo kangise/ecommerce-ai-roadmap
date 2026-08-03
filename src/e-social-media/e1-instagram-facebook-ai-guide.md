@@ -403,6 +403,11 @@ Shoppable Reels（带产品标签的 Reels）是 2026 年 Instagram 电商转化
 
 ## 6. Meta Advantage+ AI 广告深度指南
 
+<!-- claims: benchmark -->
+
+> 这里的数值是判断自己数据用的参考线，不是市场实测均值。跑过一轮后用你自己的中位数替换。
+
+
 > **相关阅读**: [A3 广告优化](../a-operators/a3-advertising.md) 广告优化通用方法论参考 A3，ROAS 分析和预算分配框架可复用到 Meta Ads。
 
 ### 6.1 Advantage+ 广告产品矩阵

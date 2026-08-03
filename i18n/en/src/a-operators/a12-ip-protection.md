@@ -36,6 +36,8 @@
 
 ## 1. Why IP Protection Is a Cross-Border Seller's Lifeline
 
+
+
 ### 1.1 Common IP risks
 
 | Risk type | Notes | Consequence |
@@ -48,7 +50,7 @@
 
 ### 1.2 The financial impact of IP risk
 
-- One patent-infringement lawsuit: $50K–500K+ in legal fees
+- One patent-infringement lawsuit: legal fees typically run from tens of thousands into the hundreds of thousands, depending on whether it reaches trial
 - One Amazon account suspension: loss of weeks to months of revenue
 - Being counterfeited: continuous loss of brand value and market share
 

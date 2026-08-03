@@ -181,6 +181,11 @@ huggingface-cli search models --query "e-commerce chinese"
 
 ## 3. コード実践
 
+<!-- claims: illustrative -->
+
+> 本節の数字は説明のために作ったものであり、実測値ではない。
+
+
 ### 3.1 Ollama クイックスタート: 1 行のコマンドでローカル LLM を実行
 
 Ollama は現在最もシンプルなローカル LLM の実行方法。インストール後 1 行のコマンドで起動できる。

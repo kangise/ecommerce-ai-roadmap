@@ -42,6 +42,11 @@ After this module you'll be able to:
 
 ## 2. eBay-Differentiated AI Applications
 
+<!-- claims: benchmark -->
+
+> These figures are a reference line for judging your own data, not measured market averages. Replace them with your own medians after one cycle.
+
+
 ### 2.1 eBay Magical Listing (2026 New Feature)
 
 > **Real case: eBay CEO suggests new sellers create a brand-new account to experience the AI**
@@ -309,6 +314,11 @@ Please create an eBay cross-border expansion strategy:
 ```
 
 ## 3. eBay Category In-Depth Strategy
+
+<!-- claims: verified 2026-08 -->
+
+> Platform thresholds and fees quoted in this section were checked in 2026-08. Platforms change them without notice — go by the official page in your seller account.
+
 
 ### 3.1 Collectibles and Scarce-Item Strategy
 

@@ -936,6 +936,11 @@ def build_training_rag(
 
 ## 6. 常见陷阱
 
+<!-- claims: illustrative -->
+
+> 本节的数字是为说明而构造的，不是实测值。
+
+
 ### 6.1 检索质量差
 
 这是 RAG 系统最常见的问题。回答不好，80% 的原因是检索不准。
@@ -1227,6 +1232,10 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 ---
 
 ## 附录
+
+<!-- claims: illustrative -->
+
+> 本节的数字是为说明而构造的，不是实测值。
 
 ### 附录 A：RAG 架构图
 

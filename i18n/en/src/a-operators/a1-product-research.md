@@ -52,7 +52,7 @@ After this module you'll be able to:
 
 Sourcing is fundamentally about finding asymmetry between demand and supply — a category with big demand but insufficient (or low-quality) supply is the opportunity.
 
-AI can't decide for you, but it can make information gathering and analysis 10× more efficient. Before using AI, you need to understand:
+AI can't decide for you, but it can make information gathering and analysis dramatically faster. Before using AI, you need to understand:
 
 - **Demand signals**: search volume, search trends, review growth rate
 - **Supply signals**: seller count, head concentration, new-entrant speed

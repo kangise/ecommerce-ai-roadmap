@@ -30,7 +30,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ## What You'll Master
 
-The prompt is your only interface to the AI. With the same model, a well-written prompt and a poorly written one can differ 10× in output quality.
+The prompt is your only interface to the AI. With the same model, a well-written prompt and a poorly written one can differ enormously.
 
 After this module you'll be able to:
 - Write structured, high-quality prompts with the CRISP framework

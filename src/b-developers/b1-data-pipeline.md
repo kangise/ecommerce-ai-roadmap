@@ -940,7 +940,7 @@ def download_business_report(
 
 **推荐路径**：
 - 刚开始：CSV/Excel（你已经在用了）
-- 数据量增长到 50MB+：切换到 Parquet 格式（读写快 5-10 倍）
+- 数据量增长到 50MB+：切换到 Parquet 格式（读写明显更快，且压缩后体积小很多）
 - 需要复杂查询（JOIN、窗口函数）：引入 DuckDB
 - 多人协作或需要 Web 应用：PostgreSQL
 

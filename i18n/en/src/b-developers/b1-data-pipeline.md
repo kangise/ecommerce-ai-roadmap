@@ -940,7 +940,7 @@ def download_business_report(
 
 **Recommended path**:
 - Starting out: CSV/Excel (you're already using it)
-- Data grows to 50MB+: switch to Parquet format (5–10× faster read/write)
+- Data grows to 50MB+: switch to Parquet format (noticeably faster reads and writes, and much smaller on disk)
 - Need complex queries (JOIN, window functions): bring in DuckDB
 - Multi-person collaboration or a web app: PostgreSQL
 

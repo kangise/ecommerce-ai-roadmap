@@ -48,6 +48,11 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ## 1. 预测方法论
 
+<!-- claims: illustrative -->
+
+> 本节的数字是为说明而构造的，不是实测值。
+
+
 > **相关阅读**: [A5 库存与供应链](../a-operators/a5-inventory.md) 销量预测在库存补货决策中的应用详见 A5。 · [D3 跨平台 AI 协同策略](../d-platforms/cross-platform-strategy.md) 跨平台需求预测详见 D3
 
 ### 1.1 时间序列预测的第一性原理
@@ -761,7 +766,7 @@ def autogluon_forecast(
 
 ### 3.4 BERTopic Review 主题分析
 
-BERTopic 可以从大量 Review 文本中自动发现主题，帮助你理解客户在说什么。这比手动读 Review 高效 100 倍。
+BERTopic 可以从大量 Review 文本中自动发现主题，帮助你理解客户在说什么。这比一条条手动读 Review 快得多。
 
 ```python
 from bertopic import BERTopic
@@ -1348,6 +1353,11 @@ python3 run_forecast.py --data data/daily_sales.csv --asin B0XXXXX --stock 500 -
 Content rephrased for compliance with licensing restrictions. Sources cited inline.
 
 ## 9. 完成标志
+
+<!-- claims: benchmark -->
+
+> 这里的数值是判断自己数据用的参考线，不是市场实测均值。跑过一轮后用你自己的中位数替换。
+
 
 - [ ] 用 Prophet 对一个真实 SKU 做 90 天销量预测，输出预测值和置信区间
 - [ ] 添加电商大促节假日效应（Prime Day、BFCM），对比有无节假日的预测精度差异

@@ -936,6 +936,11 @@ def build_training_rag(
 
 ## 6. Common Traps
 
+<!-- claims: illustrative -->
+
+> The numbers in this section are constructed to illustrate the point, not measured.
+
+
 ### 6.1 Poor retrieval quality
 
 This is the most common RAG-system problem. 80% of the time a poor answer is due to inaccurate retrieval.
@@ -1227,6 +1232,10 @@ Complete all of the above and you've mastered the core skills of a RAG knowledge
 ---
 
 ## Appendix
+
+<!-- claims: illustrative -->
+
+> The numbers in this section are constructed to illustrate the point, not measured.
 
 ### Appendix A: RAG architecture diagram
 

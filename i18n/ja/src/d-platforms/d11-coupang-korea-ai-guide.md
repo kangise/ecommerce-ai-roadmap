@@ -125,6 +125,11 @@
 
 ## 4. Coupang 特有の運営の違い
 
+<!-- claims: verified 2026-08 -->
+
+> 本節で引く各プラットフォームの基準値と料率は 2026-08 時点で確認したもの。予告なく変わるため、セラーアカウント内の公式説明を優先すること。
+
+
 ### 4.1 Rocket Delivery(로켓배송)
 
 Coupang の核心競争力は Rocket Delivery([Coupang Q4 2025 Earnings](https://www.marketbeat.com/instant-alerts/coupang-q4-earnings-call-highlights-2026-02-27/)):

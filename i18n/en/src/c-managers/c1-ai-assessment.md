@@ -360,6 +360,11 @@ Please design a change-management plan:
 
 ## 7. Case Studies: AI Adoption Across Team Sizes
 
+<!-- claims: illustrative -->
+
+> The numbers in this section are constructed to illustrate the point, not measured.
+
+
 ### 7.1 Case One: 5-person team (small seller)
 
 | Phase | Time | Action | Tools | Monthly cost |

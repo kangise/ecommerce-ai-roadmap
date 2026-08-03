@@ -324,6 +324,11 @@ Content rephrased for compliance with licensing restrictions. Source: [McKinsey 
 
 ## 7. ケーススタディ: 規模別チームの AI 導入
 
+<!-- claims: illustrative -->
+
+> 本節の数字は説明のために作ったものであり、実測値ではない。
+
+
 ### 7.1 ケース 1: 5 人チーム(小型セラー)
 
 | フェーズ | 時間 | アクション | ツール | 月コスト |

@@ -29,7 +29,7 @@
 
 - 用 AI 构建从选品到规模化的完整增长飞轮
 - 掌握每个阶段最高 ROI 的 AI 应用方式
-- 学会用 AI Agent 自动化 80% 的重复性运营工作
+- 学会用 AI Agent 自动化大部分重复性运营工作
 - 理解 2026 年 Agentic Commerce 的新范式
 - 建立可复制的 AI Growth Playbook
 

@@ -389,7 +389,7 @@ Total: 45–75 minutes per video | 3/day = 3–4 hours/day
 AI can: write scripts, auto-edit, voice-over, subtitle, analyze trends
 AI can't: replace the authenticity of real people on camera, guarantee virality (the algorithm isn't controllable)
 
-POV: TikTok is "output × quality." AI lifts both: 3× output, and Hooks built on data instead of vibes. The best combo is AI scripts + human filming. Pure AI video (digital humans) works for commodity items, not trust-dependent categories.
+POV: TikTok is "output × quality." AI lifts both: far more output, and Hooks built on data instead of vibes. The best combo is AI scripts + human filming. Pure AI video (digital humans) works for commodity items, not trust-dependent categories.
 
 ---
 

@@ -35,6 +35,13 @@
 
 ## 1. Pinterest 的独特定位
 
+<!-- claims: verified 2026-08 -->
+
+> 本节引用的平台指标要求与费率核验日期: 2026-08。平台随时会调，以各自后台的官方说明为准。
+
+
+
+
 ### 1.1 Pinterest vs 其他平台
 
 | 维度 | Pinterest | Instagram | Google |

@@ -403,6 +403,11 @@ Shoppable Reels (Reels with product tags) is the highest-converting content form
 
 ## 6. Meta Advantage+ AI Advertising In-Depth Guide
 
+<!-- claims: benchmark -->
+
+> These figures are a reference line for judging your own data, not measured market averages. Replace them with your own medians after one cycle.
+
+
 > **Related reading**: [A3 Advertising Optimization](../a-operators/a3-advertising.md) — the general ad-optimization methodology is referenced in A3; the ROAS analysis and budget-allocation framework are reusable for Meta Ads.
 
 ### 6.1 The Advantage+ Ad Product Matrix

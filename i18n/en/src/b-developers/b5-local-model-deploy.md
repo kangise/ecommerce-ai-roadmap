@@ -181,6 +181,11 @@ huggingface-cli search models --query "e-commerce chinese"
 
 ## 3. Hands-On Code
 
+<!-- claims: illustrative -->
+
+> The numbers in this section are constructed to illustrate the point, not measured.
+
+
 ### 3.1 Ollama quick start: run a local LLM in one command
 
 Ollama is currently the simplest way to run a local LLM. After install, one command runs it.

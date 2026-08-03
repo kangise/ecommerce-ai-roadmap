@@ -46,6 +46,11 @@ After this module you'll be able to:
 
 ## 1. Inventory Methodology: the Basics Before AI
 
+<!-- claims: verified 2026-08 -->
+
+> Platform thresholds and fees quoted in this section were checked in 2026-08. Platforms change them without notice — go by the official page in your seller account.
+
+
 > **Related**: [D4 Walmart AI Guide](../d-platforms/d4-walmart-ai-guide.md) for WFS vs FBA logistics-cost comparison and inventory-allocation strategy · [D3 Cross-Platform AI Strategy](../d-platforms/cross-platform-strategy.md) for cross-platform inventory coordination.
 
 ### 1.1 The first principle of inventory management
@@ -215,6 +220,11 @@ If you manage 50+ SKUs or need precise seasonal forecasts, open-source tools can
 ---
 
 ## 3. Prompt Template Library (for Inventory)
+
+<!-- claims: illustrative -->
+
+> The numbers in this section are constructed to illustrate the point, not measured.
+
 
 > **Prompt conventions used here**: the templates below work as-is, but for anything involving numbers, forecasts, or recommendations, paste in [the data-discipline block from F2 §4.3](../0-foundations/f2-prompt-engineering.md#43-the-data-discipline-block-ready-to-paste). It forbids the model from inventing data you didn't supply — the most common failure mode for this class of prompt.
 

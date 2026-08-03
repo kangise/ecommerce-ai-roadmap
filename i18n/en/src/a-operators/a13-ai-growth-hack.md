@@ -29,7 +29,7 @@
 
 - Build a complete growth flywheel from product research to scaling with AI
 - Master the highest-ROI AI applications for each stage
-- Automate 80% of repetitive operations with AI Agents
+- Automate most of the repetitive operations work with AI Agents
 - Understand the 2026 Agentic Commerce paradigm
 - Build a reusable AI Growth Playbook
 

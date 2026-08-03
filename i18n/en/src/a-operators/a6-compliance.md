@@ -909,6 +909,11 @@ Confirm: (1) no invented article numbers or dates, (2) every item yields an exec
 
 ## 7. Advanced Techniques
 
+<!-- claims: benchmark -->
+
+> These figures are a reference line for judging your own data, not measured market averages. Replace them with your own medians after one cycle.
+
+
 ### 7.1 2026 Trend: Amazon AI Agent Compliance Requirements (BSA Update)
 
 In early 2026, Amazon updated its Buyer-Seller Agreement (BSA), imposing new compliance requirements on the AI Agents and automation tools sellers use. This is an important trend change that all sellers using AI tools need to watch.

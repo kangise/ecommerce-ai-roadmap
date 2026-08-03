@@ -46,7 +46,7 @@ Content rephrased for compliance with licensing restrictions.
 | Lifestyle vs white-background conversion lift | 22–30% | A/B test studies |
 | AI video-generation market size (2025) | $7.168B | Fortune Business Insights |
 | AI video market projection (2032) | $25.6B | Fortune Business Insights |
-| Amazon product video's effect on conversion | +9.7% | industry research |
+| Amazon product video's effect on conversion | Usually positive; size varies a lot by category | A/B it yourself |
 | Time-on-Listing with video | +2× | industry benchmark |
 
 ### 1.2 The three levels of AI visual content
@@ -74,6 +74,11 @@ Good for: pre-launch concept validation, batch social-media content production
 ---
 
 ## 2. AI Product-Image Generation
+
+<!-- claims: verified 2026-08 -->
+
+> Platform thresholds and fees quoted in this section were checked in 2026-08. Platforms change them without notice — go by the official page in your seller account.
+
 
 ### 2.1 Tool landscape
 
@@ -410,6 +415,11 @@ Generate a video script with:
 ---
 
 ## 8. Common Traps
+
+<!-- claims: benchmark -->
+
+> These figures are a reference line for judging your own data, not measured market averages. Replace them with your own medians after one cycle.
+
 
 ### Trap 1: using an AI-generated image directly as the Amazon main image
 The Amazon main image must be a real photo of the product. AI-generated scene images can be used as secondary images, but for the main image use a real shot + AI background removal.

@@ -684,6 +684,11 @@ After agentifying, the data you're asked to paste above should be read from here
 
 ## 6. ROI Evaluation Practical Cases
 
+<!-- claims: illustrative -->
+
+> The numbers in this section are constructed to illustrate the point, not measured.
+
+
 ### 6.1 Case One: 6-Month ROI Evaluation of a 10-Person Team
 
 **Background:**

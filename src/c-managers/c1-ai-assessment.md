@@ -358,6 +358,11 @@ Content rephrased for compliance with licensing restrictions. Source: [McKinsey 
 
 ## 7. 案例分析：不同规模团队的 AI 落地
 
+<!-- claims: illustrative -->
+
+> 本节的数字是为说明而构造的，不是实测值。
+
+
 ### 7.1 案例一：5 人团队（小型卖家）
 
 | 阶段 | 时间 | 行动 | 工具 | 月成本 |

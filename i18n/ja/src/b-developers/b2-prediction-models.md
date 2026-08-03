@@ -48,6 +48,11 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ## 1. 予測方法論
 
+<!-- claims: illustrative -->
+
+> 本節の数字は説明のために作ったものであり、実測値ではない。
+
+
 > **関連**: [A5 在庫とサプライチェーン](../a-operators/a5-inventory.md) 販売予測の在庫補充判断への応用は A5 へ · [D3 クロスプラットフォーム AI 協同戦略](../d-platforms/cross-platform-strategy.md) クロスプラットフォーム需要予測は D3 へ。
 
 ### 1.1 時系列予測の第一原理
@@ -761,7 +766,7 @@ def autogluon_forecast(
 
 ### 3.4 BERTopic Review 主題分析
 
-BERTopic は大量の Review テキストから主題を自動発見し、顧客が何を言っているかの理解を助ける。手動で Review を読むより 100 倍効率的。
+BERTopic は大量の Review テキストから主題を自動発見し、顧客が何を言っているかの理解を助ける。1 件ずつ手で読むよりはるかに速い。
 
 ```python
 from bertopic import BERTopic
@@ -1348,6 +1353,11 @@ python3 run_forecast.py --data data/daily_sales.csv --asin B0XXXXX --stock 500 -
 Content rephrased for compliance with licensing restrictions. Sources cited inline.
 
 ## 9. 完了チェック
+
+<!-- claims: benchmark -->
+
+> ここの数値は自分のデータを判断するための参照線であり、市場の実測平均ではない。1 サイクル回したら自分の中央値に置き換えること。
+
 
 - [ ] Prophet で実際の SKU の 90 日販売予測を行い、予測値と信頼区間を出力
 - [ ] EC 大型セールの祝日効果(Prime Day、BFCM)を追加、祝日ありなしの予測精度差を比較

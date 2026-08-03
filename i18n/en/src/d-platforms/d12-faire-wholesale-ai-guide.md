@@ -30,6 +30,11 @@ After this module you'll be able to:
 
 ## 1. The Faire Business Model
 
+<!-- claims: verified 2026-08 -->
+
+> Platform thresholds and fees quoted in this section were checked in 2026-08. Platforms change them without notice — go by the official page in your seller account.
+
+
 ### 1.1 Faire vs B2C Platforms
 
 | Dimension | Faire (B2B wholesale) | Amazon (B2C retail) |
@@ -49,6 +54,11 @@ After this module you'll be able to:
 - Not suitable: pure standard products, low-price products, no-brand products
 
 ## 2. AI Application Scenarios
+
+<!-- claims: verified 2026-08 -->
+
+> Platform thresholds and fees quoted in this section were checked in 2026-08. Platforms change them without notice — go by the official page in your seller account.
+
 
 ### 2.1 Faire Algorithm and Ranking Mechanism
 

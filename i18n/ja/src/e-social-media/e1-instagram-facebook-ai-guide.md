@@ -391,6 +391,11 @@ Shoppable Reels(製品タグ付き Reels)は 2026 年 Instagram EC で転換率�
 
 ## 6. Meta Advantage+ AI 広告深度ガイド
 
+<!-- claims: benchmark -->
+
+> ここの数値は自分のデータを判断するための参照線であり、市場の実測平均ではない。1 サイクル回したら自分の中央値に置き換えること。
+
+
 > **関連リーディング**: [A3 広告最適化](../a-operators/a3-advertising.md) 広告最適化の汎用方法論は A3 を参照、ROAS 分析と予算配分フレームワークを Meta Ads に再利用可能。
 
 ### 6.1 Advantage+ 広告製品マトリクス

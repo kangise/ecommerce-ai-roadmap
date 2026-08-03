@@ -1044,7 +1044,7 @@ The shared traits worth using it for: **low frequency, unstructured, frequently 
 
 Begin with something **read-only** — pulling a weekly dataset out of a back office with no export button. Once that runs, you'll have a real feel for its speed, cost, and error rate, and can then decide whether to grant it write access.
 
-The right conclusion for most people is: **Computer Use fills the 10% that APIs don't reach; it doesn't replace the other 90%.**
+The right conclusion for most people is: **Computer Use fills the small part APIs don't reach; it doesn't replace the much larger part they do.**
 
 ---
 

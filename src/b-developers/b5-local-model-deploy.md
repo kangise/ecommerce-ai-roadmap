@@ -181,6 +181,11 @@ huggingface-cli search models --query "e-commerce chinese"
 
 ## 3. 代码实战
 
+<!-- claims: illustrative -->
+
+> 本节的数字是为说明而构造的，不是实测值。
+
+
 ### 3.1 Ollama 快速入门：一行命令运行本地 LLM
 
 Ollama 是目前最简单的本地 LLM 运行方式。安装后一行命令就能跑起来。

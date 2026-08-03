@@ -936,6 +936,11 @@ def build_training_rag(
 
 ## 6. よくある罠
 
+<!-- claims: illustrative -->
+
+> 本節の数字は説明のために作ったものであり、実測値ではない。
+
+
 ### 6.1 検索品質が悪い
 
 これは RAG システムで最もよくある問題。回答が悪いのは 80% が検索の不正確さが原因。
@@ -1227,6 +1232,10 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 ---
 
 ## 付録
+
+<!-- claims: illustrative -->
+
+> 本節の数字は説明のために作ったものであり、実測値ではない。
 
 ### 付録 A: RAG アーキテクチャ図
 

@@ -42,6 +42,11 @@ eBay 的存量买家和长尾品类结构，和 Amazon 是两套完全不同的�
 
 ## 2. eBay 差异化 AI 应用
 
+<!-- claims: benchmark -->
+
+> 这里的数值是判断自己数据用的参考线，不是市场实测均值。跑过一轮后用你自己的中位数替换。
+
+
 ### 2.1 eBay Magical Listing（2026 新功能）
 
 > **真实案例：eBay CEO 建议新卖家创建全新账号体验 AI**
@@ -314,6 +319,11 @@ Content rephrased for compliance with licensing restrictions.
 ```
 
 ## 3. eBay 品类深度策略
+
+<!-- claims: verified 2026-08 -->
+
+> 本节引用的平台指标要求与费率核验日期: 2026-08。平台随时会调，以各自后台的官方说明为准。
+
 
 ### 3.1 收藏品与稀缺品策略
 

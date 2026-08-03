@@ -125,6 +125,11 @@
 
 ## 4. Coupang 特有运营差异
 
+<!-- claims: verified 2026-08 -->
+
+> 本节引用的平台指标要求与费率核验日期: 2026-08。平台随时会调，以各自后台的官方说明为准。
+
+
 ### 4.1 Rocket Delivery（로켓배송）
 
 Coupang 的核心竞争力是 Rocket Delivery（[Coupang Q4 2025 Earnings](https://www.marketbeat.com/instant-alerts/coupang-q4-earnings-call-highlights-2026-02-27/)）：

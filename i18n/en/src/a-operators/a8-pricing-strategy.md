@@ -80,6 +80,11 @@ Psychological pricing ($19.99 vs $20.00)
 
 ## 2. Dynamic-Pricing Methodology
 
+<!-- claims: verified 2026-08 -->
+
+> Platform thresholds and fees quoted in this section were checked in 2026-08. Platforms change them without notice — go by the official page in your seller account.
+
+
 ### 2.1 Amazon Buy Box pricing strategy
 
 The Buy Box is the core of Amazon sales — over 80% of sales come from the Buy Box. Price is one of the key factors for winning it.
@@ -537,6 +542,11 @@ Cons: needs technical ability and maintenance
 ---
 
 ## 8. Common Traps
+
+<!-- claims: illustrative -->
+
+> The numbers in this section are constructed to illustrate the point, not measured.
+
 
 ### Trap 1: falling into a price war
 A competitor cuts $1, you cut $1, and in the end no one has profit. AI can help you analyze whether it's worth matching — if your product is differentiated (better rating, more reviews, brand recognition), you don't need to match the lowest price.

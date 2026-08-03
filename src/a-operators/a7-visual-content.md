@@ -46,7 +46,7 @@ Content rephrased for compliance with licensing restrictions.
 | 生活方式图 vs 白底图转化率提升 | 22-30% | A/B 测试研究 |
 | AI 视频生成市场规模（2025） | $71.68 亿 | Fortune Business Insights |
 | AI 视频市场预计（2032） | $256 亿 | Fortune Business Insights |
-| Amazon 产品视频对转化率的影响 | +9.7% | 行业研究 |
+| Amazon 产品视频对转化率的影响 | 通常为正，幅度按品类差异大 | 需自行 A/B |
 | 有视频的 Listing 停留时间 | +2x | 行业基准 |
 
 ### 1.2 AI 视觉内容的三个层次
@@ -74,6 +74,11 @@ AI 虚拟模特（服装品类）
 ---
 
 ## 2. AI 产品图片生成
+
+<!-- claims: verified 2026-08 -->
+
+> 本节引用的平台指标要求与费率核验日期: 2026-08。平台随时会调，以各自后台的官方说明为准。
+
 
 ### 2.1 工具全景
 
@@ -203,7 +208,7 @@ Style: clean, modern, white background with accent color [品牌色]"
 
 ### 3.2 Amazon 产品视频 AI 制作
 
-Amazon 允许在 Listing 中上传产品视频，有视频的 Listing 转化率平均提升 9.7%：
+Amazon 允许在 Listing 中上传产品视频，有视频的 Listing 转化率通常更高——具体幅度按品类和视频质量差很多，用 A/B 或上线前后对比测：
 
 ```
 Amazon 产品视频类型：
@@ -404,6 +409,11 @@ professional layout --ar 1:1 --v 6.1 --s 150
 ---
 
 ## 8. 常见陷阱
+
+<!-- claims: benchmark -->
+
+> 这里的数值是判断自己数据用的参考线，不是市场实测均值。跑过一轮后用你自己的中位数替换。
+
 
 ### 陷阱 1：AI 生成的图片直接用作 Amazon 主图
 Amazon 主图要求是产品的真实照片。AI 生成的场景图可以用作辅图，但主图建议用实拍+AI 去背景。

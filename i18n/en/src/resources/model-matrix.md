@@ -5,6 +5,11 @@
 
 ---
 
+
+<!-- claims: verified 2026-08 -->
+
+> Tool prices in this section were checked in 2026-08. SaaS pricing moves often — verify on the vendor's own site before you commit.
+
 ## Why chapters don't name specific models
 
 The methodology in this knowledge base has a half-life measured in years. Model ids have a half-life measured in months. Two examples from the same week this page was verified: OpenAI cut the Luna tier by 80% and the Terra tier by 20% on 2026-07-30; Google shipped three new Flash models on 2026-07-21. Any chapter that hard-codes a model id becomes wrong within a quarter.

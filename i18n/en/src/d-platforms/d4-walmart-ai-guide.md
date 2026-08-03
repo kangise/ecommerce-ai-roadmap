@@ -33,6 +33,11 @@
 
 ## 1. Walmart vs Amazon Core Differences
 
+<!-- claims: verified 2026-08 -->
+
+> Platform thresholds and fees quoted in this section were checked in 2026-08. Platforms change them without notice — go by the official page in your seller account.
+
+
 | Dimension | Amazon | Walmart |
 |-----------|--------|---------|
 | Number of sellers | 2 million+ | 250K+ |
@@ -334,6 +339,11 @@ Goal: ROAS > 4x, ad-sales share 20-30%
 
 ## 4. WFS Logistics Decision
 
+<!-- claims: verified 2026-08 -->
+
+> Platform thresholds and fees quoted in this section were checked in 2026-08. Platforms change them without notice — go by the official page in your seller account.
+
+
 > **Related reading**: [A5 Inventory Management](../a-operators/a5-inventory.md) — the general methodology for inventory management and replenishment decisions is referenced in A5.
 
 ### 4.1 Detailed WFS vs FBA Comparison
@@ -482,6 +492,11 @@ Phase 5: continuous optimization
 ---
 
 ## 6. Prompt Templates
+
+<!-- claims: verified 2026-08 -->
+
+> Platform thresholds and fees quoted in this section were checked in 2026-08. Platforms change them without notice — go by the official page in your seller account.
+
 
 > **Prompt conventions used here**: the templates below work as-is, but for anything involving numbers, forecasts, or recommendations, paste in [the data-discipline block from F2 §4.3](../0-foundations/f2-prompt-engineering.md#43-the-data-discipline-block-ready-to-paste). It forbids the model from inventing data you didn't supply — the most common failure mode for this class of prompt.
 
@@ -721,6 +736,10 @@ After agentifying, the data you're asked to paste above should be read from here
 ---
 
 ## 6.5 Walmart Omnichannel Strategy
+
+<!-- claims: verified 2026-08 -->
+
+> Platform fees and metrics quoted here were checked in 2026-08. Platforms change them without notice — go by the official page in your seller account.
 
 ### Online + Offline Coordination (Walmart's Unique Advantage)
 

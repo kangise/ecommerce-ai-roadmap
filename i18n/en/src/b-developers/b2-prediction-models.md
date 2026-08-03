@@ -48,6 +48,11 @@ After this module you'll be able to:
 
 ## 1. Forecasting Methodology
 
+<!-- claims: illustrative -->
+
+> The numbers in this section are constructed to illustrate the point, not measured.
+
+
 > **Related**: [A5 Inventory & Supply Chain](../a-operators/a5-inventory.md) for applying sales forecasts to restock decisions · [D3 Cross-Platform AI Strategy](../d-platforms/cross-platform-strategy.md) for cross-platform demand forecasting.
 
 ### 1.1 The first principle of time-series forecasting
@@ -762,7 +767,7 @@ def autogluon_forecast(
 
 ### 3.4 BERTopic Review topic analysis
 
-BERTopic can auto-discover topics in large amounts of Review text, helping you understand what customers are saying. This is 100× more efficient than reading reviews by hand.
+BERTopic can auto-discover topics in large amounts of Review text, helping you understand what customers are saying. This is far faster than reading reviews one by one.
 
 ```python
 from bertopic import BERTopic
@@ -1349,6 +1354,11 @@ python3 run_forecast.py --data data/daily_sales.csv --asin B0XXXXX --stock 500 -
 Content rephrased for compliance with licensing restrictions. Sources cited inline.
 
 ## 9. Completion Checklist
+
+<!-- claims: benchmark -->
+
+> These figures are a reference line for judging your own data, not measured market averages. Replace them with your own medians after one cycle.
+
 
 - [ ] Did a 90-day sales forecast on a real SKU with Prophet, outputting predictions and confidence intervals
 - [ ] Added e-commerce promo holiday effects (Prime Day, BFCM), comparing accuracy with and without holidays

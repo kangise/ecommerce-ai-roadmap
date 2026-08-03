@@ -602,7 +602,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [amazonfb
 
 ### 3.4 A+ Content 文案生成
 
-**为什么需要这个 Prompt：** A+ Content（Enhanced Brand Content）可以提升转化率 3-10%（Amazon 官方数据）。但很多卖家的 A+ Content 只是把五点的内容重复一遍配上图片。好的 A+ Content 应该讲品牌故事、展示使用场景、用对比图说服用户。
+**为什么需要这个 Prompt：** A+ Content（Enhanced Brand Content）通常能抬高转化率——[Amazon 官方说明](https://sell.amazon.com/tools/a-content)给的是区间，实际幅度按品类和原 Listing 质量差很多，上线后自己对比。但很多卖家的 A+ Content 只是把五点的内容重复一遍配上图片。好的 A+ Content 应该讲品牌故事、展示使用场景、用对比图说服用户。
 
 **常见错误：**
 - A+ Content 和五点内容完全重复 → 浪费了展示空间。A+ 应该补充五点没讲的内容。

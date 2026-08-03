@@ -170,6 +170,11 @@ The two vectors are very close → similar meaning!
 
 ## 3. Vector Databases: Storing and Retrieving Meaning
 
+<!-- claims: illustrative -->
+
+> The numbers in this section are constructed to illustrate the point, not measured.
+
+
 ### 3.1 Why you need one
 
 Ordinary databases (MySQL, PostgreSQL) excel at exact queries: "find products where price = $25.99."

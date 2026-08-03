@@ -35,6 +35,13 @@
 
 ## 1. Pinterest's Unique Positioning
 
+<!-- claims: verified 2026-08 -->
+
+> Platform thresholds and fees quoted in this section were checked in 2026-08. Platforms change them without notice — go by the official page in your seller account.
+
+
+
+
 ### 1.1 Pinterest vs Other Platforms
 
 | Dimension | Pinterest | Instagram | Google |

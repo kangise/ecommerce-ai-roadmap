@@ -830,6 +830,11 @@ def export_analysis_results(df: pd.DataFrame, topic_model, output_dir: str = "ou
 
 ## 8. Common Traps
 
+<!-- claims: illustrative -->
+
+> The numbers in this section are constructed to illustrate the point, not measured.
+
+
 ### 8.1 Substituting sentiment polarity for problem localization
 
 Knowing 30% is negative carries no action. What's useful is "of the negatives, how much is shipping, how much is quality, how much is expectation mismatch" — the taxonomy has to map to actions you can take.

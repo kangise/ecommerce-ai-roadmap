@@ -30,7 +30,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 ## 本模块你将掌握
 
-Prompt 是你和 AI 沟通的唯一接口。同样的 AI 模型，Prompt 写得好和写得差，输出质量可以差 10 倍。
+Prompt 是你和 AI 沟通的唯一接口。同样的 AI 模型，Prompt 写得好和写得差，输出质量可以差很远。
 
 完成本模块后，你将能够：
 - 用 CRISP 框架写出结构化的高质量 Prompt

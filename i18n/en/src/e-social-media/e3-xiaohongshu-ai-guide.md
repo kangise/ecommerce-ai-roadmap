@@ -148,7 +148,7 @@ Requirements:
 
 ### 2.3 Cover-Design Strategy
 
-The Xiaohongshu cover determines 80% of the click rate:
+On Xiaohongshu the cover largely determines the click rate:
 
 | Cover type | Applicable scenario | Design points |
 |------------|---------------------|---------------|
@@ -363,6 +363,11 @@ Generate:
 ---
 
 ## 8. Common Traps
+
+<!-- claims: verified 2026-08 -->
+
+> Platform thresholds and fees quoted in this section were checked in 2026-08. Platforms change them without notice — go by the official page in your seller account.
+
 
 ### Pitfall 1: Notes Too Much Like Ads
 Xiaohongshu users are extremely sensitive to ads. AI-generated content must go through "de-advertising" processing — add personal experience, real feelings, minor flaws.

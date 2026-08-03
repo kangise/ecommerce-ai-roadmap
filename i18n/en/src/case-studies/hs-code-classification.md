@@ -2,6 +2,8 @@
 
 > **Important**: this is a reference technical design showing the complete path to building an HS-code classification system. The performance and business figures are illustrative; real-world results vary with data quality, business context, and other factors.
 
+<!-- claims: illustrative -->
+
 ## Overview
 
 This design shows how to build a machine-learning-based automatic HS-code classification system, as a technical reference for cross-border e-commerce companies classifying customs codes automatically.

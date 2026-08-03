@@ -2,6 +2,8 @@
 
 > **Important**: this is a reference technical design showing the complete architecture of a multilingual recommendation system. The performance and business figures are illustrative; real-world results vary with data distribution, user behavior, and other factors.
 
+<!-- claims: illustrative -->
+
 ## Overview
 
 This design shows how to build a product recommendation system that supports multiple languages and cultures — a technical reference for personalization on a global e-commerce platform.

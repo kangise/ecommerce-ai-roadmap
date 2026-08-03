@@ -830,6 +830,11 @@ def export_analysis_results(df: pd.DataFrame, topic_model, output_dir: str = "ou
 
 ## 8. 常见陷阱
 
+<!-- claims: illustrative -->
+
+> 本节的数字是为说明而构造的，不是实测值。
+
+
 ### 8.1 用情感极性代替问题定位
 
 知道 30% 是负面没有任何行动价值。有用的是「负面里有多少是物流、多少是质量、多少是预期不符」——分类维度要对应你能采取的行动。

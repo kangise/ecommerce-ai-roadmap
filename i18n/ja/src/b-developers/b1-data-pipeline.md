@@ -940,7 +940,7 @@ def download_business_report(
 
 **推奨パス**:
 - 始めたばかり: CSV/Excel(既に使っている)
-- データ量が 50MB+ に増えたら: Parquet 形式に切り替え(読み書き 5-10 倍速い)
+- データ量が 50MB+ に増えたら: Parquet 形式に切り替え(読み書きが明らかに速く、圧縮後のサイズも小さい)
 - 複雑なクエリ(JOIN、ウィンドウ関数)が必要: DuckDB を導入
 - 複数人協業や Web アプリが必要: PostgreSQL
 

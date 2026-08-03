@@ -629,7 +629,7 @@ Shorts bring exposure but don't build deep trust. Long video is the core of conv
 A title like "Best Neck Fan 2026 Portable Fan Review Cheap Fan" has an extremely low CTR. Use natural language + curiosity.
 
 ### Pitfall 3: Ignoring the Thumbnail
-On YouTube, 90% of decisions happen at the thumbnail. The time spent on the thumbnail should be as much as on editing.
+On YouTube the decision to click is made overwhelmingly at the thumbnail. The time spent on the thumbnail should be as much as on editing.
 
 ### Pitfall 4: Not Doing Affiliate Disclosure
 The FTC requires disclosing the Affiliate relationship in the description. Not disclosing may lead to the video being flagged or legal risk.
@@ -720,7 +720,7 @@ Please help me design a long-tail keyword strategy:
 
 ### YouTube Thumbnail-Design Methodology
 
-The thumbnail is the biggest lever for YouTube growth — for the same content, the CTR gap between a good thumbnail and a bad one can reach 3-5x.
+The thumbnail is the biggest lever for YouTube growth — for the same content, the CTR gap can be several times over.
 
 ```
 The 5 elements of a high-CTR thumbnail:

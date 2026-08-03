@@ -83,6 +83,10 @@ H --> F
 
 ## Performance Benchmarks
 
+<!-- claims: benchmark -->
+
+> These figures are targets worth aiming at, not measured industry averages.
+
 ### Model performance targets
 
 | Task type | Accuracy target | Latency | Throughput | Notes |
@@ -116,6 +120,10 @@ H --> F
 - **Service mesh**: Istio-style microservice governance
 
 ## Continuous Improvement
+
+<!-- claims: benchmark -->
+
+> These figures are targets worth aiming at, not measured industry averages.
 
 ### Model iteration loop
 

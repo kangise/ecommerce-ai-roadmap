@@ -332,6 +332,11 @@ Browse AI focuses on web scraping and monitoring:
 
 ## 7. Fusing AI with Automation
 
+<!-- claims: illustrative -->
+
+> The numbers in this section are constructed to illustrate the point, not measured.
+
+
 ### 7.1 AI's role in automation workflows
 
 ```

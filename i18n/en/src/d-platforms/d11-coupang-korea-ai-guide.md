@@ -125,6 +125,11 @@ Note:
 
 ## 4. Coupang-Specific Operational Differences
 
+<!-- claims: verified 2026-08 -->
+
+> Platform thresholds and fees quoted in this section were checked in 2026-08. Platforms change them without notice — go by the official page in your seller account.
+
+
 ### 4.1 Rocket Delivery (로켓배송)
 
 Coupang's core competency is Rocket Delivery ([Coupang Q4 2025 Earnings](https://www.marketbeat.com/instant-alerts/coupang-q4-earnings-call-highlights-2026-02-27/)):
