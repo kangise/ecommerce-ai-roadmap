@@ -144,16 +144,16 @@ The Agent's core capability comes from tools. An Agent without tools is just a c
 ```python
 # Tool-definition example
 def get_inventory(asin: str) -> dict:
-"""Query the inventory status of a given ASIN.
+    """Query the inventory status of a given ASIN.
 
-Args:
-asin: Amazon product identifier (e.g., B0XXXXX)
+    Args:
+        asin: Amazon product identifier (e.g., B0XXXXX)
 
-Returns:
-a dict with current_stock, safety_stock, daily_sales
-"""
-# Actual implementation: call a database or API
-pass
+    Returns:
+        a dict with current_stock, safety_stock, daily_sales
+    """
+    # Actual implementation: call a database or API
+    pass
 ```
 
 The LLM decides when and how to call the tool by reading the function's name, docstring, and parameter types. So **the quality of the tool's description directly determines the Agent's performance**.
@@ -265,41 +265,41 @@ from langgraph.prebuilt import create_react_agent
 # 1. Define tools
 @tool
 def get_sales_data(date: str) -> dict:
-"""Query the sales-data summary for a given date.
+    """Query the sales-data summary for a given date.
 
-Args:
-date: date, format YYYY-MM-DD
+    Args:
+        date: date, format YYYY-MM-DD
 
-Returns:
-a dict with total_sales, total_orders, top_asin
-"""
-# Mock data (replace with a DB query or API call in production)
-return {
-"date": date,
-"total_sales": 15230.50,
-"total_orders": 342,
-"top_asin": "B0XXXXX",
-"top_asin_sales": 3200.00,
-"yoy_change": -0.12,
-}
+    Returns:
+        a dict with total_sales, total_orders, top_asin
+    """
+    # Mock data (replace with a DB query or API call in production)
+    return {
+        "date": date,
+        "total_sales": 15230.50,
+        "total_orders": 342,
+        "top_asin": "B0XXXXX",
+        "top_asin_sales": 3200.00,
+        "yoy_change": -0.12,
+    }
 
 @tool
 def detect_anomaly(metric: str, value: float, threshold: float) -> dict:
-"""Detect whether a metric is anomalous.
+    """Detect whether a metric is anomalous.
 
-Args:
-metric: metric name
-value: current value
-threshold: anomaly threshold (change percentage, e.g., -0.2 means a 20% drop)
-"""
-is_anomaly = value < threshold
-return {
-"metric": metric,
-"value": value,
-"threshold": threshold,
-"is_anomaly": is_anomaly,
-"severity": "high" if value < threshold * 1.5 else "medium",
-}
+    Args:
+        metric: metric name
+        value: current value
+        threshold: anomaly threshold (change percentage, e.g., -0.2 means a 20% drop)
+    """
+    is_anomaly = value < threshold
+    return {
+        "metric": metric,
+        "value": value,
+        "threshold": threshold,
+        "is_anomaly": is_anomaly,
+        "severity": "high" if value < threshold * 1.5 else "medium",
+    }
 
 # 2. Create the Agent
 llm = ChatOpenAI(model="gpt-5.6-luna", temperature=0)  # T3 tier — see model-matrix.md
@@ -308,13 +308,13 @@ agent = create_react_agent(llm, tools)
 
 # 3. Run the Agent
 result = agent.invoke({
-"messages": [("user", "Check the sales data for 2025-03-10, and tell me if the YoY drop exceeds 10%")]
+    "messages": [("user", "Check the sales data for 2025-03-10, and tell me if the YoY drop exceeds 10%")]
 })
 
 # 4. Output the result
 for msg in result["messages"]:
-if hasattr(msg, "content") and msg.content:
-print(f"[{msg.type}] {msg.content}")
+    if hasattr(msg, "content") and msg.content:
+        print(f"[{msg.type}] {msg.content}")
 ```
 
 **The Agent's execution:**
@@ -345,53 +345,53 @@ from langgraph.graph.message import add_messages
 # --- Tool definitions ---
 @tool
 def fetch_daily_sales(date: str) -> str:
-"""Get the sales-data summary for a given date."""
-return json.dumps({
-"date": date,
-"summary": {"total_revenue": 45230.50, "total_orders": 1024,
-"total_units": 1580, "avg_order_value": 44.17},
-"top_products": [
-{"asin": "B0AAAA", "name": "Action Camera X1", "units": 320, "revenue": 12800},
-{"asin": "B0BBBB", "name": "Charger Pro", "units": 280, "revenue": 5600},
-],
-"yoy_comparison": {"revenue_change": -0.08, "orders_change": -0.05},
-}, ensure_ascii=False)
+    """Get the sales-data summary for a given date."""
+    return json.dumps({
+        "date": date,
+        "summary": {"total_revenue": 45230.50, "total_orders": 1024,
+                    "total_units": 1580, "avg_order_value": 44.17},
+        "top_products": [
+            {"asin": "B0AAAA", "name": "Action Camera X1", "units": 320, "revenue": 12800},
+            {"asin": "B0BBBB", "name": "Charger Pro", "units": 280, "revenue": 5600},
+        ],
+        "yoy_comparison": {"revenue_change": -0.08, "orders_change": -0.05},
+    }, ensure_ascii=False)
 
 @tool
 def fetch_inventory_status() -> str:
-"""Get the current inventory status, flagging low-stock ASINs."""
-return json.dumps({
-"low_stock_items": [
-{"asin": "B0AAAA", "current": 120, "safety": 200, "days_left": 3},
-],
-"total_skus": 45, "healthy_skus": 44,
-}, ensure_ascii=False)
+    """Get the current inventory status, flagging low-stock ASINs."""
+    return json.dumps({
+        "low_stock_items": [
+            {"asin": "B0AAAA", "current": 120, "safety": 200, "days_left": 3},
+        ],
+        "total_skus": 45, "healthy_skus": 44,
+    }, ensure_ascii=False)
 
 @tool
 def fetch_review_alerts() -> str:
-"""Get negative-review alerts from the last 24 hours."""
-return json.dumps({
-"new_negative_reviews": [
-{"asin": "B0BBBB", "rating": 1, "title": "Charging is too slow",
-"text": "It broke after two weeks, and charges much slower than advertised"},
-],
-"avg_rating_change": -0.1,
-}, ensure_ascii=False)
+    """Get negative-review alerts from the last 24 hours."""
+    return json.dumps({
+        "new_negative_reviews": [
+            {"asin": "B0BBBB", "rating": 1, "title": "Charging is too slow",
+             "text": "It broke after two weeks, and charges much slower than advertised"},
+        ],
+        "avg_rating_change": -0.1,
+    }, ensure_ascii=False)
 
 @tool
 def generate_report(report_content: str) -> str:
-"""Format the analysis result into a Markdown daily report."""
-today = datetime.now().strftime("%Y-%m-%d")
-report = f"# Daily Report {today}\n\n{report_content}\n\n---\n*Auto-generated by AI Agent*"
-return f"Report generated, {len(report)} characters"
+    """Format the analysis result into a Markdown daily report."""
+    today = datetime.now().strftime("%Y-%m-%d")
+    report = f"# Daily Report {today}\n\n{report_content}\n\n---\n*Auto-generated by AI Agent*"
+    return f"Report generated, {len(report)} characters"
 
 # --- Agent state ---
 class DailyReportState(TypedDict):
-messages: Annotated[list, add_messages]
-sales_data: str
-inventory_data: str
-review_data: str
-report: str
+    messages: Annotated[list, add_messages]
+    sales_data: str
+    inventory_data: str
+    review_data: str
+    report: str
 
 llm = ChatOpenAI(model="gpt-5.6-luna", temperature=0)  # T3 tier — see model-matrix.md
 
@@ -403,25 +403,25 @@ SYSTEM_PROMPT = """You are an e-commerce operations daily-report Agent. After co
 Output in English, accurate data, specific advice."""
 
 def collect_data(state: DailyReportState) -> dict:
-"""Node 1: collect all data sources."""
-today = datetime.now().strftime("%Y-%m-%d")
-return {
-"sales_data": fetch_daily_sales.invoke({"date": today}),
-"inventory_data": fetch_inventory_status.invoke({}),
-"review_data": fetch_review_alerts.invoke({}),
-}
+    """Node 1: collect all data sources."""
+    today = datetime.now().strftime("%Y-%m-%d")
+    return {
+        "sales_data": fetch_daily_sales.invoke({"date": today}),
+        "inventory_data": fetch_inventory_status.invoke({}),
+        "review_data": fetch_review_alerts.invoke({}),
+    }
 
 def analyze_and_report(state: DailyReportState) -> dict:
-"""Node 2: AI analyzes the data and generates the daily report."""
-messages = [
-SystemMessage(content=SYSTEM_PROMPT),
-HumanMessage(content=f"Sales: {state['sales_data']}\n"
-f"Inventory: {state['inventory_data']}\n"
-f"Reviews: {state['review_data']}\n\nPlease generate the daily report."),
-]
-response = llm.invoke(messages)
-generate_report.invoke({"report_content": response.content})
-return {"report": response.content, "messages": [response]}
+    """Node 2: AI analyzes the data and generates the daily report."""
+    messages = [
+        SystemMessage(content=SYSTEM_PROMPT),
+        HumanMessage(content=f"Sales: {state['sales_data']}\n"
+                             f"Inventory: {state['inventory_data']}\n"
+                             f"Reviews: {state['review_data']}\n\nPlease generate the daily report."),
+    ]
+    response = llm.invoke(messages)
+    generate_report.invoke({"report_content": response.content})
+    return {"report": response.content, "messages": [response]}
 
 # --- Build the workflow graph ---
 workflow = StateGraph(DailyReportState)
@@ -466,72 +466,72 @@ from langgraph.graph.message import add_messages
 
 @tool
 def check_all_inventory() -> str:
-"""Check all SKUs' inventory status, return the low-stock list."""
-return json.dumps({
-"total_skus": 45,
-"low_stock": [
-{"asin": "B0AAAA", "name": "Action Camera X1", "current": 80,
-"safety": 200, "daily_avg": 25, "days_left": 3.2},
-],
-"out_of_stock_risk": [
-{"asin": "B0EEEE", "name": "Lens Cap", "current": 10,
-"daily_avg": 8, "days_left": 1.25},
-],
-}, ensure_ascii=False)
+    """Check all SKUs' inventory status, return the low-stock list."""
+    return json.dumps({
+        "total_skus": 45,
+        "low_stock": [
+            {"asin": "B0AAAA", "name": "Action Camera X1", "current": 80,
+             "safety": 200, "daily_avg": 25, "days_left": 3.2},
+        ],
+        "out_of_stock_risk": [
+            {"asin": "B0EEEE", "name": "Lens Cap", "current": 10,
+             "daily_avg": 8, "days_left": 1.25},
+        ],
+    }, ensure_ascii=False)
 
 @tool
 def forecast_demand(asin: str, days: int = 30) -> str:
-"""Forecast a given ASIN's demand for the next N days."""
-forecasts = {
-"B0AAAA": {"predicted_demand": 780, "confidence": 0.85, "trend": "stable"},
-"B0EEEE": {"predicted_demand": 250, "confidence": 0.82, "trend": "stable"},
-}
-result = forecasts.get(asin, {"predicted_demand": 500, "confidence": 0.7})
-result.update({"asin": asin, "forecast_days": days})
-return json.dumps(result, ensure_ascii=False)
+    """Forecast a given ASIN's demand for the next N days."""
+    forecasts = {
+        "B0AAAA": {"predicted_demand": 780, "confidence": 0.85, "trend": "stable"},
+        "B0EEEE": {"predicted_demand": 250, "confidence": 0.82, "trend": "stable"},
+    }
+    result = forecasts.get(asin, {"predicted_demand": 500, "confidence": 0.7})
+    result.update({"asin": asin, "forecast_days": days})
+    return json.dumps(result, ensure_ascii=False)
 
 @tool
 def send_restock_alert(alert_content: str) -> str:
-"""Send a restock reminder (email/Slack/WeCom)."""
-print(f"Sending restock reminder:\n{alert_content}")
-return "Restock reminder sent"
+    """Send a restock reminder (email/Slack/WeCom)."""
+    print(f"Sending restock reminder:\n{alert_content}")
+    return "Restock reminder sent"
 
 # --- State and nodes ---
 class InventoryState(TypedDict):
-messages: Annotated[list, add_messages]
-inventory_data: str
-has_alerts: bool
-forecast_results: list[str]
-alert_content: str
+    messages: Annotated[list, add_messages]
+    inventory_data: str
+    has_alerts: bool
+    forecast_results: list[str]
+    alert_content: str
 
 llm = ChatOpenAI(model="gpt-5.6-luna", temperature=0)  # T3 tier — see model-matrix.md
 
 def check_inventory(state: InventoryState) -> dict:
-data = check_all_inventory.invoke({})
-parsed = json.loads(data)
-has_alerts = bool(parsed.get("low_stock") or parsed.get("out_of_stock_risk"))
-return {"inventory_data": data, "has_alerts": has_alerts}
+    data = check_all_inventory.invoke({})
+    parsed = json.loads(data)
+    has_alerts = bool(parsed.get("low_stock") or parsed.get("out_of_stock_risk"))
+    return {"inventory_data": data, "has_alerts": has_alerts}
 
 def should_alert(state: InventoryState) -> Literal["forecast", "end"]:
-return "forecast" if state["has_alerts"] else "end"
+    return "forecast" if state["has_alerts"] else "end"
 
 def run_forecast(state: InventoryState) -> dict:
-parsed = json.loads(state["inventory_data"])
-all_items = parsed.get("low_stock", []) + parsed.get("out_of_stock_risk", [])
-results = [forecast_demand.invoke({"asin": item["asin"], "days": 30})
-for item in all_items]
-return {"forecast_results": results}
+    parsed = json.loads(state["inventory_data"])
+    all_items = parsed.get("low_stock", []) + parsed.get("out_of_stock_risk", [])
+    results = [forecast_demand.invoke({"asin": item["asin"], "days": 30})
+               for item in all_items]
+    return {"forecast_results": results}
 
 def generate_alert(state: InventoryState) -> dict:
-messages = [
-SystemMessage(content="You are an inventory-management expert. Sort by urgency (stockout within 3 days > within 7 days), "
-"give concrete restock-quantity suggestions, accounting for lead time and forecast demand."),
-HumanMessage(content=f"Inventory: {state['inventory_data']}\n"
-f"Forecast: {json.dumps(state['forecast_results'], ensure_ascii=False)}"),
-]
-response = llm.invoke(messages)
-send_restock_alert.invoke({"alert_content": response.content})
-return {"alert_content": response.content, "messages": [response]}
+    messages = [
+        SystemMessage(content="You are an inventory-management expert. Sort by urgency (stockout within 3 days > within 7 days), "
+                              "give concrete restock-quantity suggestions, accounting for lead time and forecast demand."),
+        HumanMessage(content=f"Inventory: {state['inventory_data']}\n"
+                             f"Forecast: {json.dumps(state['forecast_results'], ensure_ascii=False)}"),
+    ]
+    response = llm.invoke(messages)
+    send_restock_alert.invoke({"alert_content": response.content})
+    return {"alert_content": response.content, "messages": [response]}
 
 # --- Build the workflow ---
 workflow = StateGraph(InventoryState)
@@ -540,7 +540,7 @@ workflow.add_node("forecast", run_forecast)
 workflow.add_node("generate_alert", generate_alert)
 workflow.set_entry_point("check_inventory")
 workflow.add_conditional_edges("check_inventory", should_alert,
-{"forecast": "forecast", "end": END})
+                               {"forecast": "forecast", "end": END})
 workflow.add_edge("forecast", "generate_alert")
 workflow.add_edge("generate_alert", END)
 inventory_agent = workflow.compile()
@@ -575,73 +575,73 @@ from langgraph.graph.message import add_messages
 
 @tool
 def fetch_new_reviews(hours: int = 24) -> str:
-"""Get new Reviews from the last N hours."""
-return json.dumps({
-"period": f"last {hours} hours",
-"total_new": 15, "positive": 10, "neutral": 2, "negative": 3,
-"reviews": [
-{"asin": "B0AAAA", "rating": 1, "title": "Terrible quality",
-"text": "Broke after a week, blurry lens, and the waterproofing doesn't work"},
-{"asin": "B0AAAA", "rating": 2, "title": "Battery doesn't last",
-"text": "The battery only lasts 40 minutes, far below the advertised 2 hours"},
-{"asin": "B0BBBB", "rating": 1, "title": "Charger overheats badly",
-"text": "Gets very hot while charging, worried about safety"},
-],
-}, ensure_ascii=False)
+    """Get new Reviews from the last N hours."""
+    return json.dumps({
+        "period": f"last {hours} hours",
+        "total_new": 15, "positive": 10, "neutral": 2, "negative": 3,
+        "reviews": [
+            {"asin": "B0AAAA", "rating": 1, "title": "Terrible quality",
+             "text": "Broke after a week, blurry lens, and the waterproofing doesn't work"},
+            {"asin": "B0AAAA", "rating": 2, "title": "Battery doesn't last",
+             "text": "The battery only lasts 40 minutes, far below the advertised 2 hours"},
+            {"asin": "B0BBBB", "rating": 1, "title": "Charger overheats badly",
+             "text": "Gets very hot while charging, worried about safety"},
+        ],
+    }, ensure_ascii=False)
 
 @tool
 def analyze_review_sentiment(review_text: str) -> str:
-"""Do sentiment analysis and problem classification on a single Review."""
-categories = []
-if any(w in review_text for w in ["broke", "broken", "defect"]):
-categories.append("Product quality")
-if any(w in review_text for w in ["battery", "last", "life"]):
-categories.append("Battery life")
-if any(w in review_text for w in ["hot", "overheat", "heat"]):
-categories.append("Safety hazard")
-return json.dumps({
-"sentiment": "negative",
-"categories": categories or ["Other"],
-"severity": "high" if "Safety" in str(categories) else "medium",
-}, ensure_ascii=False)
+    """Do sentiment analysis and problem classification on a single Review."""
+    categories = []
+    if any(w in review_text for w in ["broke", "broken", "defect"]):
+        categories.append("Product quality")
+    if any(w in review_text for w in ["battery", "last", "life"]):
+        categories.append("Battery life")
+    if any(w in review_text for w in ["hot", "overheat", "heat"]):
+        categories.append("Safety hazard")
+    return json.dumps({
+        "sentiment": "negative",
+        "categories": categories or ["Other"],
+        "severity": "high" if "Safety" in str(categories) else "medium",
+    }, ensure_ascii=False)
 
 # --- Workflow: same structure as the inventory-alert Agent ---
 # fetch_reviews → negatives? → Yes → analyze_reviews → generate_alert → END
 # → No → END
 
 class ReviewState(TypedDict):
-messages: Annotated[list, add_messages]
-review_data: str
-has_negative: bool
-analysis_results: list[dict]
-alert_report: str
+    messages: Annotated[list, add_messages]
+    review_data: str
+    has_negative: bool
+    analysis_results: list[dict]
+    alert_report: str
 
 llm = ChatOpenAI(model="gpt-5.6-luna", temperature=0)  # T3 tier — see model-matrix.md
 
 def fetch_reviews(state: ReviewState) -> dict:
-data = fetch_new_reviews.invoke({"hours": 24})
-parsed = json.loads(data)
-return {"review_data": data, "has_negative": parsed.get("negative", 0) > 0}
+    data = fetch_new_reviews.invoke({"hours": 24})
+    parsed = json.loads(data)
+    return {"review_data": data, "has_negative": parsed.get("negative", 0) > 0}
 
 def should_analyze(state: ReviewState) -> Literal["analyze", "end"]:
-return "analyze" if state["has_negative"] else "end"
+    return "analyze" if state["has_negative"] else "end"
 
 def analyze_reviews(state: ReviewState) -> dict:
-parsed = json.loads(state["review_data"])
-results = []
-for review in [r for r in parsed["reviews"] if r["rating"] <= 2]:
-analysis = analyze_review_sentiment.invoke({"review_text": review["text"]})
-results.append({"review": review, "analysis": json.loads(analysis)})
-return {"analysis_results": results}
+    parsed = json.loads(state["review_data"])
+    results = []
+    for review in [r for r in parsed["reviews"] if r["rating"] <= 2]:
+        analysis = analyze_review_sentiment.invoke({"review_text": review["text"]})
+        results.append({"review": review, "analysis": json.loads(analysis)})
+    return {"analysis_results": results}
 
 def generate_review_alert(state: ReviewState) -> dict:
-messages = [
-SystemMessage(content="You are an e-commerce Review-analysis expert. Summarize negatives by problem category, "
-"note severity (safety hazard > quality issue > experience issue), give response advice."),
-HumanMessage(content=f"Negative-review analysis: {json.dumps(state['analysis_results'], ensure_ascii=False)}"),
-]
-response = llm.invoke(messages)
-return {"alert_report": response.content, "messages": [response]}
+    messages = [
+        SystemMessage(content="You are an e-commerce Review-analysis expert. Summarize negatives by problem category, "
+                              "note severity (safety hazard > quality issue > experience issue), give response advice."),
+        HumanMessage(content=f"Negative-review analysis: {json.dumps(state['analysis_results'], ensure_ascii=False)}"),
+    ]
+    response = llm.invoke(messages)
+    return {"alert_report": response.content, "messages": [response]}
 
 workflow = StateGraph(ReviewState)
 workflow.add_node("fetch_reviews", fetch_reviews)
@@ -649,7 +649,7 @@ workflow.add_node("analyze", analyze_reviews)
 workflow.add_node("generate_alert", generate_review_alert)
 workflow.set_entry_point("fetch_reviews")
 workflow.add_conditional_edges("fetch_reviews", should_analyze,
-{"analyze": "analyze", "end": END})
+                               {"analyze": "analyze", "end": END})
 workflow.add_edge("analyze", "generate_alert")
 workflow.add_edge("generate_alert", END)
 review_agent = workflow.compile()
@@ -804,15 +804,15 @@ verbose=True,
 ```python
 # Option 1: set a max-iteration limit
 result = agent.invoke(
-{"messages": [("user", "your instruction")]},
-config={"recursion_limit": 10}, # at most 10 rounds
+    {"messages": [("user", "your instruction")]},
+    config={"recursion_limit": 10}, # at most 10 rounds
 )
 
 # Option 2: state the "done condition" clearly in the tool description
 @tool
 def check_status(task_id: str) -> str:
-"""Check the task status. Returns 'completed' when the task is done, no need to call again."""
-pass
+    """Check the task status. Returns 'completed' when the task is done, no need to call again."""
+    pass
 ```
 
 ### 5.2 Tool-call failure
@@ -824,15 +824,15 @@ pass
 ```python
 @tool
 def get_sales_data(date: str) -> str:
-"""Query sales data. The date format must be YYYY-MM-DD."""
-try:
-from datetime import datetime
-datetime.strptime(date, "%Y-%m-%d")
-return json.dumps({"date": date, "total_sales": 15000})
-except ValueError:
-return json.dumps({"error": f"Wrong date format: {date}, please use YYYY-MM-DD"})
-except Exception as e:
-return json.dumps({"error": f"Query failed: {str(e)}"})
+    """Query sales data. The date format must be YYYY-MM-DD."""
+    try:
+        from datetime import datetime
+        datetime.strptime(date, "%Y-%m-%d")
+        return json.dumps({"date": date, "total_sales": 15000})
+    except ValueError:
+        return json.dumps({"error": f"Wrong date format: {date}, please use YYYY-MM-DD"})
+    except Exception as e:
+        return json.dumps({"error": f"Query failed: {str(e)}"})
 ```
 
 ### 5.3 Cost runaway
@@ -963,26 +963,26 @@ from typing import TypedDict, Annotated
 from langgraph.graph.message import add_messages
 
 class ApprovalState(TypedDict):
-messages: Annotated[list, add_messages]
-action: str
-approved: bool
+    messages: Annotated[list, add_messages]
+    action: str
+    approved: bool
 
 def propose_action(state: ApprovalState) -> dict:
-return {"action": "Suggest an urgent restock of 500 units for ASIN B0AAAA, estimated cost $12,500"}
+    return {"action": "Suggest an urgent restock of 500 units for ASIN B0AAAA, estimated cost $12,500"}
 
 def execute_action(state: ApprovalState) -> dict:
-print(f"Executing: {state['action']}")
-return {"messages": [("assistant", f"Executed: {state['action']}")]}
+    print(f"Executing: {state['action']}")
+    return {"messages": [("assistant", f"Executed: {state['action']}")]}
 
 def check_approval(state: ApprovalState) -> str:
-return "execute" if state.get("approved") else "end"
+    return "execute" if state.get("approved") else "end"
 
 workflow = StateGraph(ApprovalState)
 workflow.add_node("propose", propose_action)
 workflow.add_node("execute", execute_action)
 workflow.set_entry_point("propose")
 workflow.add_conditional_edges("propose", check_approval,
-{"execute": "execute", "end": END})
+                               {"execute": "execute", "end": END})
 workflow.add_edge("execute", END)
 
 memory = MemorySaver()
@@ -1026,17 +1026,17 @@ from langchain_core.messages import HumanMessage
 import base64
 
 def analyze_product_image(image_path: str) -> str:
-"""Analyze a product image with a vision-capable model, extracting selling points and improvement advice."""
-llm = ChatOpenAI(model="gpt-5.6-terra", temperature=0)  # T2 workhorse tier is enough for vision
-with open(image_path, "rb") as f:
-image_data = base64.b64encode(f.read()).decode("utf-8")
+    """Analyze a product image with a vision-capable model, extracting selling points and improvement advice."""
+    llm = ChatOpenAI(model="gpt-5.6-terra", temperature=0)  # T2 workhorse tier is enough for vision
+    with open(image_path, "rb") as f:
+        image_data = base64.b64encode(f.read()).decode("utf-8")
 
-message = HumanMessage(content=[
-{"type": "text", "text": "Analyze the product image: 1) main selling points 2) image-quality assessment 3) improvement advice"},
-{"type": "image_url",
-"image_url": {"url": f"data:image/jpeg;base64,{image_data}"}},
-])
-return llm.invoke([message]).content
+    message = HumanMessage(content=[
+        {"type": "text", "text": "Analyze the product image: 1) main selling points 2) image-quality assessment 3) improvement advice"},
+        {"type": "image_url",
+         "image_url": {"url": f"data:image/jpeg;base64,{image_data}"}},
+    ])
+    return llm.invoke([message]).content
 ```
 
 ---

@@ -144,16 +144,16 @@ Agent の核心能力はツール(Tools)から来る。ツールのない Agent 
 ```python
 # ツール定義の例
 def get_inventory(asin: str) -> dict:
-"""指定した ASIN の在庫状態を照会する。
+    """指定した ASIN の在庫状態を照会する。
 
-Args:
-asin: Amazon 製品識別子(B0XXXXX など)
+    Args:
+        asin: Amazon 製品識別子(B0XXXXX など)
 
-Returns:
-current_stock, safety_stock, daily_sales を含む辞書
-"""
-# 実際の実装: データベースか API を呼ぶ
-pass
+    Returns:
+        current_stock, safety_stock, daily_sales を含む辞書
+    """
+    # 実際の実装: データベースか API を呼ぶ
+    pass
 ```
 
 LLM は関数の名前、docstring、パラメータ型を読んで、このツールをいつ呼ぶか、どう呼ぶかを決める。だから**ツールの説明の質が Agent の性能を直接決める**。
@@ -265,41 +265,41 @@ from langgraph.prebuilt import create_react_agent
 # 1. ツールを定義
 @tool
 def get_sales_data(date: str) -> dict:
-"""指定した日付の販売データ集計を照会する。
+    """指定した日付の販売データ集計を照会する。
 
-Args:
-date: 日付、形式 YYYY-MM-DD
+    Args:
+        date: 日付、形式 YYYY-MM-DD
 
-Returns:
-total_sales, total_orders, top_asin を含む辞書
-"""
-# モックデータ(実際は DB クエリか API 呼び出しに置換)
-return {
-"date": date,
-"total_sales": 15230.50,
-"total_orders": 342,
-"top_asin": "B0XXXXX",
-"top_asin_sales": 3200.00,
-"yoy_change": -0.12,
-}
+    Returns:
+        total_sales, total_orders, top_asin を含む辞書
+    """
+    # モックデータ(実際は DB クエリか API 呼び出しに置換)
+    return {
+        "date": date,
+        "total_sales": 15230.50,
+        "total_orders": 342,
+        "top_asin": "B0XXXXX",
+        "top_asin_sales": 3200.00,
+        "yoy_change": -0.12,
+    }
 
 @tool
 def detect_anomaly(metric: str, value: float, threshold: float) -> dict:
-"""指標が異常か検出する。
+    """指標が異常か検出する。
 
-Args:
-metric: 指標名
-value: 現在値
-threshold: 異常閾値(変化パーセンテージ、-0.2 は 20% 低下を意味)
-"""
-is_anomaly = value < threshold
-return {
-"metric": metric,
-"value": value,
-"threshold": threshold,
-"is_anomaly": is_anomaly,
-"severity": "high" if value < threshold * 1.5 else "medium",
-}
+    Args:
+        metric: 指標名
+        value: 現在値
+        threshold: 異常閾値(変化パーセンテージ、-0.2 は 20% 低下を意味)
+    """
+    is_anomaly = value < threshold
+    return {
+        "metric": metric,
+        "value": value,
+        "threshold": threshold,
+        "is_anomaly": is_anomaly,
+        "severity": "high" if value < threshold * 1.5 else "medium",
+    }
 
 # 2. Agent を作成
 llm = ChatOpenAI(model="gpt-5.6-luna", temperature=0)  # T3 tier — see model-matrix.md
@@ -308,13 +308,13 @@ agent = create_react_agent(llm, tools)
 
 # 3. Agent を実行
 result = agent.invoke({
-"messages": [("user", "2025-03-10 の販売データを調べて、前年比で 10% 以上下がっていたら教えて")]
+    "messages": [("user", "2025-03-10 の販売データを調べて、前年比で 10% 以上下がっていたら教えて")]
 })
 
 # 4. 結果を出力
 for msg in result["messages"]:
-if hasattr(msg, "content") and msg.content:
-print(f"[{msg.type}] {msg.content}")
+    if hasattr(msg, "content") and msg.content:
+        print(f"[{msg.type}] {msg.content}")
 ```
 
 **Agent の実行過程:**
@@ -345,53 +345,53 @@ from langgraph.graph.message import add_messages
 # --- ツール定義 ---
 @tool
 def fetch_daily_sales(date: str) -> str:
-"""指定した日付の販売データ集計を取得する。"""
-return json.dumps({
-"date": date,
-"summary": {"total_revenue": 45230.50, "total_orders": 1024,
-"total_units": 1580, "avg_order_value": 44.17},
-"top_products": [
-{"asin": "B0AAAA", "name": "アクションカメラ X1", "units": 320, "revenue": 12800},
-{"asin": "B0BBBB", "name": "充電器 Pro", "units": 280, "revenue": 5600},
-],
-"yoy_comparison": {"revenue_change": -0.08, "orders_change": -0.05},
-}, ensure_ascii=False)
+    """指定した日付の販売データ集計を取得する。"""
+    return json.dumps({
+        "date": date,
+        "summary": {"total_revenue": 45230.50, "total_orders": 1024,
+                    "total_units": 1580, "avg_order_value": 44.17},
+        "top_products": [
+            {"asin": "B0AAAA", "name": "アクションカメラ X1", "units": 320, "revenue": 12800},
+            {"asin": "B0BBBB", "name": "充電器 Pro", "units": 280, "revenue": 5600},
+        ],
+        "yoy_comparison": {"revenue_change": -0.08, "orders_change": -0.05},
+    }, ensure_ascii=False)
 
 @tool
 def fetch_inventory_status() -> str:
-"""現在の在庫状態を取得、低在庫 ASIN をマーク。"""
-return json.dumps({
-"low_stock_items": [
-{"asin": "B0AAAA", "current": 120, "safety": 200, "days_left": 3},
-],
-"total_skus": 45, "healthy_skus": 44,
-}, ensure_ascii=False)
+    """現在の在庫状態を取得、低在庫 ASIN をマーク。"""
+    return json.dumps({
+        "low_stock_items": [
+            {"asin": "B0AAAA", "current": 120, "safety": 200, "days_left": 3},
+        ],
+        "total_skus": 45, "healthy_skus": 44,
+    }, ensure_ascii=False)
 
 @tool
 def fetch_review_alerts() -> str:
-"""直近 24 時間の低評価警告を取得する。"""
-return json.dumps({
-"new_negative_reviews": [
-{"asin": "B0BBBB", "rating": 1, "title": "充電が遅すぎる",
-"text": "2 週間で壊れた、充電速度が宣伝よりずっと遅い"},
-],
-"avg_rating_change": -0.1,
-}, ensure_ascii=False)
+    """直近 24 時間の低評価警告を取得する。"""
+    return json.dumps({
+        "new_negative_reviews": [
+            {"asin": "B0BBBB", "rating": 1, "title": "充電が遅すぎる",
+             "text": "2 週間で壊れた、充電速度が宣伝よりずっと遅い"},
+        ],
+        "avg_rating_change": -0.1,
+    }, ensure_ascii=False)
 
 @tool
 def generate_report(report_content: str) -> str:
-"""分析結果を Markdown 日報に整形する。"""
-today = datetime.now().strftime("%Y-%m-%d")
-report = f"# 運営日報 {today}\n\n{report_content}\n\n---\n*AI Agent が自動生成*"
-return f"レポートを生成、計 {len(report)} 文字"
+    """分析結果を Markdown 日報に整形する。"""
+    today = datetime.now().strftime("%Y-%m-%d")
+    report = f"# 運営日報 {today}\n\n{report_content}\n\n---\n*AI Agent が自動生成*"
+    return f"レポートを生成、計 {len(report)} 文字"
 
 # --- Agent 状態 ---
 class DailyReportState(TypedDict):
-messages: Annotated[list, add_messages]
-sales_data: str
-inventory_data: str
-review_data: str
-report: str
+    messages: Annotated[list, add_messages]
+    sales_data: str
+    inventory_data: str
+    review_data: str
+    report: str
 
 llm = ChatOpenAI(model="gpt-5.6-luna", temperature=0)  # T3 tier — see model-matrix.md
 
@@ -403,25 +403,25 @@ SYSTEM_PROMPT = """あなたは EC 運営日報 Agent です。データ収集�
 日本語で出力、データ正確、提案は具体的に。"""
 
 def collect_data(state: DailyReportState) -> dict:
-"""ノード 1: 全データ源を収集。"""
-today = datetime.now().strftime("%Y-%m-%d")
-return {
-"sales_data": fetch_daily_sales.invoke({"date": today}),
-"inventory_data": fetch_inventory_status.invoke({}),
-"review_data": fetch_review_alerts.invoke({}),
-}
+    """ノード 1: 全データ源を収集。"""
+    today = datetime.now().strftime("%Y-%m-%d")
+    return {
+        "sales_data": fetch_daily_sales.invoke({"date": today}),
+        "inventory_data": fetch_inventory_status.invoke({}),
+        "review_data": fetch_review_alerts.invoke({}),
+    }
 
 def analyze_and_report(state: DailyReportState) -> dict:
-"""ノード 2: AI がデータを分析し日報を生成。"""
-messages = [
-SystemMessage(content=SYSTEM_PROMPT),
-HumanMessage(content=f"販売: {state['sales_data']}\n"
-f"在庫: {state['inventory_data']}\n"
-f"Review: {state['review_data']}\n\n運営日報を生成してください。"),
-]
-response = llm.invoke(messages)
-generate_report.invoke({"report_content": response.content})
-return {"report": response.content, "messages": [response]}
+    """ノード 2: AI がデータを分析し日報を生成。"""
+    messages = [
+        SystemMessage(content=SYSTEM_PROMPT),
+        HumanMessage(content=f"販売: {state['sales_data']}\n"
+                             f"在庫: {state['inventory_data']}\n"
+                             f"Review: {state['review_data']}\n\n運営日報を生成してください。"),
+    ]
+    response = llm.invoke(messages)
+    generate_report.invoke({"report_content": response.content})
+    return {"report": response.content, "messages": [response]}
 
 # --- ワークフローグラフを構築 ---
 workflow = StateGraph(DailyReportState)
@@ -466,72 +466,72 @@ from langgraph.graph.message import add_messages
 
 @tool
 def check_all_inventory() -> str:
-"""全 SKU の在庫状態をチェック、低在庫リストを返す。"""
-return json.dumps({
-"total_skus": 45,
-"low_stock": [
-{"asin": "B0AAAA", "name": "アクションカメラ X1", "current": 80,
-"safety": 200, "daily_avg": 25, "days_left": 3.2},
-],
-"out_of_stock_risk": [
-{"asin": "B0EEEE", "name": "レンズキャップ", "current": 10,
-"daily_avg": 8, "days_left": 1.25},
-],
-}, ensure_ascii=False)
+    """全 SKU の在庫状態をチェック、低在庫リストを返す。"""
+    return json.dumps({
+        "total_skus": 45,
+        "low_stock": [
+            {"asin": "B0AAAA", "name": "アクションカメラ X1", "current": 80,
+             "safety": 200, "daily_avg": 25, "days_left": 3.2},
+        ],
+        "out_of_stock_risk": [
+            {"asin": "B0EEEE", "name": "レンズキャップ", "current": 10,
+             "daily_avg": 8, "days_left": 1.25},
+        ],
+    }, ensure_ascii=False)
 
 @tool
 def forecast_demand(asin: str, days: int = 30) -> str:
-"""指定した ASIN の今後 N 日の需要量を予測する。"""
-forecasts = {
-"B0AAAA": {"predicted_demand": 780, "confidence": 0.85, "trend": "stable"},
-"B0EEEE": {"predicted_demand": 250, "confidence": 0.82, "trend": "stable"},
-}
-result = forecasts.get(asin, {"predicted_demand": 500, "confidence": 0.7})
-result.update({"asin": asin, "forecast_days": days})
-return json.dumps(result, ensure_ascii=False)
+    """指定した ASIN の今後 N 日の需要量を予測する。"""
+    forecasts = {
+        "B0AAAA": {"predicted_demand": 780, "confidence": 0.85, "trend": "stable"},
+        "B0EEEE": {"predicted_demand": 250, "confidence": 0.82, "trend": "stable"},
+    }
+    result = forecasts.get(asin, {"predicted_demand": 500, "confidence": 0.7})
+    result.update({"asin": asin, "forecast_days": days})
+    return json.dumps(result, ensure_ascii=False)
 
 @tool
 def send_restock_alert(alert_content: str) -> str:
-"""補充リマインダーを送信(メール/Slack/企業微信)。"""
-print(f"補充リマインダーを送信:\n{alert_content}")
-return "補充リマインダーを送信しました"
+    """補充リマインダーを送信(メール/Slack/企業微信)。"""
+    print(f"補充リマインダーを送信:\n{alert_content}")
+    return "補充リマインダーを送信しました"
 
 # --- 状態とノード ---
 class InventoryState(TypedDict):
-messages: Annotated[list, add_messages]
-inventory_data: str
-has_alerts: bool
-forecast_results: list[str]
-alert_content: str
+    messages: Annotated[list, add_messages]
+    inventory_data: str
+    has_alerts: bool
+    forecast_results: list[str]
+    alert_content: str
 
 llm = ChatOpenAI(model="gpt-5.6-luna", temperature=0)  # T3 tier — see model-matrix.md
 
 def check_inventory(state: InventoryState) -> dict:
-data = check_all_inventory.invoke({})
-parsed = json.loads(data)
-has_alerts = bool(parsed.get("low_stock") or parsed.get("out_of_stock_risk"))
-return {"inventory_data": data, "has_alerts": has_alerts}
+    data = check_all_inventory.invoke({})
+    parsed = json.loads(data)
+    has_alerts = bool(parsed.get("low_stock") or parsed.get("out_of_stock_risk"))
+    return {"inventory_data": data, "has_alerts": has_alerts}
 
 def should_alert(state: InventoryState) -> Literal["forecast", "end"]:
-return "forecast" if state["has_alerts"] else "end"
+    return "forecast" if state["has_alerts"] else "end"
 
 def run_forecast(state: InventoryState) -> dict:
-parsed = json.loads(state["inventory_data"])
-all_items = parsed.get("low_stock", []) + parsed.get("out_of_stock_risk", [])
-results = [forecast_demand.invoke({"asin": item["asin"], "days": 30})
-for item in all_items]
-return {"forecast_results": results}
+    parsed = json.loads(state["inventory_data"])
+    all_items = parsed.get("low_stock", []) + parsed.get("out_of_stock_risk", [])
+    results = [forecast_demand.invoke({"asin": item["asin"], "days": 30})
+               for item in all_items]
+    return {"forecast_results": results}
 
 def generate_alert(state: InventoryState) -> dict:
-messages = [
-SystemMessage(content="あなたは在庫管理の専門家です。緊急度順にソート(3日以内の欠品 > 7日以内)し、"
-"納期と予測需要を考慮した具体的な補充数量提案を出してください。"),
-HumanMessage(content=f"在庫: {state['inventory_data']}\n"
-f"予測: {json.dumps(state['forecast_results'], ensure_ascii=False)}"),
-]
-response = llm.invoke(messages)
-send_restock_alert.invoke({"alert_content": response.content})
-return {"alert_content": response.content, "messages": [response]}
+    messages = [
+        SystemMessage(content="あなたは在庫管理の専門家です。緊急度順にソート(3日以内の欠品 > 7日以内)し、"
+                              "納期と予測需要を考慮した具体的な補充数量提案を出してください。"),
+        HumanMessage(content=f"在庫: {state['inventory_data']}\n"
+                             f"予測: {json.dumps(state['forecast_results'], ensure_ascii=False)}"),
+    ]
+    response = llm.invoke(messages)
+    send_restock_alert.invoke({"alert_content": response.content})
+    return {"alert_content": response.content, "messages": [response]}
 
 # --- ワークフローを構築 ---
 workflow = StateGraph(InventoryState)
@@ -540,7 +540,7 @@ workflow.add_node("forecast", run_forecast)
 workflow.add_node("generate_alert", generate_alert)
 workflow.set_entry_point("check_inventory")
 workflow.add_conditional_edges("check_inventory", should_alert,
-{"forecast": "forecast", "end": END})
+                               {"forecast": "forecast", "end": END})
 workflow.add_edge("forecast", "generate_alert")
 workflow.add_edge("generate_alert", END)
 inventory_agent = workflow.compile()
@@ -575,73 +575,73 @@ from langgraph.graph.message import add_messages
 
 @tool
 def fetch_new_reviews(hours: int = 24) -> str:
-"""直近 N 時間の新規 Review を取得する。"""
-return json.dumps({
-"period": f"直近 {hours} 時間",
-"total_new": 15, "positive": 10, "neutral": 2, "negative": 3,
-"reviews": [
-{"asin": "B0AAAA", "rating": 1, "title": "品質が悪すぎる",
-"text": "1 週間で壊れた、レンズがぼやける、防水も効かない"},
-{"asin": "B0AAAA", "rating": 2, "title": "電池が持たない",
-"text": "電池が 40 分しか持たず、宣伝の 2 時間を大きく下回る"},
-{"asin": "B0BBBB", "rating": 1, "title": "充電器の発熱がひどい",
-"text": "充電中にとても熱くなり、安全性が心配"},
-],
-}, ensure_ascii=False)
+    """直近 N 時間の新規 Review を取得する。"""
+    return json.dumps({
+        "period": f"直近 {hours} 時間",
+        "total_new": 15, "positive": 10, "neutral": 2, "negative": 3,
+        "reviews": [
+            {"asin": "B0AAAA", "rating": 1, "title": "品質が悪すぎる",
+             "text": "1 週間で壊れた、レンズがぼやける、防水も効かない"},
+            {"asin": "B0AAAA", "rating": 2, "title": "電池が持たない",
+             "text": "電池が 40 分しか持たず、宣伝の 2 時間を大きく下回る"},
+            {"asin": "B0BBBB", "rating": 1, "title": "充電器の発熱がひどい",
+             "text": "充電中にとても熱くなり、安全性が心配"},
+        ],
+    }, ensure_ascii=False)
 
 @tool
 def analyze_review_sentiment(review_text: str) -> str:
-"""単一の Review に感情分析と問題分類を行う。"""
-categories = []
-if any(w in review_text for w in ["壊", "broken", "defect"]):
-categories.append("製品品質")
-if any(w in review_text for w in ["電池", "battery", "持た"]):
-categories.append("電池持ち")
-if any(w in review_text for w in ["熱", "烫", "hot", "overheat"]):
-categories.append("安全上の懸念")
-return json.dumps({
-"sentiment": "negative",
-"categories": categories or ["その他"],
-"severity": "high" if "安全" in str(categories) else "medium",
-}, ensure_ascii=False)
+    """単一の Review に感情分析と問題分類を行う。"""
+    categories = []
+    if any(w in review_text for w in ["壊", "broken", "defect"]):
+        categories.append("製品品質")
+    if any(w in review_text for w in ["電池", "battery", "持た"]):
+        categories.append("電池持ち")
+    if any(w in review_text for w in ["熱", "烫", "hot", "overheat"]):
+        categories.append("安全上の懸念")
+    return json.dumps({
+        "sentiment": "negative",
+        "categories": categories or ["その他"],
+        "severity": "high" if "安全" in str(categories) else "medium",
+    }, ensure_ascii=False)
 
 # --- ワークフロー: 在庫警告 Agent と同じ構造 ---
 # fetch_reviews → 低評価あり? → Yes → analyze_reviews → generate_alert → END
 # → No → END
 
 class ReviewState(TypedDict):
-messages: Annotated[list, add_messages]
-review_data: str
-has_negative: bool
-analysis_results: list[dict]
-alert_report: str
+    messages: Annotated[list, add_messages]
+    review_data: str
+    has_negative: bool
+    analysis_results: list[dict]
+    alert_report: str
 
 llm = ChatOpenAI(model="gpt-5.6-luna", temperature=0)  # T3 tier — see model-matrix.md
 
 def fetch_reviews(state: ReviewState) -> dict:
-data = fetch_new_reviews.invoke({"hours": 24})
-parsed = json.loads(data)
-return {"review_data": data, "has_negative": parsed.get("negative", 0) > 0}
+    data = fetch_new_reviews.invoke({"hours": 24})
+    parsed = json.loads(data)
+    return {"review_data": data, "has_negative": parsed.get("negative", 0) > 0}
 
 def should_analyze(state: ReviewState) -> Literal["analyze", "end"]:
-return "analyze" if state["has_negative"] else "end"
+    return "analyze" if state["has_negative"] else "end"
 
 def analyze_reviews(state: ReviewState) -> dict:
-parsed = json.loads(state["review_data"])
-results = []
-for review in [r for r in parsed["reviews"] if r["rating"] <= 2]:
-analysis = analyze_review_sentiment.invoke({"review_text": review["text"]})
-results.append({"review": review, "analysis": json.loads(analysis)})
-return {"analysis_results": results}
+    parsed = json.loads(state["review_data"])
+    results = []
+    for review in [r for r in parsed["reviews"] if r["rating"] <= 2]:
+        analysis = analyze_review_sentiment.invoke({"review_text": review["text"]})
+        results.append({"review": review, "analysis": json.loads(analysis)})
+    return {"analysis_results": results}
 
 def generate_review_alert(state: ReviewState) -> dict:
-messages = [
-SystemMessage(content="あなたは EC Review 分析の専門家です。問題カテゴリ別に低評価をまとめ、"
-"深刻度を注記(安全上の懸念 > 品質問題 > 体験問題)し、対応提案を出してください。"),
-HumanMessage(content=f"低評価分析: {json.dumps(state['analysis_results'], ensure_ascii=False)}"),
-]
-response = llm.invoke(messages)
-return {"alert_report": response.content, "messages": [response]}
+    messages = [
+        SystemMessage(content="あなたは EC Review 分析の専門家です。問題カテゴリ別に低評価をまとめ、"
+                              "深刻度を注記(安全上の懸念 > 品質問題 > 体験問題)し、対応提案を出してください。"),
+        HumanMessage(content=f"低評価分析: {json.dumps(state['analysis_results'], ensure_ascii=False)}"),
+    ]
+    response = llm.invoke(messages)
+    return {"alert_report": response.content, "messages": [response]}
 
 workflow = StateGraph(ReviewState)
 workflow.add_node("fetch_reviews", fetch_reviews)
@@ -649,7 +649,7 @@ workflow.add_node("analyze", analyze_reviews)
 workflow.add_node("generate_alert", generate_review_alert)
 workflow.set_entry_point("fetch_reviews")
 workflow.add_conditional_edges("fetch_reviews", should_analyze,
-{"analyze": "analyze", "end": END})
+                               {"analyze": "analyze", "end": END})
 workflow.add_edge("analyze", "generate_alert")
 workflow.add_edge("generate_alert", END)
 review_agent = workflow.compile()
@@ -804,15 +804,15 @@ verbose=True,
 ```python
 # 方案 1: 最大反復回数を設定
 result = agent.invoke(
-{"messages": [("user", "あなたの指示")]},
-config={"recursion_limit": 10}, # 最大 10 回
+    {"messages": [("user", "あなたの指示")]},
+    config={"recursion_limit": 10}, # 最大 10 回
 )
 
 # 方案 2: ツール説明で「完了条件」を明確に
 @tool
 def check_status(task_id: str) -> str:
-"""タスク状態をチェック。'completed' を返すとタスク完了、再度呼ぶ必要なし。"""
-pass
+    """タスク状態をチェック。'completed' を返すとタスク完了、再度呼ぶ必要なし。"""
+    pass
 ```
 
 ### 5.2 ツール呼び出しの失敗
@@ -824,15 +824,15 @@ pass
 ```python
 @tool
 def get_sales_data(date: str) -> str:
-"""販売データを照会。日付形式は YYYY-MM-DD でなければならない。"""
-try:
-from datetime import datetime
-datetime.strptime(date, "%Y-%m-%d")
-return json.dumps({"date": date, "total_sales": 15000})
-except ValueError:
-return json.dumps({"error": f"日付形式が誤り: {date}、YYYY-MM-DD を使用してください"})
-except Exception as e:
-return json.dumps({"error": f"照会失敗: {str(e)}"})
+    """販売データを照会。日付形式は YYYY-MM-DD でなければならない。"""
+    try:
+        from datetime import datetime
+        datetime.strptime(date, "%Y-%m-%d")
+        return json.dumps({"date": date, "total_sales": 15000})
+    except ValueError:
+        return json.dumps({"error": f"日付形式が誤り: {date}、YYYY-MM-DD を使用してください"})
+    except Exception as e:
+        return json.dumps({"error": f"照会失敗: {str(e)}"})
 ```
 
 ### 5.3 コスト暴走
@@ -963,26 +963,26 @@ from typing import TypedDict, Annotated
 from langgraph.graph.message import add_messages
 
 class ApprovalState(TypedDict):
-messages: Annotated[list, add_messages]
-action: str
-approved: bool
+    messages: Annotated[list, add_messages]
+    action: str
+    approved: bool
 
 def propose_action(state: ApprovalState) -> dict:
-return {"action": "ASIN B0AAAA に緊急補充 500 件を提案、予想費用 $12,500"}
+    return {"action": "ASIN B0AAAA に緊急補充 500 件を提案、予想費用 $12,500"}
 
 def execute_action(state: ApprovalState) -> dict:
-print(f"実行: {state['action']}")
-return {"messages": [("assistant", f"実行済み: {state['action']}")]}
+    print(f"実行: {state['action']}")
+    return {"messages": [("assistant", f"実行済み: {state['action']}")]}
 
 def check_approval(state: ApprovalState) -> str:
-return "execute" if state.get("approved") else "end"
+    return "execute" if state.get("approved") else "end"
 
 workflow = StateGraph(ApprovalState)
 workflow.add_node("propose", propose_action)
 workflow.add_node("execute", execute_action)
 workflow.set_entry_point("propose")
 workflow.add_conditional_edges("propose", check_approval,
-{"execute": "execute", "end": END})
+                               {"execute": "execute", "end": END})
 workflow.add_edge("execute", END)
 
 memory = MemorySaver()
@@ -1026,17 +1026,17 @@ from langchain_core.messages import HumanMessage
 import base64
 
 def analyze_product_image(image_path: str) -> str:
-"""視覚対応モデルで製品画像を分析、訴求点と改善提案を抽出。"""
-llm = ChatOpenAI(model="gpt-5.6-terra", temperature=0)  # T2 主力級で視覚タスクは十分
-with open(image_path, "rb") as f:
-image_data = base64.b64encode(f.read()).decode("utf-8")
+    """視覚対応モデルで製品画像を分析、訴求点と改善提案を抽出。"""
+    llm = ChatOpenAI(model="gpt-5.6-terra", temperature=0)  # T2 主力級で視覚タスクは十分
+    with open(image_path, "rb") as f:
+        image_data = base64.b64encode(f.read()).decode("utf-8")
 
-message = HumanMessage(content=[
-{"type": "text", "text": "製品画像を分析: 1)主要な訴求点 2)画像品質の評価 3)改善提案"},
-{"type": "image_url",
-"image_url": {"url": f"data:image/jpeg;base64,{image_data}"}},
-])
-return llm.invoke([message]).content
+    message = HumanMessage(content=[
+        {"type": "text", "text": "製品画像を分析: 1)主要な訴求点 2)画像品質の評価 3)改善提案"},
+        {"type": "image_url",
+         "image_url": {"url": f"data:image/jpeg;base64,{image_data}"}},
+    ])
+    return llm.invoke([message]).content
 ```
 
 ---

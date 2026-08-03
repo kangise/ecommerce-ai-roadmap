@@ -174,97 +174,97 @@ Content rephrased for compliance with licensing restrictions.
 ```python
 # E-commerce product image prompt template library (extended version)
 PROMPT_TEMPLATES = {
-# === Hero image series ===
-"amazon_main": {
-"positive": "professional product photography, {product}, centered on pure white background #FFFFFF, product fills 85 percent of frame, studio lighting with soft shadows, high resolution 8k, sharp focus, no text no logos no watermarks, commercial catalog style",
-"negative": "blurry, low quality, text, watermark, logo, human, hand, colored background, shadow on background, props, accessories not part of product"
-},
-"shopify_hero": {
-"positive": "hero product shot, {product}, clean minimal background with subtle gradient, dramatic studio lighting, slight shadow underneath, premium feel, editorial quality, 4k",
-"negative": "cluttered, busy background, text, watermark, low quality"
-},
+    # === Hero image series ===
+    "amazon_main": {
+        "positive": "professional product photography, {product}, centered on pure white background #FFFFFF, product fills 85 percent of frame, studio lighting with soft shadows, high resolution 8k, sharp focus, no text no logos no watermarks, commercial catalog style",
+        "negative": "blurry, low quality, text, watermark, logo, human, hand, colored background, shadow on background, props, accessories not part of product"
+    },
+    "shopify_hero": {
+        "positive": "hero product shot, {product}, clean minimal background with subtle gradient, dramatic studio lighting, slight shadow underneath, premium feel, editorial quality, 4k",
+        "negative": "cluttered, busy background, text, watermark, low quality"
+    },
 
-# === Scene image series ===
-"lifestyle_home": {
-"positive": "lifestyle product photography, {product} in modern minimalist home, natural window lighting, warm tones, shallow depth of field, bokeh background, editorial style, authentic feel",
-"negative": "artificial, oversaturated, studio look, text, watermark"
-},
-"lifestyle_outdoor": {
-"positive": "outdoor lifestyle photography, {product} in natural setting, golden hour lighting, vibrant colors, adventure feel, authentic, editorial quality",
-"negative": "indoor, artificial lighting, text, watermark, studio"
-},
-"lifestyle_office": {
-"positive": "modern office setting, {product} on clean desk, natural lighting from window, minimalist decor, professional atmosphere, shallow depth of field",
-"negative": "cluttered, messy, dark, text, watermark"
-},
-"lifestyle_kitchen": {
-"positive": "modern kitchen setting, {product} on marble countertop, natural lighting, fresh ingredients nearby, clean and bright, food photography style",
-"negative": "dirty, cluttered, dark, text, watermark"
-},
+    # === Scene image series ===
+    "lifestyle_home": {
+        "positive": "lifestyle product photography, {product} in modern minimalist home, natural window lighting, warm tones, shallow depth of field, bokeh background, editorial style, authentic feel",
+        "negative": "artificial, oversaturated, studio look, text, watermark"
+    },
+    "lifestyle_outdoor": {
+        "positive": "outdoor lifestyle photography, {product} in natural setting, golden hour lighting, vibrant colors, adventure feel, authentic, editorial quality",
+        "negative": "indoor, artificial lighting, text, watermark, studio"
+    },
+    "lifestyle_office": {
+        "positive": "modern office setting, {product} on clean desk, natural lighting from window, minimalist decor, professional atmosphere, shallow depth of field",
+        "negative": "cluttered, messy, dark, text, watermark"
+    },
+    "lifestyle_kitchen": {
+        "positive": "modern kitchen setting, {product} on marble countertop, natural lighting, fresh ingredients nearby, clean and bright, food photography style",
+        "negative": "dirty, cluttered, dark, text, watermark"
+    },
 
-# === Flat lay series ===
-"flat_lay_minimal": {
-"positive": "flat lay photography, {product} with complementary items, top-down view, clean arrangement on {surface}, soft shadows, minimalist, {color_scheme}",
-"negative": "cluttered, messy, blurry, text, 3D perspective"
-},
-"flat_lay_seasonal": {
-"positive": "seasonal flat lay, {product} surrounded by {season} elements, top-down view, cohesive color palette, editorial styling, natural textures",
-"negative": "cluttered, artificial, text, watermark"
-},
+    # === Flat lay series ===
+    "flat_lay_minimal": {
+        "positive": "flat lay photography, {product} with complementary items, top-down view, clean arrangement on {surface}, soft shadows, minimalist, {color_scheme}",
+        "negative": "cluttered, messy, blurry, text, 3D perspective"
+    },
+    "flat_lay_seasonal": {
+        "positive": "seasonal flat lay, {product} surrounded by {season} elements, top-down view, cohesive color palette, editorial styling, natural textures",
+        "negative": "cluttered, artificial, text, watermark"
+    },
 
-# === Infographic background series ===
-"infographic_clean": {
-"positive": "clean infographic background for {product}, {color_scheme} gradient, modern design, ample negative space for text overlay, professional, soft lighting on product",
-"negative": "text, numbers, charts, cluttered, busy, distracting elements"
-},
-"infographic_comparison": {
-"positive": "split comparison layout background, {product} centered, left side and right side clearly divided, clean modern design, space for before/after or feature comparison text",
-"negative": "text, numbers, cluttered"
-},
+    # === Infographic background series ===
+    "infographic_clean": {
+        "positive": "clean infographic background for {product}, {color_scheme} gradient, modern design, ample negative space for text overlay, professional, soft lighting on product",
+        "negative": "text, numbers, charts, cluttered, busy, distracting elements"
+    },
+    "infographic_comparison": {
+        "positive": "split comparison layout background, {product} centered, left side and right side clearly divided, clean modern design, space for before/after or feature comparison text",
+        "negative": "text, numbers, cluttered"
+    },
 
-# === Social media series ===
-"instagram_aesthetic": {
-"positive": "instagram aesthetic product shot, {product}, trendy styling, {color_scheme} color palette, natural lighting, lifestyle feel, square format, influencer style",
-"negative": "corporate, boring, text, watermark, low quality"
-},
-"tiktok_dynamic": {
-"positive": "dynamic product shot, {product}, vibrant colors, energetic composition, slight motion blur on background, youth-oriented, vertical format 9:16",
-"negative": "static, boring, corporate, text"
-},
+    # === Social media series ===
+    "instagram_aesthetic": {
+        "positive": "instagram aesthetic product shot, {product}, trendy styling, {color_scheme} color palette, natural lighting, lifestyle feel, square format, influencer style",
+        "negative": "corporate, boring, text, watermark, low quality"
+    },
+    "tiktok_dynamic": {
+        "positive": "dynamic product shot, {product}, vibrant colors, energetic composition, slight motion blur on background, youth-oriented, vertical format 9:16",
+        "negative": "static, boring, corporate, text"
+    },
 
-# === A+ Content series ===
-"aplus_brand_story": {
-"positive": "brand story photography, {product} in aspirational setting, warm emotional lighting, lifestyle context, premium quality, cinematic feel",
-"negative": "cheap, low quality, text, watermark"
-},
-"aplus_feature_highlight": {
-"positive": "close-up detail shot, {product} {feature} highlighted, macro photography style, sharp focus on detail, soft background, studio lighting",
-"negative": "blurry, wide shot, text, watermark"
-}
+    # === A+ Content series ===
+    "aplus_brand_story": {
+        "positive": "brand story photography, {product} in aspirational setting, warm emotional lighting, lifestyle context, premium quality, cinematic feel",
+        "negative": "cheap, low quality, text, watermark"
+    },
+    "aplus_feature_highlight": {
+        "positive": "close-up detail shot, {product} {feature} highlighted, macro photography style, sharp focus on detail, soft background, studio lighting",
+        "negative": "blurry, wide shot, text, watermark"
+    }
 }
 
 def generate_prompt(template_name: str, product: str, **kwargs) -> dict:
-"""Generate a product image prompt"""
-template = PROMPT_TEMPLATES[template_name]
-# Fill in default values
-defaults = {
-"surface": "white marble",
-"color_scheme": "blue and white",
-"season": "autumn",
-"feature": "texture detail"
-}
-for k, v in defaults.items():
-kwargs.setdefault(k, v)
+    """Generate a product image prompt"""
+    template = PROMPT_TEMPLATES[template_name]
+    # Fill in default values
+    defaults = {
+        "surface": "white marble",
+        "color_scheme": "blue and white",
+        "season": "autumn",
+        "feature": "texture detail"
+    }
+    for k, v in defaults.items():
+        kwargs.setdefault(k, v)
 
-return {
-"positive": template["positive"].format(product=product, **kwargs),
-"negative": template["negative"]
-}
+    return {
+        "positive": template["positive"].format(product=product, **kwargs),
+        "negative": template["negative"]
+    }
 
 # Usage example
 prompt = generate_prompt(
-"lifestyle_home",
-product="wireless bluetooth earbuds with charging case"
+    "lifestyle_home",
+    product="wireless bluetooth earbuds with charging case"
 )
 print(prompt["positive"])
 ```
@@ -283,49 +283,49 @@ from pathlib import Path
 client = OpenAI()
 
 def generate_product_image(
-product_description: str,
-style: str = "white_background",
-size: str = "1024x1024",
-output_dir: str = "output"
+    product_description: str,
+    style: str = "white_background",
+    size: str = "1024x1024",
+    output_dir: str = "output"
 ) -> str:
-"""Generate a product image with GPT Image 2"""
+    """Generate a product image with GPT Image 2"""
 
-prompts = {
-"white_background": f"Professional product photography of {product_description}, centered on pure white background, studio lighting, high resolution, commercial quality",
-"lifestyle": f"Lifestyle product photography of {product_description} being used in a modern home setting, natural lighting, warm tones, editorial quality",
-"amazon_main": f"Amazon product listing main image: {product_description}, pure white background (#FFFFFF), product fills 85% of frame, no text or logos, professional studio photography"
-}
+    prompts = {
+        "white_background": f"Professional product photography of {product_description}, centered on pure white background, studio lighting, high resolution, commercial quality",
+        "lifestyle": f"Lifestyle product photography of {product_description} being used in a modern home setting, natural lighting, warm tones, editorial quality",
+        "amazon_main": f"Amazon product listing main image: {product_description}, pure white background (#FFFFFF), product fills 85% of frame, no text or logos, professional studio photography"
+    }
 
-response = client.images.generate(
-model="gpt-image-2",
-prompt=prompts[style],
-size=size,
-quality="hd",
-n=1
-)
+    response = client.images.generate(
+        model="gpt-image-2",
+        prompt=prompts[style],
+        size=size,
+        quality="hd",
+        n=1
+    )
 
-# Download the image
-image_url = response.data[0].url
-Path(output_dir).mkdir(exist_ok=True)
+    # Download the image
+    image_url = response.data[0].url
+    Path(output_dir).mkdir(exist_ok=True)
 
-img_data = requests.get(image_url).content
-filepath = f"{output_dir}/{product_description[:30]}_{style}.png"
-with open(filepath, "wb") as f:
-f.write(img_data)
+    img_data = requests.get(image_url).content
+    filepath = f"{output_dir}/{product_description[:30]}_{style}.png"
+    with open(filepath, "wb") as f:
+        f.write(img_data)
 
-return filepath
+    return filepath
 
 # Batch generation
 products = [
-"wireless bluetooth earbuds with charging case",
-"stainless steel water bottle 32oz",
-"portable neck fan with LED display"
+    "wireless bluetooth earbuds with charging case",
+    "stainless steel water bottle 32oz",
+    "portable neck fan with LED display"
 ]
 
 for product in products:
-for style in ["white_background", "lifestyle"]:
-path = generate_product_image(product, style)
-print(f"Generated: {path}")
+    for style in ["white_background", "lifestyle"]:
+        path = generate_product_image(product, style)
+        print(f"Generated: {path}")
 ```
 
 ### 4.2 Background Removal + White-Background Compositing
@@ -382,212 +382,212 @@ from typing import Optional
 
 @dataclass
 class ProductImageRequest:
-"""Product image generation request"""
-product_name: str
-product_description: str
-source_image: Optional[str] = None # Path to the real product photo
-brand_color: str = "blue"
-target_platforms: list = None # ["amazon", "shopify", "instagram"]
+    """Product image generation request"""
+    product_name: str
+    product_description: str
+    source_image: Optional[str] = None # Path to the real product photo
+    brand_color: str = "blue"
+    target_platforms: list = None # ["amazon", "shopify", "instagram"]
 
-def __post_init__(self):
-if self.target_platforms is None:
-self.target_platforms = ["amazon", "shopify"]
+    def __post_init__(self):
+        if self.target_platforms is None:
+            self.target_platforms = ["amazon", "shopify"]
 
 class ProductImagePipeline:
-"""E-commerce product image batch generation pipeline"""
+    """E-commerce product image batch generation pipeline"""
 
-def __init__(self, method: str = "openai", output_dir: str = "output/images"):
-self.method = method
-self.output_dir = output_dir
-Path(output_dir).mkdir(parents=True, exist_ok=True)
-self.log = []
+    def __init__(self, method: str = "openai", output_dir: str = "output/images"):
+        self.method = method
+        self.output_dir = output_dir
+        Path(output_dir).mkdir(parents=True, exist_ok=True)
+        self.log = []
 
-def generate_product_set(self, request: ProductImageRequest) -> dict:
-"""Generate a complete image set for one product"""
-product_dir = os.path.join(
-self.output_dir,
-request.product_name.replace(" ", "_")[:30]
-)
-Path(product_dir).mkdir(exist_ok=True)
+    def generate_product_set(self, request: ProductImageRequest) -> dict:
+        """Generate a complete image set for one product"""
+        product_dir = os.path.join(
+            self.output_dir,
+            request.product_name.replace(" ", "_")[:30]
+        )
+        Path(product_dir).mkdir(exist_ok=True)
 
-results = {"product": request.product_name, "images": {}}
+        results = {"product": request.product_name, "images": {}}
 
-# 1. Amazon white-background hero image
-if "amazon" in request.target_platforms:
-self._log(f"Generating Amazon hero image: {request.product_name}")
-main_img = self._generate_image(
-request, "amazon_main",
-os.path.join(product_dir, "amazon_main.jpg")
-)
-# Post-processing: background removal + white-background compositing
-amazon_img = self._post_process_amazon(main_img)
-results["images"]["amazon_main"] = amazon_img
+        # 1. Amazon white-background hero image
+        if "amazon" in request.target_platforms:
+            self._log(f"Generating Amazon hero image: {request.product_name}")
+            main_img = self._generate_image(
+                request, "amazon_main",
+                os.path.join(product_dir, "amazon_main.jpg")
+            )
+            # Post-processing: background removal + white-background compositing
+            amazon_img = self._post_process_amazon(main_img)
+            results["images"]["amazon_main"] = amazon_img
 
-# Compliance check
-compliance = check_amazon_compliance(amazon_img)
-results["images"]["amazon_compliance"] = compliance
-if not compliance["compliant"]:
-self._log(f" Amazon compliance issue: {compliance['issues']}")
+            # Compliance check
+            compliance = check_amazon_compliance(amazon_img)
+            results["images"]["amazon_compliance"] = compliance
+            if not compliance["compliant"]:
+                self._log(f" Amazon compliance issue: {compliance['issues']}")
 
-# 2. Scene shots x3
-scenes = [
-("modern living room", "lifestyle_home"),
-("outdoor natural setting", "lifestyle_outdoor"),
-("clean office desk", "lifestyle_office")
-]
-results["images"]["lifestyle"] = []
-for i, (scene, template) in enumerate(scenes):
-self._log(f"Generating scene shot {i+1}/3: {scene}")
-img = self._generate_image(
-request, template,
-os.path.join(product_dir, f"lifestyle_{i+1}.jpg"),
-scene=scene
-)
-results["images"]["lifestyle"].append(img)
+        # 2. Scene shots x3
+        scenes = [
+            ("modern living room", "lifestyle_home"),
+            ("outdoor natural setting", "lifestyle_outdoor"),
+            ("clean office desk", "lifestyle_office")
+        ]
+        results["images"]["lifestyle"] = []
+        for i, (scene, template) in enumerate(scenes):
+            self._log(f"Generating scene shot {i+1}/3: {scene}")
+            img = self._generate_image(
+                request, template,
+                os.path.join(product_dir, f"lifestyle_{i+1}.jpg"),
+                scene=scene
+            )
+            results["images"]["lifestyle"].append(img)
 
-# 3. Infographic backgrounds x2
-results["images"]["infographic"] = []
-for i, color in enumerate(["blue and white", "warm earth tones"]):
-self._log(f"Generating infographic background {i+1}/2")
-img = self._generate_image(
-request, "infographic_clean",
-os.path.join(product_dir, f"infographic_{i+1}.jpg"),
-color_scheme=color
-)
-results["images"]["infographic"].append(img)
+        # 3. Infographic backgrounds x2
+        results["images"]["infographic"] = []
+        for i, color in enumerate(["blue and white", "warm earth tones"]):
+            self._log(f"Generating infographic background {i+1}/2")
+            img = self._generate_image(
+                request, "infographic_clean",
+                os.path.join(product_dir, f"infographic_{i+1}.jpg"),
+                color_scheme=color
+            )
+            results["images"]["infographic"].append(img)
 
-# 4. Social media assets
-if "instagram" in request.target_platforms:
-self._log("Generating Instagram asset")
-img = self._generate_image(
-request, "instagram_aesthetic",
-os.path.join(product_dir, "instagram.jpg"),
-color_scheme=request.brand_color
-)
-results["images"]["instagram"] = img
+        # 4. Social media assets
+        if "instagram" in request.target_platforms:
+            self._log("Generating Instagram asset")
+            img = self._generate_image(
+                request, "instagram_aesthetic",
+                os.path.join(product_dir, "instagram.jpg"),
+                color_scheme=request.brand_color
+            )
+            results["images"]["instagram"] = img
 
-# 5. A+ Content brand story image
-self._log("Generating A+ Content image")
-img = self._generate_image(
-request, "aplus_brand_story",
-os.path.join(product_dir, "aplus_brand.jpg")
-)
-results["images"]["aplus"] = img
+        # 5. A+ Content brand story image
+        self._log("Generating A+ Content image")
+        img = self._generate_image(
+            request, "aplus_brand_story",
+            os.path.join(product_dir, "aplus_brand.jpg")
+        )
+        results["images"]["aplus"] = img
 
-# Save metadata
-metadata = {
-"product": request.product_name,
-"generated_at": datetime.now().isoformat(),
-"method": self.method,
-"images": {k: str(v) for k, v in results["images"].items()},
-"log": self.log
-}
-with open(os.path.join(product_dir, "metadata.json"), "w") as f:
-json.dump(metadata, f, indent=2, ensure_ascii=False)
+        # Save metadata
+        metadata = {
+            "product": request.product_name,
+            "generated_at": datetime.now().isoformat(),
+            "method": self.method,
+            "images": {k: str(v) for k, v in results["images"].items()},
+            "log": self.log
+        }
+        with open(os.path.join(product_dir, "metadata.json"), "w") as f:
+            json.dump(metadata, f, indent=2, ensure_ascii=False)
 
-self._log(f" Done: {request.product_name} ({len(results['images'])} images)")
-return results
+        self._log(f" Done: {request.product_name} ({len(results['images'])} images)")
+        return results
 
-def batch_generate(self, requests: list[ProductImageRequest]) -> list:
-"""Batch-generate image sets for multiple products"""
-all_results = []
-for i, request in enumerate(requests):
-print(f"\n{'='*50}")
-print(f"Processing {i+1}/{len(requests)}: {request.product_name}")
-print(f"{'='*50}")
+    def batch_generate(self, requests: list[ProductImageRequest]) -> list:
+        """Batch-generate image sets for multiple products"""
+        all_results = []
+        for i, request in enumerate(requests):
+            print(f"\n{'='*50}")
+            print(f"Processing {i+1}/{len(requests)}: {request.product_name}")
+            print(f"{'='*50}")
 
-try:
-results = self.generate_product_set(request)
-all_results.append(results)
-except Exception as e:
-self._log(f" Failed: {request.product_name} - {str(e)}")
-all_results.append({"product": request.product_name, "error": str(e)})
+            try:
+                results = self.generate_product_set(request)
+                all_results.append(results)
+            except Exception as e:
+                self._log(f" Failed: {request.product_name} - {str(e)}")
+                all_results.append({"product": request.product_name, "error": str(e)})
 
-# Generate the batch report
-self._generate_batch_report(all_results)
-return all_results
+        # Generate the batch report
+        self._generate_batch_report(all_results)
+        return all_results
 
-def _generate_image(self, request, template, output_path, **kwargs):
-"""Generate a single image (chooses the generation method based on self.method)"""
-prompt = generate_prompt(template, request.product_description, **kwargs)
+    def _generate_image(self, request, template, output_path, **kwargs):
+        """Generate a single image (chooses the generation method based on self.method)"""
+        prompt = generate_prompt(template, request.product_description, **kwargs)
 
-if self.method == "openai":
-return self._openai_generate(prompt, output_path)
-elif self.method == "comfyui":
-return self._comfyui_generate(prompt, request.source_image, output_path)
-else:
-raise ValueError(f"Unknown method: {self.method}")
+        if self.method == "openai":
+            return self._openai_generate(prompt, output_path)
+        elif self.method == "comfyui":
+            return self._comfyui_generate(prompt, request.source_image, output_path)
+        else:
+            raise ValueError(f"Unknown method: {self.method}")
 
-def _openai_generate(self, prompt, output_path):
-"""GPT Image 2 generation"""
-response = client.images.generate(
-model="gpt-image-2",
-prompt=prompt["positive"],
-size="1024x1024",
-quality="hd",
-n=1
-)
-# Download and save
-import requests
-img_data = requests.get(response.data[0].url).content
-with open(output_path, "wb") as f:
-f.write(img_data)
-return output_path
+    def _openai_generate(self, prompt, output_path):
+        """GPT Image 2 generation"""
+        response = client.images.generate(
+            model="gpt-image-2",
+            prompt=prompt["positive"],
+            size="1024x1024",
+            quality="hd",
+            n=1
+        )
+        # Download and save
+        import requests
+        img_data = requests.get(response.data[0].url).content
+        with open(output_path, "wb") as f:
+            f.write(img_data)
+        return output_path
 
-def _post_process_amazon(self, image_path):
-"""Amazon hero image post-processing"""
-output_path = image_path.replace(".jpg", "_amazon.jpg")
-create_amazon_main_image(image_path, output_path)
-return output_path
+    def _post_process_amazon(self, image_path):
+        """Amazon hero image post-processing"""
+        output_path = image_path.replace(".jpg", "_amazon.jpg")
+        create_amazon_main_image(image_path, output_path)
+        return output_path
 
-def _log(self, message):
-timestamp = datetime.now().strftime("%H:%M:%S")
-self.log.append(f"[{timestamp}] {message}")
-print(f"[{timestamp}] {message}")
+    def _log(self, message):
+        timestamp = datetime.now().strftime("%H:%M:%S")
+        self.log.append(f"[{timestamp}] {message}")
+        print(f"[{timestamp}] {message}")
 
-def _generate_batch_report(self, results):
-"""Generate the batch-processing report"""
-report = f"# Product Image Batch Generation Report\n\n"
-report += f"Generated at: {datetime.now().isoformat()}\n"
-report += f"Total products: {len(results)}\n"
-report += f"Succeeded: {sum(1 for r in results if 'error' not in r)}\n"
-report += f"Failed: {sum(1 for r in results if 'error' in r)}\n\n"
+    def _generate_batch_report(self, results):
+        """Generate the batch-processing report"""
+        report = f"# Product Image Batch Generation Report\n\n"
+        report += f"Generated at: {datetime.now().isoformat()}\n"
+        report += f"Total products: {len(results)}\n"
+        report += f"Succeeded: {sum(1 for r in results if 'error' not in r)}\n"
+        report += f"Failed: {sum(1 for r in results if 'error' in r)}\n\n"
 
-for r in results:
-if "error" in r:
-report += f" {r['product']}: {r['error']}\n"
-else:
-report += f" {r['product']}: {len(r['images'])} images\n"
+        for r in results:
+            if "error" in r:
+                report += f" {r['product']}: {r['error']}\n"
+            else:
+                report += f" {r['product']}: {len(r['images'])} images\n"
 
-with open(os.path.join(self.output_dir, "batch_report.md"), "w") as f:
-f.write(report)
+        with open(os.path.join(self.output_dir, "batch_report.md"), "w") as f:
+            f.write(report)
 
 # === Usage example ===
 if __name__ == "__main__":
-pipeline = ProductImagePipeline(method="openai")
+    pipeline = ProductImagePipeline(method="openai")
 
-products = [
-ProductImageRequest(
-product_name="Wireless Bluetooth Earbuds",
-product_description="premium wireless bluetooth earbuds with active noise cancellation, charging case, white color",
-brand_color="blue",
-target_platforms=["amazon", "shopify", "instagram"]
-),
-ProductImageRequest(
-product_name="Stainless Steel Water Bottle",
-product_description="32oz stainless steel insulated water bottle, matte black, with bamboo lid",
-brand_color="green",
-target_platforms=["amazon", "shopify"]
-),
-ProductImageRequest(
-product_name="Portable Neck Fan",
-product_description="portable bladeless neck fan with LED display, 3 speed settings, white and gray",
-brand_color="blue",
-target_platforms=["amazon", "instagram"]
-)
-]
+    products = [
+        ProductImageRequest(
+            product_name="Wireless Bluetooth Earbuds",
+            product_description="premium wireless bluetooth earbuds with active noise cancellation, charging case, white color",
+            brand_color="blue",
+            target_platforms=["amazon", "shopify", "instagram"]
+        ),
+        ProductImageRequest(
+            product_name="Stainless Steel Water Bottle",
+            product_description="32oz stainless steel insulated water bottle, matte black, with bamboo lid",
+            brand_color="green",
+            target_platforms=["amazon", "shopify"]
+        ),
+        ProductImageRequest(
+            product_name="Portable Neck Fan",
+            product_description="portable bladeless neck fan with LED display, 3 speed settings, white and gray",
+            brand_color="blue",
+            target_platforms=["amazon", "instagram"]
+        )
+    ]
 
-results = pipeline.batch_generate(products)
+    results = pipeline.batch_generate(products)
 ```
 
 ### 5.2 A/B Testing Image Variants

@@ -144,16 +144,16 @@ Agent 的核心能力来自工具（Tools）。没有工具的 Agent 只是一�
 ```python
 # 工具定义示例
 def get_inventory(asin: str) -> dict:
-"""查询指定 ASIN 的库存状态。
+    """查询指定 ASIN 的库存状态。
 
-Args:
-asin: Amazon 产品标识符（如 B0XXXXX）
+    Args:
+        asin: Amazon 产品标识符（如 B0XXXXX）
 
-Returns:
-包含 current_stock, safety_stock, daily_sales 的字典
-"""
-# 实际实现：调用数据库或 API
-pass
+    Returns:
+        包含 current_stock, safety_stock, daily_sales 的字典
+    """
+    # 实际实现：调用数据库或 API
+    pass
 ```
 
 LLM 通过阅读函数的名称、docstring 和参数类型来决定何时调用、如何调用这个工具。所以**工具的描述质量直接决定 Agent 的表现**。
@@ -265,41 +265,41 @@ from langgraph.prebuilt import create_react_agent
 # 1. 定义工具
 @tool
 def get_sales_data(date: str) -> dict:
-"""查询指定日期的销售数据汇总。
+    """查询指定日期的销售数据汇总。
 
-Args:
-date: 日期，格式 YYYY-MM-DD
+    Args:
+        date: 日期，格式 YYYY-MM-DD
 
-Returns:
-包含 total_sales, total_orders, top_asin 的字典
-"""
-# 模拟数据（实际场景替换为数据库查询或 API 调用）
-return {
-"date": date,
-"total_sales": 15230.50,
-"total_orders": 342,
-"top_asin": "B0XXXXX",
-"top_asin_sales": 3200.00,
-"yoy_change": -0.12,
-}
+    Returns:
+        包含 total_sales, total_orders, top_asin 的字典
+    """
+    # 模拟数据（实际场景替换为数据库查询或 API 调用）
+    return {
+        "date": date,
+        "total_sales": 15230.50,
+        "total_orders": 342,
+        "top_asin": "B0XXXXX",
+        "top_asin_sales": 3200.00,
+        "yoy_change": -0.12,
+    }
 
 @tool
 def detect_anomaly(metric: str, value: float, threshold: float) -> dict:
-"""检测指标是否异常。
+    """检测指标是否异常。
 
-Args:
-metric: 指标名称
-value: 当前值
-threshold: 异常阈值（变化百分比，如 -0.2 表示下降 20%）
-"""
-is_anomaly = value < threshold
-return {
-"metric": metric,
-"value": value,
-"threshold": threshold,
-"is_anomaly": is_anomaly,
-"severity": "high" if value < threshold * 1.5 else "medium",
-}
+    Args:
+        metric: 指标名称
+        value: 当前值
+        threshold: 异常阈值（变化百分比，如 -0.2 表示下降 20%）
+    """
+    is_anomaly = value < threshold
+    return {
+        "metric": metric,
+        "value": value,
+        "threshold": threshold,
+        "is_anomaly": is_anomaly,
+        "severity": "high" if value < threshold * 1.5 else "medium",
+    }
 
 # 2. 创建 Agent
 llm = ChatOpenAI(model="gpt-5.6-luna", temperature=0)  # T3 高速档，型号见 model-matrix.md
@@ -308,13 +308,13 @@ agent = create_react_agent(llm, tools)
 
 # 3. 运行 Agent
 result = agent.invoke({
-"messages": [("user", "查一下 2025-03-10 的销售数据，如果同比下降超过 10% 就告诉我")]
+    "messages": [("user", "查一下 2025-03-10 的销售数据，如果同比下降超过 10% 就告诉我")]
 })
 
 # 4. 输出结果
 for msg in result["messages"]:
-if hasattr(msg, "content") and msg.content:
-print(f"[{msg.type}] {msg.content}")
+    if hasattr(msg, "content") and msg.content:
+        print(f"[{msg.type}] {msg.content}")
 ```
 
 **Agent 的执行过程：**
@@ -345,53 +345,53 @@ from langgraph.graph.message import add_messages
 # --- 工具定义 ---
 @tool
 def fetch_daily_sales(date: str) -> str:
-"""获取指定日期的销售数据汇总。"""
-return json.dumps({
-"date": date,
-"summary": {"total_revenue": 45230.50, "total_orders": 1024,
-"total_units": 1580, "avg_order_value": 44.17},
-"top_products": [
-{"asin": "B0AAAA", "name": "运动相机 X1", "units": 320, "revenue": 12800},
-{"asin": "B0BBBB", "name": "充电器 Pro", "units": 280, "revenue": 5600},
-],
-"yoy_comparison": {"revenue_change": -0.08, "orders_change": -0.05},
-}, ensure_ascii=False)
+    """获取指定日期的销售数据汇总。"""
+    return json.dumps({
+        "date": date,
+        "summary": {"total_revenue": 45230.50, "total_orders": 1024,
+                    "total_units": 1580, "avg_order_value": 44.17},
+        "top_products": [
+            {"asin": "B0AAAA", "name": "运动相机 X1", "units": 320, "revenue": 12800},
+            {"asin": "B0BBBB", "name": "充电器 Pro", "units": 280, "revenue": 5600},
+        ],
+        "yoy_comparison": {"revenue_change": -0.08, "orders_change": -0.05},
+    }, ensure_ascii=False)
 
 @tool
 def fetch_inventory_status() -> str:
-"""获取当前库存状态，标记低库存 ASIN。"""
-return json.dumps({
-"low_stock_items": [
-{"asin": "B0AAAA", "current": 120, "safety": 200, "days_left": 3},
-],
-"total_skus": 45, "healthy_skus": 44,
-}, ensure_ascii=False)
+    """获取当前库存状态，标记低库存 ASIN。"""
+    return json.dumps({
+        "low_stock_items": [
+            {"asin": "B0AAAA", "current": 120, "safety": 200, "days_left": 3},
+        ],
+        "total_skus": 45, "healthy_skus": 44,
+    }, ensure_ascii=False)
 
 @tool
 def fetch_review_alerts() -> str:
-"""获取最近 24 小时的差评预警。"""
-return json.dumps({
-"new_negative_reviews": [
-{"asin": "B0BBBB", "rating": 1, "title": "充电速度太慢",
-"text": "买了两周就坏了，充电速度比宣传的慢很多"},
-],
-"avg_rating_change": -0.1,
-}, ensure_ascii=False)
+    """获取最近 24 小时的差评预警。"""
+    return json.dumps({
+        "new_negative_reviews": [
+            {"asin": "B0BBBB", "rating": 1, "title": "充电速度太慢",
+             "text": "买了两周就坏了，充电速度比宣传的慢很多"},
+        ],
+        "avg_rating_change": -0.1,
+    }, ensure_ascii=False)
 
 @tool
 def generate_report(report_content: str) -> str:
-"""将分析结果格式化为 Markdown 日报。"""
-today = datetime.now().strftime("%Y-%m-%d")
-report = f"# 运营日报 {today}\n\n{report_content}\n\n---\n*AI Agent 自动生成*"
-return f"报告已生成，共 {len(report)} 字符"
+    """将分析结果格式化为 Markdown 日报。"""
+    today = datetime.now().strftime("%Y-%m-%d")
+    report = f"# 运营日报 {today}\n\n{report_content}\n\n---\n*AI Agent 自动生成*"
+    return f"报告已生成，共 {len(report)} 字符"
 
 # --- Agent 状态 ---
 class DailyReportState(TypedDict):
-messages: Annotated[list, add_messages]
-sales_data: str
-inventory_data: str
-review_data: str
-report: str
+    messages: Annotated[list, add_messages]
+    sales_data: str
+    inventory_data: str
+    review_data: str
+    report: str
 
 llm = ChatOpenAI(model="gpt-5.6-luna", temperature=0)  # T3 高速档，型号见 model-matrix.md
 
@@ -403,25 +403,25 @@ SYSTEM_PROMPT = """你是电商运营日报 Agent。收集数据后生成日报�
 用中文输出，数据准确，建议具体。"""
 
 def collect_data(state: DailyReportState) -> dict:
-"""节点 1：收集所有数据源。"""
-today = datetime.now().strftime("%Y-%m-%d")
-return {
-"sales_data": fetch_daily_sales.invoke({"date": today}),
-"inventory_data": fetch_inventory_status.invoke({}),
-"review_data": fetch_review_alerts.invoke({}),
-}
+    """节点 1：收集所有数据源。"""
+    today = datetime.now().strftime("%Y-%m-%d")
+    return {
+        "sales_data": fetch_daily_sales.invoke({"date": today}),
+        "inventory_data": fetch_inventory_status.invoke({}),
+        "review_data": fetch_review_alerts.invoke({}),
+    }
 
 def analyze_and_report(state: DailyReportState) -> dict:
-"""节点 2：AI 分析数据并生成日报。"""
-messages = [
-SystemMessage(content=SYSTEM_PROMPT),
-HumanMessage(content=f"销售：{state['sales_data']}\n"
-f"库存：{state['inventory_data']}\n"
-f"Review：{state['review_data']}\n\n请生成运营日报。"),
-]
-response = llm.invoke(messages)
-generate_report.invoke({"report_content": response.content})
-return {"report": response.content, "messages": [response]}
+    """节点 2：AI 分析数据并生成日报。"""
+    messages = [
+        SystemMessage(content=SYSTEM_PROMPT),
+        HumanMessage(content=f"销售：{state['sales_data']}\n"
+                             f"库存：{state['inventory_data']}\n"
+                             f"Review：{state['review_data']}\n\n请生成运营日报。"),
+    ]
+    response = llm.invoke(messages)
+    generate_report.invoke({"report_content": response.content})
+    return {"report": response.content, "messages": [response]}
 
 # --- 构建工作流图 ---
 workflow = StateGraph(DailyReportState)
@@ -466,72 +466,72 @@ from langgraph.graph.message import add_messages
 
 @tool
 def check_all_inventory() -> str:
-"""检查所有 SKU 的库存状态，返回低库存列表。"""
-return json.dumps({
-"total_skus": 45,
-"low_stock": [
-{"asin": "B0AAAA", "name": "运动相机 X1", "current": 80,
-"safety": 200, "daily_avg": 25, "days_left": 3.2},
-],
-"out_of_stock_risk": [
-{"asin": "B0EEEE", "name": "镜头保护盖", "current": 10,
-"daily_avg": 8, "days_left": 1.25},
-],
-}, ensure_ascii=False)
+    """检查所有 SKU 的库存状态，返回低库存列表。"""
+    return json.dumps({
+        "total_skus": 45,
+        "low_stock": [
+            {"asin": "B0AAAA", "name": "运动相机 X1", "current": 80,
+             "safety": 200, "daily_avg": 25, "days_left": 3.2},
+        ],
+        "out_of_stock_risk": [
+            {"asin": "B0EEEE", "name": "镜头保护盖", "current": 10,
+             "daily_avg": 8, "days_left": 1.25},
+        ],
+    }, ensure_ascii=False)
 
 @tool
 def forecast_demand(asin: str, days: int = 30) -> str:
-"""预测指定 ASIN 未来 N 天的需求量。"""
-forecasts = {
-"B0AAAA": {"predicted_demand": 780, "confidence": 0.85, "trend": "stable"},
-"B0EEEE": {"predicted_demand": 250, "confidence": 0.82, "trend": "stable"},
-}
-result = forecasts.get(asin, {"predicted_demand": 500, "confidence": 0.7})
-result.update({"asin": asin, "forecast_days": days})
-return json.dumps(result, ensure_ascii=False)
+    """预测指定 ASIN 未来 N 天的需求量。"""
+    forecasts = {
+        "B0AAAA": {"predicted_demand": 780, "confidence": 0.85, "trend": "stable"},
+        "B0EEEE": {"predicted_demand": 250, "confidence": 0.82, "trend": "stable"},
+    }
+    result = forecasts.get(asin, {"predicted_demand": 500, "confidence": 0.7})
+    result.update({"asin": asin, "forecast_days": days})
+    return json.dumps(result, ensure_ascii=False)
 
 @tool
 def send_restock_alert(alert_content: str) -> str:
-"""发送补货提醒（邮件/Slack/企业微信）。"""
-print(f" 发送补货提醒:\n{alert_content}")
-return "补货提醒已发送"
+    """发送补货提醒（邮件/Slack/企业微信）。"""
+    print(f" 发送补货提醒:\n{alert_content}")
+    return "补货提醒已发送"
 
 # --- 状态与节点 ---
 class InventoryState(TypedDict):
-messages: Annotated[list, add_messages]
-inventory_data: str
-has_alerts: bool
-forecast_results: list[str]
-alert_content: str
+    messages: Annotated[list, add_messages]
+    inventory_data: str
+    has_alerts: bool
+    forecast_results: list[str]
+    alert_content: str
 
 llm = ChatOpenAI(model="gpt-5.6-luna", temperature=0)  # T3 高速档，型号见 model-matrix.md
 
 def check_inventory(state: InventoryState) -> dict:
-data = check_all_inventory.invoke({})
-parsed = json.loads(data)
-has_alerts = bool(parsed.get("low_stock") or parsed.get("out_of_stock_risk"))
-return {"inventory_data": data, "has_alerts": has_alerts}
+    data = check_all_inventory.invoke({})
+    parsed = json.loads(data)
+    has_alerts = bool(parsed.get("low_stock") or parsed.get("out_of_stock_risk"))
+    return {"inventory_data": data, "has_alerts": has_alerts}
 
 def should_alert(state: InventoryState) -> Literal["forecast", "end"]:
-return "forecast" if state["has_alerts"] else "end"
+    return "forecast" if state["has_alerts"] else "end"
 
 def run_forecast(state: InventoryState) -> dict:
-parsed = json.loads(state["inventory_data"])
-all_items = parsed.get("low_stock", []) + parsed.get("out_of_stock_risk", [])
-results = [forecast_demand.invoke({"asin": item["asin"], "days": 30})
-for item in all_items]
-return {"forecast_results": results}
+    parsed = json.loads(state["inventory_data"])
+    all_items = parsed.get("low_stock", []) + parsed.get("out_of_stock_risk", [])
+    results = [forecast_demand.invoke({"asin": item["asin"], "days": 30})
+               for item in all_items]
+    return {"forecast_results": results}
 
 def generate_alert(state: InventoryState) -> dict:
-messages = [
-SystemMessage(content="你是库存管理专家。按紧急程度排序（3天内断货 7天内），"
-"给出具体补货数量建议，考虑交期和预测需求。"),
-HumanMessage(content=f"库存：{state['inventory_data']}\n"
-f"预测：{json.dumps(state['forecast_results'], ensure_ascii=False)}"),
-]
-response = llm.invoke(messages)
-send_restock_alert.invoke({"alert_content": response.content})
-return {"alert_content": response.content, "messages": [response]}
+    messages = [
+        SystemMessage(content="你是库存管理专家。按紧急程度排序（3天内断货 7天内），"
+                              "给出具体补货数量建议，考虑交期和预测需求。"),
+        HumanMessage(content=f"库存：{state['inventory_data']}\n"
+                             f"预测：{json.dumps(state['forecast_results'], ensure_ascii=False)}"),
+    ]
+    response = llm.invoke(messages)
+    send_restock_alert.invoke({"alert_content": response.content})
+    return {"alert_content": response.content, "messages": [response]}
 
 # --- 构建工作流 ---
 workflow = StateGraph(InventoryState)
@@ -540,7 +540,7 @@ workflow.add_node("forecast", run_forecast)
 workflow.add_node("generate_alert", generate_alert)
 workflow.set_entry_point("check_inventory")
 workflow.add_conditional_edges("check_inventory", should_alert,
-{"forecast": "forecast", "end": END})
+                               {"forecast": "forecast", "end": END})
 workflow.add_edge("forecast", "generate_alert")
 workflow.add_edge("generate_alert", END)
 inventory_agent = workflow.compile()
@@ -575,73 +575,73 @@ from langgraph.graph.message import add_messages
 
 @tool
 def fetch_new_reviews(hours: int = 24) -> str:
-"""获取最近 N 小时的新增 Review。"""
-return json.dumps({
-"period": f"最近 {hours} 小时",
-"total_new": 15, "positive": 10, "neutral": 2, "negative": 3,
-"reviews": [
-{"asin": "B0AAAA", "rating": 1, "title": "质量太差",
-"text": "用了一周就坏了，镜头模糊，防水也不行"},
-{"asin": "B0AAAA", "rating": 2, "title": "电池不耐用",
-"text": "电池只能用 40 分钟，远低于宣传的 2 小时"},
-{"asin": "B0BBBB", "rating": 1, "title": "充电器发热严重",
-"text": "充电时非常烫手，担心安全问题"},
-],
-}, ensure_ascii=False)
+    """获取最近 N 小时的新增 Review。"""
+    return json.dumps({
+        "period": f"最近 {hours} 小时",
+        "total_new": 15, "positive": 10, "neutral": 2, "negative": 3,
+        "reviews": [
+            {"asin": "B0AAAA", "rating": 1, "title": "质量太差",
+             "text": "用了一周就坏了，镜头模糊，防水也不行"},
+            {"asin": "B0AAAA", "rating": 2, "title": "电池不耐用",
+             "text": "电池只能用 40 分钟，远低于宣传的 2 小时"},
+            {"asin": "B0BBBB", "rating": 1, "title": "充电器发热严重",
+             "text": "充电时非常烫手，担心安全问题"},
+        ],
+    }, ensure_ascii=False)
 
 @tool
 def analyze_review_sentiment(review_text: str) -> str:
-"""对单条 Review 进行情感分析和问题分类。"""
-categories = []
-if any(w in review_text for w in ["坏", "broken", "defect"]):
-categories.append("产品质量")
-if any(w in review_text for w in ["电池", "battery", "续航"]):
-categories.append("电池续航")
-if any(w in review_text for w in ["热", "烫", "hot", "overheat"]):
-categories.append("安全隐患")
-return json.dumps({
-"sentiment": "negative",
-"categories": categories or ["其他"],
-"severity": "high" if "安全" in str(categories) else "medium",
-}, ensure_ascii=False)
+    """对单条 Review 进行情感分析和问题分类。"""
+    categories = []
+    if any(w in review_text for w in ["坏", "broken", "defect"]):
+        categories.append("产品质量")
+    if any(w in review_text for w in ["电池", "battery", "续航"]):
+        categories.append("电池续航")
+    if any(w in review_text for w in ["热", "烫", "hot", "overheat"]):
+        categories.append("安全隐患")
+    return json.dumps({
+        "sentiment": "negative",
+        "categories": categories or ["其他"],
+        "severity": "high" if "安全" in str(categories) else "medium",
+    }, ensure_ascii=False)
 
 # --- 工作流：与库存预警 Agent 结构相同 ---
 # fetch_reviews → 有差评？ → Yes → analyze_reviews → generate_alert → END
 # → No → END
 
 class ReviewState(TypedDict):
-messages: Annotated[list, add_messages]
-review_data: str
-has_negative: bool
-analysis_results: list[dict]
-alert_report: str
+    messages: Annotated[list, add_messages]
+    review_data: str
+    has_negative: bool
+    analysis_results: list[dict]
+    alert_report: str
 
 llm = ChatOpenAI(model="gpt-5.6-luna", temperature=0)  # T3 高速档，型号见 model-matrix.md
 
 def fetch_reviews(state: ReviewState) -> dict:
-data = fetch_new_reviews.invoke({"hours": 24})
-parsed = json.loads(data)
-return {"review_data": data, "has_negative": parsed.get("negative", 0) > 0}
+    data = fetch_new_reviews.invoke({"hours": 24})
+    parsed = json.loads(data)
+    return {"review_data": data, "has_negative": parsed.get("negative", 0) > 0}
 
 def should_analyze(state: ReviewState) -> Literal["analyze", "end"]:
-return "analyze" if state["has_negative"] else "end"
+    return "analyze" if state["has_negative"] else "end"
 
 def analyze_reviews(state: ReviewState) -> dict:
-parsed = json.loads(state["review_data"])
-results = []
-for review in [r for r in parsed["reviews"] if r["rating"] <= 2]:
-analysis = analyze_review_sentiment.invoke({"review_text": review["text"]})
-results.append({"review": review, "analysis": json.loads(analysis)})
-return {"analysis_results": results}
+    parsed = json.loads(state["review_data"])
+    results = []
+    for review in [r for r in parsed["reviews"] if r["rating"] <= 2]:
+        analysis = analyze_review_sentiment.invoke({"review_text": review["text"]})
+        results.append({"review": review, "analysis": json.loads(analysis)})
+    return {"analysis_results": results}
 
 def generate_review_alert(state: ReviewState) -> dict:
-messages = [
-SystemMessage(content="你是电商 Review 分析专家。按问题类别汇总差评，"
-"标注严重程度（安全隐患 质量问题 体验问题），给出应对建议。"),
-HumanMessage(content=f"差评分析：{json.dumps(state['analysis_results'], ensure_ascii=False)}"),
-]
-response = llm.invoke(messages)
-return {"alert_report": response.content, "messages": [response]}
+    messages = [
+        SystemMessage(content="你是电商 Review 分析专家。按问题类别汇总差评，"
+                              "标注严重程度（安全隐患 质量问题 体验问题），给出应对建议。"),
+        HumanMessage(content=f"差评分析：{json.dumps(state['analysis_results'], ensure_ascii=False)}"),
+    ]
+    response = llm.invoke(messages)
+    return {"alert_report": response.content, "messages": [response]}
 
 workflow = StateGraph(ReviewState)
 workflow.add_node("fetch_reviews", fetch_reviews)
@@ -649,7 +649,7 @@ workflow.add_node("analyze", analyze_reviews)
 workflow.add_node("generate_alert", generate_review_alert)
 workflow.set_entry_point("fetch_reviews")
 workflow.add_conditional_edges("fetch_reviews", should_analyze,
-{"analyze": "analyze", "end": END})
+                               {"analyze": "analyze", "end": END})
 workflow.add_edge("analyze", "generate_alert")
 workflow.add_edge("generate_alert", END)
 review_agent = workflow.compile()
@@ -804,15 +804,15 @@ verbose=True,
 ```python
 # 方案 1：设置最大迭代次数
 result = agent.invoke(
-{"messages": [("user", "你的指令")]},
-config={"recursion_limit": 10}, # 最多 10 轮
+    {"messages": [("user", "你的指令")]},
+    config={"recursion_limit": 10}, # 最多 10 轮
 )
 
 # 方案 2：在工具描述中明确"完成条件"
 @tool
 def check_status(task_id: str) -> str:
-"""检查任务状态。返回 'completed' 表示任务已完成，无需再调用。"""
-pass
+    """检查任务状态。返回 'completed' 表示任务已完成，无需再调用。"""
+    pass
 ```
 
 ### 5.2 工具调用失败
@@ -824,15 +824,15 @@ pass
 ```python
 @tool
 def get_sales_data(date: str) -> str:
-"""查询销售数据。日期格式必须是 YYYY-MM-DD。"""
-try:
-from datetime import datetime
-datetime.strptime(date, "%Y-%m-%d")
-return json.dumps({"date": date, "total_sales": 15000})
-except ValueError:
-return json.dumps({"error": f"日期格式错误: {date}，请使用 YYYY-MM-DD"})
-except Exception as e:
-return json.dumps({"error": f"查询失败: {str(e)}"})
+    """查询销售数据。日期格式必须是 YYYY-MM-DD。"""
+    try:
+        from datetime import datetime
+        datetime.strptime(date, "%Y-%m-%d")
+        return json.dumps({"date": date, "total_sales": 15000})
+    except ValueError:
+        return json.dumps({"error": f"日期格式错误: {date}，请使用 YYYY-MM-DD"})
+    except Exception as e:
+        return json.dumps({"error": f"查询失败: {str(e)}"})
 ```
 
 ### 5.3 成本失控
@@ -965,26 +965,26 @@ from typing import TypedDict, Annotated
 from langgraph.graph.message import add_messages
 
 class ApprovalState(TypedDict):
-messages: Annotated[list, add_messages]
-action: str
-approved: bool
+    messages: Annotated[list, add_messages]
+    action: str
+    approved: bool
 
 def propose_action(state: ApprovalState) -> dict:
-return {"action": "建议对 ASIN B0AAAA 紧急补货 500 件，预计费用 $12,500"}
+    return {"action": "建议对 ASIN B0AAAA 紧急补货 500 件，预计费用 $12,500"}
 
 def execute_action(state: ApprovalState) -> dict:
-print(f" 执行: {state['action']}")
-return {"messages": [("assistant", f"已执行: {state['action']}")]}
+    print(f" 执行: {state['action']}")
+    return {"messages": [("assistant", f"已执行: {state['action']}")]}
 
 def check_approval(state: ApprovalState) -> str:
-return "execute" if state.get("approved") else "end"
+    return "execute" if state.get("approved") else "end"
 
 workflow = StateGraph(ApprovalState)
 workflow.add_node("propose", propose_action)
 workflow.add_node("execute", execute_action)
 workflow.set_entry_point("propose")
 workflow.add_conditional_edges("propose", check_approval,
-{"execute": "execute", "end": END})
+                               {"execute": "execute", "end": END})
 workflow.add_edge("execute", END)
 
 memory = MemorySaver()
@@ -1028,17 +1028,17 @@ from langchain_core.messages import HumanMessage
 import base64
 
 def analyze_product_image(image_path: str) -> str:
-"""用带视觉能力的模型分析产品图片，提取卖点和改进建议。"""
-llm = ChatOpenAI(model="gpt-5.6-terra", temperature=0)  # T2 主力档，视觉任务够用
-with open(image_path, "rb") as f:
-image_data = base64.b64encode(f.read()).decode("utf-8")
+    """用带视觉能力的模型分析产品图片，提取卖点和改进建议。"""
+    llm = ChatOpenAI(model="gpt-5.6-terra", temperature=0)  # T2 主力档，视觉任务够用
+    with open(image_path, "rb") as f:
+        image_data = base64.b64encode(f.read()).decode("utf-8")
 
-message = HumanMessage(content=[
-{"type": "text", "text": "分析产品图片：1)主要卖点 2)图片质量评估 3)改进建议"},
-{"type": "image_url",
-"image_url": {"url": f"data:image/jpeg;base64,{image_data}"}},
-])
-return llm.invoke([message]).content
+    message = HumanMessage(content=[
+        {"type": "text", "text": "分析产品图片：1)主要卖点 2)图片质量评估 3)改进建议"},
+        {"type": "image_url",
+         "image_url": {"url": f"data:image/jpeg;base64,{image_data}"}},
+    ])
+    return llm.invoke([message]).content
 ```
 
 ---
