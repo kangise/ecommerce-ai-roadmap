@@ -1229,6 +1229,7 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 - [ ] RAGAS で RAG システムの品質を評価、Faithfulness > 0.75 かつ Answer Relevancy > 0.70
 
 以上をすべて完了すれば、RAG 知識ベースシステムの中核スキルを習得しています。次は [B4 Agent ワークフロー](b4-agent-workflow.md)へ。自律的に意思決定する AI Agent の構築方法を学びます。
+
 ---
 
 ## この方法が効かないとき

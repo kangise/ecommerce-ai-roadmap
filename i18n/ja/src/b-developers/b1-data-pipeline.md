@@ -7,6 +7,7 @@
 > **所要時間**: 1 日 1 時間、1〜2 週間
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/b1-data-pipeline.ipynb) 付属 Notebook を Colab で直接実行
+
 ---
 
 

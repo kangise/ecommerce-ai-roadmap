@@ -7,6 +7,7 @@
 > **Time**: 1 hour a day, 1–2 weeks
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/b1-data-pipeline.ipynb) Run the companion Notebook directly in Colab
+
 ---
 
 

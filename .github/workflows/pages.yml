@@ -53,6 +53,25 @@ jobs:
           done
           echo "zh/en/ja all present"
 
+      - name: Check content
+        run: |
+          # Nine checks, each must be zero: anchors, cross-file anchors, links,
+          # python blocks compile, trilingual parity, and the four content gates
+          # (sourced claims, boundary sections, external links, orphan pages).
+          # Offline by design — M4 reads the committed probe cache, so a link
+          # nobody probed fails here rather than the build depending on the
+          # network. Refresh it with --probe-links before merging new links.
+          python3 scripts/verify_content.py --list
+
+      - name: Check anchors against the built HTML
+        run: |
+          # slugify() reproduces mdBook's anchor rules, and every other link
+          # check trusts it. This diffs what the script derives from markdown
+          # against the ids mdBook actually emitted, so a version bump that
+          # changes the rules is caught here rather than by a reader hitting a
+          # dead in-page link.
+          python3 scripts/verify_content.py --anchors-vs-build docs
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

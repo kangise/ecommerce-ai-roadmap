@@ -1229,6 +1229,7 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 - [ ] 用 RAGAS 评估 RAG 系统质量，Faithfulness > 0.75 且 Answer Relevancy > 0.70
 
 完成以上所有项目后，你已经掌握了 RAG 知识库系统的核心技能。接下来进入 [B4 Agent 工作流](b4-agent-workflow.md)，学习如何构建自主决策的 AI Agent。
+
 ---
 
 ## 什么时候这套不管用

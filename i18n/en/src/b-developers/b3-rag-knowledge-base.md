@@ -1229,6 +1229,7 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 - [ ] Evaluated the RAG system's quality with RAGAS, Faithfulness > 0.75 and Answer Relevancy > 0.70
 
 Complete all of the above and you've mastered the core skills of a RAG knowledge-base system. Next: [B4 Agent Workflow](b4-agent-workflow.md) — build an autonomous decision-making AI Agent.
+
 ---
 
 ## When this doesn't work
