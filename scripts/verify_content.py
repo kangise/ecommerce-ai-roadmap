@@ -367,6 +367,38 @@ def gate_m4() -> list[str]:
     return dead
 
 
+def gate_m6() -> list[str]:
+    """Section numbering: sequential, and the visible ordinal agrees with the anchor.
+
+    Two failures that look different and are the same bug. A chapter numbered
+    1..7 then 9 has lost a section or mis-numbered its last one. And a chapter
+    nav reading `7. [Done](#8-done)` is what you get when the heading was
+    renumbered and the label above it was not — the link still works, so nothing
+    else catches it, and the reader sees two different numbers for one section.
+    """
+    problems = []
+    for tree in TREES:
+        for md in sorted((ROOT / tree).rglob("*.md")):
+            rel = f"{tree}/{md.relative_to(ROOT / tree)}"
+            text = md.read_text(encoding="utf-8")
+            nums, fence = [], False
+            for line in text.split("\n"):
+                if line.strip().startswith(("```", "~~~")):
+                    fence = not fence
+                    continue
+                if fence:
+                    continue
+                m = re.match(r"^##\s+(\d+)\.\s", line)
+                if m:
+                    nums.append(int(m.group(1)))
+            if nums and nums != list(range(1, len(nums) + 1)):
+                problems.append(f"{rel}: numbering {nums}")
+            for m in re.finditer(r"(?<![\d.])(\d+)\.\s*\[[^\]]+\]\(#(\d+)-", text):
+                if m.group(1) != m.group(2):
+                    problems.append(f"{rel}: nav label {m.group(1)} vs anchor {m.group(2)}")
+    return problems
+
+
 def gate_m5() -> list[str]:
     base = ROOT / "src"
     inbound = {str(p.relative_to(base)): 0 for p in base.rglob("*.md")}
@@ -401,6 +433,7 @@ GATES = [
     ("M2", "boundary sections", gate_m2),
     ("M4", "external links", gate_m4),
     ("M5", "orphan pages", gate_m5),
+    ("M6", "section numbering", gate_m6),
 ]
 
 

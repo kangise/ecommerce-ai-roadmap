@@ -286,7 +286,7 @@ Sending marketing messages requires the user's explicit consent (opt-in). Violat
 
 ---
 
-## 6.5 WhatsApp Business API Integration In-Depth Guide
+### 6.5 WhatsApp Business API Integration In-Depth Guide
 
 ### Integration Plans with E-Commerce Platforms
 

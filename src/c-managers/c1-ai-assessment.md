@@ -437,7 +437,7 @@ Content rephrased for compliance with licensing restrictions. Source: [McKinsey 
 
 Content rephrased for compliance with licensing restrictions. Sources cited inline.
 
-## 10. 完成标志
+## 9. 完成标志
 
 - [ ] 完成团队 AI 成熟度评估问卷（全员填写，汇总平均分）
 - [ ] 完成 AI 落地优先级矩阵（根据团队实际情况调整评分）

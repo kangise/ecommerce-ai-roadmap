@@ -1249,7 +1249,7 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 | 知无不言 | 知乎 | 中文跨境电商社区，PPC 优化经验丰富 |
 | 创蓝论坛 | 独立站点 | 中国卖家社区，广告实操案例多 |
 
-## 8.5 补充：AI 广告素材批量生成与跨渠道归因
+### 8.5 补充：AI 广告素材批量生成与跨渠道归因
 
 > 本节补充跨平台通用的广告素材 AI 生成方法论和归因体系。具体平台的差异化应用请参考 [E1 Meta Ads](../e-social-media/e1-instagram-facebook-ai-guide.md#6-meta-advantage-ai-广告深度指南)、[E2 YouTube Ads](../e-social-media/e2-youtube-ai-guide.md#6-youtube-ads-ai-优化)、[D4 Walmart Connect](../d-platforms/d4-walmart-ai-guide.md#3-walmart-connect-广告)。
 
@@ -1323,7 +1323,7 @@ Step 4: 上传并测试
 
 ---
 
-## 9. 完成标志
+## 8. 完成标志
 - [ ] 用 AI 生成至少 3 种风格的 Sponsored Brands 广告文案
 - [ ] 理解 ACOS/TACOS/ROAS 的关系，能手动计算并解释含义
 - [ ] 用 AI 制定一份新品 30 天广告启动计划

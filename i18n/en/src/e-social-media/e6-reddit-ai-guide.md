@@ -346,7 +346,7 @@ Reddit is a conversation platform. Posting without replying to comments is treat
 
 ---
 
-## 6.5 Reddit Content Marketing In-Depth Strategy
+### 6.5 Reddit Content Marketing In-Depth Strategy
 
 ### Reddit Account-Building Roadmap
 

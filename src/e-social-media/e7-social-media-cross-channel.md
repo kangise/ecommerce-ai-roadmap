@@ -293,7 +293,7 @@ review-v1 / comparison-ab / tutorial-howto
 
 ---
 
-## 6. 常见陷阱
+## 7. 常见陷阱
 
 ### 6.1 每个渠道各做各的
 
@@ -322,7 +322,7 @@ review-v1 / comparison-ab / tutorial-howto
 
 ---
 
-## 7.5 跨平台内容复用深度工作流
+### 7.5 跨平台内容复用深度工作流
 
 ### 从一个核心素材到 7 个平台的完整 SOP
 

@@ -1171,7 +1171,7 @@ def batch_analyze(
 5. LoRA ファインチューニングを試す(3.5 節、GPU か Colab が必要)
 6. Coursera の Generative AI for Everyone を見て理論基礎を補完
 
-## 9. 完了チェック
+## 8. 完了チェック
 
 - [ ] ローカルに Ollama をインストールし LLM を成功して実行(3.1)
 - [ ] Qwen3 / Gemma 3 / DeepSeek R1 それぞれの優位と適用シーンを言える(3.2)
@@ -1192,7 +1192,7 @@ def batch_analyze(
 
 ---
 
-## 10. 付録
+## 9. 付録
 
 ### 9.1 オープンソースモデル比較表
 

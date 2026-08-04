@@ -1219,7 +1219,7 @@ def build_rag_agent(
 
 Content rephrased for compliance with licensing restrictions. Sources cited inline.
 
-## 10. 完成标志
+## 9. 完成标志
 
 - [ ] 用 LlamaIndex 10 行代码搭建一个最简 RAG，能回答产品文档中的问题
 - [ ] 从产品手册/FAQ 文档构建产品知识库，支持至少 3 种文件格式（.txt, .md, .pdf）

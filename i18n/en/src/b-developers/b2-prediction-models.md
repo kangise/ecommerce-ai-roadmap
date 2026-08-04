@@ -1353,7 +1353,7 @@ python3 run_forecast.py --data data/daily_sales.csv --asin B0XXXXX --stock 500 -
 
 Content rephrased for compliance with licensing restrictions. Sources cited inline.
 
-## 9. Completion Checklist
+## 8. Completion Checklist
 
 <!-- claims: benchmark -->
 

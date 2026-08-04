@@ -383,7 +383,7 @@ On Xiaohongshu, the seeding effect of KOCs is often better. The effect of 100 KO
 
 ---
 
-## 8.5 Xiaohongshu Algorithm In-Depth Analysis
+### 8.5 Xiaohongshu Algorithm In-Depth Analysis
 
 ### Note Lifecycle and Traffic-Pool Mechanism
 
@@ -473,7 +473,7 @@ After agentifying, the data you're asked to paste above should be read from here
 
 ---
 
-## 8.6 Xiaohongshu Content Creation Advanced
+### 8.6 Xiaohongshu Content Creation Advanced
 
 ### Viral-Note Title Formula Library
 
@@ -539,7 +539,7 @@ Tag section (15-20 tags):
 
 ---
 
-## 8.7 Xiaohongshu Data Analysis and Optimization
+### 8.7 Xiaohongshu Data Analysis and Optimization
 
 ### Key Metric System
 

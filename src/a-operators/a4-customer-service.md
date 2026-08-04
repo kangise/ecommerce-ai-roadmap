@@ -1206,7 +1206,7 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 | 创蓝论坛 | 独立站点 | 中国卖家社区，差评处理和申诉实操案例多 |
 | eComCrew | Podcast + 社区 | 英文电商社区，客服最佳实践和工具推荐 |
 
-## 8.5 补充：AI Chatbot 与社交媒体客服自动化
+### 8.5 补充：AI Chatbot 与社交媒体客服自动化
 
 > 本节补充跨平台通用的 AI 客服自动化方法论。具体平台实操请参考 [E5 WhatsApp Business](../e-social-media/e5-whatsapp-business-ai-guide.md)、[E1 Instagram DM 自动化](../e-social-media/e1-instagram-facebook-ai-guide.md)。
 
@@ -1270,7 +1270,7 @@ AI 查询订单系统 → 返回状态
 
 ---
 
-## 9. 完成标志
+## 8. 完成标志
 - [ ] 建立一套多语言客服回复模板库（至少覆盖 5 个常见场景 × 3 种语言）
 - [ ] 用 AI 撰写一封完整的 Plan of Action 申诉信（含 Root Cause + Immediate Actions + Preventive Measures）
 - [ ] 为你的产品生成 FAQ（至少 10 个问题），并更新到 Listing 或 A+ Content

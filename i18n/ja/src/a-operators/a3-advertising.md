@@ -1138,7 +1138,7 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 | WeAreSellers(知無不言) | Zhihu | 中国語の越境EC コミュニティ、PPC 最適化の経験が豊富 |
 | 創藍フォーラム | 独立サイト | 中国セラーコミュニティ、広告実操事例が多い |
 
-## 8.5 補足: AI 広告素材の一括生成とクロスチャネルアトリビューション
+### 8.5 補足: AI 広告素材の一括生成とクロスチャネルアトリビューション
 
 > 本節はクロスプラットフォームの汎用的な広告素材 AI 生成方法論とアトリビューション体系を補足します。プラットフォーム別の応用は [E1 Meta Ads](../e-social-media/e1-instagram-facebook-ai-guide.md#6-meta-advantage-ai-広告深度ガイド)、[E2 YouTube Ads](../e-social-media/e2-youtube-ai-guide.md#6-youtube-ads-ai-最適化)、[D4 Walmart Connect](../d-platforms/d4-walmart-ai-guide.md#3-walmart-connect-広告) 参照。
 
@@ -1212,7 +1212,7 @@ Amazon PPC + Meta Ads + Google Ads を同時に投下するとき、各チャネ
 
 ---
 
-## 9. 完了チェック
+## 8. 完了チェック
 - [ ] AI で最低 3 スタイルの Sponsored Brands 広告コピーを生成
 - [ ] ACOS/TACOS/ROAS の関係を理解し、手動で計算し意味を説明できる
 - [ ] AI で新商品 30 日広告立ち上げ計画を 1 本策定

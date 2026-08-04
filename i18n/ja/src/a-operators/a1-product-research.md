@@ -994,7 +994,7 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 | WeAreSellers(知無不言) | Zhihu | 中国語の越境EC コミュニティ、選品と運営の議論 |
 | 創藍フォーラム | 独立サイト | 中国セラーコミュニティ、サプライチェーンとコンプラ情報が豊富 |
 
-## 9. 完了チェック
+## 8. 完了チェック
 
 - [ ] AI で完全な選品可行性レポートを 1 本完成(7 ステップ法の全ステップをカバー)
 - [ ] 少なくとも 3 つの異なるプロンプトテンプレートを使い効果を比較

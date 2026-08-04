@@ -325,7 +325,7 @@ Better quality-control system
 
 ---
 
-## 4.4 Temu Semi-Managed Model In-Depth Practice
+### 4.4 Temu Semi-Managed Model In-Depth Practice
 
 If you decide to onboard Temu semi-managed, here's a detailed operations guide:
 
@@ -456,7 +456,7 @@ Please calculate for each scenario:
 
 ---
 
-## 4.5 Temu Competitor-Monitoring Methodology
+### 4.5 Temu Competitor-Monitoring Methodology
 
 ### Monitoring Dimensions
 
@@ -511,7 +511,7 @@ After agentifying, the data you're asked to paste above should be read from here
 
 ---
 
-## 4.6 Multi-Platform Coordination Strategy for Temu with Amazon/Shopify
+### 4.6 Multi-Platform Coordination Strategy for Temu with Amazon/Shopify
 
 > **Related reading**: [D3 Cross-Platform Coordination Strategy](cross-platform-strategy.md) — the cross-platform product-line tiering and coordination strategy is referenced in D3.
 

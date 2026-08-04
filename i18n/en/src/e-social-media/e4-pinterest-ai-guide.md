@@ -346,7 +346,7 @@ Rich Pins auto-sync product price and inventory info, boosting SEO and conversio
 
 ---
 
-## 7.5 Pinterest Algorithm In-Depth Analysis
+### 7.5 Pinterest Algorithm In-Depth Analysis
 
 ### Pinterest Recommendation Algorithm Mechanism
 
@@ -437,7 +437,7 @@ Note:
 
 ---
 
-## 7.6 Pinterest Shopping In-Depth Practice
+### 7.6 Pinterest Shopping In-Depth Practice
 
 ### Product Catalog Setup and Optimization
 
@@ -532,7 +532,7 @@ Please design a Pinterest Shopping Ads strategy:
 
 ---
 
-## 7.7 Pinterest Data Analysis In-Depth Guide
+### 7.7 Pinterest Data Analysis In-Depth Guide
 
 ### AI Data Analysis Prompt (enhanced)
 

@@ -536,7 +536,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ---
 
-## 7.6 10 个电商自动化工作流的详细实现方案
+### 7.6 10 个电商自动化工作流的详细实现方案
 
 ### 工作流 1：新差评实时通知（5 分钟搭建）
 

@@ -523,7 +523,7 @@ Please analyze the opportunity of this category on Walmart:
 
 ---
 
-## 6.2 Walmart Buy Box In-Depth Analysis
+### 6.2 Walmart Buy Box In-Depth Analysis
 
 ### Buy Box Algorithm Factor Weights
 
@@ -608,7 +608,7 @@ Please analyze:
 
 ---
 
-## 6.3 Walmart Category Commission Rate Table
+### 6.3 Walmart Category Commission Rate Table
 
 | Category | Commission rate | Comparison with Amazon |
 |----------|-----------------|------------------------|
@@ -627,7 +627,7 @@ Please analyze:
 
 ---
 
-## 6.4 Walmart Seller Center Data Analysis
+### 6.4 Walmart Seller Center Data Analysis
 
 ### Key Reports and Metrics
 
@@ -735,7 +735,7 @@ After agentifying, the data you're asked to paste above should be read from here
 
 ---
 
-## 6.5 Walmart Omnichannel Strategy
+### 6.5 Walmart Omnichannel Strategy
 
 <!-- claims: verified 2026-08 -->
 
@@ -769,7 +769,7 @@ Walmart+ is Walmart's membership program (similar to Amazon Prime):
 
 ---
 
-## 6.6 Walmart Common Traps In-Depth Analysis
+### 6.6 Walmart Common Traps In-Depth Analysis
 
 ### Pitfall 1: Directly Copying the Amazon Listing
 
@@ -930,7 +930,7 @@ Key principles:
 
 ---
 
-## 6.7 Walmart AI Tool Ecosystem
+### 6.7 Walmart AI Tool Ecosystem
 
 | Tool | Use | Price | Recommendation |
 |------|-----|-------|----------------|

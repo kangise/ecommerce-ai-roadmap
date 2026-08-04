@@ -782,7 +782,7 @@ Top 5 流量来源：
 
 Content rephrased for compliance with licensing restrictions. Sources: [Omnisend Shopify AI](https://www.omnisend.com/blog/shopify-ai-tools/), [Growth Miner Shopify AI](https://thegrowthminer.com/best-ai-tools-for-shopify-stores-2026/), [Madgicx Shopify Ads](https://www.madgicx.com/blog/ai-driven-advertising-for-shopify-stores)
 
-## 11. 完成标志
+## 10. 完成标志
 
 - [ ] 理解 Shopify vs Amazon 的 AI 应用差异（能说出 3 个关键差异）
 - [ ] 用 AI 完成一个 Shopify 产品页面的完整优化（标题+描述+SEO+FAQ）
@@ -827,7 +827,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [Omnisend
 
 ---
 
-## 12. 常见陷阱与误区
+## 11. 常见陷阱与误区
 
 ### 12.1 从 Amazon 转 Shopify 的认知陷阱
 
@@ -853,7 +853,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [Omnisend
 
 ---
 
-## 13. 案例分析：Shopify 独立站 AI 落地实战
+## 12. 案例分析：Shopify 独立站 AI 落地实战
 
 <!-- claims: illustrative -->
 
@@ -939,7 +939,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [Omnisend
 
 ---
 
-## 14. Shopify SEO 深度指南（AI 驱动）
+## 13. Shopify SEO 深度指南（AI 驱动）
 
 > **相关阅读**: [E4 Pinterest AI 指南](../e-social-media/e4-pinterest-ai-guide.md) Pinterest SEO 与 Shopify 集成详见 E4
 
@@ -1063,7 +1063,7 @@ Content rephrased for compliance with licensing restrictions. Source: [Shopify G
 
 ---
 
-## 15. Shopify 广告进阶：AI 驱动的全漏斗策略
+## 14. Shopify 广告进阶：AI 驱动的全漏斗策略
 
 ### 15.1 全漏斗广告架构
 
@@ -1226,7 +1226,7 @@ KPI：复购率、LTV、NPS
 
 ---
 
-## 16. 客户生命周期管理（AI 驱动）
+## 15. 客户生命周期管理（AI 驱动）
 
 ### 16.1 RFM 分析与 AI 客户分群
 
@@ -1318,7 +1318,7 @@ Shopify 最大的优势是拥有完整的客户数据。AI 可以基于 RFM（Re
 
 ---
 
-## 17. Shopify 数据分析进阶
+## 16. Shopify 数据分析进阶
 
 ### 17.1 关键指标体系
 
@@ -1374,7 +1374,7 @@ GA4 数据（过去 30 天）：
 
 ---
 
-## 18. 学习资源
+## 17. 学习资源
 
 ### 18.1 Shopify 官方资源
 
@@ -1408,7 +1408,7 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 
 ---
 
-## 19. Shopify Flow 自动化工作流
+## 18. Shopify Flow 自动化工作流
 
 ### 19.1 什么是 Shopify Flow
 
@@ -1505,7 +1505,7 @@ Shopify Flow 是 Shopify 内置的自动化引擎（类似 Zapier，但原生集
 
 ---
 
-## 20. 常见问题 FAQ
+## 19. 常见问题 FAQ
 
 ### 20.1 建站与运营
 
@@ -1537,7 +1537,7 @@ Shopify Flow 是 Shopify 内置的自动化引擎（类似 Zapier，但原生集
 
 ---
 
-## 21. Shopify Winter 2026 RenAIssance: 最新 AI 功能深度解析
+## 20. Shopify Winter 2026 RenAIssance: 最新 AI 功能深度解析
 
 > 2025 年 12 月，Shopify 发布了 Winter '26 Edition（代号 RenAIssance），包含 150+ 项更新，AI 是核心主题。本章深度解析对跨境卖家最有价值的新功能。
 
@@ -1770,7 +1770,7 @@ Shopify Audiences 是 Shopify 利用其平台上数百万商家的聚合数据�
 
 ---
 
-## 22. Shopify x Amazon 双渠道深度协同方法论
+## 21. Shopify x Amazon 双渠道深度协同方法论
 
 > 大多数跨境卖家同时运营 Amazon 和 Shopify。本章不讲"为什么要做双渠道"（前面已经讲了），而是讲具体怎么做数据和运营的深度协同。
 
@@ -1903,7 +1903,7 @@ MCF 的优劣势:
 
 ---
 
-## 23. Shopify 邮件营销深度方法论: 从 Klaviyo 到 AI 个性化
+## 22. Shopify 邮件营销深度方法论: 从 Klaviyo 到 AI 个性化
 
 > 第 5 章讲了邮件营销的基础框架。本章深入讲 Klaviyo 的 AI 功能和高级个性化策略。
 
@@ -2009,7 +2009,7 @@ AI 辅助 A/B 测试 Prompt:
 
 ---
 
-## 24. Shopify 转化率优化 (CRO) 深度指南
+## 23. Shopify 转化率优化 (CRO) 深度指南
 
 ### 24.1 转化率的数学分解
 
@@ -2117,7 +2117,7 @@ Shopify 的平均转化率约 1.4%。这意味着每 100 个访客只有 1.4 个
 
 ---
 
-## 25. Shopify 多语言本地化方法论: 不只是翻译
+## 24. Shopify 多语言本地化方法论: 不只是翻译
 
 ### 25.1 翻译 vs 本地化 vs 创译的区别
 
@@ -2229,7 +2229,7 @@ Shopify Markets 支持一个店铺管理多个市场。技术配置要点:
 
 ---
 
-## 26. Shopify 广告归因与数据分析方法论
+## 25. Shopify 广告归因与数据分析方法论
 
 ### 26.1 iOS 14+ 之后的归因困境
 
@@ -2322,7 +2322,7 @@ Shopify 数据:
 
 ---
 
-## 27. Shopify Liquid 与技术 SEO 实操
+## 26. Shopify Liquid 与技术 SEO 实操
 
 ### 27.1 跨境卖家必须知道的 Liquid 代码片段
 
@@ -2427,7 +2427,7 @@ Shopify 数据:
 
 ---
 
-## 28. 从 Amazon 迁移到 Shopify 的完整方法论
+## 27. 从 Amazon 迁移到 Shopify 的完整方法论
 
 ### 28.1 迁移决策框架
 

@@ -530,7 +530,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ---
 
-## 7.6 10 個の EC 自動化ワークフローの詳細実装案
+### 7.6 10 個の EC 自動化ワークフローの詳細実装案
 
 ### ワークフロー 1: 新しい低評価のリアルタイム通知(5 分で構築)
 

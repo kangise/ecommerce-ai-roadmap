@@ -530,7 +530,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ---
 
-## 7.6 Detailed Plans for the 10 Automation Workflows
+### 7.6 Detailed Plans for the 10 Automation Workflows
 
 ### Workflow 1: real-time negative-review alerts (5-minute build)
 

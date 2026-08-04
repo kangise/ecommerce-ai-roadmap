@@ -873,7 +873,7 @@ Advantage+ Shopping Campaigns 需要足够的数据来学习。日预算低于 $
 
 ---
 
-## 11.5 Instagram 算法深度解析（2026）
+### 11.5 Instagram 算法深度解析（2026）
 
 ### 算法排名因素权重
 
@@ -944,7 +944,7 @@ AI 预测用户是否会与这条内容互动
 
 ---
 
-## 11.6 Instagram 达人合作深度指南
+### 11.6 Instagram 达人合作深度指南
 
 ### 达人类型与合作模式
 
@@ -1028,7 +1028,7 @@ AI 预测用户是否会与这条内容互动
 
 ---
 
-## 11.7 Instagram Reels 进阶技巧
+### 11.7 Instagram Reels 进阶技巧
 
 ### Reels 音乐策略
 

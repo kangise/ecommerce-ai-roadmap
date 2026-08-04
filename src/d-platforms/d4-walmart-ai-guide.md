@@ -533,7 +533,7 @@ Phase 5: 持续优化
 
 ---
 
-## 6.2 Walmart Buy Box 深度解析
+### 6.2 Walmart Buy Box 深度解析
 
 ### Buy Box 算法因素权重
 
@@ -618,7 +618,7 @@ Customer Satisfaction（客户满意度评分）
 
 ---
 
-## 6.3 Walmart 品类佣金率详表
+### 6.3 Walmart 品类佣金率详表
 
 | 品类 | 佣金率 | 与 Amazon 对比 |
 |------|--------|---------------|
@@ -637,7 +637,7 @@ Customer Satisfaction（客户满意度评分）
 
 ---
 
-## 6.4 Walmart Seller Center 数据分析
+### 6.4 Walmart Seller Center 数据分析
 
 ### 关键报告与指标
 
@@ -744,7 +744,7 @@ Top 5 产品表现：
 
 ---
 
-## 6.5 Walmart 全渠道策略
+### 6.5 Walmart 全渠道策略
 
 <!-- claims: verified 2026-08 -->
 
@@ -778,7 +778,7 @@ Walmart+ 是 Walmart 的会员计划（类似 Amazon Prime）：
 
 ---
 
-## 6.6 Walmart 常见陷阱深度解析
+### 6.6 Walmart 常见陷阱深度解析
 
 ### 陷阱 1：直接复制 Amazon Listing
 
@@ -937,7 +937,7 @@ Walmart 出价优化步骤：
 
 ---
 
-## 6.7 Walmart AI 工具生态
+### 6.7 Walmart AI 工具生态
 
 | 工具 | 用途 | 价格 | 推荐度 |
 |------|------|------|--------|

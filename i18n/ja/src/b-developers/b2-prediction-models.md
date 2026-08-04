@@ -1352,7 +1352,7 @@ python3 run_forecast.py --data data/daily_sales.csv --asin B0XXXXX --stock 500 -
 
 Content rephrased for compliance with licensing restrictions. Sources cited inline.
 
-## 9. 完了チェック
+## 8. 完了チェック
 
 <!-- claims: benchmark -->
 

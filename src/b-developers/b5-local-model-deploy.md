@@ -1171,7 +1171,7 @@ def batch_analyze(
 5. 尝试 LoRA 微调（3.5 节，需要 GPU 或 Colab）
 6. 看 Coursera 的 Generative AI for Everyone 补全理论基础
 
-## 9. 完成标志
+## 8. 完成标志
 
 - [ ] 在本地安装 Ollama 并成功运行一个 LLM（3.1）
 - [ ] 能说出 Qwen3 / Gemma 3 / DeepSeek R1 各自的优势和适用场景（3.2）
@@ -1192,7 +1192,7 @@ def batch_analyze(
 
 ---
 
-## 10. 附录
+## 9. 附录
 
 ### 9.1 开源模型对比表
 

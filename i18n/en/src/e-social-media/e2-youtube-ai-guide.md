@@ -639,7 +639,7 @@ A long video without chapter markers makes users likely to leave midway. Chapter
 
 ---
 
-## 10.5 YouTube Channel-Growth Strategy
+### 10.5 YouTube Channel-Growth Strategy
 
 ### The Roadmap from 0 to 1000 Subscribers
 

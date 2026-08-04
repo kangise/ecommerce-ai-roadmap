@@ -331,7 +331,7 @@ DTC（Direct to Consumer）建立直接客户关系
 
 ---
 
-## 4.4 Temu 半托管模式深度实操
+### 4.4 Temu 半托管模式深度实操
 
 如果你决定入驻 Temu 半托管，以下是详细的运营指南：
 
@@ -462,7 +462,7 @@ Step 5: 售后处理
 
 ---
 
-## 4.5 Temu 竞品监控方法论
+### 4.5 Temu 竞品监控方法论
 
 ### 监控维度
 
@@ -516,7 +516,7 @@ Step 5: 售后处理
 
 ---
 
-## 4.6 Temu 与 Amazon/Shopify 的多平台协同策略
+### 4.6 Temu 与 Amazon/Shopify 的多平台协同策略
 
 > **相关阅读**: [D3 跨平台协同策略](cross-platform-strategy.md) 跨平台产品线分层和协同策略参考 D3。
 

@@ -954,7 +954,7 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 | 知无不言 | 知乎 | 中文跨境电商社区，选品和运营讨论 |
 | 创蓝论坛 | 独立站点 | 中国卖家社区，供应链和合规信息丰富 |
 
-## 9. 完成标志
+## 8. 完成标志
 
 - [ ] 用 AI 完成一个完整的选品可行性分析报告（覆盖 7 步法的所有步骤）
 - [ ] 至少使用 3 个不同的 Prompt 模板并对比效果

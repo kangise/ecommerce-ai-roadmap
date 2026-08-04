@@ -1108,7 +1108,7 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 | 《Competing in the Age of AI》 | Marco Iansiti | 理解 AI 如何改变竞争格局，帮助做战略级 AI 投资决策 |
 | 《Measure What Matters》 | John Doerr | OKR 方法论，适用于设定和追踪 AI 项目的目标和关键结果 |
 
-## 13. 完成标志
+## 12. 完成标志
 
 - [ ] 收集团队 AI 使用前的基线数据（至少 3 个场景的时间记录）
 - [ ] 用标准评估法完成一次完整的 ROI 计算

@@ -790,7 +790,7 @@ Please analyze across the following dimensions:
 
 Content rephrased for compliance with licensing restrictions. Sources: [Omnisend Shopify AI](https://www.omnisend.com/blog/shopify-ai-tools/), [Growth Miner Shopify AI](https://thegrowthminer.com/best-ai-tools-for-shopify-stores-2026/), [Madgicx Shopify Ads](https://www.madgicx.com/blog/ai-driven-advertising-for-shopify-stores)
 
-## 11. Completion Checklist
+## 10. Completion Checklist
 
 - [ ] Understand the AI-application differences between Shopify and Amazon (can name 3 key differences)
 - [ ] Use AI to complete a full optimization of one Shopify product page (title+description+SEO+FAQ)
@@ -835,7 +835,7 @@ After completing the above, you have mastered the core AI-operations skills for 
 
 ---
 
-## 12. Common Traps and Misconceptions
+## 11. Common Traps and Misconceptions
 
 ### 12.1 Cognitive Pitfalls When Moving from Amazon to Shopify
 
@@ -861,7 +861,7 @@ After completing the above, you have mastered the core AI-operations skills for 
 
 ---
 
-## 13. Case Studies: Shopify Independent-Site AI Adoption in Practice
+## 12. Case Studies: Shopify Independent-Site AI Adoption in Practice
 
 <!-- claims: illustrative -->
 
@@ -947,7 +947,7 @@ After completing the above, you have mastered the core AI-operations skills for 
 
 ---
 
-## 14. Shopify SEO In-Depth Guide (AI-Driven)
+## 13. Shopify SEO In-Depth Guide (AI-Driven)
 
 > **Related reading**: [E4 Pinterest AI Guide](../e-social-media/e4-pinterest-ai-guide.md) — Pinterest SEO and Shopify integration is detailed in E4
 
@@ -1071,7 +1071,7 @@ Content rephrased for compliance with licensing restrictions. Source: [Shopify G
 
 ---
 
-## 15. Shopify Advertising Advanced: AI-Driven Full-Funnel Strategy
+## 14. Shopify Advertising Advanced: AI-Driven Full-Funnel Strategy
 
 ### 15.1 Full-Funnel Ad Architecture
 
@@ -1222,7 +1222,7 @@ The 3 scripts each use a different angle:
 
 ---
 
-## 16. Customer-Lifecycle Management (AI-Driven)
+## 15. Customer-Lifecycle Management (AI-Driven)
 
 ### 16.1 RFM Analysis and AI Customer Segmentation
 
@@ -1314,7 +1314,7 @@ Please design:
 
 ---
 
-## 17. Shopify Data Analysis Advanced
+## 16. Shopify Data Analysis Advanced
 
 ### 17.1 Key Metric System
 
@@ -1376,7 +1376,7 @@ Please output:
 
 ---
 
-## 18. Learning Resources
+## 17. Learning Resources
 
 ### 18.1 Shopify Official Resources
 
@@ -1410,7 +1410,7 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 
 ---
 
-## 19. Shopify Flow Automation Workflows
+## 18. Shopify Flow Automation Workflows
 
 ### 19.1 What Is Shopify Flow
 
@@ -1514,7 +1514,7 @@ After agentifying, the data you're asked to paste above should be read from here
 
 ---
 
-## 20. FAQ
+## 19. FAQ
 
 ### 20.1 Site Building and Operations
 
@@ -1546,7 +1546,7 @@ After agentifying, the data you're asked to paste above should be read from here
 
 ---
 
-## 21. Shopify Winter 2026 RenAIssance: In-Depth Analysis of the Latest AI Features
+## 20. Shopify Winter 2026 RenAIssance: In-Depth Analysis of the Latest AI Features
 
 > In December 2025, Shopify released the Winter '26 Edition (codenamed RenAIssance), containing 150+ updates, with AI as the core theme. This chapter deeply analyzes the new features most valuable to cross-border sellers.
 
@@ -1779,7 +1779,7 @@ Actual effect data: Shopify publishes CAC and ROAS improvement ranges on its [Au
 
 ---
 
-## 22. Shopify x Amazon Dual-Channel In-Depth Coordination Methodology
+## 21. Shopify x Amazon Dual-Channel In-Depth Coordination Methodology
 
 > Most cross-border sellers operate Amazon and Shopify at the same time. This chapter doesn't discuss "why do dual-channel" (covered earlier), but discusses concretely how to do deep coordination of data and operations.
 
@@ -1913,7 +1913,7 @@ When to use MCF vs a third-party warehouse:
 
 ---
 
-## 23. Shopify Email-Marketing In-Depth Methodology: From Klaviyo to AI Personalization
+## 22. Shopify Email-Marketing In-Depth Methodology: From Klaviyo to AI Personalization
 
 > Chapter 5 covered the basic framework of email marketing. This chapter goes deep into Klaviyo's AI features and advanced personalization strategies.
 
@@ -2019,7 +2019,7 @@ Testing one variable per week, after 4 weeks your email performance can improve 
 
 ---
 
-## 24. Shopify Conversion-Rate Optimization (CRO) In-Depth Guide
+## 23. Shopify Conversion-Rate Optimization (CRO) In-Depth Guide
 
 ### 24.1 The Mathematical Decomposition of Conversion Rate
 
@@ -2133,7 +2133,7 @@ then concentrates resources to fix it. The effect of fixing one bottleneck > opt
 
 ---
 
-## 25. Shopify Multilingual Localization Methodology: More Than Translation
+## 24. Shopify Multilingual Localization Methodology: More Than Translation
 
 ### 25.1 The Difference Between Translation, Localization, and Transcreation
 
@@ -2252,7 +2252,7 @@ Shopify Markets supports managing multiple markets from one store. Key points of
 
 ---
 
-## 26. Shopify Ad Attribution and Data-Analysis Methodology
+## 25. Shopify Ad Attribution and Data-Analysis Methodology
 
 ### 26.1 The Attribution Dilemma After iOS 14+
 
@@ -2345,7 +2345,7 @@ What this prompt does is "diagnose" rather than "rank."
 
 ---
 
-## 27. Shopify Liquid and Technical SEO in Practice
+## 26. Shopify Liquid and Technical SEO in Practice
 
 ### 27.1 Liquid Code Snippets Cross-Border Sellers Must Know
 
@@ -2450,7 +2450,7 @@ Why it works: FAQ Schema makes your product show FAQ rich snippets in Google sea
 
 ---
 
-## 28. The Complete Methodology of Migrating from Amazon to Shopify
+## 27. The Complete Methodology of Migrating from Amazon to Shopify
 
 ### 28.1 Migration Decision Framework
 

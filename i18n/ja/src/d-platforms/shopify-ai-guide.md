@@ -736,7 +736,7 @@ Top 5 トラフィック源:
 
 Content rephrased for compliance with licensing restrictions. Sources: [Omnisend Shopify AI](https://www.omnisend.com/blog/shopify-ai-tools/), [Growth Miner Shopify AI](https://thegrowthminer.com/best-ai-tools-for-shopify-stores-2026/), [Madgicx Shopify Ads](https://www.madgicx.com/blog/ai-driven-advertising-for-shopify-stores)
 
-## 11. 完了チェック
+## 10. 完了チェック
 
 - [ ] Shopify vs Amazon の AI 応用の違いを理解(3 つの主要な違いを言える)
 - [ ] AI で 1 つの Shopify 製品ページの完全な最適化を完了(タイトル+説明+SEO+FAQ)
@@ -781,7 +781,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [Omnisend
 
 ---
 
-## 12. よくある罠と誤解
+## 11. よくある罠と誤解
 
 ### 12.1 Amazon から Shopify への認知の落とし穴
 
@@ -807,7 +807,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [Omnisend
 
 ---
 
-## 13. ケーススタディ: Shopify 独立サイト AI 実装の実戦
+## 12. ケーススタディ: Shopify 独立サイト AI 実装の実戦
 
 <!-- claims: illustrative -->
 
@@ -893,7 +893,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [Omnisend
 
 ---
 
-## 14. Shopify SEO 深度ガイド(AI 駆動)
+## 13. Shopify SEO 深度ガイド(AI 駆動)
 
 > **関連リーディング**: [E4 Pinterest AI ガイド](../e-social-media/e4-pinterest-ai-guide.md) Pinterest SEO と Shopify の統合は E4 を参照
 
@@ -1023,7 +1023,7 @@ Content rephrased for compliance with licensing restrictions. Source: [Shopify G
 
 ---
 
-## 15. Shopify 広告応用: AI 駆動のフルファネル戦略
+## 14. Shopify 広告応用: AI 駆動のフルファネル戦略
 
 ### 15.1 フルファネル広告アーキテクチャ
 
@@ -1180,7 +1180,7 @@ KPI: リピート率、LTV、NPS
 
 ---
 
-## 16. 顧客ライフサイクル管理(AI 駆動)
+## 15. 顧客ライフサイクル管理(AI 駆動)
 
 ### 16.1 RFM 分析と AI 顧客セグメント
 
@@ -1272,7 +1272,7 @@ Shopify の最大の強みは完全な顧客データを所有すること。AI 
 
 ---
 
-## 17. Shopify データ分析応用
+## 16. Shopify データ分析応用
 
 ### 17.1 主要指標体系
 
@@ -1328,7 +1328,7 @@ GA4 データ(過去 30 日):
 
 ---
 
-## 18. 学習リソース
+## 17. 学習リソース
 
 ### 18.1 Shopify 公式リソース
 
@@ -1362,7 +1362,7 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 
 ---
 
-## 19. Shopify Flow 自動化ワークフロー
+## 18. Shopify Flow 自動化ワークフロー
 
 ### 19.1 Shopify Flow とは
 
@@ -1439,7 +1439,7 @@ Shopify Flow は Shopify 内蔵の自動化エンジン(Zapier に類似だが�
 
 ---
 
-## 20. よくある質問 FAQ
+## 19. よくある質問 FAQ
 
 ### 20.1 サイト構築と運営
 
@@ -1471,7 +1471,7 @@ Shopify Flow は Shopify 内蔵の自動化エンジン(Zapier に類似だが�
 
 ---
 
-## 21. Shopify Winter 2026 RenAIssance: 最新 AI 機能の深度解析
+## 20. Shopify Winter 2026 RenAIssance: 最新 AI 機能の深度解析
 
 > 2025 年 12 月、Shopify は Winter '26 Edition(コードネーム RenAIssance)をリリースし、150+ 項目の更新を含み、AI が核心テーマ。本章は越境セラーに最も価値のある新機能を深度解析する。
 
@@ -1704,7 +1704,7 @@ Shopify Audiences は、Shopify がそのプラットフォーム上の数百万
 
 ---
 
-## 22. Shopify x Amazon デュアルチャネル深度協働方法論
+## 21. Shopify x Amazon デュアルチャネル深度協働方法論
 
 > 大半の越境セラーは Amazon と Shopify を同時運営する。本章は「なぜデュアルチャネルをするか」(前述済み)ではなく、具体的にどうデータと運営の深度協働をするかを扱う。
 
@@ -1838,7 +1838,7 @@ MCF vs 第三者倉をいつ使うか:
 
 ---
 
-## 23. Shopify メールマーケティング深度方法論: Klaviyo から AI パーソナライズへ
+## 22. Shopify メールマーケティング深度方法論: Klaviyo から AI パーソナライズへ
 
 > 第 5 章でメールマーケティングの基礎フレームワークを扱った。本章は Klaviyo の AI 機能と高度なパーソナライズ戦略を深掘りする。
 
@@ -1944,7 +1944,7 @@ AI 補助 A/B テスト Prompt:
 
 ---
 
-## 24. Shopify 転換率最適化 (CRO) 深度ガイド
+## 23. Shopify 転換率最適化 (CRO) 深度ガイド
 
 ### 24.1 転換率の数学的分解
 
@@ -2052,7 +2052,7 @@ Shopify の平均転換率は約 1.4%。これは 100 訪問者ごとにわず�
 
 ---
 
-## 25. Shopify 多言語ローカライズ方法論: 翻訳だけではない
+## 24. Shopify 多言語ローカライズ方法論: 翻訳だけではない
 
 ### 25.1 翻訳 vs ローカライズ vs トランスクリエーションの違い
 
@@ -2165,7 +2165,7 @@ Shopify Markets は 1 つの店舗で複数市場を管理できる。技術設�
 
 ---
 
-## 26. Shopify 広告帰属とデータ分析方法論
+## 25. Shopify 広告帰属とデータ分析方法論
 
 ### 26.1 iOS 14+ 以降の帰属ジレンマ
 
@@ -2258,7 +2258,7 @@ Shopify データ:
 
 ---
 
-## 27. Shopify Liquid と技術 SEO 実操
+## 26. Shopify Liquid と技術 SEO 実操
 
 ### 27.1 越境セラーが知るべき Liquid コード片
 
@@ -2363,7 +2363,7 @@ Liquid 開発者になる必要はないが、以下のいくつかのコード�
 
 ---
 
-## 28. Amazon から Shopify への移行の完全な方法論
+## 27. Amazon から Shopify への移行の完全な方法論
 
 ### 28.1 移行意思決定フレームワーク
 

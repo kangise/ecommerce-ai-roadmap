@@ -286,7 +286,7 @@ AI 无法解决所有问题。必须在 2 轮无法解决后提供转人工选�
 
 ---
 
-## 6.5 WhatsApp Business API 集成深度指南
+### 6.5 WhatsApp Business API 集成深度指南
 
 ### 与电商平台的集成方案
 

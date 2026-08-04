@@ -776,7 +776,7 @@ Key success-factor analysis:
 | Spark Ads are 2-3x more efficient than In-Feed Ads | Spark CPM $4 vs In-Feed CPM $10 | High (provided you have organically well-performing videos) |
 | 100 Nano creators > 1 Macro creator | Nano creators' total ROI 8.5x vs the industry Macro average 1.5x | High (AI makes batch management possible) |
 
-## 13. Completion Checklist
+## 12. Completion Checklist
 
 - [ ] Understand the core differences between TikTok Shop and Amazon/Shopify
 - [ ] Use AI to generate at least 10 short-video scripts (different angles)
@@ -804,7 +804,7 @@ Key success-factor analysis:
 
 ---
 
-## 14. TikTok Shop 2026 Latest Trends and Key Data
+## 13. TikTok Shop 2026 Latest Trends and Key Data
 
 ### 14.1 Market Size and Growth
 
@@ -869,7 +869,7 @@ Key actions to improve SPS:
 
 ---
 
-## 15. Short-Video Content-Creation In-Depth Methodology
+## 14. Short-Video Content-Creation In-Depth Methodology
 
 ### 15.1 How the TikTok Algorithm Decides a Video's Fate
 
@@ -1013,7 +1013,7 @@ This has a 3-5x higher conversion rate than randomly shot videos.
 
 ---
 
-## 16. Creator-Collaboration In-Depth Methodology
+## 15. Creator-Collaboration In-Depth Methodology
 
 ### 16.1 The True ROI Calculation of Creator Collaboration
 
@@ -1179,7 +1179,7 @@ not "just another mass-sending brand."
 
 ---
 
-## 17. Live Commerce In-Depth Methodology
+## 16. Live Commerce In-Depth Methodology
 
 ### 17.1 The Traffic-Acquisition Mechanism of TikTok Livestreaming
 
@@ -1264,7 +1264,7 @@ Rhythm template for a 60-minute livestream:
 
 ---
 
-## 18. TikTok Shop Data-Analysis Methodology
+## 17. TikTok Shop Data-Analysis Methodology
 
 ### 18.1 Content-Effect Attribution: Finding the Pattern of "What Content Works"
 
@@ -1336,7 +1336,7 @@ Update weekly, do a creator-matrix adjustment monthly:
 
 ---
 
-## 19. TikTok Shop On-Site Search SEO
+## 18. TikTok Shop On-Site Search SEO
 
 ### 19.1 TikTok Is Becoming a Search Engine
 
@@ -1368,7 +1368,7 @@ Level 3: the video content itself
 
 ---
 
-## 20. TikTok Shop x Amazon Dual-Channel Coordination
+## 19. TikTok Shop x Amazon Dual-Channel Coordination
 
 ### 20.1 The Indirect Impact of TikTok Seeding on Amazon
 
@@ -1407,7 +1407,7 @@ Note: Amazon has a price-consistency policy. If Amazon finds your price is lower
 
 ---
 
-## 21. AI Video-Production Toolchain in Practice
+## 20. AI Video-Production Toolchain in Practice
 
 ### 21.1 The Complete Workflow from Script to Finished Cut
 
@@ -1474,7 +1474,7 @@ Disadvantage: less authentic than a real person, suits standard products, not ca
 
 ---
 
-## 22. TikTok Shop Product-Selection Methodology: What Products Suit TikTok
+## 21. TikTok Shop Product-Selection Methodology: What Products Suit TikTok
 
 <!-- claims: benchmark -->
 
@@ -1565,7 +1565,7 @@ Assessing with the wrong dimensions leads to "an Amazon best-seller that doesn't
 
 ---
 
-## 23. TikTok Shop Advertising In-Depth Strategy
+## 22. TikTok Shop Advertising In-Depth Strategy
 
 <!-- claims: benchmark -->
 
@@ -1615,7 +1615,7 @@ Material-update rhythm:
 
 ---
 
-## 24. TikTok Shop Compliance and Risk Management
+## 23. TikTok Shop Compliance and Risk Management
 
 ### 24.1 Common Violations and Penalties
 
@@ -1684,7 +1684,7 @@ After agentifying, the data you're asked to paste above should be read from here
 
 ---
 
-## 25. TikTok Shop AI Tool In-Depth Review
+## 24. TikTok Shop AI Tool In-Depth Review
 
 <!-- claims: verified 2026-08 -->
 
@@ -1732,7 +1732,7 @@ Example (standard version $100/month):
 
 ---
 
-## 26. Case Study: The Complete Path from 0 to Monthly GMV $100K
+## 25. Case Study: The Complete Path from 0 to Monthly GMV $100K
 
 <!-- claims: illustrative -->
 

@@ -1054,7 +1054,7 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 | 『Competing in the Age of AI』 | Marco Iansiti | AI が競争構図をどう変えるか理解し、戦略レベルの AI 投資判断を助ける |
 | 『Measure What Matters』 | John Doerr | OKR 方法論、AI プロジェクトの目標と主要成果の設定・追跡に適用可能 |
 
-## 13. 完了チェック
+## 12. 完了チェック
 
 - [ ] チーム AI 利用前のベースラインデータを収集(最低 3 シナリオの時間記録)
 - [ ] 標準評価法で完全な ROI 計算を一度完了

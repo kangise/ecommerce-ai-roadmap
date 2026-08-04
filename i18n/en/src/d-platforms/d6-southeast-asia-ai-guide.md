@@ -16,7 +16,7 @@
 4. [Southeast Asia Advertising & Livestreaming](#4-southeast-asia-advertising--livestreaming)
 5. [Cross-Border Onboarding in Practice](#5-cross-border-onboarding-in-practice)
 6. [Prompt Templates](#6-prompt-templates)
-7. [Completion Checklist](#7-completion-checklist)
+8. [Completion Checklist](#8-completion-checklist)
 
 ---
 
@@ -414,7 +414,7 @@ Please analyze:
 
 ---
 
-## 5.3 Shopee Cross-Border Onboarding Detailed Process
+### 5.3 Shopee Cross-Border Onboarding Detailed Process
 
 ```
 Shopee Cross-Border onboarding process:
@@ -482,7 +482,7 @@ Start livestreaming (if the category fits)
 
 ---
 
-## 5.4 Lazada Global Selling Onboarding Process
+### 5.4 Lazada Global Selling Onboarding Process
 
 ```
 Lazada Global Selling onboarding process:
@@ -520,7 +520,7 @@ Slightly higher commission but higher conversion rate
 
 ---
 
-## 6. Southeast Asia E-Commerce Data Analysis
+## 7. Southeast Asia E-Commerce Data Analysis
 
 ### 6.1 Key Metric System
 
@@ -607,7 +607,7 @@ After agentifying, the data you're asked to paste above should be read from here
 
 ---
 
-## 6.3 Southeast Asia E-Commerce Common Traps
+### 6.3 Southeast Asia E-Commerce Common Traps
 
 <!-- claims: verified 2026-08 -->
 
@@ -665,7 +665,7 @@ TikTok Shop is growing extremely fast in Southeast Asia and is eating into Shope
 
 ---
 
-## 6.4 Southeast Asia E-Commerce AI Tool Recommendations
+### 6.4 Southeast Asia E-Commerce AI Tool Recommendations
 
 | Tool | Use | Price |
 |------|-----|-------|
@@ -688,7 +688,7 @@ TikTok Shop is growing extremely fast in Southeast Asia and is eating into Shope
 
 ---
 
-## 7. Completion Checklist
+## 8. Completion Checklist
 
 - [ ] Complete Southeast Asia market analysis and country selection
 - [ ] Onboard Shopee and/or Lazada

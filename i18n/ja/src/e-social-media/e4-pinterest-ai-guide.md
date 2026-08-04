@@ -307,7 +307,7 @@ Rich Pinsは商品の価格と在庫情報を自動同期し、SEOとコンバ�
 
 ---
 
-## 7.5 Pinterestアルゴリズム深掘り解析
+### 7.5 Pinterestアルゴリズム深掘り解析
 
 ### Pinterestレコメンドアルゴリズム機構
 
@@ -392,7 +392,7 @@ Pinterestユーザーは3〜6ヶ月前に検索する。これは他のすべて
 
 ---
 
-## 7.6 Pinterest Shopping 深掘り実践
+### 7.6 Pinterest Shopping 深掘り実践
 
 ### Product Catalogの設定と最適化
 
@@ -487,7 +487,7 @@ Pinterest Shopping Ads戦略を設計してください：
 
 ---
 
-## 7.7 Pinterestデータ分析の深掘りガイド
+### 7.7 Pinterestデータ分析の深掘りガイド
 
 ### AIデータ分析プロンプト（強化版）
 

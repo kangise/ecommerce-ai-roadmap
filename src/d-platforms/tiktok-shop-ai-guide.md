@@ -788,7 +788,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [KOL Spri
 | Spark Ads 比 In-Feed Ads 效率高 2-3 倍 | Spark CPM $4 vs In-Feed CPM $10 | 高（前提是有自然表现好的视频） |
 | 100 个 Nano 达人 > 1 个 Macro 达人 | Nano 达人总 ROI 8.5x vs 行业 Macro 平均 1.5x | 高（AI 让批量管理成为可能） |
 
-## 13. 完成标志
+## 12. 完成标志
 
 - [ ] 理解 TikTok Shop 和 Amazon/Shopify 的核心差异
 - [ ] 用 AI 生成至少 10 个短视频脚本（不同角度）
@@ -816,7 +816,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [KOL Spri
 
 ---
 
-## 14. TikTok Shop 2026 最新趋势与关键数据
+## 13. TikTok Shop 2026 最新趋势与关键数据
 
 ### 14.1 市场规模与增长
 
@@ -881,7 +881,7 @@ SPS 是 TikTok Shop 的店铺健康度评分，直接影响流量分配和成本
 
 ---
 
-## 15. 短视频内容创作深度方法论
+## 14. 短视频内容创作深度方法论
 
 ### 15.1 TikTok 算法如何决定视频的命运
 
@@ -1031,7 +1031,7 @@ Hook 生成 Prompt:
 
 ---
 
-## 16. 达人合作深度方法论
+## 15. 达人合作深度方法论
 
 ### 16.1 达人合作的真实 ROI 计算
 
@@ -1197,7 +1197,7 @@ Step 5: 效果追踪与复用
 
 ---
 
-## 17. 直播电商深度方法论
+## 16. 直播电商深度方法论
 
 ### 17.1 TikTok 直播的流量获取机制
 
@@ -1282,7 +1282,7 @@ TikTok 直播间的流量不是"开播就有"，而是算法根据直播间数�
 
 ---
 
-## 18. TikTok Shop 数据分析方法论
+## 17. TikTok Shop 数据分析方法论
 
 ### 18.1 内容效果归因: 找到"什么内容有效"的规律
 
@@ -1354,7 +1354,7 @@ TikTok Shop 的核心竞争力是内容。但大多数卖家不知道"什么内�
 
 ---
 
-## 19. TikTok Shop 站内搜索 SEO
+## 18. TikTok Shop 站内搜索 SEO
 
 ### 19.1 TikTok 正在成为搜索引擎
 
@@ -1386,7 +1386,7 @@ TikTok SEO 优化的 3 个层面:
 
 ---
 
-## 20. TikTok Shop x Amazon 双渠道协同
+## 19. TikTok Shop x Amazon 双渠道协同
 
 ### 20.1 TikTok 种草对 Amazon 的间接影响
 
@@ -1425,7 +1425,7 @@ TikTok Shop 的佣金远低于 Amazon 的佣金加 FBA（费率核验日期 2026
 
 ---
 
-## 21. AI 视频制作工具链实操
+## 20. AI 视频制作工具链实操
 
 ### 21.1 从脚本到成片的完整工作流
 
@@ -1492,7 +1492,7 @@ UK: 早 8-10 点、午 1-3 点、晚 6-9 点（GMT）
 
 ---
 
-## 22. TikTok Shop 选品方法论: 什么产品适合 TikTok
+## 21. TikTok Shop 选品方法论: 什么产品适合 TikTok
 
 <!-- claims: benchmark -->
 
@@ -1577,7 +1577,7 @@ Amazon 看搜索量和 Review 门槛，TikTok 看视觉展示力和冲动消费�
 
 ---
 
-## 23. TikTok Shop 广告深度策略
+## 22. TikTok Shop 广告深度策略
 
 <!-- claims: benchmark -->
 
@@ -1627,7 +1627,7 @@ TikTok 广告素材的生命周期通常只有 7-14 天。疲劳信号:
 
 ---
 
-## 24. TikTok Shop 合规与风险管理
+## 23. TikTok Shop 合规与风险管理
 
 ### 24.1 常见违规与处罚
 
@@ -1695,7 +1695,7 @@ TikTok 广告素材的生命周期通常只有 7-14 天。疲劳信号:
 
 ---
 
-## 25. TikTok Shop AI 工具深度评测
+## 24. TikTok Shop AI 工具深度评测
 
 <!-- claims: verified 2026-08 -->
 
@@ -1743,7 +1743,7 @@ AI 工具 ROI = (节省时间 x 时薪 + 增加收入) / 工具月费
 
 ---
 
-## 26. 案例分析: 从 0 到月 GMV $100K 的完整路径
+## 25. 案例分析: 从 0 到月 GMV $100K 的完整路径
 
 <!-- claims: illustrative -->
 

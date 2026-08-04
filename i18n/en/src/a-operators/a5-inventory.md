@@ -1029,7 +1029,7 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 | Chuanglan Forum | independent | Chinese seller community, many first-leg logistics and supplier-management cases |
 | eComCrew | Podcast + community | English e-commerce community, inventory best practices and tool recommendations |
 
-## 9. Completion Checklist
+## 8. Completion Checklist
 
 - [ ] Built a complete restock decision model for one product with AI (with safety-stock calc, reorder point, three-scenario analysis)
 - [ ] Analyzed your IPI Score with AI, built a concrete improvement plan and ran it at least 1 month

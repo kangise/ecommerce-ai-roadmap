@@ -1171,7 +1171,7 @@ def batch_analyze(
 5. Try LoRA fine-tuning (Section 3.5, needs a GPU or Colab)
 6. Take Coursera's Generative AI for Everyone to fill in the theory
 
-## 9. Completion Checklist
+## 8. Completion Checklist
 
 - [ ] Installed Ollama locally and successfully ran an LLM (3.1)
 - [ ] Can state the strengths and use cases of Qwen3 / Gemma 3 / DeepSeek R1 (3.2)
@@ -1192,7 +1192,7 @@ def batch_analyze(
 
 ---
 
-## 10. Appendix
+## 9. Appendix
 
 ### 9.1 Open-source model comparison table
 

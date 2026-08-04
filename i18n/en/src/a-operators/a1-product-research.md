@@ -910,7 +910,7 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 | WeAreSellers (知无不言) | Zhihu | Chinese cross-border community, sourcing and operations |
 | Chuanglan Forum | independent | Chinese seller community, rich supply-chain and compliance info |
 
-## 9. Completion Checklist
+## 8. Completion Checklist
 
 - [ ] Completed a full sourcing-feasibility report with AI (covering all 7 SOP steps)
 - [ ] Used at least 3 different prompt templates and compared results

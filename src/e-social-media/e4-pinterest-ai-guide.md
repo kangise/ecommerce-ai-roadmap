@@ -313,7 +313,7 @@ Rich Pins 自动同步产品价格和库存信息，提升 SEO 和转化。必�
 
 ---
 
-## 7.5 Pinterest 算法深度解析
+### 7.5 Pinterest 算法深度解析
 
 ### Pinterest 推荐算法机制
 
@@ -404,7 +404,7 @@ Pinterest 用户提前 3-6 个月搜索，这是与所有其他平台最大的�
 
 ---
 
-## 7.6 Pinterest Shopping 深度实操
+### 7.6 Pinterest Shopping 深度实操
 
 ### Product Catalog 设置与优化
 
@@ -499,7 +499,7 @@ Shopify 自动支持
 
 ---
 
-## 7.7 Pinterest 数据分析深度指南
+### 7.7 Pinterest 数据分析深度指南
 
 ### AI 数据分析 Prompt（增强版）
 

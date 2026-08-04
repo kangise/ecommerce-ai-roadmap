@@ -1219,7 +1219,7 @@ def build_rag_agent(
 
 Content rephrased for compliance with licensing restrictions. Sources cited inline.
 
-## 10. Completion Checklist
+## 9. Completion Checklist
 
 - [ ] Built a minimal RAG in 10 lines with LlamaIndex, answering questions from product docs
 - [ ] Built a product knowledge base from product manuals/FAQ docs, supporting at least 3 file formats (.txt, .md, .pdf)

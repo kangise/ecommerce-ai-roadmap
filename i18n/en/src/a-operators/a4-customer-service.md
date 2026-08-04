@@ -1089,7 +1089,7 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 | Chuanglan Forum | independent | Chinese seller community, many negative-handling and appeal cases |
 | eComCrew | Podcast + community | English e-commerce community, CS best practices and tool recommendations |
 
-## 8.5 Bonus: AI Chatbots & Social-Media CS Automation
+### 8.5 Bonus: AI Chatbots & Social-Media CS Automation
 
 > This section adds a cross-platform AI CS-automation methodology. For platform-specific practice, see [E5 WhatsApp Business](../e-social-media/e5-whatsapp-business-ai-guide.md) and [E1 Instagram DM automation](../e-social-media/e1-instagram-facebook-ai-guide.md).
 
@@ -1153,7 +1153,7 @@ Every CS channel should have AI sentiment detection:
 
 ---
 
-## 9. Completion Checklist
+## 8. Completion Checklist
 - [ ] Built a multilingual CS reply-template library (at least 5 common scenarios × 3 languages)
 - [ ] Wrote a complete Plan of Action appeal with AI (with Root Cause + Immediate Actions + Preventive Measures)
 - [ ] Generated an FAQ for your product (at least 10 questions) and updated the Listing or A+ Content

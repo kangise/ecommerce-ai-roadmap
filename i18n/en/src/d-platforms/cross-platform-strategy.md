@@ -11,7 +11,7 @@
 
 ## Chapter Navigation
 
-1. [Why Cross-Platform Coordination Is Needed](#1-why-cross-platform-ai-coordination-is-needed) · 2. [Three-Platform Role Division](#2-three-platform-role-division) · 3. [Content Coordination](#3-cross-platform-content-coordination) · 4. [Data Coordination](#4-cross-platform-data-coordination) · 5. [Ad Coordination](#5-cross-platform-ad-coordination) · 6. [Inventory Coordination](#6-inventory-and-logistics-coordination) · 7. [Customer Journey](#7-cross-platform-customer-journey) · 8. [Pricing Strategy](#8-cross-platform-pricing-strategy) · 9. [Prompt Templates](#9-cross-platform-prompt-templates) · 10. [Case Study](#10-case-study) · 11. [Common Traps](#11-common-traps) · 12. [Completion Checklist](#12-completion-checklist)
+1. [Why Cross-Platform Coordination Is Needed](#1-why-cross-platform-ai-coordination-is-needed) · 2. [Three-Platform Role Division](#2-three-platform-role-division) · 3. [Content Coordination](#3-cross-platform-content-coordination) · 4. [Data Coordination](#4-cross-platform-data-coordination) · 5. [Ad Coordination](#5-cross-platform-ad-coordination) · 6. [Inventory Coordination](#6-inventory-and-logistics-coordination) · 7. [Customer Journey](#7-cross-platform-customer-journey) · 8. [Pricing Strategy](#8-cross-platform-pricing-strategy) · 9. [Prompt Templates](#9-cross-platform-prompt-templates) · 10. [Case Study](#10-case-study) · 11. [Common Traps](#11-common-traps) · 14. [Completion Checklist](#14-completion-checklist)
 
 ---
 
@@ -751,7 +751,7 @@ Reasons for the margin improvement:
 
 ---
 
-## 13. Cross-Platform Big-Sale Coordination: BFCM/Prime Day Three-Platform Linkage
+## 12. Cross-Platform Big-Sale Coordination: BFCM/Prime Day Three-Platform Linkage
 
 ### 13.1 Why Big Sales Are the Moment of Greatest Cross-Platform Coordination Value
 
@@ -844,7 +844,7 @@ But linkage needs to start 6 weeks in advance, and this prompt helps you plan sy
 
 ---
 
-## 14. Cross-Platform Team Organization and Collaboration Rhythm
+## 13. Cross-Platform Team Organization and Collaboration Rhythm
 
 <!-- claims: benchmark -->
 
@@ -939,7 +939,7 @@ Content rephrased for compliance with licensing restrictions. Source: [eDesk Man
 
 ---
 
-## 12. Completion Checklist
+## 14. Completion Checklist
 
 - [ ] Understand the role division and coordination logic of the three platforms
 - [ ] Build a cross-platform content-reuse workflow (one core document -> three-platform content)

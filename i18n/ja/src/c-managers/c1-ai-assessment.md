@@ -403,7 +403,7 @@ Content rephrased for compliance with licensing restrictions. Source: [McKinsey 
 
 Content rephrased for compliance with licensing restrictions. Sources cited inline.
 
-## 10. 完了チェック
+## 9. 完了チェック
 
 - [ ] チーム AI 成熟度評価アンケートを完了(全員記入、平均点を集計)
 - [ ] AI 導入優先順位マトリクスを完了(チームの実態に合わせてスコアを調整)

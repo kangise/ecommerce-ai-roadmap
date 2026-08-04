@@ -1111,7 +1111,7 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 | *Competing in the Age of AI* | Marco Iansiti | Understand how AI changes the competitive landscape, to help make strategic-level AI investment decisions |
 | *Measure What Matters* | John Doerr | The OKR methodology, applicable to setting and tracking AI project goals and key results |
 
-## 13. Completion Checklist
+## 12. Completion Checklist
 
 - [ ] Collect the team's pre-AI baseline data (time records for at least 3 scenarios)
 - [ ] Complete one full ROI calculation using the standard evaluation method

@@ -523,7 +523,7 @@ Phase 5: 継続的最適化
 
 ---
 
-## 6.2 Walmart Buy Box 深度解析
+### 6.2 Walmart Buy Box 深度解析
 
 ### Buy Box アルゴリズム因子の重み
 
@@ -608,7 +608,7 @@ Customer Satisfaction(顧客満足度スコア)
 
 ---
 
-## 6.3 Walmart 品目手数料率詳細表
+### 6.3 Walmart 品目手数料率詳細表
 
 | 品目 | 手数料率 | Amazon との対比 |
 |------|----------|-----------------|
@@ -627,7 +627,7 @@ Customer Satisfaction(顧客満足度スコア)
 
 ---
 
-## 6.4 Walmart Seller Center データ分析
+### 6.4 Walmart Seller Center データ分析
 
 ### 主要レポートと指標
 
@@ -735,7 +735,7 @@ Agent 化した後、上で貼り付けを求めているデータはここか�
 
 ---
 
-## 6.5 Walmart 全チャネル戦略
+### 6.5 Walmart 全チャネル戦略
 
 <!-- claims: verified 2026-08 -->
 
@@ -769,7 +769,7 @@ Walmart+ は Walmart の会員計画(Amazon Prime に類似):
 
 ---
 
-## 6.6 Walmart よくある罠の深度解析
+### 6.6 Walmart よくある罠の深度解析
 
 ### 落とし穴 1: Amazon Listing をそのままコピー
 
@@ -930,7 +930,7 @@ Walmart 入札最適化ステップ:
 
 ---
 
-## 6.7 Walmart AI ツール生態系
+### 6.7 Walmart AI ツール生態系
 
 | ツール | 用途 | 価格 | 推奨度 |
 |--------|------|------|--------|

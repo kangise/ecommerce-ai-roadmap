@@ -1219,7 +1219,7 @@ def build_rag_agent(
 
 Content rephrased for compliance with licensing restrictions. Sources cited inline.
 
-## 10. 完了チェック
+## 9. 完了チェック
 
 - [ ] LlamaIndex で 10 行のコードで最小 RAG を構築、製品文書の質問に答えられる
 - [ ] 製品マニュアル/FAQ 文書から製品知識ベースを構築、最低 3 種のファイル形式(.txt, .md, .pdf)に対応

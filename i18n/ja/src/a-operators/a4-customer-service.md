@@ -1161,7 +1161,7 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 | 創藍フォーラム | 独立サイト | 中国セラーコミュニティ、低評価処理と申し立ての実操事例が多い |
 | eComCrew | Podcast + コミュニティ | 英語 EC コミュニティ、CS のベストプラクティスとツール推奨 |
 
-## 8.5 補足: AI Chatbot とソーシャルメディア CS 自動化
+### 8.5 補足: AI Chatbot とソーシャルメディア CS 自動化
 
 > 本節はクロスプラットフォーム汎用の AI CS 自動化方法論を補足します。具体的なプラットフォーム実操は [E5 WhatsApp Business](../e-social-media/e5-whatsapp-business-ai-guide.md)、[E1 Instagram DM 自動化](../e-social-media/e1-instagram-facebook-ai-guide.md) 参照。
 
@@ -1231,7 +1231,7 @@ AI が注文システムを照会 → ステータスを返す
 
 ---
 
-## 9. 完了チェック
+## 8. 完了チェック
 - [ ] 多言語 CS 返信テンプレートライブラリを構築(最低 5 つの一般シーン × 3 言語)
 - [ ] AI で完全な Plan of Action 申し立てを 1 本作成(Root Cause + Immediate Actions + Preventive Measures 含む)
 - [ ] 商品に FAQ を生成(最低 10 問)、Listing か A+ Content に更新

@@ -868,7 +868,7 @@ Many sellers only focus on likes and comments, but what the Instagram algorithm 
 
 ---
 
-## 11.5 Instagram Algorithm In-Depth Analysis (2026)
+### 11.5 Instagram Algorithm In-Depth Analysis (2026)
 
 ### Algorithm Ranking-Factor Weights
 
@@ -939,7 +939,7 @@ Please analyze:
 
 ---
 
-## 11.6 Instagram Creator-Collaboration In-Depth Guide
+### 11.6 Instagram Creator-Collaboration In-Depth Guide
 
 ### Creator Types and Collaboration Models
 
@@ -1023,7 +1023,7 @@ Creator-created content is a valuable material asset:
 
 ---
 
-## 11.7 Instagram Reels Advanced Techniques
+### 11.7 Instagram Reels Advanced Techniques
 
 ### Reels Music Strategy
 

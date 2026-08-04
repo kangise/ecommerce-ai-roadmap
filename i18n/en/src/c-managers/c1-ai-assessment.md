@@ -439,7 +439,7 @@ After 12 months: AI maturity 2.5→3.8, prompt library of 80+ templates, 3 autom
 
 Content rephrased for compliance with licensing restrictions. Sources cited inline.
 
-## 10. Completion Checklist
+## 9. Completion Checklist
 
 - [ ] Complete the team AI maturity assessment questionnaire (everyone fills it out, aggregate the average score)
 - [ ] Complete the AI adoption priority matrix (adjust scores based on the team's actual situation)

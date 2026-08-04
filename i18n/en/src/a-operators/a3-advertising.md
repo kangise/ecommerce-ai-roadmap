@@ -1090,7 +1090,7 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 | WeAreSellers (知无不言) | Zhihu | Chinese cross-border community, rich PPC-optimization experience |
 | Chuanglan Forum | independent | Chinese seller community, many ad-operation cases |
 
-## 8.5 Bonus: Bulk AI Ad-Creative Generation & Cross-Channel Attribution
+### 8.5 Bonus: Bulk AI Ad-Creative Generation & Cross-Channel Attribution
 
 > This section adds a cross-platform ad-creative AI methodology and attribution framework. For platform-specific applications, see [E1 Meta Ads](../e-social-media/e1-instagram-facebook-ai-guide.md#6-meta-advantage-ai-advertising-in-depth-guide), [E2 YouTube Ads](../e-social-media/e2-youtube-ai-guide.md#6-youtube-ads-ai-optimization), [D4 Walmart Connect](../d-platforms/d4-walmart-ai-guide.md#3-walmart-connect-advertising).
 
@@ -1164,7 +1164,7 @@ When advertising on Amazon PPC + Meta Ads + Google Ads simultaneously, you need 
 
 ---
 
-## 9. Completion Checklist
+## 8. Completion Checklist
 - [ ] Generated at least 3 styles of Sponsored Brands ad copy with AI
 - [ ] Understood the relationship of ACOS/TACOS/ROAS, able to compute and explain them manually
 - [ ] Built a 30-day new-product ad launch plan with AI

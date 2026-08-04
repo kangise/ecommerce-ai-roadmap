@@ -1087,7 +1087,7 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 | 创蓝论坛 | 独立站点 | 中国卖家社区，头程物流和供应商管理实操案例多 |
 | eComCrew | Podcast + 社区 | 英文电商社区，库存管理最佳实践和工具推荐 |
 
-## 9. 完成标志
+## 8. 完成标志
 
 - [ ] 用 AI 建立一个产品的完整补货决策模型（含安全库存计算、补货点、三种场景分析）
 - [ ] 用 AI 分析你的 IPI Score，制定具体的改善方案并执行至少 1 个月

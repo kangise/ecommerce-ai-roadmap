@@ -1073,7 +1073,7 @@ Content rephrased for compliance with licensing restrictions. Sources cited inli
 | 創藍フォーラム | 独立サイト | 中国セラーコミュニティ、前段物流とサプライヤー管理の実操事例が多い |
 | eComCrew | Podcast + コミュニティ | 英語 EC コミュニティ、在庫管理のベストプラクティスとツール推奨 |
 
-## 9. 完了チェック
+## 8. 完了チェック
 
 - [ ] AI で 1 商品の完全な補充意思決定モデルを構築(安全在庫計算、補充点、3 シナリオ分析を含む)
 - [ ] AI で IPI Score を分析、具体的な改善案を策定し最低 1 か月実行

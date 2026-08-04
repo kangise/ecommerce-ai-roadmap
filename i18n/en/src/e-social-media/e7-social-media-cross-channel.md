@@ -288,7 +288,7 @@ Please analyze why these performed well, and suggest how to adapt them to:
 
 ---
 
-## 6. Common Traps
+## 7. Common Traps
 
 ### 6.1 Running each channel in isolation
 
@@ -317,7 +317,7 @@ Follower growth, views, and engagement rate can all be unrelated to sales. You n
 
 ---
 
-## 7.5 Cross-Platform Content-Reuse In-Depth Workflow
+### 7.5 Cross-Platform Content-Reuse In-Depth Workflow
 
 ### The Complete SOP from One Core Asset to 7 Platforms
 

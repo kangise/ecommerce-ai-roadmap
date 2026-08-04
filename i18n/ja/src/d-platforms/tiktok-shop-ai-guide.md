@@ -765,7 +765,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [KOL Spri
 | Spark Ads は In-Feed Ads より効率が 2-3 倍高い | Spark CPM $4 vs In-Feed CPM $10 | 高(自然に好調な動画があることが前提) |
 | 100 人の Nano インフルエンサー > 1 人の Macro インフルエンサー | Nano インフルエンサーの総 ROI 8.5x vs 業界 Macro 平均 1.5x | 高(AI がバッチ管理を可能にする) |
 
-## 13. 完了チェック
+## 12. 完了チェック
 
 - [ ] TikTok Shop と Amazon/Shopify の核心的違いを理解
 - [ ] AI で最低 10 個のショート動画スクリプトを生成(異なる角度)
@@ -793,7 +793,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [KOL Spri
 
 ---
 
-## 14. TikTok Shop 2026 最新トレンドと主要データ
+## 13. TikTok Shop 2026 最新トレンドと主要データ
 
 ### 14.1 市場規模と成長
 
@@ -858,7 +858,7 @@ SPS を高める重要アクション:
 
 ---
 
-## 15. ショート動画コンテンツ制作深度方法論
+## 14. ショート動画コンテンツ制作深度方法論
 
 ### 15.1 TikTok アルゴリズムはどう動画の運命を決めるか
 
@@ -1002,7 +1002,7 @@ Hook 生成 Prompt:
 
 ---
 
-## 16. インフルエンサー協働深度方法論
+## 15. インフルエンサー協働深度方法論
 
 ### 16.1 インフルエンサー協働の真の ROI 計算
 
@@ -1168,7 +1168,7 @@ Step 5: 効果追跡と再利用
 
 ---
 
-## 17. ライブコマース深度方法論
+## 16. ライブコマース深度方法論
 
 ### 17.1 TikTok ライブのトラフィック獲得メカニズム
 
@@ -1253,7 +1253,7 @@ TikTok ライブ配信ルームのトラフィックは「配信すればある�
 
 ---
 
-## 18. TikTok Shop データ分析方法論
+## 17. TikTok Shop データ分析方法論
 
 ### 18.1 コンテンツ効果帰属: 「どのコンテンツが有効か」の規則性を見つける
 
@@ -1319,7 +1319,7 @@ TikTok Shop の核心競争力はコンテンツ。だが大半のセラーは�
 
 ---
 
-## 19. TikTok Shop サイト内検索 SEO
+## 18. TikTok Shop サイト内検索 SEO
 
 ### 19.1 TikTok は検索エンジンになりつつある
 
@@ -1351,7 +1351,7 @@ TikTok SEO 最適化の 3 つの層面:
 
 ---
 
-## 20. TikTok Shop x Amazon デュアルチャネル協働
+## 19. TikTok Shop x Amazon デュアルチャネル協働
 
 ### 20.1 TikTok シーディングの Amazon への間接的影響
 
@@ -1390,7 +1390,7 @@ TikTok Shop の手数料は Amazon の販売手数料 + FBA よりはるかに�
 
 ---
 
-## 21. AI 動画制作ツールチェーン実操
+## 20. AI 動画制作ツールチェーン実操
 
 ### 21.1 スクリプトから完成品までの完全ワークフロー
 
@@ -1457,7 +1457,7 @@ UK: 朝 8-10 時、昼 1-3 時、夜 6-9 時(GMT)
 
 ---
 
-## 22. TikTok Shop 選品方法論: どの製品が TikTok に適するか
+## 21. TikTok Shop 選品方法論: どの製品が TikTok に適するか
 
 <!-- claims: benchmark -->
 
@@ -1542,7 +1542,7 @@ Amazon は検索量と Review 障壁を見る、TikTok はビジュアル訴求�
 
 ---
 
-## 23. TikTok Shop 広告深度戦略
+## 22. TikTok Shop 広告深度戦略
 
 <!-- claims: benchmark -->
 
@@ -1592,7 +1592,7 @@ TikTok 広告素材のライフサイクルは通常 7-14 日だけ。疲労シ�
 
 ---
 
-## 24. TikTok Shop コンプライアンスとリスク管理
+## 23. TikTok Shop コンプライアンスとリスク管理
 
 ### 24.1 よくある違反と処罰
 
@@ -1661,7 +1661,7 @@ Agent 化した後、上で貼り付けを求めているデータはここか�
 
 ---
 
-## 25. TikTok Shop AI ツール深度評測
+## 24. TikTok Shop AI ツール深度評測
 
 <!-- claims: verified 2026-08 -->
 
@@ -1709,7 +1709,7 @@ AI ツール ROI = (節約時間 x 時給 + 増加収入) / ツール月額
 
 ---
 
-## 26. ケーススタディ: 0 から月 GMV $100K の完全なパス
+## 25. ケーススタディ: 0 から月 GMV $100K の完全なパス
 
 <!-- claims: illustrative -->
 
