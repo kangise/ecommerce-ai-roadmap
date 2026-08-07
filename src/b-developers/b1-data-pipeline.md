@@ -127,6 +127,8 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 这是你最常用的代码。一个健壮的读取函数需要处理上面列出的所有问题：
 
+> **本章代码的依赖**：`pip install pandas numpy openpyxl duckdb matplotlib python-dotenv python-amazon-sp-api playwright`
+
 ```python
 import pandas as pd
 import numpy as np

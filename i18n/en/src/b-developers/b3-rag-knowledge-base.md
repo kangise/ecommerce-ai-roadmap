@@ -212,6 +212,8 @@ The embedding model determines retrieval quality. Pick the wrong one and retriev
 
 This is the simplest RAG system you can write. Put docs in a folder, and 10 lines of code do Q&A.
 
+> **What this chapter's code needs**: `pip install llama-index chromadb pandas ragas datasets sentence-transformers llama-index-retrievers-bm25`
+
 ```python
 # Minimal RAG — 10 lines of code
 # Prerequisite: pip install llama-index openai

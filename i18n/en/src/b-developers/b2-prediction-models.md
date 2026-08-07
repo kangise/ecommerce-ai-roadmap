@@ -78,6 +78,8 @@ E-commerce usually is more accurate with a **multiplicative model**, because the
 
 **Decomposition visualization:**
 
+> **What this chapter's code needs**: `pip install prophet pandas numpy matplotlib statsmodels scikit-learn bertopic sentence-transformers autogluon.timeseries`
+
 ```python
 import pandas as pd
 from statsmodels.tsa.seasonal import seasonal_decompose

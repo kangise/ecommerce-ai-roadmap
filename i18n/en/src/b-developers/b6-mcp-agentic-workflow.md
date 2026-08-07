@@ -314,7 +314,7 @@ Discounts
 
 ```python
 # Example: connect to the Shopify MCP Server with Python
-# Requires: pip install mcp shopify-api
+# Requires: pip install mcp shopify-api langgraph apscheduler
 
 from mcp import ClientSession, StdioServerParameters
 import asyncio

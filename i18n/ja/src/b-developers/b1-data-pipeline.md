@@ -127,6 +127,8 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 これが最もよく使うコード。堅牢な読み込み関数は上記のすべての問題に対処する必要がある:
 
+> **本章のコードの依存**: `pip install pandas numpy openpyxl duckdb matplotlib python-dotenv python-amazon-sp-api playwright`
+
 ```python
 import pandas as pd
 import numpy as np

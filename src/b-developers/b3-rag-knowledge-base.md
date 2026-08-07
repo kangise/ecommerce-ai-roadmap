@@ -212,6 +212,8 @@ Embedding 模型决定了检索质量。选错模型，检索不准，后面的 
 
 这是你能写出的最简单的 RAG 系统。把文档放到一个文件夹里，10 行代码就能问答。
 
+> **本章代码的依赖**：`pip install llama-index chromadb pandas ragas datasets sentence-transformers llama-index-retrievers-bm25`
+
 ```python
 # 最简 RAG 10 行代码
 # 前提：pip install llama-index openai

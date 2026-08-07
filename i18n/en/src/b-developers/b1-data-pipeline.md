@@ -127,6 +127,8 @@ Before writing code, understand the "pitfalls" you'll hit. These recur constantl
 
 This is the code you'll use most. A robust reader function needs to handle all the issues listed above:
 
+> **What this chapter's code needs**: `pip install pandas numpy openpyxl duckdb matplotlib python-dotenv python-amazon-sp-api playwright`
+
 ```python
 import pandas as pd
 import numpy as np

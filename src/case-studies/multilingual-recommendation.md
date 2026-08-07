@@ -60,6 +60,9 @@ numpy==1.23.2
 mlflow==1.28.0
 fastapi==0.85.0
 redis==4.3.4
+langdetect==1.0.9
+pydantic==2.9.2
+prometheus-client==0.21.0
 ```
 
 ## 实现细节

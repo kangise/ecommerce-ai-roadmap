@@ -874,6 +874,8 @@ SKU 数が 20 を超えると、ChatGPT で 1 つずつ手動予測は非現実�
 
 **Prophet クイックスタート(疑似コード):**
 
+> **本章のコードの依存**: `pip install pandas prophet`
+
 ```python
 # 1. データ準備: 日付 + 販売
 # 形式: ds (日付), y (販売)

@@ -56,6 +56,10 @@ pandas==1.4.3
 numpy==1.23.2
 redis==4.3.4
 uvicorn==0.18.3
+torch==2.4.1
+scipy==1.14.1
+pydantic==2.9.2
+prometheus-client==0.21.0
 ```
 
 ## 实现细节

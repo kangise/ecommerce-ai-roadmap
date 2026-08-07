@@ -308,7 +308,7 @@ Shopify 店舗データ
 
 ```python
 # 例: Python で Shopify MCP Server に接続
-# 要インストール: pip install mcp shopify-api
+# 要インストール: pip install mcp shopify-api langgraph apscheduler
 
 from mcp import ClientSession, StdioServerParameters
 import asyncio

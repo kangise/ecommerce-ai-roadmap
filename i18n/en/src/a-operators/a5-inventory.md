@@ -837,6 +837,8 @@ When your SKU count exceeds 20, forecasting each by hand with ChatGPT is unreali
 
 **Prophet quick start (pseudocode):**
 
+> **What this chapter's code needs**: `pip install pandas prophet`
+
 ```python
 # 1. Prepare data: date + sales
 # Format: ds (date), y (sales)

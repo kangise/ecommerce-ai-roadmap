@@ -171,6 +171,8 @@ Step 7: 恢复细节和颜色
 
 Content rephrased for compliance with licensing restrictions.
 
+> **本章 Python 脚本的依赖**（与上面 ComfyUI 自己的 requirements.txt 是两回事）：`pip install openai requests pillow rembg`
+
 ```python
 # 电商产品图 Prompt 模板库（扩展版）
 PROMPT_TEMPLATES = {

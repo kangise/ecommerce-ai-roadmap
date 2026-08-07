@@ -78,6 +78,8 @@ EC シーンは通常、**乗法モデル**のほうが正確、販売の基数�
 
 **分解の可視化:**
 
+> **本章のコードの依存**: `pip install prophet pandas numpy matplotlib statsmodels scikit-learn bertopic sentence-transformers autogluon.timeseries`
+
 ```python
 import pandas as pd
 from statsmodels.tsa.seasonal import seasonal_decompose

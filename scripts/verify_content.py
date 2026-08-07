@@ -399,6 +399,111 @@ def gate_m6() -> list[str]:
     return problems
 
 
+# --------------------------------------------------------------------------
+# runnability
+# --------------------------------------------------------------------------
+
+PROMPT_TAGS = ["角色", "输入数据", "任务", "数据纪律", "输出格式", "自检",
+               "文案纪律", "输入数据边界", "计算纪律"]
+
+# Modules that ship with Python, and names that are this chapter's own files
+# rather than anything installable.
+STDLIB = {
+    "os", "sys", "re", "json", "time", "math", "random", "datetime", "pathlib", "typing",
+    "collections", "itertools", "functools", "subprocess", "argparse", "logging", "csv",
+    "io", "gzip", "zipfile", "glob", "shutil", "hashlib", "base64", "urllib", "http",
+    "socket", "threading", "asyncio", "concurrent", "dataclasses", "enum", "abc", "copy",
+    "string", "textwrap", "unicodedata", "warnings", "traceback", "pickle", "sqlite3",
+    "statistics", "decimal", "uuid", "tempfile", "operator", "contextlib", "inspect",
+    "__future__",
+}
+LOCAL_MODULES = {"config", "extract", "transform", "report", "src", "utils", "models",
+                 "app", "main", "pipeline", "loader"}
+# import name -> distribution name, where they differ
+DIST = {
+    "sklearn": "scikit-learn", "cv2": "opencv-python", "PIL": "pillow", "yaml": "pyyaml",
+    "bs4": "beautifulsoup4", "dotenv": "python-dotenv", "sp_api": "python-amazon-sp-api",
+    "google": "google-generativeai", "dateutil": "python-dateutil",
+    "vaderSentiment": "vadersentiment", "llama_index": "llama-index",
+    "langchain_openai": "langchain-openai", "langchain_core": "langchain-core",
+    "prometheus_client": "prometheus-client",
+}
+INSTALL_CMD = re.compile(
+    r"(?:pip3?|uv pip|python3? -m pip)\s+install\s+([^\n`]+)"
+    r"|conda install\s+([^\n`]+)|poetry add\s+([^\n`]+)"
+)
+# A block that opens by declaring itself conceptual is illustrating an approach,
+# not claiming to run, so its imports are not a dependency promise.
+CONCEPTUAL = re.compile(r"^#\s*(概念代码|Conceptual|概念コード)")
+
+
+def gate_n1() -> list[str]:
+    """Prompt blocks are well-formed: every six-block tag that opens also closes.
+
+    Counting is fiddlier than it looks. `<角色>text</角色>` sits on one line, and
+    the discipline text legitimately *mentions* tag names mid-sentence ("only use
+    numbers that appear in <输入数据>"). So: drop same-line pairs first, then count
+    only what starts a line. Anything else produces false alarms on correct prose.
+    """
+    problems = []
+    for tree in TREES:
+        for md in sorted((ROOT / tree).rglob("*.md")):
+            text = md.read_text(encoding="utf-8")
+            for m in re.finditer(r"```[a-z]*\n(.*?)```", text, re.S):
+                body = m.group(1)
+                ln = text[: m.start()].count("\n") + 1
+                for tag in PROMPT_TAGS:
+                    stripped = re.sub(rf"<{tag}>[^\n]*?</{tag}>", "", body)
+                    opens = len(re.findall(rf"^\s*<{tag}>", stripped, re.M))
+                    closes = len(re.findall(rf"^\s*</{tag}>", stripped, re.M))
+                    if opens != closes:
+                        rel = f"{tree}/{md.relative_to(ROOT / tree)}"
+                        problems.append(f"{rel}:{ln} <{tag}> {opens} open / {closes} closed")
+    return problems
+
+
+def gate_n2() -> list[str]:
+    """Every third-party import in a chapter's code is declared installable there.
+
+    A reader copying a block and hitting ModuleNotFoundError has been handed
+    something that does not run, which is the same class of defect as a block
+    that does not compile.
+    """
+    def norm(s: str) -> str:
+        return s.lower().replace("_", "-")
+
+    problems = []
+    for md in sorted((ROOT / "src").rglob("*.md")):
+        text = md.read_text(encoding="utf-8")
+        used = set()
+        for body in re.findall(r"```python\n(.*?)```", text, re.S):
+            if CONCEPTUAL.match(body.lstrip()):
+                continue
+            for m in re.finditer(r"^\s*(?:from|import)\s+([A-Za-z_][\w]*)", body, re.M):
+                name = m.group(1)
+                if name not in STDLIB and name not in LOCAL_MODULES:
+                    used.add(name)
+        declared = set()
+        for m in INSTALL_CMD.finditer(text):
+            for grp in m.groups():
+                if grp:
+                    declared |= {
+                        norm(tok.split("==")[0].split("[")[0])
+                        for tok in grp.split()
+                        if not tok.startswith("-")
+                    }
+        for m in re.finditer(r"^([a-zA-Z0-9_.-]+)[=><]=", text, re.M):
+            declared.add(norm(m.group(1)))
+        declared |= {d.split(".")[0] for d in declared}
+        for u in sorted(used):
+            if norm(DIST.get(u, u)) in declared or norm(u) in declared:
+                continue
+            if norm(u).split("-")[0] in declared:
+                continue
+            problems.append(f"{md.relative_to(ROOT / 'src')}: imports {u}, never declared")
+    return problems
+
+
 def gate_m5() -> list[str]:
     base = ROOT / "src"
     inbound = {str(p.relative_to(base)): 0 for p in base.rglob("*.md")}
@@ -434,6 +539,8 @@ GATES = [
     ("M4", "external links", gate_m4),
     ("M5", "orphan pages", gate_m5),
     ("M6", "section numbering", gate_m6),
+    ("N1", "prompt tags balanced", gate_n1),
+    ("N2", "deps declared", gate_n2),
 ]
 
 

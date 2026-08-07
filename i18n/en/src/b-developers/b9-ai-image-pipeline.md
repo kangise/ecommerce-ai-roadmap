@@ -171,6 +171,8 @@ Save as PNG/JPEG
 
 Content rephrased for compliance with licensing restrictions.
 
+> **What this chapter's Python scripts need** (separate from ComfyUI's own requirements.txt above): `pip install openai requests pillow rembg`
+
 ```python
 # E-commerce product image prompt template library (extended version)
 PROMPT_TEMPLATES = {

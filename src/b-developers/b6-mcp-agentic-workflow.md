@@ -308,7 +308,7 @@ Shopify 店铺数据
 
 ```python
 # 示例：用 Python 连接 Shopify MCP Server
-# 需要安装：pip install mcp shopify-api
+# 需要安装：pip install mcp shopify-api langgraph apscheduler
 
 from mcp import ClientSession, StdioServerParameters
 import asyncio

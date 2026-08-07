@@ -212,6 +212,8 @@ Embedding モデルが検索品質を決める。モデルを間違えると検�
 
 これは書ける最もシンプルな RAG システム。文書をフォルダに置き、10 行のコードで Q&A できる。
 
+> **本章のコードの依存**: `pip install llama-index chromadb pandas ragas datasets sentence-transformers llama-index-retrievers-bm25`
+
 ```python
 # 最小 RAG 10 行のコード
 # 前提: pip install llama-index openai

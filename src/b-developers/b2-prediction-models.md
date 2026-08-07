@@ -78,6 +78,8 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 
 **分解可视化：**
 
+> **本章代码的依赖**：`pip install prophet pandas numpy matplotlib statsmodels scikit-learn bertopic sentence-transformers autogluon.timeseries`
+
 ```python
 import pandas as pd
 from statsmodels.tsa.seasonal import seasonal_decompose

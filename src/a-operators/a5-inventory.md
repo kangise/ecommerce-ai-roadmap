@@ -888,6 +888,8 @@ AI: 每周用 AI 分析销量趋势，调整补货计划
 
 **Prophet 快速入门（伪代码）：**
 
+> **本章代码的依赖**：`pip install pandas prophet`
+
 ```python
 # 1. 准备数据：日期 + 销量
 # 格式：ds (日期), y (销量)

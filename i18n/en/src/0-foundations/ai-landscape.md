@@ -712,6 +712,42 @@ Month 1+: C3 ROI evaluation (prove value with data)
 
 ---
 
+## Applying this assessment to yourself
+
+This page rates what AI can currently do in each function, not what your team should do next. The gap between those is whether you can get the data, who does the work, and who covers the mistakes. Paste this and run it against your own situation:
+
+```
+<角色>Cross-border e-commerce advisor, familiar with how AI maturity differs by business function</角色>
+
+<输入数据>
+My situation:
+- Category: [fill in]
+- Monthly volume: [fill in]
+- Team size and roles: [fill in]
+- Data access I already have: [SP-API / manual exports only / third-party tools — be specific]
+- The three things that take most of my time right now: [fill in]
+</输入数据>
+
+<任务>
+1. Rate each of those three on whether it is worth investing in, and say why
+2. For each: what data it needs, whether I can currently get that data, and if not, what to solve first
+3. Pick one as the starting point and say why it beats the other two
+4. For anything you advise against right now, say whether that is because AI is not ready or because my preconditions are not met — those call for completely different responses
+
+<数据纪律>
+- Use only what I gave you in <输入数据>. Ask about anything missing; do not assume on my behalf
+- Do not quote market figures, industry averages or maturity scores — you have no verifiable source for them
+- Mark each recommendation [from what I provided] or [from general experience]
+</数据纪律>
+</任务>
+
+<输出格式>
+One paragraph per item: conclusion / what is missing / first step. Then a single line naming your recommended starting point.
+</输出格式>
+```
+
+---
+
 ## Where to Next?
 
 | Your situation | Recommended next step |

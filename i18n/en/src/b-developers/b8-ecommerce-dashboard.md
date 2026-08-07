@@ -55,7 +55,7 @@
 ### 2.2 Recommended: Streamlit + Plotly
 
 ```bash
-pip3 install streamlit plotly pandas openpyxl
+pip3 install streamlit plotly pandas numpy openpyxl python-amazon-sp-api
 ```
 
 ---

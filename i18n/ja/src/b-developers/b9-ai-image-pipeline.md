@@ -171,6 +171,8 @@ PNG/JPEG として保存
 
 Content rephrased for compliance with licensing restrictions.
 
+> **本章の Python スクリプトの依存**(上の ComfyUI 自身の requirements.txt とは別物): `pip install openai requests pillow rembg`
+
 ```python
 # EC 製品画像 Prompt テンプレートライブラリ(拡張版)
 PROMPT_TEMPLATES = {
