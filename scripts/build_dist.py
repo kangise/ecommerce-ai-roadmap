@@ -199,7 +199,7 @@ Each entry:
 name: opc-ecommerce-infrastructure
 description: >
   OPC e-commerce operations infrastructure. Provides a 67-chapter knowledge base,
-  80-entity domain ontology, 184 platform constraints, 7 domain skills,
+  80-entity domain ontology, 184 platform constraints, {len(capabilities)} domain skills,
   and {prompt_count} production prompts (trilingual zh/en/ja).
   Load this package to give any agent native cross-border e-commerce operational capability.
 capabilities:
@@ -214,7 +214,7 @@ You are an e-commerce operations agent powered by the OPC (One Person Company) i
 
 ## Your Capabilities
 
-1. **Domain Skills** — 7 callable skills covering the full e-commerce operating chain:
+1. **Domain Skills** — {len(capabilities)} callable skills covering the full e-commerce operating chain:
    - `ecom-listing` — Listing creation and optimization (Amazon, Shopify, TikTok Shop)
    - `ecom-advertising` — PPC campaign diagnosis and optimization
    - `ecom-inventory` — Demand forecasting and replenishment planning
@@ -222,6 +222,7 @@ You are an e-commerce operations agent powered by the OPC (One Person Company) i
    - `ecom-pricing` — Competitive pricing and profitability analysis
    - `ecom-research` — Product research and market opportunity discovery
    - `ecom-applicability` — AI readiness assessment (should I use AI for X?)
+   - `ecom-customer-service` — Review responses, appeals, refund/return support, FAQ, and CS KPIs
 
 2. **Domain Ontology** — Machine-readable domain model (`ontology.json`):
    - 80 entities with attributes (listing, campaign, inventory, compliance, etc.)
@@ -269,7 +270,7 @@ See `integration/` for framework-specific setup guides.
 ## Quick Start (30 seconds)
 
 1. **Point your agent at this directory.** The entry point is `SKILL.md`.
-2. Your agent now has 7 domain skills (listing, advertising, inventory, compliance, pricing, research, applicability).
+2. Your agent now has {len(capabilities)} domain skills (listing, advertising, inventory, compliance, pricing, research, applicability, customer-service).
 3. Ask: *"Help me write an Amazon listing"* — agent routes to `ecom-listing`, loads platform constraints, executes.
 
 ## What's Inside
@@ -280,7 +281,7 @@ See `integration/` for framework-specific setup guides.
 | `ontology.json` | 80 entities, 78 relations, 184 constraints, 8 processes |
 | `prompts.json` | {len(prompts)} production prompts (zh/en/ja) |
 | `knowledge/index.json` | 67-chapter index with entity references |
-| `skills/` | 7 domain skills with manifests, playbooks, constraints |
+| `skills/` | {len(capabilities)} domain skills with manifests, playbooks, constraints |
 | `integration/` | Framework-specific setup guides |
 
 ## How It Works
@@ -297,7 +298,7 @@ User: "Help me write a listing"
 ## For Agent Developers
 
 See `integration/mcp.md` for MCP server setup.
-See each skill's manifest (skills/\<skill\>/manifest.yaml) for input/output schemas.
+See each skill's manifest (skills/<skill>/manifest.yaml) for input/output schemas.
 See `knowledge/query_guide.md` for retrieval patterns.
 """
     (DIST / "README.md").write_text(readme)
@@ -325,7 +326,7 @@ This package is framework-agnostic. Choose your integration path:
 """
     (DIST / "INTEGRATION.md").write_text(integration_md)
 
-    print(f"dist/ built: {len(prompts)} prompts, {len(ontology)} ontology files, 7 skills")
+    print(f"dist/ built: {len(prompts)} prompts, {len(ontology)} ontology files, {len(capabilities)} skills")
     return 0
 
 

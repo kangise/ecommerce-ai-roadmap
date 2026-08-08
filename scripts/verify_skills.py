@@ -24,6 +24,7 @@ SKILLS = ROOT / "skills"
 REQUIRED_SKILLS = [
     "ecom-listing", "ecom-advertising", "ecom-inventory",
     "ecom-compliance", "ecom-pricing", "ecom-research", "ecom-applicability",
+    "ecom-customer-service",
 ]
 
 FM_PATTERN = re.compile(r"^---\s*\n(.*?)\n---", re.S)
@@ -268,10 +269,10 @@ def gate_m8() -> list[str]:
                 for key in ["name", "description", "capabilities", "routing"]:
                     if key not in fm:
                         problems.append(f"dist/SKILL.md: missing '{key}' in frontmatter")
-                    elif key == "capabilities" and (not isinstance(fm[key], list) or len(fm[key]) < 7):
-                        problems.append(f"dist/SKILL.md: capabilities < 7 ({len(fm.get(key, []))} found)")
-                    elif key == "routing" and (not isinstance(fm[key], list) or len(fm[key]) < 7):
-                        problems.append(f"dist/SKILL.md: routing < 7 ({len(fm.get(key, []))} found)")
+                    elif key == "capabilities" and (not isinstance(fm[key], list) or len(fm[key]) < len(REQUIRED_SKILLS)):
+                        problems.append(f"dist/SKILL.md: capabilities < {len(REQUIRED_SKILLS)} ({len(fm.get(key, []))} found)")
+                    elif key == "routing" and (not isinstance(fm[key], list) or len(fm[key]) < len(REQUIRED_SKILLS)):
+                        problems.append(f"dist/SKILL.md: routing < {len(REQUIRED_SKILLS)} ({len(fm.get(key, []))} found)")
                 # Check routing mentions all 7 skills
                 routing_text = yaml.dump(fm.get("routing", []), allow_unicode=True)
                 for sid in REQUIRED_SKILLS:
@@ -308,12 +309,76 @@ def gate_m8() -> list[str]:
     return problems
 
 
+def gate_s5() -> list[str]:
+    """S5: Prompt coverage — chapters with >=5 prompts but no skill coverage."""
+    import json as _json
+    problems = []
+
+    EXEMPT = {
+        # Meta/reference chapters
+        "f2-prompt-engineering.md", "c1-business-sense.md",
+        "c3-roi-evaluation.md", "c3-operations-optimization.md",
+        "c4-ai-risk-governance.md", "c4-data-driven-culture.md",
+        "c5-competitive-intelligence.md", "c2-team-building.md",
+        "b1-ai-development.md", "b2-prediction-models.md",
+        "b3-mcp-integration.md", "b4-automation-workflow.md",
+        # Tool/resource comparison
+        "f6-ai-tools-comparison.md",
+        # Case studies (illustrative, not operational domains)
+        "ai-listing-optimization.md", "ai-review-to-product.md",
+        # Social media line — documented gap, needs ecom-social skill (see CONTRIBUTING)
+        "e1-instagram-facebook-ai-guide.md", "e2-youtube-ai-guide.md",
+        "e3-xiaohongshu-ai-guide.md", "e4-pinterest-ai-guide.md",
+        "e5-whatsapp-business-ai-guide.md", "e6-reddit-ai-guide.md",
+        "e7-social-media-cross-channel.md",
+    }
+
+    # Count prompts per chapter
+    chapter_counts = {}
+    prompts_path = ROOT / "dist" / "prompts.json"
+    if prompts_path.exists():
+        with open(prompts_path) as f:
+            prompts = _json.load(f)
+        for p in prompts:
+            src = p.get("source", "")
+            # Strip line number suffix, language prefix
+            src = src.split(":")[0].replace("src/", "").replace("i18n/en/src/", "").replace("i18n/ja/src/", "")
+            chapter = src.split("/")[-1] if "/" in src else src
+            if chapter.endswith(".md"):
+                chapter_counts[chapter] = chapter_counts.get(chapter, 0) + 1
+
+    # Find covered chapters from playbook source references
+    covered = set()
+    for skill_dir in sorted(SKILLS.glob("*/")):
+        if not skill_dir.is_dir():
+            continue
+        playbook = skill_dir / "references" / "playbook.md"
+        if not playbook.exists():
+            continue
+        text = playbook.read_text(encoding="utf-8")
+        for m in re.finditer(r"source:\s*(?:src/)?(?:[a-z0-9_-]+/)*([a-z0-9_-]+\.md)", text):
+            covered.add(m.group(1))
+
+    for ch, count in sorted(chapter_counts.items(), key=lambda x: -x[1]):
+        if count < 5:
+            continue
+        if ch in EXEMPT:
+            continue
+        if ch.startswith("0-"):
+            continue
+        if ch not in covered:
+            problems.append(f"{ch}: {count} prompts, no skill coverage")
+
+    return problems
+
+
 GATES = [
     ("S1", "skill frontmatter", gate_s1),
     ("S2", "skill traceability", gate_s2),
     ("S3", "skill existence", gate_s3),
     ("S4", "reference substance", gate_s4),
     ("M8", "manifest + SKILL.md", gate_m8),
+    ("S5", "prompt coverage", gate_s5),
 ]
 
 

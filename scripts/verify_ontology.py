@@ -255,7 +255,7 @@ def gate_o2() -> list[str]:
         text = md.read_text(encoding="utf-8")
         text = re.sub(r"```.*?```", " ", text, flags=re.S)
         text = re.sub(r"<[^>]+>", " ", text)
-        words = re.findall(r'\b[A-Za-z][a-z]+(?:[- ][A-Za-z][a-z]+)*\b', text)
+        words = re.findall(r'\b[A-Z]{2,6}\b|\b[A-Z][a-z]+(?:[- ][A-Z][a-z]+)*\b|\b[a-z]+(?:[- ][a-z]+)*\b', text)
         for w in words:
             wl = w.lower().replace(" ", "-")
             word_count[wl] += 1

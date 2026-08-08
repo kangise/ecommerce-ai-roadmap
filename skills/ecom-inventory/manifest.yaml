@@ -23,6 +23,15 @@ triggers:
   - 仓储
   - 补货计划
   - FBA库存
+  - 旺季
+  - 备货
+  - 断货
+  - 断了
+  - 销量涨
+  - 突然涨
+  - 怕断
+  - 怎么算
+  - 仓库一直
   intent: forecast_demand | calculate_safety_stock | plan_replenishment | analyze_inventory_health
 inputs:
 - name: sales_history

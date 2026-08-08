@@ -21,6 +21,16 @@ triggers:
   - 价格多少
   - 怎么定价
   - 成本核算
+  - 同行
+  - 卖19
+  - 卖20
+  - 还要不要跟
+  - 涨点价
+  - 怕买家不买
+  - 买家不买
+  - 到底赚不赚钱
+  - 赚不赚钱
+  - 赚不赚
   intent: set_price | calculate_profit | competitive_analysis | breakeven_analysis
 inputs:
 - name: cost_data

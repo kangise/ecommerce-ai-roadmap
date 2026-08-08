@@ -1,7 +1,7 @@
 # Prompt Playbook: ecom-pricing
 
 ## Prompt 1: 跨境电商关务成本分析师
-source: a11-financial-analysis
+source: a11-financial-analysis.md
 language: zh
 
 ```
@@ -41,7 +41,7 @@ language: zh
 ---
 
 ## Prompt 2: 你是一个 AI 收入预测专家。
-source: a11-financial-analysis
+source: a11-financial-analysis.md
 language: zh
 
 ```
@@ -99,7 +99,7 @@ language: zh
 ---
 
 ## Prompt 3: 请根据以下数据生成月度财务报告：
-source: a11-financial-analysis
+source: a11-financial-analysis.md
 language: zh
 
 ```

@@ -1,0 +1,118 @@
+name: ecom-customer-service
+description: Handle customer service and after-sales — negative review responses,
+  complaint handling, Plan of Action appeals, refund and return inquiries, multilingual
+  buyer replies, review-request emails, FAQ generation, and CS KPI tracking
+triggers:
+  intent: reply_to_customer | respond_review | draft_appeal | analyze_returns |
+    generate_faq | localize_reply | design_cs_kpi | monitor_sentiment
+  keywords:
+  - 差评
+  - review
+  - 投诉
+  - 回复
+  - 邮件
+  - 申诉
+  - 退货
+  - 退款
+  - refund
+  - complaint
+  - customer
+  - response
+  - message
+  - 客服
+  - 买家消息
+  - 评价
+  - negative review
+  - feedback
+  - return
+  - Plan of Action
+  - POA
+  - appeal
+  - FAQ
+  - 售后
+  - 退换货
+  - 买家
+  - 物流查询
+  - 好评
+inputs:
+- name: customer_message
+  type: object
+  required: true
+  description: Buyer message, negative review text, or complaint text to respond to
+- name: review_data
+  type: array
+  required: false
+  description: Reviews (positive and negative, 1-5 stars) for analysis
+- name: product_info
+  type: object
+  required: false
+  description: Product name and description for reply context
+- name: platform
+  type: enum
+  values:
+  - amazon
+  - shopify
+  - tiktok_shop
+  default: amazon
+  description: Marketplace where the customer contact happens
+- name: market
+  type: string
+  required: false
+  description: Target market (US, DE, JP, ES, MX, BR, etc.)
+- name: order_info
+  type: object
+  required: false
+  description: Order details for refund/return/shipping inquiries
+- name: complaint_notice
+  type: string
+  required: false
+  description: Platform notice text (violation, IP complaint, suspension) for appeals
+- name: return_report
+  type: object
+  required: false
+  description: Return reason data (reason, count, share) for return analysis
+outputs:
+- name: reply_draft
+  type: object
+  description: Multilingual reply templates for buyer messages
+- name: public_response
+  type: string
+  description: Public reply for a negative review
+- name: plan_of_action
+  type: object
+  description: 'Appeal letter: Root Cause / Immediate Actions / Preventive Measures'
+- name: review_request_email
+  type: object
+  description: Policy-compliant review request email (3 versions)
+- name: faq
+  type: array
+  description: Product FAQ generated from customer messages and reviews
+- name: return_analysis
+  type: object
+  description: Return cause classification and improvement suggestions
+- name: sentiment_report
+  type: object
+  description: Review sentiment distribution and trend report
+- name: kpi_system
+  type: object
+  description: CS KPI design, tracking template, and monthly report structure
+uses_constraints:
+- amazon.listing.forbidden_unverified_claim
+- amazon.safety_complaint.response_deadline
+- amazon.violation.response_deadline
+- content.ai_generated.commercial_license
+uses_entities:
+- brand_registry
+- buy_box
+- cac
+- compliance_check
+- ltv
+- qa
+- rating
+- review
+- seller_central
+- shipment
+platforms:
+- amazon
+- shopify
+- tiktok_shop

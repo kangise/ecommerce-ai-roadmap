@@ -49,6 +49,15 @@ triggers:
   - 竞争
   - 激烈
   - 市场容量
+  - 这个类目
+  - 还能进
+  - 还能不能进
+  - 太晚
+  - 会不会太晚
+  - 大家都在卖
+  - 身边很多人
+  - 小品类
+  - 从哪入手
 uses_constraints:
 - forecast.backtest_target
 - forecast.changepoint_prior_range

@@ -474,3 +474,85 @@
 - **ZH**: Amazon 品牌保护体系，需已注册商标；配套 Transparency、Project Zero（AI 自动移除仿冒）、Report a Violation 等工具
 - **EN**: Amazon brand protection program requiring a registered trademark; unlocks Transparency, Project Zero and Report a Violation
 
+## Buy Box / Buy Box
+
+- **ZH**: 亚马逊购物车，每个 ASIN 只有一个卖家获得。赢得 Buy Box 是成交的前提。
+- **EN**: The Amazon Buy Box — the add-to-cart box on a product detail page. Only one seller wins it per ASIN.
+
+## 评分 / Rating
+> 評価
+
+- **ZH**: 产品星级评分（1-5星），直接影响搜索排名和转化率。
+- **EN**: Product star rating (1-5), directly affects search ranking and conversion.
+
+## BSR（畅销排名） / Best Sellers Rank
+> ベストセラーランク
+
+- **ZH**: Amazon 畅销排名，每小时更新，数字越小销量越高。
+- **EN**: Amazon Best Sellers Rank, updated hourly. Lower number = higher sales.
+
+## Amazon Prime / Amazon Prime
+
+- **ZH**: Amazon 会员体系，Prime 商品有 Prime 标识，影响 Buy Box 权重和转化率。
+- **EN**: Amazon Prime membership. Prime-eligible products get a Prime badge, affecting Buy Box weight and conversion.
+
+## LTV（客户生命周期价值） / LTV (Lifetime Value)
+> LTV（顧客生涯価値）
+
+- **ZH**: 一个客户从第一次购买到最后一次购买的总价值。LTV/CAC 比是核心盈利指标。
+- **EN**: Total value of a customer from first to last purchase. LTV/CAC ratio is a core profitability metric.
+
+## 促销活动 / Deal/Promotion
+> プロモーション
+
+- **ZH**: Amazon 限时促销活动（Lightning Deal、7-Day Deal、Coupon），影响曝光和转化。
+- **EN**: Amazon time-limited promotions (Lightning Deal, 7-Day Deal, Coupon). Affects visibility and conversion.
+
+## 品牌旗舰店 / Storefront
+> ストアフロント
+
+- **ZH**: Amazon 品牌旗舰店页面（Amazon Store），品牌注册后可用。
+- **EN**: Amazon Store / Storefront page, available after Brand Registry.
+
+## Seller Central / Seller Central
+> セラーセントラル
+
+- **ZH**: Amazon 卖家后台管理系统，所有运营操作和数据分析的入口。
+- **EN**: Amazon seller backend management system — entry point for all operations and data analysis.
+
+## IPI（库存绩效指数） / IPI (Inventory Performance Index)
+> IPI（在庫パフォーマンス指数）
+
+- **ZH**: Amazon FBA 库存绩效指数（0-1000），低于阈值（通常 400-500）会限制仓储容量。
+- **EN**: Amazon FBA Inventory Performance Index (0-1000). Below threshold (typically 400-500) restricts storage capacity.
+
+## CAC（客户获取成本） / CAC (Customer Acquisition Cost)
+> CAC（顧客獲得コスト）
+
+- **ZH**: 获取一个新客户的平均营销费用。CAC = 总营销支出 / 新客户数。
+- **EN**: Average marketing spend to acquire a new customer. CAC = Total Marketing Spend / New Customers.
+
+## WFS（Walmart 仓储配送） / WFS (Walmart Fulfillment Services)
+> WFS
+
+- **ZH**: Walmart 的仓储配送服务，类似 Amazon FBA。使用 WFS 的商品有 Buy Box 优势。
+- **EN**: Walmart fulfillment service, similar to Amazon FBA. WFS products have Buy Box advantage.
+
+## 黑五网一 / Black Friday / Cyber Monday
+> ブラックフライデー / サイバーマンデー
+
+- **ZH**: 黑色星期五 + 网络星期一，全年最大促销期。
+- **EN**: Black Friday + Cyber Monday — the year's biggest promotional period.
+
+## CPM（千次展示成本） / CPM (Cost Per Mille)
+> CPM（1000インプレッション単価）
+
+- **ZH**: 每千次展示的广告成本，品牌广告和 DSP 广告的核心指标。
+- **EN**: Advertising cost per thousand impressions. Core metric for brand ads and DSP.
+
+## 货到付款 / Cash on Delivery
+> 代金引換
+
+- **ZH**: 配送后当面付款，东南亚和中东市场的主要支付方式。
+- **EN**: Payment on delivery. Primary payment method in Southeast Asia and Middle East markets.
+

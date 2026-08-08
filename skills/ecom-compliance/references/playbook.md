@@ -1,7 +1,7 @@
 # Prompt Playbook: ecom-compliance
 
 ## Prompt 1: 你是一个知识产权风险评估专家。
-source: a12-ip-protection
+source: a-operators/a12-ip-protection.md
 language: zh
 
 ```
@@ -60,7 +60,7 @@ language: zh
 ---
 
 ## Prompt 2: 你是一个商标保护专家。
-source: a12-ip-protection
+source: a-operators/a12-ip-protection.md
 language: zh
 
 ```
@@ -121,7 +121,7 @@ language: zh
 ---
 
 ## Prompt 3: 请对比以下两个 Amazon Listing，分析是否存在抄袭：
-source: a12-ip-protection
+source: a-operators/a12-ip-protection.md
 language: zh
 
 ```
@@ -184,7 +184,7 @@ language: zh
 ---
 
 ## Prompt 4: 你是一个多平台 IP 保护专家。
-source: a12-ip-protection
+source: a-operators/a12-ip-protection.md
 language: zh
 
 ```
@@ -237,7 +237,7 @@ language: zh
 ---
 
 ## Prompt 5: 我要在 Amazon [US/DE/JP/UK] 销售以下产品：
-source: a6-compliance
+source: a-operators/a6-compliance.md
 language: zh
 
 ```
@@ -281,7 +281,7 @@ language: zh
 ---
 
 ## Prompt 6: 我的产品已经有以下认证：
-source: a6-compliance
+source: a-operators/a6-compliance.md
 language: zh
 
 ```
@@ -324,7 +324,7 @@ language: zh
 ---
 
 ## Prompt 7: 请为以下产品生成完整的认证需求清单：
-source: a6-compliance
+source: a-operators/a6-compliance.md
 language: zh
 
 ```
@@ -374,7 +374,7 @@ language: zh
 ---
 
 ## Prompt 8: 请帮我估算以下产品的全面合规成本：
-source: a6-compliance
+source: a-operators/a6-compliance.md
 language: zh
 
 ```
@@ -458,7 +458,7 @@ language: zh
 ---
 
 ## Prompt 9: 请帮我评估以下产品的知识产权风险：
-source: a6-compliance
+source: a-operators/a6-compliance.md
 language: zh
 
 ```
@@ -528,7 +528,7 @@ AI 的专利分析仅供初步参考，不能替代专业的专利律师意见�
 ---
 
 ## Prompt 10: 请帮我生成以下合规文档的框架：
-source: a6-compliance
+source: a-operators/a6-compliance.md
 language: zh
 
 ```
@@ -584,7 +584,7 @@ Declaration of Conformity 是法律文件，签署人需要对内容的准确性
 ---
 
 ## Prompt 11: 我收到了 Amazon 的以下政策违规通知，请帮我分析并生成申诉方案：
-source: a6-compliance
+source: a-operators/a6-compliance.md
 language: zh
 
 ```
@@ -666,7 +666,7 @@ AI 生成的申诉方案仅供参考。复杂的违规案例（如账号被封�
 ---
 
 ## Prompt 12: 请帮我做 VAT/税务合规检查：
-source: a6-compliance
+source: a-operators/a6-compliance.md
 language: zh
 
 ```
@@ -725,7 +725,7 @@ language: zh
 ---
 
 ## Prompt 13: 请帮我评估以下产品的召回风险：
-source: a6-compliance
+source: a-operators/a6-compliance.md
 language: zh
 
 ```
@@ -786,7 +786,7 @@ language: zh
 ---
 
 ## Prompt 14: 熟悉欧盟 AI 法案的跨境电商合规顾问
-source: a6-compliance
+source: a-operators/a6-compliance.md
 language: zh
 
 ```
@@ -829,7 +829,7 @@ AI 生成视频、AI 写的商品描述、其他]
 ---
 
 ## Prompt 15: 请帮我检查以下工具是否符合 Amazon 最新的 BSA 合规要求：
-source: a6-compliance
+source: a-operators/a6-compliance.md
 language: zh
 
 ```
@@ -870,7 +870,7 @@ Amazon 的政策持续更新，请以 Seller Central 的最新通知为准。
 ---
 
 ## Prompt 16: 请帮我评估欧盟新法规对我的业务的影响：
-source: a6-compliance
+source: a-operators/a6-compliance.md
 language: zh
 
 ```
@@ -913,7 +913,7 @@ language: zh
 ---
 
 ## Prompt 17: 请帮我优化以下产品的合规成本：
-source: a6-compliance
+source: a-operators/a6-compliance.md
 language: zh
 
 ```
@@ -968,7 +968,7 @@ language: zh
 ---
 
 ## Prompt 18: 你是一个跨平台广告合规专家。
-source: a6-compliance
+source: a-operators/a6-compliance.md
 language: zh
 
 ```

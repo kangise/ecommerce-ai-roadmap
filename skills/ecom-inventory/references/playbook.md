@@ -1,7 +1,7 @@
 # Prompt Playbook: ecom-inventory
 
 ## Prompt 1: 我的产品数据：
-source: a5-inventory
+source: a-operators/a5-inventory.md
 language: zh
 
 ```
@@ -48,7 +48,7 @@ language: zh
 ---
 
 ## Prompt 2: 我有以下 SKU 需要补货决策，但资金有限（总预算 $[X]）：
-source: a5-inventory
+source: a-operators/a5-inventory.md
 language: zh
 
 ```
@@ -92,7 +92,7 @@ SKU 2: [产品名]
 ---
 
 ## Prompt 3: 我准备发布一个新产品，需要估算首批 FBA 备货量：
-source: a5-inventory
+source: a-operators/a5-inventory.md
 language: zh
 
 ```
@@ -134,7 +134,7 @@ language: zh
 ---
 
 ## Prompt 4: 请帮我计算以下产品的安全库存：
-source: a5-inventory
+source: a-operators/a5-inventory.md
 language: zh
 
 ```
@@ -180,7 +180,7 @@ language: zh
 ---
 
 ## Prompt 5: 请帮我分析产品的季节性需求并预测未来 6 个月的销量：
-source: a5-inventory
+source: a-operators/a5-inventory.md
 language: zh
 
 ```
@@ -237,7 +237,7 @@ language: zh
 ---
 
 ## Prompt 6: 请帮我制定 [Prime Day / BFCM] 备货策略：
-source: a5-inventory
+source: a-operators/a5-inventory.md
 language: zh
 
 ```
@@ -306,7 +306,7 @@ language: zh
 ---
 
 ## Prompt 7: 我的产品在多个 Amazon 站点销售，请帮我优化库存分配：
-source: a5-inventory
+source: a-operators/a5-inventory.md
 language: zh
 
 ```
@@ -359,7 +359,7 @@ JP 站：
 ---
 
 ## Prompt 8: 以下是我的滞销库存清单：
-source: a5-inventory
+source: a-operators/a5-inventory.md
 language: zh
 
 ```
@@ -410,7 +410,7 @@ SKU 1: [产品名]
 ---
 
 ## Prompt 9: 请帮我评估供应商交期风险并制定应对方案：
-source: a5-inventory
+source: a-operators/a5-inventory.md
 language: zh
 
 ```
@@ -465,7 +465,7 @@ language: zh
 ---
 
 ## Prompt 10: 我的 IPI Score 需要改善，请帮我制定改善方案：
-source: a5-inventory
+source: a-operators/a5-inventory.md
 language: zh
 
 ```
@@ -534,7 +534,7 @@ Stranded Inventory 详情：
 ---
 
 ## Prompt 11: 我同时在以下渠道销售，请帮我优化库存分配：
-source: a5-inventory
+source: a-operators/a5-inventory.md
 language: zh
 
 ```
@@ -575,7 +575,7 @@ Shopify：日均 [X] 单，利润率 [X]%，自发货
 ---
 
 ## Prompt 12: 请帮我选择最优的头程物流方式：
-source: a5-inventory
+source: a-operators/a5-inventory.md
 language: zh
 
 ```

@@ -1,7 +1,7 @@
 # Prompt Playbook: ecom-advertising
 
 ## Prompt 1: 以下是我的搜索词报告数据（过去 30 天），请按匹配类型分层分析：
-source: a3-advertising
+source: a-operators/a3-advertising.md
 language: zh
 
 ```
@@ -61,7 +61,7 @@ Exact Match 搜索词：[粘贴数据]
 ---
 
 ## Prompt 2: 以下是我的广告数据，分为两个时间段：
-source: a3-advertising
+source: a-operators/a3-advertising.md
 language: zh
 
 ```
@@ -118,7 +118,7 @@ language: zh
 ---
 
 ## Prompt 3: 以下是我的 Product Targeting（ASIN 定向）广告数据：
-source: a3-advertising
+source: a-operators/a3-advertising.md
 language: zh
 
 ```
@@ -173,7 +173,7 @@ language: zh
 ---
 
 ## Prompt 4: 我的产品是 [产品描述]，核心卖点是 [卖点]。
-source: a3-advertising
+source: a-operators/a3-advertising.md
 language: zh
 
 ```
@@ -227,7 +227,7 @@ language: zh
 ---
 
 ## Prompt 5: 我的产品是 [产品描述]，目标是做竞品拦截（在竞品详情页展示我的广告）。
-source: a3-advertising
+source: a-operators/a3-advertising.md
 language: zh
 
 ```
@@ -282,7 +282,7 @@ language: zh
 ---
 
 ## Prompt 6: 你是一个 Amazon PPC 否定关键词专家。
-source: a3-advertising
+source: a-operators/a3-advertising.md
 language: zh
 
 ```
@@ -350,7 +350,7 @@ language: zh
 ---
 
 ## Prompt 7: 以下是我当前的否定关键词列表：
-source: a3-advertising
+source: a-operators/a3-advertising.md
 language: zh
 
 ```
@@ -408,7 +408,7 @@ language: zh
 ---
 
 ## Prompt 8: 你是一个 Amazon 广告预算优化专家。
-source: a3-advertising
+source: a-operators/a3-advertising.md
 language: zh
 
 ```
@@ -471,7 +471,7 @@ language: zh
 ---
 
 ## Prompt 9: Prime Day / BFCM 大促即将到来。以下是我的日常广告数据：
-source: a3-advertising
+source: a-operators/a3-advertising.md
 language: zh
 
 ```
@@ -536,7 +536,7 @@ Prime Day / BFCM 大促即将到来。以下是我的日常广告数据：
 ---
 
 ## Prompt 10: 你是一个 Amazon 新品广告启动专家。
-source: a3-advertising
+source: a-operators/a3-advertising.md
 language: zh
 
 ```
@@ -618,7 +618,7 @@ Week 2 还必须包含：收割标准表（点击量/转化率阈值）、Manual
 ---
 
 ## Prompt 11: 以下是我的新品 Auto 广告运行 2 周后的搜索词报告：
-source: a3-advertising
+source: a-operators/a3-advertising.md
 language: zh
 
 ```
@@ -675,7 +675,7 @@ language: zh
 ---
 
 ## Prompt 12: 我想分析竞品的广告策略。以下是我在 Amazon 搜索不同关键词时观察到的竞品广告情况：
-source: a3-advertising
+source: a-operators/a3-advertising.md
 language: zh
 
 ```
@@ -742,7 +742,7 @@ language: zh
 ---
 
 ## Prompt 13: 我的广告效果最近出现异常，请帮我做根因分析：
-source: a3-advertising
+source: a-operators/a3-advertising.md
 language: zh
 
 ```
@@ -808,7 +808,7 @@ language: zh
 ---
 
 ## Prompt 14: 我的广告点击量没变，但转化率从 [X]% 下降到 [X]%。
-source: a3-advertising
+source: a-operators/a3-advertising.md
 language: zh
 
 ```
@@ -852,7 +852,7 @@ language: zh
 ---
 
 ## Prompt 15: 我的产品目前在 Amazon US 站投放广告，表现如下：
-source: a3-advertising
+source: a-operators/a3-advertising.md
 language: zh
 
 ```
@@ -920,7 +920,7 @@ language: zh
 ---
 
 ## Prompt 16: 以下是我的产品在过去 3 个月的数据：
-source: a3-advertising
+source: a-operators/a3-advertising.md
 language: zh
 
 ```
@@ -968,7 +968,7 @@ language: zh
 ---
 
 ## Prompt 17: 我计划在 Google Ads 和 Instagram 上投放广告引流到 Amazon。
-source: a3-advertising
+source: a-operators/a3-advertising.md
 language: zh
 
 ```
@@ -1021,7 +1021,7 @@ language: zh
 ---
 
 ## Prompt 18: 你是一个跨平台电商广告素材专家。
-source: a3-advertising
+source: a-operators/a3-advertising.md
 language: zh
 
 ```

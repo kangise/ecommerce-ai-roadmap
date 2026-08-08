@@ -1659,3 +1659,225 @@
   source:
   - src/a-operators/a12-ip-protection.md#51-amazon-品牌保护工具矩阵
   - src/a-operators/a12-ip-protection.md#31-商标注册策略
+- id: buy_box
+  label:
+    zh: Buy Box
+    en: Buy Box
+    ja: Buy Box
+  definition:
+    zh: 亚马逊购物车，每个 ASIN 只有一个卖家获得。赢得 Buy Box 是成交的前提。
+    en: The Amazon Buy Box — the add-to-cart box on a product detail page. Only one
+      seller wins it per ASIN.
+    ja: Amazon の Buy Box — 商品詳細ページの「カゴに入れる」枠。1 ASIN につき 1 セラーのみ獲得。
+  attributes:
+  - id: share_percentage
+    type: float
+    label:
+      zh: 占有率
+      en: Share %
+      ja: 占有率
+  source:
+  - src/a-operators/a8-pricing-strategy.md
+- id: rating
+  label:
+    zh: 评分
+    en: Rating
+    ja: 評価
+  definition:
+    zh: 产品星级评分（1-5星），直接影响搜索排名和转化率。
+    en: Product star rating (1-5), directly affects search ranking and conversion.
+    ja: 商品の星評価（1-5）。検索順位とコンバージョン率に直接影響。
+  attributes:
+  - id: score
+    type: float
+    label:
+      zh: 星级
+      en: Stars
+      ja: 星
+  source:
+  - src/a-operators/a2-listing-optimization.md
+- id: bsr
+  label:
+    zh: BSR（畅销排名）
+    en: Best Sellers Rank
+    ja: ベストセラーランク
+  definition:
+    zh: Amazon 畅销排名，每小时更新，数字越小销量越高。
+    en: Amazon Best Sellers Rank, updated hourly. Lower number = higher sales.
+    ja: Amazon ベストセラーランク、1時間ごとに更新。数字が小さいほど販売が多い。
+  attributes:
+  - id: rank_number
+    type: int
+    label:
+      zh: 排名
+      en: Rank
+      ja: ランク
+  source:
+  - src/a-operators/a1-product-research.md
+- id: prime
+  label:
+    zh: Amazon Prime
+    en: Amazon Prime
+    ja: Amazon Prime
+  definition:
+    zh: Amazon 会员体系，Prime 商品有 Prime 标识，影响 Buy Box 权重和转化率。
+    en: Amazon Prime membership. Prime-eligible products get a Prime badge, affecting
+      Buy Box weight and conversion.
+    ja: Amazon Prime 会員。Prime 対象商品は Prime バッジが付き、Buy Box の重みとコンバージョンに影響。
+  attributes: []
+  source:
+  - src/a-operators/a5-inventory.md
+- id: ltv
+  label:
+    zh: LTV（客户生命周期价值）
+    en: LTV (Lifetime Value)
+    ja: LTV（顧客生涯価値）
+  definition:
+    zh: 一个客户从第一次购买到最后一次购买的总价值。LTV/CAC 比是核心盈利指标。
+    en: Total value of a customer from first to last purchase. LTV/CAC ratio is a
+      core profitability metric.
+    ja: 顧客の初回購入から最終購入までの総価値。LTV/CAC 比率は中核的な収益性指標。
+  attributes:
+  - id: ltv_value
+    type: float
+    label:
+      zh: LTV数值
+      en: LTV Value
+      ja: LTV値
+  source:
+  - src/a-operators/a8-pricing-strategy.md
+- id: deal
+  label:
+    zh: 促销活动
+    en: Deal/Promotion
+    ja: プロモーション
+  definition:
+    zh: Amazon 限时促销活动（Lightning Deal、7-Day Deal、Coupon），影响曝光和转化。
+    en: Amazon time-limited promotions (Lightning Deal, 7-Day Deal, Coupon). Affects
+      visibility and conversion.
+    ja: Amazon の期間限定プロモーション（Lightning Deal、7-Day Deal、Coupon）。露出とコンバージョンに影響。
+  attributes:
+  - id: deal_type
+    type: string
+    label:
+      zh: 类型
+      en: Type
+      ja: タイプ
+  source:
+  - src/a-operators/a8-pricing-strategy.md
+- id: storefront
+  label:
+    zh: 品牌旗舰店
+    en: Storefront
+    ja: ストアフロント
+  definition:
+    zh: Amazon 品牌旗舰店页面（Amazon Store），品牌注册后可用。
+    en: Amazon Store / Storefront page, available after Brand Registry.
+    ja: Amazon ストア / ストアフロントページ。ブランド登録後に利用可能。
+  attributes:
+  - id: amazon_store_url
+    type: string
+    label:
+      zh: 旗舰店链接
+      en: Store URL
+      ja: ストアURL
+  source:
+  - src/a-operators/a10-brand-building.md
+- id: seller_central
+  label:
+    zh: Seller Central
+    en: Seller Central
+    ja: セラーセントラル
+  definition:
+    zh: Amazon 卖家后台管理系统，所有运营操作和数据分析的入口。
+    en: Amazon seller backend management system — entry point for all operations and
+      data analysis.
+    ja: Amazon セラー向けバックエンド管理システム。すべての運営操作とデータ分析の入り口。
+  attributes: []
+  source:
+  - src/a-operators/a2-listing-optimization.md
+- id: ipi
+  label:
+    zh: IPI（库存绩效指数）
+    en: IPI (Inventory Performance Index)
+    ja: IPI（在庫パフォーマンス指数）
+  definition:
+    zh: Amazon FBA 库存绩效指数（0-1000），低于阈值（通常 400-500）会限制仓储容量。
+    en: Amazon FBA Inventory Performance Index (0-1000). Below threshold (typically
+      400-500) restricts storage capacity.
+  attributes:
+  - id: score
+    type: int
+    label:
+      zh: 分数
+      en: Score
+  source:
+  - src/a-operators/a5-inventory.md
+- id: cac
+  label:
+    zh: CAC（客户获取成本）
+    en: CAC (Customer Acquisition Cost)
+    ja: CAC（顧客獲得コスト）
+  definition:
+    zh: 获取一个新客户的平均营销费用。CAC = 总营销支出 / 新客户数。
+    en: Average marketing spend to acquire a new customer. CAC = Total Marketing Spend
+      / New Customers.
+  attributes:
+  - id: value
+    type: float
+    label:
+      zh: 金额
+      en: Amount
+  source:
+  - src/a-operators/a8-pricing-strategy.md
+- id: wfs
+  label:
+    zh: WFS（Walmart 仓储配送）
+    en: WFS (Walmart Fulfillment Services)
+    ja: WFS
+  definition:
+    zh: Walmart 的仓储配送服务，类似 Amazon FBA。使用 WFS 的商品有 Buy Box 优势。
+    en: Walmart fulfillment service, similar to Amazon FBA. WFS products have Buy
+      Box advantage.
+  attributes: []
+  source:
+  - src/d-platforms/d4-walmart-ai-guide.md
+- id: bfcm
+  label:
+    zh: 黑五网一
+    en: Black Friday / Cyber Monday
+    ja: ブラックフライデー / サイバーマンデー
+  definition:
+    zh: 黑色星期五 + 网络星期一，全年最大促销期。
+    en: Black Friday + Cyber Monday — the year's biggest promotional period.
+  attributes: []
+  source:
+  - src/a-operators/a5-inventory.md
+- id: cpm
+  label:
+    zh: CPM（千次展示成本）
+    en: CPM (Cost Per Mille)
+    ja: CPM（1000インプレッション単価）
+  definition:
+    zh: 每千次展示的广告成本，品牌广告和 DSP 广告的核心指标。
+    en: Advertising cost per thousand impressions. Core metric for brand ads and DSP.
+  attributes:
+  - id: value
+    type: float
+    label:
+      zh: 金额
+      en: Amount
+  source:
+  - src/a-operators/a3-advertising.md
+- id: cod
+  label:
+    zh: 货到付款
+    en: Cash on Delivery
+    ja: 代金引換
+  definition:
+    zh: 配送后当面付款，东南亚和中东市场的主要支付方式。
+    en: Payment on delivery. Primary payment method in Southeast Asia and Middle East
+      markets.
+  attributes: []
+  source:
+  - src/d-platforms/d6-southeast-asia-ai-guide.md

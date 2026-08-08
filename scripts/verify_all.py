@@ -151,16 +151,21 @@ def main() -> int:
             keywords = triggers.get("keywords", []) if isinstance(triggers, dict) else []
             manifests[sid] = keywords
 
+        # ANTI-DEGENERATION CHECK: count cases with a `natural: true` marker.
+        # Cases without this marker are literal-trigger cases that risk tautology.
+        # Require >= 50% of cases to be marked natural.
+        natural_count = sum(1 for c in cases if c.get("natural"))
+        nat_ratio = natural_count / len(cases) if cases else 0
+        if nat_ratio < 0.50:
+            print(f"  [FAIL] R1          TEST DEGENERATION ({natural_count}/{len(cases)} = {nat_ratio:.0%} natural — must be >=50%)")
+            return 1
+
         errors = []
         for i, case in enumerate(cases):
             query = case.get("query", "")
             expected = case.get("expect", "")
             if not query or not expected:
                 continue
-            # Routing logic (same as what the agent prompt describes):
-            # - If applicability keywords match, always route to applicability
-            #   (overrides domain keywords — user is asking "should I use AI?")
-            # - Otherwise, highest keyword match wins
             app_kws = manifests.get("ecom-applicability", [])
             is_app_question = any(kw.lower() in query.lower() for kw in app_kws if len(kw) >= 3)
             if is_app_question:
@@ -170,7 +175,7 @@ def main() -> int:
                 best_score = 0
                 for sid, keywords in manifests.items():
                     if sid == "ecom-applicability":
-                        continue  # already checked above
+                        continue
                     score = sum(1 for kw in keywords if kw.lower() in query.lower())
                     if score > best_score:
                         best_score = score
