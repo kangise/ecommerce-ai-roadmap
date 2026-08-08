@@ -143,6 +143,19 @@ Requirements:
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+
+<output_format>
+Output templates scenario by scenario for all 7 scenarios, each in 4 languages: English, Spanish, Portuguese, Indonesian.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① All 7 scenarios covered (welcome / product inquiry / price / logistics / return-exchange / positive-review thanks / negative-review appeasement)
+② Each scenario has exactly 4 language versions
+③ Every message is ≤300 characters
+④ Every message includes clear next-step guidance
+⑤ No unauthorized commitments (refund amounts, compensation, timelines) are made
+</self_check>
 ```
 
 ---
@@ -269,6 +282,19 @@ For each node provide:
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+
+<output_format>
+Output the conversation tree for all 5 flows; each node has bot message text, Quick Reply options, and next-step logic.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① All 5 flows covered (welcome / product recommendation / order guidance / after-sales / transfer-to-human)
+② Every node has all three: bot text + options + next-step logic
+③ The product-recommendation flow completes within 3 rounds
+④ Transfer-to-human trigger conditions are clearly decidable
+⑤ Message tone matches the selected brand tone
+</self_check>
 ```
 
 ---
@@ -358,6 +384,19 @@ Please design a repurchase-automation plan:
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+
+<output_format>
+Deliver 4 parts in order: repurchase-reminder timeline / message templates per touchpoint / personalization strategy / effect tracking.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① The timeline has at least 4 touchpoints (tutorial / survey / repurchase reminder / new-product recommendation)
+② Each touchpoint has English, Spanish, and Portuguese versions
+③ Personalization covers purchase history, browsing behavior, and VIP tiers
+④ Effect tracking includes open rate / reply rate / repurchase conversion / ROI
+⑤ No conversion or ROI numbers are invented
+</self_check>
 ```
 
 ### WhatsApp Catalog Optimization
@@ -443,6 +482,20 @@ Please design an AI sales consultant plan:
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+
+<output_format>
+Deliver 5 parts in order: proactive outreach strategy / conversational sales flow / multilingual support / effect tracking / compliance requirements.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① Outreach covers welcome / browsed-not-bought / cart-abandonment / repurchase four scenarios
+② Sales flow has needs discovery, personalized recommendation, objection handling, order guidance
+③ Multilingual support includes auto language detection and per-language templates
+④ Effect tracking includes conversion rate / conversation rounds / satisfaction / ROI
+⑤ Compliance covers opt-in, message-frequency limits, unsubscribe, and data privacy (GDPR/LGPD)
+⑥ All numbers are tagged [supplied by me] or [model inference]
+</self_check>
 ```
 
 ### WhatsApp Flows (2026 New Feature)

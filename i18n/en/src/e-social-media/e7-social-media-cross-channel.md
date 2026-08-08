@@ -120,6 +120,19 @@ After agentifying, the data you're asked to paste above should be read from here
 - Keyword search volume → Helium 10 / Jungle Scout export (Class B, manual export)
 - Competitor pages/reviews → mostly no open API (Class C, postpone agentifying)
 </data_source>
+
+<output_format>
+Output adapted content platform by platform for all 7: YouTube long-form description / Shorts script / Reels script / Carousel copy / TikTok script / Pinterest Pin / Xiaohongshu note.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① All 7 platforms covered
+② Quantities hit the targets: 3 Shorts, 2 Reels, 8 Carousel pages, 2 TikTok, 5 Pins, 1 Xiaohongshu note
+③ Each platform states its tone/style adjustment and CTA adjustment
+④ The core message stays consistent across platforms
+⑤ No product attributes or numbers beyond the pasted core content
+</self_check>
 ```
 
 ### 1.3 Best-Spec Comparison Table for Each Platform
@@ -214,6 +227,19 @@ Label each piece of content with:
 - Core keyword
 - Posting date and time
 - Whether it can be reused from other platforms' content
+
+<output_format>
+Output a 4-week cross-platform content calendar; each week has 1 core theme plus concrete topics for YouTube/Instagram/TikTok/Pinterest.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① All 4 weeks covered, with 1 core theme per week
+② Weekly quantities hit targets: YouTube 1 long-form + 3 Shorts, Instagram 5 Reels + 2 Carousels, TikTok 5 topics, Pinterest 10 topics
+③ Every item is labeled with platform/type/title/keyword/date-time
+④ Reuse relationships between platforms are marked
+⑤ No posting dates or data are invented
+</self_check>
 ```
 
 ---
@@ -274,6 +300,18 @@ Please analyze why these performed well, and suggest how to adapt them to:
 2. TikTok (what to adjust)
 3. Pinterest Pin (what elements to extract)
 4. Xiaohongshu note (how to rewrite)
+
+<output_format>
+Deliver two parts: ① why these performed well ② adaptation suggestions for each of YouTube Shorts / TikTok / Pinterest / Xiaohongshu.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① Analysis is based on the pasted Reels content and data
+② Each of the 4 platforms gets concrete adjustment points (format/tone/elements)
+③ Every suggestion is directly actionable
+④ No data or industry averages are invented
+</self_check>
 ```
 
 ---
@@ -412,6 +450,19 @@ Please analyze:
 - When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
 - Tag every conclusion with its source: [supplied by me] or [model inference]
 </data_discipline>
+
+<output_format>
+Deliver 6 items in order: platform ranking / best platform and why / platforms needing adjustment / budget recommendation / most successful content and replication / next-week action items.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① All 6 questions are answered
+② Platform ranking cites an ROI basis and data source
+③ The budget recommendation gives a direction or split
+④ Next-week action items number at most 3
+⑤ Every number is tagged [supplied by me] or [model inference]
+</self_check>
 ```
 
 ### Cross-Platform Attribution In-Depth Methodology

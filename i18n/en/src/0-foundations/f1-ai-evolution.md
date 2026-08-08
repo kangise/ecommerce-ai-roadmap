@@ -550,6 +550,16 @@ AI:
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+
+<output_format>
+Output exactly 6 numbered sections (1. 2. 3. …) matching the requested items, in the same order, each headed with the item's original name; every requested item appears exactly once.
+</output_format>
+
+<self_check>
+(1) All 6 requested items (Conversation vs agent:…) are present, numbered in the same order, with none missing or extra.
+(2) Every figure comes from the pasted data; anything absent is written "missing" — no estimates from memory.
+(3) Copy claims no feature/certification/material/result absent from the input, and makes no unauthorized customer commitment.
+</self_check>
 ```
 
 ### 6.2 An agent's core capabilities
@@ -699,6 +709,16 @@ Advanced → LangGraph/CrewAI (see Path B)
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+
+<output_format>
+Organize the answer into clearly headed sections, one per requested deliverable, so each deliverable can be checked off independently.
+</output_format>
+
+<self_check>
+(1) Every requested deliverable (What are you trying to do?…) is actually delivered; none omitted.
+(2) Every figure comes from the pasted data; anything absent is written "missing" — no estimates from memory.
+(3) Copy claims no feature/certification/material/result absent from the input, and makes no unauthorized customer commitment.
+</self_check>
 ```
 
 ---

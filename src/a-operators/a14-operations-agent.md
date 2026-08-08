@@ -197,6 +197,12 @@ JSON: [{term, matchType, action: "negative_exact"|"negative_phrase"|"watch",
 本技能只产出待确认清单，不直接调用 API 写入否定词。
 用户勾选后，由调用方执行写入。
 </人工确认>
+
+<自检>
+① 每个请求的交付物（按四象限分类，产出精确否定 / 短语否定 / 观察三类清单…）都实际给出，未遗漏。 <!-- ref: amazon.negative_keyword.exact.behavior --> <!-- ref: amazon.search_term.classification.observe_word -->
+② 所有数字只来自粘贴的数据；数据中没有的一律写"缺失"，不凭记忆估算。
+③ 交付物结构与请求一致，没有把需要我填写的占位符 [X] 静默替换成编造内容。
+</自检>
 ```
 
 对比一下：原 Prompt 的**任务描述和数据纪律一字未改**，新增的全部是"从哪读、什么时候不该跑、产出给谁用、谁来点头"。

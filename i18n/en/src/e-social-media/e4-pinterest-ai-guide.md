@@ -123,6 +123,19 @@ Please help me design a Pinterest Board structure:
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+
+<output_format>
+First give an overall Board-structure table (Board name | description | recommended Pin count | first 5 Pin topics), then break it out by the four categories: product / inspiration / tutorial / seasonal.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① Total Boards are between 8 and 12
+② Each Board name is ≤30 characters and includes a keyword
+③ Each Board description includes 3-5 keywords and is ≤500 characters
+④ Each Board recommends at least 20 Pins
+⑤ Every Board lists its first 5 Pin topics
+</self_check>
 ```
 
 ---
@@ -170,6 +183,19 @@ The 10 Pin angles:
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+
+<output_format>
+Output 10 Pin concepts, each with exactly 6 fields: title / description / image creative / text overlay / recommended Board / best posting time.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① Exactly 10 Pin concepts
+② Each Pin title is ≤100 characters and includes keywords; each description is ≤500 characters with 3-5 keywords
+③ Each text overlay is ≤8 words
+④ Angle mix is 3 product-showcase + 2 tutorial + 2 inspiration + 2 list + 1 seasonal
+⑤ No feature, material, certification, or effect beyond what was given in the product info
+</self_check>
 ```
 
 ### 3.3 Idea Pins (Similar to Stories)
@@ -196,6 +222,19 @@ Structure:
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+
+<output_format>
+Output each page from 1 to 5: visual description, text content, and product-placement approach per page.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① Exactly 5 pages
+② Page 1 is the cover with a Hook title
+③ Every page has all three items: visual description, text content, product placement
+④ Page 5 includes a summary + product recommendation
+⑤ Placement is natural, with no hard-sell or invented attributes
+</self_check>
 ```
 
 ---
@@ -240,6 +279,19 @@ Please optimize for Pinterest format:
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+
+<output_format>
+Deliver 4 parts in order: ① Pinterest product title ② Pinterest product description ③ recommended Product Group classification ④ suggested product attributes to add.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① Title includes search keywords and reads as natural language
+② Description is lifestyle-oriented and includes use scenarios
+③ A concrete Product Group classification is given
+④ The attribute list is itemized (color/material/style, etc.)
+⑤ No feature or certification the product doesn't have
+</self_check>
 ```
 
 ### 4.3 Pinterest Ads vs Meta Ads Budget Allocation
@@ -298,6 +350,18 @@ After agentifying, the data you're asked to paste above should be read from here
 - Keyword search volume → Helium 10 / Jungle Scout export (Class B, manual export)
 - Competitor pages/reviews → mostly no open API (Class C, postpone agentifying)
 </data_source>
+
+<output_format>
+Deliver two parts: ① an overall performance assessment ② concrete optimization suggestions grouped by Top/Bottom Pins.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① Only numbers from the pasted data are used; anything missing is written "missing", not estimated
+② Top 5 and Bottom 5 Pins each get at least one actionable suggestion
+③ Every suggestion states its basis (data / inference)
+④ No industry averages are quoted from memory
+</self_check>
 ```
 
 ---
@@ -326,6 +390,19 @@ For each month provide:
 - When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
 - Tag every conclusion with its source: [supplied by me] or [model inference]
 </data_discipline>
+
+<output_format>
+Output a content calendar for the next 6 months; each month has 3 fields: Pin topics / recommended keywords / best posting time.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① Exactly 6 months are covered
+② Each month lists 3-5 Pin topics
+③ Each month includes recommended keywords and best posting time
+④ Content months follow Pinterest's 3-6 month search lead time
+⑤ Forecast keywords or times are tagged [model inference]
+</self_check>
 ```
 
 ---
@@ -433,6 +510,19 @@ Note:
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+
+<output_format>
+Output a 6-month seasonal content calendar; each month has 5 items: content themes / 5 Pin topics / Board classification / popular search-term forecast / long-tail opportunities.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① All 6 months are covered, with themes targeting holidays/seasons 3-6 months out
+② Each month has exactly 5 Pin topics (title + description + keywords)
+③ Each month includes Board classification, search-term forecast, and long-tail opportunities
+④ Search-term forecasts are tagged [model inference]
+⑤ No market data or search volumes are invented
+</self_check>
 ```
 
 ---
@@ -512,6 +602,19 @@ Please design a Pinterest Shopping Ads strategy:
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+
+<output_format>
+Deliver 5 parts in order: campaign structure / targeting strategy / bidding strategy / creative optimization / data-analysis plan.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① Campaign structure includes grouping logic, and Ad Group budget shares total 100%
+② Targeting covers keyword / interest / audience / Actalike four types
+③ Bidding gives an auto-vs-manual recommendation and CPC ranges by category
+④ Creative gives the Standard Pin vs Collection Ad choice with reasoning
+⑤ Data analysis includes ROAS/CPC/CTR/Save Rate, optimization cadence, and an A/B test plan
+</self_check>
 ```
 
 ### Pinterest vs Meta Ads Detailed Comparison
@@ -593,6 +696,19 @@ After agentifying, the data you're asked to paste above should be read from here
 - Keyword search volume → Helium 10 / Jungle Scout export (Class B, manual export)
 - Competitor pages/reviews → mostly no open API (Class C, postpone agentifying)
 </data_source>
+
+<output_format>
+Deliver 8 analyses in order: overall assessment / Top-Pin commonalities / Bottom-Pin problems / Board strategy / keyword strategy / seasonal suggestions / ad suggestions / 10 Pin topics for next month.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① All 8 analysis points are covered
+② Every number comes only from pasted data, tagged [input data] or [model inference]
+③ Save Rate >1% and Outbound CTR >0.5% are used only as reference benchmarks, not as measured data
+④ Next-month Pin topics number exactly 10
+⑤ No impression/save/spend numbers are invented
+</self_check>
 ```
 
 ---

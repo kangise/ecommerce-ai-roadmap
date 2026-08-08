@@ -121,6 +121,16 @@ Note:
 - If you need a selling point I didn't supply, list what you need from me rather than improvising
 - Flag any claim touching efficacy, safety, environmental, or patent language separately so I can verify it by hand
 </copy_discipline>
+
+<output_format>
+Output exactly 5 numbered sections (1. 2. 3. …) matching the requested items, in the same order, each headed with the item's original name; every requested item appears exactly once.
+</output_format>
+
+<self_check>
+(1) All 5 requested items (You are a Korean e-commerce Listing optimization expert, pro…) are present, numbered in the same order, with none missing or extra. <!-- ref: amazon.bullet_point.count -->
+(2) Every figure comes from the pasted data; anything absent is written "missing" — no estimates from memory.
+(3) Copy claims no feature/certification/material/result absent from the input, and makes no unauthorized customer commitment.
+</self_check>
 ```
 
 ## 4. Coupang-Specific Operational Differences

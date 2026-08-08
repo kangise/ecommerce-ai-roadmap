@@ -121,6 +121,19 @@ For each Subreddit provide:
 - When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
 - Tag every conclusion with its source: [supplied by me] or [model inference]
 </data_discipline>
+
+<output_format>
+Output 10 Subreddits, each with 6 items: name and link / member-count magnitude / activity level / self-promotion rules / recommended participation / content angles.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① Exactly 10 Subreddits
+② Each has name+link, member-count magnitude, and activity assessment
+③ Each states its self-promotion rules
+④ Each gives a recommended participation approach and content angles
+⑤ Magnitudes and activity are tagged [model inference] or [supplied by me]
+</self_check>
 ```
 
 ### 2.3 AMA (Ask Me Anything) Strategy
@@ -205,6 +218,20 @@ Please develop a Reddit Ads strategy:
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+
+<output_format>
+Deliver 6 parts in order: fit assessment / ad-type selection / targeting strategy / creative strategy / budget allocation / KPI setup.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① Fit assessment reaches a clear conclusion (yes / no / conditional)
+② Ad-type selection gives recommendations with reasons
+③ Targeting includes Subreddit targeting
+④ Creative follows Reddit's native "not like an ad" style
+⑤ Budget allocation covers test and scale-up phases
+⑥ KPIs are set per stage: awareness / consideration / conversion
+</self_check>
 ```
 
 ### 3.3 AI-Generate Reddit-Style Ad Copy
@@ -248,6 +275,19 @@ After agentifying, the data you're asked to paste above should be read from here
 - Keyword search volume → Helium 10 / Jungle Scout export (Class B, manual export)
 - Competitor pages/reviews → mostly no open API (Class C, postpone agentifying)
 </data_source>
+
+<output_format>
+Output 5 Reddit ad copies, each with a title, body, and the Subreddit it suits.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① Exactly 5 copies
+② Each title uses a common Reddit format (question/share/discussion)
+③ Each copy is labeled with a suitable Subreddit
+④ Bodies are colloquial, authentic, unexaggerated, and not hard-sell
+⑤ No feature or effect claims the product doesn't have
+</self_check>
 ```
 
 ---
@@ -298,6 +338,19 @@ After agentifying, the data you're asked to paste above should be read from here
 - Keyword search volume → Helium 10 / Jungle Scout export (Class B, manual export)
 - Competitor pages/reviews → mostly no open API (Class C, postpone agentifying)
 </data_source>
+
+<output_format>
+Deliver 5 parts in order: monitoring keyword list / Subreddit list / sentiment-analysis framework / negative-response strategy / competitor-comparison template.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① Keyword list covers brand + product + category + competitor names
+② The Subreddit list gives concrete names
+③ The sentiment framework has positive/neutral/negative tiers with criteria
+④ The negative-response strategy excludes deleting or hiding
+⑤ The competitor template is directly reusable
+</self_check>
 ```
 
 ### 4.2 Handling Negative Discussion
@@ -329,6 +382,19 @@ Requirements: authentic Reddit style, colloquial, not like an ad, with appropria
 - When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
 - Tag every conclusion with its source: [supplied by me] or [model inference]
 </data_discipline>
+
+<output_format>
+Output 5 posts, one per scenario 1-5, each with a title and body.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① Exactly 5 posts, one for each of the 5 scenarios
+② Style is authentic, colloquial, not like an ad, with appropriate self-deprecation
+③ No purchase links inside the posts
+④ No invented usage experience or data
+⑤ Product statements are limited to what was provided for [product]
+</self_check>
 ```
 
 ---
@@ -467,6 +533,19 @@ Please analyze Reddit's impact on my AI-search visibility:
 - When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
 - Tag every conclusion with its source: [supplied by me] or [model inference]
 </data_discipline>
+
+<output_format>
+Deliver 4 parts in order: current state / AI-search impact assessment / optimization strategy / coordination with Reddit's AI shopping feature.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① Current state covers discussion volume, sentiment, and "best X" mentions
+② Impact assessment covers ChatGPT, Perplexity, and Google AI Overviews
+③ Strategy includes increasing positive discussion, responding to (not deleting) negative discussion, and natural mentions
+④ A DPA-partner recommendation is given
+⑤ Every judgment is tagged [supplied by me] or [model inference]
+</self_check>
 ```
 
 ---

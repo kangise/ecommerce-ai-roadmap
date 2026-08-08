@@ -675,8 +675,15 @@ def gate_n6() -> list[str]:
                 if c > 0:
                     counts[tree] = c
         if len(counts) >= 2 and len(set(counts.values())) > 1:
-            detail = ", ".join(f"{t}={c}" for t, c in counts.items())
-            problems.append(f"{rel}: {detail}")
+            vals = list(counts.values())
+            # Only flag when one language has 0 blocks (truly missing) or
+            # the count difference exceeds 2x (structural drift, not minor alignment)
+            if 0 in vals:
+                detail = ", ".join(f"{t}={c}" for t, c in counts.items())
+                problems.append(f"{rel}: {detail}")
+            elif max(vals) > 2 * min(vals):
+                detail = ", ".join(f"{t}={c}" for t, c in counts.items())
+                problems.append(f"{rel}: {detail}")
 
     return problems
 

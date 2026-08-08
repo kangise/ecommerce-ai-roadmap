@@ -198,6 +198,12 @@ JSON: [{term, matchType, action: "negative_exact"|"negative_phrase"|"watch",
 This skill only produces a list for confirmation. It does not call the API to
 write negatives. The caller executes the write after the user selects.
 </human_confirmation>
+
+<self_check>
+(1) Every requested deliverable (Classify into four quadrants; produce exact-nega…) is actually delivered; none omitted. <!-- ref: amazon.negative_keyword.exact.behavior --> <!-- ref: amazon.search_term.classification.observe_word -->
+(2) Every figure comes from the pasted data; anything absent is written "missing" — no estimates from memory.
+(3) Every conclusion is tagged with its source: [input data] or [model inference].
+</self_check>
 ```
 
 Compare: **the task description and data discipline are unchanged, word for word.** Everything new is about where to read, when not to run, who consumes the output, and who nods.

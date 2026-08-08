@@ -111,6 +111,19 @@ After agentifying, the data you're asked to paste above should be read from here
 - Keyword search volume → Helium 10 / Jungle Scout export (Class B, manual export)
 - Competitor pages/reviews → mostly no open API (Class C, postpone agentifying)
 </data_source>
+
+<output_format>
+Deliver 6 parts in order: COSMO score / Rufus score / Backend advice / 10 Q&A pre-seed questions / keyword-coverage gaps / prioritized action list.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① Both scores are 1-10 and each has a stated basis
+② Q&A pre-seeding has exactly 10 questions, with keyword-bearing answers
+③ Backend advice complies with: no repeated title words, ≤250 bytes, space-separated
+④ Keyword gaps are derived from the pasted Listing, not from memory
+⑤ The action list is prioritized and numbers are tagged with sources
+</self_check>
 ```
 
 ---
@@ -235,6 +248,19 @@ Assess my Agentic Commerce readiness:
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+
+<output_format>
+Deliver 4 parts in order: structured-data completeness / AI discoverability / shoppability / action plan (1 week / 1 month / 3 months).
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① All 4 assessment points covered
+② The structured-data checklist covers Product/FAQ/Breadcrumb/Review
+③ Shoppability checks price accuracy, stock, deep links, and UCP
+④ The action plan splits into short-term 1 week / mid-term 1 month / long-term 3 months
+⑤ Conclusions are tagged [supplied by me] or [model inference]
+</self_check>
 ```
 
 ### 4.5 GEO effect measurement (enhanced)
@@ -333,6 +359,14 @@ After agentifying, the data you're asked to paste above should be read from here
 - Keyword search volume → Helium 10 / Jungle Scout export (Class B, manual export)
 - Competitor pages/reviews → mostly no open API (Class C, postpone agentifying)
 </data_source>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① The attribute-extraction table lists each row as attribute | value | source (structured field / body copy / cannot determine)
+② Purely unextractable attributes are listed in full (dimensions/weight/material/compatibility/certifications/scenarios, etc.)
+③ Contradictions are itemized; if none, say so explicitly
+④ The completeness score is an integer 1-5, with what's missing to reach 5 stated
+</self_check>
 ```
 
 ### 5.3 Priority order
@@ -393,6 +427,20 @@ Assess: structured-data completeness, FAQ optimization advice (10), brand-mentio
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+
+<output_format>
+Deliver 6 assessments in order: structured-data completeness / 10 FAQ optimization suggestions / brand-mention analysis / review coverage / competitor gap / prioritized action list.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① Structured-data completeness is assessed explicitly, including gaps
+② FAQ suggestions number exactly 10
+③ Brand-mention analysis and review coverage each reach a conclusion
+④ Competitor gaps are itemized
+⑤ The action list is prioritized
+⑥ No data is invented; missing items are marked "missing"
+</self_check>
 ```
 
 ### 8.2 Multi-platform keyword research
@@ -400,6 +448,18 @@ Assess: structured-data completeness, FAQ optimization advice (10), brand-mentio
 ```
 Product [X], category [X], market [US].
 Provide 10 keywords each for Amazon/Google/TikTok/YouTube/Pinterest, noting search-volume tier, competition level, recommended content type.
+
+<output_format>
+Output keyword lists per platform for Amazon / Google / TikTok / YouTube / Pinterest, each keyword with search-volume tier, competition level, and recommended content type.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① All 5 platforms covered
+② Exactly 10 keywords per platform
+③ Every keyword has all three labels: volume tier, competition, content type
+④ Without search-volume data, use tiers (high/medium/low) instead of invented numbers
+</self_check>
 ```
 
 ---
