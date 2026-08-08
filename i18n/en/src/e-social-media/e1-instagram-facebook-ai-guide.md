@@ -892,6 +892,24 @@ For each tag, provide:
 
 Keep the total at 20-25 tags/post.
 Allocate by the "5-5-5-10" strategy: 5 large tags + 5 medium tags + 5 small tags + 10 long-tail tags.
+
+<data_discipline>
+- Any figure involving money, volume, ranking, or fee rates must come from what I supplied above. Anything I didn't give you is "missing" — **do not estimate, and do not draw on industry averages or platform fee rates from memory**. Those go stale, and I may spend real money on them
+- When you need a figure to continue, tell me where to look it up and which field to read, then stop and wait for me to supply it
+- Tag every conclusion with its source: [supplied by me] or [model inference]. For inferences, state what the inference rests on
+</data_discipline>
+
+<output_format>
+Output the tags in 5 categories (brand tags / product tags / community tags / trending tags / long-tail tags), one tag per line: tag name | estimated post volume | recommended use scenario.
+</output_format>
+
+<self_check>
+Check and report each item before delivery:
+① Total 20-25 tags, allocated by 5-5-5-10 (5 large + 5 medium + 5 small + 10 long-tail)
+② Every tag provides all three fields: name / estimated post volume / use scenario
+③ Tags are relevant to the category and target market, not invented
+④ Post-volume estimates are tagged [supplied by me] or [model inference]
+</self_check>
 ```
 
 ### 9.3 Competitor Instagram Analysis
@@ -923,6 +941,18 @@ Finally give:
 - When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
 - Tag every conclusion with its source: [supplied by me] or [model inference]
 </data_discipline>
+
+<output_format>
+Output one section per competitor (each: content strategy | interaction strategy | Shopping strategy | ad strategy | growth strategy), then 3 strategies worth borrowing, 3 opportunity points, and the differentiation direction.
+</output_format>
+
+<self_check>
+Check and report each item before delivery:
+① All 3 competitors covered with all 5 analyses, none missing
+② Exactly 3 strategies worth borrowing and exactly 3 opportunity points
+③ Competitor data (follower counts, posting frequency, etc.) comes from what I supplied; anything missing is written as "missing"
+④ Every conclusion is tagged [supplied by me] or [model inference]
+</self_check>
 ```
 
 ---
@@ -1044,6 +1074,18 @@ Please analyze:
 - When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
 - Tag every conclusion with its source: [supplied by me] or [model inference]
 </data_discipline>
+
+<output_format>
+Output the 7 items in order: algorithm-performance assessment → bottleneck metric → save-rate improvement strategy → share-rate improvement strategy → best posting time → frequency recommendation → 5 topic suggestions.
+</output_format>
+
+<self_check>
+Check and report each item before delivery:
+① Metric figures (reach / engagement rate / save rate / share rate) come from my supplied data; anything missing is written as "missing"
+② Industry benchmarks are labeled as reference lines, not measured values
+③ Save-rate / share-rate improvement strategies are concrete and actionable
+④ The 5 topic suggestions align with algorithm preferences (completion / save / share rate)
+</self_check>
 ```
 
 ---
@@ -1114,6 +1156,18 @@ Please design a creator-collaboration plan:
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+
+<output_format>
+Output 5 blocks: scoring model (5 dimensions × points) → creator-combination table (type | quantity | unit price | subtotal) → DM template → Creative Brief → effect-tracking plan.
+</output_format>
+
+<self_check>
+Check and report each item before delivery:
+① Scoring model on a 100-point scale with dimension points summing to 100 (25+25+20+15+15)
+② Creator-combination total budget ≤ my supplied monthly budget $[X]
+③ DM template and Creative Brief complete, with required elements (product tag, CTA, Hashtag) and prohibited items
+④ Copy contains no feature, material, certification, or effect the product doesn't have; no unauthorized commitments
+</self_check>
 ```
 
 ### Secondary Use of Creator Content

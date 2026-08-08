@@ -897,7 +897,7 @@ A per-point verdict list (pass / fail / fix): for each audit point, state the fi
 Check each item before delivery and report the results:
 ① The first 80 title characters actually carry the core value — quote what a phone shows <!-- ref: amazon.listing.title.key_content_first_80 -->
 ② The first two bullets are the two most important selling points <!-- ref: amazon.bullet_point.top2_priority -->
-③ Each bullet ≤200 characters (hard limit 500) <!-- ref: amazon.bullet_point.recommended_max_length -->
+③ Each bullet ≤200 characters (hard limit 500) <!-- ref: amazon.bullet_point.recommended_min_length -->
 ④ Findings are based only on the title and bullets I pasted
 </self_check>
 ```

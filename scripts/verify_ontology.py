@@ -412,7 +412,59 @@ def gate_o4() -> list[str]:
 # ---------------------------------------------------------------------------
 
 def gate_o5() -> list[str]:
-    return []  # Phase B
+    """Every <!-- ref: constraint_id --> refers to an existing constraint in constraints.yaml.
+
+    Additionally, for numeric constraints, verify that the literal value on the same
+    line as the ref marker matches the constraint's `value` field.
+    """
+    problems = []
+    constraints = _load_yaml(ONTOLOGY / "constraints.yaml")
+    constraint_ids = set()
+    constraint_values = {}
+    for c in constraints:
+        if isinstance(c, dict):
+            cid = c.get("id", "")
+            if cid:
+                constraint_ids.add(cid)
+                constraint_values[cid] = c.get("value")
+
+    REF_PATTERN = re.compile(r"<!--\s*ref:\s*([a-zA-Z0-9_.-]+)\s*-->")
+
+    for tree in ("src", "i18n/en/src", "i18n/ja/src"):
+        tree_root = ROOT / tree
+        if not tree_root.exists():
+            continue
+        for md in sorted(tree_root.rglob("*.md")):
+            text = md.read_text(encoding="utf-8")
+            for i, line in enumerate(text.split("\n"), 1):
+                for m in REF_PATTERN.finditer(line):
+                    cid = m.group(1)
+                    rel = f"{tree}/{md.relative_to(tree_root)}"
+                    if cid not in constraint_ids:
+                        problems.append(f"{rel}:{i} ref '{cid}' not found in constraints.yaml")
+                    else:
+                        # Check value consistency: extract a number from the line
+                        # and compare with the constraint value
+                        val = constraint_values.get(cid)
+                        if val is not None and isinstance(val, (int, float)):
+                            # Try to find the literal value on this line
+                            nums = re.findall(r'(?<!\d)(\d+(?:\.\d+)?)', line)
+                            if nums:
+                                # Check if any number on this line matches the constraint value
+                                found = False
+                                for n in nums:
+                                    try:
+                                        if float(n) == float(val):
+                                            found = True
+                                            break
+                                    except ValueError:
+                                        continue
+                                if not found:
+                                    problems.append(
+                                        f"{rel}:{i} ref '{cid}' value={val} "
+                                        f"but line numbers={nums}"
+                                    )
+    return problems
 
 
 # ---------------------------------------------------------------------------
