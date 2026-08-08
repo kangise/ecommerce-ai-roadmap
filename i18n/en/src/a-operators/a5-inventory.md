@@ -264,6 +264,19 @@ Compute:
 6. If there's a promo (e.g., Prime Day), how much extra to stock
 7. Capital-tie-up estimate (purchase cost + projected storage fee)
 8. Risk note (advice on balancing stockout risk vs overstock risk)
+
+<output_format>
+Output a table (metric | value | conclusion) with the 8 computed results first, then a three-scenario comparison and the risk note.
+</output_format>
+
+<self_check>
+Check and report each item before delivery:
+① Safety stock and reorder point computed with the formulas Z × σ_d × √L and daily sales × Lead Time + safety stock, showing the work <!-- ref: inventory.safety_stock_formula --> <!-- ref: inventory.reorder_point_formula -->
+② Days of cover = (current inventory + in-transit) ÷ daily sales <!-- ref: inventory.days_of_stock_formula -->
+③ Lead Time taken as the max of the last 3 actuals, not the average <!-- ref: inventory.lead_time_safety_rule -->
+④ Stockout/overstock costs follow the formulas: stockout = days × daily sales × AOV × margin + rank-recovery cost; overstock = qty × storage × days + long-term fee + capital cost <!-- ref: inventory.stockout_cost_formula --> <!-- ref: inventory.stagnation_cost_formula -->
+⑤ Any IPI Score or storage-limit judgment cites its basis; missing data written as "missing", never estimated
+</self_check>
 ```
 
 
@@ -296,6 +309,18 @@ Please:
 - When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
 - Tag every conclusion with its source: [supplied by me] or [model inference]
 </data_discipline>
+
+<output_format>
+One row per SKU in a table (SKU | stockout-urgency score | profit-contribution rank | suggested restock qty | priority), then the allocation plan under the budget limit and how it changes at +20%/+50%.
+</output_format>
+
+<self_check>
+Check and report each item before delivery:
+① Each SKU's urgency score is based on days of cover vs Lead Time + safety days <!-- ref: inventory.days_of_stock_formula -->
+② Total allocation does not exceed the total budget $[X] I supplied
+③ The +20%/+50% budget scenarios are both covered
+④ Missing data written as "missing", never estimated
+</self_check>
 ```
 
 > **Why use it**: with limited capital, not all SKUs can restock at once. Prioritize high-profit, high-stockout-risk SKUs; defer low-profit, well-stocked ones. AI can do this multivariable optimization.
@@ -325,6 +350,18 @@ Analyze:
 - When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
 - Tag every conclusion with its source: [supplied by me] or [model inference]
 </data_discipline>
+
+<output_format>
+Output a three-tier table (scenario | est. daily sales | first-batch qty | capital needed) for conservative/medium/optimistic, then the second-batch trigger condition and risk notes.
+</output_format>
+
+<self_check>
+Check and report each item before delivery:
+① First-batch qty follows the "less is safer" rule (30–45 days of projected sales × 0.7 conservative factor) <!-- ref: inventory.new_product_first_batch -->
+② Second batch triggers at 80% of expected daily sales, sized at 60–90 days of projected sales <!-- ref: inventory.new_product_second_batch -->
+③ Sales estimates derive from the competitor data I supplied, tagged [supplied by me] or [model inference]
+④ Missing data written as "missing", never estimated
+</self_check>
 ```
 
 > **Why use it**: a new product has no historical data, so estimate from competitor data and market analysis. The first-batch principle is "better too little than too much" — test the market with a small batch, and restock heavily only after confirming it sells.
@@ -360,6 +397,18 @@ Compute:
 5. Capital-tie-up cost of the safety stock
 6. If raising the service level from 95% to 99%, how much does safety stock increase? Is it worth it?
 7. Advice: should this product use a 95% or 99% service level? Why?
+
+<output_format>
+Show each step as formula → values → result, then a summary table (metric | value | unit), then the service-level recommendation with reasons.
+</output_format>
+
+<self_check>
+Check and report each item before delivery:
+① Safety stock computed with Z × σ_d × √L, showing the work <!-- ref: inventory.safety_stock_formula -->
+② Reorder Point = daily sales × Lead Time + safety stock <!-- ref: inventory.reorder_point_formula -->
+③ Z values match the service levels: 95% → 1.65, 99% → 2.33 <!-- ref: inventory.service_level_z_factors -->
+④ All numbers come from my input; missing parameters are listed, not estimated
+</self_check>
 ```
 
 ---
@@ -411,6 +460,18 @@ Analyze:
 - When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
 - Tag every conclusion with its source: [supplied by me] or [model inference]
 </data_discipline>
+
+<output_format>
+A seasonal-factor table (month | seasonal coefficient) + a next-6-months forecast table (month | base | optimistic +20% | pessimistic −20%) + stocking-advice and risk-note bullets.
+</output_format>
+
+<self_check>
+Check and report each item before delivery:
+① Seasonal coefficients computed from the historical sales I supplied, not from memory
+② Forecast clearly split into base/optimistic/pessimistic with the method stated
+③ Restock-timing advice accounts for the Lead Time range <!-- ref: inventory.lead_time_total_range -->
+④ Every conclusion tagged [supplied by me] or [model inference]
+</self_check>
 ```
 
 ---
@@ -469,6 +530,18 @@ Build:
 - If promo sales are only 50% of expected, how to handle the excess?
 - If promo sales exceed 150% of expected, how to emergency-restock?
 - Stop-loss line: within how many days after the promo must inventory drop to what level?
+
+<output_format>
+Five sections: sales-forecast table (scenario | daily sales | multiple), stocking-qty calculation table, 8-week timeline table, capital-needs table, and a contingency checklist.
+</output_format>
+
+<self_check>
+Check and report each item before delivery:
+① Sales forecast built from the last year's data × growth trend × discount-depth adjustment I supplied, not estimated from memory
+② Total stocking qty = base-scenario demand × 1.2 (20% buffer), not the optimistic scenario <!-- ref: inventory.promo_safety_buffer -->
+③ Shipping timeline meets the 6–8 weeks-before-promo rule <!-- ref: inventory.promo_lead_time -->
+④ Contingency plan includes the stop-loss line and an emergency-restock path <!-- ref: inventory.replenish_decision_tree -->
+</self_check>
 ```
 
 > **The core principle of promo stocking**: better to under-stock than heavily over-stock. Post-promo slow-moving inventory racks up huge fees during the Q4 high-storage-fee period. Suggested stocking = base-scenario demand × 1.2 (a 20% buffer), not stocking to the optimistic scenario.
@@ -512,6 +585,18 @@ Optimize:
 3. Stockout-risk assessment per marketplace
 4. If total inventory can't satisfy all marketplaces, which to prioritize? Why?
 5. Inventory-turnover comparison across marketplaces and improvement advice
+
+<output_format>
+A per-marketplace comparison table (marketplace | target inventory level (days) | this restock qty | stockout risk | turnover), then the priority conclusion with reasons.
+</output_format>
+
+<self_check>
+Check and report each item before delivery:
+① Each marketplace's target inventory level follows daily sales × Lead Time + safety stock <!-- ref: inventory.reorder_point_formula -->
+② Allocated quantities in total do not exceed the total inventory/budget I supplied
+③ Stockout-risk assessment based on days of cover vs Lead Time + safety days <!-- ref: inventory.days_of_stock_formula --> <!-- ref: inventory.replenish_decision_tree -->
+④ Every conclusion tagged [supplied by me] or [model inference]
+</self_check>
 ```
 
 ---
@@ -551,6 +636,18 @@ Build a handling strategy per SKU:
 2. Recommended strategy and execution timeline
 3. Estimated recovery amount vs the cost of continued holding
 4. How to avoid similar slow-movers in the future?
+
+<output_format>
+One handling-strategy table per SKU (strategy | cost | est. recovery/benefit | timeline), then the recommended strategy and execution timeline.
+</output_format>
+
+<self_check>
+Check and report each item before delivery:
+① Handling advice follows the age milestones: watch at 90 days, mark down at 120, consider a Removal Order at 180 <!-- ref: inventory.aged_inventory_action_timeline -->
+② Aged Inventory Surcharge judgments use the 181-day / 365-day thresholds <!-- ref: amazon.fba.inventory.aged_surcharge_start --> <!-- ref: amazon.fba.inventory.aged_surcharge_high -->
+③ Ship-back vs destroy comparison includes freight cost and product value, not just a conclusion <!-- ref: inventory.stagnation_cost_formula -->
+④ Every conclusion tagged [supplied by me] or [model inference]
+</self_check>
 ```
 
 ---
@@ -600,6 +697,18 @@ Analyze:
 - When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
 - Tag every conclusion with its source: [supplied by me] or [model inference]
 </data_discipline>
+
+<output_format>
+A supplier-risk table (dimension | data | score/conclusion) + a delay-impact calculation table + a backup-plan checklist.
+</output_format>
+
+<self_check>
+Check and report each item before delivery:
+① The lead-time reliability score is computed from the last-12-months lead-time record I supplied
+② Safety planning uses the max of the last 3–5 actual lead times, plus a 7–14-day peak-season buffer <!-- ref: inventory.lead_time_safety_rule -->
+③ Delay impact on inventory estimated with the stockout-cost formula (days × daily sales × AOV × margin + rank-recovery cost) <!-- ref: inventory.stockout_cost_formula -->
+④ Every conclusion tagged [supplied by me] or [model inference]
+</self_check>
 ```
 
 ---
@@ -642,6 +751,19 @@ Build an improvement plan:
 - Restock-strategy adjustment (avoid over-stocking)
 - Inventory-monitoring frequency and alerting mechanism
 5. Estimated improvement timeline and target IPI Score
+
+<output_format>
+A diagnosis conclusion, then a phased improvement table (phase | action | dimension touched | expected effect), then the timeline and target IPI Score.
+</output_format>
+
+<self_check>
+Check and report each item before delivery:
+① Target IPI Score ≥ 400, with the below-threshold storage-cap impact flagged <!-- ref: amazon.fba.inventory.ipi_score_min -->
+② Sell-through Rate target > 3 (3 turns in 90 days) <!-- ref: amazon.fba.inventory.sell_through_rate_target -->
+③ In-stock Rate target > 95% <!-- ref: amazon.fba.inventory.in_stock_rate_target -->
+④ Excess Inventory judged against the 90-days-of-forecast-sales threshold <!-- ref: amazon.fba.inventory.excess_inventory_threshold -->
+⑤ All numbers come from the pasted data; missing written as "missing"
+</self_check>
 ```
 
 Content rephrased for compliance with licensing restrictions. Sources: [goaura.com IPI score improvement](https://goaura.com/blog/improving-your-amazon-ipi-score), [impakter.com FBA AI forecasting](https://impakter.com/the-2026-playbook-fba-prep-services-ai-forecasting-and-greener-3pl-operations/)
@@ -913,6 +1035,18 @@ Advise:
 2. Should I use FBA MCF to fulfill other channels' orders?
 3. Inventory-sync strategy (how to avoid overselling?)
 4. If total inventory is insufficient, which channel to prioritize?
+
+<output_format>
+A channel comparison table (channel | allocation ratio | suggested qty | priority), then the inventory-sync mechanism and overselling-prevention plan.
+</output_format>
+
+<self_check>
+Check and report each item before delivery:
+① Allocation ratios sum to 100%, and total allocation does not exceed total inventory/budget
+② The priority conclusion states its reasons (margin, stockout cost, channel importance)
+③ Overselling-prevention advice covers the sync mechanism and the days-of-cover basis <!-- ref: inventory.days_of_stock_formula -->
+④ Missing data written as "missing", never estimated
+</self_check>
 ```
 
 ### 6.3 First-Leg Logistics Optimization: Ocean vs Air vs Rail
@@ -978,6 +1112,18 @@ Analyze:
 - When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
 - Tag every conclusion with its source: [supplied by me] or [model inference]
 </data_discipline>
+
+<output_format>
+A logistics-mode comparison table (mode | total cost | arrival time | stockout risk | conclusion), then the recommended plan and hybrid-mode advice.
+</output_format>
+
+<self_check>
+Check and report each item before delivery:
+① Each mode's total cost = unit price × quantity, formula shown, no numbers pulled from thin air
+② Arrival time is compared with days of cover, and stockout risk is judged on that basis <!-- ref: inventory.days_of_stock_formula -->
+③ The recommendation follows the inventory decision tree: >45 days ocean, 15–45 days hybrid/rail, <15 days air, already out of stock → air + ocean together <!-- ref: inventory.replenish_decision_tree -->
+④ Missing data written as "missing", never estimated
+</self_check>
 ```
 
 > **The core principle of first-leg logistics**: ocean for routine restocks to control cost, air for emergencies to avoid stockouts. Reserve a 10–20% air-freight budget as contingency for each ocean shipment.

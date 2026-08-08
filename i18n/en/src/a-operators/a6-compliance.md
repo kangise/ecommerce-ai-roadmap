@@ -240,6 +240,19 @@ Do a deep compliance analysis:
 
 Note: annotate the currency of the information. Regulations may have updated; this is for reference only —
 defer to certification bodies and official regulations.
+
+<output_format>
+Deliver the analysis in 7 numbered sections matching the request: (1) mandatory-certification list per market with "must have" vs "recommended" marked, (2) lithium-battery requirements (if battery present), (3) chemical restrictions, (4) packaging and labeling specifics, (5) Amazon extra requirements, (6) compliance-cost estimate, (7) compliance timeline. End with an information-currency note on the whole answer.
+</output_format>
+
+<self_check>
+Verify each of these before delivering and report the result:
+(1) All 7 sections delivered
+(2) Every certification is marked mandatory or recommended
+(3) If the product contains a lithium battery, UN38.3 test report + MSDS are covered <!-- ref: dg.lithium_battery.un38_3_msds -->
+(4) Cost and timeline are given as ranges and marked as estimates pending certification-body quotes
+(5) The answer is annotated with when the info was verified, and points to official sources to check
+</self_check>
 ```
 
 > **Why use it**: a general compliance comparison only gives you the big picture. Once you've settled on a specific product, you need a deep analysis translating each requirement into concrete action items and costs.
@@ -269,6 +282,19 @@ Mutual-recognition rules may change; confirm the latest policy with the certific
 - When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
 - Tag every conclusion with its source: [supplied by me] or [model inference]
 </data_discipline>
+
+<output_format>
+Deliver 6 numbered sections: (1) certifications reusable as-is, (2) certifications that must be redone, (3) certifications convertible from existing reports, (4) new certifications the target market needs, (5) incremental cost and time estimate, (6) suggested certification order.
+</output_format>
+
+<self_check>
+Verify each of these before delivering and report the result:
+(1) All 6 sections present
+(2) Every existing certification is classified into exactly one of: reusable / redo / convertible
+(3) If the target market is the EU, the analysis states CE marking is mandatory, not optional <!-- ref: compliance.ce_marking.mandatory -->
+(4) Incremental cost/time given as ranges, marked as estimates
+(5) Mutual-recognition claims flagged as needing confirmation with the certification body
+</self_check>
 ```
 
 > **Why use it**: if you already have some certifications, expanding to a new market doesn't start from zero. Some test reports can be reused, some certifications can be converted, saving a lot of time and money.
@@ -319,6 +345,20 @@ Different labs' quotes can vary a lot; get at least 2–3 quotes.
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+
+<output_format>
+Deliver a certification table with all 7 columns (Certification | Market | Mandatory/Voluntary | Cost range | Timeline | Validity | Priority), plus the 4 supporting sections: dependencies, total cost estimate, suggested order, and risk points.
+</output_format>
+
+<self_check>
+Verify each of these before delivering and report the result:
+(1) Table includes all 7 required columns
+(2) Every row marks Mandatory or Voluntary
+(3) Every row has a cost range and a timeline
+(4) Validity period stated per certification <!-- ref: compliance.certificate.validity_period -->
+(5) No certification recommended from an unaccredited channel <!-- ref: compliance.certificate.accredited_body_only -->
+(6) If the product has a battery, UN38.3/MSDS appear in the table <!-- ref: dg.lithium_battery.un38_3_msds -->
+</self_check>
 ```
 
 ---
@@ -370,6 +410,19 @@ Estimate the following cost items:
 - Which certification body is most cost-effective?
 
 The above are estimates; defer to certification-body quotes for actual costs.
+
+<output_format>
+Deliver 5 numbered sections matching the request: (1) first-time certification cost with 3 sub-items, (2) labeling and packaging cost, (3) ongoing annual compliance cost, (4) cost-share analysis (% of product cost and % of price), (5) cost-optimization advice.
+</output_format>
+
+<self_check>
+Verify each of these before delivering and report the result:
+(1) All 5 sections present
+(2) First-time cost breaks into testing/certification fees, samples, and document preparation
+(3) Cost-share analysis reports both % of product cost and % of price
+(4) Every number is an estimate or traceable to supplied data -- none invented
+(5) The answer notes that actual costs need 2-3 certification-body quotes
+</self_check>
 ```
 
 ---
@@ -422,6 +475,19 @@ Assess these risks:
 
 AI's patent analysis is for preliminary reference only and can't replace a patent lawyer's opinion.
 If the risk level is "high," strongly consider hiring a patent lawyer for a formal FTO (Freedom to Operate) analysis.
+
+<output_format>
+Deliver 5 numbered sections (patent / trademark / copyright / Amazon IP-complaint / mitigation), each ending with a risk level (high/medium/low), plus the concrete actions requested (search keywords, databases, screen steps).
+</output_format>
+
+<self_check>
+Verify each of these before delivering and report the result:
+(1) All 5 sections present
+(2) Every section ends with a risk level: high/medium/low
+(3) Trademark screening names the databases (USPTO TESS / EUIPO / JPO) <!-- ref: ip.trademark.search_before_naming -->
+(4) If any risk is "high," the answer recommends a formal FTO analysis with a patent lawyer <!-- ref: ip_risk.high_requires_fto -->
+(5) The answer states AI analysis is preliminary and not a lawyer's opinion
+</self_check>
 ```
 
 ---
@@ -464,6 +530,20 @@ Documents to generate:
 
 The above framework is for reference only; formal compliance documents should be reviewed by a compliance professional.
 The Declaration of Conformity is a legal document; the signatory bears legal responsibility for the accuracy of its content.
+
+<output_format>
+Deliver 3 sections: (1) EU Declaration of Conformity framework -- directives, harmonized standards, content, signatory; (2) Technical File outline -- sections, per-section content, test reports to attach, retention period; (3) product-label content list -- CE-mark size/position, info to mark, warnings.
+</output_format>
+
+<self_check>
+Verify each of these before delivering and report the result:
+(1) All 3 documents generated
+(2) DoC lists the applicable directives and harmonized standards
+(3) Label list includes CE-mark minimum height 5 mm and official proportions <!-- ref: compliance.ce_marking.min_height -->
+(4) Label list includes manufacturer / EU authorized representative info <!-- ref: eu.label.manufacturer_info -->
+(5) Document language guidance covers the target market's official language <!-- ref: eu.label.local_language -->
+(6) Technical File retention period stated
+</self_check>
 ```
 
 ---
@@ -519,6 +599,20 @@ Help me:
 
 The AI-generated appeal plan is for reference only. For complex cases (account ban, IP-infringement complaint),
 consider a professional Amazon appeal service or lawyer.
+
+<output_format>
+Deliver 4 sections: (1) violation-cause analysis (what it means, root causes, severity), (2) Plan of Action framework with Root Cause / Immediate Actions / Preventive Measures / attachment list, (3) appeal first draft in English, (4) follow-up advice.
+</output_format>
+
+<self_check>
+Verify each of these before delivering and report the result:
+(1) All 4 sections delivered
+(2) POA covers all 4 parts: Root Cause, Immediate Actions, Preventive Measures, attachments
+(3) Appeal draft is in English, professional and concise, with concrete details from the notice
+(4) Response timing is flagged: act within 48-72 hours of the notice <!-- ref: amazon.violation.response_deadline -->
+(5) If the case involves product safety, a 24-hour response is flagged <!-- ref: amazon.safety_complaint.response_deadline -->
+(6) No fact beyond the pasted notice is invented
+</self_check>
 ```
 
 ---
@@ -571,6 +665,20 @@ for your specific tax obligations, consult a professional cross-border e-commerc
 - When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
 - Tag every conclusion with its source: [supplied by me] or [model inference]
 </data_discipline>
+
+<output_format>
+Deliver 4 sections: (1) per-market tax-obligation table with all 6 columns (Market | Tax type | Rate | Registration needed | Filing frequency | Amazon withholds), (2) VAT-registration needs, (3) compliance-risk assessment, (4) tax-optimization advice.
+</output_format>
+
+<self_check>
+Verify each of these before delivering and report the result:
+(1) Per-market table has all 6 columns
+(2) Rates and thresholds are tagged or flagged for verification against official sources -- nothing from memory
+(3) Selling before VAT registration is explicitly flagged as illegal <!-- ref: eu.vat.registration_before_sale -->
+(4) Pan-EU logistics: every inventory-holding country is checked for registration
+(5) Zero-return filing obligation is stated
+(6) Recommendation to confirm specifics with a tax advisor
+</self_check>
 ```
 
 ---
@@ -631,6 +739,19 @@ consult a professional product-safety advisor or certification body immediately.
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+
+<output_format>
+Deliver 4 sections: (1) category recall history based on CPSC/RAPEX records, (2) product risk-point identification tied to the supplied description, (3) preventive-measure advice (design, QC, tests, insurance), (4) recall contingency plan (first steps, regulator/Amazon communication, cost estimate).
+</output_format>
+
+<self_check>
+Verify each of these before delivering and report the result:
+(1) All 4 sections delivered
+(2) Recall history uses only CPSC/RAPEX records -- no invented recall cases
+(3) Every risk point is tied to the supplied product info (materials, battery, age)
+(4) Contingency plan includes first-step actions and regulator communication
+(5) High-risk findings are flagged for immediate professional consultation
+</self_check>
 ```
 
 ---
@@ -838,6 +959,10 @@ AI-generated video, AI-written product copy, anything else]
 - Where the question is "does my situation count as high-risk," tell me plainly that this needs legal advice — do not conclude for me
 </data_discipline>
 
+<output_format>
+Deliver one row per line of the AI inventory: the transparency duty it triggers (chatbot disclosure / AI content marking / deepfake labeling / none), the concrete action required (where the disclosure goes, how marking is applied), plus (1) a list of missed AI touchpoints, (2) a record-keeping list with retention periods.
+</output_format>
+
 <self_check>
 Confirm: (1) no invented article numbers or dates, (2) every item yields an executable action rather than a general principle, (3) the parts needing professional legal advice are explicitly flagged
 </self_check>
@@ -964,6 +1089,19 @@ Amazon's policy keeps updating; defer to the latest notice in Seller Central.
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+
+<output_format>
+Deliver 4 sections: (1) per-tool BSA risk table, (2) compliance questions to confirm with each tool provider, (3) tools to stop/replace (if any), (4) a regular tool-review process.
+</output_format>
+
+<self_check>
+Verify each of these before delivering and report the result:
+(1) All 4 sections delivered
+(2) Every tool in the supplied list appears in the risk table
+(3) Each tool is assessed against the 4 BSA principles: data security, behavioral compliance, transparency, timely updates <!-- ref: amazon.bsa.tool_compliance -->
+(4) Confirmation questions are tool-specific, not generic
+(5) Policy references are flagged for verification against the latest Seller Central notice
+</self_check>
 ```
 
 ### 7.2 New EU Regulations: Digital Product Passport & GPSR
@@ -1018,6 +1156,19 @@ EU regulatory implementing rules may still be updating; watch EU official announ
 - When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
 - Tag every conclusion with its source: [supplied by me] or [model inference]
 </data_discipline>
+
+<output_format>
+Deliver 5 numbered sections: (1) GPSR requirements for the product, (2) Responsible Person decision and how to find one, (3) product-label adjustments, (4) DPP impact on the category, (5) compliance-prep timeline and budget.
+</output_format>
+
+<self_check>
+Verify each of these before delivering and report the result:
+(1) All 5 sections present
+(2) GPSR: the EU Responsible Person requirement is addressed <!-- ref: eu.gpsr.responsible_person -->
+(3) Label adjustments include manufacturer/importer/traceability info <!-- ref: eu.label.manufacturer_info -->
+(4) DPP timeline given as phased 2027-2030 with batteries first <!-- ref: eu.dpp.phased_timeline -->
+(5) Timeline/budget figures marked as estimates, to be confirmed against official announcements
+</self_check>
 ```
 
 ### 7.3 Compliance-Cost Optimization Strategies
@@ -1066,6 +1217,19 @@ Advise:
 3. Recommended certification order (which is reused the most first?)
 4. Certification-body selection advice (most cost-effective option)
 5. How much compliance cost can be saved?
+
+<output_format>
+Deliver 5 numbered answers: (1) certifications whose testing can be combined, (2) whether the CB Scheme applies, (3) recommended certification order, (4) certification-body selection advice, (5) estimated savings as a range with assumptions.
+</output_format>
+
+<self_check>
+Verify each of these before delivering and report the result:
+(1) All 5 questions answered
+(2) Each recommendation names concrete certifications or tests
+(3) Savings given as a range with stated assumptions -- not a false-precision number
+(4) Certification-body advice names accredited bodies only <!-- ref: compliance.certificate.accredited_body_only -->
+(5) No specific fee quoted from memory -- fees flagged for quotes
+</self_check>
 ```
 
 ---
@@ -1176,6 +1340,19 @@ After agentifying, the data you're asked to paste above should be read from here
 - Keyword search volume → Helium 10 / Jungle Scout export (Class B, manual export)
 - Competitor pages/reviews → mostly no open API (Class C, postpone agentifying)
 </data_source>
+
+<output_format>
+Deliver a verdict for each of the 4 check dimensions: (1) platform ad policy -- cite the specific rule or say none applies, (2) target-market regulation -- cite the rule or say none applies, (3) disclaimer/disclosure needed -- yes/no with what text, (4) revision suggestions that keep the marketing effect while staying compliant.
+</output_format>
+
+<self_check>
+Verify each of these before delivering and report the result:
+(1) All 4 dimensions answered
+(2) Every verdict either cites the specific rule or explicitly says none applies
+(3) At least one compliant revision is given for every flagged issue
+(4) No invented rule text -- citations are flagged for verification
+(5) Analysis uses only the pasted ad copy and stated platform/market
+</self_check>
 ```
 
 ### Key ad regulations by market

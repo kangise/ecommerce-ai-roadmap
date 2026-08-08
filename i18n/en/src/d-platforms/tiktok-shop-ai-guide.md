@@ -147,6 +147,19 @@ The 5 scripts each use a different angle:
 - If you need a selling point I didn't supply, list what you need from me rather than improvising
 - Flag any claim touching efficacy, safety, environmental, or patent language separately so I can verify it by hand
 </copy_discipline>
+
+<output_format>
+Deliver exactly 5 scripts, each labeled Script A-E, in the order given. Each script is a block with 6 fields: (1) Hook -- the 3-second line + visual, (2) Body -- showcase method + line/voiceover, (3) CTA -- purchase-guidance lines, (4) on-screen text per frame, (5) recommended music type, (6) shooting suggestion (angle, scene, props). State the estimated duration (15-30 s) for each.
+</output_format>
+
+<self_check>
+Verify each of these before delivering and report the result:
+(1) Exactly 5 scripts, one per angle (A pain-point / B before-after / C unboxing / D UGC / E urgency)
+(2) Every script contains all 6 required fields
+(3) Every script is 15-30 seconds when spoken/read aloud
+(4) Every Hook is designed to grab attention within the first 3 seconds
+(5) No feature, material, or claim appears that is not in the product info supplied
+</self_check>
 ```
 
 ### 2.3 AI Video-Production Toolchain
@@ -270,6 +283,20 @@ avoiding spending money to find a creator who "has many followers but can't driv
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+
+<output_format>
+Deliver 6 numbered sections: (1) recommended follower tier with a one-line reason, (2) content-type match list, (3) three data thresholds, each with a concrete % figure, (4) red-flag signal list, (5) 3 outreach-script variants (formal/casual/benefit-driven), (6) collaboration Brief template with the 3 core requirements.
+</output_format>
+
+<self_check>
+Verify each of these before delivering and report the result:
+(1) All 6 sections present, numbered 1-6
+(2) Follower tier names one of Nano/Micro/Mid/Macro with a reason
+(3) Each of the 3 thresholds (engagement/completion/sales CVR) has an explicit % number
+(4) All 4 red-flag signals listed (fake growth / low engagement / ad fatigue / style mismatch)
+(5) 3 outreach variants delivered, tones distinct
+(6) Brief template states exactly 3 core requirements (showcase, selling point, purchase guidance)
+</self_check>
 ```
 
 ### 3.4 The Key to a Collaboration Brief: Give Direction, Not a Script
@@ -404,6 +431,20 @@ A novice host following this script performs 3-5x better than "saying whatever c
 - If you need a selling point I didn't supply, list what you need from me rather than improvising
 - Flag any claim touching efficacy, safety, environmental, or patent language separately so I can verify it by hand
 </copy_discipline>
+
+<output_format>
+Deliver one 30-minute script in 4 phase blocks with exact time ranges (0-5, 5-20, 20-25, 25-30). Each block states its goal, the concrete talking points, and the phase's key metric. Per-SKU introductions follow the 2-minute pain point + 2-minute demo + 1-minute price structure.
+</output_format>
+
+<self_check>
+Verify each of these before delivering and report the result:
+(1) All 4 phases present with the exact time ranges 0-5 / 5-20 / 20-25 / 25-30
+(2) Every phase has an explicit goal line
+(3) Key metric per phase: retention >60% (opening), product click rate >5% (intro), conversion rate >3% (climax)
+(4) Each SKU intro is structured 2 min pain point + 2 min demo + 1 min price
+(5) At least one interaction node per 5 minutes
+(6) No feature or offer appears that is not in the supplied product info
+</self_check>
 ```
 
 ---
@@ -472,6 +513,21 @@ Please output:
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+
+<output_format>
+Deliver 6 numbered items: (1) title, (2) description, (3) 10 product tags, (4) hero-image suggestion, (5) video-cover suggestion, (6) pricing-strategy suggestion. Items 1-3 are ready-to-paste text; items 4-6 are short concrete recommendations with a reason.
+</output_format>
+
+<self_check>
+Verify each of these before delivering and report the result:
+(1) Title within 80 characters <!-- ref: tiktok_shop.product.title.max_length -->
+(2) Title reads like a short-video title with exactly 1 core search term, no keyword stuffing <!-- ref: tiktok_shop.product.title.format -->
+(3) Description within 200 characters, conversational <!-- ref: tiktok_shop.product.description.max_length -->
+(4) 10 product tags: 5 category + 3 scene + 2 trend <!-- ref: tiktok_shop.product.hashtags.count -->
+(5) Hero-image suggestion is a lifestyle scene, not a white-background image <!-- ref: tiktok_shop.product.main_image.required_format -->
+(6) Video-cover suggestion given, noting a video is mandatory on the page <!-- ref: tiktok_shop.product.video.required -->
+(7) No selling point or claim not present in the supplied product info
+</self_check>
 ```
 
 ---
@@ -610,6 +666,20 @@ Please output:
 - When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
 - Tag every conclusion with its source: [supplied by me] or [model inference]
 </data_discipline>
+
+<output_format>
+Deliver 7 numbered sections: (1) GMV contribution by channel, (2) content-efficiency analysis, (3) creator ROI ranking, (4) ad-efficiency analysis, (5) exactly 3 growth opportunities, (6) exactly 2 risk warnings, (7) next-month operations plan. Every figure used must come from the supplied store data.
+</output_format>
+
+<self_check>
+Verify each of these before delivering and report the result:
+(1) All 7 sections present
+(2) Exactly 3 growth opportunities listed
+(3) Exactly 2 risk warnings listed
+(4) Every number in the output appears in the supplied store data -- no invented figures
+(5) Each recommendation tagged [supplied by me] or [model inference]
+(6) Creator ROI ranking covers every creator in the supplied data
+</self_check>
 ```
 
 
@@ -626,6 +696,19 @@ Product: [name], selling points: [3], price: $[X]
 Please generate 10 Hooks (first-3-seconds lines) for 15-second TikTok videos, each using one of the following angles:
 pain point ×2, contrast ×2, data ×2, suspense ×2, challenge ×1, tutorial ×1
 Label each Hook with its expected completion rate (high/medium/low) and suitable shooting method.
+
+<output_format>
+Deliver exactly 10 Hooks in a table: Hook text | angle | expected completion rate (high/medium/low) | shooting method. Angle counts must be: pain point x2, contrast x2, data x2, suspense x2, challenge x1, tutorial x1.
+</output_format>
+
+<self_check>
+Verify each of these before delivering and report the result:
+(1) Exactly 10 Hooks
+(2) Angle distribution matches 2/2/2/2/1/1 (pain/contrast/data/suspense/challenge/tutorial)
+(3) Every Hook fits within the first 3 seconds of a 15-second video
+(4) Every Hook labeled with expected completion rate
+(5) Every Hook labeled with a suitable shooting method
+</self_check>
 ```
 
 ### 8.2 Creator-Outreach Script
@@ -643,6 +726,19 @@ Each version <100 words, including the collaboration model and next-step action.
 - If you need a selling point I didn't supply, list what you need from me rather than improvising
 - Flag any claim touching efficacy, safety, environmental, or patent language separately so I can verify it by hand
 </copy_discipline>
+
+<output_format>
+Deliver 3 DM scripts labeled Version A (formal, for Mid-Macro), Version B (relaxed, for Nano-Micro), Version C (benefit-driven). Each version within 100 words and includes the collaboration model and the next-step action.
+</output_format>
+
+<self_check>
+Verify each of these before delivering and report the result:
+(1) Exactly 3 versions (A/B/C) delivered
+(2) Each version is under 100 words
+(3) Each version states the collaboration model and a next-step action
+(4) Tone matches the target: formal for Mid-Macro, friendly for Nano-Micro, benefit-first for C
+(5) No commitments made beyond the collaboration model and terms supplied
+</self_check>
 ```
 
 ### 8.3 Livestream-Room Interaction Talking Points
@@ -655,6 +751,19 @@ Please generate the following livestream-interaction talking points:
 3. Interaction guidance (5 talking points to make viewers comment/like)
 4. Order-pushing talking points (3 ways to create urgency)
 5. Dead-air rescue (3 emergency talking points when viewer interaction is low)
+
+<output_format>
+Deliver 5 numbered groups: (1) opening icebreaker, (2) product-introduction transition, (3) 5 interaction-guidance lines, (4) 3 order-pushing lines, (5) 3 dead-air rescue lines. Each line is a ready-to-speak sentence.
+</output_format>
+
+<self_check>
+Verify each of these before delivering and report the result:
+(1) All 5 groups present
+(2) Exactly 5 interaction-guidance lines
+(3) Exactly 3 order-pushing lines
+(4) Exactly 3 dead-air rescue lines
+(5) Every line is a complete spoken sentence, usable as-is
+</self_check>
 ```
 
 ### 8.4 Competitor TikTok Content Analysis
@@ -678,6 +787,19 @@ Please analyze across the following dimensions:
 - When you need a figure to continue, tell me where to look it up and which field to read, then stop and wait for me to supply it
 - Tag every conclusion with its source: [supplied by me] or [model inference]. For inferences, state what the inference rests on
 </data_discipline>
+
+<output_format>
+Deliver 7 numbered sections: (1) posting frequency/timing, (2) video-type distribution, (3) common traits of the highest-view videos, (4) creator-collaboration strategy, (5) livestream strategy, (6) exactly 3 things to learn, (7) exactly 3 things to differentiate on. Claims about the competitor must rest on the supplied observations.
+</output_format>
+
+<self_check>
+Verify each of these before delivering and report the result:
+(1) All 7 sections present
+(2) Exactly 3 things to learn from them
+(3) Exactly 3 differentiation points
+(4) No figure (views, GMV, frequency) is invented -- anything not supplied is marked "missing"
+(5) Conclusions tagged [supplied by me] or [model inference]
+</self_check>
 ```
 
 ---
@@ -937,6 +1059,19 @@ Why this prompt works:
 The "information gap" is the core mechanism driving curiosity in cognitive psychology.
 Hooks generated with this theoretical framework have a 2-3x higher completion rate than randomly-conceived Hooks,
 because they trigger humans' instinctive curiosity rather than surface-level attention.
+
+<output_format>
+Deliver exactly 10 Hooks, each with 3 labels: the information-gap type it creates (suspense / counterintuitive / pain point / data / comparison), expected completion rate (high/medium/low), and a suitable shooting method.
+</output_format>
+
+<self_check>
+Verify each of these before delivering and report the result:
+(1) Exactly 10 Hooks
+(2) Every Hook creates an information gap within 3 seconds (viewer feels they would miss something)
+(3) Every Hook labeled with one of the 5 gap types
+(4) Every Hook labeled with expected completion rate and shooting method
+(5) No empty hooks ("you must watch this")
+</self_check>
 ```
 
 ### 15.3 The "3-Act Structure" of a Video Script
@@ -1008,6 +1143,20 @@ This has a 3-5x higher conversion rate than randomly shot videos.
 - If you need a selling point I didn't supply, list what you need from me rather than improvising
 - Flag any claim touching efficacy, safety, environmental, or patent language separately so I can verify it by hand
 </copy_discipline>
+
+<output_format>
+Deliver exactly 5 scripts labeled Script A-E. Each script contains 3 act blocks: Act 1 (0-5 s) with visual, word-for-word line, on-screen text, information-gap type; Act 2 (5-20 s) with 2-3 shots, line, showcase method, key evidence; Act 3 (20-30 s) with social proof, urgency, CTA line, on-screen text.
+</output_format>
+
+<self_check>
+Verify each of these before delivering and report the result:
+(1) Exactly 5 scripts (A-E)
+(2) Each Act 1 uses its assigned strategy (A pain-point / B counterintuitive / C before-after / D data / E UGC)
+(3) Act 1 has all 4 sub-fields in every script
+(4) Act 2 has all 4 sub-fields in every script
+(5) Act 3 has all 4 sub-fields in every script
+(6) Time ranges respected (0-5 / 5-20 / 20-30 s)
+</self_check>
 ```
 
 
@@ -1175,6 +1324,19 @@ not "just another mass-sending brand."
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+
+<output_format>
+Deliver 1 outreach message under 80 words with 3 components: (1) opener that references the creator's most recent video, (2) collaboration model and what the creator gets, (3) next-step question to lower the reply barrier.
+</output_format>
+
+<self_check>
+Verify each of these before delivering and report the result:
+(1) Message under 80 words
+(2) Opens by referencing the creator's recent video topic
+(3) States the collaboration model and the creator's benefit
+(4) Ends with a simple question
+(5) No commitment beyond the collaboration terms supplied
+</self_check>
 ```
 
 ---
@@ -1314,6 +1476,19 @@ This analysis helps you find the content pattern that has "both views and GMV."
 - When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
 - Tag every conclusion with its source: [supplied by me] or [model inference]
 </data_discipline>
+
+<output_format>
+Deliver 4 numbered sections: (1) views-vs-GMV relationship, (2) Hook-type effect ranking (completion rate and GMV separately), (3) best-duration analysis, (4) production suggestions with a concrete content ratio. All figures must come from the supplied video data table.
+</output_format>
+
+<self_check>
+Verify each of these before delivering and report the result:
+(1) All 4 sections present
+(2) Hook ranking reports completion rate and GMV separately (they may differ)
+(3) Every figure traceable to the supplied video data -- no invented numbers
+(4) Production suggestions include a concrete content ratio (share per type)
+(5) Conclusions tagged [supplied by me] or [model inference]
+</self_check>
 ```
 
 ### 18.2 Creator ROI Tracking System
@@ -1561,6 +1736,20 @@ Assessing with the wrong dimensions leads to "an Amazon best-seller that doesn't
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+
+<output_format>
+Deliver 5 dimension scores (each /10) with a one-line justification, the total score /50, the verdict band, and -- for dimension 4 -- at least 5 distinct video angles.
+</output_format>
+
+<self_check>
+Verify each of these before delivering and report the result:
+(1) All 5 dimensions scored on a 1-10 scale
+(2) Total = sum of the 5 dimension scores, out of 50
+(3) Verdict band matches the total (40-50 / 30-39 / 20-29 / <20)
+(4) Dimension 4 lists at least 5 distinct video angles
+(5) Margin calculation uses only supplied numbers (price, cost, commission stated)
+(6) No market or fee figure invented -- anything missing is marked "missing"
+</self_check>
 ```
 
 ---
@@ -1680,6 +1869,19 @@ After agentifying, the data you're asked to paste above should be read from here
 - Keyword search volume → Helium 10 / Jungle Scout export (Class B, manual export)
 - Competitor pages/reviews → mostly no open API (Class C, postpone agentifying)
 </data_source>
+
+<output_format>
+Deliver a problem-by-problem report. For each flagged issue: exact location in the script, risk level (high/medium/low), and a compliant alternative expression. End with a summary table of all issues found across the 5 check dimensions.
+</output_format>
+
+<self_check>
+Verify each of these before delivering and report the result:
+(1) All 5 check dimensions covered (absolute terms, unverifiable claims, misleading comparisons, copyright, category-specific)
+(2) Every flagged issue has a location, a risk level, and a compliant alternative
+(3) Risk levels only use high/medium/low
+(4) No rule or penalty cited from memory -- regulatory references are flagged for verification
+(5) If no issue is found in a dimension, say so explicitly instead of skipping it
+</self_check>
 ```
 
 ---
