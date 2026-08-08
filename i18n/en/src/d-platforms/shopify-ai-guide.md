@@ -522,6 +522,20 @@ Sequence 4: churn recovery (no purchase in 90 days)
 Email 1: we miss you + new-product recommendations
 Email 2 (+7 days): exclusive comeback offer
 Email 3 (+14 days): last chance + survey
+<copy_discipline>
+- Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
+- For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
+- Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
+</copy_discipline>
+<output_format>
+Deliver the complete structure of the 4 sequences; within each sequence, list emails in order: email number + send timing + subject + body key points + CTA.
+</output_format>
+<self_check>
+① Exactly 4 sequences covered (welcome, abandoned-cart recovery, post-purchase nurture, churn recovery)
+② Every email has a send timing, subject/content key points, and a CTA
+③ Email order and timing gaps within a sequence are consistent (e.g., Email 2 after Email 1)
+④ Copy makes no unauthorized commitment (refund amounts, compensation, timelines) and stays within the supplied product attributes
+</self_check>
 ```
 
 ### 5.3 Email-Content AI Generation Prompt
@@ -814,6 +828,12 @@ Each set includes:
 - Image/video creative direction description
 - Target-audience suggestion
 
+
+<data_discipline>
+- Use only numbers that appear in the data I pasted. If it isn't there, write "missing" — do not estimate and do not draw on industry averages from memory
+- If you lack the basis for a judgment, list the data you still need and stop to ask me. Do not lead with a conclusion
+- Tag every conclusion with its source: [input data] or [model inference]
+</data_discipline>
 <copy_discipline>
 - Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
@@ -1142,6 +1162,12 @@ Please check the following dimensions and give fix suggestions:
 
 For each problem, give: current status (pass/fail) + fix method + priority (high/medium/low)
 
+
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
 <copy_discipline>
 - Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
@@ -1346,6 +1372,12 @@ Please optimize:
 4. Custom label (custom_label) suggestion (for ad grouping)
 5. Additional attribute suggestions (color, material, size, etc.)
 
+
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
 <copy_discipline>
 - Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
@@ -1396,6 +1428,12 @@ The 3 scripts each use a different angle:
 - Script B: effect demonstration (Before/After comparison)
 - Script C: UGC style (like a real user sharing)
 
+
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
 <copy_discipline>
 - Never write a feature, material, certification, or result the product doesn't actually have. Any attribute I didn't state above must not appear in the copy — this is the number-one cause of listing takedowns and false-advertising complaints
 - If you need a selling point I didn't supply, list what you need from me rather than improvising

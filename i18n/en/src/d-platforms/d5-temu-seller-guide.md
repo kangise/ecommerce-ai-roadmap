@@ -197,6 +197,11 @@ Please help me analyze the market opportunity of [category] on Temu:
 4. Supply-chain requirements (MOQ, lead time, QC standards)
 5. Estimated monthly sales range
 6. Differentiation opportunities (product features not yet on Temu but in demand)
+<data_discipline>
+- Any figure involving money, volume, ranking, or fee rates must come from what I supplied above. Anything I didn't give you is "missing" — **do not estimate, and do not draw on industry averages or platform fee rates from memory**. Those go stale, and I may spend real money on them
+- When you need a figure to continue, tell me where to look it up and which field to read, then stop and wait for me to supply it
+- Tag every conclusion with its source: [supplied by me] or [model inference]. For inferences, state what the inference rests on
+</data_discipline>
 <output_format>
 Deliver 6 labeled sections in order: ① best-selling price band on Temu, ② common characteristics of the Top 10 best-sellers, ③ high-frequency praise and complaint points in reviews, ④ supply-chain requirements (MOQ, lead time, QC standards), ⑤ estimated monthly sales range, ⑥ differentiation opportunities.
 </output_format>

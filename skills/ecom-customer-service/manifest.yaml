@@ -103,6 +103,7 @@ triggers:
   - 退款
   - 退货
   - 邮件
+  - 买家说
 uses_constraints:
 - amazon.listing.forbidden_unverified_claim
 - amazon.safety_complaint.response_deadline

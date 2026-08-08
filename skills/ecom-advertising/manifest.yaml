@@ -55,6 +55,13 @@ triggers:
   - 竞价
   - 花费
   - 预算
+  - 没出单
+  - 一单没出
+  - 一个月花了
+  - 花了钱没
+  - 一直没人
+  - 好多钱
+  - 没订单
 uses_constraints:
 - amazon.account.monthly_spend.analysis_cadence
 - amazon.account.waste_ratio.sop_threshold

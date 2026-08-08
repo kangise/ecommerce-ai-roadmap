@@ -328,12 +328,6 @@ Before (no AI):
 5. Build segments manually in Klaviyo (1 h)
 6. Repeat for every sequence
 Total: 2–3 hours per email | 8–12 hours for a 4-email sequence
-
-<copy_discipline>
-- Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
-- For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
-- Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
-</copy_discipline>
 ```
 
 After (with AI):
@@ -717,33 +711,39 @@ Month 1+: C3 ROI evaluation (prove value with data)
 This page rates what AI can currently do in each function, not what your team should do next. The gap between those is whether you can get the data, who does the work, and who covers the mistakes. Paste this and run it against your own situation:
 
 ```
-<角色>Cross-border e-commerce advisor, familiar with how AI maturity differs by business function</角色>
+<role>Cross-border e-commerce advisor, familiar with how AI maturity differs by business function</role>
 
-<输入数据>
+<input_data>
 My situation:
 - Category: [fill in]
 - Monthly volume: [fill in]
 - Team size and roles: [fill in]
 - Data access I already have: [SP-API / manual exports only / third-party tools — be specific]
 - The three things that take most of my time right now: [fill in]
-</输入数据>
+</input_data>
 
-<任务>
+<task>
 1. Rate each of those three on whether it is worth investing in, and say why
 2. For each: what data it needs, whether I can currently get that data, and if not, what to solve first
 3. Pick one as the starting point and say why it beats the other two
 4. For anything you advise against right now, say whether that is because AI is not ready or because my preconditions are not met — those call for completely different responses
 
-<数据纪律>
-- Use only what I gave you in <输入数据>. Ask about anything missing; do not assume on my behalf
+<data_discipline>
+- Use only what I gave you in <input_data>. Ask about anything missing; do not assume on my behalf
 - Do not quote market figures, industry averages or maturity scores — you have no verifiable source for them
 - Mark each recommendation [from what I provided] or [from general experience]
-</数据纪律>
-</任务>
+</data_discipline>
+</task>
 
-<输出格式>
+<output_format>
 One paragraph per item: conclusion / what is missing / first step. Then a single line naming your recommended starting point.
-</输出格式>
+</output_format>
+
+<self_check>
+① All 4 requested items (the three time-sinks rated on whether they are worth investing in, with reasons; for each: what data it needs, whether I can get it now, and if not what to solve first; one picked as the starting point with the reasoning; and for anything advised against, whether that is because AI is not ready or because my preconditions are not met) appear, numbered in the same order as the request — no omissions, no extras.
+② All numbers come only from the pasted data; anything not in the data is written as "missing", never estimated from memory.
+③ The deliverable matches the requested structure, and placeholders like [X] that I need to fill in are never silently replaced with invented content.
+</self_check>
 ```
 
 ---

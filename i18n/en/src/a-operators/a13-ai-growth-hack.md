@@ -182,6 +182,28 @@ AI generates 20 frequent Q&As
 Set up the Vine program (if you have Brand Registry)
 AI generates review-request email templates
 Set up auto review requests
+
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
+
+<copy_discipline>
+- Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
+- For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
+- Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
+</copy_discipline>
+
+<output_format>
+Deliver in sections matching the request's structure (one heading per section), listing the deliverables item by item; each item can be independently counted and verified.
+</output_format>
+
+<self_check>
+(1) Every requested deliverable (Hour 1-2: AI generates the Listing copy…) is actually delivered; none omitted.
+(2) Every figure comes from the pasted data; anything absent is written "missing" — no estimates from memory. 
+(3) Copy claims no feature/certification/material/result absent from the input, and makes no unauthorized customer commitment. <!-- ref: content.ai_generated.commercial_license -->
+</self_check>
 ```
 
 ### 3.2 Cold-start acceleration strategies
@@ -271,11 +293,27 @@ Analyze the conversion bottleneck and give an optimization plan:
 7. Q&A optimization (does it cover frequent questions)
 8. Prioritization (which change has the highest ROI)
 
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
+
 <copy_discipline>
 - Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+
+<output_format>
+Deliver the 8 requested items as numbered sections (① ② ③ …), each heading using the request's original name, in the same order as the request; every item appears exactly once.
+</output_format>
+
+<self_check>
+(1) All 8 requested items (You are an e-commerce conversion-rate optimization expert.…) are present, numbered in the same order, with none missing or extra.
+(2) Every figure comes from the pasted data; anything absent is written "missing" — no estimates from memory.
+(3) Copy claims no feature/certification/material/result absent from the input, and makes no unauthorized customer commitment.
+</self_check>
 ```
 
 ---
@@ -503,11 +541,27 @@ Design an MCP (Model Context Protocol) automation plan:
 - Expected efficiency gain
 - Implementation cost and time
 
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
+
 <copy_discipline>
 - Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+
+<output_format>
+Deliver the 3 requested items as numbered sections (① ② ③ …), each heading using the request's original name, in the same order as the request; every item appears exactly once.
+</output_format>
+
+<self_check>
+(1) All 3 requested items (You are an e-commerce AI-automation architect.…) are present, numbered in the same order, with none missing or extra.
+(2) Every figure comes from the pasted data; anything absent is written "missing" — no estimates from memory.
+(3) Copy claims no feature/certification/material/result absent from the input, and makes no unauthorized customer commitment.
+</self_check>
 ```
 
 ---

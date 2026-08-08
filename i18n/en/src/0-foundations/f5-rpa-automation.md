@@ -456,11 +456,27 @@ Positive/neutral/negative ratio
 Number needing action
 Send a daily digest to Slack/email
 
+<data_discipline>
+- Use only numbers that appear in the data I pasted. If it isn't there, write "missing" — do not estimate and do not draw on industry averages from memory
+- If you lack the basis for a judgment, list the data you still need and stop to ask me. Do not lead with a conclusion
+- Mark every conclusion with its source: [input data] or [model inference]
+</data_discipline>
+
 <copy_discipline>
 - Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+
+<output_format>
+Output a valid JSON object or array, with field names exactly as defined in the request; no explanatory text outside the JSON.
+</output_format>
+
+<self_check>
+① Every requested deliverable (detailed workflow design: …) is actually given, nothing omitted.
+② All numbers come only from the pasted data; anything not in the data is written as "missing", never estimated from memory.
+③ The copy contains no feature, certification, material, or result not present in the input, and makes no unauthorized commitments to customers.
+</self_check>
 ```
 
 **Cost estimate:**
@@ -584,13 +600,6 @@ Prompt: "Analyze the search-term data and find:
 Step 4: Google Docs produces the weekly report
 Step 5: Gmail sends it to the team
 Estimated saving: 4 h/week
-
-<calculation_discipline>
-- Use only the numbers I supplied above. Do not assume any parameter I didn't give you (interest rates, industry averages, platform fee rates, exchange rates) — list what's missing and ask
-- **Write out the formula before substituting numbers** so I can check each step. Don't give only the final result
-- For conclusions involving money or inventory, note which input they're most sensitive to — which number, if I change it, flips the conclusion
-- If you can't complete the calculation, stop and say what's missing. Do not fill gaps with assumed values
-</calculation_discipline>
 ```
 
 ### Workflow 5: social media auto-scheduling (20-minute build)

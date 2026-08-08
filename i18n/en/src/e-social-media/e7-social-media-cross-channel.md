@@ -228,6 +228,12 @@ Label each piece of content with:
 - Posting date and time
 - Whether it can be reused from other platforms' content
 
+<copy_discipline>
+- Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
+- For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
+- Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
+</copy_discipline>
+
 <output_format>
 Output a 4-week cross-platform content calendar; each week has 1 core theme plus concrete topics for YouTube/Instagram/TikTok/Pinterest.
 </output_format>

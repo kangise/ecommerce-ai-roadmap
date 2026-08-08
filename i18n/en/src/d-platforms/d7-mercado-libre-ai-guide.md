@@ -336,6 +336,11 @@ Please help me analyze Latin America market product-selection opportunities:
 - The competitive landscape of Chinese sellers in Latin America
 - Differentiation from Amazon MX/BR
 - Local brands' competitive advantages
+<data_discipline>
+- Any figure involving money, volume, ranking, or fee rates must come from what I supplied above. Anything I didn't give you is "missing" — **do not estimate, and do not draw on industry averages or platform fee rates from memory**. Those go stale, and I may spend real money on them
+- When you need a figure to continue, tell me where to look it up and which field to read, then stop and wait for me to supply it
+- Tag every conclusion with its source: [supplied by me] or [model inference]. For inferences, state what the inference rests on
+</data_discipline>
 ```
 
 ### 5.5 Mercado Libre Data-Analysis Tools

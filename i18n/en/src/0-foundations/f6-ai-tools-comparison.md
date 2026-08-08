@@ -160,6 +160,28 @@ Artifacts — live preview of generated content/code/charts
 Projects — upload documents to build a knowledge base
 Analytical depth — better on complex analysis
 Safety — more focus on content safety and accuracy
+
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
+
+<copy_discipline>
+- Never write a feature, material, certification, or result the product doesn't actually have. Any attribute I didn't state above must not appear in the copy
+- For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
+- Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
+</copy_discipline>
+
+<output_format>
+Output in sections matching the requested structure (one heading per section), listing each deliverable item by item, so every item can be independently checked for count and content.
+</output_format>
+
+<self_check>
+① Every requested deliverable (best-for scenarios: …) is actually given, nothing omitted.
+② All numbers come only from the pasted data; anything not in the data is written as "missing", never estimated from memory.
+③ The copy contains no feature/certification/material/result not present in the input, and makes no unauthorized commitments to customers.
+</self_check>
 ```
 
 **Gemini — Google ecosystem integration, strong multimodal**
@@ -587,6 +609,12 @@ Dimensions:
 7. Integration with other tools
 
 Present the comparison as a table and give a final recommendation.
+
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
 ```
 
 ### 6.3 Tool-migration assessment prompt

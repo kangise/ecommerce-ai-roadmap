@@ -34,6 +34,18 @@ platforms:
 - amazon
 - shopify
 - tiktok_shop
+- walmart
+- temu
+- shopee
+- lazada
+- mercado_libre
+- rakuten
+- ebay
+- aliexpress
+- coupang
+- faire
+- otto
+- zalando
 triggers:
   intent: create_listing | optimize_listing | localize_listing | audit_listing
   keywords:
@@ -71,6 +83,14 @@ triggers:
   - 转化率
   - 重写
   - 重写一下
+  - 买家看完
+  - 描述没写
+  - 没写到点
+  - 分别怎么
+  - 怎么讲
+  - 图片挺好
+  - 没人点
+  - 点击
 uses_constraints:
 - amazon.a_plus_content.module_text.max_length
 - amazon.brand_story.brand_card.max_length

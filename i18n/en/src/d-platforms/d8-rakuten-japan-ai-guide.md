@@ -177,12 +177,27 @@ Please create a YouTube Shopping strategy:
 - Creator ROI analysis
 - Comparison with other traffic channels
 
+
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
 <calculation_discipline>
 - Use only the numbers I supplied above. Do not assume any parameter I didn't give you (interest rates, industry averages, platform fee rates, exchange rates) — list what's missing and ask
 - **Write out the formula before substituting numbers** so I can check each step. Don't give only the final result
 - For conclusions involving money or inventory, note which input they're most sensitive to — which number, if I change it, flips the conclusion
 - If you can't complete the calculation, stop and say what's missing. Do not fill gaps with assumed values
 </calculation_discipline>
+<output_format>
+Output the requested 4 items one by one with numbers (① ② ③ …), using the original heading names from the request for each section, in the same order as the request; every item must appear exactly once.
+</output_format>
+<self_check>
+① All 4 requested items (you are a Rakuten × YouTube Shopping strategy expert …) appear, numbered and ordered exactly as requested, with no missing or extra items.
+② All figures come only from the pasted data; anything not in the data is written as "missing", never estimated from memory.
+③ No feature/certification/material/result that isn't in the input appears in the copy, and no unauthorized commitments are made to customers.
+④ Every conclusion is tagged with its source: [supplied by me] or [model inference].
+</self_check>
 ```
 
 ### 2.6 Rakuten Initial Setup Fee
@@ -248,6 +263,19 @@ Please help me decide between Rakuten vs Amazon JP:
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
+<output_format>
+Output the requested 6 items one by one with numbers (① ② ③ …), using the original heading names from the request for each section, in the same order as the request; every item must appear exactly once.
+</output_format>
+<self_check>
+① All 6 requested items (you are a Japanese e-commerce platform strategy expert. …) appear, numbered and ordered exactly as requested, with no missing or extra items.
+② All figures come only from the pasted data; anything not in the data is written as "missing", never estimated from memory.
+③ No feature/certification/material/result that isn't in the input appears in the copy, and no unauthorized commitments are made to customers.
+</self_check>
 ```
 
 ## 3. Japanese Listing AI Optimization
@@ -356,12 +384,27 @@ Please optimize:
 3. Coordination with Super Sale/Marathon events
 4. Points-multiplier setting suggestions (ROI comparison of raising the points multiplier vs a price cut)
 
+
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
 <calculation_discipline>
 - Use only the numbers I supplied above. Do not assume any parameter I didn't give you (interest rates, industry averages, platform fee rates, exchange rates) — list what's missing and ask
 - **Write out the formula before substituting numbers** so I can check each step. Don't give only the final result
 - For conclusions involving money or inventory, note which input they're most sensitive to — which number, if I change it, flips the conclusion
 - If you can't complete the calculation, stop and say what's missing. Do not fill gaps with assumed values
 </calculation_discipline>
+<output_format>
+Output the requested 4 items one by one with numbers (① ② ③ …), using the original heading names from the request for each section, in the same order as the request; every item must appear exactly once.
+</output_format>
+<self_check>
+① All 4 requested items (you are a Rakuten RPP ad optimization expert …) appear, numbered and ordered exactly as requested, with no missing or extra items.
+② All figures come only from the pasted data; anything not in the data is written as "missing", never estimated from memory.
+③ No feature/certification/material/result that isn't in the input appears in the copy, and no unauthorized commitments are made to customers.
+④ Every conclusion is tagged with its source: [supplied by me] or [model inference].
+</self_check>
 ```
 
 ## 4. Cross-Border Onboarding in Practice

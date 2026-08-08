@@ -52,6 +52,18 @@ triggers:
   - 选品
   - 选品分析
   - 饱和
+  - 这个类目
+  - 能不能进
+  - 进去会不会
+  - 太晚了
+  - 现在还能
+  - 现在进去
+  - 对手最近
+  - 上了个新
+  - 要不要跟
+  - 卖得很好
+  - 跟不跟
+  - 我该不该
 uses_constraints:
 - forecast.backtest_target
 - forecast.changepoint_prior_range

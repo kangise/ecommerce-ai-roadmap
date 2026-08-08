@@ -109,6 +109,11 @@ Last 3 seconds: CTA (guide to action)
 "Tell me in the comments what color you want"
 "Follow me for more good-product recommendations"
 "Limited-time XX% off, act fast"
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
 ```
 
 ### 2.2 AI Video-Script Generation Prompt
@@ -142,6 +147,12 @@ The 5 scripts each use a different angle:
 - Script D: user testimonial/UGC type
 - Script E: limited-time urgency type
 
+
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
 <copy_discipline>
 - Never write a feature, material, certification, or result the product doesn't actually have. Any attribute I didn't state above must not appear in the copy — this is the number-one cause of listing takedowns and false-advertising complaints
 - If you need a selling point I didn't supply, list what you need from me rather than improvising
@@ -278,6 +289,12 @@ The most common mistake in creator screening is "only looking at follower count.
 This prompt requires AI to evaluate creators across multiple dimensions like engagement rate, completion rate, and content match,
 avoiding spending money to find a creator who "has many followers but can't drive sales."
 
+
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
 <copy_discipline>
 - Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
@@ -1060,6 +1077,12 @@ The "information gap" is the core mechanism driving curiosity in cognitive psych
 Hooks generated with this theoretical framework have a 2-3x higher completion rate than randomly-conceived Hooks,
 because they trigger humans' instinctive curiosity rather than surface-level attention.
 
+
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
 <output_format>
 Deliver exactly 10 Hooks, each with 3 labels: the information-gap type it creates (suspense / counterintuitive / pain point / data / comparison), expected completion rate (high/medium/low), and a suitable shooting method.
 </output_format>

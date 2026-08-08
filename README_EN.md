@@ -10,7 +10,7 @@ Ask an AI "roughly what's the monthly sales volume in this category" and it will
 
 Sourcing, restocking, and pricing have real money behind them. Agents make this worse: the model acts on numbers it doesn't know.
 
-So in this hub, **812 prompts carry guardrails** wherever numbers, external facts, or customer-facing copy are involved. And critically — **every number has been verified by CI gates.**
+So in this hub, **868 prompts carry guardrails** wherever numbers, external facts, or customer-facing copy are involved. And critically — **every number has been verified by CI gates.**
 
 <p align="center">
   <img src="assets/content-map-en.svg" alt="Content map — 69 chapters across 6 tracks" width="100%">
@@ -24,7 +24,7 @@ Three layers for humans, agent contracts, and agent execution:
 |---|---|---|---|
 | Knowledge Base | 69 chapters, trilingual (zh/en/ja) | 69 chapters | Human reading · agent retrieval |
 | Ontology | E-commerce domain model | 94 entities · 184 constraints · 78 relations · 8 processes | Shared contract between agents |
-| Skills + Prompts | Guarded executable capabilities | 812 prompts · 8 installable skills | Agent direct invocation |
+| Skills + Prompts | Guarded executable capabilities | 868 prompts · 8 installable skills | Agent direct invocation |
 
 ## For Your Agent
 

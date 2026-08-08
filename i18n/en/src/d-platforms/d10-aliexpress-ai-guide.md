@@ -133,11 +133,25 @@ Note AliExpress's specifics:
 - Southern European markets (Spain/France/Portugal) are AliExpress's strongest markets
 - The Russia market, though affected by sanctions, still has demand
 
+
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
 <copy_discipline>
 - Never write a feature, material, certification, or result the product doesn't actually have. Any attribute I didn't state above must not appear in the copy — this is the number-one cause of listing takedowns and false-advertising complaints
 - If you need a selling point I didn't supply, list what you need from me rather than improvising
 - Flag any claim touching efficacy, safety, environmental, or patent language separately so I can verify it by hand
 </copy_discipline>
+<output_format>
+Output the requested 4 items one by one with numbers (① ② ③ …), using the original heading names from the request for each section, in the same order as the request; every item must appear exactly once.
+</output_format>
+<self_check>
+① All 4 requested items (you are an AliExpress multilingual Listing optimization expert. …) appear, numbered and ordered exactly as requested, with no missing or extra items.
+② All figures come only from the pasted data; anything not in the data is written as "missing", never estimated from memory.
+③ No feature/certification/material/result that isn't in the input appears in the copy, and no unauthorized commitments are made to customers.
+</self_check>
 ```
 
 ### 2.3 AliExpress Ad System
@@ -180,6 +194,11 @@ Please analyze:
 4. Should I turn to a branding strategy (AliExpress brand flagship store)?
 5. Differentiation opportunities in Southern European markets (Spain/France)
 6. Social-media traffic-driving strategy (TikTok/YouTube → AliExpress)
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
 ```
 
 ### 3.6 AliExpress Seller Tools
@@ -226,6 +245,11 @@ Please analyze:
 4. Inventory-stocking strategy (an overseas warehouse needs advance stocking)
 5. Return-handling plan (overseas-warehouse returns vs direct-mail returns)
 6. Choice of AliExpress Choice Shipping vs building your own overseas warehouse
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
 ```
 
 ## 5. AliExpress Southern Europe Market In-Depth Strategy

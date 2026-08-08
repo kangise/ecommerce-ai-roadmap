@@ -194,11 +194,27 @@ ensuring selling points are consistent but the style adapts to each platform's c
 It saves 70% of the time versus writing three sets of content separately,
 and guarantees cross-platform brand consistency.
 
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
+
 <copy_discipline>
 - Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+
+<output_format>
+Output the requested 12 items in numbered order (① ② ③ …), using each section's original name from the request, in the same order; every item must appear exactly once.
+</output_format>
+
+<self_check>
+① All 12 requested items (you are a cross-platform e-commerce content expert. Please adapt the following product core document…) appear, numbered and ordered as requested, with no missing or extra items.
+② All numbers come only from the pasted data; anything not in the data is written "missing" — no estimates from memory.
+③ The copy contains no feature/certification/material/result absent from the input, and no unauthorized commitments to customers. <!-- ref: amazon.bullet_point.no_html -->
+</self_check>
 ```
 
 ---
@@ -870,11 +886,27 @@ BFCM usually contributes 20-30% of annual revenue.
 Three-platform linked BFCM revenue is 50-100% higher than each operating independently.
 But linkage needs to start 6 weeks in advance, and this prompt helps you plan systematically.
 
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
+
 <copy_discipline>
 - Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+
+<output_format>
+Output the requested 6 items in numbered order (① ② ③ …), using each section's original name from the request, in the same order; every item must appear exactly once.
+</output_format>
+
+<self_check>
+① All 6 requested items (you are a cross-platform big-sale operations expert. Please help me create a BFCM three-platform coordination plan.…) appear, numbered and ordered as requested, with no missing or extra items.
+② All numbers come only from the pasted data; anything not in the data is written "missing" — no estimates from memory.
+③ The copy contains no feature/certification/material/result absent from the input, and no unauthorized commitments to customers.
+</self_check>
 ```
 
 ---

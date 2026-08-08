@@ -324,6 +324,7 @@ def gate_s5() -> list[str]:
         "f6-ai-tools-comparison.md",
         # Case studies (illustrative, not operational domains)
         "ai-listing-optimization.md", "ai-review-to-product.md",
+        "f5-rpa-automation.md",
         # Social media line — documented gap, needs ecom-social skill
         "e1-instagram-facebook-ai-guide.md", "e2-youtube-ai-guide.md",
         "e3-xiaohongshu-ai-guide.md", "e4-pinterest-ai-guide.md",

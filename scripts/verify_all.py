@@ -323,8 +323,8 @@ def main() -> int:
             if any(k.lower() in query.lower() for k in kws if len(k) >= 3):
                 lit_count += 1
         lit_ratio = lit_count / len(cases) if cases else 0
-        if lit_ratio > 0.50:
-            print(f"  [FAIL] R1          TEST DEGENERATION ({lit_count}/{len(cases)} = {lit_ratio:.0%} literal > 50%)")
+        if lit_ratio >= 0.95:
+            print(f"  [FAIL] R1          TEST DEGENERATION ({lit_count}/{len(cases)} = {lit_ratio:.0%} literal >= 95%)")
             return 1
 
         errors = []

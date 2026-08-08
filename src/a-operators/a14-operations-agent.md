@@ -163,10 +163,10 @@ description: 每周分析 Amazon 搜索词报告，产出待确认的否定关�
   需要过去 30 天的搜索词报告（含花费、点击、订单、销售额字段）。
 ---
 
-<数据源>
+<数据来源>
 Amazon Ads API：搜索词报告，过去 30 天，字段需含
 searchTerm / matchType / impressions / clicks / cost / orders / sales
-</数据源>
+</数据来源>
 
 <前置检查>
 - 报告行数 < 200 时停止，报告"样本不足，本周跳过"
