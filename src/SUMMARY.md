@@ -66,6 +66,7 @@
 # 多平台
 
 - [Path D 总览](d-platforms/README.md)
+- [Amazon 运营索引](d-platforms/d0-amazon-index.md)
 - [Walmart](d-platforms/d4-walmart-ai-guide.md)
 - [Temu](d-platforms/d5-temu-seller-guide.md)
 - [东南亚 (Shopee + Lazada)](d-platforms/d6-southeast-asia-ai-guide.md)

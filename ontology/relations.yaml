@@ -1,0 +1,12 @@
+# Entity Relationships
+# Every entry must have source: pointing to a chapter anchor.
+
+# Schema:
+# - from: entity_id
+#   to: entity_id
+#   type: belongs_to | has_many | targets | consumes | produces | ...
+#   cardinality: "1:1" | "1:n" | "n:1" | "n:n"
+#   platform: platform_id | null
+#   source: path/to/chapter.md#anchor
+
+[]

@@ -24,6 +24,7 @@ This path extends what you can already do with AI from Amazon to the other platf
 
 | Module | Platform | Time | What it covers |
 |--------|----------|------|----------------|
+| [D0. Amazon Operations Index](d0-amazon-index.md) | Amazon | 10 min | Operations IS Amazon; this is the quick reference |
 | [D1. Shopify Storefront](shopify-ai-guide.md) | Shopify | 3–4 h | AI end to end, from sourcing to acquisition |
 | [D2. TikTok Shop](tiktok-shop-ai-guide.md) | TikTok Shop | 2–3 h | Social commerce + AI short-video content |
 | [D3. Cross-Platform Strategy](cross-platform-strategy.md) | Multi-platform | 2–3 h | Amazon + storefront + social commerce working together |

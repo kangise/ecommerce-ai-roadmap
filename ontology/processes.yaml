@@ -1,0 +1,14 @@
+# E-Commerce Business Processes
+# Formal workflows extracted from the chapter sequence.
+
+# Schema:
+# - id: process_id
+#   label: {zh: ..., en: ..., ja: ...}
+#   steps:
+#     - chapter: path/to/chapter.md
+#       produces: [entity_id, ...]
+#     - chapter: path/to/chapter.md
+#       consumes: [entity_id, ...]
+#       produces: [entity_id, ...]
+
+[]

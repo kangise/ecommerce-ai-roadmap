@@ -66,6 +66,7 @@
 # Marketplaces
 
 - [Path D Overview](d-platforms/README.md)
+- [Amazon Operations Index](d-platforms/d0-amazon-index.md)
 - [Walmart](d-platforms/d4-walmart-ai-guide.md)
 - [Temu](d-platforms/d5-temu-seller-guide.md)
 - [Southeast Asia (Shopee + Lazada)](d-platforms/d6-southeast-asia-ai-guide.md)

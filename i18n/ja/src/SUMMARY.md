@@ -66,6 +66,7 @@
 # マーケットプレイス
 
 - [Path D 概要](d-platforms/README.md)
+- [Amazon 運用索引](d-platforms/d0-amazon-index.md)
 - [Walmart](d-platforms/d4-walmart-ai-guide.md)
 - [Temu](d-platforms/d5-temu-seller-guide.md)
 - [東南アジア (Shopee + Lazada)](d-platforms/d6-southeast-asia-ai-guide.md)

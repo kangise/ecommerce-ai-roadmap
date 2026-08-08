@@ -24,6 +24,7 @@ Path A-C 的内容以 Amazon 为核心场景。但跨境电商不只有 Amazon S
 
 | 模块 | 平台 | 难度 | 预计时间 | 说明 |
 |------|------|------|----------|------|
+| [D0. Amazon 运营索引](d0-amazon-index.md) | Amazon | | 10 分钟 | 运营线即 Amazon 线，这里是速查索引 |
 | [D1. Shopify 独立站](shopify-ai-guide.md) | Shopify | | 3-4 小时 | 从选品到获客的全链路 AI 实战 |
 | [D2. TikTok Shop](tiktok-shop-ai-guide.md) | TikTok Shop | | 2-3 小时 | 社交电商 + 短视频 AI 内容创作 |
 | [D3. 跨平台策略](cross-platform-strategy.md) | 多平台 | | 2-3 小时 | Amazon + 独立站 + 社交电商协同 |

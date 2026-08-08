@@ -24,6 +24,7 @@ Path A〜C は Amazon を中心の題材にしている。しかし越境 EC は
 
 | モジュール | プラットフォーム | 想定時間 | 内容 |
 |-----------|----------------|----------|------|
+| [D0. Amazon 運用索引](d0-amazon-index.md) | Amazon | 10 分 | 運用ラインが Amazon ラインです。クイックリファレンス |
 | [D1. Shopify 独自ストア](shopify-ai-guide.md) | Shopify | 3〜4 時間 | 商品選定から集客まで AI を通しで |
 | [D2. TikTok Shop](tiktok-shop-ai-guide.md) | TikTok Shop | 2〜3 時間 | ソーシャルコマース + AI ショート動画制作 |
 | [D3. クロスプラットフォーム戦略](cross-platform-strategy.md) | 複数 | 2〜3 時間 | Amazon + 独自ストア + ソーシャルコマースの連携 |

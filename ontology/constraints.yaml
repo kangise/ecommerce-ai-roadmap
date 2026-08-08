@@ -1,0 +1,17 @@
+# Platform-Specific Constraints
+# Every entry must have source: pointing to a chapter anchor.
+# Platform rates and thresholds MUST carry verified: YYYY-MM.
+
+# Schema:
+# - id: platform.entity.attribute.constraint_name
+#   entity: entity_id
+#   attribute: attr_id | null
+#   platform: platform_id
+#   kind: max_length | min_length | max_bytes | count | format | forbidden | required
+#   value: <number | string>
+#   unit: 字符 | 字节 | ...
+#   statement: {zh: ..., en: ..., ja: ...}
+#   source: path/to/chapter.md#anchor
+#   verified: YYYY-MM
+
+[]

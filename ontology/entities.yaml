@@ -1,0 +1,16 @@
+# E-Commerce Domain Entities
+# Every entry must have source: pointing to a chapter anchor.
+# If unsure, put it in _unresolved.md instead.
+
+# Schema:
+# - id: unique_entity_id
+#   label: {zh: Chinese, en: English, ja: Japanese}
+#   definition: {zh: ..., en: ..., ja: ...}
+#   attributes:
+#     - id: attr_id
+#       type: string | int | float | list<string> | ...
+#       label: {zh: ..., en: ..., ja: ...}
+#   source:
+#     - src/path/to/chapter.md#anchor
+
+[]

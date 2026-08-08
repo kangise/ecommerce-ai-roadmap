@@ -403,8 +403,20 @@ def gate_m6() -> list[str]:
 # runnability
 # --------------------------------------------------------------------------
 
-PROMPT_TAGS = ["角色", "输入数据", "任务", "数据纪律", "输出格式", "自检",
-               "文案纪律", "输入数据边界", "计算纪律"]
+PROMPT_TAGS_BY_TREE = {
+    "src": [
+        "角色", "输入数据", "任务", "数据纪律", "输出格式", "自检",
+        "文案纪律", "输入数据边界", "计算纪律", "数据来源",
+    ],
+    "i18n/en/src": [
+        "role", "input_data", "task", "data_discipline", "output_format", "self_check",
+        "copy_discipline", "input_boundary", "calculation_discipline", "data_source",
+    ],
+    "i18n/ja/src": [
+        "役割", "入力データ", "タスク", "データ規律", "出力形式", "セルフチェック",
+        "コピー規律", "入力データ境界", "計算規律", "データソース",
+    ],
+}
 
 # Modules that ship with Python, and names that are this chapter's own files
 # rather than anything installable.
@@ -447,12 +459,13 @@ def gate_n1() -> list[str]:
     """
     problems = []
     for tree in TREES:
+        tags = PROMPT_TAGS_BY_TREE.get(tree, PROMPT_TAGS_BY_TREE["src"])
         for md in sorted((ROOT / tree).rglob("*.md")):
             text = md.read_text(encoding="utf-8")
             for m in re.finditer(r"```[a-z]*\n(.*?)```", text, re.S):
                 body = m.group(1)
                 ln = text[: m.start()].count("\n") + 1
-                for tag in PROMPT_TAGS:
+                for tag in tags:
                     stripped = re.sub(rf"<{tag}>[^\n]*?</{tag}>", "", body)
                     opens = len(re.findall(rf"^\s*<{tag}>", stripped, re.M))
                     closes = len(re.findall(rf"^\s*</{tag}>", stripped, re.M))
