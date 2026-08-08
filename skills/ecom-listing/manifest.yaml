@@ -91,6 +91,10 @@ triggers:
   - 图片挺好
   - 没人点
   - 点击
+  - 写得不够
+  - 不够吸引
+  - 想办法
+  - 优化页面
 uses_constraints:
 - amazon.a_plus_content.module_text.max_length
 - amazon.brand_story.brand_card.max_length

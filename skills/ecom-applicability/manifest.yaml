@@ -68,5 +68,10 @@ triggers:
   - 人再核
   - 要不要让人
   - 不用模型
+  - 不太懂
+  - 不怎么熟
+  - 帮我管理
+  - 店铺管理
+  - 能用它
 uses_constraints: []
 uses_entities: []

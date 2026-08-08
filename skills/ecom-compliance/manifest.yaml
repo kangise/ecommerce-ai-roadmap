@@ -56,6 +56,9 @@ triggers:
   - 跟卖
   - 锂电池
   - 额外
+  - 出口到
+  - 发达国家
+  - 要做哪些准备
 uses_constraints:
 - amazon.account.monthly_spend.analysis_cadence
 - amazon.bid.value.new_product_multiplier
