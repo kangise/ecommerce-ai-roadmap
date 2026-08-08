@@ -1,0 +1,28 @@
+# Constraints: ecom-listing
+
+Generated from `ontology/constraints.yaml`.
+
+- **amazon.listing.title.max_length**: 标题不超过 200 字符 (verified 2026-08)
+- **amazon.listing.title.recommended_max_length**: 标题建议控制在 150 字符以内 (verified 2026-08)
+- **amazon.listing.title.key_content_first_80**: 标题前 80 个字符最重要，必须包含最重要的信息（移动端只显示这么多） (verified 2026-08)
+- **amazon.listing.title.format**: 标题格式为 品牌名 + 核心关键词 + 核心卖点 + 规格/数量 (verified 2026-08)
+- **amazon.listing.title.no_all_caps**: 标题不要用全大写（Amazon 可能抑制展示） (verified 2026-08)
+- **amazon.listing.title.no_promo_words**: 标题不要用促销词（Best、#1、Sale、guaranteed 等） (verified 2026-08)
+- **amazon.bullet_point.count**: Listing 含 5 个 Bullet Points (verified 2026-08)
+- **amazon.listing.description.max_length**: 产品描述不超过 2000 字符 (verified 2026-08)
+- **amazon.listing.description.recommended_max_length**: Prompt 模板中产品描述建议 200 字以内（讲品牌故事和使用场景） (verified 2026-08)
+- **amazon.listing.search_terms.max_bytes**: Search Terms 不超过 250 字节（后台，用户不可见） (verified 2026-08)
+- **amazon.listing.search_terms.separator**: Search Terms 用空格分隔，不用逗号（Amazon 官方建议；逗号占用字节但无索引价值） (verified 2026-08)
+- **amazon.listing.search_terms.no_duplicate**: Search Terms 不重复标题和五点中已使用的词（重复浪费空间） (verified 2026-08)
+- **amazon.listing.search_terms.no_brand_name**: Search Terms 不含品牌名；竞品品牌名不允许放在 Search Terms (verified 2026-08)
+- **amazon.listing.search_terms.no_asin**: Search Terms 不包含 ASIN（没有索引价值） (verified 2026-08)
+- **amazon.listing.search_terms.no_subjective_words**: Search Terms 不包含 best、cheap 等主观词 (verified 2026-08)
+- **amazon.listing.search_terms.byte_encoding**: Search Terms 字节换算：英文 1 字符 = 1 字节，中文 1 字符 = 3 字节 (verified 2026-08)
+- **amazon.listing.image.count**: 图片为 主图 1 张 + 副图 6 张（共 7 张） (verified 2026-08)
+- **amazon.listing.ab_test.min_duration_weeks**: A/B 测试至少运行 2 周（覆盖一个完整购买周期），Amazon 建议 4-8 周 (verified 2026-08)
+- **amazon.us.listing.required_certifications**: Amazon US 市场合规要求涉及 FDA、FCC、CPSC (verified 2026-08)
+- **amazon.de.listing.required_certifications**: Amazon DE 市场合规要求涉及 CE、WEEE、包装法；本地化时在五点中突出认证 (verified 2026-08)
+- **amazon.jp.listing.required_certifications**: Amazon JP 市场合规要求涉及 PSE（电子产品必须标注）、食品卫生法、电安法 (verified 2026-08)
+- **amazon.listing.forbidden_unverified_claim**: Listing 中禁止使用未经验证的声明（如宣称 "FDA approved" 但实际没有 FDA 批准）；健康声明需认证依据 (verified 2026-08)
+- **amazon.violation.response_deadline**: 收到 Amazon 政策违规通知须及时响应（通常 48-72 小时），超时可能导致更严重处罚 (verified 2026-08)
+- **amazon.safety_complaint.response_deadline**: 所有产品安全相关投诉必须在 24 小时内响应，否则可能导致 Listing 下架 (verified 2026-08)

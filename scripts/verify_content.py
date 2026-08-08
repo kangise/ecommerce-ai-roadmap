@@ -688,6 +688,65 @@ def gate_n6() -> list[str]:
     return problems
 
 
+def gate_m7() -> list[str]:
+    """Expired verified facts. Shelf life: 18 months.
+
+    Scans claims markers (<!-- claims: verified YYYY-MM -->) in chapter prose
+    and `verified:` fields in constraints.yaml. Reports any older than
+    SHELF_LIFE_MONTHS.
+    """
+    import datetime
+    SHELF_LIFE_MONTHS = 18
+
+    now = datetime.date.today()
+    cutoff = now.replace(year=now.year - SHELF_LIFE_MONTHS // 12)
+    # Proper 18-month cutoff
+    months_ago = now.month - SHELF_LIFE_MONTHS
+    year_adj = now.year
+    while months_ago <= 0:
+        months_ago += 12
+        year_adj -= 1
+    cutoff = datetime.date(year_adj, months_ago, now.day)
+
+    problems = []
+    CLAIMS_PATTERN = re.compile(r"<!--\s*claims:\s*verified\s+(\d{4}-\d{2})\s*-->")
+
+    for tree in TREES:
+        for md in sorted((ROOT / tree).rglob("*.md")):
+            text = md.read_text(encoding="utf-8")
+            for m in CLAIMS_PATTERN.finditer(text):
+                verified_str = m.group(1)
+                try:
+                    verified_date = datetime.date.fromisoformat(verified_str + "-01")
+                except ValueError:
+                    continue
+                if verified_date < cutoff:
+                    rel = f"{tree}/{md.relative_to(ROOT / tree)}"
+                    line_no = text[:m.start()].count("\n") + 1
+                    problems.append(f"{rel}:{line_no} verified {verified_str} (expired)")
+
+    # Check constraints.yaml
+    constraints_path = ROOT / "ontology" / "constraints.yaml"
+    if constraints_path.exists():
+        import yaml
+        with open(constraints_path) as f:
+            constraints = yaml.safe_load(f)
+        for c in constraints:
+            if isinstance(c, dict):
+                verified_str = c.get("verified", "")
+                if verified_str:
+                    try:
+                        verified_date = datetime.date.fromisoformat(verified_str + "-01")
+                    except ValueError:
+                        continue
+                    if verified_date < cutoff:
+                        problems.append(
+                            f"ontology/constraints.yaml: {c.get('id', '?')} verified {verified_str} (expired)"
+                        )
+
+    return sorted(problems)
+
+
 # Structure checks all come out of one pass over the trees; gates are independent.
 STRUCTURE = [
     ("anchors", "in-page anchors"),
@@ -708,6 +767,7 @@ GATES = [
     ("N4", "prompt output format", gate_n4),
     ("N5", "self-check uniqueness", gate_n5),
     ("N6", "trilingual prompt parity", gate_n6),
+    ("M7", "expired verified facts", gate_m7),
 ]
 
 
