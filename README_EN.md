@@ -8,15 +8,51 @@
 
 Ask an AI "roughly what's the monthly sales volume in this category" and it will almost always hand you a plausible-looking number — **one it does not actually know**.
 
-Sourcing, restocking, and pricing have real money behind them. One fabricated volume figure can leave you sitting on tens of thousands in inventory. Agents make this worse: the model no longer just tells you the number, it acts on it — repricing, ordering, sending.
+Sourcing, restocking, and pricing have real money behind them. Agents make this worse: the model acts on numbers it doesn't know.
 
-So in this hub, **330+ prompts carry guardrails** wherever numbers, external facts, or customer-facing copy are involved: what the model may not invent, when it must stop and ask you, and how every conclusion gets a source tag.
+So in this hub, **812 prompts carry guardrails** wherever numbers, external facts, or customer-facing copy are involved. And critically — **every number has been verified by CI gates.**
 
 <p align="center">
-  <img src="assets/content-map-en.svg" alt="Content map — 56 guides across 6 tracks" width="100%">
+  <img src="assets/content-map-en.svg" alt="Content map — 69 chapters across 6 tracks" width="100%">
 </p>
 
----
+## Not just a book — agent infrastructure
+
+Three layers for humans, agent contracts, and agent execution:
+
+| Layer | Contents | Scale | For |
+|---|---|---|---|
+| Knowledge Base | 69 chapters, trilingual (zh/en/ja) | 69 chapters | Human reading · agent retrieval |
+| Ontology | E-commerce domain model | 94 entities · 184 constraints · 78 relations · 8 processes | Shared contract between agents |
+| Skills + Prompts | Guarded executable capabilities | 812 prompts · 8 installable skills | Agent direct invocation |
+
+## For Your Agent
+
+The `dist/` directory is a plug-and-play agent capability package:
+
+```
+dist/
+  SKILL.md      ← Read this to route requests to the right skill
+  ontology.json ← Machine-readable domain model
+  prompts.json  ← 812 guarded prompts (trilingual)
+  skills/       ← 8 domain skills with manifests + playbooks
+  integration/  ← MCP server setup guide
+```
+
+MCP configuration:
+
+```json
+{
+  "mcpServers": {
+    "opc-ecommerce": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/dist"]
+    }
+  }
+}
+```
+
+> See `dist/README.md` and `dist/integration/mcp.md` for details.
 
 ## See the difference in 30 seconds
 
@@ -49,7 +85,7 @@ Paste this into [ChatGPT](https://chatgpt.com/) or [Claude](https://claude.ai/):
 ## Why use this
 
 - **330+ prompts with guardrails** — data discipline (no inventing figures), copy discipline (no claiming features the product lacks, no promising refunds you never authorized), input boundaries (a pasted competitor review can't hijack your analysis as an instruction)
-- **Trilingual and complete, not "in progress"** — 68 chapters each in Chinese, English, and Japanese; switch languages from the top-right of any page on the [online edition](https://kangise.github.io/ecommerce-ai-roadmap/en/)
+- **Trilingual and complete, not "in progress"** — 69 chapters each in Chinese, English, and Japanese; switch languages from the top-right of any page on the [online edition](https://kangise.github.io/ecommerce-ai-roadmap/en/)
 - **Content that doesn't rot in three months** — chapters describe capability tiers; model ids and prices live on one [model matrix](i18n/en/src/resources/model-matrix.md) page with a verification date
 - **Built for the agent era** — not just prompts, but [how to migrate them into skill files](i18n/en/src/0-foundations/f2-prompt-engineering.md) and [which actions must never go to an agent](i18n/en/src/a-operators/a14-operations-agent.md)
 - **CC0** — take it, no attribution required

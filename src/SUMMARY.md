@@ -64,6 +64,7 @@
 ---
 
 # 多平台
+- [Agent 接入](agent/README.md)
 
 - [Path D 总览](d-platforms/README.md)
 - [Amazon 运营索引](d-platforms/d0-amazon-index.md)

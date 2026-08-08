@@ -64,6 +64,7 @@
 ---
 
 # Marketplaces
+- [Agent Integration](agent/README.md)
 
 - [Path D Overview](d-platforms/README.md)
 - [Amazon Operations Index](d-platforms/d0-amazon-index.md)

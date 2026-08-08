@@ -48,12 +48,8 @@ triggers:
   - 应不应该用
   - AI写
   - AI做
-  - 交给AI
   - AI去做
   - 机器判断
   - 能直接用
-  - 让人再核
-  - 再核一遍
-  - 要不要让人
 uses_constraints: []
 uses_entities: []

@@ -49,11 +49,9 @@ triggers:
   - intellectual property
   - 跟卖
   - 侵权
-  - 欧洲那边
   - 证书
   - 额外
   - 下架
-  - 安全文件
 uses_constraints:
 - amazon.account.monthly_spend.analysis_cadence
 - amazon.bid.value.new_product_multiplier

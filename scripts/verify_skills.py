@@ -315,23 +315,27 @@ def gate_s5() -> list[str]:
     problems = []
 
     EXEMPT = {
-        # Meta/reference chapters
-        "f2-prompt-engineering.md", "c1-business-sense.md",
-        "c3-roi-evaluation.md", "c3-operations-optimization.md",
-        "c4-ai-risk-governance.md", "c4-data-driven-culture.md",
+        # Meta/reference chapters (real filenames verified)
+        "f2-prompt-engineering.md",
+        "c3-roi-evaluation.md", "c4-ai-risk-governance.md",
         "c5-competitive-intelligence.md", "c2-team-building.md",
-        "b1-ai-development.md", "b2-prediction-models.md",
-        "b3-mcp-integration.md", "b4-automation-workflow.md",
+        "b2-prediction-models.md",
         # Tool/resource comparison
         "f6-ai-tools-comparison.md",
         # Case studies (illustrative, not operational domains)
         "ai-listing-optimization.md", "ai-review-to-product.md",
-        # Social media line — documented gap, needs ecom-social skill (see CONTRIBUTING)
+        # Social media line — documented gap, needs ecom-social skill
         "e1-instagram-facebook-ai-guide.md", "e2-youtube-ai-guide.md",
         "e3-xiaohongshu-ai-guide.md", "e4-pinterest-ai-guide.md",
         "e5-whatsapp-business-ai-guide.md", "e6-reddit-ai-guide.md",
         "e7-social-media-cross-channel.md",
     }
+    # SELF-CHECK: every exempted filename MUST exist in src/
+    import pathlib as _pl
+    real_files = {p.name for p in _pl.Path(ROOT / "src").rglob("*.md")}
+    phantom = [exc for exc in EXEMPT if exc not in real_files]
+    if phantom:
+        problems.append(f"S5 EXEMPT list contains {len(phantom)} phantom file(s): {', '.join(phantom)}")
 
     # Count prompts per chapter
     chapter_counts = {}

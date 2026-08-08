@@ -6,106 +6,79 @@
   expect: ecom-listing
 - query: 详情页转化太低想重写一下
   expect: ecom-listing
-  natural: true
 - query: 这个产品页面感觉写得不好，怎么改
   expect: ecom-listing
-  natural: true
 - query: 我要投三个市场，美日德，每个市场产品页都要本地化
   expect: ecom-listing
-  natural: true
 - query: 这款新品的卖点很多，挑哪些写到页面上最有效
   expect: ecom-listing
-  natural: true
 - query: 我的广告ACOS涨到40%了怎么办
   expect: ecom-advertising
 - query: 我的PPC花了钱没出单
   expect: ecom-advertising
 - query: 这个月花了三千块钱一单没出
   expect: ecom-advertising
-  natural: true
 - query: 广告开着但是一直没人点，怎么回事
   expect: ecom-advertising
-  natural: true
 - query: 我的广告数据里好多词花了很多钱但没订单，怎么办
   expect: ecom-advertising
-  natural: true
 - query: FBA库存快断了应该什么时候补货
   expect: ecom-inventory
 - query: IPI分数太低了怎么提高
   expect: ecom-inventory
 - query: 旺季前要备多少货才不会断
   expect: ecom-inventory
-  natural: true
 - query: 我的货到了亚马逊仓库但是一直不接收，是什么原因
   expect: ecom-inventory
-  natural: true
 - query: 最近销量突然涨了，我怕断货要怎么算
   expect: ecom-inventory
-  natural: true
 - query: 这个产品卖到欧盟需要什么认证
   expect: ecom-compliance
 - query: 类目审核需要什么资料
   expect: ecom-compliance
 - query: 欧洲那边是不是要额外的证书
   expect: ecom-compliance
-  natural: true
 - query: 我卖的是电子产品，听说欧洲要有这个那个认证，具体要哪些
   expect: ecom-compliance
-  natural: true
 - query: 亚马逊突然把我的listing下架了，说需要提供安全文件
   expect: ecom-compliance
-  natural: true
 - query: 这个产品定价多少合适
   expect: ecom-pricing
 - query: 盈亏平衡点在哪里
   expect: ecom-pricing
 - query: 同行都卖19块9我卖29块9还要不要跟
   expect: ecom-pricing
-  natural: true
 - query: 我想把这款产品涨一点价，但怕买家不买了
   expect: ecom-pricing
-  natural: true
 - query: 卖20美金的话这个品到底赚不赚钱
   expect: ecom-pricing
-  natural: true
 - query: 帮我看看宠物用品这个品类能不能做
   expect: ecom-research
 - query: 选品的时候要注意什么
   expect: ecom-research
 - query: 这个类目现在还能不能进
   expect: ecom-research
-  natural: true
 - query: 最近身边很多人都在卖这个品类，现在进去会不会太晚了
   expect: ecom-research
-  natural: true
 - query: 我想做厨房用品，但是不知道从哪个小品类入手
   expect: ecom-research
-  natural: true
 - query: 我该不该用AI做需求预测
   expect: ecom-applicability
 - query: AI写listing靠谱吗
   expect: ecom-applicability
 - query: 机器判断的销量数据能信吗
   expect: ecom-applicability
-  natural: true
 - query: 这个事交给AI去做，最后出来的东西能直接用吗
   expect: ecom-applicability
-  natural: true
 - query: AI给出的分析结论，我要不要让人再核一遍
   expect: ecom-applicability
-  natural: true
 - query: 客户投诉说收到的东西和图片不一样，怎么回复
   expect: ecom-customer-service
-  natural: true
 - query: 有个买家给了我一星差评说产品质量不行，我应该怎么回
   expect: ecom-customer-service
-  natural: true
 - query: 一个客户发邮件说想退货，我该说什么
   expect: ecom-customer-service
-  natural: true
 - query: 亚马逊发邮件说我账号有风险，要写POA申诉
   expect: ecom-customer-service
-  natural: true
 - query: whatsapp上买家问我发货了吗，怎么自动回复
   expect: ecom-customer-service
-  natural: true

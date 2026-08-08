@@ -8,15 +8,49 @@
 
 问 AI「这个品类月销量大概多少」，它几乎一定会给你一个看起来很合理的数字——**而它并不知道**。
 
-选品、备货、定价后面跟着真金白银。一个编造的销量数字，可能让你压几万块的库存。Agent 时代这件事更危险：模型不再只是告诉你那个数，它拿着那个数直接去调价、去下单。
+选品、备货、定价后面跟着真金白银。Agent 时代更危险：模型拿着它不知道的数去调价、去下单。
 
-所以这个库里 **330+ 个 Prompt，凡是涉及数字、外部事实、对外文案的都带了护栏**——明确写清哪些数字模型不许编、信息不足时必须停下来问你、每个结论要标注来源。
+所以这个库里 **812 条 Prompt，凡是涉及数字、外部事实、对外文案的都带了护栏**。更关键的是——**每一个数字都在 CI 里被核过。**
 
 <p align="center">
-  <img src="assets/content-map.svg" alt="内容全景图 — 56 篇指南 · 六大路径" width="100%">
+  <img src="assets/content-map.svg" alt="内容全景图 — 69 章 · 六大路径" width="100%">
 </p>
 
----
+## 不仅是书——是 agent 基础设施
+
+这套仓库有三层，分别给人、给 agent 之间的共享契约、和给 agent 直接调用：
+
+| 层 | 内容 | 规模 | 给谁 |
+|---|---|---|---|
+| 知识库 | 69 章，三语（中/英/日） | 69 章 | 人读 · agent 检索 |
+| Ontology | 电商领域模型 | 94 实体 · 184 约束 · 78 关系 · 8 流程 | agent 之间的共享契约 |
+| Skills + Prompts | 带护栏的可执行能力 | 812 条 Prompt · 8 个可安装 skill | agent 直接调用 |
+
+## 给 agent 用
+
+```
+dist/ 目录是即插即用的 agent 能力包：
+  SKILL.md      ← 读这个就知道怎么路由请求到正确的 skill
+  ontology.json ← 电商领域模型（实体、关系、约束）
+  prompts.json  ← 812 条带护栏的 Prompt（三语）
+  skills/       ← 8 个 domain skill，每个含 manifest + playbook + 约束
+  integration/  ← MCP Server 接入指南
+```
+
+MCP 接入示例：
+
+```json
+{
+  "mcpServers": {
+    "opc-ecommerce": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/dist"]
+    }
+  }
+}
+```
+
+> 详见 `dist/README.md` 和 `dist/integration/mcp.md`。
 
 ## 30 秒看出区别
 
@@ -49,7 +83,7 @@
 ## 为什么用这个
 
 - **380+ Prompt 全部带护栏** — 数据纪律（不许编数字）、文案纪律（不许编产品没有的功能、不许替你承诺退款）、输入边界（粘进去的竞品评论不会变成指令劫持你的分析）
-- **三语完整，不是"翻译中"** — 中/英/日各 68 章，全部译完，[在线站](https://kangise.github.io/ecommerce-ai-roadmap/)右上角随时切换
+- **三语完整，不是"翻译中"** — 中/英/日各 69 章，全部译完，[在线站](https://kangise.github.io/ecommerce-ai-roadmap/)右上角随时切换
 - **内容不会三个月就烂掉** — 正文只写能力档位，型号价格集中在[模型矩阵](src/resources/model-matrix.md)一页维护，带校验日期
 - **Agent 时代可用** — 不止给 Prompt，还给[迁移到技能文件的方法](src/0-foundations/f2-prompt-engineering.md)和[哪些动作绝不能交给 Agent](src/a-operators/a14-operations-agent.md)
 - **CC0** — 随便抄，不用署名

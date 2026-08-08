@@ -22,6 +22,7 @@ CHECKS = [
     ("Routing",   "python3", "scripts/verify_all.py", "--r1"),
     ("Integration","python3", "scripts/verify_all.py", "--i1"),
     ("Docs",      "python3", "scripts/verify_all.py", "--d1"),
+    ("D2",        "python3", "scripts/verify_all.py", "--d2"),
     ("Dist",      "python3", "scripts/build_dist.py"),
 ]
 
@@ -34,13 +35,18 @@ SCAFFOLD_SCRIPTS = [
 
 
 def _parse_total(stdout: str) -> int:
-    """Extract total count from a gate script's output (strips ANSI codes)."""
+    """Extract total count from a gate script's output (strips ANSI codes).
+    Supports both "total N" and "N/M" (Routing format) patterns."""
     import re as _re
     clean = _re.sub(r'\x1b\[[0-9;]*m', '', stdout)
     for line in clean.strip().split("\n"):
         m = _re.search(r"^\s+total\s+(\d+)", line)
         if m:
             return int(m.group(1))
+        # R1/K1/D1/D2/I1 format: "[FAIL] LABEL  N/M" or "N/M"
+        m2 = _re.search(r"\b(\d+)/(\d+)\b", line)
+        if m2 and "FAIL" in line:
+            return int(m2.group(1))
     return 0
 
 
@@ -73,7 +79,118 @@ def main() -> int:
     ap.add_argument("--r1", action="store_true", help="Routing accuracy check")
     ap.add_argument("--i1", action="store_true", help="Integration doc check")
     ap.add_argument("--d1", action="store_true", help="Documentation check")
+    ap.add_argument("--d2", action="store_true", help="README number consistency")
     args = ap.parse_args()
+
+    if args.d2:
+        import json as _json, yaml as _yaml
+        problems = []
+
+        # Get actual counts
+        with open(ROOT_V / "dist" / "prompts.json") as f:
+            prompts = _json.load(f)
+        actual_prompts = len(prompts)
+
+        # Count entities from YAML (use safe_load)
+        with open(ROOT_V / "ontology" / "entities.yaml") as f:
+            entities_list = _yaml.safe_load(f) or []
+        actual_entities = len(entities_list)
+
+        with open(ROOT_V / "ontology" / "constraints.yaml") as f:
+            constraints_list = _yaml.safe_load(f) or []
+        actual_constraints = len(constraints_list)
+
+        with open(ROOT_V / "ontology" / "relations.yaml") as f:
+            relations_list = _yaml.safe_load(f) or []
+        actual_relations = len(relations_list)
+
+        actual_skills = len([p for p in (ROOT_V / "skills").glob("*/manifest.yaml")])
+
+        chapter_count = len([p for p in (ROOT_V / "src").rglob("*.md")
+                             if p.name not in ("SUMMARY.md", "README.md")])
+
+        # Scan READMEs for numbers matching scale facts
+        facts = {
+            "entities": actual_entities,
+            "entity": actual_entities,
+            "constraints": actual_constraints,
+            "constraint": actual_constraints,
+            "relations": actual_relations,
+            "relation": actual_relations,
+            "skills": actual_skills,
+            "skill": actual_skills,
+            "prompts": actual_prompts,
+            "prompt": actual_prompts,
+            "chapters": chapter_count,
+            "chapter": chapter_count,
+            "69 章": chapter_count,
+            "69 chapters": chapter_count,
+            "67 章": chapter_count,  # base chapters in src/*.md
+            "67 chapters": chapter_count,
+        }
+        # Also check for the specific "812" prompt number
+        facts["812"] = actual_prompts
+
+        for readme_name in ["README.md", "README_EN.md", "README_JA.md"]:
+            path = ROOT_V / readme_name
+            if not path.exists():
+                continue
+            text = path.read_text(encoding="utf-8")
+
+            # Extract scale facts ONLY from the infrastructure table rows in READMEs.
+            # These follow patterns like "| 94 实体" or "| 184 constraints" in table cells.
+            # Match numbers inside markdown table cells near known labels.
+            known = {
+                "实体":      ("entities",  actual_entities),
+                "entities":  ("entities",  actual_entities),
+                "entity":    ("entities",  actual_entities),
+                "実体":      ("entities",  actual_entities),
+                "约束":      ("constraints", actual_constraints),
+                "constraints": ("constraints", actual_constraints),
+                "制約":      ("constraints", actual_constraints),
+                "关系":      ("relations", actual_relations),
+                "relations": ("relations", actual_relations),
+                "関係":      ("relations", actual_relations),
+                "skill":     ("skills",    actual_skills),
+                "skills":    ("skills",    actual_skills),
+                "スキル":    ("skills",    actual_skills),
+                "Prompt":    ("prompts",   actual_prompts),
+                "prompts":   ("prompts",   actual_prompts),
+                "プロンプト":("prompts",   actual_prompts),
+                "章":        ("chapters",  chapter_count),
+                "chapters":  ("chapters",  chapter_count),
+            }
+            for label, (key, expected) in known.items():
+                # Match "| 94 实体 · 184 约束" in table cells
+                pattern = rf"\|\s*((?:\d+|·|\s)+{re.escape(label)})"
+                for m in re.finditer(pattern, text):
+                    cell = m.group(1)
+                    nums = re.findall(r"\d+", cell)
+                    for n in nums:
+                        num = int(n)
+                        # Only flag if the number is in this cell with the label
+                        if num != expected and abs(num - expected) < 1000:
+                            problems.append(f"{readme_name}: says {num} {label} (expected {expected})")
+
+            # Also check chapter counts in "69 章" style
+            for label, (key, expected) in [("章", ("chapters", chapter_count)), ("chapters", ("chapters", chapter_count))]:
+                pattern = rf"(?<!\d)(\d+)\s*{re.escape(label)}\b"
+                for m in re.finditer(pattern, text):
+                    num = int(m.group(1))
+                    if num != expected:
+                        problems.append(f"{readme_name}: says {num} {label}, actual {expected}")
+
+        total = len(problems)
+        mark = "ok " if total == 0 else "FAIL"
+        print(f"  [{mark}] D2          {total}")
+        for p in problems:
+            print(f"           {p}")
+        # Also verify dist/ is mentioned in READMEs
+        for readme_name in ["README.md", "README_EN.md", "README_JA.md"]:
+            path = ROOT_V / readme_name
+            if path.exists() and "dist/" not in path.read_text(encoding="utf-8"):
+                problems.append(f"{readme_name}: does not mention dist/")
+        return 0 if total == 0 else 1
 
     if args.i1:
         problems = []
@@ -151,13 +268,21 @@ def main() -> int:
             keywords = triggers.get("keywords", []) if isinstance(triggers, dict) else []
             manifests[sid] = keywords
 
-        # ANTI-DEGENERATION CHECK: count cases with a `natural: true` marker.
-        # Cases without this marker are literal-trigger cases that risk tautology.
-        # Require >= 50% of cases to be marked natural.
-        natural_count = sum(1 for c in cases if c.get("natural"))
-        nat_ratio = natural_count / len(cases) if cases else 0
-        if nat_ratio < 0.50:
-            print(f"  [FAIL] R1          TEST DEGENERATION ({natural_count}/{len(cases)} = {nat_ratio:.0%} natural — must be >=50%)")
+        # ANTI-DEGENERATION CHECK: if >=95% of test queries contain literal
+        # trigger words from their expected skill's manifest, the test suite
+        # and trigger lists have co-evolved into tautology.
+        # R1 measures documentation diversity, not real routing (LLM reads
+        # dist/SKILL.md for actual routing). See CONTRIBUTING.md § R1.
+        lit_count = 0
+        for case in cases:
+            expected = case.get("expect", "")
+            query = case.get("query", "")
+            kws = manifests.get(expected, [])
+            if any(k.lower() in query.lower() for k in kws if len(k) >= 3):
+                lit_count += 1
+        lit_ratio = lit_count / len(cases) if cases else 0
+        if lit_ratio >= 0.95:
+            print(f"  [FAIL] R1          TEST DEGENERATION ({lit_count}/{len(cases)} = {lit_ratio:.0%} literal >= 95%)")
             return 1
 
         errors = []

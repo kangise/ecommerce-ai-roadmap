@@ -64,6 +64,7 @@
 ---
 
 # マーケットプレイス
+- [Agent 統合](agent/README.md)
 
 - [Path D 概要](d-platforms/README.md)
 - [Amazon 運用索引](d-platforms/d0-amazon-index.md)

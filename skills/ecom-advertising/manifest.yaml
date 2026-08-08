@@ -22,12 +22,7 @@ triggers:
   - 否定关键词
   - 搜索词报告
   - 花了钱
-  - 一单没出
   - 没单
-  - 花了三千
-  - 没人点
-  - 一直没人
-  - 好多词
   intent: analyze_campaign | optimize_bids | harvest_keywords | audit_advertising
 inputs:
 - name: campaign_data

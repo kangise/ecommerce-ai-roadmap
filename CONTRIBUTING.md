@@ -55,6 +55,22 @@ The `N6` gate reports ~46 files where the three language trees have different nu
 
 Status: **documented, not closed** (N6 ≈ 46 as of 2026-08-08).
 
+### R1: Routing Test Measures Documentation Diversity, Not Routing Accuracy
+
+The `tests/routing-cases.yaml` test suite verifies that each skill's keyword triggers in `manifest.yaml` are diverse enough for an LLM agent to route correctly. **Keyword-matching against fixed test cases is NOT the real router** — a human or LLM reads the `routing:` table in `dist/SKILL.md` to make actual routing decisions.
+
+The anti-degeneration check (literal keyword hit ratio) prevents the test suite and trigger lists from co-evolving into tautology. When the ratio exceeds 95%, it means triggers and test cases are too narrowly aligned.
+
+**Real routing verification** (confirming an LLM agent routes correctly using `dist/SKILL.md`) is a manual acceptance test item. See scope verification in the Phase C test plan.
+
+Status: **R1 measures documentation diversity** (not routing accuracy). Anti-degeneration threshold: literal hit ratio must be ≤ 95%.
+
+### ecom-social Skill Gap
+
+The 7 social-media chapters (e1-e7) have ~50 prompts with no dedicated skill. They are currently exempt from S5 coverage checks. A combined `ecom-social` skill should be created covering Instagram, YouTube, Pinterest, Reddit, WhatsApp, Xiaohongshu, and cross-channel strategy.
+
+Status: **documented, not started**.
+
 ## Scaffolding Scripts
 
 - `scripts/new_chapter.py <path> <title>` — trilingual skeleton + SUMMARY + boundary section
