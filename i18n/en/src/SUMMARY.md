@@ -114,4 +114,5 @@
 - [Awesome MCP & Agent Tools](resources/awesome-mcp-agents.md)
 - [Skills Library](resources/skills-library.md)
 - [Competitive Analysis](resources/competitive-analysis.md)
+- [Glossary](resources/glossary.md)
 - [Technical Guidelines](resources/technical-guidelines.md)

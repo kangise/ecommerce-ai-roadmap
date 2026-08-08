@@ -1,0 +1,2 @@
+# Words confirmed as e-commerce entities awaiting extraction into entities.yaml
+# One per line. O2 gate treats these as covered (no warning).

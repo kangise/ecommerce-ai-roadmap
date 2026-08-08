@@ -1,101 +1,114 @@
-# Platform Registry
-# Every marketplace covered by the knowledge base.
-
-# Schema:
-# - id: platform_id
-#   label: {zh: Chinese, en: English, ja: Japanese}
-#   first_class: true | false
-#   chapters: [path/to/chapter.md, ...]
-#   note: optional context (e.g. no standalone chapter)
-
-- id: amazon
-  label: {zh: 亚马逊, en: Amazon, ja: Amazon}
+- chapters:
+  - src/d-platforms/d0-amazon-index.md
+  - src/a-operators/
   first_class: true
-  chapters:
-    - src/d-platforms/d0-amazon-index.md
-    - src/a-operators/
+  id: amazon
+  label:
+    en: Amazon
+    ja: Amazon
+    zh: 亚马逊
   note: 无独立平台正文章，运营线（a-operators）即 Amazon 线。此索引指向运营章节中所有 Amazon 相关内容。
-
-- id: shopify
-  label: {zh: Shopify, en: Shopify, ja: Shopify}
+- chapters:
+  - src/d-platforms/shopify-ai-guide.md
   first_class: true
-  chapters:
-    - src/d-platforms/shopify-ai-guide.md
-
-- id: tiktok_shop
-  label: {zh: TikTok Shop, en: TikTok Shop, ja: TikTok Shop}
+  id: shopify
+  label:
+    en: Shopify
+    ja: Shopify
+    zh: Shopify
+- chapters:
+  - src/d-platforms/tiktok-shop-ai-guide.md
   first_class: true
-  chapters:
-    - src/d-platforms/tiktok-shop-ai-guide.md
-
-- id: walmart
-  label: {zh: Walmart, en: Walmart, ja: Walmart}
+  id: tiktok_shop
+  label:
+    en: TikTok Shop
+    ja: TikTok Shop
+    zh: TikTok Shop
+- chapters:
+  - src/d-platforms/d5-temu-seller-guide.md
   first_class: true
-  chapters:
-    - src/d-platforms/d4-walmart-ai-guide.md
-
-- id: temu
-  label: {zh: Temu, en: Temu, ja: Temu}
+  id: temu
+  label:
+    en: Temu
+    ja: Temu
+    zh: Temu
+- chapters:
+  - src/d-platforms/d6-southeast-asia-ai-guide.md
   first_class: true
-  chapters:
-    - src/d-platforms/d5-temu-seller-guide.md
-
-- id: shopee
-  label: {zh: Shopee, en: Shopee, ja: Shopee}
+  id: shopee
+  label:
+    en: Shopee
+    ja: Shopee
+    zh: Shopee
+- chapters:
+  - src/d-platforms/d6-southeast-asia-ai-guide.md
   first_class: true
-  chapters:
-    - src/d-platforms/d6-southeast-asia-ai-guide.md
-
-- id: lazada
-  label: {zh: Lazada, en: Lazada, ja: Lazada}
+  id: lazada
+  label:
+    en: Lazada
+    ja: Lazada
+    zh: Lazada
+- chapters:
+  - src/d-platforms/d7-mercado-libre-ai-guide.md
   first_class: true
-  chapters:
-    - src/d-platforms/d6-southeast-asia-ai-guide.md
-
-- id: mercado_libre
-  label: {zh: Mercado Libre, en: Mercado Libre, ja: Mercado Libre}
+  id: mercado_libre
+  label:
+    en: Mercado Libre
+    ja: Mercado Libre
+    zh: Mercado Libre
+- chapters:
+  - src/d-platforms/d8-rakuten-japan-ai-guide.md
   first_class: true
-  chapters:
-    - src/d-platforms/d7-mercado-libre-ai-guide.md
-
-- id: rakuten
-  label: {zh: 乐天市场, en: Rakuten, ja: 楽天市場}
+  id: rakuten
+  label:
+    en: Rakuten
+    ja: 楽天市場
+    zh: 乐天市场
+- chapters:
+  - src/d-platforms/d9-ebay-ai-guide.md
   first_class: true
-  chapters:
-    - src/d-platforms/d8-rakuten-japan-ai-guide.md
-
-- id: ebay
-  label: {zh: eBay, en: eBay, ja: eBay}
+  id: ebay
+  label:
+    en: eBay
+    ja: eBay
+    zh: eBay
+- chapters:
+  - src/d-platforms/d10-aliexpress-ai-guide.md
   first_class: true
-  chapters:
-    - src/d-platforms/d9-ebay-ai-guide.md
-
-- id: aliexpress
-  label: {zh: 速卖通, en: AliExpress, ja: AliExpress}
+  id: aliexpress
+  label:
+    en: AliExpress
+    ja: AliExpress
+    zh: 速卖通
+- chapters:
+  - src/d-platforms/d11-coupang-korea-ai-guide.md
   first_class: true
-  chapters:
-    - src/d-platforms/d10-aliexpress-ai-guide.md
-
-- id: coupang
-  label: {zh: Coupang, en: Coupang, ja: Coupang}
+  id: coupang
+  label:
+    en: Coupang
+    ja: Coupang
+    zh: Coupang
+- chapters:
+  - src/d-platforms/d12-faire-wholesale-ai-guide.md
   first_class: true
-  chapters:
-    - src/d-platforms/d11-coupang-korea-ai-guide.md
-
-- id: faire
-  label: {zh: Faire, en: Faire, ja: Faire}
+  id: faire
+  label:
+    en: Faire
+    ja: Faire
+    zh: Faire
+- chapters:
+  - src/d-platforms/d13-europe-marketplaces-guide.md
   first_class: true
-  chapters:
-    - src/d-platforms/d12-faire-wholesale-ai-guide.md
-
-- id: otto
-  label: {zh: Otto, en: Otto, ja: Otto}
+  id: otto
+  label:
+    en: Otto
+    ja: Otto
+    zh: Otto
+- chapters:
+  - src/d-platforms/d13-europe-marketplaces-guide.md
   first_class: true
-  chapters:
-    - src/d-platforms/d13-europe-marketplaces-guide.md
-
-- id: zalando
-  label: {zh: Zalando, en: Zalando, ja: Zalando}
-  first_class: true
-  chapters:
-    - src/d-platforms/d13-europe-marketplaces-guide.md
+  id: zalando
+  label:
+    en: Zalando
+    ja: Zalando
+    zh: Zalando

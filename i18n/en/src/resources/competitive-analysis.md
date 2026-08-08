@@ -101,3 +101,5 @@
 > - 18 runnable Colab notebooks
 > - 5 case studies with quantified metrics
 > - AI guides for 13 marketplaces + 7 social channels
+---
+> 另见：[术语表](glossary.md) — 本书定义的电商实体与术语。

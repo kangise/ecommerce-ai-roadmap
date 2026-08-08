@@ -114,4 +114,5 @@
 - [MCP 与 Agent 工具集](resources/awesome-mcp-agents.md)
 - [Skills Library](resources/skills-library.md)
 - [竞品分析](resources/competitive-analysis.md)
+- [术语表](resources/glossary.md)
 - [技术规范](resources/technical-guidelines.md)
