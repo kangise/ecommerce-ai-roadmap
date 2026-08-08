@@ -1,51 +1,60 @@
-name: ecom-advertising
 description: Diagnose and optimize Amazon PPC advertising campaigns — ACOS analysis,
   bid optimization, keyword harvesting
+inputs:
+- description: 'Campaign performance data: spend, sales, impressions, clicks, ACOS,
+    ROAS'
+  name: campaign_data
+  required: true
+  type: object
+- description: Search term report for keyword analysis
+  name: search_term_report
+  required: false
+  type: array
+- description: Target ACOS percentage
+  name: target_acos
+  required: false
+  type: number
+- description: Daily/monthly budget
+  name: budget
+  required: false
+  type: number
+name: ecom-advertising
+outputs:
+- description: 'Diagnosis report: ACOS breakdown, keyword recommendations, bid adjustments'
+  name: campaign_analysis
+  type: object
+platforms:
+- amazon
 triggers:
+  intent: analyze_campaign | optimize_bids | harvest_keywords | audit_advertising
   keywords:
   - ACOS
-  - ROAS
   - PPC
+  - ROAS
   - advertising
-  - campaign
   - bid
-  - keyword
-  - 广告
   - campaign
-  - sponsored product
-  - sponsored brand
+  - campaign
+  - keyword
   - negative keyword
   - search term report
-  - 广告优化
+  - sponsored brand
+  - sponsored product
+  - 不出单
   - 出价
-  - 竞价
   - 否定关键词
+  - 否定词
+  - 广告
+  - 广告优化
   - 搜索词报告
-  - 花了钱
+  - 曝光
   - 没单
-  intent: analyze_campaign | optimize_bids | harvest_keywords | audit_advertising
-inputs:
-- name: campaign_data
-  type: object
-  required: true
-  description: 'Campaign performance data: spend, sales, impressions, clicks, ACOS,
-    ROAS'
-- name: search_term_report
-  type: array
-  required: false
-  description: Search term report for keyword analysis
-- name: target_acos
-  type: number
-  required: false
-  description: Target ACOS percentage
-- name: budget
-  type: number
-  required: false
-  description: Daily/monthly budget
-outputs:
-- name: campaign_analysis
-  type: object
-  description: 'Diagnosis report: ACOS breakdown, keyword recommendations, bid adjustments'
+  - 没转化
+  - 点击
+  - 烧钱
+  - 竞价
+  - 花费
+  - 预算
 uses_constraints:
 - amazon.account.monthly_spend.analysis_cadence
 - amazon.account.waste_ratio.sop_threshold
@@ -112,5 +121,3 @@ uses_entities:
 - sponsored_display
 - sponsored_product
 - tacos
-platforms:
-- amazon

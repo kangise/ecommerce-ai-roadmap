@@ -131,7 +131,11 @@ def main() -> int:
         # Also check for the specific "812" prompt number
         facts["812"] = actual_prompts
 
-        for readme_name in ["README.md", "README_EN.md", "README_JA.md"]:
+        # Includes the three book landing pages: src/README.md is what a reader
+        # actually lands on in the published site, and it carried a stale "56 篇指南"
+        # for the whole repositioning because D2 only scanned the repo-root files.
+        for readme_name in ["README.md", "README_EN.md", "README_JA.md",
+                            "src/README.md", "i18n/en/src/README.md", "i18n/ja/src/README.md"]:
             path = ROOT_V / readme_name
             if not path.exists():
                 continue
@@ -160,6 +164,32 @@ def main() -> int:
                 "章":        ("chapters",  chapter_count),
                 "chapters":  ("chapters",  chapter_count),
             }
+            # Prose scan. The table pattern below only sees markdown cells, so a
+            # stale figure written as ordinary prose survives it — src/README.md
+            # carried "56 篇指南" through the entire repositioning for exactly
+            # this reason. Match "<number> <unit>" anywhere in the text.
+            PROSE_UNITS = {
+                "章": chapter_count, "篇": chapter_count,
+                "chapters": chapter_count, "guides": chapter_count,
+                "本": chapter_count,
+                "实体": actual_entities, "entities": actual_entities,
+                "约束": actual_constraints, "constraints": actual_constraints,
+                "skill": actual_skills, "skills": actual_skills,
+            }
+            # Only the opening lines. Further down, per-path tables legitimately
+            # say "7 guides" for one path — those are not claims about the total,
+            # and scanning the whole file reports 13 of them as errors.
+            head = "\n".join(text.split("\n")[:12])
+            for unit, expected in PROSE_UNITS.items():
+                # No \b after the unit: it is a word boundary, and between a CJK unit
+                # like 章 and the next CJK character there is none — "56 章指南"
+                # silently fails to match with it. ASCII units keep the boundary.
+                bound = r"\b" if unit.isascii() else ""
+                for m in re.finditer(rf"(\d+)\s*{re.escape(unit)}{bound}", head):
+                    num = int(m.group(1))
+                    if num != expected and abs(num - expected) < 500:
+                        problems.append(f"{readme_name}: prose says {num} {unit} (expected {expected})")
+
             for label, (key, expected) in known.items():
                 # Match "| 94 实体 · 184 约束" in table cells
                 pattern = rf"\|\s*((?:\d+|·|\s)+{re.escape(label)})"
@@ -268,11 +298,23 @@ def main() -> int:
             keywords = triggers.get("keywords", []) if isinstance(triggers, dict) else []
             manifests[sid] = keywords
 
-        # ANTI-DEGENERATION CHECK: if >=95% of test queries contain literal
-        # trigger words from their expected skill's manifest, the test suite
-        # and trigger lists have co-evolved into tautology.
-        # R1 measures documentation diversity, not real routing (LLM reads
-        # dist/SKILL.md for actual routing). See CONTRIBUTING.md § R1.
+        # ANTI-DEGENERATION CHECK.
+        #
+        # A test case whose query literally contains one of its expected skill's
+        # trigger keywords proves nothing: a substring matcher matching a string
+        # that contains the substring is a tautology. The suite only carries
+        # information to the extent that its cases are phrased the way a real
+        # seller would phrase them — without the domain keyword in them.
+        #
+        # Threshold is 50%: at least half the suite must be non-literal. A high
+        # threshold (95% was the previous value) permits a suite that is almost
+        # entirely tautological, which is the failure this check exists to catch.
+        #
+        # Two ways this check can be defeated, both of which have been tried:
+        #   - writing cases that quote the trigger words (the original 39/39)
+        #   - copying phrases out of the cases into manifest triggers, so the
+        #     triggers chase the tests rather than the tests probing the triggers
+        # Both show up here as a rising literal ratio. Neither is a fix.
         lit_count = 0
         for case in cases:
             expected = case.get("expect", "")
@@ -281,8 +323,8 @@ def main() -> int:
             if any(k.lower() in query.lower() for k in kws if len(k) >= 3):
                 lit_count += 1
         lit_ratio = lit_count / len(cases) if cases else 0
-        if lit_ratio >= 0.95:
-            print(f"  [FAIL] R1          TEST DEGENERATION ({lit_count}/{len(cases)} = {lit_ratio:.0%} literal >= 95%)")
+        if lit_ratio > 0.50:
+            print(f"  [FAIL] R1          TEST DEGENERATION ({lit_count}/{len(cases)} = {lit_ratio:.0%} literal > 50%)")
             return 1
 
         errors = []

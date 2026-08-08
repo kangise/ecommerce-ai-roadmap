@@ -37,33 +37,40 @@ platforms:
 triggers:
   intent: create_listing | optimize_listing | localize_listing | audit_listing
   keywords:
-  - listing
-  - product page
-  - title
-  - bullet
-  - description
   - A+ Content
   - Search Terms
-  - 上架
-  - 标题
-  - 五点
-  - optimize listing
+  - bullet
   - create listing
+  - description
+  - listing
   - localize
+  - optimize listing
+  - product page
+  - title
   - translate listing
-  - 产品页面
+  - 上架
+  - 主图
+  - 五点
   - 产品信息
   - 产品描述
+  - 产品页
+  - 产品页面
   - 写一个
+  - 卖点
+  - 卖点提炼
+  - 多语言
   - 帮我写
-  - 详情页
-  - 转化
-  - 重写一下
-  - 重写
+  - 描述
   - 改一下
   - 本地化
-  - 产品页
-  - 卖点
+  - 标题
+  - 点击率
+  - 详情
+  - 详情页
+  - 转化
+  - 转化率
+  - 重写
+  - 重写一下
 uses_constraints:
 - amazon.a_plus_content.module_text.max_length
 - amazon.brand_story.brand_card.max_length

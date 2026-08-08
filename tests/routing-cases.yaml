@@ -1,3 +1,7 @@
+# Fixed routing test suite — manual cases, version-controlled.
+# Anti-degeneration: at most 50% of cases may literally contain a trigger keyword.
+# Cases must be phrased the way a real seller would phrase them.
+
 - query: 帮我写一个Amazon蓝牙耳机的标题和五点描述
   expect: ecom-listing
 - query: 优化一下我的产品页面
@@ -81,4 +85,40 @@
 - query: 亚马逊发邮件说我账号有风险，要写POA申诉
   expect: ecom-customer-service
 - query: whatsapp上买家问我发货了吗，怎么自动回复
+  expect: ecom-customer-service
+- query: 买家看完就走，是不是描述没写到点上
+  expect: ecom-listing
+- query: 同一个东西在美国日本德国要分别怎么讲
+  expect: ecom-listing
+- query: 图片挺好但就是没人点进来看
+  expect: ecom-listing
+- query: 有些词烧钱厉害但从来不出单，能不能屏蔽
+  expect: ecom-advertising
+- query: 预算天天早上就花光了正常吗
+  expect: ecom-advertising
+- query: 海运走了45天，我该提前多久下单
+  expect: ecom-inventory
+- query: 仓库里压了半年卖不动的怎么处理
+  expect: ecom-inventory
+- query: 带锂电池的东西能走空运吗
+  expect: ecom-compliance
+- query: 对方说我侵权了发了律师函
+  expect: ecom-compliance
+- query: 算下来一单赚不到五块钱，值不值得做
+  expect: ecom-pricing
+- query: 想找个竞争没那么激烈的方向
+  expect: ecom-research
+- query: 对手最近上了个新东西卖得很好，我要不要跟
+  expect: ecom-research
+- query: 现在入场是不是已经太晚了
+  expect: ecom-research
+- query: 我数据不多，用模型跑出来的结果靠谱吗
+  expect: ecom-applicability
+- query: 这种判断交给机器做风险大不大
+  expect: ecom-applicability
+- query: 客户投诉说和图片不符怎么回
+  expect: ecom-customer-service
+- query: 有人留了一星说物流慢，能挽回吗
+  expect: ecom-customer-service
+- query: 买家要求全额退款但东西已经用过了
   expect: ecom-customer-service

@@ -25,33 +25,33 @@ platforms:
 triggers:
   intent: research_product | analyze_market | evaluate_competitor | find_opportunity
   keywords:
-  - product research
-  - market analysis
   - competitor
+  - market analysis
   - opportunity
+  - product research
   - sourcing
-  - 选品
-  - 市场分析
-  - 竞品
-  - 调研
-  - 机会
   - 供应商
+  - 入场
   - 品类
-  - 能不能做
+  - 市场分析
+  - 市场容量
   - 市场竞争
   - 市场调查
-  - 选品分析
-  - 新品机会
   - 市场需求
-  - 美国市场
-  - 欧洲市场
+  - 新品
+  - 新品机会
   - 日本市场
-  - 竞争
+  - 机会
+  - 欧洲市场
   - 激烈
-  - 市场容量
-  - 这个类目
-  - 还能进
-  - 还能不能进
+  - 竞争
+  - 竞品
+  - 美国市场
+  - 调研
+  - 赛道
+  - 选品
+  - 选品分析
+  - 饱和
 uses_constraints:
 - forecast.backtest_target
 - forecast.changepoint_prior_range

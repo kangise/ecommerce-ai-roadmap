@@ -24,34 +24,38 @@ platforms:
 triggers:
   intent: check_compliance | classify_hs_code | screen_ip_risk | prepare_documentation
   keywords:
-  - compliance
-  - HS code
-  - FDA
-  - FCC
   - CE
-  - trademark
-  - patent
-  - dangerous goods
-  - 合规
+  - FCC
+  - FDA
+  - HS code
   - HS编码
-  - 商标
-  - 专利
-  - 认证
-  - 危险品
-  - 类目审核
   - category approval
-  - regulatory
   - certification
-  - import
+  - compliance
   - customs
-  - trademark
-  - patent
+  - dangerous goods
+  - import
   - intellectual property
-  - 跟卖
-  - 侵权
-  - 证书
-  - 额外
+  - patent
+  - patent
+  - regulatory
+  - trademark
+  - trademark
   - 下架
+  - 专利
+  - 侵权
+  - 危险品
+  - 合规
+  - 商标
+  - 律师函
+  - 空运限制
+  - 类目审核
+  - 认证
+  - 认证要求
+  - 证书
+  - 跟卖
+  - 锂电池
+  - 额外
 uses_constraints:
 - amazon.account.monthly_spend.analysis_cadence
 - amazon.bid.value.new_product_multiplier

@@ -23,33 +23,37 @@ platforms: []
 triggers:
   intent: assess_applicability | check_readiness | evaluate_ai_fit
   keywords:
-  - should I use AI
+  - AI readiness
+  - AI做
+  - AI写
+  - AI去做
+  - AI可以做
+  - AI合适
+  - AI来
+  - AI能做吗
+  - AI能帮我
+  - AI评估
+  - AI该不该
+  - AI适合
+  - AI风险
   - can AI
   - is AI good for
-  - AI readiness
+  - should I use AI
   - when to use AI
-  - 该不该用AI
-  - AI能做吗
-  - 适不适合用AI
-  - AI评估
-  - AI能不能
-  - AI该不该
-  - AI靠谱
-  - AI风险
   - 不应
   - 不该用AI
-  - AI适合
-  - AI合适
-  - AI可以做
-  - AI能帮我
-  - 用AI做
-  - AI来
-  - 是不是该用
+  - 交给机器
+  - 人工复核
+  - 可信度
   - 应不应该用
-  - AI写
-  - AI做
-  - AI去做
-  - 机器判断
+  - 数据量
+  - 是不是该用
+  - 模型
+  - 用AI做
+  - 结论可靠
   - 能直接用
+  - 该不该用AI
+  - 适不适合用AI
+  - 风险
 uses_constraints: []
 uses_entities: []

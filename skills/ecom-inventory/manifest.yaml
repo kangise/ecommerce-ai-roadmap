@@ -1,58 +1,65 @@
-name: ecom-inventory
 description: Forecast demand, calculate safety stock, and manage inventory replenishment
   for FBA and multi-warehouse operations
+inputs:
+- description: Historical sales data with dates and quantities
+  name: sales_history
+  required: true
+  type: array
+- description: Supplier lead time in days
+  name: lead_time_days
+  required: false
+  type: number
+- description: Current inventory level
+  name: current_stock
+  required: true
+  type: number
+- description: Target service level (default 0.95 for 95%)
+  name: service_level
+  required: false
+  type: number
+name: ecom-inventory
+outputs:
+- description: 'Replenishment recommendation: reorder point, safety stock, order quantity,
+    timing'
+  name: inventory_plan
+  type: object
+platforms:
+- amazon
 triggers:
+  intent: forecast_demand | calculate_safety_stock | plan_replenishment | analyze_inventory_health
   keywords:
-  - inventory
-  - stock
   - FBA
-  - replenishment
-  - safety stock
+  - FBA
+  - FBA库存
+  - IPI
   - forecast
-  - warehouse
-  - 库存
-  - 补货
-  - 安全库存
-  - 预测
-  - FBA
-  - 仓库
+  - inventory
   - lead time
   - reorder point
-  - IPI
-  - 库存绩效
+  - replenishment
+  - safety stock
+  - stock
+  - warehouse
+  - 下单
+  - 交期
   - 仓储
-  - 补货计划
-  - FBA库存
-  - 旺季
+  - 仓库
+  - 周转
   - 备货
-  - 断货
-  - 断了
-  - 销量涨
+  - 安全库存
+  - 库存
+  - 库存绩效
   - 怕断
-  - 怎么算
-  intent: forecast_demand | calculate_safety_stock | plan_replenishment | analyze_inventory_health
-inputs:
-- name: sales_history
-  type: array
-  required: true
-  description: Historical sales data with dates and quantities
-- name: lead_time_days
-  type: number
-  required: false
-  description: Supplier lead time in days
-- name: current_stock
-  type: number
-  required: true
-  description: Current inventory level
-- name: service_level
-  type: number
-  required: false
-  description: Target service level (default 0.95 for 95%)
-outputs:
-- name: inventory_plan
-  type: object
-  description: 'Replenishment recommendation: reorder point, safety stock, order quantity,
-    timing'
+  - 断了
+  - 断货
+  - 旺季
+  - 海运
+  - 滞销
+  - 空运
+  - 补货
+  - 补货计划
+  - 销量涨
+  - 预测
 uses_constraints:
 - amazon.fba.inventory.aged_surcharge_high
 - amazon.fba.inventory.aged_surcharge_start
@@ -109,5 +116,3 @@ uses_entities:
 - stranded_inventory
 - supplier
 - warehouse
-platforms:
-- amazon

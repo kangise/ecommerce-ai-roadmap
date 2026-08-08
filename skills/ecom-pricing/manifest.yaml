@@ -1,52 +1,57 @@
-name: ecom-pricing
 description: Set competitive prices, calculate profitability, and model pricing strategy
   across marketplaces
-triggers:
-  keywords:
-  - pricing
-  - price
-  - profit
-  - margin
-  - breakeven
-  - Buy Box
-  - cost
-  - 定价
-  - 价格
-  - 利润
-  - 成本
-  - 盈亏平衡
-  - 利润率
-  - 定多少
-  - 多少钱
-  - 价格多少
-  - 怎么定价
-  - 成本核算
-  - 同行
-  - 到底赚不赚钱
-  intent: set_price | calculate_profit | competitive_analysis | breakeven_analysis
 inputs:
-- name: cost_data
-  type: object
+- description: Unit cost, shipping, fees, overhead per product
+  name: cost_data
   required: true
-  description: Unit cost, shipping, fees, overhead per product
-- name: competitor_prices
-  type: array
-  required: false
-  description: Competitor prices for the same or similar products
-- name: target_margin
-  type: number
-  required: false
-  description: Target profit margin percentage
-outputs:
-- name: pricing_analysis
   type: object
-  description: Recommended price, profit breakdown, competitive position, breakeven
+- description: Competitor prices for the same or similar products
+  name: competitor_prices
+  required: false
+  type: array
+- description: Target profit margin percentage
+  name: target_margin
+  required: false
+  type: number
+name: ecom-pricing
+outputs:
+- description: Recommended price, profit breakdown, competitive position, breakeven
     point
-uses_constraints:
-- amazon.cpc.value.actual_price_formula
-- amazon.roas.value.profitable_threshold
-uses_entities: []
+  name: pricing_analysis
+  type: object
 platforms:
 - amazon
 - shopify
 - tiktok_shop
+triggers:
+  intent: set_price | calculate_profit | competitive_analysis | breakeven_analysis
+  keywords:
+  - Buy Box
+  - breakeven
+  - cost
+  - margin
+  - price
+  - pricing
+  - profit
+  - 价格
+  - 价格多少
+  - 价格战
+  - 利润
+  - 利润率
+  - 到底赚不赚钱
+  - 单件利润
+  - 同行
+  - 多少钱
+  - 定价
+  - 定多少
+  - 成本
+  - 成本核算
+  - 毛利
+  - 涨价
+  - 盈亏平衡
+  - 跟卖
+  - 降价
+uses_constraints:
+- amazon.cpc.value.actual_price_formula
+- amazon.roas.value.profitable_threshold
+uses_entities: []

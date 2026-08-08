@@ -59,11 +59,28 @@ Status: **documented, not closed** (N6 ≈ 46 as of 2026-08-08).
 
 The `tests/routing-cases.yaml` test suite verifies that each skill's keyword triggers in `manifest.yaml` are diverse enough for an LLM agent to route correctly. **Keyword-matching against fixed test cases is NOT the real router** — a human or LLM reads the `routing:` table in `dist/SKILL.md` to make actual routing decisions.
 
-The anti-degeneration check (literal keyword hit ratio) prevents the test suite and trigger lists from co-evolving into tautology. When the ratio exceeds 95%, it means triggers and test cases are too narrowly aligned.
+The anti-degeneration check exists because this suite has degenerated twice. Both times it looked healthy:
 
-**Real routing verification** (confirming an LLM agent routes correctly using `dist/SKILL.md`) is a manual acceptance test item. See scope verification in the Phase C test plan.
+- The first suite was 39 cases, **all 39 of which literally contained a trigger keyword** from their expected skill. A substring matcher matching strings that contain the substring proves nothing; `R1 = 0` carried no information.
+- The fix added a `natural: true` field to cases and counted how many carried it. That is a **self-declared flag**, not a measurement — all 27 cases marked `natural` still contained literal triggers. A check that reads a hand-typed boolean cannot detect the property it was created to detect.
 
-Status: **R1 measures documentation diversity** (not routing accuracy). Anti-degeneration threshold: literal hit ratio must be ≤ 95%.
+The check now **computes** the literal hit ratio, and the threshold is **50%** — at least half the suite must be phrased without the domain keyword in it, the way a real seller writes. A 95% threshold (the previous value) permits a suite that is almost entirely tautological, which is exactly the failure being guarded against.
+
+There is a second way to defeat this, also tried: instead of writing cases containing the keywords, copy phrases out of the cases *into* the manifest triggers. Ten such fragments were found and removed (`这个类目`, `还能不能进`, `机器判断`, `花了钱`, `写到页面上`, `三个市场`, …). They are not domain vocabulary — no other e-commerce document would contain them. **A trigger keyword must be a word the domain uses, not a phrase lifted from a test case.**
+
+### Why R1 does not reach 0
+
+`R1` currently reports **11 errors out of 60**. This is expected and is not a defect to be closed by adding more keywords.
+
+The matcher in `verify_all.py` does substring matching. Roughly a third of the suite is phrased the way sellers actually speak — "这个月花了三千块钱一单没出", "现在入场是不是已经太晚了" — where the intent is clear to a reader but no domain noun appears in the text. Closing that gap requires semantic matching, which this gate deliberately does not attempt.
+
+Chasing these cases by adding keywords is the back-copying failure above wearing a different hat: it would raise the literal ratio, shrink the informative part of the suite, and still not generalize to the next phrasing.
+
+**What R1 is for**: catching trigger lists that are too thin or too narrowly aligned with the tests. The residual error count is the honest distance between substring matching and understanding — it is a reported number, not a target.
+
+**Real routing verification** — confirming an LLM routes correctly reading `dist/SKILL.md` — is a manual acceptance item, because the real router is the consuming model, not this script.
+
+Status: **documented, not closed** (`R1 ≈ 11/60`). Anti-degeneration threshold: literal hit ratio must be ≤ 50% (currently 35%).
 
 ### ecom-social Skill Gap
 
