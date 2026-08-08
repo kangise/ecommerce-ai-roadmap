@@ -345,6 +345,20 @@ Content rephrased for compliance with licensing restrictions. Sources: [amazonfb
 - 关键词搜索量 → Helium 10 / Jungle Scout 导出（B 类，需人工导出）
 - 竞品页面/评论 → 多数平台无开放 API（C 类，暂缓 Agent 化）
 </数据来源>
+
+<输出格式>
+按顺序输出四部分，开头先用一句话说明所选品类的风格要点：
+① 标题（≤200 字符）② 5 个 Bullet Points（每条以大写卖点短语开头）③ 产品描述 ④ 后台 Search Terms（5 行）。
+</输出格式>
+
+<自检>
+交付前逐条核对并报告结果：
+① 标题 ≤200 字符 <!-- ref: amazon.listing.title.max_length -->
+② 共 5 个 Bullet，每条以大写卖点短语开头 <!-- ref: amazon.bullet_point.count --> <!-- ref: amazon.bullet_point.format -->
+③ 文案风格与所选品类（电子/家居/运动/美妆/母婴）的消费者期望一致
+④ 没有出现 <产品信息> 或粘贴数据之外的功能、材质、认证声明
+⑤ 未提供关键词搜索量时，没有编造任何数字
+</自检>
 ```
 
 > **为什么用这个变体**：电子产品的五点应该列参数（"5000mAh battery, charges iPhone 15 twice"），而家居用品的五点应该讲场景（"Perfect for your morning coffee ritual"）。品类决定了文案风格。
@@ -410,6 +424,20 @@ Content rephrased for compliance with licensing restrictions. Sources: [amazonfb
 - 关键词搜索量 → Helium 10 / Jungle Scout 导出（B 类，需人工导出）
 - 竞品页面/评论 → 多数平台无开放 API（C 类，暂缓 Agent 化）
 </数据来源>
+
+<输出格式>
+先给一张本地化对照表（英文原文 | 德语译文 | 调整类型：直译/关键词替换/卖点重排/认证补充），
+再给德语完整 Listing（标题 + 五点 + 描述 + Search Terms），最后单独列出所有涉及认证的表述及其来源。
+</输出格式>
+
+<自检>
+交付前逐条核对并报告结果：
+① 标题 ≤200 字符，且未用全大写 <!-- ref: amazon.listing.title.max_length --> <!-- ref: amazon.listing.title.no_all_caps -->
+② 全文使用正式用语（Sie），无 "best"/"amazing" 等夸大词 <!-- ref: amazon.listing.title.no_promo_words -->
+③ 涉及 CE、TÜV、GS 等认证的表述均来自原文或用户提供，未自行添加 <!-- ref: amazon.de.listing.required_certifications -->
+④ 每处本地化调整都已标注类型和原因
+⑤ 未新增原文没有的功能、材质或认证声明
+</自检>
 ```
 
 **变体 B 日语特殊注意事项：**
@@ -454,6 +482,20 @@ Content rephrased for compliance with licensing restrictions. Sources: [amazonfb
 - 关键词搜索量 → Helium 10 / Jungle Scout 导出（B 类，需人工导出）
 - 竞品页面/评论 → 多数平台无开放 API（C 类，暂缓 Agent 化）
 </数据来源>
+
+<输出格式>
+先给一张本地化对照表（英文原文 | 日语译文 | 调整类型），
+再给日语完整 Listing（标题 + 五点 + 描述 + Search Terms），最后单独列出涉及认证（如 PSE）的表述及其来源。
+</输出格式>
+
+<自检>
+交付前逐条核对并报告结果：
+① 标题 ≤200 字符 <!-- ref: amazon.listing.title.max_length -->
+② 全文使用です/ます敬语体，品牌名用片假名、品类词用汉字
+③ 涉及 PSE 等认证的表述均来自原文或用户提供 <!-- ref: amazon.jp.listing.required_certifications -->
+④ 每处本地化调整都已标注类型和原因
+⑤ 未新增原文没有的功能、材质或认证声明
+</自检>
 ```
 
 **变体 C 西班牙语特殊注意事项：**
@@ -491,6 +533,20 @@ Content rephrased for compliance with licensing restrictions. Sources: [amazonfb
 - 关键词搜索量 → Helium 10 / Jungle Scout 导出（B 类，需人工导出）
 - 竞品页面/评论 → 多数平台无开放 API（C 类，暂缓 Agent 化）
 </数据来源>
+
+<输出格式>
+先给一张本地化对照表（英文原文 | 西班牙语译文 | 调整类型），
+再给西班牙语完整 Listing（标题 + 五点 + 描述 + Search Terms），最后列出确认使用的本土词汇清单。
+</输出格式>
+
+<自检>
+交付前逐条核对并报告结果：
+① 标题 ≤200 字符，且未用全大写 <!-- ref: amazon.listing.title.max_length --> <!-- ref: amazon.listing.title.no_all_caps -->
+② 使用西班牙本土西班牙语（castellano）与正式称谓 usted，非拉美用语
+③ 标点正确使用 ¿ ¡，动词变位与名词性数一致
+④ 每处本地化调整都已标注类型和原因
+⑤ 未新增原文没有的功能、材质或认证声明
+</自检>
 ```
 
 > **多语言本地化的核心原则**：翻译只是 60 分，本地化才是 90 分。本地化 = 翻译 + 关键词替换 + 卖点重排 + 文化适配。用 AI 做初稿，用 DeepL 交叉验证，最好再找母语者审核。
@@ -556,6 +612,21 @@ Content rephrased for compliance with licensing restrictions. Sources: [amazonfb
 - 关键词搜索量 → Helium 10 / Jungle Scout 导出（B 类，需人工导出）
 - 竞品页面/评论 → 多数平台无开放 API（C 类，暂缓 Agent 化）
 </数据来源>
+
+<输出格式>
+先给关键词覆盖对比表（关键词 | 月搜索量 | 竞品A | 竞品B | 竞品C | 我的布局建议），
+再依次输出：① 所有竞品都覆盖的关键词清单 ② 无竞品覆盖的高搜索量词（机会词，按搜索量降序）
+③ 我的 Listing 关键词布局建议（标题/五点/Search Terms 各写一句）。
+</输出格式>
+
+<自检>
+交付前逐条核对并报告结果：
+① 表中每个关键词和搜索量都来自粘贴的关键词列表，无编造、无估算
+② 竞品出现位置的判断只依据粘贴的竞品 Listing 原文
+③ 机会词按搜索量降序，并标注是否已被我覆盖
+④ 布局建议覆盖标题、五点、Search Terms 三处且不重复用词 <!-- ref: amazon.listing.search_terms.no_duplicate -->
+⑤ 每个结论标注来源：[输入数据] 或 [模型推测]
+</自检>
 ```
 
 > **为什么用这个变体**：关键词覆盖的"空白区"就是你的机会。如果一个月搜索量 5000 的关键词没有竞品在标题中使用，你用了就能获得额外的曝光。
@@ -596,6 +667,21 @@ Content rephrased for compliance with licensing restrictions. Sources: [amazonfb
 - 关键词搜索量 → Helium 10 / Jungle Scout 导出（B 类，需人工导出）
 - 竞品页面/评论 → 多数平台无开放 API（C 类，暂缓 Agent 化）
 </数据来源>
+
+<输出格式>
+先给卖点对比表（卖点 | 竞品A | 竞品B | 竞品C | 品类标配/差异化），
+再依次输出：① 竞品共同强调的卖点（品类标配）② 竞品各自独有卖点
+③ 用户可能关心的卖点（标注是否来自 Review 数据）④ 我的五点排序与措辞建议（5 条）。
+</输出格式>
+
+<自检>
+交付前逐条核对并报告结果：
+① 每个卖点的归属判断只依据粘贴的五点原文
+② 品类标配与差异化逐条给出判断依据
+③ "用户可能关心"的卖点明确标注来源；未提供 Review 时标注为推测而非事实
+④ 五点建议数量为 5 条 <!-- ref: amazon.bullet_point.count -->
+⑤ 每个结论标注来源：[输入数据] 或 [模型推测]
+</自检>
 ```
 
 ---
@@ -652,6 +738,22 @@ Content rephrased for compliance with licensing restrictions. Sources: [amazonfb
 - 需要某个卖点才能写好但我没提供时，先列出你需要我补充什么，不要自行发挥
 - 涉及疗效、安全、环保、专利的表述，单独标出来提示我人工核对
 </文案纪律>
+
+<输出格式>
+按 5 个模块逐一输出：① 品牌故事横幅（理念一句话 + 背景 ≤50 字 + 3 个价值关键词）
+② 核心卖点模块（3 个卖点 × 标题 ≤5 字 + 描述 ≤30 字 + 图片建议）
+③ 对比图模块（5 维度对比表）④ 使用场景模块（4 个场景 × 场景名 + 一句话描述 + 图片建议）
+⑤ FAQ 模块（5 个问答）。每个模块文字 ≤50 字。
+</输出格式>
+
+<自检>
+交付前逐条核对并报告结果：
+① 5 个模块齐全（品牌故事/卖点/对比图/场景/FAQ）
+② 每个模块文字 ≤50 字 <!-- ref: amazon.a_plus_content.module_text.max_length -->
+③ 对比图 5 个维度逐条给出 / 或具体数据
+④ 没有出现 <产品信息> 之外的功能或认证声明
+⑤ FAQ 中未虚构 Review 里不存在的问题或答案
+</自检>
 ```
 
 **进阶变体 品牌故事专项：**
@@ -697,6 +799,20 @@ Content rephrased for compliance with licensing restrictions. Sources: [amazonfb
 - 关键词搜索量 → Helium 10 / Jungle Scout 导出（B 类，需人工导出）
 - 竞品页面/评论 → 多数平台无开放 API（C 类，暂缓 Agent 化）
 </数据来源>
+
+<输出格式>
+按顺序输出：① 品牌背景卡片（Brand Card）文案一段（≤100 字）
+② 3 个品牌价值卡片（图标建议 | 标题 | 一句话描述）③ 3 组品牌问答（问题 | 回答）。
+</输出格式>
+
+<自检>
+交付前逐条核对并报告结果：
+① Brand Card 文案 ≤100 字 <!-- ref: amazon.brand_story.brand_card.max_length -->
+② 价值卡片 3 个、问答 3 组，数量完整
+③ 品牌年份、理念、创始人故事等事实均来自粘贴数据，未编造
+④ 语气符合"专业但亲切"的定位
+⑤ 没有出现数据之外的认证、奖项或资质声明
+</自检>
 ```
 
 ---
@@ -763,6 +879,20 @@ Content rephrased for compliance with licensing restrictions. Sources: [amazonfb
 - 关键词搜索量 → Helium 10 / Jungle Scout 导出（B 类，需人工导出）
 - 竞品页面/评论 → 多数平台无开放 API（C 类，暂缓 Agent 化）
 </数据来源>
+
+<输出格式>
+按顺序输出：① 推荐的 Search Terms（5 行，每行标注所含关键词及其搜索量）
+② 字节数统计表（行 | 字节数 | 累计 | 是否超限）③ 被排除关键词表（关键词 | 搜索量 | 排除原因）。
+</输出格式>
+
+<自检>
+交付前逐条核对并报告结果：
+① 总字节数 ≤250 字节 <!-- ref: amazon.listing.search_terms.max_bytes -->
+② 与标题、五点逐词核对无重复 <!-- ref: amazon.listing.search_terms.no_duplicate -->
+③ 用空格分隔，无逗号 <!-- ref: amazon.listing.search_terms.separator -->
+④ 不含品牌名、ASIN、best/cheap 等词 <!-- ref: amazon.listing.search_terms.no_brand_name --> <!-- ref: amazon.listing.search_terms.no_asin --> <!-- ref: amazon.listing.search_terms.no_subjective_words -->
+⑤ 字节按英文 1 字符 = 1 字节、中文 1 字符 = 3 字节计算 <!-- ref: amazon.listing.search_terms.byte_encoding -->
+</自检>
 ```
 
 **进阶变体 多语言 Search Terms：**
@@ -797,6 +927,20 @@ Content rephrased for compliance with licensing restrictions. Sources: [amazonfb
 - 关键词搜索量 → Helium 10 / Jungle Scout 导出（B 类，需人工导出）
 - 竞品页面/评论 → 多数平台无开放 API（C 类，暂缓 Agent 化）
 </数据来源>
+
+<输出格式>
+按顺序输出：① 目标语言 Search Terms（5 行，每行标注对应英文关键词与本地搜索词）
+② 字节数统计（总字节数 ≤250）③ 本地化替换说明（如德语复合词、片假名/平假名变体，逐条列出）。
+</输出格式>
+
+<自检>
+交付前逐条核对并报告结果：
+① 总字节数 ≤250 字节 <!-- ref: amazon.listing.search_terms.max_bytes -->
+② 每个词都是当地消费者实际会搜索的词，不是英文直译
+③ 与英文版、标题、五点逐词核对无重复 <!-- ref: amazon.listing.search_terms.no_duplicate -->
+④ 不含品牌名、ASIN、best/cheap 等词 <!-- ref: amazon.listing.search_terms.no_brand_name --> <!-- ref: amazon.listing.search_terms.no_asin --> <!-- ref: amazon.listing.search_terms.no_subjective_words -->
+⑤ 复合词/假名等本地化替换已逐条说明
+</自检>
 ```
 
 > **Search Terms 的核心原则**：它是标题和五点的"补充"，不是"重复"。把它想象成一个 250 字节的"关键词补丁"，专门覆盖标题和五点放不下的长尾词。
@@ -872,6 +1016,21 @@ Content rephrased for compliance with licensing restrictions. Sources: [amazonfb
 - 关键词搜索量 → Helium 10 / Jungle Scout 导出（B 类，需人工导出）
 - 竞品页面/评论 → 多数平台无开放 API（C 类，暂缓 Agent 化）
 </数据来源>
+
+<输出格式>
+先给审计评分表（维度 | 得分/10 | 关键问题），再输出总分和总体判断，
+然后按影响力排序输出前 3 个最需改进点（每个含现状、修改建议、预期效果），
+最后给出修改后的示例文案（标题、五点、描述、Search Terms 各一段）。
+</输出格式>
+
+<自检>
+交付前逐条核对并报告结果：
+① 9 个审计维度逐项评分，无遗漏
+② 每项评分附一句依据并引用 Listing 原文
+③ 检查覆盖硬性限制：标题 ≤200 字符、Search Terms ≤250 字节 <!-- ref: amazon.listing.title.max_length --> <!-- ref: amazon.listing.search_terms.max_bytes -->
+④ 合规项覆盖 best、#1、guaranteed 等违规词 <!-- ref: amazon.listing.title.no_promo_words -->
+⑤ 每个改进点都有对应的示例文案
+</自检>
 ```
 
 **进阶变体 移动端专项审计：**
@@ -913,6 +1072,20 @@ Content rephrased for compliance with licensing restrictions. Sources: [amazonfb
 - 关键词搜索量 → Helium 10 / Jungle Scout 导出（B 类，需人工导出）
 - 竞品页面/评论 → 多数平台无开放 API（C 类，暂缓 Agent 化）
 </数据来源>
+
+<输出格式>
+先给移动端审计表（审计要点 | Listing 现状引用 | 是否达标 | 改进建议），
+再输出每条五点的移动端改写示例（每条 ≤200 字符），最后给出标题前 80 字符的改写建议。
+</输出格式>
+
+<自检>
+交付前逐条核对并报告结果：
+① 标题前 80 字符传达了核心价值 <!-- ref: amazon.listing.title.key_content_first_80 -->
+② 五点前两条是最重要卖点 <!-- ref: amazon.bullet_point.top2_priority -->
+③ 每条五点 ≤200 字符
+④ emoji 仅用于辅助扫读，不改变语义
+⑤ 未新增 Listing 原文之外的属性或认证声明
+</自检>
 ```
 
 ---
@@ -965,6 +1138,20 @@ Content rephrased for compliance with licensing restrictions. Sources: [amazonfb
 - 需要某个卖点才能写好但我没提供时，先列出你需要我补充什么，不要自行发挥
 - 涉及疗效、安全、环保、专利的表述，单独标出来提示我人工核对
 </文案纪律>
+
+<输出格式>
+按 6 张副图顺序逐张输出：图片编号 | 图片主题 | 标题文案（≤5 词）| 副标题文案（≤15 词）| 图片建议。
+最后给一句整组文案的风格一致性说明。
+</输出格式>
+
+<自检>
+交付前逐条核对并报告结果：
+① 每张图标题 ≤5 词 <!-- ref: amazon.product_image.secondary_title.max_words -->
+② 每张图副标题 ≤15 词 <!-- ref: amazon.product_image.secondary_subtitle.max_words -->
+③ 每张图总文字 ≤20 词 <!-- ref: amazon.product_image.secondary_text.max_words -->
+④ 未给主图分配文字、logo 或水印 <!-- ref: amazon.product_image.main.no_text_overlay -->
+⑤ 没有出现 <产品信息> 之外的功能或认证声明
+</自检>
 ```
 
 **进阶变体 主图优化建议：**
@@ -990,6 +1177,19 @@ Content rephrased for compliance with licensing restrictions. Sources: [amazonfb
 - 需要某个事实才能判断时，告诉我该去哪个官方来源核实，然后停下来问我
 - 每个结论标注来源：[我提供的信息] 或 [模型推测]
 </数据纪律>
+
+<输出格式>
+先给问题诊断表（指标 | 我的值 | 品类均值 | 差距分析），
+再按 5 个方向逐条输出建议（拍摄角度/产品摆放/配件展示/尺寸传达/背景光线），每条建议附与竞品主图的差异点。
+</输出格式>
+
+<自检>
+交付前逐条核对并报告结果：
+① CTR 等数字只引用粘贴数据，未估算品类均值
+② 每条建议均在 Amazon 主图政策允许范围内（无文字/logo/水印）<!-- ref: amazon.product_image.main.no_text_overlay -->
+③ 建议与竞品主图描述逐条对照
+④ 每个结论标注来源：[输入数据] 或 [模型推测]
+</自检>
 ```
 
 ---
@@ -1053,6 +1253,20 @@ Content rephrased for compliance with licensing restrictions. Sources: [amazonfb
 - 关键词搜索量 → Helium 10 / Jungle Scout 导出（B 类，需人工导出）
 - 竞品页面/评论 → 多数平台无开放 API（C 类，暂缓 Agent 化）
 </数据来源>
+
+<输出格式>
+按优先级输出 3 个方案，每个方案用固定 7 字段结构：测试假设 | 控制组(A) | 测试组(B 含具体文案) |
+测试变量（单一）| 预期影响 | 建议测试时长 | 成功标准（含统计显著 p < 0.05）。最后给一张 3 方案对比表。
+</输出格式>
+
+<自检>
+交付前逐条核对并报告结果：
+① 每个方案只改一个变量（单一变量）
+② 建议测试时长 ≥2 周 <!-- ref: amazon.listing.ab_test.min_duration_weeks -->
+③ 转化率、流量等数字只来自粘贴数据
+④ 测试组(B)给出可直接粘贴的具体文案
+⑤ 成功标准均含统计显著性判断（p < 0.05）
+</自检>
 ```
 
 **进阶变体 标题 A/B 测试专项：**
@@ -1254,6 +1468,14 @@ Step 5: 上线与监控
 最后给出保留/排除的结论和一句话理由。
 </输出格式>
 
+<自检>
+交付前逐条核对并报告结果：
+① 每条约束都给出"能满足 / 不能 / 无法确认"三态之一，无遗漏
+② 每一条判断都引用 <我的 Listing> 中的原文作为依据
+③ "无法确认"项明确写出缺什么信息、在哪一处补齐
+④ 保留/排除结论与逐条匹配结果一致，理由一句话能说清
+</自检>
+
 <数据来源>
 上面要你粘贴的数据，Agent 化后应从这里读取（据此判断该环节能否自动化，方法见
 [A14 §2 数据源盘点](../a-operators/a14-operations-agent.md)）：
@@ -1371,6 +1593,20 @@ Amazon Rufus AI 购物助手会用自然语言回答用户的购物问题。
 - 关键词搜索量 → Helium 10 / Jungle Scout 导出（B 类，需人工导出）
 - 竞品页面/评论 → 多数平台无开放 API（C 类，暂缓 Agent 化）
 </数据来源>
+
+<输出格式>
+先给 10 个 Rufus 提问清单（问题 | 我的 Listing 能否回答 | 缺失信息 | 建议补充位置），
+再输出 5 条 Q&A（问题 | 回答 | 引用来源：标题/五点/描述/A+/Q&A）。
+</输出格式>
+
+<自检>
+交付前逐条核对并报告结果：
+① 10 个问题 + 5 条 Q&A，数量完整
+② 每个"能否回答"的判断只依据粘贴的 Listing 原文
+③ Q&A 回答内容均来自 Listing，缺失处明确标注
+④ 建议补充位置只涉及标题/五点/描述/A+/Q&A
+⑤ 没有出现 Listing 之外的功能或认证声明
+</自检>
 ```
 
 > **Rufus 优化的核心思路**：从"关键词优化"转向"问题回答优化"。你的 Listing 不只是一个关键词容器，而是一个"产品知识库"，能回答用户关于这个产品的所有问题。
@@ -1414,6 +1650,21 @@ GEO（Generative Engine Optimization）或 AIO（AI Optimization）是 2025-2026
 - 面向客户发出的内容（回复、邮件、模板）不要做出我无权承诺的保证：退款金额、赔偿、时效、平台政策例外，这些必须由我确认后才能写进去
 - 涉及疗效、安全、环保、专利的表述单独标出，提示我人工核对
 </文案纪律>
+
+<输出格式>
+先给一段可直接复用的统一产品信息包（≤300 字，含核心规格与卖点），再按 5 个交付物输出：
+① 结构化规格表（属性 | 值）② 10 条 FAQ（问题 | 简洁回答）③ 对比定位句（"比 X 更 Y" 格式）
+④ 5 个使用场景标签 ⑤ 品牌一致性检查表（渠道 | 信息 | 是否一致）。
+</输出格式>
+
+<自检>
+交付前逐条核对并报告结果：
+① 规格表中每个数值都来自粘贴数据，未估算
+② FAQ 共 10 条，回答 ≤50 字且基于产品事实
+③ 对比定位中的竞品信息只来自粘贴数据
+④ 没有出现 <产品信息> 之外的功能或认证声明
+⑤ 统一产品信息包可直接粘贴到 Amazon/官网/社媒使用
+</自检>
 ```
 
 > **GEO 的核心思路**：传统 SEO 是"让搜索引擎找到你"，GEO 是"让 AI 引擎推荐你"。区别在于 AI 引擎不只匹配关键词，还理解语义、评估权威性、引用用户评价。你的产品信息需要"对 AI 友好"。
@@ -1472,6 +1723,21 @@ Content rephrased for compliance with licensing restrictions. Source: [bebolddig
 - 关键词搜索量 → Helium 10 / Jungle Scout 导出（B 类，需人工导出）
 - 竞品页面/评论 → 多数平台无开放 API（C 类，暂缓 Agent 化）
 </数据来源>
+
+<输出格式>
+按 5 个维度输出：① 卖点重排表（原卖点 | 目标市场重要性 | 新位置）② 语言调性说明（风格 + 示例句）
+③ 信任元素清单（认证/保修/发货地及依据）④ 图片调整建议 ⑤ 定价区间建议（标注 VAT、物流等计算依据）。
+最后给一版目标市场的标题 + 五点草稿。
+</输出格式>
+
+<自检>
+交付前逐条核对并报告结果：
+① 卖点重排对照目标市场偏好（US/DE/JP 差异表）并给出理由
+② 信任元素按市场标注（DE=CE/WEEE/包装法，JP=PSE/食品卫生法/电安法）<!-- ref: amazon.de.listing.required_certifications --> <!-- ref: amazon.jp.listing.required_certifications -->
+③ 定价建议标注 VAT、物流成本等计算依据，未编造数据
+④ 标题草稿 ≤200 字符 <!-- ref: amazon.listing.title.max_length -->
+⑤ 没有出现 Listing 原文之外的功能或认证声明
+</自检>
 ```
 
 > **文化适配的核心原则**：不要假设"在美国卖得好的 Listing 翻译一下就能在德国卖好"。德国消费者可能完全不关心你在美国强调的卖点。每个市场都需要独立的 Listing 策略。
@@ -1564,6 +1830,20 @@ Hook（前 3 秒）→ 问题/场景（5-10 秒）→ 产品展示（10-20 秒�
 - 需要某个卖点才能写好但我没提供时，先列出你需要我补充什么，不要自行发挥
 - 涉及疗效、安全、环保、专利的表述，单独标出来提示我人工核对
 </文案纪律>
+
+<输出格式>
+按 3 个视频逐一输出：视频类型 | 时长 | 分镜表（镜头 | 画面 | 口播/字幕 | 时长），
+并在每个脚本开头标注 Hook/问题/展示/社会证明/CTA 五段结构是否覆盖。
+</输出格式>
+
+<自检>
+交付前逐条核对并报告结果：
+① 3 个脚本齐全：Amazon 产品视频 45s / 社媒短视频 15s / YouTube Shorts 30s
+② 每个脚本覆盖 Hook/问题/展示/社会证明/CTA 五段结构
+③ 所有卖点均来自粘贴的标题与五点，未新增功能或认证声明
+④ 每个分镜标注了画面、口播文字和时长，可直接拍摄
+⑤ 口播/字幕文字无占位符遗漏
+</自检>
 ```
 
 ---
