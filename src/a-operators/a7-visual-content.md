@@ -163,6 +163,18 @@ Midjourney Prompt 格式要求：
 - 需要某个事实才能判断时，告诉我该去哪个官方来源核实，然后停下来问我
 - 每个结论标注来源：[我提供的信息] 或 [模型推测]
 </数据纪律>
+<输出格式>
+交付 5 个 Midjourney Prompt，编号列表，对应 5 个角度各 1 个（特写/使用场景/环境场景/尺寸参考/创意），每个含 3 个标注项：① 完整英文 Prompt ② 推荐参数（--ar、--v、--s）③ 预期效果描述。
+</输出格式>
+
+<自检>
+交付前逐条核对并报告结果：
+① 恰好 5 个 Prompt，5 个角度各 1 个，顺序正确
+② 每个 Prompt 以主体描述开头，包含光线 + 风格 + 技术参数
+③ 产品属性（颜色/材质/尺寸）与提供的产品信息完全一致——无虚构属性
+④ 用于 Amazon 主图的 Prompt 不得添加文字/logo/水印；文字叠加只允许出现在副图类 Prompt <!-- ref: amazon.product_image.main.no_text_overlay -->
+⑤ 商业用途优先选择有明确商业许可的工具，并保留 Prompt 与生成记录 <!-- ref: content.ai_generated.commercial_license -->
+</自检>
 ```
 
 ### 2.3 信息图/卖点图 AI 生成
@@ -336,6 +348,17 @@ AI 方式：4 天 + $50-100（工具订阅费）
 [产品描述], product photography, pure white background, studio lighting,
 high resolution, commercial photography, centered composition,
 sharp focus, no shadows --ar 1:1 --v 6.1 --s 100
+<输出格式>
+生成 4 张变体图（Midjourney 默认网格）：纯白背景上的产品图，影棚灯光、无阴影、无文字。
+</输出格式>
+
+<自检>
+交付前逐条核对并报告结果：
+① 背景为纯白（RGB 255,255,255）且无阴影
+② 图中无文字、logo、水印或道具 <!-- ref: amazon.product_image.main.no_text_overlay -->
+③ 产品颜色/形状/细节与真实产品图完全一致
+④ 记录生成 Prompt 与日期，作为商业用途的创作证据 <!-- ref: content.ai_generated.commercial_license -->
+</自检>
 ```
 
 **生活方式场景图：**
@@ -343,6 +366,17 @@ sharp focus, no shadows --ar 1:1 --v 6.1 --s 100
 [产品描述] in use, [场景描述], lifestyle photography, natural lighting,
 warm tones, shallow depth of field, editorial style,
 photorealistic --ar 1:1 --v 6.1 --s 250
+<输出格式>
+生成 4 张变体图：产品处于描述的生活场景中，自然光、暖色调、写实风格。
+</输出格式>
+
+<自检>
+交付前逐条核对并报告结果：
+① 产品清晰可见，颜色/形状/细节与真实产品一致
+② 场景与光线符合要求的场景描述
+③ 若用作 Amazon 副图，图内叠加文字不超过 20 个词 <!-- ref: amazon.product_image.secondary_text.max_words -->
+④ 记录生成 Prompt 与日期，作为商业用途的创作证据 <!-- ref: content.ai_generated.commercial_license -->
+</自检>
 ```
 
 **信息图背景：**
@@ -350,6 +384,17 @@ photorealistic --ar 1:1 --v 6.1 --s 250
 clean minimal background for product infographic, [品牌色] accent color,
 geometric shapes, modern design, negative space,
 professional layout --ar 1:1 --v 6.1 --s 150
+<输出格式>
+生成 4 张变体图：产品信息图用的干净极简背景，品牌色点缀、几何风格、现代设计、为文字留白。
+</输出格式>
+
+<自检>
+交付前逐条核对并报告结果：
+① 背景使用指定品牌点缀色，几何-现代风格
+② 预留卖点文字叠加的留白（图内不烧录文字）
+③ 拟叠加文字：标题 ≤5 个词，副标题 ≤15 个词 <!-- ref: amazon.product_image.secondary_title.max_words --> <!-- ref: amazon.product_image.secondary_subtitle.max_words -->
+④ 记录生成 Prompt 与日期，作为商业用途的创作证据 <!-- ref: content.ai_generated.commercial_license -->
+</自检>
 ```
 
 ### 6.2 AI 视频脚本生成
@@ -380,6 +425,18 @@ professional layout --ar 1:1 --v 6.1 --s 150
 - 需要某个卖点才能写好但我没提供时，先列出你需要我补充什么，不要自行发挥
 - 涉及疗效、安全、环保、专利的表述，单独标出来提示我人工核对
 </文案纪律>
+<输出格式>
+交付分镜表格：镜头号 | 时长标记 | 镜头描述（供 AI 视频工具）| 字幕/口播文字 | 推荐 AI 工具 | 背景音乐风格。
+</输出格式>
+
+<自检>
+交付前逐条核对并报告结果：
+① 每个镜头 6 列齐全（镜头号、时长、描述、字幕/口播、工具、音乐）
+② 各镜头时长合计与要求的视频长度（30/60/120 秒）一致
+③ 未出现产品信息之外的功能/材质/认证/效果；相关表述单独标出待人工核对
+④ 若使用 AI 配音/虚拟形象/生成画面，需注明 EU AI 法案第 50 条透明度标注义务 <!-- ref: eu.ai_act.transparency -->
+⑤ 推荐的 AI 工具须有明确的商业许可 <!-- ref: content.ai_generated.commercial_license -->
+</自检>
 ```
 
 ---

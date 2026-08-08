@@ -169,6 +169,18 @@ Midjourney prompt format requirements:
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+<output_format>
+Deliver 5 Midjourney prompts as a numbered list, one per required angle (close-up / use scene / environmental scene / size reference / creative), each with 3 labeled parts: ① full English prompt, ② recommended parameters (--ar, --v, --s), ③ expected-effect description.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① Exactly 5 prompts, one per angle, in the stated order
+② Every prompt starts with the subject description and includes lighting + style + technical parameters
+③ Product attributes (color/material/size) match the supplied product info exactly — no invented features
+④ For Amazon use: main-image prompts must not add text/logos/watermarks; text overlays only on secondary-image prompts <!-- ref: amazon.product_image.main.no_text_overlay -->
+⑤ For commercial use, the recommended tool must have an explicit commercial license and prompt records must be kept <!-- ref: content.ai_generated.commercial_license -->
+</self_check>
 ```
 
 ### 2.3 Infographic / selling-point image AI generation
@@ -348,6 +360,17 @@ AI way: 4 days + $50–100 (tool subscriptions)
 [product description], product photography, pure white background, studio lighting,
 high resolution, commercial photography, centered composition,
 sharp focus, no shadows --ar 1:1 --v 6.1 --s 100
+<output_format>
+Generate 4 image variants (Midjourney default grid) of the product on a pure white background, studio lighting, no shadows, no text.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① Background renders pure white (RGB 255,255,255) with no shadows
+② No text, logo, watermark, or props appear in the image <!-- ref: amazon.product_image.main.no_text_overlay -->
+③ Product color/shape/details match the real product photo exactly
+④ Generation prompt + date recorded as provenance for commercial use <!-- ref: content.ai_generated.commercial_license -->
+</self_check>
 ```
 
 **Lifestyle scene image:**
@@ -355,6 +378,17 @@ sharp focus, no shadows --ar 1:1 --v 6.1 --s 100
 [product description] in use, [scene description], lifestyle photography, natural lighting,
 warm tones, shallow depth of field, editorial style,
 photorealistic --ar 1:1 --v 6.1 --s 250
+<output_format>
+Generate 4 image variants of the product in the described lifestyle scene, natural lighting, warm tones, photorealistic.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① The product is clearly present and matches the real product's color/shape/details
+② Scene and lighting match the requested scene description
+③ If used as an Amazon secondary image, any on-image text stays within 20 words <!-- ref: amazon.product_image.secondary_text.max_words -->
+④ Generation prompt + date recorded as provenance for commercial use <!-- ref: content.ai_generated.commercial_license -->
+</self_check>
 ```
 
 **Infographic background:**
@@ -362,6 +396,17 @@ photorealistic --ar 1:1 --v 6.1 --s 250
 clean minimal background for product infographic, [brand color] accent color,
 geometric shapes, modern design, negative space,
 professional layout --ar 1:1 --v 6.1 --s 150
+<output_format>
+Generate 4 image variants: a clean minimal background for a product infographic, in the brand color, geometric, modern, with negative space reserved for text.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① Background uses the specified brand accent color and geometric-modern style
+② Negative space is left for selling-point text overlay (no text baked into the image)
+③ Overlay text planned for the infographic: headline ≤5 words, subtitle ≤15 words <!-- ref: amazon.product_image.secondary_title.max_words --> <!-- ref: amazon.product_image.secondary_subtitle.max_words -->
+④ Generation prompt + date recorded as provenance for commercial use <!-- ref: content.ai_generated.commercial_license -->
+</self_check>
 ```
 
 ### 6.2 AI video-script generation
@@ -386,6 +431,18 @@ Generate a video script with:
 - If you need a selling point I didn't supply, list what you need from me rather than improvising
 - Flag any claim touching efficacy, safety, environmental, or patent language separately so I can verify it by hand
 </copy_discipline>
+<output_format>
+Deliver the video script as a shot-by-shot table: shot number | duration mark | shot description (for the AI video tool) | subtitle/voiceover text | recommended AI tool | background-music style.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① Every shot has all 6 columns filled (shot no., duration, description, subtitle/voiceover, tool, music)
+② Total duration of shots matches the requested video length (30/60/120s)
+③ No feature, material, certification or effect beyond the supplied product info; claims flagged for manual review
+④ If AI voice/avatar/imagery is used, note that EU AI Act Art. 50 transparency labeling applies <!-- ref: eu.ai_act.transparency -->
+⑤ AI tools recommended must have explicit commercial licenses for commercial use <!-- ref: content.ai_generated.commercial_license -->
+</self_check>
 ```
 
 ---

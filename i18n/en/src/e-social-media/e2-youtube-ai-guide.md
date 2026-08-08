@@ -124,6 +124,17 @@ Please help me do YouTube keyword research:
 - Recommended video duration
 
 3. Give 4 video-topic suggestions for this month (1 per week), sorted by priority
+<output_format>
+Deliver in order: ① a keyword table with exactly 30 rows, grouped and labeled Product words (5) / Question words (10) / Comparison words (5) / Tutorial words (5) / Long-tail words (5), columns: keyword | search intent | recommended video type | recommended duration; ② 4 video-topic suggestions for this month (1 per week), sorted by priority.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① The table has exactly 30 keywords, split 5/10/5/5/5 across the five groups
+② Every row has all 4 columns filled (keyword, intent, video type, duration)
+③ Exactly 4 monthly video-topic suggestions, each with a priority rank and a one-line reason
+④ No search-volume, ranking or fee figures invented — anything not supplied is marked "missing" instead of estimated
+</self_check>
 ```
 
 ### 2.3 Title and Description AI Optimization
@@ -166,6 +177,18 @@ Please generate 10 title variants, requirements:
 - If you need a selling point I didn't supply, list what you need from me rather than improvising
 - Flag any claim touching efficacy, safety, environmental, or patent language separately so I can verify it by hand
 </copy_discipline>
+<output_format>
+Deliver: exactly 10 numbered title variants, each labeled with its estimated CTR level (high/medium/low) and a one-line reason. Plain-text numbered list, no table.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① Exactly 10 title variants
+② The core keyword appears within the first 60 characters of every variant
+③ No all-caps titles and no exaggerated clickbait (per requirement 4)
+④ Every variant is labeled with a CTR level (high/medium/low) and a reason
+⑤ No money/volume/ranking figure appears that was not supplied — anything missing is marked "missing"
+</self_check>
 ```
 
 ---
@@ -257,6 +280,18 @@ After agentifying, the data you're asked to paste above should be read from here
 - Keyword search volume → Helium 10 / Jungle Scout export (Class B, manual export)
 - Competitor pages/reviews → mostly no open API (Class C, postpone agentifying)
 </data_source>
+<output_format>
+Deliver the script as a single document with exactly 6 sections in this order: ① Hook (0:00-0:30), ② Unboxing and appearance (0:30-2:00), ③ Feature testing (2:00-6:00), ④ Pros and cons summary (6:00-8:00), ⑤ Who it's for / not for (8:00-9:30), ⑥ Conclusion and CTA (9:30-10:30). Each section contains three labeled parts: Voiceover text / Visual suggestions / Chapter-marker timestamps.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① All 6 sections present in the required order with the stated time ranges
+② Each section contains all three parts: voiceover, visual suggestions, chapter-marker timestamps
+③ Section 4 lists exactly 3 pros and 2-3 cons; section 6 ends with a final score, purchase recommendation, and "link in description" + subscribe CTA
+④ No feature, material, certification or result appears that was not in the supplied product info; efficacy/safety/environmental/patent claims are flagged for manual review
+⑤ If AI-generated voice, imagery, or avatars will be used in the video, state that EU AI Act Art. 50 transparency labeling applies <!-- ref: eu.ai_act.transparency -->
+</self_check>
 ```
 
 ### 3.3 Chapter-Marker (Chapters) AI Auto-Generation
@@ -277,6 +312,17 @@ Chapter-name requirements:
 - Concise (3-5 words)
 - Include keywords
 - Let users know at a glance what this section is about
+<output_format>
+Deliver a timestamp list only: one line per chapter, format "M:SS - chapter name" (e.g. "0:00 - Intro"), sorted in ascending order.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① The first marker is exactly "0:00"
+② Every chapter name is 3-5 words and contains at least one keyword from the script
+③ Timestamps are strictly ascending and non-overlapping
+④ Every chapter of the script is covered (no section missing from the markers)
+</self_check>
 ```
 
 ---
@@ -337,6 +383,18 @@ After agentifying, the data you're asked to paste above should be read from here
 - Keyword search volume → Helium 10 / Jungle Scout export (Class B, manual export)
 - Competitor pages/reviews → mostly no open API (Class C, postpone agentifying)
 </data_source>
+<output_format>
+Deliver 5 clips, each as a block with 5 labeled items: ① Hook (understandable without context), ② Information point or surprise moment, ③ Ending CTA to the full video, ④ Clip title, ⑤ #hashtags (3-5 tags).
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① Exactly 5 clips, each within 30-60 seconds of source material
+② Each clip has an independent hook that works without the surrounding context
+③ Each clip's ending guides to the full video ("Full review link on the homepage")
+④ Every clip has a title and #hashtags
+⑤ No money/volume figure invented from the pasted data; conclusions tagged [input data] or [model inference]; if AI-generated voice/imagery will be used, note EU AI Act Art. 50 labeling <!-- ref: eu.ai_act.transparency -->
+</self_check>
 ```
 
 **Strategy 2: original Shorts**
@@ -395,6 +453,18 @@ Also please provide:
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+<output_format>
+Deliver in order: ① scoring-model table (5 dimensions | weight | what to check | how to score), ② outreach email template (English, with [placeholders]), ③ collaboration-model recommendation, ④ effect-tracking method (UTM parameters + Affiliate link scheme).
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① The scoring table has exactly 5 dimensions and the weights sum to 100 (25+25+20+15+15)
+② The outreach email template is in English with placeholders for creator name / channel / product link
+③ Exactly one collaboration model recommended, chosen from paid review / Affiliate / product exchange, with a reason
+④ The tracking method names concrete UTM parameters and how the Affiliate link is built
+⑤ The email template makes no commitments (refund amounts, compensation, timelines) beyond what I authorized
+</self_check>
 ```
 
 ---
@@ -442,6 +512,18 @@ Please generate 3 ad scripts:
 - If you need a selling point I didn't supply, list what you need from me rather than improvising
 - Flag any claim touching efficacy, safety, environmental, or patent language separately so I can verify it by hand
 </copy_discipline>
+<output_format>
+Deliver exactly 3 scripts, each with a labeled structure: ① 6-second Bumper (one visual + one sentence + brand logo), ② 15-second Non-skippable (pain point 3s → product 7s → CTA 5s), ③ 30-second Skippable (Hook 0-5s → showcase 5-20s → social proof 20-25s → CTA 25-30s). For each script give the voiceover text and the on-screen visual per segment.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① Exactly 3 scripts, one per ad type, in the stated order
+② The 6s Bumper has one visual + one sentence + brand logo only
+③ The 15s script keeps the 3s/7s/5s segment split and the 30s script the 0-5/5-20/20-25/25-30 split
+④ No feature, material, certification or effect beyond the supplied product info; claims are flagged for manual review
+⑤ If AI-generated voice, imagery, or avatars are used, state that EU AI Act Art. 50 transparency labeling applies <!-- ref: eu.ai_act.transparency -->
+</self_check>
 ```
 
 ---
@@ -522,6 +604,18 @@ After agentifying, the data you're asked to paste above should be read from here
 - Keyword search volume → Helium 10 / Jungle Scout export (Class B, manual export)
 - Competitor pages/reviews → mostly no open API (Class C, postpone agentifying)
 </data_source>
+<output_format>
+Deliver 6 labeled sections in order: ① overall channel-health assessment (2-3 sentences), ② bottleneck conclusion (CTR problem or watch-time problem, with the supporting data), ③ common patterns of the top-5 videos, ④ problems of the bottom-5 videos, ⑤ 4 next-month video-topic suggestions, ⑥ thumbnail/title optimization suggestions (per the diagnosis).
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① All 6 requested sections present in order
+② Section ② states explicitly whether the bottleneck is CTR or watch-time, citing the supplied numbers
+③ Exactly 4 video-topic suggestions for next month
+④ Every number used (views, CTR, watch time, %) comes from the supplied data or is marked "missing" — no industry averages invented
+⑤ Each conclusion is tagged [input data] or [model inference]
+</self_check>
 ```
 
 ---
@@ -580,6 +674,18 @@ After agentifying, the data you're asked to paste above should be read from here
 - Keyword search volume → Helium 10 / Jungle Scout export (Class B, manual export)
 - Competitor pages/reviews → mostly no open API (Class C, postpone agentifying)
 </data_source>
+<output_format>
+Deliver one ready-to-paste description with the 7 sections in order: ① first 2 lines (core info + keywords), ② chapter markers (Timestamps), ③ product links (Amazon Affiliate / Shopify), ④ social-media links, ⑤ related-video recommendations, ⑥ disclaimer (Affiliate disclosure), ⑦ tags (#hashtag).
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① All 7 sections present in the required order
+② The first 150 characters contain the core keyword
+③ The Affiliate disclosure statement is included verbatim
+④ Chapter markers cover the video and product links use the supplied URLs
+⑤ No feature, material, certification or effect beyond the supplied info; no invented figures
+</self_check>
 ```
 
 ### 8.2 Thumbnail Copy
@@ -602,6 +708,18 @@ Each option includes:
 - If you need a selling point I didn't supply, list what you need from me rather than improvising
 - Flag any claim touching efficacy, safety, environmental, or patent language separately so I can verify it by hand
 </copy_discipline>
+<output_format>
+Deliver exactly 5 numbered thumbnail options, each with 5 labeled parts: ① text on the thumbnail (≤5 words, large font), ② expression/emotion suggestion, ③ color scheme, ④ layout suggestion, ⑤ estimated CTR effect (high/medium/low).
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① Exactly 5 options
+② Each option's thumbnail text is ≤5 words
+③ Each option contains all 5 labeled parts
+④ No selling point, number or claim beyond the supplied video title/type; anything missing marked "missing"
+⑤ Thumbnail images produced with AI tools for commercial use must come from tools with an explicit commercial license, with prompts/records kept <!-- ref: content.ai_generated.commercial_license -->
+</self_check>
 ```
 
 ---
@@ -716,6 +834,18 @@ Please help me design a long-tail keyword strategy:
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+<output_format>
+Deliver 4 labeled sections in order: ① why small channels should focus on long-tail keywords (brief), ② 20 long-tail keywords in a table (keyword | estimated search volume | competition level | recommended video type), ③ content-cluster plan (1 core video + 5-8 supporting videos with linking strategy), ④ the first month's 4 video topics, starting with the easiest-to-rank long-tail words.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① Exactly 20 long-tail keywords, each in the "best [product] for [scenario/audience]" format
+② Every keyword row has all 4 columns filled; estimated search volume is marked "missing" unless supplied
+③ The content cluster has 1 core video + 5-8 supporting videos with the linking method (cards + description)
+④ Exactly 4 first-month video topics, ordered by ease of ranking
+⑤ Every conclusion tagged [supplied by me] or [model inference]
+</self_check>
 ```
 
 ### YouTube Thumbnail-Design Methodology
@@ -792,6 +922,18 @@ The 5 options' styles:
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+<output_format>
+Deliver exactly 5 numbered thumbnail options, one per style (① data-driven, ② emotion-driven, ③ comparison-driven, ④ minimalist, ⑤ story), each with 8 labeled parts: ① text (≤5 words, not duplicating the title), ② text color/font, ③ background color/image, ④ product placement position and angle, ⑤ facial-expression suggestion, ⑥ composition (rule of thirds/centered/diagonal), ⑦ estimated CTR level + reason, ⑧ differentiation from competitor thumbnails.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① Exactly 5 options, one per required style, in the stated order
+② Each option has all 8 labeled parts
+③ No option's text exceeds 5 words or duplicates the title
+④ Market-data/CTR figures are not invented — anything not supplied is marked "missing"
+⑤ AI tools recommended for generating thumbnail images must have an explicit commercial license; prompts/records kept <!-- ref: content.ai_generated.commercial_license -->
+</self_check>
 ```
 
 ### YouTube Description SEO Template

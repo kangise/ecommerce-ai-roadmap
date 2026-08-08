@@ -160,6 +160,18 @@ After agentifying, the data you're asked to paste above should be read from here
 - Keyword search volume → Helium 10 / Jungle Scout export (Class B, manual export)
 - Competitor pages/reviews → mostly no open API (Class C, postpone agentifying)
 </data_source>
+<output_format>
+Deliver 3 title variants as a numbered list; each variant is a single line of plain text (no explanation inside the title line). Add a one-line note per variant only if needed.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① Exactly 3 variants
+② Every variant is 50-75 characters, in Title Case, in "brand + product name + 1-2 core attributes" format
+③ No variant contains promotional info, price, "Best", "#1", or all-caps words
+④ The most important search keywords from the Amazon title are retained
+⑤ No attribute/feature appears that was not in the pasted Amazon title
+</self_check>
 ```
 
 ### 2.3 Walmart Rich Media (Similar to A+ Content)
@@ -207,6 +219,18 @@ Note: Walmart users value "practicality" and "value for money" more, don't be to
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+<output_format>
+Deliver the Rich Media plan as 5 labeled modules in order: ① brand-story module (≤100 words), ② product-feature module (exactly 3 image-text blocks, each: title + ≤50-word description + image suggestion), ③ comparison table (my product vs 2 competitors, 5 dimensions), ④ use-scenario module (exactly 3 scenarios, each: name + ≤30-word description + image suggestion), ⑤ FAQ module (exactly 5 Q&A pairs).
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① All 5 modules present in order
+② Feature module has exactly 3 image-text blocks; use-scenario module exactly 3 scenarios; FAQ exactly 5 Q&A pairs
+③ Brand-story ≤100 words; each feature block description ≤50 words; each scenario ≤30 words
+④ Comparison table has 5 dimensions and exactly 2 competitor columns
+⑤ No feature/material/certification beyond the supplied selling points; tone practical and value-focused, not "premium brand"
+</self_check>
 ```
 
 ---
@@ -303,6 +327,18 @@ After agentifying, the data you're asked to paste above should be read from here
 - Keyword search volume → Helium 10 / Jungle Scout export (Class B, manual export)
 - Competitor pages/reviews → mostly no open API (Class C, postpone agentifying)
 </data_source>
+<output_format>
+Deliver 6 labeled sections in order: ① high-ROAS words (>4x) with a suggested bid change (amount or %), ② low-ROAS words (<2x) split into lower-bid vs negate, ③ high-impression low-click words with a bid-vs-listing conclusion, ④ zero-conversion high-spend words for immediate negation (as negative keywords), ⑤ newly discovered long-tail opportunity words, ⑥ budget-reallocation table (campaign/term | current share | new share | reason).
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① All 6 sections present in order
+② Every bid recommendation is a concrete amount or percentage within the first-price-auction logic (no "bid high" advice)
+③ Each term named in the output exists in the pasted Top-20 data, with its ROAS/orders figures intact
+④ Every figure tagged [input data] or [model inference]; none invented
+⑤ Negation candidates meet the stated criterion (high spend without conversion) and are kept limited to avoid over-negation
+</self_check>
 ```
 
 ### 3.4 Walmart Advertising 30-Day Launch Plan
@@ -384,6 +420,18 @@ Please calculate and compare:
 - When you need a figure to continue, tell me where to look it up and which field to read, then stop and wait for me to supply it
 - Tag every conclusion with its source: [supplied by me] or [model inference]. For inferences, state what the inference rests on
 </data_discipline>
+<output_format>
+Deliver 5 labeled sections: ① FBA monthly total cost, ② WFS monthly total cost, ③ self-fulfillment cost estimate (USPS/UPS/FedEx), ④ optimal logistics-plan suggestion, ⑤ inventory-allocation ratio suggestion (FBA:WFS:self-fulfillment). For each cost section show the formula with numbers substituted, then the total.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① All 5 sections present in order
+② Every cost section shows the formula with the supplied numbers substituted, not just a final figure
+③ No fee rate (storage, fulfillment, shipping) is taken from memory — anything not supplied is marked "missing"
+④ The recommendation in ④ and the ratio in ⑤ are derived from the calculated totals, with a one-line reason
+⑤ Every conclusion tagged [supplied by me] or [model inference]
+</self_check>
 ```
 
 ### 4.3 Walmart Multichannel Solutions (MCS)
@@ -425,6 +473,18 @@ Please assess the feasibility of migrating to Walmart:
 - When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
 - Tag every conclusion with its source: [supplied by me] or [model inference]
 </data_discipline>
+<output_format>
+Deliver 5 labeled sections in order: ① Walmart category competition level (with what was checked), ② price-band fit conclusion, ③ estimated Walmart monthly sales (range), ④ estimated profit-margin change, ⑤ migration priority (one of: immediate / wait and see / not recommended) with reasons.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① All 5 sections present in order
+② Sections ③ and ④ show their assumptions (sales ratio, commission/logistics differences) and are explicitly marked as estimates
+③ Migration priority is exactly one of the 3 allowed values
+④ No market-data figure invented from memory — anything not supplied marked "missing"
+⑤ Every conclusion tagged [supplied by me] or [model inference]
+</self_check>
 ```
 
 ### 5.2 Detailed Migration Checklist
@@ -519,6 +579,18 @@ Please analyze the opportunity of this category on Walmart:
 - When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
 - Tag every conclusion with its source: [supplied by me] or [model inference]
 </data_discipline>
+<output_format>
+Deliver 5 labeled sections in order: ① competition level, ② price-band comparison (Walmart vs Amazon), ③ estimated monthly sales potential, ④ entry-strategy suggestion, ⑤ Walmart-specific compliance requirements to note.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① All 5 sections present in order
+② Sections ③ and ④ state the assumption basis and are explicitly estimates, not facts
+③ Section ⑤ lists platform requirements only, each with a checkable source
+④ No figure invented from memory — anything not supplied marked "missing"
+⑤ Every conclusion tagged [supplied by me] or [model inference]
+</self_check>
 ```
 
 ---
@@ -594,6 +666,18 @@ Please analyze:
 - When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
 - Tag every conclusion with its source: [supplied by me] or [model inference]
 </data_discipline>
+<output_format>
+Deliver 6 labeled sections in order: ① why Buy Box share is not 100% (factors in priority order), ② the concrete price to set to raise Buy Box share, ③ fulfillment-method upgrade judgment, ④ seller-performance metrics to improve (with current vs target), ⑤ competitive strategy given the number of competitor sellers, ⑥ auto-repricing tool recommendation (recommend/not, and which).
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① All 6 sections present in order
+② Section ② gives a concrete number or formula derived from the supplied prices, not a vague "lower the price"
+③ Section ④ compares each metric against a stated threshold (e.g. on-time delivery > 95%)
+④ Section ⑥ gives a clear yes/no with named tools and reasons
+⑤ Every figure tagged [supplied by me] or [model inference]; none invented
+</self_check>
 ```
 
 ### Walmart Auto-Repricing Strategy
@@ -731,6 +815,18 @@ After agentifying, the data you're asked to paste above should be read from here
 - Keyword search volume → Helium 10 / Jungle Scout export (Class B, manual export)
 - Competitor pages/reviews → mostly no open API (Class C, postpone agentifying)
 </data_source>
+<output_format>
+Deliver 7 labeled sections in order: ① 3-sentence weekly performance summary vs last week, ② best-performing product + reason, ③ declining products + improvement suggestions, ④ Buy Box share change analysis, ⑤ ad-optimization suggestions (from ROAS and search-term data), ⑥ seller-performance improvement suggestions, ⑦ next week's key action items (at most 3).
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① All 7 sections present in order
+② Section ① is exactly 3 sentences and compares with last week
+③ Section ⑦ has at most 3 action items, each concrete and actionable
+④ Every number used comes from the pasted data or is marked "missing"; no industry averages invented
+⑤ Every conclusion tagged [input data] or [model inference]
+</self_check>
 ```
 
 ---
@@ -825,6 +921,18 @@ After agentifying, the data you're asked to paste above should be read from here
 - Keyword search volume → Helium 10 / Jungle Scout export (Class B, manual export)
 - Competitor pages/reviews → mostly no open API (Class C, postpone agentifying)
 </data_source>
+<output_format>
+Deliver 5 labeled parts in order: ① Walmart title (50-75 characters, Title Case), ② Key Features (3-10 bullets, each ≤80 characters), ③ description (300-500 words, structured, HTML-ready), ④ list of product attributes to fill in, ⑤ Listing Quality Score estimate + optimization suggestions.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① Exactly 5 parts delivered in order
+② Title is 50-75 characters, Title Case, no promotional info/price/all-caps
+③ Key Features are 3-10 bullets, each ≤80 characters
+④ Description is 300-500 words with the recommended structure (use scenario → core features → specs → brand story)
+⑤ No feature/material/certification beyond the pasted Amazon listing; every figure tagged [input data] or [model inference]
+</self_check>
 ```
 
 ### Pitfall 2: Ignoring the Walmart User-Persona Difference
@@ -879,6 +987,17 @@ After agentifying, the data you're asked to paste above should be read from here
 - Keyword search volume → Helium 10 / Jungle Scout export (Class B, manual export)
 - Competitor pages/reviews → mostly no open API (Class C, postpone agentifying)
 </data_source>
+<output_format>
+Deliver the rewritten description only, keeping the structure of the original (title/paragraphs/bullets as applicable), with tone adapted to Walmart users. Add a short change-log at the end listing what was reworded and why.
+</output_format>
+
+<self_check>
+Before delivering, verify each item and report the result:
+① All core information from the Amazon description is retained (no key selling point dropped)
+② Tone adjustments follow the Walmart profile: value emphasized, brand story reduced, family-use scenarios highlighted
+③ No feature/material/certification beyond the pasted description
+④ The change-log lists at least 3 concrete changes with reasons
+</self_check>
 ```
 
 ### Pitfall 3: Ad Bids Too High (First-Price Auction)
