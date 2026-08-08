@@ -1,3 +1,7 @@
+# Fixed routing test suite — manual cases, version-controlled.
+# Anti-degeneration: at most 50% of cases may literally contain a trigger keyword.
+# Cases must be phrased the way a real seller would phrase them.
+
 - expect: ecom-listing
   query: 帮我写一个Amazon蓝牙耳机的标题和五点描述
 - expect: ecom-listing
@@ -142,3 +146,19 @@
   query: 新品刚上架前两周要注意什么
 - expect: ecom-inventory
   query: 旺季备货量一般是平时的多少倍
+- query: 这个决定，我到底自己拍板还是让工具算
+  expect: ecom-applicability
+- query: 上架完老半天曝光都上不去
+  expect: ecom-listing
+- query: 同样的话在国外要怎么讲才对味
+  expect: ecom-listing
+- query: 烧了半个月钱GMV没涨
+  expect: ecom-advertising
+- query: 同一款词，别人出0.5我出2还是抢不到
+  expect: ecom-advertising
+- query: 换季了旧款要不要清掉
+  expect: ecom-pricing
+- query: 和头部品牌比我的贵5块能不能坐住
+  expect: ecom-pricing
+- query: 小红书上要不要请素人试用
+  expect: ecom-social

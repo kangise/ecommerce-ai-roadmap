@@ -33,38 +33,29 @@ triggers:
   - price
   - pricing
   - profit
+  - 不值
   - 价格
-  - 价格多少
   - 价格战
+  - 价格涨了
   - 利润
   - 利润率
-  - 到底赚不赚钱
   - 单件利润
   - 同行
-  - 多少钱
   - 定价
-  - 定多少
+  - 怕买家不
+  - 怕买家不
+  - 怕是卖
   - 成本
   - 成本核算
   - 毛利
   - 涨价
+  - 涨点价
   - 盈亏平衡
+  - 算下来
+  - 赚不到
+  - 赚不赚
   - 跟卖
   - 降价
-  - 涨点价
-  - 怕买家不
-  - 卖多少
-  - 赚不赚
-  - 卖这个价
-  - 赚不到
-  - 算下来
-  - 不值
-  - 值不值得
-  - 怕是卖
-  - 涨一点都是
-  - 价格涨了
-  - 怕买家不
-  - 只要一提价
 uses_constraints:
 - amazon.cpc.value.actual_price_formula
 - amazon.roas.value.profitable_threshold

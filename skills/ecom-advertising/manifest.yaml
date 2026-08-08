@@ -40,28 +40,25 @@ triggers:
   - search term report
   - sponsored brand
   - sponsored product
+  - 一单没出
   - 不出单
   - 出价
   - 否定关键词
   - 否定词
+  - 好多钱
   - 广告
   - 广告优化
   - 搜索词报告
   - 曝光
+  - 没出单
   - 没单
+  - 没订单
   - 没转化
   - 点击
   - 烧钱
   - 竞价
   - 花费
   - 预算
-  - 没出单
-  - 一单没出
-  - 一个月花了
-  - 花了钱没
-  - 一直没人
-  - 好多钱
-  - 没订单
 uses_constraints:
 - amazon.account.monthly_spend.analysis_cadence
 - amazon.account.waste_ratio.sop_threshold

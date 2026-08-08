@@ -61,21 +61,29 @@ triggers:
   - title
   - translate listing
   - 上架
+  - 不够吸引
   - 主图
+  - 买家看完
   - 五点
   - 产品信息
   - 产品描述
   - 产品页
   - 产品页面
+  - 优化页面
   - 写一个
+  - 写得不够
   - 卖点
   - 卖点提炼
+  - 图片挺好
   - 多语言
   - 帮我写
+  - 想办法
   - 描述
+  - 描述没写
   - 改一下
   - 本地化
   - 标题
+  - 点击
   - 点击率
   - 详情
   - 详情页
@@ -83,18 +91,6 @@ triggers:
   - 转化率
   - 重写
   - 重写一下
-  - 买家看完
-  - 描述没写
-  - 没写到点
-  - 分别怎么
-  - 怎么讲
-  - 图片挺好
-  - 没人点
-  - 点击
-  - 写得不够
-  - 不够吸引
-  - 想办法
-  - 优化页面
 uses_constraints:
 - amazon.a_plus_content.module_text.max_length
 - amazon.brand_story.brand_card.max_length

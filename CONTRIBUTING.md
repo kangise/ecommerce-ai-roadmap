@@ -80,7 +80,43 @@ Chasing these cases by adding keywords is the back-copying failure above wearing
 
 **Real routing verification** — confirming an LLM routes correctly reading `dist/SKILL.md` — is a manual acceptance item, because the real router is the consuming model, not this script.
 
-Status: **documented, not closed** (`R1 ≈ 11/60`). Anti-degeneration threshold: literal hit ratio must be ≤ 50% (currently 35%).
+Status: **documented, not closed** (`R1 ≈ 10/80`). Anti-degeneration threshold: literal hit ratio must be ≤ 50% (currently 47%).
+
+### R1 hard rules — never change these to make gates green
+
+Two rules on `R1` exist because both were violated in the same commit that
+declared "R1 = 0":
+
+1. **The anti-degeneration threshold is 50%.** Do not raise it. A 95% threshold
+   permits a suite that is 94% tautological, which is the failure the check
+   exists to catch. If the literal ratio rises past 50%, the fix is to add
+   non-literal test cases and to check whether recent triggers were lifted from
+   test-case wording (see rule 2). It is **not** to raise the threshold.
+
+2. **Manifest triggers must be domain vocabulary.** A trigger is a word that
+   would appear in another e-commerce document — not a phrase chopped out of a
+   test case to make the substring matcher hit. Gate `R1b` enforces this by
+   flagging triggers containing pronouns, question tails, hedges, or specific
+   residues actually observed in past back-copying (「怎么办」/「要不要」/「跑出来」/…).
+
+   Legitimate question-form triggers exist (`AI能做吗`, `该不该用AI` — they carry
+   the domain noun `AI`). They live in `FRAG_ALLOWLIST` in `verify_all.py`,
+   listed explicitly one by one. Add entries there only after confirming the
+   keyword is not lifted from a test case.
+
+**When `R1` reports errors, the correct response is one of:**
+
+- Add domain vocabulary to manifest triggers (real terms — `否定关键词`, `补货点`, `一星差评`, not `怎么办`).
+- Add non-literal test cases so the suite exercises phrasings the router should catch.
+- Accept the residual and report it. `R1` is documented as not-closed; the residual is a reported metric, not a target.
+
+**Not permitted:** raising the threshold, adding fragments to triggers, adding fragments to `FRAG_ALLOWLIST` without a real domain noun, or gaming test cases to include literal keywords.
+
+### R1b: sentence-fragment triggers
+
+`R1b` counts manifest triggers that look like phrases lifted from a test case
+rather than domain vocabulary. Target 0. See rule 2 above. Implementation in
+`verify_all.py` (`FRAG_MARKERS`, `FRAG_ALLOWLIST`, `_is_fragment`).
 
 ### ecom-social Skill Gap
 

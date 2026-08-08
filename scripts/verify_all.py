@@ -20,6 +20,7 @@ CHECKS = [
     ("Skills",    "python3", "scripts/verify_skills.py"),
     ("Knowledge", "python3", "scripts/verify_all.py", "--k1"),
     ("Routing",   "python3", "scripts/verify_all.py", "--r1"),
+    ("R1b Frags", "python3", "scripts/verify_all.py", "--r1b"),
     ("Integration","python3", "scripts/verify_all.py", "--i1"),
     ("Docs",      "python3", "scripts/verify_all.py", "--d1"),
     ("D2",        "python3", "scripts/verify_all.py", "--d2"),
@@ -32,6 +33,54 @@ SCAFFOLD_SCRIPTS = [
     "scripts/new_prompt.py",
     "scripts/new_constraint.py",
 ]
+
+
+# --------------------------------------------------------------------------
+# R1b — sentence-fragment triggers
+#
+# Manifest `triggers.keywords` must be domain vocabulary — words another
+# e-commerce document would contain. What R1b guards against is the specific
+# failure mode this repo has hit twice:
+#
+#   User writes a natural test case:  「AI 给出的分析结论，我要不要让人再核一遍」
+#   Router misses it (no keyword).
+#   Instead of accepting the R1 miss, someone chops the case into fragments
+#   and pastes them into manifest triggers: 「再核一遍」, 「要不要让人」, 「人再核」.
+#   R1 goes green. R1's anti-degeneration flags the rising literal ratio;
+#   somebody raises R1's threshold to 95% to make that green too.
+#   Both moves happened in the same commit.
+#
+# R1b makes the fragmentation step machine-visible so it can't be quiet.
+#
+# The MARKERS list is what a genuine domain term would not contain — pronouns
+# (这个/我的), question tails (吗/怎么办/要不要), hedges (还能/到底/一直),
+# quantity questions (多少/多久), and specific residues actually observed in
+# past back-copying (跑出来/模型跑/坐住/清掉).
+#
+# ALLOWLIST is the escape hatch: a keyword may look like a fragment but be
+# legitimate because it carries an explicit domain noun (AI, Amazon, ACOS, …).
+# These are listed explicitly here rather than derived, so every exception is
+# visible in one place and reviewable.
+FRAG_MARKERS = [
+    "这个", "这款", "我的", "还能", "怎么", "要不要", "想把", "花了", "没人",
+    "一直", "挑哪些", "写到", "再核", "太晚", "值不值", "多少", "怎么办",
+    "是不是", "该不该", "应不应", "会不会", "到底", "只要一", "一点都",
+    "跑出来", "模型跑", "坐住", "拍板", "作数", "清掉", "老半天",
+    "直接用吗", "多久", "靠谱", "能信", "感觉", "不能",
+]
+FRAG_ALLOWLIST = {
+    # Legitimate question-form triggers that carry an explicit domain noun (AI, …).
+    # Add entries here only after confirming the keyword is not a phrase lifted
+    # out of a test case.
+    "AI能做吗", "该不该用AI", "AI该不该", "适不适合用AI",
+    "AI能帮我", "AI可以做", "不该用AI", "应不应该用",
+}
+
+
+def _is_fragment(trigger: str) -> bool:
+    if trigger in FRAG_ALLOWLIST:
+        return False
+    return any(m in trigger for m in FRAG_MARKERS)
 
 
 def _parse_total(stdout: str) -> int:
@@ -80,7 +129,31 @@ def main() -> int:
     ap.add_argument("--i1", action="store_true", help="Integration doc check")
     ap.add_argument("--d1", action="store_true", help="Documentation check")
     ap.add_argument("--d2", action="store_true", help="README number consistency")
+    ap.add_argument("--r1b", action="store_true", help="Manifest triggers — sentence-fragment ban")
     args = ap.parse_args()
+
+    if args.r1b:
+        import yaml as _yaml
+        problems = []
+        for mf_path in sorted((ROOT_V / "skills").glob("*/manifest.yaml")):
+            mf = _yaml.safe_load(mf_path.read_text(encoding="utf-8"))
+            sid = mf.get("name", mf_path.parent.name)
+            triggers = mf.get("triggers", {})
+            keywords = triggers.get("keywords", []) if isinstance(triggers, dict) else []
+            for kw in keywords:
+                if _is_fragment(kw):
+                    problems.append(f"{sid}: trigger 「{kw}」 looks like a lifted sentence fragment")
+        total = len(problems)
+        mark = "ok " if total == 0 else "FAIL"
+        print(f"  [{mark}] R1b         {total}")
+        for p in problems:
+            print(f"           {p}")
+        if total:
+            print()
+            print("  These triggers contain phrases like 「怎么办」/「要不要」/「跑出来」 —")
+            print("  patterns a real domain document would not contain. Delete them, or")
+            print("  add to FRAG_ALLOWLIST in verify_all.py with an explicit justification.")
+        return 0 if total == 0 else 1
 
     if args.d2:
         import json as _json, yaml as _yaml
@@ -323,8 +396,8 @@ def main() -> int:
             if any(k.lower() in query.lower() for k in kws if len(k) >= 3):
                 lit_count += 1
         lit_ratio = lit_count / len(cases) if cases else 0
-        if lit_ratio >= 0.95:
-            print(f"  [FAIL] R1          TEST DEGENERATION ({lit_count}/{len(cases)} = {lit_ratio:.0%} literal >= 95%)")
+        if lit_ratio > 0.50:
+            print(f"  [FAIL] R1          TEST DEGENERATION ({lit_count}/{len(cases)} = {lit_ratio:.0%} literal > 50%)")
             return 1
 
         errors = []
