@@ -1,3 +1,5 @@
+<!-- intentionally-empty: boundary content is in the source chapters; this file is a gateway -->
+
 # Boundary Conditions: ecom-research
 
 When this skill should NOT be used. Generated from chapter boundary sections.

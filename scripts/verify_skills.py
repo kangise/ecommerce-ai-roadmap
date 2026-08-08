@@ -50,7 +50,7 @@ def _run(gates, gate_ids, list_mode):
             print(f"{fail(gid):40s} {len(problems)}")
         total += len(problems)
     if total == 0:
-        print(f"\n  total 0")
+        print(f"\n  total {total}")
     return 0 if total == 0 else 1
 
 
@@ -160,10 +160,92 @@ def gate_s3() -> list[str]:
 # main
 # ---------------------------------------------------------------------------
 
+def gate_s4() -> list[str]:
+    """References must have substance (not empty shells or placeholder text).
+
+    1. references/*.md files must have >= 8 lines of actual content
+       (excluding headers and generation markers), unless marked
+       `<!-- intentionally-empty: reason -->`
+    2. SKILL.md must not reference non-existent or empty directories
+    3. playbook.md must contain prompt structure tags or an explicit reason
+    """
+    problems = []
+    INTENTIONALLY_EMPTY = re.compile(r"<!--\s*intentionally-empty:.*-->")
+    PROMPT_TAGS = re.compile(r"<(?:角色|任务|役割|role|task|タスク|データ規律|data_discipline|数据纪律)>")
+    PLACEHOLDER_PATTERNS = [
+        r"^_\w.*_$",               # _No domain-specific constraints._
+        r"^_No specific prompts\._$",
+        r"^_Applicability skill:.*_$",
+        r"^_TBD_$",
+    ]
+    PLACEHOLDER_RE = re.compile("|".join(PLACEHOLDER_PATTERNS))
+
+    for sid in REQUIRED_SKILLS:
+        skill_dir = SKILLS / sid
+        if not skill_dir.exists():
+            continue
+
+        # Check references/*.md
+        refs_dir = skill_dir / "references"
+        if refs_dir.exists():
+            for ref_file in sorted(refs_dir.rglob("*.md")):
+                text = ref_file.read_text(encoding="utf-8")
+                if INTENTIONALLY_EMPTY.search(text):
+                    continue
+                # Count substantive lines (not headers, not comments, not generation markers)
+                lines = [l for l in text.split("\n")
+                         if l.strip()
+                         and not l.strip().startswith("#")
+                         and not l.strip().startswith("<!--")
+                         and not PLACEHOLDER_RE.match(l.strip())]
+                # Also check: every non-header line that looks like a placeholder
+                for line in text.split("\n"):
+                    stripped = line.strip()
+                    if stripped and not stripped.startswith("#") and PLACEHOLDER_RE.match(stripped):
+                        problems.append(
+                            f"{ref_file.relative_to(ROOT)}: placeholder text '{stripped[:50]}'"
+                        )
+                if len(lines) < 8:
+                    problems.append(
+                        f"{ref_file.relative_to(ROOT)}: only {len(lines)} substantive lines (need >=8)"
+                    )
+
+        # Check SKILL.md doesn't reference empty/non-existent paths
+        smd = skill_dir / "SKILL.md"
+        if smd.exists():
+            text = smd.read_text(encoding="utf-8")
+            # Find references to internal paths
+            for m in re.finditer(r'`(assets/templates/|references/)([^`]+)`', text):
+                ref_path = skill_dir / m.group(0).strip("`")
+                if not ref_path.exists():
+                    problems.append(f"{sid}/SKILL.md: references '{m.group(0)}' which does not exist")
+                elif ref_path.is_dir() and not any(ref_path.iterdir()):
+                    problems.append(f"{sid}/SKILL.md: references empty directory '{m.group(0)}'")
+
+        # Check playbook.md has real prompt content
+        playbook = skill_dir / "references" / "playbook.md"
+        if playbook.exists():
+            text = playbook.read_text(encoding="utf-8")
+            # Must contain prompt tags OR explicit statement this skill doesn't need them
+            has_tags = bool(PROMPT_TAGS.search(text))
+            has_explicit = bool(re.search(
+                r"boundary.reasoning|boundary.condition|this skill (uses|performs|applies)|See boundaries",
+                text, re.I
+            ))
+            if not has_tags and not has_explicit:
+                problems.append(f"{playbook.relative_to(ROOT)}: no prompt content or explicit reasoning statement")
+            elif not has_tags and has_explicit:
+                # Explicitly stated as non-prompt skill — this is valid
+                pass
+
+    return problems
+
+
 GATES = [
     ("S1", "skill frontmatter", gate_s1),
     ("S2", "skill traceability", gate_s2),
     ("S3", "skill existence", gate_s3),
+    ("S4", "reference substance", gate_s4),
 ]
 
 

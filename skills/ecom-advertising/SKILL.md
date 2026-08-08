@@ -11,21 +11,21 @@ Diagnose and optimize Amazon PPC campaigns. Use for ACOS analysis, bid optimizat
 
 ## Method
 
-### 1. Load Domain Constraints
+### Step 1: Read Platform Constraints
 
 Read `references/constraints.md` for platform-specific rules (character limits, byte constraints, format requirements).
 
-### 2. Review Boundaries
+### Step 2: Review Boundaries
 
-Read `references/boundaries.md` to understand when this skill should NOT be applied.
+Read `references/boundaries.md` to know when this skill should NOT be used.
 
-### 3. Select Prompt Template
+### Step 3: Pick the Prompt
 
-Choose the appropriate template from `assets/templates/` or load the full playbook from `references/playbook.md`.
+Pick the appropriate prompt from `references/playbook.md` for your scenario.
 
-### 4. Apply and Verify
+### Step 4: Execute and Verify
 
-Execute the prompt. Use the `<自检>/<self_check>/<セルフチェック>` block in each prompt to verify output quality before delivering results.
+Execute the prompt with your data. Use the `<自检>/<self_check>/<セルフチェック>` self-check block in each prompt to verify output quality before delivering results.
 
 ## References
 
@@ -35,4 +35,8 @@ Execute the prompt. Use the `<自检>/<self_check>/<セルフチェック>` bloc
 
 ## Templates
 
-See `assets/templates/` for copy-ready prompt templates.
+Copy-ready prompt templates (in `assets/templates/`):
+
+- [Search Term Report Analysis](assets/templates/template-1-search-term-report-analysis.md)
+- [Negative Keyword Strategy](assets/templates/template-2-negative-keyword-strategy.md)
+- [Negative Keyword Audit](assets/templates/template-3-negative-keyword-audit.md)
