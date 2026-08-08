@@ -1,0 +1,114 @@
+name: ecom-advertising
+description: Diagnose and optimize Amazon PPC advertising campaigns — ACOS analysis,
+  bid optimization, keyword harvesting
+triggers:
+  keywords:
+  - ACOS
+  - ROAS
+  - PPC
+  - advertising
+  - campaign
+  - bid
+  - keyword
+  - 广告
+  - campaign
+  - sponsored product
+  - sponsored brand
+  - negative keyword
+  - search term report
+  - 广告优化
+  - 出价
+  - 竞价
+  - 否定关键词
+  - 搜索词报告
+  intent: analyze_campaign | optimize_bids | harvest_keywords | audit_advertising
+inputs:
+- name: campaign_data
+  type: object
+  required: true
+  description: 'Campaign performance data: spend, sales, impressions, clicks, ACOS,
+    ROAS'
+- name: search_term_report
+  type: array
+  required: false
+  description: Search term report for keyword analysis
+- name: target_acos
+  type: number
+  required: false
+  description: Target ACOS percentage
+- name: budget
+  type: number
+  required: false
+  description: Daily/monthly budget
+outputs:
+- name: campaign_analysis
+  type: object
+  description: 'Diagnosis report: ACOS breakdown, keyword recommendations, bid adjustments'
+uses_constraints:
+- amazon.account.monthly_spend.analysis_cadence
+- amazon.account.waste_ratio.sop_threshold
+- amazon.acos.value.break_even
+- amazon.acos.value.formula
+- amazon.acos.value.industry_benchmark
+- amazon.bid.value.acos_reaction
+- amazon.bid.value.ad_rank_formula
+- amazon.bid.value.dynamic_bids_allowed
+- amazon.bid.value.max_adjustment_per_week
+- amazon.bid.value.new_product_multiplier
+- amazon.bid.value.suggested_bid_start
+- amazon.campaign.budget.new_product_minimum
+- amazon.campaign.structure.max_count
+- amazon.cpc.value.actual_price_formula
+- amazon.cpc.value.formula
+- amazon.ctr.value.formula
+- amazon.ctr.value.healthy_min
+- amazon.cvr.value.formula
+- amazon.cvr.value.healthy_min
+- amazon.de.cpc.vs_us
+- amazon.dsp.budget.minimum
+- amazon.eu.vat.impact_on_acos
+- amazon.jp.cpc.vs_us
+- amazon.keyword.placement.one_ad_group_only
+- amazon.keyword.targeting.auto_manual_conflict
+- amazon.keyword.value.exact_harvest_threshold
+- amazon.keyword.value.min_clicks_statistics
+- amazon.keyword.value.phrase_harvest_threshold
+- amazon.keyword.value.waste_negation_threshold
+- amazon.listing.forbidden_unverified_claim
+- amazon.negative_keyword.exact.behavior
+- amazon.negative_keyword.phrase.behavior
+- amazon.negative_keyword.value.batch_limit
+- amazon.negative_keyword.value.observe_period
+- amazon.promo.bid.event_multiplier
+- amazon.promo.budget.event_multiplier
+- amazon.promo.budget.pre_event_multiplier
+- amazon.roas.value.formula
+- amazon.roas.value.profitable_threshold
+- amazon.sponsored_brand.ad.headline_max_length
+- amazon.sponsored_brand.budget.minimum
+- amazon.sponsored_brand.eligibility.brand_registry_required
+- amazon.sponsored_brand.video.ctr_multiple
+- amazon.sponsored_display.budget.minimum
+- amazon.sponsored_product.budget.minimum
+- amazon.tacos.value.formula
+- amazon.tacos.value.healthy_range
+uses_entities:
+- acos
+- ad_group
+- bid
+- budget
+- campaign
+- conversion
+- cpc
+- ctr
+- impression
+- keyword
+- negative_keyword
+- roas
+- search_term_report
+- sponsored_brand
+- sponsored_display
+- sponsored_product
+- tacos
+platforms:
+- amazon

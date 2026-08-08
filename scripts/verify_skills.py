@@ -241,11 +241,79 @@ def gate_s4() -> list[str]:
     return problems
 
 
+def gate_m8() -> list[str]:
+    """M8: dist/SKILL.md frontmatter + source manifest.yaml validity.
+
+    1. dist/SKILL.md must have frontmatter with name, description, capabilities, routing
+    2. All 7 skills must have source manifest.yaml with name, description, triggers, inputs, outputs
+    3. dist/SKILL.md routing must mention all 7 skill names (not stale)
+    """
+    problems = []
+
+    # 1. Check dist/SKILL.md
+    dist_skill = ROOT / "dist" / "SKILL.md"
+    if dist_skill.exists():
+        text = dist_skill.read_text(encoding="utf-8")
+        fm_match = re.match(r"^---\s*\n(.*?)\n---", text, re.S)
+        if not fm_match:
+            problems.append("dist/SKILL.md: missing frontmatter")
+        else:
+            fm_text = fm_match.group(1)
+            try:
+                fm = yaml.safe_load(fm_text)
+            except Exception:
+                problems.append("dist/SKILL.md: invalid YAML frontmatter")
+                fm = {}
+            if isinstance(fm, dict):
+                for key in ["name", "description", "capabilities", "routing"]:
+                    if key not in fm:
+                        problems.append(f"dist/SKILL.md: missing '{key}' in frontmatter")
+                    elif key == "capabilities" and (not isinstance(fm[key], list) or len(fm[key]) < 7):
+                        problems.append(f"dist/SKILL.md: capabilities < 7 ({len(fm.get(key, []))} found)")
+                    elif key == "routing" and (not isinstance(fm[key], list) or len(fm[key]) < 7):
+                        problems.append(f"dist/SKILL.md: routing < 7 ({len(fm.get(key, []))} found)")
+                # Check routing mentions all 7 skills
+                routing_text = yaml.dump(fm.get("routing", []), allow_unicode=True)
+                for sid in REQUIRED_SKILLS:
+                    if f"skill: {sid}" not in routing_text:
+                        problems.append(f"dist/SKILL.md: routing missing skill '{sid}'")
+    else:
+        problems.append("dist/SKILL.md: missing (run build_dist.py)")
+
+    # 2. Check source manifest.yaml for all 7 skills
+    for sid in REQUIRED_SKILLS:
+        mf = SKILLS / sid / "manifest.yaml"
+        if not mf.exists():
+            problems.append(f"skills/{sid}/manifest.yaml: missing")
+            continue
+        try:
+            mf_data = yaml.safe_load(mf.read_text(encoding="utf-8"))
+        except Exception:
+            problems.append(f"skills/{sid}/manifest.yaml: invalid YAML")
+            continue
+        if not isinstance(mf_data, dict):
+            problems.append(f"skills/{sid}/manifest.yaml: must be a YAML mapping")
+            continue
+        for key in ["name", "description", "triggers", "inputs", "outputs"]:
+            if key not in mf_data:
+                problems.append(f"skills/{sid}/manifest.yaml: missing '{key}'")
+        triggers = mf_data.get("triggers", {})
+        if isinstance(triggers, dict):
+            if "keywords" not in triggers or not triggers["keywords"]:
+                problems.append(f"skills/{sid}/manifest.yaml: triggers.keywords empty")
+        inputs = mf_data.get("inputs", [])
+        if isinstance(inputs, list) and not inputs:
+            problems.append(f"skills/{sid}/manifest.yaml: inputs empty")
+
+    return problems
+
+
 GATES = [
     ("S1", "skill frontmatter", gate_s1),
     ("S2", "skill traceability", gate_s2),
     ("S3", "skill existence", gate_s3),
     ("S4", "reference substance", gate_s4),
+    ("M8", "manifest + SKILL.md", gate_m8),
 ]
 
 

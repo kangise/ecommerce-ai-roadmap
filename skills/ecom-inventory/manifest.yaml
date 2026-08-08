@@ -1,0 +1,102 @@
+name: ecom-inventory
+description: Forecast demand, calculate safety stock, and manage inventory replenishment
+  for FBA and multi-warehouse operations
+triggers:
+  keywords:
+  - inventory
+  - stock
+  - FBA
+  - replenishment
+  - safety stock
+  - forecast
+  - warehouse
+  - 库存
+  - 补货
+  - 安全库存
+  - 预测
+  - FBA
+  - 仓库
+  - lead time
+  - reorder point
+  - IPI
+  intent: forecast_demand | calculate_safety_stock | plan_replenishment | analyze_inventory_health
+inputs:
+- name: sales_history
+  type: array
+  required: true
+  description: Historical sales data with dates and quantities
+- name: lead_time_days
+  type: number
+  required: false
+  description: Supplier lead time in days
+- name: current_stock
+  type: number
+  required: true
+  description: Current inventory level
+- name: service_level
+  type: number
+  required: false
+  description: Target service level (default 0.95 for 95%)
+outputs:
+- name: inventory_plan
+  type: object
+  description: 'Replenishment recommendation: reorder point, safety stock, order quantity,
+    timing'
+uses_constraints:
+- amazon.fba.inventory.aged_surcharge_high
+- amazon.fba.inventory.aged_surcharge_start
+- amazon.fba.inventory.excess_inventory_threshold
+- amazon.fba.inventory.in_stock_rate_target
+- amazon.fba.inventory.inbound_processing_time
+- amazon.fba.inventory.ipi_score_min
+- amazon.fba.inventory.sell_through_rate_target
+- amazon.fba.inventory.storage_fee_standard_size
+- amazon.fba.inventory.storage_restriction_on_low_ipi
+- amazon.fba.unique_barcode
+- amazon.safety_complaint.response_deadline
+- forecast.backtest_target
+- forecast.changepoint_prior_range
+- forecast.interval_usage
+- forecast.metric_mape_baseline
+- forecast.reorder_urgency_rule
+- forecast.stockout_data_handling
+- inventory.aged_inventory_action_timeline
+- inventory.days_of_stock_formula
+- inventory.eoq_formula
+- inventory.holding_capital_cost
+- inventory.inventory_fund_cap
+- inventory.lead_time_safety_rule
+- inventory.lead_time_total_range
+- inventory.new_product_first_batch
+- inventory.new_product_second_batch
+- inventory.promo_lead_time
+- inventory.promo_safety_buffer
+- inventory.promo_sales_multiplier
+- inventory.reorder_point_formula
+- inventory.replenish_decision_tree
+- inventory.safety_stock_formula
+- inventory.service_level_z_factors
+- inventory.stagnation_cost_formula
+- inventory.stockout_cost_formula
+- inventory.stockout_warning_threshold
+- inventory.turnover_formula
+uses_entities:
+- aged_inventory
+- demand_forecast
+- excess_inventory
+- fba_inventory
+- fbm_inventory
+- in_transit_inventory
+- inventory
+- inventory_turnover
+- lead_time
+- purchase_order
+- reorder_point
+- safety_stock
+- shipment
+- stock_level
+- stranded_inventory
+- supplier
+- warehouse
+platforms:
+- amazon

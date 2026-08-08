@@ -1,0 +1,55 @@
+name: ecom-research
+description: Research products, analyze markets, evaluate competitors, and identify
+  product opportunities
+triggers:
+  keywords:
+  - product research
+  - market analysis
+  - competitor
+  - opportunity
+  - sourcing
+  - 选品
+  - 市场分析
+  - 竞品
+  - 调研
+  - 机会
+  - 供应商
+  intent: research_product | analyze_market | evaluate_competitor | find_opportunity
+inputs:
+- name: category
+  type: string
+  required: true
+  description: Product category to research
+- name: market
+  type: string
+  required: false
+  description: Target market (US, EU, etc.)
+- name: criteria
+  type: object
+  required: false
+  description: 'Selection criteria: price range, margin floor, demand threshold'
+outputs:
+- name: research_report
+  type: object
+  description: Market overview, competitor landscape, product opportunities, risk
+    assessment
+uses_constraints:
+- forecast.backtest_target
+- forecast.changepoint_prior_range
+- forecast.interval_usage
+- forecast.metric_mape_baseline
+- forecast.stockout_data_handling
+- inventory.promo_sales_multiplier
+uses_entities:
+- product_category_approval
+- product_feed
+- product_image
+- product_page
+- product_video
+- restricted_product
+- sponsored_product
+- supplier
+- tiktok_product
+platforms:
+- amazon
+- shopify

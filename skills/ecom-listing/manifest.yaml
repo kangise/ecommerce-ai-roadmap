@@ -1,0 +1,105 @@
+name: ecom-listing
+description: Generate and optimize e-commerce product listings across Amazon, Shopify,
+  and TikTok Shop
+triggers:
+  keywords:
+  - listing
+  - product page
+  - title
+  - bullet
+  - description
+  - A+ Content
+  - Search Terms
+  - 上架
+  - 标题
+  - 五点
+  - optimize listing
+  - create listing
+  - localize
+  - translate listing
+  intent: create_listing | optimize_listing | localize_listing | audit_listing
+inputs:
+- name: product_info
+  type: object
+  required: true
+  description: Product specifications and features
+- name: keywords
+  type: array
+  required: false
+  description: Target keywords with search volume
+- name: platform
+  type: enum
+  values:
+  - amazon
+  - shopify
+  - tiktok_shop
+  default: amazon
+  description: Target marketplace
+- name: market
+  type: string
+  required: false
+  description: Target market (US, DE, JP, etc.)
+- name: competitor_listings
+  type: array
+  required: false
+  description: Competitor ASINs or URLs
+outputs:
+- name: listing
+  type: object
+  description: 'Complete listing: title, bullets, description, search terms'
+uses_constraints:
+- amazon.a_plus_content.module_text.max_length
+- amazon.brand_story.brand_card.max_length
+- amazon.bullet_point.count
+- amazon.bullet_point.format
+- amazon.bullet_point.max_length
+- amazon.bullet_point.no_html
+- amazon.bullet_point.recommended_max_length
+- amazon.bullet_point.recommended_min_length
+- amazon.bullet_point.top2_priority
+- amazon.de.listing.required_certifications
+- amazon.jp.listing.required_certifications
+- amazon.listing.ab_test.min_duration_weeks
+- amazon.listing.description.max_length
+- amazon.listing.description.recommended_max_length
+- amazon.listing.forbidden_unverified_claim
+- amazon.listing.image.count
+- amazon.listing.search_terms.byte_encoding
+- amazon.listing.search_terms.max_bytes
+- amazon.listing.search_terms.no_asin
+- amazon.listing.search_terms.no_brand_name
+- amazon.listing.search_terms.no_duplicate
+- amazon.listing.search_terms.no_subjective_words
+- amazon.listing.search_terms.separator
+- amazon.listing.title.format
+- amazon.listing.title.key_content_first_80
+- amazon.listing.title.max_length
+- amazon.listing.title.no_all_caps
+- amazon.listing.title.no_promo_words
+- amazon.listing.title.recommended_max_length
+- amazon.product_image.main.no_text_overlay
+- amazon.product_image.secondary_subtitle.max_words
+- amazon.product_image.secondary_text.max_words
+- amazon.product_image.secondary_title.max_words
+- amazon.product_image.text_font.min_size
+- amazon.search_term.classification.observe_word
+- amazon.search_term.classification.potential_word
+- amazon.search_term.classification.star_word
+- amazon.search_term.classification.waste_word
+- amazon.us.listing.required_certifications
+uses_entities:
+- a_plus_content
+- asin
+- asin_target
+- brand_story
+- bullet_point
+- keyword
+- listing
+- negative_keyword
+- product_image
+- search_term
+- search_term_report
+platforms:
+- amazon
+- shopify
+- tiktok_shop

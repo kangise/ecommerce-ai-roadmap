@@ -1,0 +1,36 @@
+name: ecom-applicability
+description: Determine whether AI is appropriate for a specific e-commerce task —
+  answers 'should I use AI for X?' with boundary-aware reasoning
+triggers:
+  keywords:
+  - should I use AI
+  - can AI
+  - is AI good for
+  - AI readiness
+  - when to use AI
+  - 该不该用AI
+  - AI能做吗
+  - 适不适合用AI
+  - AI评估
+  intent: assess_applicability | check_readiness | evaluate_ai_fit
+inputs:
+- name: task
+  type: string
+  required: true
+  description: The e-commerce task being considered for AI automation
+- name: data_availability
+  type: string
+  required: false
+  description: What data is available (volume, quality, accessibility)
+- name: risk_tolerance
+  type: string
+  required: false
+  description: Acceptable risk level for this task
+outputs:
+- name: applicability_assessment
+  type: object
+  description: Decision (yes/no/maybe), prerequisites, boundary conditions that apply,
+    next steps
+uses_constraints: []
+uses_entities: []
+platforms: []

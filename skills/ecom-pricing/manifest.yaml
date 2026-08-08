@@ -1,0 +1,45 @@
+name: ecom-pricing
+description: Set competitive prices, calculate profitability, and model pricing strategy
+  across marketplaces
+triggers:
+  keywords:
+  - pricing
+  - price
+  - profit
+  - margin
+  - breakeven
+  - Buy Box
+  - cost
+  - 定价
+  - 价格
+  - 利润
+  - 成本
+  - 盈亏平衡
+  - 利润率
+  intent: set_price | calculate_profit | competitive_analysis | breakeven_analysis
+inputs:
+- name: cost_data
+  type: object
+  required: true
+  description: Unit cost, shipping, fees, overhead per product
+- name: competitor_prices
+  type: array
+  required: false
+  description: Competitor prices for the same or similar products
+- name: target_margin
+  type: number
+  required: false
+  description: Target profit margin percentage
+outputs:
+- name: pricing_analysis
+  type: object
+  description: Recommended price, profit breakdown, competitive position, breakeven
+    point
+uses_constraints:
+- amazon.cpc.value.actual_price_formula
+- amazon.roas.value.profitable_threshold
+uses_entities: []
+platforms:
+- amazon
+- shopify
+- tiktok_shop

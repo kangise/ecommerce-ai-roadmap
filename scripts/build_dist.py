@@ -77,36 +77,98 @@ def main():
         if src_path.exists():
             shutil.copy2(src_path, DIST / "references" / ref_name)
 
-    # 5. SKILL.md — root entry point routing to domain skills
-    root_skill = """---
-name: ecommerce-ai-roadmap
-description: OPC e-commerce AI infrastructure — 67-chapter knowledge base, domain ontology, and installable skills for one-person company operations.
+    # 5. SKILL.md — agent entry point with routing generated from manifests
+    # Load manifests to build routing table
+    capabilities = []
+    routing_rules = []
+    for skill_dir in sorted(SKILLS.iterdir()):
+        if not skill_dir.is_dir():
+            continue
+        mf_path = skill_dir / "manifest.yaml"
+        if not mf_path.exists():
+            continue
+        manifest = yaml.safe_load(mf_path.read_text(encoding="utf-8"))
+        sid = manifest.get("name", skill_dir.name)
+        desc = manifest.get("description", "")
+        capabilities.append(f"  - {sid}: {desc}")
+        # Build routing rule from triggers
+        triggers = manifest.get("triggers", {})
+        keywords = triggers.get("keywords", [])
+        intent = triggers.get("intent", "")
+        if keywords:
+            keyword_pattern = "|".join(keywords[:15])  # Top 15 keywords for compactness
+            routing_rules.append(f"  - trigger: \"{keyword_pattern}\"\n    skill: {sid}")
+        if intent:
+            routing_rules.append(f"  - intent: {intent}\n    skill: {sid}")
+
+    capabilities_yaml = "\n".join(capabilities)
+    routing_yaml = "\n".join(routing_rules)
+    prompt_count = len(prompts)  # Total across all languages
+
+    root_skill = f"""---
+name: opc-ecommerce-infrastructure
+description: >
+  OPC e-commerce operations infrastructure. Provides a 67-chapter knowledge base,
+  80-entity domain ontology, 184 platform constraints, 7 domain skills,
+  and {prompt_count} production prompts (trilingual zh/en/ja).
+  Load this package to give any agent native cross-border e-commerce operational capability.
+capabilities:
+{capabilities_yaml}
+routing:
+{routing_yaml}
 ---
 
-# E-Commerce AI Infrastructure
+# OPC E-Commerce Operations Agent
 
-## Skills
+You are an e-commerce operations agent powered by the OPC (One Person Company) infrastructure. You have access to:
 
-| Skill | Domain |
-|-------|--------|
-| `ecom-listing` | Listing optimization (Amazon, Shopify, TikTok Shop) |
-| `ecom-advertising` | PPC campaign diagnosis and optimization |
-| `ecom-inventory` | Inventory forecasting and replenishment |
-| `ecom-compliance` | Compliance checks, HS codes, IP risk |
-| `ecom-pricing` | Competitive pricing and profitability |
-| `ecom-research` | Product research and market analysis |
-| `ecom-applicability` | AI applicability assessment (should I use AI?) |
+## Your Capabilities
 
-## Data
+1. **Domain Skills** — 7 callable skills covering the full e-commerce operating chain:
+   - `ecom-listing` — Listing creation and optimization (Amazon, Shopify, TikTok Shop)
+   - `ecom-advertising` — PPC campaign diagnosis and optimization
+   - `ecom-inventory` — Demand forecasting and replenishment planning
+   - `ecom-compliance` — Compliance checks, HS codes, IP risk screening
+   - `ecom-pricing` — Competitive pricing and profitability analysis
+   - `ecom-research` — Product research and market opportunity discovery
+   - `ecom-applicability` — AI readiness assessment (should I use AI for X?)
 
-- `ontology.json` — Machine-readable domain model (80 entities, 184 constraints)
-- `prompts.json` — All {len(prompts)} prompts, trilingual (zh/en/ja)
+2. **Domain Ontology** — Machine-readable domain model (`ontology.json`):
+   - 80 entities with attributes (listing, campaign, inventory, compliance, etc.)
+   - 78 relationships between entities
+   - 184 platform-specific constraints (Amazon, Shopify, TikTok Shop, etc.)
+   - 8 formal business processes (new product launch, replenishment, compliance review, etc.)
+
+3. **Prompt Library** — `prompts.json` contains {prompt_count} production prompts across 3 languages.
+   Each prompt includes self-check blocks with constraint references.
+
+4. **Knowledge Index** — `knowledge/index.json` covers all 67 source chapters with entity and constraint cross-references.
+
+## How to Route Requests
+
+Use the frontmatter `routing:` rules to determine which skill handles a user request.
+Match triggers (keywords) against the user's query. When there is ambiguity, ask the user to clarify.
+
+## How to Use a Skill
+
+When a skill is selected:
+1. Read `skills/<skill>/manifest.yaml` for input/output schema
+2. Read `skills/<skill>/references/constraints.md` for platform rules
+3. Select a prompt template from `skills/<skill>/references/playbook.md`
+4. Read `skills/<skill>/references/boundaries.md` to check when NOT to use this skill
+5. Execute the prompt, verify with the self-check block, and deliver results
+
+## Data Files
+
+- `ontology.json` — Domain model (entities, relations, constraints, processes)
+- `prompts.json` — {prompt_count} prompts, trilingual with constraint references
+- `knowledge/index.json` — Chapter index with entity and constraint cross-references
 - `references/glossary.md` — Trilingual term definitions
 
-## Usage
+## Integration
 
-Load this directory as a skill library. Each domain skill in `skills/` is self-contained with its own constraints, playbook, and boundary conditions.
-""".replace("{len(prompts)}", str(len(prompts)))
+See `integration/` for framework-specific setup guides.
+"""
     (DIST / "SKILL.md").write_text(root_skill)
 
     print(f"dist/ built: {len(prompts)} prompts, {len(ontology)} ontology files, 7 skills")
