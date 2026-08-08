@@ -538,6 +538,149 @@ def gate_m5() -> list[str]:
     return sorted(f for f, n in inbound.items() if n == 0 and f != "SUMMARY.md")
 
 
+def _prompt_marker_tags(tree: str) -> list[str]:
+    return PROMPT_TAGS_BY_TREE.get(tree, PROMPT_TAGS_BY_TREE["src"])
+
+
+def _is_prompt_block(body: str, tree: str) -> bool:
+    """A code block is a production prompt only if it has >=2 different structure tags."""
+    markers = _prompt_marker_tags(tree)
+    found = sum(1 for tag in markers if f"<{tag}>" in body)
+    return found >= 2
+
+
+def gate_n3() -> list[str]:
+    """Prompt blocks that are missing a self-check section."""
+    self_check_tags = {
+        "src": "<自检>",
+        "i18n/en/src": "<self_check>",
+        "i18n/ja/src": "<セルフチェック>",
+    }
+    EXCLUDE = {"f2-prompt-engineering.md"}
+
+    problems = []
+    for tree in TREES:
+        check_tag = self_check_tags.get(tree, "<自检>")
+        for md in sorted((ROOT / tree).rglob("*.md")):
+            if md.name in EXCLUDE:
+                continue
+            text = md.read_text(encoding="utf-8")
+            for m in re.finditer(r"```[a-z]*\n(.*?)```", text, re.S):
+                body = m.group(1)
+                if not _is_prompt_block(body, tree):
+                    continue
+                ln = text[: m.start()].count("\n") + 1
+                if check_tag not in body:
+                    rel = f"{tree}/{md.relative_to(ROOT / tree)}"
+                    problems.append(f"{rel}:{ln} missing self-check block")
+    return problems
+
+
+def gate_n4() -> list[str]:
+    """Prompt blocks that are missing an output-format section."""
+    output_format_tags = {
+        "src": "<输出格式>",
+        "i18n/en/src": "<output_format>",
+        "i18n/ja/src": "<出力形式>",
+    }
+    EXCLUDE = {"f2-prompt-engineering.md"}
+
+    problems = []
+    for tree in TREES:
+        out_tag = output_format_tags.get(tree, "<输出格式>")
+        for md in sorted((ROOT / tree).rglob("*.md")):
+            if md.name in EXCLUDE:
+                continue
+            text = md.read_text(encoding="utf-8")
+            for m in re.finditer(r"```[a-z]*\n(.*?)```", text, re.S):
+                body = m.group(1)
+                if not _is_prompt_block(body, tree):
+                    continue
+                ln = text[: m.start()].count("\n") + 1
+                if out_tag not in body:
+                    rel = f"{tree}/{md.relative_to(ROOT / tree)}"
+                    problems.append(f"{rel}:{ln} missing output-format block")
+    return problems
+
+
+def _extract_self_check_text(body: str, tree: str) -> str | None:
+    """Extract the normalized self-check text from a prompt block."""
+    tag_map = {"src": "自检", "i18n/en/src": "self_check", "i18n/ja/src": "セルフチェック"}
+    tag = tag_map.get(tree, "自检")
+    m = re.search(rf"<{tag}>\s*\n(.*?)</{tag}>", body, re.S)
+    if not m:
+        return None
+    text = m.group(1).strip()
+    text = re.sub(r"\s+", " ", text)
+    return text
+
+
+def gate_n5() -> list[str]:
+    """Self-check blocks must not be identical across different chapters."""
+    EXCLUDE = {"f2-prompt-engineering.md"}
+    checks: dict[str, list[tuple[str, int]]] = collections.defaultdict(list)
+
+    for tree in TREES:
+        for md in sorted((ROOT / tree).rglob("*.md")):
+            if md.name in EXCLUDE:
+                continue
+            rel = f"{tree}/{md.relative_to(ROOT / tree)}"
+            text = md.read_text(encoding="utf-8")
+            for m in re.finditer(r"```[a-z]*\n(.*?)```", text, re.S):
+                body = m.group(1)
+                ln = text[: m.start()].count("\n") + 1
+                sc = _extract_self_check_text(body, tree)
+                if sc and len(sc) > 10:
+                    checks[sc].append((rel, ln))
+
+    problems = []
+    for text, locations in checks.items():
+        filenames = {loc[0].split("/")[-1] for loc in locations}
+        if len(filenames) > 1:
+            for rel, ln in locations:
+                problems.append(f"{rel}:{ln} self-check identical to other chapters")
+    return problems
+
+
+def gate_n6() -> list[str]:
+    """Trilingual prompt structure block count must be equal per file."""
+    def count_blocks(md: Path, tree: str) -> int:
+        if not md.exists():
+            return -1
+        tags = PROMPT_TAGS_BY_TREE[tree]
+        text = md.read_text(encoding="utf-8")
+        total = 0
+        for m in re.finditer(r"```[a-z]*\n(.*?)```", text, re.S):
+            body = m.group(1)
+            for tag in tags:
+                stripped = re.sub(rf"<{tag}>[^\n]*?</{tag}>", "", body)
+                total += len(re.findall(rf"^\s*<{tag}>", stripped, re.M))
+        return total
+
+    problems = []
+    prompted = set()
+    for tree in TREES:
+        for md in (ROOT / tree).rglob("*.md"):
+            rel = str(md.relative_to(ROOT / tree))
+            if rel == "SUMMARY.md":
+                continue
+            prompted.add(rel)
+
+    for rel in sorted(prompted):
+        counts = {}
+        for tree in TREES:
+            md = ROOT / tree / rel
+            if md.exists():
+                c = count_blocks(md, tree)
+                if c > 0:
+                    counts[tree] = c
+        if len(counts) >= 2 and len(set(counts.values())) > 1:
+            detail = ", ".join(f"{t}={c}" for t, c in counts.items())
+            problems.append(f"{rel}: {detail}")
+
+    return problems
+
+
 # Structure checks all come out of one pass over the trees; gates are independent.
 STRUCTURE = [
     ("anchors", "in-page anchors"),
@@ -554,6 +697,10 @@ GATES = [
     ("M6", "section numbering", gate_m6),
     ("N1", "prompt tags balanced", gate_n1),
     ("N2", "deps declared", gate_n2),
+    ("N3", "prompt self-check", gate_n3),
+    ("N4", "prompt output format", gate_n4),
+    ("N5", "self-check uniqueness", gate_n5),
+    ("N6", "trilingual prompt parity", gate_n6),
 ]
 
 
