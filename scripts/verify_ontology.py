@@ -15,6 +15,8 @@ Gates:
   O5   <!-- ref: --> markers match constraints.yaml values (Phase B)
 """
 
+from __future__ import annotations
+
 import argparse
 import collections
 import re
@@ -154,8 +156,7 @@ def _run(gates: list, gate_ids: list[str] | None, list_mode: bool) -> int:
         else:
             print(f"{fail(gid):40s} {len(problems)}")
         total += len(problems)
-    if total == 0:
-        print(f"\n  total 0")
+    print(f"\n  total {total}")
     return 0 if total == 0 else 1
 
 

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from __future__ import annotations
 """Apply a hand-reindented Python block back into all three language trees.
 
 Why this exists: every fenced Python block in this book once had its leading

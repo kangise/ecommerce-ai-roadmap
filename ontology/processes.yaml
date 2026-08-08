@@ -1,14 +1,120 @@
 # E-Commerce Business Processes
-# Formal workflows extracted from the chapter sequence.
-
+# Formal workflows extracted from the chapter sequence a1→a14.
+# Each step consumes entities produced by prior steps and produces entities for later steps.
+#
 # Schema:
 # - id: process_id
 #   label: {zh: ..., en: ..., ja: ...}
 #   steps:
 #     - chapter: path/to/chapter.md
+#       consumes: [entity_id, ...] | null
 #       produces: [entity_id, ...]
-#     - chapter: path/to/chapter.md
-#       consumes: [entity_id, ...]
-#       produces: [entity_id, ...]
+#       source: path/to/chapter.md#anchor
 
-[]
+- id: new_product_launch
+  label: {zh: 新品上架流程, en: New Product Launch, ja: 新商品の出品フロー}
+  steps:
+    - chapter: src/a-operators/a1-product-research.md
+      consumes: null
+      produces: [product_candidate]
+      source: src/a-operators/a1-product-research.md
+    - chapter: src/a-operators/a2-listing-optimization.md
+      consumes: [product_candidate]
+      produces: [listing, bullet_point, search_term, asin, product_image]
+      source: src/a-operators/a2-listing-optimization.md
+    - chapter: src/a-operators/a3-advertising.md
+      consumes: [listing, asin]
+      produces: [campaign, ad_group, keyword, bid, budget]
+      source: src/a-operators/a3-advertising.md
+    - chapter: src/a-operators/a8-pricing-strategy.md
+      consumes: [listing, campaign]
+      produces: [price, profit_estimate]
+      source: src/a-operators/a8-pricing-strategy.md
+
+- id: customer_service_loop
+  label: {zh: 客服循环, en: Customer Service Loop, ja: カスタマーサービスループ}
+  steps:
+    - chapter: src/a-operators/a4-customer-service.md
+      consumes: [order, review]
+      produces: [customer_response, dispute_resolution]
+      source: src/a-operators/a4-customer-service.md
+    - chapter: src/a-operators/a2-listing-optimization.md
+      consumes: [review, customer_response]
+      produces: [listing_update]
+      source: src/a-operators/a2-listing-optimization.md
+
+- id: inventory_replenishment
+  label: {zh: 库存补货流程, en: Inventory Replenishment, ja: 在庫補充フロー}
+  steps:
+    - chapter: src/a-operators/a5-inventory.md
+      consumes: [listing, order]
+      produces: [stock_level, safety_stock, reorder_point, restock_recommendation]
+      source: src/a-operators/a5-inventory.md
+    - chapter: src/a-operators/a5-inventory.md
+      consumes: [restock_recommendation]
+      produces: [purchase_order]
+      source: src/a-operators/a5-inventory.md
+    - chapter: src/a-operators/a5-inventory.md
+      consumes: [purchase_order]
+      produces: [shipment, inventory_update]
+      source: src/a-operators/a5-inventory.md
+
+- id: compliance_review
+  label: {zh: 合规审核流程, en: Compliance Review, ja: コンプライアンス審査フロー}
+  steps:
+    - chapter: src/a-operators/a6-compliance.md
+      consumes: [listing, product]
+      produces: [compliance_check, category_approval_status]
+      source: src/a-operators/a6-compliance.md
+    - chapter: src/a-operators/a12-ip-protection.md
+      consumes: [listing, brand]
+      produces: [ip_risk_assessment, trademark_status]
+      source: src/a-operators/a12-ip-protection.md
+
+- id: content_creation
+  label: {zh: 内容创作流程, en: Content Creation, ja: コンテンツ制作フロー}
+  steps:
+    - chapter: src/a-operators/a7-visual-content.md
+      consumes: [listing, product]
+      produces: [product_image, a_plus_content, brand_story]
+      source: src/a-operators/a7-visual-content.md
+    - chapter: src/a-operators/a9-seo-geo.md
+      consumes: [listing, keyword]
+      produces: [seo_optimized_listing]
+      source: src/a-operators/a9-seo-geo.md
+    - chapter: src/e-social-media/e1-instagram-facebook-ai-guide.md
+      consumes: [listing, product_image]
+      produces: [social_post, ad_creative]
+      source: src/e-social-media/e1-instagram-facebook-ai-guide.md
+
+- id: financial_analysis
+  label: {zh: 财务分析流程, en: Financial Analysis, ja: 財務分析フロー}
+  steps:
+    - chapter: src/a-operators/a11-financial-analysis.md
+      consumes: [listing, campaign, order]
+      produces: [profit_report, cost_analysis]
+      source: src/a-operators/a11-financial-analysis.md
+    - chapter: src/a-operators/a8-pricing-strategy.md
+      consumes: [cost_analysis, profit_report]
+      produces: [pricing_adjustment]
+      source: src/a-operators/a8-pricing-strategy.md
+
+- id: brand_building
+  label: {zh: 品牌建设流程, en: Brand Building, ja: ブランド構築フロー}
+  steps:
+    - chapter: src/a-operators/a10-brand-building.md
+      consumes: [listing]
+      produces: [brand_registry, brand_asset]
+      source: src/a-operators/a10-brand-building.md
+    - chapter: src/a-operators/a13-ai-growth-hack.md
+      consumes: [brand_asset, listing]
+      produces: [growth_strategy, market_expansion_plan]
+      source: src/a-operators/a13-ai-growth-hack.md
+
+- id: agent_automation
+  label: {zh: Agent 自动化流程, en: Agent Automation, ja: エージェント自動化フロー}
+  steps:
+    - chapter: src/a-operators/a14-operations-agent.md
+      consumes: [listing, campaign, inventory, order]
+      produces: [automated_workflow, agent_configuration]
+      source: src/a-operators/a14-operations-agent.md

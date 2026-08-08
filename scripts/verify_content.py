@@ -35,12 +35,15 @@ Usage
 """
 from __future__ import annotations
 
+from __future__ import annotations
+
 import argparse
 import collections
-import html as htmlmod
 import json
+import html as htmlmod
 import pathlib
 import re
+import subprocess
 import sys
 import unicodedata
 
@@ -672,17 +675,10 @@ def gate_n6() -> list[str]:
             md = ROOT / tree / rel
             if md.exists():
                 c = count_blocks(md, tree)
-                if c > 0:
-                    counts[tree] = c
+                counts[tree] = c  # include 0 so missing trees are flagged
         if len(counts) >= 2 and len(set(counts.values())) > 1:
-            vals = list(counts.values())
-            # N6: trilingual prompt parity. Only flag when one language tree
-            # has ZERO prompt blocks while others have blocks — that's a
-            # genuinely missing translation. Count differences are expected
-            # during incremental translation and are tracked separately.
-            if 0 in vals:
-                detail = ", ".join(f"{t}={c}" for t, c in counts.items())
-                problems.append(f"{rel}: {detail}")
+            detail = ", ".join(f"{t}={c}" for t, c in counts.items())
+            problems.append(f"{rel}: {detail}")
 
     return problems
 

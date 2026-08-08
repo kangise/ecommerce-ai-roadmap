@@ -2,20 +2,23 @@
 """Unified gate suite — run all checks across all scripts.
 
 Usage:
-  python3 scripts/verify_all.py
+  python3 scripts/verify_all.py            # all gates
+  python3 scripts/verify_all.py --sustain  # E1/E2 only
 """
 
 import subprocess
 import sys
+import re
 from pathlib import Path
 
+ROOT_V = Path(__file__).resolve().parent.parent
+
+# Each check runs a full sub-script (no --only fragments).
 CHECKS = [
-    ("Structure",    "python3", "scripts/verify_content.py", "--only", "anchors,xanchors,links,python,parity"),
-    ("Content",      "python3", "scripts/verify_content.py", "--only", "M1,M2,M4,M5,M6,M7,N1,N2,N3,N4,N5,N6"),
-    ("Ontology",     "python3", "scripts/verify_ontology.py"),
-    ("Skills",       "python3", "scripts/verify_skills.py"),
-    ("Sustain",      "python3", "scripts/verify_all.py", "--sustain"),
-    ("Dist Fresh",   "python3", "scripts/build_dist.py"),
+    ("Content",   "python3", "scripts/verify_content.py"),
+    ("Ontology",  "python3", "scripts/verify_ontology.py"),
+    ("Skills",    "python3", "scripts/verify_skills.py"),
+    ("Dist",      "python3", "scripts/build_dist.py"),
 ]
 
 SCAFFOLD_SCRIPTS = [
@@ -25,11 +28,19 @@ SCAFFOLD_SCRIPTS = [
     "scripts/new_constraint.py",
 ]
 
-ROOT_V = Path(__file__).resolve().parent.parent
+
+def _parse_total(stdout: str) -> int:
+    """Extract total count from a gate script's output (strips ANSI codes)."""
+    import re as _re
+    clean = _re.sub(r'\x1b\[[0-9;]*m', '', stdout)
+    for line in clean.strip().split("\n"):
+        m = _re.search(r"^\s+total\s+(\d+)", line)
+        if m:
+            return int(m.group(1))
+    return 0
 
 
 def gate_e1() -> tuple[int, list[str]]:
-    """E1: Four scaffolding scripts exist."""
     problems = []
     for s in SCAFFOLD_SCRIPTS:
         if not (ROOT_V / s).exists():
@@ -38,13 +49,11 @@ def gate_e1() -> tuple[int, list[str]]:
 
 
 def gate_e2() -> tuple[int, list[str]]:
-    """E2: CONTRIBUTING.md references real commands."""
     problems = []
     contrib = ROOT_V / "CONTRIBUTING.md"
     if not contrib.exists():
         return 1, ["CONTRIBUTING.md: missing"]
     text = contrib.read_text(encoding="utf-8")
-    import re
     cmds = set(re.findall(r'`python3 scripts/([a-z_]+\.py)`', text))
     for cmd in cmds:
         if not (ROOT_V / "scripts" / cmd).exists():
@@ -52,10 +61,10 @@ def gate_e2() -> tuple[int, list[str]]:
     return len(problems), problems
 
 
-def main():
+def main() -> int:
     import argparse
     ap = argparse.ArgumentParser()
-    ap.add_argument("--sustain", action="store_true", help="Run sustainability checks (E1/E2)")
+    ap.add_argument("--sustain", action="store_true")
     args = ap.parse_args()
 
     if args.sustain:
@@ -64,34 +73,39 @@ def main():
             count, problems = fn()
             total += count
             mark = "ok " if count == 0 else "FAIL"
-            print(f"  [{mark}] {gid:16s} {count}")
+            print(f"  [{mark}] {gid:12s} {count}")
             for p in problems:
                 print(f"           {p}")
+        print(f"  {'─' * 16}")
+        print(f"  total       {total}")
         return 0 if total == 0 else 1
 
-    total = 0
-    sections = []
+    grand_total = 0
     for label, *cmd in CHECKS:
-        result = subprocess.run(cmd, capture_output=True, text=True)
-        # Count total from last line
-        lines = result.stdout.strip().split("\n")
-        count = 0
-        for line in lines:
-            if "total" in line:
-                try:
-                    count = int(line.strip().split()[-1])
-                except ValueError:
-                    pass
-        total += count
-        mark = "ok " if count == 0 else "FAIL"
-        print(f"  [{mark}] {label:14s} {sum(1 for _ in [])}  {count}")
-        sections.append((label, count))
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
+        count = _parse_total(result.stdout)
 
-    print(f"  {'─' * 20}")
-    print(f"  {'total':16s} {total}")
-    if total:
+        # Trust returncode over stdout parsing
+        if result.returncode != 0 and count == 0:
+            # Script failed but reported 0 — likely a crash
+            print(f"  [FAIL] {label:12s} crashed (exit {result.returncode})")
+            for line in result.stderr.strip().split("\n")[-5:]:
+                print(f"           {line}")
+            grand_total += 1
+        else:
+            grand_total += count
+            mark = "ok " if count == 0 else "FAIL"
+            print(f"  [{mark}] {label:12s} {count}")
+            if result.returncode != 0 and result.stderr.strip():
+                # Non-zero exit but gate reported real count — show stderr briefly
+                for line in result.stderr.strip().split("\n")[:3]:
+                    print(f"           {line}")
+
+    print(f"  {'─' * 16}")
+    print(f"  total       {grand_total}")
+    if grand_total:
         print("\n  Run individual scripts with --list for details.")
-    return 0 if total == 0 else 1
+    return 0 if grand_total == 0 else 1
 
 
 if __name__ == "__main__":

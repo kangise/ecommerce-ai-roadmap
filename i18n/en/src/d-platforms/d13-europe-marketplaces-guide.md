@@ -214,7 +214,7 @@ Output exactly 4 numbered sections (1. 2. 3. …) matching the requested items, 
 </output_format>
 
 <self_check>
-(1) All 4 requested items (You are a German e-commerce localization expert.…) are present, numbered in the same order, with none missing or extra. <!-- ref: amazon.bullet_point.count -->
+(1) All 4 requested items (You are a German e-commerce localization expert.…) are present, numbered in the same order, with none missing or extra.
 (2) Every figure comes from the pasted data; anything absent is written "missing" — no estimates from memory.
 (3) Copy claims no feature/certification/material/result absent from the input, and makes no unauthorized customer commitment.
 </self_check>

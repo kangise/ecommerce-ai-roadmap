@@ -47,6 +47,14 @@ All `verified: YYYY-MM` facts have an 18-month shelf life. The M7 gate turns red
 2. Run `python3 scripts/build_dist.py` and commit the updated `dist/`
 3. New external links require `python3 scripts/verify_content.py --probe-links`
 
+## Known Limitations
+
+### N6: Trilingual Prompt Structure Drift
+
+The `N6` gate reports ~46 files where the three language trees have different numbers of prompt structure blocks. This is caused by translations evolving at different speeds (zh leads, en/ja follow). The gate correctly reports this drift. **Closing N6 requires a dedicated translation alignment loop** — adding missing prompt blocks to en/ja trees where zh has prompts the others lack.
+
+Status: **documented, not closed** (N6 ≈ 46 as of 2026-08-08).
+
 ## Scaffolding Scripts
 
 - `scripts/new_chapter.py <path> <title>` — trilingual skeleton + SUMMARY + boundary section
