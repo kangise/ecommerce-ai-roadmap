@@ -7,6 +7,7 @@ Usage:
 
 import subprocess
 import sys
+from pathlib import Path
 
 CHECKS = [
     ("Structure",    "python3", "scripts/verify_content.py", "--only", "anchors,xanchors,links,python,parity"),
@@ -24,12 +25,14 @@ SCAFFOLD_SCRIPTS = [
     "scripts/new_constraint.py",
 ]
 
+ROOT_V = Path(__file__).resolve().parent.parent
+
 
 def gate_e1() -> tuple[int, list[str]]:
     """E1: Four scaffolding scripts exist."""
     problems = []
     for s in SCAFFOLD_SCRIPTS:
-        if not (ROOT / s).exists():
+        if not (ROOT_V / s).exists():
             problems.append(f"{s}: missing")
     return len(problems), problems
 
@@ -37,14 +40,14 @@ def gate_e1() -> tuple[int, list[str]]:
 def gate_e2() -> tuple[int, list[str]]:
     """E2: CONTRIBUTING.md references real commands."""
     problems = []
-    contrib = ROOT / "CONTRIBUTING.md"
+    contrib = ROOT_V / "CONTRIBUTING.md"
     if not contrib.exists():
         return 1, ["CONTRIBUTING.md: missing"]
     text = contrib.read_text(encoding="utf-8")
     import re
     cmds = set(re.findall(r'`python3 scripts/([a-z_]+\.py)`', text))
     for cmd in cmds:
-        if not (ROOT / "scripts" / cmd).exists():
+        if not (ROOT_V / "scripts" / cmd).exists():
             problems.append(f"CONTRIBUTING.md references scripts/{cmd} which does not exist")
     return len(problems), problems
 

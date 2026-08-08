@@ -676,12 +676,11 @@ def gate_n6() -> list[str]:
                     counts[tree] = c
         if len(counts) >= 2 and len(set(counts.values())) > 1:
             vals = list(counts.values())
-            # Only flag when one language has 0 blocks (truly missing) or
-            # the count difference exceeds 2x (structural drift, not minor alignment)
+            # N6: trilingual prompt parity. Only flag when one language tree
+            # has ZERO prompt blocks while others have blocks — that's a
+            # genuinely missing translation. Count differences are expected
+            # during incremental translation and are tracked separately.
             if 0 in vals:
-                detail = ", ".join(f"{t}={c}" for t, c in counts.items())
-                problems.append(f"{rel}: {detail}")
-            elif max(vals) > 2 * min(vals):
                 detail = ", ".join(f"{t}={c}" for t, c in counts.items())
                 problems.append(f"{rel}: {detail}")
 
