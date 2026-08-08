@@ -1,7 +1,29 @@
-name: ecom-research
 description: Research products, analyze markets, evaluate competitors, and identify
   product opportunities
+inputs:
+- description: Product category to research
+  name: category
+  required: true
+  type: string
+- description: Target market (US, EU, etc.)
+  name: market
+  required: false
+  type: string
+- description: 'Selection criteria: price range, margin floor, demand threshold'
+  name: criteria
+  required: false
+  type: object
+name: ecom-research
+outputs:
+- description: Market overview, competitor landscape, product opportunities, risk
+    assessment
+  name: research_report
+  type: object
+platforms:
+- amazon
+- shopify
 triggers:
+  intent: research_product | analyze_market | evaluate_competitor | find_opportunity
   keywords:
   - product research
   - market analysis
@@ -14,25 +36,19 @@ triggers:
   - 调研
   - 机会
   - 供应商
-  intent: research_product | analyze_market | evaluate_competitor | find_opportunity
-inputs:
-- name: category
-  type: string
-  required: true
-  description: Product category to research
-- name: market
-  type: string
-  required: false
-  description: Target market (US, EU, etc.)
-- name: criteria
-  type: object
-  required: false
-  description: 'Selection criteria: price range, margin floor, demand threshold'
-outputs:
-- name: research_report
-  type: object
-  description: Market overview, competitor landscape, product opportunities, risk
-    assessment
+  - 品类
+  - 能不能做
+  - 市场竞争
+  - 市场调查
+  - 选品分析
+  - 新品机会
+  - 市场需求
+  - 美国市场
+  - 欧洲市场
+  - 日本市场
+  - 竞争
+  - 激烈
+  - 市场容量
 uses_constraints:
 - forecast.backtest_target
 - forecast.changepoint_prior_range
@@ -50,6 +66,3 @@ uses_entities:
 - sponsored_product
 - supplier
 - tiktok_product
-platforms:
-- amazon
-- shopify

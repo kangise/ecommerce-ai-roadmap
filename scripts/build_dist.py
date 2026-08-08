@@ -71,7 +71,92 @@ def main():
     # 3. skills/ — recursive copy
     shutil.copytree(SKILLS, DIST / "skills", dirs_exist_ok=True)
 
-    # 4. references/
+    # 4. knowledge/ — chapter index for agent retrieval
+    (DIST / "knowledge").mkdir(exist_ok=True)
+    entities_data = ontology.get("entities", [])
+    knowledge_index = []
+    for md_path in sorted(SRC.rglob("*.md")):
+        if md_path.name in ("SUMMARY.md", "README.md"):
+            continue
+        rel = str(md_path.relative_to(SRC))
+        text = md_path.read_text(encoding="utf-8")
+
+        # Extract title from first H1
+        title_match = re.search(r"^#\s+(.+)", text, re.M)
+        title = title_match.group(1) if title_match else rel
+
+        # Extract first 200 chars of prose (skip headers, code, comments)
+        prose = re.sub(r"```.*?```", " ", text, flags=re.S)
+        prose = re.sub(r"<[^>]+>", " ", prose)
+        prose = re.sub(r"#+\s+.*\n", " ", prose)
+        prose = re.sub(r"<!--.*?-->", " ", prose, flags=re.S)
+        prose = re.sub(r"\s+", " ", prose).strip()
+        summary = prose[:300]
+
+        # Find constraint references (<!-- ref: ... -->)
+        constraint_refs = sorted(set(re.findall(r"<!--\s*ref:\s*([a-zA-Z0-9_.-]+)\s*-->", text)))
+
+        # Find entity mentions (from ontology entities)
+        entity_set = set()
+        for e in entities_data:
+            eid = e.get("id", "")
+            label_zh = e.get("label", {}).get("zh", "")
+            label_en = e.get("label", {}).get("en", "")
+            for term in [eid, label_zh, label_en]:
+                if term and len(term) > 2 and term in text:
+                    entity_set.add(eid)
+        key_entities = sorted(entity_set)[:15]
+
+        # Extract boundary section summary
+        boundary_match = re.search(r"## 什么时候这套不管用\n\n(.*?)(?:\n##|\Z)", text, re.S)
+        boundary_summary = boundary_match.group(1).strip()[:200] if boundary_match else ""
+
+        knowledge_index.append({
+            "title": title,
+            "path": rel,
+            "summary": summary,
+            "key_entities": key_entities,
+            "constraint_refs": constraint_refs,
+            "boundary_summary": boundary_summary,
+        })
+
+    with open(DIST / "knowledge" / "index.json", "w", encoding="utf-8") as f:
+        json.dump(knowledge_index, f, ensure_ascii=False, indent=2)
+
+    # query_guide.md
+    query_guide = """# Knowledge Index Usage Guide
+
+## For Agent Consumers
+
+The `index.json` contains structured metadata for all {0} source chapters.
+Use it to answer domain questions:
+
+1. **Question**: "What is Buy Box?"
+   → Search index for `key_entities` containing "buy_box" or "price"
+   → Return the matching chapter's `title` + `summary`
+   → Also check `constraint_refs` for related constraints in `ontology.json`
+
+2. **Question**: "What are Amazon listing requirements?"
+   → Search for chapters with "amazon" and "listing" in constraints
+   → Return `constraint_refs` and `boundary_summary` for context
+
+3. **Question**: "Should I use AI for demand forecasting?"
+   → Search for "inventory" or "forecast" in key_entities
+   → Return `boundary_summary` — this is what the ecom-applicability skill uses
+
+## Structure
+
+Each entry:
+- `title`: Chapter title (first H1)
+- `path`: Relative path from src/
+- `summary`: First 300 characters of prose
+- `key_entities`: Entity IDs from ontology that appear in this chapter
+- `constraint_refs`: `<!-- ref: -->` markers found in this chapter
+- `boundary_summary`: First 200 chars of "When this doesn't work" section
+""".format(len(knowledge_index))
+    (DIST / "knowledge" / "query_guide.md").write_text(query_guide)
+
+    # 5. references/
     for ref_name in ["glossary.md", "boundaries.md"]:
         src_path = SRC / "resources" / ref_name
         if src_path.exists():

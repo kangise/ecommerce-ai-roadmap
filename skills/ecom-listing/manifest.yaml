@@ -17,6 +17,11 @@ triggers:
   - create listing
   - localize
   - translate listing
+  - 产品页面
+  - 产品信息
+  - 产品描述
+  - 写一个
+  - 帮我写
   intent: create_listing | optimize_listing | localize_listing | audit_listing
 inputs:
 - name: product_info

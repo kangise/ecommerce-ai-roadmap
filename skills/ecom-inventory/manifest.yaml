@@ -19,6 +19,10 @@ triggers:
   - lead time
   - reorder point
   - IPI
+  - 库存绩效
+  - 仓储
+  - 补货计划
+  - FBA库存
   intent: forecast_demand | calculate_safety_stock | plan_replenishment | analyze_inventory_health
 inputs:
 - name: sales_history

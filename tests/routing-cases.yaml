@@ -1,0 +1,120 @@
+# Fixed routing test suite — manual cases, version-controlled.
+# Each case: query in natural language, expected skill.
+# R1 gate runs all cases and counts errors. Target: 0.
+
+- query: "帮我写一个Amazon蓝牙耳机的标题和五点描述"
+  expect: ecom-listing
+
+- query: "优化一下我的产品页面"
+  expect: ecom-listing
+
+- query: "给这个Listing写A+内容"
+  expect: ecom-listing
+
+- query: "我的Search Terms要怎么优化"
+  expect: ecom-listing
+
+- query: "把这个中文标题翻译成英文和日文"
+  expect: ecom-listing
+
+- query: "上架一个新品的完整流程"
+  expect: ecom-listing
+
+- query: "Create a Shopify product page for this item"
+  expect: ecom-listing
+
+- query: "我的广告ACOS涨到40%了怎么办"
+  expect: ecom-advertising
+
+- query: "分析一下这个campaign的roas"
+  expect: ecom-advertising
+
+- query: "帮我优化广告出价"
+  expect: ecom-advertising
+
+- query: "这个关键词要不要加到否定关键词里"
+  expect: ecom-advertising
+
+- query: "sponsored brand广告的CTR很低"
+  expect: ecom-advertising
+
+- query: "我的PPC花了钱没出单"
+  expect: ecom-advertising
+
+- query: "FBA库存快断了应该什么时候补货"
+  expect: ecom-inventory
+
+- query: "算一下我的安全库存应该是多少"
+  expect: ecom-inventory
+
+- query: "lead time是30天的话reorder point设多少"
+  expect: ecom-inventory
+
+- query: "IPI分数太低了怎么提高"
+  expect: ecom-inventory
+
+- query: "预测下个月需要多少库存"
+  expect: ecom-inventory
+
+- query: "这个产品卖到欧盟需要什么认证"
+  expect: ecom-compliance
+
+- query: "HS编码怎么查"
+  expect: ecom-compliance
+
+- query: "我的商标被跟卖了怎么办"
+  expect: ecom-compliance
+
+- query: "类目审核需要什么资料"
+  expect: ecom-compliance
+
+- query: "出口欧洲要不要CE认证"
+  expect: ecom-compliance
+
+- query: "我的listing被下架了说是危险品"
+  expect: ecom-compliance
+
+- query: "这个产品定价多少合适"
+  expect: ecom-pricing
+
+- query: "算一下这个品的利润率"
+  expect: ecom-pricing
+
+- query: "Buy Box价格怎么算"
+  expect: ecom-pricing
+
+- query: "盈亏平衡点在哪里"
+  expect: ecom-pricing
+
+- query: "竞品卖9.9我应该定多少"
+  expect: ecom-pricing
+
+- query: "帮我看看宠物用品这个品类能不能做"
+  expect: ecom-research
+
+- query: "选品的时候要注意什么"
+  expect: ecom-research
+
+- query: "美国市场蓝牙耳机竞争激烈吗"
+  expect: ecom-research
+
+- query: "帮我分析一下这个品类的竞品"
+  expect: ecom-research
+
+- query: "有没有推荐的供应商"
+  expect: ecom-research
+
+- query: "我该不该用AI做需求预测"
+  expect: ecom-applicability
+
+- query: "AI写listing靠谱吗"
+  expect: ecom-applicability
+
+- query: "什么情况下不应该用AI做定价"
+  expect: ecom-applicability
+
+- query: "AI能不能帮我做合规审核"
+  expect: ecom-applicability
+
+- query: "用AI做广告优化的风险大不大"
+  expect: ecom-applicability

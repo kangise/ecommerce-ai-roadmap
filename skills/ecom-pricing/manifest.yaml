@@ -16,6 +16,11 @@ triggers:
   - 成本
   - 盈亏平衡
   - 利润率
+  - 定多少
+  - 多少钱
+  - 价格多少
+  - 怎么定价
+  - 成本核算
   intent: set_price | calculate_profit | competitive_analysis | breakeven_analysis
 inputs:
 - name: cost_data
