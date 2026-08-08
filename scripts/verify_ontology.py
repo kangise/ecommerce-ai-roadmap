@@ -362,6 +362,7 @@ def _generate_glossary() -> str:
 
     lines = [
         "<!-- Generated from ontology/entities.yaml — do not edit by hand -->",
+        "<!-- claims: verified 2026-08 -->",
         "",
         "# Glossary / 术语表 / 用語集",
         "",

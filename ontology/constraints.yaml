@@ -1,17 +1,2407 @@
-# Platform-Specific Constraints
-# Every entry must have source: pointing to a chapter anchor.
-# Platform rates and thresholds MUST carry verified: YYYY-MM.
-
-# Schema:
-# - id: platform.entity.attribute.constraint_name
-#   entity: entity_id
-#   attribute: attr_id | null
-#   platform: platform_id
-#   kind: max_length | min_length | max_bytes | count | format | forbidden | required
-#   value: <number | string>
-#   unit: 字符 | 字节 | ...
-#   statement: {zh: ..., en: ..., ja: ...}
-#   source: path/to/chapter.md#anchor
-#   verified: YYYY-MM
-
-[]
+- id: amazon.listing.title.max_length
+  entity: listing
+  attribute: title
+  platform: amazon
+  kind: max_length
+  value: 200
+  unit: 字符
+  statement:
+    zh: 标题不超过 200 字符
+    en: Title must not exceed 200 characters
+    ja: タイトルは200文字以内
+  source: src/a-operators/a2-listing-optimization.md#12-listing-的组成部分
+  verified: 2026-08
+- id: amazon.listing.title.recommended_max_length
+  entity: listing
+  attribute: title
+  platform: amazon
+  kind: max_length
+  value: 150
+  unit: 字符
+  statement:
+    zh: 标题建议控制在 150 字符以内
+    en: Title recommended to stay within 150 characters
+    ja: タイトルは150文字以内が推奨
+  source: src/a-operators/a2-listing-optimization.md#12-listing-的组成部分
+  verified: 2026-08
+- id: amazon.listing.title.key_content_first_80
+  entity: listing
+  attribute: title
+  platform: amazon
+  kind: required
+  value: 核心关键词与核心卖点位于前 80 字符
+  unit: null
+  statement:
+    zh: 标题前 80 个字符最重要，必须包含最重要的信息（移动端只显示这么多）
+    en: The first 80 characters matter most and must carry the key information (mobile
+      only shows this much)
+    ja: タイトル先頭80文字が最重要で、最も重要な情報を含める必要がある（モバイルではここまでしか表示されない）
+  source: src/a-operators/a2-listing-optimization.md#12-listing-的组成部分
+  verified: 2026-08
+- id: amazon.listing.title.format
+  entity: listing
+  attribute: title
+  platform: amazon
+  kind: format
+  value: 品牌名 + 核心关键词 + 核心卖点 + 规格/数量
+  unit: null
+  statement:
+    zh: 标题格式为 品牌名 + 核心关键词 + 核心卖点 + 规格/数量
+    en: 'Title format: brand + core keywords + core selling points + specs/quantity'
+    ja: タイトル形式は ブランド名＋コアキーワード＋コアセールスポイント＋仕様/数量
+  source: src/a-operators/a2-listing-optimization.md#12-listing-的组成部分
+  verified: 2026-08
+- id: amazon.listing.title.no_all_caps
+  entity: listing
+  attribute: title
+  platform: amazon
+  kind: forbidden
+  value: 全大写标题
+  unit: null
+  statement:
+    zh: 标题不要用全大写（Amazon 可能抑制展示）
+    en: Do not use all-caps titles (Amazon may suppress display)
+    ja: タイトルを全て大文字にしない（Amazon が表示を抑制する可能性がある）
+  source: src/a-operators/a2-listing-optimization.md#12-listing-的组成部分
+  verified: 2026-08
+- id: amazon.listing.title.no_promo_words
+  entity: listing
+  attribute: title
+  platform: amazon
+  kind: forbidden
+  value: 'Best, #1, Sale, guaranteed 等促销/绝对化用语'
+  unit: null
+  statement:
+    zh: 标题不要用促销词（Best、#1、Sale、guaranteed 等）
+    en: 'No promotional words in the title (Best, #1, Sale, guaranteed, etc.)'
+    ja: タイトルにプロモーション用語（Best、#1、Sale、guaranteed など）を使わない
+  source: src/a-operators/a2-listing-optimization.md#12-listing-的组成部分
+  verified: 2026-08
+- id: amazon.bullet_point.max_length
+  entity: bullet_point
+  attribute: content
+  platform: amazon
+  kind: max_length
+  value: 500
+  unit: 字符
+  statement:
+    zh: 每条五点不超过 500 字符
+    en: Each bullet point must not exceed 500 characters
+    ja: 箇条書き1本は500文字以内
+  source: src/a-operators/a2-listing-optimization.md#12-listing-的组成部分
+  verified: 2026-08
+- id: amazon.bullet_point.recommended_min_length
+  entity: bullet_point
+  attribute: content
+  platform: amazon
+  kind: min_length
+  value: 200
+  unit: 字符
+  statement:
+    zh: 每条五点建议 200-300 字符（建议下限 200）
+    en: Each bullet point recommended at 200-300 characters (lower bound 200)
+    ja: 箇条書き1本は200〜300文字が推奨（下限200）
+  source: src/a-operators/a2-listing-optimization.md#12-listing-的组成部分
+  verified: 2026-08
+- id: amazon.bullet_point.recommended_max_length
+  entity: bullet_point
+  attribute: content
+  platform: amazon
+  kind: max_length
+  value: 300
+  unit: 字符
+  statement:
+    zh: 每条五点建议 200-300 字符（建议上限 300）
+    en: Each bullet point recommended at 200-300 characters (upper bound 300)
+    ja: 箇条書き1本は200〜300文字が推奨（上限300）
+  source: src/a-operators/a2-listing-optimization.md#12-listing-的组成部分
+  verified: 2026-08
+- id: amazon.bullet_point.count
+  entity: listing
+  attribute: null
+  platform: amazon
+  kind: count
+  value: 5
+  unit: 条
+  statement:
+    zh: Listing 含 5 个 Bullet Points
+    en: A listing contains 5 bullet points
+    ja: リスティングには箇条書き5本
+  source: src/a-operators/a2-listing-optimization.md#31-listing-全套生成标题--五点--描述--search-terms
+  verified: 2026-08
+- id: amazon.bullet_point.format
+  entity: bullet_point
+  attribute: content
+  platform: amazon
+  kind: format
+  value: 每条以大写卖点短语开头；先讲用户利益再讲产品特性
+  unit: null
+  statement:
+    zh: 每条五点以大写卖点短语开头（如 ULTRA-LIGHTWEIGHT DESIGN），先利益后特性
+    en: Each bullet starts with an all-caps benefit phrase (e.g. ULTRA-LIGHTWEIGHT
+      DESIGN), benefit before feature
+    ja: 箇条書きは大文字のメリット句（例 ULTRA-LIGHTWEIGHT DESIGN）で始め、ベネフィット→機能の順
+  source: src/a-operators/a2-listing-optimization.md#12-listing-的组成部分
+  verified: 2026-08
+- id: amazon.bullet_point.no_html
+  entity: bullet_point
+  attribute: content
+  platform: amazon
+  kind: forbidden
+  value: HTML 标签；全大写（品牌名除外）
+  unit: null
+  statement:
+    zh: 五点内容无 HTML 标签，无全大写（品牌名除外）
+    en: Bullet content must have no HTML tags and no all-caps text (except brand names)
+    ja: 箇条書きに HTML タグなし、全て大文字なし（ブランド名を除く）
+  source: src/a-operators/a2-listing-optimization.md#31-listing-全套生成标题--五点--描述--search-terms
+  verified: 2026-08
+- id: amazon.bullet_point.top2_priority
+  entity: bullet_point
+  attribute: position
+  platform: amazon
+  kind: required
+  value: 前两条放最重要的卖点
+  unit: null
+  statement:
+    zh: 前两条放最重要的卖点（很多用户只看前两条）
+    en: The two most important selling points go first (many users only read the first
+      two)
+    ja: 最重要のセールスポイントを最初の2本に置く（多くのユーザーは最初の2本しか読まない）
+  source: src/a-operators/a2-listing-optimization.md#12-listing-的组成部分
+  verified: 2026-08
+- id: amazon.listing.description.max_length
+  entity: listing
+  attribute: description
+  platform: amazon
+  kind: max_length
+  value: 2000
+  unit: 字符
+  statement:
+    zh: 产品描述不超过 2000 字符
+    en: Description must not exceed 2000 characters
+    ja: 商品説明は2000文字以内
+  source: src/a-operators/a2-listing-optimization.md#12-listing-的组成部分
+  verified: 2026-08
+- id: amazon.listing.description.recommended_max_length
+  entity: listing
+  attribute: description
+  platform: amazon
+  kind: max_length
+  value: 200
+  unit: 字
+  statement:
+    zh: Prompt 模板中产品描述建议 200 字以内（讲品牌故事和使用场景）
+    en: The prompt template asks for a description within 200 characters (brand story
+      + use cases)
+    ja: プロンプトテンプレートでは商品説明200字以内（ブランドストーリーと使用シーン）
+  source: src/a-operators/a2-listing-optimization.md#31-listing-全套生成标题--五点--描述--search-terms
+  verified: 2026-08
+- id: amazon.listing.search_terms.max_bytes
+  entity: listing
+  attribute: search_terms
+  platform: amazon
+  kind: max_bytes
+  value: 250
+  unit: 字节
+  statement:
+    zh: Search Terms 不超过 250 字节（后台，用户不可见）
+    en: Search Terms must not exceed 250 bytes (backend, invisible to shoppers)
+    ja: Search Terms は250バイト以内（バックエンド、ユーザーには非表示）
+  source: src/a-operators/a2-listing-optimization.md#12-listing-的组成部分
+  verified: 2026-08
+- id: amazon.listing.search_terms.separator
+  entity: listing
+  attribute: search_terms
+  platform: amazon
+  kind: format
+  value: 用空格分隔，不用逗号
+  unit: null
+  statement:
+    zh: Search Terms 用空格分隔，不用逗号（Amazon 官方建议；逗号占用字节但无索引价值）
+    en: Separate Search Terms with spaces, not commas (Amazon official advice; commas
+      waste bytes with no indexing value)
+    ja: Search Terms はカンマではなくスペース区切り（Amazon 公式推奨。カンマはバイトを消費するだけでインデックス価値がない）
+  source: src/a-operators/a2-listing-optimization.md#35-search-terms-优化
+  verified: 2026-08
+- id: amazon.listing.search_terms.no_duplicate
+  entity: listing
+  attribute: search_terms
+  platform: amazon
+  kind: forbidden
+  value: 标题和五点中已出现的词
+  unit: null
+  statement:
+    zh: Search Terms 不重复标题和五点中已使用的词（重复浪费空间）
+    en: Search Terms must not repeat words already in the title or bullets (duplication
+      wastes space)
+    ja: Search Terms にタイトル・箇条書きで使った語を繰り返さない（重複はスペースの無駄）
+  source: src/a-operators/a2-listing-optimization.md#35-search-terms-优化
+  verified: 2026-08
+- id: amazon.listing.search_terms.no_brand_name
+  entity: listing
+  attribute: search_terms
+  platform: amazon
+  kind: forbidden
+  value: 品牌名（自有品牌名已在标题中；竞品品牌名不允许放入）
+  unit: null
+  statement:
+    zh: Search Terms 不含品牌名；竞品品牌名不允许放在 Search Terms
+    en: No brand names in Search Terms; competitor brand names are not allowed there
+    ja: Search Terms にブランド名を含めない。競合ブランド名は Search Terms に入れてはならない
+  source: src/a-operators/a2-listing-optimization.md#35-search-terms-优化
+  verified: 2026-08
+- id: amazon.listing.search_terms.no_asin
+  entity: listing
+  attribute: search_terms
+  platform: amazon
+  kind: forbidden
+  value: ASIN
+  unit: null
+  statement:
+    zh: Search Terms 不包含 ASIN（没有索引价值）
+    en: No ASINs in Search Terms (no indexing value)
+    ja: Search Terms に ASIN を含めない（インデックス価値なし）
+  source: src/a-operators/a2-listing-optimization.md#35-search-terms-优化
+  verified: 2026-08
+- id: amazon.listing.search_terms.no_subjective_words
+  entity: listing
+  attribute: search_terms
+  platform: amazon
+  kind: forbidden
+  value: best、cheap 等主观词
+  unit: null
+  statement:
+    zh: Search Terms 不包含 best、cheap 等主观词
+    en: No subjective words like "best" or "cheap" in Search Terms
+    ja: Search Terms に best、cheap などの主観的な語を含めない
+  source: src/a-operators/a2-listing-optimization.md#35-search-terms-优化
+  verified: 2026-08
+- id: amazon.listing.search_terms.byte_encoding
+  entity: listing
+  attribute: search_terms
+  platform: amazon
+  kind: format
+  value: 英文 1 字符 = 1 字节，中文 1 字符 = 3 字节
+  unit: null
+  statement:
+    zh: Search Terms 字节换算：英文 1 字符 = 1 字节，中文 1 字符 = 3 字节
+    en: 'Byte conversion: 1 English character = 1 byte, 1 Chinese character = 3 bytes'
+    ja: バイト換算：英字1文字=1バイト、中国語1文字=3バイト
+  source: src/a-operators/a2-listing-optimization.md#35-search-terms-优化
+  verified: 2026-08
+- id: amazon.listing.image.count
+  entity: listing
+  attribute: null
+  platform: amazon
+  kind: count
+  value: 7
+  unit: 张
+  statement:
+    zh: 图片为 主图 1 张 + 副图 6 张（共 7 张）
+    en: 'Images: 1 main image + 6 secondary images (7 total)'
+    ja: 画像はメイン1枚＋サブ6枚（計7枚）
+  source: src/a-operators/a2-listing-optimization.md#12-listing-的组成部分
+  verified: 2026-08
+- id: amazon.product_image.main.no_text_overlay
+  entity: product_image
+  attribute: null
+  platform: amazon
+  kind: forbidden
+  value: 文字、logo、水印（仅限主图）
+  unit: null
+  statement:
+    zh: Amazon 主图政策禁止添加文字、logo、水印；只有副图可以加文字
+    en: Amazon main-image policy forbids text, logos and watermarks; only secondary
+      images may carry text
+    ja: Amazon のメイン画像ポリシーでは文字・ロゴ・透かしを禁止。テキストを載せられるのはサブ画像のみ
+  source: src/a-operators/a2-listing-optimization.md#37-产品图片文案图片上的文字
+  verified: 2026-08
+- id: amazon.product_image.secondary_text.max_words
+  entity: product_image
+  attribute: overlay_text
+  platform: amazon
+  kind: max_length
+  value: 20
+  unit: 词
+  statement:
+    zh: 每张副图上的文字控制在 20 个词以内（手机上能看清）
+    en: Text on each secondary image should stay within 20 words (readable on mobile)
+    ja: サブ画像1枚の文字は20語以内（モバイルで読めるように）
+  source: src/a-operators/a2-listing-optimization.md#37-产品图片文案图片上的文字
+  verified: 2026-08
+- id: amazon.product_image.secondary_title.max_words
+  entity: product_image
+  attribute: overlay_text
+  platform: amazon
+  kind: max_length
+  value: 5
+  unit: 词
+  statement:
+    zh: 副图标题文案不超过 5 个词（大字体）
+    en: Secondary-image headline text within 5 words (large font)
+    ja: サブ画像のタイトル文は5語以内（大文字）
+  source: src/a-operators/a2-listing-optimization.md#37-产品图片文案图片上的文字
+  verified: 2026-08
+- id: amazon.product_image.secondary_subtitle.max_words
+  entity: product_image
+  attribute: overlay_text
+  platform: amazon
+  kind: max_length
+  value: 15
+  unit: 词
+  statement:
+    zh: 副图副标题文案不超过 15 个词（小字体）
+    en: Secondary-image subtitle text within 15 words (small font)
+    ja: サブ画像のサブタイトル文は15語以内（小文字）
+  source: src/a-operators/a2-listing-optimization.md#37-产品图片文案图片上的文字
+  verified: 2026-08
+- id: amazon.product_image.text_font.min_size
+  entity: product_image
+  attribute: overlay_text
+  platform: amazon
+  kind: required
+  value: 标题字体至少 24pt，副标题至少 16pt
+  unit: pt
+  statement:
+    zh: 副图文字字体：标题至少 24pt，副标题至少 16pt（移动端可读性）
+    en: 'Image text fonts: headline at least 24pt, subtitle at least 16pt (mobile
+      readability)'
+    ja: 画像内テキストのフォント：タイトル24pt以上、サブタイトル16pt以上（モバイル可読性）
+  source: src/a-operators/a2-listing-optimization.md#62-移动端相关陷阱
+  verified: 2026-08
+- id: amazon.a_plus_content.module_text.max_length
+  entity: a_plus_content
+  attribute: text_per_module
+  platform: amazon
+  kind: max_length
+  value: 50
+  unit: 字
+  statement:
+    zh: A+ Content 每个模块的文字不超过 50 字（A+ 是视觉驱动的）
+    en: Each A+ Content module should keep text within 50 characters (A+ is visually
+      driven)
+    ja: A+ コンテンツのモジュールごとの文字は50字以内（A+ はビジュアル重視）
+  source: src/a-operators/a2-listing-optimization.md#63-a-content-陷阱
+  verified: 2026-08
+- id: amazon.brand_story.brand_card.max_length
+  entity: brand_story
+  attribute: brand_card_text
+  platform: amazon
+  kind: max_length
+  value: 100
+  unit: 字
+  statement:
+    zh: Brand Story 品牌背景卡片（Brand Card）文案 100 字以内
+    en: Brand Story brand card text within 100 characters
+    ja: ブランドストーリーのブランドカード文面は100字以内
+  source: src/a-operators/a2-listing-optimization.md#34-a-content-文案生成
+  verified: 2026-08
+- id: amazon.listing.ab_test.min_duration_weeks
+  entity: listing
+  attribute: null
+  platform: amazon
+  kind: required
+  value: 至少运行 2 周；Amazon 建议 4-8 周
+  unit: 周
+  statement:
+    zh: A/B 测试至少运行 2 周（覆盖一个完整购买周期），Amazon 建议 4-8 周
+    en: A/B tests should run at least 2 weeks (one full purchase cycle); Amazon recommends
+      4-8 weeks
+    ja: A/Bテストは最低2週間（購入サイクル1回分）、Amazon 推奨は4〜8週間
+  source: src/a-operators/a2-listing-optimization.md#38-listing-ab-测试方案生成
+  verified: 2026-08
+- id: amazon.us.listing.required_certifications
+  entity: listing
+  attribute: null
+  platform: amazon
+  kind: required
+  value: FDA、FCC、CPSC
+  unit: null
+  statement:
+    zh: Amazon US 市场合规要求涉及 FDA、FCC、CPSC
+    en: Amazon US compliance requirements involve FDA, FCC, CPSC
+    ja: Amazon US のコンプライアンス要件は FDA・FCC・CPSC
+  source: src/a-operators/a2-listing-optimization.md#73-listing-本地化的文化差异us-vs-de-vs-jp
+  verified: 2026-08
+- id: amazon.de.listing.required_certifications
+  entity: listing
+  attribute: null
+  platform: amazon
+  kind: required
+  value: CE、WEEE、包装法
+  unit: null
+  statement:
+    zh: Amazon DE 市场合规要求涉及 CE、WEEE、包装法；本地化时在五点中突出认证
+    en: Amazon DE compliance involves CE, WEEE and the packaging law; certifications
+      should be highlighted in bullets during localization
+    ja: Amazon DE のコンプライアンス要件は CE・WEEE・包装法。ローカライズ時は認証を箇条書きで強調
+  source: src/a-operators/a2-listing-optimization.md#73-listing-本地化的文化差异us-vs-de-vs-jp
+  verified: 2026-08
+- id: amazon.jp.listing.required_certifications
+  entity: listing
+  attribute: null
+  platform: amazon
+  kind: required
+  value: PSE（电子产品必须）、食品卫生法、电安法
+  unit: null
+  statement:
+    zh: Amazon JP 市场合规要求涉及 PSE（电子产品必须标注）、食品卫生法、电安法
+    en: Amazon JP compliance involves PSE (mandatory for electronics), the Food Sanitation
+      Act and the Electrical Appliance and Material Safety Act
+    ja: Amazon JP のコンプライアンス要件は PSE（電化製品は必須表示）・食品衛生法・電安法
+  source: src/a-operators/a2-listing-optimization.md#73-listing-本地化的文化差异us-vs-de-vs-jp
+  verified: 2026-08
+- id: shopify.product_page.meta_title.max_length
+  entity: product_page
+  attribute: meta_title
+  platform: shopify
+  kind: max_length
+  value: 60
+  unit: 字符
+  statement:
+    zh: Meta Title 不超过 60 字符
+    en: Meta Title must not exceed 60 characters
+    ja: メタタイトルは60文字以内
+  source: src/d-platforms/shopify-ai-guide.md#32-ai-优化-shopify-产品页的-7-个维度
+  verified: 2026-08
+- id: shopify.product_page.meta_description.max_length
+  entity: product_page
+  attribute: meta_description
+  platform: shopify
+  kind: max_length
+  value: 160
+  unit: 字符
+  statement:
+    zh: Meta Description 不超过 160 字符
+    en: Meta Description must not exceed 160 characters
+    ja: メタディスクリプションは160文字以内
+  source: src/d-platforms/shopify-ai-guide.md#32-ai-优化-shopify-产品页的-7-个维度
+  verified: 2026-08
+- id: shopify.product_page.title.max_length
+  entity: product_page
+  attribute: title
+  platform: shopify
+  kind: max_length
+  value: 70
+  unit: 字符
+  statement:
+    zh: 产品标题不超过 70 字符（品牌化，不堆关键词）
+    en: Product title within 70 characters (branded, not keyword-stuffed)
+    ja: 商品タイトルは70文字以内（ブランド的で、キーワード詰め込みなし）
+  source: src/d-platforms/shopify-ai-guide.md#81-shopify-产品描述生成
+  verified: 2026-08
+- id: shopify.product_page.description.min_length
+  entity: product_page
+  attribute: description
+  platform: shopify
+  kind: min_length
+  value: 300
+  unit: 字
+  statement:
+    zh: 产品描述 300-500 字（含痛点共鸣、3-5 个核心卖点、社会证明与 CTA）
+    en: Product description 300-500 characters (pain-point hook, 3-5 core selling
+      points, social proof, CTA)
+    ja: 商品説明は300〜500字（痛点共感、核心セールスポイント3〜5点、社会的証明、CTA）
+  source: src/d-platforms/shopify-ai-guide.md#81-shopify-产品描述生成
+  verified: 2026-08
+- id: shopify.product_page.description.max_length
+  entity: product_page
+  attribute: description
+  platform: shopify
+  kind: max_length
+  value: 500
+  unit: 字
+  statement:
+    zh: 产品描述 300-500 字
+    en: Product description within 500 characters
+    ja: 商品説明は500字以内
+  source: src/d-platforms/shopify-ai-guide.md#81-shopify-产品描述生成
+  verified: 2026-08
+- id: shopify.product_page.image.count_unlimited
+  entity: product_page
+  attribute: null
+  platform: shopify
+  kind: count
+  value: 无限制（生活场景、360°、视频、GIF）
+  unit: null
+  statement:
+    zh: Shopify 产品页图片无数量限制（生活场景、360°、视频、GIF 均可），不同于 Amazon 的白底主图 + 6 张副图
+    en: Shopify product pages have no image-count limit (lifestyle, 360°, video, GIF),
+      unlike Amazon's white-background main image + 6 secondary images
+    ja: Shopify の商品ページは画像枚数無制限（生活シーン、360°、動画、GIF 可）。Amazon の白背景メイン＋サブ6枚とは異なる
+  source: src/d-platforms/shopify-ai-guide.md#31-shopify-产品页-vs-amazon-listing
+  verified: 2026-08
+- id: shopify.product_page.faq.count
+  entity: product_page
+  attribute: faq
+  platform: shopify
+  kind: count
+  value: 5-10
+  unit: 个
+  statement:
+    zh: GEO 优化建议每个产品页配 5-10 个 FAQ
+    en: GEO optimization recommends 5-10 FAQs per product page
+    ja: GEO 最適化では商品ページごとに FAQ を5〜10個推奨
+  source: src/d-platforms/shopify-ai-guide.md#144-geo-优化ai-搜索引擎优化
+  verified: 2026-08
+- id: shopify.product_page.schema.required
+  entity: product_page
+  attribute: null
+  platform: shopify
+  kind: required
+  value: Product Schema JSON-LD 含价格、库存、评分
+  unit: null
+  statement:
+    zh: 产品页必须配置 Product Schema（JSON-LD），包含价格、库存、评分等字段
+    en: Product pages must carry Product Schema (JSON-LD) covering price, availability
+      and ratings
+    ja: 商品ページに Product Schema（JSON-LD）を必須設定し、価格・在庫・評価を含める
+  source: src/d-platforms/shopify-ai-guide.md#142-shopify-技术-seo-检查清单
+  verified: 2026-08
+- id: shopify.product_feed.title.max_length
+  entity: product_feed
+  attribute: title
+  platform: shopify
+  kind: max_length
+  value: 150
+  unit: 字符
+  statement:
+    zh: Google Shopping Feed 产品标题不超过 150 字符
+    en: Google Shopping feed product title within 150 characters
+    ja: Google Shopping フィードの商品タイトルは150文字以内
+  source: src/d-platforms/shopify-ai-guide.md#153-google-ads-深度优化
+  verified: 2026-08
+- id: shopify.product_feed.title.key_first_70
+  entity: product_feed
+  attribute: title
+  platform: shopify
+  kind: required
+  value: 前 70 字符最重要
+  unit: null
+  statement:
+    zh: Feed 产品标题前 70 字符最重要，需包含高搜索量关键词并保持可读性
+    en: The first 70 characters of the feed title matter most and should carry high-volume
+      keywords while staying readable
+    ja: フィードの商品タイトルは先頭70文字が最重要。高ボリュームキーワードを含みつつ可読性を保つ
+  source: src/d-platforms/shopify-ai-guide.md#153-google-ads-深度优化
+  verified: 2026-08
+- id: shopify.product_feed.description.max_length
+  entity: product_feed
+  attribute: description
+  platform: shopify
+  kind: max_length
+  value: 5000
+  unit: 字符
+  statement:
+    zh: Google Shopping Feed 产品描述不超过 5000 字符
+    en: Google Shopping feed product description within 5000 characters
+    ja: Google Shopping フィードの商品説明は5000文字以内
+  source: src/d-platforms/shopify-ai-guide.md#153-google-ads-深度优化
+  verified: 2026-08
+- id: shopify.product_feed.description.key_first_160
+  entity: product_feed
+  attribute: description
+  platform: shopify
+  kind: required
+  value: 前 160 字符最重要（会显示在广告中）
+  unit: null
+  statement:
+    zh: Feed 产品描述前 160 字符最重要（会显示在广告中），需自然融入关键词
+    en: The first 160 characters of the feed description matter most (they show in
+      ads) and should naturally include keywords
+    ja: フィードの商品説明は先頭160文字が最重要（広告に表示される）。自然にキーワードを含める
+  source: src/d-platforms/shopify-ai-guide.md#153-google-ads-深度优化
+  verified: 2026-08
+- id: shopify.product_feed.title.format
+  entity: product_feed
+  attribute: title
+  platform: shopify
+  kind: format
+  value: 品牌 + 产品类型 + 关键属性 + 型号
+  unit: null
+  statement:
+    zh: Feed 产品标题格式：品牌 + 产品类型 + 关键属性 + 型号
+    en: 'Feed title format: brand + product type + key attributes + model'
+    ja: フィードのタイトル形式：ブランド＋商品タイプ＋主要属性＋型番
+  source: src/d-platforms/shopify-ai-guide.md#153-google-ads-深度优化
+  verified: 2026-08
+- id: tiktok_shop.product.title.max_length
+  entity: tiktok_product
+  attribute: title
+  platform: tiktok_shop
+  kind: max_length
+  value: 80
+  unit: 字符
+  statement:
+    zh: TikTok 商品标题不超过 80 字符
+    en: TikTok product title must not exceed 80 characters
+    ja: TikTok の商品タイトルは80文字以内
+  source: src/d-platforms/tiktok-shop-ai-guide.md#51-tiktok-shop-商品页-vs-amazon-listing
+  verified: 2026-08
+- id: tiktok_shop.product.title.format
+  entity: tiktok_product
+  attribute: title
+  platform: tiktok_shop
+  kind: format
+  value: 短视频式标题；含 1 个核心搜索词（不堆砌）；可用 | 分隔卖点
+  unit: null
+  statement:
+    zh: 标题要像短视频标题一样吸引点击，包含 1 个核心搜索词（不堆砌），可用 | 分隔卖点
+    en: Title should read like a short-video title to attract clicks, contain one
+      core search term (no stuffing), and may use | to split selling points
+    ja: タイトルはショート動画風にしてクリックを惹き、核心検索語を1つ含め（詰め込まない）、| で売点を区切ってよい
+  source: src/d-platforms/tiktok-shop-ai-guide.md#52-商品页优化的-3-个关键
+  verified: 2026-08
+- id: tiktok_shop.product.description.max_length
+  entity: tiktok_product
+  attribute: description
+  platform: tiktok_shop
+  kind: max_length
+  value: 200
+  unit: 字
+  statement:
+    zh: 商品描述 200 字内，口语化，像朋友推荐
+    en: Product description within 200 characters, colloquial, like a friend's recommendation
+    ja: 商品説明は200字以内。口語的で、友人からのおすすめのような文体
+  source: src/d-platforms/tiktok-shop-ai-guide.md#18-tiktok-shop-站内搜索-seo
+  verified: 2026-08
+- id: tiktok_shop.product.hashtags.count
+  entity: tiktok_product
+  attribute: hashtags
+  platform: tiktok_shop
+  kind: count
+  value: 10
+  unit: 个
+  statement:
+    zh: 商品标签 10 个：5 个品类标签 + 3 个场景标签 + 2 个趋势标签
+    en: '10 product tags: 5 category + 3 scene + 2 trend tags'
+    ja: 商品タグは10個：カテゴリ5＋シーン3＋トレンド2
+  source: src/d-platforms/tiktok-shop-ai-guide.md#18-tiktok-shop-站内搜索-seo
+  verified: 2026-08
+- id: tiktok_shop.product.main_image.required_format
+  entity: tiktok_product
+  attribute: main_image
+  platform: tiktok_shop
+  kind: required
+  value: 生活场景图（不是白底图）
+  unit: null
+  statement:
+    zh: 主图必须是生活场景图，不是白底图（白底图在信息流中像广告，点击率低）
+    en: Main image must be a lifestyle shot, not a white-background image (white background
+      reads as an ad in the feed and lowers CTR)
+    ja: メイン画像は生活シーン写真で、白背景は不可（フィードでは広告に見えCTRが下がる）
+  source: src/d-platforms/tiktok-shop-ai-guide.md#52-商品页优化的-3-个关键
+  verified: 2026-08
+- id: tiktok_shop.product.video.required
+  entity: tiktok_product
+  attribute: video
+  platform: tiktok_shop
+  kind: required
+  value: 必须有视频
+  unit: null
+  statement:
+    zh: 商品页必须配置视频，视频是 TikTok 的核心转化元素；把表现最好的带货视频放在商品页上
+    en: A video is mandatory on the product page — it is the core conversion element;
+      place the best-performing commerce video on the page
+    ja: 商品ページへの動画は必須。動画は TikTok の中核転換要素で、最も成果の良い動画を商品ページに置く
+  source: src/d-platforms/tiktok-shop-ai-guide.md#51-tiktok-shop-商品页-vs-amazon-listing
+  verified: 2026-08
+- id: tiktok_shop.product_video.hashtags.count
+  entity: product_video
+  attribute: null
+  platform: tiktok_shop
+  kind: count
+  value: 4-6（2-3 个高流量标签 + 2-3 个精准标签）
+  unit: 个
+  statement:
+    zh: 视频 Hashtag 策略：2-3 个高流量标签 + 2-3 个精准标签
+    en: 'Video hashtag strategy: 2-3 high-traffic tags + 2-3 precise tags'
+    ja: 動画ハッシュタグ戦略：高流入2〜3個＋ピンポイント2〜3個
+  source: src/d-platforms/tiktok-shop-ai-guide.md#18-tiktok-shop-站内搜索-seo
+  verified: 2026-08
+- id: tiktok_shop.product_video.description.required
+  entity: product_video
+  attribute: null
+  platform: tiktok_shop
+  kind: required
+  value: 视频描述包含长尾关键词
+  unit: null
+  statement:
+    zh: 视频描述包含长尾关键词（视频标题包含目标搜索词，不堆砌）
+    en: Video description should include long-tail keywords (title carries the target
+      search term, naturally)
+    ja: 動画説明にロングテールキーワードを含める（タイトルに対象検索語を自然に含める）
+  source: src/d-platforms/tiktok-shop-ai-guide.md#18-tiktok-shop-站内搜索-seo
+  verified: 2026-08
+- id: tiktok_shop.gmv_max.video_feed.min_count
+  entity: product_feed
+  attribute: null
+  platform: tiktok_shop
+  kind: count
+  value: 5
+  unit: 条
+  statement:
+    zh: GMV Max 素材库最低 5 条视频，推荐 20+ 条（AI 需要足够素材测试和优化）
+    en: GMV Max video library needs at least 5 videos, 20+ recommended (AI needs enough
+      creative to test and optimize)
+    ja: GMV Max の動画ライブラリは最低5本、推奨20本以上（AI がテスト・最適化に十分な素材を必要とする）
+  source: src/d-platforms/tiktok-shop-ai-guide.md#63-gmv-max-深度解析
+  verified: 2026-08
+- id: tiktok_shop.shop.sps.min_score
+  entity: tiktok_product
+  attribute: null
+  platform: tiktok_shop
+  kind: required
+  value: 4.0（SPS < 3.5 时广告效果显著下降）
+  unit: null
+  statement:
+    zh: 店铺 SPS ≥ 4.0 获得更好的 AI 流量分配；SPS < 3.5 时广告效果显著下降
+    en: Stores with SPS ≥ 4.0 get better AI traffic allocation; ad performance drops
+      significantly below SPS 3.5
+    ja: SPS 4.0以上で AI トラフィック配分が有利になり、3.5未満では広告効果が著しく低下
+  source: src/d-platforms/tiktok-shop-ai-guide.md#143-spsshop-performance-score对运营的影响
+  verified: 2026-08
+- id: amazon.cpc.value.actual_price_formula
+  entity: cpc
+  attribute: value
+  platform: amazon
+  kind: format
+  value: second_highest_bid + 0.01
+  unit: USD
+  statement:
+    zh: Amazon PPC 采用第二价格拍卖，实际支付的 CPC = 第二高出价 + $0.01，不需要出最高价
+    en: Amazon PPC uses a second-price auction; actual CPC paid = second-highest bid
+      + $0.01, so you need not bid the highest
+    ja: Amazon PPC は第二価格オークション。実支払 CPC = 2番目入札額 + $0.01
+  source: src/a-operators/a3-advertising.md#11-amazon-广告的第一性原理
+  verified: 2026-08
+- id: amazon.bid.value.ad_rank_formula
+  entity: bid
+  attribute: value
+  platform: amazon
+  kind: format
+  value: bid * relevance * cvr
+  statement:
+    zh: 广告排名 = 出价 × 相关性 × 转化率；转化率高的 Listing 可以低出价获得更高排名
+    en: Ad rank = bid × relevance × conversion rate; a high-converting listing can
+      outrank competitors with a lower bid
+    ja: 広告順位 = 入札額 × 関連性 × コンバージョン率
+  source: src/a-operators/a3-advertising.md#11-amazon-广告的第一性原理
+  verified: 2026-08
+- id: amazon.acos.value.formula
+  entity: acos
+  attribute: value
+  platform: amazon
+  kind: format
+  value: ad_spend / ad_sales * 100%
+  statement:
+    zh: ACOS = 广告花费 ÷ 广告销售额 × 100%（例：$100 花费 / $400 销售额 = 25%）
+    en: ACOS = ad spend / ad sales × 100% (e.g. $100 spend on $400 ad sales = 25%)
+    ja: ACOS = 広告費 ÷ 広告売上 × 100%
+  source: src/a-operators/a3-advertising.md#12-acos--tacos--roas-的关系和计算
+  verified: 2026-08
+- id: amazon.tacos.value.formula
+  entity: tacos
+  attribute: value
+  platform: amazon
+  kind: format
+  value: ad_spend / total_sales * 100%
+  statement:
+    zh: TACOS = 广告花费 ÷ 总销售额（广告+自然）× 100%；TACOS 持续下降说明自然流量在增长
+    en: TACOS = ad spend / total sales (ads + organic) × 100%; falling TACOS means
+      organic traffic is growing
+    ja: TACOS = 広告費 ÷ 総売上 × 100%
+  source: src/a-operators/a3-advertising.md#12-acos--tacos--roas-的关系和计算
+  verified: 2026-08
+- id: amazon.roas.value.formula
+  entity: roas
+  attribute: value
+  platform: amazon
+  kind: format
+  value: ad_sales / ad_spend
+  statement:
+    zh: ROAS = 广告销售额 ÷ 广告花费；且 ROAS = 1 / ACOS（ACOS 25% = ROAS 4.0）
+    en: ROAS = ad sales / ad spend; equivalently ROAS = 1 / ACOS (ACOS 25% ↔ ROAS
+      4.0)
+    ja: ROAS = 広告売上 ÷ 広告費。ROAS = 1 / ACOS
+  source: src/a-operators/a3-advertising.md#12-acos--tacos--roas-的关系和计算
+  verified: 2026-08
+- id: amazon.ctr.value.formula
+  entity: ctr
+  attribute: value
+  platform: amazon
+  kind: format
+  value: clicks / impressions * 100%
+  statement:
+    zh: CTR = 点击数 ÷ 展示量 × 100%（例：200 点击 / 50000 展示 = 0.4%）
+    en: CTR = clicks / impressions × 100% (e.g. 200 clicks / 50,000 impressions =
+      0.4%)
+    ja: CTR = クリック数 ÷ インプレッション数 × 100%
+  source: src/a-operators/a3-advertising.md#acos--tacos--roas-计算速查
+  verified: 2026-08
+- id: amazon.cpc.value.formula
+  entity: cpc
+  attribute: value
+  platform: amazon
+  kind: format
+  value: ad_spend / clicks
+  statement:
+    zh: CPC = 广告花费 ÷ 点击数（例：$100 / 200 点击 = $0.50）
+    en: CPC = ad spend / clicks (e.g. $100 / 200 clicks = $0.50)
+    ja: CPC = 広告費 ÷ クリック数
+  source: src/a-operators/a3-advertising.md#acos--tacos--roas-计算速查
+  verified: 2026-08
+- id: amazon.cvr.value.formula
+  entity: cvr
+  attribute: value
+  platform: amazon
+  kind: format
+  value: orders / clicks * 100%
+  statement:
+    zh: CVR = 订单数 ÷ 点击数 × 100%（例：20 订单 / 200 点击 = 10%）
+    en: CVR = orders / clicks × 100% (e.g. 20 orders / 200 clicks = 10%)
+    ja: CVR = 注文数 ÷ クリック数 × 100%
+  source: src/a-operators/a3-advertising.md#acos--tacos--roas-计算速查
+  verified: 2026-08
+- id: amazon.acos.value.break_even
+  entity: acos
+  attribute: value
+  platform: amazon
+  kind: format
+  value: product_margin
+  statement:
+    zh: 盈亏平衡 ACOS = 产品利润率；ACOS < 利润率广告盈利，= 利润率盈亏平衡，> 利润率亏损（但可能在推排名）
+    en: Break-even ACOS = product margin; below margin the ad is profitable, at margin
+      it breaks even, above margin it loses money (but may still be pushing organic
+      rank)
+    ja: 損益分岐 ACOS = 商品利益率。ACOS が利益率を下回れば広告は黒字
+  source: src/a-operators/a3-advertising.md#12-acos--tacos--roas-的关系和计算
+  verified: 2026-08
+- id: amazon.sponsored_brand.budget.minimum
+  entity: sponsored_brand
+  attribute: budget
+  platform: amazon
+  kind: required
+  value: '>= 1'
+  unit: USD/day
+  statement:
+    zh: Sponsored Brands 最低日预算 $1/天
+    en: Sponsored Brands has a $1/day minimum budget
+    ja: スポンサーブランドの最低日次予算は $1
+  source: src/a-operators/a3-advertising.md#13-广告类型全景
+  verified: 2026-08
+- id: amazon.sponsored_display.budget.minimum
+  entity: sponsored_display
+  attribute: budget
+  platform: amazon
+  kind: required
+  value: '>= 1'
+  unit: USD/day
+  statement:
+    zh: Sponsored Display 最低日预算 $1/天
+    en: Sponsored Display has a $1/day minimum budget
+    ja: スポンサーディスプレイの最低日次予算は $1
+  source: src/a-operators/a3-advertising.md#13-广告类型全景
+  verified: 2026-08
+- id: amazon.sponsored_product.budget.minimum
+  entity: sponsored_product
+  attribute: budget
+  platform: amazon
+  kind: required
+  value: none
+  unit: null
+  statement:
+    zh: Sponsored Products 无最低预算限制
+    en: Sponsored Products has no minimum budget
+    ja: スポンサープロダクトに最低予算はない
+  source: src/a-operators/a3-advertising.md#13-广告类型全景
+  verified: 2026-08
+- id: amazon.dsp.budget.minimum
+  entity: dsp
+  attribute: min_monthly_budget
+  platform: amazon
+  kind: required
+  value: '>= 10000'
+  unit: USD/month
+  statement:
+    zh: Amazon DSP 通常最低 $10,000+/月，适合大卖家/品牌
+    en: Amazon DSP typically requires $10,000+/month, suited to large sellers/brands
+    ja: Amazon DSP は通常月 $10,000+ が目安
+  source: src/a-operators/a3-advertising.md#13-广告类型全景
+  verified: 2026-08
+- id: amazon.campaign.budget.new_product_minimum
+  entity: campaign
+  attribute: budget
+  platform: amazon
+  kind: required
+  value: '>= 20 (recommended 20-50)'
+  unit: USD/day
+  statement:
+    zh: 新品期日预算低于 $10 数据积累太慢；建议日预算 $20-50 确保足够展示量
+    en: For new products a daily budget below $10 accumulates data too slowly; $20-50/day
+      is recommended
+    ja: 新商品の日次予算は $10 未満だとデータ蓄積が遅すぎる。$20-50/日が推奨
+  source: src/a-operators/a3-advertising.md#35-新品广告启动策略
+  verified: 2026-08
+- id: amazon.sponsored_brand.ad.headline_max_length
+  entity: sponsored_brand
+  attribute: headline
+  platform: amazon
+  kind: max_length
+  value: 50
+  unit: 字符
+  statement:
+    zh: Sponsored Brands Headline 限 50 字符，超出会被截断
+    en: Sponsored Brands headline is limited to 50 characters; longer headlines get
+      truncated
+    ja: スポンサーブランド見出しは 50 文字まで。超過は切り捨てられる
+  source: src/a-operators/a3-advertising.md#32-广告文案-ab-测试
+  verified: 2026-08
+- id: google.search_ad.headline_max_length
+  entity: ad
+  attribute: headline
+  platform: google
+  kind: max_length
+  value: 30
+  unit: 字符
+  statement:
+    zh: Google Ads 标题限 30 字符，每条广告 3 条标题
+    en: Google Ads headlines are limited to 30 characters each, 3 headlines per ad
+    ja: Google Ads 見出しは 30 文字まで。1 広告あたり 3 本
+  source: src/a-operators/a3-advertising.md#85-补充ai-广告素材批量生成与跨渠道归因
+  verified: 2026-08
+- id: google.search_ad.description_max_length
+  entity: ad
+  attribute: headline
+  platform: google
+  kind: max_length
+  value: 90
+  unit: 字符
+  statement:
+    zh: Google Ads 描述限 90 字符，每条广告 2 条描述
+    en: Google Ads descriptions are limited to 90 characters each, 2 per ad
+    ja: Google Ads 説明文は 90 文字まで。1 広告あたり 2 本
+  source: src/a-operators/a3-advertising.md#85-补充ai-广告素材批量生成与跨渠道归因
+  verified: 2026-08
+- id: amazon.match_type.exact.behavior
+  entity: match_type
+  attribute: name
+  platform: amazon
+  kind: format
+  value: exact
+  statement:
+    zh: Exact Match 匹配精准流量，应出价最高（利润收割器）；Broad 中发现的新关键词机会应提升为 Exact
+    en: Exact match captures precise traffic and should carry the highest bid (the
+      "profit harvester"); new keywords found in broad should be promoted to exact
+    ja: 完全一致は精密なトラフィックを獲得し、最高入札が推奨
+  source: src/a-operators/a3-advertising.md#31-搜索词报告分析
+  verified: 2026-08
+- id: amazon.match_type.broad.behavior
+  entity: match_type
+  attribute: name
+  platform: amazon
+  kind: format
+  value: broad
+  statement:
+    zh: Broad Match 是探索性流量，应出价最低（关键词发现器）；Broad、Phrase、Exact 不应使用同一出价
+    en: Broad match is exploratory traffic and should carry the lowest bid (the "keyword
+      finder"); broad, phrase and exact must not share one bid
+    ja: 部分一致は探索的なトラフィックで、最低入札が推奨
+  source: src/a-operators/a3-advertising.md#51-出价相关陷阱
+  verified: 2026-08
+- id: amazon.match_type.phrase.behavior
+  entity: match_type
+  attribute: name
+  platform: amazon
+  kind: format
+  value: phrase
+  statement:
+    zh: Phrase Match 介于 Broad 与 Exact 之间；Phrase 中需要否定的无关词应单独识别
+    en: Phrase match sits between broad and exact; irrelevant terms appearing in phrase
+      match must be negated separately
+    ja: フレーズ一致は部分一致と完全一致の中間
+  source: src/a-operators/a3-advertising.md#31-搜索词报告分析
+  verified: 2026-08
+- id: amazon.negative_keyword.exact.behavior
+  entity: negative_keyword
+  attribute: type
+  platform: amazon
+  kind: format
+  value: negative_exact
+  statement:
+    zh: 精确否定只屏蔽完全匹配的搜索词，否定范围最小，不会误伤包含该词的其它搜索词
+    en: Negative exact blocks only the fully-matching search term; it has the narrowest
+      blast radius
+    ja: 否定完全一致は完全一致する検索語のみをブロック
+  source: src/a-operators/a3-advertising.md#33-否定关键词策略
+  verified: 2026-08
+- id: amazon.negative_keyword.phrase.behavior
+  entity: negative_keyword
+  attribute: type
+  platform: amazon
+  kind: format
+  value: negative_phrase
+  statement:
+    zh: 短语否定会屏蔽包含该短语的所有搜索词（如所有含 "free" 的搜索词），范围更大，用错会误伤有效流量
+    en: Negative phrase blocks every search term containing the phrase (e.g. all terms
+      containing "free"); wider blast radius, misuse harms valid traffic
+    ja: 否定フレーズはフレーズを含む全検索語をブロック
+  source: src/a-operators/a3-advertising.md#33-否定关键词策略
+  verified: 2026-08
+- id: amazon.bid.value.suggested_bid_start
+  entity: bid
+  attribute: amount
+  platform: amazon
+  kind: format
+  value: 80%..100% of suggested bid; 120% for new products
+  statement:
+    zh: 起始出价从建议出价的 80% 开始逐步提高；至少出到建议出价的 100%；新品期可出 120%
+    en: Start bids at 80% of the suggested bid and raise gradually; bid at least 100%
+      of suggested; new products may bid 120%
+    ja: 入札は推奨額の 80% から開始し、少なくとも 100% まで。新商品は 120% 可
+  source: src/a-operators/a3-advertising.md#51-出价相关陷阱
+  verified: 2026-08
+- id: amazon.bid.value.new_product_multiplier
+  entity: bid
+  attribute: amount
+  platform: amazon
+  kind: format
+  value: 1.2x suggested bid (Week 1)
+  statement:
+    zh: 新品第 1 周 Auto 广告出价 = 建议出价的 1.2 倍，用更高出价获取展示
+    en: Week 1 new-product Auto campaigns bid 1.2× the suggested bid to win impressions
+    ja: 新商品 1 週目の入札は推奨額の 1.2 倍
+  source: src/a-operators/a3-advertising.md#41-新品广告启动-sop30-天计划
+  verified: 2026-08
+- id: amazon.bid.value.max_adjustment_per_week
+  entity: bid
+  attribute: amount
+  platform: amazon
+  kind: format
+  value: <= 20% per adjustment
+  statement:
+    zh: 出价调整每次幅度不超过 20%，避免剧烈波动（小步快跑，持续迭代）
+    en: Adjust bids by no more than 20% at a time to avoid violent swings
+    ja: 入札調整は 1 回につき ±20% 以内
+  source: src/a-operators/a3-advertising.md#42-日常广告优化-sop每周-30-分钟
+  verified: 2026-08
+- id: amazon.bid.value.acos_reaction
+  entity: bid
+  attribute: amount
+  platform: amazon
+  kind: format
+  value: ACOS < target -> +10..20%; ACOS > 1.5x target -> -10..20%
+  statement:
+    zh: ACOS 低于目标 → 提高出价 10-20%；ACOS 高于目标 × 1.5 → 降低出价 10-20%
+    en: If ACOS is below target raise bids 10-20%; if ACOS exceeds 1.5× target lower
+      bids 10-20%
+    ja: ACOS が目標未満なら入札 +10-20%、目標の 1.5 倍超なら -10-20%
+  source: src/a-operators/a3-advertising.md#41-新品广告启动-sop30-天计划
+  verified: 2026-08
+- id: amazon.bid.value.dynamic_bids_allowed
+  entity: bid
+  attribute: strategy
+  platform: amazon
+  kind: format
+  value: down_only | up_and_down
+  statement:
+    zh: 动态出价可选 "Dynamic bids - down only"（保守）或 "Up and down"（激进）
+    en: Dynamic bidding offers "down only" (conservative) or "up and down" (aggressive)
+    ja: 動的入札は「down only」(保守) と「up and down」(積極) の2種
+  source: src/a-operators/a3-advertising.md#51-出价相关陷阱
+  verified: 2026-08
+- id: amazon.keyword.value.exact_harvest_threshold
+  entity: keyword
+  attribute: null
+  platform: amazon
+  kind: format
+  value: clicks >= 5 AND cvr >= 10%
+  statement:
+    zh: Auto 搜索词中点击 ≥5 且转化率 ≥10% 的词提升为 Manual Exact Match
+    en: Search terms with clicks ≥5 and conversion rate ≥10% are promoted to manual
+      exact match
+    ja: クリック ≥5 かつ CVR ≥10% の語を手動完全一致へ昇格
+  source: src/a-operators/a3-advertising.md#41-新品广告启动-sop30-天计划
+  verified: 2026-08
+- id: amazon.keyword.value.phrase_harvest_threshold
+  entity: keyword
+  attribute: null
+  platform: amazon
+  kind: format
+  value: clicks >= 10 AND has_conversion
+  statement:
+    zh: 点击 ≥10 且有转化的词提升为 Manual Phrase Match
+    en: Search terms with clicks ≥10 and some conversion are promoted to manual phrase
+      match
+    ja: クリック ≥10 かつ転換ありの語を手動フレーズ一致へ昇格
+  source: src/a-operators/a3-advertising.md#41-新品广告启动-sop30-天计划
+  verified: 2026-08
+- id: amazon.keyword.value.waste_negation_threshold
+  entity: keyword
+  attribute: null
+  platform: amazon
+  kind: format
+  value: spend > 5 USD AND zero conversion
+  statement:
+    zh: 花费 >$5 且零转化的词加入否定列表
+    en: Terms spending over $5 with zero conversions are negated
+    ja: 支出 >$5 かつ転換ゼロの語を否定
+  source: src/a-operators/a3-advertising.md#41-新品广告启动-sop30-天计划
+  verified: 2026-08
+- id: amazon.keyword.value.min_clicks_statistics
+  entity: keyword
+  attribute: null
+  platform: amazon
+  kind: count
+  value: 20
+  unit: clicks
+  statement:
+    zh: 至少 20 次点击才有统计意义；点击太少的关键词放"观察列表"而不是直接否定
+    en: At least 20 clicks are needed for statistical significance; under-clicked
+      keywords go to an observation list rather than being negated
+    ja: 統計的に意味のある判断には最低 20 クリック必要
+  source: src/a-operators/a3-advertising.md#54-数据相关陷阱
+  verified: 2026-08
+- id: amazon.negative_keyword.value.batch_limit
+  entity: negative_keyword
+  attribute: null
+  platform: amazon
+  kind: count
+  value: 20
+  unit: keywords/batch
+  statement:
+    zh: 每次否定不超过 20 个词，观察 3 天后再继续，避免过度否定导致流量断崖
+    en: Negate no more than 20 keywords per batch, then observe 3 days before continuing,
+      to avoid over-negation traffic cliffs
+    ja: 否定は 1 バッチ 20 語までとし、3 日観察してから継続
+  source: src/a-operators/a3-advertising.md#33-否定关键词策略
+  verified: 2026-08
+- id: amazon.negative_keyword.value.observe_period
+  entity: negative_keyword
+  attribute: null
+  platform: amazon
+  kind: format
+  value: 3-5 days
+  statement:
+    zh: 每次否定操作后观察 3-5 天的数据变化；核心原则：宁可少否定，不要过度否定
+    en: 'Observe data for 3-5 days after each negation round; principle: rather under-negate
+      than over-negate'
+    ja: 否定後は 3-5 日観察。過度な否定を避ける
+  source: src/a-operators/a3-advertising.md#33-否定关键词策略
+  verified: 2026-08
+- id: amazon.ads.attribution_window
+  entity: search_term_report
+  attribute: period
+  platform: amazon
+  kind: format
+  value: 7-14 days
+  statement:
+    zh: Amazon 广告数据有 7-14 天归因窗口；至少看 7 天以上数据再做决策
+    en: Amazon ad data has a 7-14 day attribution window; make decisions on at least
+      7 days of data
+    ja: Amazon 広告データには 7-14 日のアトリビューション窓がある
+  source: src/a-operators/a3-advertising.md#54-数据相关陷阱
+  verified: 2026-08
+- id: amazon.ads.analysis_window_minimum
+  entity: search_term_report
+  attribute: period
+  platform: amazon
+  kind: format
+  value: '>= 30 days'
+  statement:
+    zh: 关键词层面分析至少使用 30 天数据（少于 7 天数据量太少，归因未完成）
+    en: Keyword-level analysis should use at least 30 days of data (under 7 days is
+      too little, attribution is incomplete)
+    ja: キーワード分析は最低 30 日分のデータを使用
+  source: src/a-operators/a3-advertising.md#31-搜索词报告分析
+  verified: 2026-08
+- id: amazon.campaign.structure.max_count
+  entity: campaign
+  attribute: null
+  platform: amazon
+  kind: count
+  value: 3-5
+  unit: campaigns/product
+  statement:
+    zh: 每个产品 3-5 个广告活动足够（Auto + Manual Exact + Manual Broad + SB），广告组太多会分散预算和数据
+    en: 3-5 campaigns per product is enough (Auto + Manual Exact + Manual Broad +
+      SB); too many campaigns fragment budget and data
+    ja: 商品あたりのキャンペーンは 3-5 本が目安
+  source: src/a-operators/a3-advertising.md#52-结构相关陷阱
+  verified: 2026-08
+- id: amazon.ad_group.structure.match_type_separation
+  entity: ad_group
+  attribute: null
+  platform: amazon
+  kind: required
+  value: one group per match type (minimum)
+  statement:
+    zh: 至少按匹配类型分开广告组（Exact 一组、Broad 一组），否则无法针对性优化
+    en: Ad groups must be separated at least by match type (one for exact, one for
+      broad), otherwise targeted optimization is impossible
+    ja: 広告グループは最低でもマッチタイプ別に分ける
+  source: src/a-operators/a3-advertising.md#52-结构相关陷阱
+  verified: 2026-08
+- id: amazon.keyword.placement.one_ad_group_only
+  entity: keyword
+  attribute: null
+  platform: amazon
+  kind: forbidden
+  value: duplicate keyword across ad groups
+  statement:
+    zh: 禁止同一关键词出现在多个广告组（关键词重叠会自己和自己竞争），确保每个关键词只在一个广告组
+    en: The same keyword must not appear in multiple ad groups (overlap means bidding
+      against yourself); each keyword belongs to exactly one ad group
+    ja: 同一キーワードを複数の広告グループに重複登録してはならない
+  source: src/a-operators/a3-advertising.md#52-结构相关陷阱
+  verified: 2026-08
+- id: amazon.keyword.targeting.auto_manual_conflict
+  entity: keyword
+  attribute: null
+  platform: amazon
+  kind: required
+  value: negative exact in Auto for Manual keywords
+  statement:
+    zh: Manual 中已有关键词需在 Auto 广告中做精确否定，避免 Auto 和 Manual 竞争同一关键词
+    en: Keywords already in Manual campaigns must be negative-exact in the Auto campaign
+      to prevent Auto/Manual self-competition
+    ja: 手動キャンペーンにあるキーワードはオートで否定完全一致にする
+  source: src/a-operators/a3-advertising.md#52-结构相关陷阱
+  verified: 2026-08
+- id: amazon.promo.budget.pre_event_multiplier
+  entity: budget
+  attribute: daily_amount
+  platform: amazon
+  kind: format
+  value: 2-3x daily
+  statement:
+    zh: 大促前 2 周把日预算提高到日常的 2-3 倍，确保大促期间不会提前下线
+    en: Raise daily budgets to 2-3× normal 2 weeks before a major event so campaigns
+      do not run out early
+    ja: 大型イベント 2 週間前から日予算を通常の 2-3 倍に
+  source: src/a-operators/a3-advertising.md#43-大促广告策略prime-day--bfcm
+  verified: 2026-08
+- id: amazon.promo.budget.event_multiplier
+  entity: budget
+  attribute: daily_amount
+  platform: amazon
+  kind: format
+  value: 3-5x daily
+  statement:
+    zh: 大促期间（3-5 天）预算提高到日常的 3-5 倍，并每天检查预算消耗速度
+    en: During the event (3-5 days) raise budgets to 3-5× normal and check spend velocity
+      daily
+    ja: イベント期間中の予算は通常の 3-5 倍
+  source: src/a-operators/a3-advertising.md#43-大促广告策略prime-day--bfcm
+  verified: 2026-08
+- id: amazon.promo.bid.event_multiplier
+  entity: bid
+  attribute: amount
+  platform: amazon
+  kind: format
+  value: +30..50%
+  statement:
+    zh: 大促期间出价提高 30-50%（竞争激烈，CPC 会上升）
+    en: Raise bids 30-50% during major events (competition drives CPC up)
+    ja: イベント期間中の入札は +30-50%
+  source: src/a-operators/a3-advertising.md#43-大促广告策略prime-day--bfcm
+  verified: 2026-08
+- id: amazon.ad.ab_variant_count
+  entity: ad
+  attribute: variant
+  platform: amazon
+  kind: count
+  value: 2
+  unit: variants/test
+  statement:
+    zh: 每次只测 2 个变体（A/B），不要同时测 5 个
+    en: Test only 2 variants at a time (A/B); never test 5 at once
+    ja: A/B テストは一度に 2 バリアントのみ
+  source: src/a-operators/a3-advertising.md#32-广告文案-ab-测试
+  verified: 2026-08
+- id: amazon.ad.ab_min_duration
+  entity: ad
+  attribute: null
+  platform: amazon
+  kind: format
+  value: '>= 2 weeks'
+  statement:
+    zh: A/B 测试至少运行 2 周，积累足够的点击数据才有统计意义
+    en: A/B tests must run at least 2 weeks to accumulate statistically meaningful
+      clicks
+    ja: A/B テストは最低 2 週間実施
+  source: src/a-operators/a3-advertising.md#32-广告文案-ab-测试
+  verified: 2026-08
+- id: amazon.sponsored_brand.video.ctr_multiple
+  entity: sponsored_brand
+  attribute: null
+  platform: amazon
+  kind: format
+  value: 2-3x static SB
+  statement:
+    zh: SB Video 的 CTR 通常比静态 SB 广告高 2-3 倍
+    en: Sponsored Brands Video typically achieves 2-3× the CTR of static SB ads
+    ja: SB 動画の CTR は静止 SB の 2-3 倍が目安
+  source: src/a-operators/a3-advertising.md#32-广告文案-ab-测试
+  verified: 2026-08
+- id: amazon.sponsored_brand.eligibility.brand_registry_required
+  entity: sponsored_brand
+  attribute: null
+  platform: amazon
+  kind: required
+  value: brand_registry
+  statement:
+    zh: Sponsored Brands 和 Sponsored Display 需要品牌注册（Brand Registry）后才能投放
+    en: Sponsored Brands and Sponsored Display require Brand Registry eligibility
+    ja: スポンサーブランド・スポンサーディスプレイはブランド登録必須
+  source: src/a-operators/a3-advertising.md#13-广告类型全景
+  verified: 2026-08
+- id: amazon.attribution.eligibility.brand_registry_required
+  entity: asin_target
+  attribute: null
+  platform: amazon
+  kind: required
+  value: brand_registry
+  statement:
+    zh: Amazon Attribution 需在 Amazon Brand Registry 后台开通，用于追踪站外流量到 Amazon 的转化
+    en: Amazon Attribution is enabled from the Amazon Brand Registry backend to track
+      off-Amazon traffic conversions
+    ja: Amazon Attribution はブランド登録バックエンドから開通する
+  source: src/a-operators/a3-advertising.md#85-补充ai-广告素材批量生成与跨渠道归因
+  verified: 2026-08
+- id: amazon.search_term.classification.star_word
+  entity: search_term
+  attribute: null
+  platform: amazon
+  kind: format
+  value: ACOS < 20% AND orders >= 2
+  statement:
+    zh: 四象限分类·明星词：ACOS < 20% 且订单 ≥2，建议提高出价并提取到 Manual Exact
+    en: 'Four-quadrant classification - star terms: ACOS <20% and orders ≥2; raise
+      bid and move to manual exact'
+    ja: スター語：ACOS <20% かつ注文 ≥2
+  source: src/case-studies/ai-ppc-optimization.md#每周一搜索词报告-ai-分析30-分钟
+  verified: 2026-08
+- id: amazon.search_term.classification.potential_word
+  entity: search_term
+  attribute: null
+  platform: amazon
+  kind: format
+  value: ACOS < 30% AND orders = 1
+  statement:
+    zh: 四象限分类·潜力词：ACOS < 30% 且订单 =1，值得提高出价测试
+    en: 'Four-quadrant classification - potential terms: ACOS <30% and orders =1;
+      worth a bid-up test'
+    ja: ポテンシャル語：ACOS <30% かつ注文 =1
+  source: src/case-studies/ai-ppc-optimization.md#每周一搜索词报告-ai-分析30-分钟
+  verified: 2026-08
+- id: amazon.search_term.classification.observe_word
+  entity: search_term
+  attribute: null
+  platform: amazon
+  kind: format
+  value: clicks >= 10 AND orders = 0
+  statement:
+    zh: 四象限分类·观察词：点击 ≥10 且订单 =0，降出价或暂停观察，暂不否定
+    en: 'Four-quadrant classification - observe terms: clicks ≥10 and orders =0; lower
+      bid or pause, do not negate yet'
+    ja: 観察語：クリック ≥10 かつ注文 =0
+  source: src/case-studies/ai-ppc-optimization.md#每周一搜索词报告-ai-分析30-分钟
+  verified: 2026-08
+- id: amazon.search_term.classification.waste_word
+  entity: search_term
+  attribute: null
+  platform: amazon
+  kind: format
+  value: spend > 10 USD AND orders = 0
+  statement:
+    zh: 四象限分类·浪费词：花费 >$10 且订单 =0，立即加入 campaign 级否定精确匹配
+    en: 'Four-quadrant classification - waste terms: spend >$10 and orders =0; negate
+      immediately at campaign level (negative exact)'
+    ja: 浪費語：支出 >$10 かつ注文 =0
+  source: src/case-studies/ai-ppc-optimization.md#每周一搜索词报告-ai-分析30-分钟
+  verified: 2026-08
+- id: amazon.account.waste_ratio.sop_threshold
+  entity: campaign
+  attribute: null
+  platform: amazon
+  kind: format
+  value: waste_ratio > 15% effective; < 10% limited benefit
+  statement:
+    zh: 浪费性支出占比（花费 >$10 且订单 =0 的词的花费 ÷ 总花费）>15% 时该优化 SOP 大概率有效；<10% 时收益有限
+    en: When the waste-spend ratio (spend on terms with spend >$10 and 0 orders ÷
+      total spend) is above 15% this SOP likely works; below 10% benefit is limited
+    ja: 浪費比率が 15% 超なら SOP は有効、10% 未満なら効果は限定的
+  source: src/case-studies/ai-ppc-optimization.md#复现清单
+  verified: 2026-08
+- id: amazon.account.monthly_spend.analysis_cadence
+  entity: campaign
+  attribute: null
+  platform: amazon
+  kind: format
+  value: monthly for accounts < 3000 USD/month spend
+  statement:
+    zh: 月广告花费低于 $3,000 的账户建议按月而不是按周做决策，并把判断阈值放宽
+    en: Accounts spending under $3,000/month on ads should decide monthly rather than
+      weekly and relax thresholds
+    ja: 月広告費 $3,000 未満のアカウントは月次判断を推奨
+  source: src/case-studies/ai-ppc-optimization.md#这套做法的适用边界
+  verified: 2026-08
+- id: amazon.acos.value.industry_benchmark
+  entity: acos
+  attribute: value
+  platform: amazon
+  kind: format
+  value: ~30% average
+  statement:
+    zh: 行业平均 ACOS 约 30%；远高于此先检查否定词和浪费性支出
+    en: Industry average ACOS is roughly 30%; if far above, check negative keywords
+      and waste spend first
+    ja: 業界平均 ACOS は約 30%
+  source: src/case-studies/ai-ppc-optimization.md#tips
+  verified: 2026-08
+- id: amazon.tacos.value.healthy_range
+  entity: tacos
+  attribute: value
+  platform: amazon
+  kind: format
+  value: 5-15% (mature products)
+  statement:
+    zh: 成熟产品 TACOS 健康范围 5-15%
+    en: Healthy TACOS range for mature products is 5-15%
+    ja: 成熟商品の TACOS 健康域は 5-15%
+  source: src/a-operators/a3-advertising.md#acos--tacos--roas-计算速查
+  verified: 2026-08
+- id: amazon.roas.value.profitable_threshold
+  entity: roas
+  attribute: value
+  platform: amazon
+  kind: format
+  value: '> 3.0'
+  statement:
+    zh: ROAS > 3.0 视为盈利
+    en: ROAS above 3.0 is considered profitable
+    ja: ROAS 3.0 超が黒字目安
+  source: src/a-operators/a3-advertising.md#acos--tacos--roas-计算速查
+  verified: 2026-08
+- id: amazon.ctr.value.healthy_min
+  entity: ctr
+  attribute: value
+  platform: amazon
+  kind: format
+  value: '> 0.3%'
+  statement:
+    zh: CTR 健康值 >0.3%
+    en: Healthy CTR is above 0.3%
+    ja: CTR は 0.3% 超が目安
+  source: src/a-operators/a3-advertising.md#acos--tacos--roas-计算速查
+  verified: 2026-08
+- id: amazon.cvr.value.healthy_min
+  entity: cvr
+  attribute: value
+  platform: amazon
+  kind: format
+  value: '> 8%'
+  statement:
+    zh: CVR 健康值 >8%
+    en: Healthy CVR is above 8%
+    ja: CVR は 8% 超が目安
+  source: src/a-operators/a3-advertising.md#acos--tacos--roas-计算速查
+  verified: 2026-08
+- id: amazon.de.cpc.vs_us
+  entity: cpc
+  attribute: value
+  platform: amazon
+  kind: format
+  value: 30-50% lower than US
+  statement:
+    zh: DE 站 CPC 通常比 US 站低 30-50%（多站点广告需独立出价策略）
+    en: Germany CPC is typically 30-50% lower than the US site; each site needs its
+      own bidding strategy
+    ja: ドイツの CPC は米国より通常 30-50% 低い
+  source: src/a-operators/a3-advertising.md#38-多站点广告策略
+  verified: 2026-08
+- id: amazon.jp.cpc.vs_us
+  entity: cpc
+  attribute: value
+  platform: amazon
+  kind: format
+  value: 40-60% lower than US
+  statement:
+    zh: JP 站 CPC 通常比 US 站低 40-60%
+    en: Japan CPC is typically 40-60% lower than the US site
+    ja: 日本の CPC は米国より通常 40-60% 低い
+  source: src/a-operators/a3-advertising.md#38-多站点广告策略
+  verified: 2026-08
+- id: amazon.eu.vat.impact_on_acos
+  entity: acos
+  attribute: value
+  platform: amazon
+  kind: format
+  value: VAT 19-22%
+  statement:
+    zh: 欧洲站 VAT（19-22%）会显著影响利润率和可承受的 ACOS，制定目标 ACOS 时必须计入
+    en: European VAT (19-22%) materially reduces margin and affordable ACOS and must
+      be factored into target ACOS
+    ja: EU の VAT（19-22%）は利益率と許容 ACOS に大きく影響する
+  source: src/a-operators/a3-advertising.md#38-多站点广告策略
+  verified: 2026-08
+- id: amazon.fba.inventory.ipi_score_min
+  entity: ipi_score
+  attribute: score
+  platform: amazon
+  kind: min_value
+  value: 400
+  unit: 分
+  statement:
+    zh: IPI Score 目标值 ≥ 400，低于阈值会被限制 FBA 入仓数量
+    en: IPI Score target >= 400; below threshold, FBA inbound quantity is restricted
+  source: src/a-operators/a5-inventory.md#12-amazon-fba-库存关键指标
+  verified: 2026-08
+- id: amazon.fba.inventory.sell_through_rate_target
+  entity: sell_through_rate
+  attribute: value
+  platform: amazon
+  kind: min_ratio
+  value: 3
+  unit: 周转次数/90天
+  statement:
+    zh: Sell-through Rate 目标 > 3，即 90 天内库存周转 3 次
+    en: Sell-through rate target > 3 (3 inventory turns in 90 days)
+  source: src/a-operators/a5-inventory.md#12-amazon-fba-库存关键指标
+  verified: 2026-08
+- id: amazon.fba.inventory.in_stock_rate_target
+  entity: in_stock_rate
+  attribute: value
+  platform: amazon
+  kind: min_ratio
+  value: 95
+  unit: '%'
+  statement:
+    zh: In-stock Rate 目标 > 95%（有库存天数 ÷ 总天数）
+    en: In-stock rate target > 95% (days in stock / total days)
+  source: src/a-operators/a5-inventory.md#12-amazon-fba-库存关键指标
+  verified: 2026-08
+- id: amazon.fba.inventory.excess_inventory_threshold
+  entity: excess_inventory
+  attribute: days_of_forecast
+  platform: amazon
+  kind: threshold
+  value: 90
+  unit: 天
+  statement:
+    zh: 超过 90 天预计销量的库存即视为 Excess Inventory
+    en: Inventory exceeding 90 days of forecast sales counts as excess inventory
+  source: src/a-operators/a5-inventory.md#12-amazon-fba-库存关键指标
+  verified: 2026-08
+- id: amazon.fba.inventory.aged_surcharge_start
+  entity: aged_inventory
+  attribute: age_days
+  platform: amazon
+  kind: threshold
+  value: 181
+  unit: 天
+  statement:
+    zh: 库龄超过 181 天开始收取 Aged Inventory Surcharge
+    en: Aged Inventory Surcharge applies from 181 days of age
+  source: src/a-operators/a5-inventory.md#11-库存管理的第一性原理
+  verified: 2026-08
+- id: amazon.fba.inventory.aged_surcharge_high
+  entity: aged_inventory
+  attribute: age_days
+  platform: amazon
+  kind: threshold
+  value: 365
+  unit: 天
+  statement:
+    zh: 库龄超过 365 天的 Aged Inventory Surcharge 更高
+    en: Aged Inventory Surcharge increases beyond 365 days of age
+  source: src/a-operators/a5-inventory.md#11-库存管理的第一性原理
+  verified: 2026-08
+- id: amazon.fba.inventory.storage_fee_standard_size
+  entity: inventory
+  attribute: storage_fee_per_cubic_foot
+  platform: amazon
+  kind: fee
+  value:
+    jan_sep: 0.87
+    oct_dec: 2.4
+  unit: USD/立方英尺/月
+  statement:
+    zh: FBA 标准尺寸月度仓储费：$0.87/立方英尺（1-9月），$2.40/立方英尺（10-12月）
+    en: 'FBA monthly storage fee for standard size: $0.87/cu ft (Jan-Sep), $2.40/cu
+      ft (Oct-Dec)'
+  source: src/a-operators/a5-inventory.md#11-库存管理的第一性原理
+  verified: 2026-08
+- id: amazon.fba.inventory.inbound_processing_time
+  entity: fulfillment_center
+  attribute: inbound_processing_days
+  platform: amazon
+  kind: range
+  value:
+    normal_min: 5
+    normal_max: 14
+    peak: 21
+  unit: 天
+  statement:
+    zh: FBA 入仓处理 5-14 天，旺季（Q4）可能从 5 天暴增到 21 天
+    en: FBA inbound processing 5-14 days; in Q4 peak it can balloon to 21 days
+  source: src/a-operators/a5-inventory.md#11-库存管理的第一性原理
+  verified: 2026-08
+- id: amazon.fba.inventory.storage_restriction_on_low_ipi
+  entity: fba_inventory
+  attribute: storage_restriction
+  platform: amazon
+  kind: rule
+  value: ipi_below_400_limits_inbound
+  statement:
+    zh: IPI Score 低于阈值（400）时，FBA 入仓数量有上限，补货量不能超过限制
+    en: When IPI Score is below threshold (400), FBA inbound quantity is capped; order
+      quantity must respect the cap
+  source: src/a-operators/a5-inventory.md#12-amazon-fba-库存关键指标
+  verified: 2026-08
+- id: inventory.safety_stock_formula
+  entity: safety_stock
+  attribute: qty
+  platform: null
+  kind: formula
+  value: Z × σ_d × √L
+  statement:
+    zh: 安全库存 = Z × σ_d × √L；Z=服务水平系数（95%→1.65，99%→2.33），σ_d=日均销量标准差，L=Lead Time 天数
+    en: Safety stock = Z × σ_d × √L; Z=service level factor, σ_d=std dev of daily
+      sales, L=lead time in days
+  source: src/a-operators/a5-inventory.md#11-库存管理的第一性原理
+  verified: 2026-08
+- id: inventory.reorder_point_formula
+  entity: reorder_point
+  attribute: qty
+  platform: null
+  kind: formula
+  value: 日均销量 × Lead Time + 安全库存
+  statement:
+    zh: 补货点 = 日均销量 × Lead Time + 安全库存；库存降到该水位时下单补货
+    en: Reorder point = daily sales × lead time + safety stock; place order when stock
+      falls to this level
+  source: src/a-operators/a5-inventory.md#11-库存管理的第一性原理
+  verified: 2026-08
+- id: inventory.service_level_z_factors
+  entity: safety_stock
+  attribute: z_factor
+  platform: null
+  kind: reference
+  value:
+    p90: 1.28
+    p95: 1.65
+    p975: 1.96
+    p99: 2.33
+  statement:
+    zh: 服务水平系数 Z：90%→1.28，95%→1.65，97.5%→1.96，99%→2.33
+    en: 'Service level Z factors: 90%→1.28, 95%→1.65, 97.5%→1.96, 99%→2.33'
+  source: src/a-operators/a5-inventory.md#服务水平系数-z-速查
+  verified: 2026-08
+- id: inventory.stockout_cost_formula
+  entity: inventory
+  attribute: stockout_cost
+  platform: null
+  kind: formula
+  value: 断货天数 × 日均销量 × 客单价 × 利润率 + 排名恢复成本
+  statement:
+    zh: 缺货成本 = 断货天数 × 日均销量 × 客单价 × 利润率 + 排名恢复成本；断货 7 天以上关键词排名下滑，恢复需 2-4 周广告投入
+    en: Stockout cost = days out of stock × daily sales × price × margin + rank-recovery
+      cost; 7+ days out of stock hurts keyword rank, recovery costs 2-4 weeks of ads
+  source: src/a-operators/a5-inventory.md#11-库存管理的第一性原理
+  verified: 2026-08
+- id: inventory.stagnation_cost_formula
+  entity: inventory
+  attribute: stagnation_cost
+  platform: null
+  kind: formula
+  value: 库存数量 × 单位仓储费 × 滞销天数 + 长期仓储费 + 资金占用成本
+  statement:
+    zh: 滞销成本 = 库存数量 × 单位仓储费 × 滞销天数 + 长期仓储费 + 资金占用成本
+    en: Stagnation cost = qty × unit storage fee × stagnant days + long-term storage
+      fee + capital cost
+  source: src/a-operators/a5-inventory.md#11-库存管理的第一性原理
+  verified: 2026-08
+- id: inventory.days_of_stock_formula
+  entity: days_of_stock
+  attribute: value
+  platform: null
+  kind: formula
+  value: (当前库存 + 在途库存) ÷ 日均销量
+  statement:
+    zh: 库存可支撑天数 = (当前库存 + 在途库存) ÷ 日均销量；低于 Lead Time + 安全天数时需要补货
+    en: Days of stock = (current stock + in-transit) / daily sales; replenish when
+      below lead time + safety days
+  source: src/a-operators/a5-inventory.md#安全库存与补货公式速查
+  verified: 2026-08
+- id: inventory.turnover_formula
+  entity: inventory_turnover
+  attribute: value
+  platform: null
+  kind: formula
+  value: 年销售额 ÷ 平均库存价值
+  statement:
+    zh: 库存周转率 = 年销售额 ÷ 平均库存价值，越高说明库存流转快
+    en: Inventory turnover = annual sales / average inventory value; higher is better
+  source: src/a-operators/a5-inventory.md#安全库存与补货公式速查
+  verified: 2026-08
+- id: inventory.eoq_formula
+  entity: purchase_order
+  attribute: qty
+  platform: null
+  kind: formula
+  value: √(2DS/H)
+  statement:
+    zh: 经济订货量 EOQ = √(2DS/H)；D=年需求量，S=单次订货成本，H=单位年持有成本
+    en: Economic Order Quantity = √(2DS/H); D=annual demand, S=order cost, H=annual
+      holding cost per unit
+  source: src/a-operators/a5-inventory.md#安全库存与补货公式速查
+  verified: 2026-08
+  flagged: true
+  note: 章节仅以速查表形式给出公式，未展开推导与使用前提
+- id: inventory.lead_time_total_range
+  entity: lead_time
+  attribute: total_days
+  platform: null
+  kind: range
+  value:
+    min: 43
+    max: 79
+  unit: 天
+  statement:
+    zh: Lead Time 总计典型值 43-79 天（供应商生产 15-30 天、国内运输 3-5 天、海运 15-20 天、清关+国内 5-10 天、FBA
+      入仓 5-14 天），波动大
+    en: Total lead time typically 43-79 days (production 15-30d, domestic 3-5d, sea
+      15-20d, customs 5-10d, FBA inbound 5-14d); high variance
+  source: src/a-operators/a5-inventory.md#11-库存管理的第一性原理
+  verified: 2026-08
+- id: inventory.lead_time_safety_rule
+  entity: lead_time
+  attribute: planning_value
+  platform: null
+  kind: rule
+  value: max(最近3-5次实际Lead Time) + 旺季缓冲7-14天
+  statement:
+    zh: Lead Time 取最近 3-5 次实际值的最大值（而非平均值），旺季额外加 7-14 天缓冲
+    en: Use the max of the last 3-5 actual lead times (not the average); add 7-14
+      extra days in peak season
+  source: src/a-operators/a5-inventory.md#51-缺货相关陷阱
+  verified: 2026-08
+- id: inventory.replenish_decision_tree
+  entity: restock_recommendation
+  attribute: urgency
+  platform: null
+  kind: rule
+  value: '{urgent: ''可支撑天数 < LeadTime+安全'', normal: ''可支撑天数 < LeadTime+安全+30天'', air_mode:
+    ''海运+空运混合''}'
+  statement:
+    zh: 可支撑天数 < Lead Time+安全 → 紧急补货（考虑空运）；< Lead Time+安全+30 天 → 常规海运；已断货 → 空运最快批次
+      + 海运大批量
+    en: Days of stock < lead time + safety → urgent (consider air); < lead time +
+      safety + 30 → normal sea freight; already out of stock → fastest air batch +
+      large sea batch
+  source: src/a-operators/a5-inventory.md#库存决策树
+  verified: 2026-08
+- id: inventory.stockout_warning_threshold
+  entity: stock_level
+  attribute: days_remaining
+  platform: null
+  kind: threshold
+  value: 14
+  unit: 天
+  statement:
+    zh: 库存可支撑天数 < 14 天视为即将缺货，进入紧急补货流程（每周健康检查）
+    en: Stock below 14 days of sales counts as about-to-stockout and enters urgent
+      replenishment (weekly check)
+  source: src/a-operators/a5-inventory.md#库存健康检查清单
+  verified: 2026-08
+- id: inventory.inventory_fund_cap
+  entity: inventory
+  attribute: fund_share
+  platform: null
+  kind: ratio
+  value: 60
+  unit: '%'
+  statement:
+    zh: 库存资金占比上限建议 < 60%，超过就减少备货量；大促备货预算不超过可用资金 50%
+    en: Recommended cap on inventory share of funds < 60%; promo stock budget <= 50%
+      of available funds
+  source: src/a-operators/a5-inventory.md#53-资金相关陷阱
+  verified: 2026-08
+  note: 章节表述为建议值（"建议 < 60%"），非平台硬性规则
+- id: inventory.holding_capital_cost
+  entity: inventory
+  attribute: capital_cost
+  platform: null
+  kind: range
+  value:
+    min: 8
+    max: 12
+  unit: '%/年'
+  statement:
+    zh: 库存资金占用成本按年化 8-12% 计入总持有成本
+    en: Capital cost of holding inventory estimated at 8-12% per year
+  source: src/a-operators/a5-inventory.md#53-资金相关陷阱
+  verified: 2026-08
+- id: inventory.new_product_first_batch
+  entity: purchase_order
+  attribute: qty
+  platform: null
+  kind: rule
+  value: 30-45天预计销量 × 0.7保守系数
+  statement:
+    zh: 新品首批备货 = 30-45 天预计销量（保守估计），用预计日均销量 × 45 天 × 0.7；原则宁少勿多
+    en: 'First batch for new products = 30-45 days of forecast sales, conservatively
+      forecast daily sales × 45 × 0.7; principle: less is safer'
+  source: src/a-operators/a5-inventory.md#43-新品首批备货-sop
+  verified: 2026-08
+- id: inventory.new_product_second_batch
+  entity: purchase_order
+  attribute: qty
+  platform: null
+  kind: rule
+  value: '{trigger: ''日均销量达预期80%'', qty: ''60-90天预计销量''}'
+  statement:
+    zh: 第二批补货触发条件：首批上架后日均销量达预期的 80% 立即下单；第二批 = 60-90 天预计销量
+    en: Second batch triggers when daily sales reach 80% of expectation; second batch
+      = 60-90 days of forecast sales
+  source: src/a-operators/a5-inventory.md#43-新品首批备货-sop
+  verified: 2026-08
+- id: inventory.promo_safety_buffer
+  entity: restock_recommendation
+  attribute: qty
+  platform: null
+  kind: rule
+  value: 基准场景需求 × 1.2
+  statement:
+    zh: 大促备货量 = 基准场景需求 × 1.2（留 20% 缓冲），而非按乐观场景备货；宁可多备 20% 也不要断货
+    en: Promo stock = baseline scenario demand × 1.2 (20% buffer), not the optimistic
+      scenario; better 20% extra than stockout
+  source: src/a-operators/a5-inventory.md#34-大促备货策略prime-day--bfcm
+  verified: 2026-08
+- id: inventory.promo_lead_time
+  entity: shipment
+  attribute: dispatch_date
+  platform: null
+  kind: rule
+  value: 大促前6-8周发货
+  statement:
+    zh: 大促备货需提前 6-8 周发货；FBA 入仓在大促前 2-4 周会变慢，必须提前安排
+    en: Promo stock must ship 6-8 weeks ahead; FBA inbound slows 2-4 weeks before
+      the event
+  source: src/a-operators/a5-inventory.md#34-大促备货策略prime-day--bfcm
+  verified: 2026-08
+- id: inventory.promo_sales_multiplier
+  entity: demand_forecast
+  attribute: promo_multiplier
+  platform: null
+  kind: range
+  value:
+    min: 3
+    max: 10
+  statement:
+    zh: 大促期间销量可能是平时的 3-10 倍
+    en: Promo-period sales can be 3-10x normal
+  source: src/a-operators/a5-inventory.md#34-大促备货策略prime-day--bfcm
+  verified: 2026-08
+  flagged: true
+  note: 章节表述为"可能是"（"3-10 倍"），属经验性参考值而非实测数据
+- id: inventory.aged_inventory_action_timeline
+  entity: aged_inventory
+  attribute: action
+  platform: null
+  kind: rule
+  value: '{d90: 开始关注/制定处理方案, d120: 降价促销/采取行动, d180: 考虑Removal Order}'
+  statement:
+    zh: 库龄 90 天开始关注并制定处理方案，120 天降价促销，180 天考虑 Removal Order；滞销处理需算清销毁 vs 运回成本
+    en: Watch aged inventory from 90 days, discount from 120 days, consider Removal
+      Order at 180 days; compare disposal vs return costs
+  source: src/a-operators/a5-inventory.md#36-滞销库存处理策略
+  verified: 2026-08
+- id: forecast.stockout_data_handling
+  entity: demand_forecast
+  attribute: training_data
+  platform: null
+  kind: rule
+  value: 连续≥3天零销量视为断货，用前后各7天滚动均值填充
+  statement:
+    zh: 断货期间销量为 0 不代表需求为 0；连续 ≥3 天零销量判定为断货，用前后各 7 天滚动均值填充后训练
+    en: Zero sales during stockouts is not zero demand; streaks of >=3 zero days are
+      treated as stockouts and filled with 7-day rolling means
+  source: src/b-developers/b2-prediction-models.md#12-电商预测的特殊挑战
+  verified: 2026-08
+  flagged: true
+  note: 3 天阈值与 7 天窗口来自章节代码实现，为工程约定而非业务规则
+- id: forecast.metric_mape_baseline
+  entity: demand_forecast
+  attribute: mape
+  platform: null
+  kind: reference
+  value: '{excellent: 15, good: 25, acceptable: 40}'
+  unit: '%'
+  statement:
+    zh: MAPE 参考基准：<15% 优秀，15-25% 良好，25-40% 可接受，>40% 需改进（电商场景）
+    en: 'MAPE reference: <15% excellent, 15-25% good, 25-40% acceptable, >40% needs
+      work (e-commerce)'
+  source: src/b-developers/b2-prediction-models.md#41-评估指标
+  verified: 2026-08
+  flagged: true
+  note: '章节标注为参考线而非市场实测均值（见 §8 claims: benchmark）'
+- id: forecast.backtest_target
+  entity: demand_forecast
+  attribute: backtest_mape
+  platform: null
+  kind: threshold
+  value: 30
+  unit: '%'
+  statement:
+    zh: 用回测验证模型，目标 MAPE < 30%
+    en: Validate with backtesting; target MAPE < 30%
+  source: src/b-developers/b2-prediction-models.md#8-完成标志
+  verified: 2026-08
+  flagged: true
+  note: '完成标志中的验收线，属章节基准（claims: benchmark），非平台规则'
+- id: forecast.interval_usage
+  entity: demand_forecast
+  attribute: interval_usage
+  platform: null
+  kind: rule
+  value: '{reorder: yhat_upper, target: yhat, pessimistic: yhat_lower, warehousing:
+    yhat_upper}'
+  statement:
+    zh: 补货量计算与仓储空间规划用预测上界 yhat_upper，销售目标用中位数 yhat，悲观情景用下界 yhat_lower
+    en: Use yhat_upper for replenishment and warehousing planning, yhat (median) for
+      sales targets, yhat_lower for pessimistic scenarios
+  source: src/b-developers/b2-prediction-models.md#43-预测区间的使用
+  verified: 2026-08
+- id: forecast.changepoint_prior_range
+  entity: demand_forecast
+  attribute: changepoint_prior_scale
+  platform: null
+  kind: param
+  value:
+    default: 0.05
+    ecommerce: 0.1-0.3
+  statement:
+    zh: Prophet changepoint_prior_scale 默认 0.05，电商场景建议 0.1-0.3（数据变化快）
+    en: Prophet changepoint_prior_scale defaults to 0.05; 0.1-0.3 recommended for
+      e-commerce (fast-changing)
+  source: src/b-developers/b2-prediction-models.md#31-prophet-销量预测完整流程
+  verified: 2026-08
+  flagged: true
+  note: 来自章节调参指南的工程建议，非硬性约束
+- id: forecast.reorder_urgency_rule
+  entity: restock_recommendation
+  attribute: urgency
+  platform: null
+  kind: rule
+  value: '{urgent: ''库存 ≤ 补货点×0.5'', normal: ''库存 ≤ 补货点'', ok: ''库存 > 补货点''}'
+  statement:
+    zh: 库存 ≤ 补货点×0.5 为紧急补货，≤ 补货点为建议补货，> 补货点为库存充足
+    en: Stock <= 0.5 × reorder point → urgent; <= reorder point → recommended; above
+      → sufficient
+  source: src/b-developers/b2-prediction-models.md#35-预测结果转化为补货决策
+  verified: 2026-08
+  flagged: true
+  note: 来自章节示例代码的阈值划分，属实现约定
+- id: compliance.ce_marking.min_height
+  entity: ce_marking
+  attribute: min_height_mm
+  platform: null
+  kind: min_size
+  value: 5
+  unit: mm
+  statement:
+    zh: CE 标志最小高度 5mm，两个字母的比例必须符合官方模板
+    en: CE mark minimum height is 5 mm; letter proportions must follow the official
+      template
+  source: src/a-operators/a6-compliance.md#62-标签相关陷阱
+  verified: 2026-08
+  flagged: true
+  flag_note: 'kind: min_size 不在 constraints.yaml 模板列出的 kind 枚举中，属扩展 kind'
+- id: compliance.ce_marking.mandatory
+  entity: ce_marking
+  attribute: null
+  platform: null
+  kind: required
+  value: EU 强制
+  statement:
+    zh: 没有 CE 标志，产品无法在欧盟销售（法律要求，非建议）；CE 是基础，各国可能有额外注册（VerpackG、DEEE 等）
+    en: Products cannot be sold in the EU without CE marking (legal requirement);
+      national registrations may apply on top
+  source: src/a-operators/a6-compliance.md#11-跨境电商合规的第一性原理
+  verified: 2026-08
+- id: compliance.fcc.mandatory
+  entity: fcc_requirement
+  attribute: null
+  platform: null
+  kind: required
+  value: FCC Part 15
+  statement:
+    zh: FCC 认证是所有发射无线电频率的电子设备的强制要求；没有 FCC 认证，电子产品无法在美国合法销售，海关可直接扣货
+    en: FCC certification is mandatory for all RF-emitting electronics; uncertified
+      electronics cannot be legally sold in the US
+  source: src/a-operators/a6-compliance.md#11-跨境电商合规的第一性原理
+  verified: 2026-08
+- id: compliance.pse.mandatory
+  entity: restricted_product
+  attribute: required_certification
+  platform: null
+  kind: required
+  value: PSE（菱形/圆形）
+  statement:
+    zh: 没有 PSE 标志，电器产品无法在日本上架，Amazon JP 会直接下架 Listing；分菱形（特定电气用品）与圆形（非特定）PSE
+    en: Electrical products require PSE marking in Japan or Amazon JP delists them;
+      diamond vs round PSE by product class
+  source: src/a-operators/a6-compliance.md#11-跨境电商合规的第一性原理
+  verified: 2026-08
+- id: compliance.ukca.mandatory
+  entity: ce_marking
+  attribute: null
+  platform: null
+  kind: required
+  value: UKCA
+  statement:
+    zh: 英国脱欧后 UKCA 标志替代 CE（过渡期已结束），没有 UKCA 标志产品无法在英国销售；部分品类仍接受 CE，长期 UKCA 为唯一要求
+    en: UKCA replaces CE in the UK (transition over); UKCA will become the sole requirement
+      long-term
+  source: src/a-operators/a6-compliance.md#11-跨境电商合规的第一性原理
+  verified: 2026-08
+- id: compliance.certificate.validity_period
+  entity: certification
+  attribute: validity_years
+  platform: null
+  kind: validity_period
+  value: 1-5
+  unit: 年
+  statement:
+    zh: 认证有有效期（通常 1-5 年），过期后继续销售违规；建议提前 3 个月启动续期流程
+    en: Certifications are valid for typically 1-5 years; selling after expiry is
+      non-compliant; start renewal ~3 months early
+  source: src/a-operators/a6-compliance.md#61-认证相关陷阱
+  verified: 2026-08
+  flagged: true
+  flag_note: '章节原文为''通常 1-5 年''，为一般性表述而非统一规则；kind: validity_period 为扩展 kind'
+- id: compliance.certificate.revalidate_on_design_change
+  entity: certification
+  attribute: null
+  platform: null
+  kind: required
+  value: 设计变更后重新评估认证有效性
+  statement:
+    zh: 产品做改版后必须评估是否影响认证有效性，未更新的认证对新版本实际无效
+    en: Any design change requires re-evaluation of certification validity; old certification
+      does not cover modified products
+  source: src/a-operators/a6-compliance.md#61-认证相关陷阱
+  verified: 2026-08
+- id: compliance.certificate.accredited_body_only
+  entity: certification
+  attribute: issuing_body
+  platform: null
+  kind: forbidden
+  value: 非正规渠道证书/假证
+  statement:
+    zh: 禁止从不正规渠道购买认证证书；假证被查到的后果为产品召回与法律追责，只通过 SGS、TÜV、Intertek 等正规机构获取
+    en: Never buy certificates from unofficial channels; fake certificates lead to
+      recalls and legal liability; use accredited bodies only
+  source: src/a-operators/a6-compliance.md#61-认证相关陷阱
+  verified: 2026-08
+- id: customs.hs_code.format
+  entity: hs_code
+  attribute: code
+  platform: null
+  kind: format
+  value: WCO 6 位基础码，可扩展至各国税则（如美国 HTS 8-10 位）
+  statement:
+    zh: HS 编码为 WCO 协调制度 6 位基础码，各国可扩展为更细税则号列（如美国 HTS）；分类错误可能导致海关罚款和延误
+    en: HS codes follow the 6-digit WCO base, extendable to national schedules (e.g.,
+      US HTS); misclassification risks fines and delays
+  source: src/case-studies/hs-code-classification.md#相关资源
+  verified: 2026-08
+  flagged: true
+  flag_note: 位数规则派生自案例引用的 WCO/HTS 官方资源，案例正文未逐字写明位数
+- id: us.label.country_of_origin
+  entity: label_requirement
+  attribute: required_fields
+  platform: null
+  kind: required
+  value: 原产地标注
+  statement:
+    zh: 美国标签要求适用 FTC 标签法与原产地标注（country of origin）
+    en: US labeling follows FTC labeling law and requires country-of-origin marking
+  source: src/a-operators/a6-compliance.md#附录合规速查表
+  verified: 2026-08
+- id: eu.label.local_language
+  entity: label_requirement
+  attribute: language
+  platform: null
+  kind: required
+  value: 当地官方语言
+  statement:
+    zh: 每个市场的标签必须使用当地官方语言；欧洲多国销售需要多语言标签
+    en: Labels must be in the local official language; multi-language labels required
+      when selling across EU states
+  source: src/a-operators/a6-compliance.md#62-标签相关陷阱
+  verified: 2026-08
+- id: eu.label.manufacturer_info
+  entity: label_requirement
+  attribute: required_fields
+  platform: null
+  kind: required
+  value: 制造商/欧盟授权代表信息
+  statement:
+    zh: 欧盟要求产品标签标注制造商或欧盟授权代表的名称和地址；中国卖家需指定欧盟 Responsible Person，标签须含其联系信息
+    en: EU labels must show manufacturer or EU authorized representative identity/address;
+      Chinese sellers must appoint an EU Responsible Person
+  source: src/a-operators/a6-compliance.md#62-标签相关陷阱
+  verified: 2026-08
+- id: us_ca.label.prop65_warning
+  entity: label_requirement
+  attribute: warning_marks
+  platform: null
+  kind: required
+  value: Prop 65 警告标签
+  statement:
+    zh: 加州 Prop 65 要求对含已知致癌或生殖毒性化学物质的产品加贴警告标签，适用范围非常广泛；宁可多贴不要漏贴
+    en: California Prop 65 requires warning labels for products containing listed
+      chemicals; very broad applicability
+  source: src/a-operators/a6-compliance.md#62-标签相关陷阱
+  verified: 2026-08
+- id: de.label.recycling_mark
+  entity: label_requirement
+  attribute: warning_marks
+  platform: null
+  kind: required
+  value: LUCID 注册 + 回收标志（Green Dot 等）
+  statement:
+    zh: 在德国销售带包装产品须在 LUCID 系统注册包装法（VerpackG）并与双元回收系统签约，包装上标注回收标志
+    en: Packaging sold in Germany requires LUCID registration under VerpackG plus
+      recycling marks (e.g., Green Dot)
+  source: src/a-operators/a6-compliance.md#12-主要市场的合规框架对比
+  verified: 2026-08
+- id: dg.lithium_battery.un38_3_msds
+  entity: dangerous_goods
+  attribute: null
+  platform: null
+  kind: required
+  value: UN38.3 测试报告 + MSDS + 运输限制
+  statement:
+    zh: 含锂电池产品须满足特殊要求：UN38.3 锂电池运输测试报告、MSDS 安全数据表与运输限制
+    en: Lithium-battery products require UN38.3 test report, MSDS and transport restrictions
+  source: src/a-operators/a6-compliance.md#31-多市场合规对比深化版
+  verified: 2026-08
+- id: eu.vat.registration_before_sale
+  entity: product
+  attribute: vat_registration
+  platform: null
+  kind: required
+  value: 销售前完成 VAT 注册
+  statement:
+    zh: 在欧洲没有 VAT 号就销售违法；注册通常需 2-6 周；Pan-EU 模式下每个有库存的国家都需注册；无销售也须按时零申报
+    en: Selling in the EU without a VAT number is illegal; registration takes 2-6
+      weeks; register in every Pan-EU country holding stock; file zero returns
+  source: src/a-operators/a6-compliance.md#37-vat税务合规检查
+  verified: 2026-08
+- id: amazon.listing.forbidden_unverified_claim
+  entity: listing
+  attribute: claim
+  platform: amazon
+  kind: forbidden
+  value: 未实际批准的声明（如 'FDA approved'）
+  statement:
+    zh: Listing 中禁止使用未经验证的声明（如宣称 "FDA approved" 但实际没有 FDA 批准）；健康声明需认证依据
+    en: Listings must not make unverified claims (e.g., "FDA approved" without FDA
+      approval); health claims require substantiation
+  source: src/a-operators/a6-compliance.md#65-amazon-政策相关陷阱
+  verified: 2026-08
+- id: amazon.violation.response_deadline
+  entity: listing
+  attribute: violation_response
+  platform: amazon
+  kind: max_duration
+  value: 72
+  unit: 小时
+  statement:
+    zh: 收到 Amazon 政策违规通知须及时响应（通常 48-72 小时），超时可能导致更严重处罚
+    en: Respond to Amazon policy violation notices within 48-72 hours; late responses
+      risk escalated penalties
+  source: src/a-operators/a6-compliance.md#36-amazon-政策违规应对
+  verified: 2026-08
+  flagged: true
+  flag_note: 'kind: max_duration 为扩展 kind'
+- id: amazon.safety_complaint.response_deadline
+  entity: listing
+  attribute: safety_complaint_response
+  platform: amazon
+  kind: max_duration
+  value: 24
+  unit: 小时
+  statement:
+    zh: 所有产品安全相关投诉必须在 24 小时内响应，否则可能导致 Listing 下架
+    en: All product safety complaints must be responded to within 24 hours to avoid
+      delisting
+  source: src/a-operators/a6-compliance.md#65-amazon-政策相关陷阱
+  verified: 2026-08
+  flagged: true
+  flag_note: 'kind: max_duration 为扩展 kind'
+- id: amazon.brand_registry.requires_trademark
+  entity: brand_registry
+  attribute: trademark_required
+  platform: amazon
+  kind: required
+  value: 已注册商标
+  statement:
+    zh: 'Amazon Brand Registry 必须拥有已注册商标（US: USPTO，EU: EUIPO，JP: JPO）'
+    en: Amazon Brand Registry requires a registered trademark (USPTO / EUIPO / JPO
+      by market)
+  source: src/a-operators/a12-ip-protection.md#31-商标注册策略
+  verified: 2026-08
+- id: trademark.registration.cost_time
+  entity: trademark
+  attribute: registration
+  platform: null
+  kind: cost_range
+  value: $250-350/类
+  unit: USD/类
+  statement:
+    zh: 商标注册费与时长为 US USPTO $250-350/类、8-12 个月；EUIPO €850/类、4-6 个月；JPO ¥12,000/类、6-10
+      个月；CNIPA ¥300/类、9-12 个月
+    en: 'Trademark cost/duration: USPTO $250-350/class, 8-12 mo; EUIPO €850/class,
+      4-6 mo; JPO ¥12,000/class, 6-10 mo; CNIPA ¥300/class, 9-12 mo'
+  source: src/a-operators/a12-ip-protection.md#31-商标注册策略
+  verified: 2026-08
+  flagged: true
+  flag_note: '费用为章节表格数据，可能随时间变化；kind: cost_range 为扩展 kind'
+- id: amazon.category.approval
+  entity: product_category_approval
+  attribute: null
+  platform: amazon
+  kind: required
+  value: 上架前确认品类合规要求
+  statement:
+    zh: 上架前在 Amazon Seller Central 确认品类的具体合规要求（认证+标签+包装+化学物质），并上传认证文件
+    en: Confirm category-specific compliance requirements in Amazon Seller Central
+      and upload certification documents before listing
+  source: src/a-operators/a6-compliance.md#41-新品上架前合规检查-sop
+  verified: 2026-08
+  flagged: true
+  flag_note: 推断自 SOP 原文，Amazon 是否以'类目审核'形式强制未在章节明确
+- id: amazon.fba.unique_barcode
+  entity: product
+  attribute: barcode
+  platform: amazon
+  kind: required
+  value: 独立条形码 + FNSKU
+  statement:
+    zh: 2026 年 3 月起 Amazon 终止产品混仓（Commingling），所有 FBA 产品必须使用独立条形码并贴 FNSKU
+    en: From 2026-03 Amazon ends commingling; all FBA products need independent barcodes
+      and FNSKU labels
+  source: src/a-operators/a12-ip-protection.md#52-amazon-2026-品牌保护新变化
+  verified: 2026-08
+- id: amazon.bsa.tool_compliance
+  entity: compliance_check
+  attribute: tool_compliance
+  platform: amazon
+  kind: required
+  value: BSA 合规
+  statement:
+    zh: 卖家须确保所有第三方工具与 AI Agent 符合 Amazon BSA 要求：数据安全、行为合规、透明度、及时更新
+    en: 'Sellers must ensure third-party tools and AI agents comply with Amazon BSA:
+      data security, behavioral compliance, transparency, timely updates'
+  source: src/a-operators/a6-compliance.md#71-2026-新趋势amazon-ai-agent-合规要求bsa-更新
+  verified: 2026-08
+- id: eu.gpsr.responsible_person
+  entity: responsible_person
+  attribute: null
+  platform: null
+  kind: required
+  value: EU 境内 Responsible Person
+  statement:
+    zh: GPSR（2024-12-13 生效，替代 GPSD）要求所有欧盟消费品指定境内 Responsible Person，产品须有可追溯性信息（制造商、进口商、产品标识）
+    en: GPSR (in force 2024-12-13) requires an EU Responsible Person for all consumer
+      products plus traceability info (manufacturer, importer, product ID)
+  source: src/a-operators/a6-compliance.md#72-欧盟新法规digital-product-passport-与-gpsr
+  verified: 2026-08
+- id: eu.dpp.phased_timeline
+  entity: product
+  attribute: digital_product_passport
+  platform: null
+  kind: required
+  value: 预计 2027-2030 分品类实施
+  statement:
+    zh: 欧盟数字产品护照（DPP）预计 2027-2030 年分品类逐步实施，电池产品最先受影响；需建立供应链数据收集体系
+    en: EU Digital Product Passport expected phased 2027-2030 by category, batteries
+      first; prepare supply-chain data collection
+  source: src/a-operators/a6-compliance.md#72-欧盟新法规digital-product-passport-与-gpsr
+  verified: 2026-08
+  flagged: true
+  flag_note: 章节原文为'预计'时间线，法规尚未生效，日期不确定
+- id: eu.ai_act.transparency
+  entity: compliance_check
+  attribute: ai_usage_transparency
+  platform: null
+  kind: required
+  value: 2026-08-02 起适用（第 50 条）
+  statement:
+    zh: EU AI 法案透明度义务（第 50 条）2026-08-02 起适用：聊天机器人须告知用户、AI 生成内容须机器可读标记、深度伪造须标注；存量系统水印过渡期至
+      2026-12-02
+    en: 'EU AI Act transparency duties (Art. 50) apply from 2026-08-02: chatbot disclosure,
+      machine-readable labeling of AI content, deepfake labeling; legacy watermark
+      transition to 2026-12-02'
+  source: src/a-operators/a6-compliance.md#51-三条直接落到卖家头上的义务
+  verified: 2026-08
+  flagged: true
+  flag_note: 生效日期以官方公报为准（章节 2026-07-31 核实）；高风险档日期可能被 Digital Omnibus 推迟，未刊登前按原日期规划
+- id: ip_risk.high_requires_fto
+  entity: ip_right
+  attribute: risk_level
+  platform: null
+  kind: required
+  value: 高风险管理动作
+  statement:
+    zh: IP 风险评估为"高"时须暂停项目并聘请专利律师做正式 FTO（Freedom to Operate）分析；投产决策前金额大时也应做 FTO
+    en: High IP risk requires pausing the project and commissioning formal FTO analysis;
+      also recommended before large production investments
+  source: src/a-operators/a6-compliance.md#41-新品上架前合规检查-sop
+  verified: 2026-08
+- id: ip.trademark.search_before_naming
+  entity: trademark
+  attribute: name
+  platform: null
+  kind: required
+  value: 命名前检索 USPTO/EUIPO/JPO
+  statement:
+    zh: 确定品牌名前先在 USPTO TESS / EUIPO eSearch / JPO 检索，避免与已注册商标冲突及被抢注
+    en: Search USPTO/EUIPO/JPO before finalizing brand names to avoid conflicts and
+      squatting
+  source: src/a-operators/a6-compliance.md#63-知识产权相关陷阱
+  verified: 2026-08
+- id: ip.tro.risk_prevention
+  entity: ip_right
+  attribute: null
+  platform: null
+  kind: required
+  value: 选品阶段专利/商标排查
+  statement:
+    zh: 美国法院可在不通知卖家的情况下以 TRO（临时限制令）冻结账户资金；须在选品阶段排查专利/商标风险，收到 TRO 立即联系 IP 律师并在 30 天内回应法院
+    en: US courts may freeze funds via TRO without notice; screen patents/trademarks
+      pre-launch; on TRO, contact an IP attorney immediately and respond within 30
+      days
+  source: src/a-operators/a12-ip-protection.md#23-tro临时限制令风险防范
+  verified: 2026-08
+- id: content.ai_generated.commercial_license
+  entity: copyright
+  attribute: ai_generated_content
+  platform: null
+  kind: required
+  value: 付费工具商业许可
+  statement:
+    zh: 商业使用 AI 生成内容时优先选择明确授予商业许可的付费工具（免费工具权利归属不确定），保留 Prompt 与生成记录作为创作证据
+    en: For commercial AI-generated content, prefer paid tools with explicit commercial
+      licenses; keep prompts and generation records as evidence
+  source: src/a-operators/a12-ip-protection.md#61-2026-年的法律现状
+  verified: 2026-08
+  flagged: true
+  flag_note: AI 生成内容版权法律现状多变，章节为 2026 年初概括

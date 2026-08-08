@@ -1,4 +1,12 @@
 - chapters:
+  - src/d-platforms/d10-aliexpress-ai-guide.md
+  first_class: true
+  id: aliexpress
+  label:
+    en: AliExpress
+    ja: AliExpress
+    zh: 速卖通
+- chapters:
   - src/d-platforms/d0-amazon-index.md
   - src/a-operators/
   first_class: true
@@ -9,37 +17,29 @@
     zh: 亚马逊
   note: 无独立平台正文章，运营线（a-operators）即 Amazon 线。此索引指向运营章节中所有 Amazon 相关内容。
 - chapters:
-  - src/d-platforms/shopify-ai-guide.md
+  - src/d-platforms/d11-coupang-korea-ai-guide.md
   first_class: true
-  id: shopify
+  id: coupang
   label:
-    en: Shopify
-    ja: Shopify
-    zh: Shopify
+    en: Coupang
+    ja: Coupang
+    zh: Coupang
 - chapters:
-  - src/d-platforms/tiktok-shop-ai-guide.md
+  - src/d-platforms/d9-ebay-ai-guide.md
   first_class: true
-  id: tiktok_shop
+  id: ebay
   label:
-    en: TikTok Shop
-    ja: TikTok Shop
-    zh: TikTok Shop
+    en: eBay
+    ja: eBay
+    zh: eBay
 - chapters:
-  - src/d-platforms/d5-temu-seller-guide.md
+  - src/d-platforms/d12-faire-wholesale-ai-guide.md
   first_class: true
-  id: temu
+  id: faire
   label:
-    en: Temu
-    ja: Temu
-    zh: Temu
-- chapters:
-  - src/d-platforms/d6-southeast-asia-ai-guide.md
-  first_class: true
-  id: shopee
-  label:
-    en: Shopee
-    ja: Shopee
-    zh: Shopee
+    en: Faire
+    ja: Faire
+    zh: Faire
 - chapters:
   - src/d-platforms/d6-southeast-asia-ai-guide.md
   first_class: true
@@ -57,6 +57,14 @@
     ja: Mercado Libre
     zh: Mercado Libre
 - chapters:
+  - src/d-platforms/d13-europe-marketplaces-guide.md
+  first_class: true
+  id: otto
+  label:
+    en: Otto
+    ja: Otto
+    zh: Otto
+- chapters:
   - src/d-platforms/d8-rakuten-japan-ai-guide.md
   first_class: true
   id: rakuten
@@ -65,45 +73,45 @@
     ja: 楽天市場
     zh: 乐天市场
 - chapters:
-  - src/d-platforms/d9-ebay-ai-guide.md
+  - src/d-platforms/d6-southeast-asia-ai-guide.md
   first_class: true
-  id: ebay
+  id: shopee
   label:
-    en: eBay
-    ja: eBay
-    zh: eBay
+    en: Shopee
+    ja: Shopee
+    zh: Shopee
 - chapters:
-  - src/d-platforms/d10-aliexpress-ai-guide.md
+  - src/d-platforms/shopify-ai-guide.md
   first_class: true
-  id: aliexpress
+  id: shopify
   label:
-    en: AliExpress
-    ja: AliExpress
-    zh: 速卖通
+    en: Shopify
+    ja: Shopify
+    zh: Shopify
 - chapters:
-  - src/d-platforms/d11-coupang-korea-ai-guide.md
+  - src/d-platforms/d5-temu-seller-guide.md
   first_class: true
-  id: coupang
+  id: temu
   label:
-    en: Coupang
-    ja: Coupang
-    zh: Coupang
+    en: Temu
+    ja: Temu
+    zh: Temu
 - chapters:
-  - src/d-platforms/d12-faire-wholesale-ai-guide.md
+  - src/d-platforms/tiktok-shop-ai-guide.md
   first_class: true
-  id: faire
+  id: tiktok_shop
   label:
-    en: Faire
-    ja: Faire
-    zh: Faire
-- chapters:
-  - src/d-platforms/d13-europe-marketplaces-guide.md
+    en: TikTok Shop
+    ja: TikTok Shop
+    zh: TikTok Shop
+- id: walmart
+  label:
+    zh: Walmart
+    en: Walmart
+    ja: Walmart
   first_class: true
-  id: otto
-  label:
-    en: Otto
-    ja: Otto
-    zh: Otto
+  chapters:
+  - src/d-platforms/d4-walmart-ai-guide.md
 - chapters:
   - src/d-platforms/d13-europe-marketplaces-guide.md
   first_class: true

@@ -1,3 +1,1661 @@
-- id: test_entity
-  label: {zh: 测试, en: Test}
-  source: src/a-operators/a2-listing-optimization.md#nonexistent-anchor-xyz
+- id: listing
+  label:
+    zh: Listing
+    en: Listing
+    ja: リスティング
+  definition:
+    zh: Amazon 商品上架信息的统称，包含标题、五点、产品描述、A+ Content、Search Terms 与图片等组成部分，是"被搜索到"与"被点击购买"的载体
+    en: The full set of product content fields on an Amazon listing (title, bullet
+      points, description, A+ Content, Search Terms, images) that bridges search visibility
+      and purchase conversion
+    ja: Amazon の商品出品情報一式。タイトル・箇条書き・商品説明・A+ Content・Search Terms・画像などで構成され、検索露出と購入転換をつなぐ
+  attributes:
+  - id: title
+    type: string
+    label:
+      zh: 标题
+      en: Title
+      ja: タイトル
+  - id: description
+    type: text
+    label:
+      zh: 产品描述
+      en: Description
+      ja: 商品説明
+  - id: search_terms
+    type: text
+    label:
+      zh: 后台 Search Terms
+      en: Backend Search Terms
+      ja: バックエンド検索キーワード
+  source:
+  - src/a-operators/a2-listing-optimization.md#12-listing-的组成部分
+  - src/a-operators/a2-listing-optimization.md#1-listing-方法论ai-之前你需要理解的基础
+- id: bullet_point
+  label:
+    zh: 五点
+    en: Bullet Point
+    ja: 箇条書き
+  definition:
+    zh: Amazon Listing 中的卖点条目，通常 5 条，每条以大写卖点短语开头，先讲用户利益再讲产品特性
+    en: One of the selling-point lines in an Amazon listing (typically five), each
+      starting with an all-caps benefit phrase, benefit before feature
+    ja: Amazon リスティングのセールスポイント行。通常5本で、大文字のメリット句で始め、ベネフィット→機能の順で書く
+  attributes:
+  - id: content
+    type: string
+    label:
+      zh: 内容
+      en: Content
+      ja: 内容
+  - id: position
+    type: integer
+    label:
+      zh: 顺序
+      en: Position
+      ja: 順序
+  source:
+  - src/a-operators/a2-listing-optimization.md#12-listing-的组成部分
+- id: search_term
+  label:
+    zh: Search Term
+    en: Search Term
+    ja: サーチターム
+  definition:
+    zh: Amazon 后台的隐藏关键词字段，用户不可见但参与索引，共 250 字节，用于覆盖标题和五点放不下的长尾词
+    en: The hidden backend keyword field on Amazon that is indexed but not visible
+      to shoppers; 250 bytes total, used to cover long-tail keywords not in the title
+      or bullets
+    ja: Amazon のバックエンド非表示キーワードフィールド。ユーザーには見えないがインデックスされ、合計250バイトでタイトルや箇条書きに載せきれないロングテール語を補う
+  attributes:
+  - id: content
+    type: string
+    label:
+      zh: 关键词内容
+      en: Content
+      ja: 内容
+  - id: byte_length
+    type: integer
+    label:
+      zh: 字节数
+      en: Byte length
+      ja: バイト数
+  source:
+  - src/a-operators/a2-listing-optimization.md#35-search-terms-优化
+- id: asin
+  label:
+    zh: ASIN
+    en: ASIN
+    ja: ASIN
+  definition:
+    zh: Amazon 标准识别编号，每个上架商品有唯一 ASIN；放入 Search Terms 没有索引价值
+    en: Amazon Standard Identification Number, unique per listed product; carries
+      no indexing value inside Search Terms
+    ja: Amazon 標準識別番号。商品ごとに一意。Search Terms に含めてもインデックス価値がない
+  attributes:
+  - id: value
+    type: string
+    label:
+      zh: 编号
+      en: Value
+      ja: 番号
+  source:
+  - src/a-operators/a2-listing-optimization.md#35-search-terms-优化
+  - src/a-operators/a2-listing-optimization.md#36-listing-质量审计
+- id: product_image
+  label:
+    zh: 产品图片
+    en: Product Image
+    ja: 商品画像
+  definition:
+    zh: Amazon Listing 中的图片，含 1 张白底主图和 6 张副图；主图禁止文字/logo/水印，副图可承载文字信息图
+    en: 'Images of an Amazon listing: one white-background main image plus six secondary
+      images; text/logo/watermark are forbidden on the main image'
+    ja: Amazon リスティングの画像。白背景のメイン画像1点とサブ画像6点で構成。メイン画像への文字・ロゴ・透かしは禁止
+  attributes:
+  - id: role
+    type: string
+    label:
+      zh: 角色（主图/副图）
+      en: Role (main/secondary)
+      ja: 役割（メイン/サブ）
+  - id: overlay_text
+    type: string
+    label:
+      zh: 图上文字
+      en: Overlay text
+      ja: 画像内テキスト
+  source:
+  - src/a-operators/a2-listing-optimization.md#37-产品图片文案图片上的文字
+  - src/a-operators/a2-listing-optimization.md#12-listing-的组成部分
+- id: a_plus_content
+  label:
+    zh: A+ Content
+    en: A+ Content
+    ja: A+コンテンツ
+  definition:
+    zh: Amazon 品牌卖家可用的模块化增强内容（品牌故事、图文模块、对比图、使用场景、FAQ），无字符限制，是 Rufus 与 COSMO 读取的信息源之一
+    en: Modular enhanced content for Amazon brand sellers (brand story, image-text
+      modules, comparison charts, use cases, FAQ); no character limit and readable
+      by Rufus/COSMO
+    ja: Amazon ブランドセラー向けのモジュール式拡張コンテンツ（ブランドストーリー、画像・テキストモジュール、比較表、使用シーン、FAQ）。文字数制限なしで、Rufus/COSMO
+      の情報源になる
+  attributes:
+  - id: modules
+    type: array
+    label:
+      zh: 模块列表
+      en: Modules
+      ja: モジュール
+  - id: text_per_module
+    type: integer
+    label:
+      zh: 每模块文字数
+      en: Text per module
+      ja: モジュールごとの文字数
+  source:
+  - src/a-operators/a2-listing-optimization.md#34-a-content-文案生成
+- id: brand_story
+  label:
+    zh: 品牌故事
+    en: Brand Story
+    ja: ブランドストーリー
+  definition:
+    zh: A+ Content 中的品牌故事模块（Brand Story），出现在 Review 上方，是免费的品牌曝光位
+    en: The Brand Story module of A+ Content, displayed above the reviews as free
+      brand exposure
+    ja: A+ コンテンツ内のブランドストーリーモジュール。レビュー上部に表示される無料のブランド露出枠
+  attributes:
+  - id: brand_card_text
+    type: string
+    label:
+      zh: 品牌背景卡片文案
+      en: Brand card text
+      ja: ブランドカード文面
+  source:
+  - src/a-operators/a2-listing-optimization.md#34-a-content-文案生成
+- id: review
+  label:
+    zh: Review
+    en: Review
+    ja: レビュー
+  definition:
+    zh: 买家评价，Rufus 回答用户问题时引用的信息源之一，好的 Review 比好的 Listing 文案更重要
+    en: Customer ratings and reviews; one of the sources Amazon Rufus cites when answering
+      shopper questions
+    ja: 購入者レビュー。Rufus が買い物客の質問に答える際に引用する情報源の一つ
+  attributes:
+  - id: rating
+    type: number
+    label:
+      zh: 评分
+      en: Rating
+      ja: 評価
+  - id: content
+    type: text
+    label:
+      zh: 内容
+      en: Content
+      ja: 内容
+  source:
+  - src/a-operators/a2-listing-optimization.md#71-amazon-rufus-优化2026-新趋势
+- id: qa
+  label:
+    zh: Q&A
+    en: Q&A
+    ja: Q&A
+  definition:
+    zh: 产品问答/FAQ，Q&A 区域内容会被 Rufus 直接引用；GEO 场景下每个产品页也应配备 FAQ
+    en: Product Q&A / FAQ; the Q&A section is directly cited by Rufus, and FAQ coverage
+      also drives AI search engines (GEO)
+    ja: 商品 Q&A / FAQ。Q&A 領域は Rufus に直接引用されるほか、GEO でも AI 検索エンジンの引用対象になる
+  attributes:
+  - id: question
+    type: string
+    label:
+      zh: 问题
+      en: Question
+      ja: 質問
+  - id: answer
+    type: text
+    label:
+      zh: 回答
+      en: Answer
+      ja: 回答
+  source:
+  - src/a-operators/a2-listing-optimization.md#71-amazon-rufus-优化2026-新趋势
+  - src/d-platforms/shopify-ai-guide.md#144-geo-优化ai-搜索引擎优化
+- id: keyword
+  label:
+    zh: 关键词
+    en: Keyword
+    ja: キーワード
+  definition:
+    zh: 用户搜索的词，按权重布局在标题、五点、Search Terms 等组成部分中；关键词堆砌会被 A10/COSMO 算法惩罚
+    en: A term shoppers search; laid out by weight across title, bullets and Search
+      Terms; keyword stuffing is penalized by the A10/COSMO algorithm
+    ja: ユーザーが検索する語。タイトル・箇条書き・Search Terms に重み付けして配置する。キーワードの詰め込みは A10/COSMO のペナルティ対象
+  attributes:
+  - id: text
+    type: string
+    label:
+      zh: 词
+      en: Text
+      ja: 語
+  - id: search_volume
+    type: number
+    label:
+      zh: 月搜索量
+      en: Monthly search volume
+      ja: 月間検索ボリューム
+  source:
+  - src/a-operators/a2-listing-optimization.md#61-关键词相关陷阱
+  - src/a-operators/a2-listing-optimization.md#35-search-terms-优化
+- id: product_page
+  label:
+    zh: 产品页
+    en: Product Page
+    ja: 商品ページ
+  definition:
+    zh: Shopify 独立站的产品页面，自由格式（Liquid 模板），可嵌入视频/动画，是 Google SEO 与品牌故事的载体
+    en: A Shopify store product page; free-form (Liquid templates), can embed video/animation,
+      carries Google SEO and brand storytelling
+    ja: Shopify ストアの商品ページ。自由形式（Liquid テンプレート）で動画やアニメーションを埋め込め、Google SEO とブランドストーリーを担う
+  attributes:
+  - id: title
+    type: string
+    label:
+      zh: 标题
+      en: Title
+      ja: タイトル
+  - id: description
+    type: text
+    label:
+      zh: 描述
+      en: Description
+      ja: 説明
+  - id: meta_title
+    type: string
+    label:
+      zh: Meta Title
+      en: Meta Title
+      ja: メタタイトル
+  - id: meta_description
+    type: string
+    label:
+      zh: Meta Description
+      en: Meta Description
+      ja: メタディスクリプション
+  - id: url
+    type: string
+    label:
+      zh: URL
+      en: URL
+      ja: URL
+  - id: faq
+    type: array
+    label:
+      zh: FAQ
+      en: FAQ
+      ja: FAQ
+  source:
+  - src/d-platforms/shopify-ai-guide.md#3-产品页面优化
+- id: schema_markup
+  label:
+    zh: Schema 标记
+    en: Schema Markup
+    ja: スキーママークアップ
+  definition:
+    zh: 结构化数据标记（JSON-LD，Schema.org 的 Product/Offer/AggregateRating），AI 引擎偏好结构化产品信息，是
+      GEO 优化的核心
+    en: Structured data markup (JSON-LD; Schema.org Product/Offer/AggregateRating);
+      AI engines prefer structured product data — the core of GEO
+    ja: 構造化データマークアップ（JSON-LD、Schema.org の Product/Offer/AggregateRating）。AI エンジンは構造化された商品情報を好み、GEO
+      最適化の核となる
+  attributes:
+  - id: type
+    type: string
+    label:
+      zh: 类型
+      en: Type
+      ja: 型
+  - id: format
+    type: string
+    label:
+      zh: 格式
+      en: Format
+      ja: 形式
+  source:
+  - src/d-platforms/shopify-ai-guide.md#213-geo-优化实操-让-ai-推荐你的产品
+- id: tiktok_product
+  label:
+    zh: TikTok 商品
+    en: TikTok Product
+    ja: TikTok 商品
+  definition:
+    zh: TikTok Shop 的商品（及其商品卡/商品页），作用是"确认购买决策"而非说服购买；标题简短、主图为生活场景图、视频必须
+    en: A TikTok Shop product (and its product card/page), whose job is to confirm
+      — not create — a purchase decision; short title, lifestyle main image, mandatory
+      video
+    ja: TikTok Shop の商品（商品カード/商品ページ）。購入意思を"確信に変える"役割。短いタイトル、生活シーン画像、動画必須
+  attributes:
+  - id: title
+    type: string
+    label:
+      zh: 标题
+      en: Title
+      ja: タイトル
+  - id: description
+    type: text
+    label:
+      zh: 描述
+      en: Description
+      ja: 説明
+  - id: main_image
+    type: reference
+    label:
+      zh: 主图
+      en: Main image
+      ja: メイン画像
+  - id: video
+    type: reference
+    label:
+      zh: 视频
+      en: Video
+      ja: 動画
+  - id: hashtags
+    type: array
+    label:
+      zh: 话题标签
+      en: Hashtags
+      ja: ハッシュタグ
+  source:
+  - src/d-platforms/tiktok-shop-ai-guide.md#5-商品页面与-seo-优化
+- id: product_video
+  label:
+    zh: 带货短视频
+    en: Product Video
+    ja: 商品動画
+  definition:
+    zh: TikTok Shop 商品页/内容流中的带货短视频，是 TikTok 的核心转化元素；表现最好的视频应放在商品页上
+    en: Short commerce video used on TikTok product pages and feeds — the core conversion
+      element; the best-performing video belongs on the product page
+    ja: TikTok 商品ページやフィードで使うショート動画。TikTok の中核となる転換要素で、最も成果の良い動画を商品ページに置く
+  attributes:
+  - id: duration
+    type: string
+    label:
+      zh: 时长
+      en: Duration
+      ja: 尺
+  - id: completion_rate
+    type: number
+    label:
+      zh: 完播率
+      en: Completion rate
+      ja: 完走率
+  - id: hook
+    type: string
+    label:
+      zh: 开头钩子
+      en: Hook
+      ja: フック
+  source:
+  - src/d-platforms/tiktok-shop-ai-guide.md#51-tiktok-shop-商品页-vs-amazon-listing
+  - src/d-platforms/tiktok-shop-ai-guide.md#52-商品页优化的-3-个关键
+- id: hashtag
+  label:
+    zh: 话题标签
+    en: Hashtag
+    ja: ハッシュタグ
+  definition:
+    zh: TikTok 商品页和视频上的话题标签，按品类/场景/趋势或高流量/精准分类，参与站内搜索
+    en: Topic hashtags on TikTok product pages and videos, categorized as category/scene/trend
+      or high-traffic/precise; they participate in on-site search
+    ja: TikTok 商品ページや動画のトピックハッシュタグ。カテゴリ・シーン・トレンド、または高流入・ピンポイントに分類され、サイト内検索に寄与する
+  attributes:
+  - id: type
+    type: string
+    label:
+      zh: 类型
+      en: Type
+      ja: 種類
+  source:
+  - src/d-platforms/tiktok-shop-ai-guide.md#18-tiktok-shop-站内搜索-seo
+- id: product_feed
+  label:
+    zh: 产品数据 Feed
+    en: Product Feed
+    ja: 商品フィード
+  definition:
+    zh: 提供给广告/购物引擎的结构化产品数据（标题、图片、价格、描述），如 Google Shopping Feed 与 TikTok GMV Max 产品目录
+    en: Structured product data (title, image, price, description) supplied to ad/shopping
+      engines — e.g. the Google Shopping feed and the TikTok GMV Max catalog
+    ja: 広告・ショッピングエンジンに供給する構造化商品データ（タイトル・画像・価格・説明）。Google Shopping フィードや TikTok GMV
+      Max カタログなど
+  attributes:
+  - id: title
+    type: string
+    label:
+      zh: 标题
+      en: Title
+      ja: タイトル
+  - id: description
+    type: text
+    label:
+      zh: 描述
+      en: Description
+      ja: 説明
+  - id: price
+    type: number
+    label:
+      zh: 价格
+      en: Price
+      ja: 価格
+  source:
+  - src/d-platforms/shopify-ai-guide.md#153-google-ads-深度优化
+  - src/d-platforms/tiktok-shop-ai-guide.md#63-gmv-max-深度解析
+- id: campaign
+  label:
+    zh: 广告活动
+    en: Campaign
+    ja: 広告キャンペーン
+  definition:
+    zh: Amazon PPC 广告结构的顶级容器，包含广告组、关键词和预算设置；案例中的 20 个活跃 campaign 即指此层级
+    en: Top-level container in the Amazon PPC hierarchy holding ad groups, keywords
+      and budget settings
+    ja: Amazon PPC 広告構造の最上位コンテナ。広告グループ・キーワード・予算を保持する
+  attributes:
+  - id: type
+    type: enum
+    label:
+      zh: 广告产品类型
+      en: Ad product type
+      ja: 広告商品タイプ
+  - id: daily_budget
+    type: float
+    label:
+      zh: 日预算
+      en: Daily budget
+      ja: 日予算
+  - id: status
+    type: enum
+    label:
+      zh: 状态
+      en: Status
+      ja: ステータス
+  - id: spend
+    type: float
+    label:
+      zh: 花费
+      en: Spend
+      ja: 支出
+  - id: sales
+    type: float
+    label:
+      zh: 销售额
+      en: Sales
+      ja: 売上
+  source:
+  - src/a-operators/a3-advertising.md#13-广告类型全景
+  - src/a-operators/a3-advertising.md#41-新品广告启动-sop30-天计划
+- id: ad_group
+  label:
+    zh: 广告组
+    en: Ad Group
+    ja: 広告グループ
+  definition:
+    zh: Campaign 内的关键词分组单元，用于按匹配类型或关键词主题分组，实现针对性优化
+    en: Grouping unit inside a campaign that holds keywords; split by match type or
+      theme for targeted optimization
+    ja: キャンペーン内のキーワード分類単位。マッチタイプ別に分けて最適化する
+  attributes:
+  - id: name
+    type: string
+    label:
+      zh: 广告组名称
+      en: Ad group name
+      ja: 広告グループ名
+  - id: match_type_grouping
+    type: enum
+    label:
+      zh: 按匹配类型分组
+      en: Match-type grouping
+      ja: マッチタイプ別グルーピング
+  source:
+  - src/a-operators/a3-advertising.md#52-结构相关陷阱
+- id: match_type
+  label:
+    zh: 匹配类型
+    en: Match Type
+    ja: マッチタイプ
+  definition:
+    zh: 关键词与搜索词的匹配规则：Broad（广泛，探索性）、Phrase（词组，中间）、Exact（精确，精准流量）；匹配类型不同应分层分析
+    en: 'Rule linking a keyword to search terms: broad (exploratory), phrase (intermediate),
+      exact (precise); performance must be analyzed separately per match type'
+    ja: キーワードと検索語の照合ルール。broad・phrase・exact の3種
+  attributes:
+  - id: name
+    type: enum
+    label:
+      zh: 匹配类型名称
+      en: Match type name
+      ja: マッチタイプ名
+  source:
+  - src/a-operators/a3-advertising.md#31-搜索词报告分析
+  - src/a-operators/a3-advertising.md#51-出价相关陷阱
+- id: bid
+  label:
+    zh: 出价
+    en: Bid
+    ja: 入札額
+  definition:
+    zh: 广告主愿意为每次点击支付的最高金额；广告排名 = 出价 × 相关性 × 转化率
+    en: Maximum amount an advertiser is willing to pay per click; ad rank = bid ×
+      relevance × conversion rate
+    ja: 広告主がクリック1回あたり支払える最大額
+  attributes:
+  - id: amount
+    type: float
+    label:
+      zh: 出价金额
+      en: Bid amount
+      ja: 入札額
+  - id: strategy
+    type: enum
+    label:
+      zh: 动态出价策略
+      en: Dynamic bid strategy
+      ja: 動的入札戦略
+  source:
+  - src/a-operators/a3-advertising.md#11-amazon-广告的第一性原理
+  - src/a-operators/a3-advertising.md#51-出价相关陷阱
+- id: budget
+  label:
+    zh: 预算
+    en: Budget
+    ja: 予算
+  definition:
+    zh: 广告活动（Campaign）的日预算或月预算；预算跟着 ROAS 走，但需考虑广告战略目标
+    en: Daily or monthly budget of a campaign; allocation should follow ROAS while
+      respecting strategic goals
+    ja: キャンペーンの日次・月次予算
+  attributes:
+  - id: daily_amount
+    type: float
+    label:
+      zh: 日预算金额
+      en: Daily budget amount
+      ja: 日次予算額
+  - id: period
+    type: enum
+    label:
+      zh: 预算周期
+      en: Budget period
+      ja: 予算期間
+  source:
+  - src/a-operators/a3-advertising.md#13-广告类型全景
+  - src/a-operators/a3-advertising.md#34-广告预算分配优化
+- id: impression
+  label:
+    zh: 展示量
+    en: Impression
+    ja: インプレッション
+  definition:
+    zh: 广告被展示的次数；高展示零点击说明主图或价格可能有问题
+    en: Number of times an ad is displayed; high impressions with zero clicks suggests
+      a listing image or price problem
+    ja: 広告が表示された回数
+  attributes:
+  - id: count
+    type: int
+    label:
+      zh: 展示次数
+      en: Count
+      ja: 回数
+  source:
+  - src/a-operators/a3-advertising.md#31-搜索词报告分析
+  - src/a-operators/a3-advertising.md#54-数据相关陷阱
+- id: click
+  label:
+    zh: 点击量
+    en: Click
+    ja: クリック数
+  definition:
+    zh: 广告被点击的次数；CPC = 广告花费 ÷ 点击数
+    en: Number of times an ad is clicked; CPC = ad spend / clicks
+    ja: 広告がクリックされた回数
+  attributes:
+  - id: count
+    type: int
+    label:
+      zh: 点击次数
+      en: Count
+      ja: 回数
+  source:
+  - src/a-operators/a3-advertising.md#31-搜索词报告分析
+- id: conversion
+  label:
+    zh: 转化
+    en: Conversion
+    ja: コンバージョン
+  definition:
+    zh: 广告点击后产生的订单；CVR = 订单数 ÷ 点击数 × 100%
+    en: Orders generated from ad clicks; CVR = orders / clicks × 100%
+    ja: 広告クリック後に発生した注文
+  attributes:
+  - id: order_count
+    type: int
+    label:
+      zh: 订单数
+      en: Order count
+      ja: 注文数
+  - id: value
+    type: float
+    label:
+      zh: 转化价值
+      en: Conversion value
+      ja: コンバージョン価値
+  source:
+  - src/a-operators/a3-advertising.md#31-搜索词报告分析
+- id: ctr
+  label:
+    zh: 点击率
+    en: CTR
+    ja: CTR
+  definition:
+    zh: CTR = 点击数 ÷ 展示量 × 100%；快速参考健康值 >0.3%
+    en: CTR = clicks / impressions × 100%; healthy reference threshold >0.3%
+    ja: CTR = クリック数 ÷ インプレッション数 × 100%
+  attributes:
+  - id: value
+    type: float
+    label:
+      zh: 点击率数值
+      en: Value
+      ja: 値
+  source:
+  - src/a-operators/a3-advertising.md#acos--tacos--roas-计算速查
+- id: cpc
+  label:
+    zh: 每次点击成本
+    en: CPC
+    ja: CPC
+  definition:
+    zh: 每次点击实际支付的费用；Amazon 采用第二价格拍卖，实际 CPC = 第二高出价 + $0.01
+    en: Actual cost per click; Amazon uses a second-price auction, so actual CPC =
+      second-highest bid + $0.01
+    ja: クリック1回あたりの実支払額。第二価格オークションにより 2番目入札額 + $0.01
+  attributes:
+  - id: value
+    type: float
+    label:
+      zh: CPC 数值
+      en: Value
+      ja: 値
+  source:
+  - src/a-operators/a3-advertising.md#11-amazon-广告的第一性原理
+  - src/a-operators/a3-advertising.md#acos--tacos--roas-计算速查
+- id: acos
+  label:
+    zh: 广告销售成本率
+    en: ACOS
+    ja: ACOS
+  definition:
+    zh: ACOS = 广告花费 ÷ 广告销售额 × 100%；目标 ACOS < 产品利润率，盈亏平衡 ACOS = 利润率
+    en: ACOS = ad spend / ad sales × 100%; target ACOS below product margin; break-even
+      ACOS equals margin
+    ja: ACOS = 広告費 ÷ 広告売上 × 100%
+  attributes:
+  - id: value
+    type: float
+    label:
+      zh: ACOS 数值
+      en: Value
+      ja: 値
+  - id: target
+    type: float
+    label:
+      zh: 目标 ACOS
+      en: Target ACOS
+      ja: 目標ACOS
+  source:
+  - src/a-operators/a3-advertising.md#12-acos--tacos--roas-的关系和计算
+- id: tacos
+  label:
+    zh: 总广告销售成本率
+    en: TACOS
+    ja: TACOS
+  definition:
+    zh: TACOS = 广告花费 ÷ 总销售额（广告+自然）× 100%；TACOS 持续下降 = 飞轮效应在运转，广告依赖减少
+    en: TACOS = ad spend / total sales (ads + organic) × 100%; a falling TACOS means
+      the organic-rank flywheel is working
+    ja: TACOS = 広告費 ÷ 総売上 × 100%
+  attributes:
+  - id: value
+    type: float
+    label:
+      zh: TACOS 数值
+      en: Value
+      ja: 値
+  source:
+  - src/a-operators/a3-advertising.md#12-acos--tacos--roas-的关系和计算
+- id: roas
+  label:
+    zh: 广告支出回报率
+    en: ROAS
+    ja: ROAS
+  definition:
+    zh: ROAS = 广告销售额 ÷ 广告花费；ROAS = 1 / ACOS
+    en: ROAS = ad sales / ad spend; ROAS = 1 / ACOS
+    ja: ROAS = 広告売上 ÷ 広告費。ROAS = 1 / ACOS
+  attributes:
+  - id: value
+    type: float
+    label:
+      zh: ROAS 数值
+      en: Value
+      ja: 値
+  source:
+  - src/a-operators/a3-advertising.md#12-acos--tacos--roas-的关系和计算
+- id: cvr
+  label:
+    zh: 转化率
+    en: CVR
+    ja: CVR
+  definition:
+    zh: CVR = 订单数 ÷ 点击数 × 100%；快速参考健康值 >8%
+    en: CVR = orders / clicks × 100%; healthy reference threshold >8%
+    ja: CVR = 注文数 ÷ クリック数 × 100%
+  attributes:
+  - id: value
+    type: float
+    label:
+      zh: 转化率数值
+      en: Value
+      ja: 値
+  source:
+  - src/a-operators/a3-advertising.md#acos--tacos--roas-计算速查
+- id: sponsored_product
+  label:
+    zh: 商品推广
+    en: Sponsored Products (SP)
+    ja: スポンサープロダクト
+  definition:
+    zh: 展示在搜索结果页和产品详情页的 CPC 广告，无最低预算，适合所有阶段（必备），核心目标是直接转化和关键词排名
+    en: CPC ads shown on search results and product detail pages; no minimum budget;
+      suitable for all stages; goal is direct conversion and keyword ranking
+    ja: 検索結果・商品詳細ページに出る CPC 広告。最低予算なし
+  attributes:
+  - id: bidding
+    type: enum
+    label:
+      zh: 竞价方式
+      en: Bidding model
+      ja: 入札方式
+  - id: placement
+    type: list<string>
+    label:
+      zh: 展示位置
+      en: Placements
+      ja: 掲載位置
+  source:
+  - src/a-operators/a3-advertising.md#13-广告类型全景
+- id: sponsored_brand
+  label:
+    zh: 品牌推广
+    en: Sponsored Brands (SB)
+    ja: スポンサーブランド
+  definition:
+    zh: 展示在搜索结果顶部横幅的 CPC 广告，需要品牌注册，最低预算 $1/天，核心目标是品牌曝光和品类占位；Headline 限 50 字符
+    en: CPC ads shown as a banner at the top of search results; requires brand registry,
+      $1/day minimum budget; goal is brand exposure; headline limited to 50 characters
+    ja: 検索結果上部バナーに表示される CPC 広告。ブランド登録必須、最低 $1/日
+  attributes:
+  - id: bidding
+    type: enum
+    label:
+      zh: 竞价方式
+      en: Bidding model
+      ja: 入札方式
+  - id: headline
+    type: string
+    label:
+      zh: 标题
+      en: Headline
+      ja: 見出し
+  - id: video
+    type: bool
+    label:
+      zh: 是否视频广告
+      en: Video variant
+      ja: 動画バリエーション
+  source:
+  - src/a-operators/a3-advertising.md#13-广告类型全景
+  - src/a-operators/a3-advertising.md#32-广告文案-ab-测试
+- id: sponsored_display
+  label:
+    zh: 展示型推广
+    en: Sponsored Display (SD)
+    ja: スポンサーディスプレイ
+  definition:
+    zh: 展示在产品详情页和站外的 CPC/vCPM 广告，需要品牌注册，最低预算 $1/天，核心目标是再营销和竞品拦截
+    en: CPC/vCPM ads shown on product detail pages and off-Amazon; requires brand
+      registry, $1/day minimum; goals are retargeting and competitor interception
+    ja: 商品詳細ページ・外部サイトに表示される CPC/vCPM 広告。ブランド登録必須
+  attributes:
+  - id: bidding
+    type: enum
+    label:
+      zh: 竞价方式
+      en: Bidding model
+      ja: 入札方式
+  - id: placement
+    type: list<string>
+    label:
+      zh: 展示位置
+      en: Placements
+      ja: 掲載位置
+  source:
+  - src/a-operators/a3-advertising.md#13-广告类型全景
+- id: dsp
+  label:
+    zh: Amazon DSP
+    en: Amazon DSP
+    ja: Amazon DSP
+  definition:
+    zh: 按 CPM（展示）计价的站内外全渠道展示广告，通常最低 $10,000+/月，适合大卖家和品牌
+    en: CPM-based full-funnel display advertising across on- and off-Amazon; typically
+      $10,000+/month minimum; for big sellers and brands
+    ja: CPM 課金のフルファネル・ディスプレイ広告。通常月 $10,000+ から
+  attributes:
+  - id: bidding
+    type: enum
+    label:
+      zh: 竞价方式
+      en: Bidding model
+      ja: 入札方式
+  - id: min_monthly_budget
+    type: float
+    label:
+      zh: 最低月预算
+      en: Minimum monthly budget
+      ja: 最低月予算
+  source:
+  - src/a-operators/a3-advertising.md#13-广告类型全景
+  - src/a-operators/a3-advertising.md#63-多渠道广告策略amazon--google--social
+- id: search_term_report
+  label:
+    zh: 搜索词报告
+    en: Search Term Report
+    ja: 検索語レポート
+  definition:
+    zh: 从 Advertising Console 导出的报告（Advertising → Reports → Search Term Report），每行含搜索词、匹配类型、展示量、点击量、花费、订单数、销售额；是广告优化最重要的数据源
+    en: Report exported from the Advertising Console (Advertising → Reports → Search
+      Term Report) with search term, match type, impressions, clicks, spend, orders,
+      sales per row; the most important data source for ad optimization
+    ja: Advertising Console からエクスポートする広告レポート。検索語・マッチタイプ・インプレッション等を含む
+  attributes:
+  - id: period
+    type: string
+    label:
+      zh: 统计周期
+      en: Reporting period
+      ja: 集計期間
+  - id: columns
+    type: list<string>
+    label:
+      zh: 数据列
+      en: Columns
+      ja: 列
+  source:
+  - src/a-operators/a3-advertising.md#31-搜索词报告分析
+  - src/a-operators/a3-advertising.md#22-免费工具组合
+  - src/case-studies/ai-ppc-optimization.md#背景
+- id: negative_keyword
+  label:
+    zh: 否定关键词
+    en: Negative Keyword
+    ja: 否定キーワード
+  definition:
+    zh: 屏蔽不相关搜索词的设置，分精确否定（Negative Exact，仅屏蔽完全匹配搜索词）和短语否定（Negative Phrase，屏蔽包含该短语的所有搜索词）；可设在
+      campaign 级
+    en: Setting that blocks irrelevant search terms; two types — negative exact (blocks
+      only the exact search term) and negative phrase (blocks every search term containing
+      the phrase); applied at campaign level
+    ja: 不関連な検索語をブロックする設定。ネガティブ完全一致・ネガティブフレーズの2種
+  attributes:
+  - id: type
+    type: enum
+    label:
+      zh: 否定类型
+      en: Negation type
+      ja: 否定タイプ
+  - id: level
+    type: enum
+    label:
+      zh: 应用层级
+      en: Applied level
+      ja: 適用レベル
+  source:
+  - src/a-operators/a3-advertising.md#33-否定关键词策略
+  - src/case-studies/ai-ppc-optimization.md#每周二执行否定词和出价调整20-分钟
+- id: ad
+  label:
+    zh: 广告创意
+    en: Ad Creative
+    ja: 広告クリエイティブ
+  definition:
+    zh: 广告文案与素材，如 Sponsored Brands Headline（限 50 字符）和 SB Video 15 秒脚本；用于 A/B 测试的变体
+    en: Ad copy and assets such as Sponsored Brands headlines (max 50 characters)
+      and 15-second SB Video scripts; variants are A/B tested
+    ja: 広告コピーと素材（SB見出し・動画スクリプトなど）
+  attributes:
+  - id: headline
+    type: string
+    label:
+      zh: 标题文案
+      en: Headline
+      ja: 見出し
+  - id: creative_type
+    type: enum
+    label:
+      zh: 创意类型
+      en: Creative type
+      ja: クリエイティブ種別
+  - id: variant
+    type: int
+    label:
+      zh: 变体编号
+      en: Variant number
+      ja: バリアント番号
+  source:
+  - src/a-operators/a3-advertising.md#32-广告文案-ab-测试
+- id: asin_target
+  label:
+    zh: ASIN 定向
+    en: ASIN Targeting (Product Targeting)
+    ja: ASIN ターゲティング
+  definition:
+    zh: 把广告投放到指定竞品 ASIN 的产品详情页（Product Targeting）；需分析目标 ASIN 的展示量、点击量、花费、订单数
+    en: Targeting competitor ASINs so your ad appears on their product detail pages
+      (Product Targeting); performance is analyzed by target ASIN impressions, clicks,
+      spend, orders
+    ja: 競合 ASIN の商品詳細ページに広告を出すターゲティング
+  attributes:
+  - id: target_asin
+    type: string
+    label:
+      zh: 目标 ASIN
+      en: Target ASIN
+      ja: 対象ASIN
+  - id: impressions
+    type: int
+    label:
+      zh: 展示量
+      en: Impressions
+      ja: インプレッション
+  - id: clicks
+    type: int
+    label:
+      zh: 点击量
+      en: Clicks
+      ja: クリック数
+  - id: spend
+    type: float
+    label:
+      zh: 花费
+      en: Spend
+      ja: 支出
+  - id: orders
+    type: int
+    label:
+      zh: 订单数
+      en: Orders
+      ja: 注文数
+  source:
+  - src/a-operators/a3-advertising.md#31-搜索词报告分析
+  - src/a-operators/a3-advertising.md#36-竞品广告情报分析
+- id: inventory
+  label:
+    zh: 库存
+    en: Inventory
+    ja: 在庫
+  definition:
+    zh: 电商卖家的商品存量，管理的本质是平衡缺货成本与滞销成本
+    en: Stock of goods held by an e-commerce seller; management balances stockout
+      cost vs. stagnation cost
+  attributes:
+  - current_qty
+  - in_transit_qty
+  - available_days
+  - storage_fee_per_unit
+  - age_days
+  source: src/a-operators/a5-inventory.md#11-库存管理的第一性原理
+- id: warehouse
+  label:
+    zh: 仓库
+    en: Warehouse
+    ja: 倉庫
+  definition:
+    zh: 库存存放地点，含 FBA 仓库、自建仓、3PL 仓；多渠道场景下由库存中心系统(总库存池)统一协调
+    en: Physical location holding inventory (FBA warehouse, own warehouse, 3PL); multi-channel
+      setups use a central inventory pool
+  attributes:
+  - type
+  - location
+  - capacity
+  source: src/a-operators/a5-inventory.md#62-多渠道库存同步amazon--shopify--独立站
+  flagged: true
+  note: 章节未给出"warehouse"的正式定义，是从"FBA 仓库/库存中心系统/3PL 统一仓储"归纳而来
+- id: fba_inventory
+  label:
+    zh: FBA 库存
+    en: FBA Inventory
+    ja: FBA在庫
+  definition:
+    zh: 存放在 Amazon 履约中心、由 FBA 发货的库存，受 IPI 评分与仓储限制约束
+    en: Inventory stored in Amazon fulfillment centers and fulfilled by FBA; subject
+      to IPI score and storage limits
+  attributes:
+  - ipi_score
+  - sell_through_rate
+  - excess_flag
+  - stranded_flag
+  - storage_restriction
+  source: src/a-operators/a5-inventory.md#12-amazon-fba-库存关键指标
+- id: fbm_inventory
+  label:
+    zh: 自发货库存
+    en: FBM Inventory
+    ja: 自己発送在庫
+  definition:
+    zh: 卖家自行履约（自发货）的库存，如 Shopify / 独立站渠道库存
+    en: Inventory fulfilled by the seller (self-fulfillment), e.g. Shopify / DTC store
+      stock
+  attributes: []
+  source: src/a-operators/a5-inventory.md#62-多渠道库存同步amazon--shopify--独立站
+  flagged: true
+  note: 章节只出现"自发货"一词（FBA 仓库 vs 自发货），"fbm_inventory"实体为归纳命名
+- id: stock_level
+  label:
+    zh: 库存水位
+    en: Stock Level
+    ja: 在庫水準
+  definition:
+    zh: 某一时刻的库存数量，补货决策的输入变量之一（当前库存 / 在途库存 / 目标水位）
+    en: Quantity of stock at a point in time; an input to replenishment decisions
+      (current / in-transit / target)
+  attributes:
+  - current
+  - in_transit
+  - target_days
+  source: src/a-operators/a5-inventory.md#31-补货决策分析
+- id: safety_stock
+  label:
+    zh: 安全库存
+    en: Safety Stock
+    ja: 安全在庫
+  definition:
+    zh: 为吸收销量波动与 Lead Time 波动而额外持有的库存，按 Z × σ_d × √L 计算
+    en: Extra stock held to absorb demand and lead-time variability, computed as Z
+      × σ_d × √L
+  attributes:
+  - z_factor
+  - daily_sales_stddev
+  - lead_time_days
+  source: src/a-operators/a5-inventory.md#11-库存管理的第一性原理
+- id: reorder_point
+  label:
+    zh: 补货点
+    en: Reorder Point
+    ja: 発注点
+  definition:
+    zh: 库存降到该水位时应下单补货；= 日均销量 × Lead Time + 安全库存
+    en: Stock level at which a replenishment order should be placed; = daily sales
+      × lead time + safety stock
+  attributes:
+  - daily_sales
+  - lead_time_days
+  - safety_stock_qty
+  source: src/a-operators/a5-inventory.md#11-库存管理的第一性原理
+- id: lead_time
+  label:
+    zh: 交期
+    en: Lead Time
+    ja: リードタイム
+  definition:
+    zh: 从下单到入仓可售的天数，含供应商生产、国内运输、海运、清关、FBA 入仓；是库存管理最大的不确定性来源
+    en: Days from order placement to sellable stock, covering production, domestic
+      transport, sea freight, customs, FBA inbound; the largest uncertainty in inventory
+      management
+  attributes:
+  - production_days
+  - transit_days
+  - customs_days
+  - inbound_days
+  - total_days
+  source: src/a-operators/a5-inventory.md#11-库存管理的第一性原理
+- id: supplier
+  label:
+    zh: 供应商
+    en: Supplier
+    ja: サプライヤー
+  definition:
+    zh: 商品生产/供货方，需评估交期可靠性、产能、MOQ，并建立备选供应商
+    en: Party producing/supplying goods; assessed on delivery reliability, capacity,
+      MOQ; backup suppliers recommended
+  attributes:
+  - delivery_history
+  - capacity_per_month
+  - moq
+  - is_primary
+  source: src/a-operators/a5-inventory.md#37-供应商交期风险评估
+- id: purchase_order
+  label:
+    zh: 采购订单
+    en: Purchase Order
+    ja: 発注書
+  definition:
+    zh: 向供应商下达的采购单据，记录供应商、数量、预计交期，并纳入在途库存追踪
+    en: Order issued to a supplier recording vendor, quantity and expected delivery;
+      tracked as in-transit inventory
+  attributes:
+  - supplier
+  - quantity
+  - expected_delivery
+  - status
+  source: src/a-operators/a5-inventory.md#41-月度补货-sop
+- id: fulfillment_center
+  label:
+    zh: 履约中心
+    en: Fulfillment Center
+    ja: フルフィルメントセンター
+  definition:
+    zh: Amazon FBA 仓库，货物到港后需经 5-14 天（旺季可达 21 天）入仓处理方可销售
+    en: Amazon FBA warehouse; inbound processing takes 5-14 days (up to 21 in peak
+      season) before units become sellable
+  attributes:
+  - inbound_processing_days
+  - storage_restriction
+  - ipi_limit
+  source: src/a-operators/a5-inventory.md#11-库存管理的第一性原理
+- id: shipment
+  label:
+    zh: 头程物流
+    en: Shipment
+    ja: 貨物輸送
+  definition:
+    zh: 从供应商到 FBA 仓库的头程货运，可选海运(30-45天)、空运(7-12天)、铁路(18-25天)
+    en: 'First-leg freight from supplier to FBA warehouse: sea (30-45d), air (7-12d),
+      rail (18-25d)'
+  attributes:
+  - mode
+  - cost_per_kg
+  - transit_days
+  - eta
+  source: src/a-operators/a5-inventory.md#63-头程物流优化海运-vs-空运-vs-铁路
+- id: restock_recommendation
+  label:
+    zh: 补货建议
+    en: Restock Recommendation
+    ja: 補充推奨
+  definition:
+    zh: AI 或工具基于销量、Lead Time、安全库存、仓储限制等输出的补货数量/时间建议，需人工复核后转采购订单
+    en: Suggested replenishment quantity/timing produced by AI or tools from sales,
+      lead time, safety stock and storage limits; requires human review before ordering
+  attributes:
+  - suggested_qty
+  - latest_order_date
+  - urgency
+  - scenario
+  source: src/a-operators/a5-inventory.md#31-补货决策分析
+- id: demand_forecast
+  label:
+    zh: 需求预测
+    en: Demand Forecast
+    ja: 需要予測
+  definition:
+    zh: 基于历史销量、季节性、趋势与节假日事件对未来的销量预测，输出点估计与置信区间
+    en: Future sales prediction from historical sales, seasonality, trend and holiday
+      events, with point estimate and confidence intervals
+  attributes:
+  - yhat
+  - yhat_lower
+  - yhat_upper
+  - horizon_days
+  - mape
+  source: src/b-developers/b2-prediction-models.md#31-prophet-销量预测完整流程
+- id: ipi_score
+  label:
+    zh: IPI 评分
+    en: IPI Score
+    ja: IPIスコア
+  definition:
+    zh: Inventory Performance Index，综合库存健康评分，低于 400 会被限制 FBA 入仓数量
+    en: Inventory Performance Index; scores below 400 trigger FBA inbound quantity
+      limits
+  attributes:
+  - sell_through_rate
+  - excess_pct
+  - stranded_qty
+  - in_stock_rate
+  source: src/a-operators/a5-inventory.md#12-amazon-fba-库存关键指标
+- id: sell_through_rate
+  label:
+    zh: 售出率
+    en: Sell-through Rate
+    ja: 消化率
+  definition:
+    zh: 过去 90 天销量 ÷ 平均库存，目标 > 3（90 天内周转 3 次），IPI 核心组成部分
+    en: 90-day sales ÷ average inventory; target > 3 (3 turns in 90 days); core IPI
+      component
+  attributes: []
+  source: src/a-operators/a5-inventory.md#12-amazon-fba-库存关键指标
+- id: excess_inventory
+  label:
+    zh: 超量库存
+    en: Excess Inventory
+    ja: 過剰在庫
+  definition:
+    zh: 超过 90 天预计销量的库存，占用仓储空间并产生额外费用，拉低 IPI
+    en: Inventory exceeding 90 days of forecast sales; consumes storage, adds fees,
+      lowers IPI
+  attributes:
+  - days_of_forecast
+  - asin_count
+  source: src/a-operators/a5-inventory.md#12-amazon-fba-库存关键指标
+- id: stranded_inventory
+  label:
+    zh: 滞留库存
+    en: Stranded Inventory
+    ja: 滞留在庫
+  definition:
+    zh: 有库存但因 Listing 问题无法销售的 ASIN，目标为 0，是最易修复的 IPI 维度
+    en: ASINs with stock that cannot be sold due to listing issues; target 0; the
+      easiest IPI fix
+  attributes:
+  - asin_count
+  - reason
+  source: src/a-operators/a5-inventory.md#12-amazon-fba-库存关键指标
+- id: in_stock_rate
+  label:
+    zh: 有货率
+    en: In-stock Rate
+    ja: 在庫充足率
+  definition:
+    zh: 有库存的天数 ÷ 总天数，目标 > 95%，影响 BSR 排名与广告效果
+    en: Days in stock ÷ total days; target > 95%; affects BSR ranking and ad performance
+  attributes: []
+  source: src/a-operators/a5-inventory.md#12-amazon-fba-库存关键指标
+- id: aged_inventory
+  label:
+    zh: 库龄库存
+    en: Aged Inventory
+    ja: 長期滞留在庫
+  definition:
+    zh: 库龄超过 90/180/270/365 天的库存，超 181 天开始产生 Aged Inventory Surcharge
+    en: Inventory aged over 90/180/270/365 days; aged-inventory surcharge starts after
+      181 days
+  attributes:
+  - age_days
+  - surcharge
+  - action
+  source: src/a-operators/a5-inventory.md#12-amazon-fba-库存关键指标
+- id: in_transit_inventory
+  label:
+    zh: 在途库存
+    en: In-transit Inventory
+    ja: 輸送中在庫
+  definition:
+    zh: 已下单/已发货但未入仓的库存，实际可用库存 = 当前库存 + 在途库存
+    en: Ordered/shipped but not yet received stock; available stock = current stock
+      + in-transit
+  attributes:
+  - qty
+  - eta
+  - purchase_order_id
+  source: src/a-operators/a5-inventory.md#31-补货决策分析
+- id: days_of_stock
+  label:
+    zh: 库存可支撑天数
+    en: Days of Stock
+    ja: 在庫持続日数
+  definition:
+    zh: (当前库存 + 在途库存) ÷ 日均销量，低于 Lead Time + 安全天数时需要补货
+    en: (current stock + in-transit) ÷ daily sales; below lead time + safety days,
+      replenish
+  attributes: []
+  source: src/a-operators/a5-inventory.md#安全库存与补货公式速查
+- id: moq
+  label:
+    zh: 最小起订量
+    en: MOQ
+    ja: 最小発注数量
+  definition:
+    zh: 供应商要求的最小起订量，补货量需向上取整到 MOQ 的倍数
+    en: Supplier's minimum order quantity; order quantity is rounded up to a multiple
+      of MOQ
+  attributes:
+  - qty
+  source: src/a-operators/a5-inventory.md#37-供应商交期风险评估
+- id: inventory_turnover
+  label:
+    zh: 库存周转率
+    en: Inventory Turnover
+    ja: 在庫回転率
+  definition:
+    zh: 年销售额 ÷ 平均库存价值，越高说明库存流转越快
+    en: Annual sales ÷ average inventory value; higher means faster stock turnover
+  attributes: []
+  source: src/a-operators/a5-inventory.md#安全库存与补货公式速查
+- id: compliance_check
+  label:
+    zh: 合规检查
+    en: Compliance Check
+    ja: コンプライアンス確認
+  definition:
+    zh: 新品上架前及运营中按清单逐项核对认证、标签、包装、化学物质、税务等合规项的检查流程，产出合规需求清单与通过/未通过结论
+    en: Pre-launch and ongoing verification of certifications, labels, packaging,
+      chemicals and tax obligations against a checklist; gates listing publication
+    ja: 出品前・運営中の認証・ラベル・包装・化学品・税務をチェックリストで確認するプロセス
+  attributes:
+  - status
+  - checklist_items
+  - evidence_docs
+  source:
+  - src/a-operators/a6-compliance.md#41-新品上架前合规检查-sop
+  - src/a-operators/a6-compliance.md#43-合规事件应急响应-sop
+- id: certification
+  label:
+    zh: 认证证书
+    en: Certification
+    ja: 認証
+  definition:
+    zh: 由认证机构（SGS、TÜV、Intertek 等）颁发的合规证书，具有有效期（通常 1-5 年），过期或产品改版后失效
+    en: Compliance certificate issued by accredited bodies (SGS, TÜV, Intertek); has
+      validity period, invalidated by expiry or design change
+    ja: 認定機関が発行する適合証明書
+  attributes:
+  - name
+  - market
+  - issuing_body
+  - validity_years
+  - expiry_date
+  source:
+  - src/a-operators/a6-compliance.md#61-认证相关陷阱
+- id: ip_right
+  label:
+    zh: 知识产权
+    en: IP Right
+    ja: 知的財産権
+  definition:
+    zh: 知识产权总称，含专利、商标、版权等；属地主权（美国注册在欧盟不生效），是跨境卖家最大的法律风险来源之一
+    en: Umbrella term for patents, trademarks, copyrights; territorial rights, major
+      legal risk for cross-border sellers
+    ja: 特許・商標・著作権などを含む権利の総称（属地主義）
+  attributes:
+  - type
+  - jurisdiction
+  - status
+  source:
+  - src/a-operators/a12-ip-protection.md#1-为什么-ip-保护是跨境卖家的生命线
+- id: trademark
+  label:
+    zh: 商标
+    en: Trademark
+    ja: 商標
+  definition:
+    zh: 按国家/地区注册的商标权，是 Amazon Brand Registry 的前提；抢注是跨境电商常见陷阱
+    en: Jurisdiction-registered trademark; prerequisite for Amazon Brand Registry;
+      squatting is a common trap
+    ja: 国・地域ごとに登録する商標権
+  attributes:
+  - name
+  - nice_class
+  - jurisdiction
+  - registry
+  - status
+  source:
+  - src/a-operators/a12-ip-protection.md#31-商标注册策略
+  - src/a-operators/a6-compliance.md#63-知识产权相关陷阱
+- id: patent
+  label:
+    zh: 专利
+    en: Patent
+    ja: 特許
+  definition:
+    zh: 专利（发明专利/实用新型/外观设计）；侵权判断看功能与外观而非名称，外观设计专利侵权门槛低
+    en: Patent (utility/design); infringement judged by function and appearance, not
+      product name; design patents have a low infringement bar
+    ja: 特許（発明・実用新案・意匠）
+  attributes:
+  - type
+  - jurisdiction
+  - number
+  - expiry
+  source:
+  - src/a-operators/a12-ip-protection.md#2-ai-专利检索与风险评估
+  - src/a-operators/a12-ip-protection.md#82-只查商标不查外观专利
+- id: copyright
+  label:
+    zh: 版权
+    en: Copyright
+    ja: 著作権
+  definition:
+    zh: 版权，覆盖产品图片、Listing 文案、品牌设计、视频等内容作品；侵权后果为 DMCA 投诉与 Listing 下架
+    en: Copyright over product images, listing copy, brand design, videos; infringement
+      leads to DMCA takedowns
+    ja: 画像・文章・デザイン・動画などを保護する著作権
+  attributes:
+  - work_type
+  - owner
+  - registration
+  source:
+  - src/a-operators/a12-ip-protection.md#4-ai-版权保护
+- id: hs_code
+  label:
+    zh: 海关编码
+    en: HS Code
+    ja: HSコード
+  definition:
+    zh: 海关协调制度编码，跨境清关的商品分类代码；错误分类可能导致海关罚款和延误，是少数值得自动化的合规环节
+    en: Harmonized System customs classification code; misclassification risks fines
+      and delays
+    ja: 税関の商品分類コード（調和システム）
+  attributes:
+  - code
+  - digits
+  - description
+  - confidence
+  source:
+  - src/case-studies/hs-code-classification.md#业务背景
+  - src/a-operators/a6-compliance.md#1-合规方法论ai-之前你需要理解的基础
+- id: product_category_approval
+  label:
+    zh: 品类准入审批
+    en: Product Category Approval
+    ja: カテゴリー承認
+  definition:
+    zh: 平台/市场对特定品类的准入控制；Amazon 要求上架前在 Seller Central 确认品类具体合规要求（如儿童产品、医疗器械、锂电池）
+    en: Marketplace gating for a product category; Amazon requires confirming category-specific
+      compliance in Seller Central before listing
+    ja: マーケットプレイスにおけるカテゴリー別の承認・適合確認
+  attributes:
+  - category
+  - marketplace
+  - required_docs
+  - status
+  source:
+  - src/a-operators/a6-compliance.md#41-新品上架前合规检查-sop
+  flagged: true
+  flag_note: 章节原文为'在 Amazon Seller Central 确认品类的具体合规要求'，未出现'类目审核/category approval'这一正式名词，属推断提取
+- id: fda_requirement
+  label:
+    zh: FDA 要求
+    en: FDA Requirement
+    ja: FDA要件
+  definition:
+    zh: 美国 FDA 要求，如食品接触材料适用 FDA 21 CFR；未经实际 FDA 批准不得在 Listing 宣称 "FDA approved"
+    en: US FDA requirements (e.g., FDA 21 CFR for food-contact materials); unapproved
+      "FDA approved" claims are forbidden in listings
+    ja: 米国FDA要件（食品接触材の21 CFRなど）
+  attributes:
+  - applicability
+  - regulation_ref
+  source:
+  - src/a-operators/a6-compliance.md#65-amazon-政策相关陷阱
+  - src/a-operators/a6-compliance.md#附录合规速查表
+- id: fcc_requirement
+  label:
+    zh: FCC 要求
+    en: FCC Requirement
+    ja: FCC要件
+  definition:
+    zh: 美国 FCC 认证（Part 15），所有发射无线电频率的电子设备强制要求；无认证海关可直接扣货
+    en: US FCC certification (Part 15), mandatory for all RF-emitting electronics;
+      customs may seize uncertified goods
+    ja: 米国FCC認証（Part 15）、電波を発する電子機器に必須
+  attributes:
+  - regulation_part
+  - product_type
+  source:
+  - src/a-operators/a6-compliance.md#11-跨境电商合规的第一性原理
+  - src/a-operators/a6-compliance.md#附录合规速查表
+- id: ce_marking
+  label:
+    zh: CE 标志
+    en: CE Marking
+    ja: CEマーク
+  definition:
+    zh: 进入欧盟市场的强制标志，覆盖安全、健康、环保等多指令（EMC、LVD、玩具安全等）；有最小尺寸与比例要求
+    en: Mandatory EU market access mark covering multiple directives (EMC, LVD, Toy
+      Safety); has minimum size and proportion rules
+    ja: EU市場参入に必須のCEマーク
+  attributes:
+  - directives
+  - min_height_mm
+  - status
+  source:
+  - src/a-operators/a6-compliance.md#11-跨境电商合规的第一性原理
+  - src/a-operators/a6-compliance.md#62-标签相关陷阱
+- id: dangerous_goods
+  label:
+    zh: 危险品
+    en: Dangerous Goods
+    ja: 危険物
+  definition:
+    zh: 危险品（如含锂电池产品），需满足 UN38.3 测试、MSDS 与运输限制等特殊要求
+    en: Dangerous goods (e.g., lithium-battery products) subject to UN38.3 testing,
+      MSDS and transport restrictions
+    ja: 危険物（リチウム電池内蔵品など）
+  attributes:
+  - class
+  - battery_type
+  - un_number
+  - transport_restrictions
+  source:
+  - src/a-operators/a6-compliance.md#31-多市场合规对比深化版
+- id: restricted_product
+  label:
+    zh: 受限产品
+    en: Restricted Product
+    ja: 販売制限品
+  definition:
+    zh: 缺少对应市场强制认证（CE/FCC/PSE/UKCA）即无法合法销售的产品；儿童产品、医疗器械等品类认证费用可占产品成本 20-30%
+    en: Product that cannot be legally sold without mandatory certification for the
+      target market; certain categories have high certification cost share
+    ja: 強制認証なしでは販売できない製品
+  attributes:
+  - market
+  - restriction_reason
+  - required_certification
+  source:
+  - src/a-operators/a6-compliance.md#11-跨境电商合规的第一性原理
+- id: label_requirement
+  label:
+    zh: 标签要求
+    en: Label Requirement
+    ja: ラベル要件
+  definition:
+    zh: 目标市场对产品标签的要求：当地官方语言、制造商/进口商信息、原产地标注、CE 标志尺寸、Prop 65 警告、回收标志等
+    en: 'Market-specific labeling rules: local language, manufacturer/importer info,
+      country of origin, CE mark size, Prop 65 warning, recycling marks'
+    ja: 市場ごとのラベル要件
+  attributes:
+  - market
+  - language
+  - required_fields
+  - warning_marks
+  source:
+  - src/a-operators/a6-compliance.md#62-标签相关陷阱
+  - src/a-operators/a6-compliance.md#附录合规速查表
+- id: safety_data_sheet
+  label:
+    zh: 安全数据表
+    en: Safety Data Sheet
+    ja: 安全データシート
+  definition:
+    zh: 危险品（含锂电池产品）运输与申报所需的 MSDS/SDS，是锂电池特殊要求（UN38.3、MSDS、运输限制）之一
+    en: MSDS/SDS required for dangerous-goods shipping and declaration (UN38.3, MSDS,
+      transport restrictions)
+    ja: 危険物輸送に必要なMSDS/SDS
+  attributes:
+  - product
+  - language
+  - sections
+  source:
+  - src/a-operators/a6-compliance.md#31-多市场合规对比深化版
+  - src/a-operators/a6-compliance.md#附录合规速查表
+- id: responsible_person
+  label:
+    zh: 欧盟责任主体
+    en: EU Responsible Person
+    ja: EU責任者
+  definition:
+    zh: 欧盟境内经济运营者（进口商、授权代表或履行服务提供商），GPSR 强制要求；中国卖家必须指定，Amazon 可能要求提供后才能上架
+    en: EU economic operator (importer, authorized representative or fulfillment provider)
+      mandated by GPSR; required for Chinese sellers
+    ja: GPSRが義務付けるEU域内の経済事業者
+  attributes:
+  - market
+  - role
+  - contact_info
+  source:
+  - src/a-operators/a6-compliance.md#72-欧盟新法规digital-product-passport-与-gpsr
+  - src/a-operators/a6-compliance.md#62-标签相关陷阱
+- id: declaration_of_conformity
+  label:
+    zh: 符合性声明
+    en: Declaration of Conformity
+    ja: 適合宣言書
+  definition:
+    zh: 欧盟符合性声明，需引用适用指令（LVD、EMC、RoHS、RED）与协调标准；属法律文件，签署人对准确性负法律责任
+    en: EU Declaration of Conformity citing applicable directives (LVD, EMC, RoHS,
+      RED) and harmonized standards; legally binding for signatory
+    ja: EU適合宣言書（対象指令・整合規格を引用）
+  attributes:
+  - directives
+  - harmonized_standards
+  - signatory
+  - market
+  source:
+  - src/a-operators/a6-compliance.md#35-合规文档生成
+- id: brand_registry
+  label:
+    zh: 亚马逊品牌注册
+    en: Amazon Brand Registry
+    ja: Amazonブランドレジストリ
+  definition:
+    zh: Amazon 品牌保护体系，需已注册商标；配套 Transparency、Project Zero（AI 自动移除仿冒）、Report a Violation
+      等工具
+    en: Amazon brand protection program requiring a registered trademark; unlocks
+      Transparency, Project Zero and Report a Violation
+    ja: 登録商標を前提とするAmazonのブランド保護プログラム
+  attributes:
+  - marketplace
+  - trademark_required
+  - tools
+  source:
+  - src/a-operators/a12-ip-protection.md#51-amazon-品牌保护工具矩阵
+  - src/a-operators/a12-ip-protection.md#31-商标注册策略
