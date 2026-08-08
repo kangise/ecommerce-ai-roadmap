@@ -68,10 +68,15 @@ def main():
         json.dumps(prompts, ensure_ascii=False, indent=2), encoding="utf-8"
     )
 
-    # 3. skills/ — recursive copy
+    # 3. integration/ — copy adapter docs
+    integration_src = ROOT / "integration"
+    if integration_src.exists():
+        shutil.copytree(integration_src, DIST / "integration", dirs_exist_ok=True)
+
+    # 4. skills/ — recursive copy
     shutil.copytree(SKILLS, DIST / "skills", dirs_exist_ok=True)
 
-    # 4. knowledge/ — chapter index for agent retrieval
+    # 4b. knowledge/ — chapter index for agent retrieval
     (DIST / "knowledge").mkdir(exist_ok=True)
     entities_data = ontology.get("entities", [])
     knowledge_index = []
@@ -255,6 +260,70 @@ When a skill is selected:
 See `integration/` for framework-specific setup guides.
 """
     (DIST / "SKILL.md").write_text(root_skill)
+
+    # 6. README.md — human quickstart
+    readme = f"""# OPC E-Commerce AI Infrastructure
+
+> Plug-and-play e-commerce operations capability for AI agents.
+
+## Quick Start (30 seconds)
+
+1. **Point your agent at this directory.** The entry point is `SKILL.md`.
+2. Your agent now has 7 domain skills (listing, advertising, inventory, compliance, pricing, research, applicability).
+3. Ask: *"Help me write an Amazon listing"* — agent routes to `ecom-listing`, loads platform constraints, executes.
+
+## What's Inside
+
+| Component | Contains |
+|-----------|----------|
+| `SKILL.md` | Agent system prompt with routing rules |
+| `ontology.json` | 80 entities, 78 relations, 184 constraints, 8 processes |
+| `prompts.json` | {len(prompts)} production prompts (zh/en/ja) |
+| `knowledge/index.json` | 67-chapter index with entity references |
+| `skills/` | 7 domain skills with manifests, playbooks, constraints |
+| `integration/` | Framework-specific setup guides |
+
+## How It Works
+
+```
+User: "Help me write a listing"
+  → SKILL.md routing: "listing" → ecom-listing
+  → load skills/ecom-listing/manifest.yaml (input schema)
+  → load skills/ecom-listing/references/constraints.md (platform rules)
+  → select prompt from skills/ecom-listing/references/playbook.md
+  → execute, verify with self-check, deliver
+```
+
+## For Agent Developers
+
+See `integration/mcp.md` for MCP server setup.
+See each skill's manifest (skills/\<skill\>/manifest.yaml) for input/output schemas.
+See `knowledge/query_guide.md` for retrieval patterns.
+"""
+    (DIST / "README.md").write_text(readme)
+
+    # 7. INTEGRATION.md — framework guide index
+    integration_md = """# Integration Guides
+
+This package is framework-agnostic. Choose your integration path:
+
+| Framework | Guide | Why |
+|-----------|-------|-----|
+| MCP (Model Context Protocol) | [integration/mcp.md](integration/mcp.md) | Natural fit: resources + prompts + tools |
+| Direct file loading | [integration/mcp-system-prompt.md](integration/mcp-system-prompt.md) | No server needed — load files directly |
+
+## Which Framework?
+
+- **MCP** — Best for Claude Desktop, Cursor, and any MCP-compatible client
+- **Direct loading** — Works with any agent that can read files and follow instructions
+
+## Adding a New Framework
+
+1. Create `integration/<framework>.md` with setup instructions
+2. Add a system-prompt file with the adapted system prompt
+3. Document any framework-specific routing or tool call format differences
+"""
+    (DIST / "INTEGRATION.md").write_text(integration_md)
 
     print(f"dist/ built: {len(prompts)} prompts, {len(ontology)} ontology files, 7 skills")
     return 0

@@ -20,6 +20,8 @@ CHECKS = [
     ("Skills",    "python3", "scripts/verify_skills.py"),
     ("Knowledge", "python3", "scripts/verify_all.py", "--k1"),
     ("Routing",   "python3", "scripts/verify_all.py", "--r1"),
+    ("Integration","python3", "scripts/verify_all.py", "--i1"),
+    ("Docs",      "python3", "scripts/verify_all.py", "--d1"),
     ("Dist",      "python3", "scripts/build_dist.py"),
 ]
 
@@ -69,7 +71,66 @@ def main() -> int:
     ap.add_argument("--sustain", action="store_true")
     ap.add_argument("--k1", action="store_true", help="Knowledge index coverage check")
     ap.add_argument("--r1", action="store_true", help="Routing accuracy check")
+    ap.add_argument("--i1", action="store_true", help="Integration doc check")
+    ap.add_argument("--d1", action="store_true", help="Documentation check")
     args = ap.parse_args()
+
+    if args.i1:
+        problems = []
+        dist = ROOT_V / "dist"
+        required = [
+            ("integration/mcp.md", "MCP integration doc"),
+            ("integration/mcp-system-prompt.md", "MCP system prompt"),
+        ]
+        for path, label in required:
+            fp = dist / path
+            if not fp.exists():
+                problems.append(f"dist/{path}: missing")
+            elif fp.stat().st_size < 50:
+                problems.append(f"dist/{path}: empty or too small")
+        # Check all file paths mentioned in integration docs actually exist
+        for md_path in sorted((dist / "integration").glob("*.md")):
+            text = md_path.read_text(encoding="utf-8")
+            refs = set(re.findall(r'`([a-zA-Z0-9_/.-]+\.(?:md|json|yaml|yml))`', text))
+            for ref in refs:
+                ref_path = dist / ref
+                if not ref_path.exists():
+                    problems.append(f"dist/integration/{md_path.name}: references '{ref}' which does not exist")
+                elif ref_path.stat().st_size < 10:
+                    problems.append(f"dist/integration/{md_path.name}: references empty file '{ref}'")
+        total = len(problems)
+        mark = "ok " if total == 0 else "FAIL"
+        print(f"  [{mark}] I1          {total}")
+        for p in problems:
+            print(f"           {p}")
+        return 0 if total == 0 else 1
+
+    if args.d1:
+        problems = []
+        dist = ROOT_V / "dist"
+        for path, label in [
+            ("README.md", "Quickstart doc"),
+            ("INTEGRATION.md", "Integration index"),
+        ]:
+            fp = dist / path
+            if not fp.exists():
+                problems.append(f"dist/{path}: missing")
+            elif fp.stat().st_size < 100:
+                problems.append(f"dist/{path}: too small")
+        # Check README references are real
+        readme = dist / "README.md"
+        if readme.exists():
+            text = readme.read_text(encoding="utf-8")
+            refs = set(re.findall(r'`([a-zA-Z0-9_/.-]+\.(?:md|json|yaml|yml))`', text))
+            for ref in refs:
+                if not (dist / ref).exists():
+                    problems.append(f"dist/README.md: references '{ref}' which does not exist")
+        total = len(problems)
+        mark = "ok " if total == 0 else "FAIL"
+        print(f"  [{mark}] D1          {total}")
+        for p in problems:
+            print(f"           {p}")
+        return 0 if total == 0 else 1
 
     if args.r1:
         import yaml as _yaml
