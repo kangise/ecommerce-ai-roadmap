@@ -90,3 +90,17 @@ Full extraction lives in `compliance-risk.yaml`; entries marked `flagged: true` 
 - Source: ontology/constraints.yaml（schema 注释）
 - Ambiguity: 模板枚举仅列 max_length | min_length | max_bytes | count | format | forbidden | required；compliance-risk.yaml 使用了 4 个扩展 kind，合并前需先扩展 schema
 - Candidates for: constraints.yaml
+
+## G3: Amazon 视频广告字幕规格（v4 Sprint 4 复核）
+
+真机验收 B3「Amazon 视频广告字幕」路由到 ecom-advertising 但零相关约束。
+
+复核结论：**真内容缺口，但补不了**。
+- src/a-operators/a3-advertising.md 有 Sponsored Brands Video 的 15 秒脚本 Prompt（L439-490），
+  但**没有字幕/caption 的具体规格**（字数、时长、安全区）。
+- ontology 里只有 tiktok_shop 的视频约束，无 Amazon 视频广告约束。
+- 不能从「15 秒脚本」推出字幕字数上限——那是编造约束，违反 M1/O1 纪律。
+
+处置：需要人去 Amazon Advertising 官方规格页核实 SBV 字幕/视频规格后补约束。
+在此之前记为未解决，不瞎补。来源候选：
+  https://advertising.amazon.com/help（Sponsored Brands Video 规格）
