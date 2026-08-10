@@ -1,51 +1,12 @@
-name: ecom-social
 description: E-commerce social media content, advertising, and community management
   across platforms
-triggers:
-  keywords:
-  - social media
-  - Instagram
-  - YouTube
-  - TikTok
-  - Pinterest
-  - Reddit
-  - WhatsApp
-  - content
-  - post
-  - story
-  - reel
-  - short
-  - 社交媒体
-  - 营销
-  - 内容
-  - 视频
-  - 图片
-  - feed
-  - hashtag
-  - bio
-  - caption
-  - influencer
-  - cross-channel
-  - 跨平台
-  - 素人试用
-  - 素人
-  - 请人试用
-  - 小红书上
-  - 种草
-  - 达人
-  - 网红发
-  - 网红
-  - 能带多少货
-  - ins上
-  - 发一条
-  intent: create_social_content | optimize_social_ads | manage_social_community |
-    cross_channel_strategy
 inputs:
-- name: content_assets
-  type: object
+- description: Product images, videos, brand assets
+  name: content_assets
   required: true
-  description: Product images, videos, brand assets
-- name: platform
+  type: object
+- description: Target social platform
+  name: platform
   type: enum
   values:
   - instagram
@@ -54,15 +15,15 @@ inputs:
   - tiktok
   - reddit
   - whatsapp
-  description: Target social platform
-- name: goal
-  type: string
+- description: engagement, conversion, awareness, community
+  name: goal
   required: false
-  description: engagement, conversion, awareness, community
+  type: string
+name: ecom-social
 outputs:
-- name: social_content
+- description: Platform-optimized content (captions, hashtags, ad copy, visual specs)
+  name: social_content
   type: object
-  description: Platform-optimized content (captions, hashtags, ad copy, visual specs)
 platforms:
 - instagram
 - youtube
@@ -70,6 +31,50 @@ platforms:
 - tiktok
 - reddit
 - whatsapp
+triggers:
+  intent: create_social_content | optimize_social_ads | manage_social_community |
+    cross_channel_strategy
+  keywords:
+  - Instagram
+  - Pinterest
+  - Reddit
+  - TikTok
+  - WhatsApp
+  - YouTube
+  - bio
+  - caption
+  - content
+  - cross-channel
+  - feed
+  - hashtag
+  - influencer
+  - ins
+  - post
+  - reel
+  - reels
+  - short
+  - social media
+  - story
+  - 内容
+  - 发一条
+  - 图片
+  - 小红书
+  - 平台
+  - 抖音
+  - 测评
+  - 社交媒体
+  - 种草
+  - 素人
+  - 素人试用
+  - 红人
+  - 网红
+  - 网红发
+  - 营销
+  - 视频
+  - 请人试用
+  - 跨平台
+  - 达人
+  - 铺内容
 uses_entities:
 - social_post
 - ad_creative

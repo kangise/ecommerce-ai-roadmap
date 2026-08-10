@@ -29,6 +29,7 @@ triggers:
   - FDA
   - HS code
   - HS编码
+  - REACH
   - category approval
   - certification
   - compliance
@@ -37,28 +38,28 @@ triggers:
   - import
   - intellectual property
   - patent
-  - patent
   - regulatory
-  - trademark
   - trademark
   - 下架
   - 专利
   - 侵权
+  - 出口到
   - 危险品
+  - 发达国家
   - 合规
   - 商标
+  - 安全文件
   - 律师函
+  - 电池
   - 空运限制
   - 类目审核
+  - 要做哪些准备
   - 认证
   - 认证要求
   - 证书
   - 跟卖
   - 锂电池
   - 额外
-  - 出口到
-  - 发达国家
-  - 要做哪些准备
 uses_constraints:
 - amazon.account.monthly_spend.analysis_cadence
 - amazon.bid.value.new_product_multiplier

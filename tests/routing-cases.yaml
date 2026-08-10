@@ -1,3 +1,7 @@
+# Fixed routing test suite — manual cases, version-controlled.
+# Anti-degeneration: at most 50% of cases may literally contain a trigger keyword.
+# Cases must be phrased the way a real seller would phrase them.
+
 - expect: ecom-listing
   query: 帮我写一个Amazon蓝牙耳机的标题和五点描述
 - expect: ecom-listing
@@ -178,3 +182,57 @@
   query: 最近流量突然掉了百分之四十查不出原因
 - expect: ecom-pricing
   query: 隔壁那个店一模一样的东西比我便宜两块钱
+- query: 买家进来看两眼就走了，是不是文案的问题
+  expect: ecom-listing
+- query: 一样的东西挂到德国站要不要换个说法
+  expect: ecom-listing
+- query: 主图点进来的人很少，问题出在哪
+  expect: ecom-listing
+- query: 钱烧出去了但一张订单都没有
+  expect: ecom-advertising
+- query: 有几个词特别贵还老是不转化
+  expect: ecom-advertising
+- query: 每天早上预算一下就见底了正常吗
+  expect: ecom-advertising
+- query: 旺季快到了到底要囤多少
+  expect: ecom-inventory
+- query: 从工厂到仓库要一个多月，我该提前多久
+  expect: ecom-inventory
+- query: 有一批货放了小半年一直卖不动
+  expect: ecom-inventory
+- query: 卖到欧洲那边听说要额外的认证
+  expect: ecom-compliance
+- query: 里面有电池的能不能坐飞机运
+  expect: ecom-compliance
+- query: 收到一封说我侵权的邮件慌了
+  expect: ecom-compliance
+- query: 别人都卖二十我卖三十还跟不跟
+  expect: ecom-pricing
+- query: 换个季度想清一批旧款
+  expect: ecom-pricing
+- query: 一单利润才几块钱这样划算吗
+  expect: ecom-pricing
+- query: 现在杀进这个赛道是不是晚了
+  expect: ecom-research
+- query: 想找个人少一点的方向做
+  expect: ecom-research
+- query: 对手新出的那个卖爆了我要不要抄
+  expect: ecom-research
+- query: AI 算出来的东西我还要不要找人再看看
+  expect: ecom-applicability
+- query: 这种判断交给算法我不太放心
+  expect: ecom-applicability
+- query: 客人说收到的跟图不一样我该怎么答
+  expect: ecom-customer-service
+- query: 有人打了一星嫌发货慢还能救吗
+  expect: ecom-customer-service
+- query: 买家用过了还要求全额退我该怎么办
+  expect: ecom-customer-service
+- query: 在小红书找素人帮忙种草有用吗
+  expect: ecom-social
+- query: 想在 ins 开始做内容从哪下手
+  expect: ecom-social
+- query: 给这批新品在多个平台铺内容
+  expect: ecom-social
+- query: 店铺刚开该先把哪个平台做起来
+  expect: ecom-research

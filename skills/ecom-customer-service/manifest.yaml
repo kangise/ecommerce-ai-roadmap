@@ -88,22 +88,25 @@ triggers:
   - 一星
   - 买家
   - 买家消息
+  - 买家说
+  - 发货
   - 售后
   - 回复
   - 好评
   - 客服
+  - 客诉
   - 差评
   - 投诉
   - 挽回
   - 物流慢
   - 物流查询
   - 申诉
+  - 自动回复
   - 评价
   - 退换货
   - 退款
   - 退货
   - 邮件
-  - 买家说
 uses_constraints:
 - amazon.listing.forbidden_unverified_claim
 - amazon.safety_complaint.response_deadline

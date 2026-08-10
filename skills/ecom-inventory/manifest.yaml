@@ -29,7 +29,6 @@ triggers:
   intent: forecast_demand | calculate_safety_stock | plan_replenishment | analyze_inventory_health
   keywords:
   - FBA
-  - FBA
   - FBA库存
   - IPI
   - forecast
@@ -45,11 +44,13 @@ triggers:
   - 仓储
   - 仓库
   - 周转
+  - 囤
   - 备货
   - 安全库存
   - 库存
   - 库存绩效
   - 怕断
+  - 接收
   - 断了
   - 断货
   - 旺季

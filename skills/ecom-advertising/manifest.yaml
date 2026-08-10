@@ -29,48 +29,50 @@ triggers:
   intent: analyze_campaign | optimize_bids | harvest_keywords | audit_advertising
   keywords:
   - ACOS
+  - GMV没涨
   - PPC
   - ROAS
   - advertising
   - bid
   - campaign
-  - campaign
+  - gmv没涨
   - keyword
   - negative keyword
   - search term report
   - sponsored brand
   - sponsored product
-  - 一单没出
   - 不出单
+  - 关键词
+  - 出2还是抢不到
   - 出价
+  - 出单
+  - 别人出
   - 否定关键词
   - 否定词
   - 好多钱
   - 广告
   - 广告优化
+  - 投放
+  - 抢不到
+  - 抢不过
   - 搜索词报告
   - 曝光
-  - 没出单
+  - 查不出原因
   - 没单
-  - 没订单
   - 没转化
+  - 流量突然掉
   - 点击
+  - 烧了半个月
+  - 烧了钱
   - 烧钱
   - 竞价
-  - 花费
-  - 预算
-  - 烧了钱
-  - 烧了半个月
-  - GMV没涨
-  - gmv没涨
-  - 钱烧了
-  - 抢不到
-  - 出2还是抢不到
-  - 别人出
   - 竞价抢
-  - 抢不过
-  - 流量突然掉
-  - 查不出原因
+  - 花费
+  - 订单
+  - 诊断
+  - 转化
+  - 钱烧了
+  - 预算
 uses_constraints:
 - amazon.account.monthly_spend.analysis_cadence
 - amazon.account.waste_ratio.sop_threshold

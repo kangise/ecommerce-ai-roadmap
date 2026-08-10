@@ -108,7 +108,11 @@ Chasing these cases by adding keywords is the back-copying failure above wearing
 
 **Real routing verification** — confirming an LLM routes correctly reading `dist/SKILL.md` — is a manual acceptance item, because the real router is the consuming model, not this script.
 
-Status: **documented, not closed** (`R1 ≈ 10/80`). Anti-degeneration threshold: literal hit ratio must be ≤ 50% (currently 47%).
+Status: **documented, not closed** (`R1 ≈ 19/117`). Anti-degeneration threshold: literal hit ratio must be ≤ 50% (currently 43%).
+
+The residual rose from 10 to 19 in v4 Sprint 2, and that is the honest direction. 33 sentence-fragment triggers were removed (a batch of them had been hidden in `FRAG_ALLOWLIST` under the label "verified as real domain vocabulary" — 拍板, 能信吗, 靠谱吗, 清掉 …, which no e-commerce document contains). Removing them dropped the false matches those fragments were producing, so cases that had "passed" by matching a lifted phrase now correctly show as misroutes. Real domain vocabulary (备货, 断货, ACOS, 盈亏平衡, 类目审核 …) was added to recover what could be recovered honestly; the rest — 「这个月花了三千块钱一单没出」, 「旺季前要备多少货才不会断」 — carry no domain noun at all and are the substring-vs-semantics gap, not a fixable keyword miss.
+
+**Do not close this residual by re-adding fragments.** R1b now blocks the manifest side and R2 blocks the test side (see below).
 
 ### R1 hard rules — never change these to make gates green
 
@@ -146,11 +150,15 @@ declared "R1 = 0":
 rather than domain vocabulary. Target 0. See rule 2 above. Implementation in
 `verify_all.py` (`FRAG_MARKERS`, `FRAG_ALLOWLIST`, `_is_fragment`).
 
-### ecom-social Skill Gap
+### R2: natural-language routing probe
 
-The 7 social-media chapters (e1-e7) have ~50 prompts with no dedicated skill. They are currently exempt from S5 coverage checks. A combined `ecom-social` skill should be created covering Instagram, YouTube, Pinterest, Reddit, WhatsApp, Xiaohongshu, and cross-channel strategy.
-
-Status: **documented, not started**.
+`routing-cases.yaml` (the fixed suite R1 runs) co-evolves with the triggers, so
+its literal ratio is a floor, not a ceiling. `R2` runs a separate set,
+`tests/routing-cases-natural.yaml`, written **query-first without looking at the
+triggers**, and requires its literal-hit ratio to stay **< 40%** — stricter than
+R1's 50%, because this set is the harder, phrasing-first probe. Target 0 (i.e.
+ratio under threshold). Both R1 and R2 fold through the same `_normalize` the MCP
+server uses, so a gate pass means the real router would match the same way.
 
 ## Scaffolding Scripts
 

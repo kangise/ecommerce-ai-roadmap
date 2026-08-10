@@ -23,6 +23,7 @@ platforms: []
 triggers:
   intent: assess_applicability | check_readiness | evaluate_ai_fit
   keywords:
+  - AI
   - AI readiness
   - AI做
   - AI写
@@ -43,41 +44,34 @@ triggers:
   - 不太懂
   - 不应
   - 不用模型
+  - 不用管
   - 不该用AI
   - 交给AI
-  - 交给机器
+  - 交给工具
+  - 交给电脑
   - 人工复核
+  - 决策
+  - 判断
+  - 可信
   - 可信度
-  - 帮我管理
   - 应不应该用
   - 店铺管理
-  - 数据不多
   - 数据量
+  - 朋友说
+  - 机器
+  - 机器做
   - 机器判断
   - 模型
   - 用AI做
+  - 电脑就行了
+  - 算法
   - 结论可靠
   - 能用它
   - 能直接用
-  - 让人再
+  - 自己决定
   - 该不该用AI
   - 适不适合用AI
+  - 预测
   - 风险
-  - 拍板还是让工具算
-  - 拍板
-  - 让工具算
-  - 自己决定
-  - 交给工具
-  - 要不要信
-  - 能信吗
-  - 交给电脑
-  - 不用管
-  - 电脑就行了
-  - 靠谱吗
-  - 朋友说
-  - 再核一遍
-  - 让人再核
-  - 风险大不大
-  - 机器做
 uses_constraints: []
 uses_entities: []

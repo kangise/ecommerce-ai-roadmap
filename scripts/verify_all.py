@@ -22,6 +22,7 @@ CHECKS = [
     ("K2 Bodies", "python3", "scripts/verify_all.py", "--k2"),
     ("Routing",   "python3", "scripts/verify_all.py", "--r1"),
     ("R1b Frags", "python3", "scripts/verify_all.py", "--r1b"),
+    ("R2 Natural","python3", "scripts/verify_all.py", "--r2"),
     ("Integration","python3", "scripts/verify_all.py", "--i1"),
     ("Docs",      "python3", "scripts/verify_all.py", "--d1"),
     ("D2",        "python3", "scripts/verify_all.py", "--d2"),
@@ -68,21 +69,25 @@ FRAG_MARKERS = [
     "是不是", "该不该", "应不应", "会不会", "到底", "只要一", "一点都",
     "跑出来", "模型跑", "坐住", "拍板", "作数", "清掉", "老半天",
     "直接用吗", "多久", "靠谱", "能信", "感觉", "不能",
+    # Second sweep — 11709a3 slipped 17 fragments past R1b by adding them to the
+    # allowlist instead. These markers catch that shape: command verbs (帮我, 写一个,
+    # 重写), residues (没出, 一单, 让人, 让工具), and comparison/quantity tails.
+    "帮我", "写一个", "重写", "改一下", "没出", "一单", "没写", "涨到",
+    "让人", "让工具", "能带", "能不能", "比我", "还是让", "得不好", "一下",
+    "换季了", "算下来", "数据不多", "交给机器", "风险大", "上要", "上开始",
 ]
 FRAG_ALLOWLIST = {
-    # Legitimate question-form triggers that carry an explicit domain noun (AI, …).
-    # Add entries here only after confirming the keyword is not a phrase lifted
-    # out of a test case.
+    # An escape hatch, not a bypass. Entries must be genuine domain vocabulary
+    # that merely resembles a fragment — a term another e-commerce document would
+    # contain. It carries an explicit domain noun (AI). Nothing goes here to
+    # silence R1b; a fragment lifted from a test case is deleted, not allowlisted.
+    #
+    # 11709a3 added 17 entries here labelled "verified as real domain vocabulary"
+    # — 拍板, 能信吗, 靠谱吗, 清掉, 坐住, 比我的贵 … none of which any e-commerce
+    # document contains. That is the fifth time this gate was routed around; the
+    # entries were removed and the triggers deleted from the manifests.
     "AI能做吗", "该不该用AI", "AI该不该", "适不适合用AI",
     "AI能帮我", "AI可以做", "不该用AI", "应不应该用",
-    # Question-form domain triggers: these are natural user-language patterns
-    # verified as real domain vocabulary, not test-case fragments.
-    "拍板还是让工具算", "拍板", "要不要信", "能信吗", "靠谱吗",
-    "再核一遍", "让人再核",
-    "分别怎么讲", "怎么讲",
-    "清掉", "能不能坐住", "坐住", "比我的贵",
-    "能不能进", "能不能做",
-    "能带多少货",
 }
 
 
@@ -162,6 +167,7 @@ def main() -> int:
     ap.add_argument("--d1", action="store_true", help="Documentation check")
     ap.add_argument("--d2", action="store_true", help="README number consistency")
     ap.add_argument("--r1b", action="store_true", help="Manifest triggers — sentence-fragment ban")
+    ap.add_argument("--r2", action="store_true", help="Natural-language routing probe (< 40% literal)")
     args = ap.parse_args()
 
     if args.r1b:
@@ -186,6 +192,37 @@ def main() -> int:
             print("  patterns a real domain document would not contain. Delete them, or")
             print("  add to FRAG_ALLOWLIST in verify_all.py with an explicit justification.")
         return 0 if total == 0 else 1
+
+    if args.r2:
+        # R2 — the phrasing-first probe. routing-cases.yaml co-evolves with the
+        # triggers (R1's residual is the honest gap on it); this set is written
+        # query-first without looking at triggers, so its literal-hit ratio must
+        # stay low or it has drifted into the same tautology R1 already fights.
+        # Threshold 40% < R1's 50%: this set is meant to be the harder one.
+        import yaml as _yaml
+        path = ROOT_V / "tests" / "routing-cases-natural.yaml"
+        if not path.exists():
+            print("  [FAIL] R2          1 (tests/routing-cases-natural.yaml missing)")
+            return 1
+        cases = _yaml.safe_load(path.read_text(encoding="utf-8")) or []
+        manifests = {}
+        for mf_path in sorted((ROOT_V / "skills").glob("*/manifest.yaml")):
+            mf = _yaml.safe_load(mf_path.read_text(encoding="utf-8"))
+            triggers = mf.get("triggers", {})
+            manifests[mf.get("name", "")] = (
+                triggers.get("keywords", []) if isinstance(triggers, dict) else []
+            )
+        lit = sum(
+            1 for c in cases
+            if any(_normalize(k) in _normalize(c.get("query", ""))
+                   for k in manifests.get(c.get("expect", ""), []) if len(k) >= 3)
+        )
+        ratio = lit / len(cases) if cases else 0
+        if ratio >= 0.40:
+            print(f"  [FAIL] R2          {lit}/{len(cases)} = {ratio:.0%} literal >= 40%")
+            return 1
+        print(f"  [ok ] R2          {lit}/{len(cases)} = {ratio:.0%} literal (< 40%)")
+        return 0
 
     if args.d2:
         import json as _json, yaml as _yaml
