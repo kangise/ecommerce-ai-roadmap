@@ -140,7 +140,12 @@ class OPCServer:
             {"uri": "opc://ontology/processes", "name": "Business processes",
              "description": f"{len(self._ontology.get('processes', []))} formal workflows"},
             {"uri": "opc://knowledge/index", "name": "Knowledge index",
-             "description": f"{len(self._knowledge)} chapter summaries with entity cross-refs"},
+             "description": f"{len(self._knowledge)} chapter summaries with entity cross-refs — "
+                            f"a router, not an answer; follow body_path for the text"},
+            {"uri": "opc://knowledge/chapter/{id}", "name": "Chapter full text",
+             "description": f"Full text of any of the {len(self._knowledge)} chapters "
+                            f"({sum(e.get('body_chars', 0) for e in self._knowledge):,} chars total). "
+                            f"Ids come from the index."},
             {"uri": "opc://glossary", "name": "Trilingual glossary",
              "description": "E-commerce term definitions in zh/en/ja"},
         ]
@@ -159,6 +164,8 @@ class OPCServer:
             return json.dumps(self._ontology.get("processes", []), ensure_ascii=False, indent=2)
         elif uri == "opc://knowledge/index":
             return json.dumps(self._knowledge, ensure_ascii=False, indent=2)
+        elif uri.startswith("opc://knowledge/chapter/"):
+            return self._read_chapter(uri[len("opc://knowledge/chapter/"):])
         elif uri == "opc://glossary":
             return self._glossary
         return f"Unknown resource: {uri}"
@@ -191,13 +198,28 @@ class OPCServer:
             },
             {
                 "name": "opc.search_knowledge",
-                "description": "Search the knowledge index by entity or keyword",
+                "description": "Search chapter titles, summaries AND full bodies by keyword. "
+                               "Results marked match=body include line excerpts. Use this "
+                               "before concluding the package does not cover a topic.",
                 "inputSchema": {
                     "type": "object",
                     "properties": {
                         "query": {"type": "string", "description": "Search query"},
                         "entity": {"type": "string", "description": "Filter by entity ID"}
                     }
+                }
+            },
+            {
+                "name": "opc.read_chapter",
+                "description": "Read the full text of one chapter. Pass the `id` from a "
+                               "search result or the knowledge index.",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "chapter_id": {"type": "string",
+                                       "description": "Chapter id, e.g. a-operators__a6-compliance"}
+                    },
+                    "required": ["chapter_id"]
                 }
             },
             {
@@ -214,6 +236,8 @@ class OPCServer:
             return self._get_constraints(args.get("platform"), args.get("entity"))
         elif name == "opc.search_knowledge":
             return self._search_knowledge(args.get("query", ""), args.get("entity"))
+        elif name == "opc.read_chapter":
+            return self._read_chapter(args.get("chapter_id", ""))
         elif name == "opc.list_skills":
             return self._list_skills()
         return f"Unknown tool: {name}"
@@ -270,21 +294,71 @@ class OPCServer:
             filtered.append(c)
         return json.dumps(filtered, ensure_ascii=False, indent=2)
 
+    def _read_chapter(self, chapter_id: str) -> str:
+        """Return the full text of one chapter by id."""
+        for entry in self._knowledge:
+            if entry.get("id") == chapter_id or entry.get("path") == chapter_id:
+                body_rel = entry.get("body_path", "")
+                if not body_rel:
+                    return f"Chapter '{chapter_id}' has no body in this package."
+                body_file = self.dist / "knowledge" / body_rel
+                if not body_file.exists():
+                    return f"Chapter body missing: {body_rel}"
+                return body_file.read_text(encoding="utf-8")
+        known = ", ".join(e.get("id", "") for e in self._knowledge[:5])
+        return f"Unknown chapter '{chapter_id}'. Ids look like: {known}, ..."
+
     def _search_knowledge(self, query: str, entity: str | None) -> str:
-        results = []
+        """Search chapter bodies, not just the index.
+
+        Searching summary+title alone is why a live acceptance run concluded
+        the package had no EN 71 content: the term appears in the body of
+        a-operators/a6-compliance.md and in no summary. A 300-char summary
+        covers under 1% of a chapter, so an index-only miss says almost
+        nothing about whether the package covers a topic.
+        """
         # Normalize query: "buy box" → also match "buy_box"
         query_norm = query.lower().replace(" ", "_")
         query_lower = query.lower()
+        index_hits, body_hits = [], []
+
         for entry in self._knowledge:
             if entity and entity not in entry.get("key_entities", []):
                 continue
+            if not query:
+                index_hits.append({**entry, "match": "index"})
+                continue
+
             text = (entry.get("summary", "") + " " + entry.get("title", "")).lower()
             key_entities = [e.lower() for e in entry.get("key_entities", [])]
-            if (query_lower in text or query_norm in text or
-                query_norm in key_entities or
-                not query):
-                results.append(entry)
-        return json.dumps(results[:10], ensure_ascii=False, indent=2)
+            if query_lower in text or query_norm in text or query_norm in key_entities:
+                index_hits.append({**entry, "match": "index"})
+                continue
+
+            # Fall through to the body.
+            body_rel = entry.get("body_path", "")
+            if not body_rel:
+                continue
+            body_file = self.dist / "knowledge" / body_rel
+            if not body_file.exists():
+                continue
+            body = body_file.read_text(encoding="utf-8")
+            body_lower = body.lower()
+            if query_lower not in body_lower and query_norm not in body_lower:
+                continue
+
+            # Give the caller the surrounding lines so a hit is actionable
+            # without reading the whole chapter first.
+            excerpts = []
+            for i, line in enumerate(body.split("\n")):
+                if query_lower in line.lower() or query_norm in line.lower():
+                    excerpts.append({"line": i + 1, "text": line.strip()[:300]})
+                if len(excerpts) >= 3:
+                    break
+            body_hits.append({**entry, "match": "body", "excerpts": excerpts})
+
+        # Index matches are stronger signals; body matches follow.
+        return json.dumps((index_hits + body_hits)[:10], ensure_ascii=False, indent=2)
 
     def _list_skills(self) -> str:
         skills_info = []

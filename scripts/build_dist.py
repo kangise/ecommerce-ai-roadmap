@@ -76,8 +76,17 @@ def main():
     # 4. skills/ — recursive copy
     shutil.copytree(SKILLS, DIST / "skills", dirs_exist_ok=True)
 
-    # 4b. knowledge/ — chapter index for agent retrieval
+    # 4b. knowledge/ — chapter index AND bodies for agent retrieval.
+    #
+    # The index alone shipped only a 300-char truncated summary per chapter.
+    # First live acceptance proved that is not enough: an agent asked about
+    # EU toy certification reported "dist/ has no EN 71" while
+    # src/a-operators/a6-compliance.md does contain it. The content was in the
+    # book, out of the package. Bodies ship here so a retrieval hit can be
+    # followed to the actual text.
     (DIST / "knowledge").mkdir(exist_ok=True)
+    chapters_dir = DIST / "knowledge" / "chapters"
+    chapters_dir.mkdir(exist_ok=True)
     entities_data = ontology.get("entities", [])
     knowledge_index = []
     for md_path in sorted(SRC.rglob("*.md")):
@@ -116,9 +125,18 @@ def main():
         boundary_match = re.search(r"## 什么时候这套不管用\n\n(.*?)(?:\n##|\Z)", text, re.S)
         boundary_summary = boundary_match.group(1).strip()[:200] if boundary_match else ""
 
+        # Ship the body. Flatten the src/ tree into one filename so a chapter
+        # id is a single token an agent can pass back through a tool call.
+        chapter_id = rel[:-3].replace("/", "__") if rel.endswith(".md") else rel.replace("/", "__")
+        body_rel = f"chapters/{chapter_id}.md"
+        (chapters_dir / f"{chapter_id}.md").write_text(text, encoding="utf-8")
+
         knowledge_index.append({
+            "id": chapter_id,
             "title": title,
             "path": rel,
+            "body_path": body_rel,
+            "body_chars": len(text),
             "summary": summary,
             "key_entities": key_entities,
             "constraint_refs": constraint_refs,
@@ -133,7 +151,15 @@ def main():
 
 ## For Agent Consumers
 
-The `index.json` contains structured metadata for all {0} source chapters.
+The `index.json` contains structured metadata for all {0} source chapters,
+and `chapters/` contains their full text.
+
+**The index is a router, not an answer.** Each entry's `summary` is the first
+300 characters only. Never answer a factual question from `summary` alone and
+never conclude "the package does not cover X" from an index miss — open
+`body_path` and read the chapter first. A prior acceptance run reported
+"no EN 71 in the package" while the chapter body did contain it.
+
 Use it to answer domain questions:
 
 1. **Question**: "What is Buy Box?"
@@ -152,12 +178,21 @@ Use it to answer domain questions:
 ## Structure
 
 Each entry:
+- `id`: Chapter id — src path with `/` flattened to `__`, no extension
 - `title`: Chapter title (first H1)
 - `path`: Relative path from src/
-- `summary`: First 300 characters of prose
+- `body_path`: Full chapter text, relative to `knowledge/`. **Read this.**
+- `body_chars`: Length of the body, for cost estimation before reading
+- `summary`: First 300 characters of prose — routing hint only
 - `key_entities`: Entity IDs from ontology that appear in this chapter
 - `constraint_refs`: `<!-- ref: -->` markers found in this chapter
 - `boundary_summary`: First 200 chars of "When this doesn't work" section
+
+## Full-text search
+
+`summary` covers 300 of ~35,000 characters per chapter, so a keyword absent
+from the index is usually still present in the body. Grep `chapters/` before
+concluding anything is missing.
 """.format(len(knowledge_index))
     (DIST / "knowledge" / "query_guide.md").write_text(query_guide)
 
@@ -195,11 +230,22 @@ Each entry:
     routing_yaml = "\n".join(routing_rules)
     prompt_count = len(prompts)  # Total across all languages
 
+    # Scale facts, derived — never hand-written. These sat hardcoded as
+    # "80 entities / 184 constraints / 67 chapters" through several releases
+    # because D2 only scans repo-root READMEs, not generated dist/ files.
+    n_entities = len(ontology.get("entities", []) or [])
+    n_relations = len(ontology.get("relations", []) or [])
+    n_constraints = len(ontology.get("constraints", []) or [])
+    n_processes = len(ontology.get("processes", []) or [])
+    n_platforms = len(ontology.get("platforms", []) or [])
+    n_chapters = len(knowledge_index)
+    n_body_chars = sum(e.get("body_chars", 0) for e in knowledge_index)
+
     root_skill = f"""---
 name: opc-ecommerce-infrastructure
 description: >
-  OPC e-commerce operations infrastructure. Provides a 67-chapter knowledge base,
-  80-entity domain ontology, 184 platform constraints, {len(capabilities)} domain skills,
+  OPC e-commerce operations infrastructure. Provides a {n_chapters}-chapter knowledge base,
+  {n_entities}-entity domain ontology, {n_constraints} platform constraints, {len(capabilities)} domain skills,
   and {prompt_count} production prompts (trilingual zh/en/ja).
   Load this package to give any agent native cross-border e-commerce operational capability.
 capabilities:
@@ -225,15 +271,21 @@ You are an e-commerce operations agent powered by the OPC (One Person Company) i
    - `ecom-customer-service` — Review responses, appeals, refund/return support, FAQ, and CS KPIs
 
 2. **Domain Ontology** — Machine-readable domain model (`ontology.json`):
-   - 80 entities with attributes (listing, campaign, inventory, compliance, etc.)
-   - 78 relationships between entities
-   - 184 platform-specific constraints (Amazon, Shopify, TikTok Shop, etc.)
-   - 8 formal business processes (new product launch, replenishment, compliance review, etc.)
+   - {n_entities} entities with attributes (listing, campaign, inventory, compliance, etc.)
+   - {n_relations} relationships between entities
+   - {n_constraints} platform-specific constraints across {n_platforms} marketplaces
+   - {n_processes} formal business processes (new product launch, replenishment, compliance review, etc.)
 
 3. **Prompt Library** — `prompts.json` contains {prompt_count} production prompts across 3 languages.
    Each prompt includes self-check blocks with constraint references.
 
-4. **Knowledge Index** — `knowledge/index.json` covers all 67 source chapters with entity and constraint cross-references.
+4. **Knowledge Base** — `knowledge/index.json` indexes all {n_chapters} chapters;
+   `knowledge/chapters/` holds their full text ({n_body_chars:,} characters).
+
+   The index carries a 300-character summary per chapter. That is a routing hint,
+   not the content. **Never conclude the package lacks a topic from an index
+   miss** — search or read the bodies first. A prior acceptance run reported
+   "no EN 71 content" while the compliance chapter body did contain it.
 
 ## How to Route Requests
 
@@ -249,11 +301,21 @@ When a skill is selected:
 4. Read `skills/<skill>/references/boundaries.md` to check when NOT to use this skill
 5. Execute the prompt, verify with the self-check block, and deliver results
 
+## Answering Knowledge Questions
+
+Before saying the package does not cover something:
+1. `knowledge/index.json` — scan `title`, `key_entities`, `summary`
+2. Grep `knowledge/chapters/` for the term — summaries cover under 1% of the text
+3. Open the matching `body_path` and read it
+
+Only after all three come up empty should you say the package lacks that content.
+
 ## Data Files
 
 - `ontology.json` — Domain model (entities, relations, constraints, processes)
 - `prompts.json` — {prompt_count} prompts, trilingual with constraint references
 - `knowledge/index.json` — Chapter index with entity and constraint cross-references
+- `knowledge/chapters/` — Full text of all {n_chapters} chapters
 - `references/glossary.md` — Trilingual term definitions
 
 ## Integration
@@ -278,9 +340,10 @@ See `integration/` for framework-specific setup guides.
 | Component | Contains |
 |-----------|----------|
 | `SKILL.md` | Agent system prompt with routing rules |
-| `ontology.json` | 80 entities, 78 relations, 184 constraints, 8 processes |
+| `ontology.json` | {n_entities} entities, {n_relations} relations, {n_constraints} constraints, {n_processes} processes |
 | `prompts.json` | {len(prompts)} production prompts (zh/en/ja) |
-| `knowledge/index.json` | 67-chapter index with entity references |
+| `knowledge/index.json` | {n_chapters}-chapter index with entity references |
+| `knowledge/chapters/` | Full chapter text ({n_body_chars:,} chars) |
 | `skills/` | {len(capabilities)} domain skills with manifests, playbooks, constraints |
 | `integration/` | Framework-specific setup guides |
 

@@ -18,15 +18,38 @@ python3 scripts/verify_all.py    # Run all 24 gates — must be 0
 
 **Every path ends the same way: `python3 scripts/verify_all.py` must return 0.**
 
-## Gate Reference (24 gates)
+## Gate Reference (31 gates, 11 groups)
 
 | Group | Gates | Script |
 |-------|-------|--------|
 | Structure | anchors, xanchors, links, python, parity | verify_content.py |
 | Content | M1, M2, M4, M5, M6, M7, N1, N2, N3, N4, N5, N6 | verify_content.py |
 | Ontology | P0, O1, O2, O3, O4, O5 | verify_ontology.py |
-| Skills | S1, S2, S3 | verify_skills.py |
+| Skills | S1, S2, S3, S4, S5, M8 | verify_skills.py |
+| Knowledge | K1 | verify_all.py --k1 |
+| K2 Bodies | K2 | verify_all.py --k2 |
+| Routing | R1 | verify_all.py --r1 |
+| R1b Frags | R1b | verify_all.py --r1b |
+| Integration / Docs | I1, D1, D2 | verify_all.py --i1/--d1/--d2 |
+| Sustain | E1, E2 | verify_all.py --sustain |
 | Dist | N7 | build_dist.py (via verify_all.py) |
+
+Every gate here was added because something broke. When a live acceptance run
+finds a failure the gates could not see, add a gate that catches it — do not
+relax the acceptance standard.
+
+### K2: the knowledge layer must ship bodies
+
+`dist/knowledge/index.json` carries a 300-character summary per chapter. That
+is under 1% of a chapter's text. For several releases `dist/` shipped the index
+and no bodies, and the first live acceptance run concluded the package had no
+EN 71 / EU toy-safety content — while `src/a-operators/a6-compliance.md` did
+contain it. Every reported "content hole" had to be re-checked against `src/`
+before anyone could tell which were real.
+
+`K2` fails if any index entry lacks `body_path`, points at a missing file, or
+carries a body no longer than its own summary or materially shorter than the
+`src/` original.
 
 ## Fact Freshness (M7)
 
@@ -51,9 +74,14 @@ All `verified: YYYY-MM` facts have an 18-month shelf life. The M7 gate turns red
 
 ### N6: Trilingual Prompt Structure Drift
 
-The `N6` gate reports ~46 files where the three language trees have different numbers of prompt structure blocks. This is caused by translations evolving at different speeds (zh leads, en/ja follow). The gate correctly reports this drift. **Closing N6 requires a dedicated translation alignment loop** — adding missing prompt blocks to en/ja trees where zh has prompts the others lack.
+The `N6` gate catches files where the three language trees carry different
+numbers of prompt structure blocks, caused by translations evolving at
+different speeds (zh leads, en/ja follow).
 
-Status: **documented, not closed** (N6 ≈ 46 as of 2026-08-08).
+Status: **closed** (N6 = 0). Two exemptions remain, `f1` and `f2`; `f2` teaches
+the prompt structure itself, so it contains intentional variation. Do not add
+exemptions to make this green — an exemption whose filename does not exist in
+`src/` is itself a gate failure.
 
 ### R1: Routing Test Measures Documentation Diversity, Not Routing Accuracy
 

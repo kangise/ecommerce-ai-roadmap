@@ -19,6 +19,7 @@ CHECKS = [
     ("Ontology",  "python3", "scripts/verify_ontology.py"),
     ("Skills",    "python3", "scripts/verify_skills.py"),
     ("Knowledge", "python3", "scripts/verify_all.py", "--k1"),
+    ("K2 Bodies", "python3", "scripts/verify_all.py", "--k2"),
     ("Routing",   "python3", "scripts/verify_all.py", "--r1"),
     ("R1b Frags", "python3", "scripts/verify_all.py", "--r1b"),
     ("Integration","python3", "scripts/verify_all.py", "--i1"),
@@ -133,6 +134,7 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--sustain", action="store_true")
     ap.add_argument("--k1", action="store_true", help="Knowledge index coverage check")
+    ap.add_argument("--k2", action="store_true", help="Knowledge bodies shipped, not summary-only")
     ap.add_argument("--r1", action="store_true", help="Routing accuracy check")
     ap.add_argument("--i1", action="store_true", help="Integration doc check")
     ap.add_argument("--d1", action="store_true", help="Documentation check")
@@ -481,6 +483,67 @@ def main() -> int:
         print(f"  [{mark}] K1          {total}")
         for p in problems:
             print(f"           {p}")
+        return 0 if total == 0 else 1
+
+    if args.k2:
+        # K2 — the knowledge layer must ship bodies, not just summaries.
+        #
+        # Derived from an observed failure, not from theory. In the first live
+        # acceptance an agent with only dist/ reported that the package had no
+        # EN 71 / EU toy-safety content. src/a-operators/a6-compliance.md does
+        # contain it. dist/knowledge shipped a 300-char truncated summary per
+        # chapter and no body, so the content was in the book and out of the
+        # package. Every "content hole" in that report had to be re-checked
+        # against src/ before anyone could tell which ones were real.
+        #
+        # K2 makes the regression loud: if body_path disappears, or a body is
+        # quietly truncated back toward summary length, this fails.
+        import json as _json
+        idx_path = ROOT_V / "dist" / "knowledge" / "index.json"
+        if not idx_path.exists():
+            print("  [FAIL] K2          1 (dist/knowledge/index.json missing)")
+            return 1
+        with open(idx_path) as f:
+            index = _json.load(f)
+        problems = []
+        kdir = ROOT_V / "dist" / "knowledge"
+        for entry in index:
+            if not isinstance(entry, dict):
+                continue
+            path = entry.get("path", "?")
+            body_rel = entry.get("body_path", "")
+            if not body_rel:
+                problems.append(f"{path}: no body_path — index is summary-only")
+                continue
+            body_file = kdir / body_rel
+            if not body_file.exists():
+                problems.append(f"{path}: body_path '{body_rel}' does not exist")
+                continue
+            body = body_file.read_text(encoding="utf-8")
+            summary = entry.get("summary", "")
+            # A body no longer than its own summary means truncation crept back.
+            if len(body) <= len(summary):
+                problems.append(
+                    f"{path}: body {len(body)} chars <= summary {len(summary)} — truncated?"
+                )
+            # The body must be the real chapter, not a stub.
+            src_file = ROOT_V / "src" / path
+            if src_file.exists():
+                src_len = len(src_file.read_text(encoding="utf-8"))
+                if len(body) < src_len * 0.95:
+                    problems.append(
+                        f"{path}: body {len(body)} chars vs src {src_len} — incomplete copy"
+                    )
+        total = len(problems)
+        mark = "ok " if total == 0 else "FAIL"
+        print(f"  [{mark}] K2          {total}")
+        for p in problems:
+            print(f"           {p}")
+        if total:
+            print()
+            print("  The knowledge layer has regressed to index-only. An agent")
+            print("  that can read summaries but not bodies will report content")
+            print("  as missing when it exists in src/.")
         return 0 if total == 0 else 1
 
     if args.sustain:
