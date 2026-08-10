@@ -1,0 +1,112 @@
+<svg viewBox="0 0 1200 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ht hd">
+  <title id="ht">1つのソース、2つの消費経路</title>
+  <desc id="hd">CIゲートで検証された69章 — 人読用の3言語サイトと、Agentにインストール可能な機能パッケージの2つの経路で構築。</desc>
+  <style>
+    :root, svg {
+      --bg: #ffffff;
+      --ink: #1d1d1f;
+      --sub: #6e6e73;
+      --line: #d2d2d7;
+      --fill: #f5f5f7;
+      --mint: #00b8a9;
+      --mint-soft: #e6f8f6;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root, svg {
+        --bg: #0d1117;
+        --ink: #f5f5f7;
+        --sub: #8b949e;
+        --line: #30363d;
+        --fill: #161b22;
+        --mint: #2ee6cd;
+        --mint-soft: #0d2b28;
+      }
+    }
+    text { font-family: -apple-system, "SF Pro Display", "PingFang SC", "Hiragino Sans",
+           "Segoe UI", "Noto Sans CJK SC", system-ui, sans-serif; }
+    .bg    { fill: var(--bg); }
+    .card  { fill: var(--fill); stroke: var(--line); stroke-width: 1; }
+    .cardM { fill: var(--mint-soft); stroke: var(--mint); stroke-width: 1.5; }
+    .h     { font-size: 21px; font-weight: 600; fill: var(--ink); }
+    .hM    { font-size: 21px; font-weight: 600; fill: var(--mint); }
+    .m     { font-size: 15px; font-weight: 400; fill: var(--sub); }
+    .mono  { font-size: 14px; font-weight: 500; fill: var(--sub);
+             font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+    .num   { font-size: 30px; font-weight: 650; fill: var(--ink); }
+    .lbl   { font-size: 13px; font-weight: 500; fill: var(--sub); letter-spacing: .04em; }
+    .flow  { stroke: var(--line); stroke-width: 1.5; fill: none; }
+    .flowM { stroke: var(--mint); stroke-width: 1.5; fill: none; }
+    .ic    { stroke: var(--sub); stroke-width: 1.5; fill: none;
+             stroke-linecap: round; stroke-linejoin: round; }
+    .icM   { stroke: var(--mint); stroke-width: 1.5; fill: none;
+             stroke-linecap: round; stroke-linejoin: round; }
+  </style>
+
+  <defs>
+    <marker id="a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0.5 L7 4 L0 7.5" fill="none" stroke="var(--line)" stroke-width="1.4"
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="aM" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0.5 L7 4 L0 7.5" fill="none" stroke="var(--mint)" stroke-width="1.4"
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1200" height="420" rx="0"/>
+
+  <!-- ── 源 ───────────────────────────────────────── -->
+  <rect class="card" x="56" y="128" width="212" height="164" rx="16"/>
+  <text class="lbl" x="80" y="162">SOURCE OF TRUTH</text>
+  <text class="num" x="80" y="204">69</text>
+  <text class="h"   x="126" y="204">章</text>
+  <text class="m"   x="80" y="232">中文 · English · 日本語</text>
+  <text class="mono" x="80" y="262">src/**.md</text>
+
+  <!-- 源 → 门禁 -->
+  <path class="flow" d="M268 210 H 366" marker-end="url(#a)"/>
+
+  <!-- ── CI 门禁（强调项）─────────────────────────── -->
+  <rect class="cardM" x="376" y="106" width="238" height="208" rx="16"/>
+  <text class="lbl" x="402" y="140" fill="var(--mint)">CI ゲート</text>
+
+  <!-- 盾形图标 -->
+  <path class="icM" d="M414 158 l16 -7 16 7 v14 c0 11 -7 18 -16 22 -9 -4 -16 -11 -16 -22 z"/>
+  <path class="icM" d="M423 179 l5 5 10 -11"/>
+
+  <text class="h"  x="458" y="180">すべてのゲートが0必須</text>
+  <text class="m"  x="402" y="216">すべての数字に出典またはマーク</text>
+  <text class="m"  x="402" y="242">各章に「効かないとき」を明記</text>
+  <text class="m"  x="402" y="268">すべてのプロンプトにガードレール</text>
+  <text class="mono" x="402" y="296">verify_all.py</text>
+
+  <!-- 门禁 → 两路分叉 -->
+  <path class="flow"  d="M614 178 H 668 Q 684 178 684 162 V 106 H 736" marker-end="url(#a)"/>
+  <path class="flowM" d="M614 242 H 668 Q 684 242 684 258 V 314 H 736" marker-end="url(#aM)"/>
+
+  <!-- ── 出口 1：人读 ─────────────────────────────── -->
+  <rect class="card" x="746" y="52" width="398" height="112" rx="16"/>
+  <!-- 书图标 -->
+  <path class="ic" d="M778 88 h26 a8 8 0 0 1 8 8 v32 a8 8 0 0 0 -8 -8 h-26 z"/>
+  <path class="ic" d="M846 88 h-26 a8 8 0 0 0 -8 8 v32 a8 8 0 0 1 8 -8 h26 z"/>
+  <text class="h" x="866" y="98">人が読む</text>
+  <text class="m" x="866" y="124">3言語 mdBook サイト</text>
+  <text class="mono" x="866" y="148">kangise.github.io</text>
+
+  <!-- ── 出口 2：agent 装（强调项）────────────────── -->
+  <rect class="cardM" x="746" y="258" width="398" height="112" rx="16"/>
+  <!-- 芯片图标 -->
+  <rect class="icM" x="778" y="294" width="40" height="40" rx="8"/>
+  <rect class="icM" x="790" y="306" width="16" height="16" rx="3"/>
+  <path class="icM" d="M786 294 v-8 M798 294 v-8 M810 294 v-8
+                       M786 334 v8 M798 334 v8 M810 334 v8
+                       M778 302 h-8 M778 314 h-8 M778 326 h-8
+                       M818 302 h8 M818 314 h8 M818 326 h8"/>
+  <text class="hM" x="838" y="304">Agent にインストール</text>
+  <text class="m"  x="838" y="330">MCP Server · 8 スキル</text>
+  <text class="mono" x="838" y="354">dist/</text>
+
+  <!-- 底注 -->
+  <text class="m" x="56" y="356">1つのコンテンツ、2つのビルド経路。</text>
+  <text class="m" x="56" y="382" fill="var(--mint)">門禁に通らなければ、どちらの経路もリリースできない。</text>
+</svg>

@@ -1,0 +1,93 @@
+<svg viewBox="0 0 1200 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="gt gd">
+  <title id="gt">Guardrailed prompts vs. ordinary prompts</title>
+  <desc id="gd">An ordinary prompt lets the model improvise and invent plausible numbers. This library's prompts add three guardrails — data discipline, output format, self-check — so the model must stop and ask when data is missing, and verify every platform constraint before delivering.</desc>
+  <style>
+    :root, svg {
+      --bg: #ffffff; --ink: #1d1d1f; --sub: #6e6e73; --line: #d2d2d7;
+      --fill: #f5f5f7; --mint: #00b8a9; --mint-soft: #e6f8f6; --warn: #86868b;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root, svg {
+        --bg: #0d1117; --ink: #f5f5f7; --sub: #8b949e; --line: #30363d;
+        --fill: #161b22; --mint: #2ee6cd; --mint-soft: #0d2b28; --warn: #6e7681;
+      }
+    }
+    text { font-family: -apple-system, "SF Pro Display", "PingFang SC", "Hiragino Sans",
+           "Segoe UI", "Noto Sans CJK SC", system-ui, sans-serif; }
+    .bg    { fill: var(--bg); }
+    .card  { fill: var(--fill); stroke: var(--line); stroke-width: 1; }
+    .cardM { fill: var(--mint-soft); stroke: var(--mint); stroke-width: 1.5; }
+    .cap   { font-size: 13px; font-weight: 600; fill: var(--sub); letter-spacing: .06em; }
+    .capM  { font-size: 13px; font-weight: 600; fill: var(--mint); letter-spacing: .06em; }
+    .q     { font-size: 16px; fill: var(--ink); }
+    .a     { font-size: 15px; fill: var(--warn); }
+    .aM    { font-size: 15px; fill: var(--ink); }
+    .tag   { font-size: 12px; font-weight: 600; letter-spacing: .04em;
+             font-family: ui-monospace, "SF Mono", Menlo, monospace; fill: var(--mint); }
+    .note  { font-size: 13px; fill: var(--sub); }
+    .rule  { stroke: var(--line); stroke-width: 1; }
+    .ic    { stroke: var(--warn); stroke-width: 1.6; fill: none;
+             stroke-linecap: round; stroke-linejoin: round; }
+    .icM   { stroke: var(--mint); stroke-width: 1.6; fill: none;
+             stroke-linecap: round; stroke-linejoin: round; }
+    .pillM { fill: var(--mint-soft); stroke: var(--mint); stroke-width: 1; }
+  </style>
+
+  <rect class="bg" width="1200" height="500"/>
+
+  <!-- the same question -->
+  <text class="cap" x="56" y="46">The same question</text>
+  <text class="q"   x="56" y="78">“How many units does this category sell per month?”</text>
+  <line class="rule" x1="56" y1="104" x2="1144" y2="104"/>
+
+  <!-- ── Left: ordinary prompt ───────────────────── -->
+  <rect class="card" x="56" y="136" width="516" height="308" rx="16"/>
+  <text class="cap" x="84" y="172">Ordinary prompt</text>
+
+  <!-- exclamation icon -->
+  <circle class="ic" cx="96" cy="212" r="13"/>
+  <path class="ic" d="M96 205 v8 M96 219 v.5"/>
+
+  <text class="a" x="124" y="218">The model improvises</text>
+
+  <line class="rule" x1="84" y1="244" x2="544" y2="244"/>
+
+  <text class="a" x="84" y="280">“About 12,000 units a month at $28,</text>
+  <text class="a" x="84" y="306">market size ≈ $3.36M.”</text>
+
+  <rect x="84" y="332" width="460" height="1" fill="var(--line)"/>
+
+  <text class="note" x="84" y="368">Looks completely plausible.</text>
+  <text class="note" x="84" y="394">But the model doesn't know these numbers —</text>
+  <text class="note" x="84" y="420">they're generated, not looked up.</text>
+
+  <!-- ── Right: this library's prompt ────────────── -->
+  <rect class="cardM" x="628" y="136" width="516" height="308" rx="16"/>
+  <text class="capM" x="656" y="172">This library's prompt</text>
+
+  <!-- shield -->
+  <path class="icM" d="M660 198 l14 -6 14 6 v12 c0 10 -6 16 -14 19 -8 -3 -14 -9 -14 -19 z"/>
+  <path class="icM" d="M668 216 l4 4 9 -9"/>
+
+  <text class="aM" x="700" y="218">Three guardrails built in</text>
+
+  <line class="rule" x1="656" y1="244" x2="1116" y2="244"/>
+
+  <text class="tag" x="656" y="278">&lt;data_discipline&gt;</text>
+  <text class="note" x="812" y="278">Use only pasted data; else write “missing”</text>
+
+  <text class="tag" x="656" y="312">&lt;output_format&gt;</text>
+  <text class="note" x="812" y="312">Deliverable format, pinned down</text>
+
+  <text class="tag" x="656" y="346">&lt;self_check&gt;</text>
+  <text class="note" x="812" y="346">Check every platform constraint first</text>
+
+  <rect x="656" y="372" width="460" height="1" fill="var(--line)"/>
+
+  <text class="aM" x="656" y="408">→ “You didn't provide sales data. Export</text>
+  <text class="aM" x="656" y="432">   it from Helium 10 and paste it; then I'll analyze.”</text>
+
+  <!-- bottom note -->
+  <line class="rule" x1="56" y1="466" x2="1144" y2="466"/>
+  <text class="note" x="56" y="492">Of the 868 prompts, every one touching numbers, external facts, or customer-facing copy carries guardrails. Gates <tspan class="tag">N3</tspan> <tspan class="tag">N4</tspan> check each — miss one, the build fails.</text>
+</svg>

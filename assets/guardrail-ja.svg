@@ -1,0 +1,93 @@
+<svg viewBox="0 0 1200 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="gt gd">
+  <title id="gt">ガードレール付きプロンプトと通常プロンプトの違い</title>
+  <desc id="gd">通常のプロンプトはモデルが自由に回答し、もっともらしい数字を捏造します。本ライブラリのプロンプトにはデータ規律・出力形式・セルフチェックの3つのガードレールがあり、データ不足時は必ず立ち止まって確認を求め、プラットフォームの制約を逐条確認します。</desc>
+  <style>
+    :root, svg {
+      --bg: #ffffff; --ink: #1d1d1f; --sub: #6e6e73; --line: #d2d2d7;
+      --fill: #f5f5f7; --mint: #00b8a9; --mint-soft: #e6f8f6; --warn: #86868b;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root, svg {
+        --bg: #0d1117; --ink: #f5f5f7; --sub: #8b949e; --line: #30363d;
+        --fill: #161b22; --mint: #2ee6cd; --mint-soft: #0d2b28; --warn: #6e7681;
+      }
+    }
+    text { font-family: -apple-system, "SF Pro Display", "PingFang SC", "Hiragino Sans",
+           "Segoe UI", "Noto Sans CJK SC", system-ui, sans-serif; }
+    .bg    { fill: var(--bg); }
+    .card  { fill: var(--fill); stroke: var(--line); stroke-width: 1; }
+    .cardM { fill: var(--mint-soft); stroke: var(--mint); stroke-width: 1.5; }
+    .cap   { font-size: 13px; font-weight: 600; fill: var(--sub); letter-spacing: .06em; }
+    .capM  { font-size: 13px; font-weight: 600; fill: var(--mint); letter-spacing: .06em; }
+    .q     { font-size: 16px; fill: var(--ink); }
+    .a     { font-size: 15px; fill: var(--warn); }
+    .aM    { font-size: 15px; fill: var(--ink); }
+    .tag   { font-size: 12px; font-weight: 600; letter-spacing: .04em;
+             font-family: ui-monospace, "SF Mono", Menlo, monospace; fill: var(--mint); }
+    .note  { font-size: 13px; fill: var(--sub); }
+    .rule  { stroke: var(--line); stroke-width: 1; }
+    .ic    { stroke: var(--warn); stroke-width: 1.6; fill: none;
+             stroke-linecap: round; stroke-linejoin: round; }
+    .icM   { stroke: var(--mint); stroke-width: 1.6; fill: none;
+             stroke-linecap: round; stroke-linejoin: round; }
+    .pillM { fill: var(--mint-soft); stroke: var(--mint); stroke-width: 1; }
+  </style>
+
+  <rect class="bg" width="1200" height="500"/>
+
+  <!-- 同一个问题 -->
+  <text class="cap" x="56" y="46">同じ質問</text>
+  <text class="q"   x="56" y="78">「このカテゴリの月間販売数はどれくらい？」</text>
+  <line class="rule" x1="56" y1="104" x2="1144" y2="104"/>
+
+  <!-- ── 左：普通 Prompt ───────────────────────── -->
+  <rect class="card" x="56" y="136" width="516" height="308" rx="16"/>
+  <text class="cap" x="84" y="172">通常のプロンプト</text>
+
+  <!-- 惊叹图标 -->
+  <circle class="ic" cx="96" cy="212" r="13"/>
+  <path class="ic" d="M96 205 v8 M96 219 v.5"/>
+
+  <text class="a" x="124" y="218">モデルが自由に回答</text>
+
+  <line class="rule" x1="84" y1="244" x2="544" y2="244"/>
+
+  <text class="a" x="84" y="280">「このカテゴリは月約12,000件、</text>
+  <text class="a" x="84" y="306">客単価 $28、市場規模は約 $336万。」</text>
+
+  <rect x="84" y="332" width="460" height="1" fill="var(--line)"/>
+
+  <text class="note" x="84" y="368">一見完全に合理的。</text>
+  <text class="note" x="84" y="394">しかしモデルは知らない — 生成しただけで、調べたわけではない。</text>
+  <text class="note" x="84" y="420">この数字で仕入れたら、リアルな資金がかかる。</text>
+
+  <!-- ── 右：本库的 Prompt ─────────────────────── -->
+  <rect class="cardM" x="628" y="136" width="516" height="308" rx="16"/>
+  <text class="capM" x="656" y="172">本ライブラリのプロンプト</text>
+
+  <!-- 盾 -->
+  <path class="icM" d="M660 198 l14 -6 14 6 v12 c0 10 -6 16 -14 19 -8 -3 -14 -9 -14 -19 z"/>
+  <path class="icM" d="M668 216 l4 4 9 -9"/>
+
+  <text class="aM" x="700" y="218">プロンプトに3つのガードレール</text>
+
+  <line class="rule" x1="656" y1="244" x2="1116" y2="244"/>
+
+  <text class="tag" x="656" y="278">&lt;データ規律&gt;</text>
+  <text class="note" x="770" y="278">貼り付けたデータのみ使用 — ない場合は「欠落」</text>
+
+  <text class="tag" x="656" y="312">&lt;出力形式&gt;</text>
+  <text class="note" x="770" y="312">成果物の形式を固定</text>
+
+  <text class="tag" x="656" y="346">&lt;セルフチェック&gt;</text>
+  <text class="note" x="770" y="346">納品前にプラットフォーム制約を逐条確認</text>
+
+  <rect x="656" y="372" width="460" height="1" fill="var(--line)"/>
+
+  <text class="aM" x="656" y="408">→ 「販売データがありません。Helium 10 から</text>
+  <text class="aM" x="656" y="432">　 エクスポートして貼り付けていただければ、分析します。」</text>
+
+  <!-- 底注 -->
+  <line class="rule" x1="56" y1="466" x2="1144" y2="466"/>
+  <text class="note" x="56" y="492">868件のプロンプトのうち、数字・外部事実・対外文面に関わるものはすべてガードレール付き。門禁 <tspan class="tag">N3</tspan> <tspan class="tag">N4</tspan> が逐条チェックし、1つ欠けるとビルドが失敗します。</text>
+</svg>
