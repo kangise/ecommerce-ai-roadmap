@@ -69,5 +69,6 @@ triggers:
   - 降价
 uses_constraints:
 - amazon.cpc.value.actual_price_formula
+- amazon.keyword.value.min_clicks_statistics
 - amazon.roas.value.profitable_threshold
 uses_entities: []

@@ -78,6 +78,9 @@ triggers:
   - 饱和
   - 饱和了
 uses_constraints:
+- amazon.bullet_point.no_html
+- amazon.keyword.value.min_clicks_statistics
+- content.ai_generated.commercial_license
 - forecast.backtest_target
 - forecast.changepoint_prior_range
 - forecast.interval_usage

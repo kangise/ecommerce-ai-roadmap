@@ -23,6 +23,7 @@ CHECKS = [
     ("Routing",   "python3", "scripts/verify_all.py", "--r1"),
     ("R1b Frags", "python3", "scripts/verify_all.py", "--r1b"),
     ("R2 Natural","python3", "scripts/verify_all.py", "--r2"),
+    ("S6 Attrib", "python3", "scripts/verify_all.py", "--s6"),
     ("Integration","python3", "scripts/verify_all.py", "--i1"),
     ("Docs",      "python3", "scripts/verify_all.py", "--d1"),
     ("D2",        "python3", "scripts/verify_all.py", "--d2"),
@@ -168,6 +169,7 @@ def main() -> int:
     ap.add_argument("--d2", action="store_true", help="README number consistency")
     ap.add_argument("--r1b", action="store_true", help="Manifest triggers — sentence-fragment ban")
     ap.add_argument("--r2", action="store_true", help="Natural-language routing probe (< 40% literal)")
+    ap.add_argument("--s6", action="store_true", help="Constraint attribution: playbook refs, no foreign ids, fresh")
     args = ap.parse_args()
 
     if args.r1b:
@@ -191,6 +193,59 @@ def main() -> int:
             print("  These triggers contain phrases like 「怎么办」/「要不要」/「跑出来」 —")
             print("  patterns a real domain document would not contain. Delete them, or")
             print("  add to FRAG_ALLOWLIST in verify_all.py with an explicit justification.")
+        return 0 if total == 0 else 1
+
+    if args.s6:
+        # S6 — constraint attribution. Three checks, all a consequence of
+        # constraints.md being generated from the manifest rather than hand-kept:
+        #   a. every id a playbook self-check references (<!-- ref: id -->) is in
+        #      that skill's uses_constraints (else the skill cites a rule it
+        #      doesn't declare — live-run G9, ecom-listing missing Shopify ids)
+        #   b. constraints.md contains no id outside uses_constraints (else it
+        #      carries foreign-domain rules — live-run G8, compliance holding
+        #      advertising rules)
+        #   c. the generated file is fresh (re-run the generator, expect no diff)
+        import yaml as _yaml
+        problems = []
+        onto = _yaml.safe_load((ROOT_V / "ontology" / "constraints.yaml").read_text(encoding="utf-8")) or []
+        valid = {c["id"] for c in onto if isinstance(c, dict) and "id" in c}
+        for sk in sorted((ROOT_V / "skills").iterdir()):
+            if not sk.is_dir():
+                continue
+            mf = sk / "manifest.yaml"
+            if not mf.exists():
+                continue
+            m = _yaml.safe_load(mf.read_text(encoding="utf-8"))
+            uses = set(m.get("uses_constraints") or [])
+            pf = sk / "references" / "playbook.md"
+            if pf.exists():
+                refs = set(re.findall(r"<!--\s*ref:\s*([a-z0-9_.]+)\s*-->", pf.read_text(encoding="utf-8")))
+                for r in refs & valid:
+                    if r not in uses:
+                        problems.append(f"{sk.name}: playbook references `{r}` not in uses_constraints")
+            cf = sk / "references" / "constraints.md"
+            if cf.exists():
+                cited = set(re.findall(r"`([a-z_]+\.[a-z0-9_.]+)`", cf.read_text(encoding="utf-8")))
+                for c in cited:
+                    if c in valid and c not in uses:
+                        problems.append(f"{sk.name}: constraints.md contains `{c}` outside uses_constraints")
+        # freshness: regenerate to a temp and diff
+        import subprocess as _sp
+        before = {}
+        for sk in sorted((ROOT_V / "skills").iterdir()):
+            cf = sk / "references" / "constraints.md"
+            if cf.exists():
+                before[cf] = cf.read_text(encoding="utf-8")
+        _sp.run(["python3", "scripts/gen_skill_constraints.py"], cwd=ROOT_V,
+                capture_output=True, text=True)
+        for cf, old in before.items():
+            if cf.read_text(encoding="utf-8") != old:
+                problems.append(f"{cf.parent.parent.name}: constraints.md is stale — run gen_skill_constraints.py")
+        total = len(problems)
+        mark = "ok " if total == 0 else "FAIL"
+        print(f"  [{mark}] S6          {total}")
+        for p in problems:
+            print(f"           {p}")
         return 0 if total == 0 else 1
 
     if args.r2:

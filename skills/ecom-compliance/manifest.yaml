@@ -80,6 +80,7 @@ uses_constraints:
 - amazon.safety_complaint.response_deadline
 - amazon.sponsored_brand.video.ctr_multiple
 - amazon.us.listing.required_certifications
+- amazon.violation.response_deadline
 - compliance.ce_marking.mandatory
 - compliance.ce_marking.min_height
 - compliance.certificate.accredited_body_only
@@ -93,9 +94,11 @@ uses_constraints:
 - de.label.recycling_mark
 - dg.lithium_battery.un38_3_msds
 - eu.ai_act.transparency
+- eu.dpp.phased_timeline
 - eu.gpsr.responsible_person
 - eu.label.local_language
 - eu.label.manufacturer_info
+- eu.vat.registration_before_sale
 - google.search_ad.description_max_length
 - inventory.lead_time_safety_rule
 - inventory.promo_lead_time

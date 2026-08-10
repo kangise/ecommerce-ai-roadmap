@@ -140,6 +140,27 @@ uses_constraints:
 - amazon.search_term.classification.star_word
 - amazon.search_term.classification.waste_word
 - amazon.us.listing.required_certifications
+- content.ai_generated.commercial_license
+- eu.ai_act.transparency
+- ip.tro.risk_prevention
+- shopify.product_feed.description.key_first_160
+- shopify.product_feed.description.max_length
+- shopify.product_feed.title.format
+- shopify.product_feed.title.key_first_70
+- shopify.product_feed.title.max_length
+- shopify.product_page.description.max_length
+- shopify.product_page.description.min_length
+- shopify.product_page.faq.count
+- shopify.product_page.meta_description.max_length
+- shopify.product_page.meta_title.max_length
+- shopify.product_page.schema.required
+- shopify.product_page.title.max_length
+- tiktok_shop.product.description.max_length
+- tiktok_shop.product.hashtags.count
+- tiktok_shop.product.main_image.required_format
+- tiktok_shop.product.title.format
+- tiktok_shop.product.title.max_length
+- tiktok_shop.product.video.required
 uses_entities:
 - a_plus_content
 - asin

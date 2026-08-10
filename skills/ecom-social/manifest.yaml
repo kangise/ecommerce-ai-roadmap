@@ -75,6 +75,9 @@ triggers:
   - 跨平台
   - 达人
   - 铺内容
+uses_constraints:
+- content.ai_generated.commercial_license
+- eu.ai_act.transparency
 uses_entities:
 - social_post
 - ad_creative

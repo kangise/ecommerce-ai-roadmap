@@ -108,11 +108,14 @@ uses_constraints:
 - amazon.negative_keyword.phrase.behavior
 - amazon.negative_keyword.value.batch_limit
 - amazon.negative_keyword.value.observe_period
+- amazon.product_image.secondary_text.max_words
 - amazon.promo.bid.event_multiplier
 - amazon.promo.budget.event_multiplier
 - amazon.promo.budget.pre_event_multiplier
 - amazon.roas.value.formula
 - amazon.roas.value.profitable_threshold
+- amazon.search_term.classification.observe_word
+- amazon.search_term.classification.waste_word
 - amazon.sponsored_brand.ad.headline_max_length
 - amazon.sponsored_brand.budget.minimum
 - amazon.sponsored_brand.eligibility.brand_registry_required
@@ -121,6 +124,8 @@ uses_constraints:
 - amazon.sponsored_product.budget.minimum
 - amazon.tacos.value.formula
 - amazon.tacos.value.healthy_range
+- google.search_ad.description_max_length
+- google.search_ad.headline_max_length
 uses_entities:
 - acos
 - ad_group
