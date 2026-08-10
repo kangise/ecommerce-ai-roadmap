@@ -1,0 +1,103 @@
+<svg viewBox="0 0 1200 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="pt pd">
+  <title id="pt">四条入口路径</title>
+  <desc id="pd">按使用者身份分流：一个人做电商、给 agent 找电商知识、团队要一套 SOP、想学能力打包方法，各自对应不同的起点与耗时。</desc>
+  <style>
+    :root, svg {
+      --bg: #ffffff; --ink: #1d1d1f; --sub: #6e6e73; --line: #d2d2d7;
+      --fill: #f5f5f7; --mint: #00b8a9; --mint-soft: #e6f8f6;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root, svg {
+        --bg: #0d1117; --ink: #f5f5f7; --sub: #8b949e; --line: #30363d;
+        --fill: #161b22; --mint: #2ee6cd; --mint-soft: #0d2b28;
+      }
+    }
+    text { font-family: -apple-system, "SF Pro Display", "PingFang SC", "Hiragino Sans",
+           "Segoe UI", "Noto Sans CJK SC", system-ui, sans-serif; }
+    .bg   { fill: var(--bg); }
+    .card { fill: var(--fill); stroke: var(--line); stroke-width: 1; }
+    .who  { font-size: 19px; font-weight: 600; fill: var(--ink); }
+    .goal { font-size: 14px; fill: var(--sub); }
+    .step { font-size: 14px; fill: var(--ink); }
+    .mono { font-size: 13px; fill: var(--mint); font-weight: 500;
+            font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+    .time { font-size: 12px; font-weight: 600; fill: var(--mint); letter-spacing: .04em; }
+    .cap  { font-size: 13px; font-weight: 500; fill: var(--sub); letter-spacing: .06em; }
+    .rule { stroke: var(--line); stroke-width: 1; }
+    .ic   { stroke: var(--mint); stroke-width: 1.6; fill: none;
+            stroke-linecap: round; stroke-linejoin: round; }
+    .pill { fill: var(--mint-soft); }
+  </style>
+
+  <rect class="bg" width="1200" height="520"/>
+  <text class="cap" x="56" y="52">15 秒找到你的入口</text>
+  <line class="rule" x1="56" y1="72" x2="1144" y2="72"/>
+
+  <!-- ── 路径 1 ─────────────────────────────────── -->
+  <rect class="card" x="56" y="100" width="258" height="380" rx="16"/>
+  <rect class="pill" x="80" y="126" width="70" height="24" rx="12"/>
+  <text class="time" x="94" y="143">3 分钟</text>
+  <!-- 人 -->
+  <circle class="ic" cx="96" cy="184" r="9"/>
+  <path class="ic" d="M80 212 c0 -10 7 -17 16 -17 s16 7 16 17"/>
+  <text class="who"  x="80" y="252">我一个人做电商</text>
+  <text class="goal" x="80" y="280">想让 AI 少编数字</text>
+  <line class="rule" x1="80" y1="302" x2="290" y2="302"/>
+  <text class="step" x="80" y="332">1 · 复制下面的 30 秒 demo</text>
+  <text class="step" x="80" y="358">2 · 挑一章直接抄 Prompt</text>
+  <text class="step" x="80" y="384">3 · 装 MCP 让它常驻</text>
+  <text class="mono" x="80" y="424">↓ 30 秒 demo</text>
+  <text class="goal" x="80" y="452">不需要写代码</text>
+
+  <!-- ── 路径 2 ─────────────────────────────────── -->
+  <rect class="card" x="338" y="100" width="258" height="380" rx="16"/>
+  <rect class="pill" x="362" y="126" width="70" height="24" rx="12"/>
+  <text class="time" x="376" y="143">5 分钟</text>
+  <!-- 芯片 -->
+  <rect class="ic" x="362" y="166" width="34" height="34" rx="7"/>
+  <rect class="ic" x="372" y="176" width="14" height="14" rx="3"/>
+  <path class="ic" d="M369 166 v-6 M379 166 v-6 M389 166 v-6
+                      M369 200 v6 M379 200 v6 M389 200 v6"/>
+  <text class="who"  x="362" y="252">我在给 agent</text>
+  <text class="who"  x="362" y="276">找电商知识</text>
+  <text class="goal" x="362" y="304">要能装、能调、能追溯</text>
+  <line class="rule" x1="362" y1="326" x2="572" y2="326"/>
+  <text class="step" x="362" y="356">1 · 读 dist/SKILL.md</text>
+  <text class="step" x="362" y="382">2 · 配 MCP Server</text>
+  <text class="step" x="362" y="408">3 · 8 个 skill 直接用</text>
+  <text class="mono" x="362" y="448">dist/integration/mcp.md</text>
+
+  <!-- ── 路径 3 ─────────────────────────────────── -->
+  <rect class="card" x="620" y="100" width="258" height="380" rx="16"/>
+  <rect class="pill" x="644" y="126" width="86" height="24" rx="12"/>
+  <text class="time" x="658" y="143">当天可用</text>
+  <!-- 团队 -->
+  <circle class="ic" cx="654" cy="182" r="7"/>
+  <circle class="ic" cx="676" cy="182" r="7"/>
+  <path class="ic" d="M642 206 c0 -8 5 -13 12 -13 s12 5 12 13"/>
+  <path class="ic" d="M664 206 c0 -8 5 -13 12 -13 s12 5 12 13"/>
+  <text class="who"  x="644" y="252">我的团队要</text>
+  <text class="who"  x="644" y="276">一套统一 SOP</text>
+  <text class="goal" x="644" y="304">跨平台规则记不住</text>
+  <line class="rule" x1="644" y1="326" x2="854" y2="326"/>
+  <text class="step" x="644" y="356">1 · 按路径分发章节</text>
+  <text class="step" x="644" y="382">2 · 平台差异查 ontology</text>
+  <text class="step" x="644" y="408">3 · Prompt 当团队模板</text>
+  <text class="mono" x="644" y="448">ontology/constraints.yaml</text>
+
+  <!-- ── 路径 4 ─────────────────────────────────── -->
+  <rect class="card" x="902" y="100" width="242" height="380" rx="16"/>
+  <rect class="pill" x="926" y="126" width="70" height="24" rx="12"/>
+  <text class="time" x="940" y="143">慢慢看</text>
+  <!-- 图层 -->
+  <path class="ic" d="M926 186 l17 -9 17 9 -17 9 z"/>
+  <path class="ic" d="M926 198 l17 9 17 -9"/>
+  <text class="who"  x="926" y="252">我想学怎么把</text>
+  <text class="who"  x="926" y="276">知识打包成能力</text>
+  <text class="goal" x="926" y="304">元受众：方法论</text>
+  <line class="rule" x1="926" y1="326" x2="1120" y2="326"/>
+  <text class="step" x="926" y="356">1 · 24 项内容门禁</text>
+  <text class="step" x="926" y="382">2 · ontology 抽取过程</text>
+  <text class="step" x="926" y="408">3 · skill 打包结构</text>
+  <text class="mono" x="926" y="448">scripts/verify_all.py</text>
+</svg>

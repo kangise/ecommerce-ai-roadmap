@@ -1,0 +1,93 @@
+<svg viewBox="0 0 1200 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="gt gd">
+  <title id="gt">带护栏的 Prompt 与普通 Prompt 的区别</title>
+  <desc id="gd">普通 Prompt 让模型自由发挥，会编出看似合理的数字；本库的 Prompt 加了数据纪律、输出格式与自检三块，模型缺数据时必须停下来问，并逐条核对平台约束。</desc>
+  <style>
+    :root, svg {
+      --bg: #ffffff; --ink: #1d1d1f; --sub: #6e6e73; --line: #d2d2d7;
+      --fill: #f5f5f7; --mint: #00b8a9; --mint-soft: #e6f8f6; --warn: #86868b;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root, svg {
+        --bg: #0d1117; --ink: #f5f5f7; --sub: #8b949e; --line: #30363d;
+        --fill: #161b22; --mint: #2ee6cd; --mint-soft: #0d2b28; --warn: #6e7681;
+      }
+    }
+    text { font-family: -apple-system, "SF Pro Display", "PingFang SC", "Hiragino Sans",
+           "Segoe UI", "Noto Sans CJK SC", system-ui, sans-serif; }
+    .bg    { fill: var(--bg); }
+    .card  { fill: var(--fill); stroke: var(--line); stroke-width: 1; }
+    .cardM { fill: var(--mint-soft); stroke: var(--mint); stroke-width: 1.5; }
+    .cap   { font-size: 13px; font-weight: 600; fill: var(--sub); letter-spacing: .06em; }
+    .capM  { font-size: 13px; font-weight: 600; fill: var(--mint); letter-spacing: .06em; }
+    .q     { font-size: 16px; fill: var(--ink); }
+    .a     { font-size: 15px; fill: var(--warn); }
+    .aM    { font-size: 15px; fill: var(--ink); }
+    .tag   { font-size: 12px; font-weight: 600; letter-spacing: .04em;
+             font-family: ui-monospace, "SF Mono", Menlo, monospace; fill: var(--mint); }
+    .note  { font-size: 13px; fill: var(--sub); }
+    .rule  { stroke: var(--line); stroke-width: 1; }
+    .ic    { stroke: var(--warn); stroke-width: 1.6; fill: none;
+             stroke-linecap: round; stroke-linejoin: round; }
+    .icM   { stroke: var(--mint); stroke-width: 1.6; fill: none;
+             stroke-linecap: round; stroke-linejoin: round; }
+    .pillM { fill: var(--mint-soft); stroke: var(--mint); stroke-width: 1; }
+  </style>
+
+  <rect class="bg" width="1200" height="500"/>
+
+  <!-- 同一个问题 -->
+  <text class="cap" x="56" y="46">同一个问题</text>
+  <text class="q"   x="56" y="78">「这个品类月销量大概多少？」</text>
+  <line class="rule" x1="56" y1="104" x2="1144" y2="104"/>
+
+  <!-- ── 左：普通 Prompt ───────────────────────── -->
+  <rect class="card" x="56" y="136" width="516" height="308" rx="16"/>
+  <text class="cap" x="84" y="172">普通 Prompt</text>
+
+  <!-- 惊叹图标 -->
+  <circle class="ic" cx="96" cy="212" r="13"/>
+  <path class="ic" d="M96 205 v8 M96 219 v.5"/>
+
+  <text class="a" x="124" y="218">模型自由发挥</text>
+
+  <line class="rule" x1="84" y1="244" x2="544" y2="244"/>
+
+  <text class="a" x="84" y="280">「这个品类月销量大约 12,000 单，</text>
+  <text class="a" x="84" y="306">客单价 $28，市场规模约 $336 万。」</text>
+
+  <rect x="84" y="332" width="460" height="1" fill="var(--line)"/>
+
+  <text class="note" x="84" y="368">看起来完全合理。</text>
+  <text class="note" x="84" y="394">但模型并不知道这些数字 —— 它是生成的，不是查到的。</text>
+  <text class="note" x="84" y="420">你拿它去备货，压的是真金白银。</text>
+
+  <!-- ── 右：本库的 Prompt ─────────────────────── -->
+  <rect class="cardM" x="628" y="136" width="516" height="308" rx="16"/>
+  <text class="capM" x="656" y="172">本库的 Prompt</text>
+
+  <!-- 盾 -->
+  <path class="icM" d="M660 198 l14 -6 14 6 v12 c0 10 -6 16 -14 19 -8 -3 -14 -9 -14 -19 z"/>
+  <path class="icM" d="M668 216 l4 4 9 -9"/>
+
+  <text class="aM" x="700" y="218">三块护栏挂在 Prompt 里</text>
+
+  <line class="rule" x1="656" y1="244" x2="1116" y2="244"/>
+
+  <text class="tag" x="656" y="278">&lt;数据纪律&gt;</text>
+  <text class="note" x="770" y="278">只用我贴的数据，没有就写「缺失」</text>
+
+  <text class="tag" x="656" y="312">&lt;输出格式&gt;</text>
+  <text class="note" x="770" y="312">交付物长什么样，写死</text>
+
+  <text class="tag" x="656" y="346">&lt;自检&gt;</text>
+  <text class="note" x="770" y="346">交付前逐条核对平台约束</text>
+
+  <rect x="656" y="372" width="460" height="1" fill="var(--line)"/>
+
+  <text class="aM" x="656" y="408">→ 「你没有提供销量数据。需要你从</text>
+  <text class="aM" x="656" y="432">　 Helium 10 导出后贴给我，我再分析。」</text>
+
+  <!-- 底注 -->
+  <line class="rule" x1="56" y1="466" x2="1144" y2="466"/>
+  <text class="note" x="56" y="492">868 条 Prompt 里，凡涉及数字、外部事实、对外文案的都带护栏。门禁 <tspan class="tag">N3</tspan> <tspan class="tag">N4</tspan> 逐条查，缺一条构建就失败。</text>
+</svg>

@@ -1,56 +1,59 @@
-# 跨境电商 AI 实战知识库
+<div align="center">
 
-> **别的 Prompt 合集告诉你 AI 能做什么。这个库还告诉你 AI 什么时候在编。**
+# 跨境电商 AI 知识底座
 
-🇨🇳 中文 | 🇺🇸 [English](README_EN.md) | 🇯🇵 [日本語](README_JA.md) · 📖 **[在线阅读](https://kangise.github.io/ecommerce-ai-roadmap/)**
+### 人可以读，agent 可以装。
 
----
+**每个数字都经 CI 核验 · 每个 Prompt 都带反幻觉护栏 · 每章都写明什么时候不管用**
+
+🇨🇳 中文&nbsp;·&nbsp;[🇺🇸 English](README_EN.md)&nbsp;·&nbsp;[🇯🇵 日本語](README_JA.md)&nbsp;&nbsp;|&nbsp;&nbsp;📖 [在线阅读](https://kangise.github.io/ecommerce-ai-roadmap/)&nbsp;&nbsp;|&nbsp;&nbsp;📦 [给 agent 装](dist/)
+
+[![License: CC0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
+[![Stars](https://img.shields.io/github/stars/kangise/ecommerce-ai-roadmap?style=social)](https://github.com/kangise/ecommerce-ai-roadmap)
+[![AAAI China Chapter](https://img.shields.io/badge/AAAI_China_Chapter-Initiative-blue)](https://github.com/kangise/ecommerce-ai-roadmap)
+
+</div>
+
+<br>
+
+<p align="center">
+  <img src="assets/hero.svg" alt="一份源，两种消费方式：69 章内容经 CI 门禁校验后，一路构建成人读的三语站点，一路构建成 agent 可安装的能力包" width="100%">
+</p>
+
+<br>
+
+## 这是什么
+
+跨境电商的 AI 实操知识库，**同一份内容有两种用法**：
+
+- **当书读** — 69 章，从选品到增长，三语完整，[在线站点](https://kangise.github.io/ecommerce-ai-roadmap/)随时切换语言
+- **给 agent 装** — [`dist/`](dist/) 是即插即用的能力包，MCP Server 一行配置接进 Claude / Cursor
+
+两边由同一套 CI 门禁把关。**门禁不过，两边都发不出去。**
+
+<br>
+
+## 你是谁 → 从哪进
+
+<p align="center">
+  <img src="assets/paths.svg" alt="四条入口路径：一个人做电商 3 分钟、给 agent 找知识 5 分钟、团队要 SOP 当天可用、学能力打包方法论" width="100%">
+</p>
+
+<br>
+
+## 为什么不是又一个 Prompt 合集
+
+<p align="center">
+  <img src="assets/guardrail.svg" alt="同一个问题，普通 Prompt 会编出看似合理的数字，本库的 Prompt 因为带三块护栏会停下来问你要数据" width="100%">
+</p>
 
 问 AI「这个品类月销量大概多少」，它几乎一定会给你一个看起来很合理的数字——**而它并不知道**。
 
 选品、备货、定价后面跟着真金白银。Agent 时代更危险：模型拿着它不知道的数去调价、去下单。
 
-所以这个库里 **868 条 Prompt，凡是涉及数字、外部事实、对外文案的都带了护栏**。更关键的是——**每一个数字都在 CI 里被核过。**
+**这个库的区别不是提示词更花哨，是划清了 AI 该在哪儿停下。**
 
-<p align="center">
-  <img src="assets/content-map.svg" alt="内容全景图 — 69 章 · 六大路径" width="100%">
-</p>
-
-## 不仅是书——是 agent 基础设施
-
-这套仓库有三层，分别给人、给 agent 之间的共享契约、和给 agent 直接调用：
-
-| 层 | 内容 | 规模 | 给谁 |
-|---|---|---|---|
-| 知识库 | 69 章，三语（中/英/日） | 69 章 | 人读 · agent 检索 |
-| Ontology | 电商领域模型 | 94 实体 · 184 约束 · 78 关系 · 8 流程 | agent 之间的共享契约 |
-| Skills + Prompts | 带护栏的可执行能力 | 868 条 Prompt · 8 个可安装 skill | agent 直接调用 |
-
-## 给 agent 用
-
-```
-dist/ 目录是即插即用的 agent 能力包：
-  SKILL.md      ← 读这个就知道怎么路由请求到正确的 skill
-  ontology.json ← 电商领域模型（实体、关系、约束）
-  prompts.json  ← 812 条带护栏的 Prompt（三语）
-  skills/       ← 8 个 domain skill，每个含 manifest + playbook + 约束
-  integration/  ← MCP Server 接入指南
-```
-
-MCP 接入示例：
-
-```json
-{
-  "mcpServers": {
-    "opc-ecommerce": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/dist"]
-    }
-  }
-}
-```
-
-> 详见 `dist/README.md` 和 `dist/integration/mcp.md`。
+<br>
 
 ## 30 秒看出区别
 
@@ -76,23 +79,102 @@ MCP 接入示例：
 </数据纪律>
 ```
 
-**注意它的回答里没有编造的数字**，而是告诉你「这几个数你得自己去 Helium 10 查」。这就是这个库和其他 Prompt 合集的区别——不是提示词更花哨，是**划清了 AI 该在哪儿停下**。
+**注意它的回答里没有编造的数字**，而是告诉你「这几个数你得自己去 Helium 10 查」。
 
----
+<br>
 
-## 为什么用这个
+## 三个真实用法
 
-- **380+ Prompt 全部带护栏** — 数据纪律（不许编数字）、文案纪律（不许编产品没有的功能、不许替你承诺退款）、输入边界（粘进去的竞品评论不会变成指令劫持你的分析）
-- **三语完整，不是"翻译中"** — 中/英/日各 69 章，全部译完，[在线站](https://kangise.github.io/ecommerce-ai-roadmap/)右上角随时切换
-- **内容不会三个月就烂掉** — 正文只写能力档位，型号价格集中在[模型矩阵](src/resources/model-matrix.md)一页维护，带校验日期
-- **Agent 时代可用** — 不止给 Prompt，还给[迁移到技能文件的方法](src/0-foundations/f2-prompt-engineering.md)和[哪些动作绝不能交给 Agent](src/a-operators/a14-operations-agent.md)
-- **CC0** — 随便抄，不用署名
+### 1 · 给新品写 Amazon Listing（不需要写代码）
 
-[![License: CC0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
-[![Stars](https://img.shields.io/github/stars/kangise/ecommerce-ai-roadmap?style=social)](https://github.com/kangise/ecommerce-ai-roadmap)
-[![AAAI China Chapter](https://img.shields.io/badge/AAAI_China_Chapter-Initiative-blue)](https://github.com/kangise/ecommerce-ai-roadmap)
+打开 [A2 Listing 优化](src/a-operators/a2-listing-optimization.md)，复制「Listing 全套生成」那段 Prompt，把产品信息填进去。
 
----
+拿到的是一份带**平台硬约束**的 Listing：标题 ≤200 字符且前 80 字符含最高搜索量词、5 条 Bullet 各 ≤200 字符无 HTML、后台 Search Terms 每行 ≤250 字节。
+
+> 这些不是随口写的规则，是 Amazon 的实际限制，存在 [`ontology/constraints.yaml`](ontology/constraints.yaml) 里，Prompt 的 `<自检>` 块会逐条核对。改一处约束，所有引用它的 Prompt 由门禁 `O5` 盯着一起改。
+
+### 2 · 让 Claude Desktop 变成电商顾问（5 分钟）
+
+```json
+{
+  "mcpServers": {
+    "opc-ecommerce": {
+      "command": "npx",
+      "args": ["-y", "mcp-server-filesystem", "/path/to/ecommerce-ai-roadmap/dist"]
+    }
+  }
+}
+```
+
+装完之后：
+
+| 你问 | 它做什么 |
+|---|---|
+| 「ACOS 涨到 40% 怎么办」 | 路由到 `ecom-advertising`，给诊断路径而不是通用建议 |
+| 「我该不该用 AI 做需求预测」 | 路由到 `ecom-applicability`，**回答「样本不足一年不该」**——因为它装了每章的失效边界 |
+| 「客户投诉和图片不符怎么回」 | 路由到 `ecom-customer-service`，给带文案纪律的回复模板 |
+
+详见 [`dist/integration/mcp.md`](dist/integration/mcp.md)。
+
+### 3 · 团队跨平台上新，规则不用记
+
+同一个「标题」在三个平台是三回事，[`ontology/constraints.yaml`](ontology/constraints.yaml) 里查得到：
+
+```yaml
+amazon.listing.title.max_length:       200  字符
+shopify.product.title.max_length:      255  字符
+tiktok_shop.product.title.max_length:  150  字符
+```
+
+团队再在群里问，甩链接。或者直接用 `ecom-listing` skill 一次生成三个平台的合规变体。
+
+<br>
+
+## 不仅是书 — 三层结构
+
+| 层 | 内容 | 规模 | 给谁 |
+|---|---|---|---|
+| **知识库** | 69 章，三语（中/英/日） | 69 章 | 人读 · agent 检索 |
+| **Ontology** | 电商领域模型 | 94 实体 · 184 约束 · 78 关系 · 8 流程 | agent 之间的共享契约 |
+| **Skills + Prompts** | 带护栏的可执行能力 | 868 条 Prompt · 8 个可安装 skill | agent 直接调用 |
+
+`dist/` 目录结构：
+
+```
+dist/
+  SKILL.md       ← agent 入口，读它就知道怎么路由请求
+  ontology.json  ← 电商领域模型（实体、关系、约束）
+  prompts.json   ← 带护栏的 Prompt，三语
+  skills/        ← 8 个 domain skill，各含 manifest + playbook + 边界
+  knowledge/     ← 69 章结构化索引
+  integration/   ← MCP Server 接入指南
+```
+
+<br>
+
+## 为什么可以信这些内容
+
+不是靠「我们很认真」，是靠 **24 项 CI 门禁**，每一项必须为 0，非零就让部署失败：
+
+| 门禁 | 查什么 |
+|---|---|
+| `M1` | 正文里每个硬数字必须有来源、核验日期、对冲词，或显式标记 |
+| `M2` | 每个指南章必须有「什么时候这套不管用」小节 |
+| `M4` | 每个外链都探测过且不是死链 |
+| `M7` | `verified` 标记超过 18 个月自动过期报错 |
+| `N3` `N4` | 每个 Prompt 有自检块和输出格式 |
+| `O5` | 正文写的约束值必须和 ontology 一致 |
+| `parity` | 三语文件都存在且结构一致 |
+
+跑一遍自己看：
+
+```bash
+python3 scripts/verify_all.py
+```
+
+> 完整门禁清单和设计理由见 [`scripts/README.md`](scripts/README.md)。已知未关闭项写在 [`CONTRIBUTING.md`](CONTRIBUTING.md) 里，不藏。
+
+<br>
 
 ## 从哪开始
 
@@ -103,6 +185,14 @@ MCP 接入示例：
 | 已经在用 AI，想自动化 | [A14 运营 Agent 化](src/a-operators/a14-operations-agent.md) — 先判断哪些环节值得做 |
 | 技术，要自己搭 | [B4 Agent 工作流](src/b-developers/b4-agent-workflow.md) · [B6 MCP 集成](src/b-developers/b6-mcp-agentic-workflow.md) |
 | 关心眼下的合规 | [关税与 de minimis](src/a-operators/a11-financial-analysis.md) · [EU AI Act](src/a-operators/a6-compliance.md) |
+
+<br>
+
+## 其他你可能关心的
+
+- **内容不会三个月就烂掉** — 正文只写能力档位，型号价格集中在[模型矩阵](src/resources/model-matrix.md)一页维护，带核验日期，过期由 `M7` 报错
+- **Agent 时代可用** — 不止给 Prompt，还给[迁移到技能文件的方法](src/0-foundations/f2-prompt-engineering.md)和[哪些动作绝不能交给 Agent](src/a-operators/a14-operations-agent.md)
+- **CC0** — 随便抄，不用署名，不用告诉我
 
 ---
 
