@@ -3,7 +3,7 @@
 ## Quick Start
 
 ```bash
-python3 scripts/verify_all.py    # Run all 24 gates — must be 0
+python3 scripts/verify_all.py    # Run all gates — must be 0 (except documented residuals)
 ```
 
 ## Extension Paths
@@ -18,7 +18,7 @@ python3 scripts/verify_all.py    # Run all 24 gates — must be 0
 
 **Every path ends the same way: `python3 scripts/verify_all.py` must return 0.**
 
-## Gate Reference (31 gates, 11 groups)
+## Gate Reference (41 gates, 13 groups)
 
 | Group | Gates | Script |
 |-------|-------|--------|
@@ -30,6 +30,8 @@ python3 scripts/verify_all.py    # Run all 24 gates — must be 0
 | K2 Bodies | K2 | verify_all.py --k2 |
 | Routing | R1 | verify_all.py --r1 |
 | R1b Frags | R1b | verify_all.py --r1b |
+| R2 Natural | R2 | verify_all.py --r2 |
+| S6 Attrib | S6 | verify_all.py --s6 |
 | Integration / Docs | I1, D1, D2 | verify_all.py --i1/--d1/--d2 |
 | Sustain | E1, E2 | verify_all.py --sustain |
 | Dist | N7 | build_dist.py (via verify_all.py) |
@@ -55,7 +57,7 @@ carries a body no longer than its own summary or materially shorter than the
 
 All `verified: YYYY-MM` facts have an 18-month shelf life. The M7 gate turns red when facts expire.
 
-**Note:** 63 facts were verified in 2026-08 and will all expire simultaneously in 2028-02. Plan a re-verification cycle before then, or accept the cliff and run a dedicated verification loop in 2028-02.
+**Note:** all 386 `verified` facts (68 in prose + 318 in the ontology) carry 2026-08 and expire together in 2028-02. Plan a re-verification cycle before then, or accept the cliff and run a dedicated verification loop in 2028-02.
 
 ## Trilingual Rules
 
@@ -98,9 +100,9 @@ There is a second way to defeat this, also tried: instead of writing cases conta
 
 ### Why R1 does not reach 0
 
-`R1` currently reports **11 errors out of 60**. This is expected and is not a defect to be closed by adding more keywords.
+`R1` currently reports **19 errors out of 117**. This is expected and is not a defect to be closed by adding more keywords.
 
-The matcher in `verify_all.py` does substring matching. Roughly a third of the suite is phrased the way sellers actually speak — "这个月花了三千块钱一单没出", "现在入场是不是已经太晚了" — where the intent is clear to a reader but no domain noun appears in the text. Closing that gap requires semantic matching, which this gate deliberately does not attempt.
+The matcher in `verify_all.py` does substring matching. Roughly a sixth of the suite is phrased the way sellers actually speak — "这个月花了三千块钱一单没出", "现在入场是不是已经太晚了" — where the intent is clear to a reader but no domain noun appears in the text. Closing that gap requires semantic matching, which this gate deliberately does not attempt.
 
 Chasing these cases by adding keywords is the back-copying failure above wearing a different hat: it would raise the literal ratio, shrink the informative part of the suite, and still not generalize to the next phrasing.
 
@@ -166,3 +168,18 @@ server uses, so a gate pass means the real router would match the same way.
 - `scripts/new_platform.py <id> <name>` — above + platforms.yaml entry + skill index
 - `scripts/new_prompt.py <chapter> <purpose>` — 6-block skeleton, trilingual, with self-check placeholder
 - `scripts/new_constraint.py` — interactive constraint writer with ref location hints
+
+### Chinese trigger coverage (documented, not closed)
+
+The v4 Sprint 5 independent acceptance run found manifest `triggers.keywords`
+lean on Chinese: several queries (「标题」, 「差评」, 「补货点」, 「视频广告」) route
+correctly by the LLM reading `dist/SKILL.md` semantically, but a pure
+keyword/substring router would miss them because the literal trigger is the
+English term (title, negative review, reorder point, advertising).
+
+The real router is the consuming model, so this is not a live failure — but the
+manifests should carry the Chinese domain vocabulary too. Widening them is a
+separate round, and every added trigger must still pass `R1b`: add domain words
+(标题, 差评, 补货, 广告, 合规, 产品页), never sentence fragments.
+
+Status: **documented, not closed**.
