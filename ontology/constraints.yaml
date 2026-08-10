@@ -2405,3 +2405,1862 @@
   verified: 2026-08
   flagged: true
   flag_note: AI 生成内容版权法律现状多变，章节为 2026 年初概括
+- id: walmart.listing.title.max_length
+  entity: listing
+  attribute: title
+  platform: walmart
+  kind: max_length
+  value: 75
+  unit: 字符
+  statement:
+    zh: Walmart 标题 50-75 字符最佳（Amazon 允许 200），超过会拉低 Listing Quality Score
+    en: Walmart titles are best at 50-75 characters (Amazon allows 200); longer hurts
+      Listing Quality Score
+    ja: Walmart のタイトルは50〜75文字が最適（Amazon は200文字まで）。これを超えると Listing Quality Score が下がる
+  source: src/d-platforms/d4-walmart-ai-guide.md#21-listing-quality-score
+  verified: 2026-08
+- id: walmart.listing.title.format
+  entity: listing
+  attribute: title
+  platform: walmart
+  kind: format
+  value: 品牌 + 产品名 + 核心属性（尺寸/颜色/数量）；Title Case
+  unit: null
+  statement:
+    zh: Walmart 标题格式为 品牌 + 产品名 + 核心属性（尺寸/颜色/数量），必须 Title Case；禁止全大写、特殊字符、促销信息（Sale/Free
+      Shipping）与价格
+    en: 'Title format: brand + product name + core attributes (size/color/qty), Title
+      Case required; no all-caps, special chars, promo copy or prices'
+    ja: タイトル形式は ブランド＋商品名＋コア属性（サイズ/色/数量）、Title Case 必須。全大文字・特殊文字・プロモーション文言・価格は禁止
+  source: src/d-platforms/d4-walmart-ai-guide.md#21-listing-quality-score
+  verified: 2026-08
+- id: walmart.listing.bullet_point.max_length
+  entity: bullet_point
+  attribute: content
+  platform: walmart
+  kind: max_length
+  value: 80
+  unit: 字符
+  statement:
+    zh: Walmart Key Features（Bullet Points）每个不超过 80 字符，以动词或利益点开头
+    en: Each Walmart Key Feature (bullet) must stay within 80 characters, starting
+      with a verb or benefit
+    ja: Walmart の Key Features（箇条書き）は1本80文字以内、動詞またはベネフィットで始める
+  source: src/d-platforms/d4-walmart-ai-guide.md#21-listing-quality-score
+  verified: 2026-08
+- id: walmart.listing.bullet_point.count
+  entity: listing
+  attribute: null
+  platform: walmart
+  kind: count
+  value: 3-10
+  unit: 个
+  statement:
+    zh: Walmart Key Features 数量 3-10 个，前 3 个最重要（折叠前可见）
+    en: 'Walmart Key Features: 3-10 bullets; the first 3 matter most (visible above
+      the fold)'
+    ja: Walmart の Key Features は3〜10本。最初の3本が最重要（折り返し前に表示）
+  source: src/d-platforms/d4-walmart-ai-guide.md#21-listing-quality-score
+  verified: 2026-08
+- id: walmart.listing.description.min_length
+  entity: listing
+  attribute: description
+  platform: walmart
+  kind: min_length
+  value: 150
+  unit: 字
+  statement:
+    zh: Walmart 描述至少 150 字，建议 300-500 字，支持 Rich Media 与 HTML
+    en: 'Walmart description: at least 150 characters, 300-500 recommended; Rich Media
+      and HTML supported'
+    ja: Walmart の説明文は最低150字、推奨300〜500字。Rich Media と HTML に対応
+  source: src/d-platforms/d4-walmart-ai-guide.md#21-listing-quality-score
+  verified: 2026-08
+- id: walmart.product_image.main.background
+  entity: product_image
+  attribute: main_image
+  platform: walmart
+  kind: required
+  value: 纯白背景（RGB 255,255,255）+ ≥1000x1000px
+  unit: null
+  statement:
+    zh: Walmart 主图必须纯白背景（RGB 255,255,255），尺寸 ≥1000x1000px
+    en: Walmart main image must be pure white background (RGB 255,255,255) at ≥1000x1000px
+    ja: Walmart のメイン画像は純白背景（RGB 255,255,255）で 1000x1000px 以上
+  source: src/d-platforms/d4-walmart-ai-guide.md#21-listing-quality-score
+  verified: 2026-08
+- id: walmart.product_image.secondary.count
+  entity: product_image
+  attribute: null
+  platform: walmart
+  kind: count
+  value: 4（建议 6-8）
+  unit: 张
+  statement:
+    zh: Walmart 辅图至少 4 张（建议 6-8 张），包含场景图/尺寸对比/细节特写/包装内容/信息图
+    en: 'Walmart secondary images: at least 4 (6-8 recommended) covering lifestyle,
+      size comparison, close-up, what''s-in-the-box, infographic'
+    ja: Walmart のサブ画像は最低4枚（推奨6〜8枚）。シーン・サイズ比較・クローズアップ・同梱物・インフォグラフィックを含める
+  source: src/d-platforms/d4-walmart-ai-guide.md#21-listing-quality-score
+  verified: 2026-08
+- id: walmart.listing.video.recommended
+  entity: listing
+  attribute: null
+  platform: walmart
+  kind: required
+  value: 强烈建议上传视频（额外权重）
+  unit: null
+  statement:
+    zh: Walmart 强烈建议上传视频，有视频的 Listing 获得额外权重；360° 视图为加分项
+    en: Video is strongly recommended on Walmart listings (extra weight in search);
+      360° views are a bonus
+    ja: Walmart は動画のアップロードを強く推奨（動画付き Listing は追加の重みを得る）。360°ビューは加点
+  source: src/d-platforms/d4-walmart-ai-guide.md#21-listing-quality-score
+  verified: 2026-08
+  flagged: true
+  note: 章节表述为'强烈建议'，非平台硬性要求
+- id: walmart.ad.auction.first_price
+  entity: ad
+  attribute: auction
+  platform: walmart
+  kind: format
+  value: 第一价格竞价（出多少付多少）
+  unit: null
+  statement:
+    zh: Walmart Connect 为第一价格竞价：出价 $1.50 即支付 $1.50（不同于 Amazon 第二价格竞价），必须精确出价，出高价就是浪费钱
+    en: 'Walmart Connect uses first-price auction: bidding $1.50 pays $1.50 (unlike
+      Amazon''s second-price), so bid precisely'
+    ja: Walmart Connect は第一価格オークション。入札 $1.50 なら支払いも $1.50（Amazon の第二価格と異なり）正確な入札が必要
+  source: src/d-platforms/d4-walmart-ai-guide.md#32-第一价格竞价-vs-第二价格竞价
+  verified: 2026-08
+- id: walmart.sponsored_product.bid.minimum
+  entity: sponsored_product
+  attribute: bid
+  platform: walmart
+  kind: required
+  value: '0.20'
+  unit: USD
+  statement:
+    zh: Walmart Sponsored Products（Automatic/Manual/Sponsored Videos）最低竞价 $0.20
+    en: Walmart Sponsored Products (Automatic/Manual/Sponsored Videos) minimum bid
+      is $0.20
+    ja: Walmart スポンサープロダクト（オート/マニュアル/スポンサービデオ）の最低入札額は $0.20
+  source: src/d-platforms/d4-walmart-ai-guide.md#31-广告类型详解
+  verified: 2026-08
+- id: walmart.sponsored_brand.bid.minimum
+  entity: sponsored_brand
+  attribute: bid
+  platform: walmart
+  kind: required
+  value: '1.00'
+  unit: USD
+  statement:
+    zh: Walmart Sponsored Brands 最低竞价 $1.00（搜索结果顶部横幅）
+    en: Walmart Sponsored Brands minimum bid is $1.00 (top-of-search banner)
+    ja: Walmart スポンサーブランドの最低入札額は $1.00（検索結果上部バナー）
+  source: src/d-platforms/d4-walmart-ai-guide.md#31-广告类型详解
+  verified: 2026-08
+- id: walmart.buy_box.price.rule
+  entity: buy_box
+  attribute: price
+  platform: walmart
+  kind: rule
+  value: 总价（产品+运费）≤ Amazon 同产品价格
+  unit: null
+  statement:
+    zh: Walmart Buy Box 价格权重最高，总价（产品+运费）需 ≤ Amazon 同产品价格；建议定价 = Amazon 价格或略低 5-10%，可用
+      .88/.97 结尾
+    en: Price has the highest weight in Walmart Buy Box; total price (product+shipping)
+      must be ≤ the Amazon price for the same product; price at Amazon or 5-10% lower
+    ja: Walmart Buy Box では価格の重みが最上位。総額（商品＋送料）は Amazon の同商品価格以下が条件。Amazon 価格か 5〜10%
+      安い設定を推奨
+  source: src/d-platforms/d4-walmart-ai-guide.md#62-walmart-buy-box-深度解析
+  verified: 2026-08
+- id: walmart.performance.on_time_delivery
+  entity: seller_central
+  attribute: on_time_delivery_rate
+  platform: walmart
+  kind: min_ratio
+  value: 95
+  unit: '%'
+  statement:
+    zh: Walmart 准时发货率（On-Time Delivery Rate）需 > 95%，影响 Buy Box 与卖家绩效
+    en: Walmart On-Time Delivery Rate must be above 95%; it affects Buy Box and seller
+      performance
+    ja: Walmart の時間通り発送率（On-Time Delivery Rate）は 95% 超が必要。Buy Box と売上実績に影響
+  source: src/d-platforms/d4-walmart-ai-guide.md#62-walmart-buy-box-深度解析
+  verified: 2026-08
+- id: walmart.performance.valid_tracking_rate
+  entity: seller_central
+  attribute: valid_tracking_rate
+  platform: walmart
+  kind: min_ratio
+  value: 99
+  unit: '%'
+  statement:
+    zh: Walmart 有效追踪率（Valid Tracking Rate）需 > 99%
+    en: Walmart Valid Tracking Rate must be above 99%
+    ja: Walmart の有効追跡率（Valid Tracking Rate）は 99% 超が必要
+  source: src/d-platforms/d4-walmart-ai-guide.md#62-walmart-buy-box-深度解析
+  verified: 2026-08
+- id: walmart.performance.cancellation_rate
+  entity: seller_central
+  attribute: cancellation_rate
+  platform: walmart
+  kind: threshold
+  value: 2
+  unit: '%'
+  statement:
+    zh: Walmart 取消率（Cancellation Rate）需 < 2%
+    en: Walmart Cancellation Rate must stay below 2%
+    ja: Walmart のキャンセル率（Cancellation Rate）は 2% 未満に抑える
+  source: src/d-platforms/d4-walmart-ai-guide.md#62-walmart-buy-box-深度解析
+  verified: 2026-08
+- id: walmart.wfs.storage_fee
+  entity: wfs
+  attribute: storage_fee
+  platform: walmart
+  kind: fee
+  value: 0.75
+  unit: USD/立方英尺/月
+  statement:
+    zh: WFS 标准仓储费 $0.75/立方英尺/月，无旺季加价、无长期仓储费（2026 政策）；配送费小件 $3.45 起
+    en: WFS standard storage fee is $0.75/cu ft/month with no peak-season surcharge
+      and no long-term storage fee (2026 policy); small-item fulfillment from $3.45
+    ja: WFS の標準保管料は月 $0.75/立方フィート。繁忙期の追加料金・長期保管料なし（2026年政策）。小型配送は $3.45 から
+  source: src/d-platforms/d4-walmart-ai-guide.md#41-wfs-vs-fba-详细对比
+  verified: 2026-08
+- id: walmart.seller.registration.requirements
+  entity: seller_central
+  attribute: null
+  platform: walmart
+  kind: required
+  value: 美国公司实体（或 EIN）+ W-9 税表；审核 2-4 周
+  unit: null
+  statement:
+    zh: 注册 Walmart Marketplace 需要美国公司实体（或 EIN）与 W-9 税表，审核 2-4 周，比 Amazon 严格
+    en: Walmart Marketplace registration needs a US entity (or EIN) and W-9 form;
+      approval takes 2-4 weeks and is stricter than Amazon
+    ja: Walmart Marketplace の登録には米国法人（または EIN）と W-9 が必要。審査は2〜4週間で Amazon より厳格
+  source: src/d-platforms/d4-walmart-ai-guide.md#52-详细迁移清单
+  verified: 2026-08
+- id: walmart.listing.gtin.required
+  entity: listing
+  attribute: gtin
+  platform: walmart
+  kind: required
+  value: 每个产品唯一 UPC/GTIN
+  unit: null
+  statement:
+    zh: Walmart 要求每个产品有唯一 UPC/GTIN，白牌无码产品无法上架（商品标识与品类准入比 Amazon 严）
+    en: Walmart requires a unique UPC/GTIN per product; unbranded items without codes
+      cannot be listed (stricter product-data and category gating than Amazon)
+    ja: Walmart は商品ごとに固有の UPC/GTIN を要求。コードのない無ブランド商品は出品不可（Amazon より商品データ要件が厳しい）
+  source: src/d-platforms/d4-walmart-ai-guide.md#52-详细迁移清单
+  verified: 2026-08
+- id: temu.product_image.main.white_background
+  entity: product_image
+  attribute: main_image
+  platform: temu
+  kind: required
+  value: 白底图（必须）
+  unit: null
+  statement:
+    zh: Temu 主图必须为白底图（全托管与半托管均强制），且平台会根据图片质量分配流量
+    en: Temu main image must be white-background (mandatory in both fully-managed
+      and semi-managed); image quality drives traffic allocation
+    ja: Temu のメイン画像は白背景必須（全管理・半管理とも）。画像品質がトラフィック配分に影響
+  source: src/d-platforms/d5-temu-seller-guide.md#32-产品图片-ai-优化
+  verified: 2026-08
+- id: temu.product_image.min_size
+  entity: product_image
+  attribute: main_image
+  platform: temu
+  kind: required
+  value: ≥800x800px
+  unit: null
+  statement:
+    zh: Temu 图片尺寸 ≥800x800px（全托管与半托管一致）
+    en: Temu images must be at least 800x800px (same for fully-managed and semi-managed)
+    ja: Temu の画像サイズは 800x800px 以上（全管理・半管理とも）
+  source: src/d-platforms/d5-temu-seller-guide.md#32-产品图片-ai-优化
+  verified: 2026-08
+- id: temu.product_image.count
+  entity: product_image
+  attribute: null
+  platform: temu
+  kind: count
+  value: 5-8
+  unit: 张
+  statement:
+    zh: Temu 图片数量 5-8 张；半托管 Listing 建议主图白底（产品占画面 80%+）加 5 张辅图
+    en: 'Temu images: 5-8 total; semi-managed listings suggest a white-background
+      main image (product filling 80%+) plus 5 secondary images'
+    ja: Temu の画像は5〜8枚。半管理の Listing は白背景メイン（商品80%以上）＋サブ5枚が推奨
+  source: src/d-platforms/d5-temu-seller-guide.md#32-产品图片-ai-优化
+  verified: 2026-08
+- id: temu.commission.semi_managed
+  entity: listing
+  attribute: commission
+  platform: temu
+  kind: fee
+  value: 2-5%（半托管）；全托管 0%
+  unit: null
+  statement:
+    zh: Temu 半托管佣金 2-5%（品类不同），全托管 0% 佣金（Temu 通过差价盈利）；半托管物流与退货费由卖家承担
+    en: Temu semi-managed commission is 2-5% by category; fully-managed charges 0%
+      commission (Temu profits via price spread); sellers bear logistics and return
+      costs in semi-managed
+    ja: Temu 半管理の手数料は2〜5%（カテゴリ別）。全管理は手数料0%（Temu は差益で収益）。半管理は物流・返品費用を売り手負担
+  source: src/d-platforms/d5-temu-seller-guide.md#14-temu-的佣金和费用结构
+  verified: 2026-08
+- id: temu.fully_managed.pricing_control
+  entity: listing
+  attribute: pricing
+  platform: temu
+  kind: rule
+  value: Temu 定价（卖家只提供供货价）
+  unit: null
+  statement:
+    zh: Temu 全托管模式下 Temu 决定零售价，卖家仅提供供货价、无定价权；核心排名因素为价格 > 销量 > 评价 > 图片质量
+    en: 'In Temu fully-managed mode, Temu sets the retail price; sellers only provide
+      supply prices and have no pricing power. Ranking: price > sales > reviews >
+      image quality'
+    ja: Temu 全管理モードでは Temu が小売価格を決定。売り手は仕入れ価格のみ提供し価格決定権なし。ランキングは価格＞売上＞評価＞画像品質
+  source: src/d-platforms/d5-temu-seller-guide.md#12-全托管-vs-半托管模式详解
+  verified: 2026-08
+- id: temu.no_ad_system
+  entity: campaign
+  attribute: null
+  platform: temu
+  kind: rule
+  value: 无站内广告系统
+  unit: null
+  statement:
+    zh: Temu 没有站内广告系统（不像 Amazon PPC），卖家几乎无法通过'运营技巧'影响排名，是供应链平台而非运营平台
+    en: Temu has no on-site advertising system (unlike Amazon PPC); sellers can barely
+      influence ranking through tactics — it is a supply-chain platform
+    ja: Temu にサイト内広告システムはない（Amazon PPC と異なる）。運営テクニックで順位を動かせず、サプライチェーン型プラットフォーム
+  source: src/d-platforms/d5-temu-seller-guide.md#13-temu-的核心运营逻辑
+  verified: 2026-08
+- id: temu.semi_managed.ship_out_time
+  entity: shipment
+  attribute: ship_out_time
+  platform: temu
+  kind: required
+  value: 24 小时内发货
+  unit: null
+  statement:
+    zh: Temu 半托管订单须在 24 小时内从海外仓发货，美国本土配送时效要求 2-5 天
+    en: Temu semi-managed orders must ship from the overseas warehouse within 24 hours;
+      US domestic delivery target is 2-5 days
+    ja: Temu 半管理の注文は24時間以内に海外倉庫から出荷が必要。米国本土の配送は2〜5日
+  source: src/d-platforms/d5-temu-seller-guide.md#44-temu-半托管模式深度实操
+  verified: 2026-08
+- id: temu.semi_managed.inventory_min
+  entity: inventory
+  attribute: overseas_warehouse_stock
+  platform: temu
+  kind: required
+  value: 至少 30 天销量库存
+  unit: null
+  statement:
+    zh: Temu 半托管海外仓库存要求至少 30 天销量，仓库位置优先美国（其次欧洲、东南亚）
+    en: Temu semi-managed requires at least 30 days of sales as overseas-warehouse
+      stock; US location preferred, then Europe and Southeast Asia
+    ja: Temu 半管理は海外倉庫に最低30日分の売上相当の在庫が必要。倉庫は米国を優先（次いで欧州・東南アジア）
+  source: src/d-platforms/d5-temu-seller-guide.md#44-temu-半托管模式深度实操
+  verified: 2026-08
+- id: temu.semi_managed.review_time
+  entity: seller_central
+  attribute: review_time
+  platform: temu
+  kind: required
+  value: 入驻审核 3-7 个工作日；Listing 审核 1-3 个工作日
+  unit: null
+  statement:
+    zh: Temu 半托管入驻审核 3-7 个工作日，产品上架审核 1-3 个工作日，半托管审核标准更高
+    en: Temu semi-managed onboarding review takes 3-7 business days and listing review
+      1-3 business days; semi-managed standards are higher
+    ja: Temu 半管理の入居審査は3〜7営業日、出品審査は1〜3営業日。半管理の審査基準はより高い
+  source: src/d-platforms/d5-temu-seller-guide.md#44-temu-半托管模式深度实操
+  verified: 2026-08
+- id: shopee.product.title.max_length
+  entity: listing
+  attribute: title
+  platform: shopee
+  kind: max_length
+  value: 120
+  unit: 字符
+  statement:
+    zh: Shopee 标题 ≤120 字符，格式为品类词+品牌+核心属性；描述支持 HTML
+    en: Shopee titles are limited to 120 characters (category word + brand + core
+      attributes); descriptions support HTML
+    ja: Shopee のタイトルは120文字以内（カテゴリ語＋ブランド＋コア属性）。説明文は HTML 対応
+  source: src/d-platforms/d6-southeast-asia-ai-guide.md#53-shopee-跨境入驻详细流程
+  verified: 2026-08
+- id: shopee.product_image.count_min
+  entity: product_image
+  attribute: null
+  platform: shopee
+  kind: count
+  value: 3
+  unit: 张（最少）
+  statement:
+    zh: Shopee 图片要求 ≥3 张，主图白底或场景；每个国家需要单独的 Listing（语言不同）
+    en: Shopee requires at least 3 images with a white-background or scene main image;
+      each country needs its own listing (different language)
+    ja: Shopee の画像は最低3枚、メインは白背景またはシーン。国ごとに別 Listing（言語違い）が必要
+  source: src/d-platforms/d6-southeast-asia-ai-guide.md#53-shopee-跨境入驻详细流程
+  verified: 2026-08
+- id: shopee.commission.rate
+  entity: listing
+  attribute: commission
+  platform: shopee
+  kind: fee
+  value: 1-6%（跨境卖家通常 5-6%）
+  unit: null
+  statement:
+    zh: Shopee 佣金按品类不同 1-6%，跨境卖家通常 5-6%；另有交易手续费 2%
+    en: Shopee commission is 1-6% by category (cross-border sellers typically 5-6%);
+      plus a 2% transaction fee
+    ja: Shopee の手数料はカテゴリ別1〜6%（越境売り手は通常5〜6%）。別途取引手数料2%
+  source: src/d-platforms/d6-southeast-asia-ai-guide.md#shopee-费率结构
+  verified: 2026-08
+- id: shopee.transaction_fee.rate
+  entity: listing
+  attribute: transaction_fee
+  platform: shopee
+  kind: fee
+  value: 2
+  unit: '%'
+  statement:
+    zh: Shopee 交易手续费（支付处理费）2%
+    en: Shopee transaction (payment processing) fee is 2%
+    ja: Shopee の取引手数料（決済処理費）は2%
+  source: src/d-platforms/d6-southeast-asia-ai-guide.md#shopee-费率结构
+  verified: 2026-08
+- id: shopee.performance.chat_response_rate
+  entity: seller_central
+  attribute: chat_response_rate
+  platform: shopee
+  kind: min_ratio
+  value: 90
+  unit: '%'
+  statement:
+    zh: Shopee 要求 12 小时内回复率 >90%，低于标准会影响店铺评分和搜索排名
+    en: Shopee requires a chat response rate above 90% within 12 hours; below standard
+      hurts store rating and search ranking
+    ja: Shopee は12時間以内の返信率90%超が必要。基準未達だと店舗スコアと検索順位に影響
+  source: src/d-platforms/d6-southeast-asia-ai-guide.md#陷阱-3回复率低于-90
+  verified: 2026-08
+- id: shopee.performance.ship_out_time
+  entity: seller_central
+  attribute: ship_out_time
+  platform: shopee
+  kind: required
+  value: <2 天
+  unit: null
+  statement:
+    zh: Shopee 发货速度（Ship Out Time）目标 <2 天；逾期发货率 <5%
+    en: Shopee ship-out time target is under 2 days; late shipment rate below 5%
+    ja: Shopee の発送速度は2日未満が目標。遅延発送率は5%未満
+  source: src/d-platforms/d6-southeast-asia-ai-guide.md#61-关键指标体系
+  verified: 2026-08
+- id: shopee.performance.cancellation_rate
+  entity: seller_central
+  attribute: cancellation_rate
+  platform: shopee
+  kind: threshold
+  value: 5
+  unit: '%'
+  statement:
+    zh: Shopee 取消率（Cancellation Rate）需 <5%
+    en: Shopee Cancellation Rate must stay below 5%
+    ja: Shopee のキャンセル率は5%未満に抑える
+  source: src/d-platforms/d6-southeast-asia-ai-guide.md#61-关键指标体系
+  verified: 2026-08
+- id: shopee.performance.penalty_points
+  entity: seller_central
+  attribute: penalty_points
+  platform: shopee
+  kind: threshold
+  value: 3
+  unit: 分
+  statement:
+    zh: Shopee 违规扣分（Penalty Points）需 <3 分
+    en: Shopee penalty points must stay below 3
+    ja: Shopee の違反ペナルティポイントは3点未満
+  source: src/d-platforms/d6-southeast-asia-ai-guide.md#61-关键指标体系
+  verified: 2026-08
+- id: shopee.cod.rejection_cost
+  entity: cod
+  attribute: rejection_rate
+  platform: shopee
+  kind: rule
+  value: 定价预留 5-10% COD 拒收成本
+  unit: null
+  statement:
+    zh: 东南亚 COD 比例 40-60%、拒收率 5-15%，定价需预留 5-10% 拒收成本，发货前通过 SMS/WhatsApp 确认订单
+    en: COD share in SEA is 40-60% with 5-15% rejection; price in 5-10% for rejections
+      and confirm orders via SMS/WhatsApp before shipping
+    ja: 東南アジアの COD 比率は40〜60%、拒否率5〜15%。価格に5〜10%の拒否コストを織り込み、発送前に SMS/WhatsApp で確認
+  source: src/d-platforms/d6-southeast-asia-ai-guide.md#陷阱-1忽略-cod-拒收问题
+  verified: 2026-08
+- id: lazada.product_image.count_min
+  entity: product_image
+  attribute: null
+  platform: lazada
+  kind: count
+  value: 4
+  unit: 张（最少）
+  statement:
+    zh: Lazada 图片要求 ≥4 张，白底主图；标题格式为品牌+产品名+核心属性
+    en: Lazada requires at least 4 images with a white-background main image; title
+      format is brand + product name + core attributes
+    ja: Lazada の画像は最低4枚、メインは白背景。タイトル形式はブランド＋商品名＋コア属性
+  source: src/d-platforms/d6-southeast-asia-ai-guide.md#54-lazada-global-selling-入驻流程
+  verified: 2026-08
+- id: lazada.product.title.format
+  entity: listing
+  attribute: title
+  platform: lazada
+  kind: format
+  value: 品牌+产品名+核心属性
+  unit: null
+  statement:
+    zh: Lazada 标题格式为 品牌+产品名+核心属性；描述支持 Rich Content（类似 A+ Content）
+    en: 'Lazada title format: brand + product name + core attributes; descriptions
+      support Rich Content (A+ style)'
+    ja: Lazada のタイトル形式は ブランド＋商品名＋コア属性。説明文は Rich Content（A+ 相当）対応
+  source: src/d-platforms/d6-southeast-asia-ai-guide.md#54-lazada-global-selling-入驻流程
+  verified: 2026-08
+- id: lazada.commission.rate
+  entity: listing
+  attribute: commission
+  platform: lazada
+  kind: fee
+  value: 1-8%
+  unit: null
+  statement:
+    zh: Lazada 佣金按品类不同 1-8%（通常高于 Shopee）
+    en: Lazada commission is 1-8% by category (generally higher than Shopee)
+    ja: Lazada の手数料はカテゴリ別1〜8%（通常 Shopee より高い）
+  source: src/d-platforms/d6-southeast-asia-ai-guide.md#2-shopee-vs-lazada-差异化运营
+  verified: 2026-08
+- id: lazada.lazmall.brand_authorization
+  entity: storefront
+  attribute: lazmall
+  platform: lazada
+  kind: required
+  value: 品牌授权书
+  unit: null
+  statement:
+    zh: LazMall 品牌旗舰店需要品牌授权书，佣金略高但转化率更高
+    en: LazMall flagship stores require a brand authorization letter; commission is
+      slightly higher but conversion is better
+    ja: LazMall ブランド旗艦店にはブランド授権書が必要。手数料はやや高いが転換率が高い
+  source: src/d-platforms/d6-southeast-asia-ai-guide.md#52-lazada-global-selling
+  verified: 2026-08
+- id: lazada.fulfillment.cainiao_time
+  entity: shipment
+  attribute: cainiao_delivery_days
+  platform: lazada
+  kind: range
+  value: 5-12
+  unit: 天
+  statement:
+    zh: Lazada Cainiao 跨境物流 5-12 天（中国仓→目的国），与 1688/Alibaba 体系打通
+    en: Lazada Cainiao cross-border shipping takes 5-12 days (China warehouse to destination),
+      integrated with the 1688/Alibaba ecosystem
+    ja: Lazada の Cainiao 越境配送は5〜12日（中国倉庫→目的国）。1688/Alibaba エコシステムと連携
+  source: src/d-platforms/d6-southeast-asia-ai-guide.md#54-lazada-global-selling-入驻流程
+  verified: 2026-08
+- id: lazada.seller.review_time
+  entity: seller_central
+  attribute: review_time
+  platform: lazada
+  kind: required
+  value: 5-10 个工作日
+  unit: null
+  statement:
+    zh: Lazada Global Selling 入驻审核 5-10 个工作日
+    en: Lazada Global Selling onboarding review takes 5-10 business days
+    ja: Lazada Global Selling の入居審査は5〜10営業日
+  source: src/d-platforms/d6-southeast-asia-ai-guide.md#54-lazada-global-selling-入驻流程
+  verified: 2026-08
+- id: rakuten.shop.initial_setup_fee
+  entity: seller_central
+  attribute: initial_setup_fee
+  platform: rakuten
+  kind: fee
+  value: 60000
+  unit: JPY（一次性）
+  statement:
+    zh: Rakuten 入驻初始设置费 ¥60,000（一次性），另按月租计划收费
+    en: Rakuten onboarding has a one-time ¥60,000 setup fee plus a monthly plan fee
+    ja: Rakuten の初期設定費は ¥60,000（一回限り）。月額プラン料金は別途
+  source: src/d-platforms/d8-rakuten-japan-ai-guide.md#26-rakuten-初始设置费
+  verified: 2026-08
+  flagged: true
+  note: 费用数据来自章节引用的行业资料（NextLevel Global），非平台官方文档
+- id: rakuten.shop.monthly_fee
+  entity: seller_central
+  attribute: monthly_fee
+  platform: rakuten
+  kind: fee
+  value: 19500-100000
+  unit: JPY/月
+  statement:
+    zh: Rakuten 月租 ¥19,500-100,000（がんばれ！プラン/スタンダード/メガショップ），另有系统利用费（月销的 0.1%）
+    en: Rakuten monthly fee is ¥19,500-100,000 by plan, plus a system usage fee of
+      0.1% of monthly sales
+    ja: Rakuten の月額料金は ¥19,500〜100,000（プラン別）。別途システム利用料（月商の0.1%）
+  source: src/d-platforms/d8-rakuten-japan-ai-guide.md#26-rakuten-初始设置费
+  verified: 2026-08
+- id: rakuten.commission.rate
+  entity: listing
+  attribute: commission
+  platform: rakuten
+  kind: fee
+  value: 2-7%
+  unit: null
+  statement:
+    zh: Rakuten 佣金 2-7%（按品类和计划），月租越高佣金越低
+    en: Rakuten commission is 2-7% by category and plan; higher monthly plans get
+      lower commission
+    ja: Rakuten の手数料は2〜7%（カテゴリとプランによる）。月額が高いほど手数料が低い
+  source: src/d-platforms/d8-rakuten-japan-ai-guide.md#26-rakuten-初始设置费
+  verified: 2026-08
+- id: rakuten.product.title.length
+  entity: listing
+  attribute: title
+  platform: rakuten
+  kind: range
+  value: 80-120
+  unit: 字符
+  statement:
+    zh: Rakuten 商品名 80-120 字符，格式：【品牌名】产品名 核心属性 | 関連キーワード，可包含【】与 | 分隔符
+    en: 'Rakuten product names are 80-120 characters; format: 【brand】product core
+      attributes | related keywords, may use 【】 and | separators'
+    ja: Rakuten の商品名は80〜120文字。形式：【ブランド名】商品名 コア属性 | 関連キーワード。【】と | 区切りが使用可能
+  source: src/d-platforms/d8-rakuten-japan-ai-guide.md#32-ai-生成日语-listing增强版
+  verified: 2026-08
+- id: rakuten.product.description.length
+  entity: listing
+  attribute: description
+  platform: rakuten
+  kind: range
+  value: 500-1000
+  unit: 字
+  statement:
+    zh: Rakuten 商品説明 500-1000 字，使用です/ます体，支持自定义 HTML；キャッチコピー 20-30 字符
+    en: Rakuten product description is 500-1000 characters in desu/masu style with
+      custom HTML; catch copy 20-30 characters
+    ja: Rakuten の商品説明は500〜1000字。です/ます体、カスタム HTML 対応。キャッチコピーは20〜30文字
+  source: src/d-platforms/d8-rakuten-japan-ai-guide.md#32-ai-生成日语-listing增强版
+  verified: 2026-08
+- id: rakuten.shop.html_customization
+  entity: storefront
+  attribute: html_customization
+  platform: rakuten
+  kind: required
+  value: HTML/CSS 完全自定义店铺页
+  unit: null
+  statement:
+    zh: Rakuten 店铺页面可完全自定义（HTML/CSS），类似迷你独立站，是品牌信任的主要载体
+    en: Rakuten store pages are fully customizable (HTML/CSS), like a mini DTC site,
+      and carry most of the brand-trust weight
+    ja: Rakuten の店舗ページは HTML/CSS で完全カスタマイズ可能（ミニ独立サイト相当）。ブランド信頼の主要な担い手
+  source: src/d-platforms/d8-rakuten-japan-ai-guide.md#21-店铺页面自定义
+  verified: 2026-08
+- id: rakuten.mail.rmail.allowed
+  entity: storefront
+  attribute: rmail
+  platform: rakuten
+  kind: required
+  value: R-Mail 允许卖家邮件营销（须含退订链接）
+  unit: null
+  statement:
+    zh: Rakuten 鼓励卖家通过 R-Mail 给购买过的用户发邮件（与 Amazon 禁止联系买家不同），邮件必须包含退订链接（日本法律要求）
+    en: Rakuten encourages sellers to email past buyers via R-Mail (unlike Amazon,
+      which forbids contacting buyers); emails must include an unsubscribe link (Japanese
+      law)
+    ja: Rakuten は R-Mail で購入済み顧客へのメール配信を推奨（Amazon と異なり禁止されない）。メールには退会リンクが必須（日本法）
+  source: src/d-platforms/d8-rakuten-japan-ai-guide.md#23-r-mail-邮件营销
+  verified: 2026-08
+- id: rakuten.ad.rpp.min_bid
+  entity: ad
+  attribute: min_bid
+  platform: rakuten
+  kind: required
+  value: 25
+  unit: JPY/click
+  statement:
+    zh: Rakuten RPP 搜索结果广告最低出价 ¥25/click；CPA 广告按成交额的 20% 计费
+    en: Rakuten RPP search ads have a minimum bid of ¥25/click; CPA ads charge 20%
+      of transaction value
+    ja: Rakuten RPP 検索広告の最低入札は ¥25/クリック。CPA 広告は成約額の20%
+  source: src/d-platforms/d8-rakuten-japan-ai-guide.md#34-rakuten-广告系统
+  verified: 2026-08
+- id: rakuten.points.super_sale.prep
+  entity: campaign
+  attribute: promo_prep
+  platform: rakuten
+  kind: rule
+  value: Super Sale 前 4 周准备库存和活动页面
+  unit: null
+  statement:
+    zh: Rakuten Super Sale 每季度一次（流量最大），需提前 4 周准备库存和活动页面；每月 5/10/15/20/25/30 日为积分 5
+      倍日
+    en: Rakuten Super Sale runs quarterly (biggest traffic) — prepare stock and campaign
+      pages 4 weeks ahead; the 5th/10th/15th/20th/25th/30th of each month are 5x-point
+      days
+    ja: Rakuten の Super Sale は四半期ごと（最大トラフィック）。4週間前から在庫と特設ページを準備。毎月5/10/15/20/25/30日はポイント5倍デー
+  source: src/d-platforms/d8-rakuten-japan-ai-guide.md#24-活动机制
+  verified: 2026-08
+- id: ebay.listing.title.max_length
+  entity: listing
+  attribute: title
+  platform: ebay
+  kind: max_length
+  value: 80
+  unit: 字符
+  statement:
+    zh: eBay 标题 80 字符内，格式：品牌 + 型号 + 核心规格 + 品相关键词（二手/翻新品需含品相词如 Excellent Condition/Like
+      New）
+    en: 'eBay titles fit within 80 characters: brand + model + key specs + condition
+      keywords (used/refurbished items add terms like Excellent Condition / Like New)'
+    ja: eBay のタイトルは80文字以内。ブランド＋型番＋主要仕様＋コンディション語（中古/再生品は Excellent Condition 等を含める）
+  source: src/d-platforms/d9-ebay-ai-guide.md#22-二手翻新品-ai-描述生成ebay-独有场景
+  verified: 2026-08
+- id: ebay.promoted_listings.standard.ad_rate
+  entity: campaign
+  attribute: ad_rate
+  platform: ebay
+  kind: range
+  value: 2-20
+  unit: '%'
+  statement:
+    zh: eBay Promoted Listings Standard 按成交付费，ad rate 2-20%
+    en: eBay Promoted Listings Standard charges per sale with an ad rate of 2-20%
+    ja: eBay の Promoted Listings Standard は成約課金。広告率2〜20%
+  source: src/d-platforms/d9-ebay-ai-guide.md#24-promoted-listings-深度优化
+  verified: 2026-08
+- id: ebay.promoted_listings.attribution_window
+  entity: campaign
+  attribute: attribution_days
+  platform: ebay
+  kind: required
+  value: 点击后 30 天
+  unit: null
+  statement:
+    zh: 2026-01-13 起 eBay 美国/加拿大实施新归因模型：任何用户点击广告后 30 天内购买都归因到广告（不限于点击者本人），广告费可能上升
+    en: Since 2026-01-13 eBay US/CA attributes any purchase within 30 days of an ad
+      click to that ad (even by another user); ad costs may rise
+    ja: 2026-01-13 より eBay 米国/カナダは、広告クリック後30日以内の購入をすべて広告に帰属（クリック者以外も対象）。広告費が上がる可能性
+  source: src/d-platforms/d9-ebay-ai-guide.md#24-promoted-listings-深度优化
+  verified: 2026-08
+- id: ebay.listing.condition.description.required
+  entity: listing
+  attribute: condition_description
+  platform: ebay
+  kind: required
+  value: 详细品相描述 + 实物图
+  unit: null
+  statement:
+    zh: eBay 二手/翻新品 Listing 必须包含详细品相描述（外观/功能/电池/配件/包装）与实物图，并含免责声明（Photos are of the
+      actual item）
+    en: eBay used/refurbished listings must carry a detailed condition description
+      (appearance/function/battery/accessories/packaging), real photos, and a disclaimer
+    ja: eBay の中古/再生品 Listing には詳細な状態説明（外観/機能/バッテリー/付属品/梱包）と実物写真、免責文言が必須
+  source: src/d-platforms/d9-ebay-ai-guide.md#22-二手翻新品-ai-描述生成ebay-独有场景
+  verified: 2026-08
+- id: ebay.auction.duration
+  entity: listing
+  attribute: auction_duration
+  platform: ebay
+  kind: range
+  value: 3/5/7/10
+  unit: 天
+  statement:
+    zh: eBay 拍卖时长可选 3/5/7/10 天；7 天适合大部分品类，周日晚上结束通常最佳
+    en: eBay auction durations are 3/5/7/10 days; 7 days suits most categories and
+      ending Sunday evening is usually best
+    ja: eBay のオークション期間は3/5/7/10日。7日が多くのカテゴリに最適で、日曜夜に終了するのが一般的にベスト
+  source: src/d-platforms/d9-ebay-ai-guide.md#23-ebay-定价策略-ai-分析
+  verified: 2026-08
+- id: ebay.authenticity_guarantee.required
+  entity: product_image
+  attribute: authenticity
+  platform: ebay
+  kind: required
+  value: 高价商品认证（球鞋/手表/手袋）
+  unit: null
+  statement:
+    zh: eBay Authenticity Guarantee 为高价商品（球鞋、手表、手袋）提供认证，适合高价二手品类；eBay Vault 服务收藏品存储与交易
+    en: eBay Authenticity Guarantee authenticates high-value items (sneakers, watches,
+      handbags), ideal for premium used goods; eBay Vault stores and trades collectibles
+    ja: eBay の Authenticity Guarantee は高額品（スニーカー・時計・ハンドバッグ）を鑑定。高額中古品向け。eBay Vault
+      はコレクターズ品の保管・取引
+  source: src/d-platforms/d9-ebay-ai-guide.md#25-ebay-特有功能的-ai-应用
+  verified: 2026-08
+- id: ebay.promoted_listings.budget.overspend
+  entity: campaign
+  attribute: daily_budget
+  platform: ebay
+  kind: rule
+  value: 日预算按预期花费的 50-70% 设置
+  unit: null
+  statement:
+    zh: eBay Promoted Listings PPC（Priority Ads/Promoted Stores）存在日预算超支问题（有时达 2 倍），建议设置保守日预算（预期花费的
+      50-70%）并每日监控
+    en: eBay Promoted Listings PPC (Priority Ads / Promoted Stores) can overspend
+      daily budgets (sometimes 2x); set conservative budgets at 50-70% of expected
+      spend and monitor daily
+    ja: eBay の Promoted Listings PPC は日次予算を超過する問題あり（最大2倍）。予想支出の50〜70%に保守設定し毎日監視
+  source: src/d-platforms/d9-ebay-ai-guide.md#28-ebay-promoted-listings-预算超支问题
+  verified: 2026-08
+- id: aliexpress.listing.title.max_length
+  entity: listing
+  attribute: title
+  platform: aliexpress
+  kind: max_length
+  value: 128
+  unit: 字符
+  statement:
+    zh: AliExpress 标题 ≤128 字符（可长于 Amazon），格式：品牌+产品+核心属性+关键词
+    en: 'AliExpress titles are limited to 128 characters (longer than Amazon allows);
+      format: brand + product + core attributes + keywords'
+    ja: AliExpress のタイトルは128文字以内（Amazon より長く可）。形式：ブランド＋商品＋コア属性＋キーワード
+  source: src/d-platforms/d10-aliexpress-ai-guide.md#22-多语言-listing-优化
+  verified: 2026-08
+- id: aliexpress.commission.rate
+  entity: listing
+  attribute: commission
+  platform: aliexpress
+  kind: fee
+  value: 5-9%
+  unit: null
+  statement:
+    zh: AliExpress 佣金按品类不同，一般 5%-9%（消费电子 5-7%，家居园艺 7-8%）
+    en: AliExpress commission is generally 5-9% by category (consumer electronics
+      5-7%, home & garden 7-8%)
+    ja: AliExpress の手数料はカテゴリ別で通常5〜9%（家電5〜7%、ホーム&ガーデン7〜8%）
+  source: src/d-platforms/d10-aliexpress-ai-guide.md#22-佣金与费用
+  verified: 2026-08
+- id: aliexpress.seller.no_monthly_fee
+  entity: seller_central
+  attribute: monthly_fee
+  platform: aliexpress
+  kind: required
+  value: 无月租费
+  unit: null
+  statement:
+    zh: AliExpress 不收月租费（与 Amazon 不同），但 AliExpress Choice 模式下平台会从定价中抽取更高比例
+    en: AliExpress charges no monthly fee (unlike Amazon), but Choice mode takes a
+      higher share from pricing
+    ja: AliExpress は月額料金なし（Amazon と異なる）。ただし Choice モードでは価格からより多くを差し引く
+  source: src/d-platforms/d10-aliexpress-ai-guide.md#22-佣金与费用
+  verified: 2026-08
+- id: aliexpress.supplier.score_threshold
+  entity: supplier
+  attribute: score
+  platform: aliexpress
+  kind: required
+  value: 评分 ≥4.8 且近 90 天订单 ≥2000
+  unit: null
+  statement:
+    zh: AliExpress 供应商筛选标准：评分 ≥4.8、近 90 天订单 ≥2000、有视频验证仓库
+    en: 'AliExpress supplier screening: rating ≥4.8, ≥2000 orders in the last 90 days,
+      and video-verified warehouse'
+    ja: AliExpress の仕入れ先選定基準：評価4.8以上、直近90日で注文2000件以上、動画検証済み倉庫
+  source: src/d-platforms/d10-aliexpress-ai-guide.md#23-aliexpress-供应商筛选标准
+  verified: 2026-08
+  flagged: true
+  note: 数据来自章节引用的行业最佳实践（Alibaba Insights），非平台硬性规则
+- id: aliexpress.fulfillment.choice_time
+  entity: shipment
+  attribute: choice_delivery_days
+  platform: aliexpress
+  kind: range
+  value: 5-10
+  unit: 天
+  statement:
+    zh: AliExpress Choice 配送 5-10 天（平台统一），标准配送 12-20 天，海外仓 3-7 天，菜鸟经济 20-40 天
+    en: AliExpress Choice delivery is 5-10 days (platform-managed), standard 12-20
+      days, overseas warehouse 3-7 days, Cainiao economy 20-40 days
+    ja: AliExpress Choice の配送は5〜10日（プラットフォーム一括）。標準12〜20日、海外倉庫3〜7日、菜鳥エコノミー20〜40日
+  source: src/d-platforms/d10-aliexpress-ai-guide.md#41-物流选项对比
+  verified: 2026-08
+- id: aliexpress.trust.reply_time
+  entity: seller_central
+  attribute: reply_time
+  platform: aliexpress
+  kind: required
+  value: 24 小时内回复买家消息
+  unit: null
+  statement:
+    zh: AliExpress 信任建设要求 24 小时内回复买家消息，并鼓励视频展示、详细描述与售后保障
+    en: AliExpress trust-building calls for replying to buyer messages within 24 hours,
+      plus video, detailed descriptions and after-sales guarantees
+    ja: AliExpress の信頼構築は24時間以内のバイヤー返信が必要。動画・詳細説明・アフター保証も推奨
+  source: src/d-platforms/d10-aliexpress-ai-guide.md#53-aliexpress-信任度挑战
+  verified: 2026-08
+- id: coupang.listing.title.max_length
+  entity: listing
+  attribute: title
+  platform: coupang
+  kind: max_length
+  value: 100
+  unit: 字符
+  statement:
+    zh: Coupang 商品名 50-100 字符，格式：브랜드 + 상품명 + 핵심속성（比 Amazon 短）
+    en: 'Coupang product names are 50-100 characters: brand + product name + key attributes
+      (shorter than Amazon)'
+    ja: Coupang の商品名は50〜100文字。形式：브랜드＋상품명＋핵심속성（Amazon より短い）
+  source: src/d-platforms/d11-coupang-korea-ai-guide.md#3-韩语-listing-ai-优化增强版
+  verified: 2026-08
+- id: coupang.listing.description.length
+  entity: listing
+  attribute: description
+  platform: coupang
+  kind: range
+  value: 500-800
+  unit: 字
+  statement:
+    zh: Coupang 详细描述 500-800 字，使用敬语（존댓말），强调品质与安全，需展示认证信息（KC 等）
+    en: Coupang detail descriptions are 500-800 characters in honorific Korean, emphasizing
+      quality and safety with certification info (KC etc.)
+    ja: Coupang の詳細説明は500〜800字。敬語（존댓말）で品質・安全を強調し認証情報（KC等）を表示
+  source: src/d-platforms/d11-coupang-korea-ai-guide.md#3-韩语-listing-ai-优化增强版
+  verified: 2026-08
+- id: coupang.kc_certification.mandatory
+  entity: certification
+  attribute: kc
+  platform: coupang
+  kind: required
+  value: KC 安全认证（强制性）
+  unit: null
+  statement:
+    zh: 韩国对电子产品、儿童用品、家电强制要求 KC 安全认证，没有不能销售；电子/电气产品还需 KC 电磁兼容认证；食品需韩 FDA、化妆品需 MFDS
+      注册
+    en: Korea mandates KC safety certification for electronics, children's products
+      and appliances — no certification, no sales; EMC (KC) also required for electrical
+      goods; food needs Korean FDA, cosmetics MFDS registration
+    ja: 韓国は電子・子供用品・家電に KC 安全認証を義務付け（認証なしで販売不可）。電気製品は KC 電磁適合も必要。食品は韓国FDA、化粧品はMFDS登録
+  source: src/d-platforms/d11-coupang-korea-ai-guide.md#43-kc-认证要求
+  verified: 2026-08
+- id: coupang.rocket_delivery.ranking_boost
+  entity: shipment
+  attribute: rocket_delivery
+  platform: coupang
+  kind: rule
+  value: Rocket Delivery 排名大幅提升
+  unit: null
+  statement:
+    zh: Coupang 使用 Rocket Delivery 排名大幅提升（次日达/当日达/凌晨配送）；Rocket Growth 为跨境卖家专用（有一定加权），卖家自发货排名较低
+    en: Coupang listings on Rocket Delivery get a major ranking boost (next-day/same-day/dawn
+      delivery); Rocket Growth is for cross-border sellers (some boost); self-fulfillment
+      ranks lowest
+    ja: Coupang は Rocket Delivery 利用で順位が大幅上昇（翌日/当日/早朝配達）。Rocket Growth は越境専用（一定の加点）、自己出荷は順位が低い
+  source: src/d-platforms/d11-coupang-korea-ai-guide.md#41-rocket-delivery로켓배송
+  verified: 2026-08
+- id: coupang.ad.search.min_bid
+  entity: ad
+  attribute: min_bid
+  platform: coupang
+  kind: required
+  value: 70
+  unit: KRW/click
+  statement:
+    zh: Coupang 搜索广告最低竞价 ₩70 起；品牌广告需要品牌认证
+    en: Coupang search ads have a minimum bid of ₩70; brand ads require brand certification
+    ja: Coupang 検索広告の最低入札は ₩70。ブランド広告はブランド認証が必要
+  source: src/d-platforms/d11-coupang-korea-ai-guide.md#43-coupang-广告系统
+  verified: 2026-08
+- id: coupang.global_seller.korean_listing
+  entity: seller_central
+  attribute: listing_language
+  platform: coupang
+  kind: required
+  value: 产品描述必须包含韩语
+  unit: null
+  statement:
+    zh: Coupang Global Seller 要求产品描述必须包含韩语；需清晰产品图片、符合韩国进口规定，特定品类需额外认证（KC 等）
+    en: Coupang Global Seller requires product descriptions in Korean, clear images,
+      compliance with Korean import rules, and category certifications (KC etc.) where
+      applicable
+    ja: Coupang Global Seller は商品説明に韓国語が必須。鮮明な商品画像・韓国輸入規制の順守、カテゴリ別認証（KC等）も必要
+  source: src/d-platforms/d11-coupang-korea-ai-guide.md#53-global-seller-入驻要求
+  verified: 2026-08
+- id: coupang.rocket_growth.overseas_warehouse
+  entity: shipment
+  attribute: rocket_growth
+  platform: coupang
+  kind: required
+  value: 海外仓备货（中国/美国/日本）
+  unit: null
+  statement:
+    zh: Rocket Growth 需先备货到海外仓（中国/美国/日本），Coupang 再调拨至韩国仓并授予 Rocket Delivery 标签；退货由
+      Coupang 处理
+    en: Rocket Growth requires pre-positioned stock at an overseas warehouse (CN/US/JP);
+      Coupang transfers it to a KR warehouse and grants the Rocket Delivery badge;
+      returns handled by Coupang
+    ja: Rocket Growth は海外倉庫（中国/米国/日本）への事前在庫が必要。Coupang が韓国倉庫に移送し Rocket Delivery タグを付与。返品は
+      Coupang 対応
+  source: src/d-platforms/d11-coupang-korea-ai-guide.md#54-rocket-growth-深度解析
+  verified: 2026-08
+- id: faire.commission.new_customer
+  entity: listing
+  attribute: commission
+  platform: faire
+  kind: fee
+  value: 15%（新客户）/ 0%（回头客）
+  unit: null
+  statement:
+    zh: Faire 新客户佣金 15%、回头客 0%、Faire Direct 0%；新客户首单另收一次性 $10；支付处理费包含在佣金中
+    en: Faire charges 15% commission on new customers, 0% on repeat customers and
+      Faire Direct; a one-time $10 fee applies per new-customer first order; payment
+      processing is included
+    ja: Faire は新規顧客15%、リピート顧客0%、Faire Direct 0%。新規顧客の初回注文ごとに一時金 $10。決済手数料はコミッションに含む
+  source: src/d-platforms/d12-faire-wholesale-ai-guide.md#25-批发定价深度策略
+  verified: 2026-08
+- id: faire.wholesale_price.ratio
+  entity: listing
+  attribute: wholesale_price_ratio
+  platform: faire
+  kind: range
+  value: 40-50
+  unit: '%（零售价）'
+  statement:
+    zh: Faire 批发价通常为零售价的 40-50%（Keystone 定价），这是批发价与零售价的倍率基础
+    en: Faire wholesale prices typically run 40-50% of retail (keystone pricing),
+      the structural basis of wholesale economics
+    ja: Faire の卸売価格は通常小売価格の40〜50%（キーストーン価格）。卸と小売の倍率構造の基礎
+  source: src/d-platforms/d12-faire-wholesale-ai-guide.md#11-faire-vs-b2c-平台
+  verified: 2026-08
+- id: faire.return.window
+  entity: listing
+  attribute: return_window
+  platform: faire
+  kind: required
+  value: 60 天免费退货（Faire 承担）
+  unit: null
+  statement:
+    zh: Faire 提供 60 天免费退货，退货成本由 Faire 承担
+    en: Faire offers 60-day free returns, with the return cost borne by Faire
+    ja: Faire は60日間の無料返品を提供し、返品コストは Faire が負担
+  source: src/d-platforms/d12-faire-wholesale-ai-guide.md#11-faire-vs-b2c-平台
+  verified: 2026-08
+- id: faire.moq.zero_boost
+  entity: moq
+  attribute: value
+  platform: faire
+  kind: rule
+  value: MOQ 设为 $0 获得 3 倍曝光
+  unit: null
+  statement:
+    zh: Faire 上零售商可按 MOQ（$0/$100/$200）筛选；MOQ 设为 $0 可在所有筛选中出现，一个设置带来 3 倍曝光
+    en: Retailers filter by MOQ ($0/$100/$200) on Faire; setting MOQ to $0 makes a
+      brand appear in all filters — one setting change yields 3x exposure
+    ja: Faire の小売店は MOQ（$0/$100/$200）で絞り込む。MOQ を$0にすると全フィルターに表示され3倍の露出を得る
+  source: src/d-platforms/d12-faire-wholesale-ai-guide.md#22-faire-账号设置优化高杠杆操作
+  verified: 2026-08
+  flagged: true
+  note: 3 倍曝光数据来自章节引用的第三方实操（Smoothed.io），非平台官方承诺
+- id: faire.lead_time.recommendation
+  entity: lead_time
+  attribute: value
+  platform: faire
+  kind: required
+  value: 1-3 天最佳（>14 天视为红旗）
+  unit: null
+  statement:
+    zh: Faire Lead Time 保持 1-3 天最佳，>14 天会被零售商视为红旗；不要使用 Holiday Mode/Pause Mode（算法重置，恢复需数月）
+    en: Faire lead time of 1-3 days is best; over 14 days reads as a red flag. Never
+      use Holiday/Pause mode — the algorithm resets and takes months to recover
+    ja: Faire のリードタイムは1〜3日が最適、14日超はレッドフラグ扱い。Holiday/Pause モードは使わない（アルゴリズムがリセットされ復帰に数月）
+  source: src/d-platforms/d12-faire-wholesale-ai-guide.md#22-faire-账号设置优化高杠杆操作
+  verified: 2026-08
+- id: faire.collections.count
+  entity: storefront
+  attribute: collections
+  platform: faire
+  kind: count
+  value: 20
+  unit: 个
+  statement:
+    zh: Faire 允许创建 20 个 Collections（大部分卖家只用 3-4 个），分产品导向与零售商导向两类；每个未创建的 Collection
+      都是缺失的搜索入口
+    en: Faire allows up to 20 Collections (most brands use only 3-4), split into product-oriented
+      and retailer-oriented; every unused Collection is a lost search entry point
+    ja: Faire は最大20個の Collection を作成可能（多くの売り手は3〜4個のみ）。商品向けと小売店向けに分け、未作成の Collection
+      は検索入口の欠落
+  source: src/d-platforms/d12-faire-wholesale-ai-guide.md#22-faire-账号设置优化高杠杆操作
+  verified: 2026-08
+- id: faire.ad.roas.target
+  entity: campaign
+  attribute: roas
+  platform: faire
+  kind: rule
+  value: 首单 ROAS >3x，混合 ROAS >5x
+  unit: null
+  statement:
+    zh: Faire Ads 目标：首单 ROAS >3x、混合 ROAS >5x；预算从 $200-500/月 开始测试，3-4 个月内逐步增加，ROAS
+      <2x 时先修内容再加预算
+    en: 'Faire Ads targets: first-order ROAS >3x, blended ROAS >5x; start at $200-500/month
+      and scale over 3-4 months; if ROAS <2x fix content before raising budget'
+    ja: Faire 広告の目標：初回注文 ROAS 3倍超、複合 ROAS 5倍超。月 $200〜500 から開始し3〜4か月で拡大。ROAS 2倍未満なら内容を直してから予算増
+  source: src/d-platforms/d12-faire-wholesale-ai-guide.md#24-faire-adspromoted-listings
+  verified: 2026-08
+- id: otto.seller.legal_entity
+  entity: seller_central
+  attribute: legal_entity
+  platform: otto
+  kind: required
+  value: 德国或荷兰法人实体 + VAT ID
+  unit: null
+  statement:
+    zh: Otto 入驻强制要求德国或荷兰公司法律形式与 VAT 税号；中国卖家无法直接入驻，需通过德国/荷兰法人实体或代运营
+    en: Otto onboarding mandates a German or Dutch legal entity and VAT ID; Chinese
+      sellers cannot join directly — they need a DE/NL entity or an agency
+    ja: Otto の入居にはドイツまたはオランダの法人と VAT 番号が必須。中国売り手は直接入居不可（ドイツ/オランダ法人か代行経由）
+  source: src/d-platforms/d13-europe-marketplaces-guide.md#22-入驻要求2026-更新
+  verified: 2026-08
+- id: otto.seller.german_service
+  entity: seller_central
+  attribute: german_service
+  platform: otto
+  kind: required
+  value: 德语客服 + 欧盟仓发货 + 欧盟退货接收
+  unit: null
+  statement:
+    zh: Otto 强制要求提供德语客户服务、从德国或欧盟仓库发货、并在德国或指定欧盟国家（丹麦/法国/意大利/荷兰/奥地利/波兰/西班牙/捷克）接收退货
+    en: Otto requires German-language customer service, shipping from a German/EU
+      warehouse, and returns accepted in Germany or listed EU countries (DK/FR/IT/NL/AT/PL/ES/CZ)
+    ja: Otto はドイツ語カスタマーサービス、ドイツ/EU倉庫からの出荷、ドイツまたは指定EU諸国での返品受付が必須
+  source: src/d-platforms/d13-europe-marketplaces-guide.md#22-入驻要求2026-更新
+  verified: 2026-08
+- id: otto.compliance.epr_verpackg
+  entity: certification
+  attribute: epr_verpackg
+  platform: otto
+  kind: required
+  value: EPR + VerpackG 注册（不合规立即暂停销售）
+  unit: null
+  statement:
+    zh: Otto 强制 EPR 注册与德国包装法（VerpackG）注册，不合规将立即暂停销售；电子产品还需 WEEE 注册
+    en: Otto mandates EPR and VerpackG (German packaging law) registration — non-compliance
+      means immediate suspension; electronics additionally need WEEE registration
+    ja: Otto は EPR 登録とドイツ包装法（VerpackG）登録が必須。違反すると即時販売停止。電化製品は WEEE 登録も必要
+  source: src/d-platforms/d13-europe-marketplaces-guide.md#22-入驻要求2026-更新
+  verified: 2026-08
+- id: otto.fee.monthly
+  entity: seller_central
+  attribute: monthly_fee
+  platform: otto
+  kind: fee
+  value: 39.9
+  unit: EUR/月
+  statement:
+    zh: Otto 月租费 €39.90/月（基础套餐），佣金 7-15%（按品类），无初始设置费；退货处理由卖家承担
+    en: Otto monthly fee is €39.90 (basic plan) with 7-15% commission by category
+      and no setup fee; sellers bear return handling
+    ja: Otto の月額料金は €39.90（ベーシック）。手数料7〜15%（カテゴリ別）、初期設定費なし。返品処理は売り手負担
+  source: src/d-platforms/d13-europe-marketplaces-guide.md#23-otto-佣金与费用
+  verified: 2026-08
+- id: otto.seller.selected_mode
+  entity: seller_central
+  attribute: seller_count
+  platform: otto
+  kind: rule
+  value: 精选卖家模式（约 5000+ 卖家）
+  unit: null
+  statement:
+    zh: Otto 采用精选卖家模式，仅接受约 5000+ 经过严格审核的卖家，以维护高端品牌形象与产品质量标准
+    en: Otto runs a curated-seller model, accepting only ~5,000+ rigorously vetted
+      sellers to protect its premium brand image and quality standards
+    ja: Otto は選抜型セラーモデルで、厳格な審査を通過した約5,000+社のみを受け入れる。高級ブランドイメージと品質基準を維持
+  source: src/d-platforms/d13-europe-marketplaces-guide.md#21-otto-核心数据
+  verified: 2026-08
+- id: zalando.partner.return_policy
+  entity: listing
+  attribute: return_policy
+  platform: zalando
+  kind: required
+  value: 100 天免费退货
+  unit: null
+  statement:
+    zh: Zalando Partner 必须接受 Zalando 的退货政策（100 天免费退货）
+    en: Zalando Partner brands must accept Zalando's return policy (100-day free returns)
+    ja: Zalando のパートナーは Zalando の返品ポリシー（100日間無料返品）を受け入れる必要がある
+  source: src/d-platforms/d13-europe-marketplaces-guide.md#33-入驻要求
+  verified: 2026-08
+- id: zalando.product_data.structured
+  entity: listing
+  attribute: data_completeness
+  platform: zalando
+  kind: required
+  value: 产品数据结构化完整（AI 推荐依赖）
+  unit: null
+  statement:
+    zh: Zalando 用 AI 生成约 90% 的营销内容并做个性化推荐，产品属性/尺码/材质越完整，被 AI 推荐的概率越高
+    en: Zalando generates ~90% of marketing content with AI and personalizes recommendations;
+      the more complete the product attributes/sizes/materials, the higher the chance
+      of AI recommendation
+    ja: Zalando はマーケティングコンテンツの約90%を AI 生成しパーソナライズ推薦を実施。属性/サイズ/素材が完全なほど AI 推薦されやすい
+  source: src/d-platforms/d13-europe-marketplaces-guide.md#32-zalando-ai-创新2026-重点
+  verified: 2026-08
+- id: zalando.size_data.required
+  entity: listing
+  attribute: size_data
+  platform: zalando
+  kind: required
+  value: 精确尺码数据（AI 尺码推荐）
+  unit: null
+  statement:
+    zh: Zalando 的 AI 尺码推荐可减少因尺码不合导致的退货（退货率降 8%），卖家需提供精确尺码数据；尺码不按平台标准对齐会额外抬高退货率
+    en: Zalando's AI size recommendation cuts size-related returns (returns down 8%);
+      sellers must provide precise size data. Misaligned size standards inflate return
+      rates
+    ja: Zalando の AI サイズ推奨はサイズ起因の返品を減らす（返品率8%減）。売り手は正確なサイズデータが必須。規格がズレると返品率が上がる
+  source: src/d-platforms/d13-europe-marketplaces-guide.md#32-zalando-ai-创新2026-重点
+  verified: 2026-08
+- id: zalando.connected_retail
+  entity: storefront
+  attribute: connected_retail
+  platform: zalando
+  kind: required
+  value: 支持 Connected Retail（线下门店库存在线销售）
+  unit: null
+  statement:
+    zh: Zalando 支持 Connected Retail，线下门店库存可在线上销售；品牌需通过 Partner Program 申请并符合品质标准
+    en: Zalando supports Connected Retail (in-store inventory sold online); brands
+      must apply via the Partner Program and meet quality standards
+    ja: Zalando は Connected Retail（実店舗在庫のオンライン販売）に対応。ブランドは Partner Program で申請し品質基準を満たす必要
+  source: src/d-platforms/d13-europe-marketplaces-guide.md#33-入驻要求
+  verified: 2026-08
+- id: zalando.partner.quality_standard
+  entity: seller_central
+  attribute: quality_standard
+  platform: zalando
+  kind: required
+  value: 品牌必须符合 Zalando 品质标准
+  unit: null
+  statement:
+    zh: Zalando 品牌必须符合 Zalando 品质标准，通过 Zalando Partner Program 申请入驻
+    en: Brands must meet Zalando's quality standards and apply through the Zalando
+      Partner Program
+    ja: Zalando のブランドは品質基準を満たし、Partner Program を通じて申請する必要がある
+  source: src/d-platforms/d13-europe-marketplaces-guide.md#33-入驻要求
+  verified: 2026-08
+- id: mercado_libre.listing.title.max_length
+  entity: listing
+  attribute: title
+  platform: mercado_libre
+  kind: max_length
+  value: 60
+  unit: 字符
+  statement:
+    zh: Mercado Libre 标题 60 字符（比 Amazon 200 字符短），格式：品牌+产品+核心属性，关键词放属性和描述中
+    en: 'Mercado Libre titles are capped at 60 characters (vs Amazon''s 200): brand
+      + product + core attributes; keywords belong in attributes and description'
+    ja: Mercado Libre のタイトルは60文字まで（Amazon の200文字より短い）。形式：ブランド＋商品＋コア属性。キーワードは属性と説明文に
+  source: src/d-platforms/d7-mercado-libre-ai-guide.md#22-mercado-libre-标题优化
+  verified: 2026-08
+- id: mercado_libre.listing.language.required
+  entity: listing
+  attribute: language
+  platform: mercado_libre
+  kind: required
+  value: 西语/葡语 Listing（不能用英语）
+  unit: null
+  statement:
+    zh: Mercado Libre CBT 必须提供西语/葡语 Listing，不能用英语；巴西必须用巴西葡语，西语区需指定国家（拉美西语而非西班牙西语）
+    en: Mercado Libre CBT requires listings in Spanish/Portuguese, not English; Brazil
+      needs Brazilian Portuguese and Spanish markets need country-specific Latin American
+      Spanish
+    ja: Mercado Libre CBT は英語ではなくスペイン語/ポルトガル語の Listing が必須。ブラジルはブラジルポルトガル語、西語圏は国別のラテンアメリカ西語
+  source: src/d-platforms/d7-mercado-libre-ai-guide.md#41-cbtcross-border-trade模式详解
+  verified: 2026-08
+- id: mercado_libre.product_image.count
+  entity: product_image
+  attribute: null
+  platform: mercado_libre
+  kind: count
+  value: 3
+  unit: 张（辅图最少）
+  statement:
+    zh: Mercado Libre 图片要求：白底主图 + 至少 3 张辅图
+    en: 'Mercado Libre images: white-background main image plus at least 3 secondary
+      images'
+    ja: Mercado Libre の画像：白背景メイン＋サブ最低3枚
+  source: src/d-platforms/d7-mercado-libre-ai-guide.md#41-cbtcross-border-trade模式详解
+  verified: 2026-08
+- id: mercado_libre.installments.required
+  entity: listing
+  attribute: installments
+  platform: mercado_libre
+  kind: required
+  value: 必须开启分期付款（cuotas）
+  unit: null
+  statement:
+    zh: 拉美消费者习惯分期付款（12-18 期免息），必须开启分期选项，否则转化率极低；提供免息分期的产品排名更高
+    en: Latin American shoppers expect installments (12-18 interest-free); installment
+      options are mandatory for conversion and interest-free installment products
+      rank higher
+    ja: ラテンアメリカの消費者は分割払い（12〜18回無利子）を習慣とする。分割オプションを有効にしないと転換率が極端に下がる
+  source: src/d-platforms/d7-mercado-libre-ai-guide.md#43-拉美市场特有挑战
+  verified: 2026-08
+- id: mercado_libre.fulfillment.full_ranking
+  entity: shipment
+  attribute: mercado_envios_full
+  platform: mercado_libre
+  kind: rule
+  value: Mercado Envios Full 排名大幅提升（1-3 天配送）
+  unit: null
+  statement:
+    zh: Mercado Envios Full（类似 FBA）排名大幅提升，配送 1-3 天且退货由平台处理；标准 Envios 3-7 天；CBT 跨境直邮
+      15-30 天排名权重最低
+    en: Mercado Envios Full (FBA-like) gives a major ranking boost with 1-3 day delivery
+      and platform-handled returns; standard Envios 3-7 days; CBT direct shipping
+      15-30 days ranks lowest
+    ja: Mercado Envios Full（FBA類似）は順位が大幅上昇し配送1〜3日・返品はプラットフォーム対応。標準3〜7日、CBT直郵は15〜30日で最下位
+  source: src/d-platforms/d7-mercado-libre-ai-guide.md#41-cbtcross-border-trade模式详解
+  verified: 2026-08
+- id: mercado_libre.shipping.carrier_deadline
+  entity: shipment
+  attribute: carrier_handoff
+  platform: mercado_libre
+  kind: required
+  value: 3 个工作日内交付指定承运商
+  unit: null
+  statement:
+    zh: Global Selling 卖家须在 3 个工作日内将包裹交付指定承运商（DHL/UPS），使用平台物流标签，以 USD 收款（买家以当地货币支付）
+    en: Global Selling sellers must hand packages to the designated carrier (DHL/UPS)
+      within 3 business days, use platform labels, and get paid in USD while buyers
+      pay locally
+    ja: Global Selling は3営業日以内に指定キャリア（DHL/UPS）へ引き渡し。プラットフォームのラベルを使用し、受取は USD（買い手は現地通貨払い）
+  source: src/d-platforms/d7-mercado-libre-ai-guide.md#53-global-selling-物流方案
+  verified: 2026-08
+- id: amazon.asin.value.unique_identifier
+  entity: asin
+  attribute: value
+  platform: amazon
+  kind: required
+  value: 每个上架商品唯一；不放 Search Terms
+  unit: null
+  statement:
+    zh: ASIN 是每个上架商品的唯一标准识别编号；放入 Search Terms 没有索引价值，不应出现在其中
+    en: ASIN is the unique standard identifier of each listed product; it carries no indexing value inside Search Terms and should not appear there
+    ja: ASIN は各出品商品の一意の標準識別番号。Search Terms に入れてもインデックス価値がなく、入れるべきではない
+  source: src/a-operators/a2-listing-optimization.md#35-search-terms-优化
+  verified: 2026-08
+- id: amazon.review.rufus_cited
+  entity: review
+  attribute: content
+  platform: amazon
+  kind: required
+  value: 会被 Rufus 引用回答用户问题
+  unit: null
+  statement:
+    zh: Rufus 会引用 Review 中的内容回答用户问题，好的 Review 比好的 Listing 文案更重要
+    en: Rufus cites review content when answering shopper questions; good reviews matter more than good listing copy
+    ja: Rufus はレビュー内容を引用して回答する。良いレビューは良いリスティング文面より重要
+  source: src/a-operators/a2-listing-optimization.md#71-amazon-rufus-优化2026-新趋势
+  verified: 2026-08
+- id: amazon.qa.rufus_cited
+  entity: qa
+  attribute: answer
+  platform: amazon
+  kind: required
+  value: 主动回答常见问题
+  unit: null
+  statement:
+    zh: 产品 Q&A 区域的内容会被 Rufus 直接引用；主动回答常见问题变得更重要
+    en: Content in the product Q&A section is directly cited by Rufus; proactively answering common questions matters more
+    ja: 商品Q&A 領域の内容は Rufus に直接引用される。よくある質問への積極的な回答が重要
+  source: src/a-operators/a2-listing-optimization.md#71-amazon-rufus-优化2026-新趋势
+  verified: 2026-08
+- id: shopify.schema_markup.required_fields
+  entity: schema_markup
+  attribute: format
+  platform: shopify
+  kind: required
+  value: Product Schema JSON-LD 含价格、库存、评分
+  unit: null
+  statement:
+    zh: 产品页必须配置 Product Schema（JSON-LD），包含价格、库存、评分；AI 引擎（ChatGPT、Google AI Overview）优先引用结构化产品数据
+    en: Product pages must carry Product Schema (JSON-LD) covering price, availability and ratings; AI engines prioritize structured product data
+    ja: 商品ページに Product Schema（JSON-LD）を必須設定し、価格・在庫・評価を含める。AI エンジンは構造化データを優先引用
+  source: src/d-platforms/shopify-ai-guide.md#213-geo-优化实操-让-ai-推荐你的产品
+  verified: 2026-08
+- id: tiktok_shop.hashtag.category_mix
+  entity: hashtag
+  attribute: null
+  platform: tiktok_shop
+  kind: count
+  value: 10（5 品类 + 3 场景 + 2 趋势）
+  unit: 个
+  statement:
+    zh: 商品标签 10 个：5 个品类标签 + 3 个场景标签 + 2 个趋势标签，参与 TikTok 站内搜索
+    en: '10 product tags: 5 category + 3 scene + 2 trend tags; they participate in TikTok on-site search'
+    ja: 商品タグは10個：カテゴリ5＋シーン3＋トレンド2。TikTok 内検索に寄与
+  source: src/d-platforms/tiktok-shop-ai-guide.md#18-tiktok-shop-站内搜索-seo
+  verified: 2026-08
+- id: tiktok_shop.hashtag.video_mix
+  entity: hashtag
+  attribute: type
+  platform: tiktok_shop
+  kind: count
+  value: 2-3 高流量 + 2-3 精准
+  unit: 个
+  statement:
+    zh: 视频 Hashtag 策略：2-3 个高流量标签 + 2-3 个精准标签
+    en: 'Video hashtag strategy: 2-3 high-traffic tags + 2-3 precise tags'
+    ja: 動画ハッシュタグ戦略：高流入2〜3個＋ピンポイント2〜3個
+  source: src/d-platforms/tiktok-shop-ai-guide.md#18-tiktok-shop-站内搜索-seo
+  verified: 2026-08
+- id: amazon.impression.high_zero_click_diagnostic
+  entity: impression
+  attribute: count
+  platform: amazon
+  kind: format
+  value: 高展示 + 零点击 → 检查主图/价格
+  unit: null
+  statement:
+    zh: 展示量高但零点击的词说明广告展示了但没人点击，可能是 Listing 主图或价格问题，不能直接忽略
+    en: Terms with high impressions but zero clicks show the ad displayed but nobody clicked; likely a listing image or price problem
+    ja: 高インプレッション・ゼロクリックの語は、広告は表示されたがクリックされていない状態。主画像か価格の問題の可能性
+  source: src/a-operators/a3-advertising.md#54-数据相关陷阱
+  verified: 2026-08
+- id: amazon.click.value.cpc_denominator
+  entity: click
+  attribute: count
+  platform: amazon
+  kind: format
+  value: CPC = 广告花费 ÷ 点击数
+  unit: null
+  statement:
+    zh: 点击量是搜索词报告核心列之一；CPC = 广告花费 ÷ 点击数
+    en: Clicks are a core column of the search term report; CPC = ad spend / clicks
+    ja: クリック数は検索語レポートの核心列。CPC = 広告費 ÷ クリック数
+  source: src/a-operators/a3-advertising.md#31-搜索词报告分析
+  verified: 2026-08
+- id: amazon.conversion.value.cvr_formula
+  entity: conversion
+  attribute: order_count
+  platform: amazon
+  kind: format
+  value: CVR = 订单数 ÷ 点击数 × 100%
+  unit: null
+  statement:
+    zh: 转化 = 广告点击后产生的订单；CVR = 订单数 ÷ 点击数 × 100%，健康值 >8%
+    en: Conversion = orders generated from ad clicks; CVR = orders / clicks × 100%, healthy threshold >8%
+    ja: コンバージョン = 広告クリック後に発生した注文。CVR = 注文数 ÷ クリック数 × 100%、目安 8% 超
+  source: src/a-operators/a3-advertising.md#31-搜索词报告分析
+  verified: 2026-08
+- id: inventory.warehouse.multi_channel_pool
+  entity: warehouse
+  attribute: null
+  platform: null
+  kind: required
+  value: 总库存池统一协调
+  unit: null
+  statement:
+    zh: 多渠道场景下由库存中心系统（总库存池）统一协调 FBA 仓库、自建仓、3PL 仓，避免超卖
+    en: Multi-channel setups must coordinate FBA, own and 3PL warehouses through a central inventory pool to avoid overselling
+    ja: マルチチャネルでは FBA・自社倉庫・3PL を在庫センター（総在庫プール）で一元調整し、売り越しを防ぐ
+  source: src/a-operators/a5-inventory.md#62-多渠道库存同步amazon--shopify--独立站
+  verified: 2026-08
+- id: inventory.fbm_inventory.multi_channel_pool
+  entity: fbm_inventory
+  attribute: null
+  platform: null
+  kind: required
+  value: 纳入总库存池，防止超卖
+  unit: null
+  statement:
+    zh: 自发货库存（Shopify / 独立站渠道）必须纳入总库存池同步管理，同一批库存在多渠道销售时不同步会超卖
+    en: Self-fulfilled stock (Shopify / DTC channels) must be synchronized in the central inventory pool; unsynced multi-channel stock oversells
+    ja: 自己発送在庫（Shopify・自社サイト）は総在庫プールで同期管理する。同期しないと売り越しが発生する
+  source: src/a-operators/a5-inventory.md#62-多渠道库存同步amazon--shopify--独立站
+  verified: 2026-08
+- id: inventory.supplier.backup_required
+  entity: supplier
+  attribute: is_primary
+  platform: null
+  kind: required
+  value: 建立备选供应商
+  unit: null
+  statement:
+    zh: 单一供应商风险极高，一旦出问题就断货；必须建立备选供应商并追踪历史交期数据（春节/国庆前后产能大幅下降）
+    en: Single-supplier dependence is high risk — a failure means stockout; keep a backup supplier and track delivery history (capacity drops around CNY/National Day)
+    ja: 単一サプライヤー依存はリスクが高く、トラブルで即欠品になる。代替サプライヤーを確保し、納期履歴を追跡する
+  source: src/a-operators/a5-inventory.md#37-供应商交期风险评估
+  verified: 2026-08
+- id: amazon.fba.inventory.stranded_target_zero
+  entity: stranded_inventory
+  attribute: asin_count
+  platform: amazon
+  kind: threshold
+  value: 0
+  unit: ASIN
+  statement:
+    zh: Stranded Inventory（有库存但 Listing 问题无法销售的 ASIN）目标为 0，是最容易修复的 IPI 维度，纯粹的成本浪费
+    en: Stranded inventory (sellable-stock ASINs blocked by listing issues) targets 0; it is the easiest IPI fix and pure cost waste
+    ja: 滞留在庫（在庫はあるがリスティング問題で売れない ASIN）は目標 0。最も直しやすい IPI 改善項目
+  source: src/a-operators/a5-inventory.md#12-amazon-fba-库存关键指标
+  verified: 2026-08
+- id: inventory.in_transit_inventory.available_stock_formula
+  entity: in_transit_inventory
+  attribute: qty
+  platform: null
+  kind: formula
+  value: 实际可用库存 = 当前库存 + 在途库存
+  unit: null
+  statement:
+    zh: 实际可用库存 = 当前库存 + 在途库存；忽略在途库存会低估可支撑天数，导致过度补货或误判断货
+    en: Available stock = current stock + in-transit stock; ignoring in-transit understates days-of-stock and skews replenishment
+    ja: 実利用可能在庫 = 現在庫 + 輸送中在庫。輸送中を無視すると在庫持続日数を過小評価する
+  source: src/a-operators/a5-inventory.md#31-补货决策分析
+  verified: 2026-08
+- id: inventory.moq.order_rounding
+  entity: moq
+  attribute: qty
+  platform: null
+  kind: format
+  value: 补货量向上取整到 MOQ 的倍数
+  unit: null
+  statement:
+    zh: MOQ 是供应商要求的最小起订量；补货量需向上取整到 MOQ 的倍数，并随供应商评估一并收集
+    en: MOQ is the supplier's minimum order quantity; order quantity is rounded up to a multiple of MOQ and collected during supplier assessment
+    ja: MOQ はサプライヤーの最小発注数量。発注量は MOQ の倍数に切り上げる
+  source: src/a-operators/a5-inventory.md#37-供应商交期风险评估
+  verified: 2026-08
+- id: ip.patent.screen_before_launch
+  entity: patent
+  attribute: null
+  platform: null
+  kind: required
+  value: 选品阶段排查 USPTO / Espacenet / J-PlatPat / CNIPA
+  unit: null
+  statement:
+    zh: "选品阶段必须做专利排查（US: USPTO、EU: Espacenet、JP: J-PlatPat、CN: CNIPA）；高风险产品建议聘请专利律师做正式 FTO 分析"
+    en: Screen patents at product-selection stage (USPTO / Espacenet / J-PlatPat / CNIPA); high-risk products warrant a formal FTO analysis by a patent attorney
+    ja: "選品段階で特許を必ず調査（US: USPTO、EU: Espacenet、JP: J-PlatPat、CN: CNIPA）。高リスク品は特許弁護士による FTO 分析を推奨"
+  source: src/a-operators/a12-ip-protection.md#21-选品阶段的专利排查
+  verified: 2026-08
+- id: ip.patent.design_patent_risk
+  entity: patent
+  attribute: type
+  platform: null
+  kind: required
+  value: 同时检索外观设计专利
+  unit: null
+  statement:
+    zh: 专利侵权判断看功能与外观而非名称；外观设计专利侵权门槛低，不能只查商标不查外观专利
+    en: Patent infringement is judged by function and appearance, not name; design patents have a low infringement bar, so screening must include them
+    ja: 特許侵害は名称ではなく機能・外観で判断。意匠特許は侵害ハードルが低く、商標だけ調べず意匠も必ず調査する
+  source: src/a-operators/a12-ip-protection.md#82-只查商标不查外观专利
+  verified: 2026-08
+- id: compliance.fda.21cfr_food_contact
+  entity: fda_requirement
+  attribute: regulation_ref
+  platform: null
+  kind: required
+  value: 食品接触材料适用 FDA 21 CFR
+  unit: null
+  statement:
+    zh: 食品接触材料（厨房用具等）适用 FDA 21 CFR；未经实际 FDA 批准不得在 Listing 宣称 "FDA approved"
+    en: Food-contact materials fall under FDA 21 CFR; unapproved "FDA approved" claims are forbidden in listings
+    ja: 食品接触材料（キッチン用品など）は FDA 21 CFR が適用。未承認の「FDA approved」表示は禁止
+  source: src/a-operators/a6-compliance.md#附录合规速查表
+  verified: 2026-08
+- id: compliance.safety_data_sheet.required_for_lithium
+  entity: safety_data_sheet
+  attribute: null
+  platform: null
+  kind: required
+  value: 锂电池产品必须 UN38.3 + MSDS
+  unit: null
+  statement:
+    zh: 含锂电池产品运输与申报必须提供 MSDS/SDS（UN38.3 测试报告 + MSDS + 运输限制）
+    en: Lithium-battery products require MSDS/SDS for shipping and declaration (UN38.3 test report + MSDS + transport restrictions)
+    ja: リチウム電池内蔵品は輸送・申告に MSDS/SDS が必須（UN38.3 試験報告書 + MSDS + 輸送制限）
+  source: src/a-operators/a6-compliance.md#附录合规速查表
+  verified: 2026-08
+- id: eu.declaration_of_conformity.required_before_listing
+  entity: declaration_of_conformity
+  attribute: directives
+  platform: null
+  kind: required
+  value: 引用适用指令（LVD、EMC、RoHS、RED）与协调标准
+  unit: null
+  statement:
+    zh: 欧盟符合性声明（DoC）需引用适用指令（LVD、EMC、RoHS、RED）与协调标准；没有正式合规文档就上架不合规
+    en: The EU Declaration of Conformity must cite applicable directives (LVD, EMC, RoHS, RED) and harmonized standards; listing without one is non-compliant
+    ja: EU適合宣言書（DoC）は適用指令（LVD・EMC・RoHS・RED）と整合規格を引用。正式文書なしでの出品は不適合
+  source: src/a-operators/a6-compliance.md#35-合规文档生成
+  verified: 2026-08
+- id: eu.declaration_of_conformity.legal_liability
+  entity: declaration_of_conformity
+  attribute: signatory
+  platform: null
+  kind: required
+  value: 签署人对准确性负法律责任
+  unit: null
+  statement:
+    zh: Declaration of Conformity 是法律文件，签署人对内容的准确性负法律责任；文档语言需为目标市场官方语言（或至少英文）
+    en: The Declaration of Conformity is a legal document; the signatory bears legal liability for accuracy, and the language must be the market's official language (or English at minimum)
+    ja: DoC は法的文書であり、署名者が内容の正確性に法的責任を負う。文書言語は対象市場の公用語（または最低限英語）
+  source: src/a-operators/a6-compliance.md#35-合规文档生成
+  verified: 2026-08
+- id: amazon.buy_box.price_weight
+  entity: buy_box
+  attribute: null
+  platform: amazon
+  kind: format
+  value: 价格（含运费）权重 25-35%
+  unit: null
+  statement:
+    zh: Buy Box 算法中价格（含运费）权重约 25-35%，是赢得 Buy Box 的关键因素之一（配送方式 20-25%、卖家绩效 15-20%）
+    en: Price (incl. shipping) carries ~25-35% weight in the Buy Box algorithm — a key win factor (delivery 20-25%, seller metrics 15-20%)
+    ja: Buy Box アルゴリズムで価格（送料込）の重みは約25-35%と最重要要素の一つ
+  source: src/a-operators/a8-pricing-strategy.md#21-amazon-buy-box-定价策略
+  verified: 2026-08
+- id: amazon.buy_box.sales_share
+  entity: buy_box
+  attribute: share_percentage
+  platform: amazon
+  kind: format
+  value: 80%+ 的销售来自 Buy Box
+  unit: null
+  statement:
+    zh: Buy Box 是 Amazon 销售的核心，超过 80% 的销售来自 Buy Box；每个 ASIN 只有一名卖家获得，赢得它是成交的前提
+    en: The Buy Box is central to Amazon sales — 80%+ of sales go through it; only one seller holds it per ASIN, so winning it is a precondition for conversions
+    ja: Amazon 売上の 80% 超が Buy Box 経由。1 ASIN につき1セラーが獲得し、獲得が成約の前提
+  source: src/a-operators/a8-pricing-strategy.md#21-amazon-buy-box-定价策略
+  verified: 2026-08
+- id: amazon.rating.scale_1_5
+  entity: rating
+  attribute: score
+  platform: amazon
+  kind: format
+  value: 1-5 星（US 市场 4.0+ 星才被考虑）
+  unit: null
+  statement:
+    zh: 产品星级评分范围 1-5 星；US 市场 4.0+ 星才进入买家考虑范围（DE/JP 更依赖 Review），评分直接影响搜索排名和转化率
+    en: Product star ratings range 1-5; US shoppers only consider 4.0+ stars (DE/JP rely even more on reviews); rating drives search rank and conversion
+    ja: 商品の星評価は 1-5。米国では 4.0+ 星が検討対象（独・日はさらにレビュー依存）。順位と転換率に直結
+  source: src/a-operators/a2-listing-optimization.md#73-listing-本地化的文化差异us-vs-de-vs-jp
+  verified: 2026-08
+- id: amazon.bsr.update_hourly
+  entity: bsr
+  attribute: rank_number
+  platform: amazon
+  kind: format
+  value: 每小时更新；数字越小销量越高
+  unit: null
+  statement:
+    zh: BSR 每小时更新，数字越小代表销量越高；选品时用 BSR 前 5-10 的竞品做竞争分析，Keepa 追踪 BSR 历史走势
+    en: BSR updates hourly and a lower number means higher sales; analyze the top-5-10 BSR competitors during product research and track BSR history with Keepa
+    ja: BSR は1時間ごとに更新され、数字が小さいほど売上が多い。選品では上位5-10競合を分析し、Keepa で履歴を追跡
+  source: src/a-operators/a1-product-research.md
+  verified: 2026-08
+- id: amazon.prime.fba_eligibility
+  entity: prime
+  attribute: null
+  platform: amazon
+  kind: required
+  value: Prime 资格依赖 FBA 履约
+  unit: null
+  statement:
+    zh: Amazon Prime 商品获得 Prime 标识依赖 FBA 履约；Prime 标识影响 Buy Box 权重和转化率
+    en: Prime eligibility on Amazon relies on FBA fulfillment; the Prime badge affects Buy Box weight and conversion
+    ja: Amazon Prime 対象は FBA フルフィルメントが前提。Prime バッジは Buy Box の重みとコンバージョンに影響
+  source: src/a-operators/a5-inventory.md
+  verified: 2026-08
+- id: pricing.ltv.cac_ratio
+  entity: ltv
+  attribute: ltv_value
+  platform: null
+  kind: required
+  value: LTV/CAC 比是核心盈利指标
+  unit: null
+  statement:
+    zh: LTV 是一个客户从第一次购买到最后一次购买的总价值；LTV/CAC 比是核心盈利指标，获客成本持续上升时品牌忠诚度比获客更重要
+    en: LTV is a customer's total value from first to last purchase; the LTV/CAC ratio is a core profitability metric, and as CAC rises brand loyalty matters more than acquisition
+    ja: LTV は顧客の初回購入から最終購入までの総価値。LTV/CAC 比率は中核の収益性指標で、CAC 上昇局面では忠誠度が獲得より重要
+  source: src/a-operators/a8-pricing-strategy.md
+  verified: 2026-08
+- id: amazon.deal.coupon.min_discount
+  entity: deal
+  attribute: deal_type
+  platform: amazon
+  kind: format
+  value: Coupon 需 5%+ 折扣，$0.60/次使用
+  unit: null
+  statement:
+    zh: Coupon 需 5%+ 折扣，费用 $0.60/次使用；适合日常促销和提升转化
+    en: Coupons require a 5%+ discount and cost $0.60 per redemption; suited to everyday promos and conversion lift
+    ja: クーポンは5%以上の割引が必要で、利用1回 $0.60。日常プロモーションと転換率向上向け
+  source: src/a-operators/a8-pricing-strategy.md#41-amazon-促销类型与定价策略
+  verified: 2026-08
+- id: amazon.deal.lightning_deal.min_discount
+  entity: deal
+  attribute: deal_type
+  platform: amazon
+  kind: format
+  value: Lightning Deal 需 15-20%+ 折扣，$150-500/次
+  unit: null
+  statement:
+    zh: Lightning Deal 需 15-20%+ 折扣，费用 $150-500/次；适合清库存、冲排名
+    en: Lightning Deals require a 15-20%+ discount and cost $150-500 per run; suited to clearing stock and pushing rank
+    ja: Lightning Deal は15-20%以上の割引が必要で、1回 $150-500。在庫整理と順位上げ向け
+  source: src/a-operators/a8-pricing-strategy.md#41-amazon-促销类型与定价策略
+  verified: 2026-08
+- id: amazon.deal.major_event.min_discount
+  entity: deal
+  attribute: deal_type
+  platform: amazon
+  kind: format
+  value: Prime Day / BFCM Deal 需 20%+ 折扣，$500-1000
+  unit: null
+  statement:
+    zh: Prime Day Deal 和 BFCM Deal 需 20%+ 折扣，费用 $500-1000；Subscribe & Save 折扣 5-15%
+    en: Prime Day and BFCM deals require a 20%+ discount and cost $500-1000; Subscribe & Save discounts run 5-15%
+    ja: Prime Day / BFCM ディールは20%以上の割引が必要で、費用 $500-1000。定期おトク便は5-15%
+  source: src/a-operators/a8-pricing-strategy.md#41-amazon-促销类型与定价策略
+  verified: 2026-08
+- id: amazon.storefront.requires_brand_registry
+  entity: storefront
+  attribute: null
+  platform: amazon
+  kind: required
+  value: 需完成 Amazon Brand Registry
+  unit: null
+  statement:
+    zh: Brand Store（品牌旗舰店）是 Amazon Brand Registry 功能，需先完成品牌注册（已注册商标）后可用
+    en: The Brand Store is an Amazon Brand Registry feature, available only after brand registration (registered trademark)
+    ja: ブランドストアは Amazon ブランドレジストリの機能。登録商標によるブランド登録後に利用可能
+  source: src/a-operators/a10-brand-building.md#5-amazon-brand-registry--brand-store
+  verified: 2026-08
+- id: amazon.storefront.structure
+  entity: storefront
+  attribute: amazon_store_url
+  platform: amazon
+  kind: format
+  value: 首页 + 品类页 + 品牌故事页 + 促销页（可选）
+  unit: null
+  statement:
+    zh: Brand Store 页面结构建议：首页（Hero Banner + 品类导航 + 热销推荐）、品类页、品牌故事页、促销页（可选）
+    en: 'Recommended Brand Store structure: homepage (hero banner + category nav + bestsellers), category pages, brand story page, optional promo page'
+    ja: ブランドストアの推奨構成：ホーム（ヒーローバナー＋カテゴリナビ＋売れ筋）、カテゴリページ、ブランドストーリー、任意でプロモーション
+  source: src/a-operators/a10-brand-building.md#52-brand-store-ai-优化
+  verified: 2026-08
+- id: amazon.seller_central.operations_entry
+  entity: seller_central
+  attribute: null
+  platform: amazon
+  kind: required
+  value: 所有运营操作和数据分析的入口
+  unit: null
+  statement:
+    zh: Seller Central 是卖家后台管理系统，所有运营操作和数据分析的入口；官方 Listing Quality Dashboard 等工具在其内
+    en: Seller Central is the seller backend — the entry point for all operations and data analysis, hosting official tools like the Listing Quality Dashboard
+    ja: セラーセントラルは全運営操作とデータ分析の入り口となるバックエンド。Listing Quality Dashboard などの公式ツールもここ
+  source: src/a-operators/a2-listing-optimization.md
+  verified: 2026-08
+- id: amazon.ipi.score.min_400
+  entity: ipi
+  attribute: score
+  platform: amazon
+  kind: min_value
+  value: 400
+  unit: 分
+  statement:
+    zh: IPI Score 目标 ≥ 400（当前阈值 400 分）；低于阈值会被限制 FBA 仓储容量，需从 Sell-through、Excess、Stranded 三个维度改善
+    en: IPI Score targets >= 400 (current threshold); below it FBA storage capacity is restricted — improve sell-through, excess and stranded inventory
+    ja: IPI スコアは 400 以上が目標（現行閾値400）。下回ると FBA 保管容量が制限される
+  source: src/a-operators/a5-inventory.md#38-ipi-score-改善方案
+  verified: 2026-08
+- id: pricing.cac.formula
+  entity: cac
+  attribute: value
+  platform: null
+  kind: format
+  value: CAC = 总营销支出 ÷ 新客户数
+  unit: null
+  statement:
+    zh: CAC = 总营销支出 ÷ 新客户数；是获客投入的核心成本指标，与 LTV 一起构成盈利判断
+    en: CAC = total marketing spend / new customers; the core acquisition-cost metric, read together with LTV for profitability
+    ja: CAC = 総マーケティング支出 ÷ 新規顧客数。LTV と合わせて収益性を判断する
+  source: src/a-operators/a8-pricing-strategy.md
+  verified: 2026-08
+- id: walmart.wfs.buy_box_advantage
+  entity: wfs
+  attribute: buy_box_eligible
+  platform: walmart
+  kind: required
+  value: Buy Box 加成显著（类似 FBA）
+  unit: null
+  statement:
+    zh: 使用 WFS 的商品有显著 Buy Box 加成（类似 FBA）；配送速度 2-3 天（Walmart+ 次日达）
+    en: WFS-fulfilled products get a significant Buy Box advantage (like FBA); delivery runs 2-3 days (Walmart+ next-day)
+    ja: WFS 利用商品は Buy Box で顕著な優位（FBA と同様）。配送は 2-3 日（Walmart+ は翌日）
+  source: src/d-platforms/d4-walmart-ai-guide.md#41-wfs-vs-fba-详细对比
+  verified: 2026-08
+- id: amazon.bfcm.prep_lead_time
+  entity: bfcm
+  attribute: null
+  platform: amazon
+  kind: required
+  value: 提前 6-8 周发货
+  unit: 周
+  statement:
+    zh: BFCM 备货需提前 6-8 周发货，是一个 8 周的系统化过程（不是大促前 2 周才开始）；FBA 入仓在大促前 2-4 周会变慢
+    en: BFCM stock must ship 6-8 weeks ahead as part of a systematic 8-week plan (not started 2 weeks before); FBA inbound slows 2-4 weeks pre-event
+    ja: BFCM の備蓄は 6-8 週前に出荷し、8 週間の体系的なプロセスとして進める。イベント 2-4 週前は FBA 入庫が遅くなる
+  source: src/a-operators/a5-inventory.md#34-大促备货策略prime-day--bfcm
+  verified: 2026-08
+- id: amazon.bfcm.min_discount
+  entity: bfcm
+  attribute: null
+  platform: amazon
+  kind: format
+  value: BFCM Deal 需 20%+ 折扣，费用 $500-1000
+  unit: null
+  statement:
+    zh: BFCM Deal 需 20%+ 折扣，费用 $500-1000；是全年最大促销期，大促期间销量可能是平时的 3-10 倍
+    en: BFCM deals require a 20%+ discount and cost $500-1000; it is the year's biggest promo period with sales potentially 3-10x normal
+    ja: BFCM ディールは20%以上の割引が必要で、費用 $500-1000。年間最大のプロモーション期で売上は通常の3-10倍も
+  source: src/a-operators/a8-pricing-strategy.md#41-amazon-促销类型与定价策略
+  verified: 2026-08
+- id: amazon.cpm.value.pricing_model
+  entity: cpm
+  attribute: value
+  platform: amazon
+  kind: format
+  value: 每千次展示成本；DSP 按 CPM 计价
+  unit: null
+  statement:
+    zh: CPM = 每千次展示的广告成本；Amazon DSP 按 CPM（按展示付费）计价，最低预算通常 $10,000+/月，适合大卖家/品牌
+    en: CPM is the cost per thousand impressions; Amazon DSP bills on CPM, typically with a $10,000+/month minimum, suited to large sellers/brands
+    ja: CPM = 1000 インプレッションあたりの広告コスト。DSP は CPM 課金で通常月 $10,000+ から。大セラー・ブランド向け
+  source: src/a-operators/a3-advertising.md#13-广告类型全景
+  verified: 2026-08
+- id: sea.cod.rejection_cost_buffer
+  entity: cod
+  attribute: rejection_rate
+  platform: null
+  kind: format
+  value: 定价预留 5-10% 拒收成本（拒收率 5-15%）
+  unit: null
+  statement:
+    zh: 印尼、越南、菲律宾 COD 比例高达 40-60%，COD 拒收率 5-15%；定价需预留 5-10% 拒收成本，发货前确认订单，高风险地区限制 COD 选项
+    en: 'COD accounts for 40-60% of orders in Indonesia/Vietnam/Philippines with 5-15% rejection; price in a 5-10% rejection buffer, confirm orders before shipping and restrict COD in high-risk areas'
+    ja: インドネシア・ベトナム・フィリピンでは COD 比率が 40-60%、受取拒否率 5-15%。価格に 5-10% の拒否コストを織り込み、発送前確認と高リスク地域での COD 制限を行う
+  source: src/d-platforms/d6-southeast-asia-ai-guide.md#63-东南亚电商常见陷阱
+  verified: 2026-08

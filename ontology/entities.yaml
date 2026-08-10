@@ -1073,7 +1073,10 @@
     zh: 卖家自行履约（自发货）的库存，如 Shopify / 独立站渠道库存
     en: Inventory fulfilled by the seller (self-fulfillment), e.g. Shopify / DTC store
       stock
-  attributes: []
+  attributes:
+  - qty
+  - channel
+  - handling_days
   source: src/a-operators/a5-inventory.md#62-多渠道库存同步amazon--shopify--独立站
   flagged: true
   note: 章节只出现"自发货"一词（FBA 仓库 vs 自发货），"fbm_inventory"实体为归纳命名
@@ -1250,7 +1253,10 @@
     zh: 过去 90 天销量 ÷ 平均库存，目标 > 3（90 天内周转 3 次），IPI 核心组成部分
     en: 90-day sales ÷ average inventory; target > 3 (3 turns in 90 days); core IPI
       component
-  attributes: []
+  attributes:
+  - sales_90d
+  - avg_inventory
+  - value
   source: src/a-operators/a5-inventory.md#12-amazon-fba-库存关键指标
 - id: excess_inventory
   label:
@@ -1286,7 +1292,10 @@
   definition:
     zh: 有库存的天数 ÷ 总天数，目标 > 95%，影响 BSR 排名与广告效果
     en: Days in stock ÷ total days; target > 95%; affects BSR ranking and ad performance
-  attributes: []
+  attributes:
+  - days_in_stock
+  - total_days
+  - value
   source: src/a-operators/a5-inventory.md#12-amazon-fba-库存关键指标
 - id: aged_inventory
   label:
@@ -1325,7 +1334,10 @@
     zh: (当前库存 + 在途库存) ÷ 日均销量，低于 Lead Time + 安全天数时需要补货
     en: (current stock + in-transit) ÷ daily sales; below lead time + safety days,
       replenish
-  attributes: []
+  attributes:
+  - available_qty
+  - daily_sales
+  - value
   source: src/a-operators/a5-inventory.md#安全库存与补货公式速查
 - id: moq
   label:
@@ -1347,7 +1359,10 @@
   definition:
     zh: 年销售额 ÷ 平均库存价值，越高说明库存流转越快
     en: Annual sales ÷ average inventory value; higher means faster stock turnover
-  attributes: []
+  attributes:
+  - annual_sales
+  - avg_inventory_value
+  - value
   source: src/a-operators/a5-inventory.md#安全库存与补货公式速查
 - id: compliance_check
   label:
@@ -1724,7 +1739,25 @@
     en: Amazon Prime membership. Prime-eligible products get a Prime badge, affecting
       Buy Box weight and conversion.
     ja: Amazon Prime 会員。Prime 対象商品は Prime バッジが付き、Buy Box の重みとコンバージョンに影響。
-  attributes: []
+  attributes:
+  - id: is_eligible
+    type: bool
+    label:
+      zh: 是否 Prime 配送
+      en: Prime-eligible
+      ja: Prime配送対象
+  - id: badge
+    type: string
+    label:
+      zh: Prime 标识
+      en: Prime badge
+      ja: Primeバッジ
+  - id: fulfillment_type
+    type: enum
+    label:
+      zh: 履约方式
+      en: Fulfillment type
+      ja: フルフィルメント方式
   source:
   - src/a-operators/a5-inventory.md
 - id: ltv
@@ -1793,7 +1826,25 @@
     en: Amazon seller backend management system — entry point for all operations and
       data analysis.
     ja: Amazon セラー向けバックエンド管理システム。すべての運営操作とデータ分析の入り口。
-  attributes: []
+  attributes:
+  - id: account_type
+    type: enum
+    label:
+      zh: 销售计划类型
+      en: Selling plan type
+      ja: セリングプラン種別
+  - id: marketplaces
+    type: list<string>
+    label:
+      zh: 已开通站点
+      en: Active marketplaces
+      ja: 展開マーケットプレイス
+  - id: user_permissions
+    type: array
+    label:
+      zh: 子账号权限
+      en: User permissions
+      ja: ユーザー権限
   source:
   - src/a-operators/a2-listing-optimization.md
 - id: ipi
@@ -1839,7 +1890,25 @@
     zh: Walmart 的仓储配送服务，类似 Amazon FBA。使用 WFS 的商品有 Buy Box 优势。
     en: Walmart fulfillment service, similar to Amazon FBA. WFS products have Buy
       Box advantage.
-  attributes: []
+  attributes:
+  - id: is_fulfilled
+    type: bool
+    label:
+      zh: 是否 WFS 履约
+      en: WFS-fulfilled
+      ja: WFSフルフィルメント対象
+  - id: inbound_processing_days
+    type: int
+    label:
+      zh: 入仓处理天数
+      en: Inbound processing days
+      ja: 入庫処理日数
+  - id: buy_box_eligible
+    type: bool
+    label:
+      zh: 是否具备 Buy Box 优势
+      en: Buy Box advantage
+      ja: Buy Box 優位性
   source:
   - src/d-platforms/d4-walmart-ai-guide.md
 - id: bfcm
@@ -1850,7 +1919,26 @@
   definition:
     zh: 黑色星期五 + 网络星期一，全年最大促销期。
     en: Black Friday + Cyber Monday — the year's biggest promotional period.
-  attributes: []
+    ja: ブラックフライデー / サイバーマンデー
+  attributes:
+  - id: start_date
+    type: date
+    label:
+      zh: 开始日期
+      en: Start date
+      ja: 開始日
+  - id: end_date
+    type: date
+    label:
+      zh: 结束日期
+      en: End date
+      ja: 終了日
+  - id: inventory_cutoff
+    type: date
+    label:
+      zh: 备货截止日
+      en: Inventory cutoff
+      ja: 在庫締切日
   source:
   - src/a-operators/a5-inventory.md
 - id: cpm
@@ -1878,6 +1966,31 @@
     zh: 配送后当面付款，东南亚和中东市场的主要支付方式。
     en: Payment on delivery. Primary payment method in Southeast Asia and Middle East
       markets.
-  attributes: []
+    ja: 代金引換
+  attributes:
+  - id: markets
+    type: list<string>
+    label:
+      zh: 适用市场
+      en: Markets
+      ja: 対象市場
+  - id: payment_status
+    type: enum
+    label:
+      zh: 收款状态
+      en: Payment status
+      ja: 回収ステータス
+  - id: surcharge
+    type: float
+    label:
+      zh: 货到付款附加费
+      en: COD surcharge
+      ja: COD 手数料
+  - id: rejection_rate
+    type: number
+    label:
+      zh: 拒收率
+      en: Rejection rate
+      ja: 受取拒否率
   source:
   - src/d-platforms/d6-southeast-asia-ai-guide.md

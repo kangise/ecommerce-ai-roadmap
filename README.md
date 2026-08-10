@@ -135,7 +135,7 @@ tiktok_shop.product.title.max_length:   80  字符
 | 层 | 内容 | 规模 | 给谁 |
 |---|---|---|---|
 | **知识库** | 69 章，三语（中/英/日） | 69 章 | 人读 · agent 检索 |
-| **Ontology** | 电商领域模型 | 94 实体 · 184 约束 · 78 关系 · 8 流程 | agent 之间的共享契约 |
+| **Ontology** | 电商领域模型 | 94 实体 · 318 约束 · 78 关系 · 8 流程 | agent 之间的共享契约 |
 | **Skills + Prompts** | 带护栏的可执行能力 | 878 条 Prompt · 9 个可安装 skill | agent 直接调用 |
 
 `dist/` 目录结构：
