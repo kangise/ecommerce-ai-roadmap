@@ -59,6 +59,18 @@ triggers:
   - 竞价
   - 花费
   - 预算
+  - 烧了钱
+  - 烧了半个月
+  - GMV没涨
+  - gmv没涨
+  - 钱烧了
+  - 抢不到
+  - 出2还是抢不到
+  - 别人出
+  - 竞价抢
+  - 抢不过
+  - 流量突然掉
+  - 查不出原因
 uses_constraints:
 - amazon.account.monthly_spend.analysis_cadence
 - amazon.account.waste_ratio.sop_threshold

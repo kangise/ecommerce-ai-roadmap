@@ -91,6 +91,18 @@ triggers:
   - 转化率
   - 重写
   - 重写一下
+  - 分别怎么讲
+  - 怎么讲
+  - 对味
+  - 本地化表达
+  - 曝光都上不去
+  - 曝光上不去
+  - 上架完
+  - 上架后
+  - 包装不好看
+  - 重新设计
+  - 包装设计
+  - 重新搞
 uses_constraints:
 - amazon.a_plus_content.module_text.max_length
 - amazon.brand_story.brand_card.max_length

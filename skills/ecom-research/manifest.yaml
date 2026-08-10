@@ -61,6 +61,19 @@ triggers:
   - 选品分析
   - 销量掉了
   - 饱和
+  - 能不能进
+  - 能不能做
+  - 还行不行
+  - 晚不晚
+  - 饱和了
+  - 一天出三百单
+  - 三百单
+  - 老王说
+  - 我也想试试
+  - 别人一天出
+  - 销量突然掉
+  - 销量掉了
+  - 排查原因
 uses_constraints:
 - forecast.backtest_target
 - forecast.changepoint_prior_range

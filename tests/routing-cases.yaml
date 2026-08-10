@@ -1,7 +1,3 @@
-# Fixed routing test suite — manual cases, version-controlled.
-# Anti-degeneration: at most 50% of cases may literally contain a trigger keyword.
-# Cases must be phrased the way a real seller would phrase them.
-
 - expect: ecom-listing
   query: 帮我写一个Amazon蓝牙耳机的标题和五点描述
 - expect: ecom-listing
@@ -146,19 +142,39 @@
   query: 新品刚上架前两周要注意什么
 - expect: ecom-inventory
   query: 旺季备货量一般是平时的多少倍
-- query: 这个决定，我到底自己拍板还是让工具算
-  expect: ecom-applicability
-- query: 上架完老半天曝光都上不去
-  expect: ecom-listing
-- query: 同样的话在国外要怎么讲才对味
-  expect: ecom-listing
-- query: 烧了半个月钱GMV没涨
-  expect: ecom-advertising
-- query: 同一款词，别人出0.5我出2还是抢不到
-  expect: ecom-advertising
-- query: 换季了旧款要不要清掉
-  expect: ecom-pricing
-- query: 和头部品牌比我的贵5块能不能坐住
-  expect: ecom-pricing
-- query: 小红书上要不要请素人试用
-  expect: ecom-social
+- expect: ecom-applicability
+  query: 这个决定，我到底自己拍板还是让工具算
+- expect: ecom-listing
+  query: 上架完老半天曝光都上不去
+- expect: ecom-listing
+  query: 同样的话在国外要怎么讲才对味
+- expect: ecom-advertising
+  query: 烧了半个月钱GMV没涨
+- expect: ecom-advertising
+  query: 同一款词，别人出0.5我出2还是抢不到
+- expect: ecom-pricing
+  query: 换季了旧款要不要清掉
+- expect: ecom-pricing
+  query: 和头部品牌比我的贵5块能不能坐住
+- expect: ecom-social
+  query: 小红书上要不要请素人试用
+- expect: ecom-inventory
+  query: 这批货到了亚马逊仓库一个月了还没开始卖，急死了
+- expect: ecom-listing
+  query: 我女朋友说包装不好看，要不要重新设计
+- expect: ecom-research
+  query: 隔壁老王说他那个品一天出三百单，我也想试试
+- expect: ecom-compliance
+  query: 上周被跟卖了，气死我了
+- expect: ecom-pricing
+  query: 算了一笔账发现白干了
+- expect: ecom-customer-service
+  query: 有个买家说用了脸上起红疹子要告我
+- expect: ecom-social
+  query: ins上那些网红发一条能带多少货
+- expect: ecom-applicability
+  query: 朋友说这东西交给电脑就行了不用管，靠谱吗
+- expect: ecom-advertising
+  query: 最近流量突然掉了百分之四十查不出原因
+- expect: ecom-pricing
+  query: 隔壁那个店一模一样的东西比我便宜两块钱

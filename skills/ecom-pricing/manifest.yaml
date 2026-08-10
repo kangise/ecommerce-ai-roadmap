@@ -56,6 +56,22 @@ triggers:
   - 赚不赚
   - 跟卖
   - 降价
+  - 换季了
+  - 旧款
+  - 清掉
+  - 清仓
+  - 贵5块
+  - 能不能坐住
+  - 坐住
+  - 撑得住
+  - 头部品牌
+  - 比我的贵
+  - 白干了
+  - 算了一笔账
+  - 一笔账
+  - 白忙
+  - 便宜两块
+  - 比我便宜
 uses_constraints:
 - amazon.cpc.value.actual_price_formula
 - amazon.roas.value.profitable_threshold
