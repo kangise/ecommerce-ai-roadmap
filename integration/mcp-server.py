@@ -242,46 +242,150 @@ class OPCServer:
             return self._list_skills()
         return f"Unknown tool: {name}"
 
-    def _route_query(self, query: str) -> str:
-        """Route a user query to the best-matching skill."""
-        query_lower = query.lower()
-        best_match = None
-        best_score = 0
+    @staticmethod
+    def _norm(text: str) -> str:
+        """Fold case and drop all whitespace before matching.
 
-        # Check applicability first (high priority)
-        app_keywords = self._skills.get("ecom-applicability", {}).get("manifest", {}).get("triggers", {}).get("keywords", [])
-        app_score = sum(1 for kw in app_keywords if len(kw) >= 3 and kw.lower() in query_lower)
+        Trigger 「AI做」 failed to match the query 「能用 AI 做补货预测吗」 — one
+        space. ecom-applicability scored 0 and ecom-inventory took a question
+        that was explicitly about whether to use AI at all.
+        """
+        return re.sub(r"\s+", "", text).lower()
 
-        for rule in self._routing_rules:
-            if rule["skill"] == "ecom-applicability":
+    def _query_terms(self, query: str) -> set[str]:
+        """Candidate terms for coverage lookup: ASCII words + CJK n-grams."""
+        q = self._norm(query)
+        terms = set(re.findall(r"[a-z0-9]{3,}", q))
+        for run in re.findall(r"[\u4e00-\u9fff]{2,}", q):
+            for n in (2, 3, 4):
+                for i in range(len(run) - n + 1):
+                    terms.add(run[i:i + n])
+        return terms
+
+    def _constraint_coverage(self, skill_id: str, query: str) -> int:
+        """How many query terms appear in constraints this skill actually uses.
+
+        Zero means the router picked a skill that holds nothing relevant. Asked
+        about Amazon video-ad caption rules, the router returned
+        ecom-advertising with full confidence; the package has no such rule
+        (「字幕」 appears in 0 constraints). The agent then had to either admit
+        the gap on its own or invent policy. Surfacing the count moves that
+        decision out of the agent's judgment.
+        """
+        manifest = self._skills.get(skill_id, {}).get("manifest", {}) or {}
+        used = set(manifest.get("uses_constraints") or [])
+        if not used:
+            return 0
+        haystack = []
+        for c in self._ontology.get("constraints", []):
+            if c.get("id") not in used:
                 continue
-            score = sum(1 for kw in rule["keywords"] if kw.lower() in query_lower)
-            if score > best_score:
-                best_score = score
-                best_match = rule["skill"]
+            stmt = c.get("statement", {}) or {}
+            haystack.append(self._norm(" ".join([
+                str(c.get("id", "")), str(c.get("attribute", "")), str(c.get("value", "")),
+                str(stmt.get("zh", "")), str(stmt.get("en", "")),
+            ])))
+        if not haystack:
+            return 0
+        return sum(1 for t in self._query_terms(query) if any(t in h for h in haystack))
 
-        if app_score >= 2 and best_score < 2:
-            best_match = "ecom-applicability"
-        elif app_score >= 3 and best_score < 3:
-            best_match = "ecom-applicability"
+    def _score_skills(self, query: str) -> list[tuple[str, int]]:
+        qn = self._norm(query)
+        scored = []
+        for rule in self._routing_rules:
+            score = sum(1 for kw in rule["keywords"] if kw and self._norm(kw) in qn)
+            if score:
+                scored.append((rule["skill"], score))
+        scored.sort(key=lambda x: (-x[1], x[0]))
+        return scored
+
+    def _route_query(self, query: str) -> str:
+        """Route a user query to the best-matching skill.
+
+        Reports ambiguity and coverage instead of always returning one
+        confident answer. All three behaviours here come from observed
+        acceptance failures, not from design taste.
+        """
+        scored = self._score_skills(query)
+        scores = dict(scored)
+        app_score = scores.get("ecom-applicability", 0)
+        domain = [(s, n) for s, n in scored if s != "ecom-applicability"]
+        best_match, best_score = (domain[0] if domain else (None, 0))
+
+        # Applicability asks "should AI do this at all". On a tie it wins: a
+        # question that reaches for the domain skill's vocabulary while also
+        # asking whether AI is usable is the applicability case. 「我只有 7 天
+        # 数据，能用 AI 做补货预测吗」 scored 2/2 against ecom-inventory and
+        # went to inventory, which answered the forecasting question instead
+        # of the "you do not have enough data" question. A lone stray hit
+        # still must not beat a well-matched domain question.
+        if app_score >= 2 and app_score >= best_score:
+            best_match, best_score = "ecom-applicability", app_score
         elif not best_match and app_score >= 1:
-            best_match = "ecom-applicability"
+            best_match, best_score = "ecom-applicability", app_score
 
         if not best_match:
-            return json.dumps({"error": "No skill matches this query", "query": query}, ensure_ascii=False)
+            return json.dumps({
+                "query": query,
+                "skill": None,
+                "confidence": "none",
+                "reason": "No skill triggers matched.",
+                "next": "Ask the user to restate, or call opc.search_knowledge "
+                        "to check whether the package covers this topic at all.",
+            }, ensure_ascii=False, indent=2)
+
+        # Dual intent. 「这个品类能不能做？可以的话帮我写 Listing」 is two
+        # requests; returning only the higher scorer silently dropped the
+        # feasibility half, which the routing table says should be clarified.
+        #
+        # Requires the runner-up to score >= 2, not merely to tie. At 1-vs-1
+        # a tie is noise: one incidental keyword each. 「供应商 lead time 25 天，
+        # 我该备多少货」 tied ecom-inventory against ecom-research on one hit
+        # apiece and got reported as ambiguous, which it is not.
+        rivals = [(s, n) for s, n in scored
+                  if s != best_match and n >= 2 and best_score - n < 2]
+        coverage = self._constraint_coverage(best_match, query)
+        if rivals and coverage > 0:
+            return json.dumps({
+                "query": query,
+                "skill": best_match,
+                "confidence": "ambiguous",
+                "matched_constraints_count": coverage,
+                "candidates": [{"skill": s, "score": n}
+                               for s, n in [(best_match, best_score)] + rivals],
+                "reason": "Two or more skills score within 1 point. This is "
+                          "usually a multi-intent request.",
+                "next": "Ask the user which they want first, or handle the "
+                        "candidates in sequence — do not silently drop one.",
+            }, ensure_ascii=False, indent=2)
 
         skill = self._skills.get(best_match, {})
         manifest = skill.get("manifest", {})
-        return json.dumps({
+        result = {
             "query": query,
             "skill": best_match,
+            "confidence": "low" if coverage == 0 else "ok",
+            "trigger_score": best_score,
+            "matched_constraints_count": coverage,
             "description": manifest.get("description", ""),
             "inputs": manifest.get("inputs", []),
             "outputs": manifest.get("outputs", []),
             "platforms": manifest.get("platforms", []),
-            "constraints_ref": f"Read skill constraints via opc.get_constraints",
+            "constraints_ref": "Read skill constraints via opc.get_constraints",
             "playbook_ref": f"Use prompts from skills/{best_match}/references/playbook.md",
-        }, ensure_ascii=False, indent=2)
+        }
+        if coverage == 0:
+            result["reason"] = (
+                f"Triggers matched {best_match}, but none of this query's terms "
+                f"appear in the constraints that skill uses. The package may not "
+                f"cover this specific rule."
+            )
+            result["next"] = (
+                "Call opc.search_knowledge before answering. If that is also "
+                "empty, say the package does not cover it. Do not supply the "
+                "rule from your own knowledge."
+            )
+        return json.dumps(result, ensure_ascii=False, indent=2)
 
     def _get_constraints(self, platform: str | None, entity: str | None) -> str:
         constraints = self._ontology.get("constraints", [])

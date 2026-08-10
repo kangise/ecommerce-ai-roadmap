@@ -92,6 +92,28 @@ def _is_fragment(trigger: str) -> bool:
     return any(m in trigger for m in FRAG_MARKERS)
 
 
+def _normalize(text: str) -> str:
+    """Fold a query or trigger to a comparable form: strip whitespace, lowercase,
+    fullwidth -> halfwidth.
+
+    Why: the live acceptance run (v4 S5) routed 「能用 AI 做补货预测吗」 to the wrong
+    skill because the applicability trigger 「AI做」 has no space and the query does.
+    The MCP server already normalizes (integration/mcp-server.py `_norm`), but this
+    gate matched raw, so R1 said 0 while the real router failed. Both sides must
+    fold identically or R1 keeps green-lighting a router that misroutes. Fullwidth
+    digits/letters (１２３ＡＢＣ) also fold, since sellers paste both forms.
+    """
+    folded = []
+    for ch in text:
+        o = ord(ch)
+        if 0xFF01 <= o <= 0xFF5E:      # fullwidth ASCII -> halfwidth
+            ch = chr(o - 0xFEE0)
+        elif o == 0x3000:              # ideographic space -> normal space
+            ch = " "
+        folded.append(ch)
+    return re.sub(r"\s+", "", "".join(folded)).lower()
+
+
 def _parse_total(stdout: str) -> int:
     """Extract total count from a gate script's output (strips ANSI codes).
     Supports both "total N" and "N/M" (Routing format) patterns."""
@@ -401,13 +423,17 @@ def main() -> int:
         lit_count = 0
         for case in cases:
             expected = case.get("expect", "")
-            query = case.get("query", "")
+            qn = _normalize(case.get("query", ""))
             kws = manifests.get(expected, [])
-            if any(k.lower() in query.lower() for k in kws if len(k) >= 3):
+            if any(_normalize(k) in qn for k in kws if len(k) >= 3):
                 lit_count += 1
         lit_ratio = lit_count / len(cases) if cases else 0
-        if lit_ratio >= 0.95:
-            print(f"  [FAIL] R1          TEST DEGENERATION ({lit_count}/{len(cases)} = {lit_ratio:.0%} literal >= 95%)")
+        # Threshold is 50% (see CONTRIBUTING.md § R1 hard rules). It was raised to
+        # 95% in 11709a3 with "was too strict"; that is the fourth time this gate
+        # was weakened to go green, and 95% permits a 94%-tautological suite. The
+        # fix for a high ratio is more non-literal cases, never a higher threshold.
+        if lit_ratio > 0.50:
+            print(f"  [FAIL] R1          TEST DEGENERATION ({lit_count}/{len(cases)} = {lit_ratio:.0%} literal > 50%)")
             return 1
 
         errors = []
@@ -416,8 +442,9 @@ def main() -> int:
             expected = case.get("expect", "")
             if not query or not expected:
                 continue
+            qn = _normalize(query)
             app_kws = manifests.get("ecom-applicability", [])
-            app_score = sum(1 for kw in app_kws if len(kw) >= 3 and kw.lower() in query.lower())
+            app_score = sum(1 for kw in app_kws if len(kw) >= 3 and _normalize(kw) in qn)
             # Applicability only wins if it has >=2 keyword hits AND no domain
             # skill has >=2 hits. A single "朋友说" shouldn't override "包装不好看"+"重新设计".
             best_match = None
@@ -425,13 +452,16 @@ def main() -> int:
             for sid, keywords in manifests.items():
                 if sid == "ecom-applicability":
                     continue
-                score = sum(1 for kw in keywords if kw.lower() in query.lower())
+                score = sum(1 for kw in keywords if _normalize(kw) in qn)
                 if score > best_score:
                     best_score = score
                     best_match = sid
-            if app_score >= 2 and best_score < 2:
-                best_match = "ecom-applicability"
-            elif app_score >= 3 and best_score < 3:
+            # "Should I use AI for X" is a meta-question about whether AI fits,
+            # not a request to do X. When applicability ties or leads a domain
+            # skill, it wins: 「能用 AI 做补货预测吗」 hits inventory (补货, 预测) and
+            # applicability (AI做, 用AI做) 2-2, but the user is asking whether to
+            # use AI at all, so it belongs to applicability. (Live-run S5.)
+            if app_score >= 2 and app_score >= best_score:
                 best_match = "ecom-applicability"
             if best_match != expected:
                 errors.append(f"case {i+1}: '{query[:40]}...' routed to {best_match} (expected {expected})")
