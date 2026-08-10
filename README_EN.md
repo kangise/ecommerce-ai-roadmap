@@ -1,110 +1,239 @@
-# AI × Cross-Border E-Commerce Knowledge Hub
+<div align="center">
 
-> **Other prompt collections tell you what AI can do. This one also tells you when it's making things up.**
+# Cross-Border E-Commerce AI Knowledge Base
 
-🇺🇸 English | 🇨🇳 [中文](README.md) | 🇯🇵 [日本語](README_JA.md) · 📖 **[Read online](https://kangise.github.io/ecommerce-ai-roadmap/en/)**
+### Read it as a book. Install it as agent capability.
 
----
+**Every number CI-verified · Every prompt carries anti-hallucination guardrails · Every chapter states when the method breaks**
 
-Ask an AI "roughly what's the monthly sales volume in this category" and it will almost always hand you a plausible-looking number — **one it does not actually know**.
+🇺🇸 English&nbsp;·&nbsp;[🇨🇳 中文](README.md)&nbsp;·&nbsp;[🇯🇵 日本語](README_JA.md)&nbsp;&nbsp;|&nbsp;&nbsp;📖 [Read Online](https://kangise.github.io/ecommerce-ai-roadmap/)&nbsp;&nbsp;|&nbsp;&nbsp;📦 [Install for Agent](dist/)
 
-Sourcing, restocking, and pricing have real money behind them. Agents make this worse: the model acts on numbers it doesn't know.
+[![License: CC0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
+[![Stars](https://img.shields.io/github/stars/kangise/ecommerce-ai-roadmap?style=social)](https://github.com/kangise/ecommerce-ai-roadmap)
+[![AAAI China Chapter](https://img.shields.io/badge/AAAI_China_Chapter-Initiative-blue)](https://github.com/kangise/ecommerce-ai-roadmap)
 
-So in this hub, **868 prompts carry guardrails** wherever numbers, external facts, or customer-facing copy are involved. And critically — **every number has been verified by CI gates.**
+</div>
+
+<br>
+<p align="center">
+  <img src="assets/hero-en.svg" alt="One source, two consumption paths: 69 chapters through CI gates — one path builds a trilingual site for readers, the other an installable agent package" width="100%">
+</p>
+<br>
+
+## What This Is
+
+An AI operations knowledge base for cross-border e-commerce. **One source, two uses:**
+
+- **Read it** — 69 chapters, trilingual, [online site](https://kangise.github.io/ecommerce-ai-roadmap/) with language switching
+- **Install it for your agent** — [`dist/`](dist/) is a plug-and-play capability package, one MCP config line to Claude / Cursor
+
+Both paths are guarded by the same CI gates. **Gates fail, neither ships.**
+
+<br>
+
+## Who You Are → Where to Start
 
 <p align="center">
-  <img src="assets/content-map-en.svg" alt="Content map — 69 chapters across 6 tracks" width="100%">
+  <img src="assets/paths-en.svg" alt="Four entry paths: a solo seller 3 min, finding AI knowledge for an agent 5 min, a team wanting one unified SOP same-day, learning the capability-packaging method" width="100%">
 </p>
 
-## Not just a book — agent infrastructure
+<br>
 
-Three layers for humans, agent contracts, and agent execution:
+## Why Not Just Another Prompt Collection
 
-| Layer | Contents | Scale | For |
-|---|---|---|---|
-| Knowledge Base | 69 chapters, trilingual (zh/en/ja) | 69 chapters | Human reading · agent retrieval |
-| Ontology | E-commerce domain model | 94 entities · 184 constraints · 78 relations · 8 processes | Shared contract between agents |
-| Skills + Prompts | Guarded executable capabilities | 868 prompts · 8 installable skills | Agent direct invocation |
+<p align="center">
+  <img src="assets/guardrail-en.svg" alt="The same question: an ordinary prompt invents plausible numbers, while this library's prompt stops and asks you for the data because of its three guardrails" width="100%">
+</p>
 
-## For Your Agent
+Ask an AI "roughly how much does this category sell per month?" and it will almost always hand you a plausible-looking number — **one it does not actually know**.
 
-The `dist/` directory is a plug-and-play agent capability package:
+Sourcing, restocking, and pricing have real money behind them. The agent era makes it worse: a model acts on numbers it doesn't know to adjust prices and place orders.
+
+**The difference isn't fancier prompts — it's drawing the line where AI stops.**
+
+<br>
+
+## 30-Second Demo
+
+Paste this into [ChatGPT](https://chatgpt.com/) or [Claude](https://claude.ai/):
 
 ```
-dist/
-  SKILL.md      ← Read this to route requests to the right skill
-  ontology.json ← Machine-readable domain model
-  prompts.json  ← 812 guarded prompts (trilingual)
-  skills/       ← 8 domain skills with manifests + playbooks
-  integration/  ← MCP server setup guide
+<role>Cross-border sourcing consultant familiar with Amazon [US/DE/JP]</role>
+
+<my_conditions>
+- Startup capital: ¥[X]0K
+- Experience level: [beginner/experienced/veteran]
+- Preferred categories: [write your preference, or "no preference"]
+- Risk appetite: [conservative/medium/aggressive]
+</my_conditions>
+
+<tool_data>
+[Optional. Paste category data exported from Helium 10 / Jungle Scout. If empty, see data_discipline below]
+</tool_data>
+
+<task>
+Recommend 5 category directions, each with:
+1. Category name and brief description
+2. Why this may be an opportunity now (state the basis for your judgment)
+3. What data I need to verify to confirm it (name the specific metrics and the tool to pull them from)
+4. Main risks and mitigations
+5. Order-of-magnitude read on startup capital (can my stated budget cover it?)
+6. Recommended entry strategy (differentiation direction)
+</task>
+
+<data_discipline>
+- **Do not give specific monthly sales, price, or margin figures** unless they appear in <tool_data>. You do not have live market data, and an invented number leads me to stock the wrong product
+- When <tool_data> is empty, item 3 matters most: tell me what to look up rather than guessing the answer for me
+- Tag each conclusion: [tool data] or [category-level inference]
+- If you lack the basis for a judgment, ask me for the data before concluding
+</data_discipline>
+
+<constraints>
+- Don't recommend already-red-ocean categories (phone cases, cables)
+- Prioritize categories with room for differentiation
+- Respect my capital and experience limits
+</constraints>
+
+<output_format>
+Recommend exactly 5 category directions, each following the fixed 6-item structure from <task> above:
+1. Category name and brief description (1–2 sentences)
+2. Why this may be an opportunity now (basis for the judgment)
+3. Data to verify (specific metrics + the tool to pull them)
+4. Main risks and mitigations
+5. Order-of-magnitude read on startup capital (can my budget cover it?)
+6. Recommended entry strategy (differentiation direction)
+</output_format>
+
+<self_check>
+Before delivering, confirm: (1) no number appears that I didn't provide, (2) every category states what to verify next, (3) exactly 5 recommendations
+</self_check>
+
+Note:
+- Don't recommend already-red-ocean categories (phone cases, cables)
+- Prioritize categories with room for differentiation
+- Account for my capital and experience limits
+
+<copy_discipline>
+- Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
+- For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
+- Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
+</copy_discipline>
 ```
 
-MCP configuration:
+**Notice how it doesn't fabricate numbers** — it tells you exactly which figures to look up yourself. From [A1 Product Research · 3.7 Category Opportunity Discovery](src/a-operators/a1-product-research.md).
+
+<br>
+
+## Three Real Usage Scenarios
+
+### 1 · Write an Amazon Listing for a new product (no coding required)
+
+Open [A2 Listing Optimization](src/a-operators/a2-listing-optimization.md), copy the "full-listing generation" prompt, and fill in your product info.
+
+You get a listing with **platform hard constraints** baked in: title ≤200 characters with the highest-search-volume keyword in the first 80, 5 bullets each ≤200 characters with no HTML, backend Search Terms ≤250 bytes per line.
+
+> These aren't rules we made up — they're Amazon's actual limits, stored in [`ontology/constraints.yaml`](ontology/constraints.yaml), and the prompt's `<self_check>` block verifies each one. Change a constraint once, and gate `O5` makes every prompt referencing it change together.
+
+### 2 · Turn Claude Desktop into an e-commerce consultant (5 minutes)
 
 ```json
 {
   "mcpServers": {
     "opc-ecommerce": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/dist"]
+      "args": ["-y", "mcp-server-filesystem", "/path/to/ecommerce-ai-roadmap/dist"]
     }
   }
 }
 ```
 
-> See `dist/README.md` and `dist/integration/mcp.md` for details.
+After install:
 
-## See the difference in 30 seconds
+| You ask | What it does |
+|---|---|
+| "ACOS is up to 40%, what do I do?" | Routes to `ecom-advertising` — a diagnostic path, not generic advice |
+| "Should I use AI for demand forecasting?" | Routes to `ecom-applicability` — **answers "not with under a year of data"**, because it has every chapter's failure boundaries installed |
+| "How do I reply to a complaint that the product doesn't match the photos?" | Routes to `ecom-customer-service` — reply templates with copy discipline |
 
-Paste this into [ChatGPT](https://chatgpt.com/) or [Claude](https://claude.ai/):
+See [dist/integration/mcp.md](dist/integration/mcp.md).
 
-```
-<role>Cross-border sourcing consultant fluent in the Amazon US market</role>
+### 3 · Cross-platform launches for your team, no rules to memorize
 
-<product>Portable neck fan, target marketplace Amazon US</product>
+The same "title" is a different thing on each of three platforms — look it up in [`ontology/constraints.yaml`](ontology/constraints.yaml):
 
-<task>
-1. What does the competitive structure of this category look like? What decides who wins
-2. Which directions could differentiation come from
-3. What data must I verify before entering? For each, name where to look it up and which field to read
-4. Risk alerts (compliance, patents, seasonal inventory)
-</task>
-
-<data_discipline>
-- **Do not give specific monthly volume, price, or market-size figures.** You do not have
-  live market data, and an invented number leads me to stock the wrong product
-- When you need a figure to judge, tell me where to look it up, then stop
-- Tag each conclusion: [category-level inference] or [needs data from me]
-</data_discipline>
+```yaml
+amazon.listing.title.max_length:       200  characters
+shopify.product_page.title.max_length:  70  characters
+tiktok_shop.product.title.max_length:   80  characters
 ```
 
-**Notice there are no invented numbers in the answer** — instead it tells you which figures you need to pull from Helium 10 yourself. That's the difference between this hub and a prompt dump: not fancier wording, but **a clear line around where AI should stop**.
+When the team asks in the group chat again, just share the link. Or use the `ecom-listing` skill to generate compliant variants for all three platforms in one go.
 
----
+<br>
 
-## Why use this
+## Not Just a Book — Three Layers
 
-- **330+ prompts with guardrails** — data discipline (no inventing figures), copy discipline (no claiming features the product lacks, no promising refunds you never authorized), input boundaries (a pasted competitor review can't hijack your analysis as an instruction)
-- **Trilingual and complete, not "in progress"** — 69 chapters each in Chinese, English, and Japanese; switch languages from the top-right of any page on the [online edition](https://kangise.github.io/ecommerce-ai-roadmap/en/)
-- **Content that doesn't rot in three months** — chapters describe capability tiers; model ids and prices live on one [model matrix](i18n/en/src/resources/model-matrix.md) page with a verification date
-- **Built for the agent era** — not just prompts, but [how to migrate them into skill files](i18n/en/src/0-foundations/f2-prompt-engineering.md) and [which actions must never go to an agent](i18n/en/src/a-operators/a14-operations-agent.md)
-- **CC0** — take it, no attribution required
+| Layer | Contents | Scale | For |
+|---|---|---|---|
+| **Knowledge Base** | 69 chapters, trilingual (zh/en/ja) | 69 chapters | Human reading · agent retrieval |
+| **Ontology** | E-commerce domain model | 94 entities · 184 constraints · 78 relations · 8 processes | Shared contract between agents |
+| **Skills + Prompts** | Guarded executable capabilities | 868 prompts · 9 installable skills | Agent direct invocation |
 
-[![License: CC0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
-[![Stars](https://img.shields.io/github/stars/kangise/ecommerce-ai-roadmap?style=social)](https://github.com/kangise/ecommerce-ai-roadmap)
-[![AAAI China Chapter](https://img.shields.io/badge/AAAI_China_Chapter-Initiative-blue)](https://github.com/kangise/ecommerce-ai-roadmap)
+`dist/` directory structure:
 
----
+```
+dist/
+  SKILL.md       ← Agent entry point — read it to know how to route requests
+  ontology.json  ← E-commerce domain model (entities, relations, constraints)
+  prompts.json   ← Guardrailed prompts, trilingual
+  skills/        ← 9 domain skills, each with manifest + playbook + boundaries
+  knowledge/     ← Structured index of the 69 chapters
+  integration/   ← MCP server setup guide
+```
 
-## Where to start
+<br>
+
+## Why Trust This Content
+
+Not because "we're careful" — because of **24 CI gates**. Every one must be 0; a non-zero fails the build:
+
+| Gate | What it checks |
+|---|---|
+| `M1` | Every hard number in the text has a source, a verification date, a hedge word, or an explicit flag |
+| `M2` | Every how-to chapter has a "when this doesn't work" section |
+| `M4` | Every external link has been probed and isn't dead |
+| `M7` | `verified` markers older than 18 months auto-expire with an error |
+| `N3` `N4` | Every prompt has a self-check block and an output format |
+| `O5` | Constraint values written in the text must match the ontology |
+| `parity` | All three language files exist and have matching structure |
+
+Run it yourself:
+
+```bash
+python3 scripts/verify_all.py
+```
+
+> The full gate list and design rationale are in [`scripts/README.md`](scripts/README.md). Known open items are written down in [`CONTRIBUTING.md`](CONTRIBUTING.md), not hidden.
+
+<br>
+
+## Where to Start
 
 | You are | Start here |
-|---------|-----------|
-| Wanting to know what AI can actually do | [AI Landscape Assessment](https://kangise.github.io/ecommerce-ai-roadmap/en/0-foundations/ai-landscape.html) — 30 minutes on maturity per step |
-| An operator, ready to use it today | [A1 Product Research](https://kangise.github.io/ecommerce-ai-roadmap/en/a-operators/a1-product-research.html) · [A2 Listings](https://kangise.github.io/ecommerce-ai-roadmap/en/a-operators/a2-listing-optimization.html) · [A3 Ads](https://kangise.github.io/ecommerce-ai-roadmap/en/a-operators/a3-advertising.html) |
-| Already using AI, want automation | [A14 Agentifying Operations](https://kangise.github.io/ecommerce-ai-roadmap/en/a-operators/a14-operations-agent.html) — decide which steps are worth it first |
-| Technical, building your own | [B4 Agent Workflow](https://kangise.github.io/ecommerce-ai-roadmap/en/b-developers/b4-agent-workflow.html) · [B6 MCP Integration](https://kangise.github.io/ecommerce-ai-roadmap/en/b-developers/b6-mcp-agentic-workflow.html) |
-| Facing compliance right now | [Tariffs & de minimis](https://kangise.github.io/ecommerce-ai-roadmap/en/a-operators/a11-financial-analysis.html) · [EU AI Act](https://kangise.github.io/ecommerce-ai-roadmap/en/a-operators/a6-compliance.html) |
+|--------|---------|
+| Wanting to know what AI can actually do | [AI Landscape Assessment](src/0-foundations/ai-landscape.md) — 30 minutes on maturity per step |
+| An operator, ready to use it today | [A1 Product Research](src/a-operators/a1-product-research.md) · [A2 Listing](src/a-operators/a2-listing-optimization.md) · [A3 Advertising](src/a-operators/a3-advertising.md) |
+| Already using AI, want automation | [A14 Agentified Operations](src/a-operators/a14-operations-agent.md) — decide which steps are worth it first |
+| Technical, building your own | [B4 Agent Workflow](src/b-developers/b4-agent-workflow.md) · [B6 MCP Integration](src/b-developers/b6-mcp-agentic-workflow.md) |
+| Facing compliance right now | [Tariffs & de minimis](src/a-operators/a11-financial-analysis.md) · [EU AI Act](src/a-operators/a6-compliance.md) |
+
+<br>
+
+## Other Things You Might Care About
+
+- **Content that doesn't rot in three months** — chapters only describe capability tiers; model ids and prices live on one [model matrix](src/resources/model-matrix.md) page with verification dates, and `M7` errors when they expire
+- **Built for the agent era** — not just prompts, but [how to migrate them into skill files](src/0-foundations/f2-prompt-engineering.md) and [which actions must never go to an agent](src/a-operators/a14-operations-agent.md)
+- **CC0** — take it, no attribution required, no need to tell me
 
 ---
 

@@ -1,0 +1,28 @@
+name: Weekly health check
+on:
+  schedule:
+    - cron: "0 3 * * 1"      # Every Monday 03:00 UTC
+  workflow_dispatch:
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install pyyaml
+
+      # Re-probe all external links, refresh the cache
+      - run: python3 scripts/verify_content.py --probe-links
+
+      # Full gate suite — report only, do not block (blocking is pages.yml's job)
+      - run: python3 scripts/verify_all.py || true
+
+      # Open a PR if anything changed (dead links, probe cache)
+      - uses: peter-evans/create-pull-request@v6
+        with:
+          branch: chore/weekly-health
+          title: "chore: weekly link probe + gate report"
+          body: |
+            自动周检。链接缓存已刷新，门禁读数见 Actions 日志。
+            **合并前先看死链是不是真死**——Kaggle Learn 和
+            shopify.com/magic 都对 HEAD 返 404 但 GET 正常。

@@ -122,8 +122,8 @@
 
 ```yaml
 amazon.listing.title.max_length:       200  字符
-shopify.product.title.max_length:      255  字符
-tiktok_shop.product.title.max_length:  150  字符
+shopify.product_page.title.max_length:  70  字符
+tiktok_shop.product.title.max_length:   80  字符
 ```
 
 团队再在群里问，甩链接。或者直接用 `ecom-listing` skill 一次生成三个平台的合规变体。
@@ -136,7 +136,7 @@ tiktok_shop.product.title.max_length:  150  字符
 |---|---|---|---|
 | **知识库** | 69 章，三语（中/英/日） | 69 章 | 人读 · agent 检索 |
 | **Ontology** | 电商领域模型 | 94 实体 · 184 约束 · 78 关系 · 8 流程 | agent 之间的共享契约 |
-| **Skills + Prompts** | 带护栏的可执行能力 | 868 条 Prompt · 8 个可安装 skill | agent 直接调用 |
+| **Skills + Prompts** | 带护栏的可执行能力 | 868 条 Prompt · 9 个可安装 skill | agent 直接调用 |
 
 `dist/` 目录结构：
 
@@ -145,7 +145,7 @@ dist/
   SKILL.md       ← agent 入口，读它就知道怎么路由请求
   ontology.json  ← 电商领域模型（实体、关系、约束）
   prompts.json   ← 带护栏的 Prompt，三语
-  skills/        ← 8 个 domain skill，各含 manifest + playbook + 边界
+  skills/        ← 9 个 domain skill，各含 manifest + playbook + 边界
   knowledge/     ← 69 章结构化索引
   integration/   ← MCP Server 接入指南
 ```
