@@ -177,7 +177,7 @@ When the team asks in the group chat again, just share the link. Or use the `eco
 |---|---|---|---|
 | **Knowledge Base** | 69 chapters, trilingual (zh/en/ja) | 69 chapters | Human reading · agent retrieval |
 | **Ontology** | E-commerce domain model | 94 entities · 184 constraints · 78 relations · 8 processes | Shared contract between agents |
-| **Skills + Prompts** | Guarded executable capabilities | 868 prompts · 9 installable skills | Agent direct invocation |
+| **Skills + Prompts** | Guarded executable capabilities | 878 prompts · 9 installable skills | Agent direct invocation |
 
 `dist/` directory structure:
 

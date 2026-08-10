@@ -129,6 +129,18 @@ def _all_source_refs() -> list[tuple[str, str, str]]:
                 sources = [sources]
             for src in sources:
                 refs.append((yf, eid, src))
+        # processes.yaml: each step carries its own source: pointer
+        if yf == "processes.yaml":
+            for entry in data:
+                if not isinstance(entry, dict):
+                    continue
+                pid = entry.get("id", "?")
+                for i, step in enumerate(entry.get("steps") or [], 1):
+                    if not isinstance(step, dict):
+                        continue
+                    src = step.get("source")
+                    if src:
+                        refs.append((yf, f"{pid}.step{i}", src))
     return refs
 
 

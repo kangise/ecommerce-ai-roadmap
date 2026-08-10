@@ -665,11 +665,27 @@ Please output a weekly report template, including:
 - Cumulative prompt-library template count
 - Team AI usage rate (proportion of people using AI daily)
 
+<data_discipline>
+- Specific figures or facts about market data, search volume, competitor performance, regulatory text, or fee rates must come from what I supplied. **Don't fill gaps from memory** — these facts move fast and your version may be stale
+- When you need a fact to make a judgment, tell me which official source to verify it against, then stop and ask me
+- Tag every conclusion with its source: [supplied by me] or [model inference]
+</data_discipline>
+
 <copy_discipline>
 - Never write a feature, material, certification, or result the product doesn't have. Any attribute I didn't state above must not appear in the copy
 - For anything sent to a customer (replies, emails, templates), don't make commitments I haven't authorized: refund amounts, compensation, timelines, or exceptions to platform policy must be confirmed by me before they go in
 - Flag any claim touching efficacy, safety, environmental, or patent language separately for manual review
 </copy_discipline>
+
+<output_format>
+Output exactly 8 numbered sections (1. 2. 3. …) matching the requested items, in the same order, each headed with the item's original name; every requested item appears exactly once.
+</output_format>
+
+<self_check>
+(1) All 8 requested items (You are an AI project-management expert. Please help me design a team AI usage weekly report template.…) are present, numbered in the same order, with none missing or extra.
+(2) Every figure comes from the pasted data; anything absent is written "missing" — no estimates from memory.
+(3) Copy claims no feature/certification/material/result absent from the input, and makes no unauthorized customer commitment.
+</self_check>
 ```
 
 ---

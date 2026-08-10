@@ -659,14 +659,6 @@ def gate_n6() -> list[str]:
     #     Already excluded from N3/N4/N5 for the same reason.
     EXCLUDE = {
         "f1-ai-evolution.md", "f2-prompt-engineering.md",
-        # Reference/meta chapters where JA translations lag severely.
-        # These are not operational prompt domains — drift reflects
-        # translation gaps, not prompt structure issues.
-        "c1-ai-assessment.md", "c2-team-building.md",
-        "c3-roi-evaluation.md", "c4-ai-risk-governance.md",
-        "c5-competitive-intelligence.md",
-        "ai-listing-optimization.md", "ai-ppc-optimization.md",
-        "ai-review-to-product.md",
     }
 
     def count_blocks(md: Path, tree: str) -> int:
