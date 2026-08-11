@@ -54,7 +54,7 @@
 | Format | awesome lists | ChatGPT prompt packs | Amazon tool repos | ecommerce-ai-skills |
 |--------|--------------|----------------------|-------------------|----------------------|
 | Structured learning paths | — | — | — | 6 tracks |
-| Ready-to-use prompts | — | generic | — | 56 vertical guides |
+| Ready-to-use prompts | — | generic | — | 69 vertical guides |
 | Runnable notebooks | — | — | a few scripts | 18 Colab notebooks |
 | Case studies (with metrics) | — | — | — | 5 cases |
 | Online reading (mdBook) | — | — | — | GitHub Pages site |
@@ -76,7 +76,7 @@
 
 1. Original hands-on content — every prompt template carries business context
 2. Six structured learning tracks — operators/developers/managers/marketplaces/social/foundations
-3. Vertical depth — AI × cross-border e-commerce only; 56 guides + 18 notebooks
+3. Vertical depth — AI × cross-border e-commerce only; 69 guides + 18 notebooks
 4. AAAI China Chapter backing
 5. mdBook online reading experience
 
@@ -97,7 +97,7 @@
 >
 > We provide:
 > - 6 structured learning tracks, entry level to advanced
-> - 56 vertical guides you can use directly
+> - 69 vertical guides you can use directly
 > - 18 runnable Colab notebooks
 > - 5 case studies with quantified metrics
 > - AI guides for 13 marketplaces + 7 social channels

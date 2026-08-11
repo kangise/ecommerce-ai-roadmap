@@ -18,7 +18,7 @@ python3 scripts/verify_all.py    # Run all gates — must be 0 (except documente
 
 **Every path ends the same way: `python3 scripts/verify_all.py` must return 0.**
 
-## Gate Reference (41 gates, 13 groups)
+## Gate Reference (42 gates, 14 groups)
 
 | Group | Gates | Script |
 |-------|-------|--------|
@@ -33,7 +33,7 @@ python3 scripts/verify_all.py    # Run all gates — must be 0 (except documente
 | R2 Natural | R2 | verify_all.py --r2 |
 | S6 Attrib | S6 | verify_all.py --s6 |
 | Integration / Docs | I1, D1, D2 | verify_all.py --i1/--d1/--d2 |
-| Sustain | E1, E2 | verify_all.py --sustain |
+| Sustain | E1, E2, E3 | verify_all.py --sustain |
 | Dist | N7 | build_dist.py (via verify_all.py) |
 
 Every gate here was added because something broke. When a live acceptance run

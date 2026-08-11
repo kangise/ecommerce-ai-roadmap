@@ -27,6 +27,7 @@ CHECKS = [
     ("Integration","python3", "scripts/verify_all.py", "--i1"),
     ("Docs",      "python3", "scripts/verify_all.py", "--d1"),
     ("D2",        "python3", "scripts/verify_all.py", "--d2"),
+    ("Sustain",   "python3", "scripts/verify_all.py", "--sustain"),
     ("Dist",      "python3", "scripts/build_dist.py"),
 ]
 
@@ -154,6 +155,57 @@ def gate_e2() -> tuple[int, list[str]]:
     for cmd in cmds:
         if not (ROOT_V / "scripts" / cmd).exists():
             problems.append(f"CONTRIBUTING.md references scripts/{cmd} which does not exist")
+    return len(problems), problems
+
+
+def gate_e3() -> tuple[int, list[str]]:
+    """Front-door files exist and are non-empty.
+
+    Replaces tests/test_repo_properties.py, a pytest file that was 11/18 failing
+    and wired into nothing. It asserted a Jekyll-era layout (`_config.yml`,
+    `paths/`, `prompts/`) the repo replaced with mdBook long ago, and looked for
+    case studies as `docs/case-studies/*.md` — docs/ is mdBook's HTML output, so
+    that glob could only ever return 0. A checker nobody runs and that cannot
+    pass is worse than no checker: it reads as coverage while asserting fiction.
+
+    What survives here is the part still true and not covered elsewhere: the
+    files a visitor or contributor lands on first.
+    """
+    problems = []
+    required = [
+        "README.md", "README_EN.md", "README_JA.md",
+        "CHANGELOG.md", "CONTRIBUTING.md", "DISCLAIMER.md",
+    ]
+    for rel in required:
+        p = ROOT_V / rel
+        if not p.exists():
+            problems.append(f"{rel}: missing")
+        elif p.stat().st_size == 0:
+            problems.append(f"{rel}: empty")
+
+    # GitHub honours CODEOWNERS in any of three locations; this repo keeps it at
+    # the root. Check all three rather than a hardcoded one — the first draft of
+    # this gate asserted `.github/CODEOWNERS` and reported a missing file that
+    # was present and working.
+    owners = [ROOT_V / "CODEOWNERS", ROOT_V / ".github" / "CODEOWNERS",
+              ROOT_V / "docs" / "CODEOWNERS"]
+    found = [p for p in owners if p.exists() and p.stat().st_size > 0]
+    if not found:
+        problems.append("CODEOWNERS: missing from all of /, .github/, docs/")
+
+    tmpl = ROOT_V / ".github" / "ISSUE_TEMPLATE"
+    if not tmpl.is_dir():
+        problems.append(".github/ISSUE_TEMPLATE/: missing")
+    elif not any(tmpl.glob("*.md")):
+        problems.append(".github/ISSUE_TEMPLATE/: no templates")
+
+    # Case studies were an explicit content requirement; keep the floor, but
+    # point it at the source tree rather than the build output.
+    cases = ROOT_V / "src" / "case-studies"
+    n = len([f for f in cases.glob("*.md") if f.name.lower() != "readme.md"]) if cases.is_dir() else 0
+    if n < 2:
+        problems.append(f"src/case-studies/: {n} case studies (minimum 2)")
+
     return len(problems), problems
 
 
@@ -670,7 +722,7 @@ def main() -> int:
 
     if args.sustain:
         total = 0
-        for gid, fn in [("E1", gate_e1), ("E2", gate_e2)]:
+        for gid, fn in [("E1", gate_e1), ("E2", gate_e2), ("E3", gate_e3)]:
             count, problems = fn()
             total += count
             mark = "ok " if count == 0 else "FAIL"
