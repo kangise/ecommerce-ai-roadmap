@@ -200,4 +200,4 @@ H --> F
 
 ---
 
-**使用说明**: 本指南为案例研究提供技术参考，具体实施时请根据业务需求和资源约束进行调整。如有疑问，请参考[案例库](../case-studies/)中的具体实例或[提交问题](https://github.com/kangise/ecommerce-ai-roadmap/issues)。
+**使用说明**: 本指南为案例研究提供技术参考，具体实施时请根据业务需求和资源约束进行调整。如有疑问，请参考[案例库](../case-studies/)中的具体实例或[提交问题](https://github.com/kangise/ecommerce-ai-skills/issues)。

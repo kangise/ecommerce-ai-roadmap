@@ -13,7 +13,7 @@ The Model Context Protocol (MCP) is the natural fit for this infrastructure. Thi
   "mcpServers": {
     "opc-ecommerce": {
       "command": "python3",
-      "args": ["/path/to/ecommerce-ai-roadmap/integration/mcp-server.py", "--dist", "/path/to/ecommerce-ai-roadmap/dist"]
+      "args": ["/path/to/ecommerce-ai-skills/integration/mcp-server.py", "--dist", "/path/to/ecommerce-ai-skills/dist"]
     }
   }
 }
@@ -36,7 +36,7 @@ If you don't have Python in the MCP environment:
   "mcpServers": {
     "opc-ecommerce": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/ecommerce-ai-roadmap/dist"]
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/ecommerce-ai-skills/dist"]
     }
   }
 }

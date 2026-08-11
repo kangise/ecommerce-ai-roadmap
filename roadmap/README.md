@@ -1,4 +1,4 @@
-# ecommerce-ai-roadmap Roadmap
+# ecommerce-ai-skills Roadmap
 
 > AI × 跨境电商实战知识库 公开路线图
 > The Definitive AI Guide for Cross-Border E-Commerce Public Roadmap
@@ -98,8 +98,8 @@
 ## 如何参与 | How to Contribute
 
 - Star 本仓库，关注更新
-- [提交 Issue](https://github.com/kangise/ecommerce-ai-roadmap/issues) 建议新内容或报告问题
-- [提交 PR](https://github.com/kangise/ecommerce-ai-roadmap/pulls) 贡献 Prompt 模板、Notebook 或案例
+- [提交 Issue](https://github.com/kangise/ecommerce-ai-skills/issues) 建议新内容或报告问题
+- [提交 PR](https://github.com/kangise/ecommerce-ai-skills/pulls) 贡献 Prompt 模板、Notebook 或案例
 - 详见 [贡献指南](../CONTRIBUTING.md)
 
 ---

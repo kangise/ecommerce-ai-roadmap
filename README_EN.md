@@ -6,11 +6,11 @@
 
 **Every number CI-verified · Every prompt carries anti-hallucination guardrails · Every chapter states when the method breaks**
 
-🇺🇸 English&nbsp;·&nbsp;[🇨🇳 中文](README.md)&nbsp;·&nbsp;[🇯🇵 日本語](README_JA.md)&nbsp;&nbsp;|&nbsp;&nbsp;📖 [Read Online](https://kangise.github.io/ecommerce-ai-roadmap/)&nbsp;&nbsp;|&nbsp;&nbsp;📦 [Install for Agent](dist/)
+🇺🇸 English&nbsp;·&nbsp;[🇨🇳 中文](README.md)&nbsp;·&nbsp;[🇯🇵 日本語](README_JA.md)&nbsp;&nbsp;|&nbsp;&nbsp;📖 [Read Online](https://kangise.github.io/ecommerce-ai-skills/)&nbsp;&nbsp;|&nbsp;&nbsp;📦 [Install for Agent](dist/)
 
 [![License: CC0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
-[![Stars](https://img.shields.io/github/stars/kangise/ecommerce-ai-roadmap?style=social)](https://github.com/kangise/ecommerce-ai-roadmap)
-[![AAAI China Chapter](https://img.shields.io/badge/AAAI_China_Chapter-Initiative-blue)](https://github.com/kangise/ecommerce-ai-roadmap)
+[![Stars](https://img.shields.io/github/stars/kangise/ecommerce-ai-skills?style=social)](https://github.com/kangise/ecommerce-ai-skills)
+[![AAAI China Chapter](https://img.shields.io/badge/AAAI_China_Chapter-Initiative-blue)](https://github.com/kangise/ecommerce-ai-skills)
 
 </div>
 
@@ -24,7 +24,7 @@
 
 An AI operations knowledge base for cross-border e-commerce. **One source, two uses:**
 
-- **Read it** — 69 chapters, trilingual, [online site](https://kangise.github.io/ecommerce-ai-roadmap/) with language switching
+- **Read it** — 69 chapters, trilingual, [online site](https://kangise.github.io/ecommerce-ai-skills/) with language switching
 - **Install it for your agent** — [`dist/`](dist/) is a plug-and-play capability package, one MCP config line to Claude / Cursor
 
 Both paths are guarded by the same CI gates. **Gates fail, neither ships.**
@@ -141,7 +141,7 @@ You get a listing with **platform hard constraints** baked in: title ≤200 char
   "mcpServers": {
     "opc-ecommerce": {
       "command": "npx",
-      "args": ["-y", "mcp-server-filesystem", "/path/to/ecommerce-ai-roadmap/dist"]
+      "args": ["-y", "mcp-server-filesystem", "/path/to/ecommerce-ai-skills/dist"]
     }
   }
 }
@@ -365,7 +365,7 @@ Note information currency and recommend confirming with certification bodies.
 
 18 Jupyter notebooks that run directly on Google Colab — zero setup required:
 
-[Product Research](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a1-product-research.ipynb) · [Multilingual Listing](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a2-multilingual-listing.ipynb) · [Advertising](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a3-advertising.ipynb) · [Negative Reviews](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a4-negative-review-analysis.ipynb) · [Inventory Reorder](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a5-inventory-reorder.ipynb) · [Compliance Checker](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a6-compliance-checker.ipynb) · [Price Tracker](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a8-price-tracker.ipynb) · [GEO Audit](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a9-geo-audit.ipynb) · [Brand Audit](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a10-brand-audit.ipynb) · [Profit Calculator](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a11-profit-calculator.ipynb) · [Patent Search](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/a12-ip-patent-search.ipynb) · [Data Pipeline](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/b1-data-pipeline.ipynb) · [Sales Forecast](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/b2-sales-forecast.ipynb) · [Review NLP](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/b7-review-analysis.ipynb) · [Dashboard](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/b8-dashboard-demo.ipynb) · [ROI Evaluation](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/c3-roi-evaluation.ipynb) · [Cross-Platform Content](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/d3-cross-platform-content.ipynb) · [Social Calendar](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/e1-social-content-calendar.ipynb)
+[Product Research](https://colab.research.google.com/github/kangise/ecommerce-ai-skills/blob/main/notebooks/a1-product-research.ipynb) · [Multilingual Listing](https://colab.research.google.com/github/kangise/ecommerce-ai-skills/blob/main/notebooks/a2-multilingual-listing.ipynb) · [Advertising](https://colab.research.google.com/github/kangise/ecommerce-ai-skills/blob/main/notebooks/a3-advertising.ipynb) · [Negative Reviews](https://colab.research.google.com/github/kangise/ecommerce-ai-skills/blob/main/notebooks/a4-negative-review-analysis.ipynb) · [Inventory Reorder](https://colab.research.google.com/github/kangise/ecommerce-ai-skills/blob/main/notebooks/a5-inventory-reorder.ipynb) · [Compliance Checker](https://colab.research.google.com/github/kangise/ecommerce-ai-skills/blob/main/notebooks/a6-compliance-checker.ipynb) · [Price Tracker](https://colab.research.google.com/github/kangise/ecommerce-ai-skills/blob/main/notebooks/a8-price-tracker.ipynb) · [GEO Audit](https://colab.research.google.com/github/kangise/ecommerce-ai-skills/blob/main/notebooks/a9-geo-audit.ipynb) · [Brand Audit](https://colab.research.google.com/github/kangise/ecommerce-ai-skills/blob/main/notebooks/a10-brand-audit.ipynb) · [Profit Calculator](https://colab.research.google.com/github/kangise/ecommerce-ai-skills/blob/main/notebooks/a11-profit-calculator.ipynb) · [Patent Search](https://colab.research.google.com/github/kangise/ecommerce-ai-skills/blob/main/notebooks/a12-ip-patent-search.ipynb) · [Data Pipeline](https://colab.research.google.com/github/kangise/ecommerce-ai-skills/blob/main/notebooks/b1-data-pipeline.ipynb) · [Sales Forecast](https://colab.research.google.com/github/kangise/ecommerce-ai-skills/blob/main/notebooks/b2-sales-forecast.ipynb) · [Review NLP](https://colab.research.google.com/github/kangise/ecommerce-ai-skills/blob/main/notebooks/b7-review-analysis.ipynb) · [Dashboard](https://colab.research.google.com/github/kangise/ecommerce-ai-skills/blob/main/notebooks/b8-dashboard-demo.ipynb) · [ROI Evaluation](https://colab.research.google.com/github/kangise/ecommerce-ai-skills/blob/main/notebooks/c3-roi-evaluation.ipynb) · [Cross-Platform Content](https://colab.research.google.com/github/kangise/ecommerce-ai-skills/blob/main/notebooks/d3-cross-platform-content.ipynb) · [Social Calendar](https://colab.research.google.com/github/kangise/ecommerce-ai-skills/blob/main/notebooks/e1-social-content-calendar.ipynb)
 
 ## Case Studies
 
@@ -381,11 +381,11 @@ Note information currency and recommend confirming with certification bodies.
 
 ## Community
 
-ecommerce-ai-roadmap is an open-source project under the **AAAI China Chapter**, dedicated to the practical application of AI in cross-border e-commerce.
+ecommerce-ai-skills is an open-source project under the **AAAI China Chapter**, dedicated to the practical application of AI in cross-border e-commerce.
 
 - **Star** this repo to stay updated
-- [Submit an issue](https://github.com/kangise/ecommerce-ai-roadmap/issues) to report problems or suggest improvements
-- [Submit a PR](https://github.com/kangise/ecommerce-ai-roadmap/pulls) to contribute prompts, notebooks, or case studies
+- [Submit an issue](https://github.com/kangise/ecommerce-ai-skills/issues) to report problems or suggest improvements
+- [Submit a PR](https://github.com/kangise/ecommerce-ai-skills/pulls) to contribute prompts, notebooks, or case studies
 
 ## Contributing
 

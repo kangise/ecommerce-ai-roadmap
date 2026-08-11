@@ -533,7 +533,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [RAG Arch
 
 | リソース | ソース | おすすめ理由 |
 |----------|--------|--------------|
-| [B3 RAG ナレッジベースモジュール](../b-developers/b3-rag-knowledge-base.md) | ecommerce-ai-roadmap | 本ハブの技術実践モジュール、完全なコード付き |
+| [B3 RAG ナレッジベースモジュール](../b-developers/b3-rag-knowledge-base.md) | ecommerce-ai-skills | 本ハブの技術実践モジュール、完全なコード付き |
 | [Vector Databases 2026 Guide](https://iterathon.tech/blog/vector-databases-ai-applications-guide) | Iterathon | ベクトル DB の選定と本番デプロイのガイド |
 | [Retrieval-Augmented Generation (RAG) 論文](https://arxiv.org/abs/2005.11401) | Meta AI | RAG の原論文(2020)。理論的基礎の理解に |
 

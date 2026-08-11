@@ -31,7 +31,7 @@
 
 ### 2.1 AI application category coverage
 
-| AI application | awesome lists | ChatGPT prompt packs | Amazon tool repos | Paid courses | ecommerce-ai-roadmap |
+| AI application | awesome lists | ChatGPT prompt packs | Amazon tool repos | Paid courses | ecommerce-ai-skills |
 |----------------|--------------|----------------------|-------------------|--------------|----------------------|
 | Product research & market analysis | links | — | code snippets | theory | prompts + methodology + notebook |
 | Listing & content creation | links | generic prompts | — | theory | vertical prompts + case study |
@@ -51,7 +51,7 @@
 
 ### 2.2 Content format comparison
 
-| Format | awesome lists | ChatGPT prompt packs | Amazon tool repos | ecommerce-ai-roadmap |
+| Format | awesome lists | ChatGPT prompt packs | Amazon tool repos | ecommerce-ai-skills |
 |--------|--------------|----------------------|-------------------|----------------------|
 | Structured learning paths | — | — | — | 6 tracks |
 | Ready-to-use prompts | — | generic | — | 56 vertical guides |
@@ -72,7 +72,7 @@
 4. Single-language — most repos are English-only or Chinese-only
 5. Stalled updates — most repos slow down sharply after the initial buzz
 
-### 3.2 Current strengths of ecommerce-ai-roadmap
+### 3.2 Current strengths of ecommerce-ai-skills
 
 1. Original hands-on content — every prompt template carries business context
 2. Six structured learning tracks — operators/developers/managers/marketplaces/social/foundations
@@ -93,7 +93,7 @@
 
 ## 4. Positioning Statement
 
-> ecommerce-ai-roadmap is "the developer-roadmap for e-commerce AI"
+> ecommerce-ai-skills is "the developer-roadmap for e-commerce AI"
 >
 > We provide:
 > - 6 structured learning tracks, entry level to advanced

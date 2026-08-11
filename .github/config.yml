@@ -3,7 +3,7 @@
 
 # Configuration for new-issue-welcome - https://github.com/behaviorbot/new-issue-welcome
 newIssueWelcomeComment: >
-  Thanks for opening your first issue in ecommerce-ai-roadmap! 🎉
+  Thanks for opening your first issue in ecommerce-ai-skills! 🎉
   
   
   We're excited to have you contribute to our cross-border e-commerce AI knowledge hub.
@@ -18,11 +18,11 @@ newIssueWelcomeComment: >
   - [ ] Searched for existing similar issues
   
   
-  If you're adding a new resource, please ensure it meets our [contribution guidelines](https://github.com/cbec-ai-hub/ecommerce-ai-roadmap/blob/main/.github/CONTRIBUTING.md).
+  If you're adding a new resource, please ensure it meets our [contribution guidelines](https://github.com/kangise/ecommerce-ai-skills/blob/main/CONTRIBUTING.md).
 
 # Configuration for new-pr-welcome - https://github.com/behaviorbot/new-pr-welcome
 newPRWelcomeComment: >
-  Thanks for opening your first pull request in ecommerce-ai-roadmap! 🚀
+  Thanks for opening your first pull request in ecommerce-ai-skills! 🚀
   
   
   We appreciate your contribution to the cross-border e-commerce AI community.
@@ -32,21 +32,21 @@ newPRWelcomeComment: >
   
   - [ ] Filled out our PR template completely
   
-  - [ ] Followed our [contribution guidelines](https://github.com/cbec-ai-hub/ecommerce-ai-roadmap/blob/main/.github/CONTRIBUTING.md)
+  - [ ] Followed our [contribution guidelines](https://github.com/kangise/ecommerce-ai-skills/blob/main/CONTRIBUTING.md)
   
   - [ ] Tested all links if you're adding new resources
   
   - [ ] Used consistent formatting with existing entries
   
   
-  A maintainer will review your PR soon. Thanks for making ecommerce-ai-roadmap better! 🌟
+  A maintainer will review your PR soon. Thanks for making ecommerce-ai-skills better! 🌟
 
 # Configuration for first-pr-merge - https://github.com/behaviorbot/first-pr-merge
 firstPRMergeComment: >
   Congratulations on your first merged pull request! 🎉🎊
   
   
-  Thank you for contributing to ecommerce-ai-roadmap and helping build the most comprehensive 
+  Thank you for contributing to ecommerce-ai-skills and helping build the most comprehensive 
   resource for cross-border e-commerce AI solutions.
   
   
@@ -55,8 +55,8 @@ firstPRMergeComment: >
   
   
   We'd love to see more contributions from you. Check out our 
-  [good first issues](https://github.com/cbec-ai-hub/ecommerce-ai-roadmap/labels/good%20first%20issue) 
+  [good first issues](https://github.com/kangise/ecommerce-ai-skills/labels/good%20first%20issue) 
   for more ways to contribute!
   
   
-  Welcome to the ecommerce-ai-roadmap community! 🌍✨
+  Welcome to the ecommerce-ai-skills community! 🌍✨

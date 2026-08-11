@@ -31,7 +31,7 @@
 
 ### 2.1 AI 应用类别覆盖
 
-| AI 应用类别 | awesome 列表 | ChatGPT Prompt 集 | Amazon 工具仓库 | 付费课程 | ecommerce-ai-roadmap |
+| AI 应用类别 | awesome 列表 | ChatGPT Prompt 集 | Amazon 工具仓库 | 付费课程 | ecommerce-ai-skills |
 |-------------|-------------|-------------------|----------------|----------|---------------------|
 | 选品与市场分析 | 链接 | — | 代码片段 | 理论 | Prompt + 方法论 + Notebook |
 | Listing 与内容创作 | 链接 | 通用 Prompt | — | 理论 | 垂直 Prompt + 实战案例 |
@@ -51,7 +51,7 @@
 
 ### 2.2 内容形式对比
 
-| 内容形式 | awesome 列表 | ChatGPT Prompt 集 | Amazon 工具仓库 | ecommerce-ai-roadmap |
+| 内容形式 | awesome 列表 | ChatGPT Prompt 集 | Amazon 工具仓库 | ecommerce-ai-skills |
 |----------|-------------|-------------------|----------------|---------------------|
 | 结构化学习路径 | — | — | — | 6 条路径 |
 | 可直接使用的 Prompt | — | 通用 | — | 56 篇垂直电商指南 |
@@ -72,7 +72,7 @@
 4. 单语言 — 绝大多数仓库只有英文或只有中文
 5. 更新停滞 — 多数仓库在初始热度后更新频率急剧下降
 
-### 3.2 ecommerce-ai-roadmap 的当前优势
+### 3.2 ecommerce-ai-skills 的当前优势
 
 1. 原创实战内容 — 每个 Prompt 模板都有业务上下文
 2. 6 条结构化学习路径 — 覆盖运营/技术/管理/多平台/社交媒体/基础
@@ -93,7 +93,7 @@
 
 ## 4. 定位声明
 
-> ecommerce-ai-roadmap 是 "the developer-roadmap for e-commerce AI"
+> ecommerce-ai-skills 是 "the developer-roadmap for e-commerce AI"
 >
 > 我们提供：
 > - 6 条结构化学习路径，从入门到精通

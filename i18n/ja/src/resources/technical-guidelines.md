@@ -200,4 +200,4 @@ H --> F
 
 ---
 
-**利用上の注意**: 本ガイドは事例研究の技術リファレンスです。実装の際は業務要件とリソース制約に応じて調整してください。疑問があれば[事例集](../case-studies/)の具体例を参照するか、[Issue を提出](https://github.com/kangise/ecommerce-ai-roadmap/issues)してください。
+**利用上の注意**: 本ガイドは事例研究の技術リファレンスです。実装の際は業務要件とリソース制約に応じて調整してください。疑問があれば[事例集](../case-studies/)の具体例を参照するか、[Issue を提出](https://github.com/kangise/ecommerce-ai-skills/issues)してください。

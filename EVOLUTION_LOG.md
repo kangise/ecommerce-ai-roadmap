@@ -1,4 +1,4 @@
-# Evolution Log ecommerce-ai-roadmap
+# Evolution Log ecommerce-ai-skills
 
 > 此文件由AI进化引擎自动维护。
 
@@ -15,7 +15,7 @@
 ## 项目洞察
 
 - 根本目的：建立"AI + 跨境电商"垂直领域的行业标准参考，目标 10k GitHub star
-- 成功标准：当有人问"跨境电商怎么用 AI"，第一反应是"去看 ecommerce-ai-roadmap"
+- 成功标准：当有人问"跨境电商怎么用 AI"，第一反应是"去看 ecommerce-ai-skills"
 - 核心约束：GitHub 生态、CC0 许可、中英双语、纯内容仓库
 - 关键假设：高质量 Prompt 模板和 Notebook 是可传播的内容形态；README 第一屏决定 90% 的 star
 - 价值杠杆：README 第一屏体验 + 英文版覆盖全球受众

@@ -531,7 +531,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [RAG Arch
 
 | Resource | Source | Why |
 |----------|--------|-----|
-| [B3 RAG Knowledge Base module](../b-developers/b3-rag-knowledge-base.md) | ecommerce-ai-roadmap | this hub's hands-on module, complete code |
+| [B3 RAG Knowledge Base module](../b-developers/b3-rag-knowledge-base.md) | ecommerce-ai-skills | this hub's hands-on module, complete code |
 | [Vector Databases 2026 Guide](https://iterathon.tech/blog/vector-databases-ai-applications-guide) | Iterathon | selection and production deployment |
 | [Retrieval-Augmented Generation (RAG) paper](https://arxiv.org/abs/2005.11401) | Meta AI | the original RAG paper (2020) — theoretical grounding |
 

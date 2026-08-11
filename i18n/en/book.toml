@@ -11,8 +11,8 @@ build-dir = "book"
 [output.html]
 default-theme = "light"
 preferred-dark-theme = "ayu"
-git-repository-url = "https://github.com/kangise/ecommerce-ai-roadmap"
-edit-url-template = "https://github.com/kangise/ecommerce-ai-roadmap/edit/main/i18n/en/src/{path}"
+git-repository-url = "https://github.com/kangise/ecommerce-ai-skills"
+edit-url-template = "https://github.com/kangise/ecommerce-ai-skills/edit/main/i18n/en/src/{path}"
 no-section-label = false
 additional-css = ["custom.css"]
 additional-js = ["mermaid.min.js", "mermaid-init.js", "lang-switcher.js"]

@@ -200,4 +200,4 @@ H --> F
 
 ---
 
-**How to use this guide**: it provides technical reference points for the case studies; adapt to your business needs and resource constraints. For concrete examples, see the [case studies](../case-studies/) or [open an issue](https://github.com/kangise/ecommerce-ai-roadmap/issues).
+**How to use this guide**: it provides technical reference points for the case studies; adapt to your business needs and resource constraints. For concrete examples, see the [case studies](../case-studies/) or [open an issue](https://github.com/kangise/ecommerce-ai-skills/issues).

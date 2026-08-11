@@ -32,8 +32,8 @@
 
 ```bash
 # 1. 下载
-git clone https://github.com/kangise/ecommerce-ai-roadmap.git
-cd ecommerce-ai-roadmap
+git clone https://github.com/kangise/ecommerce-ai-skills.git
+cd ecommerce-ai-skills
 
 # 2. 构建
 python3 scripts/build_dist.py

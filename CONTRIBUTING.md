@@ -1,4 +1,4 @@
-# Contributing to E-Commerce AI Roadmap
+# Contributing to ecommerce-ai-skills
 
 ## Quick Start
 

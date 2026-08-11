@@ -1,14 +1,19 @@
-# ecommerce-ai-roadmap 品牌设计规范
+# ecommerce-ai-skills 品牌设计规范
 
 ---
 
 ## 品牌名称
 
-- 全称: ecommerce-ai-roadmap
-- 简称: ECAR / AI Roadmap
-- 中文: 跨境电商 AI 实战知识库
-- Tagline (EN): "The Definitive AI Playbook for Cross-Border E-Commerce"
-- Tagline (CN): "AI × 跨境电商实战知识库"
+- 全称: ecommerce-ai-skills
+- 中文: 跨境电商 AI 知识底座
+- Tagline (EN): "Read it as a book. Install it as agent capability."
+- Tagline (CN): "人可以读，agent 可以装。"
+- Tagline (JA): "人が読める。agent にインストールできる。"
+
+> 旧简称 `ECAR`（E-Commerce AI Roadmap）与旧 tagline "The Definitive AI Playbook"
+> 已废弃：仓库更名为 `ecommerce-ai-skills`，定位也从「Prompt / playbook 合集」
+> 改为「知识库 + ontology + skill 三层，人读与 agent 装两种消费方式」。
+> tagline 以三语 README 首屏为准，改这里之前先改 README。
 
 ---
 

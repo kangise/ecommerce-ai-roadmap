@@ -31,7 +31,7 @@
 | Market Research Analyst | 市場調査と競合分析のシステムプロンプト | [f/awesome-chatgpt-prompts](https://github.com/f/awesome-chatgpt-prompts) |
 | Competitive Analysis | 競合分析フレームワーク | [kostja94/marketing-skills](https://github.com/kostja94/marketing-skills) |
 | Product Research | 商品リサーチと市場検証 | [alphatrait/100000-ai-prompts](https://github.com/alphatrait/100000-ai-prompts-by-contentifyai) |
-| コミュニティ募集中 | Amazon 商品リサーチ専用 Skill の投稿歓迎 | [Issue を提出](https://github.com/kangise/ecommerce-ai-roadmap/issues) |
+| コミュニティ募集中 | Amazon 商品リサーチ専用 Skill の投稿歓迎 | [Issue を提出](https://github.com/kangise/ecommerce-ai-skills/issues) |
 
 ### コンテンツと転換率(商品ページ / コピー / ビジュアル)
 
@@ -66,14 +66,14 @@
 | Skill | 説明 | ソース |
 |-------|------|--------|
 | Customer Service Rep | カスタマーサービスのロールプロンプト | [f/awesome-chatgpt-prompts](https://github.com/f/awesome-chatgpt-prompts) |
-| コミュニティ募集中 | Amazon CS・申立専用 Skill の投稿歓迎 | [Issue を提出](https://github.com/kangise/ecommerce-ai-roadmap/issues) |
+| コミュニティ募集中 | Amazon CS・申立専用 Skill の投稿歓迎 | [Issue を提出](https://github.com/kangise/ecommerce-ai-skills/issues) |
 
 ### コンプライアンスと財務
 
 | Skill | 説明 | ソース |
 |-------|------|--------|
 | Accountant Role | 財務分析のロールプロンプト | [f/awesome-chatgpt-prompts](https://github.com/f/awesome-chatgpt-prompts) |
-| コミュニティ募集中 | 越境EC コンプライアンス・税務専用 Skill の投稿歓迎 | [Issue を提出](https://github.com/kangise/ecommerce-ai-roadmap/issues) |
+| コミュニティ募集中 | 越境EC コンプライアンス・税務専用 Skill の投稿歓迎 | [Issue を提出](https://github.com/kangise/ecommerce-ai-skills/issues) |
 
 ### 技術構築(データ / Agent / MCP)
 
@@ -95,4 +95,4 @@
 
 ---
 
-実務で検証済みの Skills の投稿を歓迎します。[Issue を提出](https://github.com/kangise/ecommerce-ai-roadmap/issues)してください。
+実務で検証済みの Skills の投稿を歓迎します。[Issue を提出](https://github.com/kangise/ecommerce-ai-skills/issues)してください。

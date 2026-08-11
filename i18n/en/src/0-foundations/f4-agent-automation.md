@@ -628,7 +628,7 @@ Output: an agent system + team usage norms
 
 | Resource | Source | Why |
 |----------|--------|-----|
-| [B4 AI Agents & Automation](../b-developers/b4-agent-workflow.md) | ecommerce-ai-roadmap | this hub's hands-on module |
+| [B4 AI Agents & Automation](../b-developers/b4-agent-workflow.md) | ecommerce-ai-skills | this hub's hands-on module |
 | [Building Effective Agents](https://www.anthropic.com/research/building-effective-agents) | Anthropic | Anthropic's official agent-design guide |
 | [LangGraph Documentation](https://langchain-ai.github.io/langgraph/) | LangChain | full LangGraph docs |
 | [The AI Agent Landscape 2026](https://learndevrel.com/blog/openclaw-ai-agent-phenomenon) | LearnDevRel | a 2026 agent-ecosystem overview |

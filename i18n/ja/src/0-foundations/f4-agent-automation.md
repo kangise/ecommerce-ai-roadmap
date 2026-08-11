@@ -628,7 +628,7 @@ Agent の能力を拡張(ツール増、シーン増)
 
 | リソース | ソース | おすすめ理由 |
 |----------|--------|--------------|
-| [B4 AI Agent と自動化](../b-developers/b4-agent-workflow.md) | ecommerce-ai-roadmap | 本ハブの技術実践モジュール |
+| [B4 AI Agent と自動化](../b-developers/b4-agent-workflow.md) | ecommerce-ai-skills | 本ハブの技術実践モジュール |
 | [Building Effective Agents](https://www.anthropic.com/research/building-effective-agents) | Anthropic | Anthropic 公式の Agent 設計ガイド |
 | [LangGraph Documentation](https://langchain-ai.github.io/langgraph/) | LangChain | LangGraph の完全ドキュメント |
 | [The AI Agent Landscape 2026](https://learndevrel.com/blog/openclaw-ai-agent-phenomenon) | LearnDevRel | 2026 年の Agent エコシステム全景分析 |

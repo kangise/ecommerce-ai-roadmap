@@ -18,7 +18,7 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "src")
-SITE = "https://kangise.github.io/ecommerce-ai-roadmap"
+SITE = "https://kangise.github.io/ecommerce-ai-skills"
 STUB_MARK = "<!-- i18n-stub -->"
 
 # path (relative to src/) -> (English title, Japanese title)

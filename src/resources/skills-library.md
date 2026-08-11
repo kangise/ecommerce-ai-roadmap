@@ -31,7 +31,7 @@
 | Market Research Analyst | 市场调研和竞品分析的系统 Prompt | [f/awesome-chatgpt-prompts](https://github.com/f/awesome-chatgpt-prompts) |
 | Competitive Analysis | 竞品分析框架 | [kostja94/marketing-skills](https://github.com/kostja94/marketing-skills) |
 | Product Research | 产品调研和市场验证 | [alphatrait/100000-ai-prompts](https://github.com/alphatrait/100000-ai-prompts-by-contentifyai) |
-| 社区贡献中 | 欢迎提交 Amazon 选品专用 Skill | [提交 Issue](https://github.com/kangise/ecommerce-ai-roadmap/issues) |
+| 社区贡献中 | 欢迎提交 Amazon 选品专用 Skill | [提交 Issue](https://github.com/kangise/ecommerce-ai-skills/issues) |
 
 ### 内容与转化（Listing / 文案 / 视觉）
 
@@ -66,14 +66,14 @@
 | Skill | 说明 | 来源 |
 |-------|------|------|
 | Customer Service Rep | 客服角色 Prompt | [f/awesome-chatgpt-prompts](https://github.com/f/awesome-chatgpt-prompts) |
-| 社区贡献中 | 欢迎提交 Amazon 客服/申诉专用 Skill | [提交 Issue](https://github.com/kangise/ecommerce-ai-roadmap/issues) |
+| 社区贡献中 | 欢迎提交 Amazon 客服/申诉专用 Skill | [提交 Issue](https://github.com/kangise/ecommerce-ai-skills/issues) |
 
 ### 合规与财务
 
 | Skill | 说明 | 来源 |
 |-------|------|------|
 | Accountant Role | 财务分析角色 Prompt | [f/awesome-chatgpt-prompts](https://github.com/f/awesome-chatgpt-prompts) |
-| 社区贡献中 | 欢迎提交跨境电商合规/税务专用 Skill | [提交 Issue](https://github.com/kangise/ecommerce-ai-roadmap/issues) |
+| 社区贡献中 | 欢迎提交跨境电商合规/税务专用 Skill | [提交 Issue](https://github.com/kangise/ecommerce-ai-skills/issues) |
 
 ### 技术构建（数据 / Agent / MCP）
 
@@ -95,4 +95,4 @@
 
 ---
 
-欢迎贡献你验证过的 Skills。[提交 Issue](https://github.com/kangise/ecommerce-ai-roadmap/issues) 即可。
+欢迎贡献你验证过的 Skills。[提交 Issue](https://github.com/kangise/ecommerce-ai-skills/issues) 即可。

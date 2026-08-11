@@ -20,8 +20,8 @@
 ## Agent に差し込む方法
 
 ```bash
-git clone https://github.com/kangise/ecommerce-ai-roadmap.git
-cd ecommerce-ai-roadmap
+git clone https://github.com/kangise/ecommerce-ai-skills.git
+cd ecommerce-ai-skills
 python3 scripts/build_dist.py
 ```
 
@@ -54,4 +54,4 @@ MCP 設定例：
 
 ---
 
-GitHub: [kangise/ecommerce-ai-roadmap](https://github.com/kangise/ecommerce-ai-roadmap)
+GitHub: [kangise/ecommerce-ai-skills](https://github.com/kangise/ecommerce-ai-skills)

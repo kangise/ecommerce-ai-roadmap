@@ -12,7 +12,7 @@ Claude Desktop config (~/Library/Application Support/Claude/claude_desktop_confi
       "mcpServers": {
         "opc-ecommerce": {
           "command": "python3",
-          "args": ["--dist", "/path/to/ecommerce-ai-roadmap/dist"]
+          "args": ["--dist", "/path/to/ecommerce-ai-skills/dist"]
         }
       }
     }

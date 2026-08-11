@@ -1,7 +1,7 @@
 # OPC dist/ Package Live Verification Report
 
 Date: 2026-08-10
-Method: All answers derived exclusively from `/Users/ken/Documents/Projects/Active/ecommerce-ai-roadmap/dist/` (SKILL.md, ontology.json, prompts.json, knowledge/index.json, skills/*). Routing tested with `mcp-server.py` `_route_query()`. No external knowledge used to fill gaps.
+Method: All answers derived exclusively from `/Users/ken/Documents/Projects/Active/ecommerce-ai-skills/dist/` (SKILL.md, ontology.json, prompts.json, knowledge/index.json, skills/*). Routing tested with `mcp-server.py` `_route_query()`. No external knowledge used to fill gaps.
 
 ---
 

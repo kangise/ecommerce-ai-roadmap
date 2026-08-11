@@ -27,7 +27,7 @@
 ### 1. MCP Server 目录
 PR to: https://github.com/modelcontextprotocol/servers
 Content: OPC E-Commerce Infrastructure — plug-and-play agent capability package for cross-border e-commerce operations. 69 chapters, 94 entities, 318 constraints, 9 domain skills. Dedicated MCP server exposing 7 resources, 4 tools, 9 prompts.
-Entry: Add `kangise/ecommerce-ai-roadmap` under Community Servers → E-Commerce
+Entry: Add `kangise/ecommerce-ai-skills` under Community Servers → E-Commerce
 
 ### 2. Skill/agent 工具目录  
 PR to: any agent-tool directory aggregator

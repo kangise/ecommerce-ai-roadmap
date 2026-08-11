@@ -531,7 +531,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [RAG Arch
 
 | 资源 | 来源 | 为什么推荐 |
 |------|------|-----------|
-| [B3 RAG 知识库模块](../b-developers/b3-rag-knowledge-base.md) | ecommerce-ai-roadmap | 本 Hub 的技术实操模块，完整代码 |
+| [B3 RAG 知识库模块](../b-developers/b3-rag-knowledge-base.md) | ecommerce-ai-skills | 本 Hub 的技术实操模块，完整代码 |
 | [Vector Databases 2026 Guide](https://iterathon.tech/blog/vector-databases-ai-applications-guide) | Iterathon | 向量数据库选型和生产部署指南 |
 | [Retrieval-Augmented Generation (RAG) Paper](https://arxiv.org/abs/2005.11401) | Meta AI | RAG 原始论文（2020），理解理论基础 |
 

@@ -1,5 +1,5 @@
 """
-Content quality and repository structure tests for ecommerce-ai-roadmap.
+Content quality and repository structure tests for ecommerce-ai-skills.
 
 Uses pytest to verify:
 - _config.yml metadata correctness (Req 1.1, 1.2)
@@ -35,7 +35,7 @@ def test_config_title():
     """Verify _config.yml title contains expected keywords."""
     config = _load_config()
     title = config.get("title", "")
-    assert "ecommerce-ai-roadmap" in title, f"Title missing 'ecommerce-ai-roadmap': {title}"
+    assert "ecommerce-ai-skills" in title, f"Title missing 'ecommerce-ai-skills': {title}"
     assert "Knowledge Hub" in title, f"Title missing 'Knowledge Hub': {title}"
 
 

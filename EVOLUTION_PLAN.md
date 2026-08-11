@@ -1,4 +1,4 @@
-# ecommerce-ai-roadmap 演进方案（2026-08）
+# ecommerce-ai-skills 演进方案（2026-08）
 
 > 基于 2026-08-06 对仓库的实际勘察（git 历史、scripts/verify_content.py、CI workflows、README/CONTRIBUTING/EVOLUTION_LOG、tests/），所有"缺口"均有文件级证据，不是泛泛建议。
 >

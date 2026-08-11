@@ -6,7 +6,7 @@
 > **前提**: Python 基础（变量、函数、列表、字典）
 > **预计时间**: 每天 1 小时，1-2 周
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kangise/ecommerce-ai-roadmap/blob/main/notebooks/b1-data-pipeline.ipynb) 直接在 Colab 运行配套 Notebook
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kangise/ecommerce-ai-skills/blob/main/notebooks/b1-data-pipeline.ipynb) 直接在 Colab 运行配套 Notebook
 
 ---
 

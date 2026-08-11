@@ -82,7 +82,7 @@ MCP 配置改为专用 server：
   "mcpServers": {
     "opc-ecommerce": {
       "command": "python3",
-      "args": ["/path/to/ecommerce-ai-roadmap/integration/mcp-server.py"]
+      "args": ["/path/to/ecommerce-ai-skills/integration/mcp-server.py"]
     }
   }
 }

@@ -6,7 +6,7 @@
 
 ### 内容准确性
 
-本知识库（ecommerce-ai-roadmap）中的信息仅供参考和教育目的。我们尽力确保内容的准确性和时效性，但不对以下内容的完整性、准确性或可靠性做任何明示或暗示的保证：
+本知识库（ecommerce-ai-skills）中的信息仅供参考和教育目的。我们尽力确保内容的准确性和时效性，但不对以下内容的完整性、准确性或可靠性做任何明示或暗示的保证：
 
 - 各电商平台的佣金率、费用结构、政策规则等可能随时变化，请以各平台官方最新公告为准
 - 市场数据（GMV、MAU、增长率等）来源于公开的财报、行业报告和新闻报道，可能存在时效性差异
@@ -32,7 +32,7 @@
 
 所有引用内容均已进行改写以符合版权合规要求，并在文中标注了来源链接。如果您是原始内容的版权持有者，认为本知识库中的引用存在问题，请通过以下方式联系我们，我们将及时处理：
 
-- 提交 [GitHub Issue](https://github.com/kangise/ecommerce-ai-roadmap/issues)
+- 提交 [GitHub Issue](https://github.com/kangise/ecommerce-ai-skills/issues)
 - 或联系维护者：[@kangise](https://github.com/kangise)
 
 ### AI 生成内容声明
@@ -49,7 +49,7 @@
 
 ### Accuracy of Information
 
-The information in this repository (ecommerce-ai-roadmap) is provided for reference and educational purposes only. We make no express or implied warranties regarding the completeness, accuracy, or reliability of:
+The information in this repository (ecommerce-ai-skills) is provided for reference and educational purposes only. We make no express or implied warranties regarding the completeness, accuracy, or reliability of:
 
 - Platform commission rates, fee structures, and policies, which may change at any time please refer to each platform's official announcements for the latest information
 - Market data (GMV, MAU, growth rates, etc.) sourced from public earnings reports, industry reports, and news articles, which may have timeliness differences
@@ -70,7 +70,7 @@ This repository references publicly available data and information from sources 
 
 If you are a copyright holder of original content and believe any reference in this repository is problematic, please contact us and we will address it promptly:
 
-- Submit a [GitHub Issue](https://github.com/kangise/ecommerce-ai-roadmap/issues)
+- Submit a [GitHub Issue](https://github.com/kangise/ecommerce-ai-skills/issues)
 - Or contact the maintainer: [@kangise](https://github.com/kangise)
 
 ### AI-Generated Content Disclosure

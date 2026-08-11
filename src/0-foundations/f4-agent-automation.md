@@ -634,7 +634,7 @@ Month 5-6：Agent 优化
 
 | 资源 | 来源 | 为什么推荐 |
 |------|------|-----------|
-| [B4 AI Agent 与自动化](../b-developers/b4-agent-workflow.md) | ecommerce-ai-roadmap | 本 Hub 的技术实操模块 |
+| [B4 AI Agent 与自动化](../b-developers/b4-agent-workflow.md) | ecommerce-ai-skills | 本 Hub 的技术实操模块 |
 | [Building Effective Agents](https://www.anthropic.com/research/building-effective-agents) | Anthropic | Anthropic 官方的 Agent 设计指南 |
 | [LangGraph Documentation](https://langchain-ai.github.io/langgraph/) | LangChain | LangGraph 完整文档 |
 | [The AI Agent Landscape 2026](https://learndevrel.com/blog/openclaw-ai-agent-phenomenon) | LearnDevRel | 2026 年 Agent 生态全景分析 |

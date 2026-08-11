@@ -9,7 +9,7 @@
   <!-- Accent line -->
   <rect x="0" y="0" width="1200" height="4" fill="#2563EB"/>
   <!-- Title -->
-  <text x="600" y="200" text-anchor="middle" fill="white" font-family="Inter,system-ui,sans-serif" font-size="48" font-weight="800">ecommerce-ai-roadmap</text>
+  <text x="600" y="200" text-anchor="middle" fill="white" font-family="Inter,system-ui,sans-serif" font-size="48" font-weight="800">ecommerce-ai-skills</text>
   <!-- Subtitle -->
   <text x="600" y="270" text-anchor="middle" fill="#94A3B8" font-family="Inter,system-ui,sans-serif" font-size="22">AI Prompts &amp; Strategies for Amazon Sellers,</text>
   <text x="600" y="305" text-anchor="middle" fill="#94A3B8" font-family="Inter,system-ui,sans-serif" font-size="22">Shopify &amp; TikTok Shop</text>
@@ -23,5 +23,5 @@
   <text x="950" y="410" text-anchor="middle" fill="#EC4899" font-family="Inter,system-ui,sans-serif" font-size="40" font-weight="700">4</text>
   <text x="950" y="445" text-anchor="middle" fill="#64748B" font-family="Inter,system-ui,sans-serif" font-size="15">Languages</text>
   <!-- Footer -->
-  <text x="600" y="560" text-anchor="middle" fill="#475569" font-family="Inter,system-ui,sans-serif" font-size="16">AAAI China Chapter · CC0 License · github.com/kangise/ecommerce-ai-roadmap</text>
+  <text x="600" y="560" text-anchor="middle" fill="#475569" font-family="Inter,system-ui,sans-serif" font-size="16">AAAI China Chapter · CC0 License · github.com/kangise/ecommerce-ai-skills</text>
 </svg>

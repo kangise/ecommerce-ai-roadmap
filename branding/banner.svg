@@ -39,7 +39,7 @@
   <line x1="1050" y1="180" x2="1150" y2="120" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
   <line x1="1050" y1="180" x2="1100" y2="280" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
   <!-- Main title -->
-  <text x="640" y="220" text-anchor="middle" fill="white" font-family="Inter,system-ui,sans-serif" font-size="56" font-weight="800" letter-spacing="-1">ecommerce-ai-roadmap</text>
+  <text x="640" y="220" text-anchor="middle" fill="white" font-family="Inter,system-ui,sans-serif" font-size="56" font-weight="800" letter-spacing="-1">ecommerce-ai-skills</text>
   <!-- Subtitle -->
   <text x="640" y="290" text-anchor="middle" fill="#94A3B8" font-family="Inter,system-ui,sans-serif" font-size="24" font-weight="400">The Definitive AI Playbook for Cross-Border E-Commerce</text>
   <!-- Stats bar -->

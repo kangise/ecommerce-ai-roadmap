@@ -31,7 +31,7 @@
 | Market Research Analyst | System prompt for market research and competitor analysis | [f/awesome-chatgpt-prompts](https://github.com/f/awesome-chatgpt-prompts) |
 | Competitive Analysis | Competitor analysis framework | [kostja94/marketing-skills](https://github.com/kostja94/marketing-skills) |
 | Product Research | Product research and market validation | [alphatrait/100000-ai-prompts](https://github.com/alphatrait/100000-ai-prompts-by-contentifyai) |
-| Community wanted | Amazon product-research skills welcome | [Submit an issue](https://github.com/kangise/ecommerce-ai-roadmap/issues) |
+| Community wanted | Amazon product-research skills welcome | [Submit an issue](https://github.com/kangise/ecommerce-ai-skills/issues) |
 
 ### Content & Conversion (Listing / Copy / Visual)
 
@@ -66,14 +66,14 @@
 | Skill | Description | Source |
 |-------|-------------|--------|
 | Customer Service Rep | Customer service role prompt | [f/awesome-chatgpt-prompts](https://github.com/f/awesome-chatgpt-prompts) |
-| Community wanted | Amazon customer-service / appeal skills welcome | [Submit an issue](https://github.com/kangise/ecommerce-ai-roadmap/issues) |
+| Community wanted | Amazon customer-service / appeal skills welcome | [Submit an issue](https://github.com/kangise/ecommerce-ai-skills/issues) |
 
 ### Compliance & Finance
 
 | Skill | Description | Source |
 |-------|-------------|--------|
 | Accountant Role | Financial analysis role prompt | [f/awesome-chatgpt-prompts](https://github.com/f/awesome-chatgpt-prompts) |
-| Community wanted | Cross-border compliance / tax skills welcome | [Submit an issue](https://github.com/kangise/ecommerce-ai-roadmap/issues) |
+| Community wanted | Cross-border compliance / tax skills welcome | [Submit an issue](https://github.com/kangise/ecommerce-ai-skills/issues) |
 
 ### Technical (Data / Agent / MCP)
 
@@ -95,4 +95,4 @@
 
 ---
 
-Contribute skills you've battle-tested — just [open an issue](https://github.com/kangise/ecommerce-ai-roadmap/issues).
+Contribute skills you've battle-tested — just [open an issue](https://github.com/kangise/ecommerce-ai-skills/issues).
