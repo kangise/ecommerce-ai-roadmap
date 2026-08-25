@@ -30,6 +30,7 @@ from .evidence import CSVIngestor, EvidenceImportService, REPORT_SPECS, XLSXInge
 from .evals import WorkflowEvaluator
 from .jobs import JobService, ScheduleService
 from .metric_observations import MetricObservationService, SUPPORTED_REPORT_TYPES
+from .proposals import ProposalService
 from .errors import AuthenticationError, AuthorizationError, ConflictError, ConnectorError, NotFoundError, RateLimitError, RuntimeErrorBase, ValidationError
 from .observability import JsonFormatter, Metrics, RateLimiter
 from .report_recipes import ReportRecipeService
@@ -61,6 +62,7 @@ class RuntimeApplication:
             db, self.auth, self.evidence_imports, self.metric_observations
         )
         self.actions = ActionService(db, self.auth, self.evidence_imports)
+        self.proposals = ProposalService(db, self.auth, self.actions)
         self.briefing = BriefingService(db, self.auth)
         self.agent_runs = WeeklyOpsCouncil(
             db,
@@ -439,6 +441,34 @@ class _Handler(BaseHTTPRequestHandler):
             elif parsed.path == "/v1/agent-runs":
                 limit = int(parse_qs(parsed.query).get("limit", [50])[0])
                 self._json(200, {"runs": self.app.agent_runs.list(principal, limit)}, request_id)
+            elif parsed.path == "/v1/proposals":
+                params = parse_qs(parsed.query, keep_blank_values=True)
+                self._json(
+                    200,
+                    {"proposals": self.app.proposals.list(
+                        principal,
+                        status=params.get("status", [None])[0] or None,
+                        limit=self._query_int(params, "limit", default=100, minimum=1, maximum=200),
+                    )},
+                    request_id,
+                )
+            elif parsed.path.startswith("/v1/proposals/") and len(parsed.path.split("/")) == 4:
+                proposal_id = parsed.path.split("/")[3]
+                self._json(200, self.app.proposals.get(principal, proposal_id), request_id)
+            elif parsed.path == "/v1/proposal-executions":
+                params = parse_qs(parsed.query, keep_blank_values=True)
+                self._json(
+                    200,
+                    {"executions": self.app.proposals.list_executions(
+                        principal,
+                        proposal_id=params.get("proposal_id", [None])[0] or None,
+                        limit=self._query_int(params, "limit", default=100, minimum=1, maximum=200),
+                    )},
+                    request_id,
+                )
+            elif parsed.path.startswith("/v1/proposal-executions/") and len(parsed.path.split("/")) == 4:
+                execution_id = parsed.path.split("/")[3]
+                self._json(200, self.app.proposals.get_execution(principal, execution_id), request_id)
             elif parsed.path.startswith("/v1/agent-runs/") and parsed.path.endswith("/events"):
                 run_id = parsed.path.split("/")[3]
                 params = parse_qs(parsed.query)
@@ -804,6 +834,66 @@ class _Handler(BaseHTTPRequestHandler):
                 body = self._body()
                 result = self.app.actions.request(principal, str(body.get("operation", "")), body.get("payload", {}), self.headers.get("Idempotency-Key", ""), request_id)
                 self._json(200, result, request_id)
+            elif parsed.path == "/v1/proposals":
+                body = self._body_fields(
+                    required={
+                        "daily_ops_run_id", "priority_rank", "operation", "payload",
+                        "risk", "rollback_plan", "expires_at",
+                    },
+                    allowed={
+                        "daily_ops_run_id", "priority_rank", "operation", "payload",
+                        "risk", "rollback_plan", "expires_at",
+                    },
+                )
+                self._json(
+                    201,
+                    self.app.proposals.create(
+                        principal,
+                        daily_ops_run_id=body["daily_ops_run_id"],
+                        priority_rank=body["priority_rank"],
+                        operation=body["operation"],
+                        payload=body["payload"],
+                        risk=body["risk"],
+                        rollback_plan=body["rollback_plan"],
+                        idempotency_key=self.headers.get("Idempotency-Key", ""),
+                        expires_at=body["expires_at"],
+                        request_id=request_id,
+                    ),
+                    request_id,
+                )
+            elif parsed.path.startswith("/v1/proposals/") and parsed.path.endswith("/submit") and len(parsed.path.split("/")) == 5:
+                proposal_id = parsed.path.split("/")[3]
+                body = self._body_fields(required={"expected_version"}, allowed={"expected_version"})
+                self._json(200, self.app.proposals.submit(principal, proposal_id, request_id=request_id, **body), request_id)
+            elif parsed.path.startswith("/v1/proposals/") and parsed.path.endswith("/decisions") and len(parsed.path.split("/")) == 5:
+                proposal_id = parsed.path.split("/")[3]
+                body = self._body_fields(
+                    required={"expected_version", "decision", "comment"},
+                    allowed={"expected_version", "decision", "comment"},
+                )
+                self._json(200, self.app.proposals.decide(principal, proposal_id, request_id=request_id, **body), request_id)
+            elif parsed.path.startswith("/v1/proposals/") and parsed.path.endswith("/execute") and len(parsed.path.split("/")) == 5:
+                proposal_id = parsed.path.split("/")[3]
+                body = self._body_fields(required={"expected_version"}, allowed={"expected_version"})
+                self._json(
+                    201,
+                    self.app.proposals.execute(
+                        principal, proposal_id, idempotency_key=self.headers.get("Idempotency-Key", ""),
+                        request_id=request_id, **body,
+                    ),
+                    request_id,
+                )
+            elif parsed.path.startswith("/v1/proposals/") and parsed.path.endswith("/retry") and len(parsed.path.split("/")) == 5:
+                proposal_id = parsed.path.split("/")[3]
+                body = self._body_fields(required={"expected_version"}, allowed={"expected_version"})
+                self._json(
+                    201,
+                    self.app.proposals.retry(
+                        principal, proposal_id, idempotency_key=self.headers.get("Idempotency-Key", ""),
+                        request_id=request_id, **body,
+                    ),
+                    request_id,
+                )
             elif parsed.path.startswith("/v1/actions/") and parsed.path.endswith("/approve"):
                 action_id = parsed.path.split("/")[3]
                 self._json(200, self.app.actions.approve(principal, action_id, request_id), request_id)
@@ -901,7 +991,23 @@ class _Handler(BaseHTTPRequestHandler):
             parsed = urlparse(self.path)
             self._check_rate_limit()
             principal = self._principal()
-            if parsed.path.startswith("/v1/users/") and len(parsed.path.split("/")) == 4:
+            if parsed.path.startswith("/v1/proposals/") and len(parsed.path.split("/")) == 4:
+                proposal_id = parsed.path.split("/")[3]
+                body = self._body_fields(
+                    required={"expected_version"},
+                    allowed={
+                        "expected_version", "title", "rationale", "expected_impact",
+                        "rollback_plan", "operation", "payload", "risk", "expires_at",
+                    },
+                )
+                self._json(
+                    200,
+                    self.app.proposals.revise(
+                        principal, proposal_id, request_id=request_id, **body
+                    ),
+                    request_id,
+                )
+            elif parsed.path.startswith("/v1/users/") and len(parsed.path.split("/")) == 4:
                 user_id = parsed.path.split("/")[3]
                 body = self._body_fields(required={"role"})
                 user = self.app.auth.update_user_role(principal, user_id, str(body["role"]))

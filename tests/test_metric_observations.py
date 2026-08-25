@@ -60,7 +60,7 @@ def test_schema_v14_tables_and_cross_tenant_constraints(tmp_path: Path) -> None:
     result = app.metric_observations.materialize(
         owner, imported["id"], "schema-materialize", "schema-materialize"
     )
-    assert app.db.readiness()["schema_version"] == 17
+    assert app.db.readiness()["schema_version"] == 18
     with app.db.connect() as connection:
         tables = {
             row["name"]
@@ -112,7 +112,7 @@ def test_schema_v13_migrates_to_v14_without_runtime_seed_data(tmp_path: Path) ->
             "UPDATE runtime_meta SET value='13' WHERE key='schema_version'"
         )
     migrated = Database(path)
-    assert migrated.readiness()["schema_version"] == 17
+    assert migrated.readiness()["schema_version"] == 18
     with migrated.connect() as connection:
         assert connection.execute(
             "SELECT count(*) FROM metric_materializations"

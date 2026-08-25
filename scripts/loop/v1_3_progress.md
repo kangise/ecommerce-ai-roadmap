@@ -14,7 +14,7 @@
 | L6 | Ads Adapter 条件实现 | done | Schema v15 unchanged；negative adapter status；pytest 148；14 groups=0；wheel/API smoke；browser QA | `loop(v1.3): L6 lock conditional amazon ads adapter` | L5 条件为假；adapter_registered=false、writes=[]、无 Ads route/action/button；freshness/config/capability guard 可审计 |
 | L7 | Domain Agent Graph | done | Schema v16；163 tests；14 groups=0；wheel graph/Reviewer persistence smoke；browser metric-only run + refresh QA | `loop(v1.3): L7 ship tenant-safe domain agent graph` | canonical immutable DAG；dynamic Amazon/Shopify/ontology specialists；Manager + independent Reviewer；zero tools；non-approved downstream lock |
 | L8 | Daily Ops | done | Schema v17；184 tests；14 groups=0；wheel daily persistence + CLI smoke；browser Brief/toggle/refresh QA | `loop(v1.3): L8 ship fenced daily operations` | local-date cursor；scheduled cutoff；immutable config hash；fenced leases；approved parent-linked Brief；no external writes |
-| L9 | Proposals | pending |  |  |  |
+| L9 | Proposals | done | Schema v18；204 tests；14 groups=0；Python 3.12 wheel cold install；Demo executed/blocked/submitted refresh persistence；browser console 0 | `loop(v1.3): L9 ship proposal approval control plane` | immutable source/version/hash；1/2-person quorum；atomic audit；fenced recovery worker；safe Action reuse；Ads zero-call block |
 | L10 | Live Mission Control/SSE | pending |  |  |  |
 | L11 | one-command Pilot | pending |  |  |  |
 | L12 | eval/security/restore | pending |  |  |  |
@@ -129,6 +129,18 @@
 - Failure 1: adversarial review found look-ahead to local-day end, mutable Schedule reads, stale Worker overwrite, downgraded execution owner, and missed dates across midnight. Selection now ends at the frozen scheduled instant, occurrences hash a closed config snapshot, all attempt writes are fenced, role transitions/re-enable are atomically guarded, and a durable cursor catches up one date per tick.
 - Failure 2 / blocked reason: re-review found approved orphan Agent Runs could leak into the global Briefing and retired Graphs could prevent safe HTTP disable. Agent Runs now carry parent run/attempt/internal lease lineage and are downstream-eligible only when the completed parent points to that exact final child；Graph validation is skipped only for a no-change safe disable, with a real full-PATCH regression test. No remaining L8 blocker；live OpenAI success still depends on deployment credentials as documented in L7.
 - Restore point and result: L7 `451ff1e`; L8 Schema v17/Daily Ops/API/UI/CLI can be reverted as one commit while preserving L0–L7 records. Existing Daily Ops history is immutable; operational recovery uses retry with the frozen snapshot or a new corrected schedule.
+
+### L9 — Proposals
+
+- Date: 2026-08-26
+- Status: done
+- Evidence: `tests/test_proposals.py` 18 acceptance/adversarial cases；全套 pytest 204 passed；`verify_all` 14 groups=0；OpenAPI closed operation payload contracts；Python 3.12 wheel cold install + Schema v18 + Demo `human.review → executed` / `Amazon Ads → blocked` + installed `proposal-worker --once` smoke；browser create→submit→reload persistence、自批按钮禁用、seeded executed/blocked histories、console 0 errors；`artifacts/design-qa/l9-proposals-final.jpg`。
+- Commit: `loop(v1.3): L9 ship proposal approval control plane`（本记录所在提交）
+- Notes: Proposal 只能从完成且 Reviewer-approved 的 Daily Ops 最终 Manager priority 派生；不可变 source/graph/evidence/metric/payload/content hashes 与版本历史；low/medium 需另一位 admin/owner，high/critical 需两位 distinct approvers；creator 不可自批；显式 expiry；execute/retry 永久幂等绑定；lease-token fencing 与 `proposal-worker` 恢复；状态与审计同事务；安全 Shopify/SP-API 动作复用既有 ActionService，账户不健康时零调用；Amazon Ads adapter 未安装时永久 blocked 且 `connector_calls=0`。
+- Validator results: all repository/contract/install/browser gates passed；独立 high-level review 的全部 PoC 均 fail-closed，最终无可复现 P0/P1。
+- Failure 1: adversarial review found pending/stale expiry races, reusable retry keys, execute-key aliases, non-atomic audit, role-demotion liveness, worker crash/hot-loop/FIFO, idempotent create replay, and UI run/priority mismatch. These were fixed with transaction-bound audit, immutable retry ledger, expiry-aware claims, active-role guards, bounded worker recovery, strict API/UI contracts, and regression tests.
+- Failure 2 / blocked reason: DB raw-write review found mutable idempotency/execution bindings, expired decision/execution insertion, Action misbinding, forged or reused retry ledgers, and deletable execution history. Schema v18 triggers now reject each PoC. Amazon Ads live write remains intentionally blocked by the unresolved L5 external capability gate; L9 makes no live Ads write claim.
+- Restore point and result: L8 `28ab04b`; L9 Schema v18/Proposal service/API/UI/worker can be reverted as one commit while preserving L0–L8 records. Proposal versions, decisions, retry requests, and execution history are immutable; operational recovery uses the same approved execution binding, never a new unapproved payload.
 
 ### Lx — 名称
 

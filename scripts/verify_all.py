@@ -543,6 +543,14 @@ def main() -> int:
                     "/v1/report-syncs/{syncId}": {"get"},
                     "/v1/actions": {"post"},
                     "/v1/actions/{actionId}/approve": {"post"},
+                    "/v1/proposals": {"get", "post"},
+                    "/v1/proposals/{proposalId}": {"get", "patch"},
+                    "/v1/proposals/{proposalId}/submit": {"post"},
+                    "/v1/proposals/{proposalId}/decisions": {"post"},
+                    "/v1/proposals/{proposalId}/execute": {"post"},
+                    "/v1/proposals/{proposalId}/retry": {"post"},
+                    "/v1/proposal-executions": {"get"},
+                    "/v1/proposal-executions/{executionId}": {"get"},
                     "/v1/evidence-imports": {"get", "post"},
                     "/v1/evidence-imports/{importId}": {"get"},
                     "/v1/evidence-imports/{importId}/metric-materialization": {"post"},
@@ -676,11 +684,62 @@ def main() -> int:
                     "DailyOpsTriggerRequest", "DailyOpsSourceGap",
                     "DailyOpsScheduleSnapshot", "DailyOpsRun",
                     "DailyOpsBrief", "DailyOpsBriefEnvelope",
+                    "ProposalOperation", "ProposalRisk", "ProposalStatus",
+                    "ProposalDecisionType", "ProposalExecutionStatus",
+                    "HumanReviewProposalPayload", "ShopifySyncProductsProposalPayload",
+                    "AmazonSpapiImportReportProposalPayload",
+                    "AmazonAdsCampaignUpdateProposalPayload", "ProposalPayload",
+                    "ProposalCreateRequest", "HumanReviewProposalCreateRequest",
+                    "ShopifySyncProductsProposalCreateRequest",
+                    "AmazonSpapiImportReportProposalCreateRequest",
+                    "AmazonAdsCampaignUpdateProposalCreateRequest",
+                    "ProposalVersionRequest", "ProposalExecutionRequest",
+                    "ProposalRevisionRequest", "ProposalDecisionRequest",
+                    "ProposalDecision", "ProposalVersion", "Proposal",
+                    "ProposalCapabilityBlock", "ProposalExecution",
                 ):
                     if schema_name not in schemas:
                         problems.append(
                             f"dist/openapi/runtime-api.yaml: missing schema {schema_name}"
                         )
+                proposal_create = schemas.get("ProposalCreateRequest", {})
+                if len(proposal_create.get("oneOf", [])) != 4 or (
+                    proposal_create.get("discriminator", {}).get("propertyName") != "operation"
+                ):
+                    problems.append(
+                        "dist/openapi/runtime-api.yaml: Proposal create must discriminate four closed operation contracts"
+                    )
+                for schema_name in (
+                    "HumanReviewProposalPayload", "ShopifySyncProductsProposalPayload",
+                    "AmazonSpapiImportReportProposalPayload",
+                    "AmazonAdsCampaignUpdateProposalPayload",
+                ):
+                    if schemas.get(schema_name, {}).get("additionalProperties") is not False:
+                        problems.append(
+                            f"dist/openapi/runtime-api.yaml: {schema_name} must be closed"
+                        )
+                human_payload = schemas.get("HumanReviewProposalPayload", {})
+                if human_payload.get("required") != ["instructions"]:
+                    problems.append(
+                        "dist/openapi/runtime-api.yaml: human.review payload must require only instructions"
+                    )
+                proposal_schema = schemas.get("Proposal", {})
+                if "versions" not in proposal_schema.get("required", []):
+                    problems.append(
+                        "dist/openapi/runtime-api.yaml: Proposal must include immutable versions history"
+                    )
+                proposal_version = schemas.get("ProposalVersion", {})
+                if proposal_version.get("additionalProperties") is not False or "expires_at" not in proposal_version.get("required", []):
+                    problems.append(
+                        "dist/openapi/runtime-api.yaml: ProposalVersion must be closed and include expiry"
+                    )
+                block_codes = schemas.get("ProposalCapabilityBlock", {}).get("properties", {}).get("code", {}).get("enum", [])
+                if set(block_codes) != {
+                    "CONNECTOR_CAPABILITY_UNAVAILABLE", "AMAZON_ADS_CAPABILITY_UNAVAILABLE"
+                }:
+                    problems.append(
+                        "dist/openapi/runtime-api.yaml: Proposal capability blocks must enumerate connector and Ads hard blocks"
+                    )
                 ads_paths = contract.get("paths", {})
                 if not {"get", "post"} <= set(ads_paths.get("/v1/ads-capability-gates", {})):
                     problems.append("dist/openapi/runtime-api.yaml: missing Ads capability gate list/create contract")

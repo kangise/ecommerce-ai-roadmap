@@ -13,6 +13,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 - Add package integrity metadata, automated tests, and PR quality checks.
 
 ### Added
+- L9 durable tenant-owned proposals derived from approved Daily Ops / Agent
+  Graph priorities, with immutable source/graph/evidence/metric/payload hash
+  lineage, optimistic revisions, auditable local human decisions, risk-based
+  approval thresholds, expiry, idempotent lease-fenced executions, and reuse
+  of existing safe read actions only. Immutable version history includes
+  expiry in the content hash; the proposal worker persists expiry and recovers
+  linked executions without creating duplicate actions. No generic marketplace
+  or Amazon Ads write capability is registered.
 - L8 tenant-owned Daily Ops schedules and schedule-local occurrences with IANA
   timezone/DST handling, one durable local-date run, source-age validation,
   operator-triggered execution/retry, persisted eligible Daily Briefs, final

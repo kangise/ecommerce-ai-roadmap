@@ -159,7 +159,18 @@
 
         <section id="view-approvals" class="view" data-view-panel="approvals" aria-labelledby="approvals-title">
           <div class="page-heading compact"><div><p class="kicker">Human Control</p><h1 id="approvals-title">审批中心</h1><p class="heading-summary">高风险外部动作必须由另一位具备权限的用户审批，随后才允许 Operator 执行。</p></div></div>
-          <section class="tool-panel wide"><div id="approval-list" class="data-list"></div></section>
+          <section class="tool-panel wide proposal-panel"><div class="panel-heading"><div><p class="kicker">Proposals</p><h2>行动提案</h2><span>仅从已完成的 Daily Ops 优先事项创建；所有外部写入都先经过审批。</span></div></div>
+            <form id="proposal-form" class="form-grid proposal-form">
+              <label>Daily Ops 运行<select id="proposal-run" required></select></label><label>优先事项<select id="proposal-priority" required></select></label>
+              <label>操作<select id="proposal-operation" required><option value="human.review">人工复核</option><option value="shopify.sync_products">同步 Shopify 商品</option><option value="amazon_spapi.import_report">导入 Amazon 报表</option><option value="amazon_ads.campaign_update">Amazon Ads 更新 Campaign（当前被 Adapter Lock 阻断）</option></select></label>
+              <label>风险<select id="proposal-risk"><option>low</option><option selected>medium</option><option>high</option><option>critical</option></select></label>
+              <label>回滚方案<input id="proposal-rollback" required placeholder="恢复原值"></label>
+              <label>过期时间<input id="proposal-expires" type="datetime-local" required></label><label class="full-width">操作参数（JSON）<textarea id="proposal-payload" rows="4" required>{"instructions":"复核该 Daily Ops 优先事项，并记录最终经营决定。"}</textarea><small>切换操作时会载入该平台的有效参数模板；只填写账户标识，不要填写密钥。</small></label>
+              <p id="proposal-permission" class="permission-reason" hidden></p><button class="primary-button" data-action="create-proposal" type="submit">创建提案</button>
+            </form>
+            <div id="proposal-list" class="data-list" aria-live="polite"></div>
+          </section>
+          <section class="tool-panel wide"><div class="panel-heading"><div><p class="kicker">Legacy Actions</p><h2>审批队列</h2></div></div><div id="approval-list" class="data-list"></div></section>
         </section>
 
         <section id="view-accounts" class="view" data-view-panel="accounts" aria-labelledby="accounts-title">
@@ -249,6 +260,34 @@
   <dialog id="detail-dialog" class="detail-dialog">
     <div class="dialog-head"><div><p class="kicker">Evidence-backed detail</p><h2 id="detail-title">详情</h2></div><button data-action="close-dialog" data-dialog="detail-dialog" class="icon-button" aria-label="关闭"><img src="/app/assets/icons/x.svg" alt=""></button></div>
     <pre id="detail-content"></pre>
+  </dialog>
+  <dialog id="proposal-decision-dialog" class="detail-dialog">
+    <div class="dialog-head"><div><p class="kicker">Human control</p><h2>提案审批</h2></div><button data-action="close-dialog" data-dialog="proposal-decision-dialog" class="icon-button" aria-label="关闭"><img src="/app/assets/icons/x.svg" alt=""></button></div>
+    <p class="dialog-copy">决定会绑定当前提案版本与内容哈希，提交后不可修改。</p>
+    <form id="proposal-decision-form">
+      <input id="proposal-decision-id" type="hidden"><input id="proposal-decision-version" type="hidden">
+      <label>决定<select id="proposal-decision" required><option value="approve">批准</option><option value="reject">拒绝</option><option value="revision_required">要求修改</option></select></label>
+      <label>审批备注<textarea id="proposal-decision-comment" required minlength="1" maxlength="2000" rows="4" placeholder="说明判断依据或需要修改的内容"></textarea></label>
+      <div class="dialog-actions"><button class="primary-button" type="submit">提交决定</button></div>
+    </form>
+  </dialog>
+  <dialog id="proposal-revision-dialog" class="detail-dialog">
+    <div class="dialog-head"><div><p class="kicker">Versioned proposal</p><h2>修订提案</h2></div><button data-action="close-dialog" data-dialog="proposal-revision-dialog" class="icon-button" aria-label="关闭"><img src="/app/assets/icons/x.svg" alt=""></button></div>
+    <p class="dialog-copy">保存会创建不可变的新版本，并使旧版本审批失效。</p>
+    <form id="proposal-revision-form">
+      <input id="proposal-revision-id" type="hidden"><input id="proposal-revision-version" type="hidden">
+      <label>标题<input id="proposal-revision-title" required minlength="1" maxlength="200"></label>
+      <label>为什么现在要做<textarea id="proposal-revision-rationale" required minlength="1" maxlength="2000" rows="3"></textarea></label>
+      <label>预期影响<textarea id="proposal-revision-impact" required minlength="1" maxlength="2000" rows="2"></textarea></label>
+      <label>回滚方案<textarea id="proposal-revision-rollback" required minlength="3" maxlength="2000" rows="2"></textarea></label>
+      <div class="form-grid">
+        <label>操作<select id="proposal-revision-operation" required><option value="human.review">人工复核</option><option value="shopify.sync_products">同步 Shopify 商品</option><option value="amazon_spapi.import_report">导入 Amazon 报表</option><option value="amazon_ads.campaign_update">Amazon Ads Campaign 更新（被阻断）</option></select></label>
+        <label>风险<select id="proposal-revision-risk" required><option>low</option><option>medium</option><option>high</option><option>critical</option></select></label>
+        <label>过期时间<input id="proposal-revision-expires" type="datetime-local" required></label>
+      </div>
+      <label>操作参数（JSON）<textarea id="proposal-revision-payload" required rows="5"></textarea><small>不要填写密钥或凭证值。</small></label>
+      <div class="dialog-actions"><button class="primary-button" type="submit">保存新版本</button></div>
+    </form>
   </dialog>
 
   <dialog id="connector-dialog" class="connector-dialog">

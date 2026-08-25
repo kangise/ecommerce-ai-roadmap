@@ -35,6 +35,7 @@ const state = {
   adsAdapterStatus: null,
   adsAdapterLoading: false,
   adsAdapterError: null,
+  proposals: [], proposalsLoading: false, proposalsError: null, proposalExecutions: [],
   agentGraphs: [],
   agentGraphsLoading: false,
   agentGraphsError: null,
@@ -630,7 +631,9 @@ function renderPriorities() {
 
 function operationLabel(operation) {
   const labels = {
+    "human.review": "人工复核记录",
     "amazon_spapi.import_report": "导入 Amazon SP-API 报表",
+    "amazon_ads.campaign_update": "更新 Amazon Ads Campaign",
     "shopify.sync_products": "同步 Shopify 商品",
     "shopify.update_product": "更新 Shopify 商品",
     "shopify.update_inventory": "更新 Shopify 库存",
@@ -1027,6 +1030,82 @@ function renderApprovals() {
   target.innerHTML = items.map(item => approvalCard(item)).join("");
 }
 
+function proposalCanCreate() { return ["operator", "admin", "owner"].includes(state.me?.role); }
+function proposalCanApprove(item) { return ["admin", "owner"].includes(state.me?.role) && item.created_by !== state.me?.user_id && item.created_by !== state.me?.id; }
+const proposalPayloadTemplates = {
+  "human.review": {instructions: "复核该 Daily Ops 优先事项，并记录最终经营决定。"},
+  "shopify.sync_products": {external_account_id: "", limit: 100},
+  "amazon_spapi.import_report": {external_account_id: "", report_id: "", evidence_report_type: "amazon_business_report"},
+  "amazon_ads.campaign_update": {external_account_id: "", campaign_id: "", changes: {state: "paused"}},
+};
+function proposalPayloadTemplate(operation) { return JSON.stringify(proposalPayloadTemplates[operation] || {}, null, 2); }
+function setProposalPayloadTemplate() { $("proposal-payload").value = proposalPayloadTemplate($("proposal-operation").value); }
+function localDateTimeValue(value) {
+  const instant = value ? new Date(value) : new Date();
+  return new Date(instant.getTime() - instant.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+}
+function proposalPriorities(run) { return run?.brief?.report?.priorities || run?.brief?.priorities || []; }
+function populateProposalPriorities() {
+  const prioritySelect = $("proposal-priority");
+  if (!prioritySelect) return;
+  const run = state.dailyOpsRuns.find(item => item.id === $("proposal-run")?.value);
+  const priorities = proposalPriorities(run);
+  prioritySelect.innerHTML = priorities.length
+    ? priorities.map((priority, index) => `<option value="${index}">${escapeHtml(priority.title || `Priority ${index + 1}`)}</option>`).join("")
+    : '<option value="">暂无优先事项</option>';
+}
+function renderProposals() {
+  const runs = state.dailyOpsRuns.filter(run => ["completed", "approved"].includes(run.status) && proposalPriorities(run).length);
+  const runSelect = $("proposal-run"), prioritySelect = $("proposal-priority"), form = $("proposal-form"), reason = $("proposal-permission");
+  if (runSelect) {
+    const previous = runSelect.value;
+    runSelect.innerHTML = runs.length ? runs.map(run => `<option value="${escapeHtml(run.id)}">${escapeHtml(run.local_date || run.id)} · ${escapeHtml(run.id)}</option>`).join("") : '<option value="">暂无已完成 Daily Ops</option>';
+    if (runs.some(run => run.id === previous)) runSelect.value = previous;
+  }
+  if (prioritySelect) populateProposalPriorities();
+  const can = proposalCanCreate() && runs.length;
+  if (form) form.querySelector("button[type=submit]").disabled = !can;
+  if (reason) { reason.hidden = can; reason.textContent = !proposalCanCreate() ? "当前角色只能查看；创建提案需要 operator、admin 或 owner。" : "需要一个已完成且有 priorities 的 Daily Ops 运行。"; }
+  const target = $("proposal-list"); if (!target) return;
+  if (state.proposalsLoading) { designedEmpty(target, "正在加载提案", "正在读取租户内持久化提案。", "pulse"); return; }
+  if (state.proposalsError) { target.innerHTML = `<div class="agent-graph-failure" role="alert"><strong>无法加载提案</strong><span>${escapeHtml(state.proposalsError)}</span></div>`; return; }
+  if (!state.proposals.length) { designedEmpty(target, "暂无行动提案", "从已完成的 Daily Ops 优先事项创建第一项提案。", "shield-check"); return; }
+  target.innerHTML = state.proposals.map(item => {
+    const approval = item.required_approvals ?? 1;
+    const current = item.approval_count ?? 0;
+    const isCreator = item.created_by === state.me?.user_id || item.created_by === state.me?.id;
+    const canDecide = proposalCanApprove(item) && item.status === "submitted";
+    const expired = item.status === "expired";
+    const capabilityUnavailable = item.capability_status !== "available";
+    const canExecute = item.status === "approved" && proposalCanCreate() && !expired && !capabilityUnavailable;
+    const canRevise = isCreator && ["draft", "rejected", "revision_required"].includes(item.status);
+    const version = Number(item.version || 1);
+    const execution = state.proposalExecutions.find(entry => entry.proposal_id === item.id);
+    const capabilityNote = capabilityUnavailable
+      ? `<span class="review-guard">${escapeHtml(item.capability_reason || "当前平台能力不可用；执行已禁用。")}</span>`
+      : expired ? '<span class="review-guard">提案已过期。</span>' : "";
+    let decisionControl = "";
+    if (item.status === "submitted") {
+      decisionControl = canDecide
+        ? `<button class="primary-button" data-action="approve-proposal" data-id="${escapeHtml(item.id)}" data-version="${version}">审批</button>`
+        : '<button class="primary-button" disabled title="需要 admin/owner，且创建者不能审批自己的提案">审批</button>';
+    }
+    let executionControl = "";
+    if (item.status === "approved") {
+      executionControl = canExecute
+        ? `<button class="primary-button" data-action="execute-proposal" data-id="${escapeHtml(item.id)}" data-version="${version}">执行</button>`
+        : `<button class="primary-button" disabled title="${escapeHtml(item.capability_reason || "当前角色或平台能力不允许执行")}">执行</button>`;
+    }
+    let retryControl = "";
+    if (execution?.status === "failed") {
+      retryControl = proposalCanCreate() && !expired && !capabilityUnavailable
+        ? `<button class="secondary-button" data-action="retry-proposal" data-id="${escapeHtml(item.id)}" data-version="${version}">重试</button>`
+        : `<button class="secondary-button" disabled title="${escapeHtml(expired ? "提案已过期" : item.capability_reason || "重试需要 operator、admin 或 owner")}">重试</button>`;
+    }
+    return `<article class="data-row proposal-row"><div class="data-main"><strong>${escapeHtml(item.title || operationLabel(item.operation))}</strong><small>${badge(item.status || "draft")} · ${escapeHtml(operationLabel(item.operation))} · 风险 ${escapeHtml(item.risk || "—")} · approvals ${current}/${approval} · expires ${escapeHtml(isoLocal(item.expires_at))}</small><span class="reviewer-task">content ${escapeHtml(item.content_hash || "—")} · payload ${escapeHtml(item.payload_hash || "—")} · Daily ${escapeHtml(item.daily_ops_run_id || "—")} · Agent ${escapeHtml(item.agent_run_id || "—")} · Graph ${escapeHtml(item.graph_version_hash || "—")}</span>${capabilityNote}${execution ? `<span class="reviewer-task">Execution ${escapeHtml(execution.status || "—")} · attempt ${escapeHtml(execution.attempt_count ?? 0)}/${escapeHtml(execution.max_attempts ?? "—")}</span>` : ""}</div><div class="row-actions"><button class="secondary-button" data-action="view-proposal" data-id="${escapeHtml(item.id)}">详情</button>${canRevise ? `<button class="secondary-button" data-action="revise-proposal" data-id="${escapeHtml(item.id)}" data-version="${version}">修订</button>` : ""}${item.status === "draft" && isCreator ? `<button class="primary-button" data-action="submit-proposal" data-id="${escapeHtml(item.id)}" data-version="${version}">提交审批</button>` : ""}${decisionControl}${executionControl}${retryControl}</div></article>`;
+  }).join("");
+}
+
 function renderAudit() {
   const target = $("audit-list");
   if (!state.audit.length) {
@@ -1047,6 +1126,7 @@ function renderAll() {
   renderSchedules();
   renderDailyOps();
   renderApprovals();
+  renderProposals();
   renderAudit();
   renderConnectors();
   renderReportRecipes();
@@ -1084,9 +1164,11 @@ function renderDisconnected() {
   state.adsCapabilityLoading = false;
   state.adsCapabilityError = null;
   state.adsAdapterStatus = null; state.adsAdapterLoading = false; state.adsAdapterError = null;
+  state.proposals = []; state.proposalExecutions = []; state.proposalsLoading = false; state.proposalsError = null;
   state.agentGraphs = []; state.agentGraphsLoading = false; state.agentGraphsError = null;
   renderBriefing();
   renderDailyOps();
+  renderProposals();
   renderEvidence();
   renderAgentGraphs();
   renderRunMetricOptions();
@@ -1119,6 +1201,7 @@ async function refreshAll() {
   state.adsAdapterLoading = true; state.adsAdapterError = null;
   state.agentGraphsLoading = true; state.agentGraphsError = null;
   state.dailyOpsLoading = true; state.dailyOpsScheduleError = null; state.dailyOpsRunError = null;
+  state.proposalsLoading = true; state.proposalsError = null;
   renderReportRecipes();
   renderReportSyncs();
   renderMetricObservations();
@@ -1128,6 +1211,7 @@ async function refreshAll() {
   renderAgentGraphs();
   renderRunMetricOptions();
   renderDailyOps();
+  renderProposals();
   const platform = encodeURIComponent(state.selectedPlatform);
   const recipes = api("/v1/report-recipes").then(value => ({value})).catch(error => ({error}));
   const syncs = api("/v1/report-syncs").then(value => ({value})).catch(error => ({error}));
@@ -1137,6 +1221,8 @@ async function refreshAll() {
   const adsAdapter = api("/v1/ads-adapter-status").then(value => ({value})).catch(error => ({error}));
   const dailyOpsSchedules = api("/v1/daily-ops-schedules").then(value => ({value})).catch(error => ({error}));
   const dailyOpsRuns = api("/v1/daily-ops-runs?limit=100").then(value => ({value})).catch(error => ({error}));
+  const proposals = api("/v1/proposals?limit=100").then(value => ({value})).catch(error => ({error}));
+  const proposalExecutions = api("/v1/proposal-executions?limit=100").then(value => ({value})).catch(error => ({error}));
   const graphs = api("/v1/agent-graphs").then(async value => {
     const listed = Array.isArray(value) ? value : value?.graphs || [];
     const detailed = await Promise.all(listed.map(async graph => {
@@ -1152,10 +1238,10 @@ async function refreshAll() {
     }));
     return {graphs: detailed};
   }).then(value => ({value})).catch(error => ({error}));
-  const [me, catalog, briefing, mission, imports, runs, jobs, schedules, audit, connectors, recipeResult, syncResult, observationResult, materializationResult, adsGateResult, adsAdapterResult, graphResult, dailyScheduleResult, dailyRunResult] = await Promise.all([
+  const [me, catalog, briefing, mission, imports, runs, jobs, schedules, audit, connectors, recipeResult, syncResult, observationResult, materializationResult, adsGateResult, adsAdapterResult, graphResult, dailyScheduleResult, dailyRunResult, proposalResult, executionResult] = await Promise.all([
     api("/v1/me"), api("/v1/catalog"), api(`/v1/briefing?platform=${platform}`), api("/v1/mission-control"),
     api("/v1/evidence-imports?limit=100"), api("/v1/agent-runs?limit=100"), api("/v1/jobs?limit=100"),
-    api("/v1/schedules"), api("/v1/audit?limit=100"), api("/v1/connectors"), recipes, syncs, observations, materializations, adsGates, adsAdapter, graphs, dailyOpsSchedules, dailyOpsRuns,
+    api("/v1/schedules"), api("/v1/audit?limit=100"), api("/v1/connectors"), recipes, syncs, observations, materializations, adsGates, adsAdapter, graphs, dailyOpsSchedules, dailyOpsRuns, proposals, proposalExecutions,
   ]);
   if (recipeResult.error) console.error("Report Recipes 加载失败", recipeResult.error);
   if (syncResult.error) console.error("Sync Activity 加载失败", syncResult.error);
@@ -1165,6 +1251,8 @@ async function refreshAll() {
   if (graphResult.error) console.error("Agent Graphs 加载失败", graphResult.error);
   if (dailyScheduleResult.error) console.error("Daily Ops 计划加载失败", dailyScheduleResult.error);
   if (dailyRunResult.error) console.error("Daily Ops 运行加载失败", dailyRunResult.error);
+  if (proposalResult.error) console.error("行动提案加载失败", proposalResult.error);
+  if (executionResult.error) console.error("提案执行记录加载失败", executionResult.error);
   Object.assign(state, {
     me, catalog, briefing, mission,
     imports: imports.imports || [], runs: runs.runs || [], jobs: jobs.jobs || [],
@@ -1185,6 +1273,8 @@ async function refreshAll() {
     dailyOpsRuns: Array.isArray(dailyRunResult.value) ? dailyRunResult.value : dailyRunResult.value?.daily_ops_runs || dailyRunResult.value?.runs || [], dailyOpsLoading: false,
     dailyOpsScheduleError: dailyScheduleResult.error?.message || null,
     dailyOpsRunError: dailyRunResult.error?.message || null,
+    proposals: Array.isArray(proposalResult.value) ? proposalResult.value : proposalResult.value?.proposals || [], proposalsLoading: false, proposalsError: proposalResult.error?.message || executionResult.error?.message || null,
+    proposalExecutions: Array.isArray(executionResult.value) ? executionResult.value : executionResult.value?.executions || [],
   });
   setConnected(true);
   renderAll();
@@ -1284,6 +1374,28 @@ document.body.addEventListener("click", event => {
     case "queue-run": act(button, () => api("/v1/jobs", {method: "POST", headers: {"Idempotency-Key": idempotency("ui-job")}, json: {run_id: id, max_attempts: 3}}), "Run 已加入后台队列。"); break;
     case "evaluate-run": act(button, () => api(`/v1/agent-runs/${id}/evaluate`, {method: "POST"}), "Evaluation 已保存。"); break;
     case "approve-action": act(button, () => api(`/v1/actions/${id}/approve`, {method: "POST"}), "Action 已批准；仍需 Operator 执行。"); break;
+    case "view-proposal": act(button, async () => showDetail("行动提案", await api(`/v1/proposals/${id}`)), "提案详情已加载。", false); break;
+    case "submit-proposal": act(button, () => api(`/v1/proposals/${id}/submit`, {method: "POST", json: {expected_version: Number(button.dataset.version)}}), "提案已提交审批。"); break;
+    case "approve-proposal": $("proposal-decision-form").reset(); $("proposal-decision-id").value=id; $("proposal-decision-version").value=button.dataset.version; $("proposal-decision").value="approve"; $("proposal-decision-dialog").showModal(); break;
+    case "reject-proposal": $("proposal-decision-form").reset(); $("proposal-decision-id").value=id; $("proposal-decision-version").value=button.dataset.version; $("proposal-decision").value="reject"; $("proposal-decision-dialog").showModal(); break;
+    case "revise-proposal": {
+      const proposal = state.proposals.find(item => item.id === id);
+      if (!proposal) { notice("提案不存在，请刷新后重试。", "error"); break; }
+      $("proposal-revision-id").value = id;
+      $("proposal-revision-version").value = button.dataset.version;
+      $("proposal-revision-title").value = proposal.title || "";
+      $("proposal-revision-rationale").value = proposal.rationale || "";
+      $("proposal-revision-impact").value = proposal.expected_impact || "";
+      $("proposal-revision-rollback").value = proposal.rollback_plan || "";
+      $("proposal-revision-operation").value = proposal.operation;
+      $("proposal-revision-risk").value = proposal.risk;
+      $("proposal-revision-expires").value = localDateTimeValue(proposal.expires_at);
+      $("proposal-revision-payload").value = JSON.stringify(proposal.payload || {}, null, 2);
+      $("proposal-revision-dialog").showModal();
+      break;
+    }
+    case "execute-proposal": act(button, () => api(`/v1/proposals/${id}/execute`, {method: "POST", headers: {"Idempotency-Key": idempotency("ui-proposal-execute")}, json: {expected_version: Number(button.dataset.version)}}), "提案已提交执行。"); break;
+    case "retry-proposal": act(button, () => api(`/v1/proposals/${id}/retry`, {method: "POST", headers: {"Idempotency-Key": idempotency("ui-proposal-retry")}, json: {expected_version: Number(button.dataset.version)}}), "提案执行已重试。"); break;
     case "toggle-schedule": act(button, () => api(`/v1/schedules/${id}`, {method: "PATCH", json: {enabled: button.dataset.enabled === "true"}}), "Schedule 状态已更新。"); break;
     case "open-connector-form": openConnectorForm(); break;
     case "edit-connector": openConnectorForm(state.connectors.find(item => item.id === id)); break;
@@ -1495,6 +1607,61 @@ $("schedule-form").addEventListener("submit", event => {
   }}), "Schedule 已创建。");
 });
 
+$("proposal-form").addEventListener("submit", event => {
+  event.preventDefault();
+  if (!proposalCanCreate()) { notice("需要 operator、admin 或 owner 角色", "error"); return; }
+  let payload; try { payload = JSON.parse($("proposal-payload").value); } catch { notice("Payload 必须是有效 JSON", "error"); return; }
+  const run = state.dailyOpsRuns.find(item => item.id === $("proposal-run").value); const priority = proposalPriorities(run)[Number($("proposal-priority").value)];
+  if (!run || !priority) { notice("请选择已完成 Daily Ops 优先事项", "error"); return; }
+  const expiry = new Date($("proposal-expires").value);
+  if (!Number.isFinite(expiry.getTime()) || expiry.getTime() <= Date.now()) { notice("过期时间必须晚于现在。", "error"); return; }
+  act(event.submitter, async () => {
+    await api("/v1/proposals", {method: "POST", headers: {"Idempotency-Key": idempotency("ui-proposal")}, json: {daily_ops_run_id: run.id, priority_rank: Number($("proposal-priority").value) + 1, operation: $("proposal-operation").value, risk: $("proposal-risk").value, payload, rollback_plan: $("proposal-rollback").value.trim(), expires_at: expiry.toISOString()}});
+    $("proposal-form").reset();
+    setDefaultTimes();
+  }, "提案已创建。");
+});
+
+$("proposal-decision-form").addEventListener("submit", event => {
+  event.preventDefault();
+  const id = $("proposal-decision-id").value;
+  const comment = $("proposal-decision-comment").value.trim();
+  if (!comment) { notice("请填写审批备注。", "error"); return; }
+  act(event.submitter, async () => {
+    await api(`/v1/proposals/${id}/decisions`, {method: "POST", json: {expected_version: Number($("proposal-decision-version").value), decision: $("proposal-decision").value, comment}});
+    $("proposal-decision-dialog").close();
+    $("proposal-decision-form").reset();
+  }, "审批决定已保存。");
+});
+$("proposal-revision-form").addEventListener("submit", event => {
+  event.preventDefault();
+  let payload;
+  try { payload = JSON.parse($("proposal-revision-payload").value); }
+  catch { notice("Payload 必须是有效 JSON", "error"); return; }
+  const expiry = new Date($("proposal-revision-expires").value);
+  if (!Number.isFinite(expiry.getTime()) || expiry.getTime() <= Date.now()) { notice("修订后的过期时间必须晚于现在。", "error"); return; }
+  const id = $("proposal-revision-id").value;
+  act(event.submitter, async () => {
+    await api(`/v1/proposals/${id}`, {method: "PATCH", json: {
+      expected_version: Number($("proposal-revision-version").value),
+      title: $("proposal-revision-title").value.trim(),
+      rationale: $("proposal-revision-rationale").value.trim(),
+      expected_impact: $("proposal-revision-impact").value.trim(),
+      rollback_plan: $("proposal-revision-rollback").value.trim(),
+      operation: $("proposal-revision-operation").value,
+      risk: $("proposal-revision-risk").value,
+      expires_at: expiry.toISOString(),
+      payload,
+    }});
+    $("proposal-revision-dialog").close();
+  }, "提案修订已保存。");
+});
+$("proposal-operation").addEventListener("change", setProposalPayloadTemplate);
+$("proposal-run").addEventListener("change", populateProposalPriorities);
+$("proposal-revision-operation").addEventListener("change", () => {
+  $("proposal-revision-payload").value = proposalPayloadTemplate($("proposal-revision-operation").value);
+});
+
 $("daily-ops-form").addEventListener("submit", event => {
   event.preventDefault();
   if (!dailyOpsCanManage()) { notice("需要 operator、admin 或 owner 角色", "error"); return; }
@@ -1511,6 +1678,8 @@ function setDefaultTimes() {
   const next = new Date(now.getTime() + 5 * 60000);
   $("schedule-next-run").value = new Date(next.getTime() - next.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
   if ($("daily-ops-timezone") && !$("daily-ops-timezone").value) $("daily-ops-timezone").value = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
+  if ($("proposal-expires")) { const expiry = new Date(now.getTime() + 24 * 60 * 60000); $("proposal-expires").value = localDateTimeValue(expiry); }
+  if ($("proposal-payload")) setProposalPayloadTemplate();
 }
 
 window.addEventListener("resize", () => {

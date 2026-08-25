@@ -67,9 +67,11 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
     actions = []
     for tag in button_tags:
         match = re.search(r'data-action="([a-z-]+)"', tag)
+        if not match and 'type="submit"' in tag:
+            continue
         assert match, f"visible button has no data-action: {tag}"
         actions.append(match.group(1))
-    form_actions = {"upload-evidence", "create-run", "create-schedule", "create-daily-ops", "save-connector", "save-recipe", "run-ads-capability-check"}
+    form_actions = {"upload-evidence", "create-run", "create-schedule", "create-daily-ops", "create-proposal", "save-connector", "save-recipe", "run-ads-capability-check"}
     switched = {
         "navigate",
         "select-platform",
@@ -107,6 +109,13 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
         "execute-daily-ops",
         "retry-daily-ops",
         "toggle-daily-ops-schedule",
+        "view-proposal",
+        "submit-proposal",
+        "approve-proposal",
+        "reject-proposal",
+        "revise-proposal",
+        "execute-proposal",
+        "retry-proposal",
     }
     form_wiring = {
         "upload-evidence": '$("evidence-form").addEventListener',
@@ -116,6 +125,7 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
         "save-connector": '$("connector-form").addEventListener',
         "save-recipe": '$("recipe-form").addEventListener',
         "run-ads-capability-check": '$("ads-capability-form").addEventListener',
+        "create-proposal": '$("proposal-form").addEventListener',
     }
     for action in actions:
         assert action in form_actions | switched
@@ -148,6 +158,30 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
         "/v1/daily-ops-runs",
     ):
         assert endpoint in script
+
+
+def test_proposal_workbench_uses_real_versioned_actions_and_safe_defaults() -> None:
+    html = (WEB / "mission-control.html").read_text(encoding="utf-8")
+    script = (WEB / "app.js").read_text(encoding="utf-8")
+
+    assert "prompt(" not in script
+    assert 'id="proposal-decision-dialog"' in html
+    assert 'id="proposal-revision-dialog"' in html
+    assert '$("proposal-decision-form").addEventListener("submit"' in script
+    assert '$("proposal-revision-form").addEventListener("submit"' in script
+    assert 'method: "PATCH"' in script
+    assert 'decision: $("proposal-decision").value' in script
+    assert "revision_required" in html
+    assert '"human.review": {instructions:' in script
+    assert '{"review":"manual"}' not in script
+    assert 'item.capability_status !== "available"' in script
+    assert 'item.status === "expired"' in script
+    assert '$("proposal-run").addEventListener("change", populateProposalPriorities)' in script
+    assert "proposalCanCreate() && !expired && !capabilityUnavailable" in script
+    assert 'api("/v1/proposal-executions?limit=100")' in script
+    assert "expected_impact:" in script
+    assert "content ${escapeHtml(item.content_hash" in script
+    assert "Graph ${escapeHtml(item.graph_version_hash" in script
     assert "需要 admin 或 owner 角色" in script
     assert "需要 operator、admin 或 owner 执行健康检查" in script
     assert "需要 operator、admin 或 owner 角色" in script

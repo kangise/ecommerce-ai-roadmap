@@ -224,7 +224,7 @@ def test_database_fails_closed_on_unsupported_schema(tmp_path: Path) -> None:
     with db.transaction() as conn:
         conn.execute("UPDATE runtime_meta SET value='1' WHERE key='schema_version'")
     migrated = Database(path)
-    assert migrated.readiness()["schema_version"] == 17
+    assert migrated.readiness()["schema_version"] == 18
     with db.transaction() as conn:
         conn.execute("UPDATE runtime_meta SET value='99' WHERE key='schema_version'")
     with pytest.raises(ValidationError, match="schema version"):

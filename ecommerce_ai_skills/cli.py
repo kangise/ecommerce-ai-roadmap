@@ -88,6 +88,12 @@ def main() -> int:
     daily_worker.add_argument("--db", required=True)
     daily_worker.add_argument("--once", action="store_true")
     daily_worker.add_argument("--poll-seconds", type=float, default=5.0)
+    proposal_worker = sub.add_parser(
+        "proposal-worker", help="expire proposals and recover durable proposal executions"
+    )
+    proposal_worker.add_argument("--db", required=True)
+    proposal_worker.add_argument("--once", action="store_true")
+    proposal_worker.add_argument("--poll-seconds", type=float, default=5.0)
     args = parser.parse_args()
     if args.command == "mcp":
         module = _load_mcp_module()
@@ -187,6 +193,17 @@ def main() -> int:
             if args.once:
                 return 0
             if result is None:
+                time.sleep(args.poll_seconds)
+    if args.command == "proposal-worker":
+        if args.poll_seconds < 0.25 or args.poll_seconds > 300:
+            raise ValueError("poll-seconds must be between 0.25 and 300")
+        while True:
+            result = app.proposals.worker_run_once()
+            if result["execution"] is not None or result["expired"]:
+                print(json.dumps(result, ensure_ascii=False, sort_keys=True))
+            if args.once:
+                return 0
+            if result["execution"] is None and not result["expired"]:
                 time.sleep(args.poll_seconds)
     serve(app, args.host, args.port, allow_public=args.allow_public)
     return 0

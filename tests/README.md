@@ -100,6 +100,15 @@ may prove only `eligible_not_installed`; they must not claim an installed or
 live-writing adapter. Future writes remain conditional on proposal, approval,
 audit, and rollback.
 
+L9 proposal coverage verifies tenant-scoped source-lineage derivation from an
+approved Daily Ops / Agent Graph result, immutable evidence/metric/graph and
+payload hashes, idempotent create/execute/retry, optimistic version conflicts,
+self-approval rejection, risk-derived local approval thresholds, expiry,
+execution leases, and delegation only to the two existing safe read Action
+operations. It also asserts that L9 adds no Amazon Ads or generic marketplace
+write surface. Fixtures remain test-only; `human.review` is a local audited
+decision, not an external marketplace approval.
+
 The production gate is broader than pytest:
 
 ```bash

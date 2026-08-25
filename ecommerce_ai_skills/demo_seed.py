@@ -196,6 +196,7 @@ def seed_demo_database(path: str | Path) -> dict[str, Any]:
     graph_version = app.agent_graphs.ensure_default(owner)
     reviewer = app.auth.create_user(owner, "demo-reviewer@example.test", "admin")
     reviewer_key = app.auth.issue_for_user(owner, str(reviewer["id"]))
+    reviewer_principal = app.auth.authenticate(reviewer_key)
     marketplace_accounts = [
         app.accounts.create(
             owner,
@@ -370,6 +371,70 @@ def seed_demo_database(path: str | Path) -> dict[str, Any]:
             owner, str(daily_run["id"]), "demo-daily-ops-execute"
         )
 
+    proposal_expiry = (datetime.now(timezone.utc) + timedelta(days=7)).isoformat(
+        timespec="seconds"
+    )
+
+    def seeded_proposal(
+        *, key: str, operation: str, payload: dict[str, Any], rollback_plan: str
+    ) -> dict[str, Any]:
+        proposal = app.proposals.create(
+            owner,
+            daily_ops_run_id=str(daily_run["id"]),
+            priority_rank=1,
+            operation=operation,
+            payload=payload,
+            risk="low",
+            rollback_plan=rollback_plan,
+            idempotency_key=f"demo-proposal:{key}",
+            expires_at=proposal_expiry,
+            request_id=f"demo-proposal-{key}-create",
+        )
+        if proposal["status"] == "draft":
+            proposal = app.proposals.submit(
+                owner,
+                str(proposal["id"]),
+                expected_version=int(proposal["version"]),
+                request_id=f"demo-proposal-{key}-submit",
+            )
+        if proposal["status"] == "submitted":
+            proposal = app.proposals.decide(
+                reviewer_principal,
+                str(proposal["id"]),
+                expected_version=int(proposal["version"]),
+                decision="approve",
+                comment="Approved for the isolated Demo tenant only.",
+                request_id=f"demo-proposal-{key}-approve",
+            )
+        if proposal["status"] == "approved":
+            app.proposals.execute(
+                owner,
+                str(proposal["id"]),
+                expected_version=int(proposal["version"]),
+                idempotency_key=f"demo-proposal:{key}:execution",
+                request_id=f"demo-proposal-{key}-execute",
+            )
+        return app.proposals.get(owner, str(proposal["id"]))
+
+    human_proposal = seeded_proposal(
+        key="human-review",
+        operation="human.review",
+        payload={
+            "instructions": "Review the Demo daily priority and record the operator decision."
+        },
+        rollback_plan="Close the local review record; no marketplace state was changed.",
+    )
+    ads_proposal = seeded_proposal(
+        key="amazon-ads-blocked",
+        operation="amazon_ads.campaign_update",
+        payload={
+            "external_account_id": "demo-ads-profile",
+            "campaign_id": "DEMO-SP",
+            "changes": {"state": "paused"},
+        },
+        rollback_plan="No rollback is required because the unavailable Ads adapter makes zero calls.",
+    )
+
     run = app.agent_runs.request(
         owner,
         "weekly_ops",
@@ -452,6 +517,11 @@ def seed_demo_database(path: str | Path) -> dict[str, Any]:
         "daily_ops_schedule_id": daily_schedule["id"],
         "daily_ops_run_id": daily_run["id"],
         "daily_ops_run_status": daily_run["status"],
+        "proposal_count": 2,
+        "human_review_proposal_id": human_proposal["id"],
+        "human_review_proposal_status": human_proposal["status"],
+        "amazon_ads_proposal_id": ads_proposal["id"],
+        "amazon_ads_proposal_status": ads_proposal["status"],
         "job_id": job["id"],
         "job_status": completed_job["status"] if completed_job else None,
     }

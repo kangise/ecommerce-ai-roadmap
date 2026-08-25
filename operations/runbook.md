@@ -439,3 +439,53 @@ the final run-attempt report and current Reviewer task-attempt verdict are
 eligible downstream. This distinction keeps a valid retry eligible when an
 earlier failure occurred before Reviewer started. A status-only database edit is
 intentionally insufficient.
+
+# L9 Proposal operations
+
+Create a proposal only from an approved Daily Ops priority. The service derives
+Agent Run, published graph/hash, Evidence, Metric Observation, and source
+priority lineage server-side; do not copy these fields from a browser or alter
+them in SQLite. Use a stable `Idempotency-Key` for create, execute, and retry.
+If a request times out, repeat it with the same key and inspect the returned
+proposal or execution rather than issuing a second marketplace request.
+
+Inspect immutable `versions[]` before approving. Expiry is included in a
+version's content hash together with payload and source references, so any
+extension creates a new version and needs approval again. If
+`capability_status=unavailable`, restore same-tenant connector health before
+execution; the blocked attempt records `CONNECTOR_CAPABILITY_UNAVAILABLE` and
+zero connector calls. `AMAZON_ADS_CAPABILITY_UNAVAILABLE` is an expected L9
+hard block, never a retryable integration failure.
+
+Revisions and human decisions require the current `expected_version`. A `409`
+means somebody changed the proposal; reload it, review the decision history,
+and explicitly submit a new revision if appropriate. A reviewer cannot approve
+their own proposal. `approve`, `reject`, and `revision_required` are local,
+audited `human.review` decisions, not evidence of an external marketplace or
+Ads approval.
+
+Execution is restricted to the existing safe read Action operations and records
+the approved payload hash/version. If it fails, inspect the execution and its
+linked Action, then use proposal retry with a new idempotency key only after
+confirming whether the earlier request created an execution. Do not retry by
+editing status fields. There is no general marketplace write path in L9:
+Amazon Ads writes remain blocked and make zero calls even if L5 gate evidence
+is fresh.
+
+Run the durable proposal worker to persist expiry and recover one pending or
+lease-expired execution at a time:
+
+```bash
+opc-ecommerce proposal-worker --db /secure/runtime.sqlite --once
+opc-ecommerce proposal-worker --db /secure/runtime.sqlite --poll-seconds 5
+```
+
+The worker expires due drafts, submitted, approved, rejected,
+revision-required, and failed proposals, then may recover one pending/stale
+execution. It preserves the linked Action ID and execution row; recovery never
+creates a second marketplace Action. A connector failure is persisted as a
+failed execution before the API returns `502`; inspect
+`GET /v1/proposal-executions/{executionId}` and its linked Action before
+retrying. Retry uses a new idempotency key but reuses the same execution row,
+requires an unexpired approved version with remaining attempts, and cannot
+override a capability block or expired proposal.

@@ -104,6 +104,14 @@ def test_generated_docs_enumerate_all_skills_and_public_onboarding_api() -> None
     assert "post" in contract["paths"]["/v1/agent-runs/{runId}/execute"]
     assert "post" in contract["paths"]["/v1/agent-runs/{runId}/evaluate"]
     assert "get" in contract["paths"]["/v1/agent-runs/{runId}/evaluations"]
+    assert {"get", "post"} <= set(contract["paths"]["/v1/proposals"])
+    assert {"get", "patch"} <= set(contract["paths"]["/v1/proposals/{proposalId}"])
+    assert "post" in contract["paths"]["/v1/proposals/{proposalId}/submit"]
+    assert "post" in contract["paths"]["/v1/proposals/{proposalId}/decisions"]
+    assert "post" in contract["paths"]["/v1/proposals/{proposalId}/execute"]
+    assert "post" in contract["paths"]["/v1/proposals/{proposalId}/retry"]
+    assert "get" in contract["paths"]["/v1/proposal-executions"]
+    assert "get" in contract["paths"]["/v1/proposal-executions/{executionId}"]
     ontology = json.loads((ROOT / "dist" / "ontology.json").read_text(encoding="utf-8"))
     expected_platforms = {item["id"] for item in ontology["platforms"]} | {"cross_platform"}
     assert set(contract["components"]["schemas"]["PlatformId"]["enum"]) == expected_platforms
@@ -118,6 +126,10 @@ def test_generated_docs_enumerate_all_skills_and_public_onboarding_api() -> None
     from ecommerce_ai_skills.runtime.evidence import REPORT_SPECS
     assert set(contract["components"]["schemas"]["EvidenceReportType"]["enum"]) == set(REPORT_SPECS)
     schemas = contract["components"]["schemas"]
+    assert schemas["ProposalOperation"]["enum"] == ["human.review", "shopify.sync_products", "amazon_spapi.import_report", "amazon_ads.campaign_update"]
+    assert schemas["ProposalDecisionType"]["enum"] == ["approve", "reject", "revision_required"]
+    assert schemas["Proposal"]["additionalProperties"] is False
+    assert schemas["ProposalExecution"]["additionalProperties"] is False
     assert "AmazonSPAPIConnectorRegistration" in schemas
     assert schemas["AmazonReportImportActionRequest"]["properties"]["operation"]["enum"] == [
         "amazon_spapi.import_report"
@@ -239,6 +251,65 @@ def test_source_runtime_api_l7_agent_graph_contract() -> None:
     assert "revision_required" in run["properties"]["review_status"]["enum"]
     request = schemas["AgentRunRequest"]
     assert {"graph_version_id", "metric_observation_ids"} <= set(request["properties"])
+
+
+def test_source_runtime_api_l9_proposal_contract() -> None:
+    """Proposals remain a closed, idempotent, human-reviewed API surface."""
+    contract = yaml.safe_load((ROOT / "openapi" / "runtime-api.yaml").read_text(encoding="utf-8"))
+    paths = contract["paths"]
+    assert {"get", "post"} <= set(paths["/v1/proposals"])
+    assert {"get", "patch"} <= set(paths["/v1/proposals/{proposalId}"])
+    for suffix in ("submit", "decisions", "execute", "retry"):
+        assert "post" in paths[f"/v1/proposals/{{proposalId}}/{suffix}"]
+    assert "get" in paths["/v1/proposal-executions"]
+    assert "get" in paths["/v1/proposal-executions/{executionId}"]
+    schemas = contract["components"]["schemas"]
+    assert schemas["ProposalOperation"]["enum"] == [
+        "human.review", "shopify.sync_products", "amazon_spapi.import_report",
+        "amazon_ads.campaign_update",
+    ]
+    assert schemas["ProposalDecisionType"]["enum"] == ["approve", "reject", "revision_required"]
+    for name in (
+        "ProposalRevisionRequest", "ProposalDecisionRequest", "ProposalExecutionRequest",
+        "ProposalVersion", "Proposal", "ProposalExecution",
+    ):
+        assert schemas[name]["additionalProperties"] is False
+    assert len(schemas["ProposalCreateRequest"]["oneOf"]) == 4
+    assert schemas["ProposalCreateRequest"]["discriminator"]["propertyName"] == "operation"
+    assert len(schemas["ProposalPayload"]["oneOf"]) == 4
+    for name in (
+        "HumanReviewProposalPayload", "ShopifySyncProductsProposalPayload",
+        "AmazonSpapiImportReportProposalPayload", "AmazonAdsCampaignUpdateProposalPayload",
+        "HumanReviewProposalCreateRequest", "ShopifySyncProductsProposalCreateRequest",
+        "AmazonSpapiImportReportProposalCreateRequest", "AmazonAdsCampaignUpdateProposalCreateRequest",
+    ):
+        assert schemas[name]["additionalProperties"] is False
+    assert schemas["HumanReviewProposalPayload"]["required"] == ["instructions"]
+    assert schemas["AmazonAdsCampaignUpdateProposalPayload"]["properties"]["changes"]["minProperties"] == 1
+    assert schemas["ProposalRevisionRequest"]["properties"]["payload"]["$ref"].endswith(
+        "/ProposalPayload"
+    )
+    assert "expected_version" in schemas["ProposalRevisionRequest"]["required"]
+    assert "expected_version" in schemas["ProposalDecisionRequest"]["required"]
+    assert "expected_version" in schemas["ProposalExecutionRequest"]["required"]
+    assert "comment" in schemas["ProposalDecisionRequest"]["required"]
+    assert schemas["Proposal"]["properties"]["versions"]["items"]["$ref"].endswith(
+        "/ProposalVersion"
+    )
+    assert "expires_at" in schemas["ProposalVersion"]["required"]
+    assert schemas["Proposal"]["properties"]["capability_status"]["enum"] == [
+        "available", "unavailable", "blocked"
+    ]
+    assert schemas["ProposalCapabilityBlock"]["properties"]["connector_calls"]["enum"] == [0]
+    assert schemas["ProposalCapabilityBlock"]["properties"]["code"]["enum"] == [
+        "CONNECTOR_CAPABILITY_UNAVAILABLE", "AMAZON_ADS_CAPABILITY_UNAVAILABLE"
+    ]
+    assert "502" in paths["/v1/proposals/{proposalId}/execute"]["post"]["responses"]
+    assert "502" in paths["/v1/proposals/{proposalId}/retry"]["post"]["responses"]
+    assert "422" in paths["/v1/proposals"]["get"]["responses"]
+    assert {"404", "422"} <= set(paths["/v1/proposal-executions"]["get"]["responses"])
+    assert "current representation" in paths["/v1/proposals"]["post"]["description"]
+    assert "same durable execution" in paths["/v1/proposals/{proposalId}/retry"]["post"]["responses"]["201"]["description"]
 
 
 def test_source_runtime_api_l8_daily_ops_contract() -> None:

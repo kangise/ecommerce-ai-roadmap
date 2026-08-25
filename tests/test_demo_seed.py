@@ -27,6 +27,9 @@ def test_demo_seed_creates_isolated_visible_full_product_state(tmp_path: Path) -
     assert result["ads_capability_gate_status"] == "blocked"
     assert result["job_status"] == "succeeded"
     assert result["daily_ops_run_status"] == "completed"
+    assert result["proposal_count"] == 2
+    assert result["human_review_proposal_status"] == "executed"
+    assert result["amazon_ads_proposal_status"] == "blocked"
 
     app = RuntimeApplication(Database(path))
     reviewer = app.auth.authenticate(result["reviewer_api_key"])
@@ -74,6 +77,19 @@ def test_demo_seed_creates_isolated_visible_full_product_state(tmp_path: Path) -
     )["brief"]["status"] == "completed"
     evaluations = app.evaluator.list(reviewer, result["agent_run_id"])
     assert evaluations[0]["passed"] is True
+    proposals = app.proposals.list(reviewer)
+    assert {item["status"] for item in proposals} == {"executed", "blocked"}
+    human = app.proposals.get(reviewer, result["human_review_proposal_id"])
+    ads_proposal = app.proposals.get(reviewer, result["amazon_ads_proposal_id"])
+    assert human["daily_ops_run_id"] == result["daily_ops_run_id"]
+    assert human["approval_count"] == 1
+    assert human["executions"][0]["status"] == "executed"
+    assert ads_proposal["approval_count"] == 1
+    assert ads_proposal["executions"][0]["status"] == "blocked"
+    assert ads_proposal["executions"][0]["capability_block"]["connector_calls"] == 0
+    reopened = open_demo_runtime(path)
+    reopened_reviewer = reopened.auth.authenticate(reopened.demo_session["api_key"])
+    assert len(reopened.proposals.list(reopened_reviewer)) == 2
     assert any(event["action"] == "demo.seed" for event in app.db.list_audit(reviewer.tenant_id))
 
 
@@ -129,7 +145,7 @@ def test_schema_v9_migrates_existing_tenants_to_production_mode(tmp_path: Path) 
             """
         )
     db = Database(path)
-    assert db.readiness()["schema_version"] == 17
+    assert db.readiness()["schema_version"] == 18
     assert db.get_tenant("tenant-1")["mode"] == "production"
 
 

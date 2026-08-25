@@ -704,6 +704,55 @@ occurrence contract, distributed worker, SSE/WebSocket event stream, or
 browser-upload flow. Evidence must be supplied or selected by the authenticated
 caller, and live OpenAI verification requires the caller's real API key and
 selected Responses-compatible model.
+
+## L9 proposals and human decisions
+
+`/v1/proposals` turns one approved Daily Ops / Agent Graph priority into a
+durable, tenant-owned change proposal. Creation records the originating Daily
+Ops run, Agent Run, graph version and hash, Evidence and Metric Observation
+references, the immutable payload hash, and the source priority rank. The API
+does not accept a caller-supplied source lineage: it derives it from the
+approved source priority and fails closed when the Daily Ops or Reviewer chain
+is not eligible.
+
+`POST /v1/proposals` and proposal execution/retry require a non-empty
+`Idempotency-Key`. Revision, submission, human decision, execution, and retry
+carry `expected_version`; a stale writer receives `409` instead of replacing an approved payload. The
+proposal detail returns its local decision history and approval count.
+
+Proposal detail also returns immutable `versions[]` history. Each version
+snapshots title, rationale, expected impact, rollback plan, Evidence/Metric
+references, operation payload, risk, expiry, and both payload/content hashes.
+Expiry is part of the content hash, so an extension is a new optimistic
+revision requiring fresh approval, never an out-of-band timestamp edit.
+
+The local `human.review` decision stage supports `approve`, `reject`, and
+`revision_required`. It is an auditable local control, not an identity,
+ticketing, or external marketplace approval system. Required approvals are
+derived from risk and the requester cannot approve their own proposal.
+
+Only already-implemented safe read operations can be executed in this slice:
+`shopify.sync_products` and `amazon_spapi.import_report`. Execution delegates
+to the existing Action service and persists an execution record with the exact
+approved proposal version and payload hash. There is no generic marketplace
+write API, no Amazon Ads write adapter or executable ActionService operation,
+and an L6 Ads gate stays blocked with zero write calls. An execution cannot start after expiry, with an altered
+payload, without the required local decisions, or more than once for the same
+idempotency key.
+
+`capability_status` and `capability_reason` make the preflight visible. A
+missing or unhealthy same-tenant connector returns an unavailable
+`CONNECTOR_CAPABILITY_UNAVAILABLE` block before any connector call. Amazon Ads
+campaign updates remain representable for audit planning but return
+`AMAZON_ADS_CAPABILITY_UNAVAILABLE`, are blocked, and make zero calls.
+
+For durable recovery, run `opc-ecommerce proposal-worker --db <PATH> --once`
+or `opc-ecommerce proposal-worker --db <PATH> --poll-seconds 5`. It persists
+due expiry and recovers one pending or stale lease while retaining its linked
+Action/execution identity. A connector failure is durable before `POST execute`
+or `POST retry` returns `502`; fetch the execution and its linked Action before
+using a new retry idempotency key. Retry reuses that execution row and never
+creates a second marketplace Action.
 # L7 Agent Graph contract
 
 Agent graphs are tenant-owned, immutable, versioned DAGs. A published version

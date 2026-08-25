@@ -282,3 +282,28 @@ explicit approval, audit/idempotency controls, and rollback review.
 - L7 accepts only the reviewed canonical topology. Its executor is not a
   general-purpose arbitrary-DAG engine; adding nodes or edges requires a new
   execution, validation, migration, and threat-model review.
+
+# L9 proposal threat model
+
+- Lineage integrity: proposal creation derives Daily Ops, approved Agent Run,
+  graph/hash, source priority, Evidence, Metric Observation, and payload hash
+  inside the tenant boundary. Client-provided IDs cannot point to another
+  tenant or an unreviewed run.
+- Decision integrity: local `human.review` decisions are append-only and use
+  optimistic proposal versions. The requester cannot self-approve; stale
+  revision or decision attempts conflict instead of overwriting a reviewed
+  payload.
+- Execution integrity: each execution snapshots the approved proposal version
+  and payload hash, is idempotent, lease-fenced, audited, and delegates only to
+  existing safe read ActionService operations. A changed, expired, rejected,
+  revision-required, or insufficiently approved proposal fails closed.
+- Capability safety: expiry is included in every immutable version content hash.
+  Execution rechecks same-tenant connector health and produces a durable
+  `CONNECTOR_CAPABILITY_UNAVAILABLE` block before a connector call. The
+  representable Amazon Ads campaign operation always returns
+  `AMAZON_ADS_CAPABILITY_UNAVAILABLE` with `connector_calls=0`.
+- Boundary: `human.review` is a local application control, not a substitute
+  for real identity assurance, change-management, marketplace permission, or
+  external Ads approval. L9 registers no generic marketplace write and no
+  Amazon Ads write adapter, route, or operation; Amazon Ads remains blocked
+  with zero write calls.

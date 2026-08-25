@@ -553,6 +553,219 @@ paths:
         '403': {$ref: '#/components/responses/Forbidden'}
         '404': {$ref: '#/components/responses/NotFound'}
         '409': {$ref: '#/components/responses/Conflict'}
+  /v1/proposals:
+    get:
+      summary: List tenant-owned durable proposals
+      parameters:
+        - in: query
+          name: status
+          schema: {$ref: '#/components/schemas/ProposalStatus'}
+        - in: query
+          name: limit
+          schema: {type: integer, minimum: 1, maximum: 200, default: 100}
+      responses:
+        '200':
+          description: Full tenant proposal representations, including local decisions, linked executions, immutable versions, and capability preflight state.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: false
+                required: [proposals]
+                properties:
+                  proposals:
+                    type: array
+                    items: {$ref: '#/components/schemas/Proposal'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+    post:
+      summary: Derive an idempotent proposal from an approved Daily Ops priority
+      description: Requires operator or higher and an Idempotency-Key. Source run, graph, evidence, metric, and payload lineage are derived server-side; caller-supplied provenance is rejected. Replaying the original create request after a revision returns the same resource's current representation, while a changed request with the same key conflicts.
+      parameters:
+        - {$ref: '#/components/parameters/idempotencyKey'}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/ProposalCreateRequest'}
+      responses:
+        '201':
+          description: Existing idempotent proposal or newly created draft
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Proposal'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+  /v1/proposals/{proposalId}:
+    get:
+      summary: Read a tenant-owned proposal and its local decisions
+      parameters:
+        - {$ref: '#/components/parameters/proposalId'}
+      responses:
+        '200':
+          description: Proposal detail
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Proposal'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+    patch:
+      summary: Revise a draft or revision-required proposal optimistically
+      parameters:
+        - {$ref: '#/components/parameters/proposalId'}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/ProposalRevisionRequest'}
+      responses:
+        '200':
+          description: Revised proposal with a new version and payload hash
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Proposal'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+  /v1/proposals/{proposalId}/submit:
+    post:
+      summary: Submit a proposal to local human review
+      parameters:
+        - {$ref: '#/components/parameters/proposalId'}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/ProposalVersionRequest'}
+      responses:
+        '200':
+          description: Submitted proposal
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Proposal'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+  /v1/proposals/{proposalId}/decisions:
+    post:
+      summary: Record a local human review decision optimistically
+      description: Local human.review is an auditable local decision only. A requester cannot approve their own proposal and this endpoint does not attest marketplace or Ads approval.
+      parameters:
+        - {$ref: '#/components/parameters/proposalId'}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/ProposalDecisionRequest'}
+      responses:
+        '200':
+          description: Proposal after decision
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Proposal'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+  /v1/proposals/{proposalId}/execute:
+    post:
+      summary: Idempotently execute an approved safe-read proposal
+      description: Requires operator or higher and an Idempotency-Key. Only existing safe read Action operations are permitted; no general marketplace or Amazon Ads write is registered. A different Idempotency-Key for the same approved proposal version conflicts rather than creating a second execution.
+      parameters:
+        - {$ref: '#/components/parameters/proposalId'}
+        - {$ref: '#/components/parameters/idempotencyKey'}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/ProposalExecutionRequest'}
+      responses:
+        '201':
+          description: Existing idempotent execution or a new durable execution
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/ProposalExecution'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+        '502': {$ref: '#/components/responses/ConnectorFailed'}
+  /v1/proposals/{proposalId}/retry:
+    post:
+      summary: Retry a failed proposal execution idempotently on its existing durable execution row
+      description: Requires a new Idempotency-Key and the current version. Retry records a retry receipt and reuses the existing execution row; it does not create another execution resource. A connector failure is durably recorded before a 502 response.
+      parameters:
+        - {$ref: '#/components/parameters/proposalId'}
+        - {$ref: '#/components/parameters/idempotencyKey'}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/ProposalExecutionRequest'}
+      responses:
+        '201':
+          description: Existing idempotent retry or the same durable execution after its retry transition
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/ProposalExecution'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+        '502': {$ref: '#/components/responses/ConnectorFailed'}
+  /v1/proposal-executions:
+    get:
+      summary: List tenant-owned proposal executions
+      parameters:
+        - in: query
+          name: proposal_id
+          schema: {type: string, format: uuid}
+        - in: query
+          name: limit
+          schema: {type: integer, minimum: 1, maximum: 200, default: 100}
+      responses:
+        '200':
+          description: Proposal execution history
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: false
+                required: [executions]
+                properties:
+                  executions:
+                    type: array
+                    items: {$ref: '#/components/schemas/ProposalExecution'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+  /v1/proposal-executions/{executionId}:
+    get:
+      summary: Read one tenant-owned proposal execution
+      parameters:
+        - {$ref: '#/components/parameters/executionId'}
+      responses:
+        '200':
+          description: Proposal execution detail
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/ProposalExecution'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
   /v1/evidence-imports:
     get:
       summary: List tenant-owned CSV evidence imports
@@ -1462,6 +1675,21 @@ components:
       scheme: bearer
       bearerFormat: eai_API_KEY
   parameters:
+    idempotencyKey:
+      in: header
+      name: Idempotency-Key
+      required: true
+      schema: {type: string, minLength: 1, maxLength: 200}
+    proposalId:
+      in: path
+      name: proposalId
+      required: true
+      schema: {type: string, format: uuid}
+    executionId:
+      in: path
+      name: executionId
+      required: true
+      schema: {type: string, format: uuid}
     graphId:
       in: path
       name: graphId
@@ -2080,6 +2308,293 @@ components:
         profile_id: {type: string, pattern: '^[0-9]{1,32}$', nullable: true}
         region: {type: string, enum: [na, eu, fe], nullable: true}
         evaluated_at: {type: string, format: date-time}
+    ProposalOperation:
+      type: string
+      enum: [human.review, shopify.sync_products, amazon_spapi.import_report, amazon_ads.campaign_update]
+    ProposalRisk:
+      type: string
+      enum: [low, medium, high, critical]
+    ProposalStatus:
+      type: string
+      enum: [draft, submitted, approved, rejected, revision_required, executing, executed, failed, expired, blocked]
+    ProposalDecisionType:
+      type: string
+      enum: [approve, reject, revision_required]
+    ProposalExecutionStatus:
+      type: string
+      enum: [pending, executing, executed, failed, blocked]
+    HumanReviewProposalPayload:
+      type: object
+      additionalProperties: false
+      required: [instructions]
+      properties:
+        instructions: {type: string, minLength: 3, maxLength: 2000}
+    ShopifySyncProductsProposalPayload:
+      type: object
+      additionalProperties: false
+      required: [external_account_id]
+      properties:
+        external_account_id: {type: string, minLength: 1, maxLength: 200}
+        limit: {type: integer, minimum: 1, maximum: 250}
+        page_info: {type: string, maxLength: 4000}
+    AmazonSpapiImportReportProposalPayload:
+      type: object
+      additionalProperties: false
+      required: [external_account_id, report_id, evidence_report_type]
+      properties:
+        external_account_id: {type: string, minLength: 1, maxLength: 200}
+        report_id: {type: string, minLength: 1, maxLength: 200}
+        evidence_report_type: {$ref: '#/components/schemas/EvidenceReportType'}
+    AmazonAdsCampaignUpdateProposalPayload:
+      type: object
+      additionalProperties: false
+      required: [external_account_id, campaign_id, changes]
+      properties:
+        external_account_id: {type: string, minLength: 1, maxLength: 200}
+        campaign_id: {type: string, minLength: 1, maxLength: 200}
+        changes:
+          type: object
+          minProperties: 1
+          additionalProperties: true
+    ProposalPayload:
+      oneOf:
+        - {$ref: '#/components/schemas/HumanReviewProposalPayload'}
+        - {$ref: '#/components/schemas/ShopifySyncProductsProposalPayload'}
+        - {$ref: '#/components/schemas/AmazonSpapiImportReportProposalPayload'}
+        - {$ref: '#/components/schemas/AmazonAdsCampaignUpdateProposalPayload'}
+    ProposalCreateRequest:
+      oneOf:
+        - {$ref: '#/components/schemas/HumanReviewProposalCreateRequest'}
+        - {$ref: '#/components/schemas/ShopifySyncProductsProposalCreateRequest'}
+        - {$ref: '#/components/schemas/AmazonSpapiImportReportProposalCreateRequest'}
+        - {$ref: '#/components/schemas/AmazonAdsCampaignUpdateProposalCreateRequest'}
+      discriminator:
+        propertyName: operation
+        mapping:
+          human.review: '#/components/schemas/HumanReviewProposalCreateRequest'
+          shopify.sync_products: '#/components/schemas/ShopifySyncProductsProposalCreateRequest'
+          amazon_spapi.import_report: '#/components/schemas/AmazonSpapiImportReportProposalCreateRequest'
+          amazon_ads.campaign_update: '#/components/schemas/AmazonAdsCampaignUpdateProposalCreateRequest'
+    HumanReviewProposalCreateRequest:
+      type: object
+      additionalProperties: false
+      required: [daily_ops_run_id, priority_rank, rollback_plan, operation, payload, risk, expires_at]
+      properties:
+        daily_ops_run_id: {type: string, format: uuid}
+        priority_rank: {type: integer, minimum: 1, maximum: 5}
+        rollback_plan: {type: string, minLength: 3, maxLength: 2000}
+        operation: {type: string, enum: [human.review]}
+        payload: {$ref: '#/components/schemas/HumanReviewProposalPayload'}
+        risk: {$ref: '#/components/schemas/ProposalRisk'}
+        expires_at: {type: string, format: date-time}
+    ShopifySyncProductsProposalCreateRequest:
+      type: object
+      additionalProperties: false
+      required: [daily_ops_run_id, priority_rank, rollback_plan, operation, payload, risk, expires_at]
+      properties:
+        daily_ops_run_id: {type: string, format: uuid}
+        priority_rank: {type: integer, minimum: 1, maximum: 5}
+        rollback_plan: {type: string, minLength: 3, maxLength: 2000}
+        operation: {type: string, enum: [shopify.sync_products]}
+        payload: {$ref: '#/components/schemas/ShopifySyncProductsProposalPayload'}
+        risk: {$ref: '#/components/schemas/ProposalRisk'}
+        expires_at: {type: string, format: date-time}
+    AmazonSpapiImportReportProposalCreateRequest:
+      type: object
+      additionalProperties: false
+      required: [daily_ops_run_id, priority_rank, rollback_plan, operation, payload, risk, expires_at]
+      properties:
+        daily_ops_run_id: {type: string, format: uuid}
+        priority_rank: {type: integer, minimum: 1, maximum: 5}
+        rollback_plan: {type: string, minLength: 3, maxLength: 2000}
+        operation: {type: string, enum: [amazon_spapi.import_report]}
+        payload: {$ref: '#/components/schemas/AmazonSpapiImportReportProposalPayload'}
+        risk: {$ref: '#/components/schemas/ProposalRisk'}
+        expires_at: {type: string, format: date-time}
+    AmazonAdsCampaignUpdateProposalCreateRequest:
+      type: object
+      additionalProperties: false
+      required: [daily_ops_run_id, priority_rank, rollback_plan, operation, payload, risk, expires_at]
+      properties:
+        daily_ops_run_id: {type: string, format: uuid}
+        priority_rank: {type: integer, minimum: 1, maximum: 5}
+        rollback_plan: {type: string, minLength: 3, maxLength: 2000}
+        operation: {type: string, enum: [amazon_ads.campaign_update]}
+        payload: {$ref: '#/components/schemas/AmazonAdsCampaignUpdateProposalPayload'}
+        risk: {$ref: '#/components/schemas/ProposalRisk'}
+        expires_at: {type: string, format: date-time}
+    ProposalVersionRequest:
+      type: object
+      additionalProperties: false
+      required: [expected_version]
+      properties:
+        expected_version: {type: integer, minimum: 1}
+    ProposalExecutionRequest:
+      type: object
+      additionalProperties: false
+      required: [expected_version]
+      properties:
+        expected_version: {type: integer, minimum: 1}
+    ProposalRevisionRequest:
+      type: object
+      additionalProperties: false
+      required: [expected_version]
+      description: "When payload is present it must match the effective operation: the request operation when present, otherwise the current proposal version operation. An empty payload is invalid."
+      properties:
+        expected_version: {type: integer, minimum: 1}
+        title: {type: string, minLength: 1, maxLength: 200}
+        rationale: {type: string, minLength: 1, maxLength: 2000}
+        expected_impact: {type: string, minLength: 1, maxLength: 2000}
+        rollback_plan: {type: string, minLength: 3, maxLength: 2000}
+        operation: {$ref: '#/components/schemas/ProposalOperation'}
+        payload: {$ref: '#/components/schemas/ProposalPayload'}
+        risk: {$ref: '#/components/schemas/ProposalRisk'}
+        expires_at: {type: string, format: date-time}
+    ProposalDecisionRequest:
+      type: object
+      additionalProperties: false
+      required: [expected_version, decision, comment]
+      properties:
+        expected_version: {type: integer, minimum: 1}
+        decision: {$ref: '#/components/schemas/ProposalDecisionType'}
+        comment: {type: string, minLength: 1, maxLength: 2000}
+    ProposalDecision:
+      type: object
+      additionalProperties: false
+      required: [id, tenant_id, proposal_id, proposal_version, content_hash, decision, comment, decided_by, created_at]
+      properties:
+        id: {type: string, format: uuid}
+        tenant_id: {type: string, format: uuid}
+        proposal_id: {type: string, format: uuid}
+        proposal_version: {type: integer, minimum: 1}
+        content_hash: {type: string, pattern: '^[a-f0-9]{64}$'}
+        decision: {$ref: '#/components/schemas/ProposalDecisionType'}
+        comment: {type: string}
+        decided_by: {type: string, format: uuid}
+        created_at: {type: string, format: date-time}
+    ProposalVersion:
+      type: object
+      additionalProperties: false
+      required: [version_id, version, title, rationale, expected_impact, rollback_plan, evidence_refs, metric_observation_ids, operation, payload, payload_hash, content_hash, risk, expires_at, created_by, created_at]
+      properties:
+        version_id: {type: string, format: uuid}
+        version: {type: integer, minimum: 1}
+        title: {type: string}
+        rationale: {type: string}
+        expected_impact: {type: string}
+        rollback_plan: {type: string}
+        evidence_refs:
+          type: array
+          uniqueItems: true
+          items: {type: string, minLength: 1, maxLength: 200}
+        metric_observation_ids:
+          type: array
+          uniqueItems: true
+          items: {type: string, format: uuid}
+        operation: {$ref: '#/components/schemas/ProposalOperation'}
+        payload: {$ref: '#/components/schemas/ProposalPayload'}
+        payload_hash: {type: string, pattern: '^[a-f0-9]{64}$'}
+        content_hash: {type: string, pattern: '^[a-f0-9]{64}$'}
+        risk: {$ref: '#/components/schemas/ProposalRisk'}
+        expires_at: {type: string, format: date-time}
+        created_by: {type: string, format: uuid}
+        created_at: {type: string, format: date-time}
+    Proposal:
+      type: object
+      additionalProperties: false
+      required: [id, tenant_id, idempotency_key, daily_ops_run_id, agent_run_id, graph_version_id, graph_version_hash, priority_rank, version, version_id, title, rationale, expected_impact, rollback_plan, evidence_refs, metric_observation_ids, operation, payload, payload_hash, content_hash, risk, status, required_approvals, approval_count, created_by, expires_at, created_at, updated_at, decisions, executions, versions, capability_status, capability_reason, capability_block]
+      properties:
+        id: {type: string, format: uuid}
+        tenant_id: {type: string, format: uuid}
+        idempotency_key: {type: string, minLength: 1, maxLength: 200}
+        daily_ops_run_id: {type: string, format: uuid}
+        agent_run_id: {type: string, format: uuid}
+        graph_version_id: {type: string, format: uuid}
+        graph_version_hash: {type: string, pattern: '^[a-f0-9]{64}$'}
+        priority_rank: {type: integer, minimum: 1, maximum: 5}
+        version: {type: integer, minimum: 1}
+        version_id: {type: string, format: uuid}
+        title: {type: string}
+        rationale: {type: string}
+        expected_impact: {type: string}
+        rollback_plan: {type: string}
+        evidence_refs:
+          type: array
+          uniqueItems: true
+          items: {type: string, minLength: 1, maxLength: 200}
+        metric_observation_ids:
+          type: array
+          uniqueItems: true
+          items: {type: string, format: uuid}
+        operation: {$ref: '#/components/schemas/ProposalOperation'}
+        payload: {$ref: '#/components/schemas/ProposalPayload'}
+        payload_hash: {type: string, pattern: '^[a-f0-9]{64}$'}
+        content_hash: {type: string, pattern: '^[a-f0-9]{64}$'}
+        risk: {$ref: '#/components/schemas/ProposalRisk'}
+        status: {$ref: '#/components/schemas/ProposalStatus'}
+        required_approvals: {type: integer, minimum: 1, maximum: 10}
+        approval_count: {type: integer, minimum: 0, maximum: 10}
+        created_by: {type: string, format: uuid}
+        expires_at: {type: string, format: date-time}
+        submitted_at: {type: string, format: date-time, nullable: true}
+        completed_at: {type: string, format: date-time, nullable: true}
+        created_at: {type: string, format: date-time}
+        updated_at: {type: string, format: date-time}
+        decisions:
+          type: array
+          items: {$ref: '#/components/schemas/ProposalDecision'}
+        executions:
+          type: array
+          items: {$ref: '#/components/schemas/ProposalExecution'}
+        versions:
+          type: array
+          minItems: 1
+          items: {$ref: '#/components/schemas/ProposalVersion'}
+        capability_block:
+          allOf:
+            - {$ref: '#/components/schemas/ProposalCapabilityBlock'}
+          nullable: true
+        capability_status: {type: string, enum: [available, unavailable, blocked]}
+        capability_reason: {type: string}
+    ProposalCapabilityBlock:
+      type: object
+      additionalProperties: false
+      required: [code, message, retryable, connector_calls]
+      properties:
+        code: {type: string, enum: [CONNECTOR_CAPABILITY_UNAVAILABLE, AMAZON_ADS_CAPABILITY_UNAVAILABLE]}
+        message: {type: string}
+        retryable: {type: boolean, enum: [false]}
+        connector_calls: {type: integer, enum: [0]}
+    ProposalExecution:
+      type: object
+      additionalProperties: false
+      required: [id, tenant_id, proposal_id, proposal_version, approved_payload_hash, approved_content_hash, idempotency_key, operation, status, attempt_count, max_attempts, created_by, created_at, updated_at, capability_block]
+      properties:
+        id: {type: string, format: uuid}
+        tenant_id: {type: string, format: uuid}
+        proposal_id: {type: string, format: uuid}
+        proposal_version: {type: integer, minimum: 1}
+        approved_payload_hash: {type: string, pattern: '^[a-f0-9]{64}$'}
+        approved_content_hash: {type: string, pattern: '^[a-f0-9]{64}$'}
+        idempotency_key: {type: string, minLength: 1, maxLength: 200}
+        operation: {$ref: '#/components/schemas/ProposalOperation'}
+        status: {$ref: '#/components/schemas/ProposalExecutionStatus'}
+        action_id: {type: string, format: uuid, nullable: true}
+        lease_until: {type: string, format: date-time, nullable: true}
+        attempt_count: {type: integer, minimum: 0}
+        max_attempts: {type: integer, minimum: 1, maximum: 10}
+        result: {type: object, additionalProperties: true, nullable: true}
+        error_code: {type: string, nullable: true}
+        error_message: {type: string, nullable: true}
+        last_retry_idempotency_key: {type: string, nullable: true}
+        created_by: {type: string, format: uuid}
+        created_at: {type: string, format: date-time}
+        updated_at: {type: string, format: date-time}
+        completed_at: {type: string, format: date-time, nullable: true}
+        capability_block:
+          allOf:
+            - {$ref: '#/components/schemas/ProposalCapabilityBlock'}
+          nullable: true
     ActionRequest:
       oneOf:
         - {$ref: '#/components/schemas/ShopifySyncActionRequest'}

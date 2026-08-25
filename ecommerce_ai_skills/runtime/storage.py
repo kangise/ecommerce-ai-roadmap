@@ -29,7 +29,7 @@ class Principal:
 
 
 ROLE_LEVEL = {"viewer": 10, "operator": 20, "admin": 30, "owner": 40}
-SCHEMA_VERSION = 17
+SCHEMA_VERSION = 18
 
 
 class _Connection(sqlite3.Connection):
@@ -627,6 +627,151 @@ class Database:
                     ON daily_ops_runs(status, lease_until, scheduled_for);
                 CREATE INDEX IF NOT EXISTS idx_daily_ops_runs_tenant_time
                     ON daily_ops_runs(tenant_id, local_date DESC, created_at DESC);
+                CREATE TABLE IF NOT EXISTS proposals (
+                    id TEXT PRIMARY KEY,
+                    tenant_id TEXT NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
+                    idempotency_key TEXT NOT NULL,
+                    daily_ops_run_id TEXT NOT NULL,
+                    agent_run_id TEXT NOT NULL,
+                    graph_version_id TEXT NOT NULL,
+                    graph_version_hash TEXT NOT NULL,
+                    priority_rank INTEGER NOT NULL CHECK (priority_rank BETWEEN 1 AND 5),
+                    current_version INTEGER NOT NULL DEFAULT 1 CHECK (current_version >= 1),
+                    status TEXT NOT NULL CHECK (status IN (
+                        'draft','submitted','approved','rejected','revision_required',
+                        'expired','executing','executed','failed','blocked'
+                    )),
+                    created_by TEXT NOT NULL,
+                    expires_at TEXT NOT NULL,
+                    submitted_at TEXT,
+                    completed_at TEXT,
+                    created_at TEXT NOT NULL,
+                    updated_at TEXT NOT NULL,
+                    UNIQUE(tenant_id, idempotency_key),
+                    UNIQUE(tenant_id, id),
+                    FOREIGN KEY (tenant_id, daily_ops_run_id)
+                        REFERENCES daily_ops_runs(tenant_id, id) ON DELETE RESTRICT,
+                    FOREIGN KEY (tenant_id, agent_run_id)
+                        REFERENCES agent_runs(tenant_id, id) ON DELETE RESTRICT,
+                    FOREIGN KEY (tenant_id, graph_version_id)
+                        REFERENCES agent_graph_versions(tenant_id, id) ON DELETE RESTRICT,
+                    FOREIGN KEY (tenant_id, created_by)
+                        REFERENCES users(tenant_id, id)
+                );
+                CREATE INDEX IF NOT EXISTS idx_proposals_tenant_status
+                    ON proposals(tenant_id, status, updated_at DESC);
+                CREATE TABLE IF NOT EXISTS proposal_versions (
+                    id TEXT PRIMARY KEY,
+                    tenant_id TEXT NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
+                    proposal_id TEXT NOT NULL,
+                    version INTEGER NOT NULL CHECK (version >= 1),
+                    title TEXT NOT NULL,
+                    rationale TEXT NOT NULL,
+                    expected_impact TEXT NOT NULL,
+                    rollback_plan TEXT NOT NULL,
+                    evidence_refs_json TEXT NOT NULL,
+                    metric_observation_ids_json TEXT NOT NULL,
+                    operation TEXT NOT NULL CHECK (operation IN (
+                        'human.review','shopify.sync_products',
+                        'amazon_spapi.import_report','amazon_ads.campaign_update'
+                    )),
+                    payload_json TEXT NOT NULL,
+                    payload_hash TEXT NOT NULL,
+                    content_hash TEXT NOT NULL,
+                    risk TEXT NOT NULL CHECK (risk IN ('low','medium','high','critical')),
+                    expires_at TEXT NOT NULL,
+                    created_by TEXT NOT NULL,
+                    created_at TEXT NOT NULL,
+                    UNIQUE(tenant_id, proposal_id, version),
+                    UNIQUE(tenant_id, proposal_id, content_hash),
+                    FOREIGN KEY (tenant_id, proposal_id)
+                        REFERENCES proposals(tenant_id, id) ON DELETE CASCADE,
+                    FOREIGN KEY (tenant_id, created_by)
+                        REFERENCES users(tenant_id, id)
+                );
+                CREATE UNIQUE INDEX IF NOT EXISTS uq_proposal_versions_tenant_id
+                    ON proposal_versions(tenant_id, id);
+                CREATE TABLE IF NOT EXISTS proposal_decisions (
+                    id TEXT PRIMARY KEY,
+                    tenant_id TEXT NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
+                    proposal_id TEXT NOT NULL,
+                    proposal_version INTEGER NOT NULL,
+                    content_hash TEXT NOT NULL,
+                    decided_by TEXT NOT NULL,
+                    decision TEXT NOT NULL CHECK (
+                        decision IN ('approve','reject','revision_required')
+                    ),
+                    comment TEXT NOT NULL,
+                    created_at TEXT NOT NULL,
+                    UNIQUE(tenant_id, proposal_id, proposal_version, decided_by),
+                    FOREIGN KEY (tenant_id, proposal_id, proposal_version)
+                        REFERENCES proposal_versions(tenant_id, proposal_id, version)
+                        ON DELETE CASCADE,
+                    FOREIGN KEY (tenant_id, decided_by)
+                        REFERENCES users(tenant_id, id)
+                );
+                CREATE INDEX IF NOT EXISTS idx_proposal_decisions_proposal
+                    ON proposal_decisions(tenant_id, proposal_id, proposal_version, created_at);
+                CREATE TABLE IF NOT EXISTS proposal_executions (
+                    id TEXT PRIMARY KEY,
+                    tenant_id TEXT NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
+                    proposal_id TEXT NOT NULL,
+                    proposal_version INTEGER NOT NULL,
+                    approved_payload_hash TEXT NOT NULL,
+                    approved_content_hash TEXT NOT NULL,
+                    operation TEXT NOT NULL,
+                    idempotency_key TEXT NOT NULL,
+                    status TEXT NOT NULL CHECK (
+                        status IN ('pending','executing','executed','failed','blocked')
+                    ),
+                    action_id TEXT,
+                    lease_until TEXT,
+                    lease_token TEXT,
+                    attempt_count INTEGER NOT NULL DEFAULT 0 CHECK (attempt_count >= 0),
+                    max_attempts INTEGER NOT NULL DEFAULT 5 CHECK (max_attempts BETWEEN 1 AND 20),
+                    last_retry_idempotency_key TEXT,
+                    result_json TEXT,
+                    error_code TEXT,
+                    error_message TEXT,
+                    created_by TEXT NOT NULL,
+                    created_at TEXT NOT NULL,
+                    updated_at TEXT NOT NULL,
+                    completed_at TEXT,
+                    UNIQUE(tenant_id, idempotency_key),
+                    UNIQUE(tenant_id, proposal_id, proposal_version),
+                    UNIQUE(tenant_id, last_retry_idempotency_key),
+                    UNIQUE(tenant_id, id),
+                    FOREIGN KEY (tenant_id, proposal_id, proposal_version)
+                        REFERENCES proposal_versions(tenant_id, proposal_id, version)
+                        ON DELETE RESTRICT,
+                    FOREIGN KEY (tenant_id, created_by)
+                        REFERENCES users(tenant_id, id),
+                    FOREIGN KEY (tenant_id, action_id)
+                        REFERENCES actions(tenant_id, id)
+                );
+                CREATE INDEX IF NOT EXISTS idx_proposal_executions_claim
+                    ON proposal_executions(status, lease_until, created_at);
+                CREATE TABLE IF NOT EXISTS proposal_execution_retries (
+                    id TEXT PRIMARY KEY,
+                    tenant_id TEXT NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
+                    execution_id TEXT NOT NULL,
+                    proposal_id TEXT NOT NULL,
+                    proposal_version INTEGER NOT NULL,
+                    approved_content_hash TEXT NOT NULL,
+                    idempotency_key TEXT NOT NULL,
+                    created_by TEXT NOT NULL,
+                    created_at TEXT NOT NULL,
+                    UNIQUE(tenant_id, idempotency_key),
+                    FOREIGN KEY (tenant_id, execution_id)
+                        REFERENCES proposal_executions(tenant_id, id) ON DELETE CASCADE,
+                    FOREIGN KEY (tenant_id, proposal_id, proposal_version)
+                        REFERENCES proposal_versions(tenant_id, proposal_id, version)
+                        ON DELETE RESTRICT,
+                    FOREIGN KEY (tenant_id, created_by)
+                        REFERENCES users(tenant_id, id)
+                );
+                CREATE INDEX IF NOT EXISTS idx_proposal_execution_retries_execution
+                    ON proposal_execution_retries(tenant_id, execution_id, created_at);
                 CREATE TABLE IF NOT EXISTS runtime_meta (
                     key TEXT PRIMARY KEY,
                     value TEXT NOT NULL
@@ -647,6 +792,7 @@ class Database:
                     self._migrate(conn, version)
             self._install_v16_triggers(conn)
             self._install_v17_triggers(conn)
+            self._install_v18_triggers(conn)
 
     @staticmethod
     def _install_v16_triggers(conn: sqlite3.Connection) -> None:
@@ -887,6 +1033,345 @@ class Database:
         )
 
     @staticmethod
+    def _install_v18_triggers(conn: sqlite3.Connection) -> None:
+        conn.executescript(
+            """
+            CREATE UNIQUE INDEX IF NOT EXISTS uq_actions_tenant_id
+                ON actions(tenant_id, id);
+            CREATE TRIGGER IF NOT EXISTS proposal_versions_immutable_update
+            BEFORE UPDATE ON proposal_versions
+            BEGIN SELECT RAISE(ABORT, 'proposal version is immutable'); END;
+            CREATE TRIGGER IF NOT EXISTS proposal_versions_immutable_delete
+            BEFORE DELETE ON proposal_versions
+            BEGIN SELECT RAISE(ABORT, 'proposal version is immutable'); END;
+            CREATE TRIGGER IF NOT EXISTS proposals_binding_insert
+            BEFORE INSERT ON proposals
+            WHEN NOT EXISTS (
+                SELECT 1 FROM daily_ops_runs d JOIN agent_runs a
+                  ON a.tenant_id=d.tenant_id AND a.id=d.agent_run_id
+                WHERE d.tenant_id=NEW.tenant_id AND d.id=NEW.daily_ops_run_id
+                  AND a.id=NEW.agent_run_id
+                  AND d.status='completed' AND a.status='completed'
+                  AND a.review_status='approved' AND a.origin='daily_ops'
+                  AND a.parent_daily_ops_run_id=d.id
+                  AND a.parent_daily_ops_attempt=d.attempt_count
+                  AND d.graph_version_id=NEW.graph_version_id
+                  AND d.graph_version_hash=NEW.graph_version_hash
+                  AND a.graph_version_id=NEW.graph_version_id
+                  AND a.graph_version_hash=NEW.graph_version_hash
+            )
+            BEGIN SELECT RAISE(ABORT, 'proposal source binding is ineligible'); END;
+            CREATE TRIGGER IF NOT EXISTS proposals_initial_state_insert
+            BEFORE INSERT ON proposals
+            WHEN NEW.current_version!=1 OR NEW.status!='draft'
+              OR NEW.submitted_at IS NOT NULL OR NEW.completed_at IS NOT NULL
+            BEGIN SELECT RAISE(ABORT, 'proposal initial state is invalid'); END;
+            CREATE TRIGGER IF NOT EXISTS proposals_identity_immutable
+            BEFORE UPDATE OF id,tenant_id,idempotency_key,daily_ops_run_id,agent_run_id,
+                             graph_version_id,graph_version_hash,priority_rank,created_by,created_at
+            ON proposals
+            BEGIN SELECT RAISE(ABORT, 'proposal source identity is immutable'); END;
+            CREATE TRIGGER IF NOT EXISTS proposals_status_transition
+            BEFORE UPDATE OF status ON proposals
+            WHEN NEW.status != OLD.status AND NOT (
+                (OLD.status='draft' AND NEW.status IN ('submitted','expired')) OR
+                (OLD.status='submitted' AND NEW.status IN (
+                    'approved','rejected','revision_required','expired'
+                )) OR
+                (OLD.status='approved' AND NEW.status IN ('expired','executing')) OR
+                (OLD.status IN ('rejected','revision_required') AND NEW.status IN ('draft','expired')) OR
+                (OLD.status='executing' AND NEW.status IN ('executed','failed','blocked','expired')) OR
+                (OLD.status='failed' AND NEW.status IN ('approved','expired'))
+            )
+            BEGIN SELECT RAISE(ABORT, 'invalid proposal status transition'); END;
+            CREATE TRIGGER IF NOT EXISTS proposal_versions_current_insert
+            BEFORE INSERT ON proposal_versions
+            WHEN NEW.version != 1 AND NOT EXISTS (
+                SELECT 1 FROM proposals p
+                WHERE p.tenant_id=NEW.tenant_id AND p.id=NEW.proposal_id
+                  AND NEW.version=p.current_version+1
+            )
+            BEGIN SELECT RAISE(ABORT, 'proposal version is not the next version'); END;
+            CREATE TRIGGER IF NOT EXISTS proposals_current_version_update
+            BEFORE UPDATE OF current_version ON proposals
+            WHEN NEW.current_version != OLD.current_version AND (
+                NEW.current_version != OLD.current_version+1 OR NOT EXISTS (
+                    SELECT 1 FROM proposal_versions v
+                    WHERE v.tenant_id=NEW.tenant_id AND v.proposal_id=NEW.id
+                      AND v.version=NEW.current_version
+                )
+            )
+            BEGIN SELECT RAISE(ABORT, 'proposal current version binding is invalid'); END;
+            CREATE TRIGGER IF NOT EXISTS proposals_version_projection_update
+            BEFORE UPDATE OF current_version,expires_at ON proposals
+            WHEN NOT EXISTS (
+                SELECT 1 FROM proposal_versions v
+                WHERE v.tenant_id=NEW.tenant_id AND v.proposal_id=NEW.id
+                  AND v.version=NEW.current_version AND v.expires_at=NEW.expires_at
+            )
+            BEGIN SELECT RAISE(ABORT, 'proposal version projection is invalid'); END;
+            CREATE TRIGGER IF NOT EXISTS proposals_approval_quorum_update
+            BEFORE UPDATE OF status ON proposals
+            WHEN NEW.status='approved' AND OLD.status!='approved' AND NOT EXISTS (
+                SELECT 1 FROM proposal_versions v
+                WHERE v.tenant_id=NEW.tenant_id AND v.proposal_id=NEW.id
+                  AND v.version=NEW.current_version AND (
+                    SELECT COUNT(DISTINCT d.decided_by)
+                    FROM proposal_decisions d
+                    WHERE d.tenant_id=v.tenant_id AND d.proposal_id=v.proposal_id
+                      AND d.proposal_version=v.version
+                      AND d.content_hash=v.content_hash AND d.decision='approve'
+                  ) >= CASE WHEN v.risk IN ('low','medium') THEN 1 ELSE 2 END
+            )
+            BEGIN SELECT RAISE(ABORT, 'proposal approval quorum is incomplete'); END;
+            CREATE TRIGGER IF NOT EXISTS proposals_failed_retry_approval_update
+            BEFORE UPDATE OF status ON proposals
+            WHEN OLD.status='failed' AND NEW.status='approved' AND NOT EXISTS (
+                SELECT 1 FROM proposal_executions e
+                JOIN proposal_execution_retries r
+                  ON r.tenant_id=e.tenant_id AND r.execution_id=e.id
+                 AND r.proposal_id=e.proposal_id
+                 AND r.proposal_version=e.proposal_version
+                 AND r.approved_content_hash=e.approved_content_hash
+                 AND r.idempotency_key=e.last_retry_idempotency_key
+                WHERE e.tenant_id=NEW.tenant_id AND e.proposal_id=NEW.id
+                  AND e.proposal_version=NEW.current_version
+                  AND e.status='pending'
+            )
+            BEGIN SELECT RAISE(ABORT, 'proposal retry approval has no durable retry intent'); END;
+            CREATE TRIGGER IF NOT EXISTS proposal_decisions_binding_insert
+            BEFORE INSERT ON proposal_decisions
+            WHEN NOT EXISTS (
+                SELECT 1 FROM proposals p JOIN proposal_versions v
+                  ON v.tenant_id=p.tenant_id AND v.proposal_id=p.id
+                 AND v.version=p.current_version
+                WHERE p.tenant_id=NEW.tenant_id AND p.id=NEW.proposal_id
+                  AND p.status='submitted' AND v.version=NEW.proposal_version
+                  AND v.content_hash=NEW.content_hash
+                  AND julianday(v.expires_at)>julianday('now')
+            ) OR EXISTS (
+                SELECT 1 FROM proposals p
+                WHERE p.tenant_id=NEW.tenant_id AND p.id=NEW.proposal_id
+                  AND p.created_by=NEW.decided_by AND NEW.decision='approve'
+            ) OR NOT EXISTS (
+                SELECT 1 FROM users u
+                WHERE u.tenant_id=NEW.tenant_id AND u.id=NEW.decided_by
+                  AND u.role IN ('admin','owner')
+            )
+            BEGIN SELECT RAISE(ABORT, 'proposal decision binding is invalid'); END;
+            CREATE TRIGGER IF NOT EXISTS proposal_decisions_immutable_update
+            BEFORE UPDATE ON proposal_decisions
+            BEGIN SELECT RAISE(ABORT, 'proposal decision is immutable'); END;
+            CREATE TRIGGER IF NOT EXISTS proposal_decisions_immutable_delete
+            BEFORE DELETE ON proposal_decisions
+            BEGIN SELECT RAISE(ABORT, 'proposal decision is immutable'); END;
+            CREATE TRIGGER IF NOT EXISTS proposal_decisions_apply_terminal
+            AFTER INSERT ON proposal_decisions
+            WHEN NEW.decision IN ('reject','revision_required')
+            BEGIN
+                UPDATE proposals
+                SET status=CASE WHEN NEW.decision='reject' THEN 'rejected'
+                                ELSE 'revision_required' END,
+                    updated_at=NEW.created_at
+                WHERE tenant_id=NEW.tenant_id AND id=NEW.proposal_id
+                  AND current_version=NEW.proposal_version AND status='submitted';
+            END;
+            CREATE TRIGGER IF NOT EXISTS proposal_decisions_apply_approval
+            AFTER INSERT ON proposal_decisions
+            WHEN NEW.decision='approve'
+            BEGIN
+                UPDATE proposals SET status='approved',updated_at=NEW.created_at
+                WHERE tenant_id=NEW.tenant_id AND id=NEW.proposal_id
+                  AND current_version=NEW.proposal_version AND status='submitted'
+                  AND EXISTS (
+                    SELECT 1 FROM proposal_versions v
+                    WHERE v.tenant_id=NEW.tenant_id AND v.proposal_id=NEW.proposal_id
+                      AND v.version=NEW.proposal_version AND v.content_hash=NEW.content_hash
+                      AND (
+                        SELECT COUNT(DISTINCT d.decided_by)
+                        FROM proposal_decisions d
+                        WHERE d.tenant_id=NEW.tenant_id AND d.proposal_id=NEW.proposal_id
+                          AND d.proposal_version=NEW.proposal_version
+                          AND d.content_hash=NEW.content_hash AND d.decision='approve'
+                      ) >= CASE WHEN v.risk IN ('low','medium') THEN 1 ELSE 2 END
+                  );
+            END;
+            CREATE TRIGGER IF NOT EXISTS proposal_executions_binding_insert
+            BEFORE INSERT ON proposal_executions
+            WHEN NOT EXISTS (
+                SELECT 1 FROM proposals p JOIN proposal_versions v
+                  ON v.tenant_id=p.tenant_id AND v.proposal_id=p.id
+                 AND v.version=p.current_version
+                WHERE p.tenant_id=NEW.tenant_id AND p.id=NEW.proposal_id
+                  AND p.status='approved' AND v.version=NEW.proposal_version
+                  AND v.payload_hash=NEW.approved_payload_hash
+                  AND v.content_hash=NEW.approved_content_hash
+                  AND v.operation=NEW.operation
+                  AND julianday(v.expires_at)>julianday('now')
+                  AND (
+                    SELECT COUNT(DISTINCT d.decided_by)
+                    FROM proposal_decisions d
+                    WHERE d.tenant_id=p.tenant_id AND d.proposal_id=p.id
+                      AND d.proposal_version=v.version
+                      AND d.content_hash=v.content_hash AND d.decision='approve'
+                  ) >= CASE WHEN v.risk IN ('low','medium') THEN 1 ELSE 2 END
+            )
+            BEGIN SELECT RAISE(ABORT, 'proposal execution binding is invalid'); END;
+            CREATE TRIGGER IF NOT EXISTS proposal_executions_lock_update
+            BEFORE UPDATE OF tenant_id,proposal_id,proposal_version,
+                             approved_payload_hash,approved_content_hash,operation,idempotency_key,
+                             created_by,created_at,max_attempts,id
+            ON proposal_executions
+            BEGIN SELECT RAISE(ABORT, 'proposal execution identity is immutable'); END;
+            CREATE TRIGGER IF NOT EXISTS proposal_executions_status_transition
+            BEFORE UPDATE OF status ON proposal_executions
+            WHEN NEW.status != OLD.status AND NOT (
+                (OLD.status='pending' AND NEW.status IN ('executing','failed')) OR
+                (OLD.status='executing' AND NEW.status IN ('executed','failed','blocked')) OR
+                (OLD.status='failed' AND NEW.status='pending')
+            )
+            BEGIN SELECT RAISE(ABORT, 'invalid proposal execution status transition'); END;
+            CREATE TRIGGER IF NOT EXISTS proposal_executions_state_insert
+            BEFORE INSERT ON proposal_executions
+            WHEN NEW.status!='pending' OR NEW.lease_until IS NOT NULL
+              OR NEW.lease_token IS NOT NULL OR NEW.completed_at IS NOT NULL
+              OR NEW.action_id IS NOT NULL OR NEW.attempt_count!=0
+              OR NEW.result_json IS NOT NULL OR NEW.error_code IS NOT NULL
+              OR NEW.error_message IS NOT NULL
+            BEGIN SELECT RAISE(ABORT, 'proposal execution initial state is invalid'); END;
+            CREATE TRIGGER IF NOT EXISTS proposal_executions_state_update
+            BEFORE UPDATE OF status,lease_until,lease_token,result_json,error_code,
+                             error_message,completed_at ON proposal_executions
+            WHEN (NEW.status='pending' AND (
+                    NEW.lease_until IS NOT NULL OR NEW.lease_token IS NOT NULL
+                    OR NEW.completed_at IS NOT NULL OR NEW.error_code IS NOT NULL
+                    OR NEW.error_message IS NOT NULL
+                  ))
+              OR (NEW.status='executing' AND (
+                    NEW.lease_until IS NULL OR NEW.lease_token IS NULL
+                    OR NEW.completed_at IS NOT NULL OR NEW.result_json IS NOT NULL
+                    OR NEW.error_code IS NOT NULL OR NEW.error_message IS NOT NULL
+                  ))
+              OR (NEW.status='executed' AND (
+                    NEW.result_json IS NULL OR NEW.completed_at IS NULL
+                    OR NEW.lease_until IS NOT NULL OR NEW.lease_token IS NOT NULL
+                    OR NEW.error_code IS NOT NULL OR NEW.error_message IS NOT NULL
+                  ))
+              OR (NEW.status IN ('failed','blocked') AND (
+                    NEW.error_code IS NULL OR NEW.error_message IS NULL
+                    OR NEW.completed_at IS NULL OR NEW.lease_until IS NOT NULL
+                    OR NEW.lease_token IS NOT NULL
+                  ))
+            BEGIN SELECT RAISE(ABORT, 'proposal execution state is incomplete'); END;
+            CREATE TRIGGER IF NOT EXISTS proposal_executions_action_binding_update
+            BEFORE UPDATE OF action_id ON proposal_executions
+            WHEN NEW.action_id IS NOT NULL AND (
+                OLD.action_id IS NOT NULL OR OLD.status!='executing'
+                OR OLD.lease_token IS NULL OR NOT EXISTS (
+                    SELECT 1 FROM actions a
+                    JOIN proposals p ON p.tenant_id=NEW.tenant_id AND p.id=NEW.proposal_id
+                    JOIN proposal_versions v
+                      ON v.tenant_id=p.tenant_id AND v.proposal_id=p.id
+                     AND v.version=NEW.proposal_version
+                    WHERE a.tenant_id=NEW.tenant_id AND a.id=NEW.action_id
+                      AND a.operation=NEW.operation AND a.requested_by=p.created_by
+                      AND json(a.payload_json)=json(v.payload_json)
+                      AND a.status IN ('approved','executing','executed','failed')
+                      AND EXISTS (
+                        SELECT 1 FROM proposal_decisions d
+                        WHERE d.tenant_id=p.tenant_id AND d.proposal_id=p.id
+                          AND d.proposal_version=v.version
+                          AND d.content_hash=v.content_hash AND d.decision='approve'
+                          AND d.decided_by=a.approved_by
+                      )
+                )
+            )
+            BEGIN SELECT RAISE(ABORT, 'proposal execution action binding is invalid'); END;
+            CREATE TRIGGER IF NOT EXISTS proposal_executions_terminal_immutable
+            BEFORE UPDATE ON proposal_executions
+            WHEN OLD.status IN ('executed','blocked')
+            BEGIN SELECT RAISE(ABORT, 'terminal proposal execution is immutable'); END;
+            CREATE TRIGGER IF NOT EXISTS proposal_executions_failed_retry_only
+            BEFORE UPDATE ON proposal_executions
+            WHEN OLD.status='failed' AND (
+                NEW.status!='pending' OR NEW.last_retry_idempotency_key IS NULL
+                OR NEW.last_retry_idempotency_key IS OLD.last_retry_idempotency_key
+                OR NOT EXISTS (
+                    SELECT 1 FROM proposal_execution_retries r
+                    JOIN proposals p
+                      ON p.tenant_id=r.tenant_id AND p.id=r.proposal_id
+                    WHERE r.tenant_id=NEW.tenant_id AND r.execution_id=NEW.id
+                      AND r.proposal_id=NEW.proposal_id
+                      AND r.proposal_version=NEW.proposal_version
+                      AND r.approved_content_hash=NEW.approved_content_hash
+                      AND r.idempotency_key=NEW.last_retry_idempotency_key
+                      AND r.rowid=(
+                        SELECT MAX(latest.rowid) FROM proposal_execution_retries latest
+                        WHERE latest.tenant_id=NEW.tenant_id
+                          AND latest.execution_id=NEW.id
+                      )
+                      AND p.current_version=NEW.proposal_version
+                      AND p.status='failed'
+                )
+            )
+            BEGIN SELECT RAISE(ABORT, 'failed proposal execution only permits retry'); END;
+            CREATE TRIGGER IF NOT EXISTS proposal_executions_immutable_delete
+            BEFORE DELETE ON proposal_executions
+            BEGIN SELECT RAISE(ABORT, 'proposal execution is immutable'); END;
+            CREATE TRIGGER IF NOT EXISTS proposal_execution_retries_binding_insert
+            BEFORE INSERT ON proposal_execution_retries
+            WHEN NOT EXISTS (
+                SELECT 1 FROM proposal_executions e JOIN proposals p
+                  ON p.tenant_id=e.tenant_id AND p.id=e.proposal_id
+                JOIN proposal_versions v
+                  ON v.tenant_id=p.tenant_id AND v.proposal_id=p.id
+                 AND v.version=e.proposal_version
+                WHERE e.tenant_id=NEW.tenant_id AND e.id=NEW.execution_id
+                  AND e.proposal_id=NEW.proposal_id
+                  AND e.proposal_version=NEW.proposal_version
+                  AND e.approved_content_hash=NEW.approved_content_hash
+                  AND e.status='failed' AND p.status='failed'
+                  AND p.current_version=e.proposal_version
+                  AND v.content_hash=e.approved_content_hash
+                  AND julianday(v.expires_at)>julianday('now')
+            ) OR NOT EXISTS (
+                SELECT 1 FROM users u
+                WHERE u.tenant_id=NEW.tenant_id AND u.id=NEW.created_by
+                  AND u.role IN ('operator','admin','owner')
+            )
+            BEGIN SELECT RAISE(ABORT, 'proposal execution retry binding is invalid'); END;
+            CREATE TRIGGER IF NOT EXISTS proposal_execution_retries_immutable_update
+            BEFORE UPDATE ON proposal_execution_retries
+            BEGIN SELECT RAISE(ABORT, 'proposal execution retry is immutable'); END;
+            CREATE TRIGGER IF NOT EXISTS proposal_execution_retries_immutable_delete
+            BEFORE DELETE ON proposal_execution_retries
+            BEGIN SELECT RAISE(ABORT, 'proposal execution retry is immutable'); END;
+            CREATE TRIGGER IF NOT EXISTS users_active_proposal_role_guard
+            BEFORE UPDATE OF role ON users
+            WHEN (
+                NEW.role='viewer' AND EXISTS (
+                    SELECT 1 FROM proposals p
+                    WHERE p.tenant_id=NEW.tenant_id AND p.created_by=NEW.id
+                      AND p.status IN ('draft','submitted','approved','rejected','revision_required','executing','failed')
+                )
+            ) OR (
+                NEW.role NOT IN ('admin','owner') AND EXISTS (
+                    SELECT 1 FROM proposal_decisions d JOIN proposals p
+                      ON p.tenant_id=d.tenant_id AND p.id=d.proposal_id
+                     AND p.current_version=d.proposal_version
+                    JOIN proposal_versions v
+                      ON v.tenant_id=p.tenant_id AND v.proposal_id=p.id
+                     AND v.version=p.current_version AND v.content_hash=d.content_hash
+                    WHERE d.tenant_id=NEW.tenant_id AND d.decided_by=NEW.id
+                      AND d.decision='approve'
+                      AND p.status IN ('submitted','approved','executing','failed')
+                )
+            )
+            BEGIN SELECT RAISE(ABORT, 'active proposal responsibilities prevent role downgrade'); END;
+            """
+        )
+
+    @staticmethod
     def _migrate(conn: sqlite3.Connection, version: int) -> None:
         """Apply additive migrations for databases created by earlier releases."""
         if version == 1:
@@ -1099,6 +1584,10 @@ class Database:
                         f"ALTER TABLE agent_runs ADD COLUMN {name} {declaration}"
                     )
             version = 17
+        if version == 17:
+            # initialize() creates the proposal, versioned decision, and
+            # fenced execution tables in this transaction.
+            version = 18
         if version != SCHEMA_VERSION:
             raise ValidationError(f"no migration path from runtime schema version {version}")
         conn.execute("UPDATE runtime_meta SET value=? WHERE key='schema_version'", (str(SCHEMA_VERSION),))
@@ -1221,6 +1710,34 @@ class Database:
                 if active_daily_ops is not None:
                     raise ConflictError(
                         "disable or complete this user's Daily Ops work before demotion"
+                    )
+                active_proposal = conn.execute(
+                    """SELECT 1 FROM proposals
+                       WHERE tenant_id=? AND created_by=?
+                         AND status IN ('draft','submitted','approved','rejected','revision_required','executing','failed')
+                       LIMIT 1""",
+                    (tenant_id, user_id),
+                ).fetchone()
+                if active_proposal is not None:
+                    raise ConflictError(
+                        "complete or expire this user's active proposals before demotion"
+                    )
+            if ROLE_LEVEL[role] < ROLE_LEVEL["admin"]:
+                active_approval = conn.execute(
+                    """SELECT 1 FROM proposal_decisions d JOIN proposals p
+                         ON p.tenant_id=d.tenant_id AND p.id=d.proposal_id
+                        AND p.current_version=d.proposal_version
+                       JOIN proposal_versions v
+                         ON v.tenant_id=p.tenant_id AND v.proposal_id=p.id
+                        AND v.version=p.current_version AND v.content_hash=d.content_hash
+                       WHERE d.tenant_id=? AND d.decided_by=? AND d.decision='approve'
+                         AND p.status IN ('submitted','approved','executing','failed')
+                       LIMIT 1""",
+                    (tenant_id, user_id),
+                ).fetchone()
+                if active_approval is not None:
+                    raise ConflictError(
+                        "complete or expire proposals approved by this user before demotion"
                     )
             conn.execute(
                 "UPDATE users SET role=? WHERE id=? AND tenant_id=?",
@@ -2142,19 +2659,44 @@ class Database:
 
     def append_audit(self, tenant_id: str, actor_user_id: str | None, request_id: str, action: str,
                      resource_type: str, resource_id: str | None, outcome: str, metadata: dict[str, Any]) -> str:
-        event_id = self._id()
         with self.transaction() as conn:
-            self.require_tenant(conn, tenant_id)
-            if actor_user_id is not None:
-                actor = conn.execute("SELECT tenant_id FROM users WHERE id=?", (actor_user_id,)).fetchone()
-                if actor is None or actor["tenant_id"] != tenant_id:
-                    raise ValidationError("audit actor does not belong to tenant")
-            conn.execute(
-                """INSERT INTO audit_events(id,tenant_id,actor_user_id,request_id,action,resource_type,resource_id,outcome,metadata_json,created_at)
-                   VALUES(?,?,?,?,?,?,?,?,?,?)""",
-                (event_id, tenant_id, actor_user_id, request_id, action, resource_type, resource_id,
-                 outcome, json.dumps(metadata, ensure_ascii=False, sort_keys=True), utc_now()),
+            return self.append_audit_tx(
+                conn, tenant_id, actor_user_id, request_id, action,
+                resource_type, resource_id, outcome, metadata,
             )
+
+    def append_audit_tx(
+        self,
+        conn: sqlite3.Connection,
+        tenant_id: str,
+        actor_user_id: str | None,
+        request_id: str,
+        action: str,
+        resource_type: str,
+        resource_id: str | None,
+        outcome: str,
+        metadata: dict[str, Any],
+    ) -> str:
+        """Append an audit event to an existing state-change transaction."""
+        event_id = self._id()
+        self.require_tenant(conn, tenant_id)
+        if actor_user_id is not None:
+            actor = conn.execute(
+                "SELECT tenant_id FROM users WHERE id=?", (actor_user_id,)
+            ).fetchone()
+            if actor is None or actor["tenant_id"] != tenant_id:
+                raise ValidationError("audit actor does not belong to tenant")
+        conn.execute(
+            """INSERT INTO audit_events(
+               id,tenant_id,actor_user_id,request_id,action,resource_type,
+               resource_id,outcome,metadata_json,created_at
+               ) VALUES(?,?,?,?,?,?,?,?,?,?)""",
+            (
+                event_id, tenant_id, actor_user_id, request_id, action,
+                resource_type, resource_id, outcome,
+                json.dumps(metadata, ensure_ascii=False, sort_keys=True), utc_now(),
+            ),
+        )
         return event_id
 
     def list_audit(self, tenant_id: str, limit: int = 100) -> list[dict[str, Any]]:
