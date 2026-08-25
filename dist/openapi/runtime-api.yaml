@@ -822,6 +822,119 @@ paths:
         '409': {$ref: '#/components/responses/Conflict'}
         '422': {$ref: '#/components/responses/ValidationFailed'}
         '429': {$ref: '#/components/responses/RateLimited'}
+  /v1/agent-graphs:
+    get:
+      summary: List tenant-owned agent graph definitions
+      responses:
+        '200':
+          description: Versioned graph definitions
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [graphs]
+                properties:
+                  graphs: {type: array, items: {$ref: '#/components/schemas/AgentGraph'}}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+    post:
+      summary: Create an immutable-versioned agent graph definition
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/AgentGraphCreate'}
+      responses:
+        '201':
+          description: Graph created with initial draft version
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/AgentGraphBundle'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+  /v1/agent-graphs/{graphId}:
+    get:
+      summary: Read a tenant-owned agent graph and versions
+      parameters:
+        - {$ref: '#/components/parameters/graphId'}
+      responses:
+        '200':
+          description: Graph with version history
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/AgentGraphBundle'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+  /v1/agent-graphs/{graphId}/versions:
+    post:
+      summary: Create a new draft graph version
+      parameters:
+        - {$ref: '#/components/parameters/graphId'}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/AgentGraphVersionCreate'}
+      responses:
+        '201':
+          description: Immutable draft version
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/AgentGraphVersion'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+  /v1/agent-graph-versions/{versionId}:
+    get:
+      summary: Read one tenant-owned agent graph version
+      parameters:
+        - {$ref: '#/components/parameters/versionId'}
+      responses:
+        '200':
+          description: Draft, published, or retired graph version
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/AgentGraphVersion'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+  /v1/agent-graph-versions/{versionId}/publish:
+    post:
+      summary: Publish a graph version after validation and review
+      parameters:
+        - {$ref: '#/components/parameters/versionId'}
+      responses:
+        '200':
+          description: Published immutable version
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/AgentGraphVersion'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+  /v1/agent-graphs/{graphId}/versions/{versionId}/publish:
+    post:
+      summary: Publish a graph version using the nested compatibility route
+      parameters:
+        - {$ref: '#/components/parameters/graphId'}
+        - {$ref: '#/components/parameters/versionId'}
+      responses:
+        '200':
+          description: Published immutable version
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/AgentGraphVersion'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
   /v1/agent-runs/{runId}:
     get:
       summary: Read a tenant-owned run with tasks, artifacts, and events
@@ -866,8 +979,8 @@ paths:
         '404': {$ref: '#/components/responses/NotFound'}
   /v1/agent-runs/{runId}/execute:
     post:
-      summary: Run three specialists in parallel and synthesize their findings
-      description: Requires OPENAI_API_KEY and EAI_OPENAI_MODEL in the server environment.
+      summary: Execute the bound Domain Agent Graph and independent Reviewer
+      description: Requires operator or higher plus OPENAI_API_KEY and EAI_OPENAI_MODEL in the server environment. Application code runs the Evidence Analyst and dynamic marketplace specialists in parallel, then the optional cross-platform controller, Manager, and Reviewer sequentially. No model tools are exposed.
       parameters:
         - {$ref: '#/components/parameters/runId'}
       responses:
@@ -1151,6 +1264,16 @@ components:
       scheme: bearer
       bearerFormat: eai_API_KEY
   parameters:
+    graphId:
+      in: path
+      name: graphId
+      required: true
+      schema: {type: string, format: uuid}
+    versionId:
+      in: path
+      name: versionId
+      required: true
+      schema: {type: string, format: uuid}
     accountId:
       in: path
       name: accountId
@@ -1832,6 +1955,7 @@ components:
       anyOf:
         - required: [evidence]
         - required: [evidence_import_ids]
+        - required: [metric_observation_ids]
       properties:
         workflow: {type: string, enum: [weekly_ops]}
         objective: {type: string, minLength: 5, maxLength: 1000}
@@ -1842,6 +1966,14 @@ components:
           items: {$ref: '#/components/schemas/EvidenceSource'}
         evidence_import_ids:
           type: array
+          minItems: 1
+          maxItems: 20
+          uniqueItems: true
+          items: {type: string, format: uuid}
+        graph_version_id: {type: string, format: uuid}
+        metric_observation_ids:
+          type: array
+          minItems: 1
           maxItems: 20
           uniqueItems: true
           items: {type: string, format: uuid}
@@ -2002,7 +2134,7 @@ components:
           description: Opaque tenant-scoped cursor returned by the previous backfill page.
     AgentRun:
       type: object
-      required: [id, tenant_id, idempotency_key, workflow, objective, platforms, requested_by, status, provider, attempt_count, created_at, updated_at]
+      required: [id, tenant_id, idempotency_key, workflow, objective, platforms, graph_version_id, graph_version_hash, metric_observation_ids, requested_by, status, provider, attempt_count, review_status, created_at, updated_at]
       properties:
         id: {type: string, format: uuid}
         tenant_id: {type: string, format: uuid}
@@ -2019,19 +2151,151 @@ components:
         status: {type: string, enum: [requested, running, completed, failed]}
         provider: {type: string}
         model: {type: string, nullable: true}
+        graph_version_id: {type: string, format: uuid, nullable: true}
+        graph_version_hash: {type: string, pattern: '^[a-f0-9]{64}$', nullable: true}
+        metric_observation_ids:
+          type: array
+          maxItems: 20
+          uniqueItems: true
+          items: {type: string, format: uuid}
+        review_status: {type: string, enum: [pending, approved, revision_required, rejected]}
         attempt_count: {type: integer, minimum: 0}
         error: {type: string, nullable: true}
         created_at: {type: string, format: date-time}
         updated_at: {type: string, format: date-time}
         completed_at: {type: string, format: date-time, nullable: true}
+    AgentGraphCreate:
+      type: object
+      additionalProperties: false
+      required: [name, definition]
+      properties:
+        name: {type: string, minLength: 3, maxLength: 120}
+        definition: {$ref: '#/components/schemas/AgentGraphDefinition'}
+    AgentGraph:
+      type: object
+      additionalProperties: false
+      required: [id, tenant_id, name, created_by, created_at, updated_at]
+      properties:
+        id: {type: string, format: uuid}
+        tenant_id: {type: string, format: uuid}
+        name: {type: string}
+        created_by: {type: string, format: uuid}
+        published_version_id: {type: string, format: uuid, nullable: true}
+        created_at: {type: string, format: date-time}
+        updated_at: {type: string, format: date-time}
+    AgentGraphBundle:
+      type: object
+      additionalProperties: false
+      required: [graph, versions]
+      properties:
+        graph: {$ref: '#/components/schemas/AgentGraph'}
+        versions:
+          type: array
+          items: {$ref: '#/components/schemas/AgentGraphVersion'}
+    AgentGraphVersionCreate:
+      type: object
+      additionalProperties: false
+      required: [definition]
+      properties:
+        definition: {$ref: '#/components/schemas/AgentGraphDefinition'}
+    AgentGraphVersion:
+      type: object
+      additionalProperties: false
+      required: [id, graph_id, tenant_id, version, definition_hash, execution_contract_hash, status, definition, created_by, created_at, published_at, retired_at]
+      properties:
+        id: {type: string, format: uuid}
+        graph_id: {type: string, format: uuid}
+        tenant_id: {type: string, format: uuid}
+        version: {type: integer, minimum: 1}
+        definition_hash: {type: string, pattern: '^[a-f0-9]{64}$'}
+        execution_contract_hash: {type: string, pattern: '^[a-f0-9]{64}$'}
+        status: {type: string, enum: [draft, published, retired]}
+        definition: {$ref: '#/components/schemas/AgentGraphDefinition'}
+        created_by: {type: string, format: uuid}
+        created_at: {type: string, format: date-time}
+        published_at: {type: string, format: date-time, nullable: true}
+        retired_at: {type: string, format: date-time, nullable: true}
+    AgentGraphDefinition:
+      type: object
+      additionalProperties: false
+      required: [schema_version, nodes, edges]
+      properties:
+        schema_version: {type: integer, enum: [1]}
+        nodes: {type: array, minItems: 5, maxItems: 5, items: {$ref: '#/components/schemas/GraphNode'}}
+        edges: {type: array, minItems: 6, maxItems: 6, items: {$ref: '#/components/schemas/GraphEdge'}}
+    GraphNode:
+      type: object
+      additionalProperties: false
+      required: [key, role, expansion, optional, skill_ids, instruction_key, tool_policy]
+      properties:
+        key: {type: string, enum: [evidence_analyst, platform_specialist, cross_controller, manager, reviewer]}
+        role: {type: string, enum: [evidence_analyst, platform_specialist, cross_controller, manager, reviewer]}
+        expansion: {type: string, enum: [singleton, each_input_marketplace, multiple_marketplaces]}
+        optional: {type: boolean}
+        skill_ids:
+          type: array
+          maxItems: 30
+          uniqueItems: true
+          items: {type: string}
+        instruction_key:
+          type: string
+          enum: [weekly_ops.evidence_analyst.v1, weekly_ops.platform_specialist.v1, weekly_ops.cross_controller.v1, weekly_ops.manager.v1, weekly_ops.reviewer.v1]
+        tool_policy: {$ref: '#/components/schemas/ToolPolicy'}
+    GraphEdge:
+      type: object
+      additionalProperties: false
+      required: [from, to]
+      properties:
+        from: {type: string}
+        to: {type: string}
+    ToolPolicy:
+      type: object
+      additionalProperties: false
+      required: [allowed_tools, max_tool_calls]
+      properties:
+        allowed_tools: {type: array, maxItems: 0, items: {type: string}}
+        max_tool_calls: {type: integer, minimum: 0, maximum: 0}
+    ReviewerVerdict:
+      type: object
+      additionalProperties: false
+      required: [verdict, issues, evidence_refs, limitations]
+      properties:
+        verdict: {type: string, enum: [approved, revision_required, rejected]}
+        issues:
+          type: array
+          maxItems: 20
+          items: {$ref: '#/components/schemas/ReviewerIssue'}
+        evidence_refs:
+          type: array
+          minItems: 1
+          maxItems: 50
+          uniqueItems: true
+          items: {type: string}
+        limitations:
+          type: array
+          maxItems: 20
+          items: {type: string}
+    ReviewerIssue:
+      type: object
+      additionalProperties: false
+      required: [code, message, severity, evidence_refs, platforms]
+      properties:
+        code: {type: string}
+        message: {type: string}
+        severity: {type: string, enum: [warning, critical]}
+        evidence_refs: {type: array, minItems: 1, items: {type: string}}
+        platforms: {type: array, minItems: 1, items: {$ref: '#/components/schemas/PlatformId'}}
     AgentTask:
       type: object
-      required: [id, tenant_id, run_id, agent_name, skill_ids, status, attempt_count, created_at]
+      required: [id, tenant_id, run_id, agent_name, graph_node_key, role, tool_policy, skill_ids, status, attempt_count, created_at]
       properties:
         id: {type: string, format: uuid}
         tenant_id: {type: string, format: uuid}
         run_id: {type: string, format: uuid}
         agent_name: {type: string}
+        graph_node_key: {type: string, nullable: true}
+        role: {type: string, enum: [evidence_analyst, platform_specialist, cross_controller, manager, reviewer], nullable: true}
+        tool_policy: {$ref: '#/components/schemas/ToolPolicy'}
         skill_ids: {type: array, items: {type: string}}
         status: {type: string, enum: [pending, running, completed, failed]}
         attempt_count: {type: integer, minimum: 0}
@@ -2047,7 +2311,7 @@ components:
         tenant_id: {type: string, format: uuid}
         run_id: {type: string, format: uuid}
         task_id: {type: string, format: uuid, nullable: true}
-        kind: {type: string, enum: [input_evidence, specialist_finding, manager_synthesis, weekly_ops_report]}
+        kind: {type: string, enum: [input_evidence, specialist_finding, manager_synthesis, reviewer_verdict, weekly_ops_report]}
         attempt: {type: integer, minimum: 0}
         content:
           oneOf:

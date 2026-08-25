@@ -100,3 +100,15 @@ python3 integration/mcp-server.py --validate --dist dist
 Tests must not create runtime mock data. Synthetic rows are allowed only in
 test fixtures, and external connector tests must inject a transport rather
 than call a platform with invented credentials.
+# Contract tests
+
+`test_distribution.py` keeps the generated OpenAPI contract aligned with the
+source contract. `test_agent_graphs.py` covers graph/version RBAC and
+immutability, canonical topology/prompt/tool rejection, dynamic Amazon,
+Shopify, and other ontology specialists, Metric Observation snapshots,
+idempotent graph lineage, installed execution-contract drift, structured
+Manager action/Metric claims, complete Reviewer reference/limitation coverage,
+legacy-run pending isolation and rerun binding, tenant-parent database guards,
+Manager/Reviewer ordering, Reviewer rejection, and HTTP routes. Provider fixtures exercise the real
+structured-output boundary without claiming a live OpenAI-key success; that
+remains an explicit deployment smoke limitation.

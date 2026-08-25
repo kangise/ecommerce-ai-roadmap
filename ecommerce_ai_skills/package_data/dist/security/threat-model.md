@@ -212,3 +212,32 @@ checks prevents stale or cross-tenant L5 evidence from becoming write
 authorization. No Ads write
 adapter, route, or action is registered. Future writes require a proposal,
 explicit approval, audit/idempotency controls, and rollback review.
+# L7 threat model
+
+- Tenant isolation: every graph, version, verdict, run, and observation reference is tenant-scoped and authorization checked.
+- Prompt/tool safety: graph tool policy is structurally empty and capped at zero; connector writes cannot be reached through model tools.
+- Supply-chain safety: published DAGs are immutable and their definition hash
+  is bound to an execution-contract fingerprint over orchestration code,
+  ontology, and Skill manifests. Package drift fails closed until an admin
+  publishes a newly reviewed version.
+- Evidence integrity: specialists consume a persisted Evidence/Metric Observation snapshot; the manager cannot silently substitute live values.
+- Separation of duties: Manager synthesis and the independent AI Reviewer are
+  separate calls/tasks; non-approved runs, rather than graph versions, are
+  rejected by the current Briefing read model and must remain rejected by future
+  L8/L9 consumers. This Reviewer does not replace the
+  human approval required for any external write.
+- Deterministic review guards require structured Manager action type and Metric
+  claims, enforce human approval on every L7 priority, reject multi-source
+  `observe` claims plus incompatible or
+  overlapping Metric aggregation, and require an approved Reviewer to cover
+  every Manager Evidence reference and verbatim limitation. Briefing rechecks
+  the final run-attempt report plus current Reviewer task-attempt, graph, and
+  verdict lineage rather than trusting one status field; pre-L7 runs migrate as
+  pending and retry history remains auditable.
+- The default Reviewer uses the same configured provider, model, and credential
+  trust domain as the Manager. It is an independent execution stage, not an
+  independent vendor or security boundary; higher-assurance deployments need a
+  separately configured Reviewer provider plus human approval for writes.
+- L7 accepts only the reviewed canonical topology. Its executor is not a
+  general-purpose arbitrary-DAG engine; adding nodes or edges requires a new
+  execution, validation, migration, and threat-model review.

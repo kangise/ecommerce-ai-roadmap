@@ -13,6 +13,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 - Add package integrity metadata, automated tests, and PR quality checks.
 
 ### Added
+- L7 tenant-owned, versioned Domain Agent Graphs with immutable published
+  definitions, dynamic Amazon/Shopify/ontology marketplace specialists,
+  Evidence and Metric Observation snapshots, application-level parallelism,
+  Manager/Reviewer separation, zero model-tool policy, run graph/hash lineage,
+  execution-contract fingerprinting, structured action/Metric claims, complete
+  Reviewer coverage, and downstream blocking for legacy or non-approved runs.
 - L6 conditional Amazon Ads adapter-status contract: fail-closed status,
   24-hour gate freshness, tenant/account/profile/region checks, and no Ads
   write adapter, route, action, or write operation in this build.

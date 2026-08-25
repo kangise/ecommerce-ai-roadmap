@@ -12,7 +12,7 @@
 | L4 | Metric Observations | done | Schema v14；durable materialization/observations；pytest 120；14 groups=0；wheel persistence smoke；browser QA | `loop(v1.3): L4 persist provenance-safe metric observations` | Decimal v2；ISO currency isolation；period/grain/series/quality；bounded backfill；Briefing 不再解析 Evidence rows |
 | L5 | Ads Contract Gate | blocked | Schema v15；real LWA/profiles/SP v3 read gate；pytest 139；14 groups=0；wheel blocked-state smoke；browser QA | `loop(v1.3): L5 enforce amazon ads capability gate` | 实现与门禁全部通过；当前环境无 Ads credentials/外部批准，真实结果持久 blocked，L6 不得接入 |
 | L6 | Ads Adapter 条件实现 | done | Schema v15 unchanged；negative adapter status；pytest 148；14 groups=0；wheel/API smoke；browser QA | `loop(v1.3): L6 lock conditional amazon ads adapter` | L5 条件为假；adapter_registered=false、writes=[]、无 Ads route/action/button；freshness/config/capability guard 可审计 |
-| L7 | Domain Agent Graph | pending |  |  |  |
+| L7 | Domain Agent Graph | done | Schema v16；163 tests；14 groups=0；wheel graph/Reviewer persistence smoke；browser metric-only run + refresh QA | `loop(v1.3): L7 ship tenant-safe domain agent graph` | canonical immutable DAG；dynamic Amazon/Shopify/ontology specialists；Manager + independent Reviewer；zero tools；non-approved downstream lock |
 | L8 | Daily Ops | pending |  |  |  |
 | L9 | Proposals | pending |  |  |  |
 | L10 | Live Mission Control/SSE | pending |  |  |  |
@@ -105,6 +105,18 @@
 - Failure 1: the delegated backend could not run pytest; its helper reused an L5 idempotency key and initially failed under the real runner. The helper, DTO/envelope, reason allowlist, time checks, and API coverage were repaired; targeted and full tests then passed.
 - Failure 2 / blocked reason: independent audit found a 200-row tenant Gate scan could miss an account's latest Gate. Storage now queries latest by `(tenant_id, connector_account_id)` directly with a regression test. No remaining L6 blocker; L5's external block intentionally keeps the adapter absent.
 - Restore point and result: L5 `05bc561`; L6 adds only a read-only status/negative boundary and can be reverted without changing Schema v15 or Ads gate history.
+
+### L7 — Domain Agent Graph
+
+- Date: 2026-08-26
+- Status: done
+- Evidence: `tests/test_agent_graphs.py` 13 acceptance cases；全套 pytest 163 passed；`verify_all` 14 groups=0；`dist/` fresh；Python 3.12 wheel cold install + Schema v16 + published graph + metric-only run + Reviewer/persistence smoke；`artifacts/design-qa/l7-domain-agent-graph-final.jpg`。
+- Commit: `loop(v1.3): L7 ship tenant-safe domain agent graph`（本记录所在提交）
+- Notes: tenant-owned graph/version model；published/retired definitions immutable；definition hash binds orchestration code + ontology + Skill manifests；run binds published ID/hash and exact Evidence/Metric Observation snapshot；canonical Evidence Analyst + dynamic marketplace specialists parallel stage → optional cross-platform Controller → Manager → separate Reviewer；all node tool policies fixed to `allowed_tools=[]`/`max_tool_calls=0`；every priority requires approval；Manager action/Metric claims and complete Reviewer reference/limitation coverage are deterministic gates；Briefing/evaluator verify final run-report + current Reviewer task-attempt lineage and reject legacy/non-approved outputs while retaining retry history；graph, run, task, artifact, event, evaluation tenant integrity is enforced at the database layer. Canonical-only execution and the default same-provider Reviewer trust domain are explicit limitations, not hidden general-DAG or external-review claims.
+- Validator results: all repository, migration, installed-wheel, and browser gates passed；browser created and executed a metric-only run, displayed `operations_reviewer · completed · approved`, persisted it across reload, and reported zero console errors.
+- Failure 1: independent audit found agent child tables relied on globally unique IDs rather than database-enforced tenant-parent ownership, and pre-L7 runs were initially migrated as approved；v16 now installs cross-tenant insert/update guards for runs, tasks, artifacts, events, and evaluations, migrates legacy review state as pending, and verifies full Reviewer lineage with a true old-v15-schema migration test.
+- Failure 2 / blocked reason: final high-level audit found graph hashes did not bind installed execution inputs and a trivial partial Reviewer could approve only one Manager citation；re-audit then caught multi-source `observe`, free-text action classification, and retry-history selection gaps. Hashes now bind code/ontology/Skill manifests, stale runs fail closed, every priority requires approval, Metric operations are structurally bounded, Reviewer covers every Manager citation/limitation, and only final-attempt artifacts qualify downstream. Browser QA also fixed the Demo provider's metric-only input assumption. All paths have regression tests；no remaining L7 blocker.
+- Restore point and result: L6 `bca4dc1`; L7 Schema v16/Graph service/API/UI can be reverted as one commit while preserving L0–L6 data. Published-version rollback inside v16 is done by publishing a new reviewed version, never mutating history.
 
 ### Lx — 名称
 

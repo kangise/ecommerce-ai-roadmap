@@ -35,6 +35,10 @@ def test_mission_control_assets_are_real_and_javascript_compiles() -> None:
     assert "Metric Observations" in html
     assert 'id="metric-observation-list"' in html
     assert 'id="metric-materialization-list"' in html
+    assert "Published Agent Graphs" in html
+    assert 'id="agent-graph-list"' in html
+    assert 'id="run-graph-options"' in html
+    assert 'id="run-metric-options"' in html
     assert "Amazon Ads 准入" in html
     assert 'id="ads-capability-list"' in html
     assert 'id="ads-adapter-status"' in html and "Adapter Lock" in html
@@ -129,6 +133,7 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
         "/metric-materialization",
         "/v1/ads-capability-gates",
         "/v1/ads-adapter-status",
+        "/v1/agent-graphs",
     ):
         assert endpoint in script
     assert "需要 admin 或 owner 角色" in script
@@ -155,6 +160,15 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
     assert "当前构建未注册 Amazon Ads 写操作" in script
     assert "eligible_not_installed" in script
     assert "写入面已关闭" in script
+    assert "graph_version_id" in script
+    assert "metric_observation_ids" in script
+    assert "publishedGraphVersion" in script and "graph-stage" in script
+    assert "至少选择 Evidence 或 Metric Observation 中的一类输入" in script
+    assert "tool policy: none" in script
+    assert "Execution hash" in script
+    assert "未获批准：不可进入下游动作" in script
+    assert "Reviewer task:" in script
+    assert "当前角色只能查看协作图" in script
 
 
 def test_runtime_serves_ui_with_security_headers_and_live_catalog(tmp_path: Path) -> None:

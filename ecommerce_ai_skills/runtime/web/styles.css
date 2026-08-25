@@ -251,6 +251,12 @@ legend{padding:0 5px;color:var(--muted);font-size:12px}
 .metric-observation-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0;padding-top:11px;border-top:1px solid var(--line)}.metric-observation-meta div{min-width:0}.metric-observation-meta dt{color:var(--muted);font-size:11px;font-weight:750;text-transform:uppercase;letter-spacing:.06em}.metric-observation-meta dd{margin:3px 0 0;overflow-wrap:anywhere;font-size:13px}.metric-observation-meta div:last-child:nth-child(odd){grid-column:1/-1}
 .quality-flags{display:flex;flex-wrap:wrap;align-items:center;gap:6px;color:var(--muted);font-size:12px}.quality-flag,.quality-clear{display:inline-flex;padding:3px 7px;border-radius:999px;background:var(--amber-soft);color:var(--amber);font-size:11px;font-weight:700}.quality-clear{background:var(--green-soft);color:var(--green)}
 .metric-error,.metric-failure{margin:0;padding:9px 10px;border-radius:7px;background:var(--coral-soft);color:#a72f34;font-size:13px}.metric-failure{display:grid;gap:5px;padding:18px;border:1px solid #f4c4c1;border-radius:10px}.metric-failure span{font-size:13px}
+.agent-graph-section{margin:0 0 20px;padding:0 0 24px;border-bottom:1px solid var(--line)}
+.agent-graph-section .section-title-row{margin-bottom:14px}.agent-graph-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.agent-graph-card{display:grid;gap:14px;padding:18px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}.agent-graph-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.agent-graph-head .kicker{margin-bottom:3px}.agent-graph-head h3{margin:0;font-size:18px;line-height:1.25;letter-spacing:-.025em}.agent-graph-head p:not(.kicker){margin:5px 0 0;color:var(--muted);font-size:13px}
+.graph-topology{display:flex;align-items:center;flex-wrap:wrap;gap:7px;padding:12px;border:1px solid #d7e2fb;border-radius:8px;background:var(--blue-soft)}.graph-stage{display:inline-flex;align-items:center;flex-wrap:wrap;gap:5px}.graph-node{padding:4px 7px;border:1px solid #c7d8fa;border-radius:6px;background:var(--surface);color:var(--ink);font-size:12px;font-weight:700}.graph-arrow{color:var(--blue);font-weight:850}.graph-plus{color:var(--muted);font-size:12px;font-weight:850}.agent-graph-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0;padding-top:11px;border-top:1px solid var(--line)}.agent-graph-meta div{min-width:0}.agent-graph-meta dt{color:var(--muted);font-size:11px;font-weight:750;text-transform:uppercase;letter-spacing:.06em}.agent-graph-meta dd{margin:3px 0 0;overflow-wrap:anywhere;font-size:13px}.agent-graph-failure{display:grid;gap:5px;padding:18px;border:1px solid #f4c4c1;border-radius:10px;background:var(--coral-soft);color:#a72f34}.agent-graph-failure span{font-size:13px}
+.review-guard{display:inline-flex;margin-top:7px;padding:4px 7px;border-radius:6px;background:var(--amber-soft);color:var(--amber);font-size:12px;font-weight:750}
+.reviewer-task{display:block;margin-top:6px;color:var(--muted);font-size:12px}
 .ads-adapter-lock{margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
 .ads-adapter-card{display:grid;gap:14px;padding:18px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
 .ads-adapter-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.ads-adapter-head h3{margin:0;font-size:18px}.ads-adapter-head p:not(.kicker){margin:5px 0 0;color:var(--muted);font-size:13px}
@@ -286,6 +292,7 @@ pre{max-height:65vh;margin:18px 0 0;padding:17px;border:1px solid var(--line);bo
   .sync-list{grid-template-columns:1fr}
   .ads-capability-list{grid-template-columns:1fr}
   .metric-observations-layout{grid-template-columns:1fr}
+  .agent-graph-list{grid-template-columns:1fr}
   .briefing-main{padding-right:0}.decision-rail{margin-top:26px;padding:26px 0 0;border-top:1px solid var(--line);border-left:0}
   .decision-rail{display:grid;grid-template-columns:1fr 1fr;gap:24px}.decision-section{padding:0 24px 0 0;border-right:1px solid var(--line);border-bottom:0}.agent-roster-section{padding:0}
 }
@@ -304,6 +311,7 @@ pre{max-height:65vh;margin:18px 0 0;padding:17px;border:1px solid var(--line);bo
   .sync-meta{grid-template-columns:1fr}
   .ads-capability-meta{grid-template-columns:1fr}
   .metric-observation-meta{grid-template-columns:1fr}
+  .agent-graph-meta{grid-template-columns:1fr}
   .data-row{grid-template-columns:1fr}.row-actions{justify-content:flex-start}
   .today span{display:none}
 }

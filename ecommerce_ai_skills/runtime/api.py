@@ -18,6 +18,7 @@ from typing import Any
 from urllib.parse import parse_qs, urlparse
 
 from .actions import ActionService
+from .agent_graphs import AgentGraphService
 from .accounts import MarketplaceAccountService
 from .ads_gates import AdsCapabilityGateService
 from .ads_adapter_status import AdsAdapterStatusService
@@ -48,6 +49,7 @@ class RuntimeApplication:
     ):
         self.db = db
         self.auth = AuthService(db)
+        self.agent_graphs = AgentGraphService(db, self.auth)
         self.accounts = MarketplaceAccountService(db, self.auth)
         self.ads_gates = AdsCapabilityGateService(db, self.auth)
         self.ads_adapter_status = AdsAdapterStatusService(db, self.auth)
@@ -64,6 +66,7 @@ class RuntimeApplication:
             self.auth,
             agent_provider or OpenAIResponsesProvider(),
             evidence_resolver=self.evidence_imports.resolve,
+            graph_service=self.agent_graphs,
         )
         self.jobs = JobService(db, self.auth, self.agent_runs)
         self.schedules = ScheduleService(
@@ -77,7 +80,10 @@ class RuntimeApplication:
 
     def bootstrap(self, name: str, email: str) -> dict[str, str]:
         tenant_id, user_id = self.db.create_tenant(name, email)
-        return {"tenant_id": tenant_id, "user_id": user_id, "api_key": self.auth.issue_key(tenant_id, user_id)}
+        api_key = self.auth.issue_key(tenant_id, user_id)
+        principal = self.auth.authenticate(api_key)
+        self.agent_graphs.ensure_default(principal)
+        return {"tenant_id": tenant_id, "user_id": user_id, "api_key": api_key}
 
     @staticmethod
     def _validate_bind_host(host: str, allow_public: bool) -> None:
@@ -384,6 +390,18 @@ class _Handler(BaseHTTPRequestHandler):
             elif parsed.path.startswith("/v1/evidence-imports/") and len(parsed.path.split("/")) == 4:
                 import_id = parsed.path.split("/")[3]
                 self._json(200, self.app.evidence_imports.get(principal, import_id), request_id)
+            elif parsed.path == "/v1/agent-graphs":
+                self._json(
+                    200, {"graphs": self.app.agent_graphs.list(principal)}, request_id
+                )
+            elif parsed.path.startswith("/v1/agent-graphs/") and len(parsed.path.split("/")) == 4:
+                graph_id = parsed.path.split("/")[3]
+                self._json(200, self.app.agent_graphs.get(principal, graph_id), request_id)
+            elif parsed.path.startswith("/v1/agent-graph-versions/") and len(parsed.path.split("/")) == 4:
+                version_id = parsed.path.split("/")[3]
+                self._json(
+                    200, self.app.agent_graphs.get_version(principal, version_id), request_id
+                )
             elif parsed.path == "/v1/agent-runs":
                 limit = int(parse_qs(parsed.query).get("limit", [50])[0])
                 self._json(200, {"runs": self.app.agent_runs.list(principal, limit)}, request_id)
@@ -649,7 +667,47 @@ class _Handler(BaseHTTPRequestHandler):
                 )
                 return
             principal = self._principal()
-            if parsed.path == "/v1/actions":
+            if parsed.path == "/v1/agent-graphs":
+                body = self._body_fields(required={"name", "definition"})
+                self._json(
+                    201,
+                    self.app.agent_graphs.create(
+                        principal, body["name"], body["definition"], request_id
+                    ),
+                    request_id,
+                )
+            elif parsed.path.startswith("/v1/agent-graphs/") and parsed.path.endswith("/versions") and len(parsed.path.split("/")) == 5:
+                graph_id = parsed.path.split("/")[3]
+                body = self._body_fields(required={"definition"})
+                self._json(
+                    201,
+                    self.app.agent_graphs.create_version(
+                        principal, graph_id, body["definition"], request_id
+                    ),
+                    request_id,
+                )
+            elif parsed.path.startswith("/v1/agent-graphs/") and parsed.path.endswith("/publish") and len(parsed.path.split("/")) == 7 and parsed.path.split("/")[4] == "versions":
+                parts = parsed.path.split("/")
+                self._body_fields(required=set(), allowed=set())
+                self._json(
+                    200,
+                    self.app.agent_graphs.publish(
+                        principal, parts[3], parts[5], request_id
+                    ),
+                    request_id,
+                )
+            elif parsed.path.startswith("/v1/agent-graph-versions/") and parsed.path.endswith("/publish") and len(parsed.path.split("/")) == 5:
+                version_id = parsed.path.split("/")[3]
+                self._body_fields(required=set(), allowed=set())
+                version = self.app.agent_graphs.get_version(principal, version_id)
+                self._json(
+                    200,
+                    self.app.agent_graphs.publish(
+                        principal, version["graph_id"], version_id, request_id
+                    ),
+                    request_id,
+                )
+            elif parsed.path == "/v1/actions":
                 body = self._body()
                 result = self.app.actions.request(principal, str(body.get("operation", "")), body.get("payload", {}), self.headers.get("Idempotency-Key", ""), request_id)
                 self._json(200, result, request_id)
@@ -665,7 +723,10 @@ class _Handler(BaseHTTPRequestHandler):
             elif parsed.path == "/v1/agent-runs":
                 body = self._body_fields(
                     required={"workflow", "objective"},
-                    allowed={"workflow", "objective", "evidence", "evidence_import_ids"},
+                    allowed={
+                        "workflow", "objective", "evidence", "evidence_import_ids",
+                        "graph_version_id", "metric_observation_ids",
+                    },
                 )
                 run = self.app.agent_runs.request(
                     principal,
@@ -675,6 +736,8 @@ class _Handler(BaseHTTPRequestHandler):
                     self.headers.get("Idempotency-Key", ""),
                     request_id,
                     evidence_import_ids=body.get("evidence_import_ids"),
+                    graph_version_id=body.get("graph_version_id"),
+                    metric_observation_ids=body.get("metric_observation_ids"),
                 )
                 self._json(200, run, request_id)
             elif parsed.path.startswith("/v1/agent-runs/") and parsed.path.endswith("/execute"):

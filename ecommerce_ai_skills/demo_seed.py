@@ -1,7 +1,8 @@
 """Explicit, isolated Demo tenant seed for Commerce Agent OS.
 
-This module is reachable only through the ``demo-seed`` CLI command.  It is not
-imported by the production Runtime API and never runs implicitly.
+This module is reachable only through the explicit ``demo-seed`` and ``demo``
+CLI commands. It is not imported by the production Runtime API and never runs
+implicitly.
 """
 
 from __future__ import annotations
@@ -17,7 +18,7 @@ from .runtime.storage import Database
 
 
 class DemoSeedProvider:
-    """Deterministic provider used only while explicitly seeding a Demo DB."""
+    """Deterministic provider used only by an explicitly started Demo runtime."""
 
     def configuration(self) -> tuple[str, str]:
         return "demo_seed", "demo-seed-v1"
@@ -31,11 +32,66 @@ class DemoSeedProvider:
         output_schema: dict[str, Any],
         safety_identifier: str,
     ) -> dict[str, Any]:
+        if agent_name == "operations_reviewer":
+            return {
+                "verdict": "approved",
+                "issues": [],
+                "evidence_refs": [
+                    source["source_id"] for source in payload["evidence_catalog"]
+                ],
+                "limitations": payload["manager_report"].get("limitations", []),
+            }
         if agent_name == "store_manager":
             by_type = {
                 source["source_type"]: source["source_id"]
                 for source in payload["evidence_catalog"]
             }
+            seeded_types = {
+                "amazon_ads_search_term",
+                "amazon_fba_inventory",
+                "amazon_business_report",
+                "platform_generic",
+            }
+            if not seeded_types.issubset(by_type):
+                source = payload["evidence_catalog"][0]
+                platform = source["platform"]
+                owner = (
+                    f"platform_{platform}_operator"
+                    if platform != "cross_platform"
+                    else "human_operator"
+                )
+                return {
+                    "executive_summary": "已完成所选 Demo 输入的证据约束复核。",
+                    "priorities": [
+                        {
+                            "rank": 1,
+                            "title": "复核所选 Demo 经营信号",
+                            "why_now": "该结论仅来自本次明确选择的 Demo 输入。",
+                            "evidence_refs": [source["source_id"]],
+                            "platforms": [platform],
+                            "expected_impact": "为人工经营判断提供可追溯输入。",
+                            "confidence": "medium",
+                            "recommended_owner": owner,
+                            "downstream_action": "保留为人工经营复核记录。",
+                            "action_type": "analysis",
+                            "requires_approval": True,
+                            "metric_claim": {
+                                "operation": (
+                                    "observe"
+                                    if source["source_type"] == "metric_observation"
+                                    else "none"
+                                ),
+                                "observation_refs": (
+                                    [source["source_id"]]
+                                    if source["source_type"] == "metric_observation"
+                                    else []
+                                ),
+                            },
+                        }
+                    ],
+                    "risks": [],
+                    "limitations": ["这是明确标记的 Demo 数据，不可用于真实经营决策。"],
+                }
             return {
                 "executive_summary": "广告效率与补货风险需要优先处理；跨平台价格差异值得复核。",
                 "priorities": [
@@ -49,7 +105,9 @@ class DemoSeedProvider:
                         "confidence": "high",
                         "recommended_owner": "platform_amazon_operator",
                         "downstream_action": "准备关键词与出价调整提案，不直接写入平台。",
+                        "action_type": "external_change",
                         "requires_approval": True,
+                        "metric_claim": {"operation": "none", "observation_refs": []},
                     },
                     {
                         "rank": 2,
@@ -61,7 +119,9 @@ class DemoSeedProvider:
                         "confidence": "high",
                         "recommended_owner": "platform_amazon_operator",
                         "downstream_action": "生成补货审批草案。",
+                        "action_type": "external_change",
                         "requires_approval": True,
+                        "metric_claim": {"operation": "none", "observation_refs": []},
                     },
                     {
                         "rank": 3,
@@ -76,7 +136,9 @@ class DemoSeedProvider:
                         "confidence": "medium",
                         "recommended_owner": "cross_platform_controller",
                         "downstream_action": "生成人工复核清单。",
-                        "requires_approval": False,
+                        "action_type": "analysis",
+                        "requires_approval": True,
+                        "metric_claim": {"operation": "none", "observation_refs": []},
                     },
                 ],
                 "risks": [
@@ -85,6 +147,7 @@ class DemoSeedProvider:
                         "mitigation": "连接真实店铺前先导入退货报告。",
                         "evidence_refs": [by_type["amazon_business_report"]],
                         "platforms": ["amazon"],
+                        "metric_claim": {"operation": "none", "observation_refs": []},
                     }
                 ],
                 "limitations": ["这是明确标记的 Demo 数据，不可用于真实经营决策。"],
@@ -129,6 +192,7 @@ def seed_demo_database(path: str | Path) -> dict[str, Any]:
     )
     owner_key = app.auth.issue_key(tenant_id, owner_id)
     owner = app.auth.authenticate(owner_key)
+    graph_version = app.agent_graphs.ensure_default(owner)
     reviewer = app.auth.create_user(owner, "demo-reviewer@example.test", "admin")
     reviewer_key = app.auth.issue_for_user(owner, str(reviewer["id"]))
     marketplace_accounts = [
@@ -340,6 +404,7 @@ def seed_demo_database(path: str | Path) -> dict[str, Any]:
         "warning": "DEMO DATA ONLY — never use for real business decisions",
         "database": str(db_path),
         "tenant_id": tenant_id,
+        "agent_graph_version_id": graph_version["id"],
         "tenant_mode": "demo",
         "reviewer_email": reviewer["email"],
         "reviewer_api_key": reviewer_key,

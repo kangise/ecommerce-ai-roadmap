@@ -224,7 +224,7 @@ def test_database_fails_closed_on_unsupported_schema(tmp_path: Path) -> None:
     with db.transaction() as conn:
         conn.execute("UPDATE runtime_meta SET value='1' WHERE key='schema_version'")
     migrated = Database(path)
-    assert migrated.readiness()["schema_version"] == 15
+    assert migrated.readiness()["schema_version"] == 16
     with db.transaction() as conn:
         conn.execute("UPDATE runtime_meta SET value='99' WHERE key='schema_version'")
     with pytest.raises(ValidationError, match="schema version"):
@@ -356,6 +356,15 @@ class _FixtureAgentProvider:
     def complete(self, *, agent_name, instructions, payload, output_schema, safety_identifier):
         with self.lock:
             self.calls.append((agent_name, payload, safety_identifier))
+        if agent_name == "operations_reviewer":
+            return {
+                "verdict": "approved",
+                "issues": [],
+                "evidence_refs": [
+                    source["source_id"] for source in payload["evidence_catalog"]
+                ],
+                "limitations": payload["manager_report"].get("limitations", []),
+            }
         if agent_name == "store_manager":
             platforms = payload["platforms"]
             primary_platform = "amazon" if "amazon" in platforms else platforms[0]
@@ -378,7 +387,9 @@ class _FixtureAgentProvider:
                         "confidence": "medium",
                         "recommended_owner": f"platform_{primary_platform}_operator",
                         "downstream_action": "Prepare a bid-change proposal without applying it.",
+                        "action_type": "external_change",
                         "requires_approval": True,
+                        "metric_claim": {"operation": "none", "observation_refs": []},
                     }
                 ],
                 "risks": [
@@ -387,6 +398,7 @@ class _FixtureAgentProvider:
                         "mitigation": "Import those exports before making replenishment decisions.",
                         "evidence_refs": [risk_source],
                         "platforms": [risk_platform],
+                        "metric_claim": {"operation": "none", "observation_refs": []},
                     }
                 ],
                 "limitations": ["Only two user-supplied sources were available."],
@@ -452,6 +464,7 @@ def test_weekly_ops_council_persists_parallel_tasks_and_report(tmp_path: Path) -
         "platform_shopify_operator",
         "cross_platform_controller",
         "store_manager",
+        "operations_reviewer",
     }
     assert all(task["status"] == "completed" for task in bundle["tasks"])
     assert [artifact["kind"] for artifact in bundle["artifacts"]].count("specialist_finding") == 4
@@ -474,6 +487,7 @@ def test_weekly_ops_council_persists_parallel_tasks_and_report(tmp_path: Path) -
         "platform_shopify_operator",
         "cross_platform_controller",
         "store_manager",
+        "operations_reviewer",
     }
     amazon_payload = next(
         call[1] for call in provider.calls if call[0] == "platform_amazon_operator"
@@ -539,7 +553,8 @@ def test_amazon_only_run_gets_full_amazon_skill_team_without_cross_platform_task
     )
     bundle = app.agent_runs.execute(principal, run["id"], "request-2")
     assert {task["agent_name"] for task in bundle["tasks"]} == {
-        "evidence_analyst", "platform_amazon_operator", "store_manager"
+        "evidence_analyst", "platform_amazon_operator", "store_manager",
+        "operations_reviewer",
     }
     amazon_payload = next(
         call[1] for call in provider.calls if call[0] == "platform_amazon_operator"
@@ -973,6 +988,8 @@ def test_openai_responses_provider_requires_real_configuration_and_structured_ou
     assert seen["timeout"] == 120
     assert seen["body"]["store"] is False
     assert seen["body"]["text"]["format"]["type"] == "json_schema"
+    assert seen["body"]["text"]["format"]["strict"] is True
+    assert "tools" not in seen["body"]
     assert "real-key" not in json.dumps(seen["body"])
 
 

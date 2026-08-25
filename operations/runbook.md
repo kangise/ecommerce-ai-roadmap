@@ -340,3 +340,38 @@ Stop the service or use a filesystem-consistent snapshot of the SQLite file and
 its `-wal`/`-shm` companions plus `<database>.evidence_objects/`. Restore into a staging path, run the full test
 and package validation gates, then promote. Production deployments still need
 an encrypted backup schedule and a measured restore drill.
+# L7 Agent Graph operations
+
+Publish only after schema, canonical-topology, installed-Skill, zero-tool-policy,
+and tenant-authorization validation. Publishing is an admin configuration
+action; the independent Reviewer verdict occurs later on every run. Published
+versions remain immutable after retirement. To restore older behavior, create
+and publish a new draft containing the reviewed prior definition rather than
+editing or republishing the retired row. Runs bind the published version/hash
+and exact Metric Observation snapshot IDs used for synthesis.
+
+The version also stores `execution_contract_hash`, covering the installed
+orchestration code, ontology, and Skill manifests. After upgrading any of those
+inputs, expect old versions and already-requested runs to fail closed. An admin
+must create a version from the reviewed definition, publish it, then request a
+new run; do not edit the hash or mark a historical run approved. Pre-L7 runs
+migrate as `pending` and must be rerun if their result is still needed.
+
+Application code may parallelize the Evidence Analyst and marketplace
+specialists. The model receives strict JSON-shaped outputs and no
+connector/action tools. OpenAI Responses integration is intentionally
+`store=false`; this runtime does not use the Agents SDK. A
+`revision_required` or `rejected` run is complete for audit purposes but is not
+eligible for Daily Brief or Proposal consumers. Inspect its Reviewer artifact
+and rerun with corrected inputs; never bypass the review gate. Live-key smoke
+remains unavailable until credentials are provisioned.
+
+For an approved run, verify that Manager priorities carry `action_type` and
+`metric_claim`, the Reviewer artifact covers every Manager Evidence reference
+and verbatim limitation, and the Briefing accepts the complete graph/task/
+artifact lineage. Every L7 priority remains human-approval-gated, including
+analysis recommendations. A retry keeps earlier artifacts for audit, but only
+the final run-attempt report and current Reviewer task-attempt verdict are
+eligible downstream. This distinction keeps a valid retry eligible when an
+earlier failure occurred before Reviewer started. A status-only database edit is
+intentionally insufficient.

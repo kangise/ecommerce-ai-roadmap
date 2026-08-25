@@ -624,8 +624,62 @@ does not send invitation email, recover accounts, implement SSO, or delete
 users; revoke that user's keys when access must be removed. Those lifecycle
 features belong to the external identity decision for an internet-facing SaaS.
 
-Agent execution is synchronous in this embedded slice. It does not yet provide
-a worker queue, schedules, WebSocket event streaming, browser upload UI, or a
-visual operations board. Evidence must be supplied by the authenticated caller,
-and live OpenAI verification requires the caller's real API key and selected
-Responses-compatible model.
+Direct agent execution is synchronous in this embedded slice. Durable jobs and
+interval schedules exist, but there is not yet a calendar-day Daily Ops
+occurrence contract, distributed worker, SSE/WebSocket event stream, or
+browser-upload flow. Evidence must be supplied or selected by the authenticated
+caller, and live OpenAI verification requires the caller's real API key and
+selected Responses-compatible model.
+# L7 Agent Graph contract
+
+Agent graphs are tenant-owned, immutable, versioned DAGs. A published version
+is addressed by its definition hash and cannot be edited or deleted, including
+after it is retired; changes create a new draft version. L7 accepts one
+canonical execution topology: Evidence Analyst and dynamically expanded
+marketplace specialists (Amazon, Shopify, or any input ontology marketplace)
+run in parallel, an optional multi-marketplace Controller follows, then Manager
+and an independent AI Reviewer run sequentially.
+
+Every node contains an explicit tool policy with `allowed_tools=[]` and
+`max_tool_calls=0`: model tools and connector/action tools are not exposed.
+Free-form node prompts are also rejected; each role uses a reviewed
+`instruction_key`. Runs persist their published graph ID/hash and an immutable
+Evidence/Metric Observation snapshot before execution. Manager and Reviewer are
+separate model calls, and a run whose Reviewer verdict is not `approved` cannot
+be consumed by L8/L9.
+
+`definition_hash` is execution-bound: it includes the canonical graph plus an
+`execution_contract_hash` over the installed orchestration code, ontology, and
+every Skill manifest that can affect dynamic platform resolution. A package or
+Skill change therefore makes an older version stale; new requests and queued
+runs fail closed until an admin creates and publishes a version against the new
+contract. Pre-L7 runs migrate to `review_status=pending` and cannot enter the
+Briefing without being rerun through a real Reviewer.
+
+Manager output structurally classifies each priority as `analysis` or
+`external_change`, requires human approval for every L7 priority, and describes every
+Metric Observation use as `none|observe|compare|aggregate`. Comparison and
+aggregation are rejected when currency, unit, dimensions, or time grain differ;
+`observe` accepts exactly one observation, while aggregation also rejects mixed
+metric keys and overlapping periods. An approved
+Reviewer must cite every Manager Evidence reference and preserve every Manager
+limitation verbatim. Briefing and evaluation revalidate these persisted
+contracts instead of trusting the status string alone. Retries retain historical
+artifacts; downstream checks select the final report by run attempt and the
+current verdict by Reviewer task ID/attempt, including when Reviewer first
+starts on a later run retry.
+
+The graph service deliberately accepts only this reviewed canonical topology;
+it is not an arbitrary-DAG executor. By default Manager and Reviewer use the
+same configured provider/model credential, so “independent” means a separate
+prompt, task, result, and gate—not a separate vendor trust domain. External
+writes still require human approval.
+
+The API exposes graph list/create, graph/version detail, draft-version creation,
+and publish. `AgentRun` carries `graph_version_id`, immutable hash,
+Metric-Observation lineage, and `pending|approved|revision_required|rejected`
+review status. The dependency-free provider continues to call the official
+[OpenAI Responses API](https://developers.openai.com/api/reference/cli/resources/responses/methods/create)
+with `store=false` and strict JSON Schema output; specialists are parallelized
+by application code, not model tool calls or the Agents SDK. No live OpenAI-key
+success is claimed when deployment credentials are absent.

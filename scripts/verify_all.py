@@ -555,6 +555,11 @@ def main() -> int:
                     "/v1/agent-runs/{runId}/execute": {"post"},
                     "/v1/agent-runs/{runId}/evaluate": {"post"},
                     "/v1/agent-runs/{runId}/evaluations": {"get"},
+                    "/v1/agent-graphs": {"get", "post"},
+                    "/v1/agent-graphs/{graphId}": {"get"},
+                    "/v1/agent-graphs/{graphId}/versions": {"post"},
+                    "/v1/agent-graph-versions/{versionId}": {"get"},
+                    "/v1/agent-graph-versions/{versionId}/publish": {"post"},
                     "/v1/jobs": {"get", "post"},
                     "/v1/jobs/{jobId}": {"get"},
                     "/v1/schedules": {"get", "post"},
@@ -655,6 +660,9 @@ def main() -> int:
                     "AdsCapabilityGate",
                     "AdsCapabilityGateRequest",
                     "AdsAdapterStatus",
+                    "AgentGraph", "AgentGraphBundle", "AgentGraphVersion",
+                    "AgentGraphDefinition", "GraphNode", "GraphEdge",
+                    "ToolPolicy", "ReviewerVerdict", "ReviewerIssue",
                 ):
                     if schema_name not in schemas:
                         problems.append(
@@ -745,6 +753,21 @@ def main() -> int:
                 if backfill.get("minimum") != 1 or backfill.get("maximum") != 100:
                     problems.append(
                         "dist/openapi/runtime-api.yaml: MetricBackfillRequest limit must be 1..100"
+                    )
+                tool_policy = schemas.get("ToolPolicy", {})
+                if tool_policy.get("properties", {}).get("max_tool_calls", {}).get("maximum") != 0:
+                    problems.append("dist/openapi/runtime-api.yaml: L7 tool policy must cap model tools at zero")
+                if tool_policy.get("properties", {}).get("allowed_tools", {}).get("maxItems") != 0:
+                    problems.append("dist/openapi/runtime-api.yaml: L7 allowed_tools must be empty")
+                graph_definition = schemas.get("AgentGraphDefinition", {}).get("properties", {})
+                if (
+                    graph_definition.get("nodes", {}).get("minItems") != 5
+                    or graph_definition.get("nodes", {}).get("maxItems") != 5
+                    or graph_definition.get("edges", {}).get("minItems") != 6
+                    or graph_definition.get("edges", {}).get("maxItems") != 6
+                ):
+                    problems.append(
+                        "dist/openapi/runtime-api.yaml: L7 graph must expose the canonical 5-node/6-edge topology"
                     )
             except Exception as exc:
                 problems.append(f"dist/openapi/runtime-api.yaml: invalid YAML ({exc})")

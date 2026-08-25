@@ -30,6 +30,9 @@ const state = {
   adsAdapterStatus: null,
   adsAdapterLoading: false,
   adsAdapterError: null,
+  agentGraphs: [],
+  agentGraphsLoading: false,
+  agentGraphsError: null,
   selectedPlatform: "amazon",
   chartMetric: null,
   timer: null,
@@ -729,6 +732,108 @@ function renderEvidence() {
   options.innerHTML = state.imports.map(item => `<label><input type="checkbox" name="run-evidence" value="${item.id}">${escapeHtml(item.platform)} · ${escapeHtml(item.filename)}</label>`).join("");
 }
 
+function runCanCreate() {
+  return ["operator", "admin", "owner"].includes(state.me?.role);
+}
+
+function graphVersions(graph) {
+  return graph.versions || graph.published_versions || (graph.version ? [graph.version] : []);
+}
+
+function publishedGraphVersion(graph) {
+  const versions = graphVersions(graph);
+  return graph.published_version || graph.current_version || versions.find(item => item.id === graph.published_version_id || item.version_id === graph.published_version_id) || versions.find(item => item.status === "published") || {};
+}
+
+function graphVersionId(graph) {
+  const version = publishedGraphVersion(graph);
+  return version.id || version.version_id || graph.published_version_id || graph.version_id || "";
+}
+
+function graphVersionLabel(graph) {
+  const version = publishedGraphVersion(graph);
+  return version.version || version.version_number || graph.version || "published";
+}
+
+function graphNodes(graph) {
+  const version = publishedGraphVersion(graph);
+  return version.nodes || graph.nodes || version.definition?.nodes || graph.definition?.nodes || [];
+}
+
+function graphEdges(graph) {
+  const version = publishedGraphVersion(graph);
+  return version.edges || graph.edges || version.definition?.edges || graph.definition?.edges || [];
+}
+
+function graphHash(graph) {
+    const version = publishedGraphVersion(graph);
+    return version.content_hash || version.definition_hash || graph.content_hash || graph.definition_hash || "—";
+}
+
+function graphExecutionHash(graph) {
+  const version = publishedGraphVersion(graph);
+  return version.execution_contract_hash || graph.execution_contract_hash || "—";
+}
+
+function graphNodeLabel(node) {
+  const name = typeof node === "string" ? node : node.role || node.key || node.label || node.name || node.agent || node.id || "Agent";
+  const labels = {evidence_analyst: "Evidence Analyst", platform_specialist: "平台专家 × 输入市场", cross_controller: "跨平台 Controller（多平台时）", manager: "Manager", reviewer: "Reviewer"};
+  return labels[name] || String(name).replaceAll("_", " ");
+}
+
+function renderAgentGraphs() {
+  const target = $("agent-graph-list"), options = $("run-graph-options"), reason = $("run-permission-reason"), submit = document.querySelector('#run-form button[type="submit"]');
+  const operator = runCanCreate();
+  if (!state.apiKey) {
+    designedEmpty(target, "尚未连接 Runtime", "连接后读取当前租户已发布的协作图。", "robot");
+    designedEmpty(options, "尚未连接", "连接 Runtime 后才能选择已发布协作图。", "robot");
+    reason.hidden = false; reason.textContent = "请先连接 Runtime。"; submit.disabled = true; submit.title = reason.textContent;
+    return;
+  }
+  if (state.agentGraphsLoading) {
+    designedEmpty(target, "正在加载协作图", "正在读取已发布版本与节点拓扑。", "robot");
+    designedEmpty(options, "正在加载协作图", "等待已发布版本返回。", "robot");
+    reason.hidden = false; reason.textContent = "协作图加载中。"; submit.disabled = true; submit.title = reason.textContent;
+    return;
+  }
+  if (state.agentGraphsError) {
+    target.innerHTML = `<div class="agent-graph-failure" role="alert"><strong>无法加载协作图</strong><span>${escapeHtml(state.agentGraphsError)}</span></div>`;
+    designedEmpty(options, "协作图不可用", "加载失败时不能创建新的 Agent Run。", "robot");
+    reason.hidden = false; reason.textContent = "协作图加载失败，无法运行。"; submit.disabled = true; submit.title = reason.textContent;
+    return;
+  }
+  const published = state.agentGraphs.filter(graph => graphVersionId(graph));
+  if (!published.length) {
+    designedEmpty(target, "尚无已发布协作图", "管理员需要先通过 Agent Graph API 发布版本；这里不会创建未持久化的图。", "robot");
+    designedEmpty(options, "暂无可选协作图", "没有已发布版本时，不能创建 Agent Run。", "robot");
+    reason.hidden = false; reason.textContent = "当前租户没有已发布协作图。"; submit.disabled = true; submit.title = reason.textContent;
+    return;
+  }
+  target.innerHTML = published.map(graph => {
+    const nodes = graphNodes(graph), edges = graphEdges(graph), versionId = graphVersionId(graph);
+    const byRole = role => nodes.find(node => (node.role || node.key) === role);
+    const stages = nodes.length
+      ? [[byRole("evidence_analyst"), byRole("platform_specialist")].filter(Boolean), [byRole("cross_controller")].filter(Boolean), [byRole("manager")].filter(Boolean), [byRole("reviewer")].filter(Boolean)].filter(stage => stage.length)
+      : [["evidence_analyst", "platform_specialist"], ["cross_controller"], ["manager"], ["reviewer"]];
+    const nodeMarkup = stages.map(stage => `<span class="graph-stage">${stage.map(node => `<span class="graph-node">${escapeHtml(graphNodeLabel(node))}</span>`).join('<span class="graph-plus" aria-hidden="true">＋</span>')}</span>`).join('<span class="graph-arrow" aria-hidden="true">→</span>');
+    return `<article class="agent-graph-card"><div class="agent-graph-head"><div><p class="kicker">Published graph</p><h3>${escapeHtml(graph.name || graph.slug || graph.id || "Agent Graph")}</h3><p>Version ${escapeHtml(graphVersionLabel(graph))} · tool policy: none</p></div>${badge("published")}</div><div class="graph-topology" aria-label="${escapeHtml(graph.name || "Agent Graph")} 拓扑">${nodeMarkup}</div><dl class="agent-graph-meta"><div><dt>Version ID</dt><dd>${escapeHtml(versionId)}</dd></div><div><dt>Definition hash</dt><dd>${escapeHtml(graphHash(graph))}</dd></div><div><dt>Execution hash</dt><dd>${escapeHtml(graphExecutionHash(graph))}</dd></div><div><dt>Edges</dt><dd>${escapeHtml(String(edges.length))}</dd></div><div><dt>Tool policy</dt><dd>none</dd></div></dl></article>`;
+  }).join("");
+  options.innerHTML = published.map((graph, index) => `<label><input type="radio" name="run-graph-version" value="${escapeHtml(graphVersionId(graph))}" ${index === 0 ? "checked" : ""}>${escapeHtml(graph.name || graph.slug || graph.id || "Agent Graph")} · v${escapeHtml(graphVersionLabel(graph))}</label>`).join("");
+  reason.hidden = operator;
+  reason.textContent = operator ? "" : "当前角色只能查看协作图；创建 Agent Run 需要 operator、admin 或 owner。";
+  submit.disabled = !operator;
+  submit.title = operator ? "" : reason.textContent;
+}
+
+function renderRunMetricOptions() {
+  const target = $("run-metric-options");
+  if (!state.apiKey) { designedEmpty(target, "尚未连接", "连接后选择真实指标观测。", "chart-line-up"); return; }
+  if (state.metricLoading) { designedEmpty(target, "正在加载指标观测", "正在读取可作为 Agent 输入的真实数值。", "chart-line-up"); return; }
+  if (state.metricError) { target.innerHTML = `<div class="metric-failure" role="alert"><strong>无法加载指标观测</strong><span>${escapeHtml(state.metricError)}</span></div>`; return; }
+  if (!state.metricObservations.length) { designedEmpty(target, "暂无可选 Metric Observation", "可以只选择 Evidence；指标物化完成后可在这里附加。", "chart-line-up"); return; }
+  target.innerHTML = state.metricObservations.slice(0, 100).map(observation => `<label><input type="checkbox" name="run-metric-observation" value="${escapeHtml(observation.id)}">${escapeHtml(observation.metric_key || observation.metric_name || observation.name || observation.id)} · ${escapeHtml(metricDisplayValue(observation))}</label>`).join("");
+}
+
 function metricCanMaterialize() {
   return ["operator", "admin", "owner"].includes(state.me?.role);
 }
@@ -837,7 +942,16 @@ function renderRuns() {
       actions.push(`<button data-action="queue-run" data-id="${run.id}" class="secondary-button">加入队列</button>`);
     }
     if (run.status === "completed") actions.push(`<button data-action="evaluate-run" data-id="${run.id}" class="secondary-button">评测</button>`);
-    return `<div class="data-row"><div class="data-main"><strong>${escapeHtml(run.objective)}</strong><small>${badge(run.status)}${escapeHtml((run.platforms || []).join(", "))} · ${escapeHtml(isoLocal(run.updated_at))}</small></div><div class="row-actions">${actions.join("")}</div></div>`;
+    const review = run.review_status || run.reviewer_status || "pending";
+    const reviewerTask = run.reviewer_task || run.reviewer_task_id || (
+      run.status === "completed"
+        ? `operations_reviewer · completed · ${review}`
+        : run.status === "failed"
+          ? "Reviewer 未完成；查看详情了解失败阶段"
+          : "等待 Reviewer 任务"
+    );
+    const downstream = review === "approved" ? "" : '<span class="review-guard">未获批准：不可进入下游动作</span>';
+    return `<div class="data-row agent-run-row"><div class="data-main"><strong>${escapeHtml(run.objective)}</strong><small>${badge(run.status)}${escapeHtml((run.platforms || []).join(", "))} · Graph ${escapeHtml(run.graph_version_id || "default")} · Review ${escapeHtml(review)} · ${escapeHtml(isoLocal(run.updated_at))}</small><span class="reviewer-task">Reviewer task: ${escapeHtml(reviewerTask)}</span>${downstream}</div><div class="row-actions">${actions.join("")}</div></div>`;
   }).join("");
 }
 
@@ -881,6 +995,8 @@ function renderAll() {
   renderCatalog();
   renderBriefing();
   renderEvidence();
+  renderAgentGraphs();
+  renderRunMetricOptions();
   renderRuns();
   renderJobs();
   renderSchedules();
@@ -920,8 +1036,11 @@ function renderDisconnected() {
   state.adsCapabilityLoading = false;
   state.adsCapabilityError = null;
   state.adsAdapterStatus = null; state.adsAdapterLoading = false; state.adsAdapterError = null;
+  state.agentGraphs = []; state.agentGraphsLoading = false; state.agentGraphsError = null;
   renderBriefing();
   renderEvidence();
+  renderAgentGraphs();
+  renderRunMetricOptions();
   renderRuns();
   renderJobs();
   renderSchedules();
@@ -949,12 +1068,15 @@ async function refreshAll() {
   state.adsCapabilityLoading = true;
   state.adsCapabilityError = null;
   state.adsAdapterLoading = true; state.adsAdapterError = null;
+  state.agentGraphsLoading = true; state.agentGraphsError = null;
   renderReportRecipes();
   renderReportSyncs();
   renderMetricObservations();
   renderMetricMaterializations();
   renderAdsCapabilityGates();
   renderAdsAdapterStatus();
+  renderAgentGraphs();
+  renderRunMetricOptions();
   const platform = encodeURIComponent(state.selectedPlatform);
   const recipes = api("/v1/report-recipes").then(value => ({value})).catch(error => ({error}));
   const syncs = api("/v1/report-syncs").then(value => ({value})).catch(error => ({error}));
@@ -962,16 +1084,32 @@ async function refreshAll() {
   const materializations = api("/v1/metric-materializations").then(value => ({value})).catch(error => ({error}));
   const adsGates = api("/v1/ads-capability-gates").then(value => ({value})).catch(error => ({error}));
   const adsAdapter = api("/v1/ads-adapter-status").then(value => ({value})).catch(error => ({error}));
-  const [me, catalog, briefing, mission, imports, runs, jobs, schedules, audit, connectors, recipeResult, syncResult, observationResult, materializationResult, adsGateResult, adsAdapterResult] = await Promise.all([
+  const graphs = api("/v1/agent-graphs").then(async value => {
+    const listed = Array.isArray(value) ? value : value?.graphs || [];
+    const detailed = await Promise.all(listed.map(async graph => {
+      const id = graph.id || graph.graph_id;
+      if (!id) return graph;
+      try {
+        const bundle = await api(`/v1/agent-graphs/${id}`);
+        return bundle.graph ? {...graph, ...bundle.graph, versions: bundle.versions || []} : bundle;
+      } catch (error) {
+        console.error("Agent Graph 详情加载失败", error);
+        return graph;
+      }
+    }));
+    return {graphs: detailed};
+  }).then(value => ({value})).catch(error => ({error}));
+  const [me, catalog, briefing, mission, imports, runs, jobs, schedules, audit, connectors, recipeResult, syncResult, observationResult, materializationResult, adsGateResult, adsAdapterResult, graphResult] = await Promise.all([
     api("/v1/me"), api("/v1/catalog"), api(`/v1/briefing?platform=${platform}`), api("/v1/mission-control"),
     api("/v1/evidence-imports?limit=100"), api("/v1/agent-runs?limit=100"), api("/v1/jobs?limit=100"),
-    api("/v1/schedules"), api("/v1/audit?limit=100"), api("/v1/connectors"), recipes, syncs, observations, materializations, adsGates, adsAdapter,
+    api("/v1/schedules"), api("/v1/audit?limit=100"), api("/v1/connectors"), recipes, syncs, observations, materializations, adsGates, adsAdapter, graphs,
   ]);
   if (recipeResult.error) console.error("Report Recipes 加载失败", recipeResult.error);
   if (syncResult.error) console.error("Sync Activity 加载失败", syncResult.error);
   if (observationResult.error) console.error("Metric Observations 加载失败", observationResult.error);
   if (materializationResult.error) console.error("Metric materializations 加载失败", materializationResult.error);
   if (adsGateResult.error) console.error("Amazon Ads 准入状态加载失败", adsGateResult.error);
+  if (graphResult.error) console.error("Agent Graphs 加载失败", graphResult.error);
   Object.assign(state, {
     me, catalog, briefing, mission,
     imports: imports.imports || [], runs: runs.runs || [], jobs: jobs.jobs || [],
@@ -987,6 +1125,7 @@ async function refreshAll() {
     adsCapabilityGates: Array.isArray(adsGateResult.value) ? adsGateResult.value : adsGateResult.value?.ads_capability_gates || adsGateResult.value?.gates || [],
     adsCapabilityLoading: false, adsCapabilityError: adsGateResult.error?.message || null,
     adsAdapterStatus: adsAdapterResult?.value || null, adsAdapterLoading: false, adsAdapterError: adsAdapterResult?.error?.message || null,
+    agentGraphs: Array.isArray(graphResult.value) ? graphResult.value : graphResult.value?.graphs || [], agentGraphsLoading: false, agentGraphsError: graphResult.error?.message || null,
   });
   setConnected(true);
   renderAll();
@@ -1075,7 +1214,7 @@ document.body.addEventListener("click", event => {
     case "view-import": act(button, async () => showDetail("Evidence Import", await api(`/v1/evidence-imports/${id}`)), "Evidence 详情已加载。", false); break;
     case "view-job": act(button, async () => showDetail("Job", await api(`/v1/jobs/${id}`)), "Job 详情已加载。", false); break;
     case "view-action": showDetail("待审批 Action", (state.mission?.approval_inbox || []).find(item => item.id === id) || (state.briefing?.approvals || []).find(item => item.id === id)); break;
-    case "view-run": act(button, async () => { const bundle = await api(`/v1/agent-runs/${id}`); showDetail("Agent Run", {run: bundle.run, tasks: bundle.tasks, evaluations: bundle.evaluations, report: latestReport(bundle)}); }, "Agent Run 详情已加载。", false); break;
+    case "view-run": act(button, async () => { const bundle = await api(`/v1/agent-runs/${id}`); const tasks = bundle.tasks || []; const reviewerTask = tasks.find(task => ["reviewer", "review"].some(term => String(task.agent_name || task.agent || task.name || "").toLowerCase().includes(term))) || null; showDetail("Agent Run", {run: bundle.run, graph_version_id: bundle.run?.graph_version_id, review_status: bundle.run?.review_status || bundle.run?.reviewer_status, reviewer_task: reviewerTask, tasks, evaluations: bundle.evaluations, report: latestReport(bundle)}); }, "Agent Run 详情已加载。", false); break;
     case "execute-run": act(button, () => api(`/v1/agent-runs/${id}/execute`, {method: "POST"}), "Agent Run 已完成。"); break;
     case "queue-run": act(button, () => api("/v1/jobs", {method: "POST", headers: {"Idempotency-Key": idempotency("ui-job")}, json: {run_id: id, max_attempts: 3}}), "Run 已加入后台队列。"); break;
     case "evaluate-run": act(button, () => api(`/v1/agent-runs/${id}/evaluate`, {method: "POST"}), "Evaluation 已保存。"); break;
@@ -1272,9 +1411,14 @@ $("evidence-form").addEventListener("submit", event => {
 
 $("run-form").addEventListener("submit", event => {
   event.preventDefault();
-  const ids = [...document.querySelectorAll('input[name="run-evidence"]:checked')].map(node => node.value);
-  if (!ids.length) { notice("至少选择一个 Evidence", "error"); return; }
-  act(event.submitter, () => api("/v1/agent-runs", {method: "POST", headers: {"Idempotency-Key": idempotency("ui-run")}, json: {workflow: "weekly_ops", objective: $("run-objective").value.trim(), evidence_import_ids: ids}}), "Agent Run 已创建。");
+  if (!runCanCreate()) { notice("需要 operator、admin 或 owner 角色", "error"); return; }
+  const evidenceIds = [...document.querySelectorAll('input[name="run-evidence"]:checked')].map(node => node.value);
+  const metricObservationIds = [...document.querySelectorAll('input[name="run-metric-observation"]:checked')].map(node => node.value);
+  const graphVersionId = document.querySelector('input[name="run-graph-version"]:checked')?.value;
+  if (!graphVersionId) { notice("请选择一个已发布协作图", "error"); return; }
+  if (!evidenceIds.length && !metricObservationIds.length) { notice("至少选择 Evidence 或 Metric Observation 中的一类输入", "error"); return; }
+  const inputs = {...(evidenceIds.length ? {evidence_import_ids: evidenceIds} : {}), ...(metricObservationIds.length ? {metric_observation_ids: metricObservationIds} : {})};
+  act(event.submitter, () => api("/v1/agent-runs", {method: "POST", headers: {"Idempotency-Key": idempotency("ui-run")}, json: {workflow: "weekly_ops", objective: $("run-objective").value.trim(), graph_version_id: graphVersionId, ...inputs}}), "Agent Run 已创建。");
 });
 
 $("schedule-form").addEventListener("submit", event => {

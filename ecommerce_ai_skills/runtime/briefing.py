@@ -14,9 +14,9 @@ from datetime import datetime
 from decimal import Decimal
 from typing import Any
 
-from .agents import PlatformRegistry
+from .agents import PlatformRegistry, WeeklyOpsCouncil
 from .auth import AuthService
-from .errors import ValidationError
+from .errors import RuntimeErrorBase, ValidationError
 from .storage import Database, Principal
 
 
@@ -104,6 +104,68 @@ class BriefingService:
         self.db = db
         self.auth = auth
         self.platform_registry = platform_registry or PlatformRegistry()
+
+    def _approved_bundle(
+        self, tenant_id: str, run: dict[str, Any]
+    ) -> dict[str, Any] | None:
+        if (
+            run.get("status") != "completed"
+            or run.get("review_status") != "approved"
+            or not run.get("graph_version_id")
+            or not run.get("graph_version_hash")
+        ):
+            return None
+        bundle = self.db.get_agent_run_bundle(tenant_id, run["id"])
+        attempt = int(run.get("attempt_count") or 0)
+        reviewers = [task for task in bundle["tasks"] if task.get("role") == "reviewer"]
+        reviewer = reviewers[0] if len(reviewers) == 1 else None
+        verdicts = [
+            artifact for artifact in bundle["artifacts"]
+            if artifact["kind"] == "reviewer_verdict"
+            and reviewer is not None
+            and artifact.get("task_id") == reviewer["id"]
+            and int(artifact.get("attempt") or 0)
+            == int(reviewer.get("attempt_count") or 0)
+        ]
+        reports = [
+            artifact for artifact in bundle["artifacts"]
+            if artifact["kind"] == "weekly_ops_report"
+            and int(artifact.get("attempt") or 0) == attempt
+        ]
+        if (
+            len(reviewers) != 1
+            or reviewers[0]["status"] != "completed"
+            or len(verdicts) != 1
+            or verdicts[0]["content"].get("verdict") != "approved"
+            or len(reports) != 1
+        ):
+            return None
+        source_platforms = {
+            source["source_id"]: source["platform"] for source in bundle["run"]["evidence"]
+        }
+        valid_owners = {
+            task["agent_name"]
+            for task in bundle["tasks"]
+            if task.get("role") in {
+                "evidence_analyst", "platform_specialist", "cross_controller"
+            }
+        } | {"human_operator"}
+        try:
+            WeeklyOpsCouncil._validate_refs(
+                reports[0]["content"],
+                source_platforms,
+                manager=True,
+                valid_owners=valid_owners,
+            )
+            WeeklyOpsCouncil._validate_manager_metric_claims(
+                reports[0]["content"], bundle["run"]["evidence"]
+            )
+            WeeklyOpsCouncil._validate_reviewer(
+                verdicts[0]["content"], source_platforms, reports[0]["content"]
+            )
+        except (RuntimeErrorBase, KeyError, TypeError, ValueError):
+            return None
+        return bundle
 
     @staticmethod
     def _metric_payload(key: str, points: list[dict[str, Any]]) -> dict[str, Any]:
@@ -211,14 +273,14 @@ class BriefingService:
             if platform in run.get("platforms", [])
         ]
         latest_run = relevant_runs[0] if relevant_runs else None
-        completed_run = next(
-            (run for run in relevant_runs if run["status"] == "completed"), None
-        )
-        bundle = (
-            self.db.get_agent_run_bundle(principal.tenant_id, completed_run["id"])
-            if completed_run
-            else None
-        )
+        completed_run = None
+        bundle = None
+        for candidate in relevant_runs:
+            candidate_bundle = self._approved_bundle(principal.tenant_id, candidate)
+            if candidate_bundle is not None:
+                completed_run = candidate
+                bundle = candidate_bundle
+                break
         report = None
         if bundle:
             report = next(

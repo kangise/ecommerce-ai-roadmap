@@ -72,6 +72,30 @@ def test_demo_seed_creates_isolated_visible_full_product_state(tmp_path: Path) -
     assert any(event["action"] == "demo.seed" for event in app.db.list_audit(reviewer.tenant_id))
 
 
+def test_demo_provider_executes_a_metric_only_graph_run(tmp_path: Path) -> None:
+    path = tmp_path / "demo.sqlite"
+    seeded = seed_demo_database(path)
+    app = open_demo_runtime(path)
+    owner = app.auth.authenticate(seeded["owner_api_key"])
+    observation = app.metric_observations.list_observations(owner)["observations"][0]
+    run = app.agent_runs.request(
+        owner,
+        "weekly_ops",
+        "Review one selected Demo metric without assuming other report types.",
+        None,
+        "demo-metric-only",
+        "demo-metric-only-request",
+        metric_observation_ids=[observation["id"]],
+    )
+    completed = app.agent_runs.execute(owner, run["id"], "demo-metric-only-execute")
+    assert completed["run"]["status"] == "completed"
+    assert completed["run"]["review_status"] == "approved"
+    assert any(
+        artifact["kind"] == "reviewer_verdict"
+        for artifact in completed["artifacts"]
+    )
+
+
 def test_demo_seed_refuses_every_existing_database_path(tmp_path: Path) -> None:
     path = tmp_path / "existing.sqlite"
     path.write_bytes(b"do-not-overwrite")
@@ -100,7 +124,7 @@ def test_schema_v9_migrates_existing_tenants_to_production_mode(tmp_path: Path) 
             """
         )
     db = Database(path)
-    assert db.readiness()["schema_version"] == 15
+    assert db.readiness()["schema_version"] == 16
     assert db.get_tenant("tenant-1")["mode"] == "production"
 
 

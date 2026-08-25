@@ -198,6 +198,45 @@ def test_source_runtime_api_l1_connector_contract() -> None:
     assert "shop.json" in paths["/v1/connectors/{accountId}/health-check"]["post"]["description"]
 
 
+def test_source_runtime_api_l7_agent_graph_contract() -> None:
+    contract = yaml.safe_load((ROOT / "openapi" / "runtime-api.yaml").read_text(encoding="utf-8"))
+    paths = contract["paths"]
+    assert {"get", "post"} <= set(paths["/v1/agent-graphs"])
+    assert "get" in paths["/v1/agent-graphs/{graphId}"]
+    assert "post" in paths["/v1/agent-graphs/{graphId}/versions"]
+    assert "post" in paths["/v1/agent-graph-versions/{versionId}/publish"]
+    assert "get" in paths["/v1/agent-graph-versions/{versionId}"]
+    schemas = contract["components"]["schemas"]
+    assert {"AgentGraph", "AgentGraphBundle", "AgentGraphVersion", "AgentGraphDefinition", "GraphNode", "GraphEdge", "ToolPolicy", "ReviewerVerdict", "ReviewerIssue"} <= set(schemas)
+    assert schemas["AgentGraphCreate"]["required"] == ["name", "definition"]
+    assert set(schemas["AgentGraphDefinition"]["required"]) == {
+        "schema_version", "nodes", "edges"
+    }
+    assert schemas["AgentGraphDefinition"]["properties"]["nodes"]["minItems"] == 5
+    assert schemas["AgentGraphDefinition"]["properties"]["nodes"]["maxItems"] == 5
+    assert schemas["AgentGraphDefinition"]["properties"]["edges"]["minItems"] == 6
+    assert schemas["AgentGraphDefinition"]["properties"]["edges"]["maxItems"] == 6
+    assert set(schemas["GraphNode"]["required"]) == {
+        "key", "role", "expansion", "optional", "skill_ids",
+        "instruction_key", "tool_policy",
+    }
+    assert set(schemas["AgentGraphVersion"]["properties"]["status"]["enum"]) == {
+        "draft", "published", "retired"
+    }
+    assert "definition_hash" in schemas["AgentGraphVersion"]["required"]
+    assert "execution_contract_hash" in schemas["AgentGraphVersion"]["required"]
+    assert schemas["ToolPolicy"]["properties"]["max_tool_calls"]["maximum"] == 0
+    assert schemas["ToolPolicy"]["properties"]["allowed_tools"]["maxItems"] == 0
+    assert schemas["ReviewerVerdict"]["properties"]["verdict"]["enum"] == [
+        "approved", "revision_required", "rejected"
+    ]
+    run = schemas["AgentRun"]
+    assert {"graph_version_id", "graph_version_hash", "metric_observation_ids", "review_status"} <= set(run["properties"])
+    assert "revision_required" in run["properties"]["review_status"]["enum"]
+    request = schemas["AgentRunRequest"]
+    assert {"graph_version_id", "metric_observation_ids"} <= set(request["properties"])
+
+
 def test_source_runtime_api_l2_report_recipe_contract() -> None:
     contract = yaml.safe_load(
         (ROOT / "openapi" / "runtime-api.yaml").read_text(encoding="utf-8")

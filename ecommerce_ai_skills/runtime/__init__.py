@@ -1,6 +1,7 @@
 """Dependency-light runtime for tenant-safe e-commerce workflows."""
 
 from .agents import OpenAIResponsesProvider, WeeklyOpsCouncil
+from .agent_graphs import AgentGraphService
 from .accounts import MarketplaceAccountService
 from .ads_gates import AdsCapabilityGateService
 from .ads_adapter_status import AdsAdapterStatusService
@@ -16,6 +17,7 @@ from .storage import Database, Principal
 __all__ = [
     "CSVIngestor",
     "BriefingService",
+    "AgentGraphService",
     "AdsCapabilityGateService",
     "AdsAdapterStatusService",
     "Database",

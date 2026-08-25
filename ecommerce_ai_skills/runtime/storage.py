@@ -29,7 +29,7 @@ class Principal:
 
 
 ROLE_LEVEL = {"viewer": 10, "operator": 20, "admin": 30, "owner": 40}
-SCHEMA_VERSION = 15
+SCHEMA_VERSION = 16
 
 
 class _Connection(sqlite3.Connection):
@@ -265,6 +265,66 @@ class Database:
                     updated_at TEXT NOT NULL,
                     PRIMARY KEY (tenant_id, provider, external_account_id)
                 );
+                CREATE TABLE IF NOT EXISTS agent_graphs (
+                    id TEXT PRIMARY KEY,
+                    tenant_id TEXT NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
+                    name TEXT NOT NULL,
+                    created_by TEXT NOT NULL,
+                    created_at TEXT NOT NULL,
+                    updated_at TEXT NOT NULL,
+                    UNIQUE(tenant_id, name),
+                    FOREIGN KEY (tenant_id, created_by)
+                        REFERENCES users(tenant_id, id)
+                );
+                CREATE UNIQUE INDEX IF NOT EXISTS uq_agent_graphs_tenant_id
+                    ON agent_graphs(tenant_id, id);
+                CREATE TABLE IF NOT EXISTS agent_graph_versions (
+                    id TEXT PRIMARY KEY,
+                    tenant_id TEXT NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
+                    graph_id TEXT NOT NULL,
+                    version INTEGER NOT NULL CHECK (version >= 1),
+                    definition_json TEXT NOT NULL,
+                    definition_hash TEXT NOT NULL,
+                    execution_contract_hash TEXT NOT NULL,
+                    status TEXT NOT NULL CHECK (status IN ('draft','published','retired')),
+                    created_by TEXT NOT NULL,
+                    created_at TEXT NOT NULL,
+                    published_at TEXT,
+                    retired_at TEXT,
+                    UNIQUE(tenant_id, graph_id, version),
+                    UNIQUE(tenant_id, graph_id, definition_hash),
+                    FOREIGN KEY (tenant_id, graph_id)
+                        REFERENCES agent_graphs(tenant_id, id) ON DELETE CASCADE,
+                    FOREIGN KEY (tenant_id, created_by)
+                        REFERENCES users(tenant_id, id)
+                );
+                CREATE UNIQUE INDEX IF NOT EXISTS uq_agent_graph_versions_tenant_id
+                    ON agent_graph_versions(tenant_id, id);
+                CREATE UNIQUE INDEX IF NOT EXISTS uq_agent_graph_one_published
+                    ON agent_graph_versions(tenant_id, graph_id)
+                    WHERE status='published';
+                CREATE TRIGGER IF NOT EXISTS agent_graph_versions_published_definition_immutable
+                BEFORE UPDATE OF definition_json,definition_hash,execution_contract_hash,version,graph_id,tenant_id
+                ON agent_graph_versions
+                WHEN OLD.published_at IS NOT NULL
+                BEGIN
+                    SELECT RAISE(ABORT, 'published agent graph version is immutable');
+                END;
+                CREATE TRIGGER IF NOT EXISTS agent_graph_versions_published_delete_immutable
+                BEFORE DELETE ON agent_graph_versions
+                WHEN OLD.published_at IS NOT NULL
+                BEGIN
+                    SELECT RAISE(ABORT, 'published agent graph version is immutable');
+                END;
+                CREATE TRIGGER IF NOT EXISTS agent_graph_versions_status_transition
+                BEFORE UPDATE OF status ON agent_graph_versions
+                WHEN NEW.status != OLD.status AND NOT (
+                    (OLD.status='draft' AND NEW.status='published') OR
+                    (OLD.status='published' AND NEW.status='retired')
+                )
+                BEGIN
+                    SELECT RAISE(ABORT, 'invalid agent graph version status transition');
+                END;
                 CREATE TABLE IF NOT EXISTS agent_runs (
                     id TEXT PRIMARY KEY,
                     tenant_id TEXT NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
@@ -273,16 +333,23 @@ class Database:
                     objective TEXT NOT NULL,
                     evidence_json TEXT NOT NULL,
                     platforms_json TEXT NOT NULL,
+                    graph_version_id TEXT,
+                    graph_version_hash TEXT,
+                    metric_observation_ids_json TEXT NOT NULL DEFAULT '[]',
                     requested_by TEXT NOT NULL REFERENCES users(id),
                     status TEXT NOT NULL CHECK (status IN ('requested','running','completed','failed')),
                     provider TEXT NOT NULL,
                     model TEXT,
                     attempt_count INTEGER NOT NULL DEFAULT 0,
                     error TEXT,
+                    review_status TEXT NOT NULL DEFAULT 'pending'
+                        CHECK (review_status IN ('pending','approved','revision_required','rejected')),
                     created_at TEXT NOT NULL,
                     updated_at TEXT NOT NULL,
                     completed_at TEXT,
-                    UNIQUE(tenant_id, idempotency_key)
+                    UNIQUE(tenant_id, idempotency_key),
+                    FOREIGN KEY (tenant_id, graph_version_id)
+                        REFERENCES agent_graph_versions(tenant_id, id)
                 );
                 CREATE INDEX IF NOT EXISTS idx_agent_runs_tenant_status ON agent_runs(tenant_id, status, created_at);
                 CREATE TABLE IF NOT EXISTS agent_tasks (
@@ -290,6 +357,9 @@ class Database:
                     tenant_id TEXT NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
                     run_id TEXT NOT NULL REFERENCES agent_runs(id) ON DELETE CASCADE,
                     agent_name TEXT NOT NULL,
+                    graph_node_key TEXT,
+                    role TEXT,
+                    tool_policy_json TEXT NOT NULL DEFAULT '{"allowed_tools":[],"max_tool_calls":0}',
                     skill_ids_json TEXT NOT NULL,
                     status TEXT NOT NULL CHECK (status IN ('pending','running','completed','failed')),
                     attempt_count INTEGER NOT NULL DEFAULT 0,
@@ -300,6 +370,10 @@ class Database:
                     UNIQUE(run_id, agent_name)
                 );
                 CREATE INDEX IF NOT EXISTS idx_agent_tasks_run ON agent_tasks(tenant_id, run_id, status);
+                CREATE UNIQUE INDEX IF NOT EXISTS uq_agent_runs_tenant_id
+                    ON agent_runs(tenant_id, id);
+                CREATE UNIQUE INDEX IF NOT EXISTS uq_agent_tasks_tenant_id
+                    ON agent_tasks(tenant_id, id);
                 CREATE TABLE IF NOT EXISTS agent_artifacts (
                     id TEXT PRIMARY KEY,
                     tenant_id TEXT NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
@@ -473,6 +547,8 @@ class Database:
                 );
                 CREATE INDEX IF NOT EXISTS idx_agent_evaluations_run
                     ON agent_evaluations(tenant_id, run_id, created_at);
+                CREATE UNIQUE INDEX IF NOT EXISTS uq_agent_evaluations_tenant_id
+                    ON agent_evaluations(tenant_id, id);
                 CREATE TABLE IF NOT EXISTS runtime_meta (
                     key TEXT PRIMARY KEY,
                     value TEXT NOT NULL
@@ -491,6 +567,134 @@ class Database:
                     raise ValidationError(f"unsupported runtime schema version: {row['value']}")
                 if version < SCHEMA_VERSION:
                     self._migrate(conn, version)
+            self._install_v16_triggers(conn)
+
+    @staticmethod
+    def _install_v16_triggers(conn: sqlite3.Connection) -> None:
+        conn.executescript(
+            """
+            CREATE UNIQUE INDEX IF NOT EXISTS uq_agent_runs_tenant_id
+                ON agent_runs(tenant_id, id);
+            CREATE UNIQUE INDEX IF NOT EXISTS uq_agent_tasks_tenant_id
+                ON agent_tasks(tenant_id, id);
+            CREATE UNIQUE INDEX IF NOT EXISTS uq_agent_evaluations_tenant_id
+                ON agent_evaluations(tenant_id, id);
+            CREATE TRIGGER IF NOT EXISTS agent_runs_graph_binding_insert
+            BEFORE INSERT ON agent_runs
+            WHEN (NEW.graph_version_id IS NULL) != (NEW.graph_version_hash IS NULL)
+              OR (NEW.graph_version_id IS NOT NULL AND NOT EXISTS (
+                SELECT 1 FROM agent_graph_versions v
+                WHERE v.tenant_id=NEW.tenant_id
+                  AND v.id=NEW.graph_version_id
+                  AND v.definition_hash=NEW.graph_version_hash
+                  AND v.status='published'
+            ))
+            BEGIN
+                SELECT RAISE(ABORT, 'agent run graph binding is invalid');
+            END;
+            CREATE TRIGGER IF NOT EXISTS agent_runs_graph_binding_update
+            BEFORE UPDATE OF tenant_id,graph_version_id,graph_version_hash ON agent_runs
+            WHEN (NEW.graph_version_id IS NULL) != (NEW.graph_version_hash IS NULL)
+              OR (NEW.graph_version_id IS NOT NULL AND NOT EXISTS (
+                SELECT 1 FROM agent_graph_versions v
+                WHERE v.tenant_id=NEW.tenant_id
+                  AND v.id=NEW.graph_version_id
+                  AND v.definition_hash=NEW.graph_version_hash
+                  AND v.status='published'
+            ))
+            BEGIN
+                SELECT RAISE(ABORT, 'agent run graph binding is invalid');
+            END;
+            CREATE TRIGGER IF NOT EXISTS agent_runs_tenant_ownership_insert
+            BEFORE INSERT ON agent_runs
+            WHEN NOT EXISTS (
+                SELECT 1 FROM users u
+                WHERE u.tenant_id=NEW.tenant_id AND u.id=NEW.requested_by
+            )
+            BEGIN SELECT RAISE(ABORT, 'agent run tenant ownership is invalid'); END;
+            CREATE TRIGGER IF NOT EXISTS agent_runs_tenant_ownership_update
+            BEFORE UPDATE OF tenant_id,requested_by ON agent_runs
+            WHEN NOT EXISTS (
+                SELECT 1 FROM users u
+                WHERE u.tenant_id=NEW.tenant_id AND u.id=NEW.requested_by
+            )
+            BEGIN SELECT RAISE(ABORT, 'agent run tenant ownership is invalid'); END;
+            CREATE TRIGGER IF NOT EXISTS agent_tasks_tenant_ownership_insert
+            BEFORE INSERT ON agent_tasks
+            WHEN NOT EXISTS (
+                SELECT 1 FROM agent_runs r
+                WHERE r.tenant_id=NEW.tenant_id AND r.id=NEW.run_id
+            )
+            BEGIN SELECT RAISE(ABORT, 'agent task tenant ownership is invalid'); END;
+            CREATE TRIGGER IF NOT EXISTS agent_tasks_tenant_ownership_update
+            BEFORE UPDATE OF tenant_id,run_id ON agent_tasks
+            WHEN NOT EXISTS (
+                SELECT 1 FROM agent_runs r
+                WHERE r.tenant_id=NEW.tenant_id AND r.id=NEW.run_id
+            )
+            BEGIN SELECT RAISE(ABORT, 'agent task tenant ownership is invalid'); END;
+            CREATE TRIGGER IF NOT EXISTS agent_artifacts_tenant_ownership_insert
+            BEFORE INSERT ON agent_artifacts
+            WHEN NOT EXISTS (
+                SELECT 1 FROM agent_runs r
+                WHERE r.tenant_id=NEW.tenant_id AND r.id=NEW.run_id
+            ) OR (NEW.task_id IS NOT NULL AND NOT EXISTS (
+                SELECT 1 FROM agent_tasks t
+                WHERE t.tenant_id=NEW.tenant_id AND t.id=NEW.task_id AND t.run_id=NEW.run_id
+            ))
+            BEGIN SELECT RAISE(ABORT, 'agent artifact tenant ownership is invalid'); END;
+            CREATE TRIGGER IF NOT EXISTS agent_artifacts_tenant_ownership_update
+            BEFORE UPDATE OF tenant_id,run_id,task_id ON agent_artifacts
+            WHEN NOT EXISTS (
+                SELECT 1 FROM agent_runs r
+                WHERE r.tenant_id=NEW.tenant_id AND r.id=NEW.run_id
+            ) OR (NEW.task_id IS NOT NULL AND NOT EXISTS (
+                SELECT 1 FROM agent_tasks t
+                WHERE t.tenant_id=NEW.tenant_id AND t.id=NEW.task_id AND t.run_id=NEW.run_id
+            ))
+            BEGIN SELECT RAISE(ABORT, 'agent artifact tenant ownership is invalid'); END;
+            CREATE TRIGGER IF NOT EXISTS agent_events_tenant_ownership_insert
+            BEFORE INSERT ON agent_events
+            WHEN NOT EXISTS (
+                SELECT 1 FROM agent_runs r
+                WHERE r.tenant_id=NEW.tenant_id AND r.id=NEW.run_id
+            ) OR (NEW.task_id IS NOT NULL AND NOT EXISTS (
+                SELECT 1 FROM agent_tasks t
+                WHERE t.tenant_id=NEW.tenant_id AND t.id=NEW.task_id AND t.run_id=NEW.run_id
+            ))
+            BEGIN SELECT RAISE(ABORT, 'agent event tenant ownership is invalid'); END;
+            CREATE TRIGGER IF NOT EXISTS agent_events_tenant_ownership_update
+            BEFORE UPDATE OF tenant_id,run_id,task_id ON agent_events
+            WHEN NOT EXISTS (
+                SELECT 1 FROM agent_runs r
+                WHERE r.tenant_id=NEW.tenant_id AND r.id=NEW.run_id
+            ) OR (NEW.task_id IS NOT NULL AND NOT EXISTS (
+                SELECT 1 FROM agent_tasks t
+                WHERE t.tenant_id=NEW.tenant_id AND t.id=NEW.task_id AND t.run_id=NEW.run_id
+            ))
+            BEGIN SELECT RAISE(ABORT, 'agent event tenant ownership is invalid'); END;
+            CREATE TRIGGER IF NOT EXISTS agent_evaluations_tenant_ownership_insert
+            BEFORE INSERT ON agent_evaluations
+            WHEN NOT EXISTS (
+                SELECT 1 FROM agent_runs r
+                WHERE r.tenant_id=NEW.tenant_id AND r.id=NEW.run_id
+            ) OR NOT EXISTS (
+                SELECT 1 FROM users u
+                WHERE u.tenant_id=NEW.tenant_id AND u.id=NEW.created_by
+            )
+            BEGIN SELECT RAISE(ABORT, 'agent evaluation tenant ownership is invalid'); END;
+            CREATE TRIGGER IF NOT EXISTS agent_evaluations_tenant_ownership_update
+            BEFORE UPDATE OF tenant_id,run_id,created_by ON agent_evaluations
+            WHEN NOT EXISTS (
+                SELECT 1 FROM agent_runs r
+                WHERE r.tenant_id=NEW.tenant_id AND r.id=NEW.run_id
+            ) OR NOT EXISTS (
+                SELECT 1 FROM users u
+                WHERE u.tenant_id=NEW.tenant_id AND u.id=NEW.created_by
+            )
+            BEGIN SELECT RAISE(ABORT, 'agent evaluation tenant ownership is invalid'); END;
+            """
+        )
 
     @staticmethod
     def _migrate(conn: sqlite3.Connection, version: int) -> None:
@@ -653,6 +857,38 @@ class Database:
             # initialize() creates ads_capability_gates transactionally before
             # the schema marker advances.
             version = 15
+        if version == 15:
+            # initialize() creates the tenant-owned graph tables and immutable
+            # published-version triggers in this transaction. Existing run and
+            # task tables need additive provenance columns.
+            run_columns = {
+                row["name"]
+                for row in conn.execute("PRAGMA table_info(agent_runs)").fetchall()
+            }
+            run_additions = {
+                "graph_version_id": "TEXT",
+                "graph_version_hash": "TEXT",
+                "metric_observation_ids_json": "TEXT NOT NULL DEFAULT '[]'",
+                # Historical runs predate the independent reviewer and must
+                # remain ineligible for downstream consumption until rerun.
+                "review_status": "TEXT NOT NULL DEFAULT 'pending'",
+            }
+            for name, declaration in run_additions.items():
+                if name not in run_columns:
+                    conn.execute(f"ALTER TABLE agent_runs ADD COLUMN {name} {declaration}")
+            task_columns = {
+                row["name"]
+                for row in conn.execute("PRAGMA table_info(agent_tasks)").fetchall()
+            }
+            task_additions = {
+                "graph_node_key": "TEXT",
+                "role": "TEXT",
+                "tool_policy_json": "TEXT NOT NULL DEFAULT '{\"allowed_tools\":[],\"max_tool_calls\":0}'",
+            }
+            for name, declaration in task_additions.items():
+                if name not in task_columns:
+                    conn.execute(f"ALTER TABLE agent_tasks ADD COLUMN {name} {declaration}")
+            version = 16
         if version != SCHEMA_VERSION:
             raise ValidationError(f"no migration path from runtime schema version {version}")
         conn.execute("UPDATE runtime_meta SET value=? WHERE key='schema_version'", (str(SCHEMA_VERSION),))
@@ -2519,6 +2755,9 @@ class Database:
         result = dict(row)
         evidence_json = result.pop("evidence_json")
         result["platforms"] = json.loads(result.pop("platforms_json"))
+        result["metric_observation_ids"] = json.loads(
+            result.pop("metric_observation_ids_json", "[]") or "[]"
+        )
         if include_evidence:
             result["evidence"] = json.loads(evidence_json)
         return result
@@ -2534,6 +2773,9 @@ class Database:
         platforms: list[str],
         *,
         provider: str,
+        graph_version_id: str,
+        graph_version_hash: str,
+        metric_observation_ids: list[str] | None = None,
     ) -> tuple[dict[str, Any], bool]:
         if not idempotency_key or len(idempotency_key) > 200:
             raise ValidationError("idempotency_key is required and must be <= 200 characters")
@@ -2551,8 +2793,9 @@ class Database:
                 conn.execute(
                     """INSERT INTO agent_runs(
                        id,tenant_id,idempotency_key,workflow,objective,evidence_json,platforms_json,
-                       requested_by,status,provider,created_at,updated_at
-                       ) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)""",
+                       graph_version_id,graph_version_hash,metric_observation_ids_json,
+                       requested_by,status,provider,review_status,created_at,updated_at
+                       ) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
                     (
                         run_id,
                         tenant_id,
@@ -2561,9 +2804,13 @@ class Database:
                         objective,
                         serialized,
                         json.dumps(platforms, sort_keys=True),
+                        graph_version_id,
+                        graph_version_hash,
+                        json.dumps(metric_observation_ids or [], sort_keys=True),
                         requested_by,
                         "requested",
                         provider,
+                        "pending",
                         now,
                         now,
                     ),
@@ -2603,6 +2850,9 @@ class Database:
                 existing["workflow"] != workflow
                 or existing["objective"] != objective
                 or existing["evidence"] != evidence
+                or existing.get("graph_version_id") != graph_version_id
+                or existing.get("graph_version_hash") != graph_version_hash
+                or existing.get("metric_observation_ids") != (metric_observation_ids or [])
             ):
                 raise ConflictError("idempotency key was already used with a different agent run")
             return existing, True
@@ -2616,6 +2866,30 @@ class Database:
         if row is None:
             raise NotFoundError("agent run not found")
         return self._agent_run_dict(row)
+
+    def bind_legacy_agent_run_graph(
+        self,
+        tenant_id: str,
+        run_id: str,
+        graph_version_id: str,
+        graph_version_hash: str,
+    ) -> dict[str, Any]:
+        """One-way provenance upgrade for a pre-v16 unbound run."""
+        with self.transaction() as conn:
+            cur = conn.execute(
+                """UPDATE agent_runs
+                   SET graph_version_id=?,graph_version_hash=?,review_status='pending'
+                   WHERE tenant_id=? AND id=? AND graph_version_id IS NULL""",
+                (graph_version_id, graph_version_hash, tenant_id, run_id),
+            )
+            if cur.rowcount != 1:
+                row = conn.execute(
+                    "SELECT id FROM agent_runs WHERE tenant_id=? AND id=?",
+                    (tenant_id, run_id),
+                ).fetchone()
+                if row is None:
+                    raise NotFoundError("agent run not found")
+        return self.get_agent_run(tenant_id, run_id)
 
     def list_agent_runs(self, tenant_id: str, limit: int = 50) -> list[dict[str, Any]]:
         limit = max(1, min(limit, 200))
@@ -2674,9 +2948,12 @@ class Database:
             for task in tasks:
                 conn.execute(
                     """INSERT INTO agent_tasks(
-                       id,tenant_id,run_id,agent_name,skill_ids_json,status,created_at
-                       ) VALUES(?,?,?,?,?,'pending',?)
+                       id,tenant_id,run_id,agent_name,graph_node_key,role,tool_policy_json,
+                       skill_ids_json,status,created_at
+                       ) VALUES(?,?,?,?,?,?,?,?, 'pending',?)
                        ON CONFLICT(run_id,agent_name) DO UPDATE SET
+                         graph_node_key=excluded.graph_node_key,role=excluded.role,
+                         tool_policy_json=excluded.tool_policy_json,
                          skill_ids_json=excluded.skill_ids_json,status='pending',error=NULL,
                          started_at=NULL,completed_at=NULL""",
                     (
@@ -2684,6 +2961,9 @@ class Database:
                         tenant_id,
                         run_id,
                         task["agent_name"],
+                        task["graph_node_key"],
+                        task["role"],
+                        json.dumps(task["tool_policy"], ensure_ascii=False, sort_keys=True),
                         json.dumps(task["skill_ids"], ensure_ascii=False, sort_keys=True),
                         now,
                     ),
@@ -2694,6 +2974,7 @@ class Database:
     def _agent_task_dict(row: sqlite3.Row) -> dict[str, Any]:
         result = dict(row)
         result["skill_ids"] = json.loads(result.pop("skill_ids_json"))
+        result["tool_policy"] = json.loads(result.pop("tool_policy_json"))
         return result
 
     def list_agent_tasks(self, tenant_id: str, run_id: str) -> list[dict[str, Any]]:
@@ -2810,8 +3091,15 @@ class Database:
             )
 
     def complete_agent_run(
-        self, tenant_id: str, run_id: str, report: dict[str, Any]
+        self,
+        tenant_id: str,
+        run_id: str,
+        report: dict[str, Any],
+        *,
+        review_status: str,
     ) -> dict[str, Any]:
+        if review_status not in {"approved", "revision_required", "rejected"}:
+            raise ValidationError("review_status must be an independent reviewer verdict")
         now = utc_now()
         with self.transaction() as conn:
             row = conn.execute(
@@ -2821,9 +3109,9 @@ class Database:
             if row is None:
                 raise ConflictError("agent run is not running")
             conn.execute(
-                """UPDATE agent_runs SET status='completed',error=NULL,completed_at=?,updated_at=?
+                """UPDATE agent_runs SET status='completed',review_status=?,error=NULL,completed_at=?,updated_at=?
                    WHERE id=? AND tenant_id=?""",
-                (now, now, run_id, tenant_id),
+                (review_status, now, now, run_id, tenant_id),
             )
             conn.execute(
                 """INSERT INTO agent_artifacts(
@@ -2840,7 +3128,10 @@ class Database:
                    ) VALUES(?,?,?,?,?,?,?)""",
                 (
                     self._id(), tenant_id, run_id, None, "run.completed",
-                    json.dumps({"artifact_kind": "weekly_ops_report"}, sort_keys=True), now,
+                    json.dumps(
+                        {"artifact_kind": "weekly_ops_report", "review_status": review_status},
+                        sort_keys=True,
+                    ), now,
                 ),
             )
         return self.get_agent_run_bundle(tenant_id, run_id)

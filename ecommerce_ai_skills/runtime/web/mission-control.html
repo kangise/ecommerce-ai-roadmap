@@ -137,12 +137,19 @@
         </section>
 
         <section id="view-agents" class="view" data-view-panel="agents" aria-labelledby="agents-title">
-          <div class="page-heading compact"><div><p class="kicker">Agent Operations</p><h1 id="agents-title">Weekly Ops</h1><p class="heading-summary">选择真实 Evidence，交给平台专家、跨平台 Controller、Manager 和 Reviewer 协作。</p></div></div>
+          <div class="page-heading compact"><div><p class="kicker">Agent Operations</p><h1 id="agents-title">Weekly Ops</h1><p class="heading-summary">选择已发布的协作图与真实输入，交给平台专家、跨平台 Controller、Manager 和 Reviewer 协作。</p></div></div>
+          <section class="agent-graph-section" aria-labelledby="agent-graphs-title">
+            <div class="section-title-row"><div><h2 id="agent-graphs-title">Published Agent Graphs</h2><span>图由管理员通过 API 发布；当前页面只允许选择已发布版本运行。</span></div></div>
+            <div id="agent-graph-list" class="agent-graph-list" aria-live="polite"></div>
+          </section>
           <div class="tool-layout">
             <section class="tool-panel form-panel">
               <form id="run-form">
                 <label>本次目标<textarea id="run-objective" rows="3" required>找出本周最重要、可由证据支持的经营行动。</textarea></label>
+                <fieldset><legend>选择已发布协作图</legend><div id="run-graph-options" class="check-list"></div></fieldset>
                 <fieldset><legend>选择 Evidence</legend><div id="run-evidence-options" class="check-list"></div></fieldset>
+                <fieldset><legend>选择 Metric Observations（可选）</legend><div id="run-metric-options" class="check-list"></div></fieldset>
+                <p id="run-permission-reason" class="permission-reason" hidden></p>
                 <button data-action="create-run" class="primary-button" type="submit"><img src="/app/assets/icons/play.svg" alt="">创建 Agent Run</button>
               </form>
             </section>

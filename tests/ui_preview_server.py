@@ -27,6 +27,15 @@ class PreviewProvider:
     def complete(
         self, *, agent_name, instructions, payload, output_schema, safety_identifier
     ):
+        if agent_name == "operations_reviewer":
+            return {
+                "verdict": "approved",
+                "issues": [],
+                "evidence_refs": [
+                    source["source_id"] for source in payload["evidence_catalog"]
+                ],
+                "limitations": payload["manager_report"].get("limitations", []),
+            }
         if agent_name == "store_manager":
             by_type = {
                 source["source_type"]: source["source_id"]
@@ -45,7 +54,9 @@ class PreviewProvider:
                         "confidence": "high",
                         "recommended_owner": "platform_amazon_operator",
                         "downstream_action": "准备关键词与出价调整提案，不直接写入平台。",
+                        "action_type": "external_change",
                         "requires_approval": True,
+                        "metric_claim": {"operation": "none", "observation_refs": []},
                     },
                     {
                         "rank": 2,
@@ -57,7 +68,9 @@ class PreviewProvider:
                         "confidence": "high",
                         "recommended_owner": "platform_amazon_operator",
                         "downstream_action": "生成补货审批草案。",
+                        "action_type": "external_change",
                         "requires_approval": True,
+                        "metric_claim": {"operation": "none", "observation_refs": []},
                     },
                     {
                         "rank": 3,
@@ -72,7 +85,9 @@ class PreviewProvider:
                         "confidence": "medium",
                         "recommended_owner": "cross_platform_controller",
                         "downstream_action": "生成人工复核清单。",
-                        "requires_approval": False,
+                        "action_type": "analysis",
+                        "requires_approval": True,
+                        "metric_claim": {"operation": "none", "observation_refs": []},
                     },
                 ],
                 "risks": [],
