@@ -31,6 +31,14 @@ Demo coverage verifies new-path refusal, explicit tenant mode, generated
 Evidence/Run/Eval/Action/Job/Schedule state, CLI output, production defaults, and
 the persistent UI warning. It also proves the auto-session exists only on an
 explicit single-tenant Demo app and remains 404 on normal Runtime processes.
+Marketplace connector coverage verifies the OpenAPI L1 contract for the
+tenant-scoped account list/get/create/update and synchronous health-check
+routes, the `MarketplaceAccount` redacted response fields, provider and
+Amazon-marketplace catalog entries, viewer/admin/operator role gates,
+environment-reference-only configuration, cross-tenant 404 behavior, and
+persistent `unchecked`/`healthy`/`misconfigured`/`unhealthy` health outcomes.
+The contract intentionally does not cover OAuth connect flows, connector
+deletion, or background health checks.
 
 Run the complete suite with:
 

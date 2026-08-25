@@ -29,6 +29,59 @@ REGION_ENDPOINTS = {
     "fe": "https://sellingpartnerapi-fe.amazon.com",
 }
 
+# This is the supported Selling Partner API marketplace directory.  It is
+# shared by account validation and the public runtime catalog so a marketplace
+# cannot be accepted by one boundary and rejected by another.
+AMAZON_MARKETPLACES = (
+    {"id": "ATVPDKIKX0DER", "name": "United States", "country_code": "US", "region": "na"},
+    {"id": "A2EUQ1WTGCTBG2", "name": "Canada", "country_code": "CA", "region": "na"},
+    {"id": "A1AM78C64UM0Y8", "name": "Mexico", "country_code": "MX", "region": "na"},
+    {"id": "A2Q3Y263D00KWC", "name": "Brazil", "country_code": "BR", "region": "na"},
+    {"id": "A1F83G8C2ARO7P", "name": "United Kingdom", "country_code": "GB", "region": "eu"},
+    {"id": "A1PA6795UKMFR9", "name": "Germany", "country_code": "DE", "region": "eu"},
+    {"id": "A13V1IB3VIYZZH", "name": "France", "country_code": "FR", "region": "eu"},
+    {"id": "APJ6JRA9NG5V4", "name": "Italy", "country_code": "IT", "region": "eu"},
+    {"id": "A1RKKUPIHCS9HS", "name": "Spain", "country_code": "ES", "region": "eu"},
+    {"id": "A1805IZSGTT6HS", "name": "Netherlands", "country_code": "NL", "region": "eu"},
+    {"id": "A2NODRKZP88ZB9", "name": "Sweden", "country_code": "SE", "region": "eu"},
+    {"id": "A1C3SOZRARQ6R3", "name": "Poland", "country_code": "PL", "region": "eu"},
+    {"id": "AMEN7PMS3EDWL", "name": "Belgium", "country_code": "BE", "region": "eu"},
+    {"id": "A33AVAJ2PDY3EV", "name": "Turkey", "country_code": "TR", "region": "eu"},
+    {"id": "A21TJRUUN4KGV", "name": "India", "country_code": "IN", "region": "eu"},
+    {"id": "A17E79C6D8DWNP", "name": "Saudi Arabia", "country_code": "SA", "region": "eu"},
+    {"id": "A2VIGQ35RCS4UG", "name": "United Arab Emirates", "country_code": "AE", "region": "eu"},
+    {"id": "ARBP9OOSHTCHU", "name": "Egypt", "country_code": "EG", "region": "eu"},
+    {"id": "A1VC38T7YXB528", "name": "Japan", "country_code": "JP", "region": "fe"},
+    {"id": "A39IBJ37TRP1C6", "name": "Australia", "country_code": "AU", "region": "fe"},
+    {"id": "A19VAU5U5O7RUS", "name": "Singapore", "country_code": "SG", "region": "fe"},
+)
+AMAZON_MARKETPLACE_BY_ID = {item["id"]: item for item in AMAZON_MARKETPLACES}
+
+
+def validate_amazon_marketplaces(region: Any, marketplace_ids: Any) -> tuple[str, list[str]]:
+    normalized_region = str(region).lower().strip()
+    if normalized_region not in REGION_ENDPOINTS:
+        raise ValidationError("Amazon SP-API region must be na, eu, or fe")
+    if not isinstance(marketplace_ids, list) or not 1 <= len(marketplace_ids) <= 20:
+        raise ValidationError("marketplace_ids must contain between 1 and 20 marketplace identifiers")
+    if not all(isinstance(value, str) for value in marketplace_ids):
+        raise ValidationError("marketplace_ids must contain Amazon marketplace identifiers")
+    if len(set(marketplace_ids)) != len(marketplace_ids):
+        raise ValidationError("marketplace_ids must not contain duplicates")
+    unknown = [value for value in marketplace_ids if value not in AMAZON_MARKETPLACE_BY_ID]
+    if unknown:
+        raise ValidationError(f"unknown Amazon marketplace_id: {unknown[0]}")
+    mismatched = [
+        value
+        for value in marketplace_ids
+        if AMAZON_MARKETPLACE_BY_ID[value]["region"] != normalized_region
+    ]
+    if mismatched:
+        raise ValidationError(
+            f"Amazon marketplace_id {mismatched[0]} does not belong to region {normalized_region}"
+        )
+    return normalized_region, list(marketplace_ids)
+
 
 @dataclass(frozen=True)
 class AmazonSPAPIReportsConnector:
@@ -51,17 +104,10 @@ class AmazonSPAPIReportsConnector:
         return value
 
     def _endpoint(self) -> str:
-        region = str(self.config.get("region", "")).lower().strip()
-        endpoint = REGION_ENDPOINTS.get(region)
-        if endpoint is None:
-            raise ValidationError("Amazon SP-API region must be na, eu, or fe")
-        marketplaces = self.config.get("marketplace_ids")
-        if not isinstance(marketplaces, list) or not marketplaces or not all(
-            isinstance(value, str) and re.fullmatch(r"[A-Z0-9]{5,20}", value)
-            for value in marketplaces
-        ):
-            raise ValidationError("marketplace_ids must contain Amazon marketplace identifiers")
-        return endpoint
+        region, _ = validate_amazon_marketplaces(
+            self.config.get("region"), self.config.get("marketplace_ids")
+        )
+        return REGION_ENDPOINTS[region]
 
     @staticmethod
     def _json(body: bytes, service: str) -> dict[str, Any]:
@@ -134,6 +180,49 @@ class AmazonSPAPIReportsConnector:
         if not isinstance(payload, dict):
             raise ExternalServiceError("Amazon SP-API payload was not an object")
         return payload
+
+    def health_check(self) -> dict[str, Any]:
+        """Verify LWA credentials and configured marketplace authorization."""
+        _, configured = validate_amazon_marketplaces(
+            self.config.get("region"), self.config.get("marketplace_ids")
+        )
+        request = Request(
+            self._endpoint() + "/sellers/v1/marketplaceParticipations",
+            headers={
+                "x-amz-access-token": self._access_token(),
+                "Accept": "application/json",
+                "User-Agent": "ecommerce-ai-skills/1.2",
+            },
+            method="GET",
+        )
+        raw, _, _ = self._send(request, "Amazon SP-API")
+        response = self._json(raw, "Amazon SP-API")
+        payload = response.get("payload", response)
+        participations = (
+            payload.get("marketplaceParticipations")
+            if isinstance(payload, dict)
+            else payload
+        )
+        if not isinstance(participations, list):
+            raise ExternalServiceError(
+                "Amazon SP-API response did not contain marketplaceParticipations[]"
+            )
+        authorized: set[str] = set()
+        for participation in participations:
+            if not isinstance(participation, dict):
+                continue
+            marketplace = participation.get("marketplace")
+            marketplace_id = (
+                marketplace.get("id") if isinstance(marketplace, dict) else None
+            ) or participation.get("marketplaceId")
+            if isinstance(marketplace_id, str):
+                authorized.add(marketplace_id)
+        missing = [value for value in configured if value not in authorized]
+        if missing:
+            raise ExternalServiceError(
+                f"Amazon credentials are not authorized for configured marketplace: {missing[0]}"
+            )
+        return {"authorized_marketplace_ids": sorted(authorized)}
 
     @staticmethod
     def _validate_id(value: str, label: str) -> str:

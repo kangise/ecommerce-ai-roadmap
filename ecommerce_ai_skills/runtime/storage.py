@@ -29,7 +29,7 @@ class Principal:
 
 
 ROLE_LEVEL = {"viewer": 10, "operator": 20, "admin": 30, "owner": 40}
-SCHEMA_VERSION = 10
+SCHEMA_VERSION = 11
 
 
 class _Connection(sqlite3.Connection):
@@ -112,6 +112,12 @@ class Database:
                     external_account_id TEXT NOT NULL,
                     config_json TEXT NOT NULL,
                     created_at TEXT NOT NULL,
+                    updated_at TEXT NOT NULL,
+                    health_status TEXT NOT NULL DEFAULT 'unchecked'
+                        CHECK (health_status IN ('unchecked','healthy','unhealthy','misconfigured')),
+                    health_checked_at TEXT,
+                    health_error_code TEXT,
+                    health_error_message TEXT,
                     UNIQUE(tenant_id, provider, external_account_id)
                 );
                 CREATE TABLE IF NOT EXISTS actions (
@@ -438,6 +444,31 @@ class Database:
                     "ALTER TABLE tenants ADD COLUMN mode TEXT NOT NULL DEFAULT 'production'"
                 )
             version = 10
+        if version == 10:
+            columns = {
+                row["name"]
+                for row in conn.execute("PRAGMA table_info(connector_accounts)").fetchall()
+            }
+            additions = {
+                "updated_at": "TEXT",
+                "health_status": "TEXT NOT NULL DEFAULT 'unchecked'",
+                "health_checked_at": "TEXT",
+                "health_error_code": "TEXT",
+                "health_error_message": "TEXT",
+            }
+            for name, declaration in additions.items():
+                if name not in columns:
+                    conn.execute(
+                        f"ALTER TABLE connector_accounts ADD COLUMN {name} {declaration}"
+                    )
+            conn.execute(
+                "UPDATE connector_accounts SET updated_at=created_at WHERE updated_at IS NULL"
+            )
+            conn.execute(
+                "UPDATE connector_accounts SET health_status='unchecked' "
+                "WHERE health_status IS NULL OR health_status=''"
+            )
+            version = 11
         if version != SCHEMA_VERSION:
             raise ValidationError(f"no migration path from runtime schema version {version}")
         conn.execute("UPDATE runtime_meta SET value=? WHERE key='schema_version'", (str(SCHEMA_VERSION),))
@@ -630,9 +661,10 @@ class Database:
             ).fetchall()
         return [dict(row) for row in rows]
 
-    def add_connector_account(self, tenant_id: str, provider: str, external_account_id: str, config: dict[str, Any]) -> str:
-        if not provider or not external_account_id or not isinstance(config, dict):
-            raise ValidationError("provider, external account id, and config are required")
+    @staticmethod
+    def _validated_connector_config(provider: str, config: dict[str, Any]) -> dict[str, Any]:
+        if not isinstance(config, dict):
+            raise ValidationError("connector config must be an object")
         if provider == "shopify":
             required = {"shop_domain", "api_version", "credential_ref"}
         elif provider == "amazon_spapi":
@@ -664,21 +696,140 @@ class Database:
         ):
             raise ValidationError("connector credential references must be environment variable names")
         if provider == "amazon_spapi":
-            if str(config["region"]).lower() not in {"na", "eu", "fe"}:
-                raise ValidationError("Amazon SP-API region must be na, eu, or fe")
-            if not isinstance(config["marketplace_ids"], list) or not config["marketplace_ids"]:
-                raise ValidationError("Amazon SP-API marketplace_ids are required")
+            from .connectors.amazon_spapi import validate_amazon_marketplaces
+
+            region, marketplace_ids = validate_amazon_marketplaces(
+                config["region"], config["marketplace_ids"]
+            )
+            config = {**config, "region": region, "marketplace_ids": marketplace_ids}
+        else:
+            domain = str(config["shop_domain"]).lower().strip().rstrip("/")
+            if not re.fullmatch(r"[a-z0-9][a-z0-9-]*\.myshopify\.com", domain):
+                raise ValidationError("shop_domain must be a canonical *.myshopify.com host")
+            version = str(config["api_version"]).strip()
+            if not re.fullmatch(r"20\d{2}-\d{2}", version):
+                raise ValidationError("api_version must be an explicit YYYY-MM version")
+            config = {**config, "shop_domain": domain, "api_version": version}
+        return config
+
+    def add_connector_account(self, tenant_id: str, provider: str, external_account_id: str, config: dict[str, Any]) -> str:
+        if not provider or not isinstance(external_account_id, str) or not external_account_id.strip():
+            raise ValidationError("provider, external account id, and config are required")
+        external_account_id = external_account_id.strip()
+        config = self._validated_connector_config(provider, config)
         account_id = self._id()
+        now = utc_now()
         try:
             with self.transaction() as conn:
                 self.require_tenant(conn, tenant_id)
                 conn.execute(
-                    "INSERT INTO connector_accounts(id,tenant_id,provider,external_account_id,config_json,created_at) VALUES(?,?,?,?,?,?)",
-                    (account_id, tenant_id, provider, external_account_id, json.dumps(config, sort_keys=True), utc_now()),
+                    """INSERT INTO connector_accounts(
+                       id,tenant_id,provider,external_account_id,config_json,created_at,
+                       updated_at,health_status)
+                       VALUES(?,?,?,?,?,?,?,'unchecked')""",
+                    (account_id, tenant_id, provider, external_account_id, json.dumps(config, sort_keys=True), now, now),
                 )
         except sqlite3.IntegrityError as exc:
             raise ConflictError("connector account already exists") from exc
         return account_id
+
+    def create_connector_account(
+        self, tenant_id: str, provider: str, external_account_id: str, config: dict[str, Any]
+    ) -> dict[str, Any]:
+        account_id = self.add_connector_account(
+            tenant_id, provider, external_account_id, config
+        )
+        return self.get_connector_account(tenant_id, account_id)
+
+    @staticmethod
+    def _connector_account_dict(row: sqlite3.Row) -> dict[str, Any]:
+        account = dict(row)
+        account["config"] = json.loads(account.pop("config_json"))
+        return account
+
+    def list_connector_accounts(self, tenant_id: str) -> list[dict[str, Any]]:
+        with self.connect() as conn:
+            rows = conn.execute(
+                "SELECT * FROM connector_accounts WHERE tenant_id=? ORDER BY created_at,id",
+                (tenant_id,),
+            ).fetchall()
+        return [self._connector_account_dict(row) for row in rows]
+
+    def get_connector_account(self, tenant_id: str, account_id: str) -> dict[str, Any]:
+        with self.connect() as conn:
+            row = conn.execute(
+                "SELECT * FROM connector_accounts WHERE tenant_id=? AND id=?",
+                (tenant_id, account_id),
+            ).fetchone()
+        if row is None:
+            raise NotFoundError("connector account not found")
+        return self._connector_account_dict(row)
+
+    def update_connector_account(
+        self,
+        tenant_id: str,
+        account_id: str,
+        external_account_id: str,
+        config: dict[str, Any],
+    ) -> dict[str, Any]:
+        if not isinstance(external_account_id, str) or not external_account_id.strip():
+            raise ValidationError("external_account_id and config are required")
+        existing = self.get_connector_account(tenant_id, account_id)
+        config = self._validated_connector_config(existing["provider"], config)
+        now = utc_now()
+        try:
+            with self.transaction() as conn:
+                result = conn.execute(
+                    """UPDATE connector_accounts
+                       SET external_account_id=?,config_json=?,updated_at=?,
+                           health_status='unchecked',health_checked_at=NULL,
+                           health_error_code=NULL,health_error_message=NULL
+                       WHERE tenant_id=? AND id=?""",
+                    (
+                        external_account_id.strip(),
+                        json.dumps(config, sort_keys=True),
+                        now,
+                        tenant_id,
+                        account_id,
+                    ),
+                )
+                if result.rowcount != 1:
+                    raise NotFoundError("connector account not found")
+        except sqlite3.IntegrityError as exc:
+            raise ConflictError("connector account already exists") from exc
+        return self.get_connector_account(tenant_id, account_id)
+
+    def set_connector_account_health(
+        self,
+        tenant_id: str,
+        account_id: str,
+        status: str,
+        *,
+        error_code: str | None = None,
+        error_message: str | None = None,
+    ) -> dict[str, Any]:
+        if status not in {"healthy", "unhealthy", "misconfigured"}:
+            raise ValidationError("invalid connector health status")
+        checked_at = utc_now()
+        with self.transaction() as conn:
+            result = conn.execute(
+                """UPDATE connector_accounts
+                   SET health_status=?,health_checked_at=?,health_error_code=?,
+                       health_error_message=?,updated_at=?
+                   WHERE tenant_id=? AND id=?""",
+                (
+                    status,
+                    checked_at,
+                    error_code,
+                    error_message[:1000] if error_message else None,
+                    checked_at,
+                    tenant_id,
+                    account_id,
+                ),
+            )
+            if result.rowcount != 1:
+                raise NotFoundError("connector account not found")
+        return self.get_connector_account(tenant_id, account_id)
 
     def connector_account(self, tenant_id: str, provider: str, external_account_id: str) -> sqlite3.Row:
         with self.connect() as conn:

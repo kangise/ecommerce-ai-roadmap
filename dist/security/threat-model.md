@@ -2,8 +2,10 @@
 
 ## Assets
 
-- Tenant identity, API keys, connector metadata, synced product records,
-  multi-agent evidence/artifacts, and approval/audit history.
+- Tenant identity, API keys, tenant-owned `MarketplaceAccount` records
+  (provider details, credential-reference presence, and persisted health
+  outcome), synced product records, multi-agent evidence/artifacts, and
+  approval/audit history.
 - External platform access tokens, which must remain in a deployment secret
   manager and outside SQLite, request payloads, logs, and audit metadata.
 
@@ -14,12 +16,26 @@
    queries.
 3. The connector crosses the platform boundary with an environment-resolved
    token and a constrained HTTPS host.
+4. The catalog and account endpoints cross the authenticated API boundary;
+   account IDs must remain scoped to the caller's tenant.
 
 ## Controls implemented
 
 - PBKDF2-HMAC-SHA256 API-key hashes and constant-time verification.
 - Tenant foreign keys plus explicit tenant predicates on every application
   read/write.
+- Marketplace account list/get/create/update/health operations enforce the
+  viewer/admin/operator role gates, and cross-tenant account IDs resolve to
+  the same 404 as unknown IDs.
+- Connector configuration is validated against the provider schema and stores
+  only environment-variable references. Safe account responses replace every
+  credential reference with `present`; provider details exclude credential
+  values and names.
+- Connector health outcomes are persisted with `health_status`,
+  `health_checked_at`, `health_error_code`, and `health_error_message`.
+  Amazon health calls the real Sellers marketplace-participation endpoint for
+  configured IDs; Shopify health calls the configured shop endpoint. Failures
+  remain visible as durable `misconfigured` or `unhealthy` state.
 - Explicit SQLite schema versioning; unsupported newer schemas fail closed.
 - Viewer/operator/admin/owner role checks; approval requires a second actor.
 - Tenant-scoped user provisioning is exposed through authenticated admin APIs;
@@ -82,6 +98,10 @@
 - Connector actions are intentionally read-only. Any future write action must
   add a separate operation allowlist, risk classification, approval policy,
   dry-run response, and rollback/reconciliation design.
+- L1 connector accounts intentionally have no OAuth connect flow, delete
+  operation, or background health scheduler. Health is an explicit synchronous
+  caller action; adding automation requires a separate lease, authorization,
+  retry, and audit design.
 - Agent prompts receive user evidence as untrusted data. Operators must still
   avoid placing personal data or secrets in evidence values; the first slice
   detects secret-shaped field names but is not a general DLP system.

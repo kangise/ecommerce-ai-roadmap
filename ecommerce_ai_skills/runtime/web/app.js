@@ -11,6 +11,7 @@ const state = {
   schedules: [],
   mission: null,
   audit: [],
+  connectors: [],
   selectedPlatform: "amazon",
   chartMetric: null,
   timer: null,
@@ -114,6 +115,102 @@ function designedEmpty(target, title, copy, iconName = "database", action = null
 
 function badge(status) {
   return `<span class="badge ${escapeHtml(status)}">${escapeHtml(status)}</span>`;
+}
+
+function connectorCanManage() {
+  return ["admin", "owner"].includes(state.me?.role);
+}
+
+function connectorCanCheck() {
+  return ["operator", "admin", "owner"].includes(state.me?.role);
+}
+
+function connectorProviderLabel(provider) {
+  const entry = (state.catalog?.connector_providers || []).find(item => item.id === provider || item.provider === provider);
+  return entry?.label?.zh || entry?.label?.en || entry?.label || entry?.name || (provider === "amazon_spapi" ? "Amazon" : provider === "shopify" ? "Shopify" : provider);
+}
+
+function connectorDetails(connector) {
+  const details = connector.provider_details || {};
+  if (connector.provider === "amazon_spapi") {
+    const marketplaces = details.marketplaces || details.marketplace_ids || [];
+    const catalog = new Map((state.catalog?.amazon_marketplaces || []).map(item => [item.id, item.name || item.label || item.id]));
+    return [details.region, marketplaces.map(item => catalog.get(typeof item === "string" ? item : item.id) || (typeof item === "string" ? item : item.id)).join("、")].filter(Boolean).join(" · ") || "未配置 region 或 marketplace";
+  }
+  if (connector.provider === "shopify") return details.shop_domain || "未配置 Shopify domain";
+  return connector.external_account_id;
+}
+
+function renderConnectors() {
+  const target = $("connector-list"), note = $("connector-permission"), add = $("add-connector-btn");
+  if (!state.apiKey) {
+    add.disabled = true;
+    add.title = "请先连接 Runtime";
+    note.hidden = false; note.textContent = "连接 Runtime 后才能查看或管理租户账户。";
+    designedEmpty(target, "尚未连接 Runtime", "账户列表需要已认证的租户会话。", "key");
+    return;
+  }
+  const manage = connectorCanManage(), check = connectorCanCheck();
+  add.disabled = !manage;
+  add.title = manage ? "" : "需要 admin 或 owner 角色";
+  note.hidden = manage;
+  note.textContent = manage ? "" : "当前角色只能查看账户。添加或编辑配置需要 admin 或 owner 角色。";
+  if (!state.connectors.length) {
+    designedEmpty(target, "还没有连接账户", manage ? "添加 Amazon 或 Shopify 账户，并使用环境变量引用授权凭据。" : "当前租户尚未连接账户；需要 admin 或 owner 添加。", "key");
+    return;
+  }
+  target.innerHTML = state.connectors.map(connector => {
+    const healthStatus = connector.health_status || "unchecked";
+    const edit = manage ? `<button data-action="edit-connector" data-id="${escapeHtml(connector.id)}" class="secondary-button">编辑</button>` : "";
+    const healthAction = check ? `<button data-action="health-check-connector" data-id="${escapeHtml(connector.id)}" class="primary-button">健康检查</button>` : `<span class="permission-reason">需要 operator、admin 或 owner 执行健康检查</span>`;
+    const failure = connector.health_error_message || connector.health_error_code;
+    const refCount = Object.keys(connector.credential_refs || {}).length;
+    return `<article class="connector-card"><div class="connector-card-head"><div><p class="kicker">${escapeHtml(connectorProviderLabel(connector.provider))}</p><h2>${escapeHtml(connector.external_account_id)}</h2><p>${escapeHtml(connectorDetails(connector))}</p></div>${badge(healthStatus)}</div><dl class="connector-meta"><div><dt>Last checked</dt><dd>${escapeHtml(isoLocal(connector.health_checked_at))}</dd></div><div><dt>Credential refs</dt><dd>${refCount ? `${refCount} present` : "—"}</dd></div></dl>${failure ? `<p class="connector-error">${escapeHtml(failure)}</p>` : ""}<div class="row-actions">${edit}${healthAction}</div></article>`;
+  }).join("");
+}
+
+function connectorProviders() {
+  return state.catalog?.connector_providers || [{id: "amazon_spapi", name: "Amazon Selling Partner API"}, {id: "shopify", name: "Shopify Admin API"}];
+}
+
+function renderConnectorForm(provider = $("connector-provider").value || "amazon_spapi", connector = null) {
+  const providerSelect = $("connector-provider");
+  providerSelect.innerHTML = connectorProviders().map(item => `<option value="${escapeHtml(item.id || item.provider)}">${escapeHtml(item.label?.zh || item.label?.en || item.label || item.name || item.id || item.provider)}</option>`).join("");
+  providerSelect.value = provider;
+  const amazon = provider === "amazon_spapi";
+  $("amazon-connector-fields").hidden = !amazon;
+  $("shopify-connector-fields").hidden = amazon;
+  if (!amazon) return;
+  const details = connector?.provider_details || {};
+  const regions = [...new Set((state.catalog?.amazon_marketplaces || []).map(item => item.region).filter(Boolean))];
+  $("connector-region").innerHTML = regions.map(region => `<option value="${escapeHtml(region)}">${escapeHtml(region)}</option>`).join("");
+  $("connector-region").value = details.region || regions[0] || "";
+  renderConnectorMarketplaces(details.marketplace_ids || []);
+}
+
+function renderConnectorMarketplaces(selected = []) {
+  const region = $("connector-region").value;
+  const selectedIds = new Set(selected.map(item => typeof item === "string" ? item : item.id));
+  const markets = (state.catalog?.amazon_marketplaces || []).filter(item => !region || item.region === region);
+  $("connector-marketplaces").innerHTML = markets.length ? markets.map(item => `<label><input type="checkbox" name="connector-marketplace" value="${escapeHtml(item.id)}" ${selectedIds.has(item.id) ? "checked" : ""}>${escapeHtml(item.name || item.label || item.id)}</label>`).join("") : "<span class=\"permission-reason\">Catalog 中没有此 region 的 marketplace。</span>";
+}
+
+function openConnectorForm(connector = null) {
+  if (!connectorCanManage()) { notice("需要 admin 或 owner 角色", "error"); return; }
+  $("connector-form").reset();
+  $("connector-id").value = connector?.id || "";
+  $("connector-dialog-title").textContent = connector ? "编辑账户" : "添加账户";
+  $("connector-external-account-id").value = connector?.external_account_id || "";
+  const details = connector?.provider_details || {};
+  $("amazon-lwa-client-id-ref").value = "";
+  $("amazon-lwa-client-secret-ref").value = "";
+  $("amazon-refresh-token-ref").value = "";
+  $("shopify-domain").value = details.shop_domain || "";
+  $("shopify-api-version").value = details.api_version || "";
+  $("shopify-access-token-ref").value = "";
+  renderConnectorForm(connector?.provider || "amazon_spapi", connector);
+  $("connector-provider").disabled = Boolean(connector);
+  $("connector-dialog").showModal();
 }
 
 function renderCatalog() {
@@ -420,6 +517,7 @@ function renderAll() {
   renderSchedules();
   renderApprovals();
   renderAudit();
+  renderConnectors();
 }
 
 function renderDisconnected() {
@@ -430,6 +528,7 @@ function renderDisconnected() {
   state.schedules = [];
   state.mission = null;
   state.audit = [];
+  state.connectors = [];
   renderBriefing();
   renderEvidence();
   renderRuns();
@@ -437,20 +536,21 @@ function renderDisconnected() {
   renderSchedules();
   renderApprovals();
   renderAudit();
+  renderConnectors();
 }
 
 async function refreshAll() {
   if (!state.apiKey) return;
   const platform = encodeURIComponent(state.selectedPlatform);
-  const [me, catalog, briefing, mission, imports, runs, jobs, schedules, audit] = await Promise.all([
+  const [me, catalog, briefing, mission, imports, runs, jobs, schedules, audit, connectors] = await Promise.all([
     api("/v1/me"), api("/v1/catalog"), api(`/v1/briefing?platform=${platform}`), api("/v1/mission-control"),
     api("/v1/evidence-imports?limit=100"), api("/v1/agent-runs?limit=100"), api("/v1/jobs?limit=100"),
-    api("/v1/schedules"), api("/v1/audit?limit=100"),
+    api("/v1/schedules"), api("/v1/audit?limit=100"), api("/v1/connectors"),
   ]);
   Object.assign(state, {
     me, catalog, briefing, mission,
     imports: imports.imports || [], runs: runs.runs || [], jobs: jobs.jobs || [],
-    schedules: schedules.schedules || [], audit: audit.events || [],
+    schedules: schedules.schedules || [], audit: audit.events || [], connectors: connectors.connectors || [],
   });
   setConnected(true);
   renderAll();
@@ -545,6 +645,9 @@ document.body.addEventListener("click", event => {
     case "evaluate-run": act(button, () => api(`/v1/agent-runs/${id}/evaluate`, {method: "POST"}), "Evaluation 已保存。"); break;
     case "approve-action": act(button, () => api(`/v1/actions/${id}/approve`, {method: "POST"}), "Action 已批准；仍需 Operator 执行。"); break;
     case "toggle-schedule": act(button, () => api(`/v1/schedules/${id}`, {method: "PATCH", json: {enabled: button.dataset.enabled === "true"}}), "Schedule 状态已更新。"); break;
+    case "open-connector-form": openConnectorForm(); break;
+    case "edit-connector": openConnectorForm(state.connectors.find(item => item.id === id)); break;
+    case "health-check-connector": act(button, () => api(`/v1/connectors/${id}/health-check`, {method: "POST"}), "健康检查已完成。"); break;
   }
 });
 
@@ -591,6 +694,37 @@ async function selectPlatform(button) {
 
 $("evidence-platform").addEventListener("change", () => renderReportOptions("evidence-platform", "evidence-type"));
 $("schedule-platform").addEventListener("change", () => renderReportOptions("schedule-platform", "schedule-report-type"));
+$("connector-provider").addEventListener("change", () => renderConnectorForm($("connector-provider").value));
+$("connector-region").addEventListener("change", () => renderConnectorMarketplaces());
+
+$("connector-form").addEventListener("submit", event => {
+  event.preventDefault();
+  const button = event.submitter;
+  if (!connectorCanManage()) { notice("需要 admin 或 owner 角色", "error"); return; }
+  const provider = $("connector-provider").value;
+  const externalAccountId = $("connector-external-account-id").value.trim();
+  const config = provider === "amazon_spapi" ? {
+    region: $("connector-region").value,
+    marketplace_ids: [...document.querySelectorAll('input[name="connector-marketplace"]:checked')].map(node => node.value),
+    lwa_client_id_ref: $("amazon-lwa-client-id-ref").value.trim(),
+    lwa_client_secret_ref: $("amazon-lwa-client-secret-ref").value.trim(),
+    lwa_refresh_token_ref: $("amazon-refresh-token-ref").value.trim(),
+  } : {
+    shop_domain: $("shopify-domain").value.trim(),
+    api_version: $("shopify-api-version").value.trim(),
+    credential_ref: $("shopify-access-token-ref").value.trim(),
+  };
+  if (!externalAccountId || (provider === "amazon_spapi" && (!config.region || !config.marketplace_ids.length || !config.lwa_client_id_ref || !config.lwa_client_secret_ref || !config.lwa_refresh_token_ref)) || (provider === "shopify" && (!config.shop_domain || !config.api_version || !config.credential_ref))) {
+    notice("请完成所有必填配置，并只填写环境变量名称。", "error"); return;
+  }
+  const connectorId = $("connector-id").value;
+  act(button, async () => {
+    const path = connectorId ? `/v1/connectors/${connectorId}` : "/v1/connectors";
+    const json = connectorId ? {external_account_id: externalAccountId, config} : {provider, external_account_id: externalAccountId, config};
+    await api(path, {method: connectorId ? "PATCH" : "POST", json});
+    $("connector-dialog").close();
+  }, connectorId ? "账户配置已更新。" : "账户已添加。");
+});
 
 $("evidence-form").addEventListener("submit", event => {
   event.preventDefault();

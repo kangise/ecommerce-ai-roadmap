@@ -6,7 +6,7 @@
 | Loop | 名称 | 状态 | Evidence | Commit | Notes |
 |---|---|---|---|---|---|
 | L0 | 基线合同 | done | `verify_all` 14 groups=0；pytest 63 passed；dist 153 fresh；MCP 69/878/9；wheel cold install + Schema v10 + CLI smoke | `loop(v1.3): L0 establish verified product baseline` | `main`/`origin/main` 原 HEAD `a6a6204`；敏感扫描与 `git diff --check` 通过；当前产品化成果固化为可恢复基线 |
-| L1 | Accounts Center | pending |  |  |  |
+| L1 | Accounts Center | done | Schema v11；Accounts API/UI；Amazon Sellers + Shopify shop health；pytest 77；14 groups=0；browser refresh persistence；wheel smoke | `loop(v1.3): L1 ship marketplace accounts center` | viewer read/admin manage/operator health；refs redacted；Demo 账户保持 unchecked/misconfigured 而非假成功 |
 | L2 | Report Recipes | pending |  |  |  |
 | L3 | SP-API Sync | pending |  |  |  |
 | L4 | Metric Observations | pending |  |  |  |
@@ -33,6 +33,18 @@
 - Failure 1: none.
 - Failure 2 / blocked reason: none.
 - Restore point and result: 原始远端基线 `a6a6204`; 新 L0 提交成为 v1.3 Loop 恢复点。
+
+### L1 — Accounts Center
+
+- Date: 2026-08-26
+- Status: done
+- Evidence: `tests/test_accounts.py` 13 acceptance cases；全套 pytest 77 passed；`verify_all` 14 groups=0；MCP 69/878/9；`dist/` 153 fresh；wheel cold install Schema v11/account persistence/redaction smoke；`artifacts/design-qa/l1-accounts-center-final.jpg`。
+- Commit: `loop(v1.3): L1 ship marketplace accounts center`（本记录所在提交）
+- Notes: tenant-scoped list/get/create/update/health；Amazon marketplace directory/region validation；真实 Sellers marketplaceParticipations 和 Shopify shop health 边界；UI loading/empty/success/failure/RBAC；OAuth/delete/background checks 明确不在 L1。
+- Validator results: all passed; browser health failure persisted as `misconfigured` across reload; console 0 errors.
+- Failure 1: OpenAPI test wording与 contract gate 对 shop.json 代码样式产生误判；已修正文档字面并重建 dist。
+- Failure 2 / blocked reason: none.
+- Restore point and result: L0 `7f483b4`; L1 迁移和 UI 可由本轮单一提交回退。
 
 ### Lx — 名称
 

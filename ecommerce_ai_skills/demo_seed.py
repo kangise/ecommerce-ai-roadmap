@@ -130,6 +130,32 @@ def seed_demo_database(path: str | Path) -> dict[str, Any]:
     owner = app.auth.authenticate(owner_key)
     reviewer = app.auth.create_user(owner, "demo-reviewer@example.test", "admin")
     reviewer_key = app.auth.issue_for_user(owner, str(reviewer["id"]))
+    marketplace_accounts = [
+        app.accounts.create(
+            owner,
+            "amazon_spapi",
+            "demo-seller-us",
+            {
+                "region": "na",
+                "marketplace_ids": ["ATVPDKIKX0DER"],
+                "lwa_client_id_ref": "DEMO_AMAZON_LWA_CLIENT_ID",
+                "lwa_client_secret_ref": "DEMO_AMAZON_LWA_CLIENT_SECRET",
+                "lwa_refresh_token_ref": "DEMO_AMAZON_LWA_REFRESH_TOKEN",
+            },
+            "demo-account-amazon",
+        ),
+        app.accounts.create(
+            owner,
+            "shopify",
+            "demo-shopify-store",
+            {
+                "shop_domain": "demo-store.myshopify.com",
+                "api_version": "2026-07",
+                "credential_ref": "DEMO_SHOPIFY_ACCESS_TOKEN",
+            },
+            "demo-account-shopify",
+        ),
+    ]
 
     def imported(
         platform: str,
@@ -263,6 +289,7 @@ def seed_demo_database(path: str | Path) -> dict[str, Any]:
         "agent_run_id": run["id"],
         "evaluation_id": evaluation["id"],
         "approval_actions": len(actions),
+        "marketplace_accounts": len(marketplace_accounts),
         "schedule_id": schedule["id"],
         "job_id": job["id"],
         "job_status": completed_job["status"] if completed_job else None,

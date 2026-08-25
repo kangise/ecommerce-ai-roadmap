@@ -22,6 +22,7 @@ def test_demo_seed_creates_isolated_visible_full_product_state(tmp_path: Path) -
     assert result["tenant_mode"] == "demo"
     assert result["evidence_imports"] == 10
     assert result["approval_actions"] == 2
+    assert result["marketplace_accounts"] == 2
     assert result["job_status"] == "succeeded"
 
     app = RuntimeApplication(Database(path))
@@ -30,6 +31,10 @@ def test_demo_seed_creates_isolated_visible_full_product_state(tmp_path: Path) -
     assert reviewer.role == "admin"
     assert owner.role == "owner"
     assert app.db.get_tenant(reviewer.tenant_id)["mode"] == "demo"
+    assert {account["provider"] for account in app.accounts.list(reviewer)} == {
+        "amazon_spapi",
+        "shopify",
+    }
 
     class MeHandler(_Handler):
         def __init__(self):
@@ -92,7 +97,7 @@ def test_schema_v9_migrates_existing_tenants_to_production_mode(tmp_path: Path) 
             """
         )
     db = Database(path)
-    assert db.readiness()["schema_version"] == 10
+    assert db.readiness()["schema_version"] == 11
     assert db.get_tenant("tenant-1")["mode"] == "production"
 
 

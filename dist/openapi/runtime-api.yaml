@@ -186,8 +186,26 @@ paths:
         '404': {$ref: '#/components/responses/NotFound'}
         '409': {$ref: '#/components/responses/Conflict'}
   /v1/connectors:
+    get:
+      summary: List tenant-owned marketplace connector accounts
+      description: Viewer, operator, admin, and owner roles may read the safe connector representation for their authenticated tenant. Credential values and environment-variable names are never returned.
+      responses:
+        '200':
+          description: Connector accounts with redacted credential references
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [connectors]
+                properties:
+                  connectors:
+                    type: array
+                    items: {$ref: '#/components/schemas/MarketplaceAccount'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
     post:
-      summary: Register non-secret connector metadata
+      summary: Create a tenant marketplace connector account
+      description: Requires admin or owner role. The request stores only non-secret connector details and environment-variable references; the response redacts those references to a present marker.
       requestBody:
         required: true
         content:
@@ -195,17 +213,65 @@ paths:
             schema: {$ref: '#/components/schemas/ConnectorRegistration'}
       responses:
         '201':
-          description: Connector account created
+          description: Connector account created with initial unchecked health
           content:
             application/json:
-              schema:
-                type: object
-                required: [id]
-                properties:
-                  id: {type: string, format: uuid}
+              schema: {$ref: '#/components/schemas/MarketplaceAccount'}
         '401': {$ref: '#/components/responses/Unauthorized'}
         '403': {$ref: '#/components/responses/Forbidden'}
         '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+  /v1/connectors/{accountId}:
+    get:
+      summary: Read one tenant marketplace connector account
+      description: Viewer, operator, admin, and owner roles may read the safe connector representation. An account outside the authenticated tenant is indistinguishable from a missing account and returns 404.
+      parameters:
+        - {$ref: '#/components/parameters/accountId'}
+      responses:
+        '200':
+          description: Connector account with redacted credential references
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/MarketplaceAccount'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+    patch:
+      summary: Update a tenant marketplace connector account
+      description: Requires admin or owner role. The existing provider is retained; config is required and must contain the complete provider configuration. external_account_id is optional and omitted values retain the existing identifier. Updating config resets health to unchecked and clears the persisted health error.
+      parameters:
+        - {$ref: '#/components/parameters/accountId'}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/ConnectorUpdateRequest'}
+      responses:
+        '200':
+          description: Updated connector account with health reset to unchecked
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/MarketplaceAccount'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+  /v1/connectors/{accountId}/health-check:
+    post:
+      summary: Run and persist a connector health check
+      description: "Requires operator, admin, or owner role. The check is synchronous and provider-specific: Amazon verifies LWA credentials through Sellers marketplaceParticipations for configured marketplaces; Shopify reads the configured shop's shop.json endpoint. A failed remote check is persisted on the account and returned as a 200 response with health_status, health_error_code, and health_error_message; it is not converted into a transient success."
+      parameters:
+        - {$ref: '#/components/parameters/accountId'}
+      responses:
+        '200':
+          description: Connector account after the persisted health result; health_status may be healthy, unhealthy, or misconfigured
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/MarketplaceAccount'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
         '422': {$ref: '#/components/responses/ValidationFailed'}
   /v1/actions:
     post:
@@ -735,6 +801,11 @@ components:
       scheme: bearer
       bearerFormat: eai_API_KEY
   parameters:
+    accountId:
+      in: path
+      name: accountId
+      required: true
+      schema: {type: string, format: uuid}
     actionId:
       in: path
       name: actionId
@@ -851,6 +922,9 @@ components:
         - tiktok_shop
         - walmart
         - zalando
+    ConnectorProvider:
+      type: string
+      enum: [amazon_spapi, shopify]
     EvidenceReportType:
       type: string
       enum:
@@ -941,6 +1015,16 @@ components:
         - {$ref: '#/components/schemas/AmazonSPAPIConnectorRegistration'}
       discriminator:
         propertyName: provider
+    ConnectorUpdateRequest:
+      type: object
+      additionalProperties: false
+      required: [config]
+      properties:
+        external_account_id: {type: string, minLength: 1}
+        config:
+          oneOf:
+            - {$ref: '#/components/schemas/ShopifyConnectorConfig'}
+            - {$ref: '#/components/schemas/AmazonSPAPIConnectorConfig'}
     ShopifyConnectorRegistration:
       type: object
       additionalProperties: false
@@ -949,13 +1033,7 @@ components:
         provider: {type: string, enum: [shopify]}
         external_account_id: {type: string, minLength: 1}
         config:
-          type: object
-          additionalProperties: false
-          required: [shop_domain, api_version, credential_ref]
-          properties:
-            shop_domain: {type: string, pattern: '^[a-z0-9][a-z0-9-]*\.myshopify\.com$'}
-            api_version: {type: string, pattern: '^20\d{2}-\d{2}$'}
-            credential_ref: {type: string, pattern: '^[A-Z][A-Z0-9_]{2,127}$', writeOnly: true}
+          $ref: '#/components/schemas/ShopifyConnectorConfig'
     AmazonSPAPIConnectorRegistration:
       type: object
       additionalProperties: false
@@ -964,18 +1042,111 @@ components:
         provider: {type: string, enum: [amazon_spapi]}
         external_account_id: {type: string, minLength: 1}
         config:
+          $ref: '#/components/schemas/AmazonSPAPIConnectorConfig'
+    ShopifyConnectorConfig:
+      type: object
+      additionalProperties: false
+      required: [shop_domain, api_version, credential_ref]
+      properties:
+        shop_domain: {type: string, pattern: '^[a-z0-9][a-z0-9-]*\.myshopify\.com$'}
+        api_version: {type: string, pattern: '^20\d{2}-\d{2}$'}
+        credential_ref: {type: string, pattern: '^[A-Z][A-Z0-9_]{2,127}$', writeOnly: true}
+    AmazonSPAPIConnectorConfig:
+      type: object
+      additionalProperties: false
+      required: [region, marketplace_ids, lwa_client_id_ref, lwa_client_secret_ref, lwa_refresh_token_ref]
+      properties:
+        region: {type: string, enum: [na, eu, fe]}
+        marketplace_ids:
+          type: array
+          minItems: 1
+          maxItems: 20
+          items: {type: string, pattern: '^[A-Z0-9]{5,20}$'}
+        lwa_client_id_ref: {type: string, pattern: '^[A-Z][A-Z0-9_]{2,127}$', writeOnly: true}
+        lwa_client_secret_ref: {type: string, pattern: '^[A-Z][A-Z0-9_]{2,127}$', writeOnly: true}
+        lwa_refresh_token_ref: {type: string, pattern: '^[A-Z][A-Z0-9_]{2,127}$', writeOnly: true}
+    ConnectorProviderDetails:
+      oneOf:
+        - {$ref: '#/components/schemas/ShopifyProviderDetails'}
+        - {$ref: '#/components/schemas/AmazonSPAPIProviderDetails'}
+    ShopifyProviderDetails:
+      type: object
+      additionalProperties: false
+      required: [shop_domain, api_version]
+      properties:
+        shop_domain: {type: string, pattern: '^[a-z0-9][a-z0-9-]*\.myshopify\.com$'}
+        api_version: {type: string, pattern: '^20\d{2}-\d{2}$'}
+    AmazonSPAPIProviderDetails:
+      type: object
+      additionalProperties: false
+      required: [region, marketplace_ids]
+      properties:
+        region: {type: string, enum: [na, eu, fe]}
+        marketplace_ids:
+          type: array
+          minItems: 1
+          maxItems: 20
+          items: {type: string, pattern: '^[A-Z0-9]{5,20}$'}
+    MarketplaceAccount:
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - tenant_id
+        - provider
+        - external_account_id
+        - provider_details
+        - credential_refs
+        - health_status
+        - health_checked_at
+        - health_error_code
+        - health_error_message
+        - created_at
+        - updated_at
+      properties:
+        id: {type: string, format: uuid}
+        tenant_id: {type: string, format: uuid}
+        provider: {$ref: '#/components/schemas/ConnectorProvider'}
+        external_account_id: {type: string}
+        provider_details: {$ref: '#/components/schemas/ConnectorProviderDetails'}
+        credential_refs:
           type: object
-          additionalProperties: false
-          required: [region, marketplace_ids, lwa_client_id_ref, lwa_client_secret_ref, lwa_refresh_token_ref]
-          properties:
-            region: {type: string, enum: [na, eu, fe]}
-            marketplace_ids:
-              type: array
-              minItems: 1
-              items: {type: string, pattern: '^[A-Z0-9]{5,20}$'}
-            lwa_client_id_ref: {type: string, pattern: '^[A-Z][A-Z0-9_]{2,127}$', writeOnly: true}
-            lwa_client_secret_ref: {type: string, pattern: '^[A-Z][A-Z0-9_]{2,127}$', writeOnly: true}
-            lwa_refresh_token_ref: {type: string, pattern: '^[A-Z][A-Z0-9_]{2,127}$', writeOnly: true}
+          description: Credential reference presence only; values are always present and never contain names or secrets.
+          minProperties: 1
+          additionalProperties: {type: string, enum: [present]}
+        health_status:
+          type: string
+          enum: [unchecked, healthy, unhealthy, misconfigured]
+        health_checked_at: {type: string, format: date-time, nullable: true}
+        health_error_code:
+          type: string
+          nullable: true
+          enum: [missing_credential, invalid_configuration, external_service_error, null]
+        health_error_message: {type: string, nullable: true}
+        created_at: {type: string, format: date-time}
+        updated_at: {type: string, format: date-time}
+    ConnectorProviderCatalogEntry:
+      type: object
+      additionalProperties: false
+      required: [id, name, detail_fields, credential_fields]
+      properties:
+        id: {$ref: '#/components/schemas/ConnectorProvider'}
+        name: {type: string}
+        detail_fields:
+          type: array
+          items: {type: string}
+        credential_fields:
+          type: array
+          items: {type: string}
+    AmazonMarketplaceCatalogEntry:
+      type: object
+      additionalProperties: false
+      required: [id, name, country_code, region]
+      properties:
+        id: {type: string, pattern: '^[A-Z0-9]{5,20}$'}
+        name: {type: string}
+        country_code: {type: string, pattern: '^[A-Z]{2}$'}
+        region: {type: string, enum: [na, eu, fe]}
     ActionRequest:
       oneOf:
         - {$ref: '#/components/schemas/ShopifySyncActionRequest'}
@@ -1338,7 +1509,7 @@ components:
         skill_ids: {type: array, items: {type: string}}
     RuntimeCatalog:
       type: object
-      required: [platforms, report_types, workflows, action_operations]
+      required: [platforms, report_types, workflows, action_operations, connector_providers, amazon_marketplaces]
       properties:
         platforms:
           type: array
@@ -1356,6 +1527,12 @@ components:
         action_operations:
           type: array
           items: {type: string, enum: [shopify.sync_products, amazon_spapi.import_report]}
+        connector_providers:
+          type: array
+          items: {$ref: '#/components/schemas/ConnectorProviderCatalogEntry'}
+        amazon_marketplaces:
+          type: array
+          items: {$ref: '#/components/schemas/AmazonMarketplaceCatalogEntry'}
     AuditEvent:
       type: object
       required: [id, tenant_id, request_id, action, resource_type, outcome, metadata, created_at]

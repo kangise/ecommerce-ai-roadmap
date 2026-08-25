@@ -13,6 +13,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 - Add package integrity metadata, automated tests, and PR quality checks.
 
 ### Added
+- L1 marketplace connector account contract for Amazon SP-API and Shopify:
+  tenant-scoped list/get/create/update, role-gated synchronous health checks,
+  redacted credential-reference presence, provider/marketplace catalogs, and
+  persisted health outcomes.
 - Six ontology-backed AI systems terms, bringing the generated trilingual glossary and entity model to 100 entries.
 - Four official Amazon Sponsored Brands Video constraints, bringing the ontology to 322 sourced constraints.
 - A real installable Python package and `opc-ecommerce` entry point; wheels now include the generated knowledge artifact instead of metadata only.

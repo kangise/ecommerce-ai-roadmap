@@ -10,3 +10,10 @@ class ReadOnlyProductsConnector(Protocol):
 
     def list_products(self, *, limit: int = 50, page_info: str | None = None) -> dict[str, Any]:
         ...
+
+
+class HealthCheckConnector(Protocol):
+    """Connector contract used by account health checks."""
+
+    def health_check(self) -> dict[str, Any]:
+        ...

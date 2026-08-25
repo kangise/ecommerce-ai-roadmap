@@ -18,6 +18,7 @@ from typing import Any
 from urllib.parse import parse_qs, urlparse
 
 from .actions import ActionService
+from .accounts import MarketplaceAccountService
 from .agents import AgentProvider, OpenAIResponsesProvider, WeeklyOpsCouncil
 from .auth import AuthService
 from .briefing import BriefingService
@@ -42,6 +43,7 @@ class RuntimeApplication:
     ):
         self.db = db
         self.auth = AuthService(db)
+        self.accounts = MarketplaceAccountService(db, self.auth)
         self.evidence_imports = EvidenceImportService(db, self.auth)
         self.actions = ActionService(db, self.auth, self.evidence_imports)
         self.briefing = BriefingService(db, self.auth)
@@ -250,6 +252,13 @@ class _Handler(BaseHTTPRequestHandler):
             elif parsed.path == "/v1/api-keys":
                 self.app.auth.require(principal, "admin")
                 self._json(200, {"keys": self.app.db.list_api_keys(principal.tenant_id)}, request_id)
+            elif parsed.path == "/v1/connectors":
+                self._json(
+                    200, {"connectors": self.app.accounts.list(principal)}, request_id
+                )
+            elif parsed.path.startswith("/v1/connectors/") and len(parsed.path.split("/")) == 4:
+                account_id = parsed.path.split("/")[3]
+                self._json(200, self.app.accounts.get(principal, account_id), request_id)
             elif parsed.path == "/v1/evidence-imports":
                 limit = int(parse_qs(parsed.query).get("limit", [100])[0])
                 self._json(
@@ -324,6 +333,7 @@ class _Handler(BaseHTTPRequestHandler):
                     self.app.agent_runs.platform_registry.entries().values(),
                     key=lambda item: item["id"],
                 )
+                connector_catalog = self.app.accounts.catalog()
                 self._json(
                     200,
                     {
@@ -331,6 +341,7 @@ class _Handler(BaseHTTPRequestHandler):
                         "report_types": sorted(REPORT_SPECS),
                         "workflows": [WeeklyOpsCouncil.WORKFLOW],
                         "action_operations": sorted(ActionService.OPERATIONS),
+                        **connector_catalog,
                     },
                     request_id,
                 )
@@ -370,11 +381,30 @@ class _Handler(BaseHTTPRequestHandler):
                 self.app.db.append_audit(principal.tenant_id, principal.user_id, request_id, "api_key.revoke", "api_key", key_id, "succeeded", {})
                 self._json(200, {"revoked": True, "key_id": key_id}, request_id); return
             if parsed.path == "/v1/connectors":
-                principal = self._principal(); self.app.auth.require(principal, "admin")
-                body = self._body()
-                account_id = self.app.db.add_connector_account(principal.tenant_id, str(body.get("provider", "")), str(body.get("external_account_id", "")), body.get("config", {}))
-                self.app.db.append_audit(principal.tenant_id, principal.user_id, request_id, "connector.register", "connector", account_id, "succeeded", {"provider": body.get("provider")})
-                self._json(201, {"id": account_id}, request_id); return
+                principal = self._principal()
+                body = self._body_fields(
+                    required={"provider", "external_account_id", "config"}
+                )
+                account = self.app.accounts.create(
+                    principal,
+                    provider=body["provider"],
+                    external_account_id=body["external_account_id"],
+                    config=body["config"],
+                    request_id=request_id,
+                )
+                self._json(201, account, request_id); return
+            if parsed.path.startswith("/v1/connectors/") and parsed.path.endswith("/health-check") and len(parsed.path.split("/")) == 5:
+                principal = self._principal()
+                body = self._body_fields(required=set(), allowed=set())
+                account_id = parsed.path.split("/")[3]
+                self._json(
+                    200,
+                    self.app.accounts.health_check(
+                        principal, account_id, request_id=request_id
+                    ),
+                    request_id,
+                )
+                return
             if parsed.path == "/v1/evidence-imports":
                 principal = self._principal()
                 content_type = self.headers.get("Content-Type", "").split(";", 1)[0].strip().lower()
@@ -508,6 +538,25 @@ class _Handler(BaseHTTPRequestHandler):
                 user = self.app.auth.update_user_role(principal, user_id, str(body["role"]))
                 self.app.db.append_audit(principal.tenant_id, principal.user_id, request_id, "user.role_update", "user", user_id, "succeeded", {"role": user["role"]})
                 self._json(200, {"user": user}, request_id)
+            elif parsed.path.startswith("/v1/connectors/") and len(parsed.path.split("/")) == 4:
+                account_id = parsed.path.split("/")[3]
+                body = self._body_fields(
+                    required={"config"}, allowed={"external_account_id", "config"}
+                )
+                existing = self.app.accounts.get(principal, account_id)
+                self._json(
+                    200,
+                    self.app.accounts.update(
+                        principal,
+                        account_id,
+                        external_account_id=body.get(
+                            "external_account_id", existing["external_account_id"]
+                        ),
+                        config=body["config"],
+                        request_id=request_id,
+                    ),
+                    request_id,
+                )
             elif parsed.path.startswith("/v1/schedules/") and len(parsed.path.split("/")) == 4:
                 schedule_id = parsed.path.split("/")[3]
                 body = self._body_fields(required={"enabled"})

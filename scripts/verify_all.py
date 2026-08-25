@@ -533,6 +533,9 @@ def main() -> int:
                     "/v1/users": {"get", "post"},
                     "/v1/demo-session": {"get"},
                     "/v1/users/{userId}": {"patch"},
+                    "/v1/connectors": {"get", "post"},
+                    "/v1/connectors/{accountId}": {"get", "patch"},
+                    "/v1/connectors/{accountId}/health-check": {"post"},
                     "/v1/actions": {"post"},
                     "/v1/actions/{actionId}/approve": {"post"},
                     "/v1/evidence-imports": {"get", "post"},
@@ -611,6 +614,10 @@ def main() -> int:
                 schemas = contract.get("components", {}).get("schemas", {})
                 for schema_name in (
                     "AmazonSPAPIConnectorRegistration",
+                    "MarketplaceAccount",
+                    "ConnectorUpdateRequest",
+                    "ConnectorProviderCatalogEntry",
+                    "AmazonMarketplaceCatalogEntry",
                     "DemoSession",
                     "AmazonReportImportActionRequest",
                     "Job",

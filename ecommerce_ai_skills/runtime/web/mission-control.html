@@ -20,6 +20,7 @@
         <button data-action="navigate" data-view="agents" class="nav-item"><img src="/app/assets/icons/robot.svg" alt=""><span>Agents</span></button>
         <button data-action="navigate" data-view="evidence" class="nav-item"><img src="/app/assets/icons/database.svg" alt=""><span>Evidence</span></button>
         <button data-action="navigate" data-view="approvals" class="nav-item"><img src="/app/assets/icons/shield-check.svg" alt=""><span>Approvals</span><span id="approval-nav-count" class="nav-count" hidden>0</span></button>
+        <button data-action="navigate" data-view="accounts" class="nav-item"><img src="/app/assets/icons/key.svg" alt=""><span>Accounts</span></button>
         <button data-action="navigate" data-view="automations" class="nav-item"><img src="/app/assets/icons/gear-six.svg" alt=""><span>Automations</span></button>
         <button data-action="navigate" data-view="audit" class="nav-item"><img src="/app/assets/icons/clipboard-text.svg" alt=""><span>Audit</span></button>
       </nav>
@@ -147,6 +148,14 @@
           <section class="tool-panel wide"><div id="approval-list" class="data-list"></div></section>
         </section>
 
+        <section id="view-accounts" class="view" data-view-panel="accounts" aria-labelledby="accounts-title">
+          <div class="page-heading compact">
+            <div><p class="kicker">Accounts Center</p><h1 id="accounts-title">连接店铺账户</h1><p class="heading-summary">仅保存环境变量引用，不在浏览器或 Runtime 数据库中保存平台密钥。</p></div>
+            <div class="heading-actions"><button data-action="open-connector-form" id="add-connector-btn" class="primary-button">添加账户</button></div>
+          </div>
+          <section class="tool-panel wide"><div id="connector-permission" class="permission-note" hidden></div><div id="connector-list" class="connector-list" aria-live="polite"></div></section>
+        </section>
+
         <section id="view-automations" class="view" data-view-panel="automations" aria-labelledby="automations-title">
           <div class="page-heading compact"><div><p class="kicker">Automation</p><h1 id="automations-title">计划与后台任务</h1><p class="heading-summary">Schedule 只选择最新真实 Evidence，Worker 使用持久化队列、租约和重试。</p></div></div>
           <div class="tool-layout">
@@ -186,6 +195,26 @@
   <dialog id="detail-dialog" class="detail-dialog">
     <div class="dialog-head"><div><p class="kicker">Evidence-backed detail</p><h2 id="detail-title">详情</h2></div><button data-action="close-dialog" data-dialog="detail-dialog" class="icon-button" aria-label="关闭"><img src="/app/assets/icons/x.svg" alt=""></button></div>
     <pre id="detail-content"></pre>
+  </dialog>
+
+  <dialog id="connector-dialog" class="connector-dialog">
+    <div class="dialog-head"><div><p class="kicker">Accounts Center</p><h2 id="connector-dialog-title">添加账户</h2></div><button data-action="close-dialog" data-dialog="connector-dialog" class="icon-button" aria-label="关闭"><img src="/app/assets/icons/x.svg" alt=""></button></div>
+    <p class="dialog-copy">填写平台账户标识和环境变量名称。不要输入任何密钥值。</p>
+    <form id="connector-form">
+      <input id="connector-id" type="hidden">
+      <label>Provider<select id="connector-provider" required></select></label>
+      <label>外部账户 ID<input id="connector-external-account-id" required autocomplete="off" placeholder="Seller ID 或店铺账户 ID"></label>
+      <div id="amazon-connector-fields" class="connector-fields">
+        <label>Amazon region<select id="connector-region"></select></label>
+        <fieldset><legend>Marketplaces</legend><div id="connector-marketplaces" class="check-list"></div></fieldset>
+        <div class="form-grid"><label>LWA client ID 环境变量<input id="amazon-lwa-client-id-ref" autocomplete="off" placeholder="AMAZON_LWA_CLIENT_ID"></label><label>LWA client secret 环境变量<input id="amazon-lwa-client-secret-ref" autocomplete="off" placeholder="AMAZON_LWA_CLIENT_SECRET"></label><label>Refresh token 环境变量<input id="amazon-refresh-token-ref" autocomplete="off" placeholder="AMAZON_REFRESH_TOKEN"></label></div>
+      </div>
+      <div id="shopify-connector-fields" class="connector-fields" hidden>
+        <div class="form-grid"><label>Shopify domain<input id="shopify-domain" autocomplete="off" placeholder="store.myshopify.com"></label><label>API version<input id="shopify-api-version" autocomplete="off" placeholder="2025-01"></label></div>
+        <label>Access token 环境变量<input id="shopify-access-token-ref" autocomplete="off" placeholder="SHOPIFY_ACCESS_TOKEN"></label>
+      </div>
+      <div class="dialog-actions"><button data-action="save-connector" class="primary-button" type="submit">保存账户</button></div>
+    </form>
   </dialog>
 
   <script src="/app/app.js" defer></script>

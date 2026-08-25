@@ -39,6 +39,75 @@ Role changes use `PATCH /v1/users/{user_id}`. A caller cannot assign a role
 higher than their own, cannot change their own role, and cannot demote the last
 owner. User creation and role changes are audit events.
 
+## Marketplace connector accounts (L1)
+
+Connector accounts are durable and tenant-scoped. Use the catalog before
+onboarding to discover the supported providers and Amazon marketplace
+directory:
+
+```bash
+curl -fsS http://127.0.0.1:8787/v1/catalog \
+  -H 'Authorization: Bearer <VIEWER_API_KEY>'
+```
+
+The catalog's `connector_providers` entries contain `id`, `name`,
+`detail_fields`, and `credential_fields`; `amazon_marketplaces` entries contain
+`id`, `name`, `country_code`, and `region`. The current providers are
+`amazon_spapi` and `shopify`.
+
+Role gates are explicit: `viewer` can list/read accounts, `admin` (and owner)
+can create/update them, and `operator` (plus admin/owner) can run a health
+check. The response is a safe `MarketplaceAccount`: provider details are
+non-secret, and `credential_refs` maps each configured credential field to
+`present`; no credential value or environment-variable name is returned.
+
+Create with a full provider configuration. Every credential field must be an
+environment-variable reference, and the referenced variable must be supplied
+by the deployment secret manager—not in JSON or SQLite as a secret:
+
+```bash
+curl -fsS -X POST http://127.0.0.1:8787/v1/connectors \
+  -H 'Authorization: Bearer <ADMIN_API_KEY>' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "provider": "shopify",
+    "external_account_id": "primary",
+    "config": {
+      "shop_domain": "shop-name.myshopify.com",
+      "api_version": "2025-10",
+      "credential_ref": "SHOPIFY_ADMIN_TOKEN"
+    }
+  }'
+```
+
+`PATCH /v1/connectors/<ACCOUNT_ID>` requires `config`; it accepts an optional
+`external_account_id` and otherwise keeps the existing identifier. Updating
+the account resets `health_status` to `unchecked` and clears the previous
+health timestamp and error fields. There is no connector delete endpoint in
+L1.
+
+Run health checks explicitly; they are synchronous and do not run in the
+background. Amazon checks LWA credentials and the real Sellers API
+`/sellers/v1/marketplaceParticipations` response for configured marketplace
+participation. Shopify reads the configured shop's shop.json endpoint. A
+failed check is still a durable result: `misconfigured` is used for
+`missing_credential` or `invalid_configuration`, and `unhealthy` is used for
+`external_service_error`. Inspect `health_checked_at`, `health_error_code`,
+and `health_error_message` after the call and after a restart.
+
+```bash
+curl -fsS -X POST \
+  http://127.0.0.1:8787/v1/connectors/<ACCOUNT_ID>/health-check \
+  -H 'Authorization: Bearer <OPERATOR_API_KEY>' \
+  -H 'Content-Type: application/json' \
+  -d '{}'
+```
+
+An account ID from another tenant returns `404`; do not infer whether it
+exists from a different status or attempt to bypass that boundary. OAuth
+connect flows, connector deletion, and scheduled/background health checks are
+outside L1.
+
 ## Multi-agent runs
 
 - Set `OPENAI_API_KEY` only in the deployment secret manager and set

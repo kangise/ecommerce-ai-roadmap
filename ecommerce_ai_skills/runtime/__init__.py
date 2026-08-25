@@ -1,6 +1,7 @@
 """Dependency-light runtime for tenant-safe e-commerce workflows."""
 
 from .agents import OpenAIResponsesProvider, WeeklyOpsCouncil
+from .accounts import MarketplaceAccountService
 from .briefing import BriefingService
 from .evidence import CSVIngestor, EvidenceImportService, EvidenceObjectStore, XLSXIngestor
 from .evals import WorkflowEvaluator
@@ -14,6 +15,7 @@ __all__ = [
     "EvidenceImportService",
     "EvidenceObjectStore",
     "JobService",
+    "MarketplaceAccountService",
     "OpenAIResponsesProvider",
     "Principal",
     "ScheduleService",

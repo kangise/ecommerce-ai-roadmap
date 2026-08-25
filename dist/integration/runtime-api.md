@@ -88,8 +88,11 @@ visible Demo warning.
 - Tenants carry an explicit `production` or `demo` mode. Normal onboarding is
   always `production`; only the explicit seed command can create Demo mode.
 - Roles are `viewer`, `operator`, `admin`, and `owner`.
-- Connector configuration stores an environment-variable reference, never a
-  Shopify token. The variable must be present when an action executes.
+- Connector accounts are tenant-owned and role-gated: viewer reads, admin/owner
+  creates or updates, and operator/admin/owner runs an explicit health check.
+  Configuration stores environment-variable references only, never Shopify or
+  Amazon token values; account responses expose credential presence markers.
+  Health results and error codes/messages are persisted on the account.
 - Mutating work is requested with an `Idempotency-Key`, approved by a second
   admin/owner, then executed. A failed external call is recorded as failed and
   returned as an error; it is never reported as success.
@@ -325,7 +328,35 @@ above.
 3. An operator or owner executes the approved action.
 4. All four user/key/action events remain available through `/v1/audit`.
 
-## Connector example
+## Marketplace connector accounts (L1)
+
+Marketplace accounts are durable tenant-owned records. The account API returns
+the following safe representation: `id`, `tenant_id`, `provider`,
+`external_account_id`, non-secret `provider_details`, `credential_refs` whose
+values are always `present`, `health_status`, `health_checked_at`,
+`health_error_code`, `health_error_message`, `created_at`, and `updated_at`.
+Credential values and environment-variable names are never returned.
+
+The minimum role for each operation is:
+
+| Operation | Route | Minimum role |
+| --- | --- | --- |
+| Read list or one account | `GET /v1/connectors`, `GET /v1/connectors/{accountId}` | `viewer` |
+| Create an account | `POST /v1/connectors` | `admin` |
+| Update an account | `PATCH /v1/connectors/{accountId}` | `admin` |
+| Run a health check | `POST /v1/connectors/{accountId}/health-check` | `operator` |
+
+`owner` inherits the capabilities above. Every route is tenant-scoped; an
+account ID belonging to another tenant returns the same `404` not-found
+response as an unknown ID. The catalog at `GET /v1/catalog` includes
+`connector_providers[{id,name,detail_fields,credential_fields}]` and
+`amazon_marketplaces[{id,name,country_code,region}]` for setup forms.
+
+Create and update requests accept only environment-variable references for
+credentials. `POST` requires `provider`, `external_account_id`, and the full
+provider `config`. `PATCH` requires the full `config`; `external_account_id`
+is optional and omitted values retain the current identifier. Updating an
+account resets its health to `unchecked` and clears the prior error.
 
 Register metadata (no secret in the payload):
 
@@ -341,9 +372,10 @@ Register metadata (no secret in the payload):
 }
 ```
 
-Then set `SHOPIFY_ADMIN_TOKEN` through the deployment secret manager. The only
-currently implemented action is the read-only `shopify.sync_products`, which
-stores the returned product records under the current tenant.
+Then set `SHOPIFY_ADMIN_TOKEN` through the deployment secret manager. A health
+check performs a read-only Shopify shop.json request for the configured shop.
+The only currently implemented action is the read-only `shopify.sync_products`,
+which stores the returned product records under the current tenant.
 
 ### Amazon SP-API Reports connector
 
@@ -367,6 +399,27 @@ Set those variables through the deployment secret manager. The connector uses
 the LWA refresh-token exchange and passes the short-lived token only in the
 `x-amz-access-token` header. It supports the official `na`, `eu`, and `fe`
 endpoints and never persists refresh, client-secret, or access-token values.
+An Amazon health check calls the Sellers API's real
+`/sellers/v1/marketplaceParticipations` endpoint and verifies authorization for
+the configured marketplace IDs; it does not treat locally configured IDs as
+proof of seller participation.
+
+Run a check explicitly and inspect the durable account response:
+
+```bash
+curl -fsS -X POST http://127.0.0.1:8787/v1/connectors/<ACCOUNT_ID>/health-check \
+  -H 'Authorization: Bearer <OPERATOR_API_KEY>' \
+  -H 'Content-Type: application/json' \
+  -d '{}'
+```
+
+Health failures are persisted rather than hidden: missing environment
+references produce `misconfigured`/`missing_credential`, invalid setup
+produces `misconfigured`/`invalid_configuration`, and provider failures
+produce `unhealthy`/`external_service_error`. The response remains the account
+resource so callers can render the saved status and error message after a
+restart. Health checks are caller-triggered and synchronous in L1; there is no
+background health scheduler.
 
 The first approved action retrieves an already completed, non-restricted,
 delimited report and converts it into a durable Evidence Import:
@@ -387,7 +440,8 @@ execute it. The connector checks `processingStatus=DONE`, follows the report
 document flow, permits only HTTPS Amazon/S3/CloudFront hosts, bounds downloads
 and GZIP expansion, and delegates semantic CSV validation to the Evidence layer.
 
-This slice deliberately does not create reports, access Restricted Data Tokens
+This slice deliberately does not implement OAuth connect flows, connector
+deletion, background health checks, create reports, access Restricted Data Tokens
 or PII reports, call Amazon Ads, or support XML/JSON report documents. Those
 remain separate connector increments with their own permissions and contracts.
 

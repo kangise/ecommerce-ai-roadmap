@@ -24,6 +24,9 @@ def test_mission_control_assets_are_real_and_javascript_compiles() -> None:
     assert "linear-gradient" not in styles and "radial-gradient" not in styles
     assert "data-view-panel=\"briefing\"" in html
     assert "Agent Brief" in html and "需要你决定" in html
+    assert 'data-view-panel="accounts"' in html
+    assert 'id="connector-dialog"' in html
+    assert "Accounts Center" in html
     assert 'id="demo-badge"' in html and 'id="demo-banner"' in html
     assert 'state.me?.tenant_mode === "demo"' in script
     assert 'fetch("/v1/demo-session"' in script
@@ -46,7 +49,7 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
         match = re.search(r'data-action="([a-z-]+)"', tag)
         assert match, f"visible button has no data-action: {tag}"
         actions.append(match.group(1))
-    form_actions = {"upload-evidence", "create-run", "create-schedule"}
+    form_actions = {"upload-evidence", "create-run", "create-schedule", "save-connector"}
     switched = {
         "navigate",
         "select-platform",
@@ -66,11 +69,15 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
         "evaluate-run",
         "approve-action",
         "toggle-schedule",
+        "open-connector-form",
+        "edit-connector",
+        "health-check-connector",
     }
     form_wiring = {
         "upload-evidence": '$("evidence-form").addEventListener',
         "create-run": '$("run-form").addEventListener',
         "create-schedule": '$("schedule-form").addEventListener',
+        "save-connector": '$("connector-form").addEventListener',
     }
     for action in actions:
         assert action in form_actions | switched
@@ -88,8 +95,12 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
         "/v1/jobs",
         "/v1/schedules",
         "/v1/audit",
+        "/v1/connectors",
+        "/health-check",
     ):
         assert endpoint in script
+    assert "需要 admin 或 owner 角色" in script
+    assert "需要 operator、admin 或 owner 执行健康检查" in script
 
 
 def test_runtime_serves_ui_with_security_headers_and_live_catalog(tmp_path: Path) -> None:

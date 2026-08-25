@@ -125,6 +125,69 @@ def test_generated_docs_enumerate_all_skills_and_public_onboarding_api() -> None
     assert {"DemoSession", "Job", "Schedule", "MissionControl", "OperatingBriefing", "BriefingMetric", "BriefingAgent", "AgentEvaluation", "RuntimeCatalog"} <= set(schemas)
 
 
+def test_source_runtime_api_l1_connector_contract() -> None:
+    """Keep the source contract explicit while generated dist is rebuilt separately."""
+    contract = yaml.safe_load(
+        (ROOT / "openapi" / "runtime-api.yaml").read_text(encoding="utf-8")
+    )
+    paths = contract["paths"]
+    assert {"get", "post"} <= set(paths["/v1/connectors"])
+    assert {"get", "patch"} <= set(paths["/v1/connectors/{accountId}"])
+    assert "post" in paths["/v1/connectors/{accountId}/health-check"]
+
+    schemas = contract["components"]["schemas"]
+    account = schemas["MarketplaceAccount"]
+    assert set(account["required"]) == {
+        "id",
+        "tenant_id",
+        "provider",
+        "external_account_id",
+        "provider_details",
+        "credential_refs",
+        "health_status",
+        "health_checked_at",
+        "health_error_code",
+        "health_error_message",
+        "created_at",
+        "updated_at",
+    }
+    assert set(schemas["ConnectorProvider"]["enum"]) == {"amazon_spapi", "shopify"}
+    assert set(schemas["ConnectorUpdateRequest"]["required"]) == {"config"}
+    assert set(schemas["ConnectorUpdateRequest"]["properties"]) == {
+        "external_account_id",
+        "config",
+    }
+    assert {
+        "connector_providers",
+        "amazon_marketplaces",
+    } <= set(schemas["RuntimeCatalog"]["required"])
+    assert set(schemas["ConnectorProviderCatalogEntry"]["required"]) == {
+        "id",
+        "name",
+        "detail_fields",
+        "credential_fields",
+    }
+    assert set(schemas["AmazonMarketplaceCatalogEntry"]["required"]) == {
+        "id",
+        "name",
+        "country_code",
+        "region",
+    }
+
+    post = paths["/v1/connectors"]["post"]
+    assert set(
+        post["requestBody"]["content"]["application/json"]["schema"]["$ref"].split("/")[-1:]
+    ) == {"ConnectorRegistration"}
+    patch = paths["/v1/connectors/{accountId}"]["patch"]
+    assert patch["requestBody"]["content"]["application/json"]["schema"]["$ref"].endswith(
+        "/ConnectorUpdateRequest"
+    )
+    assert "marketplaceParticipations" in paths[
+        "/v1/connectors/{accountId}/health-check"
+    ]["post"]["description"]
+    assert "shop.json" in paths["/v1/connectors/{accountId}/health-check"]["post"]["description"]
+
+
 def test_mcp_sdk_is_an_optional_install_extra() -> None:
     project = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))["project"]
     assert all(not dependency.startswith("mcp") for dependency in project.get("dependencies", []))

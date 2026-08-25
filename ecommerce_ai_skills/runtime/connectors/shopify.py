@@ -35,16 +35,50 @@ class ShopifyConnector:
         return token
 
     def _url(self, limit: int, page_info: str | None) -> str:
+        return self._admin_url("products.json", {"limit": str(max(1, min(limit, 250))), **({"page_info": page_info} if page_info else {})})
+
+    def _admin_url(self, resource: str, params: dict[str, str] | None = None) -> str:
         domain = str(self.config.get("shop_domain", "")).lower().strip().rstrip("/")
         if not re.fullmatch(r"[a-z0-9][a-z0-9-]*\.myshopify\.com", domain):
             raise ValidationError("shop_domain must be a canonical *.myshopify.com host")
         api_version = str(self.config.get("api_version", "")).strip()
         if not re.fullmatch(r"20\d{2}-\d{2}", api_version):
             raise ValidationError("api_version must be an explicit YYYY-MM version")
-        params: dict[str, str] = {"limit": str(max(1, min(limit, 250)))}
-        if page_info:
-            params["page_info"] = page_info
-        return f"https://{domain}/admin/api/{api_version}/products.json?{urlencode(params)}"
+        query = f"?{urlencode(params)}" if params else ""
+        return f"https://{domain}/admin/api/{api_version}/{resource}{query}"
+
+    def _get_json(self, resource: str) -> dict[str, Any]:
+        request = Request(
+            self._admin_url(resource),
+            headers={"X-Shopify-Access-Token": self._credential(), "Accept": "application/json", "User-Agent": "ecommerce-ai-skills/1.2"},
+            method="GET",
+        )
+        try:
+            with self.transport(request, timeout=30) as response:
+                status = getattr(response, "status", 200)
+                body = response.read()
+        except HTTPError as exc:
+            raise ExternalServiceError(f"Shopify returned HTTP {exc.code}") from exc
+        except URLError as exc:
+            raise ExternalServiceError(f"Shopify request failed: {exc.reason}") from exc
+        except TimeoutError as exc:
+            raise ExternalServiceError("Shopify request timed out") from exc
+        if status < 200 or status >= 300:
+            raise ExternalServiceError(f"Shopify returned HTTP {status}")
+        try:
+            payload = json.loads(body.decode("utf-8"))
+        except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+            raise ExternalServiceError("Shopify returned invalid JSON") from exc
+        if not isinstance(payload, dict):
+            raise ExternalServiceError("Shopify returned a non-object response")
+        return payload
+
+    def health_check(self) -> dict[str, Any]:
+        payload = self._get_json("shop.json")
+        shop = payload.get("shop")
+        if not isinstance(shop, dict):
+            raise ExternalServiceError("Shopify response did not contain shop")
+        return {"shop_id": shop.get("id")}
 
     def list_products(self, *, limit: int = 50, page_info: str | None = None) -> dict[str, Any]:
         token = self._credential()
