@@ -149,6 +149,36 @@ linked account must belong to the same tenant and use `amazon_spapi`.
 L2 has no recipe delete endpoint, OAuth flow, Amazon execution, or background
 health/report scheduler.
 
+## Amazon report syncs (L3)
+
+Trigger a sync explicitly; it returns `202` and is idempotent by the required
+`Idempotency-Key`:
+
+```bash
+curl -fsS -X POST \
+  http://127.0.0.1:8787/v1/report-recipes/<RECIPE_ID>/sync \
+  -H 'Authorization: Bearer <OPERATOR_API_KEY>' \
+  -H 'Idempotency-Key: daily-sales-2026-09-01'
+```
+
+The linked connector account must currently be `healthy`. `report-worker`
+performs Amazon `createReport`, then `getReport` polling through
+`IN_QUEUE`/`IN_PROGRESS` to `DONE`; `CANCELLED` and `FATAL` persist as failed.
+`DONE` retrieves the document and creates the tenant-owned Evidence import.
+Sales/traffic JSON is flattened with bounded depth/rows/bytes; other supported
+documents use bounded TSV parsing. Provider `429` responses honor
+`Retry-After` and bounded retry/backoff.
+
+```bash
+opc-ecommerce report-worker --db ./runtime.sqlite --once --poll-seconds 5
+```
+
+Inspect `GET /v1/report-syncs` or `GET /v1/report-syncs/<SYNC_ID>` as a viewer.
+Without real Amazon credentials and authorized marketplace participation, live
+smoke is unavailable; use transport fixtures and do not claim success. L3 does
+not write to Amazon or automatically schedule recipes (automatic scheduling is
+an L8 concern).
+
 ## Multi-agent runs
 
 - Set `OPENAI_API_KEY` only in the deployment secret manager and set

@@ -20,7 +20,12 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import quote, urlencode, urlparse
 from urllib.request import Request, urlopen
 
-from ..errors import ExternalServiceError, MissingCredentialError, ValidationError
+from ..errors import (
+    ConnectorRateLimitError,
+    ExternalServiceError,
+    MissingCredentialError,
+    ValidationError,
+)
 
 
 REGION_ENDPOINTS = {
@@ -119,6 +124,31 @@ class AmazonSPAPIReportsConnector:
             raise ExternalServiceError(f"{service} returned a non-object response")
         return value
 
+    @staticmethod
+    def _header_dict(headers: Any) -> dict[str, str]:
+        if headers is None:
+            return {}
+        if hasattr(headers, "items"):
+            return {str(key): str(value) for key, value in headers.items()}
+        return {}
+
+    @classmethod
+    def _rate_limit_error(cls, service: str, headers: Any) -> ConnectorRateLimitError:
+        normalized = cls._header_dict(headers)
+        retry_value = next(
+            (value for key, value in normalized.items() if key.lower() == "retry-after"),
+            "60",
+        )
+        try:
+            retry_after = int(str(retry_value).strip())
+        except ValueError:
+            retry_after = 60
+        return ConnectorRateLimitError(
+            f"{service} returned HTTP 429",
+            retry_after=retry_after,
+            headers=normalized,
+        )
+
     def _send(self, request: Request, service: str, *, max_bytes: int = 1_000_000) -> tuple[bytes, Any, str]:
         try:
             with self.transport(request, timeout=self.timeout_seconds) as response:
@@ -127,11 +157,15 @@ class AmazonSPAPIReportsConnector:
                 headers = getattr(response, "headers", {}) or {}
                 final_url = response.geturl() if hasattr(response, "geturl") else request.full_url
         except HTTPError as exc:
+            if exc.code == 429:
+                raise self._rate_limit_error(service, exc.headers) from exc
             raise ExternalServiceError(f"{service} returned HTTP {exc.code}") from exc
         except URLError as exc:
             raise ExternalServiceError(f"{service} request failed: {exc.reason}") from exc
         except TimeoutError as exc:
             raise ExternalServiceError(f"{service} request timed out") from exc
+        if status == 429:
+            raise self._rate_limit_error(service, headers)
         if status < 200 or status >= 300:
             raise ExternalServiceError(f"{service} returned HTTP {status}")
         if len(body) > max_bytes:
@@ -180,6 +214,82 @@ class AmazonSPAPIReportsConnector:
         if not isinstance(payload, dict):
             raise ExternalServiceError("Amazon SP-API payload was not an object")
         return payload
+
+    def create_report(
+        self,
+        report_type: str,
+        marketplace_ids: list[str],
+        data_start_time: str,
+        data_end_time: str,
+    ) -> dict[str, Any]:
+        if not isinstance(report_type, str) or not re.fullmatch(r"GET_[A-Z0-9_]{1,120}", report_type):
+            raise ValidationError("Amazon report_type is invalid")
+        region = self.config.get("region")
+        _, configured = validate_amazon_marketplaces(
+            region, self.config.get("marketplace_ids")
+        )
+        _, requested = validate_amazon_marketplaces(region, marketplace_ids)
+        if not set(requested).issubset(configured):
+            raise ValidationError(
+                "Amazon report marketplace_ids must be configured on the connector"
+            )
+        for value, label in (
+            (data_start_time, "data_start_time"),
+            (data_end_time, "data_end_time"),
+        ):
+            if not isinstance(value, str) or not value:
+                raise ValidationError(f"{label} is required")
+        payload = {
+            "reportType": report_type,
+            "marketplaceIds": requested,
+            "dataStartTime": data_start_time,
+            "dataEndTime": data_end_time,
+        }
+        if report_type == "GET_SALES_AND_TRAFFIC_REPORT":
+            payload["reportOptions"] = {
+                "dateGranularity": "DAY",
+                "asinGranularity": "CHILD",
+            }
+        request = Request(
+            self._endpoint() + "/reports/2021-06-30/reports",
+            data=json.dumps(payload, separators=(",", ":")).encode("utf-8"),
+            headers={
+                "x-amz-access-token": self._access_token(),
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "User-Agent": "ecommerce-ai-skills/1.2",
+            },
+            method="POST",
+        )
+        raw, _, _ = self._send(request, "Amazon SP-API")
+        response = self._json(raw, "Amazon SP-API")
+        result = response.get("payload", response)
+        if not isinstance(result, dict):
+            raise ExternalServiceError("Amazon SP-API payload was not an object")
+        report_id = result.get("reportId")
+        if not isinstance(report_id, str) or not report_id:
+            raise ExternalServiceError("Amazon SP-API response did not contain reportId")
+        return {"report_id": self._validate_id(report_id, "reportId")}
+
+    def get_report_status(self, report_id: str) -> dict[str, Any]:
+        report_id = self._validate_id(report_id, "report_id")
+        report = self._spapi_json(
+            f"/reports/2021-06-30/reports/{quote(report_id, safe='')}",
+            self._access_token(),
+        )
+        status = report.get("processingStatus")
+        if not isinstance(status, str) or not status:
+            raise ExternalServiceError(
+                "Amazon SP-API report response did not contain processingStatus"
+            )
+        return {
+            "report_id": report_id,
+            "processing_status": status,
+            "report_document_id": report.get("reportDocumentId"),
+            "amazon_report_type": report.get("reportType"),
+            "data_start_time": report.get("dataStartTime"),
+            "data_end_time": report.get("dataEndTime"),
+        }
 
     def health_check(self) -> dict[str, Any]:
         """Verify LWA credentials and configured marketplace authorization."""
@@ -234,6 +344,12 @@ class AmazonSPAPIReportsConnector:
     def _validate_document_url(url: str) -> None:
         parsed = urlparse(url)
         host = (parsed.hostname or "").lower()
+        try:
+            port = parsed.port
+        except ValueError as exc:
+            raise ExternalServiceError(
+                "Amazon report document URL failed host validation"
+            ) from exc
         allowed = (
             host == "amazonaws.com"
             or host.endswith(".amazonaws.com")
@@ -242,7 +358,13 @@ class AmazonSPAPIReportsConnector:
             or host == "amazon.com"
             or host.endswith(".amazon.com")
         )
-        if parsed.scheme != "https" or not allowed or parsed.username or parsed.password:
+        if (
+            parsed.scheme != "https"
+            or port not in {None, 443}
+            or not allowed
+            or parsed.username
+            or parsed.password
+        ):
             raise ExternalServiceError("Amazon report document URL failed host validation")
 
     def _download_document(self, url: str, compression: str | None) -> bytes:

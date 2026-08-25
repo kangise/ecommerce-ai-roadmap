@@ -346,6 +346,63 @@ paths:
         '404': {$ref: '#/components/responses/NotFound'}
         '409': {$ref: '#/components/responses/Conflict'}
         '422': {$ref: '#/components/responses/ValidationFailed'}
+  /v1/report-recipes/{recipeId}/sync:
+    post:
+      summary: Enqueue an idempotent Amazon report synchronization
+      description: Requires operator or higher and an Idempotency-Key. The linked Amazon account and recipe must be enabled and healthy. A durable L3 worker performs the official createReport call, then getReport polling through IN_QUEUE, IN_PROGRESS, DONE, CANCELLED, or FATAL, document retrieval, bounded normalization, and Evidence import asynchronously. HTTP 429 responses preserve Retry-After and use bounded retry/backoff; L3 never writes to Amazon and does not automatically schedule enabled recipes.
+      parameters:
+        - {$ref: '#/components/parameters/recipeId'}
+        - in: header
+          name: Idempotency-Key
+          required: true
+          schema: {type: string, minLength: 1, maxLength: 200}
+      responses:
+        '202':
+          description: Durable queued or replayed report sync
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/ReportSync'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+        '429': {$ref: '#/components/responses/RateLimited'}
+  /v1/report-syncs:
+    get:
+      summary: List tenant-owned Amazon report syncs
+      parameters:
+        - in: query
+          name: limit
+          schema: {type: integer, minimum: 1, maximum: 200, default: 100}
+      responses:
+        '200':
+          description: Durable report synchronization states
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [report_syncs]
+                properties:
+                  report_syncs:
+                    type: array
+                    items: {$ref: '#/components/schemas/ReportSync'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+  /v1/report-syncs/{syncId}:
+    get:
+      summary: Read one tenant-owned Amazon report sync
+      parameters:
+        - {$ref: '#/components/parameters/syncId'}
+      responses:
+        '200':
+          description: Durable report synchronization state
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/ReportSync'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
   /v1/actions:
     post:
       summary: Request an idempotent action
@@ -884,6 +941,11 @@ components:
       name: recipeId
       required: true
       schema: {type: string, format: uuid}
+    syncId:
+      in: path
+      name: syncId
+      required: true
+      schema: {type: string, format: uuid}
     actionId:
       in: path
       name: actionId
@@ -1342,6 +1404,33 @@ components:
         label: {type: string}
         amazon_report_type: {$ref: '#/components/schemas/ReportRecipeAmazonReportType'}
         evidence_report_type: {$ref: '#/components/schemas/ReportRecipeEvidenceReportType'}
+    ReportSync:
+      type: object
+      additionalProperties: false
+      required: [id, tenant_id, recipe_id, connector_account_id, created_by, amazon_report_id, status, processing_status, period_start, period_end, available_at, attempt_count, max_attempts, evidence_import_id, error_code, error_message, recipe_key, amazon_report_type, evidence_report_type, created_at, updated_at, completed_at]
+      properties:
+        id: {type: string, format: uuid}
+        tenant_id: {type: string, format: uuid}
+        recipe_id: {type: string, format: uuid}
+        connector_account_id: {type: string, format: uuid}
+        created_by: {type: string, format: uuid}
+        amazon_report_id: {type: string, nullable: true}
+        status: {type: string, enum: [queued, polling, succeeded, failed]}
+        processing_status: {type: string, nullable: true, enum: [IN_QUEUE, IN_PROGRESS, DONE, CANCELLED, FATAL, null]}
+        period_start: {type: string, format: date-time}
+        period_end: {type: string, format: date-time}
+        available_at: {type: string, format: date-time}
+        attempt_count: {type: integer, minimum: 0}
+        max_attempts: {type: integer, minimum: 1}
+        evidence_import_id: {type: string, format: uuid, nullable: true}
+        error_code: {type: string, nullable: true}
+        error_message: {type: string, nullable: true}
+        recipe_key: {$ref: '#/components/schemas/ReportRecipeKey'}
+        amazon_report_type: {$ref: '#/components/schemas/ReportRecipeAmazonReportType'}
+        evidence_report_type: {$ref: '#/components/schemas/ReportRecipeEvidenceReportType'}
+        created_at: {type: string, format: date-time}
+        updated_at: {type: string, format: date-time}
+        completed_at: {type: string, format: date-time, nullable: true}
     ActionRequest:
       oneOf:
         - {$ref: '#/components/schemas/ShopifySyncActionRequest'}

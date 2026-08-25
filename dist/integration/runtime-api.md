@@ -480,6 +480,34 @@ account's configured marketplace IDs. `next_run_at` is persisted configuration
 only in L2; it does not activate a background scheduler. Connector account
 deletion, recipe deletion, OAuth, and Amazon report execution are outside L2.
 
+## Amazon report syncs (L3)
+
+`POST /v1/report-recipes/{recipeId}/sync` is an operator/owner-only,
+Idempotency-Key-protected trigger that returns `202` and persists a
+`ReportSync`. The linked account must be `healthy`; the worker does not write
+to Amazon and L3 does not automatically schedule enabled recipes (that belongs
+to L8). Viewers can inspect `GET /v1/report-syncs` and
+`GET /v1/report-syncs/{syncId}`.
+
+The durable state records the recipe/account/creator, Amazon report ID,
+queued/polling/succeeded/failed status, Amazon processing status, period,
+availability time, bounded attempts, Evidence import ID, error details, report
+type mappings, and lifecycle timestamps. The worker follows the official
+`createReport` → `getReport` flow: `IN_QUEUE`/`IN_PROGRESS` are polled with
+bounded backoff, `DONE` retrieves the document and imports Evidence, while
+`CANCELLED`/`FATAL` become durable failures. Provider `429` responses preserve
+`Retry-After` and retry only within the bounded attempt policy.
+
+Sales/traffic JSON is flattened under bounded depth/row/byte limits; other
+supported report documents are parsed as bounded TSV. A live smoke test needs
+real Amazon credentials, a healthy account, and a real authorized marketplace;
+without those, use injected transport fixtures rather than claiming live
+success. Run one worker poll explicitly:
+
+```bash
+opc-ecommerce report-worker --db ./runtime.sqlite --once --poll-seconds 5
+```
+
 The SQLite schema carries an explicit schema version and fails closed if a
 newer unsupported version is opened. Schema upgrades must be shipped as a
 reviewed migration, never as an ad-hoc table edit.

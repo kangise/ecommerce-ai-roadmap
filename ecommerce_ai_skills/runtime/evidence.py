@@ -6,6 +6,7 @@ import csv
 import hashlib
 import io
 import json
+import math
 import os
 import re
 import tempfile
@@ -305,6 +306,156 @@ class CSVIngestor:
         }
 
 
+class AmazonSalesTrafficJSONFlattener:
+    """Bounded normalizer for GET_SALES_AND_TRAFFIC_REPORT documents."""
+
+    MAX_RAW_BYTES = 2_000_000
+    MAX_ROWS = 5_000
+    MAX_DEPTH = 20
+    MAX_NODES = 100_000
+    MAX_CELL_CHARS = 5_000
+    COLUMNS = (
+        "asin",
+        "sessions",
+        "units_ordered",
+        "ordered_product_sales",
+        "unit_session_percentage",
+        "currency_code",
+    )
+
+    @classmethod
+    def _bounded_json(cls, raw: bytes) -> dict[str, Any]:
+        if not raw:
+            raise ValidationError("Amazon sales and traffic report is empty")
+        if len(raw) > cls.MAX_RAW_BYTES:
+            raise ValidationError("Amazon sales and traffic report exceeds the 2 MB limit")
+        try:
+            value = json.loads(raw.decode("utf-8-sig"))
+        except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+            raise ValidationError(
+                "Amazon sales and traffic report must be valid UTF-8 JSON"
+            ) from exc
+        nodes = 0
+
+        def inspect(item: Any, depth: int) -> None:
+            nonlocal nodes
+            nodes += 1
+            if nodes > cls.MAX_NODES:
+                raise ValidationError("Amazon sales and traffic JSON is too complex")
+            if depth > cls.MAX_DEPTH:
+                raise ValidationError("Amazon sales and traffic JSON is too deeply nested")
+            if isinstance(item, dict):
+                for key, child in item.items():
+                    if not isinstance(key, str) or len(key) > 200:
+                        raise ValidationError("Amazon sales and traffic JSON has an invalid key")
+                    inspect(child, depth + 1)
+            elif isinstance(item, list):
+                for child in item:
+                    inspect(child, depth + 1)
+            elif isinstance(item, str) and len(item) > cls.MAX_CELL_CHARS:
+                raise ValidationError("Amazon sales and traffic JSON contains an oversized value")
+            elif item is not None and not isinstance(item, (str, int, float, bool)):
+                raise ValidationError("Amazon sales and traffic JSON contains an unsupported value")
+
+        inspect(value, 0)
+        if not isinstance(value, dict):
+            raise ValidationError("Amazon sales and traffic report must be a JSON object")
+        return value
+
+    @classmethod
+    def _cell(cls, value: Any, label: str) -> str:
+        if value is None:
+            return ""
+        if isinstance(value, bool) or not isinstance(value, (str, int, float)):
+            raise ValidationError(f"Amazon sales and traffic {label} must be scalar")
+        if isinstance(value, float) and not math.isfinite(value):
+            raise ValidationError(f"Amazon sales and traffic {label} must be finite")
+        text = str(value).strip()
+        if len(text) > cls.MAX_CELL_CHARS:
+            raise ValidationError(f"Amazon sales and traffic {label} is too long")
+        return text
+
+    @classmethod
+    def parse(
+        cls, raw: bytes, *, filename: str, observed_at: str
+    ) -> dict[str, Any]:
+        filename = CSVIngestor._validate_filename(
+            filename, allowed_suffixes={".json"}
+        )
+        observed_at = CSVIngestor._validate_observed_at(observed_at)
+        document = cls._bounded_json(raw)
+        entries = document.get("salesAndTrafficByAsin")
+        if not isinstance(entries, list) or not entries:
+            raise ValidationError(
+                "Amazon sales and traffic JSON requires salesAndTrafficByAsin[]"
+            )
+        if len(entries) > cls.MAX_ROWS:
+            raise ValidationError("Amazon sales and traffic JSON exceeds the 5000-row limit")
+        rows: list[dict[str, str]] = []
+        for index, entry in enumerate(entries, start=1):
+            if not isinstance(entry, dict):
+                raise ValidationError(
+                    f"Amazon sales and traffic row {index} must be an object"
+                )
+            traffic = entry.get("trafficByAsin", {})
+            sales = entry.get("salesByAsin", {})
+            if not isinstance(traffic, dict) or not isinstance(sales, dict):
+                raise ValidationError(
+                    f"Amazon sales and traffic row {index} has invalid metric objects"
+                )
+            ordered_sales = sales.get("orderedProductSales", {})
+            if ordered_sales is None:
+                ordered_sales = {}
+            if not isinstance(ordered_sales, dict):
+                raise ValidationError(
+                    f"Amazon sales and traffic row {index} has invalid orderedProductSales"
+                )
+            asin = entry.get("childAsin") or entry.get("parentAsin") or entry.get("asin")
+            asin_text = cls._cell(asin, "asin")
+            if not asin_text:
+                raise ValidationError(
+                    f"Amazon sales and traffic row {index} is missing an ASIN"
+                )
+            rows.append(
+                {
+                    "asin": asin_text,
+                    "sessions": cls._cell(traffic.get("sessions"), "sessions"),
+                    "units_ordered": cls._cell(
+                        sales.get("unitsOrdered"), "unitsOrdered"
+                    ),
+                    "ordered_product_sales": cls._cell(
+                        ordered_sales.get("amount"), "orderedProductSales.amount"
+                    ),
+                    "unit_session_percentage": cls._cell(
+                        traffic.get("unitSessionPercentage"),
+                        "unitSessionPercentage",
+                    ),
+                    "currency_code": cls._cell(
+                        ordered_sales.get("currencyCode"),
+                        "orderedProductSales.currencyCode",
+                    ),
+                }
+            )
+        serialized = json.dumps(rows, ensure_ascii=False, sort_keys=True).encode("utf-8")
+        if len(serialized) > CSVIngestor.MAX_NORMALIZED_BYTES:
+            raise ValidationError(
+                "normalized Amazon sales and traffic evidence exceeds the 800 KB limit"
+            )
+        return {
+            "platform": "amazon",
+            "report_type": "amazon_business_report",
+            "filename": filename,
+            "observed_at": observed_at,
+            "sha256": hashlib.sha256(raw).hexdigest(),
+            "delimiter": "json",
+            "rows": rows,
+            "columns": list(cls.COLUMNS),
+            "column_mapping": {column: column for column in cls.COLUMNS},
+            "blank_rows_skipped": 0,
+            "formula_cells": 0,
+        }
+
+
 class XLSXIngestor:
     MAX_RAW_BYTES = 5_000_000
     MAX_UNCOMPRESSED_BYTES = 50_000_000
@@ -530,6 +681,29 @@ class EvidenceImportService:
             parsed,
             raw=raw,
             media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            idempotency_key=idempotency_key,
+            request_id=request_id,
+        )
+
+    def import_amazon_sales_traffic_json(
+        self,
+        principal: Principal,
+        *,
+        raw: bytes,
+        filename: str,
+        observed_at: str,
+        idempotency_key: str,
+        request_id: str,
+    ) -> dict[str, Any]:
+        self.auth.require(principal, "operator")
+        parsed = AmazonSalesTrafficJSONFlattener.parse(
+            raw, filename=filename, observed_at=observed_at
+        )
+        return self._persist(
+            principal,
+            parsed,
+            raw=raw,
+            media_type="application/json",
             idempotency_key=idempotency_key,
             request_id=request_id,
         )

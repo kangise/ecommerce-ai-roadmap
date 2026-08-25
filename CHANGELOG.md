@@ -21,6 +21,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
   operator write authorization, four explicit report-type mappings, linked
   Amazon marketplace-subset validation, and configuration-only persistence
   without Amazon calls or background execution.
+- L3 durable Amazon Reports synchronization with operator/idempotency/healthy-
+  account gates, `createReport` and bounded status polling, `Retry-After`
+  handling, terminal failure persistence, bounded JSON/TSV normalization,
+  tenant-owned Evidence imports, viewer inspection APIs, worker CLI, and real
+  Mission Control sync actions and states. Automatic scheduling and Amazon
+  write operations remain outside this slice.
+- L3 idempotent Amazon report sync contract with durable worker states,
+  bounded createReport/getReport polling, Retry-After handling, document-to-
+  Evidence import semantics, and explicit no-auto-scheduling/no-write scope.
 - Six ontology-backed AI systems terms, bringing the generated trilingual glossary and entity model to 100 entries.
 - Four official Amazon Sponsored Brands Video constraints, bringing the ontology to 322 sourced constraints.
 - A real installable Python package and `opc-ecommerce` entry point; wheels now include the generated knowledge artifact instead of metadata only.

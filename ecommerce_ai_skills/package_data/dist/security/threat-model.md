@@ -42,6 +42,24 @@
   four recipe keys and their derived Amazon/evidence report types are an
   explicit allowlist; recipe writes persist configuration only and make no
   Amazon request.
+- Report synchronizations are tenant-owned durable records. Enqueue requires an
+  operator-or-higher caller, an idempotency key, an enabled recipe, and a
+  currently healthy linked Amazon account. Workers claim work with bounded
+  leases and attempts, persist every provider state, honor bounded
+  `Retry-After`, and never convert an exhausted or fatal attempt into success.
+- Amazon report documents are accepted only after the allowlisted report flow
+  reaches `DONE`. Sales/traffic JSON and TSV documents are normalized under
+  byte, row, column, depth, and finite-number bounds before creating a
+  tenant-owned Evidence import. `CANCELLED`, `FATAL`, malformed, or oversized
+  documents remain visible durable failures.
+- L3 report syncs require operator/owner authorization and an idempotency key;
+  they require a healthy linked account, persist bounded attempts and status,
+  honor provider `429`/`Retry-After`, and keep Amazon report IDs, processing
+  states, Evidence import IDs, and terminal errors tenant-scoped.
+- Report documents are bounded before ingestion: sales/traffic JSON is
+  flattened with depth/row/byte limits and other supported formats use bounded
+  TSV parsing. `DONE` is the only state that can produce an Evidence import;
+  `CANCELLED` and `FATAL` remain failed.
 - Explicit SQLite schema versioning; unsupported newer schemas fail closed.
 - Viewer/operator/admin/owner role checks; approval requires a second actor.
 - Tenant-scoped user provisioning is exposed through authenticated admin APIs;
@@ -72,7 +90,8 @@
 - Amazon SP-API credentials remain environment references. The connector uses a
   short-lived LWA access token in memory, validates region endpoints and report
   identifiers, restricts pre-signed downloads to HTTPS Amazon/S3/CloudFront
-  hosts, and bounds both compressed and decompressed bytes.
+  hosts on the standard HTTPS port, and bounds both compressed and decompressed
+  bytes.
 - Background jobs and schedules are tenant-owned and created by an authorized
   user. Workers reconstruct that user's current role, claim work with a bounded
   lease, use idempotency keys per occurrence, and persist retry/failure state.
@@ -111,6 +130,14 @@
 - L2 report recipes intentionally have no delete endpoint, OAuth flow, Amazon
   report creation/download, or background execution. `next_run_at` is stored
   configuration until a separately authorized scheduler contract exists.
+- L3 report syncs remain read-only against Amazon and are triggered explicitly;
+  automatic recipe scheduling is deferred to L8. Live end-to-end assurance
+  still depends on seller-authorized Amazon credentials and marketplace access,
+  so CI validates the network boundary with injected transports rather than
+  fabricated accounts.
+- L3 syncs intentionally do not write to Amazon or automatically schedule
+  recipes; the report worker is explicit and bounded. Live smoke validation
+  remains dependent on real credentials and seller marketplace participation.
 - Agent prompts receive user evidence as untrusted data. Operators must still
   avoid placing personal data or secrets in evidence values; the first slice
   detects secret-shaped field names but is not a general DLP system.

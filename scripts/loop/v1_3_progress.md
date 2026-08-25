@@ -8,7 +8,7 @@
 | L0 | 基线合同 | done | `verify_all` 14 groups=0；pytest 63 passed；dist 153 fresh；MCP 69/878/9；wheel cold install + Schema v10 + CLI smoke | `loop(v1.3): L0 establish verified product baseline` | `main`/`origin/main` 原 HEAD `a6a6204`；敏感扫描与 `git diff --check` 通过；当前产品化成果固化为可恢复基线 |
 | L1 | Accounts Center | done | Schema v11；Accounts API/UI；Amazon Sellers + Shopify shop health；pytest 77；14 groups=0；browser refresh persistence；wheel smoke | `loop(v1.3): L1 ship marketplace accounts center` | viewer read/admin manage/operator health；refs redacted；Demo 账户保持 unchecked/misconfigured 而非假成功 |
 | L2 | Report Recipes | done | Schema v12；4 recipe allowlist；API/UI/RBAC；pytest 95；14 groups=0；browser Demo 4 recipes；wheel smoke | `loop(v1.3): L2 persist amazon report recipes` | 仅保存可复现配置，不调用Amazon；marketplaces强制为account subset；无删除/执行按钮 |
-| L3 | SP-API Sync | pending |  |  |  |
+| L3 | SP-API Sync | done | Schema v13；durable create/poll/download/Evidence；pytest 107；14 groups=0；wheel + worker smoke；browser QA | `loop(v1.3): L3 ship durable amazon report sync` | operator enqueue/viewer inspect；healthy account gate；bounded retry/JSON/TSV；无自动调度与 Amazon 写入；live credential smoke 不可用 |
 | L4 | Metric Observations | pending |  |  |  |
 | L5 | Ads Contract Gate | pending |  |  |  |
 | L6 | Ads Adapter 条件实现 | pending |  |  |  |
@@ -57,6 +57,18 @@
 - Failure 1: none.
 - Failure 2 / blocked reason: none.
 - Restore point and result: L1 `997cb18`; L2 Schema v12/Recipe UI 可由本轮提交单独回退。
+
+### L3 — SP-API Sync
+
+- Date: 2026-08-26
+- Status: done
+- Evidence: `tests/test_report_syncs.py` 11 acceptance cases；全套 pytest 107 passed；`verify_all` 14 groups=0；MCP 69/878/9；`dist/` fresh；Python 3.12 wheel cold install + Schema v13 + `report-worker --once` smoke；`artifacts/design-qa/l3-report-sync-final.jpg`。
+- Commit: `loop(v1.3): L3 ship durable amazon report sync`（本记录所在提交）
+- Notes: tenant-owned durable sync；operator + Idempotency-Key + enabled recipe + healthy Amazon account gate；真实 `createReport`/`getReport`/document 边界；`IN_QUEUE`/`IN_PROGRESS` polling、`Retry-After`、bounded attempts、terminal failures；bounded JSON/TSV → Evidence；复合租户外键、意外 Worker 异常主动释放 lease；Mission Control 的运行/详情/禁用原因均接真实 API。L3 不自动调度配方、不写 Amazon；因缺 seller-authorized Amazon 凭证与 marketplace access，未宣称 live credential smoke 成功。
+- Validator results: all repository and install gates passed; browser Demo shows four persisted recipes, disabled real-sync reason, empty Sync Activity, and zero console errors.
+- Failure 1: 审计发现初始化异常可悬挂 lease 与报告下载 URL 可使用非标准 HTTPS 端口；已加入主动 reschedule+re-raise、443 限制及回归测试后全量复验通过。
+- Failure 2 / blocked reason: 系统 Python 3.9 / pip 21 将 PEP 517 项目误构建为 `UNKNOWN-0.0.0`；改用工作区 Python 3.12 / pip 26 执行受支持的冷安装，依赖安装、CLI、Schema v13 与 worker smoke 均通过，不构成产品阻塞。
+- Restore point and result: L2 `83fd583`; L3 Schema v13/Report Worker/UI 可由本轮提交单独回退。
 
 ### Lx — 名称
 

@@ -247,6 +247,36 @@ def test_source_runtime_api_l2_report_recipe_contract() -> None:
     assert "does not call Amazon" in paths["/v1/report-recipes"]["post"]["description"]
 
 
+def test_source_runtime_api_l3_report_sync_contract() -> None:
+    contract = yaml.safe_load(
+        (ROOT / "openapi" / "runtime-api.yaml").read_text(encoding="utf-8")
+    )
+    paths = contract["paths"]
+    assert "post" in paths["/v1/report-recipes/{recipeId}/sync"]
+    assert "get" in paths["/v1/report-syncs"]
+    assert "get" in paths["/v1/report-syncs/{syncId}"]
+    enqueue = paths["/v1/report-recipes/{recipeId}/sync"]["post"]
+    assert any(item.get("name") == "Idempotency-Key" for item in enqueue["parameters"])
+    sync = contract["components"]["schemas"]["ReportSync"]
+    assert {"queued", "polling", "succeeded", "failed"} == set(
+        sync["properties"]["status"]["enum"]
+    )
+    assert {
+        "recipe_id",
+        "connector_account_id",
+        "amazon_report_id",
+        "processing_status",
+        "period_start",
+        "period_end",
+        "available_at",
+        "attempt_count",
+        "max_attempts",
+        "evidence_import_id",
+        "error_code",
+        "error_message",
+    } <= set(sync["required"])
+
+
 def test_mcp_sdk_is_an_optional_install_extra() -> None:
     project = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))["project"]
     assert all(not dependency.startswith("mcp") for dependency in project.get("dependencies", []))

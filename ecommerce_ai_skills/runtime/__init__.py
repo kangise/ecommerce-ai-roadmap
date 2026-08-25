@@ -7,6 +7,7 @@ from .evidence import CSVIngestor, EvidenceImportService, EvidenceObjectStore, X
 from .evals import WorkflowEvaluator
 from .jobs import JobService, ScheduleService
 from .report_recipes import ReportRecipeService
+from .report_syncs import ReportSyncService
 from .storage import Database, Principal
 
 __all__ = [
@@ -20,6 +21,7 @@ __all__ = [
     "OpenAIResponsesProvider",
     "Principal",
     "ReportRecipeService",
+    "ReportSyncService",
     "ScheduleService",
     "WeeklyOpsCouncil",
     "WorkflowEvaluator",

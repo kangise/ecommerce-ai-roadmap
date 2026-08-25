@@ -28,6 +28,7 @@ from .jobs import JobService, ScheduleService
 from .errors import AuthenticationError, AuthorizationError, ConflictError, ConnectorError, NotFoundError, RateLimitError, RuntimeErrorBase, ValidationError
 from .observability import JsonFormatter, Metrics, RateLimiter
 from .report_recipes import ReportRecipeService
+from .report_syncs import ReportSyncService
 from .storage import Database, Principal
 
 log = logging.getLogger("ecommerce_ai_skills.api")
@@ -47,6 +48,9 @@ class RuntimeApplication:
         self.accounts = MarketplaceAccountService(db, self.auth)
         self.report_recipes = ReportRecipeService(db, self.auth)
         self.evidence_imports = EvidenceImportService(db, self.auth)
+        self.report_syncs = ReportSyncService(
+            db, self.auth, self.evidence_imports
+        )
         self.actions = ActionService(db, self.auth, self.evidence_imports)
         self.briefing = BriefingService(db, self.auth)
         self.agent_runs = WeeklyOpsCouncil(
@@ -272,6 +276,18 @@ class _Handler(BaseHTTPRequestHandler):
                 self._json(
                     200, self.app.report_recipes.get(principal, recipe_id), request_id
                 )
+            elif parsed.path == "/v1/report-syncs":
+                limit = int(parse_qs(parsed.query).get("limit", [100])[0])
+                self._json(
+                    200,
+                    {"report_syncs": self.app.report_syncs.list(principal, limit)},
+                    request_id,
+                )
+            elif parsed.path.startswith("/v1/report-syncs/") and len(parsed.path.split("/")) == 4:
+                sync_id = parsed.path.split("/")[3]
+                self._json(
+                    200, self.app.report_syncs.get(principal, sync_id), request_id
+                )
             elif parsed.path == "/v1/evidence-imports":
                 limit = int(parse_qs(parsed.query).get("limit", [100])[0])
                 self._json(
@@ -445,6 +461,21 @@ class _Handler(BaseHTTPRequestHandler):
                         enabled=body["enabled"],
                         next_run_at=body["next_run_at"],
                         request_id=request_id,
+                    ),
+                    request_id,
+                )
+                return
+            if parsed.path.startswith("/v1/report-recipes/") and parsed.path.endswith("/sync") and len(parsed.path.split("/")) == 5:
+                principal = self._principal()
+                self._body_fields(required=set(), allowed=set())
+                recipe_id = parsed.path.split("/")[3]
+                self._json(
+                    202,
+                    self.app.report_syncs.enqueue(
+                        principal,
+                        recipe_id,
+                        self.headers.get("Idempotency-Key", ""),
+                        request_id,
                     ),
                     request_id,
                 )

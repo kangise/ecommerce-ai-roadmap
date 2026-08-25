@@ -29,7 +29,7 @@ class Principal:
 
 
 ROLE_LEVEL = {"viewer": 10, "operator": 20, "admin": 30, "owner": 40}
-SCHEMA_VERSION = 12
+SCHEMA_VERSION = 13
 
 
 class _Connection(sqlite3.Connection):
@@ -136,8 +136,48 @@ class Database:
                     updated_at TEXT NOT NULL,
                     UNIQUE(tenant_id, connector_account_id, name)
                 );
+                CREATE UNIQUE INDEX IF NOT EXISTS uq_users_tenant_id
+                    ON users(tenant_id, id);
+                CREATE UNIQUE INDEX IF NOT EXISTS uq_connector_accounts_tenant_id
+                    ON connector_accounts(tenant_id, id);
+                CREATE UNIQUE INDEX IF NOT EXISTS uq_report_recipes_tenant_id
+                    ON report_recipes(tenant_id, id);
                 CREATE INDEX IF NOT EXISTS idx_report_recipes_tenant_next
                     ON report_recipes(tenant_id, enabled, next_run_at);
+                CREATE TABLE IF NOT EXISTS report_syncs (
+                    id TEXT PRIMARY KEY,
+                    tenant_id TEXT NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
+                    recipe_id TEXT NOT NULL,
+                    connector_account_id TEXT NOT NULL,
+                    created_by TEXT NOT NULL,
+                    idempotency_key TEXT NOT NULL,
+                    amazon_report_id TEXT,
+                    status TEXT NOT NULL CHECK (status IN ('queued','polling','succeeded','failed')),
+                    processing_status TEXT,
+                    period_start TEXT NOT NULL,
+                    period_end TEXT NOT NULL,
+                    available_at TEXT NOT NULL,
+                    lease_until TEXT,
+                    attempt_count INTEGER NOT NULL DEFAULT 0,
+                    max_attempts INTEGER NOT NULL,
+                    evidence_import_id TEXT REFERENCES evidence_imports(id),
+                    error_code TEXT,
+                    error_message TEXT,
+                    created_at TEXT NOT NULL,
+                    updated_at TEXT NOT NULL,
+                    completed_at TEXT,
+                    UNIQUE(tenant_id, idempotency_key),
+                    FOREIGN KEY (tenant_id, recipe_id)
+                        REFERENCES report_recipes(tenant_id, id) ON DELETE CASCADE,
+                    FOREIGN KEY (tenant_id, connector_account_id)
+                        REFERENCES connector_accounts(tenant_id, id) ON DELETE CASCADE,
+                    FOREIGN KEY (tenant_id, created_by)
+                        REFERENCES users(tenant_id, id)
+                );
+                CREATE INDEX IF NOT EXISTS idx_report_syncs_claim
+                    ON report_syncs(status, available_at, lease_until);
+                CREATE INDEX IF NOT EXISTS idx_report_syncs_tenant_time
+                    ON report_syncs(tenant_id, created_at);
                 CREATE TABLE IF NOT EXISTS actions (
                     id TEXT PRIMARY KEY,
                     tenant_id TEXT NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
@@ -491,6 +531,10 @@ class Database:
             # initialize() creates the new tenant-owned table before the
             # version marker is advanced, making the migration transactional.
             version = 12
+        if version == 12:
+            # initialize() creates report_syncs transactionally before the
+            # schema marker advances.
+            version = 13
         if version != SCHEMA_VERSION:
             raise ValidationError(f"no migration path from runtime schema version {version}")
         conn.execute("UPDATE runtime_meta SET value=? WHERE key='schema_version'", (str(SCHEMA_VERSION),))
@@ -982,6 +1026,315 @@ class Database:
         except sqlite3.IntegrityError as exc:
             raise ConflictError("report recipe name already exists for connector account") from exc
         return self.get_report_recipe(tenant_id, recipe_id)
+
+    @staticmethod
+    def _report_sync_dict(row: sqlite3.Row) -> dict[str, Any]:
+        return dict(row)
+
+    def create_report_sync(
+        self,
+        tenant_id: str,
+        created_by: str,
+        recipe_id: str,
+        idempotency_key: str,
+        *,
+        period_start: str,
+        period_end: str,
+        max_attempts: int = 12,
+        available_at: str | None = None,
+    ) -> tuple[dict[str, Any], bool]:
+        if not isinstance(idempotency_key, str) or not 1 <= len(idempotency_key) <= 200:
+            raise ValidationError(
+                "report sync idempotency_key is required and must be <= 200 characters"
+            )
+        if not isinstance(max_attempts, int) or isinstance(max_attempts, bool) or not 1 <= max_attempts <= 50:
+            raise ValidationError("report sync max_attempts must be between 1 and 50")
+        sync_id = self._id()
+        now = utc_now()
+        try:
+            with self.transaction() as conn:
+                recipe = conn.execute(
+                    """SELECT connector_account_id FROM report_recipes
+                       WHERE tenant_id=? AND id=?""",
+                    (tenant_id, recipe_id),
+                ).fetchone()
+                if recipe is None:
+                    raise NotFoundError("report recipe not found")
+                actor = conn.execute(
+                    "SELECT tenant_id FROM users WHERE id=?", (created_by,)
+                ).fetchone()
+                if actor is None or actor["tenant_id"] != tenant_id:
+                    raise ValidationError("report sync creator does not belong to tenant")
+                conn.execute(
+                    """INSERT INTO report_syncs(
+                       id,tenant_id,recipe_id,connector_account_id,created_by,
+                       idempotency_key,status,period_start,period_end,available_at,
+                       max_attempts,created_at,updated_at)
+                       VALUES(?,?,?,?,?,?,'queued',?,?,?,?,?,?)""",
+                    (
+                        sync_id,
+                        tenant_id,
+                        recipe_id,
+                        recipe["connector_account_id"],
+                        created_by,
+                        idempotency_key,
+                        period_start,
+                        period_end,
+                        available_at or now,
+                        max_attempts,
+                        now,
+                        now,
+                    ),
+                )
+        except sqlite3.IntegrityError:
+            with self.connect() as conn:
+                row = conn.execute(
+                    "SELECT * FROM report_syncs WHERE tenant_id=? AND idempotency_key=?",
+                    (tenant_id, idempotency_key),
+                ).fetchone()
+            if row is None:
+                raise ConflictError("report sync idempotency conflict")
+            existing = self._report_sync_dict(row)
+            if existing["recipe_id"] != recipe_id:
+                raise ConflictError(
+                    "idempotency key was used for a different report recipe"
+                )
+            return existing, True
+        return self.get_report_sync(tenant_id, sync_id), False
+
+    def get_report_sync(self, tenant_id: str, sync_id: str) -> dict[str, Any]:
+        with self.connect() as conn:
+            row = conn.execute(
+                "SELECT * FROM report_syncs WHERE tenant_id=? AND id=?",
+                (tenant_id, sync_id),
+            ).fetchone()
+        if row is None:
+            raise NotFoundError("report sync not found")
+        return self._report_sync_dict(row)
+
+    def list_report_syncs(self, tenant_id: str, limit: int = 100) -> list[dict[str, Any]]:
+        limit = max(1, min(limit, 200))
+        with self.connect() as conn:
+            rows = conn.execute(
+                """SELECT * FROM report_syncs WHERE tenant_id=?
+                   ORDER BY created_at DESC,id DESC LIMIT ?""",
+                (tenant_id, limit),
+            ).fetchall()
+        return [self._report_sync_dict(row) for row in rows]
+
+    def claim_report_sync(self, *, lease_seconds: int = 300) -> dict[str, Any] | None:
+        now = utc_now()
+        lease_until = self._lease_until(lease_seconds)
+        with self.transaction() as conn:
+            conn.execute(
+                """UPDATE report_syncs SET status='failed',error_code='max_attempts',
+                   error_message='report sync exhausted its retry budget',
+                   lease_until=NULL,completed_at=?,updated_at=?
+                   WHERE status IN ('queued','polling') AND attempt_count>=max_attempts
+                     AND (lease_until IS NULL OR lease_until<?)""",
+                (now, now, now),
+            )
+            row = conn.execute(
+                """SELECT id FROM report_syncs
+                   WHERE status IN ('queued','polling') AND available_at<=?
+                     AND attempt_count<max_attempts
+                     AND (lease_until IS NULL OR lease_until<?)
+                   ORDER BY available_at,rowid LIMIT 1""",
+                (now, now),
+            ).fetchone()
+            if row is None:
+                return None
+            result = conn.execute(
+                """UPDATE report_syncs SET lease_until=?,attempt_count=attempt_count+1,
+                   updated_at=? WHERE id=? AND status IN ('queued','polling')
+                   AND available_at<=? AND attempt_count<max_attempts
+                   AND (lease_until IS NULL OR lease_until<?)""",
+                (lease_until, now, row["id"], now, now),
+            )
+            if result.rowcount != 1:
+                return None
+            claimed = conn.execute(
+                "SELECT * FROM report_syncs WHERE id=?", (row["id"],)
+            ).fetchone()
+        return self._report_sync_dict(claimed)
+
+    def mark_report_sync_polling(
+        self,
+        tenant_id: str,
+        sync_id: str,
+        amazon_report_id: str,
+        *,
+        processing_status: str = "IN_QUEUE",
+        delay_seconds: int = 15,
+    ) -> dict[str, Any]:
+        available_at = (
+            datetime.now(timezone.utc)
+            + timedelta(seconds=max(1, min(delay_seconds, 3600)))
+        ).isoformat(timespec="seconds")
+        with self.transaction() as conn:
+            result = conn.execute(
+                """UPDATE report_syncs SET status='polling',amazon_report_id=?,
+                   processing_status=?,available_at=?,lease_until=NULL,
+                   error_code=NULL,error_message=NULL,updated_at=?
+                   WHERE tenant_id=? AND id=? AND status='queued' AND lease_until IS NOT NULL""",
+                (
+                    amazon_report_id,
+                    processing_status,
+                    available_at,
+                    utc_now(),
+                    tenant_id,
+                    sync_id,
+                ),
+            )
+            if result.rowcount != 1:
+                raise ConflictError("report sync is not a claimed queued sync")
+        return self.get_report_sync(tenant_id, sync_id)
+
+    def reschedule_report_sync(
+        self,
+        tenant_id: str,
+        sync_id: str,
+        *,
+        delay_seconds: int,
+        processing_status: str | None = None,
+        error_code: str | None = None,
+        error_message: str | None = None,
+    ) -> dict[str, Any]:
+        now_dt = datetime.now(timezone.utc)
+        now = now_dt.isoformat(timespec="seconds")
+        with self.transaction() as conn:
+            row = conn.execute(
+                """SELECT status,attempt_count,max_attempts FROM report_syncs
+                   WHERE tenant_id=? AND id=? AND status IN ('queued','polling')
+                     AND lease_until IS NOT NULL""",
+                (tenant_id, sync_id),
+            ).fetchone()
+            if row is None:
+                raise ConflictError("report sync is not claimed")
+            if row["attempt_count"] >= row["max_attempts"]:
+                conn.execute(
+                    """UPDATE report_syncs SET status='failed',processing_status=?,
+                       lease_until=NULL,error_code=?,error_message=?,completed_at=?,updated_at=?
+                       WHERE tenant_id=? AND id=?""",
+                    (
+                        processing_status,
+                        error_code or "max_attempts",
+                        (error_message or "report sync exhausted its retry budget")[:2000],
+                        now,
+                        now,
+                        tenant_id,
+                        sync_id,
+                    ),
+                )
+            else:
+                available_at = (
+                    now_dt + timedelta(seconds=max(1, min(delay_seconds, 3600)))
+                ).isoformat(timespec="seconds")
+                conn.execute(
+                    """UPDATE report_syncs SET processing_status=COALESCE(?,processing_status),
+                       available_at=?,lease_until=NULL,error_code=?,error_message=?,updated_at=?
+                       WHERE tenant_id=? AND id=?""",
+                    (
+                        processing_status,
+                        available_at,
+                        error_code,
+                        error_message[:2000] if error_message else None,
+                        now,
+                        tenant_id,
+                        sync_id,
+                    ),
+                )
+        return self.get_report_sync(tenant_id, sync_id)
+
+    def fail_report_sync(
+        self,
+        tenant_id: str,
+        sync_id: str,
+        *,
+        error_code: str,
+        error_message: str,
+        processing_status: str | None = None,
+    ) -> dict[str, Any]:
+        now = utc_now()
+        with self.transaction() as conn:
+            row = conn.execute(
+                "SELECT status FROM report_syncs WHERE tenant_id=? AND id=?",
+                (tenant_id, sync_id),
+            ).fetchone()
+            if row is None:
+                raise NotFoundError("report sync not found")
+            if row["status"] == "succeeded":
+                raise ConflictError("succeeded report sync cannot fail")
+            if row["status"] != "failed":
+                conn.execute(
+                    """UPDATE report_syncs SET status='failed',processing_status=?,
+                       lease_until=NULL,error_code=?,error_message=?,completed_at=?,updated_at=?
+                       WHERE tenant_id=? AND id=?""",
+                    (
+                        processing_status,
+                        error_code,
+                        error_message[:2000],
+                        now,
+                        now,
+                        tenant_id,
+                        sync_id,
+                    ),
+                )
+        return self.get_report_sync(tenant_id, sync_id)
+
+    def complete_report_sync(
+        self, tenant_id: str, sync_id: str, evidence_import_id: str
+    ) -> dict[str, Any]:
+        now_dt = datetime.now(timezone.utc)
+        now = now_dt.isoformat(timespec="seconds")
+        with self.transaction() as conn:
+            sync = conn.execute(
+                """SELECT status,recipe_id,evidence_import_id FROM report_syncs
+                   WHERE tenant_id=? AND id=?""",
+                (tenant_id, sync_id),
+            ).fetchone()
+            if sync is None:
+                raise NotFoundError("report sync not found")
+            if sync["status"] == "succeeded":
+                if sync["evidence_import_id"] != evidence_import_id:
+                    raise ConflictError("report sync already completed with different evidence")
+                return self.get_report_sync(tenant_id, sync_id)
+            if sync["status"] not in {"queued", "polling"}:
+                raise ConflictError("report sync cannot complete from its current status")
+            evidence = conn.execute(
+                "SELECT tenant_id FROM evidence_imports WHERE id=? AND tenant_id=?",
+                (evidence_import_id, tenant_id),
+            ).fetchone()
+            if evidence is None:
+                raise NotFoundError("evidence import not found")
+            recipe = conn.execute(
+                """SELECT next_run_at,interval_minutes FROM report_recipes
+                   WHERE tenant_id=? AND id=?""",
+                (tenant_id, sync["recipe_id"]),
+            ).fetchone()
+            if recipe is None:
+                raise NotFoundError("report recipe not found")
+            next_dt = datetime.fromisoformat(
+                recipe["next_run_at"].replace("Z", "+00:00")
+            ) + timedelta(minutes=recipe["interval_minutes"])
+            while next_dt <= now_dt:
+                next_dt += timedelta(minutes=recipe["interval_minutes"])
+            conn.execute(
+                """UPDATE report_syncs SET status='succeeded',processing_status='DONE',
+                   evidence_import_id=?,lease_until=NULL,error_code=NULL,error_message=NULL,
+                   completed_at=?,updated_at=? WHERE tenant_id=? AND id=?""",
+                (evidence_import_id, now, now, tenant_id, sync_id),
+            )
+            conn.execute(
+                "UPDATE report_recipes SET next_run_at=?,updated_at=? WHERE tenant_id=? AND id=?",
+                (
+                    next_dt.isoformat(timespec="seconds"),
+                    now,
+                    tenant_id,
+                    sync["recipe_id"],
+                ),
+            )
+        return self.get_report_sync(tenant_id, sync_id)
 
     def append_audit(self, tenant_id: str, actor_user_id: str | None, request_id: str, action: str,
                      resource_type: str, resource_id: str | None, outcome: str, metadata: dict[str, Any]) -> str:

@@ -70,6 +70,12 @@ def main() -> int:
     scheduler.add_argument("--db", required=True)
     scheduler.add_argument("--once", action="store_true")
     scheduler.add_argument("--poll-seconds", type=float, default=15.0)
+    report_worker = sub.add_parser(
+        "report-worker", help="execute durable Amazon report sync transitions"
+    )
+    report_worker.add_argument("--db", required=True)
+    report_worker.add_argument("--once", action="store_true")
+    report_worker.add_argument("--poll-seconds", type=float, default=15.0)
     args = parser.parse_args()
     if args.command == "mcp":
         module = _load_mcp_module()
@@ -131,6 +137,17 @@ def main() -> int:
             raise ValueError("poll-seconds must be between 0.25 and 300")
         while True:
             result = app.schedules.tick_once()
+            if result is not None:
+                print(json.dumps(result, ensure_ascii=False, sort_keys=True))
+            if args.once:
+                return 0
+            if result is None:
+                time.sleep(args.poll_seconds)
+    if args.command == "report-worker":
+        if args.poll_seconds < 0.25 or args.poll_seconds > 300:
+            raise ValueError("poll-seconds must be between 0.25 and 300")
+        while True:
+            result = app.report_syncs.run_once()
             if result is not None:
                 print(json.dumps(result, ensure_ascii=False, sort_keys=True))
             if args.once:

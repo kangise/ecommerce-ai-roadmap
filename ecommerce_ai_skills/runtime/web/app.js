@@ -15,6 +15,9 @@ const state = {
   reportRecipes: [],
   recipeLoading: false,
   recipeError: null,
+  reportSyncs: [],
+  syncLoading: false,
+  syncError: null,
   selectedPlatform: "amazon",
   chartMetric: null,
   timer: null,
@@ -251,6 +254,16 @@ function toDatetimeLocal(value, fallback = null) {
   return new Date(date.getTime() - date.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
 }
 
+function recipeSyncAvailability(recipe) {
+  if (!recipeCanManage()) return {enabled: false, reason: "需要 operator、admin 或 owner 角色才能排队同步。"};
+  const account = state.connectors.find(item => item.id === recipe.connector_account_id);
+  if (!account) return {enabled: false, reason: "关联的 Amazon account 不可用，无法排队同步。"};
+  if (account.health_status !== "healthy") {
+    return {enabled: false, reason: `账户健康状态为 ${account.health_status || "unchecked"}；通过健康检查后才能排队同步。`};
+  }
+  return {enabled: true, reason: ""};
+}
+
 function renderReportRecipes() {
   const target = $("recipe-list"), note = $("recipe-permission"), add = $("add-recipe-btn");
   if (!state.apiKey) {
@@ -277,7 +290,7 @@ function renderReportRecipes() {
     return;
   }
   if (!state.reportRecipes.length) {
-    const copy = !accounts.length ? "先添加 Amazon SP-API 账户，才能创建 Recipe。" : manage ? "添加 Recipe 后会保存可复现的请求参数；L2 不会远程调用 Amazon。" : "当前租户还没有保存的 Recipe；需要具备权限的用户创建。";
+    const copy = !accounts.length ? "先添加 Amazon SP-API 账户，才能创建 Recipe。" : manage ? "添加 Recipe 后，L3 Worker 会按保存规则异步采集。" : "当前租户还没有保存的 Recipe；需要具备权限的用户创建。";
     designedEmpty(target, "还没有 Report Recipes", copy, "database");
     return;
   }
@@ -285,7 +298,40 @@ function renderReportRecipes() {
     const account = state.connectors.find(item => item.id === recipe.connector_account_id);
     const type = recipeType(recipe);
     const edit = manage ? `<button data-action="edit-recipe" data-id="${escapeHtml(recipe.id)}" class="secondary-button">编辑</button>` : "";
-    return `<article class="recipe-card"><div class="recipe-card-head"><div><p class="kicker">${escapeHtml(type.label || type.key)}</p><h3>${escapeHtml(recipe.name)}</h3><p>${escapeHtml(account ? recipeAccountLabel(account) : "Amazon account unavailable")}</p></div>${badge(recipe.enabled ? "enabled" : "disabled")}</div><dl class="recipe-meta"><div><dt>Report type</dt><dd>${escapeHtml(recipe.amazon_report_type)} → ${escapeHtml(recipe.evidence_report_type)}</dd></div><div><dt>Marketplaces</dt><dd>${escapeHtml((recipe.marketplace_ids || []).map(recipeMarketplaceLabel).join("、") || "—")}</dd></div><div><dt>Cadence / lookback</dt><dd>${escapeHtml(`${recipe.interval_minutes} min · ${recipe.lookback_days} days`)}</dd></div><div><dt>Next run</dt><dd>${escapeHtml(isoLocal(recipe.next_run_at))}</dd></div></dl><div class="row-actions">${edit}</div></article>`;
+    const sync = recipeSyncAvailability(recipe);
+    const enqueue = `<button data-action="enqueue-report-sync" data-id="${escapeHtml(recipe.id)}" class="primary-button" ${sync.enabled ? "" : `disabled title="${escapeHtml(sync.reason)}"`}>运行同步</button>`;
+    return `<article class="recipe-card"><div class="recipe-card-head"><div><p class="kicker">${escapeHtml(type.label || type.key)}</p><h3>${escapeHtml(recipe.name)}</h3><p>${escapeHtml(account ? recipeAccountLabel(account) : "Amazon account unavailable")}</p></div>${badge(recipe.enabled ? "enabled" : "disabled")}</div><dl class="recipe-meta"><div><dt>Report type</dt><dd>${escapeHtml(recipe.amazon_report_type)} → ${escapeHtml(recipe.evidence_report_type)}</dd></div><div><dt>Marketplaces</dt><dd>${escapeHtml((recipe.marketplace_ids || []).map(recipeMarketplaceLabel).join("、") || "—")}</dd></div><div><dt>Cadence / lookback</dt><dd>${escapeHtml(`${recipe.interval_minutes} min · ${recipe.lookback_days} days`)}</dd></div><div><dt>Next run</dt><dd>${escapeHtml(isoLocal(recipe.next_run_at))}</dd></div></dl><div class="row-actions">${enqueue}${edit}</div>${sync.reason ? `<span class="permission-reason">${escapeHtml(sync.reason)}</span>` : ""}<span class="sync-async-note">L3 Worker 将异步执行和轮询，不会在此页面即时完成。</span></article>`;
+  }).join("");
+}
+
+function reportSyncStage(sync) {
+  return sync.status || sync.processing_status || "queued";
+}
+
+function renderReportSyncs() {
+  const target = $("sync-list");
+  if (!state.apiKey) {
+    designedEmpty(target, "尚未连接 Runtime", "Sync Activity 需要已认证的租户会话。", "pulse");
+    return;
+  }
+  if (state.syncLoading) {
+    designedEmpty(target, "正在加载 Sync Activity", "正在读取 L3 Worker 的异步任务状态。", "pulse");
+    return;
+  }
+  if (state.syncError) {
+    target.innerHTML = `<div class="sync-failure" role="alert"><strong>无法加载 Sync Activity</strong><span>${escapeHtml(state.syncError)}</span></div>`;
+    return;
+  }
+  if (!state.reportSyncs.length) {
+    designedEmpty(target, "暂无同步活动", "通过健康检查的 Amazon account 可从 Recipe 排队；L3 Worker 会在后台执行。", "pulse");
+    return;
+  }
+  target.innerHTML = state.reportSyncs.map(sync => {
+    const recipe = state.reportRecipes.find(item => item.id === sync.recipe_id);
+    const stage = reportSyncStage(sync);
+    const processing = sync.processing_status && sync.processing_status !== stage ? `${badge(sync.processing_status)}<span class="sync-lifecycle">processing</span>` : "";
+    const error = sync.error_message || sync.error_code;
+    return `<article class="sync-card"><div class="sync-card-head"><div><p class="kicker">L3 Worker</p><h3>${escapeHtml(recipe?.name || sync.recipe_id)}</h3><p>${escapeHtml(recipe ? "Report Recipe sync" : "Report Recipe unavailable")}</p></div><div class="sync-status">${badge(stage)}${processing}</div></div><dl class="sync-meta"><div><dt>Attempt</dt><dd>${escapeHtml(`${sync.attempt_count ?? 0}/${sync.max_attempts ?? "—"}`)}</dd></div><div><dt>Next poll</dt><dd>${escapeHtml(isoLocal(sync.available_at))}</dd></div><div><dt>Evidence</dt><dd>${escapeHtml(sync.evidence_import_id || "—")}</dd></div><div><dt>Completed</dt><dd>${escapeHtml(isoLocal(sync.completed_at))}</dd></div></dl>${error ? `<p class="sync-error">${escapeHtml(error)}</p>` : ""}<div class="row-actions"><button data-action="view-report-sync" data-id="${escapeHtml(sync.id)}" class="secondary-button">详情</button></div></article>`;
   }).join("");
 }
 
@@ -640,6 +686,7 @@ function renderAll() {
   renderAudit();
   renderConnectors();
   renderReportRecipes();
+  renderReportSyncs();
 }
 
 function renderDisconnected() {
@@ -654,6 +701,9 @@ function renderDisconnected() {
   state.reportRecipes = [];
   state.recipeLoading = false;
   state.recipeError = null;
+  state.reportSyncs = [];
+  state.syncLoading = false;
+  state.syncError = null;
   renderBriefing();
   renderEvidence();
   renderRuns();
@@ -663,27 +713,35 @@ function renderDisconnected() {
   renderAudit();
   renderConnectors();
   renderReportRecipes();
+  renderReportSyncs();
 }
 
 async function refreshAll() {
   if (!state.apiKey) return;
   state.recipeLoading = true;
   state.recipeError = null;
+  state.syncLoading = true;
+  state.syncError = null;
   renderReportRecipes();
+  renderReportSyncs();
   const platform = encodeURIComponent(state.selectedPlatform);
   const recipes = api("/v1/report-recipes").then(value => ({value})).catch(error => ({error}));
-  const [me, catalog, briefing, mission, imports, runs, jobs, schedules, audit, connectors, recipeResult] = await Promise.all([
+  const syncs = api("/v1/report-syncs").then(value => ({value})).catch(error => ({error}));
+  const [me, catalog, briefing, mission, imports, runs, jobs, schedules, audit, connectors, recipeResult, syncResult] = await Promise.all([
     api("/v1/me"), api("/v1/catalog"), api(`/v1/briefing?platform=${platform}`), api("/v1/mission-control"),
     api("/v1/evidence-imports?limit=100"), api("/v1/agent-runs?limit=100"), api("/v1/jobs?limit=100"),
-    api("/v1/schedules"), api("/v1/audit?limit=100"), api("/v1/connectors"), recipes,
+    api("/v1/schedules"), api("/v1/audit?limit=100"), api("/v1/connectors"), recipes, syncs,
   ]);
   if (recipeResult.error) console.error("Report Recipes 加载失败", recipeResult.error);
+  if (syncResult.error) console.error("Sync Activity 加载失败", syncResult.error);
   Object.assign(state, {
     me, catalog, briefing, mission,
     imports: imports.imports || [], runs: runs.runs || [], jobs: jobs.jobs || [],
     schedules: schedules.schedules || [], audit: audit.events || [], connectors: connectors.connectors || [],
     reportRecipes: Array.isArray(recipeResult.value) ? recipeResult.value : recipeResult.value?.report_recipes || recipeResult.value?.recipes || [],
     recipeLoading: false, recipeError: recipeResult.error?.message || null,
+    reportSyncs: Array.isArray(syncResult.value) ? syncResult.value : syncResult.value?.report_syncs || syncResult.value?.syncs || [],
+    syncLoading: false, syncError: syncResult.error?.message || null,
   });
   setConnected(true);
   renderAll();
@@ -783,6 +841,14 @@ document.body.addEventListener("click", event => {
     case "health-check-connector": act(button, () => api(`/v1/connectors/${id}/health-check`, {method: "POST"}), "健康检查已完成。"); break;
     case "open-recipe-form": openRecipeForm(); break;
     case "edit-recipe": openRecipeForm(state.reportRecipes.find(item => item.id === id)); break;
+    case "enqueue-report-sync": {
+      const recipe = state.reportRecipes.find(item => item.id === id);
+      const availability = recipe ? recipeSyncAvailability(recipe) : {enabled: false, reason: "Report Recipe 不可用，无法排队同步。"};
+      if (!availability.enabled) { notice(availability.reason, "error"); break; }
+      act(button, () => api(`/v1/report-recipes/${id}/sync`, {method: "POST", headers: {"Idempotency-Key": idempotency("ui-report-sync")}}), "Sync 已排队；L3 Worker 将在后台执行和轮询。");
+      break;
+    }
+    case "view-report-sync": act(button, async () => showDetail("Report Sync", await api(`/v1/report-syncs/${id}`)), "Sync 详情已加载。", false); break;
   }
 });
 

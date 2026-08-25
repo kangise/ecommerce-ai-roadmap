@@ -45,6 +45,20 @@ viewer read and operator write roles, same-tenant Amazon connector ownership,
 marketplace-ID subset validation, full update payload requirements, durable
 configuration-only behavior, and the explicit absence of delete, OAuth,
 Amazon-call, and background-execution semantics.
+Report sync coverage verifies the L3 idempotent `202` trigger, viewer sync
+inspection routes, `ReportSync` fields and status allowlist, healthy-account
+gate, bounded createReport/getReport polling and retry semantics, Retry-After
+handling, DONE-to-Evidence import boundary, bounded JSON/TSV ingestion, and
+the explicit no-write/no-auto-scheduling limitation.
+Amazon report-sync coverage verifies the L3 enqueue/list/get contract,
+operator and tenant boundaries, idempotency, enabled-recipe and healthy-account
+gates, exact `createReport` payloads, `IN_QUEUE`/`IN_PROGRESS` polling,
+`Retry-After` backoff, bounded attempts, terminal provider and credential
+failures, `DONE` document retrieval, bounded sales/traffic JSON and TSV
+normalization, finite-number rejection, Evidence persistence, recipe schedule
+advancement, the one-shot worker CLI, and real UI action/state wiring. Network
+calls use injected transport fixtures; the suite does not claim a live Amazon
+credential smoke test.
 
 Run the complete suite with:
 

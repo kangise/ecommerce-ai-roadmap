@@ -229,6 +229,14 @@ legend{padding:0 5px;color:var(--muted);font-size:12px}
 .recipe-meta div{min-width:0}.recipe-meta dt{color:var(--muted);font-size:11px;font-weight:750;text-transform:uppercase;letter-spacing:.06em}.recipe-meta dd{margin:3px 0 0;overflow-wrap:anywhere;font-size:13px}
 .recipe-card .row-actions{justify-content:flex-start}.recipe-failure{display:grid;gap:5px;padding:18px;border:1px solid #f4c4c1;border-radius:10px;background:var(--coral-soft);color:#a72f34}.recipe-failure span{font-size:13px}
 .recipe-dialog .form-grid{gap:12px}.switch-field{display:flex;align-items:center;gap:9px;color:var(--ink)}.switch-field input{width:auto;min-height:0}
+.sync-async-note{color:var(--muted);font-size:12px}.accounts-syncs{margin-top:30px;padding-top:26px;border-top:1px solid var(--line)}
+.sync-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.sync-card{display:grid;gap:14px;padding:18px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.sync-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.sync-card-head .kicker{margin-bottom:3px}.sync-card-head h3{margin:0;font-size:18px;line-height:1.25;letter-spacing:-.025em}.sync-card-head p:not(.kicker){margin:5px 0 0;color:var(--muted);font-size:13px}
+.sync-status{display:grid;justify-items:end;gap:5px}.sync-lifecycle{color:var(--muted);font-size:11px;white-space:nowrap}.sync-meta{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin:0;padding-top:12px;border-top:1px solid var(--line)}
+.sync-meta div{min-width:0}.sync-meta dt{color:var(--muted);font-size:11px;font-weight:750;text-transform:uppercase;letter-spacing:.06em}.sync-meta dd{margin:3px 0 0;overflow-wrap:anywhere;font-size:13px}.sync-card .row-actions{justify-content:flex-start}
+.sync-error,.sync-failure{margin:0;padding:9px 10px;border-radius:7px;background:var(--coral-soft);color:#a72f34;font-size:13px}.sync-failure{display:grid;gap:5px;padding:18px;border:1px solid #f4c4c1;border-radius:10px}.sync-failure span{font-size:13px}
+.badge.polling,.badge.queued{background:var(--amber-soft);color:var(--amber)}.badge.succeeded{background:var(--green-soft);color:var(--green)}
 
 dialog{width:min(540px,calc(100vw - 32px));padding:24px;border:1px solid var(--line);border-radius:14px;background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
 dialog::backdrop{background:rgba(7,27,58,.34);backdrop-filter:blur(4px)}
@@ -256,6 +264,7 @@ pre{max-height:65vh;margin:18px 0 0;padding:17px;border:1px solid var(--line);bo
   .briefing-layout,.tool-layout{grid-template-columns:1fr}
   .connector-list{grid-template-columns:1fr}
   .recipe-list{grid-template-columns:1fr}
+  .sync-list{grid-template-columns:1fr}
   .briefing-main{padding-right:0}.decision-rail{margin-top:26px;padding:26px 0 0;border-top:1px solid var(--line);border-left:0}
   .decision-rail{display:grid;grid-template-columns:1fr 1fr;gap:24px}.decision-section{padding:0 24px 0 0;border-right:1px solid var(--line);border-bottom:0}.agent-roster-section{padding:0}
 }
@@ -271,6 +280,7 @@ pre{max-height:65vh;margin:18px 0 0;padding:17px;border:1px solid var(--line);bo
   .form-grid{grid-template-columns:1fr}.tool-panel{padding:17px}
   .connector-meta{grid-template-columns:1fr}
   .recipe-meta{grid-template-columns:1fr}
+  .sync-meta{grid-template-columns:1fr}
   .data-row{grid-template-columns:1fr}.row-actions{justify-content:flex-start}
   .today span{display:none}
 }

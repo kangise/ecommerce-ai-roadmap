@@ -30,6 +30,8 @@ def test_mission_control_assets_are_real_and_javascript_compiles() -> None:
     assert "Report Recipes" in html
     assert 'id="recipe-dialog"' in html
     assert 'id="recipe-list"' in html
+    assert "Sync Activity" in html
+    assert 'id="sync-list"' in html
     assert 'id="demo-badge"' in html and 'id="demo-banner"' in html
     assert 'state.me?.tenant_mode === "demo"' in script
     assert 'fetch("/v1/demo-session"' in script
@@ -77,6 +79,8 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
         "health-check-connector",
         "open-recipe-form",
         "edit-recipe",
+        "enqueue-report-sync",
+        "view-report-sync",
     }
     form_wiring = {
         "upload-evidence": '$("evidence-form").addEventListener',
@@ -104,12 +108,17 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
         "/v1/connectors",
         "/health-check",
         "/v1/report-recipes",
+        "/v1/report-syncs",
+        "/sync",
     ):
         assert endpoint in script
     assert "需要 admin 或 owner 角色" in script
     assert "需要 operator、admin 或 owner 执行健康检查" in script
     assert "需要 operator、admin 或 owner 角色" in script
     assert "recipeCanManage" in script
+    assert "recipeSyncAvailability" in script
+    assert '"Idempotency-Key": idempotency("ui-report-sync")' in script
+    assert "L3 Worker" in script
 
 
 def test_runtime_serves_ui_with_security_headers_and_live_catalog(tmp_path: Path) -> None:

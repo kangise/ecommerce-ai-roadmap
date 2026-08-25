@@ -538,6 +538,9 @@ def main() -> int:
                     "/v1/connectors/{accountId}/health-check": {"post"},
                     "/v1/report-recipes": {"get", "post"},
                     "/v1/report-recipes/{recipeId}": {"get", "patch"},
+                    "/v1/report-recipes/{recipeId}/sync": {"post"},
+                    "/v1/report-syncs": {"get"},
+                    "/v1/report-syncs/{syncId}": {"get"},
                     "/v1/actions": {"post"},
                     "/v1/actions/{actionId}/approve": {"post"},
                     "/v1/evidence-imports": {"get", "post"},
@@ -637,6 +640,7 @@ def main() -> int:
                     "ReportRecipeAmazonReportType",
                     "ReportRecipeEvidenceReportType",
                     "ReportRecipeCatalogEntry",
+                    "ReportSync",
                 ):
                     if schema_name not in schemas:
                         problems.append(
