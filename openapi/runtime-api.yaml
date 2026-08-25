@@ -465,6 +465,24 @@ paths:
         '401': {$ref: '#/components/responses/Unauthorized'}
         '403': {$ref: '#/components/responses/Forbidden'}
         '404': {$ref: '#/components/responses/NotFound'}
+  /v1/ads-adapter-status:
+    get:
+      summary: Read the conditional Amazon Ads adapter status
+      description: Viewer-readable negative gate. This build does not register Ads write adapters, routes, or actions. `eligible_not_installed` is the only non-blocked fixture outcome permitted until a future release satisfies the L5 gate and approval safeguards.
+      parameters:
+        - in: query
+          name: connector_account_id
+          required: false
+          schema: {type: string, format: uuid}
+      responses:
+        '200':
+          description: Tenant-scoped adapter status
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/AdsAdapterStatus'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
   /v1/actions:
     post:
       summary: Request an idempotent action
@@ -1718,6 +1736,29 @@ components:
         checked_at: {type: string, format: date-time, nullable: true}
         created_at: {type: string, format: date-time}
         updated_at: {type: string, format: date-time}
+    AdsAdapterStatus:
+      type: object
+      additionalProperties: false
+      required: [status, adapter_registered, write_operations, reason_codes, connector_account_id, gate_id, gate_checked_at, account_updated_at, profile_id, region, evaluated_at]
+      properties:
+        status: {type: string, enum: [blocked, eligible_not_installed]}
+        adapter_registered: {type: boolean, enum: [false]}
+        write_operations:
+          type: array
+          maxItems: 0
+          items: {type: string}
+        reason_codes:
+          type: array
+          minItems: 2
+          uniqueItems: true
+          items: {type: string, enum: [no_amazon_ads_account, no_capability_gate, gate_not_passed, required_capabilities_missing, gate_account_config_mismatch, gate_not_checked, gate_stale_account_changed, gate_expired, gate_checked_in_future, adapter_not_installed, write_surface_disabled]}
+        connector_account_id: {type: string, format: uuid, nullable: true}
+        gate_id: {type: string, format: uuid, nullable: true}
+        gate_checked_at: {type: string, format: date-time, nullable: true}
+        account_updated_at: {type: string, format: date-time, nullable: true}
+        profile_id: {type: string, pattern: '^[0-9]{1,32}$', nullable: true}
+        region: {type: string, enum: [na, eu, fe], nullable: true}
+        evaluated_at: {type: string, format: date-time}
     ActionRequest:
       oneOf:
         - {$ref: '#/components/schemas/ShopifySyncActionRequest'}

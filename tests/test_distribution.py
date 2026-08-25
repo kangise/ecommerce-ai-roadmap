@@ -383,6 +383,26 @@ def test_source_runtime_api_l5_ads_capability_gate_contract() -> None:
     assert request["additionalProperties"] is False
 
 
+def test_source_runtime_api_l6_ads_adapter_negative_contract() -> None:
+    contract = yaml.safe_load((ROOT / "openapi" / "runtime-api.yaml").read_text(encoding="utf-8"))
+    route = contract["paths"]["/v1/ads-adapter-status"]["get"]
+    assert "connector_account_id" in {p["name"] for p in route["parameters"]}
+    schema = contract["components"]["schemas"]["AdsAdapterStatus"]
+    assert schema["properties"]["status"]["enum"] == ["blocked", "eligible_not_installed"]
+    assert schema["properties"]["adapter_registered"]["enum"] == [False]
+    assert schema["properties"]["write_operations"]["maxItems"] == 0
+    assert set(schema["properties"]["reason_codes"]["items"]["enum"]) == {
+        "no_amazon_ads_account", "no_capability_gate", "gate_not_passed",
+        "required_capabilities_missing", "gate_account_config_mismatch",
+        "gate_not_checked", "gate_stale_account_changed", "gate_expired",
+        "gate_checked_in_future", "adapter_not_installed", "write_surface_disabled",
+    }
+    for field in ("connector_account_id", "gate_id", "gate_checked_at", "account_updated_at", "profile_id", "region"):
+        assert schema["properties"][field]["nullable"] is True
+    assert schema["properties"]["evaluated_at"]["format"] == "date-time"
+    assert "POST /v1/ads-adapter-status" not in contract["paths"]
+
+
 def test_mcp_sdk_is_an_optional_install_extra() -> None:
     project = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))["project"]
     assert all(not dependency.startswith("mcp") for dependency in project.get("dependencies", []))

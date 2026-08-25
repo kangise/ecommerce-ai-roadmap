@@ -13,6 +13,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 - Add package integrity metadata, automated tests, and PR quality checks.
 
 ### Added
+- L6 conditional Amazon Ads adapter-status contract: fail-closed status,
+  24-hour gate freshness, tenant/account/profile/region checks, and no Ads
+  write adapter, route, action, or write operation in this build.
 - L5 tenant-scoped Amazon Ads accounts and capability gate with environment-
   referenced LWA credentials, regional Profiles-only account health, a
   read-only Sponsored Products v3 campaign-list probe, bounded lease recovery,

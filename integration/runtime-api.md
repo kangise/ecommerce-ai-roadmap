@@ -597,6 +597,19 @@ The public collection identifies `/v2/profiles`, the
 `/sp/campaigns/list`. The gate stores only allowlisted request IDs and check
 outcomes; it discards campaign payloads.
 
+## L6 conditional Ads adapter boundary
+
+`GET /v1/ads-adapter-status` is viewer-readable and accepts an optional
+`connector_account_id`. This build registers no Amazon Ads write adapter,
+write route, or write action. `adapter_registered` is always false and
+`write_operations` is always empty. Status is limited to `blocked` and
+`eligible_not_installed`; the latter is not an installed or live-writing
+adapter. Eligibility requires a fresh (maximum 24 hours) L5 gate, a matching
+tenant-owned account whose region/Profile still match the gate, unchanged
+account metadata since the check, and all required observed capabilities.
+Future writes require a separate proposal, approval,
+audit, idempotency, and rollback review.
+
 ## Known boundary
 
 SQLite is the first deployable adapter, suitable for one process and a small

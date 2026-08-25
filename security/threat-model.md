@@ -201,3 +201,14 @@ approval and is the hard authorization boundary for L6.
 - Bearer-key entry is acceptable only for the loopback embedded UI. Hosted UI
   authentication still requires TLS, external identity, secure HttpOnly session
   cookies, CSRF protection, and session revocation.
+
+## L6 negative boundary
+
+The conditional Ads adapter status is fail-closed: only `blocked` and
+`eligible_not_installed` are representable, `adapter_registered` is fixed to
+false, and the write-operation list is empty. A maximum 24-hour gate age plus
+tenant-owned account, required-capability, account-update, Profile, and region
+checks prevents stale or cross-tenant L5 evidence from becoming write
+authorization. No Ads write
+adapter, route, or action is registered. Future writes require a proposal,
+explicit approval, audit/idempotency controls, and rollback review.

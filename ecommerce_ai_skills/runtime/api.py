@@ -20,6 +20,7 @@ from urllib.parse import parse_qs, urlparse
 from .actions import ActionService
 from .accounts import MarketplaceAccountService
 from .ads_gates import AdsCapabilityGateService
+from .ads_adapter_status import AdsAdapterStatusService
 from .agents import AgentProvider, OpenAIResponsesProvider, WeeklyOpsCouncil
 from .auth import AuthService
 from .briefing import BriefingService
@@ -49,6 +50,7 @@ class RuntimeApplication:
         self.auth = AuthService(db)
         self.accounts = MarketplaceAccountService(db, self.auth)
         self.ads_gates = AdsCapabilityGateService(db, self.auth)
+        self.ads_adapter_status = AdsAdapterStatusService(db, self.auth)
         self.report_recipes = ReportRecipeService(db, self.auth)
         self.evidence_imports = EvidenceImportService(db, self.auth)
         self.metric_observations = MetricObservationService(db, self.auth)
@@ -292,6 +294,17 @@ class _Handler(BaseHTTPRequestHandler):
                 self._json(
                     200,
                     {"ads_capability_gates": self.app.ads_gates.list(principal, limit)},
+                    request_id,
+                )
+            elif parsed.path == "/v1/ads-adapter-status":
+                params = parse_qs(parsed.query, keep_blank_values=True)
+                unknown = set(params) - {"connector_account_id"}
+                if unknown:
+                    raise ValidationError("unknown query fields: " + ", ".join(sorted(unknown)))
+                connector_account_id = params.get("connector_account_id", [None])[0]
+                self._json(
+                    200,
+                    self.app.ads_adapter_status.get(principal, connector_account_id),
                     request_id,
                 )
             elif parsed.path.startswith("/v1/ads-capability-gates/") and len(parsed.path.split("/")) == 4:

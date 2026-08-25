@@ -37,6 +37,7 @@ def test_mission_control_assets_are_real_and_javascript_compiles() -> None:
     assert 'id="metric-materialization-list"' in html
     assert "Amazon Ads 准入" in html
     assert 'id="ads-capability-list"' in html
+    assert 'id="ads-adapter-status"' in html and "Adapter Lock" in html
     assert 'id="ads-capability-dialog"' in html
     assert 'id="amazon-ads-connector-fields"' in html
     assert 'id="demo-badge"' in html and 'id="demo-banner"' in html
@@ -127,6 +128,7 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
         "/v1/metric-materializations",
         "/metric-materialization",
         "/v1/ads-capability-gates",
+        "/v1/ads-adapter-status",
     ):
         assert endpoint in script
     assert "需要 admin 或 owner 角色" in script
@@ -150,6 +152,9 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
     assert "value_decimal ?? observation.value" in script
     assert 'case "materialize-evidence-metrics"' in script
     assert "指标物化结果已刷新。" in script
+    assert "当前构建未注册 Amazon Ads 写操作" in script
+    assert "eligible_not_installed" in script
+    assert "写入面已关闭" in script
 
 
 def test_runtime_serves_ui_with_security_headers_and_live_catalog(tmp_path: Path) -> None:

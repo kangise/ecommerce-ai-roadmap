@@ -3,6 +3,7 @@
 from .agents import OpenAIResponsesProvider, WeeklyOpsCouncil
 from .accounts import MarketplaceAccountService
 from .ads_gates import AdsCapabilityGateService
+from .ads_adapter_status import AdsAdapterStatusService
 from .briefing import BriefingService
 from .evidence import CSVIngestor, EvidenceImportService, EvidenceObjectStore, XLSXIngestor
 from .evals import WorkflowEvaluator
@@ -16,6 +17,7 @@ __all__ = [
     "CSVIngestor",
     "BriefingService",
     "AdsCapabilityGateService",
+    "AdsAdapterStatusService",
     "Database",
     "EvidenceImportService",
     "EvidenceObjectStore",

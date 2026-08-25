@@ -81,6 +81,14 @@ LWA → regional profiles → target profile → campaigns-list read-only probe.
 It does not claim live Ads smoke: this machine has no Ads credentials or
 external attestation, so L5 remains blocked until both are supplied.
 
+L6 negative-boundary coverage verifies the viewer-readable adapter-status
+route, optional account filter, blocked/eligible_not_installed allowlist,
+fixed `adapter_registered=false`, zero write operations, reason-code allowlist,
+nullable freshness fields, and absence of Ads write routes/actions. Fixtures
+may prove only `eligible_not_installed`; they must not claim an installed or
+live-writing adapter. Future writes remain conditional on proposal, approval,
+audit, and rollback.
+
 The production gate is broader than pytest:
 
 ```bash

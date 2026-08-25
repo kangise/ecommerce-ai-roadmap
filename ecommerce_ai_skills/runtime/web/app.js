@@ -27,6 +27,9 @@ const state = {
   adsCapabilityGates: [],
   adsCapabilityLoading: false,
   adsCapabilityError: null,
+  adsAdapterStatus: null,
+  adsAdapterLoading: false,
+  adsAdapterError: null,
   selectedPlatform: "amazon",
   chartMetric: null,
   timer: null,
@@ -184,6 +187,20 @@ function renderConnectors() {
     const refCount = Object.keys(connector.credential_refs || {}).length;
     return `<article class="connector-card"><div class="connector-card-head"><div><p class="kicker">${escapeHtml(connectorProviderLabel(connector.provider))}</p><h2>${escapeHtml(connector.external_account_id)}</h2><p>${escapeHtml(connectorDetails(connector))}</p></div>${badge(healthStatus)}</div><dl class="connector-meta"><div><dt>Last checked</dt><dd>${escapeHtml(isoLocal(connector.health_checked_at))}</dd></div><div><dt>Credential refs</dt><dd>${refCount ? `${refCount} present` : "—"}</dd></div></dl>${failure ? `<p class="connector-error">${escapeHtml(failure)}</p>` : ""}<div class="row-actions">${edit}${healthAction}${adsGateAction}</div></article>`;
   }).join("");
+}
+
+function renderAdsAdapterStatus() {
+  const target = $("ads-adapter-status");
+  if (!target) return;
+  if (!state.apiKey) { designedEmpty(target, "尚未连接 Runtime", "连接后读取真实 Amazon Ads Adapter 状态。", "key"); return; }
+  if (state.adsAdapterLoading) { designedEmpty(target, "正在读取 Adapter 状态", "正在获取当前构建的真实注册与写入能力。", "database"); return; }
+  if (state.adsAdapterError) { target.innerHTML = `<div class="ads-adapter-failure" role="alert"><strong>无法加载 Adapter 状态</strong><span>${escapeHtml(state.adsAdapterError)}</span></div>`; return; }
+  const value = state.adsAdapterStatus || {};
+  const status = value.status || "blocked";
+  const reasonLabels = {no_amazon_ads_account: "尚无 Amazon Ads 账户", no_capability_gate: "尚无 L5 准入记录", gate_not_passed: "L5 Gate 未通过", required_capabilities_missing: "必需能力不完整", gate_account_config_mismatch: "账户 region 或 Profile 已变化", gate_not_checked: "Gate 尚未完成", gate_stale_account_changed: "账户在 Gate 后已更新", gate_expired: "Gate 已超过 24 小时", gate_checked_in_future: "Gate 时间异常", adapter_not_installed: "Adapter 未安装", write_surface_disabled: "写入面已关闭"};
+  const reasons = (value.reason_codes || []).map(item => typeof item === "string" ? (reasonLabels[item] || item) : item.code || item.message).filter(Boolean);
+  const label = status === "eligible_not_installed" ? "Eligible · 未安装" : "Blocked";
+  target.innerHTML = `<article class="ads-adapter-card"><div class="ads-adapter-head"><div><p class="kicker">Adapter Lock</p><h3>Amazon Ads 写入适配器</h3><p>${escapeHtml(value.evaluated_at ? `检查于 ${isoLocal(value.evaluated_at)}` : "当前租户的真实准入评估")}</p></div>${badge(status)}</div><dl class="ads-adapter-meta"><div><dt>状态</dt><dd>${escapeHtml(label)}</dd></div><div><dt>Adapter registered</dt><dd>${value.adapter_registered === true ? "是" : "否"}</dd></div><div><dt>写操作</dt><dd>${escapeHtml((value.write_operations || []).join("、") || "无")}</dd></div><div><dt>原因</dt><dd>${escapeHtml(reasons.join(" · ") || "未提供原因")}</dd></div></dl><p class="ads-adapter-lock-note">当前构建未注册 Amazon Ads 写操作。此区域仅展示准入锁状态，不提供执行、解锁或写入按钮。</p></article>`;
 }
 
 function connectorProviders() {
@@ -875,6 +892,7 @@ function renderAll() {
   renderMetricObservations();
   renderMetricMaterializations();
   renderAdsCapabilityGates();
+  renderAdsAdapterStatus();
 }
 
 function renderDisconnected() {
@@ -901,6 +919,7 @@ function renderDisconnected() {
   state.adsCapabilityGates = [];
   state.adsCapabilityLoading = false;
   state.adsCapabilityError = null;
+  state.adsAdapterStatus = null; state.adsAdapterLoading = false; state.adsAdapterError = null;
   renderBriefing();
   renderEvidence();
   renderRuns();
@@ -914,6 +933,7 @@ function renderDisconnected() {
   renderMetricObservations();
   renderMetricMaterializations();
   renderAdsCapabilityGates();
+  renderAdsAdapterStatus();
 }
 
 async function refreshAll() {
@@ -928,21 +948,24 @@ async function refreshAll() {
   state.materializationError = null;
   state.adsCapabilityLoading = true;
   state.adsCapabilityError = null;
+  state.adsAdapterLoading = true; state.adsAdapterError = null;
   renderReportRecipes();
   renderReportSyncs();
   renderMetricObservations();
   renderMetricMaterializations();
   renderAdsCapabilityGates();
+  renderAdsAdapterStatus();
   const platform = encodeURIComponent(state.selectedPlatform);
   const recipes = api("/v1/report-recipes").then(value => ({value})).catch(error => ({error}));
   const syncs = api("/v1/report-syncs").then(value => ({value})).catch(error => ({error}));
   const observations = api("/v1/metric-observations").then(value => ({value})).catch(error => ({error}));
   const materializations = api("/v1/metric-materializations").then(value => ({value})).catch(error => ({error}));
   const adsGates = api("/v1/ads-capability-gates").then(value => ({value})).catch(error => ({error}));
-  const [me, catalog, briefing, mission, imports, runs, jobs, schedules, audit, connectors, recipeResult, syncResult, observationResult, materializationResult, adsGateResult] = await Promise.all([
+  const adsAdapter = api("/v1/ads-adapter-status").then(value => ({value})).catch(error => ({error}));
+  const [me, catalog, briefing, mission, imports, runs, jobs, schedules, audit, connectors, recipeResult, syncResult, observationResult, materializationResult, adsGateResult, adsAdapterResult] = await Promise.all([
     api("/v1/me"), api("/v1/catalog"), api(`/v1/briefing?platform=${platform}`), api("/v1/mission-control"),
     api("/v1/evidence-imports?limit=100"), api("/v1/agent-runs?limit=100"), api("/v1/jobs?limit=100"),
-    api("/v1/schedules"), api("/v1/audit?limit=100"), api("/v1/connectors"), recipes, syncs, observations, materializations, adsGates,
+    api("/v1/schedules"), api("/v1/audit?limit=100"), api("/v1/connectors"), recipes, syncs, observations, materializations, adsGates, adsAdapter,
   ]);
   if (recipeResult.error) console.error("Report Recipes 加载失败", recipeResult.error);
   if (syncResult.error) console.error("Sync Activity 加载失败", syncResult.error);
@@ -963,6 +986,7 @@ async function refreshAll() {
     materializationLoading: false, materializationError: materializationResult.error?.message || null,
     adsCapabilityGates: Array.isArray(adsGateResult.value) ? adsGateResult.value : adsGateResult.value?.ads_capability_gates || adsGateResult.value?.gates || [],
     adsCapabilityLoading: false, adsCapabilityError: adsGateResult.error?.message || null,
+    adsAdapterStatus: adsAdapterResult?.value || null, adsAdapterLoading: false, adsAdapterError: adsAdapterResult?.error?.message || null,
   });
   setConnected(true);
   renderAll();

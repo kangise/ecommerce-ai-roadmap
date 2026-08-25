@@ -11,7 +11,7 @@
 | L3 | SP-API Sync | done | Schema v13；durable create/poll/download/Evidence；pytest 107；14 groups=0；wheel + worker smoke；browser QA | `loop(v1.3): L3 ship durable amazon report sync` | operator enqueue/viewer inspect；healthy account gate；bounded retry/JSON/TSV；无自动调度与 Amazon 写入；live credential smoke 不可用 |
 | L4 | Metric Observations | done | Schema v14；durable materialization/observations；pytest 120；14 groups=0；wheel persistence smoke；browser QA | `loop(v1.3): L4 persist provenance-safe metric observations` | Decimal v2；ISO currency isolation；period/grain/series/quality；bounded backfill；Briefing 不再解析 Evidence rows |
 | L5 | Ads Contract Gate | blocked | Schema v15；real LWA/profiles/SP v3 read gate；pytest 139；14 groups=0；wheel blocked-state smoke；browser QA | `loop(v1.3): L5 enforce amazon ads capability gate` | 实现与门禁全部通过；当前环境无 Ads credentials/外部批准，真实结果持久 blocked，L6 不得接入 |
-| L6 | Ads Adapter 条件实现 | pending |  |  |  |
+| L6 | Ads Adapter 条件实现 | done | Schema v15 unchanged；negative adapter status；pytest 148；14 groups=0；wheel/API smoke；browser QA | `loop(v1.3): L6 lock conditional amazon ads adapter` | L5 条件为假；adapter_registered=false、writes=[]、无 Ads route/action/button；freshness/config/capability guard 可审计 |
 | L7 | Domain Agent Graph | pending |  |  |  |
 | L8 | Daily Ops | pending |  |  |  |
 | L9 | Proposals | pending |  |  |  |
@@ -93,6 +93,18 @@
 - Failure 1: integration review found incomplete Amazon Ads account OpenAPI oneOf/provider schemas, unsafe DTO drift, wrong docs repository link, and a Demo attestation that could look successful; schemas/DTO/docs were aligned and Demo now leaves attestation absent/blocked.
 - Failure 2 / blocked reason: no Amazon Ads LWA credential variables, approved application evidence, authorized numeric Profile, or externally reconciled attestation exist in this environment. A real success smoke is therefore unavailable by design. Required unblock input: an approved tenant Ads account, three secret-manager variables, matching region/Profile ID, and a verified approval reference.
 - Restore point and result: L4 `04a0947`; Schema v15/Ads connector/gate/UI can be rolled back as one commit without affecting SP-API reports or Metric Observations.
+
+### L6 — Conditional Amazon Ads Adapter
+
+- Date: 2026-08-26
+- Status: done（L5 条件为假，按合同保持 Adapter 未安装）
+- Evidence: `tests/test_ads_adapter_status.py` 8 acceptance cases；全套 pytest 148 passed；`verify_all` 14 groups=0；MCP 69/878/9；`dist/` 153 fresh；Python 3.12 wheel + authenticated status API smoke；`artifacts/design-qa/l6-ads-adapter-lock-final.jpg`。
+- Commit: `loop(v1.3): L6 lock conditional amazon ads adapter`（本记录所在提交）
+- Notes: viewer-readable tenant status；latest Gate queried directly per account；24-hour freshness、future timestamp、account update、region/Profile、exact required capabilities checks；status only `blocked|eligible_not_installed`；`adapter_registered=false` and `write_operations=[]` are invariant；ActionService/OpenAPI/UI contain no Amazon Ads write operation, route, execution, unlock, or registration button. A fixture-passed Gate can prove only future eligibility, never an installed adapter.
+- Validator results: all repository/install gates passed; Demo shows L5 Gate blocked, required capabilities incomplete, Adapter not installed, write surface disabled, no write actions, and zero console errors.
+- Failure 1: the delegated backend could not run pytest; its helper reused an L5 idempotency key and initially failed under the real runner. The helper, DTO/envelope, reason allowlist, time checks, and API coverage were repaired; targeted and full tests then passed.
+- Failure 2 / blocked reason: independent audit found a 200-row tenant Gate scan could miss an account's latest Gate. Storage now queries latest by `(tenant_id, connector_account_id)` directly with a regression test. No remaining L6 blocker; L5's external block intentionally keeps the adapter absent.
+- Restore point and result: L5 `05bc561`; L6 adds only a read-only status/negative boundary and can be reverted without changing Schema v15 or Ads gate history.
 
 ### Lx — 名称
 

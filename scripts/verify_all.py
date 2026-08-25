@@ -654,6 +654,7 @@ def main() -> int:
                     "MetricBackfillRequest",
                     "AdsCapabilityGate",
                     "AdsCapabilityGateRequest",
+                    "AdsAdapterStatus",
                 ):
                     if schema_name not in schemas:
                         problems.append(
@@ -664,6 +665,14 @@ def main() -> int:
                     problems.append("dist/openapi/runtime-api.yaml: missing Ads capability gate list/create contract")
                 if "get" not in ads_paths.get("/v1/ads-capability-gates/{gateId}", {}):
                     problems.append("dist/openapi/runtime-api.yaml: missing Ads capability gate detail contract")
+                adapter_path = ads_paths.get("/v1/ads-adapter-status", {})
+                if "get" not in adapter_path:
+                    problems.append("dist/openapi/runtime-api.yaml: missing conditional Ads adapter status contract")
+                adapter_schema = schemas.get("AdsAdapterStatus", {})
+                if adapter_schema.get("properties", {}).get("adapter_registered", {}).get("enum") != [False]:
+                    problems.append("dist/openapi/runtime-api.yaml: Ads adapter status must prove adapter_registered=false")
+                if adapter_schema.get("properties", {}).get("write_operations", {}).get("maxItems") != 0:
+                    problems.append("dist/openapi/runtime-api.yaml: Ads adapter status write_operations must be empty")
                 connector_providers = set(
                     schemas.get("ConnectorProvider", {}).get("enum", [])
                 )

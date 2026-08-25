@@ -165,6 +165,10 @@
             <div class="section-title-row"><div><h2 id="ads-gates-title">Amazon Ads 准入</h2><span>检查授权、Profile、Sponsored Products 读取权限与外部审批；不会创建、修改或暂停 Campaign。</span></div><button data-action="open-ads-capability-form" id="add-ads-capability-btn" class="primary-button">运行准入检查</button></div>
             <div id="ads-capability-permission" class="permission-note" hidden></div>
             <div id="ads-capability-list" class="ads-capability-list" aria-live="polite"></div>
+            <div class="ads-adapter-lock" aria-labelledby="ads-adapter-lock-title">
+              <div class="section-title-row"><div><h3 id="ads-adapter-lock-title">Adapter Lock</h3><span>写入适配器单独评估；当前版本只允许读取和展示状态。</span></div></div>
+              <div id="ads-adapter-status" aria-live="polite"></div>
+            </div>
           </section>
           <section class="accounts-recipes" aria-labelledby="recipes-title">
             <div class="section-title-row"><div><h2 id="recipes-title">Report Recipes</h2><span>保存可复现的 Amazon 报告配置；远程采集由 L3 Sync 执行。</span></div><button data-action="open-recipe-form" id="add-recipe-btn" class="primary-button">添加 Recipe</button></div>

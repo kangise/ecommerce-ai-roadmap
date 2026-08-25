@@ -1584,10 +1584,22 @@ class Database:
         with self.connect() as conn:
             rows = conn.execute(
                 """SELECT * FROM ads_capability_gates WHERE tenant_id=?
-                   ORDER BY created_at DESC,id DESC LIMIT ?""",
+                   ORDER BY rowid DESC LIMIT ?""",
                 (tenant_id, limit),
             ).fetchall()
         return [self._ads_capability_gate_dict(row) for row in rows]
+
+    def latest_ads_capability_gate(
+        self, tenant_id: str, connector_account_id: str
+    ) -> dict[str, Any] | None:
+        with self.connect() as conn:
+            row = conn.execute(
+                """SELECT * FROM ads_capability_gates
+                   WHERE tenant_id=? AND connector_account_id=?
+                   ORDER BY rowid DESC LIMIT 1""",
+                (tenant_id, connector_account_id),
+            ).fetchone()
+        return self._ads_capability_gate_dict(row) if row is not None else None
 
     def claim_ads_capability_gate(
         self, tenant_id: str, gate_id: str, *, lease_seconds: int = 300
