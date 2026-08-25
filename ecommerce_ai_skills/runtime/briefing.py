@@ -8,10 +8,10 @@ persisted Weekly Ops artifacts and tasks.
 
 from __future__ import annotations
 
-import re
+import hashlib
 from collections import defaultdict
 from datetime import datetime
-from decimal import Decimal, InvalidOperation
+from decimal import Decimal
 from typing import Any
 
 from .agents import PlatformRegistry
@@ -75,70 +75,6 @@ METRIC_ORDER = (
 )
 
 
-def _number(value: Any) -> Decimal | None:
-    """Parse common marketplace numeric/currency/percentage cells safely."""
-
-    if value is None:
-        return None
-    text = str(value).strip()
-    if not text or text in {"-", "--", "N/A", "n/a"}:
-        return None
-    negative = text.startswith("(") and text.endswith(")")
-    normalized = re.sub(r"[^0-9.+-]", "", text.replace(",", ""))
-    if not normalized or normalized in {"+", "-", "."}:
-        return None
-    try:
-        parsed = Decimal(normalized)
-    except InvalidOperation:
-        return None
-    return -parsed if negative else parsed
-
-
-def _sum(rows: list[dict[str, str]], field: str) -> Decimal | None:
-    values = [_number(row.get(field)) for row in rows]
-    present = [value for value in values if value is not None]
-    return sum(present, Decimal(0)) if present else None
-
-
-def _extract_metrics(imported: dict[str, Any]) -> dict[str, Decimal]:
-    rows = imported.get("rows") or []
-    report_type = imported.get("report_type")
-    result: dict[str, Decimal] = {}
-    if report_type == "amazon_business_report":
-        revenue = _sum(rows, "ordered_product_sales")
-        units = _sum(rows, "units_ordered")
-        sessions = _sum(rows, "sessions")
-        if revenue is not None:
-            result["revenue"] = revenue
-        if units is not None:
-            result["units_ordered"] = units
-        if sessions is not None:
-            result["sessions"] = sessions
-        if units is not None and sessions not in {None, Decimal(0)}:
-            result["conversion_rate"] = units / sessions * Decimal(100)
-        elif rows:
-            percentages = [
-                _number(row.get("unit_session_percentage")) for row in rows
-            ]
-            present = [value for value in percentages if value is not None]
-            if present:
-                result["conversion_rate"] = sum(present, Decimal(0)) / len(present)
-    elif report_type == "amazon_ads_search_term":
-        spend = _sum(rows, "spend")
-        if spend is not None:
-            result["ad_spend"] = spend
-    elif report_type == "amazon_fba_inventory":
-        quantities = [_number(row.get("fulfillable_quantity")) for row in rows]
-        result["stockout_skus"] = Decimal(
-            sum(1 for value in quantities if value is not None and value <= 0)
-        )
-    elif report_type == "amazon_returns":
-        result["return_requests"] = Decimal(len(rows))
-    elif report_type == "amazon_listing":
-        result["listing_items"] = Decimal(len(rows))
-    return result
-
-
 def _timestamp(value: str) -> datetime:
     return datetime.fromisoformat(value.replace("Z", "+00:00"))
 
@@ -158,8 +94,6 @@ def _action_platform(action: dict[str, Any]) -> str | None:
 class BriefingService:
     """Build a tenant-safe, evidence-backed daily operating brief."""
 
-    MAX_IMPORTS_WITH_ROWS = 20
-
     def __init__(
         self,
         db: Database,
@@ -173,20 +107,41 @@ class BriefingService:
 
     @staticmethod
     def _metric_payload(key: str, points: list[dict[str, Any]]) -> dict[str, Any]:
-        ordered = sorted(points, key=lambda point: _timestamp(point["observed_at"]))[-7:]
+        ordered = sorted(points, key=lambda point: _timestamp(point["period_end"]))[-7:]
         current = Decimal(str(ordered[-1]["value"]))
         previous = Decimal(str(ordered[-2]["value"])) if len(ordered) > 1 else None
         change_percent = None
-        if previous not in {None, Decimal(0)}:
+        comparable = False
+        if len(ordered) > 1:
+            previous_start = _timestamp(ordered[-2]["period_start"])
+            previous_end = _timestamp(ordered[-2]["period_end"])
+            current_start = _timestamp(ordered[-1]["period_start"])
+            current_end = _timestamp(ordered[-1]["period_end"])
+            previous_duration = previous_end - previous_start
+            current_duration = current_end - current_start
+            comparable = (
+                previous_duration == current_duration
+                and previous_end <= current_start
+                and (current_duration.total_seconds() > 0 or previous_end < current_start)
+            )
+        if comparable and previous not in {None, Decimal(0)}:
             change_percent = float((current - previous) / abs(previous) * Decimal(100))
+        display_multiplier = Decimal(100) if METRIC_META[key]["format"] == "percent" else Decimal(1)
+        display_series = [
+            {
+                **point,
+                "value": float(Decimal(str(point["value"])) * display_multiplier),
+            }
+            for point in ordered
+        ]
         return {
             "key": key,
             **METRIC_META[key],
-            "value": float(current),
+            "value": float(current * display_multiplier),
             "change_percent": change_percent,
-            "observed_at": ordered[-1]["observed_at"],
+            "observed_at": ordered[-1]["period_end"],
             "source_import_id": ordered[-1]["source_import_id"],
-            "series": ordered,
+            "series": display_series,
         }
 
     def get(self, principal: Principal, platform: str) -> dict[str, Any]:
@@ -200,27 +155,55 @@ class BriefingService:
             for item in self.db.list_evidence_imports(principal.tenant_id, 200)
             if item["platform"] == platform
         ]
-        detailed = [
-            self.db.get_evidence_import(
-                principal.tenant_id, item["id"], include_rows=True
+        observations, _ = self.db.list_metric_observations(
+            principal.tenant_id, limit=200, platform=platform
+        )
+        metric_points: dict[
+            tuple[str, str, str | None, str, str], list[dict[str, Any]]
+        ] = (
+            defaultdict(list)
+        )
+        for observation in observations:
+            key = str(observation["metric_key"])
+            if key not in METRIC_META:
+                continue
+            series = (
+                key,
+                str(observation["series_key"]),
+                observation.get("currency"),
+                str(observation["unit"]),
+                str(observation["time_grain"]),
             )
-            for item in metadata[: self.MAX_IMPORTS_WITH_ROWS]
-        ]
-        metric_points: dict[str, list[dict[str, Any]]] = defaultdict(list)
-        for imported in detailed:
-            for key, value in _extract_metrics(imported).items():
-                metric_points[key].append(
-                    {
-                        "observed_at": imported["observed_at"],
-                        "value": float(value),
-                        "source_import_id": imported["id"],
-                    }
-                )
-        metrics = [
-            self._metric_payload(key, metric_points[key])
-            for key in METRIC_ORDER
-            if metric_points.get(key)
-        ]
+            metric_points[series].append(
+                {
+                    "observed_at": observation["period_end"],
+                    "period_start": observation["period_start"],
+                    "period_end": observation["period_end"],
+                    "value": float(Decimal(str(observation["value_decimal"]))),
+                    "source_import_id": observation["evidence_import_id"],
+                    "dimensions": observation["dimensions"],
+                }
+            )
+        metrics = []
+        for key in METRIC_ORDER:
+            matching = sorted(
+                (
+                    (series, points)
+                    for series, points in metric_points.items()
+                    if series[0] == key
+                ),
+                key=lambda item: (item[0][2] or "", item[0][1], item[0][4]),
+            )
+            for series, points in matching:
+                payload = self._metric_payload(key, points)
+                payload["currency"] = series[2]
+                payload["unit"] = series[3]
+                payload["time_grain"] = series[4]
+                payload["dimensions"] = points[-1]["dimensions"]
+                payload["series_id"] = hashlib.sha256(
+                    f"{series[1]}|{series[4]}".encode("utf-8")
+                ).hexdigest()[:24]
+                metrics.append(payload)
 
         relevant_runs = [
             run

@@ -13,6 +13,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 - Add package integrity metadata, automated tests, and PR quality checks.
 
 ### Added
+- L4 tenant-owned metric observation and materialization contracts with exact
+  bounded Decimal values, period/grain/provenance/quality metadata, strict
+  currency isolation and missing-currency quarantine, operator idempotent
+  per-import materialization, admin bounded cursor backfill, and an explicit
+  L3 Evidence/L4 failure boundary without runtime mock fallbacks.
 - L1 marketplace connector account contract for Amazon SP-API and Shopify:
   tenant-scoped list/get/create/update, role-gated synchronous health checks,
   redacted credential-reference presence, provider/marketplace catalogs, and

@@ -18,6 +18,12 @@ const state = {
   reportSyncs: [],
   syncLoading: false,
   syncError: null,
+  metricObservations: [],
+  metricMaterializations: [],
+  metricLoading: false,
+  metricError: null,
+  materializationLoading: false,
+  materializationError: null,
   selectedPlatform: "amazon",
   chartMetric: null,
   timer: null,
@@ -385,6 +391,7 @@ function renderCatalog() {
   const reports = state.catalog?.report_types || [];
   for (const id of ["evidence-platform", "schedule-platform"]) {
     $(id).innerHTML = platforms.map(platform => `<option value="${escapeHtml(platform.id)}">${escapeHtml(platform.label?.zh || platform.label?.en || platform.id)}</option>`).join("");
+    if (platforms.some(platform => platform.id === state.selectedPlatform)) $(id).value = state.selectedPlatform;
   }
   renderReportOptions("evidence-platform", "evidence-type", reports);
   renderReportOptions("schedule-platform", "schedule-report-type", reports);
@@ -423,7 +430,7 @@ function renderMetrics() {
   }
   target.innerHTML = metrics.slice(0, 4).map(metric => {
     const change = metricChange(metric);
-    const unitNote = metric.format === "amount" ? "原报表币种" : `观测于 ${shortDate(metric.observed_at)}`;
+    const unitNote = metric.format === "amount" ? (metric.currency || "币种未知") : `观测于 ${shortDate(metric.observed_at)}`;
     return `<article class="metric-item"><span>${escapeHtml(metric.label)}</span><strong>${escapeHtml(formatMetric(metric))}</strong><small class="${change.className}">${escapeHtml(change.label)} · ${escapeHtml(unitNote)}</small></article>`;
   }).join("");
 }
@@ -436,9 +443,13 @@ function renderChartControls() {
     $("chart-empty").hidden = false;
     return;
   }
-  if (!metrics.some(metric => metric.key === state.chartMetric)) state.chartMetric = metrics[0].key;
-  $("chart-controls").innerHTML = metrics.map(metric => `<button data-action="select-metric" data-metric="${escapeHtml(metric.key)}" class="metric-toggle ${metric.key === state.chartMetric ? "active" : ""}">${escapeHtml(metric.label)}</button>`).join("");
-  drawChart(metrics.find(metric => metric.key === state.chartMetric));
+  const identity = metric => metric.series_id || metric.key;
+  if (!metrics.some(metric => identity(metric) === state.chartMetric)) state.chartMetric = identity(metrics[0]);
+  $("chart-controls").innerHTML = metrics.map(metric => {
+    const label = [metric.label, metric.currency, metric.time_grain].filter(Boolean).join(" · ");
+    return `<button data-action="select-metric" data-metric="${escapeHtml(identity(metric))}" class="metric-toggle ${identity(metric) === state.chartMetric ? "active" : ""}">${escapeHtml(label)}</button>`;
+  }).join("");
+  drawChart(metrics.find(metric => identity(metric) === state.chartMetric));
 }
 
 function drawChart(metric) {
@@ -618,8 +629,111 @@ function renderEvidence() {
     designedEmpty(options, "暂无可选 Evidence", "先完成一次真实数据导入。", "database", {view: "evidence", label: "去导入"});
     return;
   }
-  target.innerHTML = state.imports.map(item => `<div class="data-row"><div class="data-main"><strong>${escapeHtml(item.filename)}</strong><small>${badge(item.platform)}${escapeHtml(item.report_type)} · ${item.row_count} rows · ${escapeHtml(isoLocal(item.observed_at))}</small></div><div class="row-actions"><button data-action="view-import" data-id="${item.id}" class="secondary-button">查看</button></div></div>`).join("");
+  const canMaterialize = metricCanMaterialize();
+  target.innerHTML = state.imports.map(item => {
+    const supported = (state.catalog?.metric_materialization_report_types || []).includes(item.report_type);
+    const enabled = canMaterialize && supported;
+    const disabledReason = supported ? "需要 operator、admin 或 owner 角色" : "该报告类型尚无指标映射";
+    const materialize = `<button data-action="materialize-evidence-metrics" data-id="${escapeHtml(item.id)}" class="primary-button" ${enabled ? "" : `disabled title="${escapeHtml(disabledReason)}"`}>物化指标</button>`;
+    const reason = enabled ? "" : `<span class="permission-reason">${escapeHtml(supported ? "当前角色只能查看；物化指标需要 operator、admin 或 owner。" : "该报告类型尚无指标映射；当前不会生成指标观测。")}</span>`;
+    return `<div class="data-row"><div class="data-main"><strong>${escapeHtml(item.filename)}</strong><small>${badge(item.platform)}${escapeHtml(item.report_type)} · ${item.row_count} rows · ${escapeHtml(isoLocal(item.observed_at))}</small></div><div class="row-actions"><button data-action="view-import" data-id="${escapeHtml(item.id)}" class="secondary-button">查看</button>${materialize}</div>${reason}</div>`;
+  }).join("");
   options.innerHTML = state.imports.map(item => `<label><input type="checkbox" name="run-evidence" value="${item.id}">${escapeHtml(item.platform)} · ${escapeHtml(item.filename)}</label>`).join("");
+}
+
+function metricCanMaterialize() {
+  return ["operator", "admin", "owner"].includes(state.me?.role);
+}
+
+function metricDisplayValue(observation) {
+  const value = observation.value_decimal ?? observation.value ?? observation.metric_value ?? observation.numeric_value;
+  if (value === null || value === undefined || value === "") return "—";
+  const numeric = Number(value);
+  if (observation.unit === "ratio" && Number.isFinite(numeric)) return `${new Intl.NumberFormat("zh-CN", {maximumFractionDigits: 4}).format(numeric * 100)}%`;
+  const rendered = Number.isFinite(numeric) ? new Intl.NumberFormat("zh-CN", {maximumFractionDigits: 4}).format(numeric) : String(value);
+  const currency = observation.currency || observation.currency_code;
+  const unit = observation.unit || observation.value_unit;
+  return [rendered, currency, unit].filter(Boolean).join(" ");
+}
+
+function metricPeriod(observation) {
+  const start = observation.period_start || observation.period_start_at;
+  const end = observation.period_end || observation.period_end_at;
+  const grain = observation.grain || observation.period_grain || observation.time_grain;
+  const range = start || end ? `${shortDate(start)} — ${shortDate(end)}` : "未提供周期";
+  return grain ? `${range} · ${grain}` : range;
+}
+
+function metricFlags(observation) {
+  const flags = observation.quality?.flags || observation.quality_flags || observation.quality_flag_codes || [];
+  const values = Array.isArray(flags) ? flags : Object.entries(flags).filter(([, enabled]) => Boolean(enabled)).map(([key]) => key);
+  return values.length ? values.map(flag => `<span class="quality-flag">${escapeHtml(typeof flag === "string" ? flag : flag.code || flag.label || JSON.stringify(flag))}</span>`).join("") : '<span class="quality-clear">未报告质量警告</span>';
+}
+
+function materializationStatus(materialization) {
+  return materialization.status || materialization.state || materialization.processing_status || "unknown";
+}
+
+function materializationEvidenceId(materialization) {
+  return materialization.evidence_import_id || materialization.import_id || materialization.source_evidence_import_id;
+}
+
+function renderMetricObservations() {
+  const target = $("metric-observation-list");
+  if (!state.apiKey) {
+    designedEmpty(target, "尚未连接 Runtime", "指标观测需要已认证的租户会话。", "chart-line-up");
+    return;
+  }
+  if (state.metricLoading) {
+    designedEmpty(target, "正在加载指标观测", "正在读取由真实 Evidence 物化的标准化数值。", "chart-line-up");
+    return;
+  }
+  if (state.metricError) {
+    target.innerHTML = `<div class="metric-failure" role="alert"><strong>无法加载指标观测</strong><span>${escapeHtml(state.metricError)}</span></div>`;
+    return;
+  }
+  if (!state.metricObservations.length) {
+    designedEmpty(target, "还没有指标观测", "导入 Evidence 后运行物化，才会生成可追溯的经营指标。", "chart-line-up");
+    return;
+  }
+  const visible = state.metricObservations.slice(0, 8);
+  const summary = state.metricObservations.length > visible.length
+    ? `<p class="result-count">显示最近 ${visible.length} 条，共 ${state.metricObservations.length} 条；完整历史可通过 API 分页查看。</p>`
+    : "";
+  target.innerHTML = summary + visible.map(observation => {
+    const name = observation.metric_key || observation.metric_name || observation.name || "未命名指标";
+    const source = observation.evidence_import_id || observation.source_evidence_import_id || "—";
+    return `<article class="metric-observation-card"><div class="metric-observation-head"><div><p class="kicker">${escapeHtml(observation.platform || "Evidence")}</p><h3>${escapeHtml(name)}</h3></div><strong>${escapeHtml(metricDisplayValue(observation))}</strong></div><dl class="metric-observation-meta"><div><dt>Period / grain</dt><dd>${escapeHtml(metricPeriod(observation))}</dd></div><div><dt>Observed</dt><dd>${escapeHtml(isoLocal(observation.observed_at || observation.created_at))}</dd></div><div><dt>Evidence</dt><dd>${escapeHtml(source)}</dd></div></dl><div class="quality-flags"><span>质量</span>${metricFlags(observation)}</div><div class="row-actions"><button data-action="view-metric-observation" data-id="${escapeHtml(observation.id)}" class="secondary-button">查看来源</button></div></article>`;
+  }).join("");
+}
+
+function renderMetricMaterializations() {
+  const target = $("metric-materialization-list");
+  if (!state.apiKey) {
+    designedEmpty(target, "尚未连接 Runtime", "物化任务需要已认证的租户会话。", "pulse");
+    return;
+  }
+  if (state.materializationLoading) {
+    designedEmpty(target, "正在加载物化任务", "正在读取 Evidence 到指标观测的处理状态。", "pulse");
+    return;
+  }
+  if (state.materializationError) {
+    target.innerHTML = `<div class="metric-failure" role="alert"><strong>无法加载物化任务</strong><span>${escapeHtml(state.materializationError)}</span></div>`;
+    return;
+  }
+  if (!state.metricMaterializations.length) {
+    designedEmpty(target, "暂无物化任务", "当 Evidence 被送入指标标准化流程后，处理状态会显示在这里。", "pulse");
+    return;
+  }
+  const operator = metricCanMaterialize();
+  target.innerHTML = state.metricMaterializations.map(materialization => {
+    const status = materializationStatus(materialization);
+    const evidenceId = materializationEvidenceId(materialization);
+    const error = materialization.error_message || materialization.error_code;
+    const retry = status === "failed" ? `<button data-action="retry-metric-materialization" data-evidence-id="${escapeHtml(evidenceId)}" class="primary-button" ${operator && evidenceId ? "" : `disabled title="${escapeHtml(operator ? "缺少 Evidence 标识，无法重试" : "需要 operator、admin 或 owner 角色" )}"`}>重试物化</button>` : "";
+    const reason = status === "failed" && !operator ? '<span class="permission-reason">当前角色只能查看；重试物化需要 operator、admin 或 owner。</span>' : "";
+    return `<article class="materialization-card"><div class="materialization-head"><div><p class="kicker">Evidence materialization</p><h3>${escapeHtml(evidenceId || "Evidence unavailable")}</h3></div>${badge(status)}</div><dl class="metric-observation-meta"><div><dt>Observations</dt><dd>${escapeHtml(String(materialization.observation_count ?? 0))}</dd></div><div><dt>Quarantined</dt><dd>${escapeHtml(String(materialization.quarantined_count ?? materialization.quarantine_count ?? 0))}</dd></div><div><dt>Updated</dt><dd>${escapeHtml(isoLocal(materialization.updated_at || materialization.completed_at || materialization.created_at))}</dd></div></dl>${error ? `<p class="metric-error">${escapeHtml(error)}</p>` : ""}<div class="row-actions">${retry}</div>${reason}</article>`;
+  }).join("");
 }
 
 function renderRuns() {
@@ -687,6 +801,8 @@ function renderAll() {
   renderConnectors();
   renderReportRecipes();
   renderReportSyncs();
+  renderMetricObservations();
+  renderMetricMaterializations();
 }
 
 function renderDisconnected() {
@@ -704,6 +820,12 @@ function renderDisconnected() {
   state.reportSyncs = [];
   state.syncLoading = false;
   state.syncError = null;
+  state.metricObservations = [];
+  state.metricMaterializations = [];
+  state.metricLoading = false;
+  state.metricError = null;
+  state.materializationLoading = false;
+  state.materializationError = null;
   renderBriefing();
   renderEvidence();
   renderRuns();
@@ -714,6 +836,8 @@ function renderDisconnected() {
   renderConnectors();
   renderReportRecipes();
   renderReportSyncs();
+  renderMetricObservations();
+  renderMetricMaterializations();
 }
 
 async function refreshAll() {
@@ -722,18 +846,28 @@ async function refreshAll() {
   state.recipeError = null;
   state.syncLoading = true;
   state.syncError = null;
+  state.metricLoading = true;
+  state.metricError = null;
+  state.materializationLoading = true;
+  state.materializationError = null;
   renderReportRecipes();
   renderReportSyncs();
+  renderMetricObservations();
+  renderMetricMaterializations();
   const platform = encodeURIComponent(state.selectedPlatform);
   const recipes = api("/v1/report-recipes").then(value => ({value})).catch(error => ({error}));
   const syncs = api("/v1/report-syncs").then(value => ({value})).catch(error => ({error}));
-  const [me, catalog, briefing, mission, imports, runs, jobs, schedules, audit, connectors, recipeResult, syncResult] = await Promise.all([
+  const observations = api("/v1/metric-observations").then(value => ({value})).catch(error => ({error}));
+  const materializations = api("/v1/metric-materializations").then(value => ({value})).catch(error => ({error}));
+  const [me, catalog, briefing, mission, imports, runs, jobs, schedules, audit, connectors, recipeResult, syncResult, observationResult, materializationResult] = await Promise.all([
     api("/v1/me"), api("/v1/catalog"), api(`/v1/briefing?platform=${platform}`), api("/v1/mission-control"),
     api("/v1/evidence-imports?limit=100"), api("/v1/agent-runs?limit=100"), api("/v1/jobs?limit=100"),
-    api("/v1/schedules"), api("/v1/audit?limit=100"), api("/v1/connectors"), recipes, syncs,
+    api("/v1/schedules"), api("/v1/audit?limit=100"), api("/v1/connectors"), recipes, syncs, observations, materializations,
   ]);
   if (recipeResult.error) console.error("Report Recipes 加载失败", recipeResult.error);
   if (syncResult.error) console.error("Sync Activity 加载失败", syncResult.error);
+  if (observationResult.error) console.error("Metric Observations 加载失败", observationResult.error);
+  if (materializationResult.error) console.error("Metric materializations 加载失败", materializationResult.error);
   Object.assign(state, {
     me, catalog, briefing, mission,
     imports: imports.imports || [], runs: runs.runs || [], jobs: jobs.jobs || [],
@@ -742,6 +876,10 @@ async function refreshAll() {
     recipeLoading: false, recipeError: recipeResult.error?.message || null,
     reportSyncs: Array.isArray(syncResult.value) ? syncResult.value : syncResult.value?.report_syncs || syncResult.value?.syncs || [],
     syncLoading: false, syncError: syncResult.error?.message || null,
+    metricObservations: Array.isArray(observationResult.value) ? observationResult.value : observationResult.value?.metric_observations || observationResult.value?.observations || [],
+    metricLoading: false, metricError: observationResult.error?.message || null,
+    metricMaterializations: Array.isArray(materializationResult.value) ? materializationResult.value : materializationResult.value?.metric_materializations || materializationResult.value?.materializations || [],
+    materializationLoading: false, materializationError: materializationResult.error?.message || null,
   });
   setConnected(true);
   renderAll();
@@ -849,6 +987,28 @@ document.body.addEventListener("click", event => {
       break;
     }
     case "view-report-sync": act(button, async () => showDetail("Report Sync", await api(`/v1/report-syncs/${id}`)), "Sync 详情已加载。", false); break;
+    case "materialize-evidence-metrics": {
+      if (!metricCanMaterialize()) { notice("需要 operator、admin 或 owner 角色", "error"); break; }
+      const imported = state.imports.find(item => item.id === id);
+      if (!(state.catalog?.metric_materialization_report_types || []).includes(imported?.report_type)) { notice("该报告类型尚无指标映射。", "error"); break; }
+      act(button, () => api(`/v1/evidence-imports/${id}/metric-materialization`, {method: "POST", headers: {"Idempotency-Key": idempotency("ui-metric-materialization")}}), "指标物化结果已刷新。", true);
+      break;
+    }
+    case "view-metric-observation": act(button, async () => {
+      const observation = await api(`/v1/metric-observations/${id}`);
+      const record = observation.metric_observation || observation.observation || observation;
+      const evidenceId = record.evidence_import_id;
+      const evidence = evidenceId ? await api(`/v1/evidence-imports/${evidenceId}`) : null;
+      const reportSync = state.reportSyncs.find(sync => sync.evidence_import_id === evidenceId) || null;
+      showDetail("Metric 来源与质量", {metric_observation: record, evidence_import: evidence, report_sync: reportSync});
+    }, "指标来源已加载。", false); break;
+    case "retry-metric-materialization": {
+      const evidenceId = button.dataset.evidenceId;
+      if (!metricCanMaterialize()) { notice("需要 operator、admin 或 owner 角色", "error"); break; }
+      if (!evidenceId) { notice("缺少 Evidence 标识，无法重试物化。", "error"); break; }
+      act(button, () => api(`/v1/evidence-imports/${evidenceId}/metric-materialization`, {method: "POST", headers: {"Idempotency-Key": idempotency("ui-metric-materialization")}}), "指标物化结果已刷新。", true);
+      break;
+    }
   }
 });
 
@@ -1007,7 +1167,7 @@ function setDefaultTimes() {
 }
 
 window.addEventListener("resize", () => {
-  const metric = (state.briefing?.metrics || []).find(item => item.key === state.chartMetric);
+  const metric = (state.briefing?.metrics || []).find(item => (item.series_id || item.key) === state.chartMetric);
   if (metric) requestAnimationFrame(() => drawChart(metric));
 });
 

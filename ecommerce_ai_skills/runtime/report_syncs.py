@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+import logging
 from datetime import datetime, timedelta, timezone
 from typing import Any, Callable, Mapping
 from urllib.request import urlopen
@@ -17,8 +18,12 @@ from .errors import (
     ValidationError,
 )
 from .evidence import EvidenceImportService
+from .metric_observations import MetricObservationService
 from .report_recipes import REPORT_RECIPE_CATALOG
 from .storage import Database, Principal
+
+
+log = logging.getLogger("ecommerce_ai_skills.report_syncs")
 
 
 class ReportSyncService:
@@ -33,6 +38,7 @@ class ReportSyncService:
         db: Database,
         auth: AuthService,
         evidence_imports: EvidenceImportService,
+        metric_observations: MetricObservationService | None = None,
         *,
         environ: Mapping[str, str] | None = None,
         transport: Callable[..., Any] = urlopen,
@@ -41,6 +47,7 @@ class ReportSyncService:
         self.db = db
         self.auth = auth
         self.evidence_imports = evidence_imports
+        self.metric_observations = metric_observations
         self.environ = environ if environ is not None else os.environ
         self.transport = transport
         self.clock = clock or (lambda: datetime.now(timezone.utc))
@@ -246,6 +253,31 @@ class ReportSyncService:
             sync["tenant_id"], sync["id"], str(imported["id"])
         )
         self._audit_terminal(completed)
+        if self.metric_observations is not None:
+            try:
+                self.metric_observations.materialize(
+                    principal,
+                    str(imported["id"]),
+                    f"report-sync:{sync['id']}:metrics",
+                    f"report-sync:{sync['id']}:metrics",
+                )
+            except Exception as exc:
+                # Evidence and report synchronization are already durable at
+                # this point. A separate failed materialization remains
+                # visible and must never reverse the successful L3 boundary.
+                log.exception(
+                    "metric_materialization_failed report_sync_id=%s", sync["id"]
+                )
+                self.db.append_audit(
+                    sync["tenant_id"],
+                    sync["created_by"],
+                    f"report-sync:{sync['id']}:metrics-failed",
+                    "marketplace_metric_materialization.failed",
+                    "evidence_import",
+                    str(imported["id"]),
+                    "failed",
+                    {"error_type": type(exc).__name__},
+                )
         return self._safe(completed)
 
     def run_once(self) -> dict[str, Any] | None:

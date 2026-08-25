@@ -29,7 +29,7 @@ class Principal:
 
 
 ROLE_LEVEL = {"viewer": 10, "operator": 20, "admin": 30, "owner": 40}
-SCHEMA_VERSION = 13
+SCHEMA_VERSION = 14
 
 
 class _Connection(sqlite3.Connection):
@@ -310,6 +310,79 @@ class Database:
                 );
                 CREATE INDEX IF NOT EXISTS idx_evidence_imports_tenant_time
                     ON evidence_imports(tenant_id, created_at);
+                CREATE UNIQUE INDEX IF NOT EXISTS uq_evidence_imports_tenant_id
+                    ON evidence_imports(tenant_id, id);
+                CREATE TABLE IF NOT EXISTS metric_materializations (
+                    id TEXT PRIMARY KEY,
+                    tenant_id TEXT NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
+                    evidence_import_id TEXT NOT NULL,
+                    created_by TEXT NOT NULL,
+                    idempotency_key TEXT NOT NULL,
+                    calculation_version TEXT NOT NULL,
+                    status TEXT NOT NULL
+                        CHECK (status IN ('running','succeeded','partial','quarantined','failed')),
+                    attempt_count INTEGER NOT NULL DEFAULT 1 CHECK (attempt_count >= 1),
+                    max_attempts INTEGER NOT NULL DEFAULT 5 CHECK (max_attempts BETWEEN 1 AND 20),
+                    lease_until TEXT,
+                    observation_count INTEGER NOT NULL CHECK (observation_count >= 0),
+                    quarantine_count INTEGER NOT NULL CHECK (quarantine_count >= 0),
+                    currencies_json TEXT NOT NULL,
+                    quality_flags_json TEXT NOT NULL,
+                    issues_json TEXT NOT NULL,
+                    error_code TEXT,
+                    error_message TEXT,
+                    created_at TEXT NOT NULL,
+                    updated_at TEXT NOT NULL,
+                    completed_at TEXT,
+                    UNIQUE(tenant_id, idempotency_key),
+                    UNIQUE(tenant_id, evidence_import_id, calculation_version),
+                    FOREIGN KEY (tenant_id, evidence_import_id)
+                        REFERENCES evidence_imports(tenant_id, id) ON DELETE CASCADE,
+                    FOREIGN KEY (tenant_id, created_by)
+                        REFERENCES users(tenant_id, id)
+                );
+                CREATE UNIQUE INDEX IF NOT EXISTS uq_metric_materializations_tenant_id
+                    ON metric_materializations(tenant_id, id);
+                CREATE INDEX IF NOT EXISTS idx_metric_materializations_tenant_time
+                    ON metric_materializations(tenant_id, created_at);
+                CREATE TABLE IF NOT EXISTS metric_observations (
+                    id TEXT PRIMARY KEY,
+                    tenant_id TEXT NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
+                    materialization_id TEXT NOT NULL,
+                    evidence_import_id TEXT NOT NULL,
+                    connector_account_id TEXT,
+                    marketplace_id TEXT,
+                    platform TEXT NOT NULL,
+                    report_type TEXT NOT NULL,
+                    metric_key TEXT NOT NULL,
+                    series_key TEXT NOT NULL,
+                    value_decimal TEXT NOT NULL,
+                    currency TEXT,
+                    unit TEXT NOT NULL CHECK (unit IN ('count','currency','ratio')),
+                    time_grain TEXT NOT NULL CHECK (time_grain IN ('snapshot','day','range')),
+                    period_start TEXT NOT NULL,
+                    period_end TEXT NOT NULL,
+                    observed_at TEXT NOT NULL,
+                    dimensions_json TEXT NOT NULL,
+                    provenance_json TEXT NOT NULL,
+                    quality_json TEXT NOT NULL,
+                    calculation_version TEXT NOT NULL,
+                    created_at TEXT NOT NULL,
+                    CHECK (
+                        (unit='currency' AND currency IS NOT NULL
+                         AND length(currency)=3 AND currency=upper(currency))
+                        OR (unit!='currency' AND currency IS NULL)
+                    ),
+                    FOREIGN KEY (tenant_id, materialization_id)
+                        REFERENCES metric_materializations(tenant_id, id) ON DELETE CASCADE,
+                    FOREIGN KEY (tenant_id, evidence_import_id)
+                        REFERENCES evidence_imports(tenant_id, id) ON DELETE CASCADE,
+                    FOREIGN KEY (tenant_id, connector_account_id)
+                        REFERENCES connector_accounts(tenant_id, id) ON DELETE RESTRICT,
+                    UNIQUE(tenant_id, evidence_import_id, calculation_version, series_key)
+                );
+                CREATE INDEX IF NOT EXISTS idx_metric_observations_tenant_metric_time
+                    ON metric_observations(tenant_id, platform, metric_key, observed_at);
                 CREATE TABLE IF NOT EXISTS jobs (
                     id TEXT PRIMARY KEY,
                     tenant_id TEXT NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
@@ -535,6 +608,10 @@ class Database:
             # initialize() creates report_syncs transactionally before the
             # schema marker advances.
             version = 13
+        if version == 13:
+            # initialize() creates the tenant-owned materialization and
+            # observation tables transactionally before advancing the marker.
+            version = 14
         if version != SCHEMA_VERSION:
             raise ValidationError(f"no migration path from runtime schema version {version}")
         conn.execute("UPDATE runtime_meta SET value=? WHERE key='schema_version'", (str(SCHEMA_VERSION),))
@@ -1691,6 +1768,487 @@ class Database:
                 (tenant_id, limit),
             ).fetchall()
         return [self._evidence_import_dict(row) for row in rows]
+
+    def page_evidence_imports(
+        self, tenant_id: str, *, limit: int, cursor: str | None = None
+    ) -> tuple[list[dict[str, Any]], str | None]:
+        if not isinstance(limit, int) or isinstance(limit, bool) or not 1 <= limit <= 100:
+            raise ValidationError("limit must be an integer between 1 and 100")
+        with self.connect() as conn:
+            if cursor:
+                anchor = conn.execute(
+                    "SELECT rowid FROM evidence_imports WHERE tenant_id=? AND id=?",
+                    (tenant_id, cursor),
+                ).fetchone()
+                if anchor is None:
+                    raise NotFoundError("metric backfill cursor not found")
+                rows = conn.execute(
+                    """SELECT * FROM evidence_imports
+                       WHERE tenant_id=? AND rowid < ?
+                       ORDER BY rowid DESC LIMIT ?""",
+                    (tenant_id, anchor["rowid"], limit + 1),
+                ).fetchall()
+            else:
+                rows = conn.execute(
+                    """SELECT * FROM evidence_imports WHERE tenant_id=?
+                       ORDER BY rowid DESC LIMIT ?""",
+                    (tenant_id, limit + 1),
+                ).fetchall()
+        page = rows[:limit]
+        next_cursor = str(page[-1]["id"]) if len(rows) > limit and page else None
+        return [self._evidence_import_dict(row) for row in page], next_cursor
+
+    @staticmethod
+    def _metric_materialization_dict(row: sqlite3.Row) -> dict[str, Any]:
+        result = dict(row)
+        result["currencies"] = json.loads(result.pop("currencies_json"))
+        result["quality_flags"] = json.loads(result.pop("quality_flags_json"))
+        result["issues"] = json.loads(result.pop("issues_json"))
+        return result
+
+    @staticmethod
+    def _metric_observation_dict(row: sqlite3.Row) -> dict[str, Any]:
+        result = dict(row)
+        result["dimensions"] = json.loads(result.pop("dimensions_json"))
+        result["provenance"] = json.loads(result.pop("provenance_json"))
+        result["quality_flags"] = json.loads(result.pop("quality_json"))
+        return result
+
+    def metric_source_context(
+        self, tenant_id: str, evidence_import_id: str
+    ) -> dict[str, Any]:
+        self.get_evidence_import(tenant_id, evidence_import_id)
+        with self.connect() as conn:
+            row = conn.execute(
+                """SELECT rs.connector_account_id,rr.marketplace_ids_json,
+                          rs.period_start,rs.period_end,rs.id AS report_sync_id
+                   FROM report_syncs rs
+                   JOIN report_recipes rr
+                     ON rr.tenant_id=rs.tenant_id AND rr.id=rs.recipe_id
+                   WHERE rs.tenant_id=? AND rs.evidence_import_id=?
+                         AND rs.status='succeeded'
+                   ORDER BY rs.completed_at DESC LIMIT 1""",
+                (tenant_id, evidence_import_id),
+            ).fetchone()
+        if row is None:
+            return {
+                "connector_account_id": None,
+                "marketplace_ids": [],
+                "period_start": None,
+                "period_end": None,
+                "report_sync_id": None,
+            }
+        result = dict(row)
+        result["marketplace_ids"] = json.loads(result.pop("marketplace_ids_json"))
+        return result
+
+    def start_metric_materialization(
+        self,
+        tenant_id: str,
+        created_by: str,
+        evidence_import_id: str,
+        idempotency_key: str,
+        *,
+        calculation_version: str,
+    ) -> tuple[dict[str, Any], bool]:
+        if not isinstance(idempotency_key, str) or not 1 <= len(idempotency_key) <= 200:
+            raise ValidationError(
+                "idempotency_key is required and must be <= 200 characters"
+            )
+        materialization_id = self._id()
+        now = utc_now()
+        try:
+            with self.transaction() as conn:
+                self.require_tenant(conn, tenant_id)
+                creator = conn.execute(
+                    "SELECT tenant_id FROM users WHERE id=?", (created_by,)
+                ).fetchone()
+                if creator is None or creator["tenant_id"] != tenant_id:
+                    raise ValidationError(
+                        "metric materialization creator does not belong to tenant"
+                    )
+                evidence = conn.execute(
+                    "SELECT tenant_id FROM evidence_imports WHERE tenant_id=? AND id=?",
+                    (tenant_id, evidence_import_id),
+                ).fetchone()
+                if evidence is None:
+                    raise NotFoundError("evidence import not found")
+                conn.execute(
+                    """INSERT INTO metric_materializations(
+                       id,tenant_id,evidence_import_id,created_by,idempotency_key,
+                       calculation_version,status,attempt_count,max_attempts,lease_until,observation_count,
+                       quarantine_count,currencies_json,quality_flags_json,issues_json,error_code,error_message,
+                       created_at,updated_at,completed_at)
+                       VALUES(?,?,?,?,?,?,'running',1,5,?,0,0,'[]','[]','[]',NULL,NULL,?,?,NULL)""",
+                    (
+                        materialization_id,
+                        tenant_id,
+                        evidence_import_id,
+                        created_by,
+                        idempotency_key,
+                        calculation_version,
+                        (datetime.now(timezone.utc) + timedelta(minutes=5)).isoformat(
+                            timespec="seconds"
+                        ),
+                        now,
+                        now,
+                    ),
+                )
+        except sqlite3.IntegrityError as exc:
+            with self.connect() as conn:
+                same_key = conn.execute(
+                    """SELECT * FROM metric_materializations
+                       WHERE tenant_id=? AND idempotency_key=?""",
+                    (tenant_id, idempotency_key),
+                ).fetchone()
+                semantic = conn.execute(
+                    """SELECT * FROM metric_materializations
+                       WHERE tenant_id=? AND evidence_import_id=?
+                             AND calculation_version=?""",
+                    (tenant_id, evidence_import_id, calculation_version),
+                ).fetchone()
+            existing = same_key or semantic
+            if same_key is not None:
+                if (
+                    same_key["evidence_import_id"] != evidence_import_id
+                    or same_key["calculation_version"] != calculation_version
+                ):
+                    raise ConflictError(
+                        "idempotency key was already used for another metric materialization"
+                    ) from exc
+                if same_key["status"] != "running":
+                    return self._metric_materialization_dict(same_key), True
+            if existing is not None:
+                if existing["status"] == "running":
+                    lease_until = datetime.fromisoformat(
+                        str(existing["lease_until"]).replace("Z", "+00:00")
+                    )
+                    if lease_until > datetime.now(timezone.utc):
+                        return self._metric_materialization_dict(existing), True
+                    if existing["attempt_count"] >= existing["max_attempts"]:
+                        with self.transaction() as conn:
+                            conn.execute(
+                                """UPDATE metric_materializations
+                                   SET status='failed',lease_until=NULL,
+                                       error_code='max_attempts',
+                                       error_message='metric materialization exhausted recovery attempts',
+                                       updated_at=?,completed_at=?
+                                   WHERE tenant_id=? AND id=? AND status='running'""",
+                                (now, now, tenant_id, existing["id"]),
+                            )
+                        return self.get_metric_materialization(
+                            tenant_id, str(existing["id"])
+                        ), True
+                elif existing["status"] != "failed":
+                    return self._metric_materialization_dict(existing), True
+                elif existing["attempt_count"] >= existing["max_attempts"]:
+                    return self._metric_materialization_dict(existing), True
+                # A persisted failed materialization may be explicitly retried.
+                # The stable row preserves provenance; attempt_count makes the
+                # retry visible without producing duplicate observations.
+                with self.transaction() as conn:
+                    conn.execute(
+                        """UPDATE metric_materializations
+                           SET status='running',attempt_count=attempt_count+1,
+                               lease_until=?,
+                               issues_json='[]',error_code=NULL,error_message=NULL,
+                               updated_at=?,completed_at=NULL
+                           WHERE tenant_id=? AND id=?
+                             AND status IN ('running','failed')
+                             AND attempt_count < max_attempts""",
+                        (
+                            (datetime.now(timezone.utc) + timedelta(minutes=5)).isoformat(
+                                timespec="seconds"
+                            ),
+                            now,
+                            tenant_id,
+                            existing["id"],
+                        ),
+                    )
+                return self.get_metric_materialization(
+                    tenant_id, str(existing["id"])
+                ), False
+            raise ConflictError("metric materialization conflict") from exc
+        return self.get_metric_materialization(tenant_id, materialization_id), False
+
+    def complete_metric_materialization(
+        self,
+        tenant_id: str,
+        materialization_id: str,
+        *,
+        status: str,
+        issues: list[dict[str, Any]],
+        observations: list[dict[str, Any]],
+        quarantine_count: int | None = None,
+    ) -> dict[str, Any]:
+        if status not in {"succeeded", "partial", "quarantined"}:
+            raise ValidationError(
+                "completed materialization must be succeeded, partial, or quarantined"
+            )
+        now = utc_now()
+        with self.transaction() as conn:
+            materialization = conn.execute(
+                """SELECT * FROM metric_materializations
+                   WHERE tenant_id=? AND id=?""",
+                (tenant_id, materialization_id),
+            ).fetchone()
+            if materialization is None:
+                raise NotFoundError("metric materialization not found")
+            if materialization["status"] != "running":
+                raise ConflictError("metric materialization is not running")
+            for observation in observations:
+                connector_account_id = observation.get("connector_account_id")
+                if connector_account_id is not None:
+                    account = conn.execute(
+                        """SELECT tenant_id FROM connector_accounts
+                           WHERE tenant_id=? AND id=?""",
+                        (tenant_id, connector_account_id),
+                    ).fetchone()
+                    if account is None:
+                        raise NotFoundError("connector account not found")
+                conn.execute(
+                    """INSERT INTO metric_observations(
+                       id,tenant_id,materialization_id,evidence_import_id,
+                       connector_account_id,marketplace_id,platform,report_type,
+                       metric_key,series_key,value_decimal,currency,unit,time_grain,
+                       period_start,period_end,observed_at,dimensions_json,
+                       provenance_json,quality_json,calculation_version,created_at)
+                       VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+                    (
+                        self._id(),
+                        tenant_id,
+                        materialization_id,
+                        materialization["evidence_import_id"],
+                        connector_account_id,
+                        observation.get("marketplace_id"),
+                        observation["platform"],
+                        observation["report_type"],
+                        observation["metric_key"],
+                        observation["series_key"],
+                        observation["value_decimal"],
+                        observation.get("currency"),
+                        observation["unit"],
+                        observation["time_grain"],
+                        observation["period_start"],
+                        observation["period_end"],
+                        observation["observed_at"],
+                        json.dumps(
+                            observation.get("dimensions", {}),
+                            ensure_ascii=False,
+                            sort_keys=True,
+                        ),
+                        json.dumps(
+                            observation["provenance"],
+                            ensure_ascii=False,
+                            sort_keys=True,
+                        ),
+                        json.dumps(
+                            observation.get("quality_flags", []),
+                            ensure_ascii=False,
+                            sort_keys=True,
+                        ),
+                        materialization["calculation_version"],
+                        now,
+                    ),
+                )
+            conn.execute(
+                """UPDATE metric_materializations
+                   SET status=?,lease_until=NULL,observation_count=?,quarantine_count=?,currencies_json=?,quality_flags_json=?,issues_json=?,
+                       error_code=NULL,error_message=NULL,updated_at=?,completed_at=?
+                   WHERE tenant_id=? AND id=?""",
+                (
+                    status,
+                    len(observations),
+                    len(issues) if quarantine_count is None else quarantine_count,
+                    json.dumps(
+                        sorted(
+                            {
+                                str(item["currency"])
+                                for item in observations
+                                if item.get("currency")
+                            }
+                        )
+                    ),
+                    json.dumps(
+                        sorted(
+                            {
+                                str(flag)
+                                for item in observations
+                                for flag in (
+                                    item.get("quality_flags", {}).get("flags", [])
+                                    if isinstance(item.get("quality_flags"), dict)
+                                    else []
+                                )
+                            }
+                        )[:50]
+                    ),
+                    json.dumps(issues, ensure_ascii=False, sort_keys=True),
+                    now,
+                    now,
+                    tenant_id,
+                    materialization_id,
+                ),
+            )
+        return self.get_metric_materialization(tenant_id, materialization_id)
+
+    def fail_metric_materialization(
+        self,
+        tenant_id: str,
+        materialization_id: str,
+        *,
+        error_code: str,
+        error_message: str,
+        issues: list[dict[str, Any]] | None = None,
+        quarantine_count: int | None = None,
+    ) -> dict[str, Any]:
+        if not error_code or not error_message:
+            raise ValidationError("metric materialization failure requires an error")
+        now = utc_now()
+        with self.transaction() as conn:
+            result = conn.execute(
+                """UPDATE metric_materializations
+                   SET status='failed',lease_until=NULL,observation_count=0,quarantine_count=?,
+                       currencies_json='[]',quality_flags_json='[]',issues_json=?,error_code=?,error_message=?,updated_at=?,completed_at=?
+                   WHERE tenant_id=? AND id=? AND status='running'""",
+                (
+                    len(issues or []) if quarantine_count is None else quarantine_count,
+                    json.dumps(issues or [], ensure_ascii=False, sort_keys=True),
+                    error_code[:100],
+                    error_message[:1000],
+                    now,
+                    now,
+                    tenant_id,
+                    materialization_id,
+                ),
+            )
+            if result.rowcount != 1:
+                existing = conn.execute(
+                    """SELECT status FROM metric_materializations
+                       WHERE tenant_id=? AND id=?""",
+                    (tenant_id, materialization_id),
+                ).fetchone()
+                if existing is None:
+                    raise NotFoundError("metric materialization not found")
+                raise ConflictError("metric materialization is not running")
+        return self.get_metric_materialization(tenant_id, materialization_id)
+
+    def get_metric_materialization(
+        self, tenant_id: str, materialization_id: str
+    ) -> dict[str, Any]:
+        with self.connect() as conn:
+            row = conn.execute(
+                """SELECT * FROM metric_materializations
+                   WHERE tenant_id=? AND id=?""",
+                (tenant_id, materialization_id),
+            ).fetchone()
+        if row is None:
+            raise NotFoundError("metric materialization not found")
+        return self._metric_materialization_dict(row)
+
+    def list_metric_materializations(
+        self,
+        tenant_id: str,
+        limit: int = 100,
+        *,
+        cursor: str | None = None,
+        evidence_import_id: str | None = None,
+        status: str | None = None,
+    ) -> tuple[list[dict[str, Any]], str | None]:
+        if not isinstance(limit, int) or isinstance(limit, bool) or not 1 <= limit <= 200:
+            raise ValidationError("limit must be an integer between 1 and 200")
+        predicates = ["tenant_id=?"]
+        values: list[Any] = [tenant_id]
+        if cursor:
+            with self.connect() as conn:
+                anchor = conn.execute(
+                    """SELECT rowid FROM metric_materializations
+                       WHERE tenant_id=? AND id=?""",
+                    (tenant_id, cursor),
+                ).fetchone()
+            if anchor is None:
+                raise NotFoundError("metric materialization cursor not found")
+            predicates.append("rowid < ?")
+            values.append(anchor["rowid"])
+        if evidence_import_id:
+            predicates.append("evidence_import_id=?")
+            values.append(evidence_import_id)
+        if status:
+            predicates.append("status=?")
+            values.append(status)
+        values.append(limit + 1)
+        with self.connect() as conn:
+            rows = conn.execute(
+                f"""SELECT * FROM metric_materializations
+                    WHERE {' AND '.join(predicates)}
+                    ORDER BY rowid DESC LIMIT ?""",
+                values,
+            ).fetchall()
+        page = rows[:limit]
+        next_cursor = str(page[-1]["id"]) if len(rows) > limit and page else None
+        return [self._metric_materialization_dict(row) for row in page], next_cursor
+
+    def get_metric_observation(
+        self, tenant_id: str, observation_id: str
+    ) -> dict[str, Any]:
+        with self.connect() as conn:
+            row = conn.execute(
+                """SELECT * FROM metric_observations
+                   WHERE tenant_id=? AND id=?""",
+                (tenant_id, observation_id),
+            ).fetchone()
+        if row is None:
+            raise NotFoundError("metric observation not found")
+        return self._metric_observation_dict(row)
+
+    def list_metric_observations(
+        self,
+        tenant_id: str,
+        *,
+        limit: int = 100,
+        cursor: str | None = None,
+        evidence_import_id: str | None = None,
+        metric_key: str | None = None,
+        currency: str | None = None,
+        platform: str | None = None,
+    ) -> tuple[list[dict[str, Any]], str | None]:
+        if not isinstance(limit, int) or isinstance(limit, bool) or not 1 <= limit <= 200:
+            raise ValidationError("limit must be an integer between 1 and 200")
+        predicates = ["tenant_id=?"]
+        values: list[Any] = [tenant_id]
+        if cursor:
+            with self.connect() as conn:
+                anchor = conn.execute(
+                    """SELECT rowid FROM metric_observations
+                       WHERE tenant_id=? AND id=?""",
+                    (tenant_id, cursor),
+                ).fetchone()
+            if anchor is None:
+                raise NotFoundError("metric observation cursor not found")
+            predicates.append("rowid < ?")
+            values.append(anchor["rowid"])
+        if evidence_import_id is not None:
+            predicates.append("evidence_import_id=?")
+            values.append(evidence_import_id)
+        if platform is not None:
+            predicates.append("platform=?")
+            values.append(platform)
+        if metric_key is not None:
+            predicates.append("metric_key=?")
+            values.append(metric_key)
+        if currency is not None:
+            predicates.append("currency=?")
+            values.append(currency)
+        values.append(limit + 1)
+        with self.connect() as conn:
+            rows = conn.execute(
+                f"""SELECT * FROM metric_observations
+                    WHERE {' AND '.join(predicates)}
+                    ORDER BY rowid DESC LIMIT ?""",
+                values,
+            ).fetchall()
+        page = rows[:limit]
+        next_cursor = str(page[-1]["id"]) if len(rows) > limit and page else None
+        return [self._metric_observation_dict(row) for row in page], next_cursor
 
     @staticmethod
     def _agent_run_dict(row: sqlite3.Row, *, include_evidence: bool = True) -> dict[str, Any]:

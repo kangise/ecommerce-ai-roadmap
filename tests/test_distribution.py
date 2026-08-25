@@ -110,6 +110,11 @@ def test_generated_docs_enumerate_all_skills_and_public_onboarding_api() -> None
     assert set(contract["components"]["schemas"]["MarketplaceId"]["enum"]) == expected_platforms - {"cross_platform"}
     assert {"get", "post"} <= set(contract["paths"]["/v1/evidence-imports"])
     assert "get" in contract["paths"]["/v1/evidence-imports/{importId}"]
+    assert "post" in contract["paths"]["/v1/evidence-imports/{importId}/metric-materialization"]
+    assert "get" in contract["paths"]["/v1/metric-observations"]
+    assert "get" in contract["paths"]["/v1/metric-observations/{observationId}"]
+    assert "get" in contract["paths"]["/v1/metric-materializations"]
+    assert "post" in contract["paths"]["/v1/metric-materializations/backfill"]
     from ecommerce_ai_skills.runtime.evidence import REPORT_SPECS
     assert set(contract["components"]["schemas"]["EvidenceReportType"]["enum"]) == set(REPORT_SPECS)
     schemas = contract["components"]["schemas"]
@@ -122,7 +127,7 @@ def test_generated_docs_enumerate_all_skills_and_public_onboarding_api() -> None
     assert "get" in contract["paths"]["/v1/mission-control"]
     assert "get" in contract["paths"]["/v1/briefing"]
     assert "get" in contract["paths"]["/v1/catalog"]
-    assert {"DemoSession", "Job", "Schedule", "MissionControl", "OperatingBriefing", "BriefingMetric", "BriefingAgent", "AgentEvaluation", "RuntimeCatalog"} <= set(schemas)
+    assert {"DemoSession", "Job", "Schedule", "MissionControl", "OperatingBriefing", "BriefingMetric", "BriefingAgent", "AgentEvaluation", "RuntimeCatalog", "MetricObservation", "MetricMaterialization", "MetricBackfillRequest"} <= set(schemas)
 
 
 def test_source_runtime_api_l1_connector_contract() -> None:
@@ -160,6 +165,7 @@ def test_source_runtime_api_l1_connector_contract() -> None:
     assert {
         "connector_providers",
         "amazon_marketplaces",
+        "metric_materialization_report_types",
     } <= set(schemas["RuntimeCatalog"]["required"])
     assert set(schemas["ConnectorProviderCatalogEntry"]["required"]) == {
         "id",
@@ -275,6 +281,72 @@ def test_source_runtime_api_l3_report_sync_contract() -> None:
         "error_code",
         "error_message",
     } <= set(sync["required"])
+
+
+def test_source_runtime_api_l4_metric_materialization_contract() -> None:
+    contract = yaml.safe_load(
+        (ROOT / "openapi" / "runtime-api.yaml").read_text(encoding="utf-8")
+    )
+    paths = contract["paths"]
+    materialize_path = "/v1/evidence-imports/{importId}/metric-materialization"
+    required_operations = {
+        "/v1/metric-observations": "get",
+        "/v1/metric-observations/{observationId}": "get",
+        "/v1/metric-materializations": "get",
+        materialize_path: "post",
+        "/v1/metric-materializations/backfill": "post",
+    }
+    for route, method in required_operations.items():
+        assert method in paths[route]
+
+    materialize = paths[materialize_path]["post"]
+    assert "operator or higher" in materialize["description"]
+    assert "never rolls back" in materialize["description"]
+    assert any(
+        parameter.get("name") == "Idempotency-Key" and parameter.get("required")
+        for parameter in materialize["parameters"]
+    )
+    backfill = paths["/v1/metric-materializations/backfill"]["post"]
+    assert "admin or owner" in backfill["description"]
+    assert "at most 100" in backfill["description"]
+
+    schemas = contract["components"]["schemas"]
+    assert {"MetricObservation", "MetricMaterialization", "MetricBackfillRequest"} <= set(
+        schemas
+    )
+    observation = schemas["MetricObservation"]
+    assert {
+        "tenant_id",
+        "materialization_id",
+        "evidence_import_id",
+        "metric_key",
+        "value_decimal",
+        "currency",
+        "period_start",
+        "period_end",
+        "time_grain",
+        "provenance",
+        "quality",
+    } <= set(observation["required"])
+    decimal = observation["properties"]["value_decimal"]
+    assert decimal["type"] == "string"
+    assert decimal["maxLength"] == 40
+    assert "NaN" in decimal["description"] and "overflow" in decimal["description"]
+    assert observation["properties"]["currency"]["pattern"] == "^[A-Z]{3}$"
+    assert "ZZZ" not in observation["properties"]["currency"]["enum"]
+
+    materialization = schemas["MetricMaterialization"]
+    assert {"running", "succeeded", "partial", "quarantined", "failed"} == set(
+        materialization["properties"]["status"]["enum"]
+    )
+    assert {"observation_count", "quarantine_count", "quality_summary"} <= set(
+        materialization["required"]
+    )
+    request = schemas["MetricBackfillRequest"]
+    assert request["additionalProperties"] is False
+    assert request["properties"]["limit"]["minimum"] == 1
+    assert request["properties"]["limit"]["maximum"] == 100
+    assert "cursor" in request["properties"]
 
 
 def test_mcp_sdk_is_an_optional_install_extra() -> None:

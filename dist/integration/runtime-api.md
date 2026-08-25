@@ -181,6 +181,74 @@ stored in a tenant-scoped, content-addressed directory beside the SQLite databas
 with SHA-256 integrity; the database stores only its relative object key.
 `GET /v1/evidence-imports` returns metadata without parsed rows or file bytes.
 
+## Durable metric materialization
+
+L4 turns recognized fields from a tenant-owned Evidence import into durable,
+queryable metric observations. It never invents rows, defaults missing business
+values, or reads another tenant's Evidence. Viewer-or-higher callers may list
+`/v1/metric-observations`, read `/v1/metric-observations/{observationId}`, and
+list `/v1/metric-materializations`. Cross-tenant identifiers resolve as `404`.
+`GET /v1/catalog` exposes `metric_materialization_report_types`; the UI disables
+materialization for report types that have no reviewed extractor.
+
+An operator or higher explicitly materializes one import with a caller-owned
+idempotency key:
+
+```bash
+curl -fsS -X POST \
+  http://127.0.0.1:8787/v1/evidence-imports/<IMPORT_ID>/metric-materialization \
+  -H 'Authorization: Bearer <OPERATOR_API_KEY>' \
+  -H 'Idempotency-Key: metric-materialization-<IMPORT_ID>-v1'
+```
+
+The service persists a `MetricMaterialization` attempt even when no observation
+can be accepted. A bounded-lease `running` attempt and its terminal
+`succeeded`, `partial`, `quarantined`, or `failed` state therefore remain
+visible after process restart and browser refresh. Retrying the same
+tenant, import, and idempotency key returns the same materialization; reusing a
+key for different input is a conflict.
+
+Every accepted `MetricObservation` carries:
+
+- an exact, finite `value_decimal` serialized as a string, bounded to 38 significant
+  digits and scale 9; floats, exponent notation, NaN, infinity, and overflow
+  are rejected;
+- an explicit period start/end and `time_grain` (`snapshot`, `day`, or
+  `range`);
+- the source import, SHA-256, row, field, and materializer mapping version;
+- bounded string dimensions and explicit quality flags.
+
+Monetary observations require an explicit uppercase ISO 4217 currency from the
+source mapping. A tenant default, account region, locale, or previously seen row
+must never supply a missing currency. Such rows remain in Evidence but are
+quarantined, increase `quarantine_count`, and emit no observation. Queries keep
+currencies isolated; the runtime performs neither FX conversion nor cross-
+currency aggregation. L4 accepts only the currencies represented by the
+runtime's supported Amazon marketplace directory; an arbitrary three-letter
+token is not treated as a currency.
+
+L3 and L4 have separate commit boundaries. Once an Amazon report sync has
+persisted a successful Evidence import, a later materialization failure may
+persist a failed L4 attempt but must not roll back, delete, or relabel the L3
+sync or Evidence import. Operators repair the source/mapping and retry with an
+appropriate idempotency key.
+
+Existing imports are processed only through the explicit admin/owner backfill:
+
+```json
+POST /v1/metric-materializations/backfill
+{
+  "limit": 100,
+  "cursor": "<OPAQUE_CURSOR_FROM_PREVIOUS_PAGE>"
+}
+```
+
+Each call handles at most 100 imports and returns `next_cursor`; no startup,
+page load, scheduler, or read request silently launches a backfill. Production
+materialization uses only persisted tenant Evidence. Synthetic inputs remain
+restricted to test fixtures and explicit Demo seed data and are never a runtime
+fallback.
+
 Create a run from one or more imports:
 
 ```json

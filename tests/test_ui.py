@@ -32,6 +32,9 @@ def test_mission_control_assets_are_real_and_javascript_compiles() -> None:
     assert 'id="recipe-list"' in html
     assert "Sync Activity" in html
     assert 'id="sync-list"' in html
+    assert "Metric Observations" in html
+    assert 'id="metric-observation-list"' in html
+    assert 'id="metric-materialization-list"' in html
     assert 'id="demo-badge"' in html and 'id="demo-banner"' in html
     assert 'state.me?.tenant_mode === "demo"' in script
     assert 'fetch("/v1/demo-session"' in script
@@ -81,6 +84,9 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
         "edit-recipe",
         "enqueue-report-sync",
         "view-report-sync",
+        "view-metric-observation",
+        "materialize-evidence-metrics",
+        "retry-metric-materialization",
     }
     form_wiring = {
         "upload-evidence": '$("evidence-form").addEventListener',
@@ -110,6 +116,9 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
         "/v1/report-recipes",
         "/v1/report-syncs",
         "/sync",
+        "/v1/metric-observations",
+        "/v1/metric-materializations",
+        "/metric-materialization",
     ):
         assert endpoint in script
     assert "需要 admin 或 owner 角色" in script
@@ -118,7 +127,17 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
     assert "recipeCanManage" in script
     assert "recipeSyncAvailability" in script
     assert '"Idempotency-Key": idempotency("ui-report-sync")' in script
+    assert '"Idempotency-Key": idempotency("ui-metric-materialization")' in script
     assert "L3 Worker" in script
+    assert "metricCanMaterialize" in script
+    assert "metric_materialization_report_types" in script
+    assert "该报告类型尚无指标映射" in script
+    assert "metric.series_id || metric.key" in script
+    assert "完整历史可通过 API 分页查看" in script
+    assert "Metric 来源与质量" in script
+    assert "value_decimal ?? observation.value" in script
+    assert 'case "materialize-evidence-metrics"' in script
+    assert "指标物化结果已刷新。" in script
 
 
 def test_runtime_serves_ui_with_security_headers_and_live_catalog(tmp_path: Path) -> None:
@@ -179,3 +198,6 @@ def test_runtime_serves_ui_with_security_headers_and_live_catalog(tmp_path: Path
     assert len(catalog.out[1]["platforms"]) == 15
     assert "amazon_business_report" in catalog.out[1]["report_types"]
     assert "amazon_spapi.import_report" in catalog.out[1]["action_operations"]
+    assert "amazon_business_report" in catalog.out[1][
+        "metric_materialization_report_types"
+    ]

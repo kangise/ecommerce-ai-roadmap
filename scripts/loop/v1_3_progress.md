@@ -9,7 +9,7 @@
 | L1 | Accounts Center | done | Schema v11；Accounts API/UI；Amazon Sellers + Shopify shop health；pytest 77；14 groups=0；browser refresh persistence；wheel smoke | `loop(v1.3): L1 ship marketplace accounts center` | viewer read/admin manage/operator health；refs redacted；Demo 账户保持 unchecked/misconfigured 而非假成功 |
 | L2 | Report Recipes | done | Schema v12；4 recipe allowlist；API/UI/RBAC；pytest 95；14 groups=0；browser Demo 4 recipes；wheel smoke | `loop(v1.3): L2 persist amazon report recipes` | 仅保存可复现配置，不调用Amazon；marketplaces强制为account subset；无删除/执行按钮 |
 | L3 | SP-API Sync | done | Schema v13；durable create/poll/download/Evidence；pytest 107；14 groups=0；wheel + worker smoke；browser QA | `loop(v1.3): L3 ship durable amazon report sync` | operator enqueue/viewer inspect；healthy account gate；bounded retry/JSON/TSV；无自动调度与 Amazon 写入；live credential smoke 不可用 |
-| L4 | Metric Observations | pending |  |  |  |
+| L4 | Metric Observations | done | Schema v14；durable materialization/observations；pytest 120；14 groups=0；wheel persistence smoke；browser QA | `loop(v1.3): L4 persist provenance-safe metric observations` | Decimal v2；ISO currency isolation；period/grain/series/quality；bounded backfill；Briefing 不再解析 Evidence rows |
 | L5 | Ads Contract Gate | pending |  |  |  |
 | L6 | Ads Adapter 条件实现 | pending |  |  |  |
 | L7 | Domain Agent Graph | pending |  |  |  |
@@ -69,6 +69,18 @@
 - Failure 1: 审计发现初始化异常可悬挂 lease 与报告下载 URL 可使用非标准 HTTPS 端口；已加入主动 reschedule+re-raise、443 限制及回归测试后全量复验通过。
 - Failure 2 / blocked reason: 系统 Python 3.9 / pip 21 将 PEP 517 项目误构建为 `UNKNOWN-0.0.0`；改用工作区 Python 3.12 / pip 26 执行受支持的冷安装，依赖安装、CLI、Schema v13 与 worker smoke 均通过，不构成产品阻塞。
 - Restore point and result: L2 `83fd583`; L3 Schema v13/Report Worker/UI 可由本轮提交单独回退。
+
+### L4 — Metric Observations
+
+- Date: 2026-08-26
+- Status: done
+- Evidence: `tests/test_metric_observations.py` 11 acceptance cases；全套 pytest 120 passed；`verify_all` 14 groups=0；MCP 69/878/9；`dist/` 153 fresh；Python 3.12 wheel cold install + Schema v14 + 4 persisted observations smoke；`artifacts/design-qa/l4-metric-observations-final.jpg`。
+- Commit: `loop(v1.3): L4 persist provenance-safe metric observations`（本记录所在提交）
+- Notes: tenant-owned materialization/observation two-table model；operator idempotent materialize、admin bounded cursor backfill、viewer list/detail；bounded lease + stale reclaim；Decimal calculation version `amazon-metrics-v2` stores conversion as ratio；explicit supported ISO currency allowlist、no inference/FX/cross-currency aggregation；period/grain/dimensions/series/provenance/quality retained；L3 Evidence commit stays successful if L4 fails；Briefing reads observations only and isolates currency/dimension/grain；UI exposes real materialize/source/retry actions and disables unsupported report types from runtime catalog.
+- Validator results: all repository/install gates passed; browser Demo shows persisted USD/count/ratio observations, materialization states, eight-result bounded view, Evidence + Report Sync source detail, supported/unsupported action states, refresh persistence, and zero console errors.
+- Failure 1: independent audit found a silently ignored `platform` filter and arbitrary three-letter currencies being accepted as ISO; API/OpenAPI/tests now pass the filter and enforce the supported Amazon marketplace currency allowlist.
+- Failure 2 / blocked reason: first wheel smoke payload contained escaped newline bytes and was correctly rejected as empty CSV; rerunning with the intended bytes proved Schema v14 and observation persistence. This was a smoke-harness input error, not a runtime blocker.
+- Restore point and result: L3 `1916af7`; L4 Schema v14/Metric Observation/Briefing/UI can be rolled back as one commit while leaving L3 Evidence intact.
 
 ### Lx — 名称
 

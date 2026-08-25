@@ -5,7 +5,8 @@
 - Tenant identity, API keys, tenant-owned `MarketplaceAccount` records
   (provider details, credential-reference presence, and persisted health
   outcome), tenant-owned L2 report recipe configuration, synced product
-  records, multi-agent evidence/artifacts, and approval/audit history.
+  records, tenant-owned L4 metric materializations/observations, multi-agent
+  evidence/artifacts, and approval/audit history.
 - External platform access tokens, which must remain in a deployment secret
   manager and outside SQLite, request payloads, logs, and audit metadata.
 
@@ -18,6 +19,9 @@
    token and a constrained HTTPS host.
 4. The catalog and account endpoints cross the authenticated API boundary;
    account IDs must remain scoped to the caller's tenant.
+5. Metric materialization crosses from immutable normalized Evidence into a
+   derived metric store; source ownership, numeric bounds, currency, period,
+   provenance, and quality must be revalidated at that boundary.
 
 ## Controls implemented
 
@@ -56,6 +60,32 @@
   they require a healthy linked account, persist bounded attempts and status,
   honor provider `429`/`Retry-After`, and keep Amazon report IDs, processing
   states, Evidence import IDs, and terminal errors tenant-scoped.
+- L4 observations and materializations are durable tenant-owned rows. Every
+  get/list/materialize/backfill query includes the authenticated `tenant_id`;
+  cross-tenant observation and import IDs fail as `404`. Viewer roles may read,
+  operator-or-higher roles may materialize one import with an idempotency key,
+  and only admin/owner roles may run bounded cursor backfills.
+- Metric values use bounded exact Decimal strings (38 significant digits,
+  scale 9). Non-finite, exponent-form, overflow, and excessive-scale inputs fail
+  validation rather than becoming platform floats or silently rounded values.
+- Accepted observations retain period start/end, grain, source import/SHA,
+  source row/field, mapping version, bounded dimensions, and quality flags.
+  These fields make derived values traceable without copying raw Evidence into
+  API responses.
+- Monetary observations require an explicit ISO 4217 source currency. Missing
+  currency rows are quarantined without an observation, and currency remains a
+  storage/query partition. Tenant locale, marketplace region, and neighboring
+  rows are not trusted currency sources; L4 performs no FX conversion or cross-
+  currency aggregation.
+- L3 Evidence and L4 materialization use separate durable commit boundaries.
+  A failed or quarantined materialization cannot roll back, delete, or relabel
+  an already successful report sync or Evidence import. The failure remains
+  explicit in `MetricMaterialization` and recovery uses an authorized retry or
+  bounded backfill.
+- Backfill is never implicit: an admin supplies a tenant-scoped cursor and a
+  limit of 1–100. Startup, reads, UI refresh, and scheduler activity do not scan
+  old imports. Production paths consume persisted Evidence only and contain no
+  runtime mock-data fallback.
 - Report documents are bounded before ingestion: sales/traffic JSON is
   flattened with depth/row/byte limits and other supported formats use bounded
   TSV parsing. `DONE` is the only state that can produce an Evidence import;
@@ -100,9 +130,10 @@
   authenticated same-origin data calls. The static shell contains no tenant
   data. Phosphor and Simple Icons assets are vendored with their licenses, and
   the generated Commerce Agent OS mark is packaged locally.
-- The operating brief is a tenant-scoped read model. It parses only recognized
-  numeric Evidence columns, preserves source-currency ambiguity, caps history,
-  and does not infer or hardcode production business metrics.
+- The operating brief is a tenant-scoped read model over persisted Metric
+  Observations. It never reparses Evidence rows, keeps currency/dimension/grain
+  series isolated, caps history, and does not infer or hardcode production
+  business metrics.
 - Synthetic product-tour data is reachable only through the explicit
   `demo-seed` CLI, which requires a nonexistent database path and creates a
   tenant marked `demo`. The UI keeps the warning visible and normal onboarding
@@ -138,6 +169,10 @@
 - L3 syncs intentionally do not write to Amazon or automatically schedule
   recipes; the report worker is explicit and bounded. Live smoke validation
   remains dependent on real credentials and seller marketplace participation.
+- L4 intentionally performs no FX conversion, cross-currency aggregation,
+  inferred currency repair, automatic historical scan, or mutation of source
+  Evidence. Adding any of these requires a separately reviewed policy, data
+  lineage, authorization, and reconciliation design.
 - Agent prompts receive user evidence as untrusted data. Operators must still
   avoid placing personal data or secrets in evidence values; the first slice
   detects secret-shaped field names but is not a general DLP system.

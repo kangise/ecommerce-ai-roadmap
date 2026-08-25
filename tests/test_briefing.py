@@ -19,7 +19,7 @@ def _import(
     observed_at: str,
     raw: bytes,
 ):
-    return app.evidence_imports.import_csv(
+    imported = app.evidence_imports.import_csv(
         principal,
         raw=raw,
         platform="amazon",
@@ -29,6 +29,13 @@ def _import(
         idempotency_key=f"test:{filename}",
         request_id=f"request:{filename}",
     )
+    app.metric_observations.materialize(
+        principal,
+        imported["id"],
+        f"metrics:{filename}",
+        f"metrics:{filename}",
+    )
+    return imported
 
 
 def test_briefing_uses_only_recognized_real_evidence_metrics(tmp_path) -> None:
@@ -43,8 +50,8 @@ def test_briefing_uses_only_recognized_real_evidence_metrics(tmp_path) -> None:
         filename="business-1.csv",
         observed_at="2026-08-20T09:00:00+08:00",
         raw=(
-            b"ASIN,Sessions,Units Ordered,Ordered Product Sales\n"
-            b"A1,20,3,$100.50\nA2,10,1,$50.00\n"
+            b"ASIN,Sessions,Units Ordered,Ordered Product Sales,Currency Code\n"
+            b"A1,20,3,100.50,USD\nA2,10,1,50.00,USD\n"
         ),
     )
     _import(
@@ -54,8 +61,8 @@ def test_briefing_uses_only_recognized_real_evidence_metrics(tmp_path) -> None:
         filename="business-2.csv",
         observed_at="2026-08-22T09:00:00+08:00",
         raw=(
-            b"ASIN,Sessions,Units Ordered,Ordered Product Sales\n"
-            b"A1,25,5,$200.00\nA2,15,2,$100.00\n"
+            b"ASIN,Sessions,Units Ordered,Ordered Product Sales,Currency Code\n"
+            b"A1,25,5,200.00,USD\nA2,15,2,100.00,USD\n"
         ),
     )
     _import(
@@ -65,8 +72,8 @@ def test_briefing_uses_only_recognized_real_evidence_metrics(tmp_path) -> None:
         filename="ads.csv",
         observed_at="2026-08-22T09:15:00+08:00",
         raw=(
-            b"Campaign Name,Search Term,Spend\n"
-            b"SP-1,kitchen shelf,$20.00\nSP-1,storage,$30.00\n"
+            b"Campaign Name,Search Term,Spend,Currency Code\n"
+            b"SP-1,kitchen shelf,20.00,USD\nSP-1,storage,30.00,USD\n"
         ),
     )
     _import(

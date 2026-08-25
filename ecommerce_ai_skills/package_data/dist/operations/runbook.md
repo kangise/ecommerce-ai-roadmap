@@ -227,6 +227,54 @@ the earlier failure as regression history.
 - XLSX requires the `xlsx` package extra, rejects macros/encrypted workbooks, and
   preserves formulas as inert strings rather than calculating them.
 
+## Metric materialization and backfill
+
+- Use `POST /v1/evidence-imports/{importId}/metric-materialization` with an
+  operator-or-higher key and a stable `Idempotency-Key`. The import is resolved
+  inside the caller's tenant; never copy an ID from another tenant or bypass a
+  `404` with direct database access.
+- Inspect `GET /v1/metric-materializations` for a bounded-lease `running` state
+  and durable `succeeded`, `partial`, `quarantined`, or `failed` outcomes.
+  Inspect the corresponding observations
+  through `GET /v1/metric-observations` or `/{observationId}`. A process restart
+  must not erase either resource.
+- Decimal values are stored and returned as bounded base-10 strings. Reject
+  exponent notation, non-finite values, values above 38 significant digits, or
+  scale above 9; do not coerce them through binary floating point.
+- Confirm every observation has a period start/end, `time_grain`, source import/SHA,
+  source row/field, mapping version, and quality metadata before using it in a
+  report.
+- Keep currency partitions separate. Monetary rows without an explicit ISO
+  4217 currency are quarantined and emit no observation. Do not infer currency
+  from tenant defaults, account region, locale, or neighboring rows, and do not
+  sum or compare currencies without an independently reviewed FX layer.
+- Use `GET /v1/catalog` to confirm `metric_materialization_report_types` before
+  materializing. Unsupported report types are visibly disabled in Mission
+  Control and must not be treated as a successful empty metric set.
+- A materialization failure is an L4 failure only. If L3 already committed a
+  successful Evidence import and report sync, do not roll them back or relabel
+  them as failed. Repair the mapping/source and retry explicitly.
+
+Backfill is a deliberate admin operation:
+
+```bash
+curl -fsS -X POST \
+  http://127.0.0.1:8787/v1/metric-materializations/backfill \
+  -H 'Authorization: Bearer <ADMIN_API_KEY>' \
+  -H 'Content-Type: application/json' \
+  --data '{"limit":100,"cursor":null}'
+```
+
+Process `next_cursor` one page at a time. `limit` must be 1–100. Record the last
+successful cursor before continuing, stop on elevated quarantine/failure counts,
+and investigate quality flags rather than skipping failed imports. A missing
+cursor starts from the tenant's first eligible import; no runtime startup or
+read endpoint performs an implicit full scan.
+
+Never use runtime-generated mock rows to make materialization or backfill appear
+healthy. Unit and contract tests may use fixtures; a live smoke requires real,
+tenant-owned Evidence and should be reported unavailable when it is absent.
+
 ## Credential rotation
 
 1. Create a new Shopify Admin API token in Shopify.

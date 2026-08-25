@@ -21,6 +21,7 @@ def test_demo_seed_creates_isolated_visible_full_product_state(tmp_path: Path) -
     assert result["warning"].startswith("DEMO DATA ONLY")
     assert result["tenant_mode"] == "demo"
     assert result["evidence_imports"] == 10
+    assert result["metric_materializations"] == 9
     assert result["approval_actions"] == 2
     assert result["marketplace_accounts"] == 2
     assert result["job_status"] == "succeeded"
@@ -97,7 +98,7 @@ def test_schema_v9_migrates_existing_tenants_to_production_mode(tmp_path: Path) 
             """
         )
     db = Database(path)
-    assert db.readiness()["schema_version"] == 13
+    assert db.readiness()["schema_version"] == 14
     assert db.get_tenant("tenant-1")["mode"] == "production"
 
 

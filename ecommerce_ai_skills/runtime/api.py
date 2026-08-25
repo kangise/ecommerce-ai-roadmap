@@ -25,6 +25,7 @@ from .briefing import BriefingService
 from .evidence import CSVIngestor, EvidenceImportService, REPORT_SPECS, XLSXIngestor
 from .evals import WorkflowEvaluator
 from .jobs import JobService, ScheduleService
+from .metric_observations import MetricObservationService, SUPPORTED_REPORT_TYPES
 from .errors import AuthenticationError, AuthorizationError, ConflictError, ConnectorError, NotFoundError, RateLimitError, RuntimeErrorBase, ValidationError
 from .observability import JsonFormatter, Metrics, RateLimiter
 from .report_recipes import ReportRecipeService
@@ -48,8 +49,9 @@ class RuntimeApplication:
         self.accounts = MarketplaceAccountService(db, self.auth)
         self.report_recipes = ReportRecipeService(db, self.auth)
         self.evidence_imports = EvidenceImportService(db, self.auth)
+        self.metric_observations = MetricObservationService(db, self.auth)
         self.report_syncs = ReportSyncService(
-            db, self.auth, self.evidence_imports
+            db, self.auth, self.evidence_imports, self.metric_observations
         )
         self.actions = ActionService(db, self.auth, self.evidence_imports)
         self.briefing = BriefingService(db, self.auth)
@@ -183,6 +185,21 @@ class _Handler(BaseHTTPRequestHandler):
             raise ValidationError(f"unknown fields: {', '.join(extra)}")
         return body
 
+    @staticmethod
+    def _query_int(
+        params: dict[str, list[str]], name: str, *, default: int, minimum: int, maximum: int
+    ) -> int:
+        raw = params.get(name, [str(default)])[0]
+        try:
+            value = int(raw)
+        except (TypeError, ValueError) as exc:
+            raise ValidationError(f"{name} must be an integer") from exc
+        if not minimum <= value <= maximum:
+            raise ValidationError(
+                f"{name} must be between {minimum} and {maximum}"
+            )
+        return value
+
     def _principal(self) -> Principal:
         header = self.headers.get("Authorization", "")
         if not header.startswith("Bearer "):
@@ -288,6 +305,47 @@ class _Handler(BaseHTTPRequestHandler):
                 self._json(
                     200, self.app.report_syncs.get(principal, sync_id), request_id
                 )
+            elif parsed.path == "/v1/metric-observations":
+                params = parse_qs(parsed.query, keep_blank_values=True)
+                self._json(
+                    200,
+                    self.app.metric_observations.list_observations(
+                        principal,
+                        limit=self._query_int(
+                            params, "limit", default=100, minimum=1, maximum=200
+                        ),
+                        cursor=params.get("cursor", [None])[0],
+                        evidence_import_id=params.get("evidence_import_id", [None])[0],
+                        platform=params.get("platform", [None])[0],
+                        metric_key=params.get("metric_key", [None])[0],
+                        currency=params.get("currency", [None])[0],
+                    ),
+                    request_id,
+                )
+            elif parsed.path.startswith("/v1/metric-observations/") and len(parsed.path.split("/")) == 4:
+                observation_id = parsed.path.split("/")[3]
+                self._json(
+                    200,
+                    self.app.metric_observations.get_observation(
+                        principal, observation_id
+                    ),
+                    request_id,
+                )
+            elif parsed.path == "/v1/metric-materializations":
+                params = parse_qs(parsed.query, keep_blank_values=True)
+                self._json(
+                    200,
+                    self.app.metric_observations.list_materializations(
+                        principal,
+                        limit=self._query_int(
+                            params, "limit", default=100, minimum=1, maximum=200
+                        ),
+                        cursor=params.get("cursor", [None])[0],
+                        evidence_import_id=params.get("evidence_import_id", [None])[0],
+                        status=params.get("status", [None])[0],
+                    ),
+                    request_id,
+                )
             elif parsed.path == "/v1/evidence-imports":
                 limit = int(parse_qs(parsed.query).get("limit", [100])[0])
                 self._json(
@@ -371,6 +429,9 @@ class _Handler(BaseHTTPRequestHandler):
                         "workflows": [WeeklyOpsCouncil.WORKFLOW],
                         "action_operations": sorted(ActionService.OPERATIONS),
                         "report_recipe_types": self.app.report_recipes.catalog(),
+                        "metric_materialization_report_types": sorted(
+                            SUPPORTED_REPORT_TYPES
+                        ),
                         **connector_catalog,
                     },
                     request_id,
@@ -510,6 +571,37 @@ class _Handler(BaseHTTPRequestHandler):
                 else:
                     raise ValidationError("Content-Type must be CSV, TSV, or XLSX")
                 self._json(200, imported, request_id); return
+            if parsed.path.startswith("/v1/evidence-imports/") and parsed.path.endswith("/metric-materialization") and len(parsed.path.split("/")) == 5:
+                principal = self._principal()
+                self._body_fields(required=set(), allowed=set())
+                import_id = parsed.path.split("/")[3]
+                self._json(
+                    200,
+                    self.app.metric_observations.materialize(
+                        principal,
+                        import_id,
+                        self.headers.get("Idempotency-Key", ""),
+                        request_id,
+                    ),
+                    request_id,
+                )
+                return
+            if parsed.path == "/v1/metric-materializations/backfill":
+                principal = self._principal()
+                body = self._body_fields(
+                    required={"limit"}, allowed={"limit", "cursor"}
+                )
+                self._json(
+                    200,
+                    self.app.metric_observations.backfill(
+                        principal,
+                        limit=body["limit"],
+                        cursor=body.get("cursor"),
+                        request_id=request_id,
+                    ),
+                    request_id,
+                )
+                return
             principal = self._principal()
             if parsed.path == "/v1/actions":
                 body = self._body()

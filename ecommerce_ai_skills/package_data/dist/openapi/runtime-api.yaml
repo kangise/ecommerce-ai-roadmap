@@ -557,6 +557,146 @@ paths:
         '401': {$ref: '#/components/responses/Unauthorized'}
         '403': {$ref: '#/components/responses/Forbidden'}
         '404': {$ref: '#/components/responses/NotFound'}
+  /v1/evidence-imports/{importId}/metric-materialization:
+    post:
+      summary: Materialize durable metric observations from one tenant-owned Evidence import
+      description: Requires operator or higher and an Idempotency-Key. The Evidence import is resolved inside the authenticated tenant. Recognized finite decimal values are persisted with period, grain, provenance, and quality metadata. Monetary rows without an explicit ISO 4217 currency are quarantined and never emitted as observations. A failed materialization remains independently inspectable and never rolls back an already successful L3 Evidence import or report sync.
+      parameters:
+        - {$ref: '#/components/parameters/importId'}
+        - in: header
+          name: Idempotency-Key
+          required: true
+          schema: {type: string, minLength: 1, maxLength: 200}
+      responses:
+        '200':
+          description: Newly persisted or idempotently replayed materialization
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/MetricMaterialization'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+        '429': {$ref: '#/components/responses/RateLimited'}
+  /v1/metric-observations:
+    get:
+      summary: List persisted metric observations owned by the authenticated tenant
+      description: Viewer access. Results remain currency-isolated; the API does not aggregate or convert monetary observations across currencies.
+      parameters:
+        - in: query
+          name: limit
+          schema: {type: integer, minimum: 1, maximum: 200, default: 100}
+        - in: query
+          name: cursor
+          schema: {type: string, maxLength: 200}
+        - in: query
+          name: evidence_import_id
+          schema: {type: string, format: uuid}
+        - in: query
+          name: platform
+          schema: {$ref: '#/components/schemas/MarketplaceId'}
+        - in: query
+          name: metric_key
+          schema: {type: string, pattern: '^[a-z][a-z0-9_.-]{0,79}$'}
+        - in: query
+          name: currency
+          description: Uppercase ISO 4217 currency code. Omit only when querying non-monetary observations.
+          schema:
+            type: string
+            pattern: '^[A-Z]{3}$'
+            enum: [AED, AUD, BRL, CAD, EGP, EUR, GBP, INR, JPY, MXN, PLN, SAR, SEK, SGD, TRY, USD]
+      responses:
+        '200':
+          description: Stable cursor page of tenant-owned observations
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [observations, next_cursor]
+                properties:
+                  observations:
+                    type: array
+                    items: {$ref: '#/components/schemas/MetricObservation'}
+                  next_cursor: {type: string, nullable: true}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+  /v1/metric-observations/{observationId}:
+    get:
+      summary: Read one persisted metric observation owned by the authenticated tenant
+      parameters:
+        - {$ref: '#/components/parameters/observationId'}
+      responses:
+        '200':
+          description: Tenant-owned metric observation
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/MetricObservation'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+  /v1/metric-materializations:
+    get:
+      summary: List persisted metric materialization attempts owned by the authenticated tenant
+      description: Viewer access. Successful, partial, quarantined, and failed attempts remain durable and visible after refresh.
+      parameters:
+        - in: query
+          name: limit
+          schema: {type: integer, minimum: 1, maximum: 200, default: 100}
+        - in: query
+          name: cursor
+          schema: {type: string, maxLength: 200}
+        - in: query
+          name: evidence_import_id
+          schema: {type: string, format: uuid}
+        - in: query
+          name: status
+          schema: {type: string, enum: [running, succeeded, partial, quarantined, failed]}
+      responses:
+        '200':
+          description: Stable cursor page of materialization attempts
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [materializations, next_cursor]
+                properties:
+                  materializations:
+                    type: array
+                    items: {$ref: '#/components/schemas/MetricMaterialization'}
+                  next_cursor: {type: string, nullable: true}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+  /v1/metric-materializations/backfill:
+    post:
+      summary: Materialize a bounded page of existing tenant Evidence imports
+      description: Requires admin or owner. Backfill is always explicit, bounded to at most 100 imports per call, and cursor-resumable; it never fabricates Evidence or silently scans every tenant import.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/MetricBackfillRequest'}
+      responses:
+        '200':
+          description: Persisted materialization results for the processed page
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [materializations, processed, next_cursor]
+                properties:
+                  materializations:
+                    type: array
+                    maxItems: 100
+                    items: {$ref: '#/components/schemas/MetricMaterialization'}
+                  processed: {type: integer, minimum: 0, maximum: 100}
+                  next_cursor: {type: string, nullable: true}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+        '429': {$ref: '#/components/responses/RateLimited'}
   /v1/agent-runs:
     get:
       summary: List tenant-owned multi-agent workflow runs
@@ -969,6 +1109,11 @@ components:
     importId:
       in: path
       name: importId
+      required: true
+      schema: {type: string, format: uuid}
+    observationId:
+      in: path
+      name: observationId
       required: true
       schema: {type: string, format: uuid}
     jobId:
@@ -1543,6 +1688,135 @@ components:
         sheet_name: {type: string, nullable: true}
         created_by: {type: string, format: uuid}
         created_at: {type: string, format: date-time}
+    MetricObservation:
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - tenant_id
+        - materialization_id
+        - evidence_import_id
+        - platform
+        - metric_key
+        - value_decimal
+        - unit
+        - currency
+        - period_start
+        - period_end
+        - time_grain
+        - dimensions
+        - provenance
+        - quality
+        - created_at
+      properties:
+        id: {type: string, format: uuid}
+        tenant_id: {type: string, format: uuid}
+        materialization_id: {type: string, format: uuid}
+        evidence_import_id: {type: string, format: uuid}
+        platform: {$ref: '#/components/schemas/MarketplaceId'}
+        metric_key: {type: string, pattern: '^[a-z][a-z0-9_.-]{0,79}$'}
+        value_decimal:
+          type: string
+          maxLength: 40
+          pattern: '^-?(?:0|[1-9][0-9]{0,28})(?:\.[0-9]{1,9})?$'
+          description: Exact finite base-10 value serialized as a string; at most 38 significant digits and scale 9. NaN, infinity, exponent notation, and overflow are rejected.
+        unit: {type: string, enum: [count, currency, ratio]}
+        currency:
+          type: string
+          pattern: '^[A-Z]{3}$'
+          enum: [AED, AUD, BRL, CAD, EGP, EUR, GBP, INR, JPY, MXN, PLN, SAR, SEK, SGD, TRY, USD]
+          nullable: true
+          description: Required for unit=currency and null for non-monetary observations. Missing monetary currency is quarantined instead of inferred.
+        period_start: {type: string, format: date-time}
+        period_end: {type: string, format: date-time}
+        time_grain:
+          type: string
+          enum: [snapshot, day, range]
+          description: snapshot is a point-in-time balance, day is one calendar day, and range uses the explicit period_start/period_end interval.
+        dimensions:
+          type: object
+          additionalProperties: {type: string, maxLength: 200}
+          maxProperties: 20
+        provenance:
+          type: object
+          additionalProperties: false
+          required: [source_sha256, source_row, source_field, mapping_version]
+          properties:
+            source_sha256: {type: string, pattern: '^[a-f0-9]{64}$'}
+            source_row: {type: integer, minimum: 1, maximum: 5000}
+            source_field: {type: string, minLength: 1, maxLength: 200}
+            mapping_version: {type: string, minLength: 1, maxLength: 40}
+        quality:
+          type: object
+          additionalProperties: false
+          required: [status, flags]
+          properties:
+            status: {type: string, enum: [accepted]}
+            flags:
+              type: array
+              uniqueItems: true
+              maxItems: 20
+              items: {type: string, pattern: '^[a-z][a-z0-9_.-]{0,79}$'}
+        created_at: {type: string, format: date-time}
+    MetricMaterialization:
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - tenant_id
+        - evidence_import_id
+        - idempotency_key
+        - status
+        - observation_count
+        - quarantine_count
+        - currencies
+        - quality_summary
+        - error_code
+        - error_message
+        - created_by
+        - created_at
+        - updated_at
+      properties:
+        id: {type: string, format: uuid}
+        tenant_id: {type: string, format: uuid}
+        evidence_import_id: {type: string, format: uuid}
+        idempotency_key: {type: string, minLength: 1, maxLength: 200}
+        status: {type: string, enum: [running, succeeded, partial, quarantined, failed]}
+        observation_count: {type: integer, minimum: 0}
+        quarantine_count: {type: integer, minimum: 0}
+        currencies:
+          type: array
+          uniqueItems: true
+          items: {type: string, pattern: '^[A-Z]{3}$'}
+          description: Explicit currencies present in accepted observations; values are never combined across entries.
+        quality_summary:
+          type: object
+          additionalProperties: false
+          required: [accepted, quarantined, flags]
+          properties:
+            accepted: {type: integer, minimum: 0}
+            quarantined: {type: integer, minimum: 0}
+            flags:
+              type: array
+              uniqueItems: true
+              maxItems: 50
+              items: {type: string, pattern: '^[a-z][a-z0-9_.-]{0,79}$'}
+        error_code: {type: string, maxLength: 80, nullable: true}
+        error_message: {type: string, maxLength: 1000, nullable: true}
+        created_by: {type: string, format: uuid}
+        created_at: {type: string, format: date-time}
+        updated_at: {type: string, format: date-time}
+    MetricBackfillRequest:
+      type: object
+      additionalProperties: false
+      required: [limit]
+      properties:
+        limit: {type: integer, minimum: 1, maximum: 100}
+        cursor:
+          type: string
+          maxLength: 200
+          nullable: true
+          description: Opaque tenant-scoped cursor returned by the previous backfill page.
     AgentRun:
       type: object
       required: [id, tenant_id, idempotency_key, workflow, objective, platforms, requested_by, status, provider, attempt_count, created_at, updated_at]
@@ -1762,13 +2036,18 @@ components:
         approvals: {type: array, items: {$ref: '#/components/schemas/Action'}}
     BriefingMetric:
       type: object
-      required: [key, label, format, trend_mode, value, change_percent, observed_at, source_import_id, series]
+      required: [key, series_id, label, format, trend_mode, value, currency, unit, time_grain, dimensions, change_percent, observed_at, source_import_id, series]
       properties:
         key: {type: string}
+        series_id: {type: string, pattern: '^[a-f0-9]{24}$'}
         label: {type: string}
         format: {type: string, enum: [amount, integer, percent]}
         trend_mode: {type: string, enum: [higher_is_better, higher_is_risk, context_only]}
         value: {type: number}
+        currency: {type: string, nullable: true}
+        unit: {type: string, enum: [count, currency, ratio]}
+        time_grain: {type: string, enum: [snapshot, day, range]}
+        dimensions: {type: object, additionalProperties: {type: string}}
         change_percent: {type: number, nullable: true}
         observed_at: {type: string, format: date-time}
         source_import_id: {type: string, format: uuid}
@@ -1777,11 +2056,14 @@ components:
           maxItems: 7
           items:
             type: object
-            required: [observed_at, value, source_import_id]
+            required: [observed_at, period_start, period_end, value, source_import_id, dimensions]
             properties:
               observed_at: {type: string, format: date-time}
+              period_start: {type: string, format: date-time}
+              period_end: {type: string, format: date-time}
               value: {type: number}
               source_import_id: {type: string, format: uuid}
+              dimensions: {type: object, additionalProperties: {type: string}}
     BriefingAgent:
       type: object
       required: [id, name, status, updated_at, skill_ids]
@@ -1793,7 +2075,7 @@ components:
         skill_ids: {type: array, items: {type: string}}
     RuntimeCatalog:
       type: object
-      required: [platforms, report_types, workflows, action_operations, connector_providers, amazon_marketplaces, report_recipe_types]
+      required: [platforms, report_types, workflows, action_operations, connector_providers, amazon_marketplaces, report_recipe_types, metric_materialization_report_types]
       properties:
         platforms:
           type: array
@@ -1820,6 +2102,10 @@ components:
         report_recipe_types:
           type: array
           items: {$ref: '#/components/schemas/ReportRecipeCatalogEntry'}
+        metric_materialization_report_types:
+          type: array
+          uniqueItems: true
+          items: {$ref: '#/components/schemas/EvidenceReportType'}
     AuditEvent:
       type: object
       required: [id, tenant_id, request_id, action, resource_type, outcome, metadata, created_at]

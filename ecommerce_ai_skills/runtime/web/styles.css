@@ -237,6 +237,16 @@ legend{padding:0 5px;color:var(--muted);font-size:12px}
 .sync-meta div{min-width:0}.sync-meta dt{color:var(--muted);font-size:11px;font-weight:750;text-transform:uppercase;letter-spacing:.06em}.sync-meta dd{margin:3px 0 0;overflow-wrap:anywhere;font-size:13px}.sync-card .row-actions{justify-content:flex-start}
 .sync-error,.sync-failure{margin:0;padding:9px 10px;border-radius:7px;background:var(--coral-soft);color:#a72f34;font-size:13px}.sync-failure{display:grid;gap:5px;padding:18px;border:1px solid #f4c4c1;border-radius:10px}.sync-failure span{font-size:13px}
 .badge.polling,.badge.queued{background:var(--amber-soft);color:var(--amber)}.badge.succeeded{background:var(--green-soft);color:var(--green)}
+.metric-observations-section{margin-top:30px;padding-top:26px;border-top:1px solid var(--line)}
+.metric-observations-section .section-title-row{margin-bottom:14px}
+.metric-observations-layout{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.metric-observation-list,.metric-materialization-list{display:grid;gap:12px;margin-top:14px}
+.result-count{margin:0;padding:0 2px;color:var(--muted);font-size:12px}
+.metric-observation-card,.materialization-card{display:grid;gap:13px;padding:16px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.metric-observation-head,.materialization-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.metric-observation-head .kicker,.materialization-head .kicker{margin-bottom:3px}.metric-observation-head h3,.materialization-head h3{margin:0;font-size:16px;line-height:1.3;letter-spacing:-.02em}.metric-observation-head>strong{max-width:48%;overflow-wrap:anywhere;color:var(--blue);font-size:17px;line-height:1.28;text-align:right}
+.metric-observation-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0;padding-top:11px;border-top:1px solid var(--line)}.metric-observation-meta div{min-width:0}.metric-observation-meta dt{color:var(--muted);font-size:11px;font-weight:750;text-transform:uppercase;letter-spacing:.06em}.metric-observation-meta dd{margin:3px 0 0;overflow-wrap:anywhere;font-size:13px}.metric-observation-meta div:last-child:nth-child(odd){grid-column:1/-1}
+.quality-flags{display:flex;flex-wrap:wrap;align-items:center;gap:6px;color:var(--muted);font-size:12px}.quality-flag,.quality-clear{display:inline-flex;padding:3px 7px;border-radius:999px;background:var(--amber-soft);color:var(--amber);font-size:11px;font-weight:700}.quality-clear{background:var(--green-soft);color:var(--green)}
+.metric-error,.metric-failure{margin:0;padding:9px 10px;border-radius:7px;background:var(--coral-soft);color:#a72f34;font-size:13px}.metric-failure{display:grid;gap:5px;padding:18px;border:1px solid #f4c4c1;border-radius:10px}.metric-failure span{font-size:13px}
 
 dialog{width:min(540px,calc(100vw - 32px));padding:24px;border:1px solid var(--line);border-radius:14px;background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
 dialog::backdrop{background:rgba(7,27,58,.34);backdrop-filter:blur(4px)}
@@ -265,6 +275,7 @@ pre{max-height:65vh;margin:18px 0 0;padding:17px;border:1px solid var(--line);bo
   .connector-list{grid-template-columns:1fr}
   .recipe-list{grid-template-columns:1fr}
   .sync-list{grid-template-columns:1fr}
+  .metric-observations-layout{grid-template-columns:1fr}
   .briefing-main{padding-right:0}.decision-rail{margin-top:26px;padding:26px 0 0;border-top:1px solid var(--line);border-left:0}
   .decision-rail{display:grid;grid-template-columns:1fr 1fr;gap:24px}.decision-section{padding:0 24px 0 0;border-right:1px solid var(--line);border-bottom:0}.agent-roster-section{padding:0}
 }
@@ -281,6 +292,7 @@ pre{max-height:65vh;margin:18px 0 0;padding:17px;border:1px solid var(--line);bo
   .connector-meta{grid-template-columns:1fr}
   .recipe-meta{grid-template-columns:1fr}
   .sync-meta{grid-template-columns:1fr}
+  .metric-observation-meta{grid-template-columns:1fr}
   .data-row{grid-template-columns:1fr}.row-actions{justify-content:flex-start}
   .today span{display:none}
 }

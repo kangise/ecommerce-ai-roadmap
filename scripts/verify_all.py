@@ -545,6 +545,11 @@ def main() -> int:
                     "/v1/actions/{actionId}/approve": {"post"},
                     "/v1/evidence-imports": {"get", "post"},
                     "/v1/evidence-imports/{importId}": {"get"},
+                    "/v1/evidence-imports/{importId}/metric-materialization": {"post"},
+                    "/v1/metric-observations": {"get"},
+                    "/v1/metric-observations/{observationId}": {"get"},
+                    "/v1/metric-materializations": {"get"},
+                    "/v1/metric-materializations/backfill": {"post"},
                     "/v1/agent-runs": {"get", "post"},
                     "/v1/agent-runs/{runId}": {"get"},
                     "/v1/agent-runs/{runId}/execute": {"post"},
@@ -641,6 +646,9 @@ def main() -> int:
                     "ReportRecipeEvidenceReportType",
                     "ReportRecipeCatalogEntry",
                     "ReportSync",
+                    "MetricObservation",
+                    "MetricMaterialization",
+                    "MetricBackfillRequest",
                 ):
                     if schema_name not in schemas:
                         problems.append(
@@ -665,6 +673,52 @@ def main() -> int:
                 if "report_recipe_types" not in catalog_required:
                     problems.append(
                         "dist/openapi/runtime-api.yaml: RuntimeCatalog missing report_recipe_types"
+                    )
+                if "metric_materialization_report_types" not in catalog_required:
+                    problems.append(
+                        "dist/openapi/runtime-api.yaml: RuntimeCatalog missing metric_materialization_report_types"
+                    )
+                metric_materialize = paths.get(
+                    "/v1/evidence-imports/{importId}/metric-materialization", {}
+                ).get("post", {})
+                if not any(
+                    parameter.get("name") == "Idempotency-Key"
+                    and parameter.get("required") is True
+                    for parameter in metric_materialize.get("parameters", [])
+                    if isinstance(parameter, dict)
+                ):
+                    problems.append(
+                        "dist/openapi/runtime-api.yaml: L4 materialization must require Idempotency-Key"
+                    )
+                observation = schemas.get("MetricObservation", {})
+                observation_required = set(observation.get("required", []))
+                required_observation_fields = {
+                    "tenant_id",
+                    "materialization_id",
+                    "evidence_import_id",
+                    "value_decimal",
+                    "currency",
+                    "period_start",
+                    "period_end",
+                    "time_grain",
+                    "provenance",
+                    "quality",
+                }
+                if not required_observation_fields <= observation_required:
+                    problems.append(
+                        "dist/openapi/runtime-api.yaml: MetricObservation missing L4 lineage/currency fields"
+                    )
+                decimal_value = observation.get("properties", {}).get("value_decimal", {})
+                if decimal_value.get("type") != "string" or "pattern" not in decimal_value:
+                    problems.append(
+                        "dist/openapi/runtime-api.yaml: MetricObservation value must be a bounded Decimal string"
+                    )
+                backfill = schemas.get("MetricBackfillRequest", {}).get("properties", {}).get(
+                    "limit", {}
+                )
+                if backfill.get("minimum") != 1 or backfill.get("maximum") != 100:
+                    problems.append(
+                        "dist/openapi/runtime-api.yaml: MetricBackfillRequest limit must be 1..100"
                     )
             except Exception as exc:
                 problems.append(f"dist/openapi/runtime-api.yaml: invalid YAML ({exc})")

@@ -12,6 +12,7 @@ from typing import Any
 
 from .runtime.api import RuntimeApplication
 from .runtime.errors import ValidationError
+from .runtime.metric_observations import SUPPORTED_REPORT_TYPES
 from .runtime.storage import Database
 
 
@@ -192,7 +193,7 @@ def seed_demo_database(path: str | Path) -> dict[str, Any]:
         observed_at: str,
         raw: bytes,
     ) -> dict[str, Any]:
-        return app.evidence_imports.import_csv(
+        result = app.evidence_imports.import_csv(
             owner,
             raw=raw,
             platform=platform,
@@ -202,6 +203,14 @@ def seed_demo_database(path: str | Path) -> dict[str, Any]:
             idempotency_key=f"demo:{filename}",
             request_id=f"demo:{filename}",
         )
+        if report_type in SUPPORTED_REPORT_TYPES:
+            app.metric_observations.materialize(
+                owner,
+                str(result["id"]),
+                f"demo-metrics:{filename}",
+                f"demo-metrics:{filename}",
+            )
+        return result
 
     today = datetime.now(timezone.utc).astimezone().replace(
         hour=9, minute=0, second=0, microsecond=0
@@ -219,8 +228,8 @@ def seed_demo_database(path: str | Path) -> dict[str, Any]:
             filename,
             observed.isoformat(timespec="seconds"),
             (
-                "ASIN,Sessions,Units Ordered,Ordered Product Sales\n"
-                f"B08-DEMO,{sessions},{units},{revenue}\n"
+                "ASIN,Sessions,Units Ordered,Ordered Product Sales,Currency Code\n"
+                f"B08-DEMO,{sessions},{units},{revenue},USD\n"
             ).encode(),
         )
         import_ids.append(str(item["id"]))
@@ -229,7 +238,7 @@ def seed_demo_database(path: str | Path) -> dict[str, Any]:
         "amazon_ads_search_term",
         "demo-amazon-ads.csv",
         (today + timedelta(minutes=15)).isoformat(timespec="seconds"),
-        b"Campaign Name,Search Term,Spend\nDEMO-SP,kitchen shelf,8400\nDEMO-SP,storage rack,6200\n",
+        b"Campaign Name,Search Term,Spend,Currency Code\nDEMO-SP,kitchen shelf,8400,USD\nDEMO-SP,storage rack,6200,USD\n",
     )
     inventory = imported(
         "amazon",
@@ -314,6 +323,9 @@ def seed_demo_database(path: str | Path) -> dict[str, Any]:
         "owner_email": owner.email,
         "owner_api_key": owner_key,
         "evidence_imports": len(import_ids),
+        "metric_materializations": len(
+            app.metric_observations.list_materializations(owner)["materializations"]
+        ),
         "agent_run_id": run["id"],
         "evaluation_id": evaluation["id"],
         "approval_actions": len(actions),

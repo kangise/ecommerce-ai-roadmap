@@ -59,6 +59,14 @@ normalization, finite-number rejection, Evidence persistence, recipe schedule
 advancement, the one-shot worker CLI, and real UI action/state wiring. Network
 calls use injected transport fixtures; the suite does not claim a live Amazon
 credential smoke test.
+Metric materialization coverage verifies the L4 source and generated OpenAPI
+contracts for tenant-owned observation list/detail and materialization list,
+operator/idempotency per-import materialization, admin-only bounded cursor
+backfill, exact bounded Decimal strings, currency-isolated observations,
+missing-currency quarantine, period/grain/provenance/quality fields, durable
+failure visibility, and the rule that a failed L4 attempt cannot roll back an
+already successful L3 Evidence import. Production materialization has no mock
+data fallback; runtime behavior tests may use explicit fixtures only.
 
 Run the complete suite with:
 

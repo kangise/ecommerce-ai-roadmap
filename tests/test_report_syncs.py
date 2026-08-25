@@ -105,7 +105,7 @@ def test_v12_migration_and_persistence(tmp_path: Path) -> None:
         conn.execute("DROP TABLE report_syncs")
         conn.execute("UPDATE runtime_meta SET value='12' WHERE key='schema_version'")
     migrated = Database(path)
-    assert migrated.readiness()["schema_version"] == 13
+    assert migrated.readiness()["schema_version"] == 14
     with migrated.connect() as conn:
         columns = {row["name"] for row in conn.execute("PRAGMA table_info(report_syncs)")}
     assert {"recipe_id", "amazon_report_id", "lease_until", "evidence_import_id"} <= columns
@@ -322,7 +322,62 @@ def test_done_json_report_imports_evidence_and_advances_recipe(tmp_path: Path) -
     }]
     advanced = app.db.get_report_recipe(operator.tenant_id, recipe["id"])
     assert advanced["next_run_at"] > recipe["next_run_at"]
+    metric_page = app.metric_observations.list_observations(
+        operator, evidence_import_id=evidence["id"]
+    )
+    assert {
+        item["metric_key"] for item in metric_page["observations"]
+    } == {"revenue", "units_ordered", "sessions", "conversion_rate"}
+    assert all(
+        "period_scope_unknown" not in item["quality"]["flags"]
+        for item in metric_page["observations"]
+    )
     assert report_gets == 2
+
+
+def test_metric_failure_never_reverses_successful_report_evidence(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    app, _, _, operator, _, _, recipe = setup_runtime(tmp_path)
+    sync = make_polling_due(app, operator, recipe, key="metric-failure")
+
+    def fail_materialization(*args, **kwargs):
+        raise RuntimeError("test metric failure")
+
+    monkeypatch.setattr(app.metric_observations, "materialize", fail_materialization)
+    completed = app.report_syncs._import_done(
+        sync,
+        recipe,
+        {
+            "amazon_report_type": "GET_SALES_AND_TRAFFIC_REPORT",
+            "observed_at": "2026-08-26T12:00:00Z",
+            "content": json.dumps(
+                {
+                    "salesAndTrafficByAsin": [
+                        {
+                            "childAsin": "B001",
+                            "trafficByAsin": {"sessions": 10},
+                            "salesByAsin": {
+                                "unitsOrdered": 2,
+                                "orderedProductSales": {
+                                    "amount": 20,
+                                    "currencyCode": "USD",
+                                },
+                            },
+                        }
+                    ]
+                }
+            ).encode(),
+        },
+    )
+    assert completed["status"] == "succeeded"
+    assert app.db.get_evidence_import(
+        operator.tenant_id, completed["evidence_import_id"]
+    )["id"] == completed["evidence_import_id"]
+    assert any(
+        event["action"] == "marketplace_metric_materialization.failed"
+        for event in app.db.list_audit(operator.tenant_id)
+    )
 
 
 def test_fatal_and_missing_credentials_are_terminal(tmp_path: Path) -> None:
