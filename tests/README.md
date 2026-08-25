@@ -23,6 +23,17 @@ occurrences, latest-Evidence selectors, CLI `--once`, Mission Control aggregatio
 approval inbox authorization, and tenant isolation.
 Evaluation coverage includes passing completed runs, persisted grader history,
 tampered approval-policy regression detection, and Mission Control failure counts.
+Daily Ops coverage verifies tenant-scoped schedule and occurrence persistence,
+IANA timezone/local-date behavior including DST ambiguity and gaps, one run per
+schedule-local day under concurrent triggers, source-selection freshness and
+explicit empty states, operator/viewer authorization, retry and stale-lease
+recovery with per-attempt fencing, immutable hashed schedule snapshots,
+scheduled-instant look-ahead prevention, bounded missed-date catch-up, execution
+principal demotion/re-enable guards, orphan Agent Run downstream exclusion,
+scheduler/worker CLI entrypoints, persisted brief
+retrieval, final Reviewer eligibility, cross-tenant 404 behavior, and the
+explicit absence of external-write tools. One-shot scheduler/worker command
+tests do not claim multi-replica scheduler coordination.
 UI coverage validates JavaScript syntax, visible-button wiring, real endpoint
 references, static serving, CSP/no-store headers, live catalog data, and wheel packaging.
 Briefing coverage verifies real Amazon Evidence aggregation, trend provenance,

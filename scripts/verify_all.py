@@ -560,6 +560,14 @@ def main() -> int:
                     "/v1/agent-graphs/{graphId}/versions": {"post"},
                     "/v1/agent-graph-versions/{versionId}": {"get"},
                     "/v1/agent-graph-versions/{versionId}/publish": {"post"},
+                    "/v1/daily-ops-schedules": {"get", "post"},
+                    "/v1/daily-ops-schedules/{scheduleId}": {"get", "patch"},
+                    "/v1/daily-ops-schedules/{scheduleId}/trigger": {"post"},
+                    "/v1/daily-ops-runs": {"get"},
+                    "/v1/daily-ops-runs/{runId}": {"get"},
+                    "/v1/daily-ops-runs/{runId}/brief": {"get"},
+                    "/v1/daily-ops-runs/{runId}/execute": {"post"},
+                    "/v1/daily-ops-runs/{runId}/retry": {"post"},
                     "/v1/jobs": {"get", "post"},
                     "/v1/jobs/{jobId}": {"get"},
                     "/v1/schedules": {"get", "post"},
@@ -663,6 +671,11 @@ def main() -> int:
                     "AgentGraph", "AgentGraphBundle", "AgentGraphVersion",
                     "AgentGraphDefinition", "GraphNode", "GraphEdge",
                     "ToolPolicy", "ReviewerVerdict", "ReviewerIssue",
+                    "DailyOpsEvidenceSelector", "DailyOpsScheduleCreate",
+                    "DailyOpsScheduleUpdate", "DailyOpsSchedule",
+                    "DailyOpsTriggerRequest", "DailyOpsSourceGap",
+                    "DailyOpsScheduleSnapshot", "DailyOpsRun",
+                    "DailyOpsBrief", "DailyOpsBriefEnvelope",
                 ):
                     if schema_name not in schemas:
                         problems.append(
@@ -768,6 +781,16 @@ def main() -> int:
                 ):
                     problems.append(
                         "dist/openapi/runtime-api.yaml: L7 graph must expose the canonical 5-node/6-edge topology"
+                    )
+                daily_brief = schemas.get("DailyOpsBrief", {})
+                daily_gap = schemas.get("DailyOpsSourceGap", {})
+                if daily_brief.get("additionalProperties") is not False:
+                    problems.append(
+                        "dist/openapi/runtime-api.yaml: L8 DailyOpsBrief must be a closed schema"
+                    )
+                if daily_gap.get("additionalProperties") is not False:
+                    problems.append(
+                        "dist/openapi/runtime-api.yaml: L8 source gaps must be a closed schema"
                     )
             except Exception as exc:
                 problems.append(f"dist/openapi/runtime-api.yaml: invalid YAML ({exc})")

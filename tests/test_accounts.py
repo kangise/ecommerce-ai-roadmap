@@ -65,7 +65,7 @@ def test_schema_v10_connector_accounts_migrate_with_safe_health_defaults(tmp_pat
         conn.execute("UPDATE runtime_meta SET value='10' WHERE key='schema_version'")
     migrated = Database(path)
     account = migrated.list_connector_accounts(tenant)[0]
-    assert migrated.readiness()["schema_version"] == 16
+    assert migrated.readiness()["schema_version"] == 17
     assert account["updated_at"] == account["created_at"]
     assert account["health_status"] == "unchecked"
 

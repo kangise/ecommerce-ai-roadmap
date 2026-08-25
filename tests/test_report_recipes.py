@@ -71,7 +71,7 @@ def test_v11_migration_creates_report_recipe_table(tmp_path: Path) -> None:
         conn.execute("DROP TABLE report_recipes")
         conn.execute("UPDATE runtime_meta SET value='11' WHERE key='schema_version'")
     migrated = Database(path)
-    assert migrated.readiness()["schema_version"] == 16
+    assert migrated.readiness()["schema_version"] == 17
     with migrated.connect() as conn:
         columns = {row["name"] for row in conn.execute("PRAGMA table_info(report_recipes)")}
     assert {"connector_account_id", "marketplace_ids_json", "lookback_days"} <= columns

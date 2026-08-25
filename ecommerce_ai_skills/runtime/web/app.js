@@ -9,6 +9,11 @@ const state = {
   runs: [],
   jobs: [],
   schedules: [],
+  dailyOpsSchedules: [],
+  dailyOpsRuns: [],
+  dailyOpsLoading: false,
+  dailyOpsScheduleError: null,
+  dailyOpsRunError: null,
   mission: null,
   audit: [],
   connectors: [],
@@ -973,6 +978,46 @@ function renderSchedules() {
   target.innerHTML = state.schedules.map(item => `<div class="data-row"><div class="data-main"><strong>${escapeHtml(item.name)}</strong><small>${badge(item.enabled ? "enabled" : "disabled")}${item.interval_minutes} min · next ${escapeHtml(isoLocal(item.next_run_at))}</small></div><div class="row-actions"><button data-action="toggle-schedule" data-id="${item.id}" data-enabled="${!item.enabled}" class="secondary-button">${item.enabled ? "停用" : "启用"}</button></div></div>`).join("");
 }
 
+function dailyOpsCanManage() { return ["operator", "admin", "owner"].includes(state.me?.role); }
+function publishedGraphs() { return state.agentGraphs.flatMap(graph => (graph.versions || []).filter(version => version.status === "published").map(version => ({...version, graph_name: graph.name || graph.id}))); }
+function renderDailyOpsOptions() {
+  const graph = $("daily-ops-graph"), evidence = $("daily-ops-evidence"), reason = $("daily-ops-permission-reason");
+  if (!graph || !evidence) return;
+  const versions = publishedGraphs();
+  graph.innerHTML = versions.length ? versions.map(item => `<option value="${escapeHtml(item.id)}">${escapeHtml(item.graph_name)} · ${escapeHtml(item.id)}</option>`).join("") : `<option value="">暂无已发布 Graph</option>`;
+  const catalogTypes = (state.catalog?.report_types || []).filter(reportType => (
+    state.selectedPlatform === "amazon"
+      ? reportType === "platform_generic" || reportType.startsWith("amazon_")
+      : reportType === "platform_generic"
+  ));
+  const observedTypes = state.imports.filter(item => (item.platform || item.source_platform) === state.selectedPlatform).map(item => item.report_type).filter(Boolean);
+  const reportTypes = [...new Set([...catalogTypes, ...observedTypes])].sort();
+  evidence.innerHTML = reportTypes.length ? reportTypes.map(reportType => `<option value="${escapeHtml(reportType)}">${escapeHtml(state.selectedPlatform)} · ${escapeHtml(reportType)}</option>`).join("") : `<option value="">当前平台暂无 Evidence report type</option>`;
+  const can = dailyOpsCanManage() && versions.length && reportTypes.length && !state.dailyOpsLoading;
+  document.querySelectorAll("#daily-ops-form input, #daily-ops-form select, #daily-ops-form textarea, #daily-ops-form button").forEach(node => { node.disabled = !can; });
+  if (!dailyOpsCanManage()) { reason.hidden = false; reason.textContent = "当前角色只能查看；创建 Daily Ops 需要 operator、admin 或 owner。"; }
+  else if (state.dailyOpsLoading) { reason.hidden = false; reason.textContent = "Daily Ops 数据加载中。"; }
+  else if (!versions.length || !reportTypes.length) { reason.hidden = false; reason.textContent = "需要至少一个已发布 Agent Graph 和当前平台支持的 Evidence report type。"; }
+  else reason.hidden = true;
+}
+function renderDailyOpsSchedules() {
+  const target = $("daily-ops-schedule-list"); if (!target) return;
+  if (state.dailyOpsLoading) { designedEmpty(target, "正在加载 Daily Ops 计划", "正在读取租户内持久化日历计划。", "calendar-dots"); return; }
+  if (state.dailyOpsScheduleError) { target.innerHTML = `<div class="agent-graph-failure" role="alert"><strong>无法加载 Daily Ops 计划</strong><span>${escapeHtml(state.dailyOpsScheduleError)}</span></div>`; return; }
+  if (!state.dailyOpsSchedules.length) { designedEmpty(target, "暂无 Daily Ops 计划", "创建后按本地时区触发真实 Daily Ops。", "calendar-dots"); return; }
+  const canManage = dailyOpsCanManage();
+  target.innerHTML = state.dailyOpsSchedules.map(item => { const disabled = !canManage ? 'disabled title="需要 operator、admin 或 owner 角色"' : ""; const trigger = item.enabled === false ? '<span class="permission-reason">计划已停用</span>' : `<button data-action="trigger-daily-ops" data-id="${escapeHtml(item.id)}" class="secondary-button" ${disabled}>立即触发</button>`; const toggle = `<button data-action="toggle-daily-ops-schedule" data-id="${escapeHtml(item.id)}" data-enabled="${item.enabled ? "false" : "true"}" class="secondary-button" ${disabled}>${item.enabled ? "停用" : "启用"}</button>`; return `<div class="data-row"><div class="data-main"><strong>${escapeHtml(item.name || item.id)}</strong><small>${badge(item.enabled === false ? "disabled" : "enabled")} · ${escapeHtml(item.local_time || "—")} · ${escapeHtml(item.timezone || "—")} · ${escapeHtml(item.platform || "—")} · cursor ${escapeHtml(item.next_local_date || "—")} · max age ${escapeHtml(String(item.max_source_age_hours || "—"))}h</small></div><div class="row-actions">${trigger}${toggle}</div></div>`; }).join("");
+}
+function renderDailyOpsRuns() {
+  const target = $("daily-ops-run-list"); if (!target) return;
+  if (state.dailyOpsLoading) { designedEmpty(target, "正在加载 Daily Ops 运行", "正在读取每日运行与持久化 Brief。", "pulse"); return; }
+  if (state.dailyOpsRunError) { target.innerHTML = `<div class="agent-graph-failure" role="alert"><strong>无法加载 Daily Ops 运行</strong><span>${escapeHtml(state.dailyOpsRunError)}</span></div>`; return; }
+  if (!state.dailyOpsRuns.length) { designedEmpty(target, "暂无 Daily Ops 运行", "计划触发或立即运行后，持久化结果会显示在这里。", "pulse"); return; }
+  const canManage = dailyOpsCanManage();
+  target.innerHTML = state.dailyOpsRuns.map(run => { const status = run.status || "scheduled"; const review = run.brief?.review_status || (status === "completed" ? "approved" : "pending"); const evidenceCount = Array.isArray(run.selected_evidence_import_ids) ? run.selected_evidence_import_ids.length : 0; const metricCount = Array.isArray(run.selected_metric_observation_ids) ? run.selected_metric_observation_ids.length : 0; const roleDisabled = !canManage ? 'disabled title="需要 operator、admin 或 owner 角色"' : ""; const future = run.scheduled_for && new Date(run.scheduled_for).getTime() > Date.now(); const executeDisabled = !canManage || future ? `disabled title="${escapeHtml(!canManage ? "需要 operator、admin 或 owner 角色" : "尚未到计划执行时间")}"` : ""; const actions = [`<button data-action="view-daily-ops-run" data-id="${escapeHtml(run.id)}" class="secondary-button">详情</button>`]; if (run.brief) actions.push(`<button data-action="view-daily-ops-brief" data-id="${escapeHtml(run.id)}" class="secondary-button">查看 Brief</button>`); if (status === "scheduled") actions.push(`<button data-action="execute-daily-ops" data-id="${escapeHtml(run.id)}" class="primary-button" ${executeDisabled}>执行</button>`); if (["failed", "empty", "blocked"].includes(status)) actions.push(`<button data-action="retry-daily-ops" data-id="${escapeHtml(run.id)}" class="secondary-button" ${roleDisabled}>重试</button>`); const error = run.error_message ? `<span class="review-guard">${escapeHtml(run.error_message)}</span>` : ""; return `<div class="data-row"><div class="data-main"><strong>${escapeHtml(run.local_date || "Daily Ops")}</strong><small>${badge(status)} · ${escapeHtml(run.timezone || "—")} · ${escapeHtml(isoLocal(run.scheduled_for))} · sources ${evidenceCount + metricCount} · Graph ${escapeHtml(run.graph_version_id || "—")} · Reviewer ${escapeHtml(review)}</small>${run.brief ? `<span class="reviewer-task">已持久化 ${escapeHtml(run.brief.status || status)} Brief</span>` : ""}${error}</div><div class="row-actions">${actions.join("")}</div></div>`; }).join("");
+}
+function renderDailyOps() { renderDailyOpsOptions(); renderDailyOpsSchedules(); renderDailyOpsRuns(); }
+
 function renderApprovals() {
   const target = $("approval-list"), items = state.mission?.approval_inbox || [];
   if (!items.length) {
@@ -1000,6 +1045,7 @@ function renderAll() {
   renderRuns();
   renderJobs();
   renderSchedules();
+  renderDailyOps();
   renderApprovals();
   renderAudit();
   renderConnectors();
@@ -1017,6 +1063,8 @@ function renderDisconnected() {
   state.runs = [];
   state.jobs = [];
   state.schedules = [];
+  state.dailyOpsSchedules = []; state.dailyOpsRuns = []; state.dailyOpsLoading = false;
+  state.dailyOpsScheduleError = null; state.dailyOpsRunError = null;
   state.mission = null;
   state.audit = [];
   state.connectors = [];
@@ -1038,6 +1086,7 @@ function renderDisconnected() {
   state.adsAdapterStatus = null; state.adsAdapterLoading = false; state.adsAdapterError = null;
   state.agentGraphs = []; state.agentGraphsLoading = false; state.agentGraphsError = null;
   renderBriefing();
+  renderDailyOps();
   renderEvidence();
   renderAgentGraphs();
   renderRunMetricOptions();
@@ -1069,6 +1118,7 @@ async function refreshAll() {
   state.adsCapabilityError = null;
   state.adsAdapterLoading = true; state.adsAdapterError = null;
   state.agentGraphsLoading = true; state.agentGraphsError = null;
+  state.dailyOpsLoading = true; state.dailyOpsScheduleError = null; state.dailyOpsRunError = null;
   renderReportRecipes();
   renderReportSyncs();
   renderMetricObservations();
@@ -1077,6 +1127,7 @@ async function refreshAll() {
   renderAdsAdapterStatus();
   renderAgentGraphs();
   renderRunMetricOptions();
+  renderDailyOps();
   const platform = encodeURIComponent(state.selectedPlatform);
   const recipes = api("/v1/report-recipes").then(value => ({value})).catch(error => ({error}));
   const syncs = api("/v1/report-syncs").then(value => ({value})).catch(error => ({error}));
@@ -1084,6 +1135,8 @@ async function refreshAll() {
   const materializations = api("/v1/metric-materializations").then(value => ({value})).catch(error => ({error}));
   const adsGates = api("/v1/ads-capability-gates").then(value => ({value})).catch(error => ({error}));
   const adsAdapter = api("/v1/ads-adapter-status").then(value => ({value})).catch(error => ({error}));
+  const dailyOpsSchedules = api("/v1/daily-ops-schedules").then(value => ({value})).catch(error => ({error}));
+  const dailyOpsRuns = api("/v1/daily-ops-runs?limit=100").then(value => ({value})).catch(error => ({error}));
   const graphs = api("/v1/agent-graphs").then(async value => {
     const listed = Array.isArray(value) ? value : value?.graphs || [];
     const detailed = await Promise.all(listed.map(async graph => {
@@ -1099,10 +1152,10 @@ async function refreshAll() {
     }));
     return {graphs: detailed};
   }).then(value => ({value})).catch(error => ({error}));
-  const [me, catalog, briefing, mission, imports, runs, jobs, schedules, audit, connectors, recipeResult, syncResult, observationResult, materializationResult, adsGateResult, adsAdapterResult, graphResult] = await Promise.all([
+  const [me, catalog, briefing, mission, imports, runs, jobs, schedules, audit, connectors, recipeResult, syncResult, observationResult, materializationResult, adsGateResult, adsAdapterResult, graphResult, dailyScheduleResult, dailyRunResult] = await Promise.all([
     api("/v1/me"), api("/v1/catalog"), api(`/v1/briefing?platform=${platform}`), api("/v1/mission-control"),
     api("/v1/evidence-imports?limit=100"), api("/v1/agent-runs?limit=100"), api("/v1/jobs?limit=100"),
-    api("/v1/schedules"), api("/v1/audit?limit=100"), api("/v1/connectors"), recipes, syncs, observations, materializations, adsGates, adsAdapter, graphs,
+    api("/v1/schedules"), api("/v1/audit?limit=100"), api("/v1/connectors"), recipes, syncs, observations, materializations, adsGates, adsAdapter, graphs, dailyOpsSchedules, dailyOpsRuns,
   ]);
   if (recipeResult.error) console.error("Report Recipes 加载失败", recipeResult.error);
   if (syncResult.error) console.error("Sync Activity 加载失败", syncResult.error);
@@ -1110,6 +1163,8 @@ async function refreshAll() {
   if (materializationResult.error) console.error("Metric materializations 加载失败", materializationResult.error);
   if (adsGateResult.error) console.error("Amazon Ads 准入状态加载失败", adsGateResult.error);
   if (graphResult.error) console.error("Agent Graphs 加载失败", graphResult.error);
+  if (dailyScheduleResult.error) console.error("Daily Ops 计划加载失败", dailyScheduleResult.error);
+  if (dailyRunResult.error) console.error("Daily Ops 运行加载失败", dailyRunResult.error);
   Object.assign(state, {
     me, catalog, briefing, mission,
     imports: imports.imports || [], runs: runs.runs || [], jobs: jobs.jobs || [],
@@ -1126,6 +1181,10 @@ async function refreshAll() {
     adsCapabilityLoading: false, adsCapabilityError: adsGateResult.error?.message || null,
     adsAdapterStatus: adsAdapterResult?.value || null, adsAdapterLoading: false, adsAdapterError: adsAdapterResult?.error?.message || null,
     agentGraphs: Array.isArray(graphResult.value) ? graphResult.value : graphResult.value?.graphs || [], agentGraphsLoading: false, agentGraphsError: graphResult.error?.message || null,
+    dailyOpsSchedules: Array.isArray(dailyScheduleResult.value) ? dailyScheduleResult.value : dailyScheduleResult.value?.daily_ops_schedules || dailyScheduleResult.value?.schedules || [],
+    dailyOpsRuns: Array.isArray(dailyRunResult.value) ? dailyRunResult.value : dailyRunResult.value?.daily_ops_runs || dailyRunResult.value?.runs || [], dailyOpsLoading: false,
+    dailyOpsScheduleError: dailyScheduleResult.error?.message || null,
+    dailyOpsRunError: dailyRunResult.error?.message || null,
   });
   setConnected(true);
   renderAll();
@@ -1216,6 +1275,12 @@ document.body.addEventListener("click", event => {
     case "view-action": showDetail("待审批 Action", (state.mission?.approval_inbox || []).find(item => item.id === id) || (state.briefing?.approvals || []).find(item => item.id === id)); break;
     case "view-run": act(button, async () => { const bundle = await api(`/v1/agent-runs/${id}`); const tasks = bundle.tasks || []; const reviewerTask = tasks.find(task => ["reviewer", "review"].some(term => String(task.agent_name || task.agent || task.name || "").toLowerCase().includes(term))) || null; showDetail("Agent Run", {run: bundle.run, graph_version_id: bundle.run?.graph_version_id, review_status: bundle.run?.review_status || bundle.run?.reviewer_status, reviewer_task: reviewerTask, tasks, evaluations: bundle.evaluations, report: latestReport(bundle)}); }, "Agent Run 详情已加载。", false); break;
     case "execute-run": act(button, () => api(`/v1/agent-runs/${id}/execute`, {method: "POST"}), "Agent Run 已完成。"); break;
+    case "view-daily-ops-run": act(button, async () => showDetail("Daily Ops 运行", await api(`/v1/daily-ops-runs/${id}`)), "Daily Ops 详情已加载。", false); break;
+    case "view-daily-ops-brief": act(button, async () => showDetail("Daily Ops Brief", await api(`/v1/daily-ops-runs/${id}/brief`)), "Daily Ops Brief 已加载。", false); break;
+    case "trigger-daily-ops": act(button, () => api(`/v1/daily-ops-schedules/${id}/trigger`, {method: "POST", headers: {"Idempotency-Key": idempotency("ui-daily-ops-trigger")}}), "Daily Ops 已触发。"); break;
+    case "execute-daily-ops": act(button, () => api(`/v1/daily-ops-runs/${id}/execute`, {method: "POST"}), "Daily Ops 已执行。"); break;
+    case "retry-daily-ops": act(button, () => api(`/v1/daily-ops-runs/${id}/retry`, {method: "POST", headers: {"Idempotency-Key": idempotency("ui-daily-ops-retry")}}), "Daily Ops 已重试。"); break;
+    case "toggle-daily-ops-schedule": { const item = state.dailyOpsSchedules.find(schedule => schedule.id === id); if (!item) { notice("Daily Ops 计划不存在", "error"); break; } act(button, () => api(`/v1/daily-ops-schedules/${id}`, {method: "PATCH", json: {name: item.name, platform: item.platform, objective: item.objective, timezone_name: item.timezone, local_time: item.local_time, graph_version_id: item.graph_version_id, evidence_selectors: item.evidence_selectors, max_source_age_hours: item.max_source_age_hours, enabled: button.dataset.enabled === "true"}}), button.dataset.enabled === "true" ? "Daily Ops 计划已启用。" : "Daily Ops 计划已停用。"); break; }
     case "queue-run": act(button, () => api("/v1/jobs", {method: "POST", headers: {"Idempotency-Key": idempotency("ui-job")}, json: {run_id: id, max_attempts: 3}}), "Run 已加入后台队列。"); break;
     case "evaluate-run": act(button, () => api(`/v1/agent-runs/${id}/evaluate`, {method: "POST"}), "Evaluation 已保存。"); break;
     case "approve-action": act(button, () => api(`/v1/actions/${id}/approve`, {method: "POST"}), "Action 已批准；仍需 Operator 执行。"); break;
@@ -1430,12 +1495,22 @@ $("schedule-form").addEventListener("submit", event => {
   }}), "Schedule 已创建。");
 });
 
+$("daily-ops-form").addEventListener("submit", event => {
+  event.preventDefault();
+  if (!dailyOpsCanManage()) { notice("需要 operator、admin 或 owner 角色", "error"); return; }
+  const graphVersionId = $("daily-ops-graph").value, reportType = $("daily-ops-evidence").value;
+  const maxSourceAgeHours = Number($("daily-ops-max-age").value);
+  if (!graphVersionId || !reportType || !$("daily-ops-time").value || !$("daily-ops-timezone").value.trim() || !Number.isInteger(maxSourceAgeHours) || maxSourceAgeHours < 1 || maxSourceAgeHours > 8760) { notice("请完成 Daily Ops 配置，并选择已发布 Graph 与 Evidence report type。", "error"); return; }
+  act(event.submitter, () => api("/v1/daily-ops-schedules", {method: "POST", headers: {"Idempotency-Key": idempotency("ui-daily-ops-schedule")}, json: {name: $("daily-ops-name").value.trim(), platform: state.selectedPlatform, objective: $("daily-ops-objective").value.trim(), timezone_name: $("daily-ops-timezone").value.trim(), local_time: $("daily-ops-time").value, graph_version_id: graphVersionId, evidence_selectors: [{report_type: reportType}], max_source_age_hours: maxSourceAgeHours, enabled: true}}), "Daily Ops 计划已创建。");
+});
+
 function setDefaultTimes() {
   const now = new Date();
   const local = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
   $("evidence-observed").value = local;
   const next = new Date(now.getTime() + 5 * 60000);
   $("schedule-next-run").value = new Date(next.getTime() - next.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+  if ($("daily-ops-timezone") && !$("daily-ops-timezone").value) $("daily-ops-timezone").value = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
 }
 
 window.addEventListener("resize", () => {

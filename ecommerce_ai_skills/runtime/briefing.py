@@ -115,6 +115,8 @@ class BriefingService:
             or not run.get("graph_version_hash")
         ):
             return None
+        if not self.db.agent_run_downstream_eligible(tenant_id, run["id"]):
+            return None
         bundle = self.db.get_agent_run_bundle(tenant_id, run["id"])
         attempt = int(run.get("attempt_count") or 0)
         reviewers = [task for task in bundle["tasks"] if task.get("role") == "reviewer"]

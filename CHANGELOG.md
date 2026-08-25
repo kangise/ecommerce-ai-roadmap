@@ -13,6 +13,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 - Add package integrity metadata, automated tests, and PR quality checks.
 
 ### Added
+- L8 tenant-owned Daily Ops schedules and schedule-local occurrences with IANA
+  timezone/DST handling, one durable local-date run, source-age validation,
+  operator-triggered execution/retry, persisted eligible Daily Briefs, final
+  Reviewer gating, scheduled-instant evidence cutoffs, immutable hashed schedule
+  snapshots, fenced worker attempts, bounded missed-date catch-up, execution-
+  principal lifecycle guards, parent-linked Agent Run eligibility, and an
+  embedded no-external-write worker boundary.
 - L7 tenant-owned, versioned Domain Agent Graphs with immutable published
   definitions, dynamic Amazon/Shopify/ontology marketplace specialists,
   Evidence and Metric Observation snapshots, application-level parallelism,

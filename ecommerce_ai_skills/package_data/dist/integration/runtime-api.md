@@ -27,6 +27,80 @@ export EAI_OPENAI_MODEL='<RESPONSES_API_MODEL_WITH_STRUCTURED_OUTPUTS>'
 The MCP SDK is optional: install `ecommerce-ai-skills[mcp]` only when the
 stdio MCP adapter is needed. The Runtime API itself does not require it.
 
+## Daily Ops (L8)
+
+`Daily Ops` is a tenant-owned, scheduled wrapper around a published Domain
+Agent Graph.  It turns a local business day into one durable run and one
+durable operational brief; it is not a cron-shaped endpoint that returns a
+transient answer.  The API surface is:
+
+- `GET`/`POST /v1/daily-ops-schedules`
+- `GET`/`PATCH /v1/daily-ops-schedules/{scheduleId}`
+- `POST /v1/daily-ops-schedules/{scheduleId}/trigger`
+- `GET /v1/daily-ops-runs`, `GET /v1/daily-ops-runs/{runId}`, and
+  `GET /v1/daily-ops-runs/{runId}/brief`
+- `POST /v1/daily-ops-runs/{runId}/execute` and `/retry`
+
+Schedule creation, manual triggering, execution, and retry require an
+operator-or-higher principal. Viewer-or-higher principals may read schedules,
+runs, and persisted briefs. Trigger and retry requests require
+`Idempotency-Key`; local-date uniqueness also ensures a replay cannot create a
+second Daily Ops occurrence.
+
+Each schedule declares an IANA timezone and a daily local time.  The scheduler
+derives a local-date occurrence key and writes it before dispatching work, so a
+restart or repeated scheduler tick cannot duplicate a tenant/schedule/local-day
+run. Ambiguous DST fall-back times choose the first occurrence and run once for
+the local date; a nonexistent spring-forward wall time becomes an explicit
+blocked occurrence; create a corrected schedule for that date because the
+original occurrence configuration is immutable. Store UTC timestamps only as
+the resolved execution instants, not as a substitute for the business-day key.
+Evidence eligibility ends at that UTC scheduled instant—not at local-day end—so
+later observations cannot leak into an earlier brief. Late-arriving imports are
+eligible on retry only when their own `observed_at` is no later than the frozen
+cutoff.
+
+Every occurrence stores a canonical schedule snapshot and SHA-256 hash covering
+objective, marketplace, timezone/local time, selectors, graph ID/hash, source
+age, local date, and scheduled instant. Editing the reusable schedule never
+changes an existing occurrence. Worker claims carry a per-attempt lease token;
+all writes are fenced by token and attempt, so an expired worker cannot overwrite
+a reclaimed attempt. The durable `next_local_date` cursor catches up one missed
+due date per scheduler invocation. Re-enabling a paused schedule resets that
+cursor to the current local date rather than manufacturing disabled-period runs.
+Child Agent Runs persist `origin=daily_ops`, parent occurrence, parent attempt,
+and internal lease lineage. The global Briefing accepts such a child only when
+its parent is completed and still points to that exact child/final attempt; an
+approved orphan from a stale worker is therefore ineligible downstream.
+
+The worker reads persisted tenant Evidence/Metric Observations and executes the
+bound published graph. A completed operational Daily Ops brief is persisted
+only when that run has a final `approved` Reviewer verdict; a source-empty run
+may retain a separate explicit empty-state brief with no report.
+`revision_required`, `rejected`, failed, or legacy runs are visible but never
+become a completed operational brief. This L8 worker exposes no
+model tools and performs no external marketplace write. The API process starts
+no scheduler or worker thread. Run explicit one-shot commands under the
+deployment supervisor:
+
+```bash
+opc-ecommerce daily-scheduler --db ./runtime.sqlite --once
+opc-ecommerce daily-worker --db ./runtime.sqlite --once
+```
+
+Both commands use the same persisted occurrence and lease state as the API. A
+multi-replica deployment needs a separately operated scheduler/worker with the
+same durable lease and occurrence-key semantics.
+
+The schedule creator is its explicit execution principal. Demotion below
+operator is rejected while that user owns enabled schedules or nonterminal
+Daily Ops work; disable schedules and finish outstanding runs before changing
+the role. Re-enabling also rechecks that creator's current role. The worker
+persists a blocked state if legacy or externally modified data violates that
+lifecycle rule. Safe disable remains available even when the bound Graph has
+since been retired; re-enabling or changing the binding requires a current
+published execution contract.
+
 The default bind address is loopback. Put a managed TLS/authenticated reverse
 proxy in front of any non-local deployment; the server does not terminate TLS.
 Non-loopback binding requires the explicit `--allow-public` flag so an

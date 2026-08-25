@@ -587,6 +587,10 @@ class WeeklyOpsCouncil:
         evidence_import_ids: Any = None,
         graph_version_id: Any = None,
         metric_observation_ids: Any = None,
+        origin: str = "manual",
+        parent_daily_ops_run_id: str | None = None,
+        parent_daily_ops_attempt: int | None = None,
+        parent_daily_ops_lease_token: str | None = None,
     ) -> dict[str, Any]:
         self.auth.require(principal, "operator")
         graph_version = self.graph_service.resolve_published(principal, graph_version_id)
@@ -642,6 +646,10 @@ class WeeklyOpsCouncil:
             graph_version_id=graph_version["id"],
             graph_version_hash=graph_version["definition_hash"],
             metric_observation_ids=observation_ids,
+            origin=origin,
+            parent_daily_ops_run_id=parent_daily_ops_run_id,
+            parent_daily_ops_attempt=parent_daily_ops_attempt,
+            parent_daily_ops_lease_token=parent_daily_ops_lease_token,
         )
         self.db.append_audit(
             principal.tenant_id,
@@ -658,6 +666,9 @@ class WeeklyOpsCouncil:
                 "graph_version_id": graph_version["id"],
                 "graph_version_hash": graph_version["definition_hash"],
                 "metric_observation_count": len(observation_ids),
+                "origin": origin,
+                "parent_daily_ops_run_id": parent_daily_ops_run_id,
+                "parent_daily_ops_attempt": parent_daily_ops_attempt,
             },
         )
         return run

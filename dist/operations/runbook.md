@@ -39,6 +39,69 @@ Role changes use `PATCH /v1/users/{user_id}`. A caller cannot assign a role
 higher than their own, cannot change their own role, and cannot demote the last
 owner. User creation and role changes are audit events.
 
+## Daily Ops scheduler (L8)
+
+Daily Ops is a durable daily workflow, separate from the legacy interval
+schedule resource. Configure it with a published graph version, marketplace,
+IANA timezone, local clock time, evidence-report selectors, and a maximum
+source age. The scheduler stores one tenant/schedule/local-date occurrence
+before work is dispatched. Re-running the scheduler or manually triggering the
+same local date must return that occurrence, never create a second run.
+
+The Runtime API does not start scheduler or worker threads. Run the explicit
+commands under the deployment supervisor:
+
+```bash
+opc-ecommerce daily-scheduler --db /var/lib/ecommerce-ai/runtime.sqlite --once
+opc-ecommerce daily-worker --db /var/lib/ecommerce-ai/runtime.sqlite --once
+```
+
+The commands have durable local-date and lease protection, but do not constitute
+a distributed scheduler. For multiple replicas, designate one scheduler/worker
+deployment or use an external orchestration layer that calls the same durable
+claim path; do not let every API replica schedule independently.
+
+Timezone is a schedule property, not a deployment setting. For DST fall-back,
+an ambiguous wall-clock time chooses the first occurrence and runs once for
+that schedule-local date. A missing DST spring-forward time becomes a durable
+blocked occurrence. Because occurrence configuration is frozen, create a new
+corrected schedule and trigger it for the date; do not rewrite or retry the
+invalid snapshot. Investigate
+source freshness and local-date keys in the persisted Daily Ops run rather than
+inferring dates from UTC timestamps.
+
+`next_local_date` is the durable scheduler cursor. After downtime, each
+`daily-scheduler --once` call materializes at most one oldest due date; invoke it
+repeatedly (or run the supervised loop) until no result is returned. Evidence is
+cut off at the frozen scheduled instant, never local-day end. Each occurrence
+stores `schedule_config` plus its hash, and each worker attempt uses a fenced
+lease token. Schedule edits cannot change an existing occurrence, and a stale
+worker cannot write after another attempt reclaims its lease.
+
+Agent Runs created by Daily Ops carry parent occurrence/attempt lineage. If a
+worker loses its lease after the child Agent Run finishes, that orphan remains
+auditable but cannot enter the global Briefing; only a completed parent pointing
+to the matching final child is eligible.
+
+Before executing or retrying, confirm that the selected Evidence and Metric
+Observations are tenant-owned and within the configured source-age boundary.
+An empty or stale selection is a durable blocked/failed state, not a fabricated
+brief; an empty source selection may retain an explicit empty-state brief with
+no report. A completed operational brief from
+`GET /v1/daily-ops-runs/{runId}/brief` is eligible only after the bound Agent
+Run has a final approved Reviewer verdict; revision-required, rejected, failed,
+or legacy Agent Runs must remain visible without a completed brief. Daily Ops
+does not expose model tools and performs no marketplace or advertising write.
+
+Do not demote a schedule creator below operator while an enabled schedule or
+scheduled/running occurrence still belongs to that user. The runtime rejects
+that role change; disable the schedule and let outstanding work reach a terminal
+state first. Re-enabling the schedule rechecks that its creator is still an
+operator; promote the creator or create a new schedule with a valid execution
+owner instead of bypassing this check. A retired/stale Graph never prevents the
+safe `enabled=false` update, but it does prevent re-enabling until a current
+published version is selected.
+
 ## Marketplace connector accounts (L1)
 
 Connector accounts are durable and tenant-scoped. Use the catalog before
@@ -178,8 +241,9 @@ opc-ecommerce report-worker --db ./runtime.sqlite --once --poll-seconds 5
 Inspect `GET /v1/report-syncs` or `GET /v1/report-syncs/<SYNC_ID>` as a viewer.
 Without real Amazon credentials and authorized marketplace participation, live
 smoke is unavailable; use transport fixtures and do not claim success. L3 does
-not write to Amazon or automatically schedule recipes (automatic scheduling is
-an L8 concern).
+not write to Amazon or automatically schedule recipes. L8 Daily Ops selects
+already persisted eligible Evidence; it does not silently trigger an Amazon
+report sync, so operate the report worker/sync cadence separately.
 
 ## Multi-agent runs
 

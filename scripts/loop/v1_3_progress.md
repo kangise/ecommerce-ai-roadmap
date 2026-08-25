@@ -13,7 +13,7 @@
 | L5 | Ads Contract Gate | blocked | Schema v15；real LWA/profiles/SP v3 read gate；pytest 139；14 groups=0；wheel blocked-state smoke；browser QA | `loop(v1.3): L5 enforce amazon ads capability gate` | 实现与门禁全部通过；当前环境无 Ads credentials/外部批准，真实结果持久 blocked，L6 不得接入 |
 | L6 | Ads Adapter 条件实现 | done | Schema v15 unchanged；negative adapter status；pytest 148；14 groups=0；wheel/API smoke；browser QA | `loop(v1.3): L6 lock conditional amazon ads adapter` | L5 条件为假；adapter_registered=false、writes=[]、无 Ads route/action/button；freshness/config/capability guard 可审计 |
 | L7 | Domain Agent Graph | done | Schema v16；163 tests；14 groups=0；wheel graph/Reviewer persistence smoke；browser metric-only run + refresh QA | `loop(v1.3): L7 ship tenant-safe domain agent graph` | canonical immutable DAG；dynamic Amazon/Shopify/ontology specialists；Manager + independent Reviewer；zero tools；non-approved downstream lock |
-| L8 | Daily Ops | pending |  |  |  |
+| L8 | Daily Ops | done | Schema v17；184 tests；14 groups=0；wheel daily persistence + CLI smoke；browser Brief/toggle/refresh QA | `loop(v1.3): L8 ship fenced daily operations` | local-date cursor；scheduled cutoff；immutable config hash；fenced leases；approved parent-linked Brief；no external writes |
 | L9 | Proposals | pending |  |  |  |
 | L10 | Live Mission Control/SSE | pending |  |  |  |
 | L11 | one-command Pilot | pending |  |  |  |
@@ -117,6 +117,18 @@
 - Failure 1: independent audit found agent child tables relied on globally unique IDs rather than database-enforced tenant-parent ownership, and pre-L7 runs were initially migrated as approved；v16 now installs cross-tenant insert/update guards for runs, tasks, artifacts, events, and evaluations, migrates legacy review state as pending, and verifies full Reviewer lineage with a true old-v15-schema migration test.
 - Failure 2 / blocked reason: final high-level audit found graph hashes did not bind installed execution inputs and a trivial partial Reviewer could approve only one Manager citation；re-audit then caught multi-source `observe`, free-text action classification, and retry-history selection gaps. Hashes now bind code/ontology/Skill manifests, stale runs fail closed, every priority requires approval, Metric operations are structurally bounded, Reviewer covers every Manager citation/limitation, and only final-attempt artifacts qualify downstream. Browser QA also fixed the Demo provider's metric-only input assumption. All paths have regression tests；no remaining L7 blocker.
 - Restore point and result: L6 `bca4dc1`; L7 Schema v16/Graph service/API/UI can be reverted as one commit while preserving L0–L6 data. Published-version rollback inside v16 is done by publishing a new reviewed version, never mutating history.
+
+### L8 — Daily Ops
+
+- Date: 2026-08-26
+- Status: done
+- Evidence: `tests/test_daily_ops.py` 20 acceptance cases；全套 pytest 184 passed；`verify_all` 14 groups=0；`dist/` fresh；Python 3.12 wheel cold install + Schema v17 + hashed schedule snapshot + completed Reviewer-approved persisted Brief + installed `daily-scheduler`/`daily-worker --once` smoke；`artifacts/design-qa/l8-daily-ops-final.jpg`。
+- Commit: `loop(v1.3): L8 ship fenced daily operations`（本记录所在提交）
+- Notes: tenant-owned calendar schedule/occurrence model；IANA timezone, fold=0 and explicit nonexistent-time block；UTC `scheduled_for` is the Evidence cutoff；one occurrence per tenant/schedule/local date；immutable `schedule_config` hash；Metric Observation-first/raw fallback input selection；empty/blocked/failed/completed states；final Reviewer-gated persisted Brief；Daily child Agent Run parent lineage；per-attempt lease-token fencing and exhausted-attempt terminal failure；durable `next_local_date` bounded catch-up；execution-owner demotion/re-enable guards；real API/UI/CLI paths；zero marketplace writes. L8 consumes existing Evidence and does not silently create Amazon reports.
+- Validator results: all repository/install gates passed；browser showed persisted Demo schedule + completed Brief, real stop/start actions, refresh persistence, and zero console errors；four independent high-level review rounds ended with no P0/P1.
+- Failure 1: adversarial review found look-ahead to local-day end, mutable Schedule reads, stale Worker overwrite, downgraded execution owner, and missed dates across midnight. Selection now ends at the frozen scheduled instant, occurrences hash a closed config snapshot, all attempt writes are fenced, role transitions/re-enable are atomically guarded, and a durable cursor catches up one date per tick.
+- Failure 2 / blocked reason: re-review found approved orphan Agent Runs could leak into the global Briefing and retired Graphs could prevent safe HTTP disable. Agent Runs now carry parent run/attempt/internal lease lineage and are downstream-eligible only when the completed parent points to that exact final child；Graph validation is skipped only for a no-change safe disable, with a real full-PATCH regression test. No remaining L8 blocker；live OpenAI success still depends on deployment credentials as documented in L7.
+- Restore point and result: L7 `451ff1e`; L8 Schema v17/Daily Ops/API/UI/CLI can be reverted as one commit while preserving L0–L7 records. Existing Daily Ops history is immutable; operational recovery uses retry with the frozen snapshot or a new corrected schedule.
 
 ### Lx — 名称
 

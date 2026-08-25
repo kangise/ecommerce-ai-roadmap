@@ -6,6 +6,7 @@ from .accounts import MarketplaceAccountService
 from .ads_gates import AdsCapabilityGateService
 from .ads_adapter_status import AdsAdapterStatusService
 from .briefing import BriefingService
+from .daily_ops import DailyOpsService
 from .evidence import CSVIngestor, EvidenceImportService, EvidenceObjectStore, XLSXIngestor
 from .evals import WorkflowEvaluator
 from .jobs import JobService, ScheduleService
@@ -21,6 +22,7 @@ __all__ = [
     "AdsCapabilityGateService",
     "AdsAdapterStatusService",
     "Database",
+    "DailyOpsService",
     "EvidenceImportService",
     "EvidenceObjectStore",
     "JobService",

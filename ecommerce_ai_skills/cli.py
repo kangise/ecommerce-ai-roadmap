@@ -76,6 +76,18 @@ def main() -> int:
     report_worker.add_argument("--db", required=True)
     report_worker.add_argument("--once", action="store_true")
     report_worker.add_argument("--poll-seconds", type=float, default=15.0)
+    daily_scheduler = sub.add_parser(
+        "daily-scheduler", help="materialize due calendar-day Daily Ops occurrences"
+    )
+    daily_scheduler.add_argument("--db", required=True)
+    daily_scheduler.add_argument("--once", action="store_true")
+    daily_scheduler.add_argument("--poll-seconds", type=float, default=15.0)
+    daily_worker = sub.add_parser(
+        "daily-worker", help="execute due durable Daily Ops occurrences"
+    )
+    daily_worker.add_argument("--db", required=True)
+    daily_worker.add_argument("--once", action="store_true")
+    daily_worker.add_argument("--poll-seconds", type=float, default=5.0)
     args = parser.parse_args()
     if args.command == "mcp":
         module = _load_mcp_module()
@@ -148,6 +160,28 @@ def main() -> int:
             raise ValueError("poll-seconds must be between 0.25 and 300")
         while True:
             result = app.report_syncs.run_once()
+            if result is not None:
+                print(json.dumps(result, ensure_ascii=False, sort_keys=True))
+            if args.once:
+                return 0
+            if result is None:
+                time.sleep(args.poll_seconds)
+    if args.command == "daily-scheduler":
+        if args.poll_seconds < 0.25 or args.poll_seconds > 300:
+            raise ValueError("poll-seconds must be between 0.25 and 300")
+        while True:
+            result = app.daily_ops.scheduler_run_once()
+            if result is not None:
+                print(json.dumps(result, ensure_ascii=False, sort_keys=True))
+            if args.once:
+                return 0
+            if result is None:
+                time.sleep(args.poll_seconds)
+    if args.command == "daily-worker":
+        if args.poll_seconds < 0.25 or args.poll_seconds > 300:
+            raise ValueError("poll-seconds must be between 0.25 and 300")
+        while True:
+            result = app.daily_ops.worker_run_once()
             if result is not None:
                 print(json.dumps(result, ensure_ascii=False, sort_keys=True))
             if args.once:

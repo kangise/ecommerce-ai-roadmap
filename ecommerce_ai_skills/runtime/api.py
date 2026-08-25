@@ -25,6 +25,7 @@ from .ads_adapter_status import AdsAdapterStatusService
 from .agents import AgentProvider, OpenAIResponsesProvider, WeeklyOpsCouncil
 from .auth import AuthService
 from .briefing import BriefingService
+from .daily_ops import DailyOpsService
 from .evidence import CSVIngestor, EvidenceImportService, REPORT_SPECS, XLSXIngestor
 from .evals import WorkflowEvaluator
 from .jobs import JobService, ScheduleService
@@ -68,6 +69,7 @@ class RuntimeApplication:
             evidence_resolver=self.evidence_imports.resolve,
             graph_service=self.agent_graphs,
         )
+        self.daily_ops = DailyOpsService(db, self.auth, self.agent_runs)
         self.jobs = JobService(db, self.auth, self.agent_runs)
         self.schedules = ScheduleService(
             db, self.auth, self.agent_runs, self.jobs
@@ -402,6 +404,38 @@ class _Handler(BaseHTTPRequestHandler):
                 self._json(
                     200, self.app.agent_graphs.get_version(principal, version_id), request_id
                 )
+            elif parsed.path == "/v1/daily-ops-schedules":
+                self._json(
+                    200,
+                    {"schedules": self.app.daily_ops.list_schedules(principal)},
+                    request_id,
+                )
+            elif parsed.path.startswith("/v1/daily-ops-schedules/") and len(parsed.path.split("/")) == 4:
+                schedule_id = parsed.path.split("/")[3]
+                self._json(
+                    200, self.app.daily_ops.get_schedule(principal, schedule_id), request_id
+                )
+            elif parsed.path == "/v1/daily-ops-runs":
+                params = parse_qs(parsed.query, keep_blank_values=True)
+                self._json(
+                    200,
+                    {
+                        "runs": self.app.daily_ops.list_runs(
+                            principal,
+                            schedule_id=params.get("schedule_id", [None])[0],
+                            limit=self._query_int(
+                                params, "limit", default=50, minimum=1, maximum=200
+                            ),
+                        )
+                    },
+                    request_id,
+                )
+            elif parsed.path.startswith("/v1/daily-ops-runs/") and parsed.path.endswith("/brief") and len(parsed.path.split("/")) == 5:
+                run_id = parsed.path.split("/")[3]
+                self._json(200, self.app.daily_ops.get_brief(principal, run_id), request_id)
+            elif parsed.path.startswith("/v1/daily-ops-runs/") and len(parsed.path.split("/")) == 4:
+                run_id = parsed.path.split("/")[3]
+                self._json(200, self.app.daily_ops.get_run(principal, run_id), request_id)
             elif parsed.path == "/v1/agent-runs":
                 limit = int(parse_qs(parsed.query).get("limit", [50])[0])
                 self._json(200, {"runs": self.app.agent_runs.list(principal, limit)}, request_id)
@@ -667,7 +701,66 @@ class _Handler(BaseHTTPRequestHandler):
                 )
                 return
             principal = self._principal()
-            if parsed.path == "/v1/agent-graphs":
+            if parsed.path == "/v1/daily-ops-schedules":
+                body = self._body_fields(
+                    required={
+                        "name", "platform", "objective", "timezone_name", "local_time",
+                        "graph_version_id", "evidence_selectors",
+                    },
+                    allowed={
+                        "name", "platform", "objective", "timezone_name", "local_time",
+                        "graph_version_id", "evidence_selectors", "max_source_age_hours", "enabled",
+                    },
+                )
+                self._json(
+                    201,
+                    self.app.daily_ops.create(
+                        principal,
+                        name=body["name"],
+                        platform=body["platform"],
+                        objective=body["objective"],
+                        timezone_name=body["timezone_name"],
+                        local_time=body["local_time"],
+                        graph_version_id=body["graph_version_id"],
+                        evidence_selectors=body["evidence_selectors"],
+                        max_source_age_hours=body.get("max_source_age_hours", 48),
+                        enabled=body.get("enabled", True),
+                        request_id=request_id,
+                    ),
+                    request_id,
+                )
+            elif parsed.path.startswith("/v1/daily-ops-schedules/") and parsed.path.endswith("/trigger") and len(parsed.path.split("/")) == 5:
+                body = self._body_fields(required=set(), allowed={"local_date"})
+                idempotency_key = self.headers.get("Idempotency-Key", "")
+                if not idempotency_key:
+                    raise ValidationError("Idempotency-Key header is required")
+                schedule_id = parsed.path.split("/")[3]
+                self._json(
+                    200,
+                    self.app.daily_ops.trigger(
+                        principal,
+                        schedule_id,
+                        request_id,
+                        local_date=body.get("local_date"),
+                    ),
+                    request_id,
+                )
+            elif parsed.path.startswith("/v1/daily-ops-runs/") and parsed.path.endswith("/execute") and len(parsed.path.split("/")) == 5:
+                self._body_fields(required=set(), allowed=set())
+                run_id = parsed.path.split("/")[3]
+                self._json(
+                    200, self.app.daily_ops.execute(principal, run_id, request_id), request_id
+                )
+            elif parsed.path.startswith("/v1/daily-ops-runs/") and parsed.path.endswith("/retry") and len(parsed.path.split("/")) == 5:
+                self._body_fields(required=set(), allowed=set())
+                idempotency_key = self.headers.get("Idempotency-Key", "")
+                if not idempotency_key:
+                    raise ValidationError("Idempotency-Key header is required")
+                run_id = parsed.path.split("/")[3]
+                self._json(
+                    200, self.app.daily_ops.retry(principal, run_id, request_id), request_id
+                )
+            elif parsed.path == "/v1/agent-graphs":
                 body = self._body_fields(required={"name", "definition"})
                 self._json(
                     201,
@@ -870,6 +963,36 @@ class _Handler(BaseHTTPRequestHandler):
                     200,
                     self.app.schedules.set_enabled(
                         principal, schedule_id, body["enabled"], request_id
+                    ),
+                    request_id,
+                )
+            elif parsed.path.startswith("/v1/daily-ops-schedules/") and len(parsed.path.split("/")) == 4:
+                schedule_id = parsed.path.split("/")[3]
+                body = self._body_fields(
+                    required={
+                        "name", "platform", "objective", "timezone_name", "local_time",
+                        "graph_version_id", "evidence_selectors", "max_source_age_hours", "enabled",
+                    },
+                    allowed={
+                        "name", "platform", "objective", "timezone_name", "local_time",
+                        "graph_version_id", "evidence_selectors", "max_source_age_hours", "enabled",
+                    },
+                )
+                self._json(
+                    200,
+                    self.app.daily_ops.update(
+                        principal,
+                        schedule_id,
+                        name=body["name"],
+                        platform=body["platform"],
+                        objective=body["objective"],
+                        timezone_name=body["timezone_name"],
+                        local_time=body["local_time"],
+                        graph_version_id=body["graph_version_id"],
+                        evidence_selectors=body["evidence_selectors"],
+                        max_source_age_hours=body["max_source_age_hours"],
+                        enabled=body["enabled"],
+                        request_id=request_id,
                     ),
                     request_id,
                 )

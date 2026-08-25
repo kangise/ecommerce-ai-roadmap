@@ -316,4 +316,5 @@ pre{max-height:65vh;margin:18px 0 0;padding:17px;border:1px solid var(--line);bo
   .today span{display:none}
 }
 
+.daily-ops-section{margin-top:32px}.daily-ops-section>.tool-panel{margin-top:22px}.daily-ops-section .panel-heading{margin-bottom:16px}.daily-ops-section .data-row small{line-height:1.6}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}

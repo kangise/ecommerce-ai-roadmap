@@ -10,6 +10,7 @@ from __future__ import annotations
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
+from zoneinfo import ZoneInfo
 
 from .runtime.api import RuntimeApplication
 from .runtime.errors import ValidationError
@@ -299,9 +300,11 @@ def seed_demo_database(path: str | Path) -> dict[str, Any]:
             )
         return result
 
-    today = datetime.now(timezone.utc).astimezone().replace(
-        hour=9, minute=0, second=0, microsecond=0
-    )
+    demo_zone = ZoneInfo("Asia/Shanghai")
+    local_now = datetime.now(timezone.utc).astimezone(demo_zone)
+    today = local_now.replace(hour=9, minute=0, second=0, microsecond=0)
+    if today + timedelta(minutes=35) > local_now:
+        today = (local_now - timedelta(minutes=40)).replace(second=0, microsecond=0)
     observations = (185000, 205000, 196000, 232000, 218000, 226000, 244000)
     import_ids: list[str] = []
     for index, revenue in enumerate(observations):
@@ -342,6 +345,30 @@ def seed_demo_database(path: str | Path) -> dict[str, Any]:
         b"SKU,Price\nDEMO-1,29.00\nDEMO-2,41.00\n",
     )
     import_ids.extend([str(ads["id"]), str(inventory["id"]), str(shopify["id"])])
+
+    daily_schedule = app.daily_ops.create(
+        owner,
+        name="Demo Amazon daily pulse",
+        platform="amazon",
+        objective="Review the newest Demo Amazon business evidence for this local business day.",
+        timezone_name="Asia/Shanghai",
+        local_time=(today + timedelta(minutes=36)).strftime("%H:%M"),
+        graph_version_id=str(graph_version["id"]),
+        evidence_selectors=[{"report_type": "amazon_business_report"}],
+        max_source_age_hours=48,
+        enabled=True,
+        request_id="demo-daily-ops-schedule",
+    )
+    daily_run = app.daily_ops.trigger(
+        owner,
+        str(daily_schedule["id"]),
+        "demo-daily-ops-trigger",
+        today.date().isoformat(),
+    )
+    if daily_run["status"] == "scheduled":
+        daily_run = app.daily_ops.execute(
+            owner, str(daily_run["id"]), "demo-daily-ops-execute"
+        )
 
     run = app.agent_runs.request(
         owner,
@@ -422,6 +449,9 @@ def seed_demo_database(path: str | Path) -> dict[str, Any]:
         "ads_capability_gate_status": ads_gate["status"],
         "report_recipes": len(report_recipes),
         "schedule_id": schedule["id"],
+        "daily_ops_schedule_id": daily_schedule["id"],
+        "daily_ops_run_id": daily_run["id"],
+        "daily_ops_run_status": daily_run["status"],
         "job_id": job["id"],
         "job_status": completed_job["status"] if completed_job else None,
     }

@@ -89,6 +89,16 @@ class WorkflowEvaluator:
             else f"review_status={run.get('review_status')}; graph/reviewer lineage incomplete"
         )
         record("reviewer_approval", reviewer_ok, reviewer_detail)
+        parent_eligible = self.db.agent_run_downstream_eligible(
+            principal.tenant_id, run_id
+        )
+        record(
+            "origin_lineage",
+            parent_eligible,
+            "manual run or completed matching Daily Ops parent"
+            if parent_eligible
+            else "Daily Ops parent attempt is not eligible",
+        )
 
         priorities = report.get("priorities") if isinstance(report, dict) else None
         valid_priority_shape = isinstance(priorities, list) and len(priorities) <= 5

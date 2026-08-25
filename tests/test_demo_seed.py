@@ -26,6 +26,7 @@ def test_demo_seed_creates_isolated_visible_full_product_state(tmp_path: Path) -
     assert result["marketplace_accounts"] == 3
     assert result["ads_capability_gate_status"] == "blocked"
     assert result["job_status"] == "succeeded"
+    assert result["daily_ops_run_status"] == "completed"
 
     app = RuntimeApplication(Database(path))
     reviewer = app.auth.authenticate(result["reviewer_api_key"])
@@ -67,6 +68,10 @@ def test_demo_seed_creates_isolated_visible_full_product_state(tmp_path: Path) -
     assert len(briefing["agents"]) >= 5
     assert app.jobs.list(reviewer)[0]["status"] == "succeeded"
     assert len(app.schedules.list(reviewer)) == 1
+    assert len(app.daily_ops.list_schedules(reviewer)) == 1
+    assert app.daily_ops.get_brief(
+        reviewer, result["daily_ops_run_id"]
+    )["brief"]["status"] == "completed"
     evaluations = app.evaluator.list(reviewer, result["agent_run_id"])
     assert evaluations[0]["passed"] is True
     assert any(event["action"] == "demo.seed" for event in app.db.list_audit(reviewer.tenant_id))
@@ -124,7 +129,7 @@ def test_schema_v9_migrates_existing_tenants_to_production_mode(tmp_path: Path) 
             """
         )
     db = Database(path)
-    assert db.readiness()["schema_version"] == 16
+    assert db.readiness()["schema_version"] == 17
     assert db.get_tenant("tenant-1")["mode"] == "production"
 
 

@@ -231,10 +231,60 @@ def test_source_runtime_api_l7_agent_graph_contract() -> None:
         "approved", "revision_required", "rejected"
     ]
     run = schemas["AgentRun"]
-    assert {"graph_version_id", "graph_version_hash", "metric_observation_ids", "review_status"} <= set(run["properties"])
+    assert {
+        "graph_version_id", "graph_version_hash", "metric_observation_ids",
+        "review_status", "origin", "parent_daily_ops_run_id",
+        "parent_daily_ops_attempt",
+    } <= set(run["properties"])
     assert "revision_required" in run["properties"]["review_status"]["enum"]
     request = schemas["AgentRunRequest"]
     assert {"graph_version_id", "metric_observation_ids"} <= set(request["properties"])
+
+
+def test_source_runtime_api_l8_daily_ops_contract() -> None:
+    contract = yaml.safe_load((ROOT / "openapi" / "runtime-api.yaml").read_text(encoding="utf-8"))
+    paths = contract["paths"]
+    assert {"get", "post"} <= set(paths["/v1/daily-ops-schedules"])
+    assert {"get", "patch"} <= set(paths["/v1/daily-ops-schedules/{scheduleId}"])
+    assert "post" in paths["/v1/daily-ops-schedules/{scheduleId}/trigger"]
+    assert "get" in paths["/v1/daily-ops-runs"]
+    for suffix in ("", "/brief"):
+        assert "get" in paths[f"/v1/daily-ops-runs/{{runId}}{suffix}"]
+    for suffix in ("/execute", "/retry"):
+        assert "post" in paths[f"/v1/daily-ops-runs/{{runId}}{suffix}"]
+    for route in (
+        "/v1/daily-ops-schedules/{scheduleId}/trigger",
+        "/v1/daily-ops-runs/{runId}/retry",
+    ):
+        assert any(
+            parameter.get("name") == "Idempotency-Key" and parameter.get("required")
+            for parameter in paths[route]["post"]["parameters"]
+        )
+    schemas = contract["components"]["schemas"]
+    assert {
+        "DailyOpsEvidenceSelector", "DailyOpsScheduleCreate", "DailyOpsScheduleUpdate",
+        "DailyOpsSchedule", "DailyOpsTriggerRequest", "DailyOpsRun",
+        "DailyOpsSourceGap", "DailyOpsBrief", "DailyOpsScheduleSnapshot",
+        "DailyOpsBriefEnvelope",
+    } <= set(schemas)
+    assert schemas["DailyOpsEvidenceSelector"]["required"] == ["report_type"]
+    assert schemas["DailyOpsEvidenceSelector"]["additionalProperties"] is False
+    assert schemas["DailyOpsScheduleCreate"]["required"] == [
+        "name", "platform", "objective", "timezone_name", "local_time",
+        "graph_version_id", "evidence_selectors",
+    ]
+    assert schemas["DailyOpsScheduleCreate"]["properties"]["local_time"]["pattern"]
+    assert schemas["DailyOpsRun"]["properties"]["status"]["enum"] == [
+        "scheduled", "running", "completed", "empty", "failed", "blocked"
+    ]
+    assert schemas["DailyOpsBrief"]["additionalProperties"] is False
+    assert schemas["DailyOpsSourceGap"]["additionalProperties"] is False
+    assert "409" in paths["/v1/daily-ops-runs/{runId}/brief"]["get"]["responses"]
+    assert schemas["DailyOpsScheduleCreate"]["properties"]["name"]["maxLength"] == 120
+    assert "next_local_date" in schemas["DailyOpsSchedule"]["required"]
+    assert {"schedule_config", "schedule_config_hash"} <= set(
+        schemas["DailyOpsRun"]["required"]
+    )
 
 
 def test_source_runtime_api_l2_report_recipe_contract() -> None:

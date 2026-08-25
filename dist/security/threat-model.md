@@ -22,12 +22,52 @@
 5. Metric materialization crosses from immutable normalized Evidence into a
    derived metric store; source ownership, numeric bounds, currency, period,
    provenance, and quality must be revalidated at that boundary.
+6. Daily Ops crosses from a schedule-local business date and selected
+   tenant-owned evidence into a persisted Agent Run/brief. Timezone conversion,
+   DST resolution, local-date uniqueness, source freshness, and Reviewer
+   eligibility are security-relevant control inputs rather than presentation
+   details.
 
 ## Controls implemented
 
 - PBKDF2-HMAC-SHA256 API-key hashes and constant-time verification.
 - Tenant foreign keys plus explicit tenant predicates on every application
   read/write.
+- Daily Ops schedules, occurrences, selected Evidence/Metric Observation IDs,
+  source gaps, and briefs are tenant-owned. Reader paths are tenant scoped;
+  schedule writes, manual triggers, execution, and retries require an
+  operator-or-higher principal. A unique schedule/local-date occurrence and
+  durable worker claims prevent duplicate business-day execution on restarts or
+  repeated ticks.
+- Daily Ops accepts an IANA timezone plus local time. DST fall-back selects the
+  first occurrence and creates one local-date run; a spring-forward gap creates
+  an explicit blocked immutable occurrence requiring a new corrected schedule. UTC timestamps
+  do not replace the local-date idempotency key.
+- Evidence selection is bounded by the frozen UTC scheduled instant, preventing
+  look-ahead from later same-day observations. A canonical hashed schedule
+  snapshot prevents mutable objectives, marketplaces, selectors, or graph
+  bindings from changing an existing occurrence. Per-attempt lease tokens fence
+  stale workers, and a durable local-date cursor performs bounded catch-up after
+  downtime.
+- Daily-created Agent Runs persist parent occurrence, attempt, and internal lease
+  lineage. Downstream Briefing eligibility requires the parent to be completed
+  and to point to that exact final child, preventing an approved orphan from a
+  stale worker from influencing operations.
+- The schedule creator is the explicit background execution principal. Role
+  demotion below operator is blocked while enabled or nonterminal Daily Ops work
+  remains; defensive worker handling persists an inactive-principal block rather
+  than crashing or bypassing authorization. Re-enabling a paused schedule
+  revalidates the creator's current operator role in a database trigger, closing
+  enable/demotion races; safe disable does not depend on Graph liveness.
+- A completed Daily Ops operational brief is persisted only after the bound
+  Domain Agent Graph ends with a final `approved` Reviewer verdict. Empty
+  source selection can retain a distinct no-report empty-state brief; stale
+  source selections, Reviewer revision/rejection, and execution failures remain
+  explicit run states and cannot be represented as a successful brief.
+- The L8 scheduler and worker commands have no model tools and no external
+  marketplace, catalog, ads, or financial write operation. They are not a
+  distributed worker; multi-replica deployments must operate a single
+  scheduler/worker leader or equivalent external lease-aware orchestrator.
 - Marketplace account list/get/create/update/health operations enforce the
   viewer/admin/operator role gates, and cross-tenant account IDs resolve to
   the same 404 as unknown IDs.
@@ -170,8 +210,9 @@ approval and is the hard authorization boundary for L6.
 - L2 report recipes intentionally have no delete endpoint, OAuth flow, Amazon
   report creation/download, or background execution. `next_run_at` is stored
   configuration until a separately authorized scheduler contract exists.
-- L3 report syncs remain read-only against Amazon and are triggered explicitly;
-  automatic recipe scheduling is deferred to L8. Live end-to-end assurance
+- L3 report syncs remain read-only against Amazon and are triggered explicitly.
+  L8 selects already persisted eligible Evidence and does not implicitly create
+  an Amazon report; report-sync cadence remains an explicit operator concern. Live end-to-end assurance
   still depends on seller-authorized Amazon credentials and marketplace access,
   so CI validates the network boundary with injected transports rather than
   fabricated accounts.

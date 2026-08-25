@@ -305,15 +305,22 @@ def test_v15_database_reopens_with_v16_tenant_integrity(tmp_path: Path) -> None:
         )
     migrated = Database(path)
     with migrated.connect() as conn:
-        assert conn.execute("SELECT value FROM runtime_meta WHERE key='schema_version'").fetchone()["value"] == "16"
+        assert conn.execute("SELECT value FROM runtime_meta WHERE key='schema_version'").fetchone()["value"] == "17"
         names = {row["name"] for row in conn.execute("SELECT name FROM sqlite_master WHERE type='index'")}
         assert {"uq_agent_runs_tenant_id", "uq_agent_tasks_tenant_id", "uq_agent_evaluations_tenant_id"} <= names
         run_columns = {row["name"] for row in conn.execute("PRAGMA table_info(agent_runs)")}
         task_columns = {row["name"] for row in conn.execute("PRAGMA table_info(agent_tasks)")}
-        assert {"graph_version_id", "graph_version_hash", "metric_observation_ids_json", "review_status"} <= run_columns
+        assert {
+            "graph_version_id", "graph_version_hash", "metric_observation_ids_json",
+            "review_status", "origin", "parent_daily_ops_run_id",
+            "parent_daily_ops_attempt", "parent_daily_ops_lease_token",
+        } <= run_columns
         assert {"graph_node_key", "role", "tool_policy_json"} <= task_columns
-        legacy = conn.execute("SELECT review_status FROM agent_runs WHERE id='legacy-run'").fetchone()
+        legacy = conn.execute(
+            "SELECT review_status,origin FROM agent_runs WHERE id='legacy-run'"
+        ).fetchone()
         assert legacy["review_status"] == "pending"
+        assert legacy["origin"] == "manual"
         triggers = {row["name"] for row in conn.execute("SELECT name FROM sqlite_master WHERE type='trigger'")}
         assert {
             "agent_runs_graph_binding_insert",
@@ -469,6 +476,8 @@ def test_graph_run_dynamic_marketplaces_reviewer_and_idempotency(tmp_path: Path)
 
     bundle = app.agent_runs.execute(owner, run["id"], "execute")
     assert bundle["run"]["review_status"] == "approved"
+    assert bundle["run"]["origin"] == "manual"
+    assert bundle["run"]["parent_daily_ops_run_id"] is None
     assert bundle["run"]["graph_version_id"] == graph["id"]
     assert {task["agent_name"] for task in bundle["tasks"]} == {
         "evidence_analyst",

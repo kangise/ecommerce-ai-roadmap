@@ -29,7 +29,7 @@ class Principal:
 
 
 ROLE_LEVEL = {"viewer": 10, "operator": 20, "admin": 30, "owner": 40}
-SCHEMA_VERSION = 16
+SCHEMA_VERSION = 17
 
 
 class _Connection(sqlite3.Connection):
@@ -336,6 +336,11 @@ class Database:
                     graph_version_id TEXT,
                     graph_version_hash TEXT,
                     metric_observation_ids_json TEXT NOT NULL DEFAULT '[]',
+                    origin TEXT NOT NULL DEFAULT 'manual'
+                        CHECK (origin IN ('manual','daily_ops')),
+                    parent_daily_ops_run_id TEXT,
+                    parent_daily_ops_attempt INTEGER,
+                    parent_daily_ops_lease_token TEXT,
                     requested_by TEXT NOT NULL REFERENCES users(id),
                     status TEXT NOT NULL CHECK (status IN ('requested','running','completed','failed')),
                     provider TEXT NOT NULL,
@@ -421,6 +426,10 @@ class Database:
                 );
                 CREATE INDEX IF NOT EXISTS idx_evidence_imports_tenant_time
                     ON evidence_imports(tenant_id, created_at);
+                CREATE INDEX IF NOT EXISTS idx_evidence_imports_daily_selection
+                    ON evidence_imports(
+                        tenant_id, platform, report_type, julianday(observed_at)
+                    );
                 CREATE UNIQUE INDEX IF NOT EXISTS uq_evidence_imports_tenant_id
                     ON evidence_imports(tenant_id, id);
                 CREATE TABLE IF NOT EXISTS metric_materializations (
@@ -549,6 +558,75 @@ class Database:
                     ON agent_evaluations(tenant_id, run_id, created_at);
                 CREATE UNIQUE INDEX IF NOT EXISTS uq_agent_evaluations_tenant_id
                     ON agent_evaluations(tenant_id, id);
+                CREATE TABLE IF NOT EXISTS daily_ops_schedules (
+                    id TEXT PRIMARY KEY,
+                    tenant_id TEXT NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
+                    name TEXT NOT NULL,
+                    platform TEXT NOT NULL,
+                    objective TEXT NOT NULL,
+                    timezone TEXT NOT NULL,
+                    local_time TEXT NOT NULL,
+                    graph_version_id TEXT NOT NULL,
+                    evidence_selectors_json TEXT NOT NULL,
+                    max_source_age_hours INTEGER NOT NULL
+                        CHECK (max_source_age_hours BETWEEN 1 AND 8760),
+                    enabled INTEGER NOT NULL CHECK (enabled IN (0,1)),
+                    next_local_date TEXT NOT NULL,
+                    created_by TEXT NOT NULL,
+                    created_at TEXT NOT NULL,
+                    updated_at TEXT NOT NULL,
+                    UNIQUE(tenant_id, name),
+                    FOREIGN KEY (tenant_id, graph_version_id)
+                        REFERENCES agent_graph_versions(tenant_id, id) ON DELETE RESTRICT,
+                    FOREIGN KEY (tenant_id, created_by)
+                        REFERENCES users(tenant_id, id)
+                );
+                CREATE UNIQUE INDEX IF NOT EXISTS uq_daily_ops_schedules_tenant_id
+                    ON daily_ops_schedules(tenant_id, id);
+                CREATE INDEX IF NOT EXISTS idx_daily_ops_schedules_due
+                    ON daily_ops_schedules(enabled, tenant_id, local_time);
+                CREATE TABLE IF NOT EXISTS daily_ops_runs (
+                    id TEXT PRIMARY KEY,
+                    tenant_id TEXT NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
+                    schedule_id TEXT NOT NULL,
+                    local_date TEXT NOT NULL,
+                    timezone TEXT NOT NULL,
+                    scheduled_for TEXT NOT NULL,
+                    status TEXT NOT NULL CHECK (
+                        status IN ('scheduled','running','completed','empty','failed','blocked')
+                    ),
+                    selected_evidence_import_ids_json TEXT NOT NULL DEFAULT '[]',
+                    selected_metric_observation_ids_json TEXT NOT NULL DEFAULT '[]',
+                    agent_run_id TEXT,
+                    graph_version_id TEXT NOT NULL,
+                    graph_version_hash TEXT NOT NULL,
+                    schedule_config_json TEXT NOT NULL,
+                    schedule_config_hash TEXT NOT NULL,
+                    brief_json TEXT,
+                    source_gaps_json TEXT NOT NULL DEFAULT '[]',
+                    error_code TEXT,
+                    error_message TEXT,
+                    attempt_count INTEGER NOT NULL DEFAULT 0 CHECK (attempt_count >= 0),
+                    max_attempts INTEGER NOT NULL DEFAULT 3 CHECK (max_attempts BETWEEN 1 AND 20),
+                    lease_until TEXT,
+                    lease_token TEXT,
+                    created_at TEXT NOT NULL,
+                    updated_at TEXT NOT NULL,
+                    completed_at TEXT,
+                    UNIQUE(tenant_id, schedule_id, local_date),
+                    FOREIGN KEY (tenant_id, schedule_id)
+                        REFERENCES daily_ops_schedules(tenant_id, id) ON DELETE CASCADE,
+                    FOREIGN KEY (tenant_id, graph_version_id)
+                        REFERENCES agent_graph_versions(tenant_id, id) ON DELETE RESTRICT,
+                    FOREIGN KEY (tenant_id, agent_run_id)
+                        REFERENCES agent_runs(tenant_id, id) ON DELETE RESTRICT
+                );
+                CREATE UNIQUE INDEX IF NOT EXISTS uq_daily_ops_runs_tenant_id
+                    ON daily_ops_runs(tenant_id, id);
+                CREATE INDEX IF NOT EXISTS idx_daily_ops_runs_claim
+                    ON daily_ops_runs(status, lease_until, scheduled_for);
+                CREATE INDEX IF NOT EXISTS idx_daily_ops_runs_tenant_time
+                    ON daily_ops_runs(tenant_id, local_date DESC, created_at DESC);
                 CREATE TABLE IF NOT EXISTS runtime_meta (
                     key TEXT PRIMARY KEY,
                     value TEXT NOT NULL
@@ -568,6 +646,7 @@ class Database:
                 if version < SCHEMA_VERSION:
                     self._migrate(conn, version)
             self._install_v16_triggers(conn)
+            self._install_v17_triggers(conn)
 
     @staticmethod
     def _install_v16_triggers(conn: sqlite3.Connection) -> None:
@@ -693,6 +772,117 @@ class Database:
                 WHERE u.tenant_id=NEW.tenant_id AND u.id=NEW.created_by
             )
             BEGIN SELECT RAISE(ABORT, 'agent evaluation tenant ownership is invalid'); END;
+            """
+        )
+
+    @staticmethod
+    def _install_v17_triggers(conn: sqlite3.Connection) -> None:
+        conn.executescript(
+            """
+            CREATE TRIGGER IF NOT EXISTS daily_ops_schedules_graph_binding_insert
+            BEFORE INSERT ON daily_ops_schedules
+            WHEN NOT EXISTS (
+                SELECT 1 FROM agent_graph_versions v
+                WHERE v.tenant_id=NEW.tenant_id AND v.id=NEW.graph_version_id
+                  AND v.status='published'
+            )
+            BEGIN SELECT RAISE(ABORT, 'daily ops schedule graph binding is invalid'); END;
+            CREATE TRIGGER IF NOT EXISTS daily_ops_schedules_execution_role_insert
+            BEFORE INSERT ON daily_ops_schedules
+            WHEN NEW.enabled=1 AND NOT EXISTS (
+                SELECT 1 FROM users u
+                WHERE u.tenant_id=NEW.tenant_id AND u.id=NEW.created_by
+                  AND u.role IN ('operator','admin','owner')
+            )
+            BEGIN SELECT RAISE(ABORT, 'daily ops execution principal is inactive'); END;
+            CREATE TRIGGER IF NOT EXISTS daily_ops_schedules_execution_role_update
+            BEFORE UPDATE OF enabled,tenant_id,created_by ON daily_ops_schedules
+            WHEN NEW.enabled=1 AND NOT EXISTS (
+                SELECT 1 FROM users u
+                WHERE u.tenant_id=NEW.tenant_id AND u.id=NEW.created_by
+                  AND u.role IN ('operator','admin','owner')
+            )
+            BEGIN SELECT RAISE(ABORT, 'daily ops execution principal is inactive'); END;
+            CREATE TRIGGER IF NOT EXISTS agent_runs_daily_origin_insert
+            BEFORE INSERT ON agent_runs
+            WHEN (
+                NEW.origin='manual' AND (
+                    NEW.parent_daily_ops_run_id IS NOT NULL
+                    OR NEW.parent_daily_ops_attempt IS NOT NULL
+                    OR NEW.parent_daily_ops_lease_token IS NOT NULL
+                )
+            ) OR (
+                NEW.origin='daily_ops' AND NOT EXISTS (
+                    SELECT 1 FROM daily_ops_runs r
+                    WHERE r.tenant_id=NEW.tenant_id
+                      AND r.id=NEW.parent_daily_ops_run_id
+                      AND r.status='running'
+                      AND r.attempt_count=NEW.parent_daily_ops_attempt
+                      AND r.lease_token=NEW.parent_daily_ops_lease_token
+                )
+            )
+            BEGIN SELECT RAISE(ABORT, 'agent run daily origin is invalid'); END;
+            CREATE TRIGGER IF NOT EXISTS agent_runs_daily_origin_immutable
+            BEFORE UPDATE OF origin,parent_daily_ops_run_id,parent_daily_ops_attempt,
+                             parent_daily_ops_lease_token
+            ON agent_runs
+            WHEN NEW.origin IS NOT OLD.origin
+              OR NEW.parent_daily_ops_run_id IS NOT OLD.parent_daily_ops_run_id
+              OR NEW.parent_daily_ops_attempt IS NOT OLD.parent_daily_ops_attempt
+              OR NEW.parent_daily_ops_lease_token IS NOT OLD.parent_daily_ops_lease_token
+            BEGIN SELECT RAISE(ABORT, 'agent run daily origin is immutable'); END;
+            CREATE TRIGGER IF NOT EXISTS daily_ops_schedules_graph_binding_update
+            BEFORE UPDATE OF tenant_id,graph_version_id ON daily_ops_schedules
+            WHEN (
+                NEW.tenant_id IS NOT OLD.tenant_id
+                OR NEW.graph_version_id IS NOT OLD.graph_version_id
+            ) AND NOT EXISTS (
+                SELECT 1 FROM agent_graph_versions v
+                WHERE v.tenant_id=NEW.tenant_id AND v.id=NEW.graph_version_id
+                  AND v.status='published'
+            )
+            BEGIN SELECT RAISE(ABORT, 'daily ops schedule graph binding is invalid'); END;
+            CREATE TRIGGER IF NOT EXISTS daily_ops_runs_graph_binding_insert
+            BEFORE INSERT ON daily_ops_runs
+            WHEN NOT EXISTS (
+                SELECT 1 FROM agent_graph_versions v
+                WHERE v.tenant_id=NEW.tenant_id AND v.id=NEW.graph_version_id
+                  AND v.definition_hash=NEW.graph_version_hash
+            )
+            BEGIN SELECT RAISE(ABORT, 'daily ops run graph binding is invalid'); END;
+            CREATE TRIGGER IF NOT EXISTS daily_ops_runs_graph_binding_update
+            BEFORE UPDATE OF tenant_id,graph_version_id,graph_version_hash ON daily_ops_runs
+            WHEN NOT EXISTS (
+                SELECT 1 FROM agent_graph_versions v
+                WHERE v.tenant_id=NEW.tenant_id AND v.id=NEW.graph_version_id
+                  AND v.definition_hash=NEW.graph_version_hash
+            )
+            BEGIN SELECT RAISE(ABORT, 'daily ops run graph binding is invalid'); END;
+            CREATE TRIGGER IF NOT EXISTS daily_ops_runs_status_transition
+            BEFORE UPDATE OF status ON daily_ops_runs
+            WHEN NEW.status != OLD.status AND NOT (
+                (OLD.status='scheduled' AND NEW.status='running') OR
+                (OLD.status='running' AND NEW.status IN ('completed','failed','blocked')) OR
+                (OLD.status IN ('empty','failed','blocked')
+                 AND NEW.status IN ('scheduled','empty','blocked'))
+            )
+            BEGIN SELECT RAISE(ABORT, 'invalid daily ops run status transition'); END;
+            CREATE TRIGGER IF NOT EXISTS daily_ops_runs_identity_immutable
+            BEFORE UPDATE OF tenant_id,schedule_id,local_date,timezone,scheduled_for,
+                             graph_version_id,graph_version_hash,
+                             schedule_config_json,schedule_config_hash
+            ON daily_ops_runs
+            BEGIN SELECT RAISE(ABORT, 'daily ops occurrence identity is immutable'); END;
+            CREATE TRIGGER IF NOT EXISTS daily_ops_runs_terminal_insert
+            BEFORE INSERT ON daily_ops_runs
+            WHEN (NEW.status IN ('completed','empty') AND NEW.brief_json IS NULL)
+              OR (NEW.status='completed' AND NEW.agent_run_id IS NULL)
+            BEGIN SELECT RAISE(ABORT, 'daily ops terminal state is incomplete'); END;
+            CREATE TRIGGER IF NOT EXISTS daily_ops_runs_terminal_update
+            BEFORE UPDATE OF status,brief_json,agent_run_id ON daily_ops_runs
+            WHEN (NEW.status IN ('completed','empty') AND NEW.brief_json IS NULL)
+              OR (NEW.status='completed' AND NEW.agent_run_id IS NULL)
+            BEGIN SELECT RAISE(ABORT, 'daily ops terminal state is incomplete'); END;
             """
         )
 
@@ -889,6 +1079,26 @@ class Database:
                 if name not in task_columns:
                     conn.execute(f"ALTER TABLE agent_tasks ADD COLUMN {name} {declaration}")
             version = 16
+        if version == 16:
+            # initialize() creates the tenant-owned daily operations schedule
+            # and run tables transactionally. Existing Agent Runs gain a
+            # fail-closed origin contract; historical rows remain manual.
+            run_columns = {
+                row["name"]
+                for row in conn.execute("PRAGMA table_info(agent_runs)").fetchall()
+            }
+            run_additions = {
+                "origin": "TEXT NOT NULL DEFAULT 'manual'",
+                "parent_daily_ops_run_id": "TEXT",
+                "parent_daily_ops_attempt": "INTEGER",
+                "parent_daily_ops_lease_token": "TEXT",
+            }
+            for name, declaration in run_additions.items():
+                if name not in run_columns:
+                    conn.execute(
+                        f"ALTER TABLE agent_runs ADD COLUMN {name} {declaration}"
+                    )
+            version = 17
         if version != SCHEMA_VERSION:
             raise ValidationError(f"no migration path from runtime schema version {version}")
         conn.execute("UPDATE runtime_meta SET value=? WHERE key='schema_version'", (str(SCHEMA_VERSION),))
@@ -995,6 +1205,23 @@ class Database:
                 ).fetchone()[0]
                 if owners <= 1:
                     raise ConflictError("cannot demote the tenant's last owner")
+            if ROLE_LEVEL[row["role"]] >= ROLE_LEVEL["operator"] and ROLE_LEVEL[role] < ROLE_LEVEL["operator"]:
+                active_daily_ops = conn.execute(
+                    """SELECT 1
+                       FROM daily_ops_schedules s
+                       WHERE s.tenant_id=? AND s.created_by=? AND (
+                         s.enabled=1 OR EXISTS (
+                           SELECT 1 FROM daily_ops_runs r
+                           WHERE r.tenant_id=s.tenant_id AND r.schedule_id=s.id
+                             AND r.status IN ('scheduled','running')
+                         )
+                       ) LIMIT 1""",
+                    (tenant_id, user_id),
+                ).fetchone()
+                if active_daily_ops is not None:
+                    raise ConflictError(
+                        "disable or complete this user's Daily Ops work before demotion"
+                    )
             conn.execute(
                 "UPDATE users SET role=? WHERE id=? AND tenant_id=?",
                 (role, user_id, tenant_id),
@@ -2758,6 +2985,7 @@ class Database:
         result["metric_observation_ids"] = json.loads(
             result.pop("metric_observation_ids_json", "[]") or "[]"
         )
+        result.pop("parent_daily_ops_lease_token", None)
         if include_evidence:
             result["evidence"] = json.loads(evidence_json)
         return result
@@ -2776,9 +3004,30 @@ class Database:
         graph_version_id: str,
         graph_version_hash: str,
         metric_observation_ids: list[str] | None = None,
+        origin: str = "manual",
+        parent_daily_ops_run_id: str | None = None,
+        parent_daily_ops_attempt: int | None = None,
+        parent_daily_ops_lease_token: str | None = None,
     ) -> tuple[dict[str, Any], bool]:
         if not idempotency_key or len(idempotency_key) > 200:
             raise ValidationError("idempotency_key is required and must be <= 200 characters")
+        if origin not in {"manual", "daily_ops"}:
+            raise ValidationError("agent run origin must be manual or daily_ops")
+        parent_values = (
+            parent_daily_ops_run_id,
+            parent_daily_ops_attempt,
+            parent_daily_ops_lease_token,
+        )
+        if origin == "manual" and any(value is not None for value in parent_values):
+            raise ValidationError("manual agent runs cannot have Daily Ops lineage")
+        if origin == "daily_ops" and (
+            not isinstance(parent_daily_ops_run_id, str)
+            or not isinstance(parent_daily_ops_attempt, int)
+            or parent_daily_ops_attempt < 1
+            or not isinstance(parent_daily_ops_lease_token, str)
+            or not parent_daily_ops_lease_token
+        ):
+            raise ValidationError("daily_ops agent runs require complete parent lineage")
         run_id = self._id()
         now = utc_now()
         serialized = json.dumps(evidence, ensure_ascii=False, sort_keys=True)
@@ -2794,8 +3043,10 @@ class Database:
                     """INSERT INTO agent_runs(
                        id,tenant_id,idempotency_key,workflow,objective,evidence_json,platforms_json,
                        graph_version_id,graph_version_hash,metric_observation_ids_json,
+                       origin,parent_daily_ops_run_id,parent_daily_ops_attempt,
+                       parent_daily_ops_lease_token,
                        requested_by,status,provider,review_status,created_at,updated_at
-                       ) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+                       ) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
                     (
                         run_id,
                         tenant_id,
@@ -2807,6 +3058,10 @@ class Database:
                         graph_version_id,
                         graph_version_hash,
                         json.dumps(metric_observation_ids or [], sort_keys=True),
+                        origin,
+                        parent_daily_ops_run_id,
+                        parent_daily_ops_attempt,
+                        parent_daily_ops_lease_token,
                         requested_by,
                         "requested",
                         provider,
@@ -2853,6 +3108,9 @@ class Database:
                 or existing.get("graph_version_id") != graph_version_id
                 or existing.get("graph_version_hash") != graph_version_hash
                 or existing.get("metric_observation_ids") != (metric_observation_ids or [])
+                or existing.get("origin") != origin
+                or existing.get("parent_daily_ops_run_id") != parent_daily_ops_run_id
+                or existing.get("parent_daily_ops_attempt") != parent_daily_ops_attempt
             ):
                 raise ConflictError("idempotency key was already used with a different agent run")
             return existing, True
@@ -2866,6 +3124,24 @@ class Database:
         if row is None:
             raise NotFoundError("agent run not found")
         return self._agent_run_dict(row)
+
+    def agent_run_downstream_eligible(self, tenant_id: str, run_id: str) -> bool:
+        with self.connect() as conn:
+            row = conn.execute(
+                """SELECT a.origin,
+                          CASE WHEN a.origin='manual' THEN 1
+                               WHEN d.status='completed'
+                                AND d.agent_run_id=a.id
+                                AND d.attempt_count=a.parent_daily_ops_attempt
+                               THEN 1 ELSE 0 END AS eligible
+                   FROM agent_runs a
+                   LEFT JOIN daily_ops_runs d
+                     ON d.tenant_id=a.tenant_id
+                    AND d.id=a.parent_daily_ops_run_id
+                   WHERE a.tenant_id=? AND a.id=?""",
+                (tenant_id, run_id),
+            ).fetchone()
+        return bool(row and row["eligible"])
 
     def bind_legacy_agent_run_graph(
         self,
@@ -3663,6 +3939,374 @@ class Database:
                 "UPDATE schedules SET lease_until=NULL,updated_at=? WHERE id=? AND tenant_id=?",
                 (utc_now(), schedule_id, tenant_id),
             )
+
+    @staticmethod
+    def _daily_ops_schedule_dict(row: sqlite3.Row) -> dict[str, Any]:
+        result = dict(row)
+        result["evidence_selectors"] = json.loads(result.pop("evidence_selectors_json"))
+        result["enabled"] = bool(result["enabled"])
+        return result
+
+    @staticmethod
+    def _daily_ops_run_dict(
+        row: sqlite3.Row, *, include_lease_token: bool = False
+    ) -> dict[str, Any]:
+        result = dict(row)
+        result["schedule_config"] = json.loads(result.pop("schedule_config_json"))
+        if not include_lease_token:
+            result.pop("lease_token", None)
+        result["selected_evidence_import_ids"] = json.loads(
+            result.pop("selected_evidence_import_ids_json")
+        )
+        result["selected_metric_observation_ids"] = json.loads(
+            result.pop("selected_metric_observation_ids_json")
+        )
+        result["source_gaps"] = json.loads(result.pop("source_gaps_json"))
+        brief_json = result.pop("brief_json")
+        result["brief"] = json.loads(brief_json) if brief_json else None
+        return result
+
+    def create_daily_ops_schedule(
+        self,
+        tenant_id: str,
+        created_by: str,
+        *,
+        name: str,
+        platform: str,
+        objective: str,
+        timezone_name: str,
+        local_time: str,
+        graph_version_id: str,
+        evidence_selectors: list[dict[str, str]],
+        max_source_age_hours: int,
+        enabled: bool,
+        next_local_date: str,
+    ) -> dict[str, Any]:
+        schedule_id, now = self._id(), utc_now()
+        try:
+            with self.transaction() as conn:
+                conn.execute(
+                    """INSERT INTO daily_ops_schedules(
+                       id,tenant_id,name,platform,objective,timezone,local_time,
+                       graph_version_id,evidence_selectors_json,max_source_age_hours,
+                       enabled,next_local_date,created_by,created_at,updated_at
+                       ) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+                    (
+                        schedule_id, tenant_id, name, platform, objective,
+                        timezone_name, local_time, graph_version_id,
+                        json.dumps(evidence_selectors, ensure_ascii=False, sort_keys=True),
+                        max_source_age_hours, int(enabled), next_local_date,
+                        created_by, now, now,
+                    ),
+                )
+        except sqlite3.IntegrityError as exc:
+            raise ConflictError("daily ops schedule conflicts with existing tenant data") from exc
+        return self.get_daily_ops_schedule(tenant_id, schedule_id)
+
+    def advance_daily_ops_schedule(
+        self,
+        tenant_id: str,
+        schedule_id: str,
+        *,
+        expected_local_date: str,
+        next_local_date: str,
+    ) -> dict[str, Any]:
+        with self.transaction() as conn:
+            cur = conn.execute(
+                """UPDATE daily_ops_schedules
+                   SET next_local_date=?,updated_at=?
+                   WHERE tenant_id=? AND id=? AND next_local_date=?""",
+                (
+                    next_local_date,
+                    utc_now(),
+                    tenant_id,
+                    schedule_id,
+                    expected_local_date,
+                ),
+            )
+            if cur.rowcount != 1:
+                raise ConflictError("daily ops schedule cursor changed concurrently")
+        return self.get_daily_ops_schedule(tenant_id, schedule_id)
+
+    def update_daily_ops_schedule(
+        self, tenant_id: str, schedule_id: str, values: dict[str, Any]
+    ) -> dict[str, Any]:
+        allowed = {
+            "name", "platform", "objective", "timezone", "local_time",
+            "graph_version_id", "evidence_selectors_json", "max_source_age_hours",
+            "enabled", "next_local_date",
+        }
+        if not values or not set(values) <= allowed:
+            raise ValidationError("daily ops schedule update contains unsupported fields")
+        assignments = ",".join(f"{key}=?" for key in values)
+        try:
+            with self.transaction() as conn:
+                cur = conn.execute(
+                    f"UPDATE daily_ops_schedules SET {assignments},updated_at=? WHERE tenant_id=? AND id=?",
+                    (*values.values(), utc_now(), tenant_id, schedule_id),
+                )
+                if cur.rowcount != 1:
+                    raise NotFoundError("daily ops schedule not found")
+        except sqlite3.IntegrityError as exc:
+            raise ConflictError("daily ops schedule conflicts with existing tenant data") from exc
+        return self.get_daily_ops_schedule(tenant_id, schedule_id)
+
+    def get_daily_ops_schedule(self, tenant_id: str, schedule_id: str) -> dict[str, Any]:
+        with self.connect() as conn:
+            row = conn.execute(
+                "SELECT * FROM daily_ops_schedules WHERE tenant_id=? AND id=?",
+                (tenant_id, schedule_id),
+            ).fetchone()
+        if row is None:
+            raise NotFoundError("daily ops schedule not found")
+        return self._daily_ops_schedule_dict(row)
+
+    def list_daily_ops_schedules(self, tenant_id: str) -> list[dict[str, Any]]:
+        with self.connect() as conn:
+            rows = conn.execute(
+                """SELECT * FROM daily_ops_schedules WHERE tenant_id=?
+                   ORDER BY enabled DESC,name,id""",
+                (tenant_id,),
+            ).fetchall()
+        return [self._daily_ops_schedule_dict(row) for row in rows]
+
+    def create_daily_ops_run(
+        self,
+        tenant_id: str,
+        schedule_id: str,
+        *,
+        local_date: str,
+        timezone_name: str,
+        scheduled_for: str,
+        status: str,
+        evidence_import_ids: list[str],
+        metric_observation_ids: list[str],
+        graph_version_id: str,
+        graph_version_hash: str,
+        schedule_config: dict[str, Any],
+        schedule_config_hash: str,
+        source_gaps: list[dict[str, Any]],
+        error_code: str | None = None,
+        error_message: str | None = None,
+        brief: dict[str, Any] | None = None,
+        max_attempts: int = 3,
+    ) -> tuple[dict[str, Any], bool]:
+        run_id, now = self._id(), utc_now()
+        try:
+            with self.transaction() as conn:
+                conn.execute(
+                    """INSERT INTO daily_ops_runs(
+                       id,tenant_id,schedule_id,local_date,timezone,scheduled_for,status,
+                       selected_evidence_import_ids_json,selected_metric_observation_ids_json,
+                       graph_version_id,graph_version_hash,schedule_config_json,
+                       schedule_config_hash,brief_json,source_gaps_json,
+                       error_code,error_message,max_attempts,created_at,updated_at,completed_at
+                       ) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+                    (
+                        run_id, tenant_id, schedule_id, local_date, timezone_name,
+                        scheduled_for, status,
+                        json.dumps(evidence_import_ids, sort_keys=True),
+                        json.dumps(metric_observation_ids, sort_keys=True),
+                        graph_version_id, graph_version_hash,
+                        json.dumps(schedule_config, ensure_ascii=False, sort_keys=True),
+                        schedule_config_hash,
+                        json.dumps(brief, ensure_ascii=False, sort_keys=True) if brief else None,
+                        json.dumps(source_gaps, ensure_ascii=False, sort_keys=True),
+                        error_code, error_message, max_attempts, now, now,
+                        now if status in {"empty", "failed", "blocked", "completed"} else None,
+                    ),
+                )
+        except sqlite3.IntegrityError:
+            with self.connect() as conn:
+                row = conn.execute(
+                    """SELECT * FROM daily_ops_runs
+                       WHERE tenant_id=? AND schedule_id=? AND local_date=?""",
+                    (tenant_id, schedule_id, local_date),
+                ).fetchone()
+            if row is None:
+                raise ConflictError("daily ops run conflicts with tenant data")
+            return self._daily_ops_run_dict(row), True
+        return self.get_daily_ops_run(tenant_id, run_id), False
+
+    def get_daily_ops_run(self, tenant_id: str, run_id: str) -> dict[str, Any]:
+        with self.connect() as conn:
+            row = conn.execute(
+                "SELECT * FROM daily_ops_runs WHERE tenant_id=? AND id=?",
+                (tenant_id, run_id),
+            ).fetchone()
+        if row is None:
+            raise NotFoundError("daily ops run not found")
+        return self._daily_ops_run_dict(row)
+
+    def list_daily_ops_runs(
+        self, tenant_id: str, *, schedule_id: str | None = None, limit: int = 50
+    ) -> list[dict[str, Any]]:
+        limit = max(1, min(int(limit), 200))
+        with self.connect() as conn:
+            if schedule_id:
+                rows = conn.execute(
+                    """SELECT * FROM daily_ops_runs
+                       WHERE tenant_id=? AND schedule_id=?
+                       ORDER BY local_date DESC,rowid DESC LIMIT ?""",
+                    (tenant_id, schedule_id, limit),
+                ).fetchall()
+            else:
+                rows = conn.execute(
+                    """SELECT * FROM daily_ops_runs WHERE tenant_id=?
+                       ORDER BY local_date DESC,rowid DESC LIMIT ?""",
+                    (tenant_id, limit),
+                ).fetchall()
+        return [self._daily_ops_run_dict(row) for row in rows]
+
+    def claim_daily_ops_run(
+        self, *, tenant_id: str | None = None, run_id: str | None = None,
+        lease_seconds: int = 900
+    ) -> dict[str, Any] | None:
+        now, lease_until, lease_token = (
+            utc_now(),
+            self._lease_until(lease_seconds),
+            self._id(),
+        )
+        with self.transaction() as conn:
+            where, params = ["attempt_count < max_attempts", "scheduled_for<=?"], [now]
+            if tenant_id is not None:
+                where.append("tenant_id=?")
+                params.append(tenant_id)
+            if run_id is not None:
+                where.append("id=?")
+                params.append(run_id)
+            where.append("(status='scheduled' OR (status='running' AND lease_until IS NOT NULL AND lease_until<?))")
+            params.append(now)
+            row = conn.execute(
+                f"SELECT id,tenant_id FROM daily_ops_runs WHERE {' AND '.join(where)} ORDER BY scheduled_for,rowid LIMIT 1",
+                params,
+            ).fetchone()
+            if row is None:
+                return None
+            cur = conn.execute(
+                """UPDATE daily_ops_runs SET status='running',attempt_count=attempt_count+1,
+                   lease_until=?,lease_token=?,error_code=NULL,error_message=NULL,
+                   agent_run_id=NULL,brief_json=NULL,completed_at=NULL,updated_at=?
+                   WHERE id=? AND tenant_id=? AND attempt_count < max_attempts
+                   AND (status='scheduled' OR (status='running' AND lease_until IS NOT NULL AND lease_until<?))""",
+                (lease_until, lease_token, now, row["id"], row["tenant_id"], now),
+            )
+            if cur.rowcount != 1:
+                return None
+            claimed = conn.execute(
+                "SELECT * FROM daily_ops_runs WHERE tenant_id=? AND id=?",
+                (row["tenant_id"], row["id"]),
+            ).fetchone()
+        return self._daily_ops_run_dict(claimed, include_lease_token=True)
+
+    def update_daily_ops_run(self, tenant_id: str, run_id: str, values: dict[str, Any]) -> dict[str, Any]:
+        allowed = {
+            "status", "selected_evidence_import_ids_json",
+            "selected_metric_observation_ids_json", "agent_run_id", "brief_json",
+            "source_gaps_json", "error_code", "error_message", "lease_until",
+            "lease_token", "completed_at",
+        }
+        if not values or not set(values) <= allowed:
+            raise ValidationError("daily ops run update contains unsupported fields")
+        assignments = ",".join(f"{key}=?" for key in values)
+        with self.transaction() as conn:
+            cur = conn.execute(
+                f"UPDATE daily_ops_runs SET {assignments},updated_at=? WHERE tenant_id=? AND id=?",
+                (*values.values(), utc_now(), tenant_id, run_id),
+            )
+            if cur.rowcount != 1:
+                raise NotFoundError("daily ops run not found")
+        return self.get_daily_ops_run(tenant_id, run_id)
+
+    def update_claimed_daily_ops_run(
+        self,
+        tenant_id: str,
+        run_id: str,
+        *,
+        attempt_count: int,
+        lease_token: str,
+        values: dict[str, Any],
+    ) -> dict[str, Any]:
+        allowed = {
+            "status", "agent_run_id", "brief_json", "source_gaps_json",
+            "error_code", "error_message", "lease_until", "lease_token",
+            "completed_at",
+        }
+        if not values or not set(values) <= allowed:
+            raise ValidationError("claimed daily ops update contains unsupported fields")
+        assignments = ",".join(f"{key}=?" for key in values)
+        with self.transaction() as conn:
+            cur = conn.execute(
+                f"""UPDATE daily_ops_runs SET {assignments},updated_at=?
+                    WHERE tenant_id=? AND id=? AND status='running'
+                      AND attempt_count=? AND lease_token=?""",
+                (
+                    *values.values(),
+                    utc_now(),
+                    tenant_id,
+                    run_id,
+                    attempt_count,
+                    lease_token,
+                ),
+            )
+            if cur.rowcount != 1:
+                raise ConflictError("daily ops run lease was lost")
+        return self.get_daily_ops_run(tenant_id, run_id)
+
+    def renew_daily_ops_lease(
+        self,
+        tenant_id: str,
+        run_id: str,
+        *,
+        attempt_count: int,
+        lease_token: str,
+        lease_seconds: int = 900,
+    ) -> dict[str, Any]:
+        lease_until = self._lease_until(lease_seconds)
+        with self.transaction() as conn:
+            cur = conn.execute(
+                """UPDATE daily_ops_runs SET lease_until=?,updated_at=?
+                   WHERE tenant_id=? AND id=? AND status='running'
+                     AND attempt_count=? AND lease_token=?""",
+                (
+                    lease_until,
+                    utc_now(),
+                    tenant_id,
+                    run_id,
+                    attempt_count,
+                    lease_token,
+                ),
+            )
+            if cur.rowcount != 1:
+                raise ConflictError("daily ops run lease was lost")
+        return self.get_daily_ops_run(tenant_id, run_id)
+
+    def fail_exhausted_daily_ops_run(self) -> dict[str, Any] | None:
+        now = utc_now()
+        with self.transaction() as conn:
+            row = conn.execute(
+                """SELECT id,tenant_id FROM daily_ops_runs
+                   WHERE status='running' AND lease_until IS NOT NULL
+                     AND lease_until<? AND attempt_count>=max_attempts
+                   ORDER BY scheduled_for,rowid LIMIT 1""",
+                (now,),
+            ).fetchone()
+            if row is None:
+                return None
+            cur = conn.execute(
+                """UPDATE daily_ops_runs
+                   SET status='failed',lease_until=NULL,lease_token=NULL,
+                       error_code='ATTEMPTS_EXHAUSTED',
+                       error_message='daily ops worker attempts were exhausted',
+                       completed_at=?,updated_at=?
+                   WHERE tenant_id=? AND id=? AND status='running'
+                     AND lease_until IS NOT NULL AND lease_until<?
+                     AND attempt_count>=max_attempts""",
+                (now, now, row["tenant_id"], row["id"], now),
+            )
+            if cur.rowcount != 1:
+                return None
+        return self.get_daily_ops_run(row["tenant_id"], row["id"])
 
     def mission_control(self, tenant_id: str) -> dict[str, Any]:
         def grouped(conn: sqlite3.Connection, table: str) -> dict[str, int]:

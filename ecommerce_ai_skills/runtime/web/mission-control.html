@@ -207,6 +207,28 @@
             </section>
             <section class="tool-panel"><div class="panel-heading"><div><p class="kicker">Workers</p><h2>后台任务</h2></div></div><div id="job-list" class="data-list"></div></section>
           </div>
+          <section class="daily-ops-section" aria-labelledby="daily-ops-title">
+            <div class="section-title-row"><div><h2 id="daily-ops-title">Daily Ops</h2><span>按本地日期与时区运行；只使用已持久化 Evidence，缺失时保留明确空态。</span></div></div>
+            <div class="tool-layout">
+              <section class="tool-panel form-panel">
+                <form id="daily-ops-form">
+                  <div class="form-grid">
+                    <label>名称<input id="daily-ops-name" required placeholder="Amazon daily pulse"></label>
+                    <label>本地时间<input id="daily-ops-time" type="time" required value="08:00"></label>
+                    <label>时区<input id="daily-ops-timezone" required></label>
+                    <label>Agent Graph 版本<select id="daily-ops-graph" required></select></label>
+                    <label>最大来源年龄（小时）<input id="daily-ops-max-age" type="number" min="1" max="8760" value="48" required></label>
+                  </div>
+                  <label>Evidence report type<select id="daily-ops-evidence" required></select></label>
+                  <label>目标<textarea id="daily-ops-objective" rows="2" required>检查最新经营信号并生成今日行动建议。</textarea></label>
+                  <p id="daily-ops-permission-reason" class="permission-reason" hidden></p>
+                  <button data-action="create-daily-ops" class="primary-button" type="submit"><img src="/app/assets/icons/calendar-dots.svg" alt="">创建 Daily Ops</button>
+                </form>
+              </section>
+              <section class="tool-panel"><div class="panel-heading"><div><p class="kicker">Schedules</p><h2>Daily Ops 计划</h2></div></div><div id="daily-ops-schedule-list" class="data-list"></div></section>
+            </div>
+            <section class="tool-panel"><div class="panel-heading"><div><p class="kicker">Runs</p><h2>Daily Ops 运行</h2></div></div><div id="daily-ops-run-list" class="data-list"></div></section>
+          </section>
         </section>
 
         <section id="view-audit" class="view" data-view-panel="audit" aria-labelledby="audit-title">

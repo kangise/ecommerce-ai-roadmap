@@ -822,6 +822,204 @@ paths:
         '409': {$ref: '#/components/responses/Conflict'}
         '422': {$ref: '#/components/responses/ValidationFailed'}
         '429': {$ref: '#/components/responses/RateLimited'}
+  /v1/daily-ops-schedules:
+    get:
+      summary: List tenant-owned Daily Ops schedules
+      description: Viewer-or-higher. Schedules are calendar-day operations, not the legacy interval `/v1/schedules` resource.
+      responses:
+        '200':
+          description: Tenant schedules
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [schedules]
+                properties:
+                  schedules: {type: array, items: {$ref: '#/components/schemas/DailyOpsSchedule'}}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+    post:
+      summary: Create a Daily Ops schedule
+      description: Operator-or-higher. The IANA timezone and local clock time define the business date and DST behavior.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/DailyOpsScheduleCreate'}
+      responses:
+        '201':
+          description: Persisted Daily Ops schedule
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/DailyOpsSchedule'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+  /v1/daily-ops-schedules/{scheduleId}:
+    get:
+      summary: Read a tenant-owned Daily Ops schedule
+      parameters:
+        - {$ref: '#/components/parameters/scheduleId'}
+      responses:
+        '200':
+          description: Daily Ops schedule
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/DailyOpsSchedule'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+    patch:
+      summary: Replace a Daily Ops schedule configuration
+      description: Operator-or-higher. Full replacement prevents accidental partial timezone, graph, or evidence-selector configuration.
+      parameters:
+        - {$ref: '#/components/parameters/scheduleId'}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/DailyOpsScheduleUpdate'}
+      responses:
+        '200':
+          description: Updated persisted schedule
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/DailyOpsSchedule'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+  /v1/daily-ops-schedules/{scheduleId}/trigger:
+    post:
+      summary: Create or return the local-date Daily Ops occurrence
+      description: Operator-or-higher. Repeating a trigger for the same tenant, schedule, and local date returns the durable occurrence; no second Daily Ops run is created.
+      parameters:
+        - {$ref: '#/components/parameters/scheduleId'}
+        - in: header
+          name: Idempotency-Key
+          required: true
+          schema: {type: string, minLength: 1, maxLength: 200}
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/DailyOpsTriggerRequest'}
+      responses:
+        '200':
+          description: Durable local-date occurrence
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/DailyOpsRun'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+  /v1/daily-ops-runs:
+    get:
+      summary: List tenant-owned Daily Ops occurrences
+      description: Viewer-or-higher. Filter by the owning Daily Ops schedule, not by a cross-tenant run ID.
+      parameters:
+        - in: query
+          name: schedule_id
+          schema: {type: string, format: uuid}
+        - in: query
+          name: limit
+          schema: {type: integer, minimum: 1, maximum: 200, default: 50}
+      responses:
+        '200':
+          description: Tenant Daily Ops runs
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [runs]
+                properties:
+                  runs: {type: array, items: {$ref: '#/components/schemas/DailyOpsRun'}}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+  /v1/daily-ops-runs/{runId}:
+    get:
+      summary: Read a tenant-owned Daily Ops occurrence
+      parameters:
+        - {$ref: '#/components/parameters/runId'}
+      responses:
+        '200':
+          description: Daily Ops occurrence and durable state
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/DailyOpsRun'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+  /v1/daily-ops-runs/{runId}/brief:
+    get:
+      summary: Read the persisted eligible Daily Ops brief
+      description: Viewer-or-higher. Completed operational briefs require a final approved Reviewer verdict; empty and Reviewer-blocked occurrences may persist explicit non-actionable briefs. Returns 409 when no brief exists.
+      parameters:
+        - {$ref: '#/components/parameters/runId'}
+      responses:
+        '200':
+          description: Daily Ops occurrence with its persisted brief
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/DailyOpsBriefEnvelope'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+  /v1/daily-ops-runs/{runId}/execute:
+    post:
+      summary: Execute one queued Daily Ops occurrence
+      description: Operator-or-higher. Executes the published graph with persisted inputs, produces a brief only after Reviewer approval, and exposes no external-write tool.
+      parameters:
+        - {$ref: '#/components/parameters/runId'}
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/EmptyRequest'}
+      responses:
+        '200':
+          description: Updated durable Daily Ops run
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/DailyOpsRun'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+        '502': {$ref: '#/components/responses/ConnectorFailed'}
+  /v1/daily-ops-runs/{runId}/retry:
+    post:
+      summary: Retry one failed or blocked Daily Ops occurrence
+      description: Operator-or-higher. Retry changes durable state and is protected by Idempotency-Key; it never creates a second local-date occurrence.
+      parameters:
+        - {$ref: '#/components/parameters/runId'}
+        - in: header
+          name: Idempotency-Key
+          required: true
+          schema: {type: string, minLength: 1, maxLength: 200}
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/EmptyRequest'}
+      responses:
+        '200':
+          description: Retried durable Daily Ops run
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/DailyOpsRun'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
   /v1/agent-graphs:
     get:
       summary: List tenant-owned agent graph definitions
@@ -2134,7 +2332,7 @@ components:
           description: Opaque tenant-scoped cursor returned by the previous backfill page.
     AgentRun:
       type: object
-      required: [id, tenant_id, idempotency_key, workflow, objective, platforms, graph_version_id, graph_version_hash, metric_observation_ids, requested_by, status, provider, attempt_count, review_status, created_at, updated_at]
+      required: [id, tenant_id, idempotency_key, workflow, objective, platforms, graph_version_id, graph_version_hash, metric_observation_ids, origin, parent_daily_ops_run_id, parent_daily_ops_attempt, requested_by, status, provider, attempt_count, review_status, created_at, updated_at]
       properties:
         id: {type: string, format: uuid}
         tenant_id: {type: string, format: uuid}
@@ -2158,6 +2356,9 @@ components:
           maxItems: 20
           uniqueItems: true
           items: {type: string, format: uuid}
+        origin: {type: string, enum: [manual, daily_ops]}
+        parent_daily_ops_run_id: {type: string, format: uuid, nullable: true}
+        parent_daily_ops_attempt: {type: integer, minimum: 1, nullable: true}
         review_status: {type: string, enum: [pending, approved, revision_required, rejected]}
         attempt_count: {type: integer, minimum: 0}
         error: {type: string, nullable: true}
@@ -2386,6 +2587,201 @@ components:
         created_at: {type: string, format: date-time}
         updated_at: {type: string, format: date-time}
         completed_at: {type: string, format: date-time, nullable: true}
+    EmptyRequest:
+      type: object
+      additionalProperties: false
+    DailyOpsEvidenceSelector:
+      type: object
+      additionalProperties: false
+      required: [report_type]
+      properties:
+        report_type: {$ref: '#/components/schemas/EvidenceReportType'}
+    DailyOpsScheduleCreate:
+      type: object
+      additionalProperties: false
+      required: [name, platform, objective, timezone_name, local_time, graph_version_id, evidence_selectors]
+      properties:
+        name: {type: string, minLength: 1, maxLength: 120}
+        platform: {$ref: '#/components/schemas/MarketplaceId'}
+        objective: {type: string, minLength: 5, maxLength: 1000}
+        timezone_name:
+          type: string
+          minLength: 1
+          maxLength: 100
+          description: IANA timezone name, for example `America/Los_Angeles`.
+        local_time:
+          type: string
+          pattern: '^(?:[01][0-9]|2[0-3]):[0-5][0-9]$'
+          description: 24-hour wall-clock time in timezone_name.
+        graph_version_id: {type: string, format: uuid}
+        evidence_selectors:
+          type: array
+          minItems: 1
+          maxItems: 20
+          uniqueItems: true
+          items: {$ref: '#/components/schemas/DailyOpsEvidenceSelector'}
+        max_source_age_hours: {type: integer, minimum: 1, maximum: 8760, default: 48}
+        enabled: {type: boolean, default: true}
+    DailyOpsScheduleUpdate:
+      allOf:
+        - {$ref: '#/components/schemas/DailyOpsScheduleCreate'}
+        - type: object
+          required: [max_source_age_hours, enabled]
+    DailyOpsSchedule:
+      type: object
+      additionalProperties: false
+      required: [id, tenant_id, name, platform, objective, timezone, local_time, graph_version_id, evidence_selectors, max_source_age_hours, enabled, next_local_date, created_by, created_at, updated_at]
+      properties:
+        id: {type: string, format: uuid}
+        tenant_id: {type: string, format: uuid}
+        name: {type: string}
+        platform: {$ref: '#/components/schemas/MarketplaceId'}
+        objective: {type: string}
+        timezone: {type: string}
+        local_time: {type: string}
+        graph_version_id: {type: string, format: uuid}
+        evidence_selectors:
+          type: array
+          items: {$ref: '#/components/schemas/DailyOpsEvidenceSelector'}
+        max_source_age_hours: {type: integer, minimum: 1, maximum: 8760}
+        enabled: {type: boolean}
+        next_local_date:
+          type: string
+          format: date
+          description: Durable calendar cursor; the scheduler catches up one due local date per invocation.
+        created_by: {type: string, format: uuid}
+        created_at: {type: string, format: date-time}
+        updated_at: {type: string, format: date-time}
+    DailyOpsTriggerRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        local_date:
+          type: string
+          format: date
+          description: Optional schedule-local business date; omitted means the current date in the schedule timezone.
+    DailyOpsSourceGap:
+      type: object
+      additionalProperties: false
+      required: [code]
+      properties:
+        code: {type: string}
+        platform: {$ref: '#/components/schemas/MarketplaceId'}
+        report_type: {$ref: '#/components/schemas/EvidenceReportType'}
+        as_of: {type: string, format: date-time}
+        max_source_age_hours: {type: integer, minimum: 1, maximum: 8760}
+        local_time: {type: string}
+        verdict: {type: string, enum: [approved, revision_required, rejected]}
+    DailyOpsBrief:
+      type: object
+      additionalProperties: false
+      required: [schema_version, kind, status, local_date, timezone, scheduled_for, generated_at, schedule, graph, source_gaps, report]
+      properties:
+        schema_version: {type: integer, enum: [1]}
+        kind: {type: string, enum: [daily_ops_brief]}
+        status: {type: string, enum: [completed, empty, blocked]}
+        local_date: {type: string, format: date}
+        timezone: {type: string}
+        scheduled_for: {type: string, format: date-time}
+        generated_at: {type: string, format: date-time}
+        schedule:
+          type: object
+          additionalProperties: false
+          required: [id, name, platform]
+          properties:
+            id: {type: string, format: uuid}
+            name: {type: string}
+            platform: {$ref: '#/components/schemas/MarketplaceId'}
+        graph:
+          type: object
+          additionalProperties: false
+          required: [version_id, definition_hash]
+          properties:
+            version_id: {type: string, format: uuid}
+            definition_hash: {type: string, pattern: '^[a-f0-9]{64}$'}
+        inputs:
+          type: object
+          additionalProperties: false
+          required: [evidence_import_ids, metric_observation_ids]
+          properties:
+            evidence_import_ids: {type: array, maxItems: 20, items: {type: string, format: uuid}}
+            metric_observation_ids: {type: array, maxItems: 20, items: {type: string, format: uuid}}
+        source_gaps:
+          type: array
+          maxItems: 20
+          items: {$ref: '#/components/schemas/DailyOpsSourceGap'}
+        agent_run_id: {type: string, format: uuid}
+        review_status: {type: string, enum: [approved, revision_required, rejected]}
+        reviewer: {type: object, additionalProperties: true}
+        report: {type: object, additionalProperties: true, nullable: true}
+    DailyOpsScheduleSnapshot:
+      type: object
+      additionalProperties: false
+      required: [schema_version, tenant_id, schedule_id, name, platform, objective, timezone, local_time, local_date, scheduled_for, graph_version_id, graph_version_hash, evidence_selectors, max_source_age_hours]
+      properties:
+        schema_version: {type: integer, enum: [1]}
+        tenant_id: {type: string, format: uuid}
+        schedule_id: {type: string, format: uuid}
+        name: {type: string}
+        platform: {$ref: '#/components/schemas/MarketplaceId'}
+        objective: {type: string}
+        timezone: {type: string}
+        local_time: {type: string}
+        local_date: {type: string, format: date}
+        scheduled_for: {type: string, format: date-time}
+        graph_version_id: {type: string, format: uuid}
+        graph_version_hash: {type: string, pattern: '^[a-f0-9]{64}$'}
+        evidence_selectors:
+          type: array
+          minItems: 1
+          maxItems: 20
+          items: {$ref: '#/components/schemas/DailyOpsEvidenceSelector'}
+        max_source_age_hours: {type: integer, minimum: 1, maximum: 8760}
+    DailyOpsRun:
+      type: object
+      additionalProperties: false
+      required: [id, tenant_id, schedule_id, local_date, timezone, scheduled_for, status, selected_evidence_import_ids, selected_metric_observation_ids, agent_run_id, graph_version_id, graph_version_hash, schedule_config, schedule_config_hash, brief, source_gaps, error_code, error_message, attempt_count, max_attempts, lease_until, created_at, updated_at, completed_at]
+      properties:
+        id: {type: string, format: uuid}
+        tenant_id: {type: string, format: uuid}
+        schedule_id: {type: string, format: uuid}
+        local_date: {type: string, format: date}
+        timezone: {type: string}
+        scheduled_for: {type: string, format: date-time}
+        status: {type: string, enum: [scheduled, running, completed, empty, failed, blocked]}
+        selected_evidence_import_ids:
+          type: array
+          items: {type: string, format: uuid}
+        agent_run_id: {type: string, format: uuid, nullable: true}
+        graph_version_id: {type: string, format: uuid}
+        graph_version_hash: {type: string, pattern: '^[a-f0-9]{64}$'}
+        schedule_config: {$ref: '#/components/schemas/DailyOpsScheduleSnapshot'}
+        schedule_config_hash: {type: string, pattern: '^[a-f0-9]{64}$'}
+        selected_metric_observation_ids:
+          type: array
+          items: {type: string, format: uuid}
+        source_gaps:
+          type: array
+          maxItems: 20
+          items: {$ref: '#/components/schemas/DailyOpsSourceGap'}
+        brief:
+          nullable: true
+          allOf: [{$ref: '#/components/schemas/DailyOpsBrief'}]
+        error_code: {type: string, nullable: true}
+        error_message: {type: string, nullable: true}
+        attempt_count: {type: integer, minimum: 0}
+        max_attempts: {type: integer, minimum: 1, maximum: 20}
+        lease_until: {type: string, format: date-time, nullable: true}
+        completed_at: {type: string, format: date-time, nullable: true}
+        created_at: {type: string, format: date-time}
+        updated_at: {type: string, format: date-time}
+    DailyOpsBriefEnvelope:
+      type: object
+      additionalProperties: false
+      required: [run, brief]
+      properties:
+        run: {$ref: '#/components/schemas/DailyOpsRun'}
+        brief: {$ref: '#/components/schemas/DailyOpsBrief'}
     ScheduleCreate:
       type: object
       additionalProperties: false

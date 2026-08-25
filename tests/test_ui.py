@@ -45,6 +45,9 @@ def test_mission_control_assets_are_real_and_javascript_compiles() -> None:
     assert 'id="ads-capability-dialog"' in html
     assert 'id="amazon-ads-connector-fields"' in html
     assert 'id="demo-badge"' in html and 'id="demo-banner"' in html
+    assert "Daily Ops" in html
+    assert 'id="daily-ops-form"' in html
+    assert 'id="daily-ops-schedule-list"' in html and 'id="daily-ops-run-list"' in html
     assert 'state.me?.tenant_mode === "demo"' in script
     assert 'fetch("/v1/demo-session"' in script
     result = subprocess.run(
@@ -66,7 +69,7 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
         match = re.search(r'data-action="([a-z-]+)"', tag)
         assert match, f"visible button has no data-action: {tag}"
         actions.append(match.group(1))
-    form_actions = {"upload-evidence", "create-run", "create-schedule", "save-connector", "save-recipe", "run-ads-capability-check"}
+    form_actions = {"upload-evidence", "create-run", "create-schedule", "create-daily-ops", "save-connector", "save-recipe", "run-ads-capability-check"}
     switched = {
         "navigate",
         "select-platform",
@@ -98,11 +101,18 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
         "retry-metric-materialization",
         "open-ads-capability-form",
         "view-ads-capability-gate",
+        "view-daily-ops-run",
+        "view-daily-ops-brief",
+        "trigger-daily-ops",
+        "execute-daily-ops",
+        "retry-daily-ops",
+        "toggle-daily-ops-schedule",
     }
     form_wiring = {
         "upload-evidence": '$("evidence-form").addEventListener',
         "create-run": '$("run-form").addEventListener',
         "create-schedule": '$("schedule-form").addEventListener',
+        "create-daily-ops": '$("daily-ops-form").addEventListener',
         "save-connector": '$("connector-form").addEventListener',
         "save-recipe": '$("recipe-form").addEventListener',
         "run-ads-capability-check": '$("ads-capability-form").addEventListener',
@@ -134,6 +144,8 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
         "/v1/ads-capability-gates",
         "/v1/ads-adapter-status",
         "/v1/agent-graphs",
+        "/v1/daily-ops-schedules",
+        "/v1/daily-ops-runs",
     ):
         assert endpoint in script
     assert "需要 admin 或 owner 角色" in script
@@ -169,6 +181,10 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
     assert "未获批准：不可进入下游动作" in script
     assert "Reviewer task:" in script
     assert "当前角色只能查看协作图" in script
+    assert "Daily Ops 数据加载中" in script
+    assert "无法加载 Daily Ops 运行" in script
+    assert "timezone_name" in script
+    assert "evidence_selectors: [{report_type: reportType}]" in script
 
 
 def test_runtime_serves_ui_with_security_headers_and_live_catalog(tmp_path: Path) -> None:
