@@ -29,7 +29,7 @@ class Principal:
 
 
 ROLE_LEVEL = {"viewer": 10, "operator": 20, "admin": 30, "owner": 40}
-SCHEMA_VERSION = 11
+SCHEMA_VERSION = 12
 
 
 class _Connection(sqlite3.Connection):
@@ -120,6 +120,24 @@ class Database:
                     health_error_message TEXT,
                     UNIQUE(tenant_id, provider, external_account_id)
                 );
+                CREATE TABLE IF NOT EXISTS report_recipes (
+                    id TEXT PRIMARY KEY,
+                    tenant_id TEXT NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
+                    connector_account_id TEXT NOT NULL REFERENCES connector_accounts(id) ON DELETE CASCADE,
+                    created_by TEXT NOT NULL REFERENCES users(id),
+                    name TEXT NOT NULL,
+                    recipe_key TEXT NOT NULL,
+                    marketplace_ids_json TEXT NOT NULL,
+                    interval_minutes INTEGER NOT NULL,
+                    lookback_days INTEGER NOT NULL,
+                    enabled INTEGER NOT NULL CHECK (enabled IN (0,1)),
+                    next_run_at TEXT NOT NULL,
+                    created_at TEXT NOT NULL,
+                    updated_at TEXT NOT NULL,
+                    UNIQUE(tenant_id, connector_account_id, name)
+                );
+                CREATE INDEX IF NOT EXISTS idx_report_recipes_tenant_next
+                    ON report_recipes(tenant_id, enabled, next_run_at);
                 CREATE TABLE IF NOT EXISTS actions (
                     id TEXT PRIMARY KEY,
                     tenant_id TEXT NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
@@ -469,6 +487,10 @@ class Database:
                 "WHERE health_status IS NULL OR health_status=''"
             )
             version = 11
+        if version == 11:
+            # initialize() creates the new tenant-owned table before the
+            # version marker is advanced, making the migration transactional.
+            version = 12
         if version != SCHEMA_VERSION:
             raise ValidationError(f"no migration path from runtime schema version {version}")
         conn.execute("UPDATE runtime_meta SET value=? WHERE key='schema_version'", (str(SCHEMA_VERSION),))
@@ -840,6 +862,126 @@ class Database:
         if row is None:
             raise NotFoundError("connector account not found")
         return row
+
+    @staticmethod
+    def _report_recipe_dict(row: sqlite3.Row) -> dict[str, Any]:
+        recipe = dict(row)
+        recipe["marketplace_ids"] = json.loads(recipe.pop("marketplace_ids_json"))
+        recipe["enabled"] = bool(recipe["enabled"])
+        return recipe
+
+    def create_report_recipe(
+        self,
+        tenant_id: str,
+        created_by: str,
+        *,
+        connector_account_id: str,
+        name: str,
+        recipe_key: str,
+        marketplace_ids: list[str],
+        interval_minutes: int,
+        lookback_days: int,
+        enabled: bool,
+        next_run_at: str,
+    ) -> dict[str, Any]:
+        recipe_id = self._id()
+        now = utc_now()
+        try:
+            with self.transaction() as conn:
+                self.require_tenant(conn, tenant_id)
+                actor = conn.execute(
+                    "SELECT tenant_id FROM users WHERE id=?", (created_by,)
+                ).fetchone()
+                if actor is None or actor["tenant_id"] != tenant_id:
+                    raise ValidationError("report recipe creator does not belong to tenant")
+                account = conn.execute(
+                    "SELECT tenant_id FROM connector_accounts WHERE id=? AND tenant_id=?",
+                    (connector_account_id, tenant_id),
+                ).fetchone()
+                if account is None:
+                    raise NotFoundError("connector account not found")
+                conn.execute(
+                    """INSERT INTO report_recipes(
+                       id,tenant_id,connector_account_id,created_by,name,recipe_key,
+                       marketplace_ids_json,interval_minutes,lookback_days,enabled,
+                       next_run_at,created_at,updated_at)
+                       VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+                    (
+                        recipe_id,
+                        tenant_id,
+                        connector_account_id,
+                        created_by,
+                        name,
+                        recipe_key,
+                        json.dumps(marketplace_ids),
+                        interval_minutes,
+                        lookback_days,
+                        int(enabled),
+                        next_run_at,
+                        now,
+                        now,
+                    ),
+                )
+        except sqlite3.IntegrityError as exc:
+            raise ConflictError("report recipe name already exists for connector account") from exc
+        return self.get_report_recipe(tenant_id, recipe_id)
+
+    def list_report_recipes(self, tenant_id: str) -> list[dict[str, Any]]:
+        with self.connect() as conn:
+            rows = conn.execute(
+                "SELECT * FROM report_recipes WHERE tenant_id=? ORDER BY created_at,id",
+                (tenant_id,),
+            ).fetchall()
+        return [self._report_recipe_dict(row) for row in rows]
+
+    def get_report_recipe(self, tenant_id: str, recipe_id: str) -> dict[str, Any]:
+        with self.connect() as conn:
+            row = conn.execute(
+                "SELECT * FROM report_recipes WHERE tenant_id=? AND id=?",
+                (tenant_id, recipe_id),
+            ).fetchone()
+        if row is None:
+            raise NotFoundError("report recipe not found")
+        return self._report_recipe_dict(row)
+
+    def update_report_recipe(
+        self,
+        tenant_id: str,
+        recipe_id: str,
+        *,
+        name: str,
+        recipe_key: str,
+        marketplace_ids: list[str],
+        interval_minutes: int,
+        lookback_days: int,
+        enabled: bool,
+        next_run_at: str,
+    ) -> dict[str, Any]:
+        try:
+            with self.transaction() as conn:
+                result = conn.execute(
+                    """UPDATE report_recipes
+                       SET name=?,recipe_key=?,marketplace_ids_json=?,interval_minutes=?,
+                           lookback_days=?,enabled=?,next_run_at=?,updated_at=?
+                       WHERE tenant_id=? AND id=?""",
+                    (
+                        name,
+                        recipe_key,
+                        json.dumps(marketplace_ids),
+                        interval_minutes,
+                        lookback_days,
+                        int(enabled),
+                        next_run_at,
+                        utc_now(),
+                        tenant_id,
+                        recipe_id,
+                    ),
+                )
+                if result.rowcount != 1:
+                    raise NotFoundError("report recipe not found")
+        except sqlite3.IntegrityError as exc:
+            raise ConflictError("report recipe name already exists for connector account") from exc
+        return self.get_report_recipe(tenant_id, recipe_id)
 
     def append_audit(self, tenant_id: str, actor_user_id: str | None, request_id: str, action: str,
                      resource_type: str, resource_id: str | None, outcome: str, metadata: dict[str, Any]) -> str:

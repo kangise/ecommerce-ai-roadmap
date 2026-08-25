@@ -188,6 +188,65 @@ def test_source_runtime_api_l1_connector_contract() -> None:
     assert "shop.json" in paths["/v1/connectors/{accountId}/health-check"]["post"]["description"]
 
 
+def test_source_runtime_api_l2_report_recipe_contract() -> None:
+    contract = yaml.safe_load(
+        (ROOT / "openapi" / "runtime-api.yaml").read_text(encoding="utf-8")
+    )
+    paths = contract["paths"]
+    assert {"get", "post"} <= set(paths["/v1/report-recipes"])
+    assert {"get", "patch"} <= set(paths["/v1/report-recipes/{recipeId}"])
+    schemas = contract["components"]["schemas"]
+
+    expected_keys = {
+        "sales_traffic_daily",
+        "fba_inventory_daily",
+        "listings_daily",
+        "returns_daily",
+    }
+    assert set(schemas["ReportRecipeKey"]["enum"]) == expected_keys
+    assert set(schemas["ReportRecipe"]["required"]) == {
+        "id",
+        "tenant_id",
+        "connector_account_id",
+        "created_by",
+        "name",
+        "recipe_key",
+        "amazon_report_type",
+        "evidence_report_type",
+        "marketplace_ids",
+        "interval_minutes",
+        "lookback_days",
+        "enabled",
+        "next_run_at",
+        "created_at",
+        "updated_at",
+    }
+    create_required = set(schemas["ReportRecipeCreate"]["required"])
+    assert create_required == {
+        "connector_account_id",
+        "name",
+        "recipe_key",
+        "marketplace_ids",
+        "interval_minutes",
+        "lookback_days",
+        "enabled",
+        "next_run_at",
+    }
+    update_required = set(schemas["ReportRecipeUpdate"]["required"])
+    assert update_required == create_required - {"connector_account_id"}
+    assert "connector_account_id" not in schemas["ReportRecipeUpdate"]["properties"]
+    assert set(schemas["ReportRecipeCatalogEntry"]["required"]) == {
+        "key",
+        "label",
+        "amazon_report_type",
+        "evidence_report_type",
+    }
+    assert "report_recipe_types" in schemas["RuntimeCatalog"]["required"]
+    assert "Amazon SP-API" in paths["/v1/report-recipes"]["post"]["description"]
+    assert "subset" in paths["/v1/report-recipes"]["post"]["description"]
+    assert "does not call Amazon" in paths["/v1/report-recipes"]["post"]["description"]
+
+
 def test_mcp_sdk_is_an_optional_install_extra() -> None:
     project = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))["project"]
     assert all(not dependency.startswith("mcp") for dependency in project.get("dependencies", []))

@@ -445,6 +445,41 @@ deletion, background health checks, create reports, access Restricted Data Token
 or PII reports, call Amazon Ads, or support XML/JSON report documents. Those
 remain separate connector increments with their own permissions and contracts.
 
+## Amazon report recipes (L2)
+
+Report recipes are configuration records only. They persist a future report
+shape and timing without calling Amazon, creating a report, enqueueing a job, or
+downloading data. The minimum roles are `viewer` for list/get and `operator`
+(or owner) for create/update. Every read and write is tenant-scoped; a recipe
+from another tenant returns `404`.
+
+The routes are:
+
+| Operation | Route | Minimum role |
+| --- | --- | --- |
+| List recipes | `GET /v1/report-recipes` | `viewer` |
+| Read one recipe | `GET /v1/report-recipes/{recipeId}` | `viewer` |
+| Create a recipe | `POST /v1/report-recipes` | `operator` |
+| Replace recipe configuration | `PATCH /v1/report-recipes/{recipeId}` | `operator` |
+
+The persisted `ReportRecipe` fields are `id`, `tenant_id`,
+`connector_account_id`, `created_by`, `name`, `recipe_key`,
+`amazon_report_type`, `evidence_report_type`, `marketplace_ids`,
+`interval_minutes`, `lookback_days`, `enabled`, `next_run_at`, `created_at`,
+and `updated_at`. `recipe_key` is limited to:
+`sales_traffic_daily`, `fba_inventory_daily`, `listings_daily`, and
+`returns_daily`. The catalog at `GET /v1/catalog` exposes
+`report_recipe_types[{key,label,amazon_report_type,evidence_report_type}]`.
+
+Create must include `connector_account_id` plus `name`, `recipe_key`,
+`marketplace_ids`, `interval_minutes`, `lookback_days`, `enabled`, and
+`next_run_at`. Update does not accept `connector_account_id`, but requires all
+the other fields in full. The linked account must be an Amazon SP-API account
+in the same tenant, and every recipe marketplace ID must be a subset of that
+account's configured marketplace IDs. `next_run_at` is persisted configuration
+only in L2; it does not activate a background scheduler. Connector account
+deletion, recipe deletion, OAuth, and Amazon report execution are outside L2.
+
 The SQLite schema carries an explicit schema version and fails closed if a
 newer unsupported version is opened. Schema upgrades must be shipped as a
 reviewed migration, never as an ad-hoc table edit.

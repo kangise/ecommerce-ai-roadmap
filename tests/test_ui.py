@@ -27,6 +27,9 @@ def test_mission_control_assets_are_real_and_javascript_compiles() -> None:
     assert 'data-view-panel="accounts"' in html
     assert 'id="connector-dialog"' in html
     assert "Accounts Center" in html
+    assert "Report Recipes" in html
+    assert 'id="recipe-dialog"' in html
+    assert 'id="recipe-list"' in html
     assert 'id="demo-badge"' in html and 'id="demo-banner"' in html
     assert 'state.me?.tenant_mode === "demo"' in script
     assert 'fetch("/v1/demo-session"' in script
@@ -49,7 +52,7 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
         match = re.search(r'data-action="([a-z-]+)"', tag)
         assert match, f"visible button has no data-action: {tag}"
         actions.append(match.group(1))
-    form_actions = {"upload-evidence", "create-run", "create-schedule", "save-connector"}
+    form_actions = {"upload-evidence", "create-run", "create-schedule", "save-connector", "save-recipe"}
     switched = {
         "navigate",
         "select-platform",
@@ -72,12 +75,15 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
         "open-connector-form",
         "edit-connector",
         "health-check-connector",
+        "open-recipe-form",
+        "edit-recipe",
     }
     form_wiring = {
         "upload-evidence": '$("evidence-form").addEventListener',
         "create-run": '$("run-form").addEventListener',
         "create-schedule": '$("schedule-form").addEventListener',
         "save-connector": '$("connector-form").addEventListener',
+        "save-recipe": '$("recipe-form").addEventListener',
     }
     for action in actions:
         assert action in form_actions | switched
@@ -97,10 +103,13 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
         "/v1/audit",
         "/v1/connectors",
         "/health-check",
+        "/v1/report-recipes",
     ):
         assert endpoint in script
     assert "需要 admin 或 owner 角色" in script
     assert "需要 operator、admin 或 owner 执行健康检查" in script
+    assert "需要 operator、admin 或 owner 角色" in script
+    assert "recipeCanManage" in script
 
 
 def test_runtime_serves_ui_with_security_headers_and_live_catalog(tmp_path: Path) -> None:

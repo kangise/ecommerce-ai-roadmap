@@ -12,6 +12,9 @@ const state = {
   mission: null,
   audit: [],
   connectors: [],
+  reportRecipes: [],
+  recipeLoading: false,
+  recipeError: null,
   selectedPlatform: "amazon",
   chartMetric: null,
   timer: null,
@@ -211,6 +214,124 @@ function openConnectorForm(connector = null) {
   renderConnectorForm(connector?.provider || "amazon_spapi", connector);
   $("connector-provider").disabled = Boolean(connector);
   $("connector-dialog").showModal();
+}
+
+function recipeCanManage() {
+  return ["operator", "admin", "owner"].includes(state.me?.role);
+}
+
+function amazonRecipeAccounts() {
+  return state.connectors.filter(connector => connector.provider === "amazon_spapi");
+}
+
+function reportRecipeTypes() {
+  return state.catalog?.report_recipe_types || [];
+}
+
+function recipeType(recipe) {
+  return reportRecipeTypes().find(type => type.key === recipe.recipe_key) || {
+    key: recipe.recipe_key,
+    label: recipe.recipe_key,
+    amazon_report_type: recipe.amazon_report_type,
+    evidence_report_type: recipe.evidence_report_type,
+  };
+}
+
+function recipeMarketplaceLabel(id) {
+  const marketplace = (state.catalog?.amazon_marketplaces || []).find(item => item.id === id);
+  return marketplace?.name || marketplace?.label || id;
+}
+
+function recipeAccountLabel(account) {
+  return `${account.external_account_id}${connectorDetails(account) ? ` · ${connectorDetails(account)}` : ""}`;
+}
+
+function toDatetimeLocal(value, fallback = null) {
+  const date = value ? new Date(value) : fallback || new Date(Date.now() + 5 * 60000);
+  return new Date(date.getTime() - date.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+}
+
+function renderReportRecipes() {
+  const target = $("recipe-list"), note = $("recipe-permission"), add = $("add-recipe-btn");
+  if (!state.apiKey) {
+    add.disabled = true;
+    add.title = "请先连接 Runtime";
+    note.hidden = false;
+    note.textContent = "连接 Runtime 后才能查看或管理 Report Recipes。";
+    designedEmpty(target, "尚未连接 Runtime", "Recipe 列表需要已认证的租户会话。", "database");
+    return;
+  }
+  const manage = recipeCanManage();
+  const accounts = amazonRecipeAccounts();
+  const types = reportRecipeTypes();
+  add.disabled = !manage || !accounts.length || !types.length;
+  add.title = !manage ? "需要 operator、admin 或 owner 角色" : !accounts.length ? "请先添加 Amazon SP-API 账户" : !types.length ? "Catalog 未提供 Recipe 类型" : "";
+  note.hidden = manage;
+  note.textContent = manage ? "" : "当前角色只能查看 Report Recipes。创建或编辑需要 operator、admin 或 owner 角色。";
+  if (state.recipeLoading) {
+    designedEmpty(target, "正在加载 Report Recipes", "正在读取此租户保存的采集规则。", "database");
+    return;
+  }
+  if (state.recipeError) {
+    target.innerHTML = `<div class="recipe-failure" role="alert"><strong>无法加载 Report Recipes</strong><span>${escapeHtml(state.recipeError)}</span></div>`;
+    return;
+  }
+  if (!state.reportRecipes.length) {
+    const copy = !accounts.length ? "先添加 Amazon SP-API 账户，才能创建 Recipe。" : manage ? "添加 Recipe 后会保存可复现的请求参数；L2 不会远程调用 Amazon。" : "当前租户还没有保存的 Recipe；需要具备权限的用户创建。";
+    designedEmpty(target, "还没有 Report Recipes", copy, "database");
+    return;
+  }
+  target.innerHTML = state.reportRecipes.map(recipe => {
+    const account = state.connectors.find(item => item.id === recipe.connector_account_id);
+    const type = recipeType(recipe);
+    const edit = manage ? `<button data-action="edit-recipe" data-id="${escapeHtml(recipe.id)}" class="secondary-button">编辑</button>` : "";
+    return `<article class="recipe-card"><div class="recipe-card-head"><div><p class="kicker">${escapeHtml(type.label || type.key)}</p><h3>${escapeHtml(recipe.name)}</h3><p>${escapeHtml(account ? recipeAccountLabel(account) : "Amazon account unavailable")}</p></div>${badge(recipe.enabled ? "enabled" : "disabled")}</div><dl class="recipe-meta"><div><dt>Report type</dt><dd>${escapeHtml(recipe.amazon_report_type)} → ${escapeHtml(recipe.evidence_report_type)}</dd></div><div><dt>Marketplaces</dt><dd>${escapeHtml((recipe.marketplace_ids || []).map(recipeMarketplaceLabel).join("、") || "—")}</dd></div><div><dt>Cadence / lookback</dt><dd>${escapeHtml(`${recipe.interval_minutes} min · ${recipe.lookback_days} days`)}</dd></div><div><dt>Next run</dt><dd>${escapeHtml(isoLocal(recipe.next_run_at))}</dd></div></dl><div class="row-actions">${edit}</div></article>`;
+  }).join("");
+}
+
+function renderRecipeAccountOptions(selectedId = "") {
+  const accounts = amazonRecipeAccounts();
+  $("recipe-connector-account").innerHTML = accounts.map(account => `<option value="${escapeHtml(account.id)}">${escapeHtml(recipeAccountLabel(account))}</option>`).join("");
+  $("recipe-connector-account").value = selectedId || accounts[0]?.id || "";
+}
+
+function renderRecipeTypeOptions(selectedKey = "") {
+  const types = reportRecipeTypes();
+  $("recipe-type").innerHTML = types.map(type => `<option value="${escapeHtml(type.key)}">${escapeHtml(type.label || type.key)}</option>`).join("");
+  $("recipe-type").value = selectedKey || types[0]?.key || "";
+}
+
+function recipeAccountMarketplaces(account) {
+  const details = account?.provider_details || {};
+  const accountIds = details.marketplace_ids || details.marketplaces || [];
+  const permitted = new Set(accountIds.map(item => typeof item === "string" ? item : item.id));
+  return (state.catalog?.amazon_marketplaces || []).filter(item => permitted.has(item.id));
+}
+
+function renderRecipeMarketplaces(selected = []) {
+  const account = state.connectors.find(item => item.id === $("recipe-connector-account").value);
+  const selectedIds = new Set(selected.map(item => typeof item === "string" ? item : item.id));
+  const marketplaces = recipeAccountMarketplaces(account);
+  $("recipe-marketplaces").innerHTML = marketplaces.length ? marketplaces.map(item => `<label><input type="checkbox" name="recipe-marketplace" value="${escapeHtml(item.id)}" ${selectedIds.has(item.id) ? "checked" : ""}>${escapeHtml(item.name || item.label || item.id)}</label>`).join("") : "<span class=\"permission-reason\">该 Amazon account 没有可用的已配置 marketplace。</span>";
+}
+
+function openRecipeForm(recipe = null) {
+  if (!recipeCanManage()) { notice("需要 operator、admin 或 owner 角色", "error"); return; }
+  if (!amazonRecipeAccounts().length || !reportRecipeTypes().length) { notice("需要已配置的 Amazon SP-API 账户和 Catalog Recipe 类型。", "error"); return; }
+  $("recipe-form").reset();
+  $("recipe-id").value = recipe?.id || "";
+  $("recipe-dialog-title").textContent = recipe ? "编辑 Recipe" : "添加 Recipe";
+  $("recipe-name").value = recipe?.name || "";
+  $("recipe-interval").value = recipe?.interval_minutes || 1440;
+  $("recipe-lookback").value = recipe?.lookback_days || 7;
+  $("recipe-next-run").value = toDatetimeLocal(recipe?.next_run_at);
+  $("recipe-enabled").checked = recipe?.enabled ?? true;
+  renderRecipeAccountOptions(recipe?.connector_account_id || "");
+  $("recipe-connector-account").disabled = Boolean(recipe);
+  $("recipe-connector-account").title = recipe ? "已创建的 Recipe 不能更换 Amazon account" : "";
+  renderRecipeTypeOptions(recipe?.recipe_key || "");
+  renderRecipeMarketplaces(recipe?.marketplace_ids || []);
+  $("recipe-dialog").showModal();
 }
 
 function renderCatalog() {
@@ -518,6 +639,7 @@ function renderAll() {
   renderApprovals();
   renderAudit();
   renderConnectors();
+  renderReportRecipes();
 }
 
 function renderDisconnected() {
@@ -529,6 +651,9 @@ function renderDisconnected() {
   state.mission = null;
   state.audit = [];
   state.connectors = [];
+  state.reportRecipes = [];
+  state.recipeLoading = false;
+  state.recipeError = null;
   renderBriefing();
   renderEvidence();
   renderRuns();
@@ -537,20 +662,28 @@ function renderDisconnected() {
   renderApprovals();
   renderAudit();
   renderConnectors();
+  renderReportRecipes();
 }
 
 async function refreshAll() {
   if (!state.apiKey) return;
+  state.recipeLoading = true;
+  state.recipeError = null;
+  renderReportRecipes();
   const platform = encodeURIComponent(state.selectedPlatform);
-  const [me, catalog, briefing, mission, imports, runs, jobs, schedules, audit, connectors] = await Promise.all([
+  const recipes = api("/v1/report-recipes").then(value => ({value})).catch(error => ({error}));
+  const [me, catalog, briefing, mission, imports, runs, jobs, schedules, audit, connectors, recipeResult] = await Promise.all([
     api("/v1/me"), api("/v1/catalog"), api(`/v1/briefing?platform=${platform}`), api("/v1/mission-control"),
     api("/v1/evidence-imports?limit=100"), api("/v1/agent-runs?limit=100"), api("/v1/jobs?limit=100"),
-    api("/v1/schedules"), api("/v1/audit?limit=100"), api("/v1/connectors"),
+    api("/v1/schedules"), api("/v1/audit?limit=100"), api("/v1/connectors"), recipes,
   ]);
+  if (recipeResult.error) console.error("Report Recipes 加载失败", recipeResult.error);
   Object.assign(state, {
     me, catalog, briefing, mission,
     imports: imports.imports || [], runs: runs.runs || [], jobs: jobs.jobs || [],
     schedules: schedules.schedules || [], audit: audit.events || [], connectors: connectors.connectors || [],
+    reportRecipes: Array.isArray(recipeResult.value) ? recipeResult.value : recipeResult.value?.report_recipes || recipeResult.value?.recipes || [],
+    recipeLoading: false, recipeError: recipeResult.error?.message || null,
   });
   setConnected(true);
   renderAll();
@@ -648,6 +781,8 @@ document.body.addEventListener("click", event => {
     case "open-connector-form": openConnectorForm(); break;
     case "edit-connector": openConnectorForm(state.connectors.find(item => item.id === id)); break;
     case "health-check-connector": act(button, () => api(`/v1/connectors/${id}/health-check`, {method: "POST"}), "健康检查已完成。"); break;
+    case "open-recipe-form": openRecipeForm(); break;
+    case "edit-recipe": openRecipeForm(state.reportRecipes.find(item => item.id === id)); break;
   }
 });
 
@@ -696,6 +831,39 @@ $("evidence-platform").addEventListener("change", () => renderReportOptions("evi
 $("schedule-platform").addEventListener("change", () => renderReportOptions("schedule-platform", "schedule-report-type"));
 $("connector-provider").addEventListener("change", () => renderConnectorForm($("connector-provider").value));
 $("connector-region").addEventListener("change", () => renderConnectorMarketplaces());
+$("recipe-connector-account").addEventListener("change", () => renderRecipeMarketplaces());
+
+$("recipe-form").addEventListener("submit", event => {
+  event.preventDefault();
+  const button = event.submitter;
+  if (!recipeCanManage()) { notice("需要 operator、admin 或 owner 角色", "error"); return; }
+  const connectorAccountId = $("recipe-connector-account").value;
+  const type = reportRecipeTypes().find(item => item.key === $("recipe-type").value);
+  const marketplaceIds = [...document.querySelectorAll('input[name="recipe-marketplace"]:checked')].map(node => node.value);
+  const allowed = new Set(recipeAccountMarketplaces(state.connectors.find(item => item.id === connectorAccountId)).map(item => item.id));
+  const name = $("recipe-name").value.trim();
+  const intervalMinutes = Number($("recipe-interval").value);
+  const lookbackDays = Number($("recipe-lookback").value);
+  const nextRun = $("recipe-next-run").value;
+  if (!connectorAccountId || !type || !name || !marketplaceIds.length || marketplaceIds.some(id => !allowed.has(id)) || !Number.isInteger(intervalMinutes) || intervalMinutes < 60 || !Number.isInteger(lookbackDays) || lookbackDays < 1 || lookbackDays > 30 || !nextRun) {
+    notice("请完成 Recipe 配置；marketplace 必须属于所选 Amazon account。", "error"); return;
+  }
+  const payload = {
+    name,
+    recipe_key: type.key,
+    marketplace_ids: marketplaceIds,
+    interval_minutes: intervalMinutes,
+    lookback_days: lookbackDays,
+    enabled: $("recipe-enabled").checked,
+    next_run_at: new Date(nextRun).toISOString(),
+  };
+  const recipeId = $("recipe-id").value;
+  act(button, async () => {
+    const json = recipeId ? payload : {connector_account_id: connectorAccountId, ...payload};
+    await api(recipeId ? `/v1/report-recipes/${recipeId}` : "/v1/report-recipes", {method: recipeId ? "PATCH" : "POST", json});
+    $("recipe-dialog").close();
+  }, recipeId ? "Report Recipe 已更新。" : "Report Recipe 已创建。");
+});
 
 $("connector-form").addEventListener("submit", event => {
   event.preventDefault();

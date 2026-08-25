@@ -156,6 +156,34 @@ def seed_demo_database(path: str | Path) -> dict[str, Any]:
             "demo-account-shopify",
         ),
     ]
+    recipe_start = datetime.now(timezone.utc).replace(
+        hour=2, minute=0, second=0, microsecond=0
+    ) + timedelta(days=1)
+    report_recipes = []
+    for index, recipe_key in enumerate(
+        (
+            "sales_traffic_daily",
+            "fba_inventory_daily",
+            "listings_daily",
+            "returns_daily",
+        )
+    ):
+        report_recipes.append(
+            app.report_recipes.create(
+                owner,
+                connector_account_id=str(marketplace_accounts[0]["id"]),
+                name=recipe_key.replace("_", " ").title(),
+                recipe_key=recipe_key,
+                marketplace_ids=["ATVPDKIKX0DER"],
+                interval_minutes=1440,
+                lookback_days=7,
+                enabled=True,
+                next_run_at=(recipe_start + timedelta(minutes=index * 15)).isoformat(
+                    timespec="seconds"
+                ),
+                request_id=f"demo-report-recipe-{recipe_key}",
+            )
+        )
 
     def imported(
         platform: str,
@@ -290,6 +318,7 @@ def seed_demo_database(path: str | Path) -> dict[str, Any]:
         "evaluation_id": evaluation["id"],
         "approval_actions": len(actions),
         "marketplace_accounts": len(marketplace_accounts),
+        "report_recipes": len(report_recipes),
         "schedule_id": schedule["id"],
         "job_id": job["id"],
         "job_status": completed_job["status"] if completed_job else None,

@@ -27,6 +27,7 @@ from .evals import WorkflowEvaluator
 from .jobs import JobService, ScheduleService
 from .errors import AuthenticationError, AuthorizationError, ConflictError, ConnectorError, NotFoundError, RateLimitError, RuntimeErrorBase, ValidationError
 from .observability import JsonFormatter, Metrics, RateLimiter
+from .report_recipes import ReportRecipeService
 from .storage import Database, Principal
 
 log = logging.getLogger("ecommerce_ai_skills.api")
@@ -44,6 +45,7 @@ class RuntimeApplication:
         self.db = db
         self.auth = AuthService(db)
         self.accounts = MarketplaceAccountService(db, self.auth)
+        self.report_recipes = ReportRecipeService(db, self.auth)
         self.evidence_imports = EvidenceImportService(db, self.auth)
         self.actions = ActionService(db, self.auth, self.evidence_imports)
         self.briefing = BriefingService(db, self.auth)
@@ -259,6 +261,17 @@ class _Handler(BaseHTTPRequestHandler):
             elif parsed.path.startswith("/v1/connectors/") and len(parsed.path.split("/")) == 4:
                 account_id = parsed.path.split("/")[3]
                 self._json(200, self.app.accounts.get(principal, account_id), request_id)
+            elif parsed.path == "/v1/report-recipes":
+                self._json(
+                    200,
+                    {"report_recipes": self.app.report_recipes.list(principal)},
+                    request_id,
+                )
+            elif parsed.path.startswith("/v1/report-recipes/") and len(parsed.path.split("/")) == 4:
+                recipe_id = parsed.path.split("/")[3]
+                self._json(
+                    200, self.app.report_recipes.get(principal, recipe_id), request_id
+                )
             elif parsed.path == "/v1/evidence-imports":
                 limit = int(parse_qs(parsed.query).get("limit", [100])[0])
                 self._json(
@@ -341,6 +354,7 @@ class _Handler(BaseHTTPRequestHandler):
                         "report_types": sorted(REPORT_SPECS),
                         "workflows": [WeeklyOpsCouncil.WORKFLOW],
                         "action_operations": sorted(ActionService.OPERATIONS),
+                        "report_recipe_types": self.app.report_recipes.catalog(),
                         **connector_catalog,
                     },
                     request_id,
@@ -401,6 +415,36 @@ class _Handler(BaseHTTPRequestHandler):
                     200,
                     self.app.accounts.health_check(
                         principal, account_id, request_id=request_id
+                    ),
+                    request_id,
+                )
+                return
+            if parsed.path == "/v1/report-recipes":
+                principal = self._principal()
+                fields = {
+                    "connector_account_id",
+                    "name",
+                    "recipe_key",
+                    "marketplace_ids",
+                    "interval_minutes",
+                    "lookback_days",
+                    "enabled",
+                    "next_run_at",
+                }
+                body = self._body_fields(required=fields)
+                self._json(
+                    201,
+                    self.app.report_recipes.create(
+                        principal,
+                        connector_account_id=body["connector_account_id"],
+                        name=body["name"],
+                        recipe_key=body["recipe_key"],
+                        marketplace_ids=body["marketplace_ids"],
+                        interval_minutes=body["interval_minutes"],
+                        lookback_days=body["lookback_days"],
+                        enabled=body["enabled"],
+                        next_run_at=body["next_run_at"],
+                        request_id=request_id,
                     ),
                     request_id,
                 )
@@ -553,6 +597,34 @@ class _Handler(BaseHTTPRequestHandler):
                             "external_account_id", existing["external_account_id"]
                         ),
                         config=body["config"],
+                        request_id=request_id,
+                    ),
+                    request_id,
+                )
+            elif parsed.path.startswith("/v1/report-recipes/") and len(parsed.path.split("/")) == 4:
+                recipe_id = parsed.path.split("/")[3]
+                fields = {
+                    "name",
+                    "recipe_key",
+                    "marketplace_ids",
+                    "interval_minutes",
+                    "lookback_days",
+                    "enabled",
+                    "next_run_at",
+                }
+                body = self._body_fields(required=fields)
+                self._json(
+                    200,
+                    self.app.report_recipes.update(
+                        principal,
+                        recipe_id,
+                        name=body["name"],
+                        recipe_key=body["recipe_key"],
+                        marketplace_ids=body["marketplace_ids"],
+                        interval_minutes=body["interval_minutes"],
+                        lookback_days=body["lookback_days"],
+                        enabled=body["enabled"],
+                        next_run_at=body["next_run_at"],
                         request_id=request_id,
                     ),
                     request_id,

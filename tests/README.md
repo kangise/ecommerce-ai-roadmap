@@ -39,6 +39,12 @@ environment-reference-only configuration, cross-tenant 404 behavior, and
 persistent `unchecked`/`healthy`/`misconfigured`/`unhealthy` health outcomes.
 The contract intentionally does not cover OAuth connect flows, connector
 deletion, or background health checks.
+Report recipe coverage verifies the L2 list/get/create/update contract,
+`ReportRecipe` field set, four-key Amazon/evidence allowlist, catalog mappings,
+viewer read and operator write roles, same-tenant Amazon connector ownership,
+marketplace-ID subset validation, full update payload requirements, durable
+configuration-only behavior, and the explicit absence of delete, OAuth,
+Amazon-call, and background-execution semantics.
 
 Run the complete suite with:
 

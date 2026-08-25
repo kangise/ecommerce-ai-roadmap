@@ -17,6 +17,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
   tenant-scoped list/get/create/update, role-gated synchronous health checks,
   redacted credential-reference presence, provider/marketplace catalogs, and
   persisted health outcomes.
+- L2 Amazon report recipe contract with tenant-scoped list/get/create/update,
+  operator write authorization, four explicit report-type mappings, linked
+  Amazon marketplace-subset validation, and configuration-only persistence
+  without Amazon calls or background execution.
 - Six ontology-backed AI systems terms, bringing the generated trilingual glossary and entity model to 100 entries.
 - Four official Amazon Sponsored Brands Video constraints, bringing the ontology to 322 sourced constraints.
 - A real installable Python package and `opc-ecommerce` entry point; wheels now include the generated knowledge artifact instead of metadata only.

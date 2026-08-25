@@ -4,8 +4,8 @@
 
 - Tenant identity, API keys, tenant-owned `MarketplaceAccount` records
   (provider details, credential-reference presence, and persisted health
-  outcome), synced product records, multi-agent evidence/artifacts, and
-  approval/audit history.
+  outcome), tenant-owned L2 report recipe configuration, synced product
+  records, multi-agent evidence/artifacts, and approval/audit history.
 - External platform access tokens, which must remain in a deployment secret
   manager and outside SQLite, request payloads, logs, and audit metadata.
 
@@ -36,6 +36,12 @@
   Amazon health calls the real Sellers marketplace-participation endpoint for
   configured IDs; Shopify health calls the configured shop endpoint. Failures
   remain visible as durable `misconfigured` or `unhealthy` state.
+- Report recipes enforce viewer read and operator create/update gates, require
+  an Amazon SP-API connector account in the same tenant, and require every
+  recipe marketplace ID to be a subset of the account's configured IDs. The
+  four recipe keys and their derived Amazon/evidence report types are an
+  explicit allowlist; recipe writes persist configuration only and make no
+  Amazon request.
 - Explicit SQLite schema versioning; unsupported newer schemas fail closed.
 - Viewer/operator/admin/owner role checks; approval requires a second actor.
 - Tenant-scoped user provisioning is exposed through authenticated admin APIs;
@@ -102,6 +108,9 @@
   operation, or background health scheduler. Health is an explicit synchronous
   caller action; adding automation requires a separate lease, authorization,
   retry, and audit design.
+- L2 report recipes intentionally have no delete endpoint, OAuth flow, Amazon
+  report creation/download, or background execution. `next_run_at` is stored
+  configuration until a separately authorized scheduler contract exists.
 - Agent prompts receive user evidence as untrusted data. Operators must still
   avoid placing personal data or secrets in evidence values; the first slice
   detects secret-shaped field names but is not a general DLP system.

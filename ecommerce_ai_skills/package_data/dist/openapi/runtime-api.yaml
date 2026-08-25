@@ -273,6 +273,79 @@ paths:
         '403': {$ref: '#/components/responses/Forbidden'}
         '404': {$ref: '#/components/responses/NotFound'}
         '422': {$ref: '#/components/responses/ValidationFailed'}
+  /v1/report-recipes:
+    get:
+      summary: List tenant-owned Amazon report recipes
+      description: Viewer, operator, admin, and owner roles may read persisted report recipes for their authenticated tenant. Listing recipes never calls Amazon.
+      responses:
+        '200':
+          description: Persisted report recipes
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [report_recipes]
+                properties:
+                  report_recipes:
+                    type: array
+                    items: {$ref: '#/components/schemas/ReportRecipe'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+    post:
+      summary: Persist an Amazon report recipe
+      description: Requires operator or owner role. This L2 operation validates and persists configuration only; it does not call Amazon, enqueue work, or create a report. connector_account_id must reference an Amazon SP-API account in the authenticated tenant, and marketplace_ids must be a subset of that account's configured marketplaces.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/ReportRecipeCreate'}
+      responses:
+        '201':
+          description: Persisted report recipe
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/ReportRecipe'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+  /v1/report-recipes/{recipeId}:
+    get:
+      summary: Read one tenant-owned Amazon report recipe
+      description: Viewer, operator, admin, and owner roles may read a persisted recipe. A recipe outside the authenticated tenant returns 404.
+      parameters:
+        - {$ref: '#/components/parameters/recipeId'}
+      responses:
+        '200':
+          description: Persisted report recipe
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/ReportRecipe'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+    patch:
+      summary: Update a tenant-owned Amazon report recipe
+      description: Requires operator or owner role. All recipe fields except connector_account_id are required on update; the connector account cannot be changed. The update persists configuration only and never calls Amazon. marketplace_ids must remain a subset of the linked account's configured marketplaces.
+      parameters:
+        - {$ref: '#/components/parameters/recipeId'}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/ReportRecipeUpdate'}
+      responses:
+        '200':
+          description: Updated persisted report recipe
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/ReportRecipe'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
   /v1/actions:
     post:
       summary: Request an idempotent action
@@ -806,6 +879,11 @@ components:
       name: accountId
       required: true
       schema: {type: string, format: uuid}
+    recipeId:
+      in: path
+      name: recipeId
+      required: true
+      schema: {type: string, format: uuid}
     actionId:
       in: path
       name: actionId
@@ -1147,6 +1225,123 @@ components:
         name: {type: string}
         country_code: {type: string, pattern: '^[A-Z]{2}$'}
         region: {type: string, enum: [na, eu, fe]}
+    ReportRecipeKey:
+      type: string
+      enum:
+        - sales_traffic_daily
+        - fba_inventory_daily
+        - listings_daily
+        - returns_daily
+    ReportRecipeAmazonReportType:
+      type: string
+      enum:
+        - GET_SALES_AND_TRAFFIC_REPORT
+        - GET_FBA_MYI_UNSUPPRESSED_INVENTORY_DATA
+        - GET_MERCHANT_LISTINGS_ALL_DATA
+        - GET_FBA_FULFILLMENT_CUSTOMER_RETURNS_DATA
+    ReportRecipeEvidenceReportType:
+      type: string
+      enum:
+        - amazon_business_report
+        - amazon_fba_inventory
+        - amazon_listing
+        - amazon_returns
+    ReportRecipeCreate:
+      type: object
+      additionalProperties: false
+      required:
+        - connector_account_id
+        - name
+        - recipe_key
+        - marketplace_ids
+        - interval_minutes
+        - lookback_days
+        - enabled
+        - next_run_at
+      properties:
+        connector_account_id: {type: string, format: uuid}
+        name: {type: string, minLength: 1, maxLength: 100}
+        recipe_key: {$ref: '#/components/schemas/ReportRecipeKey'}
+        marketplace_ids:
+          type: array
+          minItems: 1
+          uniqueItems: true
+          items: {type: string, pattern: '^[A-Z0-9]{5,20}$'}
+        interval_minutes: {type: integer, minimum: 60, maximum: 43200}
+        lookback_days: {type: integer, minimum: 1, maximum: 30}
+        enabled: {type: boolean}
+        next_run_at: {type: string, format: date-time}
+    ReportRecipeUpdate:
+      type: object
+      additionalProperties: false
+      required:
+        - name
+        - recipe_key
+        - marketplace_ids
+        - interval_minutes
+        - lookback_days
+        - enabled
+        - next_run_at
+      properties:
+        name: {type: string, minLength: 1, maxLength: 100}
+        recipe_key: {$ref: '#/components/schemas/ReportRecipeKey'}
+        marketplace_ids:
+          type: array
+          minItems: 1
+          uniqueItems: true
+          items: {type: string, pattern: '^[A-Z0-9]{5,20}$'}
+        interval_minutes: {type: integer, minimum: 60, maximum: 43200}
+        lookback_days: {type: integer, minimum: 1, maximum: 30}
+        enabled: {type: boolean}
+        next_run_at: {type: string, format: date-time}
+    ReportRecipe:
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - tenant_id
+        - connector_account_id
+        - created_by
+        - name
+        - recipe_key
+        - amazon_report_type
+        - evidence_report_type
+        - marketplace_ids
+        - interval_minutes
+        - lookback_days
+        - enabled
+        - next_run_at
+        - created_at
+        - updated_at
+      properties:
+        id: {type: string, format: uuid}
+        tenant_id: {type: string, format: uuid}
+        connector_account_id: {type: string, format: uuid}
+        created_by: {type: string, format: uuid}
+        name: {type: string}
+        recipe_key: {$ref: '#/components/schemas/ReportRecipeKey'}
+        amazon_report_type: {$ref: '#/components/schemas/ReportRecipeAmazonReportType'}
+        evidence_report_type: {$ref: '#/components/schemas/ReportRecipeEvidenceReportType'}
+        marketplace_ids:
+          type: array
+          minItems: 1
+          uniqueItems: true
+          items: {type: string, pattern: '^[A-Z0-9]{5,20}$'}
+        interval_minutes: {type: integer, minimum: 60, maximum: 43200}
+        lookback_days: {type: integer, minimum: 1, maximum: 30}
+        enabled: {type: boolean}
+        next_run_at: {type: string, format: date-time}
+        created_at: {type: string, format: date-time}
+        updated_at: {type: string, format: date-time}
+    ReportRecipeCatalogEntry:
+      type: object
+      additionalProperties: false
+      required: [key, label, amazon_report_type, evidence_report_type]
+      properties:
+        key: {$ref: '#/components/schemas/ReportRecipeKey'}
+        label: {type: string}
+        amazon_report_type: {$ref: '#/components/schemas/ReportRecipeAmazonReportType'}
+        evidence_report_type: {$ref: '#/components/schemas/ReportRecipeEvidenceReportType'}
     ActionRequest:
       oneOf:
         - {$ref: '#/components/schemas/ShopifySyncActionRequest'}
@@ -1509,7 +1704,7 @@ components:
         skill_ids: {type: array, items: {type: string}}
     RuntimeCatalog:
       type: object
-      required: [platforms, report_types, workflows, action_operations, connector_providers, amazon_marketplaces]
+      required: [platforms, report_types, workflows, action_operations, connector_providers, amazon_marketplaces, report_recipe_types]
       properties:
         platforms:
           type: array
@@ -1533,6 +1728,9 @@ components:
         amazon_marketplaces:
           type: array
           items: {$ref: '#/components/schemas/AmazonMarketplaceCatalogEntry'}
+        report_recipe_types:
+          type: array
+          items: {$ref: '#/components/schemas/ReportRecipeCatalogEntry'}
     AuditEvent:
       type: object
       required: [id, tenant_id, request_id, action, resource_type, outcome, metadata, created_at]

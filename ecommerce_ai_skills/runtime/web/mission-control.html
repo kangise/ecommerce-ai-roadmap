@@ -154,6 +154,11 @@
             <div class="heading-actions"><button data-action="open-connector-form" id="add-connector-btn" class="primary-button">添加账户</button></div>
           </div>
           <section class="tool-panel wide"><div id="connector-permission" class="permission-note" hidden></div><div id="connector-list" class="connector-list" aria-live="polite"></div></section>
+          <section class="accounts-recipes" aria-labelledby="recipes-title">
+            <div class="section-title-row"><div><h2 id="recipes-title">Report Recipes</h2><span>保存可复现的 Amazon 报告配置；远程采集由 L3 Sync 执行。</span></div><button data-action="open-recipe-form" id="add-recipe-btn" class="primary-button">添加 Recipe</button></div>
+            <div id="recipe-permission" class="permission-note" hidden></div>
+            <div id="recipe-list" class="recipe-list" aria-live="polite"></div>
+          </section>
         </section>
 
         <section id="view-automations" class="view" data-view-panel="automations" aria-labelledby="automations-title">
@@ -214,6 +219,21 @@
         <label>Access token 环境变量<input id="shopify-access-token-ref" autocomplete="off" placeholder="SHOPIFY_ACCESS_TOKEN"></label>
       </div>
       <div class="dialog-actions"><button data-action="save-connector" class="primary-button" type="submit">保存账户</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="recipe-dialog" class="recipe-dialog">
+    <div class="dialog-head"><div><p class="kicker">Report Recipes</p><h2 id="recipe-dialog-title">添加 Recipe</h2></div><button data-action="close-dialog" data-dialog="recipe-dialog" class="icon-button" aria-label="关闭"><img src="/app/assets/icons/x.svg" alt=""></button></div>
+    <p class="dialog-copy">Recipe 只会从该账户已配置的 marketplaces 中选择。L2 仅保存配置，不会调用 Amazon。</p>
+    <form id="recipe-form">
+      <input id="recipe-id" type="hidden">
+      <label>Amazon account<select id="recipe-connector-account" required></select></label>
+      <label>名称<input id="recipe-name" required autocomplete="off" placeholder="US business report"></label>
+      <label>Recipe type<select id="recipe-type" required></select></label>
+      <fieldset><legend>Marketplaces</legend><div id="recipe-marketplaces" class="check-list"></div></fieldset>
+      <div class="form-grid"><label>Cadence（分钟）<input id="recipe-interval" type="number" min="60" max="43200" value="1440" required></label><label>Lookback（天）<input id="recipe-lookback" type="number" min="1" max="30" value="7" required></label><label>Next run<input id="recipe-next-run" type="datetime-local" required></label></div>
+      <label class="switch-field"><input id="recipe-enabled" type="checkbox" checked><span>启用此 Recipe</span></label>
+      <div class="dialog-actions"><button data-action="save-recipe" class="primary-button" type="submit">保存 Recipe</button></div>
     </form>
   </dialog>
 

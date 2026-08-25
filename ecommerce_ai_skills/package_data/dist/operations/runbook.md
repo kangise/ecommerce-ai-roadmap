@@ -108,6 +108,47 @@ exists from a different status or attempt to bypass that boundary. OAuth
 connect flows, connector deletion, and scheduled/background health checks are
 outside L1.
 
+## Amazon report recipes (L2)
+
+Report recipes are durable configuration records for future Amazon reports;
+creating or updating one does not call Amazon, create a report, download data,
+enqueue a job, or run a background scheduler. `GET /v1/report-recipes` and
+`GET /v1/report-recipes/<RECIPE_ID>` require `viewer`; `POST` and `PATCH`
+require `operator` (owner inherits these permissions). All reads and writes
+are tenant-scoped, and a recipe from another tenant returns `404`.
+
+Create with a linked Amazon SP-API connector and the complete recipe payload:
+
+```bash
+curl -fsS -X POST http://127.0.0.1:8787/v1/report-recipes \
+  -H 'Authorization: Bearer <OPERATOR_API_KEY>' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "connector_account_id": "<AMAZON_ACCOUNT_ID>",
+    "name": "Daily US sales",
+    "recipe_key": "sales_traffic_daily",
+    "marketplace_ids": ["ATVPDKIKX0DER"],
+    "interval_minutes": 1440,
+    "lookback_days": 1,
+    "enabled": true,
+    "next_run_at": "2026-09-01T08:00:00Z"
+  }'
+```
+
+The only allowed `recipe_key` values are `sales_traffic_daily`,
+`fba_inventory_daily`, `listings_daily`, and `returns_daily`; the catalog
+`GET /v1/catalog` returns each key's label, Amazon report type, and Evidence
+report type under `report_recipe_types`. `marketplace_ids` must be non-empty
+and a subset of the linked account's configured Amazon marketplaces. The
+linked account must belong to the same tenant and use `amazon_spapi`.
+
+`PATCH /v1/report-recipes/<RECIPE_ID>` does not accept
+`connector_account_id`; it requires all other fields (`name`, `recipe_key`,
+`marketplace_ids`, `interval_minutes`, `lookback_days`, `enabled`, and
+`next_run_at`) on every update. `next_run_at` is persisted configuration only.
+L2 has no recipe delete endpoint, OAuth flow, Amazon execution, or background
+health/report scheduler.
+
 ## Multi-agent runs
 
 - Set `OPENAI_API_KEY` only in the deployment secret manager and set

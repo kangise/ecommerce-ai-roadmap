@@ -6,6 +6,7 @@ from .briefing import BriefingService
 from .evidence import CSVIngestor, EvidenceImportService, EvidenceObjectStore, XLSXIngestor
 from .evals import WorkflowEvaluator
 from .jobs import JobService, ScheduleService
+from .report_recipes import ReportRecipeService
 from .storage import Database, Principal
 
 __all__ = [
@@ -18,6 +19,7 @@ __all__ = [
     "MarketplaceAccountService",
     "OpenAIResponsesProvider",
     "Principal",
+    "ReportRecipeService",
     "ScheduleService",
     "WeeklyOpsCouncil",
     "WorkflowEvaluator",

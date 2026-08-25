@@ -7,7 +7,7 @@
 |---|---|---|---|---|---|
 | L0 | 基线合同 | done | `verify_all` 14 groups=0；pytest 63 passed；dist 153 fresh；MCP 69/878/9；wheel cold install + Schema v10 + CLI smoke | `loop(v1.3): L0 establish verified product baseline` | `main`/`origin/main` 原 HEAD `a6a6204`；敏感扫描与 `git diff --check` 通过；当前产品化成果固化为可恢复基线 |
 | L1 | Accounts Center | done | Schema v11；Accounts API/UI；Amazon Sellers + Shopify shop health；pytest 77；14 groups=0；browser refresh persistence；wheel smoke | `loop(v1.3): L1 ship marketplace accounts center` | viewer read/admin manage/operator health；refs redacted；Demo 账户保持 unchecked/misconfigured 而非假成功 |
-| L2 | Report Recipes | pending |  |  |  |
+| L2 | Report Recipes | done | Schema v12；4 recipe allowlist；API/UI/RBAC；pytest 95；14 groups=0；browser Demo 4 recipes；wheel smoke | `loop(v1.3): L2 persist amazon report recipes` | 仅保存可复现配置，不调用Amazon；marketplaces强制为account subset；无删除/执行按钮 |
 | L3 | SP-API Sync | pending |  |  |  |
 | L4 | Metric Observations | pending |  |  |  |
 | L5 | Ads Contract Gate | pending |  |  |  |
@@ -45,6 +45,18 @@
 - Failure 1: OpenAPI test wording与 contract gate 对 shop.json 代码样式产生误判；已修正文档字面并重建 dist。
 - Failure 2 / blocked reason: none.
 - Restore point and result: L0 `7f483b4`; L1 迁移和 UI 可由本轮单一提交回退。
+
+### L2 — Report Recipes
+
+- Date: 2026-08-26
+- Status: done
+- Evidence: `tests/test_report_recipes.py` 17 acceptance cases；全套 pytest 95 passed；`verify_all` 14 groups=0；MCP 69/878/9；`dist/` 153 fresh；wheel cold install Schema v12 + 4 tenant-owned recipes；`artifacts/design-qa/l2-report-recipes-final.jpg`。
+- Commit: `loop(v1.3): L2 persist amazon report recipes`（本记录所在提交）
+- Notes: 四种 allowlist 配方、严格 account/marketplace subset、viewer read/operator manage、完整更新与持久化；UI 明确 L2 不调用 Amazon，远程同步留给 L3。
+- Validator results: all passed; Demo shows 4 persisted recipes and real catalog-derived form; browser console 0 errors.
+- Failure 1: none.
+- Failure 2 / blocked reason: none.
+- Restore point and result: L1 `997cb18`; L2 Schema v12/Recipe UI 可由本轮提交单独回退。
 
 ### Lx — 名称
 

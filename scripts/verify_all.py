@@ -536,6 +536,8 @@ def main() -> int:
                     "/v1/connectors": {"get", "post"},
                     "/v1/connectors/{accountId}": {"get", "patch"},
                     "/v1/connectors/{accountId}/health-check": {"post"},
+                    "/v1/report-recipes": {"get", "post"},
+                    "/v1/report-recipes/{recipeId}": {"get", "patch"},
                     "/v1/actions": {"post"},
                     "/v1/actions/{actionId}/approve": {"post"},
                     "/v1/evidence-imports": {"get", "post"},
@@ -628,11 +630,38 @@ def main() -> int:
                     "BriefingAgent",
                     "AgentEvaluation",
                     "RuntimeCatalog",
+                    "ReportRecipe",
+                    "ReportRecipeCreate",
+                    "ReportRecipeUpdate",
+                    "ReportRecipeKey",
+                    "ReportRecipeAmazonReportType",
+                    "ReportRecipeEvidenceReportType",
+                    "ReportRecipeCatalogEntry",
                 ):
                     if schema_name not in schemas:
                         problems.append(
                             f"dist/openapi/runtime-api.yaml: missing schema {schema_name}"
                         )
+                expected_recipe_keys = {
+                    "sales_traffic_daily",
+                    "fba_inventory_daily",
+                    "listings_daily",
+                    "returns_daily",
+                }
+                actual_recipe_keys = set(
+                    schemas.get("ReportRecipeKey", {}).get("enum", [])
+                )
+                if actual_recipe_keys != expected_recipe_keys:
+                    problems.append(
+                        "dist/openapi/runtime-api.yaml: ReportRecipeKey enum does not match L2 allowlist"
+                    )
+                catalog_required = set(
+                    schemas.get("RuntimeCatalog", {}).get("required", [])
+                )
+                if "report_recipe_types" not in catalog_required:
+                    problems.append(
+                        "dist/openapi/runtime-api.yaml: RuntimeCatalog missing report_recipe_types"
+                    )
             except Exception as exc:
                 problems.append(f"dist/openapi/runtime-api.yaml: invalid YAML ({exc})")
         total = len(problems)
