@@ -556,3 +556,38 @@
 - **ZH**: 配送后当面付款，东南亚和中东市场的主要支付方式。
 - **EN**: Payment on delivery. Primary payment method in Southeast Asia and Middle East markets.
 
+## 检索增强生成 / Retrieval-Augmented Generation (RAG)
+> 検索拡張生成
+
+- **ZH**: 先从受控知识源检索相关证据，再把证据连同问题交给模型生成答案的方法；用于降低无依据回答并保留来源链路。
+- **EN**: A method that retrieves evidence from controlled knowledge sources before asking a model to answer with that evidence and its provenance.
+
+## 向量嵌入 / Vector Embedding
+> ベクトル埋め込み
+
+- **ZH**: 把文本、图片或商品表示为数值向量，使系统能够按语义相似度进行检索、聚类或推荐。
+- **EN**: A numeric representation of text, images, or products used for semantic search, clustering, and recommendation.
+
+## 向量数据库 / Vector Database
+> ベクトルデータベース
+
+- **ZH**: 存储向量嵌入及业务元数据，并支持相似度检索的数据库。
+- **EN**: A database that stores embeddings with business metadata and supports similarity search.
+
+## AI 护栏 / AI Guardrail
+> AI ガードレール
+
+- **ZH**: 对模型输入、工具权限、输出格式和高风险动作施加的可验证限制；不能替代真实的身份与授权检查。
+- **EN**: Verifiable limits on model inputs, tool permissions, output formats, and high-risk actions; they do not replace authentication or authorization.
+
+## 人在回路 / Human-in-the-loop
+> ヒューマン・イン・ザ・ループ
+
+- **ZH**: 在发送、支付、调价或删除等关键动作前暂停自动流程，由获授权的人审核并确认。
+- **EN**: A control that pauses automation before consequential actions so an authorized person can review and approve them.
+
+## 幂等性 / Idempotency
+> 冪等性
+
+- **ZH**: 同一业务请求被安全重试时只产生一次预期效果的性质，常用于数据管道和外部 API 写操作。
+- **EN**: The property that safely retrying the same business request produces the intended effect only once.

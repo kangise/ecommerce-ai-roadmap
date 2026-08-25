@@ -1,9 +1,9 @@
 # Notebook 实验室 | Notebook Lab
 
-> 可在 Google Colab 免费版直接运行的 Jupyter Notebook，零配置上手。
-> Ready-to-run Jupyter Notebooks on Google Colab free tier zero setup required.
+> 可在 Google Colab 免费版运行；依赖由 Notebook 声明，业务分析必须上传真实输入数据。
+> Runs on Google Colab free tier; dependencies are declared, and business analyses require explicit real input data.
 
-最后更新: 2026-03-15
+最后更新: 2026-08-13
 
 ---
 
@@ -37,21 +37,19 @@
 ## 如何使用 | How to Use
 
 1. 点击 Notebook 右侧的 **Open in Colab** 按钮
-2. 在 Colab 中点击 **Runtime → Run all** 运行所有单元格
-3. 所有依赖会在第一个代码单元格自动安装
+2. 按 Notebook 的加载单元格说明，上传并命名真实 CSV/XLSX 输入文件
+3. 在 Colab 中点击 **Runtime → Run all**；缺文件、缺字段或非法数值会明确报错
+4. 需要额外库的 Notebook 会在开头声明安装命令；Colab 已内置的 pandas 等基础库不会重复安装
 
-> 所有 Notebook 均在 Google Colab 免费版测试通过，无需 GPU。
+> CI 验证全部 Notebook 的文件结构。涉及大型模型或外部 API 的完整执行
+> 仍以 Notebook 内标注的依赖和最近人工 Colab 复核为准。
 
 ---
 
 ## 计划中 | Planned
 
-- Prophet 销量预测（中级）
-- BERTopic Review 主题分析（中级）
 - 产品 FAQ 知识库 RAG（中级）
 - 运营日报自动生成 Agent（高级）
-- 社交媒体内容日历 AI 规划（入门）
-- 多平台 Listing 批量转换（入门）
 
 关注 [路线图](../roadmap/README.md) 了解最新进展。
 

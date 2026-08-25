@@ -1,90 +1,60 @@
-# Evolution Log ecommerce-ai-skills
+# Evolution Log
 
-> 此文件由AI进化引擎自动维护。
+> Evidence snapshot for the repository's convergence loop. Updated 2026-08-22.
+> Counts are not hand-maintained: run `python3 scripts/verify_content.py --metrics`
+> and `python3 scripts/verify_all.py` to reproduce them.
 
-## 终局画像
+## Current verified state
 
-| 维度 | 5/5 标准 |
-|------|----------|
-| 准确 | 所有链接可点击、所有承诺的内容已兑现、元数据与实际内容一致、中英双语无翻译错误 |
-| 稳健 | 内容经得起行业专家审查、Prompt 模板经过实际业务验证、外部链接有定期检查机制 |
-| 精炼 | README 第一屏在 10 秒内传达核心价值、无冗余章节、每个模块都有明确的"完成标志" |
-| 清晰 | 三条路径划分无歧义、新用户 5 分钟内找到适合自己的内容、中英双语完整覆盖 |
-| 灵活 | 模块化结构支持独立更新、社区贡献流程顺畅、可快速适配新 AI 工具和平台变化 |
+| Dimension | Evidence | Status |
+|---|---|---|
+| Knowledge | 69 source chapters; zh/en/ja books build successfully | verified |
+| Glossary | 100 trilingual domain terms | verified |
+| Agent package | 9 skills, 878 prompts, 69 complete chapter bodies | verified |
+| Ontology | 100 entities, 322 constraints, 78 relations, 8 processes, 15 platforms | verified |
+| Integration | MCP package validates checksums and exposes 8 resources, 5 tools, 9 prompts | verified |
+| Multi-agent runtime | Ontology-driven Amazon and 14 other marketplace agents, cross-platform review, durable state, evidence/platform validation, retry, and tenant isolation | verified with injected provider transport |
+| Evidence ingestion | Five typed Amazon CSV/XLSX reports plus generic files for all ontology marketplaces; field mapping, content-addressed originals, durable IDs, PII/secret rejection, and run integration | verified with test fixtures only |
+| Routing | 0/117 known misroutes; runtime MCP passes the same acceptance cases | verified |
+| Examples | 18 structurally valid notebooks; no notebook generates runtime mock data | verified |
+| Content quality | All content checks and repository gates return zero gaps | verified |
+| Fact maintenance | 322 dated constraints and verified source files map to owned review batches | verified |
+| Release | Generated `dist/`, package manifest, tests, PR gate, Pages gate, weekly health, tag release | verified |
 
-## 项目洞察
+## 2026-08-13 convergence closeout
 
-- 根本目的：建立"AI + 跨境电商"垂直领域的行业标准参考，目标 10k GitHub star
-- 成功标准：当有人问"跨境电商怎么用 AI"，第一反应是"去看 ecommerce-ai-skills"
-- 核心约束：GitHub 生态、CC0 许可、中英双语、纯内容仓库
-- 关键假设：高质量 Prompt 模板和 Notebook 是可传播的内容形态；README 第一屏决定 90% 的 star
-- 价值杠杆：README 第一屏体验 + 英文版覆盖全球受众
-- **10k star 五大成功因子**：垂直垄断（唯一且最全）、即时价值（10秒内可用）、社区飞轮（贡献者=传播者）、传播钩子（可独立分享的内容单元）、持续活跃（定期更新）
+- Made `dist/` and the external-link cache versionable so a clean checkout can
+  pass before any mutating build step.
+- Added deterministic distribution freshness checks, file checksums, package
+  count validation, and fail-closed MCP startup behavior.
+- Replaced the 19-error routing budget with a zero-error gate and generalized
+  intent patterns; added runtime MCP parity tests.
+- Removed all default generated/mock business data from notebooks. Core
+  lightweight notebooks execute in tests using fixtures that live only in test
+  code; heavyweight notebooks require explicit real input files.
+- Resolved the Amazon Sponsored Brands Video caption gap from current Amazon Ads
+  sources without inventing a caption character limit.
+- Added staggered, owned fact-review batches and made coverage part of M7.
+- Added reproducible convergence metrics and brought the glossary floor to 100.
 
-## 当前状态
+## Remaining product decision
 
-| 维度 | 评分 | 上次更新 | 趋势 | 距终局 |
-|------|------|----------|------|--------|
-| 准确 | 5/5 | v2 | ↑ | 0 |
-| 稳健 | 5/5 | v2 | ↑ | 0 |
-| 精炼 | 5/5 | v2 | ↑ | 0 |
-| 清晰 | 5/5 | v2 | ↑ | 0 |
-| 灵活 | 5/5 | v2 | ↑ | 0 |
+The shipped artifact is a production-oriented knowledge/skill/MCP package with
+an embedded multi-tenant runtime, not a complete internet-facing SaaS product.
+The embedded slice now includes durable users, tenant ownership, API-key RBAC,
+public user provisioning, second-actor approval, audit, and a read-only Shopify
+sync. It also includes a synchronous Weekly Ops Council backed by a real
+Responses API boundary; live provider verification still requires operator-owned
+credentials and model access. Product decisions still required for SaaS are the user-facing application,
+external identity, billing/entitlements, deployment topology, and additional
+systems of record. Acceptance conditions remain in `roadmap/README.md`.
 
-**总迭代次数**：2
-**完成度**：25/25（100%） 终局达成 2026-03-10
-**下轮优先**：维护模式 持续更新内容，执行 Phase 3 增长引擎任务
+## Verification commands
 
----
-
-## v0 2026-03-10 首次诊断
-
-**诊断**：项目内容质量高但基础设施薄弱 元数据不匹配、大量空链接、缺少英文版、模块未独立化
-**处方**：创建正式 Spec 系统化规划从当前状态到 10k star 的路径
-**结果**：启动 spec 流程
-**下轮建议**：完成 spec 后按任务列表逐步执行，优先修复稳健维度（空链接、元数据）
-
----
-
-## v1 2026-03-10 Phase 1 基础修复
-
-**诊断**：准确 3/5（元数据不匹配）、稳健 2/5（大量空链接）、灵活 3/5（单体 README）
-**处方**：修复 _config.yml、消除空链接、创建 paths/ 和 prompts/ 目录、README 瘦身、竞品分析、测试基础设施
-**结果**：准确 3→5、稳健 2→4、精炼 4→5、灵活 3→4。总分 16→22/25
-**证据**：
-- [结构锚点] README 行数: 700+ → 283
-- [测试锚点] 12 个 pytest 测试全部通过
-- [结构锚点] 空链接: 10+ → 0
-- [结构锚点] prompts/ 文件: 0 → 6（含 12 个标准化模板）
-- [结构锚点] paths/ 文件: 0 → 19
-**关键改动**：
-- _config.yml: title/description 修复 + SEO 配置
-- README.md: 从 700+ 行内容载体瘦身为 283 行导航枢纽
-- paths/: 创建 19 个模块化内容文件（3 条路径 × 14 个子模块）
-- prompts/: 创建 6 个标准化 Prompt 模板文件（12 个模板）
-- roadmap/: 创建路线图 + 覆盖地图 + 竞品分析
-- tests/: 创建 12 个内容质量测试
-**下轮建议**：Phase 2 README 首屏优化、英文版、Notebook、社区基础设施
-
----
-
-## v2 2026-03-10 Phase 2 内容充实 + 终局达成
-
-**诊断**：稳健 4/5（缺 Notebook 和案例）、清晰 4/5（首屏未优化）、灵活 4/5（缺英文版和社区基础设施）
-**处方**：README 首屏重设计、英文版、Top 10 Prompts、Notebook、Issue 模板、CODEOWNERS、CHANGELOG、案例库、SEO、What's New
-**结果**：所有维度达到 5/5。总分 22→25/25。 终局达成
-**证据**：
-- [测试锚点] 18 个 pytest 测试全部通过（12 Phase 1 + 6 Phase 2）
-- [结构锚点] 英文版: 0 → README_EN.md（276 行完整本地化）
-- [结构锚点] Notebook: 0 → 1（b1-data-pipeline.ipynb，Colab 可运行）
-- [结构锚点] 案例: 0 → 2（含量化指标）
-- [结构锚点] Issue 模板: 2 → 5（含低门槛 Prompt 提交）
-- [结构锚点] 社区文件: +CODEOWNERS, +CHANGELOG.md, +Contributors Wall
-**关键改动**：
-- README.md: 首屏重设计（即时价值 Prompt + 双语 tagline + 徽章）+ Top 10 Prompts + What's New
-- README_EN.md: 完整英文版（276 行，本地化适配）
-- notebooks/: 首个可运行 Notebook + README 索引
-- docs/case-studies/: 2 个带量化指标的案例
-- .github/: 3 个新 Issue 模板 + PR 模板更新 + link-checker 扩展
-- CODEOWNERS, CHANGELOG.md, CONTRIBUTING.md 更新
-**下轮建议**：进入维护模式。Phase 3 增长引擎任务（完整双语、多平台扩展、首发推广）可按需执行
+```bash
+python3 scripts/build_dist.py --check
+python3 scripts/verify_content.py --metrics
+python3 scripts/verify_all.py
+python3 -m pytest
+python3 integration/mcp-server.py --validate --dist dist
+```

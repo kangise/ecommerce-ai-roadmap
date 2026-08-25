@@ -1994,3 +1994,111 @@
       ja: 受取拒否率
   source:
   - src/d-platforms/d6-southeast-asia-ai-guide.md
+- id: rag
+  label:
+    zh: 检索增强生成
+    en: Retrieval-Augmented Generation (RAG)
+    ja: 検索拡張生成
+  definition:
+    zh: 先从受控知识源检索相关证据，再把证据连同问题交给模型生成答案的方法；用于降低无依据回答并保留来源链路。
+    en: A method that retrieves evidence from controlled knowledge sources before asking a model to answer with that evidence and its provenance.
+    ja: 管理された知識源から証拠を検索し、その証拠と質問をモデルに渡して回答を生成する手法。
+  attributes:
+  - id: retrieval_sources
+    type: list<string>
+    label:
+      zh: 检索来源
+      en: Retrieval sources
+      ja: 検索元
+  source:
+  - src/0-foundations/f3-rag-knowledge.md
+- id: vector_embedding
+  label:
+    zh: 向量嵌入
+    en: Vector Embedding
+    ja: ベクトル埋め込み
+  definition:
+    zh: 把文本、图片或商品表示为数值向量，使系统能够按语义相似度进行检索、聚类或推荐。
+    en: A numeric representation of text, images, or products used for semantic search, clustering, and recommendation.
+    ja: テキスト、画像、商品を数値ベクトルで表し、意味検索・クラスタリング・推薦に使う表現。
+  attributes:
+  - id: dimensions
+    type: int
+    label:
+      zh: 向量维度
+      en: Dimensions
+      ja: 次元数
+  source:
+  - src/0-foundations/f3-rag-knowledge.md#2-embedding-原理让-ai-理解语义
+- id: vector_database
+  label:
+    zh: 向量数据库
+    en: Vector Database
+    ja: ベクトルデータベース
+  definition:
+    zh: 存储向量嵌入及业务元数据，并支持相似度检索的数据库。
+    en: A database that stores embeddings with business metadata and supports similarity search.
+    ja: 埋め込みと業務メタデータを保存し、類似度検索を提供するデータベース。
+  attributes:
+  - id: collection
+    type: string
+    label:
+      zh: 集合
+      en: Collection
+      ja: コレクション
+  source:
+  - src/0-foundations/f3-rag-knowledge.md#3-向量数据库存储和检索语义
+- id: ai_guardrail
+  label:
+    zh: AI 护栏
+    en: AI Guardrail
+    ja: AI ガードレール
+  definition:
+    zh: 对模型输入、工具权限、输出格式和高风险动作施加的可验证限制；不能替代真实的身份与授权检查。
+    en: Verifiable limits on model inputs, tool permissions, output formats, and high-risk actions; they do not replace authentication or authorization.
+    ja: モデル入力、ツール権限、出力形式、高リスク操作に適用する検証可能な制限。認証・認可の代替ではない。
+  attributes:
+  - id: scope
+    type: enum
+    label:
+      zh: 作用范围
+      en: Scope
+      ja: 適用範囲
+  source:
+  - src/0-foundations/f4-agent-automation.md#62-安全最佳实践
+- id: human_in_the_loop
+  label:
+    zh: 人在回路
+    en: Human-in-the-loop
+    ja: ヒューマン・イン・ザ・ループ
+  definition:
+    zh: 在发送、支付、调价或删除等关键动作前暂停自动流程，由获授权的人审核并确认。
+    en: A control that pauses automation before consequential actions so an authorized person can review and approve them.
+    ja: 重要な操作の前に自動処理を停止し、権限を持つ人が確認・承認する制御。
+  attributes:
+  - id: approval_status
+    type: enum
+    label:
+      zh: 审批状态
+      en: Approval status
+      ja: 承認状態
+  source:
+  - src/b-developers/b4-agent-workflow.md#71-human-in-the-loop关键决策前等待人工确认
+- id: idempotency
+  label:
+    zh: 幂等性
+    en: Idempotency
+    ja: 冪等性
+  definition:
+    zh: 同一业务请求被安全重试时只产生一次预期效果的性质，常用于数据管道和外部 API 写操作。
+    en: The property that safely retrying the same business request produces the intended effect only once.
+    ja: 同じ業務リクエストを安全に再試行しても、意図した効果が一度だけ生じる性質。
+  attributes:
+  - id: idempotency_key
+    type: string
+    label:
+      zh: 幂等键
+      en: Idempotency key
+      ja: 冪等キー
+  source:
+  - src/b-developers/b1-data-pipeline.md#94-管道没有幂等性

@@ -434,6 +434,17 @@ Markdown レポートを出力し、以下を含める:
 
 **バリエーション A — Sponsored Brands Video スクリプト:**
 
+#### Sponsored Brands Video の公式字幕・ミュート規則
+
+<!-- claims: verified 2026-08 -->
+
+- Sponsored Brands Video は自動的にミュート再生され、利用者が音声を有効にできます。ナレーションに依存する重要情報は画面テキストまたは字幕でも示します。Amazon は字幕を推奨事項としており、一律の必須要件とはしていません。
+- 動画の文字と音声は出稿先マーケットプレイスの主要言語を使い、他マーケット向けには現地語版または字幕を用意します。
+- 字幕・開示・説明は右下の音量ボタン領域を避け、Amazon の Video Safe Zone テンプレートでモバイル表示を確認します。
+- Amazon は Sponsored Brands Video 字幕の一律の文字数上限を公開していません。下記テンプレートの制作上のペースをプラットフォーム上限として扱わず、判読性と十分な表示時間を優先します。
+
+出典: [Amazon Ads — Sponsored Brands video specifications and guidelines](https://advertising.amazon.com/resources/ad-specs/sponsored-brands-video)、[Amazon Ads — Sponsored Brands and display ads moderation guide](https://advertising.amazon.com/en-ca/library/guides/sponsored-brands-display-ads-moderation)（2026-08 確認）。
+
 ```
 私の商品は [商品説明]、コア訴求点は [訴求点] です。
 
@@ -483,7 +494,8 @@ Sponsored Brands Video 広告用に、異なるスタイルの 15 秒スクリ�
 <セルフチェック>
 - [ ] ちょうど 3 スクリプトで、各指定スタイル(問題-解決型 / デモ型 / 社会的証明型)に一致
 - [ ] 各スクリプトの 3 セグメントの合計が 15 秒(0-3 + 3-10 + 10-15)
-- [ ] オンスクリーン見出しが 5 語以内、オーバーレイ文字の合計が 20 語以内
+- [ ] 画面テキストがモバイルで判読でき、読むのに十分な時間表示され、右下の音量ボタン安全領域を避けている
+- [ ] ナレーションに依存する重要情報が現地語の画面テキストまたは字幕でも示されている
 - [ ] 商品説明に無い機能・素材・認証・効果が本文に一切出ていない
 - [ ] 3 つのフック(最初の 3 秒の出だし)の文言が互いに異なる
 </セルフチェック>

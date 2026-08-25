@@ -13,8 +13,11 @@ from pathlib import Path
 
 ROOT_V = Path(__file__).resolve().parent.parent
 
-# Each check runs a full sub-script (no --only fragments).
+# Each check runs a full sub-script (no --only fragments). The distributable is
+# checked first because several later gates intentionally read it. `--check`
+# rebuilds into a temporary directory and never mutates the worktree.
 CHECKS = [
+    ("Dist",      "python3", "scripts/build_dist.py", "--check"),
     ("Content",   "python3", "scripts/verify_content.py"),
     ("Ontology",  "python3", "scripts/verify_ontology.py"),
     ("Skills",    "python3", "scripts/verify_skills.py"),
@@ -28,8 +31,12 @@ CHECKS = [
     ("Docs",      "python3", "scripts/verify_all.py", "--d1"),
     ("D2",        "python3", "scripts/verify_all.py", "--d2"),
     ("Sustain",   "python3", "scripts/verify_all.py", "--sustain"),
-    ("Dist",      "python3", "scripts/build_dist.py"),
 ]
+
+# R1 combines domain keywords with reusable conversational intent patterns.
+# Every case is blocking; R1b and R2 prevent gaming it with copied fragments or
+# tautological tests.
+R1_MAX_MISROUTES = 0
 
 SCAFFOLD_SCRIPTS = [
     "scripts/new_chapter.py",
@@ -334,6 +341,7 @@ def main() -> int:
     if args.d2:
         import json as _json, yaml as _yaml
         problems = []
+        expected_gate_count = 42
 
         # Get actual counts
         with open(ROOT_V / "dist" / "prompts.json") as f:
@@ -390,8 +398,17 @@ def main() -> int:
                 continue
             text = path.read_text(encoding="utf-8")
 
+            # Public READMEs must state the same total as CONTRIBUTING's gate
+            # inventory. This drifted at 24 while the real suite grew to 42.
+            for m in re.finditer(r"(\d+)\s*(?:项|項目の)?\s*CI\s+(?:门禁|ゲート|gates)", text, re.I):
+                if int(m.group(1)) != expected_gate_count:
+                    problems.append(
+                        f"{readme_name}: says {m.group(1)} CI gates "
+                        f"(expected {expected_gate_count})"
+                    )
+
             # Extract scale facts ONLY from the infrastructure table rows in READMEs.
-            # These follow patterns like "| 94 实体" or "| 184 constraints" in table cells.
+            # These follow patterns like "| 100 实体" or "| 322 constraints" in table cells.
             # Match numbers inside markdown table cells near known labels.
             known = {
                 "实体":      ("entities",  actual_entities),
@@ -440,7 +457,7 @@ def main() -> int:
                         problems.append(f"{readme_name}: prose says {num} {unit} (expected {expected})")
 
             for label, (key, expected) in known.items():
-                # Match "| 94 实体 · 184 约束" in table cells
+                # Match "| 100 实体 · 322 约束" in table cells
                 pattern = rf"\|\s*((?:\d+|·|\s)+{re.escape(label)})"
                 for m in re.finditer(pattern, text):
                     cell = m.group(1)
@@ -459,16 +476,16 @@ def main() -> int:
                     if num != expected:
                         problems.append(f"{readme_name}: says {num} {label}, actual {expected}")
 
-        total = len(problems)
-        mark = "ok " if total == 0 else "FAIL"
-        print(f"  [{mark}] D2          {total}")
-        for p in problems:
-            print(f"           {p}")
         # Also verify dist/ is mentioned in READMEs
         for readme_name in ["README.md", "README_EN.md", "README_JA.md"]:
             path = ROOT_V / readme_name
             if path.exists() and "dist/" not in path.read_text(encoding="utf-8"):
                 problems.append(f"{readme_name}: does not mention dist/")
+        total = len(problems)
+        mark = "ok " if total == 0 else "FAIL"
+        print(f"  [{mark}] D2          {total}")
+        for p in problems:
+            print(f"           {p}")
         return 0 if total == 0 else 1
 
     if args.i1:
@@ -477,6 +494,8 @@ def main() -> int:
         required = [
             ("integration/mcp.md", "MCP integration doc"),
             ("integration/mcp-system-prompt.md", "MCP system prompt"),
+            ("integration/runtime-api.md", "Runtime API guide"),
+            ("openapi/runtime-api.yaml", "Runtime OpenAPI contract"),
         ]
         for path, label in required:
             fp = dist / path
@@ -494,6 +513,121 @@ def main() -> int:
                     problems.append(f"dist/integration/{md_path.name}: references '{ref}' which does not exist")
                 elif ref_path.stat().st_size < 10:
                     problems.append(f"dist/integration/{md_path.name}: references empty file '{ref}'")
+
+        skill_ids = sorted(p.name for p in (dist / "skills").iterdir() if p.is_dir()) if (dist / "skills").is_dir() else []
+        system_prompt = dist / "integration" / "mcp-system-prompt.md"
+        if system_prompt.exists():
+            prompt_text = system_prompt.read_text(encoding="utf-8")
+            for skill_id in skill_ids:
+                if skill_id not in prompt_text:
+                    problems.append(f"dist/integration/mcp-system-prompt.md: missing skill {skill_id}")
+
+        openapi_path = dist / "openapi" / "runtime-api.yaml"
+        if openapi_path.exists():
+            try:
+                import json as _json
+                import yaml as _yaml
+                contract = _yaml.safe_load(openapi_path.read_text(encoding="utf-8")) or {}
+                paths = contract.get("paths", {})
+                required_operations = {
+                    "/v1/users": {"get", "post"},
+                    "/v1/demo-session": {"get"},
+                    "/v1/users/{userId}": {"patch"},
+                    "/v1/actions": {"post"},
+                    "/v1/actions/{actionId}/approve": {"post"},
+                    "/v1/evidence-imports": {"get", "post"},
+                    "/v1/evidence-imports/{importId}": {"get"},
+                    "/v1/agent-runs": {"get", "post"},
+                    "/v1/agent-runs/{runId}": {"get"},
+                    "/v1/agent-runs/{runId}/execute": {"post"},
+                    "/v1/agent-runs/{runId}/evaluate": {"post"},
+                    "/v1/agent-runs/{runId}/evaluations": {"get"},
+                    "/v1/jobs": {"get", "post"},
+                    "/v1/jobs/{jobId}": {"get"},
+                    "/v1/schedules": {"get", "post"},
+                    "/v1/schedules/{scheduleId}": {"patch"},
+                    "/v1/approvals": {"get"},
+                    "/v1/mission-control": {"get"},
+                    "/v1/briefing": {"get"},
+                    "/v1/catalog": {"get"},
+                }
+                for route, methods in required_operations.items():
+                    route_contract = paths.get(route, {})
+                    for method in methods:
+                        if method not in route_contract:
+                            problems.append(f"dist/openapi/runtime-api.yaml: missing {method.upper()} {route}")
+                ontology = _json.loads((dist / "ontology.json").read_text(encoding="utf-8"))
+                expected_platforms = {
+                    item["id"] for item in ontology.get("platforms", []) if isinstance(item, dict)
+                } | {"cross_platform"}
+                actual_platforms = set(
+                    contract.get("components", {})
+                    .get("schemas", {})
+                    .get("PlatformId", {})
+                    .get("enum", [])
+                )
+                if actual_platforms != expected_platforms:
+                    problems.append(
+                        "dist/openapi/runtime-api.yaml: PlatformId enum does not match ontology"
+                    )
+                marketplace_platforms = set(
+                    contract.get("components", {})
+                    .get("schemas", {})
+                    .get("MarketplaceId", {})
+                    .get("enum", [])
+                )
+                if marketplace_platforms != expected_platforms - {"cross_platform"}:
+                    problems.append(
+                        "dist/openapi/runtime-api.yaml: MarketplaceId enum does not match ontology"
+                    )
+                import ast as _ast
+                evidence_tree = _ast.parse(
+                    (ROOT_V / "ecommerce_ai_skills" / "runtime" / "evidence.py").read_text(
+                        encoding="utf-8"
+                    )
+                )
+                runtime_report_types = set()
+                for node in evidence_tree.body:
+                    if not isinstance(node, _ast.AnnAssign):
+                        continue
+                    if not isinstance(node.target, _ast.Name) or node.target.id != "REPORT_SPECS":
+                        continue
+                    if isinstance(node.value, _ast.Dict):
+                        runtime_report_types = {
+                            key.value
+                            for key in node.value.keys
+                            if isinstance(key, _ast.Constant) and isinstance(key.value, str)
+                        }
+                report_types = set(
+                    contract.get("components", {})
+                    .get("schemas", {})
+                    .get("EvidenceReportType", {})
+                    .get("enum", [])
+                )
+                if not runtime_report_types or report_types != runtime_report_types:
+                    problems.append(
+                        "dist/openapi/runtime-api.yaml: EvidenceReportType enum does not match runtime"
+                    )
+                schemas = contract.get("components", {}).get("schemas", {})
+                for schema_name in (
+                    "AmazonSPAPIConnectorRegistration",
+                    "DemoSession",
+                    "AmazonReportImportActionRequest",
+                    "Job",
+                    "Schedule",
+                    "MissionControl",
+                    "OperatingBriefing",
+                    "BriefingMetric",
+                    "BriefingAgent",
+                    "AgentEvaluation",
+                    "RuntimeCatalog",
+                ):
+                    if schema_name not in schemas:
+                        problems.append(
+                            f"dist/openapi/runtime-api.yaml: missing schema {schema_name}"
+                        )
+            except Exception as exc:
+                problems.append(f"dist/openapi/runtime-api.yaml: invalid YAML ({exc})")
         total = len(problems)
         mark = "ok " if total == 0 else "FAIL"
         print(f"  [{mark}] I1          {total}")
@@ -521,6 +655,19 @@ def main() -> int:
             for ref in refs:
                 if not (dist / ref).exists():
                     problems.append(f"dist/README.md: references '{ref}' which does not exist")
+            quickstart = text.split("## Quick Start", 1)[-1].split("## What's Inside", 1)[0]
+            skill_ids = sorted(p.name for p in (dist / "skills").iterdir() if p.is_dir()) if (dist / "skills").is_dir() else []
+            for skill_id in skill_ids:
+                if skill_id not in quickstart:
+                    problems.append(f"dist/README.md: Quick Start omits skill {skill_id}")
+
+            root_skill = dist / "SKILL.md"
+            if root_skill.exists():
+                skill_text = root_skill.read_text(encoding="utf-8")
+                capability_section = skill_text.split("## Your Capabilities", 1)[-1].split("2. **Domain Ontology**", 1)[0]
+                for skill_id in skill_ids:
+                    if skill_id not in capability_section:
+                        problems.append(f"dist/SKILL.md: capability list omits skill {skill_id}")
         total = len(problems)
         mark = "ok " if total == 0 else "FAIL"
         print(f"  [{mark}] D1          {total}")
@@ -545,7 +692,8 @@ def main() -> int:
             sid = mf.get("name", "")
             triggers = mf.get("triggers", {})
             keywords = triggers.get("keywords", []) if isinstance(triggers, dict) else []
-            manifests[sid] = keywords
+            patterns = triggers.get("patterns", []) if isinstance(triggers, dict) else []
+            manifests[sid] = {"keywords": keywords, "patterns": patterns}
 
         # ANTI-DEGENERATION CHECK.
         #
@@ -568,7 +716,7 @@ def main() -> int:
         for case in cases:
             expected = case.get("expect", "")
             qn = _normalize(case.get("query", ""))
-            kws = manifests.get(expected, [])
+            kws = manifests.get(expected, {}).get("keywords", [])
             if any(_normalize(k) in qn for k in kws if len(k) >= 3):
                 lit_count += 1
         lit_ratio = lit_count / len(cases) if cases else 0
@@ -587,16 +735,26 @@ def main() -> int:
             if not query or not expected:
                 continue
             qn = _normalize(query)
-            app_kws = manifests.get("ecom-applicability", [])
+            app_rule = manifests.get("ecom-applicability", {})
+            app_kws = app_rule.get("keywords", [])
             app_score = sum(1 for kw in app_kws if len(kw) >= 3 and _normalize(kw) in qn)
+            app_score += 2 * sum(
+                1 for pattern in app_rule.get("patterns", [])
+                if re.search(pattern, qn, re.IGNORECASE)
+            )
             # Applicability only wins if it has >=2 keyword hits AND no domain
             # skill has >=2 hits. A single "朋友说" shouldn't override "包装不好看"+"重新设计".
             best_match = None
             best_score = 0
-            for sid, keywords in manifests.items():
+            for sid, rule in manifests.items():
                 if sid == "ecom-applicability":
                     continue
+                keywords = rule.get("keywords", [])
                 score = sum(1 for kw in keywords if _normalize(kw) in qn)
+                score += 2 * sum(
+                    1 for pattern in rule.get("patterns", [])
+                    if re.search(pattern, qn, re.IGNORECASE)
+                )
                 if score > best_score:
                     best_score = score
                     best_match = sid
@@ -611,11 +769,15 @@ def main() -> int:
                 errors.append(f"case {i+1}: '{query[:40]}...' routed to {best_match} (expected {expected})")
 
         total = len(errors)
-        mark = "ok " if total == 0 else "FAIL"
-        print(f"  [{mark}] R1          {total}/{len(cases)}")
+        blocking = total > R1_MAX_MISROUTES
+        mark = "FAIL" if blocking else "ok "
+        print(
+            f"  [{mark}] R1          {total}/{len(cases)} misroutes "
+            f"(budget <= {R1_MAX_MISROUTES})"
+        )
         for e in errors:
             print(f"           {e}")
-        return 0 if total == 0 else 1
+        return 1 if blocking else 0
 
     if args.k1:
         import json as _json

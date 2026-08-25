@@ -7,30 +7,71 @@ completely on each run.
 
 Usage:
   python3 scripts/build_dist.py
+  python3 scripts/build_dist.py --check
 """
 
+import argparse
+import hashlib
 import json
 import pathlib
 import shutil
 import sys
+import tempfile
 import yaml
 import re
+
+try:
+    import tomllib
+except ModuleNotFoundError:  # Python 3.10
+    import tomli as tomllib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DIST = ROOT / "dist"
 SRC = ROOT / "src"
 ONT = ROOT / "ontology"
 SKILLS = ROOT / "skills"
+PACKAGE_VERSION = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))[
+    "project"
+]["version"]
 
 FM_PATTERN = re.compile(r"^---\s*\n(.*?)\n---", re.S)
 
 
-def main():
+COPY_IGNORE = shutil.ignore_patterns("__pycache__", "*.pyc", ".DS_Store")
+
+
+def _snapshot(root: pathlib.Path) -> dict[str, bytes]:
+    """Return a deterministic file snapshot for freshness comparisons."""
+    if not root.exists():
+        return {}
+    return {
+        str(path.relative_to(root)): path.read_bytes()
+        for path in sorted(root.rglob("*"))
+        if path.is_file()
+    }
+
+
+def _sync_installable_package(dist: pathlib.Path) -> None:
+    """Copy the deterministic artifact into the wheel's package data.
+
+    The repository keeps ``dist/`` as the human/audit-facing artifact.  A
+    wheel cannot include files outside a Python package, so the same bytes are
+    mirrored under ``ecommerce_ai_skills/package_data`` immediately after a
+    build.  The manifest checksums make accidental drift fail closed.
+    """
+    package_root = ROOT / "ecommerce_ai_skills" / "package_data"
+    if package_root.exists():
+        shutil.rmtree(package_root)
+    package_root.mkdir(parents=True)
+    shutil.copytree(dist, package_root / "dist")
+
+
+def build_dist(dist: pathlib.Path = DIST, *, announce: bool = True, sync_package: bool = True) -> int:
     # Clean and recreate
-    if DIST.exists():
-        shutil.rmtree(DIST)
-    DIST.mkdir(parents=True)
-    (DIST / "references").mkdir(exist_ok=True)
+    if dist.exists():
+        shutil.rmtree(dist)
+    dist.mkdir(parents=True)
+    (dist / "references").mkdir(exist_ok=True)
 
     # 1. ontology.json — machine-readable domain model
     ontology = {}
@@ -38,7 +79,7 @@ def main():
         path = ONT / yf
         if path.exists():
             ontology[yf.replace(".yaml", "")] = yaml.safe_load(path.read_text(encoding="utf-8"))
-    (DIST / "ontology.json").write_text(
+    (dist / "ontology.json").write_text(
         json.dumps(ontology, ensure_ascii=False, indent=2), encoding="utf-8"
     )
 
@@ -64,17 +105,19 @@ def main():
                         "body": body,
                         "language": {"src": "zh", "i18n/en/src": "en", "i18n/ja/src": "ja"}[tree],
                     })
-    (DIST / "prompts.json").write_text(
+    (dist / "prompts.json").write_text(
         json.dumps(prompts, ensure_ascii=False, indent=2), encoding="utf-8"
     )
 
     # 3. integration/ — copy adapter docs
     integration_src = ROOT / "integration"
     if integration_src.exists():
-        shutil.copytree(integration_src, DIST / "integration", dirs_exist_ok=True)
+        shutil.copytree(
+            integration_src, dist / "integration", dirs_exist_ok=True, ignore=COPY_IGNORE
+        )
 
     # 4. skills/ — recursive copy
-    shutil.copytree(SKILLS, DIST / "skills", dirs_exist_ok=True)
+    shutil.copytree(SKILLS, dist / "skills", dirs_exist_ok=True, ignore=COPY_IGNORE)
 
     # 4b. knowledge/ — chapter index AND bodies for agent retrieval.
     #
@@ -84,8 +127,8 @@ def main():
     # src/a-operators/a6-compliance.md does contain it. The content was in the
     # book, out of the package. Bodies ship here so a retrieval hit can be
     # followed to the actual text.
-    (DIST / "knowledge").mkdir(exist_ok=True)
-    chapters_dir = DIST / "knowledge" / "chapters"
+    (dist / "knowledge").mkdir(exist_ok=True)
+    chapters_dir = dist / "knowledge" / "chapters"
     chapters_dir.mkdir(exist_ok=True)
     entities_data = ontology.get("entities", [])
     knowledge_index = []
@@ -143,7 +186,7 @@ def main():
             "boundary_summary": boundary_summary,
         })
 
-    with open(DIST / "knowledge" / "index.json", "w", encoding="utf-8") as f:
+    with open(dist / "knowledge" / "index.json", "w", encoding="utf-8") as f:
         json.dump(knowledge_index, f, ensure_ascii=False, indent=2)
 
     # query_guide.md
@@ -194,17 +237,18 @@ Each entry:
 from the index is usually still present in the body. Grep `chapters/` before
 concluding anything is missing.
 """.format(len(knowledge_index))
-    (DIST / "knowledge" / "query_guide.md").write_text(query_guide)
+    (dist / "knowledge" / "query_guide.md").write_text(query_guide)
 
     # 5. references/
     for ref_name in ["glossary.md", "boundaries.md"]:
         src_path = SRC / "resources" / ref_name
         if src_path.exists():
-            shutil.copy2(src_path, DIST / "references" / ref_name)
+            shutil.copy2(src_path, dist / "references" / ref_name)
 
     # 5. SKILL.md — agent entry point with routing generated from manifests
     # Load manifests to build routing table
     capabilities = []
+    capability_rows = []
     routing_rules = []
     for skill_dir in sorted(SKILLS.iterdir()):
         if not skill_dir.is_dir():
@@ -216,6 +260,7 @@ concluding anything is missing.
         sid = manifest.get("name", skill_dir.name)
         desc = manifest.get("description", "")
         capabilities.append(f"  - {sid}: {desc}")
+        capability_rows.append((sid, desc))
         # Build routing rule from triggers
         triggers = manifest.get("triggers", {})
         keywords = triggers.get("keywords", [])
@@ -227,6 +272,8 @@ concluding anything is missing.
             routing_rules.append(f"  - intent: {intent}\n    skill: {sid}")
 
     capabilities_yaml = "\n".join(capabilities)
+    capability_markdown = "\n".join(f"   - `{sid}` — {desc}" for sid, desc in capability_rows)
+    capability_quicklist = ", ".join(f"`{sid}`" for sid, _ in capability_rows)
     routing_yaml = "\n".join(routing_rules)
     prompt_count = len(prompts)  # Total across all languages
 
@@ -261,14 +308,7 @@ You are an e-commerce operations agent powered by the OPC (One Person Company) i
 ## Your Capabilities
 
 1. **Domain Skills** — {len(capabilities)} callable skills covering the full e-commerce operating chain:
-   - `ecom-listing` — Listing creation and optimization (Amazon, Shopify, TikTok Shop)
-   - `ecom-advertising` — PPC campaign diagnosis and optimization
-   - `ecom-inventory` — Demand forecasting and replenishment planning
-   - `ecom-compliance` — Compliance checks, HS codes, IP risk screening
-   - `ecom-pricing` — Competitive pricing and profitability analysis
-   - `ecom-research` — Product research and market opportunity discovery
-   - `ecom-applicability` — AI readiness assessment (should I use AI for X?)
-   - `ecom-customer-service` — Review responses, appeals, refund/return support, FAQ, and CS KPIs
+{capability_markdown}
 
 2. **Domain Ontology** — Machine-readable domain model (`ontology.json`):
    - {n_entities} entities with attributes (listing, campaign, inventory, compliance, etc.)
@@ -322,7 +362,7 @@ Only after all three come up empty should you say the package lacks that content
 
 See `integration/` for framework-specific setup guides.
 """
-    (DIST / "SKILL.md").write_text(root_skill)
+    (dist / "SKILL.md").write_text(root_skill)
 
     # 6. README.md — human quickstart
     readme = f"""# OPC E-Commerce AI Infrastructure
@@ -332,7 +372,7 @@ See `integration/` for framework-specific setup guides.
 ## Quick Start (30 seconds)
 
 1. **Point your agent at this directory.** The entry point is `SKILL.md`.
-2. Your agent now has {len(capabilities)} domain skills (listing, advertising, inventory, compliance, pricing, research, applicability, customer-service).
+2. Your agent now has {len(capabilities)} domain skills: {capability_quicklist}.
 3. Ask: *"Help me write an Amazon listing"* — agent routes to `ecom-listing`, loads platform constraints, executes.
 
 ## What's Inside
@@ -346,6 +386,7 @@ See `integration/` for framework-specific setup guides.
 | `knowledge/chapters/` | Full chapter text ({n_body_chars:,} chars) |
 | `skills/` | {len(capabilities)} domain skills with manifests, playbooks, constraints |
 | `integration/` | Framework-specific setup guides |
+| Runtime API | Durable tenant users, approvals, Shopify sync, and Weekly Ops multi-agent runs |
 
 ## How It Works
 
@@ -358,13 +399,41 @@ User: "Help me write a listing"
   → execute, verify with self-check, deliver
 ```
 
+## Multi-Agent Weekly Ops
+
+The authenticated Runtime API can persist a platform-aware `weekly_ops` run,
+execute an evidence analyst plus one specialist per marketplace, add cross-platform
+review when needed, and have a store-manager agent synthesize a structured report.
+Amazon receives its full installed Skill set; the other ontology marketplaces are
+assembled from their Skill manifests. It requires merchant-supplied evidence plus real `OPENAI_API_KEY` and
+`EAI_OPENAI_MODEL` environment configuration. Missing credentials, invalid
+evidence references, and provider failures remain explicit failed states.
+
+The Runtime API also imports bounded CSV/TSV and optional XLSX evidence. Five typed
+Amazon report validators plus `platform_generic` produce durable tenant-owned
+Evidence IDs, explicit field mappings, and content-addressed originals that can be
+referenced by later agent runs without resending the file rows.
+
+An approved read-only Amazon SP-API Reports action can exchange environment-
+referenced LWA credentials, retrieve one completed non-restricted report document,
+and place it into the same Evidence pipeline without persisting Amazon secrets.
+
+Durable worker and scheduler CLI processes add leased execution, bounded retry,
+latest-Evidence selectors, Mission Control polling, and an approval inbox.
+Persisted deterministic Evals grade evidence, platform isolation, task/priority
+shape, owner assignment, and approval-policy regressions.
+
+The installed Runtime serves a packaged Mission Control at `/app`, wired to the
+live Evidence, Run, Job, Schedule, Approval, Evaluation, and Audit APIs. Its API
+key stays in page memory and its catalog is generated by the runtime.
+
 ## For Agent Developers
 
 See `integration/mcp.md` for MCP server setup.
 See each skill's manifest (skills/<skill>/manifest.yaml) for input/output schemas.
 See `knowledge/query_guide.md` for retrieval patterns.
 """
-    (DIST / "README.md").write_text(readme)
+    (dist / "README.md").write_text(readme)
 
     # 7. INTEGRATION.md — framework guide index
     integration_md = """# Integration Guides
@@ -374,6 +443,7 @@ This package is framework-agnostic. Choose your integration path:
 | Framework | Guide | Why |
 |-----------|-------|-----|
 | MCP (Model Context Protocol) | [integration/mcp.md](integration/mcp.md) | Natural fit: resources + prompts + tools |
+| Runtime API | [integration/runtime-api.md](integration/runtime-api.md) | Authenticated persistence, Weekly Ops agents, approvals, and actions |
 | Direct file loading | [integration/mcp-system-prompt.md](integration/mcp-system-prompt.md) | No server needed — load files directly |
 
 ## Which Framework?
@@ -387,10 +457,96 @@ This package is framework-agnostic. Choose your integration path:
 2. Add a system-prompt file with the adapted system prompt
 3. Document any framework-specific routing or tool call format differences
 """
-    (DIST / "INTEGRATION.md").write_text(integration_md)
+    (dist / "INTEGRATION.md").write_text(integration_md)
 
-    print(f"dist/ built: {len(prompts)} prompts, {len(ontology)} ontology files, {len(capabilities)} skills")
+    # 7b. Runtime contract and operational controls.  These are shipped with
+    # the installable artifact so an operator can audit the API/security
+    # boundary without reaching back into the source repository.
+    for rel in ("openapi/runtime-api.yaml", "security/threat-model.md", "operations/runbook.md"):
+        source = ROOT / rel
+        if source.is_file():
+            target = dist / rel
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(source, target)
+
+    # 8. package-manifest.json — runtime completeness and integrity contract.
+    # The MCP server validates this before exposing any capability, so a partial
+    # copy cannot silently start as an empty-but-healthy server.
+    files = {
+        str(path.relative_to(dist)): hashlib.sha256(path.read_bytes()).hexdigest()
+        for path in sorted(dist.rglob("*"))
+        if path.is_file()
+    }
+    package_manifest = {
+        "schema_version": 1,
+        "package_version": PACKAGE_VERSION,
+        "counts": {
+            "chapters": n_chapters,
+            "entities": n_entities,
+            "relations": n_relations,
+            "constraints": n_constraints,
+            "processes": n_processes,
+            "platforms": n_platforms,
+            "prompts": prompt_count,
+            "skills": len(capabilities),
+        },
+        "sha256": files,
+    }
+    (dist / "package-manifest.json").write_text(
+        json.dumps(package_manifest, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+
+    if sync_package and dist.resolve() == DIST.resolve():
+        _sync_installable_package(dist)
+
+    if announce:
+        print(
+            f"dist/ built: {len(prompts)} prompts, {len(ontology)} ontology files, "
+            f"{len(capabilities)} skills"
+        )
     return 0
+
+
+def check_dist() -> int:
+    """Build outside the worktree and compare with the committed artifact."""
+    with tempfile.TemporaryDirectory(prefix="ecommerce-ai-dist-") as tmp:
+        candidate = pathlib.Path(tmp) / "dist"
+        build_dist(candidate, announce=False, sync_package=False)
+        expected = _snapshot(candidate)
+        actual = _snapshot(DIST)
+
+    missing = sorted(expected.keys() - actual.keys())
+    extra = sorted(actual.keys() - expected.keys())
+    changed = sorted(k for k in expected.keys() & actual.keys() if expected[k] != actual[k])
+    if missing or extra or changed:
+        print("dist/ is stale — run: python3 scripts/build_dist.py", file=sys.stderr)
+        for label, paths in (("missing", missing), ("extra", extra), ("changed", changed)):
+            for path in paths[:20]:
+                print(f"  {label}: dist/{path}", file=sys.stderr)
+        return 1
+    package_dist = ROOT / "ecommerce_ai_skills" / "package_data" / "dist"
+    package_snapshot = _snapshot(package_dist)
+    if expected != package_snapshot:
+        print("installable package data is stale — run: python3 scripts/build_dist.py", file=sys.stderr)
+        package_missing = sorted(expected.keys() - package_snapshot.keys())
+        package_extra = sorted(package_snapshot.keys() - expected.keys())
+        package_changed = sorted(k for k in expected.keys() & package_snapshot.keys() if expected[k] != package_snapshot[k])
+        for label, paths in (("missing", package_missing), ("extra", package_extra), ("changed", package_changed)):
+            for path in paths[:20]:
+                print(f"  package {label}: {path}", file=sys.stderr)
+        return 1
+    print(f"dist/ fresh: {len(actual)} files")
+    return 0
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--check", action="store_true", help="compare a temporary rebuild with dist/"
+    )
+    args = parser.parse_args()
+    return check_dist() if args.check else build_dist()
 
 
 if __name__ == "__main__":

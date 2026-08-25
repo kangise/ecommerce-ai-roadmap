@@ -27,6 +27,35 @@ An AI operations knowledge base for cross-border e-commerce. **One source, two u
 - **Read it** — 69 chapters, trilingual, [online site](https://kangise.github.io/ecommerce-ai-skills/) with language switching
 - **Install it for your agent** — [`dist/`](dist/) is a plug-and-play capability package, one MCP config line to Claude / Cursor
 
+The repository also ships an installable runtime package. `pip install .` adds
+the `opc-ecommerce` command for package validation, tenant bootstrap, and the
+authenticated runtime API. See [`integration/runtime-api.md`](integration/runtime-api.md).
+
+The runtime now includes a durable **Weekly Ops Council**: an evidence agent and
+one specialist per target marketplace review real evidence in parallel, followed
+by a cross-platform controller and store manager. Amazon automatically receives
+the installed advertising, listing, inventory, pricing, service, compliance, and
+research capabilities; other marketplaces are assembled from their Skill manifests.
+Every conclusion must cite an input
+source; missing OpenAI credentials or invalid evidence fails explicitly instead
+of producing placeholder results.
+Amazon Business Report, Ads, FBA, returns, and listing CSV/XLSX files can be imported
+once as durable Evidence IDs and reused by the agent team.
+Completed non-restricted SP-API reports can also be downloaded into the same
+Evidence flow after second-actor approval.
+Durable workers and schedules can run against the latest Evidence, while Mission
+Control aggregates approvals, failures, and recent work.
+Completed councils can be graded with persisted Evals for evidence, platform
+isolation, and approval-policy regressions.
+After starting the Runtime, open `/app` for the Amazon-first cross-platform daily
+brief: real Evidence trends, Agent Brief priorities, and human approvals share
+one decision surface, while imports, runs, schedules, and audit stay in dedicated
+workspaces.
+For a product tour, run `opc-ecommerce demo --db
+./commerce-agent-demo.sqlite --port 8788`; the loopback-only browser session
+loads the isolated Demo tenant automatically while keeping the visible `DEMO
+DATA` warning and normal API authentication unchanged.
+
 Both paths are guarded by the same CI gates. **Gates fail, neither ships.**
 
 <br>
@@ -136,12 +165,18 @@ You get a listing with **platform hard constraints** baked in: title ≤200 char
 
 ### 2 · Turn Claude Desktop into an e-commerce consultant (5 minutes)
 
+Install the server dependencies first:
+
+```bash
+python3 -m pip install "ecommerce-ai-skills[mcp]"
+```
+
 ```json
 {
   "mcpServers": {
     "opc-ecommerce": {
-      "command": "npx",
-      "args": ["-y", "mcp-server-filesystem", "/path/to/ecommerce-ai-skills/dist"]
+      "command": "python3",
+      "args": ["/path/to/ecommerce-ai-skills/integration/mcp-server.py", "--dist", "/path/to/ecommerce-ai-skills/dist"]
     }
   }
 }
@@ -176,7 +211,7 @@ When the team asks in the group chat again, just share the link. Or use the `eco
 | Layer | Contents | Scale | For |
 |---|---|---|---|
 | **Knowledge Base** | 69 chapters, trilingual (zh/en/ja) | 69 chapters | Human reading · agent retrieval |
-| **Ontology** | E-commerce domain model | 94 entities · 318 constraints · 78 relations · 8 processes | Shared contract between agents |
+| **Ontology** | E-commerce domain model | 100 entities · 322 constraints · 78 relations · 8 processes | Shared contract between agents |
 | **Skills + Prompts** | Guarded executable capabilities | 878 prompts · 9 installable skills | Agent direct invocation |
 
 `dist/` directory structure:
@@ -195,7 +230,7 @@ dist/
 
 ## Why Trust This Content
 
-Not because "we're careful" — because of **24 CI gates**. Every one must be 0; a non-zero fails the build:
+Not because "we're careful" — because of **42 CI gates**. Every gate must pass or the build stops:
 
 | Gate | What it checks |
 |---|---|

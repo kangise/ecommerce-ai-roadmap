@@ -1,0 +1,84 @@
+description: E-commerce social media content, advertising, and community management
+  across platforms
+inputs:
+- description: Product images, videos, brand assets
+  name: content_assets
+  required: true
+  type: object
+- description: Target social platform
+  name: platform
+  type: enum
+  values:
+  - instagram
+  - youtube
+  - pinterest
+  - tiktok
+  - reddit
+  - whatsapp
+- description: engagement, conversion, awareness, community
+  name: goal
+  required: false
+  type: string
+name: ecom-social
+outputs:
+- description: Platform-optimized content (captions, hashtags, ad copy, visual specs)
+  name: social_content
+  type: object
+platforms:
+- instagram
+- youtube
+- pinterest
+- tiktok
+- reddit
+- whatsapp
+triggers:
+  intent: create_social_content | optimize_social_ads | manage_social_community |
+    cross_channel_strategy
+  keywords:
+  - Instagram
+  - Pinterest
+  - Reddit
+  - TikTok
+  - WhatsApp
+  - YouTube
+  - bio
+  - caption
+  - content
+  - cross-channel
+  - feed
+  - hashtag
+  - influencer
+  - ins
+  - post
+  - reel
+  - reels
+  - short
+  - social media
+  - story
+  - 内容
+  - 发一条
+  - 图片
+  - 小红书
+  - 平台
+  - 抖音
+  - 测评
+  - 社交媒体
+  - 种草
+  - 素人
+  - 素人试用
+  - 红人
+  - 网红
+  - 网红发
+  - 营销
+  - 视频
+  - 请人试用
+  - 跨平台
+  - 达人
+  - 铺内容
+uses_constraints:
+- content.ai_generated.commercial_license
+- eu.ai_act.transparency
+uses_entities:
+- social_post
+- ad_creative
+- campaign

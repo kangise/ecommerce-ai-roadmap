@@ -29,6 +29,23 @@
 - **当书读** — 69 章，从选品到增长，三语完整，[在线站点](https://kangise.github.io/ecommerce-ai-skills/)随时切换语言
 - **给 agent 装** — [`dist/`](dist/) 是即插即用的能力包，MCP Server 一行配置接进 Claude / Cursor
 
+仓库同时提供可安装的运行时包。执行 `pip install .` 后可使用
+`opc-ecommerce` 完成包校验、租户初始化和受保护 Runtime API；详见
+[`integration/runtime-api.md`](integration/runtime-api.md)。
+
+Runtime 现在内置可持久化的 **Weekly Ops Council**：数据证据 Agent 与每个
+目标平台的专属 Agent 并行审查真实证据，再由跨平台 Controller 和店长 Agent
+汇总本周优先事项。Amazon 会自动加载广告、Listing、库存、定价、客服、合规和
+选品等已安装能力；其他平台按各自 Skill manifest 动态装配。每条结论
+必须引用输入数据源；缺少真实 OpenAI 凭证或证据不完整时明确失败，不生成假结果。
+Amazon Business Report、Ads、FBA、退货和 Listing 的 CSV/XLSX 可以先导入为持久化
+Evidence ID，再交给 Agent 团队重复使用。
+已完成的非受限 SP-API Report 也可以在双人审批后自动下载并进入同一 Evidence 流程。
+持久化 Worker 和 Scheduler 可以按最新 Evidence 自动运行周会，Mission Control 汇总待审批、失败和最近任务。
+每次完成的周会都可运行持久化 Evals，检查证据、平台隔离和审批策略是否回归。
+启动 Runtime 后打开 `/app`，即可进入 Amazon-first 跨平台经营简报：真实 Evidence 趋势、Agent Brief、人工审批位于同一决策界面，上传、运行、调度和审计保留在独立工作区。
+产品演示可运行 `opc-ecommerce demo --db ./commerce-agent-demo.sqlite --port 8788`；浏览器会自动加载独立 Demo 租户，UI 持续显示 `DEMO DATA`，普通 API 认证不受影响。
+
 两边由同一套 CI 门禁把关。**门禁不过，两边都发不出去。**
 
 <br>
@@ -95,12 +112,18 @@
 
 ### 2 · 让 Claude Desktop 变成电商顾问（5 分钟）
 
+先安装服务依赖：
+
+```bash
+python3 -m pip install "ecommerce-ai-skills[mcp]"
+```
+
 ```json
 {
   "mcpServers": {
     "opc-ecommerce": {
-      "command": "npx",
-      "args": ["-y", "mcp-server-filesystem", "/path/to/ecommerce-ai-skills/dist"]
+      "command": "python3",
+      "args": ["/path/to/ecommerce-ai-skills/integration/mcp-server.py", "--dist", "/path/to/ecommerce-ai-skills/dist"]
     }
   }
 }
@@ -135,7 +158,7 @@ tiktok_shop.product.title.max_length:   80  字符
 | 层 | 内容 | 规模 | 给谁 |
 |---|---|---|---|
 | **知识库** | 69 章，三语（中/英/日） | 69 章 | 人读 · agent 检索 |
-| **Ontology** | 电商领域模型 | 94 实体 · 318 约束 · 78 关系 · 8 流程 | agent 之间的共享契约 |
+| **Ontology** | 电商领域模型 | 100 实体 · 322 约束 · 78 关系 · 8 流程 | agent 之间的共享契约 |
 | **Skills + Prompts** | 带护栏的可执行能力 | 878 条 Prompt · 9 个可安装 skill | agent 直接调用 |
 
 `dist/` 目录结构：
@@ -154,7 +177,7 @@ dist/
 
 ## 为什么可以信这些内容
 
-不是靠「我们很认真」，是靠 **24 项 CI 门禁**，每一项必须为 0，非零就让部署失败：
+不是靠「我们很认真」，是靠 **42 项 CI 门禁**，每一项必须通过，失败就阻止部署：
 
 | 门禁 | 查什么 |
 |---|---|

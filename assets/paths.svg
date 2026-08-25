@@ -96,7 +96,7 @@
   <text class="who"  x="926" y="276">知识打包成能力</text>
   <text class="goal" x="926" y="304">元受众：方法论</text>
   <line class="rule" x1="926" y1="326" x2="1120" y2="326"/>
-  <text class="step" x="926" y="356">1 · 24 项内容门禁</text>
+  <text class="step" x="926" y="356">1 · 42 项质量门禁</text>
   <text class="step" x="926" y="382">2 · ontology 抽取过程</text>
   <text class="step" x="926" y="408">3 · skill 打包结构</text>
   <text class="mono" x="926" y="448">scripts/verify_all.py</text>

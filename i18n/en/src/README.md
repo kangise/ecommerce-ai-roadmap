@@ -4,7 +4,7 @@
 
 A hands-on AI manual for cross-border e-commerce — 69 chapters covering every step from product research to growth, each with copy-paste prompts.
 
-**This is more than a book.** [`dist/` is a plug-and-play agent capability package](agent/README.md) — a 94-entity domain ontology, 8 installable skills, and an MCP server integration.
+**This is more than a book.** [`dist/` is a plug-and-play agent capability package](agent/README.md) — a 100-entity domain ontology, 9 installable skills, and an MCP server integration.
 
 > 🌐 Every chapter is available in all three languages. Use the language switcher (top right) to jump between 中文 / EN / 日本語 on any page — it keeps you on the same chapter.
 

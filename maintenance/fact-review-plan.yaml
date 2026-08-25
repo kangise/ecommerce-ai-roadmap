@@ -1,0 +1,31 @@
+schema_version: 1
+policy:
+  owner: repository-maintainers
+  source_shelf_life_months: 18
+  review_lead_months: 3
+batches:
+- id: amazon-ads-and-commerce
+  due: 2027-02
+  owner: commerce-domain-maintainers
+  constraint_prefixes: [amazon, google, pricing]
+  content_path_prefixes: [src/a-operators]
+- id: compliance-and-governance
+  due: 2027-05
+  owner: compliance-domain-maintainers
+  constraint_prefixes: [compliance, eu, customs, us, us_ca, de, dg, trademark, ip, ip_risk, sea]
+  content_path_prefixes: [src/0-foundations, src/c-managers]
+- id: marketplace-platforms
+  due: 2027-08
+  owner: platform-domain-maintainers
+  constraint_prefixes: [walmart, shopify, tiktok_shop, temu, shopee, rakuten, ebay, coupang, faire, lazada, aliexpress, mercado_libre, otto, zalando]
+  content_path_prefixes: [src/d-platforms]
+- id: data-and-inventory
+  due: 2027-10
+  owner: data-domain-maintainers
+  constraint_prefixes: [inventory, forecast, content]
+  content_path_prefixes: [src/b-developers]
+- id: evidence-and-social
+  due: 2027-11
+  owner: content-domain-maintainers
+  constraint_prefixes: []
+  content_path_prefixes: [src/e-social-media, src/case-studies, src/resources]

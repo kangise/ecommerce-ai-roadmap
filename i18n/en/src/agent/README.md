@@ -11,8 +11,8 @@
 | 层 | 内容 | 给谁 |
 |---|---|---|
 | 知识库 (src/) | 69 章，三语 | 人读 · agent 检索 |
-| Ontology (ontology/) | 94 实体 · 184 约束 | agent 之间的共享契约 |
-| Skills (skills/) | 8 个可安装 skill · 812 条 Prompt | agent 直接调用 |
+| Ontology (ontology/) | 100 实体 · 322 约束 | agent 之间的共享契约 |
+| Skills (skills/) | 9 个可安装 skill · 878 条 Prompt | agent 直接调用 |
 
 ---
 

@@ -1,0 +1,63 @@
+name: Quality
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    env:
+      MDBOOK_VERSION: "0.5.4"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install project checks
+        run: pip install -r tests/requirements.txt
+
+      - name: Verify optional MCP extra
+        run: pip install ".[mcp]"
+
+      - name: Install mdBook
+        run: |
+          curl -sSL "https://github.com/rust-lang/mdBook/releases/download/v${MDBOOK_VERSION}/mdbook-v${MDBOOK_VERSION}-x86_64-unknown-linux-gnu.tar.gz" \
+            | tar -xz -C /usr/local/bin
+
+      - name: Run automated tests
+        run: python3 -m pytest
+
+      - name: Verify installable wheel contents
+        run: |
+          python3 scripts/build_dist.py --check
+          rm -rf /tmp/ecommerce-ai-wheel /tmp/ecommerce-ai-wheel-install
+          python3 -m pip wheel --no-deps --no-build-isolation -w /tmp/ecommerce-ai-wheel .
+          python3 -m pip install --no-deps --no-index --target /tmp/ecommerce-ai-wheel-install /tmp/ecommerce-ai-wheel/*.whl
+          PYTHONPATH=/tmp/ecommerce-ai-wheel-install /tmp/ecommerce-ai-wheel-install/bin/opc-ecommerce mcp --validate
+
+      - name: Run complete gate suite
+        run: python3 scripts/verify_all.py
+
+      - name: Require changelog for product-content changes
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          changed="$(git diff --name-only "$BASE_SHA" "$HEAD_SHA")"
+          if printf '%s\n' "$changed" | rg -q '^(src|i18n|ontology|skills|integration|notebooks)/'; then
+            printf '%s\n' "$changed" | rg -q '^CHANGELOG.md$' || {
+              echo 'Product/content changes require an Unreleased CHANGELOG entry.'
+              exit 1
+            }
+          fi
+
+      - name: Build all languages
+        run: |
+          mdbook build --dest-dir /tmp/ecommerce-ai-skills/zh
+          mdbook build i18n/en --dest-dir /tmp/ecommerce-ai-skills/en
+          mdbook build i18n/ja --dest-dir /tmp/ecommerce-ai-skills/ja
+          python3 scripts/verify_content.py --anchors-vs-build /tmp/ecommerce-ai-skills/zh

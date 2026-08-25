@@ -65,6 +65,8 @@ __pycache__/
 build/
 develop-eggs/
 dist/
+!dist/
+!dist/**
 downloads/
 eggs/
 .eggs/
@@ -183,6 +185,7 @@ docs/build/
 # Large files that shouldn't be in git
 *.csv
 *.json
+!scripts/link-status.json
 *.xml
 *.xlsx
 *.xls

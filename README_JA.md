@@ -29,6 +29,24 @@
 - **本として読む** — 69 章、選品から成長まで、3 言語で完訳。[オンラインサイト](https://kangise.github.io/ecommerce-ai-skills/) でいつでも言語を切り替えられる
 - **agent にインストール** — [`dist/`](dist/) はプラグ・アンド・プレイの能力パック。MCP Server 一行の設定で Claude / Cursor に接続できる
 
+Python パッケージも提供しています。`pip install .` 後、`opc-ecommerce` で
+パッケージ検証、テナント初期化、認証付き Runtime API を起動できます。
+詳細は [`integration/runtime-api.md`](integration/runtime-api.md) を参照してください。
+
+Runtime には永続化対応の **Weekly Ops Council** も含まれます。証拠検証 Agent と
+対象マーケットプレイスごとの専門 Agent が実データを並列に確認し、クロスプラットフォーム
+Controller と店長 Agent が優先事項を統合します。Amazon には広告、Listing、在庫、価格、
+顧客対応、コンプライアンス、商品調査のインストール済み能力が自動で割り当てられ、
+他のマーケットプレイスは各 Skill manifest から構成されます。すべての結論は入力ソースの引用が必須で、実際の
+OpenAI 認証情報や有効な証拠がなければ、代替結果を生成せず明示的に失敗します。
+Amazon Business Report、広告、FBA、返品、Listing の CSV/XLSX は永続的な Evidence ID
+として一度取り込み、Agent チームから再利用できます。
+完了済みの非制限 SP-API Report も、二者承認後に同じ Evidence フローへ自動取得できます。
+永続 Worker と Scheduler は最新 Evidence で周次レビューを実行し、Mission Control が承認待ち、失敗、最近の処理を集約します。
+完了したレビューは永続 Evals で証拠、プラットフォーム分離、承認ポリシーの回帰を検査できます。
+Runtime 起動後に `/app` を開くと、Amazon-first のクロスプラットフォーム日次ブリーフを利用できます。実 Evidence のトレンド、Agent Brief、人的承認を同じ判断画面に集約し、インポート、実行、スケジュール、監査は専用ワークスペースに分離しています。
+製品デモは `opc-ecommerce demo --db ./commerce-agent-demo.sqlite --port 8788` で起動できます。loopback 専用セッションが独立 Demo テナントを自動読込し、`DEMO DATA` 警告を常時表示します。通常 API の認証は変更されません。
+
 両側は同じ CI ゲートで守られている。**ゲートを通過しなければ、両方ともリリースされない。**
 
 <br>
@@ -134,12 +152,18 @@ AI に「このカテゴリの月間販売数はどれくらい?」と聞けば�
 
 ### 2 · Claude Desktop を EC コンサルタントにする（5 分）
 
+先にサーバー依存関係をインストールする:
+
+```bash
+python3 -m pip install "ecommerce-ai-skills[mcp]"
+```
+
 ```json
 {
   "mcpServers": {
     "opc-ecommerce": {
-      "command": "npx",
-      "args": ["-y", "mcp-server-filesystem", "/path/to/ecommerce-ai-skills/dist"]
+      "command": "python3",
+      "args": ["/path/to/ecommerce-ai-skills/integration/mcp-server.py", "--dist", "/path/to/ecommerce-ai-skills/dist"]
     }
   }
 }
@@ -174,7 +198,7 @@ tiktok_shop.product.title.max_length:   80  文字
 | 層 | 内容 | 規模 | 対象 |
 |---|---|---|---|
 | **知識ベース** | 69 章、3 言語（中/英/日） | 69 章 | 人の読解 · agent 検索 |
-| **Ontology** | E コマース領域モデル | 94 実体 · 318 制約 · 78 関係 · 8 プロセス | agent 間の共有契約 |
+| **Ontology** | E コマース領域モデル | 100 実体 · 322 制約 · 78 関係 · 8 プロセス | agent 間の共有契約 |
 | **Skills + プロンプト** | ガード付きの実行可能能力 | 878 プロンプト · 9 つのインストール可能な skill | agent の直接呼び出し |
 
 `dist/` のディレクトリ構成:
@@ -193,7 +217,7 @@ dist/
 
 ## なぜ信頼できるのか
 
-「真面目にやっています」ではなく、**24 項目の CI ゲート**による。各項目は 0 でなければならず、非ゼロならデプロイが失敗する:
+「真面目にやっています」ではなく、**42 項目の CI ゲート**による。すべて通過しなければデプロイは停止する:
 
 | ゲート | 何をチェックするか |
 |---|---|

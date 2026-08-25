@@ -4,18 +4,23 @@ on:
     - cron: "0 3 * * 1"      # Every Monday 03:00 UTC
   workflow_dispatch:
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   health:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: pip install pyyaml
+      - run: pip install -r tests/requirements.txt
 
       # Re-probe all external links, refresh the cache
       - run: python3 scripts/verify_content.py --probe-links
 
-      # Full gate suite — report only, do not block (blocking is pages.yml's job)
-      - run: python3 scripts/verify_all.py || true
+      # Full gate suite. A broken scheduled check must remain visible.
+      - run: python3 -m pytest
+      - run: python3 scripts/verify_all.py
 
       # Open a PR if anything changed (dead links, probe cache)
       - uses: peter-evans/create-pull-request@v6

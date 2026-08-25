@@ -1,0 +1,1926 @@
+{
+ "http://www.mediadale.com/news/articleView.html?idxno=56862": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://advertising.amazon.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://advertising.amazon.com/API/docs/en-us/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://advertising.amazon.com/API/docs/en-us/docs/en-us": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://advertising.amazon.com/en-ca/library/guides/sponsored-brands-display-ads-moderation": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://advertising.amazon.com/resources/ad-specs/sponsored-brands-video": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://aeoengine.ai/blog/most-recommended-ai-search-visibility-solutions": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://agentskills.io": {
+  "hard_fail": false,
+  "status": 308
+ },
+ "https://ai.google.dev/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://aibusinessweekly.net/p/ai-chatbots-comparison-guide": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://aihaven.com/guides/best-open-source-ai-agent-frameworks-2026": {
+  "hard_fail": false,
+  "status": 308
+ },
+ "https://aijourn.com/amazon-ppc-optimization-tool/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://aimegazine.com/ai-roi-measurement-how-to-calculate-return-on/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://alhena.ai/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://alhena.ai/blog/accuracy-imperative-hallucination-free-ai-ecommerce/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://amazonfba.org/blog/tool-comparisons/best-amazon-listing-optimization-tools": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://amazonfba.org/blog/tool-comparisons/helium-10-vs-jungle-scout": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://andrewkushnerov.medium.com/amazon-sp-api-get-inventory-and-prices-with-python-3226b980bd79": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://andrewkushnerov.medium.com/amazon-sp-api-get-orders-with-python-7b7e913d87ea": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://apac.entrepreneur.com/news-and-trends/how-smart-entrepreneurs-are-cutting-product-photography/501040": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://arxiv.org/abs/1706.03762": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://arxiv.org/abs/2005.11401": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://arxiv.org/abs/2206.07682": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://auto.gluon.ai/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://auto.gluon.ai/stable/tutorials/timeseries/index.html": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://automatetheboringstuff.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://auzmor.com/blog/best-practices-for-implementing-ai-training": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://aws.amazon.com/bedrock/agents/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://aws.amazon.com/blogs/architecture/automating-anomaly-detection-in-ecommerce-traffic-patterns/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://aws.amazon.com/documentation-overview/kiro/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://azariangrowthagency.com/amazon-ads-ai-shopping-assistants-playbook/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://badger.blue/blogs/ecommerce-unpacked/model-context-protocol-mcp-ecommerce": {
+  "hard_fail": false,
+  "status": 429
+ },
+ "https://baregold.ca/resources/advanced-ip-protection-strategies-for-amazon-brands-in-2026": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://baregold.ca/resources/amazon-a10-algorithm-in-2026-the-listing-optimization-playbo": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://bbycroft.net/llm": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://benly.ai/learn/ai-marketing/best-tiktok-ads-tools-2026": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://blackbearmedia.io/model-context-protocol-mcp-servers-for-digital-marketing/": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://blog.anyreach.ai/enterprise-ai-security-a-comprehensive-guide-to-data-protection-and-compliance-in-2025/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://blog.anyreach.ai/how-enterprise-ai-security-ensures-data-protection-and-compliance": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://blog.lueurexterne.com/en/blog/social-commerce-in-2026-how-to-sell-on-instagram-tiktok-pinterest": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://blog.shoppingfeed.com/en-us/otto-marketplace-what-brands-need-to-know-about-germanys-second-largest-platform": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://blog.skyvia.com/best-mcp-servers/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://blog.tedivm.com/guides/2026/03/beyond-the-vibes-coding-assistants-and-agents/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://bluecopa.com/blog/e-commerce-financial-metrics": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://brandregistry.amazon.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://business.adobe.com/customer-success-stories/otto-e-commerce-case-study.html": {
+  "hard_fail": false,
+  "status": "The read operation timed out"
+ },
+ "https://business.feefo.com/en-us/resources/ai-sentiment-analysis-tag-analytics-feefo-customer-insights": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://buttondown.email/ainews": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://calculatecreator.com/blog/tiktok-shop-expansion-2026/": {
+  "hard_fail": false,
+  "status": "EOF occurred in violation of protocol (_ssl.c:1129)"
+ },
+ "https://canopymanagement.com/amazon-ads-mcp-server-ai/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://chatgpt.com/": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://claude.ai/": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://clearadsagency.com/what-is-amazons-mcp-server-and-how-does-it-change-advertising-for-sellers/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://cloud.google.com/ai-platform/docs": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://colab.research.google.com/assets/colab-badge.svg": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://colab.research.google.com/github/kangise/ecommerce-ai-skills/blob/main/notebooks/b1-data-pipeline.ipynb": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://datadome.co/agent-trust-management/agentic-commerce-readiness-checklist/": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://deliveredsocial.com/amazon-advertising-beyond-sponsored-products-dsp-video-and-external-traffic/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://deutsche-recycling.com/blog/ensure-compliance-for-selling-on-otto-marketplace/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://developer-docs.amazon.com/sp-api": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://developer-docs.amazon.com/sp-api/docs/orders-api-v0-reference": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://developer-docs.amazon.com/sp-api/docs/report-type-values": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://developers.google.com/google-ads/api/docs/developer-toolkit/mcp-server": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://developers.google.com/machine-learning/crash-course": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://developers.google.com/optimization": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://docs.aws.amazon.com/wellarchitected/latest/machine-learning-lens/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://docs.crewai.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://docs.llamaindex.ai/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://docs.llamaindex.ai/en/stable/getting_started/starter_example/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://docs.microsoft.com/en-us/azure/architecture/example-scenario/mlops/mlops-maturity-model": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://docs.vllm.ai/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://duckdb.org/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://duckdb.org/2021/05/14/sql-on-pandas.html": {
+  "hard_fail": false,
+  "status": 308
+ },
+ "https://dvc.org/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://ec.europa.eu/safety-gate-alerts/screen/webReport": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://echidna.co/blog/shopify-editions-winter-2026-guide/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://ecommercenews.eu/otto-thrives-thanks-to-24-increase-in-marketplace-sales/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://ecommercenews.eu/ottos-marketplace-is-losing-sellers-and-is-in-crisis/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://ecomposer.io/blogs/tool-software/ai-tiktok-video-generators": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://en.wikipedia.org/wiki/CE_marking": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://euipo.europa.eu/eSearch/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://extmc.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://facebook.github.io/prophet/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://facebook.github.io/prophet/docs/installation.html": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://facebook.github.io/prophet/docs/quick_start.html": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://fastapi.tiangolo.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://fasterthannormal.co/businesses/faire": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://fin.ai/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://finimize.com/content/meli-asset-snapshot": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://framepack.cc/articles/ai-video-tools-comparison-framepack": {
+  "hard_fail": false,
+  "status": 502
+ },
+ "https://futurumgroup.com/insights/amazon-ads-mcp-server-debuts-streamlining-ai-managed-campaign-execution/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://gemini.google.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://gigabrands.ai/blog/lower-acos-negative-targeting": {
+  "hard_fail": false,
+  "status": 308
+ },
+ "https://gist.github.com/boringmarketer/96192770df22ac2a9ff4aed72b4c20f4": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/AgriciDaniel/claude-seo": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/GeLi2001/shopify-mcp": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/Jeffallan/claude-skills": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/MaartenGr/BERTopic": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/MarketplaceAdPros/amazon-ads-mcp-server": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/MobinX/awesome-mcp-list": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/PatrickJS/awesome-cursorrules": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/PipedreamHQ/awesome-mcp-servers": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/QuentinCody/shopify-storefront-mcp-server": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/Significant-Gravitas/AutoGPT": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/UltraInstinct0x/Cursor-Rules": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/ai-boost/awesome-prompts": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/alphatrait/100000-ai-prompts-by-contentifyai": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/aminblm/awesome-chatgpt-content-creation-prompts": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/appcypher/awesome-mcp-servers": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/autogluon/autogluon": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/blefnk/awesome-cursor-rules": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/chroma-core/chroma": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/cjhutto/vaderSentiment": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/coreyhaines31/marketingskills": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/crewAIInc/crewAI": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/dbader/schedule": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/digitalchild/cursor-best-practices": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/dontriskit/awesome-ai-system-prompts": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/duckdb/duckdb": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/explodinggradients/ragas": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/f/awesome-chatgpt-prompts": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/facebook/prophet": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/facebookresearch/faiss": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/ggerganov/llama.cpp": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/goenning/google-indexing-script": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/google/or-tools": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/habitoai/awesome-mcp-servers": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/hangwin/mcp-chrome": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/heilcheng/awesome-agent-skills": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/kangise/ecommerce-ai-skills/issues": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/kostja94/marketing-skills": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/kuudoai/amazon_ads_mcp": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/langchain-ai/langchain": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/langchain-ai/langgraph": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/langgenius/dify": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/levnikolaevich/claude-code-skills": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/microsoft/playwright-python": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/ollama/ollama": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/pgvector/pgvector": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/pydantic/pydantic-ai": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/run-llama/llama_index": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/saleweaver/python-amazon-sp-api": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/sanjeed5/awesome-cursor-rules-mdc": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/scikit-learn/scikit-learn": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/scrapy/scrapy": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/serp-ai/awesome-mcp-servers": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/sloria/TextBlob": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/statsmodels/statsmodels": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/tommyod/awesome-pandas": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/topics/cursorrules": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/travisvn/awesome-claude-skills": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/unit8co/darts": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/unslothai/unsloth": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/vllm-project/vllm": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://github.com/wqhadija/online-marketer-chatgpt-prompts": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://global-selling.mercadolibre.com/landing/about": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://global-selling.mercadolibre.com/landing/how-it-works": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://global-selling.mercadolibre.com/landing/shipping-solutions": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://global-selling.mercadolibre.com/learning-center/news/how-to-ship-your-products-to-latin-america": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://globalsellers.coupang.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://globalsellers.coupang.com/en/meet-a-seller/delivering-japanese-craftsmanship-to-korea-with-heart/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://globalsellers.coupang.com/en/newsroom/sou%E3%83%BBsou-bringing-kyotos-colorful-seasons-to-korea/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://goaura.com/blog/amazon-advertising-strategies": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://goaura.com/blog/amazon-inventory-management": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://goaura.com/blog/improving-your-amazon-ipi-score": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://goaura.com/blog/restockpro": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://goaura.com/blog/the-right-way-to-use-ai-for-your-amazon-business": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://h10-wp.com/helium-10-adtomic/": {
+  "hard_fail": false,
+  "status": 468
+ },
+ "https://hexmos.com/freedevtools/mcp/ecommerce-and-retail/asaricorp--mcp-shopify/": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://hexmos.com/freedevtools/mcp/other-tools-and-integrations/QuentinCody--shopify-storefront-mcp-server/": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://hts.usitc.gov/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://huggingface.co/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://huggingface.co/blog": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://huggingface.co/docs/peft": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://huggingface.co/docs/transformers": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://huggingface.co/learn": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://huggingface.co/learn/agents-course": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://huggingface.co/learn/nlp-course": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://impakter.com/the-2026-playbook-fba-prep-services-ai-forecasting-and-greener-3pl-operations/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://infinitefba.com/amazon-feedback-software-tools/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://influencermarketinghub.com/amazon-ppc-campaign-structure/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://influencermarketinghub.com/tiktok-influencer-marketing-platforms/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://investors.ebayinc.com/investor-news/press-release-details/2026/eBay-Inc--Reports-Fourth-Quarter-and-Full-Year-2025-Results/default.aspx": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://iterathon.tech/blog/rag-systems-production-guide-2025": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://iterathon.tech/blog/tiktok-shop-instagram-shopping-automation-2026": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://iterathon.tech/blog/vector-databases-ai-applications-guide": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://jalammar.github.io/illustrated-transformer/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://japantoday.com/category/tech/google-rakuten-to-provide-new-shopping-service-in-japan-on-youtube": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://keepa.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://keywords.am/blog/amazon-ppc-optimization/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://kolsprite.com/blog/tiktok-creator-collaboration-ai-automation-data-2025": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://krows-digital.com/rakuten-youtube-shopping-japan-2026/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://landing.ai/resources/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://langchain-ai.github.io/langgraph/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://larridin.com/blog/ai-roi-measurement": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://launchfast.ai/": {
+  "hard_fail": false,
+  "status": "_ssl.c:1112: The handshake operation timed out"
+ },
+ "https://learndevrel.com/blog/mcp-vs-a2a": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://learndevrel.com/blog/openclaw-ai-agent-phenomenon": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://learndigital.withgoogle.com/digitalgarage": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://learningconsole.amazonadvertising.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://learnprompting.org/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://legalclarity.org/when-trading-with-more-developed-countries-key-compliance-rules/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://leonardo.ai/": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://lmstudio.ai/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://lobehub.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://lobehub.com/mcp/ajackus-shopify-mcp-server": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://lobehub.com/mcp/cloud9-labs-mcp-shopify": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://lucid.verpackungsregister.org/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://maartengr.github.io/BERTopic/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://maartengr.github.io/BERTopic/getting_started/best_practices/best_practices.html": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://making.lyst.com/lightfm/docs/home.html": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://marketech-apac.com/rakuten-ichiba-taps-google-to-roll-out-youtube-shopping-affiliate-programme-in-japan/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://marketplace-universe.com/aliexpress-europe/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://marketplace-universe.com/entering-germany-beyond-amazon-why-brands-should-look-otto/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://markets.ft.com/data/announce/detail?dockey=600-202603131203DGAP____ORIGRE___rc_24956-1": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://mcplane.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://mcplane.com/mcp_servers/adspirerserver": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://mcpmarket.com/categories/e-commerce-solutions": {
+  "hard_fail": false,
+  "status": 429
+ },
+ "https://mcpmarket.com/categories/marketing-automation": {
+  "hard_fail": false,
+  "status": 429
+ },
+ "https://mcpplaygroundonline.com/blog/google-ads-mcp-claude-automation-guide": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://mcpservers.org/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://mcpservers.org/servers/amekala/ads-mcp": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://md-alberunis-newsletter.beehiiv.com/p/zipchat-ai-ai-powered-sales-chat-for-whatsapp-instagram-email-more-my-appsumo-review": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://menafn.com/1110780399/Sixthshop-Releases-Flagship-Case-Study-Showing-312-Percent-Growth-In-AI-Shopping-Visibility": {
+  "hard_fail": false,
+  "status": 307
+ },
+ "https://mitsloan.mit.edu/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://mixpanel.com/blog/ecommerce-benchmarks-2026/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://mlflow.org/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://mlflow.org/docs/latest/index.html": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://modelcontextprotocol.io/": {
+  "hard_fail": false,
+  "status": 308
+ },
+ "https://momentum.asia/insights/detail/tiktok-shop-in-the-us-2025": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://morpheusmark.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://mpost.io/new-ai-powered-shopping-feature-marks-reddits-first-major-step-toward-community-driven-commerce-integration/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://myaiforce.com/comfyui-product-photography/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://myaiforce.com/flux-replace-background-v4/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://myaiforce.com/product-photography-comfyui-midjourney/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://myamazonguy.com/seo/amazon-seo-in-the-age-of-ai": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://n8n.io/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://nekuda.substack.com/p/whats-your-2026-agentic-commerce": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://neuwark.com/blog/conversational-commerce-2026-ai-replacing-shopping-cart": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://news.europawire.eu/zalando-reports-strong-2025-growth-driven-by-ai-innovation-about-you-integration-and-expanding-fashion-platform/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://nextlevel.global/blog/2025/10/22/japan-ecommerce-marketplace-comparison/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://ollama.com": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://ollama.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://ollama.com/download": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://opascope.com/insights/ai-shopping-assistant-guide-2026-agentic-commerce-protocols/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://open.substack.com/pub/theaicorner1/p/context-engineering-guide-2026": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://openpyxl.readthedocs.io/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://oroinc.com/b2b-ecommerce/blog/agentic-ai-in-commerce/": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://oxylabs.io/blog/how-to-scrape-amazon-reviews": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://pandas.pydata.org/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://patents.google.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://platform.openai.com/": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://platform.openai.com/docs": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://platform.openai.com/docs/guides/prompt-engineering": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://playbooks.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://playwright.dev/python/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://ppc.land/amazons-new-ai-agent-rules-shake-up-sellers-before-march-4-deadline/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://profitpeak.io/au/blog/ecommerce-in-2026-the-shift-from-reporting-to-decision-intelligence": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://promptbuilder.cc/blog/prompt-engineering-best-practices-2026": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://promptgenius.net/cursorrules": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://python-amazon-sp-api.readthedocs.io/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://python.langchain.com/": {
+  "hard_fail": false,
+  "status": 308
+ },
+ "https://qdrant.tech/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://qualimero.com/en/blog/shopify-whatsapp-integration-ai-sales-consultant-guide": {
+  "hard_fail": false,
+  "status": 308
+ },
+ "https://qualimero.com/en/blog/whatsapp-business-account-complete-guide-sales-consulting": {
+  "hard_fail": false,
+  "status": 308
+ },
+ "https://ravecapture.com/playbooks/state-of-ecommerce-reviews-ugc-2026/chapter-9/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://revenuegeeks.com/chatgpt-for-amazon-seller": {
+  "hard_fail": false,
+  "status": 308
+ },
+ "https://robomotion.io/blog/mcp-explained-why-model-context-protocol-matters-in-2026": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://scikit-learn.org/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://scikit-learn.org/stable/supervised_learning.html": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://secureprivacy.ai/blog/ai-risk-compliance-2026": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://segmentstream.com/blog/articles/best-mcp-servers-for-marketers": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://selectedfirms.co/blog/ai-in-ecommerce-inventory-management": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://selectedfirms.co/blog/ai-revenue-forecasting-ecommerce-business": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://sell.amazon.com/tools/a-content": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://sellerapp.com/blog/how-to-respond-to-negative-reviews": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://sellercentral.amazon.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://sellercentral.amazon.com/hz/fba/profitabilitycalculator/index": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://sellercentral.amazon.com/learn": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://sellerise.com/blog/chat-gpt-prompts-to-build-a-winning-amazon-listing/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://selltokorea.com/faq/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://sheets.google.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://shopify.dev/docs/apps/build/devmcp": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://shopify.dev/docs/apps/build/storefront-mcp": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://single-market-economy.ec.europa.eu/single-market/ce-marking_en": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://smartscout.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://socialrails.com/blog/social-media-attribution-modeling": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://softcery.com/lab/top-14-ai-agent-frameworks-of-2025-a-founders-guide-to-building-smarter-systems": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://spacy.io/usage/models": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://sqmagazine.co.uk/social-media-marketing-statistics/": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://stormy.ai/blog/automating-amazon-ads-claude-mcp": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://stormy.ai/blog/ecommerce-ppc-automation-claude-code": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://streamlit.io/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://streamlit.io/cloud": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://techcrunch.com/2026/02/19/reddit-is-testing-a-new-ai-search-feature-for-shopping/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://technative.io/how-to-successfully-upskill-talent-for-ai-integration-in-2025/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://technijian.com/ai/how-to-calculate-roi-on-ai-projects-a-framework-for-enterprise-leaders-in-2026/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://techtrendske.co.ke/2026/03/11/africa-whatsapp-commerce/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://thegrowthminer.com/best-ai-tools-for-shopify-stores-2026/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://thekeyword.webflow.io/news/tiktok-makes-gmv-max-tool-mandatory-for-tiktok-shop-ads": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://tmsearch.uspto.gov/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://topwebsitebuilders.org/blog/ecommerce-profit-reporting-tools/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://tracefuse.ai/blog/amazon-feedback-removal-request-template/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://translate.google.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://trends.google.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://trohub.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://trustworthyshopping.aboutamazon.com/resources": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://tutorialq.com/ai/machine-learning/embeddings-and-vector-databases": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://uk.entrepreneur.com/technology/refurbished-tech-gains-traction-on-temu-as-recommerce/495821": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://unimall.ai/guides/sell-on-otto": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://unit8co.github.io/darts/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://us.entrepreneur.com/growing-a-business/how-to-use-ai-to-grow-your-amazon-sales-rankings-and/499421": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://virtuslab.com/blog/ai/how-to-write-rules-for-ai/": {
+  "hard_fail": false,
+  "status": 308
+ },
+ "https://wearepresta.com/shopify-mcp-server-the-standardized-interface-for-agentic-commerce-2026/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://weaviate.io/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://web.archive.org/web/20260122204219/https://qualimero.com/en/blog/whatsapp-bot-api-guide-ai-sales-service-2025": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://web.archive.org/web/20260216012550/https://b2bridge.io/blog/faire-wholesale-pricing/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://web.archive.org/web/20260307053526/https://feedcast.ai/en/blog/ultimate-guide-to-e-commerce-kpi-dashboards": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://web.archive.org/web/20260412055042/https://www.kontactic.com/blog/how-to-sell-on-coupang-foreign-brand": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://windowsnews.ai/article/amazon-ends-commingling-in-2026-new-barcode-rules-impact-windows-software-hardware-sellers.398059": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://windowsnews.ai/article/microsoft-365-copilot-roi-measuring-ais-true-business-impact-beyond-time-savings.400597": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://windowsnews.ai/article/whatsapp-bans-general-ai-bots-business-api-policy-shift-migration-guide.397847": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://wise.com/us/blog/sell-on-aliexpress": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://worldofcalculator.com/aliexpress-fee-calculator/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.aboutamazon.com/news/innovation-at-amazon/amazon-sellers-canvas-artificial-intelligence": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.accenor.com/blog/The-Complete-ROI-Framework-for-AI-Implementation-From-Cost-Analysis-to-Measurable-Outcomes.html": {
+  "hard_fail": false,
+  "status": "EOF occurred in violation of protocol (_ssl.c:1129)"
+ },
+ "https://www.adgully.com/post/12649/the-end-of-campaign-led-growth-why-ecommerce-leaders-are-rebuilding-around-ai-agents": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.agilesoftlabs.com/blog/2026/03/langchain-vs-crewai-vs-autogen-top-ai": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.ainvest.com/news/coupang-export-platform-scalable-gateway-336-billion-global-market-2602/": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://www.ainvest.com/news/coupang-global-scalability-assessing-tam-tech-moat-growth-investors-2601/": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://www.aipromptlibrary.app/blog/advanced-prompt-engineering-techniques": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.algofy.com/post/best-ai-tools-for-amazon-sellers-in-2026": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.alibaba.com/product-insights/best-aliexpress-alternatives-in-2026-top-platforms-for-global-online-shopping.html": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.alibaba.com/product-insights/dropshipping-hacks-you-need-to-know-in-2026-top-20-best-selling-aliexpress-items-revealed.html": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.amalytix.com/en/blog/analyze-reviews-bertopic/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.amazon.com/bestsellers": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.amazon.com/gp/movers-and-shakers": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.amplework.com/blog/train-your-team-for-ai-adoption/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.anthropic.com/research/building-effective-agents": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.apatero.com/blog/best-prompts-product-photography-ai-generation-2025": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.ashtonpotter.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.autobound.ai/blog/ai-competitor-analysis-tools-for-sales-teams": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.bcg.com/capabilities/artificial-intelligence": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://www.bebolddigital.com/blog/generative-engine-optimization-for-amazon": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.canva.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.canva.com/designschool/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.channelengine.com/en/blog/ecommerce-predictions": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.channelengine.com/en/blog/marketplace-strategy-tips-webinar": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.charleagency.com/articles/agentic-commerce/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.chatai.com/posts/reddit-rolls-out-ai-product-carousels-entering-the-commerce-search-race": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.commercemcp.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.compliancegate.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.contentgrip.com/reddit-ai-shopping-search/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.coursera.org/learn/ai-for-everyone": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.coursera.org/learn/customer-service-fundamentals": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.coursera.org/learn/generative-ai-for-everyone": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.coursera.org/specializations/supply-chain-management": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.coze.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.cpsc.gov/Business--Manufacturing": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://www.cpsc.gov/Recalls": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://www.creator-hero.com/blog/aliexpress-affiliate-program-in-depth-review-pros-and-cons": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.criteo.com/blog/from-sameness-to-standout-the-next-era-of-dtc-brands/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.cxtoday.com/marketing-sales-technology/ai-sales-training-upskilling/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.deepbi.com/blog/13/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.deepbi.com/case/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.deepl.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph/": {
+  "hard_fail": false,
+  "status": 308
+ },
+ "https://www.deeplearning.ai/short-courses/building-agentic-rag-with-llamaindex/": {
+  "hard_fail": false,
+  "status": 308
+ },
+ "https://www.deeplearning.ai/short-courses/building-evaluating-advanced-rag/": {
+  "hard_fail": false,
+  "status": 308
+ },
+ "https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/": {
+  "hard_fail": false,
+  "status": 308
+ },
+ "https://www.deeplearning.ai/short-courses/finetuning-large-language-models/": {
+  "hard_fail": false,
+  "status": 308
+ },
+ "https://www.deeplearning.ai/short-courses/multi-ai-agent-systems-with-crewai/": {
+  "hard_fail": false,
+  "status": 308
+ },
+ "https://www.deeplearning.ai/the-batch/": {
+  "hard_fail": false,
+  "status": 308
+ },
+ "https://www.defenseworld.net/2026/03/14/zalando-q4-earnings-call-highlights.html": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://www.devopsschool.com/blog/top-10-ai-intellectual-property-tools-in-2025-features-pros-cons-comparison/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.ecommercebytes.com/2026/02/18/amazon-sellers-have-2-weeks-to-ensure-compliance-of-tools-they-use/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.ecommercebytes.com/C/blog/blog.pl?/comments/2026/3/1773172578.html": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.edesk.com/blog/ai-tools-ticket-history-ecommerce-support-replies-2026/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.edesk.com/blog/amazon-review-management-sellers/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.edesk.com/blog/manage-amazon-tiktok-shop-one-inbox/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.edesk.com/blog/tools-monitor-respond-negative-product-reviews/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.entrepreneur.com/growing-a-business/how-to-use-ai-to-grow-your-amazon-sales-rankings-and/499421": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.estorefactory.com/blog/amazon-account-suspension-guide-2026/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.estorefactory.com/blog/multi-channel-ecommerce-strategy-2026/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.financialcontent.com/article/finterra-2026-2-27-the-latin-american-flywheel-a-2026-deep-dive-research-feature-on-mercadolibre-meli": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.flyweel.co/blog/top-5-mcps-for-google-meta-ads-in-2026": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.forbes.com/sites/catherineerdly/2025/07/14/ai-is-fueling-a-100-billion-boom-in-social-commerce/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.forecastly.com/": {
+  "hard_fail": false,
+  "status": "_ssl.c:1112: The handshake operation timed out"
+ },
+ "https://www.freecodecamp.org/news/how-to-guide-ai-with-rules-and-tests/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.getmesa.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.getmesa.com/blog/mcp-automation/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.helium10.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.hexmos.com/freedevtools/mcp/": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://www.hyperfx.ai/blog/meta-ads-mcp-guide-ai-advertising-agents": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.intentwise.com/blog/amazon-ai/explained-what-is-the-amazon-mcp/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.intertek.com/": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://www.inventorylab.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.irisfinance.co/products/finances": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.junglescout.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.kaggle.com/learn/intro-to-machine-learning": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.kaggle.com/learn/pandas": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.kaggle.com/learn/time-series": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.kiteworks.com/cybersecurity-risk-management/ai-regulation-2026-business-compliance-guide/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.kubeflow.org/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.latenode.com/blog/integration-api-management/whatsapp-business-api/how-to-design-and-build-a-whatsapp-chatbot-using-api": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.level.agency/perspectives/reddit-marketing-strategy/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.madgicx.com/blog/ai-driven-advertising-for-shopify-stores": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.marketbeat.com/instant-alerts/coupang-q4-earnings-call-highlights-2026-02-27/": {
+  "hard_fail": false,
+  "status": "The read operation timed out"
+ },
+ "https://www.maxmerce.com/blog/amazon-ppc-acos-optimization-reduce-costs-boost-ro/": {
+  "hard_fail": false,
+  "status": 500
+ },
+ "https://www.maxmerce.com/blog/how-to-improve-amazon-ppc-performance-campaign-opt/": {
+  "hard_fail": false,
+  "status": 500
+ },
+ "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai": {
+  "hard_fail": false,
+  "status": "The read operation timed out"
+ },
+ "https://www.mdpi.com/0718-1876/19/4/170": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://www.mdpi.com/1999-5903/18/3/138": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://www.midjourney.com/": {
+  "hard_fail": false,
+  "status": "[SSL: TLSV1_ALERT_PROTOCOL_VERSION] tlsv1 alert protocol ver"
+ },
+ "https://www.modernretail.co/technology/brands-at-etail-palm-springs-share-lessons-on-the-messy-middle-of-building-ai-tools/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.mtechzilla.com/guides/how-to-develop-skill-md-production-guide-engineering-teams": {
+  "hard_fail": false,
+  "status": 308
+ },
+ "https://www.netguru.com/blog/ecommerce-digital-transformation": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.omnisend.com/blog/shopify-ai-tools/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.onely.com/blog/geo-for-ecommerce-how-to-boost-product-visibility-in-ai-search/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.otto.market/en/faq/faq.html": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.perplexity.ai/": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://www.pinecone.io/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.prefixbox.com/blog/guide-to-generative-engine-optimization/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.pwc.com/gx/en/issues/data-and-analytics/publications/artificial-intelligence-study.html": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.retailtouchpoints.com/features/how-amazons-anti-counterfeit-unit-keeps-fake-products-off-its-site/141899/": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://www.ringly.io/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.salesmartly.com/en/blog/docs/ai-chatbot-ecommerce-2026-platforms-comparison": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.sbert.net/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.scrapingbee.com/blog/how-to-scrape-amazon-reviews/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.sellerapp.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.sellersprite.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.sgs.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.shopify.com/audiences": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.shopify.com/blog": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.shopify.com/enterprise/blog/agentic-ready-product-data": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.shopify.com/enterprise/blog/generative-engine-optimization": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.shopify.com/hk-en/enterprise/blog/ai-roi": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.shopify.com/learn": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.shopify.com/magic": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.shopify.com/news/winter-26-edition-merchant": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.shopify.com/sg/blog/ai-ecommerce": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.shopify.dev/docs/apps/build/storefront-mcp/servers/storefront": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.similarweb.com/blog/marketing/marketing-strategy/8-best-competitor-analysis-tools-in-2023/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.smoothed.io/blog/faire-account-settings-that-drive-sales": {
+  "hard_fail": false,
+  "status": 308
+ },
+ "https://www.socialchamp.com/blog/ecommerce-social-media-strategy/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.sostocked.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.sourceapproach.com/chatgpt-for-amazon-sellers/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.spglobal.com/": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://www.squadbase.dev/blog/showcase-streamlit-bi-dashboard-with-google-analytics-and-e-commerce": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.storyboard18.com/digital/agentic-commerce-is-becoming-the-new-operating-system-for-e-commerce-report-reveals-90936.htm": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.taskade.com/blog/mcp-your-ai-agents-superpower-for-real-world-context-and-automation": {
+  "hard_fail": false,
+  "status": 308
+ },
+ "https://www.theregister.com/2026/03/09/ai_negative_reviews/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.theretailbulletin.com/fashion/zalando-performance-boosted-by-ai-innovations-12-03-2026/": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://www.thoughtspot.com/data-trends/ecommerce-kpis-metrics": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.trendos.io/blog/ecommerce-competitive-intelligence-guide": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.trendos.io/blog/ecommerce-competitive-intelligence-tools-2026": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.triplewhale.com/blog/cross-channel-attribution": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.trychroma.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.tuv.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.valueaddedresource.net/ebay-ai-magical-listing-revisited/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.valueaddedresource.net/ebay-ai-suggested-item-specifics/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.valueaddedresource.net/ebay-marketing-update-video-ads-item-compare/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.valueaddedresource.net/ebay-promoted-listings-ad-attribution-update-fallout/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.valueaddedresource.net/ebay-promoted-stores-priority-ads-overspending-daily-budgets/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.voc.ai/blog/best-amazon-competitor-analysis-tools": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.voc.ai/blog/best-amazon-listing-optimization-tools": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.voc.ai/blog/best-amazon-product-research-tools": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.wcoomd.org/en/topics/nomenclature/instrument-and-tools/hs-nomenclature-2022-edition.aspx": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.webgility.com/blog/future-of-ecommerce": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.workmate.com/blog/measuring-roi-for-ai-initiatives-frameworks-and-examples": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.yottaa.com/mcp-server-announcement-2026/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.youtube.com/watch?v=bZQun8Y4L2A": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.youtube.com/watch?v=wjZofJX0v4M": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.youtube.com/watch?v=zjkBMFhNj_g": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.zonguru.com/blog/amazon-seo-guide": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.zonguru.com/blog/optimize-amazon-listings-with-chatgpt-guide": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.zonguru.com/blog/what-is-amazon-cosmo": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.zyg.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://ztabs.co/blog/rag-architecture-guide": {
+  "hard_fail": false,
+  "status": 200
+ }
+}

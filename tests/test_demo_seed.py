@@ -1,0 +1,170 @@
+from __future__ import annotations
+
+import json
+import sqlite3
+import subprocess
+import sys
+from email.message import Message
+from pathlib import Path
+
+import pytest
+
+from ecommerce_ai_skills.demo_seed import open_demo_runtime, seed_demo_database
+from ecommerce_ai_skills.runtime.api import RuntimeApplication, _Handler
+from ecommerce_ai_skills.runtime.errors import ValidationError
+from ecommerce_ai_skills.runtime.storage import Database
+
+
+def test_demo_seed_creates_isolated_visible_full_product_state(tmp_path: Path) -> None:
+    path = tmp_path / "demo.sqlite"
+    result = seed_demo_database(path)
+    assert result["warning"].startswith("DEMO DATA ONLY")
+    assert result["tenant_mode"] == "demo"
+    assert result["evidence_imports"] == 10
+    assert result["approval_actions"] == 2
+    assert result["job_status"] == "succeeded"
+
+    app = RuntimeApplication(Database(path))
+    reviewer = app.auth.authenticate(result["reviewer_api_key"])
+    owner = app.auth.authenticate(result["owner_api_key"])
+    assert reviewer.role == "admin"
+    assert owner.role == "owner"
+    assert app.db.get_tenant(reviewer.tenant_id)["mode"] == "demo"
+
+    class MeHandler(_Handler):
+        def __init__(self):
+            self.path = "/v1/me"
+            self.headers = Message()
+            self.headers["Authorization"] = f"Bearer {result['reviewer_api_key']}"
+            self.out = None
+
+        @property
+        def app(self):
+            return app
+
+        def _json(self, status, value, request_id, **kwargs):
+            self.out = (status, value)
+
+    me = MeHandler()
+    me.do_GET()
+    assert me.out[0] == 200
+    assert me.out[1]["tenant_mode"] == "demo"
+    assert me.out[1]["tenant_name"] == "Commerce Agent OS Demo"
+
+    briefing = app.briefing.get(reviewer, "amazon")
+    assert len(briefing["metrics"]) >= 4
+    assert len(briefing["metrics"][0]["series"]) == 7
+    assert len(briefing["priorities"]) == 3
+    assert len(briefing["approvals"]) == 2
+    assert len(briefing["agents"]) >= 5
+    assert app.jobs.list(reviewer)[0]["status"] == "succeeded"
+    assert len(app.schedules.list(reviewer)) == 1
+    evaluations = app.evaluator.list(reviewer, result["agent_run_id"])
+    assert evaluations[0]["passed"] is True
+    assert any(event["action"] == "demo.seed" for event in app.db.list_audit(reviewer.tenant_id))
+
+
+def test_demo_seed_refuses_every_existing_database_path(tmp_path: Path) -> None:
+    path = tmp_path / "existing.sqlite"
+    path.write_bytes(b"do-not-overwrite")
+    with pytest.raises(ValidationError, match="new database path"):
+        seed_demo_database(path)
+    assert path.read_bytes() == b"do-not-overwrite"
+
+
+def test_production_tenant_is_default_and_mode_is_validated(tmp_path: Path) -> None:
+    db = Database(tmp_path / "runtime.sqlite")
+    tenant_id, _ = db.create_tenant("Production", "owner@example.com")
+    assert db.get_tenant(tenant_id)["mode"] == "production"
+    with pytest.raises(ValidationError, match="tenant mode"):
+        db.create_tenant("Invalid", "owner@example.com", mode="fixture")
+
+
+def test_schema_v9_migrates_existing_tenants_to_production_mode(tmp_path: Path) -> None:
+    path = tmp_path / "v9.sqlite"
+    with sqlite3.connect(path) as connection:
+        connection.executescript(
+            """
+            CREATE TABLE tenants(id TEXT PRIMARY KEY,name TEXT NOT NULL,created_at TEXT NOT NULL);
+            INSERT INTO tenants(id,name,created_at) VALUES('tenant-1','Existing','2026-08-22T00:00:00+00:00');
+            CREATE TABLE runtime_meta(key TEXT PRIMARY KEY,value TEXT NOT NULL);
+            INSERT INTO runtime_meta(key,value) VALUES('schema_version','9');
+            """
+        )
+    db = Database(path)
+    assert db.readiness()["schema_version"] == 10
+    assert db.get_tenant("tenant-1")["mode"] == "production"
+
+
+def test_demo_seed_cli_prints_one_time_connection_payload(tmp_path: Path) -> None:
+    path = tmp_path / "cli-demo.sqlite"
+    result = subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "ecommerce_ai_skills.cli",
+            "demo-seed",
+            "--db",
+            str(path),
+        ],
+        cwd=Path(__file__).resolve().parents[1],
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    assert result.returncode == 0, result.stderr
+    payload = json.loads(result.stdout)
+    assert payload["database"] == str(path.resolve())
+    assert payload["tenant_mode"] == "demo"
+    assert payload["reviewer_api_key"].startswith("eai_")
+
+
+def test_demo_runtime_exposes_session_only_for_explicit_demo_app(tmp_path: Path) -> None:
+    production = RuntimeApplication(Database(tmp_path / "production.sqlite"))
+    production.bootstrap("Production", "owner@example.com")
+    demo = open_demo_runtime(tmp_path / "auto-demo.sqlite")
+
+    class SessionHandler(_Handler):
+        def __init__(self, app):
+            self._app = app
+            self.path = "/v1/demo-session"
+            self.headers = Message()
+            self.out = None
+
+        @property
+        def app(self):
+            return self._app
+
+        def _json(self, status, value, request_id, **kwargs):
+            self.out = (status, value, kwargs)
+
+    production_session = SessionHandler(production)
+    production_session.do_GET()
+    assert production_session.out[0] == 404
+
+    demo_session = SessionHandler(demo)
+    demo_session.do_GET()
+    assert demo_session.out[0] == 200
+    assert demo_session.out[1]["tenant_mode"] == "demo"
+    assert demo_session.out[1]["api_key"].startswith("eai_")
+    assert demo_session.out[2]["extra_headers"]["Cache-Control"] == "no-store"
+
+
+def test_demo_runtime_rejects_production_or_multi_tenant_database(tmp_path: Path) -> None:
+    path = tmp_path / "wrong.sqlite"
+    db = Database(path)
+    db.create_tenant("Production", "owner@example.com")
+    with pytest.raises(ValidationError, match="exactly one Demo tenant"):
+        open_demo_runtime(path)
+
+
+def test_demo_cli_is_discoverable() -> None:
+    result = subprocess.run(
+        [sys.executable, "-m", "ecommerce_ai_skills.cli", "demo", "--help"],
+        cwd=Path(__file__).resolve().parents[1],
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    assert result.returncode == 0
+    assert "automatic loopback-only UI access" in result.stdout

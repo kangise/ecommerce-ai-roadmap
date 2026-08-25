@@ -958,6 +958,54 @@
     ja: スポンサーブランド見出しは 50 文字まで。超過は切り捨てられる
   source: src/a-operators/a3-advertising.md#32-广告文案-ab-测试
   verified: 2026-08
+- id: amazon.sponsored_brand.video.autoplay_muted
+  entity: sponsored_brand
+  attribute: audio
+  platform: amazon
+  kind: required
+  value: autoplay_muted
+  statement:
+    zh: Sponsored Brands Video 默认自动静音播放，用户可主动打开声音
+    en: Sponsored Brands Video autoplays muted; shoppers can choose to enable audio
+    ja: スポンサーブランド動画は自動的にミュート再生され、利用者が音声を有効にできる
+  source: src/a-operators/a3-advertising.md#sponsored-brands-video-官方字幕与静音规则
+  verified: 2026-08
+- id: amazon.sponsored_brand.video.captions_for_audio_dependent_content
+  entity: sponsored_brand
+  attribute: captions
+  platform: amazon
+  kind: format
+  value: recommended_when_meaning_depends_on_audio
+  statement:
+    zh: 视频应在无声状态下仍可理解；依赖旁白的关键信息建议使用屏幕文字或字幕呈现
+    en: Video should remain understandable without sound; use on-screen text or captions when key meaning depends on narration
+    ja: 無音でも理解できる動画にし、ナレーションに依存する重要情報には画面テキストまたは字幕を使用する
+  source: src/a-operators/a3-advertising.md#sponsored-brands-video-官方字幕与静音规则
+  verified: 2026-08
+- id: amazon.sponsored_brand.video.locale_language
+  entity: sponsored_brand
+  attribute: language
+  platform: amazon
+  kind: required
+  value: marketplace_primary_language
+  statement:
+    zh: 视频文字和音频应使用投放站点的主要语言；跨站投放应制作本地语言版本或字幕
+    en: Video text and audio should use the marketplace's primary language; localize versions or subtitles for other marketplaces
+    ja: 動画の文字と音声は出稿先の主要言語を使用し、他マーケット向けには現地語版または字幕を用意する
+  source: src/a-operators/a3-advertising.md#sponsored-brands-video-官方字幕与静音规则
+  verified: 2026-08
+- id: amazon.sponsored_brand.video.lower_right_safe_area
+  entity: sponsored_brand
+  attribute: text_placement
+  platform: amazon
+  kind: forbidden
+  value: lower_right_volume_control_area
+  statement:
+    zh: 字幕、产品披露和说明不要放在视频右下角，以免遮挡音量按钮；应用 Video Safe Zone 模板检查
+    en: Keep subtitles, disclosures, and instructions out of the lower-right volume-control area and verify with the Video Safe Zone template
+    ja: 字幕・開示・説明は右下の音量ボタン領域を避け、Video Safe Zone テンプレートで確認する
+  source: src/a-operators/a3-advertising.md#sponsored-brands-video-官方字幕与静音规则
+  verified: 2026-08
 - id: google.search_ad.headline_max_length
   entity: ad
   attribute: headline

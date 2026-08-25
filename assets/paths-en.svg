@@ -96,7 +96,7 @@
   <text class="who"  x="926" y="276">pack knowledge into skills</text>
   <text class="goal" x="926" y="304">Meta audience: methodology</text>
   <line class="rule" x1="926" y1="326" x2="1120" y2="326"/>
-  <text class="step" x="926" y="356">1 · The 24 content gates</text>
+  <text class="step" x="926" y="356">1 · The 42 quality gates</text>
   <text class="step" x="926" y="382">2 · Ontology extraction</text>
   <text class="step" x="926" y="408">3 · Skill packaging structure</text>
   <text class="mono" x="926" y="448">scripts/verify_all.py</text>

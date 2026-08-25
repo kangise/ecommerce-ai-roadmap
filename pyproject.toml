@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ecommerce-ai-skills"
+version = "1.2.0"
+description = "Trilingual e-commerce knowledge, skills, ontology, MCP, and multi-agent runtime"
+readme = "README_EN.md"
+requires-python = ">=3.10"
+license = { text = "CC0-1.0" }
+dependencies = [
+  "PyYAML>=6,<7",
+  "tomli>=2,<3; python_version < '3.11'",
+]
+
+[project.scripts]
+opc-ecommerce = "ecommerce_ai_skills.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["ecommerce_ai_skills*"]
+
+[tool.setuptools.package-data]
+ecommerce_ai_skills = [
+  "package_data/dist/**/*",
+  "package_data/dist/**",
+  "runtime/web/*",
+  "runtime/web/assets/brands/*",
+  "runtime/web/assets/icons/*",
+  "runtime/web/assets/licenses/*",
+]
+
+[project.optional-dependencies]
+mcp = [
+  "mcp>=1.28,<2",
+]
+xlsx = [
+  "openpyxl>=3.1,<4",
+]
+dev = [
+  "pytest>=8,<9",
+  "openpyxl>=3.1,<4",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

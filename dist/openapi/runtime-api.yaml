@@ -1,0 +1,1393 @@
+openapi: 3.0.3
+info:
+  title: E-commerce AI Runtime API
+  version: 1.2.0
+  description: Tenant-scoped users, persistence, approval, audit, and connector boundary.
+servers:
+  - url: http://127.0.0.1:8787
+security:
+  - bearerAuth: []
+paths:
+  /healthz:
+    get:
+      summary: Check process liveness
+      security: []
+      responses:
+        '200':
+          description: Healthy
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Health'}
+  /readyz:
+    get:
+      summary: Check database and schema readiness
+      security: []
+      responses:
+        '200':
+          description: Database schema ready
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Readiness'}
+        '503':
+          description: Database not ready
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Readiness'}
+  /v1/demo-session:
+    get:
+      summary: Bootstrap the loopback-only explicit Demo UI session
+      description: Available only when the separate `demo` CLI starts a database containing exactly one Demo tenant. Normal Runtime API processes return 404.
+      security: []
+      responses:
+        '200':
+          description: Temporary Demo key kept in page memory and revoked when the Demo server stops
+          headers:
+            Cache-Control: {schema: {type: string, enum: [no-store]}}
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/DemoSession'}
+        '404': {$ref: '#/components/responses/NotFound'}
+  /v1/me:
+    get:
+      summary: Read the authenticated principal
+      responses:
+        '200':
+          description: Authenticated principal
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Principal'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+  /v1/users:
+    get:
+      summary: List users owned by the authenticated tenant
+      responses:
+        '200':
+          description: Tenant users without API-key material
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [users]
+                properties:
+                  users:
+                    type: array
+                    items: {$ref: '#/components/schemas/User'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+    post:
+      summary: Create a tenant user
+      description: Admins may assign roles up to admin; only an owner may assign owner.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/UserCreate'}
+      responses:
+        '201':
+          description: User created
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/UserEnvelope'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+  /v1/users/{userId}:
+    patch:
+      summary: Change a tenant user's role
+      description: Self-role changes and last-owner demotion are rejected.
+      parameters:
+        - {$ref: '#/components/parameters/userId'}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/UserRoleUpdate'}
+      responses:
+        '200':
+          description: Role updated
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/UserEnvelope'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+  /v1/api-keys:
+    get:
+      summary: List tenant API-key metadata
+      responses:
+        '200':
+          description: Key metadata without secrets or hashes
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [keys]
+                properties:
+                  keys:
+                    type: array
+                    items: {$ref: '#/components/schemas/ApiKeyMetadata'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+    post:
+      summary: Issue a one-time API key for a tenant user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [user_id]
+              properties:
+                user_id: {type: string, format: uuid}
+      responses:
+        '201':
+          description: One-time API key; the clear value is never returned again
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/ApiKeyIssued'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+  /v1/api-keys/rotate:
+    post:
+      summary: Rotate the current caller's API key
+      responses:
+        '200':
+          description: Replacement one-time API key
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [api_key]
+                properties:
+                  api_key: {type: string, writeOnly: true}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+  /v1/api-keys/{keyId}/revoke:
+    post:
+      summary: Revoke a tenant API key
+      parameters:
+        - {$ref: '#/components/parameters/keyId'}
+      responses:
+        '200':
+          description: Key revoked
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [revoked, key_id]
+                properties:
+                  revoked: {type: boolean, enum: [true]}
+                  key_id: {type: string, format: uuid}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+  /v1/connectors:
+    post:
+      summary: Register non-secret connector metadata
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/ConnectorRegistration'}
+      responses:
+        '201':
+          description: Connector account created
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [id]
+                properties:
+                  id: {type: string, format: uuid}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+  /v1/actions:
+    post:
+      summary: Request an idempotent action
+      parameters:
+        - in: header
+          name: Idempotency-Key
+          required: true
+          schema: {type: string, maxLength: 200}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/ActionRequest'}
+      responses:
+        '200':
+          description: Existing idempotent action or newly requested action
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Action'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+        '429': {$ref: '#/components/responses/RateLimited'}
+  /v1/actions/{actionId}/approve:
+    post:
+      summary: Approve a requested action as a second actor
+      parameters:
+        - {$ref: '#/components/parameters/actionId'}
+      responses:
+        '200':
+          description: Approved action
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Action'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+  /v1/actions/{actionId}/execute:
+    post:
+      summary: Execute an approved action
+      parameters:
+        - {$ref: '#/components/parameters/actionId'}
+      responses:
+        '200':
+          description: Executed action
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Action'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '502': {$ref: '#/components/responses/ConnectorFailed'}
+  /v1/actions/{actionId}/retry:
+    post:
+      summary: Re-queue a failed or expired execution without bypassing approval
+      parameters:
+        - {$ref: '#/components/parameters/actionId'}
+      responses:
+        '200':
+          description: Action returned to approved state
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Action'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+  /v1/evidence-imports:
+    get:
+      summary: List tenant-owned CSV evidence imports
+      parameters:
+        - in: query
+          name: limit
+          schema: {type: integer, minimum: 1, maximum: 200, default: 100}
+      responses:
+        '200':
+          description: Import metadata without stored rows
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [imports]
+                properties:
+                  imports:
+                    type: array
+                    items: {$ref: '#/components/schemas/EvidenceImport'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+    post:
+      summary: Parse and persist real marketplace CSV evidence
+      description: Amazon typed reports receive semantic column validation; platform_generic accepts any ontology marketplace.
+      parameters:
+        - in: header
+          name: Idempotency-Key
+          required: true
+          schema: {type: string, maxLength: 200}
+        - in: header
+          name: X-Evidence-Platform
+          required: true
+          schema: {$ref: '#/components/schemas/MarketplaceId'}
+        - in: header
+          name: X-Evidence-Type
+          required: true
+          schema: {$ref: '#/components/schemas/EvidenceReportType'}
+        - in: header
+          name: X-Evidence-Filename
+          required: true
+          schema: {type: string, maxLength: 200}
+        - in: header
+          name: X-Evidence-Observed-At
+          required: true
+          schema: {type: string, format: date-time}
+        - in: header
+          name: X-Evidence-Sheet
+          required: false
+          description: Optional worksheet name for XLSX; defaults to the active sheet.
+          schema: {type: string}
+      requestBody:
+        required: true
+        content:
+          text/csv:
+            schema: {type: string, format: binary}
+          text/tab-separated-values:
+            schema: {type: string, format: binary}
+          application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+            schema: {type: string, format: binary}
+      responses:
+        '200':
+          description: Persisted evidence-import metadata; parsed rows remain server-side
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/EvidenceImport'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+        '429': {$ref: '#/components/responses/RateLimited'}
+  /v1/evidence-imports/{importId}:
+    get:
+      summary: Read tenant-owned evidence-import metadata
+      parameters:
+        - {$ref: '#/components/parameters/importId'}
+      responses:
+        '200':
+          description: Evidence-import metadata without stored rows
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/EvidenceImport'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+  /v1/agent-runs:
+    get:
+      summary: List tenant-owned multi-agent workflow runs
+      parameters:
+        - in: query
+          name: limit
+          schema: {type: integer, minimum: 1, maximum: 200, default: 50}
+      responses:
+        '200':
+          description: Agent-run summaries; evidence bodies are omitted
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [runs]
+                properties:
+                  runs:
+                    type: array
+                    items: {$ref: '#/components/schemas/AgentRun'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+    post:
+      summary: Create an idempotent Weekly Ops Council run
+      description: Persists user-supplied real evidence but does not call a model until execute.
+      parameters:
+        - in: header
+          name: Idempotency-Key
+          required: true
+          schema: {type: string, maxLength: 200}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/AgentRunRequest'}
+      responses:
+        '200':
+          description: Existing idempotent run or newly requested run
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/AgentRun'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+        '429': {$ref: '#/components/responses/RateLimited'}
+  /v1/agent-runs/{runId}:
+    get:
+      summary: Read a tenant-owned run with tasks, artifacts, and events
+      parameters:
+        - {$ref: '#/components/parameters/runId'}
+      responses:
+        '200':
+          description: Complete durable workflow state
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/AgentRunBundle'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+  /v1/agent-runs/{runId}/events:
+    get:
+      summary: Read an incremental event page for a run
+      parameters:
+        - {$ref: '#/components/parameters/runId'}
+        - in: query
+          name: after
+          schema: {type: string, pattern: '^[0-9]+$'}
+          description: SQLite event sequence cursor returned as next_cursor
+        - in: query
+          name: limit
+          schema: {type: integer, minimum: 1, maximum: 500, default: 100}
+      responses:
+        '200':
+          description: Tenant-scoped event page
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [events, next_cursor]
+                properties:
+                  events:
+                    type: array
+                    items: {$ref: '#/components/schemas/AgentEvent'}
+                  next_cursor: {type: string, nullable: true}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+  /v1/agent-runs/{runId}/execute:
+    post:
+      summary: Run three specialists in parallel and synthesize their findings
+      description: Requires OPENAI_API_KEY and EAI_OPENAI_MODEL in the server environment.
+      parameters:
+        - {$ref: '#/components/parameters/runId'}
+      responses:
+        '200':
+          description: Completed run, or the existing result for an already completed run
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/AgentRunBundle'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '502': {$ref: '#/components/responses/ConnectorFailed'}
+  /v1/agent-runs/{runId}/evaluate:
+    post:
+      summary: Evaluate a completed Weekly Ops run with deterministic graders
+      parameters:
+        - {$ref: '#/components/parameters/runId'}
+      responses:
+        '200':
+          description: Persisted workflow evaluation
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/AgentEvaluation'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+  /v1/agent-runs/{runId}/evaluations:
+    get:
+      summary: List persisted evaluations for a run
+      parameters:
+        - {$ref: '#/components/parameters/runId'}
+      responses:
+        '200':
+          description: Workflow evaluations
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [evaluations]
+                properties:
+                  evaluations:
+                    type: array
+                    items: {$ref: '#/components/schemas/AgentEvaluation'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+  /v1/jobs:
+    get:
+      summary: List tenant-owned durable jobs
+      parameters:
+        - in: query
+          name: limit
+          schema: {type: integer, minimum: 1, maximum: 200, default: 100}
+      responses:
+        '200':
+          description: Durable jobs
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [jobs]
+                properties:
+                  jobs: {type: array, items: {$ref: '#/components/schemas/Job'}}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+    post:
+      summary: Enqueue an agent run for background execution
+      parameters:
+        - in: header
+          name: Idempotency-Key
+          required: true
+          schema: {type: string, maxLength: 200}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/JobRequest'}
+      responses:
+        '200':
+          description: Existing or new durable job
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Job'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+  /v1/jobs/{jobId}:
+    get:
+      summary: Read one tenant-owned durable job
+      parameters:
+        - {$ref: '#/components/parameters/jobId'}
+      responses:
+        '200':
+          description: Durable job
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Job'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+  /v1/schedules:
+    get:
+      summary: List tenant-owned interval schedules
+      responses:
+        '200':
+          description: Schedules
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [schedules]
+                properties:
+                  schedules: {type: array, items: {$ref: '#/components/schemas/Schedule'}}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+    post:
+      summary: Schedule repeated Weekly Ops runs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/ScheduleCreate'}
+      responses:
+        '201':
+          description: Schedule created
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Schedule'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+  /v1/schedules/{scheduleId}:
+    patch:
+      summary: Enable or disable a schedule
+      parameters:
+        - {$ref: '#/components/parameters/scheduleId'}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [enabled]
+              properties:
+                enabled: {type: boolean}
+      responses:
+        '200':
+          description: Updated schedule
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Schedule'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+  /v1/approvals:
+    get:
+      summary: List requested actions awaiting a second actor
+      responses:
+        '200':
+          description: Approval inbox
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [actions]
+                properties:
+                  actions: {type: array, items: {$ref: '#/components/schemas/Action'}}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+  /v1/mission-control:
+    get:
+      summary: Read a tenant's operational control-plane snapshot
+      responses:
+        '200':
+          description: Real persisted counts, attention queues, recent runs, and schedules
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/MissionControl'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+  /v1/briefing:
+    get:
+      summary: Read an evidence-backed operating brief for one marketplace
+      description: Metrics are calculated only from recognized fields in tenant-owned Evidence; priorities and agent state come from persisted Weekly Ops runs.
+      parameters:
+        - in: query
+          name: platform
+          required: false
+          schema:
+            allOf: [{$ref: '#/components/schemas/MarketplaceId'}]
+            default: amazon
+      responses:
+        '200':
+          description: Tenant-safe marketplace briefing without synthetic metrics
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/OperatingBriefing'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+  /v1/catalog:
+    get:
+      summary: Read the live platform, report, workflow, and action catalog
+      responses:
+        '200':
+          description: Runtime catalog generated from ontology and service registries
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/RuntimeCatalog'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+  /v1/audit:
+    get:
+      summary: Read tenant audit events
+      parameters:
+        - in: query
+          name: limit
+          schema: {type: integer, minimum: 1, maximum: 500, default: 100}
+      responses:
+        '200':
+          description: Audit events
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [events]
+                properties:
+                  events:
+                    type: array
+                    items: {$ref: '#/components/schemas/AuditEvent'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+  /v1/records:
+    get:
+      summary: Read tenant-owned connector records
+      parameters:
+        - in: query
+          name: provider
+          schema: {type: string}
+      responses:
+        '200':
+          description: Connector records
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [records]
+                properties:
+                  records:
+                    type: array
+                    items: {$ref: '#/components/schemas/ConnectorRecord'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+  /v1/metrics:
+    get:
+      summary: Read disposable process counters
+      responses:
+        '200':
+          description: Process counters; not business metrics
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [counters]
+                properties:
+                  counters:
+                    type: object
+                    additionalProperties: {type: integer}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: eai_API_KEY
+  parameters:
+    actionId:
+      in: path
+      name: actionId
+      required: true
+      schema: {type: string, format: uuid}
+    userId:
+      in: path
+      name: userId
+      required: true
+      schema: {type: string, format: uuid}
+    keyId:
+      in: path
+      name: keyId
+      required: true
+      schema: {type: string, format: uuid}
+    runId:
+      in: path
+      name: runId
+      required: true
+      schema: {type: string, format: uuid}
+    importId:
+      in: path
+      name: importId
+      required: true
+      schema: {type: string, format: uuid}
+    jobId:
+      in: path
+      name: jobId
+      required: true
+      schema: {type: string, format: uuid}
+    scheduleId:
+      in: path
+      name: scheduleId
+      required: true
+      schema: {type: string, format: uuid}
+  responses:
+    Unauthorized:
+      description: Missing, invalid, or revoked API key
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/ErrorEnvelope'}
+    Forbidden:
+      description: Authenticated principal lacks the required role
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/ErrorEnvelope'}
+    NotFound:
+      description: Resource not found in the authenticated tenant
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/ErrorEnvelope'}
+    Conflict:
+      description: State, uniqueness, or idempotency conflict
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/ErrorEnvelope'}
+    ValidationFailed:
+      description: Request failed runtime validation
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/ErrorEnvelope'}
+    RateLimited:
+      description: Per-client request budget exceeded
+      headers:
+        Retry-After:
+          schema: {type: integer}
+          description: Seconds before a retry
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/ErrorEnvelope'}
+    ConnectorFailed:
+      description: External connector or model provider failed; durable state is persisted as failed
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/ErrorEnvelope'}
+  schemas:
+    Role:
+      type: string
+      enum: [viewer, operator, admin, owner]
+    PlatformId:
+      type: string
+      enum:
+        - aliexpress
+        - amazon
+        - coupang
+        - cross_platform
+        - ebay
+        - faire
+        - lazada
+        - mercado_libre
+        - otto
+        - rakuten
+        - shopee
+        - shopify
+        - temu
+        - tiktok_shop
+        - walmart
+        - zalando
+    MarketplaceId:
+      type: string
+      enum:
+        - aliexpress
+        - amazon
+        - coupang
+        - ebay
+        - faire
+        - lazada
+        - mercado_libre
+        - otto
+        - rakuten
+        - shopee
+        - shopify
+        - temu
+        - tiktok_shop
+        - walmart
+        - zalando
+    EvidenceReportType:
+      type: string
+      enum:
+        - amazon_business_report
+        - amazon_ads_search_term
+        - amazon_fba_inventory
+        - amazon_returns
+        - amazon_listing
+        - platform_generic
+    Health:
+      type: object
+      required: [status, service]
+      properties:
+        status: {type: string, enum: [ok]}
+        service: {type: string, enum: [ecommerce-ai-runtime]}
+    Readiness:
+      type: object
+      required: [status]
+      properties:
+        status: {type: string, enum: [ready, not_ready]}
+        schema_version: {type: integer}
+        reason: {type: string}
+    DemoSession:
+      type: object
+      required: [api_key, tenant_id, tenant_mode, warning]
+      properties:
+        api_key: {type: string, writeOnly: true}
+        tenant_id: {type: string, format: uuid}
+        tenant_mode: {type: string, enum: [demo]}
+        warning: {type: string}
+    Principal:
+      type: object
+      required: [tenant_id, tenant_name, tenant_mode, user_id, email, role]
+      properties:
+        tenant_id: {type: string, format: uuid}
+        tenant_name: {type: string}
+        tenant_mode: {type: string, enum: [production, demo]}
+        user_id: {type: string, format: uuid}
+        email: {type: string, format: email}
+        role: {$ref: '#/components/schemas/Role'}
+    User:
+      type: object
+      required: [id, tenant_id, email, role, created_at]
+      properties:
+        id: {type: string, format: uuid}
+        tenant_id: {type: string, format: uuid}
+        email: {type: string, format: email}
+        role: {$ref: '#/components/schemas/Role'}
+        created_at: {type: string, format: date-time}
+    UserEnvelope:
+      type: object
+      required: [user]
+      properties:
+        user: {$ref: '#/components/schemas/User'}
+    UserCreate:
+      type: object
+      additionalProperties: false
+      required: [email, role]
+      properties:
+        email: {type: string, format: email}
+        role: {$ref: '#/components/schemas/Role'}
+    UserRoleUpdate:
+      type: object
+      additionalProperties: false
+      required: [role]
+      properties:
+        role: {$ref: '#/components/schemas/Role'}
+    ApiKeyIssued:
+      type: object
+      required: [api_key, user_id]
+      properties:
+        api_key: {type: string, writeOnly: true}
+        user_id: {type: string, format: uuid}
+    ApiKeyMetadata:
+      type: object
+      required: [id, key_prefix, created_at, user_id, email, role]
+      properties:
+        id: {type: string, format: uuid}
+        key_prefix: {type: string}
+        created_at: {type: string, format: date-time}
+        revoked_at: {type: string, format: date-time, nullable: true}
+        user_id: {type: string, format: uuid}
+        email: {type: string, format: email}
+        role: {$ref: '#/components/schemas/Role'}
+    ConnectorRegistration:
+      oneOf:
+        - {$ref: '#/components/schemas/ShopifyConnectorRegistration'}
+        - {$ref: '#/components/schemas/AmazonSPAPIConnectorRegistration'}
+      discriminator:
+        propertyName: provider
+    ShopifyConnectorRegistration:
+      type: object
+      additionalProperties: false
+      required: [provider, external_account_id, config]
+      properties:
+        provider: {type: string, enum: [shopify]}
+        external_account_id: {type: string, minLength: 1}
+        config:
+          type: object
+          additionalProperties: false
+          required: [shop_domain, api_version, credential_ref]
+          properties:
+            shop_domain: {type: string, pattern: '^[a-z0-9][a-z0-9-]*\.myshopify\.com$'}
+            api_version: {type: string, pattern: '^20\d{2}-\d{2}$'}
+            credential_ref: {type: string, pattern: '^[A-Z][A-Z0-9_]{2,127}$', writeOnly: true}
+    AmazonSPAPIConnectorRegistration:
+      type: object
+      additionalProperties: false
+      required: [provider, external_account_id, config]
+      properties:
+        provider: {type: string, enum: [amazon_spapi]}
+        external_account_id: {type: string, minLength: 1}
+        config:
+          type: object
+          additionalProperties: false
+          required: [region, marketplace_ids, lwa_client_id_ref, lwa_client_secret_ref, lwa_refresh_token_ref]
+          properties:
+            region: {type: string, enum: [na, eu, fe]}
+            marketplace_ids:
+              type: array
+              minItems: 1
+              items: {type: string, pattern: '^[A-Z0-9]{5,20}$'}
+            lwa_client_id_ref: {type: string, pattern: '^[A-Z][A-Z0-9_]{2,127}$', writeOnly: true}
+            lwa_client_secret_ref: {type: string, pattern: '^[A-Z][A-Z0-9_]{2,127}$', writeOnly: true}
+            lwa_refresh_token_ref: {type: string, pattern: '^[A-Z][A-Z0-9_]{2,127}$', writeOnly: true}
+    ActionRequest:
+      oneOf:
+        - {$ref: '#/components/schemas/ShopifySyncActionRequest'}
+        - {$ref: '#/components/schemas/AmazonReportImportActionRequest'}
+      discriminator:
+        propertyName: operation
+    ShopifySyncActionRequest:
+      type: object
+      additionalProperties: false
+      required: [operation, payload]
+      properties:
+        operation: {type: string, enum: [shopify.sync_products]}
+        payload:
+          type: object
+          additionalProperties: false
+          required: [external_account_id]
+          properties:
+            external_account_id: {type: string, minLength: 1}
+            limit: {type: integer, minimum: 1, maximum: 250}
+            page_info: {type: string}
+    AmazonReportImportActionRequest:
+      type: object
+      additionalProperties: false
+      required: [operation, payload]
+      properties:
+        operation: {type: string, enum: [amazon_spapi.import_report]}
+        payload:
+          type: object
+          additionalProperties: false
+          required: [external_account_id, report_id, evidence_report_type]
+          properties:
+            external_account_id: {type: string, minLength: 1}
+            report_id: {type: string, pattern: '^[A-Za-z0-9._:-]{1,200}$'}
+            evidence_report_type: {$ref: '#/components/schemas/EvidenceReportType'}
+    Action:
+      type: object
+      required: [id, tenant_id, idempotency_key, operation, payload, requested_by, status, attempt_count, created_at, updated_at]
+      properties:
+        id: {type: string, format: uuid}
+        tenant_id: {type: string, format: uuid}
+        idempotency_key: {type: string}
+        operation: {type: string, enum: [shopify.sync_products, amazon_spapi.import_report]}
+        payload: {type: object, additionalProperties: true}
+        requested_by: {type: string, format: uuid}
+        approved_by: {type: string, format: uuid, nullable: true}
+        status: {type: string, enum: [requested, approved, executing, executed, failed, rejected]}
+        result: {type: object, additionalProperties: true}
+        error: {type: string, nullable: true}
+        lease_until: {type: string, format: date-time, nullable: true}
+        attempt_count: {type: integer, minimum: 0}
+        last_attempt_at: {type: string, format: date-time, nullable: true}
+        created_at: {type: string, format: date-time}
+        updated_at: {type: string, format: date-time}
+    EvidenceSource:
+      type: object
+      additionalProperties: false
+      required: [source_id, platform, source_type, observed_at, data]
+      properties:
+        source_id: {type: string, pattern: '^[A-Za-z0-9._:-]{1,100}$'}
+        platform: {$ref: '#/components/schemas/PlatformId'}
+        source_type: {type: string, pattern: '^[a-z0-9._-]{1,80}$'}
+        observed_at: {type: string, format: date-time}
+        data:
+          oneOf:
+            - {type: object, additionalProperties: true}
+            - {type: array, items: {}}
+    AgentRunRequest:
+      type: object
+      additionalProperties: false
+      required: [workflow, objective]
+      anyOf:
+        - required: [evidence]
+        - required: [evidence_import_ids]
+      properties:
+        workflow: {type: string, enum: [weekly_ops]}
+        objective: {type: string, minLength: 5, maxLength: 1000}
+        evidence:
+          type: array
+          minItems: 1
+          maxItems: 20
+          items: {$ref: '#/components/schemas/EvidenceSource'}
+        evidence_import_ids:
+          type: array
+          maxItems: 20
+          uniqueItems: true
+          items: {type: string, format: uuid}
+    EvidenceImport:
+      type: object
+      required: [id, tenant_id, idempotency_key, platform, report_type, filename, observed_at, sha256, delimiter, row_count, blank_rows_skipped, formula_cells, columns, column_mapping, media_type, byte_size, object_key, sheet_name, created_by, created_at]
+      properties:
+        id: {type: string, format: uuid}
+        tenant_id: {type: string, format: uuid}
+        idempotency_key: {type: string}
+        platform: {$ref: '#/components/schemas/MarketplaceId'}
+        report_type: {$ref: '#/components/schemas/EvidenceReportType'}
+        filename: {type: string}
+        observed_at: {type: string, format: date-time}
+        sha256: {type: string, pattern: '^[a-f0-9]{64}$'}
+        delimiter: {type: string}
+        row_count: {type: integer, minimum: 1, maximum: 5000}
+        blank_rows_skipped: {type: integer, minimum: 0}
+        formula_cells: {type: integer, minimum: 0}
+        columns: {type: array, minItems: 2, maxItems: 200, items: {type: string}}
+        column_mapping:
+          type: object
+          additionalProperties: {type: string}
+        media_type: {type: string, nullable: true}
+        byte_size: {type: integer, minimum: 1, nullable: true}
+        object_key: {type: string, nullable: true}
+        sheet_name: {type: string, nullable: true}
+        created_by: {type: string, format: uuid}
+        created_at: {type: string, format: date-time}
+    AgentRun:
+      type: object
+      required: [id, tenant_id, idempotency_key, workflow, objective, platforms, requested_by, status, provider, attempt_count, created_at, updated_at]
+      properties:
+        id: {type: string, format: uuid}
+        tenant_id: {type: string, format: uuid}
+        idempotency_key: {type: string}
+        workflow: {type: string, enum: [weekly_ops]}
+        objective: {type: string}
+        evidence:
+          type: array
+          items: {$ref: '#/components/schemas/EvidenceSource'}
+        platforms:
+          type: array
+          items: {$ref: '#/components/schemas/PlatformId'}
+        requested_by: {type: string, format: uuid}
+        status: {type: string, enum: [requested, running, completed, failed]}
+        provider: {type: string}
+        model: {type: string, nullable: true}
+        attempt_count: {type: integer, minimum: 0}
+        error: {type: string, nullable: true}
+        created_at: {type: string, format: date-time}
+        updated_at: {type: string, format: date-time}
+        completed_at: {type: string, format: date-time, nullable: true}
+    AgentTask:
+      type: object
+      required: [id, tenant_id, run_id, agent_name, skill_ids, status, attempt_count, created_at]
+      properties:
+        id: {type: string, format: uuid}
+        tenant_id: {type: string, format: uuid}
+        run_id: {type: string, format: uuid}
+        agent_name: {type: string}
+        skill_ids: {type: array, items: {type: string}}
+        status: {type: string, enum: [pending, running, completed, failed]}
+        attempt_count: {type: integer, minimum: 0}
+        error: {type: string, nullable: true}
+        created_at: {type: string, format: date-time}
+        started_at: {type: string, format: date-time, nullable: true}
+        completed_at: {type: string, format: date-time, nullable: true}
+    AgentArtifact:
+      type: object
+      required: [id, tenant_id, run_id, kind, attempt, content, created_at]
+      properties:
+        id: {type: string, format: uuid}
+        tenant_id: {type: string, format: uuid}
+        run_id: {type: string, format: uuid}
+        task_id: {type: string, format: uuid, nullable: true}
+        kind: {type: string, enum: [input_evidence, specialist_finding, manager_synthesis, weekly_ops_report]}
+        attempt: {type: integer, minimum: 0}
+        content:
+          oneOf:
+            - {type: object, additionalProperties: true}
+            - {type: array, items: {}}
+        created_at: {type: string, format: date-time}
+    AgentEvent:
+      type: object
+      required: [id, tenant_id, run_id, event_type, payload, created_at]
+      properties:
+        id: {type: string, format: uuid}
+        tenant_id: {type: string, format: uuid}
+        run_id: {type: string, format: uuid}
+        task_id: {type: string, format: uuid, nullable: true}
+        event_type: {type: string}
+        payload: {type: object, additionalProperties: true}
+        created_at: {type: string, format: date-time}
+    AgentRunBundle:
+      type: object
+      required: [run, tasks, artifacts, events, evaluations]
+      properties:
+        run: {$ref: '#/components/schemas/AgentRun'}
+        tasks:
+          type: array
+          items: {$ref: '#/components/schemas/AgentTask'}
+        artifacts:
+          type: array
+          items: {$ref: '#/components/schemas/AgentArtifact'}
+        events:
+          type: array
+          items: {$ref: '#/components/schemas/AgentEvent'}
+        evaluations:
+          type: array
+          items: {$ref: '#/components/schemas/AgentEvaluation'}
+    AgentEvaluation:
+      type: object
+      required: [id, tenant_id, run_id, evaluator_version, passed, score, details, created_by, created_at]
+      properties:
+        id: {type: string, format: uuid}
+        tenant_id: {type: string, format: uuid}
+        run_id: {type: string, format: uuid}
+        evaluator_version: {type: string}
+        passed: {type: boolean}
+        score: {type: number, minimum: 0, maximum: 1}
+        details: {type: object, additionalProperties: true}
+        created_by: {type: string, format: uuid}
+        created_at: {type: string, format: date-time}
+    JobRequest:
+      type: object
+      additionalProperties: false
+      required: [run_id]
+      properties:
+        run_id: {type: string, format: uuid}
+        max_attempts: {type: integer, minimum: 1, maximum: 10, default: 3}
+    Job:
+      type: object
+      required: [id, tenant_id, idempotency_key, kind, payload, status, available_at, attempt_count, max_attempts, created_by, created_at, updated_at]
+      properties:
+        id: {type: string, format: uuid}
+        tenant_id: {type: string, format: uuid}
+        idempotency_key: {type: string}
+        kind: {type: string, enum: [agent_run.execute]}
+        payload: {type: object, additionalProperties: true}
+        status: {type: string, enum: [queued, running, succeeded, failed]}
+        available_at: {type: string, format: date-time}
+        lease_until: {type: string, format: date-time, nullable: true}
+        attempt_count: {type: integer, minimum: 0}
+        max_attempts: {type: integer, minimum: 1, maximum: 10}
+        created_by: {type: string, format: uuid}
+        result: {type: object, additionalProperties: true}
+        error: {type: string, nullable: true}
+        created_at: {type: string, format: date-time}
+        updated_at: {type: string, format: date-time}
+        completed_at: {type: string, format: date-time, nullable: true}
+    ScheduleCreate:
+      type: object
+      additionalProperties: false
+      required: [name, objective, interval_minutes, next_run_at]
+      anyOf:
+        - required: [evidence_import_ids]
+        - required: [evidence_selectors]
+      properties:
+        name: {type: string, minLength: 1, maxLength: 100}
+        objective: {type: string, minLength: 5, maxLength: 1000}
+        evidence_import_ids:
+          type: array
+          uniqueItems: true
+          items: {type: string, format: uuid}
+        evidence_selectors:
+          type: array
+          minItems: 1
+          uniqueItems: true
+          items:
+            type: object
+            additionalProperties: false
+            required: [platform, report_type]
+            properties:
+              platform: {$ref: '#/components/schemas/MarketplaceId'}
+              report_type: {$ref: '#/components/schemas/EvidenceReportType'}
+        interval_minutes: {type: integer, minimum: 15, maximum: 43200}
+        next_run_at: {type: string, format: date-time}
+    Schedule:
+      type: object
+      required: [id, tenant_id, name, objective, evidence_import_ids, evidence_selectors, interval_minutes, enabled, next_run_at, created_by, created_at, updated_at]
+      properties:
+        id: {type: string, format: uuid}
+        tenant_id: {type: string, format: uuid}
+        name: {type: string}
+        objective: {type: string}
+        evidence_import_ids: {type: array, items: {type: string, format: uuid}}
+        evidence_selectors:
+          type: array
+          items:
+            type: object
+            required: [platform, report_type]
+            properties:
+              platform: {$ref: '#/components/schemas/MarketplaceId'}
+              report_type: {$ref: '#/components/schemas/EvidenceReportType'}
+        interval_minutes: {type: integer}
+        enabled: {type: boolean}
+        next_run_at: {type: string, format: date-time}
+        lease_until: {type: string, format: date-time, nullable: true}
+        created_by: {type: string, format: uuid}
+        created_at: {type: string, format: date-time}
+        updated_at: {type: string, format: date-time}
+        last_run_at: {type: string, format: date-time, nullable: true}
+    MissionControl:
+      type: object
+      required: [counts, approval_inbox, failed_runs, failed_jobs, recent_runs, schedules]
+      properties:
+        counts:
+          type: object
+          additionalProperties: true
+        approval_inbox: {type: array, items: {$ref: '#/components/schemas/Action'}}
+        failed_runs: {type: array, items: {$ref: '#/components/schemas/AgentRun'}}
+        failed_jobs: {type: array, items: {$ref: '#/components/schemas/Job'}}
+        recent_runs: {type: array, items: {$ref: '#/components/schemas/AgentRun'}}
+        schedules: {type: array, items: {$ref: '#/components/schemas/Schedule'}}
+    OperatingBriefing:
+      type: object
+      required: [platform, evidence, metrics, latest_run, brief_run_id, executive_summary, priorities, risks, limitations, agents, approvals]
+      properties:
+        platform:
+          type: object
+          required: [id, label]
+          properties:
+            id: {$ref: '#/components/schemas/MarketplaceId'}
+            label: {type: object, additionalProperties: {type: string}}
+        evidence:
+          type: object
+          required: [source_count, row_count, latest_observed_at, report_types]
+          properties:
+            source_count: {type: integer, minimum: 0}
+            row_count: {type: integer, minimum: 0}
+            latest_observed_at: {type: string, format: date-time, nullable: true}
+            report_types: {type: array, items: {$ref: '#/components/schemas/EvidenceReportType'}}
+        metrics:
+          type: array
+          items: {$ref: '#/components/schemas/BriefingMetric'}
+        latest_run:
+          nullable: true
+          allOf: [{$ref: '#/components/schemas/AgentRun'}]
+        brief_run_id: {type: string, format: uuid, nullable: true}
+        executive_summary: {type: string, nullable: true}
+        priorities: {type: array, items: {type: object, additionalProperties: true}}
+        risks: {type: array, items: {type: object, additionalProperties: true}}
+        limitations: {type: array, items: {type: string}}
+        agents: {type: array, items: {$ref: '#/components/schemas/BriefingAgent'}}
+        approvals: {type: array, items: {$ref: '#/components/schemas/Action'}}
+    BriefingMetric:
+      type: object
+      required: [key, label, format, trend_mode, value, change_percent, observed_at, source_import_id, series]
+      properties:
+        key: {type: string}
+        label: {type: string}
+        format: {type: string, enum: [amount, integer, percent]}
+        trend_mode: {type: string, enum: [higher_is_better, higher_is_risk, context_only]}
+        value: {type: number}
+        change_percent: {type: number, nullable: true}
+        observed_at: {type: string, format: date-time}
+        source_import_id: {type: string, format: uuid}
+        series:
+          type: array
+          maxItems: 7
+          items:
+            type: object
+            required: [observed_at, value, source_import_id]
+            properties:
+              observed_at: {type: string, format: date-time}
+              value: {type: number}
+              source_import_id: {type: string, format: uuid}
+    BriefingAgent:
+      type: object
+      required: [id, name, status, updated_at, skill_ids]
+      properties:
+        id: {type: string, format: uuid}
+        name: {type: string}
+        status: {type: string, enum: [pending, running, completed, failed]}
+        updated_at: {type: string, format: date-time}
+        skill_ids: {type: array, items: {type: string}}
+    RuntimeCatalog:
+      type: object
+      required: [platforms, report_types, workflows, action_operations]
+      properties:
+        platforms:
+          type: array
+          items:
+            type: object
+            required: [id, label]
+            additionalProperties: true
+            properties:
+              id: {$ref: '#/components/schemas/MarketplaceId'}
+              label: {type: object, additionalProperties: {type: string}}
+        report_types:
+          type: array
+          items: {$ref: '#/components/schemas/EvidenceReportType'}
+        workflows: {type: array, items: {type: string, enum: [weekly_ops]}}
+        action_operations:
+          type: array
+          items: {type: string, enum: [shopify.sync_products, amazon_spapi.import_report]}
+    AuditEvent:
+      type: object
+      required: [id, tenant_id, request_id, action, resource_type, outcome, metadata, created_at]
+      properties:
+        id: {type: string, format: uuid}
+        tenant_id: {type: string, format: uuid}
+        actor_user_id: {type: string, format: uuid, nullable: true}
+        request_id: {type: string}
+        action: {type: string}
+        resource_type: {type: string}
+        resource_id: {type: string, nullable: true}
+        outcome: {type: string}
+        metadata: {type: object, additionalProperties: true}
+        created_at: {type: string, format: date-time}
+    ConnectorRecord:
+      type: object
+      required: [id, tenant_id, provider, external_id, payload, synced_at]
+      properties:
+        id: {type: string, format: uuid}
+        tenant_id: {type: string, format: uuid}
+        provider: {type: string}
+        external_id: {type: string}
+        payload: {type: object, additionalProperties: true}
+        synced_at: {type: string, format: date-time}
+    ErrorEnvelope:
+      type: object
+      required: [error, request_id]
+      properties:
+        error:
+          type: object
+          required: [type, message]
+          properties:
+            type: {type: string}
+            message: {type: string}
+        request_id: {type: string}

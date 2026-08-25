@@ -1,5 +1,10 @@
 # converge：质量收敛循环设计
 
+> **状态：已于 2026-08-13 收敛。** 本文件保留最初设计与历史验收口径；
+> 最终结果、被后续工程决策替代的实现方式及当前验证命令见
+> [`scripts/loop/progress.md`](scripts/loop/progress.md) 与
+> [`EVOLUTION_LOG.md`](EVOLUTION_LOG.md)。
+
 > 目标：把 [EVOLUTION_PLAN.md](EVOLUTION_PLAN.md) 的 16 项改进，做成一个**每轮一个动作、验证器把关、可中断可恢复**的循环，直到全部收敛。
 > 参照系：8/3 晚 Claude Code 的"缩进修复循环"（9 次提交收敛到 "every Python block compiles"）证明了这个模式可行；那个 loop 暴露的两个教训，本设计显式修复。
 

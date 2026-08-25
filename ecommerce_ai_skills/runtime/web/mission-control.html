@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#fbfaf7">
+  <title>Commerce Agent OS · 今日简报</title>
+  <link rel="icon" href="/app/assets/brands/commerce-agent-os.png">
+  <link rel="stylesheet" href="/app/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="主导航">
+      <div class="brand-lockup">
+        <img class="brand-mark" src="/app/assets/brands/commerce-agent-os.png" alt="">
+        <strong>Commerce Agent OS</strong>
+      </div>
+      <nav class="side-nav">
+        <button data-action="navigate" data-view="briefing" class="nav-item active" aria-current="page"><img src="/app/assets/icons/house.svg" alt=""><span>今日简报</span></button>
+        <button data-action="navigate" data-view="agents" class="nav-item"><img src="/app/assets/icons/robot.svg" alt=""><span>Agents</span></button>
+        <button data-action="navigate" data-view="evidence" class="nav-item"><img src="/app/assets/icons/database.svg" alt=""><span>Evidence</span></button>
+        <button data-action="navigate" data-view="approvals" class="nav-item"><img src="/app/assets/icons/shield-check.svg" alt=""><span>Approvals</span><span id="approval-nav-count" class="nav-count" hidden>0</span></button>
+        <button data-action="navigate" data-view="automations" class="nav-item"><img src="/app/assets/icons/gear-six.svg" alt=""><span>Automations</span></button>
+        <button data-action="navigate" data-view="audit" class="nav-item"><img src="/app/assets/icons/clipboard-text.svg" alt=""><span>Audit</span></button>
+      </nav>
+      <div class="sidebar-footer">
+        <button data-action="open-connection" class="account-button">
+          <span class="account-avatar">L</span>
+          <span><strong id="account-name">Local Runtime</strong><small id="account-role">未连接</small></span>
+          <span id="connection-dot" class="connection-dot"></span>
+        </button>
+      </div>
+    </aside>
+
+    <div class="workspace">
+      <header class="topbar">
+        <div class="platform-tabs" aria-label="平台">
+          <button data-action="select-platform" data-platform="amazon" class="platform-tab active"><img src="/app/assets/brands/amazon.svg" alt=""><span>Amazon</span></button>
+          <button data-action="select-platform" data-platform="shopify" class="platform-tab"><img src="/app/assets/brands/shopify.svg" alt=""><span>Shopify</span></button>
+          <button data-action="select-platform" data-platform="walmart" class="platform-tab"><img src="/app/assets/brands/walmart-spark.svg" alt=""><span>Walmart</span></button>
+          <button data-action="select-platform" data-platform="tiktok_shop" class="platform-tab"><img src="/app/assets/brands/tiktok.svg" alt=""><span>TikTok Shop</span></button>
+        </div>
+        <div class="topbar-meta">
+          <span id="demo-badge" class="demo-badge" hidden>DEMO DATA</span>
+          <span class="today"><img src="/app/assets/icons/calendar-dots.svg" alt=""><span id="today-label"></span></span>
+          <button data-action="open-connection" id="connection-btn" class="quiet-button"><img src="/app/assets/icons/key.svg" alt=""><span>连接 Runtime</span></button>
+        </div>
+      </header>
+
+      <main>
+        <div id="demo-banner" class="demo-banner" role="note" hidden><strong>当前为 Demo 租户</strong><span>所有指标、Evidence、Agent 结论和审批均为演示数据，不可用于真实经营决策。</span></div>
+        <div id="notice" class="notice" role="status">连接 Runtime 后显示真实经营数据。</div>
+
+        <section id="view-briefing" class="view active" data-view-panel="briefing" aria-labelledby="briefing-title">
+          <div class="page-heading">
+            <div>
+              <p class="kicker">今日简报</p>
+              <h1 id="briefing-title">早上好，今天先看 <span id="briefing-platform-name">Amazon</span> 的经营信号</h1>
+              <p id="briefing-summary" class="heading-summary">连接后，Agent 会把真实 Evidence 汇总为需要你决定的经营事项。</p>
+            </div>
+            <div class="heading-actions">
+              <button data-action="refresh" id="refresh-btn" class="primary-button" disabled><img src="/app/assets/icons/arrows-clockwise.svg" alt=""><span>查看今日简报</span></button>
+              <button data-action="navigate" data-view="agents" class="secondary-button">开始周度复盘</button>
+            </div>
+          </div>
+
+          <div class="briefing-layout">
+            <div class="briefing-main">
+              <section class="performance-section" aria-labelledby="performance-title">
+                <div class="section-title-row">
+                  <div><h2 id="performance-title">真实 Evidence 趋势</h2><span id="evidence-range">尚未连接</span></div>
+                  <span id="evidence-freshness" class="data-freshness">等待数据</span>
+                </div>
+                <div id="metric-summary" class="metric-summary" aria-live="polite"></div>
+                <div id="chart-controls" class="chart-controls" aria-label="选择趋势指标"></div>
+                <div class="chart-stage">
+                  <canvas id="trend-chart" width="900" height="260" aria-label="经营指标趋势图"></canvas>
+                  <div id="chart-empty" class="designed-empty">
+                    <img src="/app/assets/icons/chart-line-up.svg" alt="">
+                    <strong>还没有可绘制的经营指标</strong>
+                    <span>导入 Amazon Business、Ads 或 FBA Inventory 报表后，这里只显示真实观测值。</span>
+                    <button data-action="navigate" data-view="evidence" class="text-button">导入 Evidence</button>
+                  </div>
+                </div>
+                <table id="chart-table" class="sr-only"><caption>当前趋势数据</caption><thead><tr><th>观察时间</th><th>数值</th></tr></thead><tbody></tbody></table>
+              </section>
+
+              <section class="agent-brief-section" aria-labelledby="agent-brief-title">
+                <div class="section-title-row">
+                  <div><h2 id="agent-brief-title">Agent Brief</h2><span>基于证据的关键发现，按影响优先</span></div>
+                  <button data-action="navigate" data-view="agents" class="text-button">查看全部 Runs</button>
+                </div>
+                <div id="priority-list" class="priority-list"></div>
+              </section>
+
+              <footer class="approval-guardrail"><img src="/app/assets/icons/shield-check.svg" alt=""><span>所有外部动作都必须经过授权；Agent 不会绕过审批直接执行。</span></footer>
+            </div>
+
+            <aside class="decision-rail" aria-label="需要你决定">
+              <section class="decision-section">
+                <div class="decision-heading"><div><p>需要你决定</p><h2>待审批 <span id="approval-count">0</span> 项行动</h2></div><button data-action="navigate" data-view="approvals" class="icon-button" aria-label="查看全部审批"><img src="/app/assets/icons/caret-right.svg" alt=""></button></div>
+                <div id="briefing-approvals" class="decision-list"></div>
+              </section>
+              <section class="agent-roster-section">
+                <div class="decision-heading"><div><p>运行状态</p><h2>Agent 协作中</h2></div></div>
+                <div id="agent-roster" class="agent-roster"></div>
+              </section>
+            </aside>
+          </div>
+        </section>
+
+        <section id="view-evidence" class="view" data-view-panel="evidence" aria-labelledby="evidence-title">
+          <div class="page-heading compact"><div><p class="kicker">Evidence Center</p><h1 id="evidence-title">导入真实数据</h1><p class="heading-summary">文件经过字段验证、PII/密钥拦截和租户隔离后才会进入 Agent 工作流。</p></div></div>
+          <div class="tool-layout">
+            <section class="tool-panel form-panel">
+              <form id="evidence-form">
+                <div class="form-grid">
+                  <label>平台<select id="evidence-platform" required></select></label>
+                  <label>报表类型<select id="evidence-type" required></select></label>
+                  <label>观察时间<input id="evidence-observed" type="datetime-local" required></label>
+                  <label>工作表（可选）<input id="evidence-sheet" type="text" placeholder="XLSX sheet name"></label>
+                </div>
+                <label class="file-drop"><img src="/app/assets/icons/upload-simple.svg" alt=""><span><strong>选择真实 CSV、TSV 或 XLSX</strong><small>文件不会离开当前 Runtime。</small></span><input id="evidence-file" type="file" accept=".csv,.tsv,.txt,.xlsx" required></label>
+                <button data-action="upload-evidence" class="primary-button" type="submit">上传并验证</button>
+              </form>
+            </section>
+            <section class="tool-panel"><div class="panel-heading"><div><p class="kicker">Imported</p><h2>已验证 Evidence</h2></div></div><div id="evidence-list" class="data-list"></div></section>
+          </div>
+        </section>
+
+        <section id="view-agents" class="view" data-view-panel="agents" aria-labelledby="agents-title">
+          <div class="page-heading compact"><div><p class="kicker">Agent Operations</p><h1 id="agents-title">Weekly Ops</h1><p class="heading-summary">选择真实 Evidence，交给平台专家、跨平台 Controller、Manager 和 Reviewer 协作。</p></div></div>
+          <div class="tool-layout">
+            <section class="tool-panel form-panel">
+              <form id="run-form">
+                <label>本次目标<textarea id="run-objective" rows="3" required>找出本周最重要、可由证据支持的经营行动。</textarea></label>
+                <fieldset><legend>选择 Evidence</legend><div id="run-evidence-options" class="check-list"></div></fieldset>
+                <button data-action="create-run" class="primary-button" type="submit"><img src="/app/assets/icons/play.svg" alt="">创建 Agent Run</button>
+              </form>
+            </section>
+            <section class="tool-panel"><div class="panel-heading"><div><p class="kicker">Run History</p><h2>Agent Runs</h2></div></div><div id="run-list" class="data-list"></div></section>
+          </div>
+        </section>
+
+        <section id="view-approvals" class="view" data-view-panel="approvals" aria-labelledby="approvals-title">
+          <div class="page-heading compact"><div><p class="kicker">Human Control</p><h1 id="approvals-title">审批中心</h1><p class="heading-summary">高风险外部动作必须由另一位具备权限的用户审批，随后才允许 Operator 执行。</p></div></div>
+          <section class="tool-panel wide"><div id="approval-list" class="data-list"></div></section>
+        </section>
+
+        <section id="view-automations" class="view" data-view-panel="automations" aria-labelledby="automations-title">
+          <div class="page-heading compact"><div><p class="kicker">Automation</p><h1 id="automations-title">计划与后台任务</h1><p class="heading-summary">Schedule 只选择最新真实 Evidence，Worker 使用持久化队列、租约和重试。</p></div></div>
+          <div class="tool-layout">
+            <section class="tool-panel form-panel">
+              <form id="schedule-form">
+                <div class="form-grid">
+                  <label>名称<input id="schedule-name" required placeholder="Amazon weekly review"></label>
+                  <label>间隔（分钟）<input id="schedule-interval" type="number" min="15" max="43200" value="10080" required></label>
+                  <label>平台<select id="schedule-platform" required></select></label>
+                  <label>Evidence 类型<select id="schedule-report-type" required></select></label>
+                  <label>首次运行<input id="schedule-next-run" type="datetime-local" required></label>
+                </div>
+                <label>目标<textarea id="schedule-objective" rows="2" required>审查最新导入的数据并生成本周行动计划。</textarea></label>
+                <button data-action="create-schedule" class="primary-button" type="submit"><img src="/app/assets/icons/calendar-dots.svg" alt="">创建 Schedule</button>
+              </form>
+              <div id="schedule-list" class="data-list"></div>
+            </section>
+            <section class="tool-panel"><div class="panel-heading"><div><p class="kicker">Workers</p><h2>后台任务</h2></div></div><div id="job-list" class="data-list"></div></section>
+          </div>
+        </section>
+
+        <section id="view-audit" class="view" data-view-panel="audit" aria-labelledby="audit-title">
+          <div class="page-heading compact"><div><p class="kicker">Audit Trail</p><h1 id="audit-title">审计时间线</h1><p class="heading-summary">每次导入、Agent 执行、审批和外部动作都保留租户内可追溯记录。</p></div></div>
+          <section class="tool-panel wide"><div id="audit-list" class="data-list"></div></section>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <dialog id="connection-dialog" class="connection-dialog">
+    <div class="dialog-head"><div><p class="kicker">Secure local session</p><h2>连接 Runtime</h2></div><button data-action="close-dialog" data-dialog="connection-dialog" class="icon-button" aria-label="关闭"><img src="/app/assets/icons/x.svg" alt=""></button></div>
+    <p>API Key 仅保存在当前页面内存，刷新或断开后立即清除。</p>
+    <label>API Key<input id="api-key" type="password" autocomplete="off" placeholder="eai_…" aria-label="API Key"></label>
+    <div class="dialog-actions"><button data-action="disconnect" id="disconnect-btn" class="secondary-button" disabled>断开</button><button data-action="connect" id="connect-btn" class="primary-button">安全连接</button></div>
+  </dialog>
+
+  <dialog id="detail-dialog" class="detail-dialog">
+    <div class="dialog-head"><div><p class="kicker">Evidence-backed detail</p><h2 id="detail-title">详情</h2></div><button data-action="close-dialog" data-dialog="detail-dialog" class="icon-button" aria-label="关闭"><img src="/app/assets/icons/x.svg" alt=""></button></div>
+    <pre id="detail-content"></pre>
+  </dialog>
+
+  <script src="/app/app.js" defer></script>
+</body>
+</html>

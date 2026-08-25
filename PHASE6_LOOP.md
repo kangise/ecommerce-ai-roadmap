@@ -1,31 +1,34 @@
-# Phase 6: Continuous Enhancement Loop
+# Phase 6: Continuous Enhancement Loop (archived snapshot)
+
+> The original Phase 6 gap is closed. This file retains the operating pattern;
+> current status lives in `EVOLUTION_LOG.md` and `scripts/loop/progress.md`.
 
 ## Current State
 
 ```
-verify_all: 8 groups
-  Content      46   (N6, documented known limitation)
+verify_all: 14 groups
+  Content       0
   Ontology     0
   Skills       0
   Knowledge    0
   Routing      0
   Integration  0
   Docs         0
-  Dist         0
+  Dist          0
 ```
 
-## Known Limitations
+## Closed limitation
 
 | Gate | Value | Status | Resolution Plan |
 |------|-------|--------|-----------------|
-| N6 | 46 | documented, not closed | Requires dedicated trilingual prompt alignment loop; en/ja translations lag behind zh |
+| N6 | 0 | closed | Trilingual prompt structure is aligned and remains blocking in CI |
 
 ## Enhancement Priorities
 
-### Priority 1: Close N6 (translation alignment)
-- **Trigger**: When en/ja translations are updated to match zh prompt structure
-- **Action**: Run dedicated alignment loop across 46 files
-- **Exit**: N6 = 0
+### Priority 1: Keep N6 closed
+- **Trigger**: Any change to a structured prompt
+- **Action**: Update zh/en/ja together and run the full gate
+- **Exit**: N6 remains 0
 
 ### Priority 2: Add new platform
 - **Trigger**: New marketplace chapter added to d-platforms/
@@ -51,7 +54,7 @@ verify_all: 8 groups
 
 ### Per-change checklist
 ```bash
-python3 scripts/verify_all.py    # All 8 groups
+python3 scripts/verify_all.py    # All 14 groups
 python3 scripts/build_dist.py    # Rebuild distributable
 git diff --exit-code dist/       # N7 must pass
 ```

@@ -1,65 +1,37 @@
-# AI × 电商覆盖地图 | AI × E-Commerce Coverage Map
+# AI × E-Commerce Coverage Map
 
-> 最后更新: 2026-07-31 | Last Updated: 2026-07-31
+> Generated-state summary, reviewed 2026-08-13.
 
----
+## Content by path
 
-## 图例 | Legend
+| Path | Guide chapters | Notebook coverage |
+|---|---:|---:|
+| Foundations | 7 | 0 |
+| Operators | 14 | 11 |
+| Developers | 9 | 4 |
+| Managers | 5 | 1 |
+| Platforms | 15 | 1 |
+| Social media | 7 | 1 |
+| Case studies | 5 | — |
+| Resources | 7 | — |
+| **Total distributable chapters** | **69** | **18** |
 
-| 符号 | 含义 |
-|------|------|
-| | 已覆盖 Content available |
-| | 计划中 Planned |
-| | 未规划 Not planned yet |
+The 69-package total excludes path landing pages and navigation files. Counts are
+also enforced by the D2, K1, K2, and package-manifest checks.
 
----
+## Platform registry
 
-## 内容深度统计 | Content Depth
+Amazon, Shopify, TikTok Shop, Walmart, Temu, Shopee, Lazada, Mercado Libre,
+Rakuten, eBay, AliExpress, Coupang, Faire, Otto, and Zalando are represented in
+the ontology. Platform-specific claims are only treated as executable constraints
+when they have a source anchor and verification date.
 
-| 路径 | 模块数 | Prompt 模板 | Notebook |
-|------|--------|-------------|----------|
-| Path 0 基础 | 7（F1-F6 + ai-landscape） | | |
-| Path A 运营 | 14（A1-A14） | 3 文件 | 11 |
-| Path B 技术 | 9（B1-B9） | | 4 |
-| Path C 管理 | 5（C1-C5） | | 1 |
-| Path D 平台 | 14（D1-D13，其中 D3=跨平台策略 + 平台对比） | 1 文件 | 1 |
-| Path E 社交 | 7（E1-E7） | 1 文件 | 1 |
-| **合计** | **56** | **8 文件 / 30 模板** | **18** |
+## Language coverage
 
----
+| Language | Book source | README | Agent prompts |
+|---|---:|---:|---:|
+| Chinese | Complete | Complete | Complete |
+| English | Complete | Complete | Complete |
+| Japanese | Complete | Complete | Complete |
 
-## 覆盖矩阵 | Coverage Matrix
-
-| AI 应用场景 | Amazon | Shopify | TikTok Shop | Walmart | Shopee | Mercado Libre | Rakuten | eBay | Instagram | YouTube | 小红书 | Pinterest |
-|-------------|--------|---------|-------------|---------|--------|---------------|---------|------|-----------|---------|--------|-----------|
-| 选品与市场分析 | | | | | | | | | | | | |
-| Listing 与内容创作 | | | | | | | | | | | | |
-| 广告优化 | | | | | | | | | | | | |
-| 客服与售后 | | | | | | | | | | | | |
-| 库存与供应链 | | | | | | | | | | | | |
-| 合规与风控 | | | | | | | | | | | | |
-| 社交媒体营销 | | | | | | | | | | | | |
-| 达人/KOL 合作 | | | | | | | | | | | | |
-| 直播电商 | | | | | | | | | | | | |
-| 视觉内容 AI | | | | | | | | | | | | |
-| 定价策略 | | | | | | | | | | | | |
-| SEO/GEO | | | | | | | | | | | | |
-| 品牌建设 | | | | | | | | | | | | |
-| 财务分析 | | | | | | | | | | | | |
-| 知识产权 | | | | | | | | | | | | |
-| AI Growth Hack | | | | | | | | | | | | |
-
----
-
-## 多语言覆盖 | Language Coverage
-
-| 语言 | README | paths/ 内容 | prompts/ | notebooks/ | docs/ |
-|------|--------|------------|----------|------------|-------|
-| 中文 (zh) | | 56 文件 | 8 文件 | 18 个 | |
-| English (en) | | 完整镜像 | 完整镜像 | 完整镜像 | |
-| 日本語 (ja) | | 待翻译 | | | |
-| Español (es) | | 待翻译 | | | |
-
----
-
-*最后更新: 2026-07-31*
+Structural parity is enforced in CI; translation quality still requires human review.

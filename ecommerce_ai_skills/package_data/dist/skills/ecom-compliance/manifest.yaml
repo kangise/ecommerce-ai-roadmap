@@ -1,0 +1,133 @@
+description: Check product compliance requirements, classify HS codes, screen IP risks,
+  and handle platform documentation
+inputs:
+- description: 'Product details: category, materials, components, intended use'
+  name: product_info
+  required: true
+  type: object
+- description: Target market countries (US, EU, JP, etc.)
+  name: target_markets
+  required: true
+  type: array
+- description: Brand/trademark information for IP screening
+  name: brand_info
+  required: false
+  type: object
+name: ecom-compliance
+outputs:
+- description: Required certifications, HS codes, IP risks, and documentation checklist
+  name: compliance_report
+  type: object
+platforms:
+- amazon
+- shopify
+triggers:
+  intent: check_compliance | classify_hs_code | screen_ip_risk | prepare_documentation
+  keywords:
+  - CE
+  - FCC
+  - FDA
+  - HS code
+  - HS编码
+  - REACH
+  - category approval
+  - certification
+  - compliance
+  - customs
+  - dangerous goods
+  - import
+  - intellectual property
+  - patent
+  - regulatory
+  - trademark
+  - 下架
+  - 专利
+  - 侵权
+  - 出口到
+  - 危险品
+  - 发达国家
+  - 合规
+  - 商标
+  - 安全文件
+  - 律师函
+  - 电池
+  - 空运限制
+  - 类目审核
+  - 要做哪些准备
+  - 认证
+  - 认证要求
+  - 证书
+  - 跟卖
+  - 锂电池
+  - 额外
+uses_constraints:
+- amazon.account.monthly_spend.analysis_cadence
+- amazon.bid.value.new_product_multiplier
+- amazon.bsa.tool_compliance
+- amazon.cpc.value.actual_price_formula
+- amazon.de.listing.required_certifications
+- amazon.fba.inventory.excess_inventory_threshold
+- amazon.fba.inventory.inbound_processing_time
+- amazon.fba.inventory.ipi_score_min
+- amazon.fba.inventory.storage_restriction_on_low_ipi
+- amazon.jp.listing.required_certifications
+- amazon.keyword.placement.one_ad_group_only
+- amazon.listing.description.max_length
+- amazon.listing.description.recommended_max_length
+- amazon.promo.bid.event_multiplier
+- amazon.promo.budget.event_multiplier
+- amazon.promo.budget.pre_event_multiplier
+- amazon.safety_complaint.response_deadline
+- amazon.sponsored_brand.video.ctr_multiple
+- amazon.us.listing.required_certifications
+- amazon.violation.response_deadline
+- compliance.ce_marking.mandatory
+- compliance.ce_marking.min_height
+- compliance.certificate.accredited_body_only
+- compliance.certificate.revalidate_on_design_change
+- compliance.certificate.validity_period
+- compliance.fcc.mandatory
+- compliance.pse.mandatory
+- compliance.ukca.mandatory
+- content.ai_generated.commercial_license
+- customs.hs_code.format
+- de.label.recycling_mark
+- dg.lithium_battery.un38_3_msds
+- eu.ai_act.transparency
+- eu.dpp.phased_timeline
+- eu.gpsr.responsible_person
+- eu.label.local_language
+- eu.label.manufacturer_info
+- eu.vat.registration_before_sale
+- google.search_ad.description_max_length
+- inventory.lead_time_safety_rule
+- inventory.promo_lead_time
+- inventory.promo_safety_buffer
+- inventory.promo_sales_multiplier
+- inventory.safety_stock_formula
+- inventory.service_level_z_factors
+- ip.trademark.search_before_naming
+- ip.tro.risk_prevention
+- ip_risk.high_requires_fto
+- shopify.product_feed.description.key_first_160
+- shopify.product_feed.description.max_length
+- shopify.product_page.description.max_length
+- shopify.product_page.description.min_length
+- shopify.product_page.meta_description.max_length
+- tiktok_shop.product.description.max_length
+- tiktok_shop.product_video.description.required
+- us.label.country_of_origin
+- us_ca.label.prop65_warning
+uses_entities:
+- brand_registry
+- certification
+- compliance_check
+- dangerous_goods
+- hs_code
+- ip_right
+- ipi_score
+- label_requirement
+- patent
+- product_category_approval
+- shipment
+- trademark

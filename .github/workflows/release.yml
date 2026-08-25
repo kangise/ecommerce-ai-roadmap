@@ -1,0 +1,51 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install checks
+        run: pip install -r tests/requirements.txt
+
+      - name: Verify optional MCP extra
+        run: pip install ".[mcp]"
+
+      - name: Verify tag matches project version
+        run: |
+          python3 - <<'PY'
+          import os, pathlib, tomllib
+          version = tomllib.loads(pathlib.Path("pyproject.toml").read_text())["project"]["version"]
+          tag = os.environ["GITHUB_REF_NAME"]
+          if tag != f"v{version}":
+              raise SystemExit(f"tag {tag} does not match pyproject version v{version}")
+          PY
+
+      - name: Test and verify
+        run: |
+          python3 scripts/build_dist.py --check
+          python3 -m pytest
+          python3 scripts/verify_all.py
+
+      - name: Build and smoke-test installable wheel
+        run: |
+          rm -rf /tmp/ecommerce-ai-wheel /tmp/ecommerce-ai-wheel-install
+          python3 -m pip wheel --no-deps --no-build-isolation -w /tmp/ecommerce-ai-wheel .
+          python3 -m pip install --no-deps --no-index --target /tmp/ecommerce-ai-wheel-install /tmp/ecommerce-ai-wheel/*.whl
+          PYTHONPATH=/tmp/ecommerce-ai-wheel-install /tmp/ecommerce-ai-wheel-install/bin/opc-ecommerce mcp --validate
+
+      - name: Package distributable
+        run: zip -r "ecommerce-ai-skills-${GITHUB_REF_NAME}.zip" dist
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release create "$GITHUB_REF_NAME" "ecommerce-ai-skills-${GITHUB_REF_NAME}.zip" --generate-notes

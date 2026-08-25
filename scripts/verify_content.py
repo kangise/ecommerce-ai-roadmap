@@ -30,11 +30,10 @@ Usage
   verify_content.py --list              print each offending item, not just counts
   verify_content.py --only M1           one check by name
   verify_content.py --probe-links       re-probe every external URL, refresh the cache
+  verify_content.py --metrics           print reproducible convergence metrics
   verify_content.py --anchors-vs-build docs
                                         diff derived anchors against built HTML
 """
-from __future__ import annotations
-
 from __future__ import annotations
 
 import argparse
@@ -700,11 +699,12 @@ def gate_n6() -> list[str]:
 
 
 def gate_m7() -> list[str]:
-    """Expired verified facts. Shelf life: 18 months.
+    """Expired verified facts and incomplete review planning.
 
     Scans claims markers (<!-- claims: verified YYYY-MM -->) in chapter prose
     and `verified:` fields in constraints.yaml. Reports any older than
-    SHELF_LIFE_MONTHS.
+    SHELF_LIFE_MONTHS. Also requires every source fact group to have exactly one
+    owner and a scheduled review at least three months before expiry.
     """
     import datetime
     SHELF_LIFE_MONTHS = 18
@@ -738,10 +738,11 @@ def gate_m7() -> list[str]:
 
     # Check constraints.yaml
     constraints_path = ROOT / "ontology" / "constraints.yaml"
+    constraints = []
     if constraints_path.exists():
         import yaml
         with open(constraints_path) as f:
-            constraints = yaml.safe_load(f)
+            constraints = yaml.safe_load(f) or []
         for c in constraints:
             if isinstance(c, dict):
                 verified_str = c.get("verified", "")
@@ -754,6 +755,72 @@ def gate_m7() -> list[str]:
                         problems.append(
                             f"ontology/constraints.yaml: {c.get('id', '?')} verified {verified_str} (expired)"
                         )
+
+    plan_path = ROOT / "maintenance" / "fact-review-plan.yaml"
+    if not plan_path.exists():
+        problems.append("maintenance/fact-review-plan.yaml missing")
+        return sorted(problems)
+
+    import yaml
+    plan = yaml.safe_load(plan_path.read_text(encoding="utf-8")) or {}
+    policy = plan.get("policy", {})
+    lead_months = policy.get("review_lead_months")
+    if not isinstance(lead_months, int) or lead_months < 1:
+        problems.append("fact review policy needs review_lead_months >= 1")
+        lead_months = 0
+    batches = plan.get("batches", [])
+    if not isinstance(batches, list) or not batches:
+        problems.append("fact review plan has no batches")
+        return sorted(problems)
+
+    def add_months(date: datetime.date, months: int) -> datetime.date:
+        month_index = date.year * 12 + date.month - 1 + months
+        year, month_zero = divmod(month_index, 12)
+        return datetime.date(year, month_zero + 1, 1)
+
+    parsed_batches = []
+    for batch in batches:
+        batch_id = batch.get("id", "?") if isinstance(batch, dict) else "?"
+        if not isinstance(batch, dict) or not batch.get("owner"):
+            problems.append(f"fact review batch {batch_id} has no owner")
+            continue
+        try:
+            due = datetime.date.fromisoformat(str(batch.get("due", "")) + "-01")
+        except ValueError:
+            problems.append(f"fact review batch {batch_id} has invalid due month")
+            continue
+        if due < now.replace(day=1):
+            problems.append(f"fact review batch {batch_id} is overdue ({batch.get('due')})")
+        parsed_batches.append((batch, due))
+
+    for constraint in constraints:
+        if not isinstance(constraint, dict) or not constraint.get("verified"):
+            continue
+        cid = str(constraint.get("id", ""))
+        prefix = cid.split(".", 1)[0]
+        matches = [item for item in parsed_batches
+                   if prefix in (item[0].get("constraint_prefixes") or [])]
+        if len(matches) != 1:
+            problems.append(f"constraint {cid} matches {len(matches)} review batches")
+            continue
+        verified = datetime.date.fromisoformat(str(constraint["verified"]) + "-01")
+        latest_review = add_months(verified, SHELF_LIFE_MONTHS - lead_months)
+        if matches[0][1] > latest_review:
+            problems.append(
+                f"constraint {cid} review {matches[0][0].get('due')} is after "
+                f"lead-time deadline {latest_review:%Y-%m}"
+            )
+
+    for md in sorted((ROOT / "src").rglob("*.md")):
+        if not CLAIMS_PATTERN.search(md.read_text(encoding="utf-8")):
+            continue
+        rel = f"src/{md.relative_to(ROOT / 'src')}"
+        matches = [item for item in parsed_batches if any(
+            rel == path or rel.startswith(path.rstrip("/") + "/")
+            for path in (item[0].get("content_path_prefixes") or [])
+        )]
+        if len(matches) != 1:
+            problems.append(f"{rel} matches {len(matches)} review batches")
 
     return sorted(problems)
 
@@ -870,17 +937,78 @@ def anchors_vs_build(build_dir: str) -> int:
     return 1 if bad else 0
 
 
+def print_metrics() -> int:
+    """Print the result metrics used by the repository's convergence loop."""
+    glossary = ROOT / "src" / "resources" / "glossary.md"
+    glossary_terms = sum(
+        1 for line in glossary.read_text(encoding="utf-8").splitlines()
+        if line.startswith("## ")
+    ) if glossary.exists() else 0
+    skills = len(list((ROOT / "skills").glob("*/manifest.yaml")))
+    case_studies = len([
+        path for path in (ROOT / "src" / "case-studies").glob("*.md")
+        if path.name.lower() != "readme.md"
+    ])
+    notebooks = len(list((ROOT / "notebooks").glob("*.ipynb")))
+    chapters = len([
+        path for path in (ROOT / "src").rglob("*.md")
+        if path.name not in ("SUMMARY.md", "README.md")
+    ])
+    prompts_path = ROOT / "dist" / "prompts.json"
+    prompts = len(json.loads(prompts_path.read_text(encoding="utf-8"))) \
+        if prompts_path.exists() else 0
+    fact_health_gaps = len(gate_m7())
+    docs_result = subprocess.run(
+        [sys.executable, "scripts/verify_all.py", "--d2"],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    readme_facts_reproducible = docs_result.returncode == 0
+
+    metrics = [
+        ("chapters", chapters, 69),
+        ("glossary_terms", glossary_terms, 100),
+        ("skills", skills, 5),
+        ("case_studies", case_studies, 2),
+        ("prompts", prompts, 1),
+        ("notebooks", notebooks, 1),
+        ("fact_health_gaps", fact_health_gaps, 0),
+        ("readme_facts_reproducible", readme_facts_reproducible, True),
+    ]
+    failures = 0
+    for name, value, target in metrics:
+        if isinstance(target, bool):
+            passed = value is target
+            target_text = str(target).lower()
+        elif name == "fact_health_gaps":
+            passed = value == target
+            target_text = "0"
+        else:
+            passed = value >= target
+            target_text = f">={target}"
+        failures += 0 if passed else 1
+        mark = "ok " if passed else "FAIL"
+        print(f"  [{mark}] {name:28s} {value} (target {target_text})")
+    print(f"\n  total metric gaps {failures}")
+    return 1 if failures else 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--list", action="store_true", help="print offending items, not just counts")
     ap.add_argument("--only", metavar="NAME", help="run one check (anchors, M1, …)")
     ap.add_argument("--probe-links", action="store_true", help="re-probe external URLs")
+    ap.add_argument("--metrics", action="store_true", help="print convergence metrics")
     ap.add_argument("--anchors-vs-build", metavar="DIR", help="diff anchors against built HTML")
     args = ap.parse_args()
 
     if args.probe_links:
         probe_links()
         return 0
+    if args.metrics:
+        return print_metrics()
     if args.anchors_vs_build:
         return anchors_vs_build(args.anchors_vs_build)
 

@@ -96,7 +96,7 @@
   <text class="who"  x="926" y="276">パッケージする方法を学びたい</text>
   <text class="goal" x="926" y="304">メタ対象：方法論</text>
   <line class="rule" x1="926" y1="326" x2="1120" y2="326"/>
-  <text class="step" x="926" y="356">1 · 24項目のコンテンツ門禁</text>
+  <text class="step" x="926" y="356">1 · 42項目の品質ゲート</text>
   <text class="step" x="926" y="382">2 · ontology 抽出プロセス</text>
   <text class="step" x="926" y="408">3 · skill パッケージ構造</text>
   <text class="mono" x="926" y="448">scripts/verify_all.py</text>

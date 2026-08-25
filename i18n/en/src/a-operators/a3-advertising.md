@@ -441,6 +441,17 @@ Tag every number with its source: [input data] or [model inference].
 
 **Variant A — Sponsored Brands Video script:**
 
+#### Official Sponsored Brands Video caption and mute rules
+
+<!-- claims: verified 2026-08 -->
+
+- Sponsored Brands Video autoplays muted and shoppers can enable audio. Key information that depends on narration should also appear as on-screen text or captions. Amazon describes captions as a recommendation, not a universal requirement.
+- Video text and audio should use the marketplace's primary language; use localized versions or subtitles for additional marketplaces.
+- Keep captions, disclosures, and instructions out of the lower-right volume-control area and verify mobile visibility with Amazon's Video Safe Zone template.
+- Amazon publishes no universal character limit for Sponsored Brands Video captions. Do not treat the creative pacing below as a platform cap; text must instead be legible and remain on screen long enough to read.
+
+Sources: [Amazon Ads — Sponsored Brands video specifications and guidelines](https://advertising.amazon.com/resources/ad-specs/sponsored-brands-video), [Amazon Ads — Sponsored Brands and display ads moderation guide](https://advertising.amazon.com/en-ca/library/guides/sponsored-brands-display-ads-moderation) (verified 2026-08).
+
 ```
 My product is [description], core selling point is [selling point].
 
@@ -484,7 +495,8 @@ End with a comparison table: script | hook (first 3s) | target emotion | expecte
 <self_check>
 - [ ] Exactly 3 scripts are produced, each matching its assigned style (problem-solution / demonstration / social proof)
 - [ ] Each script's three segments sum to 15 seconds (0–3 + 3–10 + 10–15)
-- [ ] On-screen headline is ≤5 words and total overlay text ≤20 words per script
+- [ ] On-screen text is legible on mobile, remains visible long enough to read, and avoids the lower-right volume-control safe area
+- [ ] Key information that depends on narration also appears as localized on-screen text or captions
 - [ ] No feature, material, certification or result appears that was not supplied in the product description
 - [ ] The three hooks (first-3s openings) are worded differently from each other
 </self_check>
