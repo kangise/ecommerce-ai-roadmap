@@ -19,6 +19,7 @@ from urllib.parse import parse_qs, urlparse
 
 from .actions import ActionService
 from .accounts import MarketplaceAccountService
+from .ads_gates import AdsCapabilityGateService
 from .agents import AgentProvider, OpenAIResponsesProvider, WeeklyOpsCouncil
 from .auth import AuthService
 from .briefing import BriefingService
@@ -47,6 +48,7 @@ class RuntimeApplication:
         self.db = db
         self.auth = AuthService(db)
         self.accounts = MarketplaceAccountService(db, self.auth)
+        self.ads_gates = AdsCapabilityGateService(db, self.auth)
         self.report_recipes = ReportRecipeService(db, self.auth)
         self.evidence_imports = EvidenceImportService(db, self.auth)
         self.metric_observations = MetricObservationService(db, self.auth)
@@ -282,6 +284,19 @@ class _Handler(BaseHTTPRequestHandler):
             elif parsed.path.startswith("/v1/connectors/") and len(parsed.path.split("/")) == 4:
                 account_id = parsed.path.split("/")[3]
                 self._json(200, self.app.accounts.get(principal, account_id), request_id)
+            elif parsed.path == "/v1/ads-capability-gates":
+                params = parse_qs(parsed.query, keep_blank_values=True)
+                limit = self._query_int(
+                    params, "limit", default=100, minimum=1, maximum=200
+                )
+                self._json(
+                    200,
+                    {"ads_capability_gates": self.app.ads_gates.list(principal, limit)},
+                    request_id,
+                )
+            elif parsed.path.startswith("/v1/ads-capability-gates/") and len(parsed.path.split("/")) == 4:
+                gate_id = parsed.path.split("/")[3]
+                self._json(200, self.app.ads_gates.get(principal, gate_id), request_id)
             elif parsed.path == "/v1/report-recipes":
                 self._json(
                     200,
@@ -484,6 +499,24 @@ class _Handler(BaseHTTPRequestHandler):
                     request_id=request_id,
                 )
                 self._json(201, account, request_id); return
+            if parsed.path == "/v1/ads-capability-gates":
+                principal = self._principal()
+                body = self._body_fields(
+                    required={"connector_account_id"},
+                    allowed={"connector_account_id", "attestation_reference"},
+                )
+                self._json(
+                    201,
+                    self.app.ads_gates.check(
+                        principal,
+                        body["connector_account_id"],
+                        body.get("attestation_reference"),
+                        self.headers.get("Idempotency-Key", ""),
+                        request_id,
+                    ),
+                    request_id,
+                )
+                return
             if parsed.path.startswith("/v1/connectors/") and parsed.path.endswith("/health-check") and len(parsed.path.split("/")) == 5:
                 principal = self._principal()
                 body = self._body_fields(required=set(), allowed=set())

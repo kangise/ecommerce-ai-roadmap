@@ -156,7 +156,11 @@ def test_source_runtime_api_l1_connector_contract() -> None:
         "created_at",
         "updated_at",
     }
-    assert set(schemas["ConnectorProvider"]["enum"]) == {"amazon_spapi", "shopify"}
+    assert set(schemas["ConnectorProvider"]["enum"]) == {
+        "amazon_ads",
+        "amazon_spapi",
+        "shopify",
+    }
     assert set(schemas["ConnectorUpdateRequest"]["required"]) == {"config"}
     assert set(schemas["ConnectorUpdateRequest"]["properties"]) == {
         "external_account_id",
@@ -347,6 +351,36 @@ def test_source_runtime_api_l4_metric_materialization_contract() -> None:
     assert request["properties"]["limit"]["minimum"] == 1
     assert request["properties"]["limit"]["maximum"] == 100
     assert "cursor" in request["properties"]
+
+
+def test_source_runtime_api_l5_ads_capability_gate_contract() -> None:
+    contract = yaml.safe_load((ROOT / "openapi" / "runtime-api.yaml").read_text(encoding="utf-8"))
+    paths = contract["paths"]
+    assert {"get", "post"} <= set(paths["/v1/ads-capability-gates"])
+    assert "get" in paths["/v1/ads-capability-gates/{gateId}"]
+    post = paths["/v1/ads-capability-gates"]["post"]
+    assert any(p.get("name") == "Idempotency-Key" and p.get("required") for p in post["parameters"])
+    assert "admin or owner" in post["description"]
+    assert "201" in post["responses"]
+    schemas = contract["components"]["schemas"]
+    assert {
+        "AmazonAdsConnectorRegistration",
+        "AmazonAdsConnectorConfig",
+        "AmazonAdsProviderDetails",
+    } <= set(schemas)
+    assert schemas["AmazonAdsConnectorConfig"]["properties"]["profile_id"][
+        "pattern"
+    ] == "^[0-9]{1,32}$"
+    gate = schemas["AdsCapabilityGate"]
+    assert {"checking", "passed", "blocked", "failed"} == set(gate["properties"]["status"]["enum"])
+    assert {"required_capabilities", "observed_capabilities", "checks", "request_ids"} <= set(gate["required"])
+    assert {"created_by", "region", "profile_id", "retry_after_seconds"} <= set(
+        gate["required"]
+    )
+    assert gate["properties"]["checks"]["items"]["required"] == ["name", "status"]
+    request = schemas["AdsCapabilityGateRequest"]
+    assert request["required"] == ["connector_account_id"]
+    assert request["additionalProperties"] is False
 
 
 def test_mcp_sdk_is_an_optional_install_extra() -> None:

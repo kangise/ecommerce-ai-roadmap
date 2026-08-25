@@ -13,6 +13,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 - Add package integrity metadata, automated tests, and PR quality checks.
 
 ### Added
+- L5 tenant-scoped Amazon Ads accounts and capability gate with environment-
+  referenced LWA credentials, regional Profiles-only account health, a
+  read-only Sponsored Products v3 campaign-list probe, bounded lease recovery,
+  safe request IDs, explicit external-attestation evidence, and a hard L6
+  boundary. Missing credentials or approval remain durable `blocked` state;
+  no Ads resource is created or mutated.
 - L4 tenant-owned metric observation and materialization contracts with exact
   bounded Decimal values, period/grain/provenance/quality metadata, strict
   currency isolation and missing-currency quarantine, operator idempotent

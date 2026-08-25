@@ -37,9 +37,11 @@
   values and names.
 - Connector health outcomes are persisted with `health_status`,
   `health_checked_at`, `health_error_code`, and `health_error_message`.
-  Amazon health calls the real Sellers marketplace-participation endpoint for
-  configured IDs; Shopify health calls the configured shop endpoint. Failures
-  remain visible as durable `misconfigured` or `unhealthy` state.
+  Amazon SP-API health calls Sellers marketplace participation, Amazon Ads
+  health calls only the fixed regional Profiles endpoint and verifies the
+  configured Profile ID, and Shopify health calls the configured shop
+  endpoint. Failures remain visible as durable `misconfigured` or `unhealthy`
+  state.
 - Report recipes enforce viewer read and operator create/update gates, require
   an Amazon SP-API connector account in the same tenant, and require every
   recipe marketplace ID to be a subset of the account's configured IDs. The
@@ -143,6 +145,13 @@
   and revokes that key at shutdown. Normal `api` processes return 404 for the
   bootstrap route and keep bearer authentication mandatory.
 
+## L5 Ads gate controls
+
+Amazon Ads gates are tenant-scoped and read-only. Persist only redacted request
+IDs and opaque attestation references; never persist LWA secrets, access tokens,
+or profile payloads. `passed` requires live probe evidence plus external
+approval and is the hard authorization boundary for L6.
+
 ## Residual risks and required deployment controls
 
 - The reference API is HTTP-only and loopback by default: use TLS termination,
@@ -173,6 +182,10 @@
   inferred currency repair, automatic historical scan, or mutation of source
   Evidence. Adding any of these requires a separately reviewed policy, data
   lineage, authorization, and reconciliation design.
+- L5 cannot independently verify the truth of an administrator-supplied
+  attestation reference. Deployments must reconcile that opaque reference with
+  Amazon approval records or their governance system before relying on a
+  `passed` gate; API read success alone is insufficient.
 - Agent prompts receive user evidence as untrusted data. Operators must still
   avoid placing personal data or secrets in evidence values; the first slice
   detects secret-shaped field names but is not a general DLP system.

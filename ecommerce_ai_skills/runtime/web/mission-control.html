@@ -161,6 +161,11 @@
             <div class="heading-actions"><button data-action="open-connector-form" id="add-connector-btn" class="primary-button">添加账户</button></div>
           </div>
           <section class="tool-panel wide"><div id="connector-permission" class="permission-note" hidden></div><div id="connector-list" class="connector-list" aria-live="polite"></div></section>
+          <section class="accounts-ads-gates" aria-labelledby="ads-gates-title">
+            <div class="section-title-row"><div><h2 id="ads-gates-title">Amazon Ads 准入</h2><span>检查授权、Profile、Sponsored Products 读取权限与外部审批；不会创建、修改或暂停 Campaign。</span></div><button data-action="open-ads-capability-form" id="add-ads-capability-btn" class="primary-button">运行准入检查</button></div>
+            <div id="ads-capability-permission" class="permission-note" hidden></div>
+            <div id="ads-capability-list" class="ads-capability-list" aria-live="polite"></div>
+          </section>
           <section class="accounts-recipes" aria-labelledby="recipes-title">
             <div class="section-title-row"><div><h2 id="recipes-title">Report Recipes</h2><span>保存可复现的 Amazon 报告配置；远程采集由 L3 Sync 执行。</span></div><button data-action="open-recipe-form" id="add-recipe-btn" class="primary-button">添加 Recipe</button></div>
             <div id="recipe-permission" class="permission-note" hidden></div>
@@ -225,11 +230,25 @@
         <fieldset><legend>Marketplaces</legend><div id="connector-marketplaces" class="check-list"></div></fieldset>
         <div class="form-grid"><label>LWA client ID 环境变量<input id="amazon-lwa-client-id-ref" autocomplete="off" placeholder="AMAZON_LWA_CLIENT_ID"></label><label>LWA client secret 环境变量<input id="amazon-lwa-client-secret-ref" autocomplete="off" placeholder="AMAZON_LWA_CLIENT_SECRET"></label><label>Refresh token 环境变量<input id="amazon-refresh-token-ref" autocomplete="off" placeholder="AMAZON_REFRESH_TOKEN"></label></div>
       </div>
+      <div id="amazon-ads-connector-fields" class="connector-fields" hidden>
+        <div class="form-grid"><label>Amazon Ads region<select id="amazon-ads-region"><option value="na">na</option><option value="eu">eu</option><option value="fe">fe</option></select></label><label>Advertising profile ID<input id="amazon-ads-profile-id" inputmode="numeric" pattern="[0-9]{1,32}" maxlength="32" autocomplete="off" placeholder="1234567890"></label></div>
+        <div class="form-grid"><label>LWA client ID 环境变量<input id="amazon-ads-lwa-client-id-ref" autocomplete="off" placeholder="AMAZON_ADS_LWA_CLIENT_ID"></label><label>LWA client secret 环境变量<input id="amazon-ads-lwa-client-secret-ref" autocomplete="off" placeholder="AMAZON_ADS_LWA_CLIENT_SECRET"></label><label>Refresh token 环境变量<input id="amazon-ads-refresh-token-ref" autocomplete="off" placeholder="AMAZON_ADS_REFRESH_TOKEN"></label></div>
+      </div>
       <div id="shopify-connector-fields" class="connector-fields" hidden>
         <div class="form-grid"><label>Shopify domain<input id="shopify-domain" autocomplete="off" placeholder="store.myshopify.com"></label><label>API version<input id="shopify-api-version" autocomplete="off" placeholder="2025-01"></label></div>
         <label>Access token 环境变量<input id="shopify-access-token-ref" autocomplete="off" placeholder="SHOPIFY_ACCESS_TOKEN"></label>
       </div>
       <div class="dialog-actions"><button data-action="save-connector" class="primary-button" type="submit">保存账户</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="ads-capability-dialog" class="ads-capability-dialog">
+    <div class="dialog-head"><div><p class="kicker">Amazon Ads 准入</p><h2>运行真实准入检查</h2></div><button data-action="close-dialog" data-dialog="ads-capability-dialog" class="icon-button" aria-label="关闭"><img src="/app/assets/icons/x.svg" alt=""></button></div>
+    <p class="dialog-copy">将使用已保存的环境变量引用验证 Ads 访问能力。可选填写审批或工单号，便于审计追踪。</p>
+    <form id="ads-capability-form">
+      <label>Amazon Ads 账户<select id="ads-capability-account" required></select></label>
+      <label>审批／工单 reference（可选）<input id="ads-capability-attestation-reference" maxlength="256" pattern="[A-Za-z0-9][A-Za-z0-9._:/#-]{2,255}" autocomplete="off" placeholder="OPS-1234"><small>这是管理员提供的外部批准引用，不是 Amazon API 自动签发的证明。</small></label>
+      <div class="dialog-actions"><button data-action="run-ads-capability-check" class="primary-button" type="submit">运行准入检查</button></div>
     </form>
   </dialog>
 

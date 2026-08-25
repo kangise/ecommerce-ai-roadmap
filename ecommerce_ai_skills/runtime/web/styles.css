@@ -220,6 +220,10 @@ legend{padding:0 5px;color:var(--muted);font-size:12px}
 .connector-meta div{min-width:0}.connector-meta dt{color:var(--muted);font-size:11px;font-weight:750;text-transform:uppercase;letter-spacing:.06em}.connector-meta dd{margin:3px 0 0;overflow-wrap:anywhere;font-size:13px}
 .connector-error{margin:0;padding:9px 10px;border-radius:7px;background:var(--coral-soft);color:#a72f34;font-size:13px}.connector-card .row-actions{justify-content:flex-start}
 .dialog-copy{margin:0 0 16px;color:var(--muted);font-size:13px}.connector-fields{display:grid;gap:14px}.connector-dialog fieldset{margin:0}.connector-dialog .form-grid{gap:12px}
+.accounts-ads-gates{margin-top:30px;padding-top:26px;border-top:1px solid var(--line)}.accounts-ads-gates .section-title-row{margin-bottom:14px}.accounts-ads-gates .primary-button{min-height:40px;padding-inline:14px}
+.ads-capability-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.ads-capability-card{display:grid;gap:14px;padding:18px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}.ads-capability-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.ads-capability-head .kicker{margin-bottom:3px}.ads-capability-head h3{margin:0;font-size:18px;line-height:1.25;letter-spacing:-.025em}.ads-capability-head p{margin:5px 0 0;color:var(--muted);font-size:13px}
+.ads-checks{padding-top:12px;border-top:1px solid var(--line)}.ads-check-list{display:grid;gap:8px;margin:0;padding:0;list-style:none}.ads-check-list li{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:7px;font-size:13px}.ads-check-list .badge{margin:0}.ads-check-list small{grid-column:2;color:var(--muted);font-size:12px;overflow-wrap:anywhere}.ads-blockers{display:grid;gap:4px;margin:0;padding:9px 10px;border-radius:7px;background:var(--amber-soft);color:#7c4b08;font-size:13px}.ads-capability-meta{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin:0;padding-top:12px;border-top:1px solid var(--line)}.ads-capability-meta div{min-width:0}.ads-capability-meta dt{color:var(--muted);font-size:11px;font-weight:750;text-transform:uppercase;letter-spacing:.06em}.ads-capability-meta dd{margin:3px 0 0;overflow-wrap:anywhere;font-size:13px}.ads-capability-card .row-actions{justify-content:flex-start}.ads-capability-failure{display:grid;gap:5px;padding:18px;border:1px solid #f4c4c1;border-radius:10px;background:var(--coral-soft);color:#a72f34}.ads-capability-failure span{font-size:13px}
+.badge.checking{background:var(--blue-soft);color:var(--blue)}.badge.passed{background:var(--green-soft);color:var(--green)}.badge.blocked{background:var(--amber-soft);color:var(--amber)}.badge.failed{background:var(--coral-soft);color:#a72f34}
 .accounts-recipes{margin-top:30px;padding-top:26px;border-top:1px solid var(--line)}
 .accounts-recipes .section-title-row{margin-bottom:14px}.accounts-recipes .primary-button{min-height:40px;padding-inline:14px}
 .recipe-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
@@ -275,6 +279,7 @@ pre{max-height:65vh;margin:18px 0 0;padding:17px;border:1px solid var(--line);bo
   .connector-list{grid-template-columns:1fr}
   .recipe-list{grid-template-columns:1fr}
   .sync-list{grid-template-columns:1fr}
+  .ads-capability-list{grid-template-columns:1fr}
   .metric-observations-layout{grid-template-columns:1fr}
   .briefing-main{padding-right:0}.decision-rail{margin-top:26px;padding:26px 0 0;border-top:1px solid var(--line);border-left:0}
   .decision-rail{display:grid;grid-template-columns:1fr 1fr;gap:24px}.decision-section{padding:0 24px 0 0;border-right:1px solid var(--line);border-bottom:0}.agent-roster-section{padding:0}
@@ -292,6 +297,7 @@ pre{max-height:65vh;margin:18px 0 0;padding:17px;border:1px solid var(--line);bo
   .connector-meta{grid-template-columns:1fr}
   .recipe-meta{grid-template-columns:1fr}
   .sync-meta{grid-template-columns:1fr}
+  .ads-capability-meta{grid-template-columns:1fr}
   .metric-observation-meta{grid-template-columns:1fr}
   .data-row{grid-template-columns:1fr}.row-actions{justify-content:flex-start}
   .today span{display:none}

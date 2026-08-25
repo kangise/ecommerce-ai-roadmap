@@ -29,7 +29,7 @@ class Principal:
 
 
 ROLE_LEVEL = {"viewer": 10, "operator": 20, "admin": 30, "owner": 40}
-SCHEMA_VERSION = 14
+SCHEMA_VERSION = 15
 
 
 class _Connection(sqlite3.Connection):
@@ -178,6 +178,43 @@ class Database:
                     ON report_syncs(status, available_at, lease_until);
                 CREATE INDEX IF NOT EXISTS idx_report_syncs_tenant_time
                     ON report_syncs(tenant_id, created_at);
+                CREATE TABLE IF NOT EXISTS ads_capability_gates (
+                    id TEXT PRIMARY KEY,
+                    tenant_id TEXT NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
+                    connector_account_id TEXT NOT NULL,
+                    created_by TEXT NOT NULL,
+                    idempotency_key TEXT NOT NULL,
+                    status TEXT NOT NULL
+                        CHECK (status IN ('checking','passed','blocked','failed')),
+                    region TEXT NOT NULL CHECK (region IN ('na','eu','fe')),
+                    profile_id TEXT NOT NULL,
+                    required_capabilities_json TEXT NOT NULL,
+                    observed_capabilities_json TEXT NOT NULL,
+                    checks_json TEXT NOT NULL,
+                    attestation_reference TEXT,
+                    request_ids_json TEXT NOT NULL,
+                    retry_after_seconds INTEGER,
+                    available_at TEXT NOT NULL,
+                    lease_until TEXT,
+                    attempt_count INTEGER NOT NULL DEFAULT 0,
+                    max_attempts INTEGER NOT NULL DEFAULT 3,
+                    error_code TEXT,
+                    error_message TEXT,
+                    created_at TEXT NOT NULL,
+                    updated_at TEXT NOT NULL,
+                    completed_at TEXT,
+                    UNIQUE(tenant_id, idempotency_key),
+                    FOREIGN KEY (tenant_id, connector_account_id)
+                        REFERENCES connector_accounts(tenant_id, id) ON DELETE CASCADE,
+                    FOREIGN KEY (tenant_id, created_by)
+                        REFERENCES users(tenant_id, id)
+                );
+                CREATE UNIQUE INDEX IF NOT EXISTS uq_ads_capability_gates_tenant_id
+                    ON ads_capability_gates(tenant_id, id);
+                CREATE INDEX IF NOT EXISTS idx_ads_capability_gates_claim
+                    ON ads_capability_gates(status, available_at, lease_until);
+                CREATE INDEX IF NOT EXISTS idx_ads_capability_gates_tenant_time
+                    ON ads_capability_gates(tenant_id, created_at);
                 CREATE TABLE IF NOT EXISTS actions (
                     id TEXT PRIMARY KEY,
                     tenant_id TEXT NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
@@ -612,6 +649,10 @@ class Database:
             # initialize() creates the tenant-owned materialization and
             # observation tables transactionally before advancing the marker.
             version = 14
+        if version == 14:
+            # initialize() creates ads_capability_gates transactionally before
+            # the schema marker advances.
+            version = 15
         if version != SCHEMA_VERSION:
             raise ValidationError(f"no migration path from runtime schema version {version}")
         conn.execute("UPDATE runtime_meta SET value=? WHERE key='schema_version'", (str(SCHEMA_VERSION),))
@@ -818,6 +859,14 @@ class Database:
                 "lwa_client_secret_ref",
                 "lwa_refresh_token_ref",
             }
+        elif provider == "amazon_ads":
+            required = {
+                "region",
+                "profile_id",
+                "lwa_client_id_ref",
+                "lwa_client_secret_ref",
+                "lwa_refresh_token_ref",
+            }
         else:
             raise ValidationError("unsupported connector provider")
         forbidden_keys = {
@@ -845,6 +894,13 @@ class Database:
                 config["region"], config["marketplace_ids"]
             )
             config = {**config, "region": region, "marketplace_ids": marketplace_ids}
+        elif provider == "amazon_ads":
+            from .connectors.amazon_ads import validate_amazon_ads_config
+
+            region, profile_id = validate_amazon_ads_config(
+                config["region"], config["profile_id"]
+            )
+            config = {**config, "region": region, "profile_id": profile_id}
         else:
             domain = str(config["shop_domain"]).lower().strip().rstrip("/")
             if not re.fullmatch(r"[a-z0-9][a-z0-9-]*\.myshopify\.com", domain):
@@ -1412,6 +1468,202 @@ class Database:
                 ),
             )
         return self.get_report_sync(tenant_id, sync_id)
+
+    @staticmethod
+    def _ads_capability_gate_dict(row: sqlite3.Row) -> dict[str, Any]:
+        value = dict(row)
+        for field in (
+            "required_capabilities",
+            "observed_capabilities",
+            "checks",
+            "request_ids",
+        ):
+            value[field] = json.loads(value.pop(f"{field}_json"))
+        return value
+
+    def create_ads_capability_gate(
+        self,
+        tenant_id: str,
+        created_by: str,
+        connector_account_id: str,
+        idempotency_key: str,
+        *,
+        region: str,
+        profile_id: str,
+        required_capabilities: list[str],
+        attestation_reference: str | None,
+        max_attempts: int = 3,
+    ) -> tuple[dict[str, Any], bool]:
+        if not isinstance(idempotency_key, str) or not 1 <= len(idempotency_key) <= 200:
+            raise ValidationError(
+                "ads capability gate idempotency_key is required and must be <= 200 characters"
+            )
+        if not isinstance(max_attempts, int) or isinstance(max_attempts, bool) or not 1 <= max_attempts <= 10:
+            raise ValidationError("ads capability gate max_attempts must be between 1 and 10")
+        gate_id = self._id()
+        now = utc_now()
+        try:
+            with self.transaction() as conn:
+                account = conn.execute(
+                    "SELECT provider FROM connector_accounts WHERE tenant_id=? AND id=?",
+                    (tenant_id, connector_account_id),
+                ).fetchone()
+                if account is None:
+                    raise NotFoundError("connector account not found")
+                if account["provider"] != "amazon_ads":
+                    raise ValidationError(
+                        "ads capability gate requires an amazon_ads connector account"
+                    )
+                actor = conn.execute(
+                    "SELECT tenant_id FROM users WHERE id=?", (created_by,)
+                ).fetchone()
+                if actor is None or actor["tenant_id"] != tenant_id:
+                    raise ValidationError(
+                        "ads capability gate creator does not belong to tenant"
+                    )
+                conn.execute(
+                    """INSERT INTO ads_capability_gates(
+                       id,tenant_id,connector_account_id,created_by,idempotency_key,
+                       status,region,profile_id,required_capabilities_json,
+                       observed_capabilities_json,checks_json,attestation_reference,
+                       request_ids_json,available_at,max_attempts,created_at,updated_at)
+                       VALUES(?,?,?,?,?,'checking',?,?,?,'[]','[]',?,'[]',?,?,?,?)""",
+                    (
+                        gate_id,
+                        tenant_id,
+                        connector_account_id,
+                        created_by,
+                        idempotency_key,
+                        region,
+                        profile_id,
+                        json.dumps(required_capabilities, sort_keys=True),
+                        attestation_reference,
+                        now,
+                        max_attempts,
+                        now,
+                        now,
+                    ),
+                )
+        except sqlite3.IntegrityError:
+            with self.connect() as conn:
+                row = conn.execute(
+                    """SELECT * FROM ads_capability_gates
+                       WHERE tenant_id=? AND idempotency_key=?""",
+                    (tenant_id, idempotency_key),
+                ).fetchone()
+            if row is None:
+                raise ConflictError("ads capability gate idempotency conflict")
+            existing = self._ads_capability_gate_dict(row)
+            if existing["connector_account_id"] != connector_account_id:
+                raise ConflictError(
+                    "idempotency key was used for a different connector account"
+                )
+            if existing["attestation_reference"] != attestation_reference:
+                raise ConflictError(
+                    "idempotency key was used with a different attestation_reference"
+                )
+            return existing, True
+        return self.get_ads_capability_gate(tenant_id, gate_id), False
+
+    def get_ads_capability_gate(
+        self, tenant_id: str, gate_id: str
+    ) -> dict[str, Any]:
+        with self.connect() as conn:
+            row = conn.execute(
+                "SELECT * FROM ads_capability_gates WHERE tenant_id=? AND id=?",
+                (tenant_id, gate_id),
+            ).fetchone()
+        if row is None:
+            raise NotFoundError("ads capability gate not found")
+        return self._ads_capability_gate_dict(row)
+
+    def list_ads_capability_gates(
+        self, tenant_id: str, limit: int = 100
+    ) -> list[dict[str, Any]]:
+        limit = max(1, min(limit, 200))
+        with self.connect() as conn:
+            rows = conn.execute(
+                """SELECT * FROM ads_capability_gates WHERE tenant_id=?
+                   ORDER BY created_at DESC,id DESC LIMIT ?""",
+                (tenant_id, limit),
+            ).fetchall()
+        return [self._ads_capability_gate_dict(row) for row in rows]
+
+    def claim_ads_capability_gate(
+        self, tenant_id: str, gate_id: str, *, lease_seconds: int = 300
+    ) -> dict[str, Any]:
+        now = utc_now()
+        lease_until = self._lease_until(lease_seconds)
+        with self.transaction() as conn:
+            conn.execute(
+                """UPDATE ads_capability_gates SET status='failed',lease_until=NULL,
+                   error_code='max_attempts',
+                   error_message='ads capability gate exhausted its retry budget',
+                   completed_at=?,updated_at=?
+                   WHERE tenant_id=? AND id=? AND status='checking'
+                     AND attempt_count>=max_attempts
+                     AND (lease_until IS NULL OR lease_until<?)""",
+                (now, now, tenant_id, gate_id, now),
+            )
+            result = conn.execute(
+                """UPDATE ads_capability_gates
+                   SET lease_until=?,attempt_count=attempt_count+1,updated_at=?
+                   WHERE tenant_id=? AND id=? AND status='checking'
+                     AND available_at<=? AND attempt_count<max_attempts
+                     AND (lease_until IS NULL OR lease_until<?)""",
+                (lease_until, now, tenant_id, gate_id, now, now),
+            )
+        current = self.get_ads_capability_gate(tenant_id, gate_id)
+        if result.rowcount != 1 and current["status"] == "checking":
+            raise ConflictError("ads capability gate is not available for checking")
+        return current
+
+    def finish_ads_capability_gate(
+        self,
+        tenant_id: str,
+        gate_id: str,
+        *,
+        status: str,
+        observed_capabilities: list[str],
+        checks: list[dict[str, Any]],
+        request_ids: list[str],
+        error_code: str | None = None,
+        error_message: str | None = None,
+        retry_after_seconds: int | None = None,
+    ) -> dict[str, Any]:
+        if status not in {"passed", "blocked", "failed"}:
+            raise ValidationError("invalid ads capability gate terminal status")
+        now_dt = datetime.now(timezone.utc)
+        now = now_dt.isoformat(timespec="seconds")
+        available_at = (
+            now_dt + timedelta(seconds=max(1, min(retry_after_seconds, 3600)))
+        ).isoformat(timespec="seconds") if retry_after_seconds is not None else now
+        with self.transaction() as conn:
+            result = conn.execute(
+                """UPDATE ads_capability_gates SET status=?,
+                   observed_capabilities_json=?,checks_json=?,request_ids_json=?,
+                   retry_after_seconds=?,available_at=?,lease_until=NULL,error_code=?,
+                   error_message=?,completed_at=?,updated_at=?
+                   WHERE tenant_id=? AND id=? AND status='checking'
+                     AND lease_until IS NOT NULL""",
+                (
+                    status,
+                    json.dumps(observed_capabilities, sort_keys=True),
+                    json.dumps(checks, sort_keys=True),
+                    json.dumps(sorted(set(request_ids))[:16]),
+                    retry_after_seconds,
+                    available_at,
+                    error_code,
+                    error_message[:1000] if error_message else None,
+                    now,
+                    now,
+                    tenant_id,
+                    gate_id,
+                ),
+            )
+            if result.rowcount != 1:
+                raise ConflictError("ads capability gate is not actively checking")
+        return self.get_ads_capability_gate(tenant_id, gate_id)
 
     def append_audit(self, tenant_id: str, actor_user_id: str | None, request_id: str, action: str,
                      resource_type: str, resource_id: str | None, outcome: str, metadata: dict[str, Any]) -> str:

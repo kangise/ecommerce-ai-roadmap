@@ -624,6 +624,9 @@ def main() -> int:
                 schemas = contract.get("components", {}).get("schemas", {})
                 for schema_name in (
                     "AmazonSPAPIConnectorRegistration",
+                    "AmazonAdsConnectorRegistration",
+                    "AmazonAdsConnectorConfig",
+                    "AmazonAdsProviderDetails",
                     "MarketplaceAccount",
                     "ConnectorUpdateRequest",
                     "ConnectorProviderCatalogEntry",
@@ -649,11 +652,25 @@ def main() -> int:
                     "MetricObservation",
                     "MetricMaterialization",
                     "MetricBackfillRequest",
+                    "AdsCapabilityGate",
+                    "AdsCapabilityGateRequest",
                 ):
                     if schema_name not in schemas:
                         problems.append(
                             f"dist/openapi/runtime-api.yaml: missing schema {schema_name}"
                         )
+                ads_paths = contract.get("paths", {})
+                if not {"get", "post"} <= set(ads_paths.get("/v1/ads-capability-gates", {})):
+                    problems.append("dist/openapi/runtime-api.yaml: missing Ads capability gate list/create contract")
+                if "get" not in ads_paths.get("/v1/ads-capability-gates/{gateId}", {}):
+                    problems.append("dist/openapi/runtime-api.yaml: missing Ads capability gate detail contract")
+                connector_providers = set(
+                    schemas.get("ConnectorProvider", {}).get("enum", [])
+                )
+                if connector_providers != {"amazon_ads", "amazon_spapi", "shopify"}:
+                    problems.append(
+                        "dist/openapi/runtime-api.yaml: ConnectorProvider enum does not match runtime"
+                    )
                 expected_recipe_keys = {
                     "sales_traffic_daily",
                     "fba_inventory_daily",

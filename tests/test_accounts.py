@@ -65,7 +65,7 @@ def test_schema_v10_connector_accounts_migrate_with_safe_health_defaults(tmp_pat
         conn.execute("UPDATE runtime_meta SET value='10' WHERE key='schema_version'")
     migrated = Database(path)
     account = migrated.list_connector_accounts(tenant)[0]
-    assert migrated.readiness()["schema_version"] == 14
+    assert migrated.readiness()["schema_version"] == 15
     assert account["updated_at"] == account["created_at"]
     assert account["health_status"] == "unchecked"
 
@@ -248,5 +248,9 @@ def test_connector_api_routes_and_catalog(tmp_path: Path) -> None:
     assert Handler("PATCH", f"/v1/connectors/{account_id}", {"config": SHOPIFY_CONFIG}).run()[0] == 200
     assert Handler("POST", f"/v1/connectors/{account_id}/health-check").run()[1]["health_status"] == "misconfigured"
     catalog = Handler("GET", "/v1/catalog").run()[1]
-    assert {item["id"] for item in catalog["connector_providers"]} == {"amazon_spapi", "shopify"}
+    assert {item["id"] for item in catalog["connector_providers"]} == {
+        "amazon_ads",
+        "amazon_spapi",
+        "shopify",
+    }
     assert any(item["id"] == "ATVPDKIKX0DER" for item in catalog["amazon_marketplaces"])

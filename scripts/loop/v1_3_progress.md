@@ -10,7 +10,7 @@
 | L2 | Report Recipes | done | Schema v12；4 recipe allowlist；API/UI/RBAC；pytest 95；14 groups=0；browser Demo 4 recipes；wheel smoke | `loop(v1.3): L2 persist amazon report recipes` | 仅保存可复现配置，不调用Amazon；marketplaces强制为account subset；无删除/执行按钮 |
 | L3 | SP-API Sync | done | Schema v13；durable create/poll/download/Evidence；pytest 107；14 groups=0；wheel + worker smoke；browser QA | `loop(v1.3): L3 ship durable amazon report sync` | operator enqueue/viewer inspect；healthy account gate；bounded retry/JSON/TSV；无自动调度与 Amazon 写入；live credential smoke 不可用 |
 | L4 | Metric Observations | done | Schema v14；durable materialization/observations；pytest 120；14 groups=0；wheel persistence smoke；browser QA | `loop(v1.3): L4 persist provenance-safe metric observations` | Decimal v2；ISO currency isolation；period/grain/series/quality；bounded backfill；Briefing 不再解析 Evidence rows |
-| L5 | Ads Contract Gate | pending |  |  |  |
+| L5 | Ads Contract Gate | blocked | Schema v15；real LWA/profiles/SP v3 read gate；pytest 139；14 groups=0；wheel blocked-state smoke；browser QA | `loop(v1.3): L5 enforce amazon ads capability gate` | 实现与门禁全部通过；当前环境无 Ads credentials/外部批准，真实结果持久 blocked，L6 不得接入 |
 | L6 | Ads Adapter 条件实现 | pending |  |  |  |
 | L7 | Domain Agent Graph | pending |  |  |  |
 | L8 | Daily Ops | pending |  |  |  |
@@ -81,6 +81,18 @@
 - Failure 1: independent audit found a silently ignored `platform` filter and arbitrary three-letter currencies being accepted as ISO; API/OpenAPI/tests now pass the filter and enforce the supported Amazon marketplace currency allowlist.
 - Failure 2 / blocked reason: first wheel smoke payload contained escaped newline bytes and was correctly rejected as empty CSV; rerunning with the intended bytes proved Schema v14 and observation persistence. This was a smoke-harness input error, not a runtime blocker.
 - Restore point and result: L3 `1916af7`; L4 Schema v14/Metric Observation/Briefing/UI can be rolled back as one commit while leaving L3 Evidence intact.
+
+### L5 — Amazon Ads Contract Gate
+
+- Date: 2026-08-26
+- Status: blocked（外部依赖；门禁实现与验证已完成）
+- Evidence: `tests/test_ads_gates.py` 18 executed acceptance cases；全套 pytest 139 passed；`verify_all` 14 groups=0；MCP 69/878/9；`dist/` 153 fresh；Python 3.12 wheel cold install + Schema v15 + persisted `missing_credential` gate smoke；`artifacts/design-qa/l5-amazon-ads-gate-final.jpg`。
+- Commit: `loop(v1.3): L5 enforce amazon ads capability gate`（本记录所在提交）
+- Notes: `amazon_ads` account provider with redacted environment refs；fixed regional Profiles health；single-token LWA → `GET /v2/profiles` → configured Profile → read-only Sponsored Products v3 `POST /sp/campaigns/list`；campaign payload discarded；tenant-owned checking/passed/blocked/failed gate with idempotency/lease/recovery/request IDs；admin attestation kept separate from live capability evidence；only all four required capabilities can pass. Demo explicitly uses empty Ads env and persists two truthful blockers without network or fake success.
+- Validator results: all repository/install gates passed; browser shows blocked LWA, skipped Profiles/Profile/Campaign checks, blocked external attestation, safe error, real modal/detail actions, and zero console errors. Official behavior was checked against Amazon Ads Advanced Tools and the `amzn/ads-advanced-tools-docs` Postman collection.
+- Failure 1: integration review found incomplete Amazon Ads account OpenAPI oneOf/provider schemas, unsafe DTO drift, wrong docs repository link, and a Demo attestation that could look successful; schemas/DTO/docs were aligned and Demo now leaves attestation absent/blocked.
+- Failure 2 / blocked reason: no Amazon Ads LWA credential variables, approved application evidence, authorized numeric Profile, or externally reconciled attestation exist in this environment. A real success smoke is therefore unavailable by design. Required unblock input: an approved tenant Ads account, three secret-manager variables, matching region/Profile ID, and a verified approval reference.
+- Restore point and result: L4 `04a0947`; Schema v15/Ads connector/gate/UI can be rolled back as one commit without affecting SP-API reports or Metric Observations.
 
 ### Lx — 名称
 

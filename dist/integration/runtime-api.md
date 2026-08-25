@@ -580,6 +580,23 @@ The SQLite schema carries an explicit schema version and fails closed if a
 newer unsupported version is opened. Schema upgrades must be shipped as a
 reviewed migration, never as an ad-hoc table edit.
 
+## Amazon Ads capability gate (L5)
+
+L5 is a tenant-scoped, read-only admission contract for an `amazon_ads`
+connector. List/detail are viewer-readable; create requires admin/owner and an
+`Idempotency-Key`. The probe sequence is LWA token exchange, regional
+`GET /v2/profiles`, target-profile selection, then read-only
+`POST /sp/campaigns/list` v3. `passed` requires live probes and external
+attestation. Missing credentials/approval/profile, 403, or 429 persist as
+`blocked`; unexpected faults are `failed`. No universal hard-coded TPS is used.
+L5 is the hard gate for L6. See the
+[Amazon Ads Advanced Tools center](https://advertising.amazon.com/API/docs/en-us/index)
+and the [official `amzn` Postman collection](https://github.com/amzn/ads-advanced-tools-docs/tree/main/postman).
+The public collection identifies `/v2/profiles`, the
+`Amazon-Advertising-API-Scope` profile header, and Sponsored Products v3
+`/sp/campaigns/list`. The gate stores only allowlisted request IDs and check
+outcomes; it discards campaign payloads.
+
 ## Known boundary
 
 SQLite is the first deployable adapter, suitable for one process and a small

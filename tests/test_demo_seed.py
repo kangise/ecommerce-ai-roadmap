@@ -23,7 +23,8 @@ def test_demo_seed_creates_isolated_visible_full_product_state(tmp_path: Path) -
     assert result["evidence_imports"] == 10
     assert result["metric_materializations"] == 9
     assert result["approval_actions"] == 2
-    assert result["marketplace_accounts"] == 2
+    assert result["marketplace_accounts"] == 3
+    assert result["ads_capability_gate_status"] == "blocked"
     assert result["job_status"] == "succeeded"
 
     app = RuntimeApplication(Database(path))
@@ -35,6 +36,7 @@ def test_demo_seed_creates_isolated_visible_full_product_state(tmp_path: Path) -
     assert {account["provider"] for account in app.accounts.list(reviewer)} == {
         "amazon_spapi",
         "shopify",
+        "amazon_ads",
     }
 
     class MeHandler(_Handler):
@@ -98,7 +100,7 @@ def test_schema_v9_migrates_existing_tenants_to_production_mode(tmp_path: Path) 
             """
         )
     db = Database(path)
-    assert db.readiness()["schema_version"] == 14
+    assert db.readiness()["schema_version"] == 15
     assert db.get_tenant("tenant-1")["mode"] == "production"
 
 

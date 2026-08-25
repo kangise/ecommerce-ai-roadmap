@@ -74,6 +74,13 @@ Run the complete suite with:
 python3 -m pytest
 ```
 
+Ads capability-gate contract coverage verifies tenant-scoped list/detail,
+admin/owner Idempotency-Key protection, `amazon_ads` capabilities,
+checking/passed/blocked/failed states, safe request IDs/errors, and the
+LWA → regional profiles → target profile → campaigns-list read-only probe.
+It does not claim live Ads smoke: this machine has no Ads credentials or
+external attestation, so L5 remains blocked until both are supplied.
+
 The production gate is broader than pytest:
 
 ```bash

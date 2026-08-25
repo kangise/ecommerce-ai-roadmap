@@ -156,7 +156,30 @@ def seed_demo_database(path: str | Path) -> dict[str, Any]:
             },
             "demo-account-shopify",
         ),
+        app.accounts.create(
+            owner,
+            "amazon_ads",
+            "demo-ads-profile",
+            {
+                "region": "na",
+                "profile_id": "1234567890",
+                "lwa_client_id_ref": "DEMO_AMAZON_ADS_LWA_CLIENT_ID",
+                "lwa_client_secret_ref": "DEMO_AMAZON_ADS_LWA_CLIENT_SECRET",
+                "lwa_refresh_token_ref": "DEMO_AMAZON_ADS_LWA_REFRESH_TOKEN",
+            },
+            "demo-account-amazon-ads",
+        ),
     ]
+    # Explicit Demo state: prove the missing-credential blocker without making
+    # a network call or manufacturing a passed capability check.
+    app.ads_gates.environ = {}
+    ads_gate = app.ads_gates.check(
+        owner,
+        str(marketplace_accounts[2]["id"]),
+        None,
+        "demo-amazon-ads-gate",
+        "demo-amazon-ads-gate",
+    )
     recipe_start = datetime.now(timezone.utc).replace(
         hour=2, minute=0, second=0, microsecond=0
     ) + timedelta(days=1)
@@ -330,6 +353,8 @@ def seed_demo_database(path: str | Path) -> dict[str, Any]:
         "evaluation_id": evaluation["id"],
         "approval_actions": len(actions),
         "marketplace_accounts": len(marketplace_accounts),
+        "ads_capability_gate_id": ads_gate["id"],
+        "ads_capability_gate_status": ads_gate["status"],
         "report_recipes": len(report_recipes),
         "schedule_id": schedule["id"],
         "job_id": job["id"],

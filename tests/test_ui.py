@@ -35,6 +35,10 @@ def test_mission_control_assets_are_real_and_javascript_compiles() -> None:
     assert "Metric Observations" in html
     assert 'id="metric-observation-list"' in html
     assert 'id="metric-materialization-list"' in html
+    assert "Amazon Ads 准入" in html
+    assert 'id="ads-capability-list"' in html
+    assert 'id="ads-capability-dialog"' in html
+    assert 'id="amazon-ads-connector-fields"' in html
     assert 'id="demo-badge"' in html and 'id="demo-banner"' in html
     assert 'state.me?.tenant_mode === "demo"' in script
     assert 'fetch("/v1/demo-session"' in script
@@ -57,7 +61,7 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
         match = re.search(r'data-action="([a-z-]+)"', tag)
         assert match, f"visible button has no data-action: {tag}"
         actions.append(match.group(1))
-    form_actions = {"upload-evidence", "create-run", "create-schedule", "save-connector", "save-recipe"}
+    form_actions = {"upload-evidence", "create-run", "create-schedule", "save-connector", "save-recipe", "run-ads-capability-check"}
     switched = {
         "navigate",
         "select-platform",
@@ -87,6 +91,8 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
         "view-metric-observation",
         "materialize-evidence-metrics",
         "retry-metric-materialization",
+        "open-ads-capability-form",
+        "view-ads-capability-gate",
     }
     form_wiring = {
         "upload-evidence": '$("evidence-form").addEventListener',
@@ -94,6 +100,7 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
         "create-schedule": '$("schedule-form").addEventListener',
         "save-connector": '$("connector-form").addEventListener',
         "save-recipe": '$("recipe-form").addEventListener',
+        "run-ads-capability-check": '$("ads-capability-form").addEventListener',
     }
     for action in actions:
         assert action in form_actions | switched
@@ -119,6 +126,7 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
         "/v1/metric-observations",
         "/v1/metric-materializations",
         "/metric-materialization",
+        "/v1/ads-capability-gates",
     ):
         assert endpoint in script
     assert "需要 admin 或 owner 角色" in script
@@ -133,6 +141,10 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
     assert "metric_materialization_report_types" in script
     assert "该报告类型尚无指标映射" in script
     assert "metric.series_id || metric.key" in script
+    assert "adsCapabilityCanRun" in script
+    assert '"Idempotency-Key": idempotency("ui-ads-capability")' in script
+    assert "这是管理员提供的外部批准引用" in html
+    assert "阻塞原因" in script
     assert "完整历史可通过 API 分页查看" in script
     assert "Metric 来源与质量" in script
     assert "value_decimal ?? observation.value" in script

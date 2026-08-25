@@ -2,6 +2,7 @@
 
 from .agents import OpenAIResponsesProvider, WeeklyOpsCouncil
 from .accounts import MarketplaceAccountService
+from .ads_gates import AdsCapabilityGateService
 from .briefing import BriefingService
 from .evidence import CSVIngestor, EvidenceImportService, EvidenceObjectStore, XLSXIngestor
 from .evals import WorkflowEvaluator
@@ -14,6 +15,7 @@ from .storage import Database, Principal
 __all__ = [
     "CSVIngestor",
     "BriefingService",
+    "AdsCapabilityGateService",
     "Database",
     "EvidenceImportService",
     "EvidenceObjectStore",

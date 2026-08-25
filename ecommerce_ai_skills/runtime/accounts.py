@@ -13,6 +13,7 @@ from .connectors.amazon_spapi import (
     AmazonSPAPIReportsConnector,
     validate_amazon_marketplaces,
 )
+from .connectors.amazon_ads import AmazonAdsConnector, validate_amazon_ads_config
 from .connectors.shopify import ShopifyConnector
 from .errors import ConnectorError, MissingCredentialError, ValidationError
 from .storage import Database, Principal
@@ -30,6 +31,16 @@ PROVIDER_CATALOG = (
         ],
     },
     {
+        "id": "amazon_ads",
+        "name": "Amazon Ads API",
+        "detail_fields": ["region", "profile_id"],
+        "credential_fields": [
+            "lwa_client_id_ref",
+            "lwa_client_secret_ref",
+            "lwa_refresh_token_ref",
+        ],
+    },
+    {
         "id": "shopify",
         "name": "Shopify Admin API",
         "detail_fields": ["shop_domain", "api_version"],
@@ -40,6 +51,14 @@ PROVIDER_CATALOG = (
 _PROVIDER_FIELDS = {
     "amazon_spapi": {
         "details": {"region", "marketplace_ids"},
+        "credentials": {
+            "lwa_client_id_ref",
+            "lwa_client_secret_ref",
+            "lwa_refresh_token_ref",
+        },
+    },
+    "amazon_ads": {
+        "details": {"region", "profile_id"},
         "credentials": {
             "lwa_client_id_ref",
             "lwa_client_secret_ref",
@@ -131,6 +150,12 @@ class MarketplaceAccountService:
             )
             config["region"] = region
             config["marketplace_ids"] = marketplace_ids
+        elif normalized_provider == "amazon_ads":
+            region, profile_id = validate_amazon_ads_config(
+                config["region"], config["profile_id"]
+            )
+            config["region"] = region
+            config["profile_id"] = profile_id
         else:
             domain = str(config["shop_domain"]).lower().strip().rstrip("/")
             if not re.fullmatch(r"[a-z0-9][a-z0-9-]*\.myshopify\.com", domain):
@@ -245,6 +270,12 @@ class MarketplaceAccountService:
         config = account["config"]
         if account["provider"] == "amazon_spapi":
             connector = AmazonSPAPIReportsConnector(
+                config,
+                environ=self.environ,
+                transport=self.amazon_transport,
+            )
+        elif account["provider"] == "amazon_ads":
+            connector = AmazonAdsConnector(
                 config,
                 environ=self.environ,
                 transport=self.amazon_transport,

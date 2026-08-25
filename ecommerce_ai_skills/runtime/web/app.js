@@ -24,6 +24,9 @@ const state = {
   metricError: null,
   materializationLoading: false,
   materializationError: null,
+  adsCapabilityGates: [],
+  adsCapabilityLoading: false,
+  adsCapabilityError: null,
   selectedPlatform: "amazon",
   chartMetric: null,
   timer: null,
@@ -139,7 +142,7 @@ function connectorCanCheck() {
 
 function connectorProviderLabel(provider) {
   const entry = (state.catalog?.connector_providers || []).find(item => item.id === provider || item.provider === provider);
-  return entry?.label?.zh || entry?.label?.en || entry?.label || entry?.name || (provider === "amazon_spapi" ? "Amazon" : provider === "shopify" ? "Shopify" : provider);
+  return entry?.label?.zh || entry?.label?.en || entry?.label || entry?.name || (provider === "amazon_spapi" ? "Amazon" : provider === "amazon_ads" ? "Amazon Ads" : provider === "shopify" ? "Shopify" : provider);
 }
 
 function connectorDetails(connector) {
@@ -150,6 +153,7 @@ function connectorDetails(connector) {
     return [details.region, marketplaces.map(item => catalog.get(typeof item === "string" ? item : item.id) || (typeof item === "string" ? item : item.id)).join("、")].filter(Boolean).join(" · ") || "未配置 region 或 marketplace";
   }
   if (connector.provider === "shopify") return details.shop_domain || "未配置 Shopify domain";
+  if (connector.provider === "amazon_ads") return [details.region, details.profile_id ? `Profile ${details.profile_id}` : "未配置 profile"].filter(Boolean).join(" · ");
   return connector.external_account_id;
 }
 
@@ -168,21 +172,22 @@ function renderConnectors() {
   note.hidden = manage;
   note.textContent = manage ? "" : "当前角色只能查看账户。添加或编辑配置需要 admin 或 owner 角色。";
   if (!state.connectors.length) {
-    designedEmpty(target, "还没有连接账户", manage ? "添加 Amazon 或 Shopify 账户，并使用环境变量引用授权凭据。" : "当前租户尚未连接账户；需要 admin 或 owner 添加。", "key");
+    designedEmpty(target, "还没有连接账户", manage ? "添加 Amazon SP-API、Amazon Ads 或 Shopify 账户，并使用环境变量引用授权凭据。" : "当前租户尚未连接账户；需要 admin 或 owner 添加。", "key");
     return;
   }
   target.innerHTML = state.connectors.map(connector => {
     const healthStatus = connector.health_status || "unchecked";
     const edit = manage ? `<button data-action="edit-connector" data-id="${escapeHtml(connector.id)}" class="secondary-button">编辑</button>` : "";
     const healthAction = check ? `<button data-action="health-check-connector" data-id="${escapeHtml(connector.id)}" class="primary-button">健康检查</button>` : `<span class="permission-reason">需要 operator、admin 或 owner 执行健康检查</span>`;
+    const adsGateAction = connector.provider === "amazon_ads" ? (connectorCanManage() ? `<button data-action="open-ads-capability-form" data-id="${escapeHtml(connector.id)}" class="secondary-button">运行准入检查</button>` : `<span class="permission-reason">需要 admin 或 owner 运行 Ads 准入检查</span>`) : "";
     const failure = connector.health_error_message || connector.health_error_code;
     const refCount = Object.keys(connector.credential_refs || {}).length;
-    return `<article class="connector-card"><div class="connector-card-head"><div><p class="kicker">${escapeHtml(connectorProviderLabel(connector.provider))}</p><h2>${escapeHtml(connector.external_account_id)}</h2><p>${escapeHtml(connectorDetails(connector))}</p></div>${badge(healthStatus)}</div><dl class="connector-meta"><div><dt>Last checked</dt><dd>${escapeHtml(isoLocal(connector.health_checked_at))}</dd></div><div><dt>Credential refs</dt><dd>${refCount ? `${refCount} present` : "—"}</dd></div></dl>${failure ? `<p class="connector-error">${escapeHtml(failure)}</p>` : ""}<div class="row-actions">${edit}${healthAction}</div></article>`;
+    return `<article class="connector-card"><div class="connector-card-head"><div><p class="kicker">${escapeHtml(connectorProviderLabel(connector.provider))}</p><h2>${escapeHtml(connector.external_account_id)}</h2><p>${escapeHtml(connectorDetails(connector))}</p></div>${badge(healthStatus)}</div><dl class="connector-meta"><div><dt>Last checked</dt><dd>${escapeHtml(isoLocal(connector.health_checked_at))}</dd></div><div><dt>Credential refs</dt><dd>${refCount ? `${refCount} present` : "—"}</dd></div></dl>${failure ? `<p class="connector-error">${escapeHtml(failure)}</p>` : ""}<div class="row-actions">${edit}${healthAction}${adsGateAction}</div></article>`;
   }).join("");
 }
 
 function connectorProviders() {
-  return state.catalog?.connector_providers || [{id: "amazon_spapi", name: "Amazon Selling Partner API"}, {id: "shopify", name: "Shopify Admin API"}];
+  return state.catalog?.connector_providers || [{id: "amazon_spapi", name: "Amazon Selling Partner API"}, {id: "amazon_ads", name: "Amazon Ads API"}, {id: "shopify", name: "Shopify Admin API"}];
 }
 
 function renderConnectorForm(provider = $("connector-provider").value || "amazon_spapi", connector = null) {
@@ -190,8 +195,16 @@ function renderConnectorForm(provider = $("connector-provider").value || "amazon
   providerSelect.innerHTML = connectorProviders().map(item => `<option value="${escapeHtml(item.id || item.provider)}">${escapeHtml(item.label?.zh || item.label?.en || item.label || item.name || item.id || item.provider)}</option>`).join("");
   providerSelect.value = provider;
   const amazon = provider === "amazon_spapi";
+  const ads = provider === "amazon_ads";
   $("amazon-connector-fields").hidden = !amazon;
-  $("shopify-connector-fields").hidden = amazon;
+  $("amazon-ads-connector-fields").hidden = !ads;
+  $("shopify-connector-fields").hidden = amazon || ads;
+  if (ads) {
+    const details = connector?.provider_details || {};
+    $("amazon-ads-region").value = details.region || "";
+    $("amazon-ads-profile-id").value = details.profile_id || "";
+    return;
+  }
   if (!amazon) return;
   const details = connector?.provider_details || {};
   const regions = [...new Set((state.catalog?.amazon_marketplaces || []).map(item => item.region).filter(Boolean))];
@@ -217,12 +230,70 @@ function openConnectorForm(connector = null) {
   $("amazon-lwa-client-id-ref").value = "";
   $("amazon-lwa-client-secret-ref").value = "";
   $("amazon-refresh-token-ref").value = "";
+  $("amazon-ads-lwa-client-id-ref").value = "";
+  $("amazon-ads-lwa-client-secret-ref").value = "";
+  $("amazon-ads-refresh-token-ref").value = "";
   $("shopify-domain").value = details.shop_domain || "";
   $("shopify-api-version").value = details.api_version || "";
   $("shopify-access-token-ref").value = "";
   renderConnectorForm(connector?.provider || "amazon_spapi", connector);
   $("connector-provider").disabled = Boolean(connector);
   $("connector-dialog").showModal();
+}
+
+function adsCapabilityCanRun() {
+  return ["admin", "owner"].includes(state.me?.role);
+}
+
+function amazonAdsAccounts() {
+  return state.connectors.filter(connector => connector.provider === "amazon_ads");
+}
+
+function adsCheckList(gate) {
+  const checks = gate.checks || gate.check_results || gate.results || {};
+  const normalized = Array.isArray(checks) ? checks : Object.entries(checks).map(([key, value]) => ({key, ...(typeof value === "object" ? value : {status: value})}));
+  if (!normalized.length) return "<span class=\"permission-reason\">检查详情将在请求完成后显示。</span>";
+  const labels = {lwa: "LWA 授权", profiles_read: "Ads Profiles", target_profile: "Profile 匹配", campaigns_list_read: "Sponsored Products 只读", external_attestation: "外部批准证明"};
+  return `<ul class="ads-check-list">${normalized.map(check => `<li>${badge(check.status || check.outcome || "checking")}<span>${escapeHtml(check.label || labels[check.name || check.key] || check.name || check.key || "check")}</span>${check.detail || check.message ? `<small>${escapeHtml(check.detail || check.message)}</small>` : ""}</li>`).join("")}</ul>`;
+}
+
+function renderAdsCapabilityGates() {
+  const target = $("ads-capability-list"), note = $("ads-capability-permission"), add = $("add-ads-capability-btn");
+  if (!state.apiKey) {
+    add.disabled = true; add.title = "请先连接 Runtime";
+    note.hidden = false; note.textContent = "连接 Runtime 后才能读取或运行 Amazon Ads 准入检查。";
+    designedEmpty(target, "尚未连接 Runtime", "准入状态需要已认证的租户会话。", "key");
+    return;
+  }
+  const canRun = adsCapabilityCanRun(), accounts = amazonAdsAccounts();
+  add.disabled = !canRun || !accounts.length;
+  add.title = !canRun ? "需要 admin 或 owner 角色" : !accounts.length ? "请先添加 Amazon Ads 账户" : "";
+  note.hidden = canRun;
+  note.textContent = canRun ? "" : "当前角色可查看准入结果；只有 admin 或 owner 可以运行检查。";
+  if (state.adsCapabilityLoading) { designedEmpty(target, "正在读取 Ads 准入状态", "正在获取此租户最近的真实检查结果。", "database"); return; }
+  if (state.adsCapabilityError) { target.innerHTML = `<div class="ads-capability-failure" role="alert"><strong>无法加载 Amazon Ads 准入状态</strong><span>${escapeHtml(state.adsCapabilityError)}</span></div>`; return; }
+  if (!accounts.length) {
+    designedEmpty(target, "还没有 Amazon Ads 账户", "请使用页面上方“添加账户”，配置 region、Profile ID 和 LWA 环境变量引用后再验证。", "key");
+    return;
+  }
+  if (!state.adsCapabilityGates.length) { designedEmpty(target, "尚未运行准入检查", canRun ? "选择一个 Amazon Ads 账户，运行真实授权与读取能力检查。" : "等待 admin 或 owner 运行首次检查。", "database"); return; }
+  target.innerHTML = state.adsCapabilityGates.map(gate => {
+    const account = state.connectors.find(item => item.id === gate.connector_account_id);
+    const status = gate.overall_status || gate.status || "checking";
+    const blockers = gate.blockers || gate.safe_blockers || (gate.status === "blocked" || gate.status === "failed" ? [gate.error_message || gate.error_code].filter(Boolean) : []);
+    const requestId = Array.isArray(gate.request_ids) ? gate.request_ids.join(" · ") : gate.request_id || gate.external_request_id;
+    return `<article class="ads-capability-card"><div class="ads-capability-head"><div><p class="kicker">${escapeHtml(account?.external_account_id || "Amazon Ads account")}</p><h3>${escapeHtml(account ? connectorDetails(account) : gate.connector_account_id)}</h3><p>${escapeHtml(isoLocal(gate.checked_at || gate.created_at || gate.updated_at))}</p></div>${badge(status)}</div><div class="ads-checks">${adsCheckList(gate)}</div>${blockers.length ? `<p class="ads-blockers"><strong>阻塞原因</strong>${escapeHtml(blockers.map(item => typeof item === "string" ? item : item.message || item.code).join(" · "))}</p>` : ""}<dl class="ads-capability-meta"><div><dt>Request ID</dt><dd>${escapeHtml(requestId || "—")}</dd></div><div><dt>外部证明</dt><dd>${escapeHtml(gate.attestation_reference || "—")}</dd></div></dl><div class="row-actions"><button data-action="view-ads-capability-gate" data-id="${escapeHtml(gate.id)}" class="secondary-button">查看详情</button></div></article>`;
+  }).join("");
+}
+
+function openAdsCapabilityForm(accountId = "") {
+  if (!adsCapabilityCanRun()) { notice("需要 admin 或 owner 角色", "error"); return; }
+  const accounts = amazonAdsAccounts();
+  if (!accounts.length) { notice("请先添加 Amazon Ads 账户。", "error"); return; }
+  $("ads-capability-form").reset();
+  $("ads-capability-account").innerHTML = accounts.map(account => `<option value="${escapeHtml(account.id)}">${escapeHtml(account.external_account_id)} · ${escapeHtml(connectorDetails(account))}</option>`).join("");
+  $("ads-capability-account").value = accountId || accounts[0].id;
+  $("ads-capability-dialog").showModal();
 }
 
 function recipeCanManage() {
@@ -803,6 +874,7 @@ function renderAll() {
   renderReportSyncs();
   renderMetricObservations();
   renderMetricMaterializations();
+  renderAdsCapabilityGates();
 }
 
 function renderDisconnected() {
@@ -826,6 +898,9 @@ function renderDisconnected() {
   state.metricError = null;
   state.materializationLoading = false;
   state.materializationError = null;
+  state.adsCapabilityGates = [];
+  state.adsCapabilityLoading = false;
+  state.adsCapabilityError = null;
   renderBriefing();
   renderEvidence();
   renderRuns();
@@ -838,6 +913,7 @@ function renderDisconnected() {
   renderReportSyncs();
   renderMetricObservations();
   renderMetricMaterializations();
+  renderAdsCapabilityGates();
 }
 
 async function refreshAll() {
@@ -850,24 +926,29 @@ async function refreshAll() {
   state.metricError = null;
   state.materializationLoading = true;
   state.materializationError = null;
+  state.adsCapabilityLoading = true;
+  state.adsCapabilityError = null;
   renderReportRecipes();
   renderReportSyncs();
   renderMetricObservations();
   renderMetricMaterializations();
+  renderAdsCapabilityGates();
   const platform = encodeURIComponent(state.selectedPlatform);
   const recipes = api("/v1/report-recipes").then(value => ({value})).catch(error => ({error}));
   const syncs = api("/v1/report-syncs").then(value => ({value})).catch(error => ({error}));
   const observations = api("/v1/metric-observations").then(value => ({value})).catch(error => ({error}));
   const materializations = api("/v1/metric-materializations").then(value => ({value})).catch(error => ({error}));
-  const [me, catalog, briefing, mission, imports, runs, jobs, schedules, audit, connectors, recipeResult, syncResult, observationResult, materializationResult] = await Promise.all([
+  const adsGates = api("/v1/ads-capability-gates").then(value => ({value})).catch(error => ({error}));
+  const [me, catalog, briefing, mission, imports, runs, jobs, schedules, audit, connectors, recipeResult, syncResult, observationResult, materializationResult, adsGateResult] = await Promise.all([
     api("/v1/me"), api("/v1/catalog"), api(`/v1/briefing?platform=${platform}`), api("/v1/mission-control"),
     api("/v1/evidence-imports?limit=100"), api("/v1/agent-runs?limit=100"), api("/v1/jobs?limit=100"),
-    api("/v1/schedules"), api("/v1/audit?limit=100"), api("/v1/connectors"), recipes, syncs, observations, materializations,
+    api("/v1/schedules"), api("/v1/audit?limit=100"), api("/v1/connectors"), recipes, syncs, observations, materializations, adsGates,
   ]);
   if (recipeResult.error) console.error("Report Recipes 加载失败", recipeResult.error);
   if (syncResult.error) console.error("Sync Activity 加载失败", syncResult.error);
   if (observationResult.error) console.error("Metric Observations 加载失败", observationResult.error);
   if (materializationResult.error) console.error("Metric materializations 加载失败", materializationResult.error);
+  if (adsGateResult.error) console.error("Amazon Ads 准入状态加载失败", adsGateResult.error);
   Object.assign(state, {
     me, catalog, briefing, mission,
     imports: imports.imports || [], runs: runs.runs || [], jobs: jobs.jobs || [],
@@ -880,6 +961,8 @@ async function refreshAll() {
     metricLoading: false, metricError: observationResult.error?.message || null,
     metricMaterializations: Array.isArray(materializationResult.value) ? materializationResult.value : materializationResult.value?.metric_materializations || materializationResult.value?.materializations || [],
     materializationLoading: false, materializationError: materializationResult.error?.message || null,
+    adsCapabilityGates: Array.isArray(adsGateResult.value) ? adsGateResult.value : adsGateResult.value?.ads_capability_gates || adsGateResult.value?.gates || [],
+    adsCapabilityLoading: false, adsCapabilityError: adsGateResult.error?.message || null,
   });
   setConnected(true);
   renderAll();
@@ -977,6 +1060,8 @@ document.body.addEventListener("click", event => {
     case "open-connector-form": openConnectorForm(); break;
     case "edit-connector": openConnectorForm(state.connectors.find(item => item.id === id)); break;
     case "health-check-connector": act(button, () => api(`/v1/connectors/${id}/health-check`, {method: "POST"}), "健康检查已完成。"); break;
+    case "open-ads-capability-form": openAdsCapabilityForm(id); break;
+    case "view-ads-capability-gate": act(button, async () => showDetail("Amazon Ads 准入检查", await api(`/v1/ads-capability-gates/${id}`)), "准入详情已加载。", false); break;
     case "open-recipe-form": openRecipeForm(); break;
     case "edit-recipe": openRecipeForm(state.reportRecipes.find(item => item.id === id)); break;
     case "enqueue-report-sync": {
@@ -1103,12 +1188,18 @@ $("connector-form").addEventListener("submit", event => {
     lwa_client_id_ref: $("amazon-lwa-client-id-ref").value.trim(),
     lwa_client_secret_ref: $("amazon-lwa-client-secret-ref").value.trim(),
     lwa_refresh_token_ref: $("amazon-refresh-token-ref").value.trim(),
+  } : provider === "amazon_ads" ? {
+    region: $("amazon-ads-region").value.trim(),
+    profile_id: $("amazon-ads-profile-id").value.trim(),
+    lwa_client_id_ref: $("amazon-ads-lwa-client-id-ref").value.trim(),
+    lwa_client_secret_ref: $("amazon-ads-lwa-client-secret-ref").value.trim(),
+    lwa_refresh_token_ref: $("amazon-ads-refresh-token-ref").value.trim(),
   } : {
     shop_domain: $("shopify-domain").value.trim(),
     api_version: $("shopify-api-version").value.trim(),
     credential_ref: $("shopify-access-token-ref").value.trim(),
   };
-  if (!externalAccountId || (provider === "amazon_spapi" && (!config.region || !config.marketplace_ids.length || !config.lwa_client_id_ref || !config.lwa_client_secret_ref || !config.lwa_refresh_token_ref)) || (provider === "shopify" && (!config.shop_domain || !config.api_version || !config.credential_ref))) {
+  if (!externalAccountId || (provider === "amazon_spapi" && (!config.region || !config.marketplace_ids.length || !config.lwa_client_id_ref || !config.lwa_client_secret_ref || !config.lwa_refresh_token_ref)) || (provider === "amazon_ads" && (!config.region || !config.profile_id || !config.lwa_client_id_ref || !config.lwa_client_secret_ref || !config.lwa_refresh_token_ref)) || (provider === "shopify" && (!config.shop_domain || !config.api_version || !config.credential_ref))) {
     notice("请完成所有必填配置，并只填写环境变量名称。", "error"); return;
   }
   const connectorId = $("connector-id").value;
@@ -1118,6 +1209,19 @@ $("connector-form").addEventListener("submit", event => {
     await api(path, {method: connectorId ? "PATCH" : "POST", json});
     $("connector-dialog").close();
   }, connectorId ? "账户配置已更新。" : "账户已添加。");
+});
+
+$("ads-capability-form").addEventListener("submit", event => {
+  event.preventDefault();
+  const button = event.submitter;
+  if (!adsCapabilityCanRun()) { notice("需要 admin 或 owner 角色", "error"); return; }
+  const connectorAccountId = $("ads-capability-account").value;
+  if (!connectorAccountId || !amazonAdsAccounts().some(account => account.id === connectorAccountId)) { notice("请选择有效的 Amazon Ads 账户。", "error"); return; }
+  const attestationReference = $("ads-capability-attestation-reference").value.trim();
+  act(button, async () => {
+    await api("/v1/ads-capability-gates", {method: "POST", headers: {"Idempotency-Key": idempotency("ui-ads-capability")}, json: {connector_account_id: connectorAccountId, ...(attestationReference ? {attestation_reference: attestationReference} : {})}});
+    $("ads-capability-dialog").close();
+  }, "Amazon Ads 准入结果已保存。", true);
 });
 
 $("evidence-form").addEventListener("submit", event => {
