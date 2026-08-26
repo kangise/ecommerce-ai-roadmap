@@ -173,3 +173,14 @@ and asset gates; and refuses to close while the roadmap or L13 Loop ledger still
 says pending. The workflow performs the dependency-isolated cold install on
 Python 3.11; local wheel metadata coverage is skipped only when the host Python
 is below the declared `>=3.10` support floor.
+
+## L7-adapted UI visual contract
+
+`test_ui.py::test_l7_decision_workspace_visual_contract_is_complete` keeps the
+embedded workbench aligned with the NovoChoice L7 adaptation. It blocks missing
+navigation/Canvas/detail regions, undefined visual tokens, unlicensed or
+unpackaged fonts, weights above 500, oversized ordinary radii, `transition: all`,
+missing dark/reduced-motion/reduced-transparency/forced-color behavior, stale
+hardcoded Canvas chart colors, visible technical Proposal hashes, and a stretched
+Proposal primary action. Static serving tests also fetch a real WOFF2 through
+the production handler and verify its MIME type and bytes.

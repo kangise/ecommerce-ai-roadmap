@@ -78,8 +78,12 @@ def test_release_manifest_is_deterministic_fresh_and_tamper_evident(tmp_path: Pa
     project = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))["project"]
     readme = project["readme"]
     readme_path = readme if isinstance(readme, str) else readme["file"]
-    assert {".gitignore", readme_path, "LICENSE"}.issubset(manifest["contracts"])
+    assert {
+        ".gitignore", readme_path, "LICENSE", "design-qa.md",
+        "roadmap/ui-design-system-l7.md",
+    }.issubset(manifest["contracts"])
     assert manifest["artifacts"]["dist"]["file_count"] == 153
+    assert manifest["artifacts"]["design_evidence"]["file_count"] >= 10
     first.write_text(first.read_text(encoding="utf-8") + " ", encoding="utf-8")
     stale = run(sys.executable, "scripts/build_release_manifest.py", "--check", "--output", str(first))
     assert stale.returncode == 1 and "stale" in stale.stderr

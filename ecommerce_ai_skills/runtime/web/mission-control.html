@@ -3,26 +3,27 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#fbfaf7">
+  <meta name="theme-color" content="#f7f8f9" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#101315" media="(prefers-color-scheme: dark)">
   <title>Commerce Agent OS · 今日简报</title>
   <link rel="icon" href="/app/assets/brands/commerce-agent-os.png">
   <link rel="stylesheet" href="/app/styles.css">
 </head>
 <body>
-  <div class="app-shell">
-    <aside class="sidebar" aria-label="主导航">
+  <div class="app-shell" data-ui-system="l7-decision-workspace">
+    <aside class="sidebar" data-ui-region="navigation" aria-label="主导航">
       <div class="brand-lockup">
         <img class="brand-mark" src="/app/assets/brands/commerce-agent-os.png" alt="">
         <strong>Commerce Agent OS</strong>
       </div>
       <nav class="side-nav">
-        <button data-action="navigate" data-view="briefing" class="nav-item active" aria-current="page"><img src="/app/assets/icons/house.svg" alt=""><span>今日简报</span></button>
-        <button data-action="navigate" data-view="agents" class="nav-item"><img src="/app/assets/icons/robot.svg" alt=""><span>Agents</span></button>
-        <button data-action="navigate" data-view="evidence" class="nav-item"><img src="/app/assets/icons/database.svg" alt=""><span>Evidence</span></button>
-        <button data-action="navigate" data-view="approvals" class="nav-item"><img src="/app/assets/icons/shield-check.svg" alt=""><span>Approvals</span><span id="approval-nav-count" class="nav-count" hidden>0</span></button>
-        <button data-action="navigate" data-view="accounts" class="nav-item"><img src="/app/assets/icons/key.svg" alt=""><span>Accounts</span></button>
-        <button data-action="navigate" data-view="automations" class="nav-item"><img src="/app/assets/icons/gear-six.svg" alt=""><span>Automations</span></button>
-        <button data-action="navigate" data-view="audit" class="nav-item"><img src="/app/assets/icons/clipboard-text.svg" alt=""><span>Audit</span></button>
+        <button data-action="navigate" data-view="briefing" class="nav-item active" aria-label="今日简报" aria-current="page"><img src="/app/assets/icons/house.svg" alt=""><span>今日简报</span></button>
+        <button data-action="navigate" data-view="agents" class="nav-item" aria-label="Agents"><img src="/app/assets/icons/robot.svg" alt=""><span>Agents</span></button>
+        <button data-action="navigate" data-view="evidence" class="nav-item" aria-label="Evidence"><img src="/app/assets/icons/database.svg" alt=""><span>Evidence</span></button>
+        <button data-action="navigate" data-view="approvals" class="nav-item" aria-label="Approvals"><img src="/app/assets/icons/shield-check.svg" alt=""><span>Approvals</span><span id="approval-nav-count" class="nav-count" hidden>0</span></button>
+        <button data-action="navigate" data-view="accounts" class="nav-item" aria-label="Accounts"><img src="/app/assets/icons/key.svg" alt=""><span>Accounts</span></button>
+        <button data-action="navigate" data-view="automations" class="nav-item" aria-label="Automations"><img src="/app/assets/icons/gear-six.svg" alt=""><span>Automations</span></button>
+        <button data-action="navigate" data-view="audit" class="nav-item" aria-label="Audit"><img src="/app/assets/icons/clipboard-text.svg" alt=""><span>Audit</span></button>
       </nav>
       <div class="sidebar-footer">
         <button data-action="open-connection" class="account-button">
@@ -33,8 +34,8 @@
       </div>
     </aside>
 
-    <div class="workspace">
-      <header class="topbar">
+    <div class="workspace" data-ui-region="workspace">
+      <header class="topbar" data-ui-region="scope-toolbar">
         <div class="platform-tabs" aria-label="平台">
           <button data-action="select-platform" data-platform="amazon" class="platform-tab active"><img src="/app/assets/brands/amazon.svg" alt=""><span>Amazon</span></button>
           <button data-action="select-platform" data-platform="shopify" class="platform-tab"><img src="/app/assets/brands/shopify.svg" alt=""><span>Shopify</span></button>
@@ -67,7 +68,7 @@
           </div>
 
           <div class="briefing-layout">
-            <div class="briefing-main">
+            <div class="briefing-main" data-ui-region="canvas">
               <section class="performance-section" aria-labelledby="performance-title">
                 <div class="section-title-row">
                   <div><h2 id="performance-title">真实 Evidence 趋势</h2><span id="evidence-range">尚未连接</span></div>
@@ -98,7 +99,7 @@
               <footer class="approval-guardrail"><img src="/app/assets/icons/shield-check.svg" alt=""><span>所有外部动作都必须经过授权；Agent 不会绕过审批直接执行。</span></footer>
             </div>
 
-            <aside class="decision-rail" aria-label="需要你决定">
+            <aside class="decision-rail" data-ui-region="contextual-detail" aria-label="需要你决定">
               <section class="decision-section">
                 <div class="decision-heading"><div><p>需要你决定</p><h2>待审批 <span id="approval-count">0</span> 项行动</h2></div><button data-action="navigate" data-view="approvals" class="icon-button" aria-label="查看全部审批"><img src="/app/assets/icons/caret-right.svg" alt=""></button></div>
                 <div id="briefing-approvals" class="decision-list"></div>

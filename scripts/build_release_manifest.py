@@ -99,6 +99,7 @@ def build_manifest() -> dict[str, object]:
     package_files = list((ROOT / "ecommerce_ai_skills").rglob("*.py"))
     script_files = list((ROOT / "scripts").rglob("*"))
     test_files = list((ROOT / "tests").rglob("*"))
+    design_evidence_files = list((ROOT / "artifacts" / "design-qa").glob("l7-ui-*.png"))
     contract_paths = [
         "pyproject.toml",
         ".gitignore",
@@ -109,6 +110,8 @@ def build_manifest() -> dict[str, object]:
         "CHANGELOG.md",
         "release/v1.3.0-rc.md",
         "roadmap/v1.3-amazon-operator-pilot.md",
+        "roadmap/ui-design-system-l7.md",
+        "design-qa.md",
         "scripts/loop/v1_3_progress.md",
         *build_metadata_contracts(project),
     ]
@@ -130,6 +133,7 @@ def build_manifest() -> dict[str, object]:
             ),
             "scripts": tree_contract("scripts", script_files),
             "tests": tree_contract("tests", test_files),
+            "design_evidence": tree_contract("design_evidence", design_evidence_files),
             "dist": tree_contract("dist", list((ROOT / "dist").rglob("*"))),
             "wheel_package_data": tree_contract(
                 "wheel_package_data",
@@ -150,6 +154,7 @@ def build_manifest() -> dict[str, object]:
             "installed_demo_e2e",
             "backup_restore_verify",
             "installed_restore_roundtrip",
+            "browser_design_qa",
             "tag_matches_version",
         ],
     }

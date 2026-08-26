@@ -14,6 +14,67 @@ ROOT = Path(__file__).resolve().parents[1]
 WEB = ROOT / "ecommerce_ai_skills" / "runtime" / "web"
 
 
+def test_l7_decision_workspace_visual_contract_is_complete() -> None:
+    html = (WEB / "mission-control.html").read_text(encoding="utf-8")
+    script = (WEB / "app.js").read_text(encoding="utf-8")
+    styles = (WEB / "styles.css").read_text(encoding="utf-8")
+
+    assert 'data-ui-system="l7-decision-workspace"' in html
+    for region in ("navigation", "workspace", "scope-toolbar", "canvas", "contextual-detail"):
+        assert f'data-ui-region="{region}"' in html
+    for label in ("今日简报", "Agents", "Evidence", "Approvals", "Accounts", "Automations", "Audit"):
+        assert re.search(rf'<button[^>]+class="nav-item[^"]*"[^>]+aria-label="{re.escape(label)}"', html)
+
+    expected_tokens = {
+        "--canvas": "#f7f8f9",
+        "--shell": "#f4f6f7",
+        "--surface": "#ffffff",
+        "--surface-selected": "#e8ecef",
+        "--ink": "#141a21",
+        "--muted": "#66717e",
+        "--radius-sm": "4px",
+        "--radius": "6px",
+        "--radius-lg": "8px",
+        "--motion-press": "120ms",
+        "--motion-quick": "180ms",
+        "--motion-panel": "260ms",
+    }
+    for token, value in expected_tokens.items():
+        assert re.search(rf"{re.escape(token)}\s*:\s*{re.escape(value)}\s*[;}}]", styles)
+
+    defined = set(re.findall(r"(--[a-z0-9-]+)\s*:", styles))
+    used = set(re.findall(r"var\((--[a-z0-9-]+)", styles))
+    assert used <= defined
+    assert "transition:all" not in styles.replace(" ", "")
+    assert not re.search(r"font-weight:(?:[6-9]\d\d)", styles)
+    assert "@media(prefers-color-scheme:dark)" in styles
+    assert "@media(prefers-reduced-motion:reduce)" in styles
+    assert "@media(prefers-reduced-transparency:reduce)" in styles
+    assert "@media(forced-colors:active)" in styles
+
+    raw_radii = [int(value) for value in re.findall(r"border-radius:(\d+)px", styles)]
+    assert all(value <= 8 or value == 999 for value in raw_radii)
+    assert 'font-family:"Commerce Plex"' in styles
+    assert 'font-family:"Commerce Han"' in styles
+    assert 'url("/app/assets/fonts/commerce-plex-regular-latin1.woff2")' in styles
+    assert 'url("/app/assets/fonts/commerce-source-han-sc.woff2")' in styles
+    assert 'getComputedStyle(document.documentElement)' in script
+    assert 'token("--line")' in script and 'token("--blue")' in script
+    assert 'class="reviewer-task technical-meta"' in script
+    assert ".technical-meta{display:none}" in styles
+    assert '.proposal-form .primary-button{align-self:end;justify-self:start;min-width:160px;height:42px}' in styles
+    assert '.nav-item{display:flex;flex:1;width:auto;min-width:0;min-height:50px;justify-content:center;padding:0}' in styles
+    for stale_color in ("#e4e1d9", "#8b93a3", "#175ce6", "#fffefa", "#657086"):
+        assert stale_color not in script
+
+    font_dir = WEB / "assets" / "fonts"
+    assert (font_dir / "commerce-plex-regular-latin1.woff2").stat().st_size > 10_000
+    assert (font_dir / "commerce-plex-medium-latin1.woff2").stat().st_size > 10_000
+    assert (font_dir / "commerce-source-han-sc.woff2").stat().st_size > 1_000_000
+    assert (WEB / "assets" / "licenses" / "ibm-plex-font-LICENSE.txt").is_file()
+    assert (WEB / "assets" / "licenses" / "source-han-sans-LICENSE.txt").is_file()
+
+
 def test_mission_control_assets_are_real_and_javascript_compiles() -> None:
     html = (WEB / "mission-control.html").read_text(encoding="utf-8")
     script = (WEB / "app.js").read_text(encoding="utf-8")
@@ -316,6 +377,12 @@ def test_runtime_serves_ui_with_security_headers_and_live_catalog(tmp_path: Path
     assert icon_handler.status == 200
     assert icon_handler.response_headers["Content-Type"] == "image/svg+xml"
     assert b"<svg" in icon_handler.wfile.getvalue()
+
+    font_handler = StaticHandler("/app/assets/fonts/commerce-plex-regular-latin1.woff2")
+    font_handler.do_GET()
+    assert font_handler.status == 200
+    assert font_handler.response_headers["Content-Type"] == "font/woff2"
+    assert len(font_handler.wfile.getvalue()) > 10_000
 
     class CatalogHandler(_Handler):
         def __init__(self):

@@ -26,6 +26,7 @@ ecommerce_ai_skills = [
   "package_data/dist/**",
   "runtime/web/*",
   "runtime/web/assets/brands/*",
+  "runtime/web/assets/fonts/*",
   "runtime/web/assets/icons/*",
   "runtime/web/assets/licenses/*",
 ]

@@ -754,6 +754,8 @@ def test_mcp_sdk_is_an_optional_install_extra() -> None:
 
 def test_installable_package_contains_runtime_and_generated_artifact() -> None:
     package_root = ROOT / "ecommerce_ai_skills"
+    package_data = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))["tool"]["setuptools"]["package-data"]["ecommerce_ai_skills"]
+    assert "runtime/web/assets/fonts/*" in package_data
     assert (package_root / "cli.py").is_file()
     assert (package_root / "demo_seed.py").is_file()
     assert (package_root / "runtime" / "api.py").is_file()
@@ -767,7 +769,12 @@ def test_installable_package_contains_runtime_and_generated_artifact() -> None:
     assert (package_root / "runtime" / "web" / "assets" / "brands" / "commerce-agent-os.png").is_file()
     assert (package_root / "runtime" / "web" / "assets" / "brands" / "walmart-spark.svg").is_file()
     assert (package_root / "runtime" / "web" / "assets" / "icons" / "house.svg").is_file()
+    assert (package_root / "runtime" / "web" / "assets" / "fonts" / "commerce-plex-regular-latin1.woff2").is_file()
+    assert (package_root / "runtime" / "web" / "assets" / "fonts" / "commerce-plex-medium-latin1.woff2").is_file()
+    assert (package_root / "runtime" / "web" / "assets" / "fonts" / "commerce-source-han-sc.woff2").is_file()
     assert (package_root / "runtime" / "web" / "assets" / "licenses" / "phosphor-icons-LICENSE").is_file()
+    assert (package_root / "runtime" / "web" / "assets" / "licenses" / "ibm-plex-font-LICENSE.txt").is_file()
+    assert (package_root / "runtime" / "web" / "assets" / "licenses" / "source-han-sans-LICENSE.txt").is_file()
     package_dist = package_root / "package_data" / "dist"
     assert (package_dist / "package-manifest.json").is_file()
     assert (package_dist / "integration" / "mcp-server.py").is_file()

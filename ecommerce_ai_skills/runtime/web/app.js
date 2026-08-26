@@ -584,6 +584,12 @@ function drawChart(metric) {
   canvas.height = Math.round(height * ratio);
   const context = canvas.getContext("2d");
   if (!context) return;
+  const theme = getComputedStyle(document.documentElement);
+  const token = name => theme.getPropertyValue(name).trim();
+  const gridColor = token("--line");
+  const labelColor = token("--muted");
+  const accentColor = token("--blue");
+  const pointColor = token("--surface");
   context.scale(ratio, ratio);
   context.clearRect(0, 0, width, height);
   const padding = {left: 54, right: 18, top: 15, bottom: 34};
@@ -597,21 +603,21 @@ function drawChart(metric) {
     minimum -= delta;
     maximum += delta;
   }
-  context.font = '12px Inter, "PingFang SC", sans-serif';
+  context.font = '11px "Commerce Plex", "Commerce Han", "PingFang SC", sans-serif';
   context.textBaseline = "middle";
   context.lineWidth = 1;
   for (let index = 0; index < 5; index += 1) {
     const y = padding.top + plotHeight * index / 4;
-    context.strokeStyle = "#e4e1d9";
+    context.strokeStyle = gridColor;
     context.beginPath(); context.moveTo(padding.left, y); context.lineTo(width - padding.right, y); context.stroke();
     const value = maximum - (maximum - minimum) * index / 4;
-    context.fillStyle = "#8b93a3";
+    context.fillStyle = labelColor;
     context.textAlign = "right";
     context.fillText(new Intl.NumberFormat("zh-CN", {notation: "compact", maximumFractionDigits: 1}).format(value), padding.left - 9, y);
   }
   const xAt = index => points.length === 1 ? padding.left + plotWidth / 2 : padding.left + plotWidth * index / (points.length - 1);
   const yAt = value => padding.top + (maximum - value) / (maximum - minimum) * plotHeight;
-  context.strokeStyle = "#175ce6";
+  context.strokeStyle = accentColor;
   context.lineWidth = 2.4;
   context.lineJoin = "round";
   context.lineCap = "round";
@@ -623,9 +629,9 @@ function drawChart(metric) {
   context.stroke();
   points.forEach((point, index) => {
     const x = xAt(index), y = yAt(Number(point.value));
-    context.fillStyle = "#fffefa"; context.strokeStyle = "#175ce6"; context.lineWidth = 2.4;
+    context.fillStyle = pointColor; context.strokeStyle = accentColor; context.lineWidth = 2.4;
     context.beginPath(); context.arc(x, y, 4.5, 0, Math.PI * 2); context.fill(); context.stroke();
-    context.fillStyle = "#657086"; context.textAlign = "center"; context.textBaseline = "top";
+    context.fillStyle = labelColor; context.textAlign = "center"; context.textBaseline = "top";
     context.fillText(shortDate(point.observed_at), x, height - padding.bottom + 12);
   });
   const tableBody = $("chart-table").querySelector("tbody");
@@ -1178,7 +1184,7 @@ function renderProposals() {
   const runSelect = $("proposal-run"), prioritySelect = $("proposal-priority"), form = $("proposal-form"), reason = $("proposal-permission");
   if (runSelect) {
     const previous = runSelect.value;
-    runSelect.innerHTML = runs.length ? runs.map(run => `<option value="${escapeHtml(run.id)}">${escapeHtml(run.local_date || run.id)} · ${escapeHtml(run.id)}</option>`).join("") : '<option value="">暂无已完成 Daily Ops</option>';
+    runSelect.innerHTML = runs.length ? runs.map(run => `<option value="${escapeHtml(run.id)}">${escapeHtml(run.local_date || "Daily Ops")} · ${escapeHtml(run.status || "completed")}</option>`).join("") : '<option value="">暂无已完成 Daily Ops</option>';
     if (runs.some(run => run.id === previous)) runSelect.value = previous;
   }
   if (prioritySelect) populateProposalPriorities();
@@ -1221,7 +1227,7 @@ function renderProposals() {
         ? `<button class="secondary-button" data-action="retry-proposal" data-id="${escapeHtml(item.id)}" data-version="${version}">重试</button>`
         : `<button class="secondary-button" disabled title="${escapeHtml(expired ? "提案已过期" : item.capability_reason || "重试需要 operator、admin 或 owner")}">重试</button>`;
     }
-    return `<article class="data-row proposal-row"><div class="data-main"><strong>${escapeHtml(item.title || operationLabel(item.operation))}</strong><small>${badge(item.status || "draft")} · ${escapeHtml(operationLabel(item.operation))} · 风险 ${escapeHtml(item.risk || "—")} · approvals ${current}/${approval} · expires ${escapeHtml(isoLocal(item.expires_at))}</small><span class="reviewer-task">content ${escapeHtml(item.content_hash || "—")} · payload ${escapeHtml(item.payload_hash || "—")} · Daily ${escapeHtml(item.daily_ops_run_id || "—")} · Agent ${escapeHtml(item.agent_run_id || "—")} · Graph ${escapeHtml(item.graph_version_hash || "—")}</span>${capabilityNote}${execution ? `<span class="reviewer-task">Execution ${escapeHtml(execution.status || "—")} · attempt ${escapeHtml(execution.attempt_count ?? 0)}/${escapeHtml(execution.max_attempts ?? "—")}</span>` : ""}</div><div class="row-actions"><button class="secondary-button" data-action="view-proposal" data-id="${escapeHtml(item.id)}">详情</button>${canRevise ? `<button class="secondary-button" data-action="revise-proposal" data-id="${escapeHtml(item.id)}" data-version="${version}">修订</button>` : ""}${item.status === "draft" && isCreator ? `<button class="primary-button" data-action="submit-proposal" data-id="${escapeHtml(item.id)}" data-version="${version}">提交审批</button>` : ""}${decisionControl}${executionControl}${retryControl}</div></article>`;
+    return `<article class="data-row proposal-row"><div class="data-main"><strong>${escapeHtml(item.title || operationLabel(item.operation))}</strong><small>${badge(item.status || "draft")} · ${escapeHtml(operationLabel(item.operation))} · 风险 ${escapeHtml(item.risk || "—")} · approvals ${current}/${approval} · expires ${escapeHtml(isoLocal(item.expires_at))}</small><span class="reviewer-task technical-meta">content ${escapeHtml(item.content_hash || "—")} · payload ${escapeHtml(item.payload_hash || "—")} · Daily ${escapeHtml(item.daily_ops_run_id || "—")} · Agent ${escapeHtml(item.agent_run_id || "—")} · Graph ${escapeHtml(item.graph_version_hash || "—")}</span>${capabilityNote}${execution ? `<span class="reviewer-task">Execution ${escapeHtml(execution.status || "—")} · attempt ${escapeHtml(execution.attempt_count ?? 0)}/${escapeHtml(execution.max_attempts ?? "—")}</span>` : ""}</div><div class="row-actions"><button class="secondary-button" data-action="view-proposal" data-id="${escapeHtml(item.id)}">详情</button>${canRevise ? `<button class="secondary-button" data-action="revise-proposal" data-id="${escapeHtml(item.id)}" data-version="${version}">修订</button>` : ""}${item.status === "draft" && isCreator ? `<button class="primary-button" data-action="submit-proposal" data-id="${escapeHtml(item.id)}" data-version="${version}">提交审批</button>` : ""}${decisionControl}${executionControl}${retryControl}</div></article>`;
   }).join("");
 }
 
@@ -2101,6 +2107,10 @@ function setDefaultTimes() {
 }
 
 window.addEventListener("resize", () => {
+  const metric = (state.briefing?.metrics || []).find(item => (item.series_id || item.key) === state.chartMetric);
+  if (metric) requestAnimationFrame(() => drawChart(metric));
+});
+window.matchMedia?.("(prefers-color-scheme: dark)").addEventListener?.("change", () => {
   const metric = (state.briefing?.metrics || []).find(item => (item.series_id || item.key) === state.chartMetric);
   if (metric) requestAnimationFrame(() => drawChart(metric));
 });

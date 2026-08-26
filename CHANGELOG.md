@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 
 ## [Unreleased]
 
+### Changed
+- Rebuilt the embedded Commerce Agent OS workbench around the NovoChoice L7
+  decision-workspace principles: self-hosted IBM Plex/Source Han typography,
+  a governed cool-gray token system, compact 4/6/8px geometry, neutral
+  selection, surface-first boundaries, one dominant Canvas, contextual detail,
+  honest semantic states, responsive task preservation, and accessible motion,
+  contrast and dark-mode variants. Existing APIs, tenant/RBAC checks, actions,
+  persisted Demo state and SSE behavior remain unchanged.
+
 ## [1.3.0] - 2026-08-26
 
 ### Fixed
