@@ -186,6 +186,15 @@ docs/build/
 *.csv
 *.json
 !scripts/link-status.json
+!dist/knowledge/index.json
+!dist/ontology.json
+!dist/package-manifest.json
+!dist/prompts.json
+!ecommerce_ai_skills/package_data/dist/knowledge/index.json
+!ecommerce_ai_skills/package_data/dist/ontology.json
+!ecommerce_ai_skills/package_data/dist/package-manifest.json
+!ecommerce_ai_skills/package_data/dist/prompts.json
+!release/v1.3.0-rc-manifest.json
 *.xml
 *.xlsx
 *.xls

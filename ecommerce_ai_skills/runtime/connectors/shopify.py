@@ -16,6 +16,8 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import parse_qs, unquote, urlencode, urlparse
 from urllib.request import Request, urlopen
 
+from ecommerce_ai_skills import USER_AGENT
+
 from ..errors import ExternalServiceError, MissingCredentialError, ValidationError
 
 
@@ -50,7 +52,7 @@ class ShopifyConnector:
     def _get_json(self, resource: str) -> dict[str, Any]:
         request = Request(
             self._admin_url(resource),
-            headers={"X-Shopify-Access-Token": self._credential(), "Accept": "application/json", "User-Agent": "ecommerce-ai-skills/1.2"},
+            headers={"X-Shopify-Access-Token": self._credential(), "Accept": "application/json", "User-Agent": USER_AGENT},
             method="GET",
         )
         try:
@@ -84,7 +86,7 @@ class ShopifyConnector:
         token = self._credential()
         request = Request(
             self._url(limit, page_info),
-            headers={"X-Shopify-Access-Token": token, "Accept": "application/json", "User-Agent": "ecommerce-ai-skills/1.2"},
+            headers={"X-Shopify-Access-Token": token, "Accept": "application/json", "User-Agent": USER_AGENT},
             method="GET",
         )
         try:

@@ -21,6 +21,8 @@ from urllib.request import Request, urlopen
 
 import yaml
 
+from ecommerce_ai_skills import USER_AGENT
+
 from .auth import AuthService
 from .agent_graphs import AgentGraphService, STRICT_TOOL_POLICY
 from .errors import (
@@ -425,7 +427,7 @@ class OpenAIResponsesProvider:
                 "Authorization": f"Bearer {api_key}",
                 "Content-Type": "application/json",
                 "Accept": "application/json",
-                "User-Agent": "ecommerce-ai-skills/1.2",
+                "User-Agent": USER_AGENT,
             },
             method="POST",
         )

@@ -1,0 +1,115 @@
+{
+  "artifacts": {
+    "dist": {
+      "byte_count": 6548831,
+      "file_count": 153,
+      "name": "dist",
+      "tree_sha256": "1924020684452aa0122c67227cba3cf6994b09c8cdddc6eb921199d8d2e5aec0"
+    },
+    "package_sources": {
+      "byte_count": 889320,
+      "file_count": 33,
+      "name": "package_sources",
+      "tree_sha256": "205104ba97c24701abe0de832033d102562fc752791370665012d04ca438f361"
+    },
+    "runtime_web_assets": {
+      "byte_count": 299989,
+      "file_count": 45,
+      "name": "runtime_web_assets",
+      "tree_sha256": "3827ac4aca414ef5a46af67332fe5f447a0388c301dc1495e23115fa03b89ebf"
+    },
+    "scripts": {
+      "byte_count": 326240,
+      "file_count": 20,
+      "name": "scripts",
+      "tree_sha256": "8b60b51d583ea38017d12f4d1266a6a449c30b9c8be00c0c069bf429706e6e7a"
+    },
+    "tests": {
+      "byte_count": 449779,
+      "file_count": 26,
+      "name": "tests",
+      "tree_sha256": "81dc168721ae2758fff79146b2bb4de0d62efb5e07d05b34cdea7a10a5f336ac"
+    },
+    "wheel_package_data": {
+      "byte_count": 6548831,
+      "file_count": 153,
+      "name": "wheel_package_data",
+      "tree_sha256": "5fc37e56574fcd6db80819b85a34cfcaa13845ab4c1118cb106319c8c5c670e6"
+    }
+  },
+  "contracts": {
+    ".github/workflows/release.yml": {
+      "sha256": "c925be1092021404e39091990401f9137cc6d57dfffe2cd853fd6d891e67f392",
+      "size": 7415
+    },
+    ".gitignore": {
+      "sha256": "6bd1f89283866a0e9c7dc6bad33a65046eae1463b841ddf0cfd4fe635648bbf1",
+      "size": 3072
+    },
+    "CHANGELOG.md": {
+      "sha256": "e439d8f857afd345f5bff0388f5dc10a82d020b1e363721c9931bf6cb371db5b",
+      "size": 13897
+    },
+    "LICENSE": {
+      "sha256": "977372677acaaaa0f419556e5a24d8c869534c25d8f4f8d3db4df888c095bd9d",
+      "size": 6468
+    },
+    "README_EN.md": {
+      "sha256": "6dd3ecc08815bf7fa7ee7b12fed6eb08ce17cab4540c5a7ff1a8bfb48eb4b1ed",
+      "size": 27129
+    },
+    "openapi/runtime-api.yaml": {
+      "sha256": "0f2b834b88ca563b354fa891b505d0322f551254ef74ae82fdd757c2230fe9ea",
+      "size": 168307
+    },
+    "pyproject.toml": {
+      "sha256": "52b47fbebb87b250893e82f3c1d8c210f27ae527a414ca464a51dd8de10f11ab",
+      "size": 973
+    },
+    "release/v1.3.0-rc.md": {
+      "sha256": "be0e57cc0f54cbe98e4d02289b991e21ff6af02d2a0a5a1259200a24d7c87b3e",
+      "size": 6513
+    },
+    "roadmap/v1.3-amazon-operator-pilot.md": {
+      "sha256": "0a51eb7e5fae0a512883233e9c45bb7898bf6c1b212c3ca39f0c7a5791e26756",
+      "size": 7056
+    },
+    "scripts/build_dist.py": {
+      "sha256": "01bfc116606673fc36030aa290235199015f89ba166c85dd0ce4f88635b22690",
+      "size": 23926
+    },
+    "scripts/loop/v1_3_progress.md": {
+      "sha256": "00899a16bf48c1ae6edd57315a63f3bb3e27a8f54d424dead375075475b98674",
+      "size": 36497
+    },
+    "scripts/verify_all.py": {
+      "sha256": "1e5b81c28630afa858b0bfb81d28fa7608421b80648c30d184d2e14a19d98748",
+      "size": 69254
+    }
+  },
+  "release": {
+    "channel": "rc",
+    "python_requires": ">=3.10",
+    "runtime_schema_version": 21,
+    "tag": "v1.3.0",
+    "version": "1.3.0"
+  },
+  "required_gates": [
+    "release_manifest_fresh",
+    "dist_fresh",
+    "pytest_full",
+    "verify_all",
+    "cold_wheel_install",
+    "wheel_runtime_smoke",
+    "installed_demo_e2e",
+    "backup_restore_verify",
+    "installed_restore_roundtrip",
+    "tag_matches_version"
+  ],
+  "schema_version": 1,
+  "version_contract": {
+    "openapi": "1.3.0",
+    "package": "1.3.0",
+    "pyproject": "1.3.0"
+  }
+}

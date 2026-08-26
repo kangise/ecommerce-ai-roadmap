@@ -15,6 +15,8 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
+from ecommerce_ai_skills import USER_AGENT
+
 from ..errors import (
     ConnectorRateLimitError,
     ExternalServiceError,
@@ -190,7 +192,7 @@ class AmazonAdsConnector:
             headers={
                 "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
                 "Accept": "application/json",
-                "User-Agent": "ecommerce-ai-skills/1.3",
+                "User-Agent": USER_AGENT,
             },
             method="POST",
         )
@@ -218,7 +220,7 @@ class AmazonAdsConnector:
                 ),
                 "Authorization": f"Bearer {access_token or self._access_token()}",
                 "Accept": "application/json",
-                "User-Agent": "ecommerce-ai-skills/1.3",
+                "User-Agent": USER_AGENT,
             },
             method="GET",
         )
@@ -254,7 +256,7 @@ class AmazonAdsConnector:
                 "Authorization": f"Bearer {access_token or self._access_token()}",
                 "Accept": media_type,
                 "Content-Type": media_type,
-                "User-Agent": "ecommerce-ai-skills/1.3",
+                "User-Agent": USER_AGENT,
             },
             method="POST",
         )

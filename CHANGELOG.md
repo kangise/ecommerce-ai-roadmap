@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-08-26
+
 ### Fixed
 - Track the generated `dist/` package and external-link cache so clean clones are complete.
 - Make the full 42-gate suite cold-clone reproducible and regression-blocking.
@@ -13,6 +15,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 - Add package integrity metadata, automated tests, and PR quality checks.
 
 ### Added
+- L13 release-candidate contract: uniform `1.3.0` package/API/client versioning,
+  deterministic source/UI/test/dist manifest, clean-clone generated JSON gate,
+  dependency-isolated wheel smoke outside the checkout, installed Demo plus
+  actual absent-target restore verification, tag/version enforcement, and
+  SHA-256 checksums for every published release asset.
 - L12 audit hash-chain, durable Assurance run, and verified recovery contract:
   admin-only eval/security checks, CLI-only restore evidence, blocked no-data
   evaluations, online SQLite plus evidence-object atomic backup, SHA-256

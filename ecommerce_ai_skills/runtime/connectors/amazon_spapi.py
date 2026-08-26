@@ -20,6 +20,8 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import quote, urlencode, urlparse
 from urllib.request import Request, urlopen
 
+from ecommerce_ai_skills import USER_AGENT
+
 from ..errors import (
     ConnectorRateLimitError,
     ExternalServiceError,
@@ -187,7 +189,7 @@ class AmazonSPAPIReportsConnector:
             headers={
                 "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
                 "Accept": "application/json",
-                "User-Agent": "ecommerce-ai-skills/1.2",
+                "User-Agent": USER_AGENT,
             },
             method="POST",
         )
@@ -204,7 +206,7 @@ class AmazonSPAPIReportsConnector:
             headers={
                 "x-amz-access-token": access_token,
                 "Accept": "application/json",
-                "User-Agent": "ecommerce-ai-skills/1.2",
+                "User-Agent": USER_AGENT,
             },
             method="GET",
         )
@@ -257,7 +259,7 @@ class AmazonSPAPIReportsConnector:
                 "x-amz-access-token": self._access_token(),
                 "Content-Type": "application/json",
                 "Accept": "application/json",
-                "User-Agent": "ecommerce-ai-skills/1.2",
+                "User-Agent": USER_AGENT,
             },
             method="POST",
         )
@@ -301,7 +303,7 @@ class AmazonSPAPIReportsConnector:
             headers={
                 "x-amz-access-token": self._access_token(),
                 "Accept": "application/json",
-                "User-Agent": "ecommerce-ai-skills/1.2",
+                "User-Agent": USER_AGENT,
             },
             method="GET",
         )
@@ -371,7 +373,7 @@ class AmazonSPAPIReportsConnector:
         self._validate_document_url(url)
         request = Request(
             url,
-            headers={"Accept": "*/*", "User-Agent": "ecommerce-ai-skills/1.2"},
+            headers={"Accept": "*/*", "User-Agent": USER_AGENT},
             method="GET",
         )
         raw, _, final_url = self._send(

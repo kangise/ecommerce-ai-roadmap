@@ -149,6 +149,7 @@ python3 integration/mcp-server.py --validate --dist dist
 Tests must not create runtime mock data. Synthetic rows are allowed only in
 test fixtures, and external connector tests must inject a transport rather
 than call a platform with invented credentials.
+
 # Contract tests
 
 `test_distribution.py` keeps the generated OpenAPI contract aligned with the
@@ -161,3 +162,14 @@ legacy-run pending isolation and rerun binding, tenant-parent database guards,
 Manager/Reviewer ordering, Reviewer rejection, and HTTP routes. Provider fixtures exercise the real
 structured-output boundary without claiming a live OpenAI-key success; that
 remains an explicit deployment smoke limitation.
+
+## L13 release candidate contracts
+
+`test_release_candidate.py` freezes the `1.3.0` version across project metadata,
+the importable package, OpenAPI, HTTP server headers, and outbound User-Agent.
+It also proves the RC manifest is deterministic, fresh, and tamper-evident;
+checks the release workflow's tag, cold-wheel, installed Demo/recovery, checksum,
+and asset gates; and refuses to close while the roadmap or L13 Loop ledger still
+says pending. The workflow performs the dependency-isolated cold install on
+Python 3.11; local wheel metadata coverage is skipped only when the host Python
+is below the declared `>=3.10` support floor.

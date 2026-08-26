@@ -1228,6 +1228,15 @@ def main() -> int:
     grand_total = 0
     for label, *cmd in CHECKS:
         result = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
+        if label == "Dist" and result.returncode == 0:
+            release_result = subprocess.run(
+                ["python3", "scripts/build_release_manifest.py", "--check"],
+                capture_output=True,
+                text=True,
+                timeout=120,
+            )
+            if release_result.returncode != 0:
+                result = release_result
         count = _parse_total(result.stdout)
 
         # Trust returncode over stdout parsing

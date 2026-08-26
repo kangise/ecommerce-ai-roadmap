@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: E-commerce AI Runtime API
-  version: 1.2.0
+  version: 1.3.0
   description: Tenant-scoped users, persistence, approval, audit, and connector boundary.
 servers:
   - url: http://127.0.0.1:8787

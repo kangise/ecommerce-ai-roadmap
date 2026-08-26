@@ -11,6 +11,7 @@ import threading
 import time
 from pathlib import Path
 
+from . import __version__
 from .runtime.api import RuntimeApplication, build_server, serve
 from .runtime.storage import Database
 
@@ -271,6 +272,7 @@ def _load_mcp_module():
 
 def main() -> int:
     parser = argparse.ArgumentParser(prog="opc-ecommerce")
+    parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
     sub = parser.add_subparsers(dest="command", required=True)
     mcp = sub.add_parser("mcp", help="run or validate the read-only MCP knowledge adapter")
     mcp.add_argument("--dist", default=None)

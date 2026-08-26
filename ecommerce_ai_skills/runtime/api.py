@@ -19,6 +19,8 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import parse_qs, urlparse
 
+from ecommerce_ai_skills import __version__
+
 from .actions import ActionService
 from .agent_graphs import AgentGraphService
 from .accounts import MarketplaceAccountService
@@ -181,7 +183,7 @@ class RuntimeApplication:
 
 
 class _Handler(BaseHTTPRequestHandler):
-    server_version = "EcommerceAI/1.2"
+    server_version = f"EcommerceAI/{__version__}"
 
     @property
     def app(self) -> RuntimeApplication:

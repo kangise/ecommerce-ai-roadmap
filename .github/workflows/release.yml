@@ -13,8 +13,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
       - name: Install checks
-        run: pip install -r tests/requirements.txt
+        run: |
+          python3 -m pip install --upgrade pip build
+          python3 -m pip install -r tests/requirements.txt
 
       - name: Verify optional MCP extra
         run: pip install ".[mcp]"
@@ -32,20 +38,121 @@ jobs:
       - name: Test and verify
         run: |
           python3 scripts/build_dist.py --check
+          python3 scripts/build_release_manifest.py --check
           python3 -m pytest
           python3 scripts/verify_all.py
 
-      - name: Build and smoke-test installable wheel
+      - name: Build cold wheelhouse
+        id: wheel
         run: |
-          rm -rf /tmp/ecommerce-ai-wheel /tmp/ecommerce-ai-wheel-install
-          python3 -m pip wheel --no-deps --no-build-isolation -w /tmp/ecommerce-ai-wheel .
-          python3 -m pip install --no-deps --no-index --target /tmp/ecommerce-ai-wheel-install /tmp/ecommerce-ai-wheel/*.whl
-          PYTHONPATH=/tmp/ecommerce-ai-wheel-install /tmp/ecommerce-ai-wheel-install/bin/opc-ecommerce mcp --validate
+          RC_DIR="$(mktemp -d)"
+          python3 -m pip wheel --wheel-dir "$RC_DIR/wheelhouse" .
+          python3 -m venv "$RC_DIR/venv"
+          VERSION="$(python3 -c 'import tomllib; print(tomllib.load(open("pyproject.toml","rb"))["project"]["version"])')"
+          "$RC_DIR/venv/bin/pip" install --no-index --find-links "$RC_DIR/wheelhouse" "ecommerce-ai-skills==$VERSION"
+          WHEEL_PATH="$(find "$RC_DIR/wheelhouse" -maxdepth 1 -name 'ecommerce_ai_skills-*.whl' -print -quit)"
+          test -n "$WHEEL_PATH"
+          echo "rc_dir=$RC_DIR" >> "$GITHUB_OUTPUT"
+          echo "wheel_path=$WHEEL_PATH" >> "$GITHUB_OUTPUT"
+
+      - name: Cold-wheel RC smoke outside checkout
+        env:
+          RC_DIR: ${{ steps.wheel.outputs.rc_dir }}
+        run: |
+          cd "$RC_DIR"
+          "$RC_DIR/venv/bin/opc-ecommerce" --version
+          "$RC_DIR/venv/bin/opc-ecommerce" mcp --validate
+          "$RC_DIR/venv/bin/opc-ecommerce" demo-seed --db "$RC_DIR/demo.sqlite" > "$RC_DIR/demo.json"
+          "$RC_DIR/venv/bin/opc-ecommerce" backup --db "$RC_DIR/demo.sqlite" --output "$RC_DIR/backup" > "$RC_DIR/backup.json"
+          "$RC_DIR/venv/bin/opc-ecommerce" restore --backup "$RC_DIR/backup" --db "$RC_DIR/unused.sqlite" --verify-only > "$RC_DIR/verify.json"
+          "$RC_DIR/venv/bin/opc-ecommerce" restore --backup "$RC_DIR/backup" --db "$RC_DIR/restored.sqlite" > "$RC_DIR/restore.json"
+          "$RC_DIR/venv/bin/python" - <<'PY'
+          import json
+          from importlib.metadata import version
+          from pathlib import Path
+          from tempfile import TemporaryDirectory
+          from ecommerce_ai_skills import USER_AGENT, __version__
+          from ecommerce_ai_skills.runtime.api import RuntimeApplication, _Handler
+          from ecommerce_ai_skills.runtime.storage import Database, SCHEMA_VERSION
+          assert version("ecommerce-ai-skills") == __version__ == "1.3.0"
+          assert USER_AGENT == "ecommerce-ai-skills/1.3.0"
+          assert _Handler.server_version == "EcommerceAI/1.3.0"
+          assert SCHEMA_VERSION == 21
+          root = Path(".")
+          demo = json.loads((root / "demo.json").read_text())
+          backup = json.loads((root / "backup.json").read_text())
+          verified = json.loads((root / "verify.json").read_text())
+          restored = json.loads((root / "restore.json").read_text())
+          assert demo["tenant_mode"] == "demo"
+          assert demo["daily_ops_run_status"] == "completed"
+          assert demo["human_review_proposal_status"] == "executed"
+          assert demo["amazon_ads_proposal_status"] == "blocked"
+          assert demo["security_assurance_status"] == "passed"
+          assert demo["eval_assurance_status"] == "passed"
+          assert demo["proposal_count"] == 2 and demo["assurance_count"] == 2
+          assert backup["status"] == "succeeded" and backup["schema_version"] == 21
+          assert verified["valid"] is True and verified["schema_version"] == 21
+          assert not (root / "unused.sqlite").exists()
+          assert restored["restored"] is True and restored["tenant_count"] == 1
+          restored_app = RuntimeApplication(Database(root / "restored.sqlite"))
+          principal = restored_app.auth.authenticate(demo["owner_api_key"])
+          assert restored_app.db.readiness()["schema_version"] == 21
+          assert restored_app.db.verify_audit_chain(principal.tenant_id)["valid"] is True
+          assurance = {(item["kind"], item["status"]) for item in restored_app.assurance.list(principal)}
+          assert {("eval", "passed"), ("security", "passed"), ("restore", "passed")}.issubset(assurance)
+          object_files = [path for path in (root / "restored.sqlite.evidence_objects").rglob("*") if path.is_file()]
+          assert len(object_files) == backup["evidence_object_count"]
+          with TemporaryDirectory() as directory:
+              assert Database(Path(directory) / "runtime.sqlite").readiness()["schema_version"] == 21
+          PY
 
       - name: Package distributable
         run: zip -r "ecommerce-ai-skills-${GITHUB_REF_NAME}.zip" dist
 
-      - name: Create GitHub Release
+      - name: Generate release artifact checksums
+        id: checksums
+        run: |
+          WHEEL_ASSET="$(basename '${{ steps.wheel.outputs.wheel_path }}')"
+          cp "${{ steps.wheel.outputs.wheel_path }}" "$WHEEL_ASSET"
+          cp release/v1.3.0-rc-manifest.json v1.3.0-rc-manifest.json
+          cp release/v1.3.0-rc.md v1.3.0-rc.md
+          sha256sum \
+            "$WHEEL_ASSET" \
+            "ecommerce-ai-skills-${GITHUB_REF_NAME}.zip" \
+            v1.3.0-rc-manifest.json \
+            v1.3.0-rc.md > SHA256SUMS
+          sha256sum -c SHA256SUMS
+          echo "wheel_asset=$WHEEL_ASSET" >> "$GITHUB_OUTPUT"
+
+      - name: Create or resume draft GitHub Release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release create "$GITHUB_REF_NAME" "ecommerce-ai-skills-${GITHUB_REF_NAME}.zip" --generate-notes
+        run: |
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            test "$(gh release view "$GITHUB_REF_NAME" --json isDraft --jq .isDraft)" = "true"
+          else
+            gh release create "$GITHUB_REF_NAME" --draft --generate-notes
+          fi
+          gh release upload "$GITHUB_REF_NAME" \
+            "ecommerce-ai-skills-${GITHUB_REF_NAME}.zip" \
+            "${{ steps.checksums.outputs.wheel_asset }}" \
+            v1.3.0-rc-manifest.json \
+            v1.3.0-rc.md \
+            SHA256SUMS \
+            --clobber
+
+      - name: Verify draft assets and publish
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          test "$(gh release view "$GITHUB_REF_NAME" --json isDraft --jq .isDraft)" = "true"
+          test "$(gh release view "$GITHUB_REF_NAME" --json assets --jq '.assets | length')" -eq 5
+          VERIFY_DIR="$(mktemp -d)"
+          gh release download "$GITHUB_REF_NAME" --dir "$VERIFY_DIR"
+          test -f "$VERIFY_DIR/ecommerce-ai-skills-${GITHUB_REF_NAME}.zip"
+          test -f "$VERIFY_DIR/${{ steps.checksums.outputs.wheel_asset }}"
+          test -f "$VERIFY_DIR/v1.3.0-rc-manifest.json"
+          test -f "$VERIFY_DIR/v1.3.0-rc.md"
+          test -f "$VERIFY_DIR/SHA256SUMS"
+          (cd "$VERIFY_DIR" && sha256sum -c SHA256SUMS)
+          gh release edit "$GITHUB_REF_NAME" --draft=false
