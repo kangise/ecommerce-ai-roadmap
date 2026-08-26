@@ -12,6 +12,7 @@ from .evals import WorkflowEvaluator
 from .jobs import JobService, ScheduleService
 from .metric_observations import MetricObservationService
 from .proposals import ProposalService
+from .pilot import PilotService, PilotSupervisor
 from .report_recipes import ReportRecipeService
 from .report_syncs import ReportSyncService
 from .storage import Database, Principal
@@ -31,6 +32,8 @@ __all__ = [
     "MetricObservationService",
     "OpenAIResponsesProvider",
     "Principal",
+    "PilotService",
+    "PilotSupervisor",
     "ProposalService",
     "ReportRecipeService",
     "ReportSyncService",

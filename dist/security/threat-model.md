@@ -2,6 +2,27 @@
 
 ## Assets
 
+### Pilot readiness and bootstrap (L11)
+
+`GET /v1/pilot-status` keeps the existing bearer/viewer tenant boundary. Its
+closed schemas expose only current-tenant readiness, local worker heartbeat
+status, and actionable blockers. Credential reporting is presence/count metadata
+only: API keys, secrets, refresh tokens, OpenAI keys, Authorization
+headers, and provider responses cannot enter the payload or blocker message.
+
+A new database's one-command bootstrap prints a one-time API key once. Treat terminal
+output as sensitive until captured by an approved secret manager; never place it
+in a URL or browser storage. Existing databases must not silently create another
+tenant/key. Configured credentials do not prove live Amazon/OpenAI authorization;
+missing dependencies remain blockers, never synthetic success.
+
+Loopback is the default bind. Public exposure requires explicit opt-in and a
+TLS/authenticated proxy. SIGTERM/SIGINT must preserve durable SQLite state and
+leases; an occupied port, preflight/start failure, or worker shutdown timeout
+returns structured non-zero CLI output rather than a false successful launch.
+This is deliberately single-process SQLite: worker heartbeats are not
+distributed consensus and do not imply multiprocess coordination or availability.
+
 ### Live Mission Control stream (L10)
 
 `GET /v1/mission-control/events` adds an authenticated SSE boundary. The API

@@ -118,6 +118,16 @@ single-process SQLite/ThreadingHTTPServer and reverse-proxy limitations. It
 does not claim a distributed broker, multiprocess fan-out, or a live external
 SSE smoke; connection and parser behavior are runtime/UI tests.
 
+L11 contract coverage validates `GET /v1/pilot-status` as a viewer-authenticated
+closed-schema tenant read model: explicit readiness blockers, credential
+presence/counts only, runtime boot state, attention vs blocked, and the six worker heartbeat states
+(`starting`/`healthy`/`stale`/`degraded`/`stopped`). It verifies the documented
+one-command Pilot lifecycle, new vs existing database bootstrap, one-time key,
+loopback/public-bind, `--check`, SIGTERM, structured port/preflight/start/shutdown-timeout
+failure, and single-process SQLite boundaries.
+It does not claim real Amazon authorization or OpenAI success without external
+credentials and live evidence.
+
 The production gate is broader than pytest:
 
 ```bash

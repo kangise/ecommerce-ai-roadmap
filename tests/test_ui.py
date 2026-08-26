@@ -80,6 +80,7 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
         "disconnect",
         "refresh",
         "retry-live",
+        "refresh-pilot",
         "close-dialog",
         "close-dialog",
         "view-json",
@@ -140,6 +141,7 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
         "/v1/demo-session",
         "/v1/mission-control",
         "/v1/mission-control/events",
+        "/v1/pilot-status",
         "/v1/evidence-imports",
         "/v1/agent-runs",
         "/v1/jobs",
@@ -214,6 +216,19 @@ def test_live_mission_control_stream_is_authenticated_resumable_and_visible() ->
     assert 'window.addEventListener("pagehide", pauseLiveStream)' in script
     assert 'document.addEventListener("visibilitychange"' in script
     assert "300000" in script and "30000);" not in script
+    assert 'id="pilot-runtime-summary"' in html
+    assert 'id="pilot-worker-list"' in html
+    assert 'id="pilot-readiness-list"' in html
+    assert 'data-action="refresh-pilot"' in html
+    assert 'api("/v1/pilot-status")' in script
+    for worker in (
+        "scheduler", "job_worker", "report_worker", "daily_scheduler",
+        "daily_worker", "proposal_worker",
+    ):
+        assert worker in script
+    assert "last_error_type" in script
+    assert "api_key_present" not in html
+    assert "从浏览器启动或停止进程" in html
     assert "需要 operator、admin 或 owner 执行健康检查" in script
     assert "需要 operator、admin 或 owner 角色" in script
     assert "recipeCanManage" in script

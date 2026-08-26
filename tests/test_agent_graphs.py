@@ -305,7 +305,7 @@ def test_v15_database_reopens_with_v16_tenant_integrity(tmp_path: Path) -> None:
         )
     migrated = Database(path)
     with migrated.connect() as conn:
-        assert conn.execute("SELECT value FROM runtime_meta WHERE key='schema_version'").fetchone()["value"] == "19"
+        assert conn.execute("SELECT value FROM runtime_meta WHERE key='schema_version'").fetchone()["value"] == "20"
         names = {row["name"] for row in conn.execute("SELECT name FROM sqlite_master WHERE type='index'")}
         assert {"uq_agent_runs_tenant_id", "uq_agent_tasks_tenant_id", "uq_agent_evaluations_tenant_id"} <= names
         run_columns = {row["name"] for row in conn.execute("PRAGMA table_info(agent_runs)")}

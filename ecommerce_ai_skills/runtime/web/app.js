@@ -47,6 +47,9 @@ const state = {
   liveServerRetryMs: null,
   liveAttempt: 0,
   liveStopped: true,
+  pilotStatus: null,
+  pilotLoading: false,
+  pilotError: null,
   agentGraphs: [],
   agentGraphsLoading: false,
   agentGraphsError: null,
@@ -1081,6 +1084,68 @@ function renderLiveMissionControl() {
   list.innerHTML = state.missionEvents.slice(0, 20).map(event => `<div class="live-event-row"><span class="live-event-dot ${escapeHtml(event.status || "updated")}"></span><div><strong>${escapeHtml(event.event_type || "mission.update")}</strong><small>${escapeHtml(event.resource_type || "resource")} · ${escapeHtml(event.resource_id || "—")} · ${escapeHtml(event.status || "updated")} · ${escapeHtml(isoLocal(event.occurred_at || event.created_at))}</small></div></div>`).join("");
 }
 
+const pilotWorkerLabels = {
+  scheduler: "Schedule 调度器",
+  job_worker: "Agent Job Worker",
+  report_worker: "Amazon Report Worker",
+  daily_scheduler: "Daily Ops 调度器",
+  daily_worker: "Daily Ops Worker",
+  proposal_worker: "Proposal Worker",
+};
+const pilotComponentLabels = {
+  schema: "Runtime Schema",
+  amazon_spapi: "Amazon SP-API",
+  agent_graph: "Agent Graph",
+  daily_ops: "Daily Ops",
+  openai: "OpenAI Agent Provider",
+  amazon_ads_l5: "Amazon Ads L5（可选）",
+};
+const pilotBlockerLabels = {
+  AMAZON_ACCOUNT_MISSING: "尚未配置 Amazon SP-API 账户",
+  AMAZON_ACCOUNT_UNHEALTHY: "Amazon SP-API 账户健康检查未通过",
+  AMAZON_ACCOUNT_HEALTH_STALE: "Amazon SP-API 健康检查已过期",
+  AMAZON_HEALTH_STALE: "Amazon SP-API 健康检查已过期",
+  AMAZON_CREDENTIALS_MISSING: "Amazon 凭证环境变量尚未就绪",
+  PUBLISHED_GRAPH_MISSING: "尚无已发布 Agent Graph",
+  DAILY_SCHEDULE_MISSING: "尚无启用的 Daily Ops 计划",
+  OPENAI_API_KEY_MISSING: "OpenAI API Key 环境变量尚未就绪",
+  OPENAI_MODEL_MISSING: "尚未配置 OpenAI 模型",
+  PILOT_RUNTIME_NOT_HEALTHY: "Pilot Runtime 当前未健康运行",
+  PILOT_RUNTIME_DEGRADED: "至少一个 Pilot Worker 正在降级运行",
+  PILOT_RUNTIME_ATTENTION: "Pilot Runtime 正在启动或需要关注",
+};
+
+function renderPilotStatus() {
+  const summary = $("pilot-runtime-summary"), workersTarget = $("pilot-worker-list"), checksTarget = $("pilot-readiness-list");
+  if (!summary || !workersTarget || !checksTarget) return;
+  if (state.pilotLoading) {
+    designedEmpty(summary, "正在读取 Pilot Runtime", "正在检查持久化心跳与当前租户准备度。", "pulse");
+    workersTarget.innerHTML = ""; checksTarget.innerHTML = ""; return;
+  }
+  if (state.pilotError) {
+    summary.innerHTML = `<div class="agent-graph-failure" role="alert"><strong>无法读取 Pilot Runtime</strong><span>${escapeHtml(state.pilotError)}</span></div>`;
+    workersTarget.innerHTML = ""; checksTarget.innerHTML = ""; return;
+  }
+  if (!state.pilotStatus) {
+    designedEmpty(summary, "尚无 Pilot 状态", "通过一条 pilot 命令启动后，这里显示真实 Worker 心跳。", "gear-six");
+    workersTarget.innerHTML = ""; checksTarget.innerHTML = ""; return;
+  }
+  const overall = state.pilotStatus.status || "blocked";
+  const runtime = state.pilotStatus.runtime || {status: "stopped", workers: []};
+  const tenant = state.pilotStatus.tenant || {};
+  const blockers = state.pilotStatus.blockers || tenant.blockers || [];
+  const warnings = state.pilotStatus.warnings || [];
+  const issues = [...blockers, ...warnings];
+  summary.innerHTML = `<div class="pilot-summary-head"><div><strong>Commerce Agent Pilot</strong><span>${escapeHtml(tenant.tenant_name || state.me?.tenant_name || "当前租户")}</span></div>${badge(overall)}</div><div class="pilot-summary-meta"><span>Runtime ${escapeHtml(runtime.status || "stopped")}</span><span>Generation ${escapeHtml(runtime.generation ?? "—")}</span><span>Heartbeat ${escapeHtml(isoLocal(runtime.last_heartbeat_at))}</span></div>${issues.length ? `<div class="pilot-blockers">${issues.map(item => `<span>${escapeHtml(pilotBlockerLabels[item.code] || item.code || "未知阻塞")}</span>`).join("")}</div>` : '<div class="pilot-ready-note">运行环境与当前租户已通过 Pilot 检查。</div>'}`;
+  const workers = Array.isArray(runtime.workers) ? runtime.workers : [];
+  if (!workers.length) designedEmpty(workersTarget, "Pilot Workers 未运行", "启动 `opc-ecommerce pilot` 后，六个 Worker 会在此持续报告心跳。", "gear-six");
+  else workersTarget.innerHTML = workers.map(worker => `<div class="pilot-worker-row"><div><strong>${escapeHtml(pilotWorkerLabels[worker.name] || worker.name)}</strong><small>tick ${escapeHtml(worker.iteration_count ?? 0)} · heartbeat ${escapeHtml(isoLocal(worker.last_heartbeat_at))}${worker.last_error_type ? ` · ${escapeHtml(worker.last_error_type)}` : ""}</small></div>${badge(worker.status || "starting")}</div>`).join("");
+  const components = tenant.components || {};
+  const entries = Object.entries(components);
+  if (!entries.length) designedEmpty(checksTarget, "暂无租户检查", "Pilot 会在不读取密钥值的前提下检查真实依赖。", "shield-check");
+  else checksTarget.innerHTML = entries.map(([key, component]) => `<div class="pilot-check-row"><div><strong>${escapeHtml(pilotComponentLabels[key] || key)}</strong><small>${component.required === false ? "可选能力" : "Pilot 必需"}</small></div>${badge(component.status || "unknown")}</div>`).join("");
+}
+
 function proposalCanCreate() { return ["operator", "admin", "owner"].includes(state.me?.role); }
 function proposalCanApprove(item) { return ["admin", "owner"].includes(state.me?.role) && item.created_by !== state.me?.user_id && item.created_by !== state.me?.id; }
 const proposalPayloadTemplates = {
@@ -1176,6 +1241,7 @@ function renderAll() {
   renderJobs();
   renderSchedules();
   renderDailyOps();
+  renderPilotStatus();
   renderLiveMissionControl();
   renderApprovals();
   renderProposals();
@@ -1218,10 +1284,12 @@ function renderDisconnected() {
   state.adsAdapterStatus = null; state.adsAdapterLoading = false; state.adsAdapterError = null;
   state.proposals = []; state.proposalExecutions = []; state.proposalsLoading = false; state.proposalsError = null;
   state.missionEvents = []; state.liveCursor = null; state.liveLastAt = null;
+  state.pilotStatus = null; state.pilotLoading = false; state.pilotError = null;
   if (state.liveStatus !== "auth_failed") { state.liveStatus = "disconnected"; state.liveError = null; }
   state.agentGraphs = []; state.agentGraphsLoading = false; state.agentGraphsError = null;
   renderBriefing();
   renderDailyOps();
+  renderPilotStatus();
   renderLiveMissionControl();
   renderProposals();
   renderEvidence();
@@ -1257,6 +1325,7 @@ async function refreshAll() {
   state.agentGraphsLoading = true; state.agentGraphsError = null;
   state.dailyOpsLoading = true; state.dailyOpsScheduleError = null; state.dailyOpsRunError = null;
   state.proposalsLoading = true; state.proposalsError = null;
+  state.pilotLoading = true; state.pilotError = null;
   renderReportRecipes();
   renderReportSyncs();
   renderMetricObservations();
@@ -1266,6 +1335,7 @@ async function refreshAll() {
   renderAgentGraphs();
   renderRunMetricOptions();
   renderDailyOps();
+  renderPilotStatus();
   renderProposals();
   const platform = encodeURIComponent(state.selectedPlatform);
   const recipes = api("/v1/report-recipes").then(value => ({value})).catch(error => ({error}));
@@ -1278,6 +1348,7 @@ async function refreshAll() {
   const dailyOpsRuns = api("/v1/daily-ops-runs?limit=100").then(value => ({value})).catch(error => ({error}));
   const proposals = api("/v1/proposals?limit=100").then(value => ({value})).catch(error => ({error}));
   const proposalExecutions = api("/v1/proposal-executions?limit=100").then(value => ({value})).catch(error => ({error}));
+  const pilot = api("/v1/pilot-status").then(value => ({value})).catch(error => ({error}));
   const graphs = api("/v1/agent-graphs").then(async value => {
     const listed = Array.isArray(value) ? value : value?.graphs || [];
     const detailed = await Promise.all(listed.map(async graph => {
@@ -1293,10 +1364,10 @@ async function refreshAll() {
     }));
     return {graphs: detailed};
   }).then(value => ({value})).catch(error => ({error}));
-  const [me, catalog, briefing, mission, imports, runs, jobs, schedules, audit, connectors, recipeResult, syncResult, observationResult, materializationResult, adsGateResult, adsAdapterResult, graphResult, dailyScheduleResult, dailyRunResult, proposalResult, executionResult] = await Promise.all([
+  const [me, catalog, briefing, mission, imports, runs, jobs, schedules, audit, connectors, recipeResult, syncResult, observationResult, materializationResult, adsGateResult, adsAdapterResult, graphResult, dailyScheduleResult, dailyRunResult, proposalResult, executionResult, pilotResult] = await Promise.all([
     api("/v1/me"), api("/v1/catalog"), api(`/v1/briefing?platform=${platform}`), api("/v1/mission-control"),
     api("/v1/evidence-imports?limit=100"), api("/v1/agent-runs?limit=100"), api("/v1/jobs?limit=100"),
-    api("/v1/schedules"), api("/v1/audit?limit=100"), api("/v1/connectors"), recipes, syncs, observations, materializations, adsGates, adsAdapter, graphs, dailyOpsSchedules, dailyOpsRuns, proposals, proposalExecutions,
+    api("/v1/schedules"), api("/v1/audit?limit=100"), api("/v1/connectors"), recipes, syncs, observations, materializations, adsGates, adsAdapter, graphs, dailyOpsSchedules, dailyOpsRuns, proposals, proposalExecutions, pilot,
   ]);
   if (recipeResult.error) console.error("Report Recipes 加载失败", recipeResult.error);
   if (syncResult.error) console.error("Sync Activity 加载失败", syncResult.error);
@@ -1308,6 +1379,7 @@ async function refreshAll() {
   if (dailyRunResult.error) console.error("Daily Ops 运行加载失败", dailyRunResult.error);
   if (proposalResult.error) console.error("行动提案加载失败", proposalResult.error);
   if (executionResult.error) console.error("提案执行记录加载失败", executionResult.error);
+  if (pilotResult.error) console.error("Pilot Runtime 状态加载失败", pilotResult.error);
   Object.assign(state, {
     me, catalog, briefing, mission,
     imports: imports.imports || [], runs: runs.runs || [], jobs: jobs.jobs || [],
@@ -1330,6 +1402,7 @@ async function refreshAll() {
     dailyOpsRunError: dailyRunResult.error?.message || null,
     proposals: Array.isArray(proposalResult.value) ? proposalResult.value : proposalResult.value?.proposals || [], proposalsLoading: false, proposalsError: proposalResult.error?.message || executionResult.error?.message || null,
     proposalExecutions: Array.isArray(executionResult.value) ? executionResult.value : executionResult.value?.executions || [],
+    pilotStatus: pilotResult.value || null, pilotLoading: false, pilotError: pilotResult.error?.message || null,
   });
   setConnected(true);
   renderAll();
@@ -1364,6 +1437,22 @@ async function refreshBriefing() {
   }
   state.briefing = await api(`/v1/briefing?platform=${encodeURIComponent(state.selectedPlatform)}`);
   renderBriefing();
+}
+
+async function refreshPilotStatus() {
+  state.pilotLoading = true;
+  state.pilotError = null;
+  renderPilotStatus();
+  try {
+    state.pilotStatus = await api("/v1/pilot-status");
+  } catch (error) {
+    state.pilotStatus = null;
+    state.pilotError = error.message;
+    throw error;
+  } finally {
+    state.pilotLoading = false;
+    renderPilotStatus();
+  }
 }
 
 async function act(button, task, success, refresh = true) {
@@ -1622,6 +1711,7 @@ document.body.addEventListener("click", event => {
     case "open-connection": $("connection-dialog").showModal(); break;
     case "close-dialog": $(button.dataset.dialog).close(); break;
     case "refresh": act(button, refreshAll, "今日简报已刷新。", false); break;
+    case "refresh-pilot": act(button, refreshPilotStatus, "Pilot Runtime 状态已刷新。", false); break;
     case "retry-live": retryLiveStream(); break;
     case "connect": connect(button); break;
     case "disconnect": disconnect(); break;

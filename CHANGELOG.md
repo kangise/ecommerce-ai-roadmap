@@ -13,6 +13,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 - Add package integrity metadata, automated tests, and PR quality checks.
 
 ### Added
+- L11 one-command Pilot operations contract: viewer-safe tenant readiness and
+  local worker heartbeat status, explicit stale/degraded/stopped states,
+  credential-presence-only blockers, loopback/public-bind and one-time-key
+  boundaries, graceful shutdown guidance, and single-process SQLite limits.
+  Amazon/OpenAI external dependencies remain explicit blocked/unknown states.
+  Hardened readiness distinguishes attention from blocked, stale Amazon health
+  from missing credentials, and graceful shutdown from worker-timeout stopping.
 - L10 Mission Control streaming contract: viewer-authenticated tenant SSE with
   header-first tenant-local cursors, closed safe event metadata, heartbeat/reset/
   reconnect semantics, bounded replay/lifetime, global and tenant connection

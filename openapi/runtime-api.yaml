@@ -1618,6 +1618,25 @@ paths:
         '403': {$ref: '#/components/responses/Forbidden'}
         '422': {$ref: '#/components/responses/ValidationFailed'}
         '429': {$ref: '#/components/responses/RateLimited'}
+  /v1/pilot-status:
+    get:
+      summary: Read tenant-scoped Pilot readiness and local worker health
+      description: >-
+        Viewer-or-higher bearer authentication is required. This endpoint reports
+        the current authenticated tenant only. Credential fields report presence
+        and safe aggregate counts only—never secrets, API keys, token values,
+        reference names, or provider responses. `attention`, `blocked`, degraded,
+        stale, stopping, or stopped is an explicit operational state, not a
+        successful external Amazon or OpenAI smoke. Worker status is evaluated at
+        read time from the latest heartbeat.
+      responses:
+        '200':
+          description: Closed tenant readiness and single-process worker status snapshot
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/PilotStatus'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
   /v1/briefing:
     get:
       summary: Read an evidence-backed operating brief for one marketplace
@@ -3490,6 +3509,134 @@ components:
         reason: {type: string, enum: [backlog_limit, lifetime_limit]}
         retry_after_seconds: {type: integer, minimum: 1, maximum: 300}
         cursor: {type: integer, format: int64, minimum: 0, maximum: 9223372036854775807}
+    PilotStatus:
+      type: object
+      description: Closed operational snapshot for the authenticated tenant; it is not proof that Amazon or OpenAI calls work.
+      additionalProperties: false
+      required: [status, blockers, warnings, runtime, tenant]
+      properties:
+        status: {type: string, enum: [ready, attention, blocked]}
+        blockers:
+          type: array
+          maxItems: 50
+          items: {$ref: '#/components/schemas/PilotBlocker'}
+        warnings:
+          type: array
+          maxItems: 50
+          items: {$ref: '#/components/schemas/PilotBlocker'}
+        runtime: {$ref: '#/components/schemas/PilotRuntimeStatus'}
+        tenant: {$ref: '#/components/schemas/PilotTenantReadiness'}
+    PilotTenantReadiness:
+      type: object
+      additionalProperties: false
+      required: [tenant_id, tenant_name, tenant_mode, status, blockers, components]
+      properties:
+        tenant_id: {type: string, format: uuid}
+        tenant_name: {type: string}
+        tenant_mode: {type: string, enum: [production, demo]}
+        status: {type: string, enum: [ready, blocked]}
+        blockers:
+          type: array
+          maxItems: 50
+          items: {$ref: '#/components/schemas/PilotBlocker'}
+        components: {$ref: '#/components/schemas/PilotTenantComponents'}
+    PilotTenantComponents:
+      type: object
+      additionalProperties: false
+      required: [schema, amazon_spapi, agent_graph, daily_ops, openai, amazon_ads_l5]
+      properties:
+        schema: {$ref: '#/components/schemas/PilotSchemaComponent'}
+        amazon_spapi: {$ref: '#/components/schemas/PilotAmazonSpapiComponent'}
+        agent_graph: {$ref: '#/components/schemas/PilotCountComponent'}
+        daily_ops: {$ref: '#/components/schemas/PilotCountComponent'}
+        openai: {$ref: '#/components/schemas/PilotOpenAIComponent'}
+        amazon_ads_l5: {$ref: '#/components/schemas/PilotAdsComponent'}
+    PilotBlocker:
+      type: object
+      additionalProperties: false
+      required: [code, component]
+      properties:
+        code: {type: string, minLength: 1, maxLength: 80, pattern: '^[A-Z0-9_]+$'}
+        component: {type: string, minLength: 1, maxLength: 80, pattern: '^[a-z0-9_]+$'}
+        error_type: {type: string, minLength: 1, maxLength: 100, nullable: true}
+    PilotSchemaComponent:
+      type: object
+      additionalProperties: false
+      required: [required, status, version]
+      properties:
+        required: {type: boolean, enum: [true]}
+        status: {type: string, enum: [ready]}
+        version: {type: integer, minimum: 1}
+    PilotAmazonSpapiComponent:
+      type: object
+      additionalProperties: false
+      required: [required, status, account_count, healthy_count, fresh_healthy_count, credential_ready_count, health_max_age_seconds]
+      properties:
+        required: {type: boolean, enum: [true]}
+        status: {type: string, enum: [missing, unhealthy, stale, missing_credentials, ready]}
+        account_count: {type: integer, minimum: 0}
+        healthy_count: {type: integer, minimum: 0}
+        fresh_healthy_count: {type: integer, minimum: 0}
+        credential_ready_count: {type: integer, minimum: 0}
+        health_max_age_seconds: {type: integer, minimum: 1}
+    PilotCountComponent:
+      type: object
+      additionalProperties: false
+      required: [required, status]
+      properties:
+        required: {type: boolean, enum: [true]}
+        status: {type: string, enum: [missing, ready]}
+        published_count: {type: integer, minimum: 0}
+        enabled_schedule_count: {type: integer, minimum: 0}
+    PilotOpenAIComponent:
+      type: object
+      description: Presence flags only; no OpenAI credential or model value is returned.
+      additionalProperties: false
+      required: [required, status, api_key_present, model_present]
+      properties:
+        required: {type: boolean, enum: [true]}
+        status: {type: string, enum: [missing, ready]}
+        api_key_present: {type: boolean}
+        model_present: {type: boolean}
+    PilotAdsComponent:
+      type: object
+      additionalProperties: false
+      required: [required, status, reason_code]
+      properties:
+        required: {type: boolean, enum: [false]}
+        status: {type: string, enum: [passed, blocked]}
+        reason_code: {type: string, enum: [OPTIONAL_AMAZON_ADS_GATE_NOT_PASSED], nullable: true}
+    PilotWorkerStatus:
+      type: object
+      additionalProperties: false
+      required: [name, status, iteration_count, consecutive_failures, last_heartbeat_at, last_success_at, last_error_at, last_error_type]
+      properties:
+        name:
+          type: string
+          enum: [scheduler, job_worker, report_worker, daily_scheduler, daily_worker, proposal_worker]
+        status: {type: string, enum: [starting, healthy, stale, degraded, stopped]}
+        iteration_count: {type: integer, minimum: 0}
+        consecutive_failures: {type: integer, minimum: 0}
+        last_heartbeat_at: {type: string, format: date-time}
+        last_success_at: {type: string, format: date-time, nullable: true}
+        last_error_at: {type: string, format: date-time, nullable: true}
+        last_error_type: {type: string, minLength: 1, maxLength: 100, nullable: true}
+    PilotRuntimeStatus:
+      type: object
+      additionalProperties: false
+      required: [status, boot_id, generation, started_at, last_heartbeat_at, workers]
+      properties:
+        status: {type: string, enum: [starting, healthy, stale, degraded, stopping, stopped, superseded]}
+        boot_id: {type: string, format: uuid, nullable: true}
+        generation: {type: integer, minimum: 1, nullable: true}
+        started_at: {type: string, format: date-time, nullable: true}
+        last_heartbeat_at: {type: string, format: date-time, nullable: true}
+        stopped_at: {type: string, format: date-time, nullable: true}
+        stop_reason: {type: string, enum: [graceful_shutdown, startup_failure, worker_shutdown_timeout], nullable: true}
+        workers:
+          type: array
+          maxItems: 6
+          items: {$ref: '#/components/schemas/PilotWorkerStatus'}
     OperatingBriefing:
       type: object
       required: [platform, evidence, metrics, latest_run, brief_run_id, executive_summary, priorities, risks, limitations, agents, approvals]

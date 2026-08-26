@@ -380,6 +380,40 @@ retire the previous secret. Access tokens are short-lived and never persisted.
 
 ## Incident checks
 
+## L11 Pilot startup, readiness, and shutdown
+
+Use `opc-ecommerce pilot --db <PATH> [--name <TENANT>] [--email <EMAIL>]` for
+the one-process Pilot. On a new database, name/email create the first tenant
+and a one-time bootstrap key; store it in a secret manager, never tickets, URLs,
+browser storage, logs, or shell history. Existing databases are never reset or
+given a replacement key by a rerun. `--check` reports readiness and exits; it
+does not launch workers, seed data, or convert absent Amazon/OpenAI access to
+success.
+
+Pilot binds loopback by default. Public bind requires explicit opt-in and a
+TLS/authenticated reverse proxy; bearer auth remains required. Verify with an
+authenticated viewer call to `GET /v1/pilot-status`: inspect tenant readiness,
+blockers, credential *presence/counts* only, and the worker table. Those safe
+aggregates are not verification of Amazon or OpenAI access. Inspect the Amazon
+fresh-healthy and credential-ready counts against `health_max_age_seconds`;
+`AMAZON_HEALTH_STALE` and `AMAZON_CREDENTIALS_MISSING` remain explicit blockers.
+
+Worker heartbeats produce a read-time effective worker `status`; a previously
+healthy worker can become `stale` after the configured heartbeat window, while
+`degraded` and `stopped` stay explicit. The table includes `scheduler`, `job_worker`, `report_worker`,
+`daily_scheduler`, `daily_worker`, and `proposal_worker`. Preserve SQLite and
+logs before restart; never fake a heartbeat or delete blocker/audit state.
+
+SIGTERM/SIGINT begin graceful shutdown: stop accepting work, complete or release
+the bounded current lease, and then verify stopped/stale status. A port collision,
+bootstrap/preflight/start failure, server failure, or worker shutdown timeout is
+structured non-zero CLI output; a timeout leaves an explicit `stopping` state
+with `worker_shutdown_timeout`, rather than being reported as clean shutdown. This is a
+single-process SQLite system with no distributed worker leases, cross-instance
+heartbeat aggregation, shared worker table, or durable fan-out. Operate one
+Pilot process per database. Missing Amazon authorization or OpenAI credentials
+must remain blocked/unknown—not fixtures or an invented pass.
+
 ## Live Mission Control / SSE operations
 
 The L10 stream is `GET /v1/mission-control/events`, authenticated with a

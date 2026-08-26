@@ -363,6 +363,67 @@ def test_generated_l10_sse_contract_and_operational_boundaries() -> None:
     assert "ThreadingHTTPServer" in runbook
 
 
+def test_source_runtime_api_l11_pilot_status_contract() -> None:
+    contract = yaml.safe_load((ROOT / "openapi" / "runtime-api.yaml").read_text(encoding="utf-8"))
+    operation = contract["paths"]["/v1/pilot-status"]["get"]
+    assert contract["security"] == [{"bearerAuth": []}]
+    assert {"200", "401", "403"} <= set(operation["responses"])
+    schemas = contract["components"]["schemas"]
+    for name in (
+        "PilotStatus", "PilotTenantReadiness", "PilotTenantComponents", "PilotBlocker",
+        "PilotSchemaComponent", "PilotAmazonSpapiComponent", "PilotCountComponent",
+        "PilotOpenAIComponent", "PilotAdsComponent", "PilotWorkerStatus", "PilotRuntimeStatus",
+    ):
+        assert schemas[name]["additionalProperties"] is False
+    assert schemas["PilotStatus"]["required"] == ["status", "blockers", "warnings", "runtime", "tenant"]
+    assert schemas["PilotStatus"]["properties"]["status"]["enum"] == [
+        "ready", "attention", "blocked"
+    ]
+    assert schemas["PilotTenantReadiness"]["required"] == [
+        "tenant_id", "tenant_name", "tenant_mode", "status", "blockers", "components"
+    ]
+    assert schemas["PilotOpenAIComponent"]["required"] == [
+        "required", "status", "api_key_present", "model_present"
+    ]
+    amazon = schemas["PilotAmazonSpapiComponent"]
+    assert amazon["required"] == [
+        "required", "status", "account_count", "healthy_count", "fresh_healthy_count",
+        "credential_ready_count", "health_max_age_seconds",
+    ]
+    assert amazon["properties"]["status"]["enum"] == [
+        "missing", "unhealthy", "stale", "missing_credentials", "ready"
+    ]
+    worker = schemas["PilotWorkerStatus"]
+    assert worker["properties"]["name"]["enum"] == [
+        "scheduler", "job_worker", "report_worker", "daily_scheduler", "daily_worker", "proposal_worker"
+    ]
+    assert worker["properties"]["status"]["enum"] == [
+        "starting", "healthy", "stale", "degraded", "stopped"
+    ]
+    runtime = schemas["PilotRuntimeStatus"]
+    assert runtime["properties"]["status"]["enum"] == [
+        "starting", "healthy", "stale", "degraded", "stopping", "stopped", "superseded"
+    ]
+    assert runtime["properties"]["stop_reason"]["enum"] == [
+        "graceful_shutdown", "startup_failure", "worker_shutdown_timeout"
+    ]
+
+
+def test_generated_l11_pilot_contract_documents_real_boundaries() -> None:
+    contract = yaml.safe_load((ROOT / "dist" / "openapi" / "runtime-api.yaml").read_text(encoding="utf-8"))
+    response = contract["paths"]["/v1/pilot-status"]["get"]["responses"]["200"]
+    assert response["content"]["application/json"]["schema"]["$ref"].endswith("/PilotStatus")
+    guide = (ROOT / "dist" / "integration" / "runtime-api.md").read_text(encoding="utf-8")
+    runbook = (ROOT / "dist" / "operations" / "runbook.md").read_text(encoding="utf-8")
+    threat_model = (ROOT / "dist" / "security" / "threat-model.md").read_text(encoding="utf-8")
+    for text in (guide, runbook, threat_model):
+        assert "single-process SQLite" in text
+        assert "one-time" in text
+    assert "opc-ecommerce pilot --db" in guide
+    assert "SIGTERM" in runbook
+    assert "OpenAI" in runbook
+
+
 def test_source_runtime_api_l8_daily_ops_contract() -> None:
     contract = yaml.safe_load((ROOT / "openapi" / "runtime-api.yaml").read_text(encoding="utf-8"))
     paths = contract["paths"]

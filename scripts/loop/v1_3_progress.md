@@ -16,7 +16,7 @@
 | L8 | Daily Ops | done | Schema v17；184 tests；14 groups=0；wheel daily persistence + CLI smoke；browser Brief/toggle/refresh QA | `loop(v1.3): L8 ship fenced daily operations` | local-date cursor；scheduled cutoff；immutable config hash；fenced leases；approved parent-linked Brief；no external writes |
 | L9 | Proposals | done | Schema v18；204 tests；14 groups=0；Python 3.12 wheel cold install；Demo executed/blocked/submitted refresh persistence；browser console 0 | `loop(v1.3): L9 ship proposal approval control plane` | immutable source/version/hash；1/2-person quorum；atomic audit；fenced recovery worker；safe Action reuse；Ads zero-call block |
 | L10 | Live Mission Control/SSE | done | Schema v19；213 tests；14 groups=0；installed HTTP SSE smoke；browser event/resume/reconnect console 0 | `loop(v1.3): L10 stream tenant-safe mission control` | per-tenant cursor；1,000-event retention/reset；20 global/4 tenant connections；single-process boundary |
-| L11 | one-command Pilot | pending |  |  |  |
+| L11 | one-command Pilot | done | Schema v20；225 tests；14 groups=0；wheel installed Pilot HTTP/SIGTERM smoke；browser six-heartbeat QA | `loop(v1.3): L11 run one-command pilot` | one process API+6 workers；boot lease fencing；readiness blockers；graceful persisted stop |
 | L12 | eval/security/restore | pending |  |  |  |
 | L13 | RC | pending |  |  |  |
 
@@ -153,6 +153,18 @@
 - Failure 1: independent integration review found that a global AUTOINCREMENT cursor exposed other-tenant activity through sequence gaps, event/resource bindings were forgeable by raw SQL, query secrets could enter access logs, and the initial OpenAPI event envelope did not match the wire. Schema v19 now uses contiguous per-tenant cursors with a hidden internal sequence, real same-tenant resource/status binding, closed JSON metadata, query-free access logs, and exact `mission.update/reset/reconnect` contracts.
 - Failure 2 / blocked reason: the first browser stress pass deliberately ran multiple one-second streams and reached the real 120 requests/minute client limiter; the UI surfaced reconnect/429 rather than bypassing it. The final isolated one-tab smoke used the normal authenticated flow, verified cursor resume and zero console errors. No L10 blocker remains；the explicit limitation is single-process SQLite/ThreadingHTTPServer polling with no HA, broker, or multi-process fan-out claim.
 - Restore point and result: L9 `f52b72e`; L10 Schema v19/event projection/API/UI can be reverted as one commit while preserving L0–L9 state. Mission events are a bounded projection, not the audit source of truth；after retention or restore, clients refetch the durable Mission Control snapshot.
+
+### L11 — one-command Pilot
+
+- Date: 2026-08-26
+- Status: done
+- Evidence: `tests/test_pilot.py` 10 model/readiness/supervisor/CLI/HTTP/shutdown cases；全套 pytest 225 passed；`verify_all` 14 groups=0；OpenAPI closed Pilot status/runtime/worker/readiness contracts；Python 3.12 wheel cold install + installed `opc-ecommerce pilot` real HTTP + six healthy Worker heartbeats + SIGTERM exit 0 + reopened `stopped` persistence + read-only `--check` smoke；browser one-time-key connect、six heartbeat ticks、真实 refresh action、honest dependency blockers、Live SSE、console 0 errors；`artifacts/design-qa/l11-one-command-pilot-final.jpg`。
+- Commit: `loop(v1.3): L11 run one-command pilot`（本记录所在提交）
+- Notes: `opc-ecommerce pilot` pre-binds the loopback HTTP port, optionally bootstraps exactly one new tenant only when name/email are explicit, prints the new API key once, then runs API + Schedule/Job/Report/Daily Scheduler/Daily Worker/Proposal Worker in one supervised process；runtime-scoped Schema v20 boot generation/lease and per-worker heartbeats persist without tenant payloads or secrets；fresh duplicate supervisors fail, stale takeover fences the old boot；single-worker errors persist a safe type and do not stop peers；SIGINT/SIGTERM use an interruptible stop and only report clean success after all workers stop.
+- Validator results: all repository/contract/install/browser gates passed；the installed wheel process reported six healthy workers while the tenant honestly remained blocked on absent Amazon/OpenAI/Daily dependencies, then persisted all workers as stopped after SIGTERM.
+- Failure 1: integration review found potential port-bind orphan bootstrap, lease-expired-but-not-yet-stale status, ignored shutdown timeout, and unstructured bootstrap/preflight/server failures. Pilot now validates and pre-binds before tenant creation, evaluates lease expiry at read time, fences generations, returns structured nonzero failures, and persists `stopping`/`ShutdownTimeout` instead of claiming a clean exit.
+- Failure 2 / blocked reason: initial readiness based only on historical account health could outlive revoked credentials. The final gate requires an Amazon health result no older than 24 hours plus current credential-environment presence, a published graph, enabled Daily Ops, and OpenAI key/model presence；only boolean/count information is exposed. L5 Amazon Ads remains an explicit optional blocked component. No L11 implementation blocker remains；HA/multi-process coordination is deliberately not claimed.
+- Restore point and result: L10 `c36e622`; L11 Schema v20/Pilot supervisor/API/UI/CLI can be reverted as one commit while preserving L0–L10 tenant data. A stopped or stale boot remains diagnostic history；restart creates a higher fenced generation rather than mutating the old boot.
 
 ### Lx — 名称
 

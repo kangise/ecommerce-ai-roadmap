@@ -29,8 +29,16 @@ class Principal:
 
 
 ROLE_LEVEL = {"viewer": 10, "operator": 20, "admin": 30, "owner": 40}
-SCHEMA_VERSION = 19
+SCHEMA_VERSION = 20
 MISSION_EVENT_RETENTION = 1_000
+PILOT_WORKERS = (
+    "scheduler",
+    "job_worker",
+    "report_worker",
+    "daily_scheduler",
+    "daily_worker",
+    "proposal_worker",
+)
 
 
 class _Connection(sqlite3.Connection):
@@ -823,6 +831,56 @@ class Database:
                 );
                 CREATE INDEX IF NOT EXISTS idx_mission_events_tenant_cursor
                     ON mission_events(tenant_id, cursor);
+                CREATE TABLE IF NOT EXISTS pilot_boots (
+                    boot_id TEXT PRIMARY KEY,
+                    generation INTEGER NOT NULL UNIQUE CHECK (generation >= 1),
+                    status TEXT NOT NULL CHECK (
+                        status IN ('starting','running','stopping','stopped','superseded')
+                    ),
+                    process_id INTEGER NOT NULL CHECK (process_id >= 0),
+                    started_at TEXT NOT NULL,
+                    heartbeat_at TEXT NOT NULL,
+                    lease_until TEXT NOT NULL,
+                    stop_requested_at TEXT,
+                    stopped_at TEXT,
+                    stop_reason TEXT CHECK (stop_reason IS NULL OR stop_reason IN (
+                        'graceful_shutdown','startup_failure',
+                        'worker_shutdown_timeout','new_boot'
+                    ))
+                );
+                CREATE TABLE IF NOT EXISTS pilot_runtime_state (
+                    singleton INTEGER PRIMARY KEY CHECK (singleton=1),
+                    active_boot_id TEXT REFERENCES pilot_boots(boot_id),
+                    updated_at TEXT NOT NULL
+                );
+                CREATE TABLE IF NOT EXISTS pilot_worker_heartbeats (
+                    boot_id TEXT NOT NULL REFERENCES pilot_boots(boot_id) ON DELETE CASCADE,
+                    worker_name TEXT NOT NULL CHECK (worker_name IN (
+                        'scheduler','job_worker','report_worker','daily_scheduler',
+                        'daily_worker','proposal_worker'
+                    )),
+                    status TEXT NOT NULL CHECK (
+                        status IN ('starting','healthy','degraded','stopped')
+                    ),
+                    iteration_count INTEGER NOT NULL DEFAULT 0
+                        CHECK (iteration_count >= 0),
+                    consecutive_failures INTEGER NOT NULL DEFAULT 0
+                        CHECK (consecutive_failures >= 0),
+                    last_started_at TEXT NOT NULL,
+                    last_heartbeat_at TEXT NOT NULL,
+                    last_success_at TEXT,
+                    last_error_at TEXT,
+                    last_error_type TEXT CHECK (
+                        last_error_type IS NULL
+                        OR (
+                            length(last_error_type) BETWEEN 1 AND 100
+                            AND substr(last_error_type,1,1) GLOB '[A-Za-z]'
+                            AND last_error_type NOT GLOB '*[^A-Za-z0-9_.]*'
+                        )
+                    ),
+                    stopped_at TEXT,
+                    PRIMARY KEY (boot_id, worker_name)
+                );
                 CREATE TABLE IF NOT EXISTS runtime_meta (
                     key TEXT PRIMARY KEY,
                     value TEXT NOT NULL
@@ -1986,6 +2044,10 @@ class Database:
             # initialize() creates the bounded tenant Mission Control ledger;
             # triggers are installed only after the marker advances.
             version = 19
+        if version == 19:
+            # initialize() creates the runtime-scoped fenced Pilot boot and
+            # worker heartbeat tables before the marker advances.
+            version = 20
         if version != SCHEMA_VERSION:
             raise ValidationError(f"no migration path from runtime schema version {version}")
         conn.execute("UPDATE runtime_meta SET value=? WHERE key='schema_version'", (str(SCHEMA_VERSION),))
@@ -1998,7 +2060,10 @@ class Database:
         self, name: str, email: str, *, mode: str = "production"
     ) -> tuple[str, str]:
         name, email = name.strip(), email.strip().lower()
-        if not name or not email or "@" not in email:
+        if (
+            not name or len(name) > 200
+            or not email or len(email) > 320 or "@" not in email
+        ):
             raise ValidationError("tenant name and a valid owner email are required")
         if mode not in {"production", "demo"}:
             raise ValidationError("tenant mode must be production or demo")
@@ -2030,6 +2095,255 @@ class Database:
                 "SELECT id,name,mode,created_at FROM tenants ORDER BY created_at,id"
             ).fetchall()
         return [dict(row) for row in rows]
+
+    def begin_pilot_boot(
+        self, process_id: int, *, lease_seconds: int = 30
+    ) -> dict[str, Any]:
+        """Fence any older supervisor and create one runtime-scoped boot."""
+        if not isinstance(process_id, int) or isinstance(process_id, bool) or process_id < 0:
+            raise ValidationError("pilot process_id must be a non-negative integer")
+        if not isinstance(lease_seconds, int) or not 5 <= lease_seconds <= 300:
+            raise ValidationError("pilot lease_seconds must be between 5 and 300")
+        boot_id, now, lease_until = self._id(), utc_now(), self._lease_until(lease_seconds)
+        with self.transaction() as conn:
+            active = conn.execute(
+                """SELECT s.active_boot_id,b.status,b.lease_until
+                   FROM pilot_runtime_state s LEFT JOIN pilot_boots b
+                     ON b.boot_id=s.active_boot_id
+                   WHERE s.singleton=1"""
+            ).fetchone()
+            if active is not None and active["active_boot_id"] is not None:
+                if (
+                    active["status"] in {"starting", "running", "stopping"}
+                    and active["lease_until"] is not None
+                    and datetime.fromisoformat(active["lease_until"])
+                    > datetime.fromisoformat(now)
+                ):
+                    raise ConflictError("a fresh Pilot supervisor is already running")
+                conn.execute(
+                    """UPDATE pilot_boots
+                       SET status='superseded',stopped_at=?,stop_reason='new_boot'
+                       WHERE boot_id=? AND status IN ('starting','running','stopping')""",
+                    (now, active["active_boot_id"]),
+                )
+            generation = conn.execute(
+                "SELECT COALESCE(MAX(generation),0)+1 FROM pilot_boots"
+            ).fetchone()[0]
+            conn.execute(
+                """INSERT INTO pilot_boots(
+                       boot_id,generation,status,process_id,started_at,heartbeat_at,
+                       lease_until
+                   ) VALUES(?,?,'starting',?,?,?,?)""",
+                (boot_id, generation, process_id, now, now, lease_until),
+            )
+            conn.executemany(
+                """INSERT INTO pilot_worker_heartbeats(
+                       boot_id,worker_name,status,last_started_at,last_heartbeat_at
+                   ) VALUES(?,?,'starting',?,?)""",
+                [(boot_id, worker, now, now) for worker in PILOT_WORKERS],
+            )
+            conn.execute(
+                """INSERT INTO pilot_runtime_state(singleton,active_boot_id,updated_at)
+                   VALUES(1,?,?)
+                   ON CONFLICT(singleton) DO UPDATE SET
+                     active_boot_id=excluded.active_boot_id,
+                     updated_at=excluded.updated_at""",
+                (boot_id, now),
+            )
+        return self.get_pilot_boot(boot_id)
+
+    def mark_pilot_boot_running(
+        self, boot_id: str, *, lease_seconds: int = 30
+    ) -> bool:
+        now, lease_until = utc_now(), self._lease_until(lease_seconds)
+        with self.transaction() as conn:
+            result = conn.execute(
+                """UPDATE pilot_boots
+                   SET status='running',heartbeat_at=?,lease_until=?
+                   WHERE boot_id=? AND status='starting' AND EXISTS (
+                     SELECT 1 FROM pilot_runtime_state s
+                      WHERE s.singleton=1 AND s.active_boot_id=pilot_boots.boot_id
+                   )""",
+                (now, lease_until, boot_id),
+            )
+            if result.rowcount:
+                conn.execute(
+                    "UPDATE pilot_runtime_state SET updated_at=? WHERE singleton=1",
+                    (now,),
+                )
+        return result.rowcount == 1
+
+    def record_pilot_worker_heartbeat(
+        self,
+        boot_id: str,
+        worker_name: str,
+        *,
+        succeeded: bool,
+        error_type: str | None = None,
+        lease_seconds: int = 30,
+    ) -> bool:
+        if worker_name not in PILOT_WORKERS:
+            raise ValidationError("unknown pilot worker")
+        if not isinstance(lease_seconds, int) or not 5 <= lease_seconds <= 300:
+            raise ValidationError("pilot lease_seconds must be between 5 and 300")
+        if succeeded:
+            error_type = None
+        elif not isinstance(error_type, str) or not re.fullmatch(
+            r"[A-Za-z][A-Za-z0-9_.]{0,99}", error_type
+        ):
+            raise ValidationError("pilot worker failure requires a safe error type")
+        now, lease_until = utc_now(), self._lease_until(lease_seconds)
+        with self.transaction() as conn:
+            result = conn.execute(
+                """UPDATE pilot_worker_heartbeats
+                   SET status=?,iteration_count=iteration_count+1,
+                       consecutive_failures=CASE WHEN ? THEN 0
+                                                 ELSE consecutive_failures+1 END,
+                       last_heartbeat_at=?,
+                       last_success_at=CASE WHEN ? THEN ? ELSE last_success_at END,
+                       last_error_at=CASE WHEN ? THEN last_error_at ELSE ? END,
+                       last_error_type=CASE WHEN ? THEN last_error_type ELSE ? END
+                   WHERE boot_id=? AND worker_name=? AND EXISTS (
+                     SELECT 1 FROM pilot_runtime_state s JOIN pilot_boots b
+                       ON b.boot_id=s.active_boot_id
+                      WHERE s.singleton=1 AND s.active_boot_id=?
+                        AND b.status IN ('starting','running')
+                   )""",
+                (
+                    "healthy" if succeeded else "degraded",
+                    int(succeeded),
+                    now,
+                    int(succeeded),
+                    now,
+                    int(succeeded),
+                    now,
+                    int(succeeded),
+                    error_type,
+                    boot_id,
+                    worker_name,
+                    boot_id,
+                ),
+            )
+            if result.rowcount:
+                conn.execute(
+                    """UPDATE pilot_boots
+                       SET heartbeat_at=?,lease_until=? WHERE boot_id=?""",
+                    (now, lease_until, boot_id),
+                )
+                conn.execute(
+                    "UPDATE pilot_runtime_state SET updated_at=? WHERE singleton=1",
+                    (now,),
+                )
+        return result.rowcount == 1
+
+    def finish_pilot_boot(
+        self, boot_id: str, *, reason: str = "graceful_shutdown"
+    ) -> bool:
+        if reason not in {"graceful_shutdown", "startup_failure"}:
+            raise ValidationError("invalid pilot stop reason")
+        now = utc_now()
+        with self.transaction() as conn:
+            state = conn.execute(
+                """SELECT 1 FROM pilot_runtime_state
+                   WHERE singleton=1 AND active_boot_id=?""",
+                (boot_id,),
+            ).fetchone()
+            if state is None:
+                return False
+            conn.execute(
+                """UPDATE pilot_worker_heartbeats
+                   SET status='stopped',last_heartbeat_at=?,stopped_at=?
+                   WHERE boot_id=?""",
+                (now, now, boot_id),
+            )
+            conn.execute(
+                """UPDATE pilot_boots
+                   SET status='stopped',heartbeat_at=?,stop_requested_at=?,
+                       stopped_at=?,stop_reason=?
+                   WHERE boot_id=?""",
+                (now, now, now, reason, boot_id),
+            )
+            conn.execute(
+                """UPDATE pilot_runtime_state
+                   SET active_boot_id=NULL,updated_at=?
+                   WHERE singleton=1 AND active_boot_id=?""",
+                (now, boot_id),
+            )
+        return True
+
+    def mark_pilot_boot_stopping(
+        self, boot_id: str, *, timed_out_workers: list[str]
+    ) -> bool:
+        if any(worker not in PILOT_WORKERS for worker in timed_out_workers):
+            raise ValidationError("unknown timed out Pilot worker")
+        now = utc_now()
+        with self.transaction() as conn:
+            state = conn.execute(
+                """SELECT 1 FROM pilot_runtime_state
+                   WHERE singleton=1 AND active_boot_id=?""",
+                (boot_id,),
+            ).fetchone()
+            if state is None:
+                return False
+            conn.execute(
+                """UPDATE pilot_boots
+                   SET status='stopping',stop_requested_at=?,
+                       stop_reason='worker_shutdown_timeout'
+                   WHERE boot_id=? AND status IN ('starting','running','stopping')""",
+                (now, boot_id),
+            )
+            for worker in timed_out_workers:
+                conn.execute(
+                    """UPDATE pilot_worker_heartbeats
+                       SET status='degraded',last_error_at=?,
+                           last_error_type='ShutdownTimeout',
+                           consecutive_failures=consecutive_failures+1
+                       WHERE boot_id=? AND worker_name=?""",
+                    (now, boot_id, worker),
+                )
+            conn.execute(
+                "UPDATE pilot_runtime_state SET updated_at=? WHERE singleton=1",
+                (now,),
+            )
+        return True
+
+    def get_pilot_boot(self, boot_id: str) -> dict[str, Any]:
+        with self.connect() as conn:
+            boot = conn.execute(
+                "SELECT * FROM pilot_boots WHERE boot_id=?", (boot_id,)
+            ).fetchone()
+            if boot is None:
+                raise NotFoundError("pilot boot not found")
+            workers = conn.execute(
+                """SELECT * FROM pilot_worker_heartbeats
+                   WHERE boot_id=? ORDER BY worker_name""",
+                (boot_id,),
+            ).fetchall()
+        return {**dict(boot), "workers": [dict(row) for row in workers]}
+
+    def get_pilot_runtime(self) -> dict[str, Any] | None:
+        with self.connect() as conn:
+            conn.execute("BEGIN")
+            state = conn.execute(
+                "SELECT active_boot_id FROM pilot_runtime_state WHERE singleton=1"
+            ).fetchone()
+            boot_id = state["active_boot_id"] if state else None
+            if boot_id is None:
+                latest = conn.execute(
+                    "SELECT boot_id FROM pilot_boots ORDER BY generation DESC LIMIT 1"
+                ).fetchone()
+                boot_id = latest["boot_id"] if latest else None
+            if boot_id is None:
+                return None
+            boot = conn.execute(
+                "SELECT * FROM pilot_boots WHERE boot_id=?", (boot_id,)
+            ).fetchone()
+            workers = conn.execute(
+                """SELECT * FROM pilot_worker_heartbeats
+                   WHERE boot_id=? ORDER BY worker_name""",
+                (boot_id,),
+            ).fetchall()
+        return {**dict(boot), "workers": [dict(row) for row in workers]}
 
     def create_user(self, tenant_id: str, email: str, role: str) -> str:
         email = email.strip().lower()

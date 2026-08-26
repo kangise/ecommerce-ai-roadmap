@@ -433,6 +433,41 @@ curl --no-buffer --max-time 15 \
   http://127.0.0.1:8787/v1/mission-control/events
 ```
 
+## Pilot status and one-command startup (L11)
+
+`GET /v1/pilot-status` is a viewer-authenticated, tenant-scoped operational
+read model. It returns closed schemas for tenant readiness, blockers, credential
+**presence**, and the six local worker roles. It never returns API-key material,
+secret values, refresh tokens, OpenAI keys, or provider response bodies.
+
+Each worker reports its heartbeat and its effective read-time `status`. A worker
+can therefore be `stale` after a previously healthy heartbeat; `degraded` and
+`stopped` remain visible.
+`attention`/`blocked` and listed blockers are successful *status reads*, not proof that
+an Amazon or OpenAI call succeeded. Missing credentials, unapproved Amazon
+access, or absent OpenAI configuration remain `blocked`/`unknown` states.
+
+Start the local Pilot with:
+
+```bash
+opc-ecommerce pilot --db /secure/path/pilot.sqlite --name 'Tenant name' --email operator@example.com
+```
+
+`--name` and `--email` are needed only for a new database. It creates its first
+tenant and prints the bootstrap API key once; put that key in a secret manager,
+not history/output. An existing database must not mint a replacement tenant or
+key. `--check` reports readiness then exits without starting workers or claiming
+external Amazon/OpenAI smoke success. The default bind is loopback; public bind
+requires explicit opt-in and a TLS/authenticated proxy. A port already in use,
+preflight/bootstrap failure, server start failure, and worker shutdown timeout
+produce structured non-zero CLI output; they do not silently continue. SIGTERM/SIGINT perform
+graceful local shutdown. The worker table covers `scheduler`, `job_worker`,
+`report_worker`, `daily_scheduler`, `daily_worker`, and `proposal_worker`.
+
+Pilot is single-process SQLite only. It has no multiprocess coordination,
+cross-instance heartbeat table, shared SSE limits, or distributed event broker.
+Run one Pilot per SQLite database; add a real coordinator before scaling.
+
 `GET /v1/briefing?platform=amazon` is the evidence-backed read model for the
 designed daily brief. It calculates only metrics whose recognized fields exist
 in tenant-owned imports: sales, units, sessions, unit/session conversion, ad

@@ -583,6 +583,7 @@ def main() -> int:
                     "/v1/approvals": {"get"},
                     "/v1/mission-control": {"get"},
                     "/v1/mission-control/events": {"get"},
+                    "/v1/pilot-status": {"get"},
                     "/v1/briefing": {"get"},
                     "/v1/catalog": {"get"},
                 }
@@ -659,6 +660,10 @@ def main() -> int:
                     "Schedule",
                     "MissionControl",
                     "MissionEvent",
+                    "PilotStatus", "PilotTenantReadiness", "PilotTenantComponents",
+                    "PilotBlocker", "PilotSchemaComponent", "PilotAmazonSpapiComponent",
+                    "PilotCountComponent", "PilotOpenAIComponent", "PilotAdsComponent",
+                    "PilotWorkerStatus", "PilotRuntimeStatus",
                     "OperatingBriefing",
                     "BriefingMetric",
                     "BriefingAgent",
@@ -884,6 +889,47 @@ def main() -> int:
                     problems.append("dist/openapi/runtime-api.yaml: Mission Control snapshot must remain extension-compatible")
                 if "event_cursor" not in schemas.get("MissionControl", {}).get("required", []) or schemas.get("MissionEventCursor", {}).get("additionalProperties") is not False:
                     problems.append("dist/openapi/runtime-api.yaml: L10 snapshot must expose a closed tenant cursor")
+                pilot_operation = paths.get("/v1/pilot-status", {}).get("get", {})
+                pilot_response = pilot_operation.get("responses", {}).get("200", {}).get("content", {}).get("application/json", {}).get("schema", {})
+                if not pilot_response.get("$ref", "").endswith("/PilotStatus"):
+                    problems.append("dist/openapi/runtime-api.yaml: L11 pilot status must return PilotStatus")
+                if not {"401", "403"} <= set(pilot_operation.get("responses", {})):
+                    problems.append("dist/openapi/runtime-api.yaml: L11 pilot status missing viewer auth responses")
+                for schema_name in (
+                    "PilotStatus", "PilotTenantReadiness", "PilotTenantComponents", "PilotBlocker",
+                    "PilotSchemaComponent", "PilotAmazonSpapiComponent", "PilotCountComponent",
+                    "PilotOpenAIComponent", "PilotAdsComponent", "PilotWorkerStatus", "PilotRuntimeStatus",
+                ):
+                    if schemas.get(schema_name, {}).get("additionalProperties") is not False:
+                        problems.append(f"dist/openapi/runtime-api.yaml: L11 {schema_name} must be closed")
+                pilot_worker = schemas.get("PilotWorkerStatus", {}).get("properties", {})
+                if pilot_worker.get("name", {}).get("enum") != [
+                    "scheduler", "job_worker", "report_worker", "daily_scheduler", "daily_worker", "proposal_worker",
+                ] or pilot_worker.get("status", {}).get("enum") != [
+                    "starting", "healthy", "stale", "degraded", "stopped",
+                ]:
+                    problems.append("dist/openapi/runtime-api.yaml: L11 worker heartbeat statuses must match the runtime")
+                pilot_status = schemas.get("PilotStatus", {})
+                if pilot_status.get("required") != ["status", "blockers", "warnings", "runtime", "tenant"] or pilot_status.get("properties", {}).get("status", {}).get("enum") != ["ready", "attention", "blocked"]:
+                    problems.append("dist/openapi/runtime-api.yaml: L11 pilot status must distinguish ready/attention/blocked")
+                pilot_amazon = schemas.get("PilotAmazonSpapiComponent", {})
+                if pilot_amazon.get("required") != [
+                    "required", "status", "account_count", "healthy_count", "fresh_healthy_count",
+                    "credential_ready_count", "health_max_age_seconds",
+                ] or pilot_amazon.get("properties", {}).get("status", {}).get("enum") != [
+                    "missing", "unhealthy", "stale", "missing_credentials", "ready",
+                ]:
+                    problems.append("dist/openapi/runtime-api.yaml: L11 Amazon readiness must expose freshness and credential counts")
+                pilot_runtime = schemas.get("PilotRuntimeStatus", {}).get("properties", {})
+                if pilot_runtime.get("status", {}).get("enum") != [
+                    "starting", "healthy", "stale", "degraded", "stopping", "stopped", "superseded",
+                ] or pilot_runtime.get("stop_reason", {}).get("enum") != [
+                    "graceful_shutdown", "startup_failure", "worker_shutdown_timeout",
+                ]:
+                    problems.append("dist/openapi/runtime-api.yaml: L11 runtime shutdown states must match the supervisor")
+                pilot_openai = schemas.get("PilotOpenAIComponent", {}).get("properties", {})
+                if set(pilot_openai) != {"required", "status", "api_key_present", "model_present"}:
+                    problems.append("dist/openapi/runtime-api.yaml: L11 OpenAI status may expose presence only")
             except Exception as exc:
                 problems.append(f"dist/openapi/runtime-api.yaml: invalid YAML ({exc})")
         total = len(problems)

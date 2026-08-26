@@ -33,6 +33,7 @@ from .evals import WorkflowEvaluator
 from .jobs import JobService, ScheduleService
 from .metric_observations import MetricObservationService, SUPPORTED_REPORT_TYPES
 from .proposals import ProposalService
+from .pilot import PilotService
 from .errors import AuthenticationError, AuthorizationError, ConflictError, ConnectorError, NotFoundError, RateLimitError, RuntimeErrorBase, ValidationError
 from .observability import JsonFormatter, Metrics, RateLimiter
 from .report_recipes import ReportRecipeService
@@ -117,6 +118,7 @@ class RuntimeApplication:
         )
         self.actions = ActionService(db, self.auth, self.evidence_imports)
         self.proposals = ProposalService(db, self.auth, self.actions)
+        self.pilot = PilotService(db, self.auth)
         self.briefing = BriefingService(db, self.auth)
         self.agent_runs = WeeklyOpsCouncil(
             db,
@@ -155,9 +157,11 @@ class RuntimeApplication:
 
     def bootstrap(self, name: str, email: str) -> dict[str, str]:
         tenant_id, user_id = self.db.create_tenant(name, email)
-        api_key = self.auth.issue_key(tenant_id, user_id)
-        principal = self.auth.authenticate(api_key)
+        # Install the tenant's required graph before issuing the one-time key;
+        # failures before this point therefore cannot strand an undisclosed key.
+        principal = self.db.principal_for_user(tenant_id, user_id)
         self.agent_graphs.ensure_default(principal)
+        api_key = self.auth.issue_key(tenant_id, user_id)
         return {"tenant_id": tenant_id, "user_id": user_id, "api_key": api_key}
 
     @staticmethod
@@ -766,6 +770,8 @@ class _Handler(BaseHTTPRequestHandler):
                 self._json(
                     200, self.app.db.mission_control(principal.tenant_id), request_id
                 )
+            elif parsed.path == "/v1/pilot-status":
+                self._json(200, self.app.pilot.status(principal), request_id)
             elif parsed.path == "/v1/briefing":
                 platform = parse_qs(parsed.query).get("platform", ["amazon"])[0]
                 self._json(
@@ -1368,7 +1374,28 @@ class _Handler(BaseHTTPRequestHandler):
         )
 
 
-def serve(app: RuntimeApplication, host: str = "127.0.0.1", port: int = 8787, *, allow_public: bool = False) -> None:
+def build_server(
+    app: RuntimeApplication,
+    host: str = "127.0.0.1",
+    port: int = 8787,
+    *,
+    allow_public: bool = False,
+) -> ThreadingHTTPServer:
+    RuntimeApplication._validate_bind_host(host, allow_public)
+    httpd = ThreadingHTTPServer((host, port), _Handler)
+    httpd.app = app  # type: ignore[attr-defined]
+    return httpd
+
+
+def serve(
+    app: RuntimeApplication,
+    host: str = "127.0.0.1",
+    port: int = 8787,
+    *,
+    allow_public: bool = False,
+    stop_event: threading.Event | None = None,
+    httpd: ThreadingHTTPServer | None = None,
+) -> None:
     RuntimeApplication._validate_bind_host(host, allow_public)
     root = logging.getLogger()
     root.setLevel(logging.INFO)
@@ -1378,8 +1405,19 @@ def serve(app: RuntimeApplication, host: str = "127.0.0.1", port: int = 8787, *,
         root.addHandler(handler)
     if allow_public:
         log.warning("public bind explicitly enabled; terminate TLS and add an authenticated reverse proxy")
-    httpd = ThreadingHTTPServer((host, port), _Handler)
-    httpd.app = app  # type: ignore[attr-defined]
+    httpd = httpd or build_server(
+        app, host, port, allow_public=allow_public
+    )
+    if stop_event is not None:
+        def stop_server() -> None:
+            stop_event.wait()
+            httpd.shutdown()
+
+        threading.Thread(
+            target=stop_server,
+            name="pilot-http-shutdown",
+            daemon=True,
+        ).start()
     log.info("runtime API listening on http://%s:%d", host, port)
     try:
         httpd.serve_forever()
