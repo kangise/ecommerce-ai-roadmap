@@ -184,3 +184,9 @@ missing dark/reduced-motion/reduced-transparency/forced-color behavior, stale
 hardcoded Canvas chart colors, visible technical Proposal hashes, and a stretched
 Proposal primary action. Static serving tests also fetch a real WOFF2 through
 the production handler and verify its MIME type and bytes.
+
+The same contract now requires explicit Light/Dark controls, `aria-pressed`
+state, non-sensitive local preference persistence, dynamic browser theme color,
+and role-specific Dark icon filters. It prevents the Primary command icon,
+Amazon/TikTok marks, Agent glyphs and account identity from inheriting a
+foreground color that collides with their active or hover surface.

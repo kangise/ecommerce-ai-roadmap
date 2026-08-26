@@ -99,7 +99,7 @@ def build_manifest() -> dict[str, object]:
     package_files = list((ROOT / "ecommerce_ai_skills").rglob("*.py"))
     script_files = list((ROOT / "scripts").rglob("*"))
     test_files = list((ROOT / "tests").rglob("*"))
-    design_evidence_files = list((ROOT / "artifacts" / "design-qa").glob("l7-ui-*.png"))
+    design_evidence_files = list((ROOT / "artifacts" / "design-qa").glob("l7-*.png"))
     contract_paths = [
         "pyproject.toml",
         ".gitignore",

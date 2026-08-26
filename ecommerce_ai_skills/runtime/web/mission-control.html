@@ -1,10 +1,9 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#f7f8f9" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#101315" media="(prefers-color-scheme: dark)">
+  <meta id="theme-color" name="theme-color" content="#f7f8f9">
   <title>Commerce Agent OS · 今日简报</title>
   <link rel="icon" href="/app/assets/brands/commerce-agent-os.png">
   <link rel="stylesheet" href="/app/styles.css">
@@ -45,6 +44,10 @@
         <div class="topbar-meta">
           <span id="demo-badge" class="demo-badge" hidden>DEMO DATA</span>
           <span id="live-indicator" class="live-indicator" data-status="disconnected">未连接</span>
+          <div class="theme-switch" role="group" aria-label="界面主题">
+            <button data-action="set-theme" data-theme-value="light" class="theme-option active" aria-pressed="true" title="使用 Light 主题">Light</button>
+            <button data-action="set-theme" data-theme-value="dark" class="theme-option" aria-pressed="false" title="使用 Dark 主题">Dark</button>
+          </div>
           <span class="today"><img src="/app/assets/icons/calendar-dots.svg" alt=""><span id="today-label"></span></span>
           <button data-action="open-connection" id="connection-btn" class="quiet-button"><img src="/app/assets/icons/key.svg" alt=""><span>连接 Runtime</span></button>
         </div>

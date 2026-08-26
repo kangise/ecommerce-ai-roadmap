@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 ## [Unreleased]
 
 ### Changed
+- Added an explicit, refresh-persistent Light/Dark control and corrected Dark
+  foreground treatment for Primary commands, Amazon/TikTok brands, Agent and
+  upload glyphs, navigation icons and the account identity anchor. Hover and
+  active surfaces now retain visible icon contrast in both themes.
 - Rebuilt the embedded Commerce Agent OS workbench around the NovoChoice L7
   decision-workspace principles: self-hosted IBM Plex/Source Han typography,
   a governed cool-gray token system, compact 4/6/8px geometry, neutral

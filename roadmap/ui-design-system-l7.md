@@ -102,6 +102,18 @@ not allowed.
 Dark mode preserves the same semantic hierarchy with separate surface depths;
 it does not invert the light palette mechanically.
 
+Light is the first-run default. The scope toolbar exposes a real Light/Dark
+segmented control; the non-sensitive preference is stored locally and survives
+refresh. Theme switching updates native form controls, browser theme color and
+the Canvas chart in the same frame without changing tenant or business state.
+
+Dark icon treatment follows asset role rather than applying one universal
+filter: Primary commands use dark icons on the light command surface;
+Amazon/TikTok, navigation, Agent and utility glyphs become light on dark
+surfaces; Shopify and Walmart retain their recognizable brand colors. Hover
+surfaces must preserve foreground contrast instead of merely darkening the
+background.
+
 ## Production invariants
 
 - Existing element IDs, `data-action`, `data-view`, endpoint, authorization,

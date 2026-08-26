@@ -20,6 +20,10 @@ def test_l7_decision_workspace_visual_contract_is_complete() -> None:
     styles = (WEB / "styles.css").read_text(encoding="utf-8")
 
     assert 'data-ui-system="l7-decision-workspace"' in html
+    assert '<html lang="zh-CN" data-theme="light">' in html
+    assert 'id="theme-color"' in html
+    assert 'data-action="set-theme" data-theme-value="light"' in html
+    assert 'data-action="set-theme" data-theme-value="dark"' in html
     for region in ("navigation", "workspace", "scope-toolbar", "canvas", "contextual-detail"):
         assert f'data-ui-region="{region}"' in html
     for label in ("今日简报", "Agents", "Evidence", "Approvals", "Accounts", "Automations", "Audit"):
@@ -47,7 +51,7 @@ def test_l7_decision_workspace_visual_contract_is_complete() -> None:
     assert used <= defined
     assert "transition:all" not in styles.replace(" ", "")
     assert not re.search(r"font-weight:(?:[6-9]\d\d)", styles)
-    assert "@media(prefers-color-scheme:dark)" in styles
+    assert ':root[data-theme="dark"]' in styles
     assert "@media(prefers-reduced-motion:reduce)" in styles
     assert "@media(prefers-reduced-transparency:reduce)" in styles
     assert "@media(forced-colors:active)" in styles
@@ -60,6 +64,16 @@ def test_l7_decision_workspace_visual_contract_is_complete() -> None:
     assert 'url("/app/assets/fonts/commerce-source-han-sc.woff2")' in styles
     assert 'getComputedStyle(document.documentElement)' in script
     assert 'token("--line")' in script and 'token("--blue")' in script
+    assert 'const THEME_STORAGE_KEY = "commerce-agent-theme"' in script
+    assert 'localStorage.setItem(THEME_STORAGE_KEY, theme)' in script
+    assert 'case "set-theme": applyTheme(button.dataset.themeValue)' in script
+    assert 'document.documentElement.dataset.theme = theme' in script
+    assert 'localStorage.setItem(THEME_STORAGE_KEY, state.apiKey)' not in script
+    assert ':root[data-theme="dark"] .primary-button img{filter:brightness(0);opacity:.9}' in styles
+    assert ':root[data-theme="dark"] .platform-tab[data-platform="amazon"] img' in styles
+    assert ':root[data-theme="dark"] .platform-tab[data-platform="tiktok_shop"] img' in styles
+    assert ':root[data-theme="dark"] .agent-icon img{filter:brightness(0) invert(1);opacity:.78}' in styles
+    assert '.theme-option{min-width:44px;min-height:44px}' in styles
     assert 'class="reviewer-task technical-meta"' in script
     assert ".technical-meta{display:none}" in styles
     assert '.proposal-form .primary-button{align-self:end;justify-self:start;min-width:160px;height:42px}' in styles
@@ -73,6 +87,26 @@ def test_l7_decision_workspace_visual_contract_is_complete() -> None:
     assert (font_dir / "commerce-source-han-sc.woff2").stat().st_size > 1_000_000
     assert (WEB / "assets" / "licenses" / "ibm-plex-font-LICENSE.txt").is_file()
     assert (WEB / "assets" / "licenses" / "source-han-sans-LICENSE.txt").is_file()
+
+
+def test_light_and_dark_command_icon_contrast_meets_aa() -> None:
+    def relative_luminance(value: str) -> float:
+        channels = [int(value[index:index + 2], 16) / 255 for index in (1, 3, 5)]
+        linear = [channel / 12.92 if channel <= 0.04045 else ((channel + 0.055) / 1.055) ** 2.4 for channel in channels]
+        return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2]
+
+    def contrast(foreground: str, background: str) -> float:
+        first, second = sorted((relative_luminance(foreground), relative_luminance(background)), reverse=True)
+        return (first + 0.05) / (second + 0.05)
+
+    pairs = {
+        "light_primary": ("#ffffff", "#141a21"),
+        "light_platform_hover": ("#141a21", "#f1f3f5"),
+        "dark_primary": ("#101315", "#f3f5f6"),
+        "dark_platform_hover": ("#f3f5f6", "#2a3035"),
+    }
+    ratios = {name: contrast(*colors) for name, colors in pairs.items()}
+    assert all(value >= 4.5 for value in ratios.values()), ratios
 
 
 def test_mission_control_assets_are_real_and_javascript_compiles() -> None:
@@ -139,6 +173,7 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
         "open-connection",
         "connect",
         "disconnect",
+        "set-theme",
         "refresh",
         "retry-live",
         "refresh-pilot",

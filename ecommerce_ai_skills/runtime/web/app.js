@@ -58,6 +58,7 @@ const state = {
   agentGraphsError: null,
   selectedPlatform: "amazon",
   chartMetric: null,
+  theme: "light",
   timer: null,
   noticeTimer: null,
 };
@@ -71,6 +72,41 @@ const escapeHtml = value => String(value ?? "").replace(/[&<>'"]/g, character =>
 const isoLocal = value => value ? new Date(value).toLocaleString("zh-CN", {hour12: false}) : "—";
 const shortDate = value => value ? new Date(value).toLocaleDateString("zh-CN", {month: "numeric", day: "numeric"}) : "—";
 const idempotency = prefix => `${prefix}:${crypto.randomUUID()}`;
+const THEME_STORAGE_KEY = "commerce-agent-theme";
+
+function loadThemePreference() {
+  try {
+    const value = localStorage.getItem(THEME_STORAGE_KEY);
+    return ["light", "dark"].includes(value) ? value : null;
+  } catch {
+    document.documentElement.dataset.themeStorage = "unavailable";
+    return null;
+  }
+}
+
+function applyTheme(theme, persist = true) {
+  if (!["light", "dark"].includes(theme)) return;
+  state.theme = theme;
+  document.documentElement.dataset.theme = theme;
+  document.querySelectorAll(".theme-option").forEach(button => {
+    const active = button.dataset.themeValue === theme;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", active ? "true" : "false");
+  });
+  const themeColor = $("theme-color");
+  if (themeColor) themeColor.setAttribute("content", theme === "dark" ? "#101315" : "#f7f8f9");
+  if (persist) {
+    try {
+      localStorage.setItem(THEME_STORAGE_KEY, theme);
+      delete document.documentElement.dataset.themeStorage;
+    } catch {
+      document.documentElement.dataset.themeStorage = "unavailable";
+      notice("主题已切换，但浏览器无法保存偏好。", "error");
+    }
+  }
+  const metric = (state.briefing?.metrics || []).find(item => (item.series_id || item.key) === state.chartMetric);
+  if (metric) requestAnimationFrame(() => drawChart(metric));
+}
 
 function notice(message, type = "info") {
   const target = $("notice");
@@ -1755,6 +1791,7 @@ document.body.addEventListener("click", event => {
     case "retry-live": retryLiveStream(); break;
     case "connect": connect(button); break;
     case "disconnect": disconnect(); break;
+    case "set-theme": applyTheme(button.dataset.themeValue); notice(`${button.textContent.trim()} 主题已启用。`, "success"); break;
     case "select-platform": selectPlatform(button); break;
     case "select-metric": state.chartMetric = button.dataset.metric; renderChartControls(); break;
     case "view-priority": showDetail("Agent Brief", {run_id: state.briefing?.brief_run_id, priority: state.briefing?.priorities?.[Number(button.dataset.index)]}); break;
@@ -2110,11 +2147,7 @@ window.addEventListener("resize", () => {
   const metric = (state.briefing?.metrics || []).find(item => (item.series_id || item.key) === state.chartMetric);
   if (metric) requestAnimationFrame(() => drawChart(metric));
 });
-window.matchMedia?.("(prefers-color-scheme: dark)").addEventListener?.("change", () => {
-  const metric = (state.briefing?.metrics || []).find(item => (item.series_id || item.key) === state.chartMetric);
-  if (metric) requestAnimationFrame(() => drawChart(metric));
-});
-
+applyTheme(loadThemePreference() || "light", false);
 const now = new Date();
 $("today-label").textContent = `今天是 ${now.toLocaleDateString("zh-CN", {year: "numeric", month: "2-digit", day: "2-digit"})}`;
 setDefaultTimes();

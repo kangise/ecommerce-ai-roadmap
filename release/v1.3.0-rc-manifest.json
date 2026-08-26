@@ -1,10 +1,10 @@
 {
   "artifacts": {
     "design_evidence": {
-      "byte_count": 2530820,
-      "file_count": 16,
+      "byte_count": 5495673,
+      "file_count": 25,
       "name": "design_evidence",
-      "tree_sha256": "80bf9faef910aa061cbcac86a8cd464f2c5ed53167d58aaf3cb6b441c36ebcb0"
+      "tree_sha256": "5244a5085dc1631bd7aa4b9c79a522c3bd080ee7607b3b5be327b631ece1a17b"
     },
     "dist": {
       "byte_count": 6548831,
@@ -19,22 +19,22 @@
       "tree_sha256": "205104ba97c24701abe0de832033d102562fc752791370665012d04ca438f361"
     },
     "runtime_web_assets": {
-      "byte_count": 14630185,
+      "byte_count": 14633496,
       "file_count": 50,
       "name": "runtime_web_assets",
-      "tree_sha256": "56843b083583a88b80df8b1281dcd07b642420b590eda645745459431804d2f1"
+      "tree_sha256": "68f64a12b88e46a0f7fcc0d6e2627142cd57582c4a07cdd2f1bda266dfbfa932"
     },
     "scripts": {
-      "byte_count": 327145,
+      "byte_count": 327532,
       "file_count": 20,
       "name": "scripts",
-      "tree_sha256": "6ccd3c8c43f15c0b6922eea8720dfad8fe2a766261e1304a288ef16ce3b1c287"
+      "tree_sha256": "17baeea9c2b98dcd5946dcaa911c9c175187a1860c9d62c23a22a91616680641"
     },
     "tests": {
-      "byte_count": 454848,
+      "byte_count": 457289,
       "file_count": 26,
       "name": "tests",
-      "tree_sha256": "a9a4bffb170251f8dfaab2941eb1801690e8f001e0e74b073373888f94b0369a"
+      "tree_sha256": "229052c598d8114f0bc8c52068afbcea29e158687367762ef1425d11f5aa3651"
     },
     "wheel_package_data": {
       "byte_count": 6548831,
@@ -53,8 +53,8 @@
       "size": 3072
     },
     "CHANGELOG.md": {
-      "sha256": "3a2cdbbb76941b1ad3e186ac9688d0f6301a1d2dc287a0bf3fe565c0ddc56a8c",
-      "size": 14429
+      "sha256": "9138bc2ca72971ef382116367fa0180d2d002af0ee2fce808597ec6e28d699e4",
+      "size": 14728
     },
     "LICENSE": {
       "sha256": "977372677acaaaa0f419556e5a24d8c869534c25d8f4f8d3db4df888c095bd9d",
@@ -65,8 +65,8 @@
       "size": 27129
     },
     "design-qa.md": {
-      "sha256": "1be37d4f553dbca7dff60b5396dceb6e2ad847460e893e8ee5675079f6120b04",
-      "size": 8979
+      "sha256": "87416d4f43c646cba409b43c60fc1618aca4bab03debb1cd272eb9765452b49d",
+      "size": 11787
     },
     "openapi/runtime-api.yaml": {
       "sha256": "0f2b834b88ca563b354fa891b505d0322f551254ef74ae82fdd757c2230fe9ea",
@@ -77,24 +77,24 @@
       "size": 1005
     },
     "release/v1.3.0-rc.md": {
-      "sha256": "9dda40c3bd5c2133b78e61baa964fe7e26daf64996e2e3f8cf8495c71898afae",
-      "size": 7144
+      "sha256": "64bf627b50cdfe10dcd00dd613fece122c29835a2cb025616ce38d0c61e64a43",
+      "size": 7450
     },
     "roadmap/ui-design-system-l7.md": {
-      "sha256": "5ca3b4fbfd77aa36ee2ea0f238f1f9ea88c953530d6eaf59f05dd76aae9d6721",
-      "size": 6823
+      "sha256": "24948088dda3f752a56ef4702adbbb50b2a0294cd3bef63e701a44c22761336b",
+      "size": 7517
     },
     "roadmap/v1.3-amazon-operator-pilot.md": {
-      "sha256": "acc81835219bac0a080a1292043dec3262265f20702f51bb6fd39df8e8c9f360",
-      "size": 7493
+      "sha256": "54f4cda82b46bf159de6e48246f4cf99586e38a99cc310f9902fac9ea093747c",
+      "size": 7793
     },
     "scripts/build_dist.py": {
       "sha256": "01bfc116606673fc36030aa290235199015f89ba166c85dd0ce4f88635b22690",
       "size": 23926
     },
     "scripts/loop/v1_3_progress.md": {
-      "sha256": "0de0fc1e36ffabc2d7744256616ca3c910860459d356ee76269024b529857918",
-      "size": 37126
+      "sha256": "9808e365ab6b52d1ae7e94e6bf7f5833bab230aacec164af758177690ae1a61c",
+      "size": 37516
     },
     "scripts/verify_all.py": {
       "sha256": "1e5b81c28630afa858b0bfb81d28fa7608421b80648c30d184d2e14a19d98748",
