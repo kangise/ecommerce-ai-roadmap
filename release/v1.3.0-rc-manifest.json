@@ -7,22 +7,22 @@
       "tree_sha256": "5244a5085dc1631bd7aa4b9c79a522c3bd080ee7607b3b5be327b631ece1a17b"
     },
     "dist": {
-      "byte_count": 6549669,
+      "byte_count": 6557828,
       "file_count": 153,
       "name": "dist",
-      "tree_sha256": "5c5e6f844eb632676df4f7eeaf3a5e65270a28848e407d78820dd4b176e4ee08"
+      "tree_sha256": "975fa44ee651351a713c2528001db80f0a45bc22970d0926a9759704d4b28eeb"
     },
     "package_sources": {
-      "byte_count": 889411,
-      "file_count": 33,
+      "byte_count": 935817,
+      "file_count": 34,
       "name": "package_sources",
-      "tree_sha256": "eb97ff4e5d30a67214c26cf1d27a72f5dee64d044f1e305d5292534d7446ead3"
+      "tree_sha256": "8faf707854442060e25d74381bb4ac388ca5ee95c8e628716dc8f1d2239ae8c5"
     },
     "runtime_web_assets": {
-      "byte_count": 14700284,
+      "byte_count": 14721844,
       "file_count": 51,
       "name": "runtime_web_assets",
-      "tree_sha256": "941c1091bf006c2f165fb792bd41bab7c46f57ecaab8ab1edacc334eb76c3cc5"
+      "tree_sha256": "4d9bad8607976d11ae9a4f5d68435a13023501863add4b32476023acdb062496"
     },
     "scripts": {
       "byte_count": 327532,
@@ -31,30 +31,30 @@
       "tree_sha256": "17baeea9c2b98dcd5946dcaa911c9c175187a1860c9d62c23a22a91616680641"
     },
     "tests": {
-      "byte_count": 469628,
-      "file_count": 27,
+      "byte_count": 504860,
+      "file_count": 28,
       "name": "tests",
-      "tree_sha256": "db9e57a5732d0087d0a808d47e650d0e3c7fbaba668bc209a4b526e4a8caca88"
+      "tree_sha256": "d7a74f62ebb379142023cf43429b33397124d971979e8d24b59eca9ef5771624"
     },
     "wheel_package_data": {
-      "byte_count": 6549669,
+      "byte_count": 6557828,
       "file_count": 153,
       "name": "wheel_package_data",
-      "tree_sha256": "672ac1b704a1d721c86337b15476f585bbcc84f0cc9d29a9775873b58b663f97"
+      "tree_sha256": "9f4202e957b444e20a08048cc88c0a64b63439a493d6b1fe0d0d47f6416dcec1"
     }
   },
   "contracts": {
     ".github/workflows/release.yml": {
-      "sha256": "c925be1092021404e39091990401f9137cc6d57dfffe2cd853fd6d891e67f392",
-      "size": 7415
+      "sha256": "18fcd2c8f5f7e5336bd511812f063c0c27e6c92d9f3670dac77a8ecc381d0837",
+      "size": 8211
     },
     ".gitignore": {
       "sha256": "6bd1f89283866a0e9c7dc6bad33a65046eae1463b841ddf0cfd4fe635648bbf1",
       "size": 3072
     },
     "CHANGELOG.md": {
-      "sha256": "9138bc2ca72971ef382116367fa0180d2d002af0ee2fce808597ec6e28d699e4",
-      "size": 14728
+      "sha256": "6e1108598965ad7fb7c04e250ddf964dd4cda6254410f773bb55a71f59983091",
+      "size": 15273
     },
     "LICENSE": {
       "sha256": "977372677acaaaa0f419556e5a24d8c869534c25d8f4f8d3db4df888c095bd9d",
@@ -65,20 +65,20 @@
       "size": 27129
     },
     "design-qa.md": {
-      "sha256": "bf793801e8f8790ea419e746b7e0c5ba02ca702010e8b59f5a12684b4ffa80f0",
-      "size": 12815
+      "sha256": "86d1eb097b9aeeceda1e8f71d7b73a48b73a9c4cd36e7a62863e866ca67c30dd",
+      "size": 13418
     },
     "openapi/runtime-api.yaml": {
-      "sha256": "0f2b834b88ca563b354fa891b505d0322f551254ef74ae82fdd757c2230fe9ea",
-      "size": 168307
+      "sha256": "3c3b1c22c7377b59ae7460d875f8e87dd5b905de07528b96fa8c6c4d0c32be65",
+      "size": 174649
     },
     "pyproject.toml": {
       "sha256": "6e591ac5532c9e364fc291e8200eb8cf43806c7bd0b91e9809bcee307349853e",
       "size": 1005
     },
     "release/v1.3.0-rc.md": {
-      "sha256": "64bf627b50cdfe10dcd00dd613fece122c29835a2cb025616ce38d0c61e64a43",
-      "size": 7450
+      "sha256": "ce40f6ed44764e87a914439f9ff6a38c740f998666a280df6b362aa0c521e2dd",
+      "size": 8367
     },
     "roadmap/ui-design-system-l7.md": {
       "sha256": "24948088dda3f752a56ef4702adbbb50b2a0294cd3bef63e701a44c22761336b",
@@ -104,7 +104,7 @@
   "release": {
     "channel": "rc",
     "python_requires": ">=3.10",
-    "runtime_schema_version": 21,
+    "runtime_schema_version": 22,
     "tag": "v1.3.0",
     "version": "1.3.0"
   },

@@ -35,7 +35,7 @@ def test_release_version_contract_is_uniform() -> None:
     assert __version__ == VERSION
     assert USER_AGENT == f"ecommerce-ai-skills/{VERSION}"
     assert _Handler.server_version == f"EcommerceAI/{VERSION}"
-    assert SCHEMA_VERSION == 21
+    assert SCHEMA_VERSION == 22
     candidates = [ROOT / "pyproject.toml", *list((ROOT / "openapi").rglob("*"))]
     candidates += [
         path for path in (ROOT / "ecommerce_ai_skills").rglob("*")
@@ -66,7 +66,7 @@ def test_release_manifest_is_deterministic_fresh_and_tamper_evident(tmp_path: Pa
     assert manifest["release"] == {
         "channel": "rc",
         "python_requires": ">=3.10",
-        "runtime_schema_version": 21,
+        "runtime_schema_version": 22,
         "tag": "v1.3.0",
         "version": VERSION,
     }
@@ -131,7 +131,9 @@ def test_release_workflow_enforces_rc_and_cold_install() -> None:
         "Cold-wheel RC smoke outside checkout",
         "demo-seed",
         '--db "$RC_DIR/restored.sqlite"',
-        'RuntimeApplication(Database(root / "restored.sqlite"))',
+        'Database(root / "restored.sqlite"),',
+        "provider_smoke_openai_provider=OpenAIResponsesProvider",
+        "release-provider-smoke",
         "verify_audit_chain(principal.tenant_id)",
         '("restore", "passed")',
         'restored.sqlite.evidence_objects',

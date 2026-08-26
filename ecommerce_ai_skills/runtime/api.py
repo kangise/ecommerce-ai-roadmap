@@ -37,6 +37,7 @@ from .jobs import JobService, ScheduleService
 from .metric_observations import MetricObservationService, SUPPORTED_REPORT_TYPES
 from .proposals import ProposalService
 from .pilot import PilotService
+from .provider_smoke import ProviderSmokeService
 from .errors import AuthenticationError, AuthorizationError, ConflictError, ConnectorError, NotFoundError, RateLimitError, RuntimeErrorBase, ValidationError
 from .observability import JsonFormatter, Metrics, RateLimiter
 from .report_recipes import ReportRecipeService
@@ -99,6 +100,7 @@ class RuntimeApplication:
         *,
         rate_limit_per_minute: int = 120,
         agent_provider: AgentProvider | None = None,
+        provider_smoke_openai_provider: OpenAIResponsesProvider | None = None,
         mission_event_poll_seconds: float = 1.0,
         mission_event_heartbeat_seconds: float = 15.0,
         mission_event_max_lifetime_seconds: float = 300.0,
@@ -112,6 +114,18 @@ class RuntimeApplication:
         self.assurance = AssuranceService(db,self.auth)
         self.agent_graphs = AgentGraphService(db, self.auth)
         self.accounts = MarketplaceAccountService(db, self.auth)
+        resolved_agent_provider = agent_provider or OpenAIResponsesProvider()
+        smoke_openai_provider = provider_smoke_openai_provider
+        if smoke_openai_provider is None and isinstance(
+            resolved_agent_provider, OpenAIResponsesProvider
+        ):
+            smoke_openai_provider = resolved_agent_provider
+        self.provider_smoke = ProviderSmokeService(
+            db,
+            self.auth,
+            self.accounts,
+            openai_provider=smoke_openai_provider,
+        )
         self.ads_gates = AdsCapabilityGateService(db, self.auth)
         self.ads_adapter_status = AdsAdapterStatusService(db, self.auth)
         self.report_recipes = ReportRecipeService(db, self.auth)
@@ -127,7 +141,7 @@ class RuntimeApplication:
         self.agent_runs = WeeklyOpsCouncil(
             db,
             self.auth,
-            agent_provider or OpenAIResponsesProvider(),
+            resolved_agent_provider,
             evidence_resolver=self.evidence_imports.resolve,
             graph_service=self.agent_graphs,
         )
@@ -549,6 +563,32 @@ class _Handler(BaseHTTPRequestHandler):
                 self._json(
                     200, {"connectors": self.app.accounts.list(principal)}, request_id
                 )
+            elif parsed.path == "/v1/provider-smoke-tests":
+                params = parse_qs(parsed.query, keep_blank_values=True)
+                unknown = set(params) - {"limit"}
+                if unknown:
+                    raise ValidationError(
+                        "unknown query fields: " + ", ".join(sorted(unknown))
+                    )
+                self._json(
+                    200,
+                    {
+                        "provider_smoke_tests": self.app.provider_smoke.list(
+                            principal,
+                            self._query_int(
+                                params, "limit", default=100, minimum=1, maximum=200
+                            ),
+                        )
+                    },
+                    request_id,
+                )
+            elif parsed.path.startswith("/v1/provider-smoke-tests/") and len(parsed.path.split("/")) == 4:
+                smoke_test_id = parsed.path.split("/")[3]
+                self._json(
+                    200,
+                    self.app.provider_smoke.get(principal, smoke_test_id),
+                    request_id,
+                )
             elif parsed.path.startswith("/v1/connectors/") and len(parsed.path.split("/")) == 4:
                 account_id = parsed.path.split("/")[3]
                 self._json(200, self.app.accounts.get(principal, account_id), request_id)
@@ -865,6 +905,27 @@ class _Handler(BaseHTTPRequestHandler):
                     request_id=request_id,
                 )
                 self._json(201, account, request_id); return
+            if parsed.path == "/v1/provider-smoke-tests":
+                principal = self._principal()
+                body = self._body_fields(
+                    required={"provider"},
+                    allowed={"provider", "connector_account_id"},
+                )
+                idempotency_key = self.headers.get("Idempotency-Key", "")
+                if not idempotency_key:
+                    raise ValidationError("Idempotency-Key header is required")
+                self._json(
+                    201,
+                    self.app.provider_smoke.execute(
+                        principal,
+                        provider=body["provider"],
+                        connector_account_id=body.get("connector_account_id"),
+                        idempotency_key=idempotency_key,
+                        request_id=request_id,
+                    ),
+                    request_id,
+                )
+                return
             if parsed.path == "/v1/ads-capability-gates":
                 principal = self._principal()
                 body = self._body_fields(

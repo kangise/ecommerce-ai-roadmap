@@ -13,7 +13,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Iterator
 
-from .errors import ConflictError, NotFoundError, ValidationError
+from .errors import ConflictError, NotFoundError, RateLimitError, ValidationError
 
 
 def utc_now() -> str:
@@ -62,7 +62,7 @@ class Principal:
 
 
 ROLE_LEVEL = {"viewer": 10, "operator": 20, "admin": 30, "owner": 40}
-SCHEMA_VERSION = 21
+SCHEMA_VERSION = 22
 AUDIT_GENESIS_HASH = "0" * 64
 MISSION_EVENT_RETENTION = 1_000
 PILOT_WORKERS = (
@@ -944,6 +944,97 @@ class Database:
                 );
                 CREATE INDEX IF NOT EXISTS idx_assurance_runs_tenant_time
                     ON assurance_runs(tenant_id, created_at DESC);
+                CREATE TABLE IF NOT EXISTS provider_smoke_tests (
+                    id TEXT PRIMARY KEY,
+                    tenant_id TEXT NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
+                    provider TEXT NOT NULL CHECK (
+                        provider IN ('openai','amazon_spapi','shopify')
+                    ),
+                    connector_account_id TEXT,
+                    created_by TEXT NOT NULL,
+                    idempotency_key TEXT NOT NULL CHECK (
+                        length(idempotency_key) BETWEEN 1 AND 200
+                        AND substr(idempotency_key,1,1) GLOB '[A-Za-z0-9]'
+                        AND idempotency_key NOT GLOB '*[^A-Za-z0-9._:-]*'
+                    ),
+                    request_fingerprint TEXT NOT NULL CHECK (
+                        length(request_fingerprint)=64
+                    ),
+                    status TEXT NOT NULL CHECK (
+                        status IN ('running','succeeded','failed','blocked')
+                    ),
+                    provider_request_id TEXT CHECK (
+                        provider_request_id IS NULL
+                        OR (
+                            length(provider_request_id) BETWEEN 1 AND 200
+                            AND substr(provider_request_id,1,1) GLOB '[A-Za-z0-9]'
+                            AND provider_request_id NOT GLOB '*[^A-Za-z0-9._:-]*'
+                        )
+                    ),
+                    provider_status TEXT CHECK (
+                        provider_status IS NULL
+                        OR (
+                            length(provider_status) BETWEEN 1 AND 200
+                            AND substr(provider_status,1,1) GLOB '[A-Za-z0-9]'
+                            AND provider_status NOT GLOB '*[^A-Za-z0-9._:-]*'
+                        )
+                    ),
+                    http_status INTEGER CHECK (
+                        http_status IS NULL OR http_status BETWEEN 100 AND 599
+                    ),
+                    retry_after_seconds INTEGER CHECK (
+                        retry_after_seconds IS NULL
+                        OR retry_after_seconds BETWEEN 1 AND 3600
+                    ),
+                    latency_ms INTEGER CHECK (
+                        latency_ms IS NULL OR latency_ms BETWEEN 0 AND 3600000
+                    ),
+                    error_code TEXT CHECK (
+                        error_code IS NULL OR (
+                            length(error_code) BETWEEN 1 AND 100
+                            AND substr(error_code,1,1) GLOB '[a-z]'
+                            AND error_code NOT GLOB '*[^a-z0-9_]*'
+                        )
+                    ),
+                    created_at TEXT NOT NULL,
+                    lease_until TEXT,
+                    lease_token TEXT,
+                    attempt_count INTEGER NOT NULL DEFAULT 1 CHECK (
+                        attempt_count >= 1
+                    ),
+                    completed_at TEXT,
+                    UNIQUE(tenant_id,idempotency_key),
+                    CHECK (
+                        (provider='openai' AND connector_account_id IS NULL)
+                        OR
+                        (provider IN ('amazon_spapi','shopify')
+                         AND connector_account_id IS NOT NULL)
+                    ),
+                    CHECK (
+                        (status='running' AND completed_at IS NULL
+                         AND lease_until IS NOT NULL AND lease_token IS NOT NULL
+                         AND provider_status IS NULL AND latency_ms IS NULL
+                         AND error_code IS NULL AND retry_after_seconds IS NULL)
+                        OR
+                        (status='succeeded' AND completed_at IS NOT NULL
+                         AND lease_until IS NULL AND lease_token IS NULL
+                         AND provider_status IS NOT NULL AND latency_ms IS NOT NULL
+                         AND error_code IS NULL AND retry_after_seconds IS NULL)
+                        OR
+                        (status IN ('failed','blocked') AND completed_at IS NOT NULL
+                         AND lease_until IS NULL AND lease_token IS NULL
+                         AND provider_status IS NOT NULL AND latency_ms IS NOT NULL
+                         AND error_code IS NOT NULL)
+                    ),
+                    FOREIGN KEY (tenant_id,connector_account_id)
+                        REFERENCES connector_accounts(tenant_id,id) ON DELETE RESTRICT,
+                    FOREIGN KEY (tenant_id,created_by)
+                        REFERENCES users(tenant_id,id)
+                );
+                CREATE UNIQUE INDEX IF NOT EXISTS uq_provider_smoke_tests_tenant_id
+                    ON provider_smoke_tests(tenant_id,id);
+                CREATE INDEX IF NOT EXISTS idx_provider_smoke_tests_tenant_time
+                    ON provider_smoke_tests(tenant_id,created_at DESC);
                 CREATE TABLE IF NOT EXISTS runtime_meta (
                     key TEXT PRIMARY KEY,
                     value TEXT NOT NULL
@@ -967,6 +1058,7 @@ class Database:
             self._install_v18_triggers(conn)
             self._install_v19_triggers(conn)
             self._install_v21_triggers(conn)
+            self._install_v22_triggers(conn)
 
     @staticmethod
     def _install_v16_triggers(conn: sqlite3.Connection) -> None:
@@ -2011,6 +2103,80 @@ class Database:
         )
 
     @staticmethod
+    def _install_v22_triggers(conn: sqlite3.Connection) -> None:
+        conn.executescript(
+            """
+            CREATE TRIGGER IF NOT EXISTS provider_smoke_tests_actor_insert
+            BEFORE INSERT ON provider_smoke_tests
+            WHEN NOT EXISTS (
+                SELECT 1 FROM users u WHERE u.tenant_id=NEW.tenant_id
+                  AND u.id=NEW.created_by
+                  AND u.role IN ('operator','admin','owner')
+            )
+            BEGIN SELECT RAISE(ABORT, 'provider smoke actor binding is invalid'); END;
+            CREATE TRIGGER IF NOT EXISTS provider_smoke_tests_connector_insert
+            BEFORE INSERT ON provider_smoke_tests
+            WHEN NEW.connector_account_id IS NOT NULL AND NOT EXISTS (
+                SELECT 1 FROM connector_accounts c
+                WHERE c.tenant_id=NEW.tenant_id
+                  AND c.id=NEW.connector_account_id
+                  AND c.provider=NEW.provider
+            )
+            BEGIN SELECT RAISE(ABORT, 'provider smoke connector binding is invalid'); END;
+            CREATE TRIGGER IF NOT EXISTS provider_smoke_tests_initial_insert
+            BEFORE INSERT ON provider_smoke_tests
+            WHEN NEW.status!='running' OR NEW.lease_until IS NULL
+              OR NEW.lease_token IS NULL OR NEW.attempt_count!=1
+              OR NEW.completed_at IS NOT NULL OR NEW.provider_request_id IS NOT NULL
+              OR NEW.provider_status IS NOT NULL OR NEW.http_status IS NOT NULL
+              OR NEW.retry_after_seconds IS NOT NULL
+              OR NEW.latency_ms IS NOT NULL OR NEW.error_code IS NOT NULL
+              OR length(NEW.request_fingerprint)!=64
+              OR NEW.request_fingerprint GLOB '*[^0-9a-f]*'
+            BEGIN SELECT RAISE(ABORT, 'provider smoke initial state is invalid'); END;
+            CREATE TRIGGER IF NOT EXISTS provider_smoke_tests_terminal_transition
+            BEFORE UPDATE OF status,provider_request_id,provider_status,http_status,
+                             retry_after_seconds,latency_ms,error_code,completed_at
+            ON provider_smoke_tests
+            WHEN OLD.status!='running'
+              OR NEW.status NOT IN ('succeeded','failed','blocked')
+              OR NEW.lease_until IS NOT NULL OR NEW.lease_token IS NOT NULL
+              OR NEW.completed_at IS NULL
+              OR NEW.provider_status IS NULL OR NEW.latency_ms IS NULL
+              OR (NEW.status='succeeded' AND NEW.error_code IS NOT NULL)
+              OR (NEW.status IN ('failed','blocked') AND NEW.error_code IS NULL)
+            BEGIN SELECT RAISE(ABORT, 'provider smoke terminal state is invalid'); END;
+            CREATE TRIGGER IF NOT EXISTS provider_smoke_tests_lease_reclaim
+            BEFORE UPDATE OF lease_until,lease_token,attempt_count
+            ON provider_smoke_tests
+            WHEN NEW.status='running' AND (
+                OLD.status!='running' OR NEW.lease_until IS NULL
+                OR NEW.lease_token IS NULL OR NOT (
+                    (NEW.lease_token=OLD.lease_token
+                     AND NEW.attempt_count=OLD.attempt_count
+                     AND NEW.lease_until<=OLD.lease_until)
+                    OR
+                    (NEW.lease_token!=OLD.lease_token
+                     AND NEW.attempt_count=OLD.attempt_count+1)
+                )
+            )
+            BEGIN SELECT RAISE(ABORT, 'provider smoke lease reclaim is invalid'); END;
+            CREATE TRIGGER IF NOT EXISTS provider_smoke_tests_identity_update
+            BEFORE UPDATE OF id,tenant_id,provider,connector_account_id,created_by,
+                             idempotency_key,request_fingerprint,created_at
+            ON provider_smoke_tests
+            BEGIN SELECT RAISE(ABORT, 'provider smoke identity is immutable'); END;
+            CREATE TRIGGER IF NOT EXISTS provider_smoke_tests_terminal_update
+            BEFORE UPDATE ON provider_smoke_tests
+            WHEN OLD.status IN ('succeeded','failed','blocked')
+            BEGIN SELECT RAISE(ABORT, 'terminal provider smoke test is immutable'); END;
+            CREATE TRIGGER IF NOT EXISTS provider_smoke_tests_delete
+            BEFORE DELETE ON provider_smoke_tests
+            BEGIN SELECT RAISE(ABORT, 'provider smoke test is immutable'); END;
+            """
+        )
+
+    @staticmethod
     def _migrate(conn: sqlite3.Connection, version: int) -> None:
         """Apply additive migrations for databases created by earlier releases."""
         if version == 1:
@@ -2266,6 +2432,10 @@ class Database:
                 )
                 previous_by_tenant[row["tenant_id"]] = digest
             version = 21
+        if version == 21:
+            # initialize() creates the tenant-owned Provider Smoke ledger and
+            # its lease-fencing triggers in this transaction.
+            version = 22
         if version != SCHEMA_VERSION:
             raise ValidationError(f"no migration path from runtime schema version {version}")
         conn.execute("UPDATE runtime_meta SET value=? WHERE key='schema_version'", (str(SCHEMA_VERSION),))
@@ -2939,6 +3109,269 @@ class Database:
             if result.rowcount != 1:
                 raise NotFoundError("connector account not found")
         return self.get_connector_account(tenant_id, account_id)
+
+    @staticmethod
+    def _provider_smoke_dict(row: sqlite3.Row) -> dict[str, Any]:
+        return dict(row)
+
+    def reserve_provider_smoke_test(
+        self,
+        tenant_id: str,
+        created_by: str,
+        provider: str,
+        connector_account_id: str | None,
+        idempotency_key: str,
+        request_fingerprint: str,
+        *,
+        lease_seconds: int = 180,
+        cooldown_seconds: int = 30,
+    ) -> tuple[dict[str, Any], bool, str | None]:
+        """Reserve a target probe, replay it, or reclaim an expired fenced lease."""
+        if provider not in {"openai", "amazon_spapi", "shopify"}:
+            raise ValidationError("unsupported provider smoke provider")
+        if (provider == "openai") != (connector_account_id is None):
+            raise ValidationError("provider smoke connector binding is invalid")
+        if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._:-]{0,199}", idempotency_key):
+            raise ValidationError("invalid provider smoke idempotency key")
+        if not re.fullmatch(r"[0-9a-f]{64}", request_fingerprint):
+            raise ValidationError("invalid provider smoke request fingerprint")
+        if not isinstance(lease_seconds, int) or not 60 <= lease_seconds <= 3600:
+            raise ValidationError("provider smoke lease_seconds must be between 60 and 3600")
+        if not isinstance(cooldown_seconds, int) or not 1 <= cooldown_seconds <= 3600:
+            raise ValidationError("provider smoke cooldown_seconds must be between 1 and 3600")
+
+        now_dt = datetime.now(timezone.utc)
+        now = now_dt.isoformat(timespec="seconds")
+        lease_until = (now_dt + timedelta(seconds=lease_seconds)).isoformat(
+            timespec="seconds"
+        )
+        with self.transaction() as conn:
+            self.require_tenant(conn, tenant_id)
+            existing = conn.execute(
+                """SELECT * FROM provider_smoke_tests
+                   WHERE tenant_id=? AND idempotency_key=?""",
+                (tenant_id, idempotency_key),
+            ).fetchone()
+            if existing is not None:
+                if existing["request_fingerprint"] != request_fingerprint:
+                    raise ConflictError(
+                        "Idempotency-Key was already used for another provider smoke target"
+                    )
+                if existing["status"] != "running":
+                    return self._provider_smoke_dict(existing), True, None
+                current_lease = datetime.fromisoformat(existing["lease_until"])
+                if current_lease > now_dt:
+                    return self._provider_smoke_dict(existing), True, None
+                lease_token = self._id()
+                updated = conn.execute(
+                    """UPDATE provider_smoke_tests
+                       SET lease_until=?,lease_token=?,attempt_count=attempt_count+1
+                       WHERE tenant_id=? AND id=? AND status='running'
+                         AND lease_token=?""",
+                    (
+                        lease_until,
+                        lease_token,
+                        tenant_id,
+                        existing["id"],
+                        existing["lease_token"],
+                    ),
+                )
+                if updated.rowcount != 1:
+                    raise ConflictError("provider smoke lease was concurrently reclaimed")
+                reclaimed = conn.execute(
+                    "SELECT * FROM provider_smoke_tests WHERE tenant_id=? AND id=?",
+                    (tenant_id, existing["id"]),
+                ).fetchone()
+                return self._provider_smoke_dict(reclaimed), False, lease_token
+
+            latest = conn.execute(
+                """SELECT created_at FROM provider_smoke_tests
+                   WHERE tenant_id=? AND provider=?
+                     AND connector_account_id IS ?
+                   ORDER BY created_at DESC,rowid DESC LIMIT 1""",
+                (tenant_id, provider, connector_account_id),
+            ).fetchone()
+            if latest is not None:
+                elapsed = max(
+                    0.0,
+                    (now_dt - datetime.fromisoformat(latest["created_at"])).total_seconds(),
+                )
+                if elapsed < cooldown_seconds:
+                    retry_after = max(1, int(cooldown_seconds - elapsed + 0.999))
+                    raise RateLimitError(
+                        "provider smoke target cooldown is active",
+                        retry_after=retry_after,
+                    )
+
+            smoke_test_id = self._id()
+            lease_token = self._id()
+            try:
+                conn.execute(
+                    """INSERT INTO provider_smoke_tests(
+                           id,tenant_id,provider,connector_account_id,created_by,
+                           idempotency_key,request_fingerprint,status,created_at,
+                           lease_until,lease_token,attempt_count
+                       ) VALUES(?,?,?,?,?,?,?,'running',?,?,?,1)""",
+                    (
+                        smoke_test_id,
+                        tenant_id,
+                        provider,
+                        connector_account_id,
+                        created_by,
+                        idempotency_key,
+                        request_fingerprint,
+                        now,
+                        lease_until,
+                        lease_token,
+                    ),
+                )
+            except sqlite3.IntegrityError as exc:
+                raise ConflictError("provider smoke reservation conflict") from exc
+            created = conn.execute(
+                "SELECT * FROM provider_smoke_tests WHERE tenant_id=? AND id=?",
+                (tenant_id, smoke_test_id),
+            ).fetchone()
+            return self._provider_smoke_dict(created), False, lease_token
+
+    def get_provider_smoke_test(
+        self, tenant_id: str, smoke_test_id: str
+    ) -> dict[str, Any]:
+        with self.connect() as conn:
+            row = conn.execute(
+                "SELECT * FROM provider_smoke_tests WHERE tenant_id=? AND id=?",
+                (tenant_id, smoke_test_id),
+            ).fetchone()
+        if row is None:
+            raise NotFoundError("provider smoke test not found")
+        return self._provider_smoke_dict(row)
+
+    def list_provider_smoke_tests(
+        self, tenant_id: str, limit: int = 100
+    ) -> list[dict[str, Any]]:
+        limit = max(1, min(int(limit), 200))
+        with self.connect() as conn:
+            self.require_tenant(conn, tenant_id)
+            rows = conn.execute(
+                """SELECT * FROM provider_smoke_tests WHERE tenant_id=?
+                   ORDER BY created_at DESC,rowid DESC LIMIT ?""",
+                (tenant_id, limit),
+            ).fetchall()
+        return [self._provider_smoke_dict(row) for row in rows]
+
+    def complete_provider_smoke_test(
+        self,
+        tenant_id: str,
+        smoke_test_id: str,
+        *,
+        lease_token: str,
+        actor_user_id: str,
+        request_id: str,
+        status: str,
+        provider_request_id: str | None,
+        provider_status: str,
+        http_status: int | None,
+        retry_after_seconds: int | None,
+        latency_ms: int,
+        error_code: str | None,
+    ) -> dict[str, Any]:
+        if status not in {"succeeded", "failed", "blocked"}:
+            raise ValidationError("invalid provider smoke terminal status")
+        if not re.fullmatch(r"[A-Za-z0-9._:-]{1,200}", lease_token):
+            raise ValidationError("invalid provider smoke lease token")
+        if provider_request_id is not None and not re.fullmatch(
+            r"[A-Za-z0-9._:-]{1,200}", provider_request_id
+        ):
+            raise ValidationError("invalid provider request id")
+        if not re.fullmatch(r"[A-Za-z0-9._:-]{1,200}", provider_status):
+            raise ValidationError("invalid provider status")
+        if (
+            http_status is not None
+            and (
+                not isinstance(http_status, int)
+                or isinstance(http_status, bool)
+                or not 100 <= http_status <= 599
+            )
+        ):
+            raise ValidationError("invalid provider HTTP status")
+        if (
+            retry_after_seconds is not None
+            and (
+                not isinstance(retry_after_seconds, int)
+                or isinstance(retry_after_seconds, bool)
+                or not 1 <= retry_after_seconds <= 3600
+            )
+        ):
+            raise ValidationError("invalid provider retry interval")
+        if (
+            not isinstance(latency_ms, int)
+            or isinstance(latency_ms, bool)
+            or not 0 <= latency_ms <= 3_600_000
+        ):
+            raise ValidationError("invalid provider smoke latency")
+        if status == "succeeded":
+            if error_code is not None or retry_after_seconds is not None:
+                raise ValidationError("successful provider smoke cannot have an error")
+        elif not isinstance(error_code, str) or not re.fullmatch(
+            r"[a-z][a-z0-9_]{0,99}", error_code
+        ):
+            raise ValidationError("failed provider smoke requires a safe error code")
+
+        completed_at = utc_now()
+        with self.transaction() as conn:
+            updated = conn.execute(
+                """UPDATE provider_smoke_tests
+                   SET status=?,provider_request_id=?,provider_status=?,http_status=?,
+                       retry_after_seconds=?,latency_ms=?,error_code=?,lease_until=NULL,
+                       lease_token=NULL,completed_at=?
+                   WHERE tenant_id=? AND id=? AND status='running'
+                     AND lease_token=?""",
+                (
+                    status,
+                    provider_request_id,
+                    provider_status,
+                    http_status,
+                    retry_after_seconds,
+                    latency_ms,
+                    error_code,
+                    completed_at,
+                    tenant_id,
+                    smoke_test_id,
+                    lease_token,
+                ),
+            )
+            if updated.rowcount != 1:
+                row = conn.execute(
+                    "SELECT status FROM provider_smoke_tests WHERE tenant_id=? AND id=?",
+                    (tenant_id, smoke_test_id),
+                ).fetchone()
+                if row is None:
+                    raise NotFoundError("provider smoke test not found")
+                raise ConflictError("provider smoke lease is no longer active")
+            row = conn.execute(
+                "SELECT * FROM provider_smoke_tests WHERE tenant_id=? AND id=?",
+                (tenant_id, smoke_test_id),
+            ).fetchone()
+            metadata = {
+                "provider": row["provider"],
+                "status": status,
+                "latency_ms": latency_ms,
+            }
+            if row["connector_account_id"] is not None:
+                metadata["connector_account_id"] = row["connector_account_id"]
+            if error_code is not None:
+                metadata["error_code"] = error_code
+            self.append_audit_tx(
+                conn,
+                tenant_id,
+                actor_user_id,
+                request_id,
+                "provider_smoke.execute",
+                "provider_smoke_test",
+                smoke_test_id,
+                status,
+                metadata,
+            )
+            return self._provider_smoke_dict(row)
 
     def connector_account(self, tenant_id: str, provider: str, external_account_id: str) -> sqlite3.Row:
         with self.connect() as conn:

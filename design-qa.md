@@ -235,3 +235,16 @@ final result: passed
   browser persistence.
 
 final result: passed
+
+## Provider Smoke follow-up
+
+- QA report: `artifacts/design-qa/provider-smoke/audit.md`.
+- Browser evidence covers OpenAI persisted blocked state, Amazon/Shopify
+  connector-health synchronization, two-column connector-card balance, and the
+  390px task-preserving layout.
+- The live Demo verification used only honest missing-credential outcomes; no
+  provider success was fabricated. Network success/error branches are covered
+  by injected-transport tests that assert the fixed endpoints, bounded request
+  shape, discarded provider bodies/output, and safe persisted metadata.
+
+final result: passed

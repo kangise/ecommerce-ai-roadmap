@@ -58,7 +58,7 @@ def test_symlinked_parent_alias_is_allowed_for_regular_final_paths(tmp_path:Path
     actual=tmp_path/"actual"; actual.mkdir(); alias=tmp_path/"alias"; alias.symlink_to(actual,target_is_directory=True)
     source=actual/"source.sqlite"; seeded(source)
     manifest=RecoveryService.backup(alias/"source.sqlite",alias/"backup")
-    assert manifest["schema_version"]==21 and (actual/"backup").is_dir()
+    assert manifest["schema_version"]==22 and (actual/"backup").is_dir()
     result=RecoveryService.restore(alias/"backup",alias/"restored.sqlite")
     assert result["restored"] is True and (actual/"restored.sqlite").is_file()
 
@@ -92,7 +92,7 @@ def test_restore_rolls_back_objects_when_database_install_fails(tmp_path:Path,mo
 def test_cli_backup_restore_and_structured_failure(tmp_path:Path)->None:
     source=tmp_path/"source.sqlite"; seeded(source); backup=tmp_path/"backup"; root=Path(__file__).resolve().parents[1]
     made=subprocess.run([sys.executable,"-m","ecommerce_ai_skills.cli","backup","--db",str(source),"--output",str(backup)],cwd=root,text=True,capture_output=True)
-    assert made.returncode==0 and json.loads(made.stdout)["schema_version"]==21
+    assert made.returncode==0 and json.loads(made.stdout)["schema_version"]==22
     target=tmp_path/"target.sqlite"
     verified=subprocess.run([sys.executable,"-m","ecommerce_ai_skills.cli","restore","--backup",str(backup),"--db",str(source),"--verify-only"],cwd=root,text=True,capture_output=True)
     assert verified.returncode==0 and not target.exists()

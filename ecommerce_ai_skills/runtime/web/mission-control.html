@@ -212,6 +212,7 @@
 
           <section id="connection-panel-marketplaces" class="connection-panel" data-connection-panel="marketplaces" role="tabpanel" aria-labelledby="connection-tab-marketplaces" hidden>
             <div class="section-title-row connection-section-heading"><div><h2>Marketplace APIs</h2><span>连接 Amazon SP-API、Amazon Ads 与 Shopify；保存环境变量引用，不保存密钥值。</span></div><button data-action="open-connector-form" id="add-connector-btn" class="primary-button">添加连接</button></div>
+            <p class="provider-smoke-disclosure">Amazon SP-API 与 Shopify 的连通性验证会执行最小真实读取请求，并将租户内结果写入审计记录；Amazon Ads 继续使用下方专用准入检查。</p>
             <section class="tool-panel wide"><div id="connector-permission" class="permission-note" hidden></div><div id="connector-list" class="connector-list" aria-live="polite"></div></section>
             <section class="accounts-ads-gates" aria-labelledby="ads-gates-title">
               <div class="section-title-row"><div><h2 id="ads-gates-title">Amazon Ads 准入</h2><span>检查授权、Profile、Sponsored Products 读取权限与外部审批；不会创建、修改或暂停 Campaign。</span></div><button data-action="open-ads-capability-form" id="add-ads-capability-btn" class="primary-button">运行准入检查</button></div>
@@ -228,11 +229,15 @@
             <section class="tool-panel wide ai-provider-panel">
               <div class="panel-heading"><div><p class="kicker">AI Provider</p><h2>模型 API 准备度</h2><span>这里只读取部署环境中的配置存在性，不会接收、保存或回显模型密钥。</span></div><button data-action="refresh-pilot" class="secondary-button">重新检查</button></div>
               <div id="ai-provider-status" class="ai-provider-status" aria-live="polite"></div>
+              <section class="provider-smoke-section" aria-labelledby="openai-smoke-title">
+                <div class="provider-smoke-heading"><div><p class="kicker">Live verification</p><h3 id="openai-smoke-title">OpenAI 连通性验证</h3><span>使用部署共享的 API Key 与模型配置；operator 或更高角色触发最小真实付费调用。不会保存或显示模型输出，结果按租户持久化并进入审计。</span></div></div>
+                <div id="openai-smoke-status" aria-live="polite"></div>
+              </section>
               <div class="deployment-guide">
                 <h3>部署环境配置</h3>
                 <p>在运行 Pilot 的 Secret Manager 或进程环境中设置以下变量，然后重启 Pilot 并重新检查：</p>
-                <dl><div><dt>API credential</dt><dd><code>OPENAI_API_KEY</code></dd></div><div><dt>Model</dt><dd><code>OPENAI_MODEL</code></dd></div></dl>
-                <p class="permission-note">Presence 只表示配置项存在，不代表模型访问已通过真实调用验证。当前版本没有浏览器端“测试 OpenAI”按钮。</p>
+                <dl><div><dt>API credential</dt><dd><code>OPENAI_API_KEY</code></dd></div><div><dt>Model</dt><dd><code>EAI_OPENAI_MODEL</code></dd></div></dl>
+                <p class="permission-note">Presence 只表示配置项存在；使用上方“运行连通性验证”才能通过最小真实调用确认访问能力。密钥仍由部署环境管理。</p>
                 <button data-action="navigate" data-view="automations" class="text-button">查看 Pilot Runtime 详情</button>
               </div>
             </section>

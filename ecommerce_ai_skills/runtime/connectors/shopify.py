@@ -18,7 +18,15 @@ from urllib.request import Request, urlopen
 
 from ecommerce_ai_skills import USER_AGENT
 
-from ..errors import ExternalServiceError, MissingCredentialError, ValidationError
+from ..errors import (
+    ConnectorRateLimitError,
+    ExternalServiceError,
+    MissingCredentialError,
+    ValidationError,
+)
+
+
+MAX_JSON_BYTES = 65_536
 
 
 @dataclass(frozen=True)
@@ -49,7 +57,20 @@ class ShopifyConnector:
         query = f"?{urlencode(params)}" if params else ""
         return f"https://{domain}/admin/api/{api_version}/{resource}{query}"
 
-    def _get_json(self, resource: str) -> dict[str, Any]:
+    @staticmethod
+    def _rate_limit(headers: Any) -> ConnectorRateLimitError:
+        value = headers.get("Retry-After", "60") if hasattr(headers, "get") else "60"
+        try:
+            retry_after = int(str(value).strip())
+        except ValueError:
+            retry_after = 60
+        return ConnectorRateLimitError(
+            "Shopify returned HTTP 429",
+            retry_after=retry_after,
+            headers=dict(headers.items()) if hasattr(headers, "items") else {},
+        )
+
+    def _get_json_response(self, resource: str) -> tuple[dict[str, Any], Any]:
         request = Request(
             self._admin_url(resource),
             headers={"X-Shopify-Access-Token": self._credential(), "Accept": "application/json", "User-Agent": USER_AGENT},
@@ -58,29 +79,53 @@ class ShopifyConnector:
         try:
             with self.transport(request, timeout=30) as response:
                 status = getattr(response, "status", 200)
-                body = response.read()
+                headers = getattr(response, "headers", {}) or {}
+                body = response.read(MAX_JSON_BYTES + 1)
         except HTTPError as exc:
+            if exc.code == 429:
+                raise self._rate_limit(exc.headers) from exc
             raise ExternalServiceError(f"Shopify returned HTTP {exc.code}") from exc
         except URLError as exc:
             raise ExternalServiceError(f"Shopify request failed: {exc.reason}") from exc
         except TimeoutError as exc:
             raise ExternalServiceError("Shopify request timed out") from exc
+        if status == 429:
+            raise self._rate_limit(headers)
         if status < 200 or status >= 300:
             raise ExternalServiceError(f"Shopify returned HTTP {status}")
+        if len(body) > MAX_JSON_BYTES:
+            raise ExternalServiceError(
+                f"Shopify response exceeded {MAX_JSON_BYTES} bytes"
+            )
         try:
             payload = json.loads(body.decode("utf-8"))
         except (UnicodeDecodeError, json.JSONDecodeError) as exc:
             raise ExternalServiceError("Shopify returned invalid JSON") from exc
         if not isinstance(payload, dict):
             raise ExternalServiceError("Shopify returned a non-object response")
+        return payload, headers
+
+    def _get_json(self, resource: str) -> dict[str, Any]:
+        payload, _ = self._get_json_response(resource)
         return payload
 
     def health_check(self) -> dict[str, Any]:
-        payload = self._get_json("shop.json")
+        payload, headers = self._get_json_response("shop.json")
         shop = payload.get("shop")
         if not isinstance(shop, dict):
             raise ExternalServiceError("Shopify response did not contain shop")
-        return {"shop_id": shop.get("id")}
+        provider_request_id = None
+        if hasattr(headers, "items"):
+            provider_request_id = next(
+                (
+                    str(value)
+                    for key, value in headers.items()
+                    if str(key).lower() in {"x-request-id", "x-shopify-request-id"}
+                    and re.fullmatch(r"[A-Za-z0-9._:-]{1,200}", str(value))
+                ),
+                None,
+            )
+        return {"shop_id": shop.get("id"), "provider_request_id": provider_request_id}
 
     def list_products(self, *, limit: int = 50, page_info: str | None = None) -> dict[str, Any]:
         token = self._credential()

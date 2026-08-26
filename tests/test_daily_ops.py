@@ -127,7 +127,7 @@ def test_schema_v16_migrates_to_v17_and_composite_tenant_integrity(tmp_path: Pat
         conn.execute("DROP TABLE daily_ops_schedules")
         conn.execute("UPDATE runtime_meta SET value='16' WHERE key='schema_version'")
     migrated = Database(path)
-    assert migrated.readiness()["schema_version"] == 21
+    assert migrated.readiness()["schema_version"] == 22
     app = RuntimeApplication(migrated, agent_provider=DailyProvider())
     one = app.bootstrap("One", "one@example.com")
     two = app.bootstrap("Two", "two@example.com")
@@ -783,7 +783,7 @@ def test_daily_scheduler_and_worker_cli_once_are_operable(tmp_path: Path):
             check=False,
         )
         assert result.returncode == 0, result.stderr
-    assert Database(path).readiness()["schema_version"] == 21
+    assert Database(path).readiness()["schema_version"] == 22
 
 
 def test_daily_ops_http_routes_rbac_tenant_and_brief_states(tmp_path: Path):

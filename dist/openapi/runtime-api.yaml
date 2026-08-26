@@ -273,6 +273,61 @@ paths:
         '403': {$ref: '#/components/responses/Forbidden'}
         '404': {$ref: '#/components/responses/NotFound'}
         '422': {$ref: '#/components/responses/ValidationFailed'}
+  /v1/provider-smoke-tests:
+    get:
+      summary: List tenant-owned provider connectivity tests
+      description: Viewer, operator, admin, and owner roles may read bounded, safe metadata for their authenticated tenant. Listing never calls a provider and never returns credentials, request bodies, response bodies, model output, idempotency keys, fingerprints, or lease state.
+      parameters:
+        - in: query
+          name: limit
+          required: false
+          schema: {type: integer, minimum: 1, maximum: 200, default: 100}
+      responses:
+        '200':
+          description: Persisted provider connectivity test history, newest first
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/ProviderSmokeTestList'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+    post:
+      summary: Run an audited live provider connectivity test
+      description: Requires operator, admin, or owner role and Idempotency-Key. OpenAI performs one minimal Responses API request against the fixed official endpoint with store disabled and does not persist model output or raw response data. Amazon SP-API and Shopify reuse their existing read-only account health adapters and update connector health. Results and safe failure codes are tenant-persisted and hash-chain audited. A per-target cooldown may return 429 before any provider call.
+      parameters:
+        - {$ref: '#/components/parameters/providerSmokeIdempotencyKey'}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/ProviderSmokeRequest'}
+      responses:
+        '201':
+          description: Newly completed test, terminal idempotent replay, or active running replay
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/ProviderSmokeTest'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+        '429': {$ref: '#/components/responses/RateLimited'}
+  /v1/provider-smoke-tests/{smokeTestId}:
+    get:
+      summary: Read one tenant-owned provider connectivity test
+      description: A test outside the authenticated tenant is indistinguishable from a missing test and returns 404. The response contains safe metadata only and never calls a provider.
+      parameters:
+        - {$ref: '#/components/parameters/smokeTestId'}
+      responses:
+        '200':
+          description: Persisted safe provider connectivity test metadata
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/ProviderSmokeTest'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
   /v1/report-recipes:
     get:
       summary: List tenant-owned Amazon report recipes
@@ -1800,6 +1855,16 @@ components:
       name: Idempotency-Key
       required: true
       schema: {type: string, minLength: 1, maxLength: 200}
+    providerSmokeIdempotencyKey:
+      in: header
+      name: Idempotency-Key
+      required: true
+      description: Safe tenant-local provider-test replay key; the same key cannot be reused for a different provider target.
+      schema:
+        type: string
+        minLength: 1
+        maxLength: 200
+        pattern: '^[A-Za-z0-9][A-Za-z0-9._:-]{0,199}$'
     lastEventId:
       in: header
       name: Last-Event-ID
@@ -1840,6 +1905,11 @@ components:
     accountId:
       in: path
       name: accountId
+      required: true
+      schema: {type: string, format: uuid}
+    smokeTestId:
+      in: path
+      name: smokeTestId
       required: true
       schema: {type: string, format: uuid}
     recipeId:
@@ -1924,7 +1994,7 @@ components:
         application/json:
           schema: {$ref: '#/components/schemas/ErrorEnvelope'}
     RateLimited:
-      description: Per-client request budget exceeded
+      description: Per-client request budget or durable operation target cooldown exceeded
       headers:
         Retry-After:
           schema: {type: integer}
@@ -2206,10 +2276,82 @@ components:
         health_error_code:
           type: string
           nullable: true
-          enum: [missing_credential, invalid_configuration, external_service_error, null]
+          enum: [missing_credential, invalid_configuration, rate_limited, external_service_error, null]
         health_error_message: {type: string, nullable: true}
         created_at: {type: string, format: date-time}
         updated_at: {type: string, format: date-time}
+    ProviderSmokeProvider:
+      type: string
+      enum: [openai, amazon_spapi, shopify]
+    ProviderSmokeRequest:
+      description: Strict provider-target union. Marketplace accounts must belong to the authenticated tenant and match provider.
+      oneOf:
+        - {$ref: '#/components/schemas/OpenAIProviderSmokeRequest'}
+        - {$ref: '#/components/schemas/MarketplaceProviderSmokeRequest'}
+    OpenAIProviderSmokeRequest:
+      type: object
+      additionalProperties: false
+      required: [provider]
+      properties:
+        provider: {type: string, enum: [openai]}
+    MarketplaceProviderSmokeRequest:
+      type: object
+      additionalProperties: false
+      required: [provider, connector_account_id]
+      properties:
+        provider: {type: string, enum: [amazon_spapi, shopify]}
+        connector_account_id: {type: string, format: uuid}
+    ProviderSmokeTest:
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - tenant_id
+        - provider
+        - connector_account_id
+        - created_by
+        - status
+        - provider_request_id
+        - provider_status
+        - http_status
+        - retry_after_seconds
+        - latency_ms
+        - error_code
+        - created_at
+        - completed_at
+      properties:
+        id: {type: string, format: uuid}
+        tenant_id: {type: string, format: uuid}
+        provider: {$ref: '#/components/schemas/ProviderSmokeProvider'}
+        connector_account_id: {type: string, format: uuid, nullable: true}
+        created_by: {type: string, format: uuid}
+        status: {type: string, enum: [running, succeeded, failed, blocked]}
+        provider_request_id:
+          type: string
+          pattern: '^[A-Za-z0-9._:-]{1,200}$'
+          nullable: true
+        provider_status:
+          type: string
+          pattern: '^[A-Za-z0-9._:-]{1,200}$'
+          nullable: true
+        http_status: {type: integer, minimum: 100, maximum: 599, nullable: true}
+        retry_after_seconds: {type: integer, minimum: 1, maximum: 3600, nullable: true}
+        latency_ms: {type: integer, minimum: 0, maximum: 3600000, nullable: true}
+        error_code:
+          type: string
+          pattern: '^[a-z][a-z0-9_]{0,99}$'
+          nullable: true
+        created_at: {type: string, format: date-time}
+        completed_at: {type: string, format: date-time, nullable: true}
+    ProviderSmokeTestList:
+      type: object
+      additionalProperties: false
+      required: [provider_smoke_tests]
+      properties:
+        provider_smoke_tests:
+          type: array
+          maxItems: 200
+          items: {$ref: '#/components/schemas/ProviderSmokeTest'}
     ConnectorProviderCatalogEntry:
       type: object
       additionalProperties: false

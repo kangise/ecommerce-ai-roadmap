@@ -44,7 +44,7 @@ Evidence ID，再交给 Agent 团队重复使用。
 持久化 Worker 和 Scheduler 可以按最新 Evidence 自动运行周会，Mission Control 汇总待审批、失败和最近任务。
 每次完成的周会都可运行持久化 Evals，检查证据、平台隔离和审批策略是否回归。
 启动 Runtime 后打开 `/app`，即可进入 Amazon-first 跨平台经营简报：真实 Evidence 趋势、Agent Brief、人工审批位于同一决策界面，上传、运行、调度和审计保留在独立工作区。
-界面支持中英文偏好持久化，并提供统一的“连接与 API”中心，集中管理 Runtime 会话、Amazon/Shopify 连接、模型 API 准备度与报告同步；密钥值仍只由页面内存或部署环境持有。
+界面支持中英文偏好持久化，并提供统一的“连接与 API”中心，集中管理 Runtime 会话、Amazon/Shopify 连接、模型 API 准备度与报告同步；具备 operator 权限的用户可运行受冷却、幂等租约和审计保护的真实 Provider 连通性验证，密钥值仍只由页面内存或部署环境持有。
 产品演示可运行 `opc-ecommerce demo --db ./commerce-agent-demo.sqlite --port 8788`；浏览器会自动加载独立 Demo 租户，UI 持续显示 `DEMO DATA`，普通 API 认证不受影响。
 
 两边由同一套 CI 门禁把关。**门禁不过，两边都发不出去。**

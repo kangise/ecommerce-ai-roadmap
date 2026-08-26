@@ -125,8 +125,35 @@ session, tenant-scoped Amazon/Shopify connector configuration, deployment-owned
 model API readiness, and persisted report recipes/sync activity. Marketplace
 and model secret values still belong in the deployment environment or a Secret
 Manager. The UI saves only non-sensitive configuration and environment-variable
-references. OpenAI readiness is currently a presence check, not a live model
-smoke test, and the UI labels that limitation explicitly.
+references. Pilot readiness remains a credential-presence read model; the
+separate Provider Smoke API performs an explicit operator-triggered live probe
+and persists a tenant-owned result without storing provider response bodies.
+
+### Provider connectivity verification
+
+`GET /v1/provider-smoke-tests` and `GET /v1/provider-smoke-tests/{id}` are
+viewer-readable tenant history. `POST /v1/provider-smoke-tests` requires an
+operator, admin, or owner plus an `Idempotency-Key`. The public providers are
+`openai`, `amazon_spapi`, and `shopify`. Marketplace probes require a matching
+tenant-owned `connector_account_id`; OpenAI uses the deployment-shared
+`OPENAI_API_KEY` and `EAI_OPENAI_MODEL` and rejects a connector identifier.
+
+Amazon SP-API reuses the real LWA plus Sellers marketplace-participation health
+read. Shopify reuses the canonical shop-domain Shop resource health read. OpenAI
+uses a minimal request to the fixed official Responses endpoint with
+`store:false`, no tools, a small output bound, a 15-second timeout, and a 64 KiB
+response bound. Only a completed response is successful. Generated text and raw
+provider bodies are discarded. Persisted/audited facts are limited to provider,
+connector binding, stable status/error classification, bounded request ID, HTTP
+status, retry interval, and latency.
+
+Each target has a 30-second cooldown. The same idempotency key and target replay
+without another external call; conflicting reuse fails. A 180-second lease and
+attempt token allow an expired in-flight reservation to be reclaimed while
+fencing the old attempt. Missing credentials/configuration produce a durable
+`blocked` result; transport, timeout, rate-limit, malformed response, or
+incomplete-provider outcomes remain explicit `failed` results. A successful
+fixture or Demo state is never substituted for a live provider result.
 
 ## Explicit Demo data
 
@@ -457,7 +484,9 @@ can therefore be `stale` after a previously healthy heartbeat; `degraded` and
 `stopped` remain visible.
 `attention`/`blocked` and listed blockers are successful *status reads*, not proof that
 an Amazon or OpenAI call succeeded. Missing credentials, unapproved Amazon
-access, or absent OpenAI configuration remain `blocked`/`unknown` states.
+access, or absent OpenAI configuration remain `blocked`/`unknown` states. Use
+the separate Provider Smoke API when an authorized operator needs recorded live
+connectivity evidence.
 
 Start the local Pilot with:
 
@@ -944,7 +973,7 @@ The API exposes graph list/create, graph/version detail, draft-version creation,
 and publish. `AgentRun` carries `graph_version_id`, immutable hash,
 Metric-Observation lineage, and `pending|approved|revision_required|rejected`
 review status. The dependency-free provider continues to call the official
-[OpenAI Responses API](https://developers.openai.com/api/reference/cli/resources/responses/methods/create)
+[OpenAI Responses API](https://developers.openai.com/api/reference/resources/responses/methods/create/)
 with `store=false` and strict JSON Schema output; specialists are parallelized
 by application code, not model tool calls or the Agents SDK. No live OpenAI-key
 success is claimed when deployment credentials are absent.

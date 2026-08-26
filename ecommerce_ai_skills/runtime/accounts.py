@@ -15,7 +15,12 @@ from .connectors.amazon_spapi import (
 )
 from .connectors.amazon_ads import AmazonAdsConnector, validate_amazon_ads_config
 from .connectors.shopify import ShopifyConnector
-from .errors import ConnectorError, MissingCredentialError, ValidationError
+from .errors import (
+    ConnectorError,
+    ConnectorRateLimitError,
+    MissingCredentialError,
+    ValidationError,
+)
 from .storage import Database, Principal
 
 
@@ -262,37 +267,50 @@ class MarketplaceAccountService:
         )
         return self._safe(account)
 
-    def health_check(
-        self, principal: Principal, account_id: str, request_id: str
-    ) -> dict[str, Any]:
-        self.auth.require(principal, "operator")
-        account = self.db.get_connector_account(principal.tenant_id, account_id)
+    def _health_connector(self, account: dict[str, Any]) -> Any:
         config = account["config"]
         if account["provider"] == "amazon_spapi":
-            connector = AmazonSPAPIReportsConnector(
+            return AmazonSPAPIReportsConnector(
                 config,
                 environ=self.environ,
                 transport=self.amazon_transport,
             )
-        elif account["provider"] == "amazon_ads":
-            connector = AmazonAdsConnector(
+        if account["provider"] == "amazon_ads":
+            return AmazonAdsConnector(
                 config,
                 environ=self.environ,
                 transport=self.amazon_transport,
             )
-        elif account["provider"] == "shopify":
-            connector = ShopifyConnector(
+        if account["provider"] == "shopify":
+            return ShopifyConnector(
                 config,
                 environ=self.environ,  # type: ignore[arg-type]
                 transport=self.shopify_transport,
             )
-        else:  # Defensive handling for data created by an earlier release.
-            raise ValidationError("unsupported connector provider")
+        # Defensive handling for data created by an earlier release.
+        raise ValidationError("unsupported connector provider")
+
+    def health_probe(
+        self,
+        principal: Principal,
+        account_id: str,
+    ) -> dict[str, Any]:
+        """Run the account's real health adapter and expose safe probe metadata."""
+        self.auth.require(principal, "operator")
+        account = self.db.get_connector_account(principal.tenant_id, account_id)
+        connector = self._health_connector(account)
         status = "healthy"
         error_code = None
         error_message = None
+        provider_request_id = None
+        retry_after_seconds = None
         try:
-            connector.health_check()
+            result = connector.health_check()
+            candidate = result.get("provider_request_id") if isinstance(result, dict) else None
+            if isinstance(candidate, str) and re.fullmatch(
+                r"[A-Za-z0-9._:-]{1,200}", candidate
+            ):
+                provider_request_id = candidate
         except MissingCredentialError:
             status = "misconfigured"
             error_code = "missing_credential"
@@ -301,6 +319,11 @@ class MarketplaceAccountService:
             status = "misconfigured"
             error_code = "invalid_configuration"
             error_message = str(exc)
+        except ConnectorRateLimitError as exc:
+            status = "unhealthy"
+            error_code = "rate_limited"
+            error_message = "provider rate limit is active"
+            retry_after_seconds = exc.retry_after
         except ConnectorError as exc:
             status = "unhealthy"
             error_code = "external_service_error"
@@ -312,6 +335,21 @@ class MarketplaceAccountService:
             error_code=error_code,
             error_message=error_message,
         )
+        return {
+            "account": self._safe(account),
+            "provider_request_id": provider_request_id,
+            "provider_status": status,
+            "error_code": error_code,
+            "retry_after_seconds": retry_after_seconds,
+        }
+
+    def health_check(
+        self, principal: Principal, account_id: str, request_id: str
+    ) -> dict[str, Any]:
+        result = self.health_probe(principal, account_id)
+        account = result["account"]
+        # The outcome records that the diagnostic completed; the external
+        # connectivity result remains explicit in health_status metadata.
         self.db.append_audit(
             principal.tenant_id,
             principal.user_id,
@@ -320,6 +358,6 @@ class MarketplaceAccountService:
             "connector_account",
             account_id,
             "succeeded",
-            {"provider": account["provider"], "health_status": status},
+            {"provider": account["provider"], "health_status": account["health_status"]},
         )
-        return self._safe(account)
+        return account

@@ -383,6 +383,196 @@ class OpenAIResponsesProvider:
             raise ValidationError("OpenAI Responses endpoint is fixed to the official HTTPS host")
         return "openai_responses", model
 
+    @staticmethod
+    def _smoke_request_id(headers: Any, fallback: Any = None) -> str | None:
+        """Return a bounded provider identifier without exposing response data."""
+        value = None
+        if hasattr(headers, "items"):
+            value = next(
+                (
+                    header_value
+                    for header_name, header_value in headers.items()
+                    if str(header_name).lower() in {"x-request-id", "request-id"}
+                ),
+                None,
+            )
+        if value is None:
+            value = fallback
+        normalized = str(value or "").strip()
+        if not normalized or not re.fullmatch(r"[A-Za-z0-9._:-]{1,200}", normalized):
+            return None
+        return normalized
+
+    @staticmethod
+    def _smoke_http_error(status: int) -> tuple[str, bool]:
+        """Map HTTP status to a stable, non-secret classification and blocker flag."""
+        if status == 400:
+            return "invalid_provider_configuration", True
+        if status == 401:
+            return "invalid_credential", True
+        if status == 403:
+            return "permission_denied", True
+        if status == 404:
+            return "model_not_found", True
+        if status == 422:
+            return "request_rejected", True
+        if status == 429:
+            return "rate_limited", False
+        if status >= 500:
+            return "provider_unavailable", False
+        return "provider_request_failed", False
+
+    @staticmethod
+    def _smoke_retry_after(headers: Any) -> int | None:
+        if not hasattr(headers, "items"):
+            return None
+        value = next(
+            (
+                header_value
+                for header_name, header_value in headers.items()
+                if str(header_name).lower() == "retry-after"
+            ),
+            None,
+        )
+        try:
+            seconds = int(str(value).strip())
+        except (TypeError, ValueError):
+            return None
+        return max(1, min(seconds, 3600))
+
+    def smoke_check(self) -> dict[str, Any]:
+        """Perform a minimal real Responses API request and return safe metadata only.
+
+        This method deliberately does not return generated output or the raw response
+        body.  It reuses the same credential, model, fixed endpoint, and transport as
+        production Agent runs while imposing a shorter timeout and response-size cap.
+        """
+        _, model = self.configuration()
+        request = Request(
+            self.endpoint,
+            data=json.dumps(
+                {
+                    "model": model,
+                    "input": "Reply OK.",
+                    "store": False,
+                    "max_output_tokens": 16,
+                },
+                separators=(",", ":"),
+            ).encode("utf-8"),
+            headers={
+                "Authorization": f"Bearer {self._environment()['OPENAI_API_KEY'].strip()}",
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "User-Agent": USER_AGENT,
+            },
+            method="POST",
+        )
+        timeout = min(max(int(self.timeout_seconds), 1), 15)
+        try:
+            with self.transport(request, timeout=timeout) as response:
+                status = int(getattr(response, "status", 200))
+                headers = getattr(response, "headers", {}) or {}
+                body = response.read(65_537)
+        except HTTPError as exc:
+            error_code, blocked = self._smoke_http_error(exc.code)
+            return {
+                "ok": False,
+                "blocked": blocked,
+                "http_status": exc.code,
+                "provider_status": f"http_{exc.code}",
+                "provider_request_id": self._smoke_request_id(exc.headers),
+                "retry_after_seconds": self._smoke_retry_after(exc.headers)
+                if exc.code == 429
+                else None,
+                "error_code": error_code,
+            }
+        except URLError:
+            return {
+                "ok": False,
+                "blocked": False,
+                "http_status": None,
+                "provider_status": "transport_error",
+                "provider_request_id": None,
+                "error_code": "provider_unreachable",
+            }
+        except TimeoutError:
+            return {
+                "ok": False,
+                "blocked": False,
+                "http_status": None,
+                "provider_status": "timeout",
+                "provider_request_id": None,
+                "error_code": "provider_timeout",
+            }
+        if status < 200 or status >= 300:
+            error_code, blocked = self._smoke_http_error(status)
+            return {
+                "ok": False,
+                "blocked": blocked,
+                "http_status": status,
+                "provider_status": f"http_{status}",
+                "provider_request_id": self._smoke_request_id(headers),
+                "retry_after_seconds": self._smoke_retry_after(headers)
+                if status == 429
+                else None,
+                "error_code": error_code,
+            }
+        if len(body) > 65_536:
+            return {
+                "ok": False,
+                "blocked": False,
+                "http_status": status,
+                "provider_status": "response_too_large",
+                "provider_request_id": self._smoke_request_id(headers),
+                "error_code": "invalid_provider_response",
+            }
+        try:
+            result = json.loads(body.decode("utf-8"))
+        except (UnicodeDecodeError, json.JSONDecodeError):
+            return {
+                "ok": False,
+                "blocked": False,
+                "http_status": status,
+                "provider_status": "invalid_json",
+                "provider_request_id": self._smoke_request_id(headers),
+                "error_code": "invalid_provider_response",
+            }
+        if not isinstance(result, dict):
+            return {
+                "ok": False,
+                "blocked": False,
+                "http_status": status,
+                "provider_status": "invalid_shape",
+                "provider_request_id": self._smoke_request_id(headers),
+                "error_code": "invalid_provider_response",
+            }
+        provider_status = result.get("status")
+        if not isinstance(provider_status, str) or not re.fullmatch(
+            r"[A-Za-z0-9._:-]{1,100}", provider_status
+        ):
+            provider_status = f"http_{status}"
+        if provider_status != "completed":
+            return {
+                "ok": False,
+                "blocked": False,
+                "http_status": status,
+                "provider_status": provider_status,
+                "provider_request_id": self._smoke_request_id(
+                    headers, result.get("id")
+                ),
+                "error_code": "provider_response_incomplete",
+            }
+        return {
+            "ok": True,
+            "blocked": False,
+            "http_status": status,
+            "provider_status": provider_status,
+            "provider_request_id": self._smoke_request_id(
+                headers, result.get("id")
+            ),
+            "error_code": None,
+        }
+
     def complete(
         self,
         *,

@@ -95,7 +95,7 @@ class _ApiHandler(_Handler):
 def test_schema_20_boot_heartbeats_stale_takeover_and_fencing(tmp_path: Path) -> None:
     path = tmp_path / "runtime.sqlite"
     db = Database(path)
-    assert db.readiness()["schema_version"] == 21
+    assert db.readiness()["schema_version"] == 22
     with db.connect() as conn:
         tables = {
             row["name"] for row in conn.execute(
@@ -163,7 +163,7 @@ def test_schema_19_migrates_without_runtime_seed_rows(tmp_path: Path) -> None:
         conn.execute("DROP TABLE pilot_boots")
         conn.execute("UPDATE runtime_meta SET value='19' WHERE key='schema_version'")
     migrated = Database(path)
-    assert migrated.readiness()["schema_version"] == 21
+    assert migrated.readiness()["schema_version"] == 22
     with migrated.connect() as conn:
         assert conn.execute("SELECT COUNT(*) FROM pilot_boots").fetchone()[0] == 0
         assert conn.execute(
@@ -406,7 +406,7 @@ def test_pilot_cli_real_http_sigterm_and_persistent_stop(tmp_path: Path) -> None
     )
     assert check.returncode == 1
     check_payload = json.loads(check.stdout)
-    assert check_payload["schema"] == {"status": "ready", "version": 21}
+    assert check_payload["schema"] == {"status": "ready", "version": 22}
     assert "eai_" not in check.stdout
     assert key not in check.stdout
     assert reopened.get_pilot_runtime()["status"] == "stopped"

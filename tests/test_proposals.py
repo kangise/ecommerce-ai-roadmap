@@ -129,7 +129,7 @@ def test_schema_v17_migrates_to_v18_and_tenant_constraints(tmp_path: Path):
         conn.execute("DROP TABLE proposals")
         conn.execute("UPDATE runtime_meta SET value='17' WHERE key='schema_version'")
     migrated = Database(path)
-    assert migrated.readiness()["schema_version"] == 21
+    assert migrated.readiness()["schema_version"] == 22
     app, owner, run, service = make_context(tmp_path / "source")
     other = app.bootstrap("Other", "other@example.com")
     outsider = app.auth.authenticate(other["api_key"])
@@ -808,7 +808,7 @@ def test_proposal_worker_cli_once_is_operable(tmp_path: Path):
         cwd=Path(__file__).resolve().parents[1], text=True, capture_output=True, check=False,
     )
     assert result.returncode == 0, result.stderr
-    assert Database(path).readiness()["schema_version"] == 21
+    assert Database(path).readiness()["schema_version"] == 22
 
 
 def test_worker_survives_durable_connector_failure_and_processes_next_tick(tmp_path: Path, monkeypatch):

@@ -53,6 +53,11 @@ const state = {
   pilotStatus: null,
   pilotLoading: false,
   pilotError: null,
+  providerSmokeTests: [],
+  providerSmokeLoading: false,
+  providerSmokeError: null,
+  providerSmokeRunning: {},
+  providerSmokeRunErrors: {},
   assuranceRuns: [],
   assuranceLoading: false,
   assuranceError: null,
@@ -280,8 +285,146 @@ function renderAiProviderStatus() {
   const keyMissing = issues.some(item => item.code === "OPENAI_API_KEY_MISSING");
   const modelMissing = issues.some(item => item.code === "OPENAI_MODEL_MISSING");
   const status = component?.status || (keyMissing || modelMissing ? "missing" : "unknown");
-  target.innerHTML = `<article class="connection-status-card"><div class="connection-status-head"><div><strong>OpenAI Responses API</strong><span>Deployment managed · presence only</span></div>${badge(status)}</div><dl class="connection-status-meta"><div><dt>API credential</dt><dd>${keyMissing ? tr("未配置") : tr("已检测到配置")}</dd></div><div><dt>Model</dt><dd>${modelMissing ? tr("未配置") : tr("已检测到配置")}</dd></div><div><dt>Live verification</dt><dd>${tr("未执行")}</dd></div><div><dt>Secret storage</dt><dd>Deployment environment</dd></div></dl>${keyMissing || modelMissing ? `<p class="permission-note">${escapeHtml(tr("完成部署配置后重启 Pilot，再使用“重新检查”读取真实准备度。"))}</p>` : `<p class="pilot-ready-note">${escapeHtml(tr("配置存在性已通过；真实模型访问仍需部署 smoke 验证。"))}</p>`}</article>`;
+  const smokeTest = latestProviderSmokeTest("openai");
+  const smokeStatus = smokeTest ? normalizedProviderSmokeStatus(smokeTest) : null;
+  const smokeSummary = smokeTest ? `${tr(smokeStatus)} · ${isoLocal(providerSmokeTimestamp(smokeTest))}` : tr("尚无验证记录");
+  target.innerHTML = `<article class="connection-status-card"><div class="connection-status-head"><div><strong>OpenAI Responses API</strong><span>Deployment managed · presence only</span></div>${badge(status)}</div><dl class="connection-status-meta"><div><dt>API credential</dt><dd>${keyMissing ? tr("未配置") : tr("已检测到配置")}</dd></div><div><dt>Model</dt><dd>${modelMissing ? tr("未配置") : tr("已检测到配置")}</dd></div><div><dt>Live verification</dt><dd>${escapeHtml(smokeSummary)}</dd></div><div><dt>Secret storage</dt><dd>Deployment environment</dd></div></dl>${keyMissing || modelMissing ? `<p class="permission-note">${escapeHtml(tr("完成部署配置后重启 Pilot，再使用“重新检查”读取真实准备度。"))}</p>` : `<p class="pilot-ready-note">${escapeHtml(tr(smokeStatus === "succeeded" ? "配置存在性与最近一次真实调用均已通过。" : "配置存在性已通过；请运行连通性验证确认真实模型访问。"))}</p>`}</article>`;
   applyTranslations();
+}
+
+function providerSmokeCanRun() {
+  return ["operator", "admin", "owner"].includes(state.me?.role);
+}
+
+function providerSmokeKey(provider, connectorAccountId = "") {
+  return `${provider}:${connectorAccountId || "deployment"}`;
+}
+
+function normalizedProviderSmokeStatus(test) {
+  const raw = String(test?.status || "unknown").toLowerCase();
+  return ["queued", "running", "succeeded", "failed", "blocked"].includes(raw) ? raw : "unknown";
+}
+
+function providerSmokeTimestamp(test) {
+  return test?.completed_at || test?.checked_at || test?.finished_at || test?.updated_at || test?.created_at || null;
+}
+
+function latestProviderSmokeTest(provider, connectorAccountId = "") {
+  return state.providerSmokeTests
+    .filter(test => test.provider === provider && (connectorAccountId ? test.connector_account_id === connectorAccountId : !test.connector_account_id))
+    .sort((left, right) => (Date.parse(providerSmokeTimestamp(right) || "") || 0) - (Date.parse(providerSmokeTimestamp(left) || "") || 0))[0] || null;
+}
+
+function providerSmokeResultHtml(test, provider) {
+  if (!test) return `<div class="provider-smoke-empty">${icon("pulse")}<div><strong>${escapeHtml(tr("尚未运行连通性验证"))}</strong><span>${escapeHtml(tr("运行后，最近一次租户持久化结果会显示在这里。"))}</span></div></div>`;
+  const status = normalizedProviderSmokeStatus(test);
+  const latency = test.latency_ms ?? test.duration_ms;
+  const error = test.error_code || "";
+  const successCopy = provider === "openai"
+    ? "最小真实 Responses API 调用已通过；模型输出未保存或显示。"
+    : "最小真实读取请求已通过；响应内容未保存或显示。";
+  const resultCopy = status === "succeeded"
+    ? successCopy
+    : error || (status === "blocked" ? "验证被安全阻断；请检查部署凭据与连接配置。" : status === "failed" ? "真实调用失败；请检查凭据、权限和网络配置。" : "验证正在执行或等待最终结果。" );
+  return `<article class="provider-smoke-result ${escapeHtml(status)}"><div class="provider-smoke-result-head"><div><strong>${escapeHtml(tr("最近一次连通性验证"))}</strong><span>${escapeHtml(isoLocal(providerSmokeTimestamp(test)))}</span></div>${badge(status)}</div><dl class="provider-smoke-meta"><div><dt>${escapeHtml(tr("Provider status"))}</dt><dd>${escapeHtml(tr(test.provider_status || "—"))}</dd></div><div><dt>${escapeHtml(tr("HTTP status"))}</dt><dd>${escapeHtml(test.http_status ?? "—")}</dd></div><div><dt>${escapeHtml(tr("耗时"))}</dt><dd>${latency === null || latency === undefined ? "—" : `${escapeHtml(latency)} ms`}</dd></div><div><dt>${escapeHtml(tr("验证记录"))}</dt><dd>${escapeHtml(test.id || "—")}</dd></div></dl><p class="provider-smoke-message">${escapeHtml(tr(resultCopy))}</p></article>`;
+}
+
+function providerSmokeActionHtml(provider, connectorAccountId = "", buttonClass = "secondary-button") {
+  const key = providerSmokeKey(provider, connectorAccountId);
+  const running = Boolean(state.providerSmokeRunning[key]);
+  const reason = !state.apiKey ? "请先连接 Runtime" : !providerSmokeCanRun() ? "需要 operator、admin 或 owner 角色执行连通性验证。" : "";
+  const disabled = running || Boolean(reason);
+  return `<div class="provider-smoke-actions"><button data-action="run-provider-smoke" data-provider="${escapeHtml(provider)}" ${connectorAccountId ? `data-connector-account-id="${escapeHtml(connectorAccountId)}"` : ""} class="${buttonClass}" ${disabled ? "disabled" : ""} ${reason ? `title="${escapeHtml(tr(reason))}"` : ""}>${escapeHtml(tr(running ? "正在验证…" : "运行连通性验证"))}</button>${reason ? `<span class="permission-reason">${escapeHtml(tr(reason))}</span>` : ""}</div>`;
+}
+
+function providerSmokeStatusHtml(provider, connectorAccountId = "") {
+  const key = providerSmokeKey(provider, connectorAccountId);
+  const notices = [];
+  if (state.providerSmokeLoading) notices.push(`<div class="provider-smoke-state loading">${icon("pulse")}<span>${escapeHtml(tr("正在读取持久化验证结果…"))}</span></div>`);
+  if (state.providerSmokeError) notices.push(`<div class="provider-smoke-state failed" role="alert"><strong>${escapeHtml(tr("无法读取连通性验证结果"))}</strong><span>${escapeHtml(state.providerSmokeError)}</span></div>`);
+  if (state.providerSmokeRunErrors[key]) notices.push(`<div class="provider-smoke-state failed" role="alert"><strong>${escapeHtml(tr("连通性验证失败"))}</strong><span>${escapeHtml(state.providerSmokeRunErrors[key])}</span></div>`);
+  return `${notices.join("")}${providerSmokeResultHtml(latestProviderSmokeTest(provider, connectorAccountId), provider)}`;
+}
+
+function renderOpenAiProviderSmoke() {
+  const target = $("openai-smoke-status");
+  if (!target) return;
+  target.innerHTML = `${providerSmokeActionHtml("openai", "", "primary-button")}${providerSmokeStatusHtml("openai")}`;
+  applyTranslations();
+}
+
+function renderProviderSmokeSurfaces() {
+  renderAiProviderStatus();
+  renderOpenAiProviderSmoke();
+  renderConnectors();
+  applyTranslations();
+}
+
+async function refreshProviderSmokeTests() {
+  state.providerSmokeLoading = true;
+  state.providerSmokeError = null;
+  renderProviderSmokeSurfaces();
+  try {
+    const [payload, connectors, pilotStatus, audit] = await Promise.all([
+      api("/v1/provider-smoke-tests?limit=100"),
+      api("/v1/connectors"),
+      api("/v1/pilot-status"),
+      api("/v1/audit?limit=100"),
+    ]);
+    state.providerSmokeTests = Array.isArray(payload) ? payload : payload.provider_smoke_tests || [];
+    state.connectors = connectors.connectors || [];
+    state.pilotStatus = pilotStatus;
+    state.pilotError = null;
+    state.audit = audit.events || [];
+  } catch (error) {
+    state.providerSmokeError = error.message;
+    throw error;
+  } finally {
+    state.providerSmokeLoading = false;
+    renderProviderSmokeSurfaces();
+    renderAudit();
+  }
+}
+
+async function runProviderSmoke(button) {
+  const provider = button.dataset.provider;
+  const connectorAccountId = button.dataset.connectorAccountId || "";
+  if (!["openai", "amazon_spapi", "shopify"].includes(provider)) { notice("不支持的连通性验证提供商。", "error"); return; }
+  if (!providerSmokeCanRun()) { notice("需要 operator、admin 或 owner 角色执行连通性验证。", "error"); return; }
+  if (connectorAccountId && !state.connectors.some(connector => connector.id === connectorAccountId && connector.provider === provider)) {
+    notice("连接账户不存在或不属于当前租户。", "error");
+    return;
+  }
+  const key = providerSmokeKey(provider, connectorAccountId);
+  if (state.providerSmokeRunning[key]) return;
+  state.providerSmokeRunning[key] = true;
+  delete state.providerSmokeRunErrors[key];
+  renderProviderSmokeSurfaces();
+  try {
+    const json = {provider, ...(connectorAccountId ? {connector_account_id: connectorAccountId} : {})};
+    const response = await api("/v1/provider-smoke-tests", {method: "POST", headers: {"Idempotency-Key": idempotency(`ui-provider-smoke-${provider}`)}, json});
+    const created = response.provider_smoke_test || response;
+    if (created?.id) state.providerSmokeTests = [created, ...state.providerSmokeTests.filter(test => test.id !== created.id)];
+    try {
+      await refreshProviderSmokeTests();
+    } catch (error) {
+      notice("验证已完成，但最近结果刷新失败。", "error");
+      return;
+    }
+    const status = normalizedProviderSmokeStatus(latestProviderSmokeTest(provider, connectorAccountId));
+    notice(status === "succeeded" ? "连通性验证已通过并保存审计记录。" : "连通性验证已完成，请查看持久化结果。", status === "succeeded" ? "success" : "error");
+  } catch (error) {
+    state.providerSmokeRunErrors[key] = error.message;
+    try {
+      await refreshProviderSmokeTests();
+    } catch (refreshError) {
+      console.error("Provider smoke 持久化结果刷新失败", refreshError);
+    }
+    notice(error.message, "error");
+  } finally {
+    delete state.providerSmokeRunning[key];
+    renderProviderSmokeSurfaces();
+  }
 }
 
 function designedEmpty(target, title, copy, iconName = "database", action = null) {
@@ -346,12 +489,14 @@ function renderConnectors() {
   }
   target.innerHTML = state.connectors.map(connector => {
     const healthStatus = connector.health_status || "unchecked";
+    const smokeEligible = ["amazon_spapi", "shopify"].includes(connector.provider);
     const edit = manage ? `<button data-action="edit-connector" data-id="${escapeHtml(connector.id)}" class="secondary-button">编辑</button>` : "";
-    const healthAction = check ? `<button data-action="health-check-connector" data-id="${escapeHtml(connector.id)}" class="primary-button">健康检查</button>` : `<span class="permission-reason">需要 operator、admin 或 owner 执行健康检查</span>`;
+    const healthAction = smokeEligible ? "" : check ? `<button data-action="health-check-connector" data-id="${escapeHtml(connector.id)}" class="primary-button">健康检查</button>` : `<span class="permission-reason">需要 operator、admin 或 owner 执行健康检查</span>`;
     const adsGateAction = connector.provider === "amazon_ads" ? (connectorCanManage() ? `<button data-action="open-ads-capability-form" data-id="${escapeHtml(connector.id)}" class="secondary-button">运行准入检查</button>` : `<span class="permission-reason">需要 admin 或 owner 运行 Ads 准入检查</span>`) : "";
     const failure = connector.health_error_message || connector.health_error_code;
     const refCount = Object.keys(connector.credential_refs || {}).length;
-    return `<article class="connector-card"><div class="connector-card-head"><div><p class="kicker">${escapeHtml(connectorProviderLabel(connector.provider))}</p><h2>${escapeHtml(connector.external_account_id)}</h2><p>${escapeHtml(connectorDetails(connector))}</p></div>${badge(healthStatus)}</div><dl class="connector-meta"><div><dt>Last checked</dt><dd>${escapeHtml(isoLocal(connector.health_checked_at))}</dd></div><div><dt>Credential refs</dt><dd>${refCount ? `${refCount} present` : "—"}</dd></div></dl>${failure ? `<p class="connector-error">${escapeHtml(failure)}</p>` : ""}<div class="row-actions">${edit}${healthAction}${adsGateAction}</div></article>`;
+    const smokeSurface = smokeEligible ? `<section class="connector-smoke"><div class="connector-smoke-head"><div><strong>${escapeHtml(connectorProviderLabel(connector.provider))} · ${escapeHtml(tr("连通性验证"))}</strong><span>${escapeHtml(tr("执行最小真实读取请求，不保存响应内容。"))}</span></div>${providerSmokeActionHtml(connector.provider, connector.id)}</div>${providerSmokeStatusHtml(connector.provider, connector.id)}</section>` : "";
+    return `<article class="connector-card" data-provider="${escapeHtml(connector.provider)}"><div class="connector-card-head"><div><p class="kicker">${escapeHtml(connectorProviderLabel(connector.provider))}</p><h2>${escapeHtml(connector.external_account_id)}</h2><p>${escapeHtml(connectorDetails(connector))}</p></div>${badge(healthStatus)}</div><dl class="connector-meta"><div><dt>Last checked</dt><dd>${escapeHtml(isoLocal(connector.health_checked_at))}</dd></div><div><dt>Credential refs</dt><dd>${refCount ? `${refCount} present` : "—"}</dd></div></dl>${failure ? `<p class="connector-error">${escapeHtml(failure)}</p>` : ""}<div class="row-actions">${edit}${healthAction}${adsGateAction}</div>${smokeSurface}</article>`;
   }).join("");
 }
 
@@ -1436,6 +1581,7 @@ function renderAll() {
   renderAdsAdapterStatus();
   renderRuntimeSession();
   renderAiProviderStatus();
+  renderOpenAiProviderSmoke();
   setConnectionSection(state.connectionSection);
   applyTranslations();
 }
@@ -1470,6 +1616,8 @@ function renderDisconnected() {
   state.proposals = []; state.proposalExecutions = []; state.proposalsLoading = false; state.proposalsError = null;
   state.missionEvents = []; state.liveCursor = null; state.liveLastAt = null;
   state.pilotStatus = null; state.pilotLoading = false; state.pilotError = null;
+  state.providerSmokeTests = []; state.providerSmokeLoading = false; state.providerSmokeError = null;
+  state.providerSmokeRunning = {}; state.providerSmokeRunErrors = {};
   state.assuranceRuns = []; state.assuranceLoading = false; state.assuranceError = null;
   if (state.liveStatus !== "auth_failed") { state.liveStatus = "disconnected"; state.liveError = null; }
   state.agentGraphs = []; state.agentGraphsLoading = false; state.agentGraphsError = null;
@@ -1496,6 +1644,7 @@ function renderDisconnected() {
   renderAdsAdapterStatus();
   renderRuntimeSession();
   renderAiProviderStatus();
+  renderOpenAiProviderSmoke();
   setConnectionSection(state.connectionSection);
   applyTranslations();
 }
@@ -1517,6 +1666,7 @@ async function refreshAll() {
   state.dailyOpsLoading = true; state.dailyOpsScheduleError = null; state.dailyOpsRunError = null;
   state.proposalsLoading = true; state.proposalsError = null;
   state.pilotLoading = true; state.pilotError = null;
+  state.providerSmokeLoading = true; state.providerSmokeError = null;
   state.assuranceLoading = true; state.assuranceError = null;
   renderReportRecipes();
   renderReportSyncs();
@@ -1528,6 +1678,8 @@ async function refreshAll() {
   renderRunMetricOptions();
   renderDailyOps();
   renderPilotStatus();
+  renderConnectors();
+  renderOpenAiProviderSmoke();
   renderProposals();
   renderAssurance();
   const platform = encodeURIComponent(state.selectedPlatform);
@@ -1542,6 +1694,7 @@ async function refreshAll() {
   const proposals = api("/v1/proposals?limit=100").then(value => ({value})).catch(error => ({error}));
   const proposalExecutions = api("/v1/proposal-executions?limit=100").then(value => ({value})).catch(error => ({error}));
   const pilot = api("/v1/pilot-status").then(value => ({value})).catch(error => ({error}));
+  const providerSmokes = api("/v1/provider-smoke-tests?limit=100").then(value => ({value})).catch(error => ({error}));
   const assurance = api("/v1/assurance-runs?limit=100").then(value => ({value})).catch(error => ({error}));
   const graphs = api("/v1/agent-graphs").then(async value => {
     const listed = Array.isArray(value) ? value : value?.graphs || [];
@@ -1558,10 +1711,10 @@ async function refreshAll() {
     }));
     return {graphs: detailed};
   }).then(value => ({value})).catch(error => ({error}));
-  const [me, catalog, briefing, mission, imports, runs, jobs, schedules, audit, connectors, recipeResult, syncResult, observationResult, materializationResult, adsGateResult, adsAdapterResult, graphResult, dailyScheduleResult, dailyRunResult, proposalResult, executionResult, pilotResult, assuranceResult] = await Promise.all([
+  const [me, catalog, briefing, mission, imports, runs, jobs, schedules, audit, connectors, recipeResult, syncResult, observationResult, materializationResult, adsGateResult, adsAdapterResult, graphResult, dailyScheduleResult, dailyRunResult, proposalResult, executionResult, pilotResult, providerSmokeResult, assuranceResult] = await Promise.all([
     api("/v1/me"), api("/v1/catalog"), api(`/v1/briefing?platform=${platform}`), api("/v1/mission-control"),
     api("/v1/evidence-imports?limit=100"), api("/v1/agent-runs?limit=100"), api("/v1/jobs?limit=100"),
-    api("/v1/schedules"), api("/v1/audit?limit=100"), api("/v1/connectors"), recipes, syncs, observations, materializations, adsGates, adsAdapter, graphs, dailyOpsSchedules, dailyOpsRuns, proposals, proposalExecutions, pilot, assurance,
+    api("/v1/schedules"), api("/v1/audit?limit=100"), api("/v1/connectors"), recipes, syncs, observations, materializations, adsGates, adsAdapter, graphs, dailyOpsSchedules, dailyOpsRuns, proposals, proposalExecutions, pilot, providerSmokes, assurance,
   ]);
   if (recipeResult.error) console.error("Report Recipes 加载失败", recipeResult.error);
   if (syncResult.error) console.error("Sync Activity 加载失败", syncResult.error);
@@ -1574,6 +1727,7 @@ async function refreshAll() {
   if (proposalResult.error) console.error("行动提案加载失败", proposalResult.error);
   if (executionResult.error) console.error("提案执行记录加载失败", executionResult.error);
   if (pilotResult.error) console.error("Pilot Runtime 状态加载失败", pilotResult.error);
+  if (providerSmokeResult.error) console.error("Provider smoke 结果加载失败", providerSmokeResult.error);
   if (assuranceResult.error) console.error("Assurance 状态加载失败", assuranceResult.error);
   Object.assign(state, {
     me, catalog, briefing, mission,
@@ -1598,6 +1752,8 @@ async function refreshAll() {
     proposals: Array.isArray(proposalResult.value) ? proposalResult.value : proposalResult.value?.proposals || [], proposalsLoading: false, proposalsError: proposalResult.error?.message || executionResult.error?.message || null,
     proposalExecutions: Array.isArray(executionResult.value) ? executionResult.value : executionResult.value?.executions || [],
     pilotStatus: pilotResult.value || null, pilotLoading: false, pilotError: pilotResult.error?.message || null,
+    providerSmokeTests: Array.isArray(providerSmokeResult.value) ? providerSmokeResult.value : providerSmokeResult.value?.provider_smoke_tests || [],
+    providerSmokeLoading: false, providerSmokeError: providerSmokeResult.error?.message || null,
     assuranceRuns: Array.isArray(assuranceResult.value) ? assuranceResult.value : assuranceResult.value?.runs || [], assuranceLoading: false, assuranceError: assuranceResult.error?.message || null,
   });
   setConnected(true);
@@ -1978,6 +2134,7 @@ document.body.addEventListener("click", event => {
     case "open-connector-form": openConnectorForm(); break;
     case "edit-connector": openConnectorForm(state.connectors.find(item => item.id === id)); break;
     case "health-check-connector": act(button, () => api(`/v1/connectors/${id}/health-check`, {method: "POST"}), "健康检查已完成。"); break;
+    case "run-provider-smoke": runProviderSmoke(button); break;
     case "open-ads-capability-form": openAdsCapabilityForm(id); break;
     case "view-ads-capability-gate": act(button, async () => showDetail("Amazon Ads 准入检查", await api(`/v1/ads-capability-gates/${id}`)), "准入详情已加载。", false); break;
     case "open-recipe-form": openRecipeForm(); break;

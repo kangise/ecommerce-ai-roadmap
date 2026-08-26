@@ -72,12 +72,13 @@ jobs:
           from pathlib import Path
           from tempfile import TemporaryDirectory
           from ecommerce_ai_skills import USER_AGENT, __version__
+          from ecommerce_ai_skills.runtime.agents import OpenAIResponsesProvider
           from ecommerce_ai_skills.runtime.api import RuntimeApplication, _Handler
           from ecommerce_ai_skills.runtime.storage import Database, SCHEMA_VERSION
           assert version("ecommerce-ai-skills") == __version__ == "1.3.0"
           assert USER_AGENT == "ecommerce-ai-skills/1.3.0"
           assert _Handler.server_version == "EcommerceAI/1.3.0"
-          assert SCHEMA_VERSION == 21
+          assert SCHEMA_VERSION == 22
           root = Path(".")
           demo = json.loads((root / "demo.json").read_text())
           backup = json.loads((root / "backup.json").read_text())
@@ -90,20 +91,36 @@ jobs:
           assert demo["security_assurance_status"] == "passed"
           assert demo["eval_assurance_status"] == "passed"
           assert demo["proposal_count"] == 2 and demo["assurance_count"] == 2
-          assert backup["status"] == "succeeded" and backup["schema_version"] == 21
-          assert verified["valid"] is True and verified["schema_version"] == 21
+          assert backup["status"] == "succeeded" and backup["schema_version"] == 22
+          assert verified["valid"] is True and verified["schema_version"] == 22
           assert not (root / "unused.sqlite").exists()
           assert restored["restored"] is True and restored["tenant_count"] == 1
-          restored_app = RuntimeApplication(Database(root / "restored.sqlite"))
+          def deny_network(*args, **kwargs):
+              raise AssertionError("provider smoke must block before network")
+          restored_app = RuntimeApplication(
+              Database(root / "restored.sqlite"),
+              provider_smoke_openai_provider=OpenAIResponsesProvider(
+                  environ={}, transport=deny_network
+              ),
+          )
           principal = restored_app.auth.authenticate(demo["owner_api_key"])
-          assert restored_app.db.readiness()["schema_version"] == 21
+          assert restored_app.db.readiness()["schema_version"] == 22
+          smoke = restored_app.provider_smoke.execute(
+              principal,
+              provider="openai",
+              idempotency_key="release-provider-smoke",
+              request_id="release-provider-smoke",
+          )
+          assert smoke["status"] == "blocked"
+          assert smoke["error_code"] == "missing_credential"
+          assert restored_app.provider_smoke.list(principal)[0]["id"] == smoke["id"]
           assert restored_app.db.verify_audit_chain(principal.tenant_id)["valid"] is True
           assurance = {(item["kind"], item["status"]) for item in restored_app.assurance.list(principal)}
           assert {("eval", "passed"), ("security", "passed"), ("restore", "passed")}.issubset(assurance)
           object_files = [path for path in (root / "restored.sqlite.evidence_objects").rglob("*") if path.is_file()]
           assert len(object_files) == backup["evidence_object_count"]
           with TemporaryDirectory() as directory:
-              assert Database(Path(directory) / "runtime.sqlite").readiness()["schema_version"] == 21
+              assert Database(Path(directory) / "runtime.sqlite").readiness()["schema_version"] == 22
           PY
 
       - name: Package distributable

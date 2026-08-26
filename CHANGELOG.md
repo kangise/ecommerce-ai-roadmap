@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 
 ## [Unreleased]
 
+### Added
+- Added a tenant-owned Provider Smoke control plane for OpenAI Responses,
+  Amazon SP-API, and Shopify: operator-gated live probes, viewer-readable
+  persisted results, 30-second per-target cooldowns, idempotent lease-fenced
+  recovery, terminal audit-chain evidence, bounded request IDs/response reads,
+  and explicit blocked/failed states. OpenAI probes use the deployment-shared
+  `OPENAI_API_KEY` and `EAI_OPENAI_MODEL`, `store:false`, a small output limit,
+  and never persist or display generated output or raw provider bodies.
+
 ### Changed
 - Added an explicit, refresh-persistent Light/Dark control and corrected Dark
   foreground treatment for Primary commands, Amazon/TikTok brands, Agent and

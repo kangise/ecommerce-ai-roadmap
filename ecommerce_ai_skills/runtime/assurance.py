@@ -18,6 +18,10 @@ REQUIRED_TRIGGERS = {
     "assurance_runs_actor_insert","assurance_runs_initial_insert","assurance_runs_terminal_transition","assurance_runs_terminal_update","assurance_runs_identity_update","assurance_runs_delete",
     "mission_events_cursor_insert","mission_events_safe_metadata_insert","mission_events_resource_binding_insert","mission_events_immutable_update","mission_events_bounded_delete",
     "proposal_executions_status_transition","daily_ops_runs_status_transition",
+    "provider_smoke_tests_actor_insert","provider_smoke_tests_connector_insert",
+    "provider_smoke_tests_initial_insert","provider_smoke_tests_terminal_transition",
+    "provider_smoke_tests_lease_reclaim","provider_smoke_tests_identity_update",
+    "provider_smoke_tests_terminal_update","provider_smoke_tests_delete",
 }
 
 

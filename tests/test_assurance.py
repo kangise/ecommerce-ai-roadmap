@@ -43,7 +43,7 @@ def test_v20_audit_history_backfills_deterministically(tmp_path:Path)->None:
         conn.execute("DROP TABLE assurance_runs")
         conn.execute("UPDATE runtime_meta SET value='20' WHERE key='schema_version'")
     migrated=Database(path)
-    assert migrated.readiness()["schema_version"]==21
+    assert migrated.readiness()["schema_version"]==22
     assert migrated.verify_audit_chain(tenant)["valid"] is True
     with migrated.connect() as conn:
         first=conn.execute("SELECT previous_hash,event_hash FROM audit_events WHERE tenant_id=? ORDER BY rowid LIMIT 1",(tenant,)).fetchone()

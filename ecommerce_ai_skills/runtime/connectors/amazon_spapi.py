@@ -307,7 +307,7 @@ class AmazonSPAPIReportsConnector:
             },
             method="GET",
         )
-        raw, _, _ = self._send(request, "Amazon SP-API")
+        raw, headers, _ = self._send(request, "Amazon SP-API")
         response = self._json(raw, "Amazon SP-API")
         payload = response.get("payload", response)
         participations = (
@@ -334,7 +334,20 @@ class AmazonSPAPIReportsConnector:
             raise ExternalServiceError(
                 f"Amazon credentials are not authorized for configured marketplace: {missing[0]}"
             )
-        return {"authorized_marketplace_ids": sorted(authorized)}
+        normalized_headers = self._header_dict(headers)
+        provider_request_id = next(
+            (
+                value
+                for key, value in normalized_headers.items()
+                if key.lower() in {"x-amzn-requestid", "x-amz-request-id", "x-request-id"}
+                and re.fullmatch(r"[A-Za-z0-9._:-]{1,200}", value)
+            ),
+            None,
+        )
+        return {
+            "authorized_marketplace_ids": sorted(authorized),
+            "provider_request_id": provider_request_id,
+        }
 
     @staticmethod
     def _validate_id(value: str, label: str) -> str:

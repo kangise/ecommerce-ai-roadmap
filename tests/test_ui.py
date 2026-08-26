@@ -149,6 +149,9 @@ def test_mission_control_assets_are_real_and_javascript_compiles() -> None:
     assert "Amazon Ads 准入" in html
     assert 'id="ads-capability-list"' in html
     assert 'id="ads-adapter-status"' in html and "Adapter Lock" in html
+    assert 'id="openai-smoke-status"' in html
+    assert "EAI_OPENAI_MODEL" in html
+    assert "OpenAI 连通性验证" in html
     assert 'id="ads-capability-dialog"' in html
     assert 'id="amazon-ads-connector-fields"' in html
     assert 'id="demo-badge"' in html and 'id="demo-banner"' in html
@@ -209,6 +212,7 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
         "open-connector-form",
         "edit-connector",
         "health-check-connector",
+        "run-provider-smoke",
         "open-recipe-form",
         "edit-recipe",
         "enqueue-report-sync",
@@ -291,6 +295,14 @@ def test_connections_i18n_actions_and_browser_secret_boundary() -> None:
     assert 'case "set-locale"' in script
     assert 'case "select-connection-section"' in script
     assert 'case "open-connection-settings"' in script
+    assert 'case "run-provider-smoke"' in script
+    assert 'api("/v1/provider-smoke-tests?limit=100")' in script
+    assert 'api("/v1/provider-smoke-tests", {method: "POST"' in script
+    assert 'api("/v1/connectors")' in script and 'api("/v1/audit?limit=100")' in script
+    assert '"openai", "amazon_spapi", "shopify"' in script
+    assert "state.providerSmokeTests" in script
+    assert "providerSmokeCanRun" in script
+    assert "Model output is never saved or displayed" in i18n
     assert 'data-view="accounts"' in html  # stable route/data-view contract
     assert 'data-view-panel="accounts"' in html
     for section in ("runtime", "marketplaces", "ai", "reports"):
