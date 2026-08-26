@@ -1,5 +1,8 @@
 "use strict";
 
+const i18n = window.CommerceI18n;
+if (!i18n) throw new Error("i18n catalog is unavailable");
+
 const state = {
   apiKey: "",
   me: null,
@@ -59,6 +62,8 @@ const state = {
   selectedPlatform: "amazon",
   chartMetric: null,
   theme: "light",
+  locale: i18n.getLocale(),
+  connectionSection: "runtime",
   timer: null,
   noticeTimer: null,
 };
@@ -69,10 +74,35 @@ const icon = name => `<img src="/app/assets/icons/${name}.svg" alt="">`;
 const escapeHtml = value => String(value ?? "").replace(/[&<>'"]/g, character => ({
   "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;",
 }[character]));
-const isoLocal = value => value ? new Date(value).toLocaleString("zh-CN", {hour12: false}) : "—";
-const shortDate = value => value ? new Date(value).toLocaleDateString("zh-CN", {month: "numeric", day: "numeric"}) : "—";
+const isoLocal = value => value ? new Date(value).toLocaleString(state.locale, {hour12: false}) : "—";
+const shortDate = value => value ? new Date(value).toLocaleDateString(state.locale, {month: "numeric", day: "numeric"}) : "—";
 const idempotency = prefix => `${prefix}:${crypto.randomUUID()}`;
 const THEME_STORAGE_KEY = "commerce-agent-theme";
+const tr = value => i18n.translate(value, state.locale);
+
+function applyTranslations() {
+  i18n.apply(document);
+  document.querySelectorAll(".locale-option").forEach(button => {
+    const active = button.dataset.localeValue === state.locale;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", active ? "true" : "false");
+  });
+}
+
+function updateTodayLabel() {
+  const today = new Date().toLocaleDateString(state.locale, {year: "numeric", month: "2-digit", day: "2-digit"});
+  $("today-label").textContent = state.locale === "en" ? `Today is ${today}` : `今天是 ${today}`;
+}
+
+function applyLocale(locale, persist = true) {
+  state.locale = persist ? i18n.setLocale(locale) : locale;
+  setConnected(Boolean(state.apiKey && state.me));
+  if (state.me) renderAll();
+  else renderDisconnected();
+  updateTodayLabel();
+  applyTranslations();
+  return document.documentElement.dataset.localeStorage !== "unavailable";
+}
 
 function loadThemePreference() {
   try {
@@ -85,7 +115,8 @@ function loadThemePreference() {
 }
 
 function applyTheme(theme, persist = true) {
-  if (!["light", "dark"].includes(theme)) return;
+  if (!["light", "dark"].includes(theme)) return false;
+  let stored = true;
   state.theme = theme;
   document.documentElement.dataset.theme = theme;
   document.querySelectorAll(".theme-option").forEach(button => {
@@ -100,18 +131,20 @@ function applyTheme(theme, persist = true) {
       localStorage.setItem(THEME_STORAGE_KEY, theme);
       delete document.documentElement.dataset.themeStorage;
     } catch {
+      stored = false;
       document.documentElement.dataset.themeStorage = "unavailable";
       notice("主题已切换，但浏览器无法保存偏好。", "error");
     }
   }
   const metric = (state.briefing?.metrics || []).find(item => (item.series_id || item.key) === state.chartMetric);
   if (metric) requestAnimationFrame(() => drawChart(metric));
+  return stored;
 }
 
 function notice(message, type = "info") {
   const target = $("notice");
   if (state.noticeTimer) clearTimeout(state.noticeTimer);
-  target.textContent = message;
+  target.textContent = tr(message);
   target.className = `notice show ${type}`;
   if (type !== "error") state.noticeTimer = setTimeout(clearNotice, 3200);
 }
@@ -127,7 +160,7 @@ function busy(button, value) {
   if (value) {
     busyContent.set(button, button.innerHTML);
     button.disabled = true;
-    button.textContent = "处理中…";
+    button.textContent = tr("处理中…");
   } else {
     button.innerHTML = busyContent.get(button) || button.innerHTML;
     button.disabled = false;
@@ -154,19 +187,22 @@ function setConnected(connected) {
   $("connection-dot").classList.toggle("connected", connected);
   $("refresh-btn").disabled = !connected;
   $("disconnect-btn").disabled = !connected;
-  $("connect-btn").disabled = connected;
+  $("connect-btn").disabled = false;
+  $("connect-btn").textContent = tr(connected ? "验证并更换" : "安全连接");
   $("connection-btn").classList.toggle("connected", connected);
   $("demo-badge").hidden = !demo;
   $("demo-banner").hidden = !demo;
-  $("connection-btn").querySelector("span").textContent = connected ? "Runtime 已连接" : "连接 Runtime";
-  $("account-role").textContent = connected ? `${state.me?.role || "viewer"} · 已连接` : "未连接";
+  $("connection-btn").querySelector("span").textContent = tr(connected ? "Runtime 已连接" : "连接 Runtime");
+  $("account-role").textContent = connected ? `${tr(state.me?.role || "viewer")} · ${tr("已连接")}` : tr("未连接");
   $("account-name").textContent = connected ? (state.me?.tenant_name || state.me?.email || "Local Runtime") : "Local Runtime";
+  renderRuntimeSession();
+  applyTranslations();
 }
 
 function platformName(platform = state.selectedPlatform) {
   const entry = (state.catalog?.platforms || []).find(item => item.id === platform);
   const defaults = {amazon: "Amazon", shopify: "Shopify", walmart: "Walmart", tiktok_shop: "TikTok Shop"};
-  return defaults[platform] || entry?.label?.zh || entry?.label?.en || platform;
+  return defaults[platform] || (state.locale === "en" ? entry?.label?.en : entry?.label?.zh) || entry?.label?.en || entry?.label?.zh || platform;
 }
 
 function updatePlatformChrome() {
@@ -189,12 +225,71 @@ function navigate(view) {
   window.scrollTo({top: 0, behavior: "smooth"});
 }
 
+function setConnectionSection(section) {
+  const allowed = new Set(["runtime", "marketplaces", "ai", "reports"]);
+  state.connectionSection = allowed.has(section) ? section : "runtime";
+  document.querySelectorAll("[data-connection-panel]").forEach(panel => {
+    const active = panel.dataset.connectionPanel === state.connectionSection;
+    panel.hidden = !active;
+    panel.classList.toggle("active", active);
+  });
+  document.querySelectorAll(".connection-tab").forEach(button => {
+    const active = button.dataset.connectionSection === state.connectionSection;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-selected", active ? "true" : "false");
+    button.tabIndex = active ? 0 : -1;
+  });
+  applyTranslations();
+}
+
+function openConnectionSettings(section = "runtime") {
+  navigate("accounts");
+  setConnectionSection(section);
+}
+
+function renderRuntimeSession() {
+  const target = $("runtime-session-summary");
+  if (!target) return;
+  if (!state.apiKey || !state.me) {
+    designedEmpty(target, "Runtime 未连接", "连接 Runtime API Key 后显示当前租户与角色。", "key");
+    return;
+  }
+  target.innerHTML = `<article class="connection-status-card"><div class="connection-status-head"><div><strong>${escapeHtml(state.me.tenant_name || state.me.email || "Runtime")}</strong><span>${escapeHtml(state.me.email || "—")}</span></div>${badge("connected")}</div><dl class="connection-status-meta"><div><dt>Tenant</dt><dd>${escapeHtml(state.me.tenant_name || "—")}</dd></div><div><dt>Role</dt><dd>${escapeHtml(tr(state.me.role || "viewer"))}</dd></div><div><dt>Session secret</dt><dd>Memory only</dd></div><div><dt>Storage</dt><dd>Not persisted</dd></div></dl></article>`;
+  applyTranslations();
+}
+
+function renderAiProviderStatus() {
+  const target = $("ai-provider-status");
+  if (!target) return;
+  if (!state.apiKey) {
+    designedEmpty(target, "Runtime 未连接", "连接后读取模型 API 的部署准备度。", "key");
+    return;
+  }
+  if (state.pilotLoading) {
+    designedEmpty(target, "正在检查模型 API", "正在读取部署环境中的配置存在性。", "pulse");
+    return;
+  }
+  if (state.pilotError) {
+    target.innerHTML = `<div class="agent-graph-failure" role="alert"><strong>${escapeHtml(tr("无法读取模型 API 准备度"))}</strong><span>${escapeHtml(state.pilotError)}</span></div>`;
+    applyTranslations();
+    return;
+  }
+  const tenant = state.pilotStatus?.tenant || {};
+  const component = tenant.components?.openai || null;
+  const issues = [...(state.pilotStatus?.blockers || tenant.blockers || []), ...(state.pilotStatus?.warnings || [])];
+  const keyMissing = issues.some(item => item.code === "OPENAI_API_KEY_MISSING");
+  const modelMissing = issues.some(item => item.code === "OPENAI_MODEL_MISSING");
+  const status = component?.status || (keyMissing || modelMissing ? "missing" : "unknown");
+  target.innerHTML = `<article class="connection-status-card"><div class="connection-status-head"><div><strong>OpenAI Responses API</strong><span>Deployment managed · presence only</span></div>${badge(status)}</div><dl class="connection-status-meta"><div><dt>API credential</dt><dd>${keyMissing ? tr("未配置") : tr("已检测到配置")}</dd></div><div><dt>Model</dt><dd>${modelMissing ? tr("未配置") : tr("已检测到配置")}</dd></div><div><dt>Live verification</dt><dd>${tr("未执行")}</dd></div><div><dt>Secret storage</dt><dd>Deployment environment</dd></div></dl>${keyMissing || modelMissing ? `<p class="permission-note">${escapeHtml(tr("完成部署配置后重启 Pilot，再使用“重新检查”读取真实准备度。"))}</p>` : `<p class="pilot-ready-note">${escapeHtml(tr("配置存在性已通过；真实模型访问仍需部署 smoke 验证。"))}</p>`}</article>`;
+  applyTranslations();
+}
+
 function designedEmpty(target, title, copy, iconName = "database", action = null) {
-  target.innerHTML = `<div class="designed-empty compact">${icon(iconName)}<strong>${escapeHtml(title)}</strong><span>${escapeHtml(copy)}</span>${action ? `<button data-action="navigate" data-view="${action.view}" class="text-button">${escapeHtml(action.label)}</button>` : ""}</div>`;
+  target.innerHTML = `<div class="designed-empty compact">${icon(iconName)}<strong>${escapeHtml(tr(title))}</strong><span>${escapeHtml(tr(copy))}</span>${action ? `<button data-action="navigate" data-view="${action.view}" class="text-button">${escapeHtml(tr(action.label))}</button>` : ""}</div>`;
 }
 
 function badge(status) {
-  return `<span class="badge ${escapeHtml(status)}">${escapeHtml(status)}</span>`;
+  return `<span class="badge ${escapeHtml(status)}">${escapeHtml(tr(status))}</span>`;
 }
 
 function connectorCanManage() {
@@ -207,14 +302,23 @@ function connectorCanCheck() {
 
 function connectorProviderLabel(provider) {
   const entry = (state.catalog?.connector_providers || []).find(item => item.id === provider || item.provider === provider);
-  return entry?.label?.zh || entry?.label?.en || entry?.label || entry?.name || (provider === "amazon_spapi" ? "Amazon" : provider === "amazon_ads" ? "Amazon Ads" : provider === "shopify" ? "Shopify" : provider);
+  return (state.locale === "en" ? entry?.label?.en : entry?.label?.zh) || entry?.label?.en || entry?.label?.zh || entry?.label || entry?.name || (provider === "amazon_spapi" ? "Amazon" : provider === "amazon_ads" ? "Amazon Ads" : provider === "shopify" ? "Shopify" : provider);
+}
+
+function marketplaceDisplayName(item) {
+  if (!item) return "";
+  if (item.country_code && typeof Intl.DisplayNames === "function") {
+    try { return new Intl.DisplayNames([state.locale], {type: "region"}).of(item.country_code) || item.name || item.id; }
+    catch { /* Fall back to the verified catalog label below. */ }
+  }
+  return item.name || item.label || item.id;
 }
 
 function connectorDetails(connector) {
   const details = connector.provider_details || {};
   if (connector.provider === "amazon_spapi") {
     const marketplaces = details.marketplaces || details.marketplace_ids || [];
-    const catalog = new Map((state.catalog?.amazon_marketplaces || []).map(item => [item.id, item.name || item.label || item.id]));
+    const catalog = new Map((state.catalog?.amazon_marketplaces || []).map(item => [item.id, marketplaceDisplayName(item)]));
     return [details.region, marketplaces.map(item => catalog.get(typeof item === "string" ? item : item.id) || (typeof item === "string" ? item : item.id)).join("、")].filter(Boolean).join(" · ") || "未配置 region 或 marketplace";
   }
   if (connector.provider === "shopify") return details.shop_domain || "未配置 Shopify domain";
@@ -260,9 +364,10 @@ function renderAdsAdapterStatus() {
   const value = state.adsAdapterStatus || {};
   const status = value.status || "blocked";
   const reasonLabels = {no_amazon_ads_account: "尚无 Amazon Ads 账户", no_capability_gate: "尚无 L5 准入记录", gate_not_passed: "L5 Gate 未通过", required_capabilities_missing: "必需能力不完整", gate_account_config_mismatch: "账户 region 或 Profile 已变化", gate_not_checked: "Gate 尚未完成", gate_stale_account_changed: "账户在 Gate 后已更新", gate_expired: "Gate 已超过 24 小时", gate_checked_in_future: "Gate 时间异常", adapter_not_installed: "Adapter 未安装", write_surface_disabled: "写入面已关闭"};
-  const reasons = (value.reason_codes || []).map(item => typeof item === "string" ? (reasonLabels[item] || item) : item.code || item.message).filter(Boolean);
-  const label = status === "eligible_not_installed" ? "Eligible · 未安装" : "Blocked";
-  target.innerHTML = `<article class="ads-adapter-card"><div class="ads-adapter-head"><div><p class="kicker">Adapter Lock</p><h3>Amazon Ads 写入适配器</h3><p>${escapeHtml(value.evaluated_at ? `检查于 ${isoLocal(value.evaluated_at)}` : "当前租户的真实准入评估")}</p></div>${badge(status)}</div><dl class="ads-adapter-meta"><div><dt>状态</dt><dd>${escapeHtml(label)}</dd></div><div><dt>Adapter registered</dt><dd>${value.adapter_registered === true ? "是" : "否"}</dd></div><div><dt>写操作</dt><dd>${escapeHtml((value.write_operations || []).join("、") || "无")}</dd></div><div><dt>原因</dt><dd>${escapeHtml(reasons.join(" · ") || "未提供原因")}</dd></div></dl><p class="ads-adapter-lock-note">当前构建未注册 Amazon Ads 写操作。此区域仅展示准入锁状态，不提供执行、解锁或写入按钮。</p></article>`;
+  const reasons = (value.reason_codes || []).map(item => tr(typeof item === "string" ? (reasonLabels[item] || item) : item.code || item.message)).filter(Boolean);
+  const label = status === "eligible_not_installed" ? tr("Eligible · 未安装") : tr("Blocked");
+  const evaluated = value.evaluated_at ? `${tr("检查于")} ${isoLocal(value.evaluated_at)}` : tr("当前租户的真实准入评估");
+  target.innerHTML = `<article class="ads-adapter-card"><div class="ads-adapter-head"><div><p class="kicker">Adapter Lock</p><h3>${escapeHtml(tr("Amazon Ads 写入适配器"))}</h3><p>${escapeHtml(evaluated)}</p></div>${badge(status)}</div><dl class="ads-adapter-meta"><div><dt>${escapeHtml(tr("状态"))}</dt><dd>${escapeHtml(label)}</dd></div><div><dt>${escapeHtml(tr("Adapter registered"))}</dt><dd>${escapeHtml(tr(value.adapter_registered === true ? "是" : "否"))}</dd></div><div><dt>${escapeHtml(tr("写操作"))}</dt><dd>${escapeHtml((value.write_operations || []).join("、") || tr("无"))}</dd></div><div><dt>${escapeHtml(tr("原因"))}</dt><dd>${escapeHtml(reasons.join(" · ") || tr("未提供原因"))}</dd></div></dl><p class="ads-adapter-lock-note">${escapeHtml(tr("当前构建未注册 Amazon Ads 写操作。此区域仅展示准入锁状态，不提供执行、解锁或写入按钮。"))}</p></article>`;
 }
 
 function connectorProviders() {
@@ -271,7 +376,7 @@ function connectorProviders() {
 
 function renderConnectorForm(provider = $("connector-provider").value || "amazon_spapi", connector = null) {
   const providerSelect = $("connector-provider");
-  providerSelect.innerHTML = connectorProviders().map(item => `<option value="${escapeHtml(item.id || item.provider)}">${escapeHtml(item.label?.zh || item.label?.en || item.label || item.name || item.id || item.provider)}</option>`).join("");
+  providerSelect.innerHTML = connectorProviders().map(item => `<option value="${escapeHtml(item.id || item.provider)}">${escapeHtml((state.locale === "en" ? item.label?.en : item.label?.zh) || item.label?.en || item.label?.zh || item.label || item.name || item.id || item.provider)}</option>`).join("");
   providerSelect.value = provider;
   const amazon = provider === "amazon_spapi";
   const ads = provider === "amazon_ads";
@@ -296,7 +401,7 @@ function renderConnectorMarketplaces(selected = []) {
   const region = $("connector-region").value;
   const selectedIds = new Set(selected.map(item => typeof item === "string" ? item : item.id));
   const markets = (state.catalog?.amazon_marketplaces || []).filter(item => !region || item.region === region);
-  $("connector-marketplaces").innerHTML = markets.length ? markets.map(item => `<label><input type="checkbox" name="connector-marketplace" value="${escapeHtml(item.id)}" ${selectedIds.has(item.id) ? "checked" : ""}>${escapeHtml(item.name || item.label || item.id)}</label>`).join("") : "<span class=\"permission-reason\">Catalog 中没有此 region 的 marketplace。</span>";
+  $("connector-marketplaces").innerHTML = markets.length ? markets.map(item => `<label><input type="checkbox" name="connector-marketplace" value="${escapeHtml(item.id)}" ${selectedIds.has(item.id) ? "checked" : ""}>${escapeHtml(marketplaceDisplayName(item))}</label>`).join("") : "<span class=\"permission-reason\">Catalog 中没有此 region 的 marketplace。</span>";
 }
 
 function openConnectorForm(connector = null) {
@@ -333,7 +438,7 @@ function adsCheckList(gate) {
   const normalized = Array.isArray(checks) ? checks : Object.entries(checks).map(([key, value]) => ({key, ...(typeof value === "object" ? value : {status: value})}));
   if (!normalized.length) return "<span class=\"permission-reason\">检查详情将在请求完成后显示。</span>";
   const labels = {lwa: "LWA 授权", profiles_read: "Ads Profiles", target_profile: "Profile 匹配", campaigns_list_read: "Sponsored Products 只读", external_attestation: "外部批准证明"};
-  return `<ul class="ads-check-list">${normalized.map(check => `<li>${badge(check.status || check.outcome || "checking")}<span>${escapeHtml(check.label || labels[check.name || check.key] || check.name || check.key || "check")}</span>${check.detail || check.message ? `<small>${escapeHtml(check.detail || check.message)}</small>` : ""}</li>`).join("")}</ul>`;
+  return `<ul class="ads-check-list">${normalized.map(check => `<li>${badge(check.status || check.outcome || "checking")}<span>${escapeHtml(tr(check.label || labels[check.name || check.key] || check.name || check.key || "check"))}</span>${check.detail || check.message ? `<small>${escapeHtml(tr(check.detail || check.message))}</small>` : ""}</li>`).join("")}</ul>`;
 }
 
 function renderAdsCapabilityGates() {
@@ -361,7 +466,7 @@ function renderAdsCapabilityGates() {
     const status = gate.overall_status || gate.status || "checking";
     const blockers = gate.blockers || gate.safe_blockers || (gate.status === "blocked" || gate.status === "failed" ? [gate.error_message || gate.error_code].filter(Boolean) : []);
     const requestId = Array.isArray(gate.request_ids) ? gate.request_ids.join(" · ") : gate.request_id || gate.external_request_id;
-    return `<article class="ads-capability-card"><div class="ads-capability-head"><div><p class="kicker">${escapeHtml(account?.external_account_id || "Amazon Ads account")}</p><h3>${escapeHtml(account ? connectorDetails(account) : gate.connector_account_id)}</h3><p>${escapeHtml(isoLocal(gate.checked_at || gate.created_at || gate.updated_at))}</p></div>${badge(status)}</div><div class="ads-checks">${adsCheckList(gate)}</div>${blockers.length ? `<p class="ads-blockers"><strong>阻塞原因</strong>${escapeHtml(blockers.map(item => typeof item === "string" ? item : item.message || item.code).join(" · "))}</p>` : ""}<dl class="ads-capability-meta"><div><dt>Request ID</dt><dd>${escapeHtml(requestId || "—")}</dd></div><div><dt>外部证明</dt><dd>${escapeHtml(gate.attestation_reference || "—")}</dd></div></dl><div class="row-actions"><button data-action="view-ads-capability-gate" data-id="${escapeHtml(gate.id)}" class="secondary-button">查看详情</button></div></article>`;
+    return `<article class="ads-capability-card"><div class="ads-capability-head"><div><p class="kicker">${escapeHtml(account?.external_account_id || "Amazon Ads account")}</p><h3>${escapeHtml(account ? connectorDetails(account) : gate.connector_account_id)}</h3><p>${escapeHtml(isoLocal(gate.checked_at || gate.created_at || gate.updated_at))}</p></div>${badge(status)}</div><div class="ads-checks">${adsCheckList(gate)}</div>${blockers.length ? `<p class="ads-blockers"><strong>${escapeHtml(tr("阻塞原因"))}</strong>${escapeHtml(blockers.map(item => tr(typeof item === "string" ? item : item.message || item.code)).join(" · "))}</p>` : ""}<dl class="ads-capability-meta"><div><dt>Request ID</dt><dd>${escapeHtml(requestId || "—")}</dd></div><div><dt>${escapeHtml(tr("外部证明"))}</dt><dd>${escapeHtml(gate.attestation_reference || "—")}</dd></div></dl><div class="row-actions"><button data-action="view-ads-capability-gate" data-id="${escapeHtml(gate.id)}" class="secondary-button">查看详情</button></div></article>`;
   }).join("");
 }
 
@@ -398,7 +503,7 @@ function recipeType(recipe) {
 
 function recipeMarketplaceLabel(id) {
   const marketplace = (state.catalog?.amazon_marketplaces || []).find(item => item.id === id);
-  return marketplace?.name || marketplace?.label || id;
+  return marketplaceDisplayName(marketplace) || id;
 }
 
 function recipeAccountLabel(account) {
@@ -540,7 +645,7 @@ function renderCatalog() {
   const platforms = state.catalog?.platforms || [];
   const reports = state.catalog?.report_types || [];
   for (const id of ["evidence-platform", "schedule-platform"]) {
-    $(id).innerHTML = platforms.map(platform => `<option value="${escapeHtml(platform.id)}">${escapeHtml(platform.label?.zh || platform.label?.en || platform.id)}</option>`).join("");
+    $(id).innerHTML = platforms.map(platform => `<option value="${escapeHtml(platform.id)}">${escapeHtml((state.locale === "en" ? platform.label?.en : platform.label?.zh) || platform.label?.en || platform.label?.zh || platform.id)}</option>`).join("");
     if (platforms.some(platform => platform.id === state.selectedPlatform)) $(id).value = state.selectedPlatform;
   }
   renderReportOptions("evidence-platform", "evidence-type", reports);
@@ -558,12 +663,12 @@ function formatMetric(metric, compact = false) {
   const options = metric.format === "integer"
     ? {maximumFractionDigits: 0, notation: compact ? "compact" : "standard"}
     : {maximumFractionDigits: metric.format === "percent" ? 2 : 2, notation: compact ? "compact" : "standard"};
-  const value = new Intl.NumberFormat("zh-CN", options).format(metric.value);
+  const value = new Intl.NumberFormat(state.locale, options).format(metric.value);
   return metric.format === "percent" ? `${value}%` : value;
 }
 
 function metricChange(metric) {
-  if (metric.change_percent === null || metric.change_percent === undefined) return {label: "首次观测", className: ""};
+  if (metric.change_percent === null || metric.change_percent === undefined) return {label: tr("首次观测"), className: ""};
   const change = Number(metric.change_percent);
   const label = `${change > 0 ? "+" : ""}${change.toFixed(1)}%`;
   if (metric.trend_mode === "context_only" || change === 0) return {label, className: ""};
@@ -580,8 +685,8 @@ function renderMetrics() {
   }
   target.innerHTML = metrics.slice(0, 4).map(metric => {
     const change = metricChange(metric);
-    const unitNote = metric.format === "amount" ? (metric.currency || "币种未知") : `观测于 ${shortDate(metric.observed_at)}`;
-    return `<article class="metric-item"><span>${escapeHtml(metric.label)}</span><strong>${escapeHtml(formatMetric(metric))}</strong><small class="${change.className}">${escapeHtml(change.label)} · ${escapeHtml(unitNote)}</small></article>`;
+    const unitNote = metric.format === "amount" ? (metric.currency || tr("币种未知")) : `${tr("观测于")} ${shortDate(metric.observed_at)}`;
+    return `<article class="metric-item"><span>${escapeHtml(tr(metric.label))}</span><strong>${escapeHtml(formatMetric(metric))}</strong><small class="${change.className}">${escapeHtml(change.label)} · ${escapeHtml(unitNote)}</small></article>`;
   }).join("");
 }
 
@@ -596,7 +701,7 @@ function renderChartControls() {
   const identity = metric => metric.series_id || metric.key;
   if (!metrics.some(metric => identity(metric) === state.chartMetric)) state.chartMetric = identity(metrics[0]);
   $("chart-controls").innerHTML = metrics.map(metric => {
-    const label = [metric.label, metric.currency, metric.time_grain].filter(Boolean).join(" · ");
+    const label = [tr(metric.label), metric.currency, tr(metric.time_grain)].filter(Boolean).join(" · ");
     return `<button data-action="select-metric" data-metric="${escapeHtml(identity(metric))}" class="metric-toggle ${identity(metric) === state.chartMetric ? "active" : ""}">${escapeHtml(label)}</button>`;
   }).join("");
   drawChart(metrics.find(metric => identity(metric) === state.chartMetric));
@@ -649,7 +754,7 @@ function drawChart(metric) {
     const value = maximum - (maximum - minimum) * index / 4;
     context.fillStyle = labelColor;
     context.textAlign = "right";
-    context.fillText(new Intl.NumberFormat("zh-CN", {notation: "compact", maximumFractionDigits: 1}).format(value), padding.left - 9, y);
+    context.fillText(new Intl.NumberFormat(state.locale, {notation: "compact", maximumFractionDigits: 1}).format(value), padding.left - 9, y);
   }
   const xAt = index => points.length === 1 ? padding.left + plotWidth / 2 : padding.left + plotWidth * index / (points.length - 1);
   const yAt = value => padding.top + (maximum - value) / (maximum - minimum) * plotHeight;
@@ -683,8 +788,8 @@ function renderPriorities() {
   }
   target.innerHTML = priorities.map((priority, index) => `<article class="priority-row">
     <span class="priority-rank">${escapeHtml(priority.rank || index + 1)}</span>
-    <div class="priority-copy"><strong>${escapeHtml(priority.title)}</strong><p>${escapeHtml(priority.why_now)}</p><div class="priority-meta"><span class="meta-chip">影响：${escapeHtml(priority.expected_impact)}</span><span class="meta-chip">Owner：${escapeHtml(agentDisplayName(priority.recommended_owner))}</span><span class="meta-chip">证据 ${priority.evidence_refs?.length || 0} 条</span></div></div>
-    <div class="priority-actions"><button data-action="view-priority" data-index="${index}" class="secondary-button">查看证据</button><span class="confidence ${escapeHtml(priority.confidence)}">${escapeHtml(priority.confidence)} confidence</span></div>
+    <div class="priority-copy"><strong>${escapeHtml(priority.title)}</strong><p>${escapeHtml(priority.why_now)}</p><div class="priority-meta"><span class="meta-chip">${escapeHtml(tr("影响"))}${state.locale === "en" ? ": " : "："}${escapeHtml(priority.expected_impact)}</span><span class="meta-chip">${escapeHtml(tr("Owner"))}${state.locale === "en" ? ": " : "："}${escapeHtml(agentDisplayName(priority.recommended_owner))}</span><span class="meta-chip">${state.locale === "en" ? `${priority.evidence_refs?.length || 0} ${(priority.evidence_refs?.length || 0) === 1 ? "Evidence source" : "Evidence sources"}` : `证据 ${priority.evidence_refs?.length || 0} 条`}</span></div></div>
+    <div class="priority-actions"><button data-action="view-priority" data-index="${index}" class="secondary-button">查看证据</button><span class="confidence ${escapeHtml(priority.confidence)}">${escapeHtml(tr(priority.confidence))} ${escapeHtml(tr("confidence"))}</span></div>
   </article>`).join("");
 }
 
@@ -713,7 +818,7 @@ function canApprove() {
 function approvalCard(action, compact = false) {
   const approveAllowed = canApprove();
   return `<article class="${compact ? "decision-card" : "data-row"}">
-    <div class="${compact ? "" : "data-main"}"><strong>${escapeHtml(operationLabel(action.operation))}</strong><p>${escapeHtml(actionContext(action))}</p>${compact ? "" : `<small>${badge(action.status)}${escapeHtml(isoLocal(action.created_at))}</small>`}</div>
+    <div class="${compact ? "" : "data-main"}"><strong>${escapeHtml(tr(operationLabel(action.operation)))}</strong><p>${escapeHtml(actionContext(action))}</p>${compact ? "" : `<small>${badge(action.status)}${escapeHtml(isoLocal(action.created_at))}</small>`}</div>
     <div class="${compact ? "card-actions" : "row-actions"}"><button data-action="view-action" data-id="${action.id}" class="secondary-button">查看</button><button data-action="approve-action" data-id="${action.id}" class="primary-button" ${approveAllowed ? "" : 'disabled title="需要 admin 或 owner 角色"'}>批准</button></div>
     ${approveAllowed ? "" : '<span class="permission-reason">当前角色只能查看；批准需要 admin 或 owner。</span>'}
   </article>`;
@@ -775,8 +880,8 @@ function renderBriefing() {
   renderBriefingApprovals();
   renderAgentRoster();
   const evidence = state.briefing?.evidence;
-  $("evidence-range").textContent = evidence ? `${evidence.source_count} 个来源 · ${evidence.row_count} 行真实数据` : "尚未连接";
-  $("evidence-freshness").textContent = evidence?.latest_observed_at ? `最新观测 ${isoLocal(evidence.latest_observed_at)}` : "等待 Evidence";
+  $("evidence-range").textContent = evidence ? (state.locale === "en" ? `${evidence.source_count} sources · ${evidence.row_count} verified rows` : `${evidence.source_count} 个来源 · ${evidence.row_count} 行真实数据`) : tr("尚未连接");
+  $("evidence-freshness").textContent = evidence?.latest_observed_at ? `${tr("最新观测")} ${isoLocal(evidence.latest_observed_at)}` : tr("等待 Evidence");
   $("briefing-summary").textContent = state.briefing?.executive_summary || (evidence?.source_count ? "Evidence 已连接；完成一次 Weekly Ops 后生成有证据引用的经营结论。" : "还没有该平台的真实 Evidence；导入数据后再生成经营简报。");
 }
 
@@ -1091,13 +1196,13 @@ function renderApprovals() {
 
 function liveStatusCopy() {
   const copies = {
-    disconnected: ["未连接", "连接 Runtime 后开始接收租户内的实时状态。"],
-    connecting: ["正在连接", "正在建立经过身份验证的实时事件流。"],
-    empty: ["实时已连接", "当前还没有新的任务状态事件。"],
-    live: ["实时已连接", state.liveLastAt ? `最近更新 ${isoLocal(state.liveLastAt)}` : "正在接收真实任务状态。"],
-    reconnecting: ["正在重连", state.liveError || "连接已中断，将从最后游标继续。"],
-    error: ["实时连接异常", state.liveError || "无法建立实时事件流。"],
-    auth_failed: ["认证已失效", "API Key 已从页面内存清除，请重新连接 Runtime。"],
+    disconnected: [tr("未连接"), tr("连接 Runtime 后开始接收租户内的实时状态。")],
+    connecting: [tr("正在连接"), tr("正在建立经过身份验证的实时事件流。")],
+    empty: [tr("实时已连接"), tr("当前还没有新的任务状态事件。")],
+    live: [tr("实时已连接"), state.liveLastAt ? `${tr("最近更新")} ${isoLocal(state.liveLastAt)}` : tr("正在接收真实任务状态。")],
+    reconnecting: [tr("正在重连"), state.liveError || tr("连接已中断，将从最后游标继续。")],
+    error: [tr("实时连接异常"), state.liveError || tr("无法建立实时事件流。")],
+    auth_failed: [tr("认证已失效"), tr("API Key 已从页面内存清除，请重新连接 Runtime。")],
   };
   return copies[state.liveStatus] || copies.disconnected;
 }
@@ -1181,7 +1286,14 @@ function renderPilotStatus() {
   const blockers = state.pilotStatus.blockers || tenant.blockers || [];
   const warnings = state.pilotStatus.warnings || [];
   const issues = [...blockers, ...warnings];
-  summary.innerHTML = `<div class="pilot-summary-head"><div><strong>Commerce Agent Pilot</strong><span>${escapeHtml(tenant.tenant_name || state.me?.tenant_name || "当前租户")}</span></div>${badge(overall)}</div><div class="pilot-summary-meta"><span>Runtime ${escapeHtml(runtime.status || "stopped")}</span><span>Generation ${escapeHtml(runtime.generation ?? "—")}</span><span>Heartbeat ${escapeHtml(isoLocal(runtime.last_heartbeat_at))}</span></div>${issues.length ? `<div class="pilot-blockers">${issues.map(item => `<span>${escapeHtml(pilotBlockerLabels[item.code] || item.code || "未知阻塞")}</span>`).join("")}</div>` : '<div class="pilot-ready-note">运行环境与当前租户已通过 Pilot 检查。</div>'}`;
+  const modelIssue = issues.some(item => ["OPENAI_API_KEY_MISSING", "OPENAI_MODEL_MISSING"].includes(item.code));
+  const marketplaceIssue = issues.some(item => String(item.code || "").startsWith("AMAZON_"));
+  const repairAction = modelIssue
+    ? '<button class="primary-button pilot-repair-action" data-action="open-connection-settings" data-connection-section="ai">配置模型 API</button>'
+    : marketplaceIssue
+      ? '<button class="primary-button pilot-repair-action" data-action="open-connection-settings" data-connection-section="marketplaces">配置 Marketplace API</button>'
+      : "";
+  summary.innerHTML = `<div class="pilot-summary-head"><div><strong>Commerce Agent Pilot</strong><span>${escapeHtml(tenant.tenant_name || state.me?.tenant_name || "当前租户")}</span></div>${badge(overall)}</div><div class="pilot-summary-meta"><span>Runtime ${escapeHtml(runtime.status || "stopped")}</span><span>Generation ${escapeHtml(runtime.generation ?? "—")}</span><span>Heartbeat ${escapeHtml(isoLocal(runtime.last_heartbeat_at))}</span></div>${issues.length ? `<div class="pilot-blockers">${issues.map(item => `<span>${escapeHtml(pilotBlockerLabels[item.code] || item.code || "未知阻塞")}</span>`).join("")}</div>${repairAction}` : '<div class="pilot-ready-note">运行环境与当前租户已通过 Pilot 检查。</div>'}`;
   const workers = Array.isArray(runtime.workers) ? runtime.workers : [];
   if (!workers.length) designedEmpty(workersTarget, "Pilot Workers 未运行", "启动 `opc-ecommerce pilot` 后，六个 Worker 会在此持续报告心跳。", "gear-six");
   else workersTarget.innerHTML = workers.map(worker => `<div class="pilot-worker-row"><div><strong>${escapeHtml(pilotWorkerLabels[worker.name] || worker.name)}</strong><small>tick ${escapeHtml(worker.iteration_count ?? 0)} · heartbeat ${escapeHtml(isoLocal(worker.last_heartbeat_at))}${worker.last_error_type ? ` · ${escapeHtml(worker.last_error_type)}` : ""}</small></div>${badge(worker.status || "starting")}</div>`).join("");
@@ -1322,6 +1434,10 @@ function renderAll() {
   renderMetricMaterializations();
   renderAdsCapabilityGates();
   renderAdsAdapterStatus();
+  renderRuntimeSession();
+  renderAiProviderStatus();
+  setConnectionSection(state.connectionSection);
+  applyTranslations();
 }
 
 function renderDisconnected() {
@@ -1378,6 +1494,10 @@ function renderDisconnected() {
   renderMetricMaterializations();
   renderAdsCapabilityGates();
   renderAdsAdapterStatus();
+  renderRuntimeSession();
+  renderAiProviderStatus();
+  setConnectionSection(state.connectionSection);
+  applyTranslations();
 }
 
 async function refreshAll() {
@@ -1519,6 +1639,7 @@ async function refreshPilotStatus() {
   state.pilotLoading = true;
   state.pilotError = null;
   renderPilotStatus();
+  renderAiProviderStatus();
   try {
     state.pilotStatus = await api("/v1/pilot-status");
   } catch (error) {
@@ -1528,6 +1649,8 @@ async function refreshPilotStatus() {
   } finally {
     state.pilotLoading = false;
     renderPilotStatus();
+    renderAiProviderStatus();
+    applyTranslations();
   }
 }
 
@@ -1785,13 +1908,16 @@ document.body.addEventListener("click", event => {
   switch (button.dataset.action) {
     case "navigate": navigate(button.dataset.view); break;
     case "open-connection": $("connection-dialog").showModal(); break;
+    case "open-connection-settings": openConnectionSettings(button.dataset.connectionSection); break;
+    case "select-connection-section": setConnectionSection(button.dataset.connectionSection); break;
     case "close-dialog": $(button.dataset.dialog).close(); break;
     case "refresh": act(button, refreshAll, "今日简报已刷新。", false); break;
     case "refresh-pilot": act(button, refreshPilotStatus, "Pilot Runtime 状态已刷新。", false); break;
     case "retry-live": retryLiveStream(); break;
     case "connect": connect(button); break;
     case "disconnect": disconnect(); break;
-    case "set-theme": applyTheme(button.dataset.themeValue); notice(`${button.textContent.trim()} 主题已启用。`, "success"); break;
+    case "set-theme": if (applyTheme(button.dataset.themeValue)) notice("主题已更新。", "success"); break;
+    case "set-locale": notice(applyLocale(button.dataset.localeValue) ? "界面语言已更新。" : "语言已切换，但浏览器无法保存偏好。", document.documentElement.dataset.localeStorage === "unavailable" ? "error" : "success"); break;
     case "select-platform": selectPlatform(button); break;
     case "select-metric": state.chartMetric = button.dataset.metric; renderChartControls(); break;
     case "view-priority": showDetail("Agent Brief", {run_id: state.briefing?.brief_run_id, priority: state.briefing?.priorities?.[Number(button.dataset.index)]}); break;
@@ -1889,9 +2015,27 @@ document.body.addEventListener("click", event => {
   }
 });
 
+document.body.addEventListener("keydown", event => {
+  const tab = event.target.closest?.(".connection-tab");
+  if (!tab || !["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+  const tabs = [...document.querySelectorAll(".connection-tab")];
+  const current = tabs.indexOf(tab);
+  if (current < 0) return;
+  event.preventDefault();
+  const next = event.key === "Home"
+    ? 0
+    : event.key === "End"
+      ? tabs.length - 1
+      : (current + (event.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length;
+  tabs[next].focus();
+  setConnectionSection(tabs[next].dataset.connectionSection);
+});
+
 async function connect(button) {
   const key = $("api-key").value.trim();
   if (!key) { notice("请输入 API Key", "error"); return; }
+  const previousKey = state.apiKey;
+  const previousMe = state.me;
   state.apiKey = key;
   busy(button, true);
   try {
@@ -1903,10 +2047,10 @@ async function connect(button) {
     notice("已连接。API Key 仅保存在当前页面内存。", "success");
     startPolling();
   } catch (error) {
-    state.apiKey = "";
-    state.me = null;
-    setConnected(false);
-    notice(error.message, "error");
+    state.apiKey = previousKey;
+    state.me = previousMe;
+    setConnected(Boolean(previousKey && previousMe));
+    notice(previousKey ? `${error.message} · ${tr("原会话已保留。")}` : error.message, "error");
   } finally {
     busy(button, false);
     setConnected(Boolean(state.apiKey));
@@ -2148,9 +2292,10 @@ window.addEventListener("resize", () => {
   if (metric) requestAnimationFrame(() => drawChart(metric));
 });
 applyTheme(loadThemePreference() || "light", false);
-const now = new Date();
-$("today-label").textContent = `今天是 ${now.toLocaleDateString("zh-CN", {year: "numeric", month: "2-digit", day: "2-digit"})}`;
+state.locale = i18n.getLocale();
+updateTodayLabel();
 setDefaultTimes();
 setConnected(false);
 renderDisconnected();
+applyTranslations();
 tryDemoSession().catch(error => notice(error.message, "error"));

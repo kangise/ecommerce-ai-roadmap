@@ -214,3 +214,24 @@ transformation.
   size only if it preserves unseen runtime glyph coverage.
 
 final result: passed
+
+## Multilingual and Connections Hub follow-up
+
+- Audit report: `artifacts/design-qa/settings-audit/audit.md`
+- Before: `01-briefing-mixed-language.png`,
+  `02-accounts-existing-connections.png`, `03-runtime-key-dialog.png`, and
+  `04-runtime-readiness.png` under `artifacts/design-qa/settings-audit/`.
+- Final: `08-connections-zh-mobile-390-top.png`,
+  `12-connections-zh-dark-final.png`,
+  `14-connections-zh-light-final-clean.png`, and
+  `15-connections-en-light-final.png` in the same directory.
+- Result: Chinese/English interface switching and reload persistence passed;
+  Runtime/Marketplace/AI/Reports connection sections passed; failed Runtime key
+  replacement retained the authenticated session; 390px and 320px remained at
+  zero horizontal overflow; the final browser console contained no warnings or
+  errors.
+- Honest boundary: tenant and agent-authored business content keeps its source
+  language, OpenAI readiness is presence-only, and secret values remain outside
+  browser persistence.
+
+final result: passed

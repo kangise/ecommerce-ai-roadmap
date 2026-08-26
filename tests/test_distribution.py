@@ -764,6 +764,7 @@ def test_installable_package_contains_runtime_and_generated_artifact() -> None:
     assert (package_root / "runtime" / "jobs.py").is_file()
     assert (package_root / "runtime" / "evals.py").is_file()
     assert (package_root / "runtime" / "web" / "mission-control.html").is_file()
+    assert (package_root / "runtime" / "web" / "i18n.js").is_file()
     assert (package_root / "runtime" / "web" / "app.js").is_file()
     assert (package_root / "runtime" / "web" / "styles.css").is_file()
     assert (package_root / "runtime" / "web" / "assets" / "brands" / "commerce-agent-os.png").is_file()

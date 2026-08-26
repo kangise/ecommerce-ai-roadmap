@@ -208,6 +208,7 @@ class _Handler(BaseHTTPRequestHandler):
         assets: dict[str, tuple[str, str]] = {
             "/app": ("mission-control.html", "text/html; charset=utf-8"),
             "/app/": ("mission-control.html", "text/html; charset=utf-8"),
+            "/app/i18n.js": ("i18n.js", "text/javascript; charset=utf-8"),
             "/app/app.js": ("app.js", "text/javascript; charset=utf-8"),
             "/app/styles.css": ("styles.css", "text/css; charset=utf-8"),
         }
@@ -499,7 +500,7 @@ class _Handler(BaseHTTPRequestHandler):
         self.app.metrics.increment("http_requests_total")
         try:
             parsed = urlparse(self.path)
-            if parsed.path in {"/app", "/app/", "/app/app.js", "/app/styles.css"} or parsed.path.startswith("/app/assets/"):
+            if parsed.path in {"/app", "/app/", "/app/app.js", "/app/i18n.js", "/app/styles.css"} or parsed.path.startswith("/app/assets/"):
                 self._static(parsed.path, request_id)
                 return
             if parsed.path not in {"/healthz", "/readyz"}:

@@ -116,6 +116,18 @@ unauthenticated, but every data request uses the supplied tenant API key. The
 key remains only in page memory and is cleared on reload/disconnect; the app
 never writes it to browser storage, cookies, or the DOM.
 
+Mission Control supports persistent Simplified Chinese and English interface
+preferences. The locale preference is the only locale value stored in the
+browser; tenant data, imported Evidence, and agent-generated business content
+remain in their source language rather than being silently machine-translated.
+The Connections Hub centralizes four real surfaces: the in-memory Runtime API
+session, tenant-scoped Amazon/Shopify connector configuration, deployment-owned
+model API readiness, and persisted report recipes/sync activity. Marketplace
+and model secret values still belong in the deployment environment or a Secret
+Manager. The UI saves only non-sensitive configuration and environment-variable
+references. OpenAI readiness is currently a presence check, not a live model
+smoke test, and the UI labels that limitation explicitly.
+
 ## Explicit Demo data
 
 For the zero-setup product tour, run the dedicated loopback-only Demo server:

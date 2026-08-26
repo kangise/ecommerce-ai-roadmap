@@ -16,13 +16,13 @@
         <strong>Commerce Agent OS</strong>
       </div>
       <nav class="side-nav">
-        <button data-action="navigate" data-view="briefing" class="nav-item active" aria-label="今日简报" aria-current="page"><img src="/app/assets/icons/house.svg" alt=""><span>今日简报</span></button>
-        <button data-action="navigate" data-view="agents" class="nav-item" aria-label="Agents"><img src="/app/assets/icons/robot.svg" alt=""><span>Agents</span></button>
-        <button data-action="navigate" data-view="evidence" class="nav-item" aria-label="Evidence"><img src="/app/assets/icons/database.svg" alt=""><span>Evidence</span></button>
-        <button data-action="navigate" data-view="approvals" class="nav-item" aria-label="Approvals"><img src="/app/assets/icons/shield-check.svg" alt=""><span>Approvals</span><span id="approval-nav-count" class="nav-count" hidden>0</span></button>
-        <button data-action="navigate" data-view="accounts" class="nav-item" aria-label="Accounts"><img src="/app/assets/icons/key.svg" alt=""><span>Accounts</span></button>
-        <button data-action="navigate" data-view="automations" class="nav-item" aria-label="Automations"><img src="/app/assets/icons/gear-six.svg" alt=""><span>Automations</span></button>
-        <button data-action="navigate" data-view="audit" class="nav-item" aria-label="Audit"><img src="/app/assets/icons/clipboard-text.svg" alt=""><span>Audit</span></button>
+        <button data-action="navigate" data-view="briefing" class="nav-item active" aria-label="今日简报" aria-current="page"><img src="/app/assets/icons/house.svg" alt=""><span class="nav-label">今日简报</span><span class="nav-label-short" aria-hidden="true">简报</span></button>
+        <button data-action="navigate" data-view="agents" class="nav-item" aria-label="Agents"><img src="/app/assets/icons/robot.svg" alt=""><span class="nav-label">Agents</span><span class="nav-label-short" aria-hidden="true">智能体</span></button>
+        <button data-action="navigate" data-view="evidence" class="nav-item" aria-label="Evidence"><img src="/app/assets/icons/database.svg" alt=""><span class="nav-label">Evidence</span><span class="nav-label-short" aria-hidden="true">证据</span></button>
+        <button data-action="navigate" data-view="approvals" class="nav-item" aria-label="Approvals"><img src="/app/assets/icons/shield-check.svg" alt=""><span class="nav-label">Approvals</span><span class="nav-label-short" aria-hidden="true">审批</span><span id="approval-nav-count" class="nav-count" hidden>0</span></button>
+        <button data-action="navigate" data-view="accounts" class="nav-item" aria-label="Connections"><img src="/app/assets/icons/key.svg" alt=""><span class="nav-label">Connections</span><span class="nav-label-short" aria-hidden="true">连接</span></button>
+        <button data-action="navigate" data-view="automations" class="nav-item" aria-label="Automations"><img src="/app/assets/icons/gear-six.svg" alt=""><span class="nav-label">Automations</span><span class="nav-label-short" aria-hidden="true">自动化</span></button>
+        <button data-action="navigate" data-view="audit" class="nav-item" aria-label="Audit"><img src="/app/assets/icons/clipboard-text.svg" alt=""><span class="nav-label">Audit</span><span class="nav-label-short" aria-hidden="true">审计</span></button>
       </nav>
       <div class="sidebar-footer">
         <button data-action="open-connection" class="account-button">
@@ -48,8 +48,12 @@
             <button data-action="set-theme" data-theme-value="light" class="theme-option active" aria-pressed="true" title="使用 Light 主题">Light</button>
             <button data-action="set-theme" data-theme-value="dark" class="theme-option" aria-pressed="false" title="使用 Dark 主题">Dark</button>
           </div>
+          <div class="locale-switch" role="group" aria-label="界面语言">
+            <button data-action="set-locale" data-locale-value="zh-CN" class="locale-option active" aria-pressed="true" title="使用中文">中文</button>
+            <button data-action="set-locale" data-locale-value="en" class="locale-option" aria-pressed="false" title="Use English">EN</button>
+          </div>
           <span class="today"><img src="/app/assets/icons/calendar-dots.svg" alt=""><span id="today-label"></span></span>
-          <button data-action="open-connection" id="connection-btn" class="quiet-button"><img src="/app/assets/icons/key.svg" alt=""><span>连接 Runtime</span></button>
+          <button data-action="open-connection" id="connection-btn" class="quiet-button" aria-label="连接 Runtime"><img src="/app/assets/icons/key.svg" alt=""><span>连接 Runtime</span></button>
         </div>
       </header>
 
@@ -180,34 +184,77 @@
 
         <section id="view-accounts" class="view" data-view-panel="accounts" aria-labelledby="accounts-title">
           <div class="page-heading compact">
-            <div><p class="kicker">Accounts Center</p><h1 id="accounts-title">连接店铺账户</h1><p class="heading-summary">仅保存环境变量引用，不在浏览器或 Runtime 数据库中保存平台密钥。</p></div>
-            <div class="heading-actions"><button data-action="open-connector-form" id="add-connector-btn" class="primary-button">添加账户</button></div>
+            <div><p class="kicker">Connections Hub</p><h1 id="accounts-title">连接与 API</h1><p class="heading-summary">在一个位置管理当前 Runtime 会话、Marketplace API、模型 API 准备度和报告同步配置。</p></div>
           </div>
-          <section class="tool-panel wide"><div id="connector-permission" class="permission-note" hidden></div><div id="connector-list" class="connector-list" aria-live="polite"></div></section>
-          <section class="accounts-ads-gates" aria-labelledby="ads-gates-title">
-            <div class="section-title-row"><div><h2 id="ads-gates-title">Amazon Ads 准入</h2><span>检查授权、Profile、Sponsored Products 读取权限与外部审批；不会创建、修改或暂停 Campaign。</span></div><button data-action="open-ads-capability-form" id="add-ads-capability-btn" class="primary-button">运行准入检查</button></div>
-            <div id="ads-capability-permission" class="permission-note" hidden></div>
-            <div id="ads-capability-list" class="ads-capability-list" aria-live="polite"></div>
-            <div class="ads-adapter-lock" aria-labelledby="ads-adapter-lock-title">
-              <div class="section-title-row"><div><h3 id="ads-adapter-lock-title">Adapter Lock</h3><span>写入适配器单独评估；当前版本只允许读取和展示状态。</span></div></div>
-              <div id="ads-adapter-status" aria-live="polite"></div>
+          <div class="connection-tabs" role="tablist" aria-label="连接设置分类">
+            <button id="connection-tab-runtime" data-action="select-connection-section" data-connection-section="runtime" class="connection-tab active" role="tab" aria-controls="connection-panel-runtime" aria-selected="true">Runtime API</button>
+            <button id="connection-tab-marketplaces" data-action="select-connection-section" data-connection-section="marketplaces" class="connection-tab" role="tab" aria-controls="connection-panel-marketplaces" aria-selected="false">Marketplace APIs</button>
+            <button id="connection-tab-ai" data-action="select-connection-section" data-connection-section="ai" class="connection-tab" role="tab" aria-controls="connection-panel-ai" aria-selected="false">AI Provider</button>
+            <button id="connection-tab-reports" data-action="select-connection-section" data-connection-section="reports" class="connection-tab" role="tab" aria-controls="connection-panel-reports" aria-selected="false">Reports & Sync</button>
+          </div>
+
+          <section id="connection-panel-runtime" class="connection-panel active" data-connection-panel="runtime" role="tabpanel" aria-labelledby="connection-tab-runtime">
+            <div class="connection-overview-grid">
+              <section class="tool-panel runtime-session-panel">
+                <div class="panel-heading"><div><p class="kicker">Runtime API</p><h2>当前会话</h2><span>API Key 只保存在当前页面内存，不写入浏览器存储或 Runtime 数据库。</span></div><button data-action="open-connection" class="primary-button">连接或更换 Key</button></div>
+                <div id="runtime-session-summary" class="runtime-session-summary" aria-live="polite"></div>
+              </section>
+              <section class="tool-panel api-security-panel">
+                <div class="panel-heading"><div><p class="kicker">Secret boundary</p><h2>密钥安全边界</h2></div></div>
+                <ul class="connection-guidance-list">
+                  <li>Runtime API Key 只存在于当前页面内存；刷新或断开后清除。</li>
+                  <li>Marketplace 与模型密钥由部署环境或 Secret Manager 提供。</li>
+                  <li>此页面仅保存环境变量引用和非敏感连接配置。</li>
+                </ul>
+              </section>
             </div>
           </section>
-          <section class="accounts-recipes" aria-labelledby="recipes-title">
-            <div class="section-title-row"><div><h2 id="recipes-title">Report Recipes</h2><span>保存可复现的 Amazon 报告配置；远程采集由 L3 Sync 执行。</span></div><button data-action="open-recipe-form" id="add-recipe-btn" class="primary-button">添加 Recipe</button></div>
-            <div id="recipe-permission" class="permission-note" hidden></div>
-            <div id="recipe-list" class="recipe-list" aria-live="polite"></div>
+
+          <section id="connection-panel-marketplaces" class="connection-panel" data-connection-panel="marketplaces" role="tabpanel" aria-labelledby="connection-tab-marketplaces" hidden>
+            <div class="section-title-row connection-section-heading"><div><h2>Marketplace APIs</h2><span>连接 Amazon SP-API、Amazon Ads 与 Shopify；保存环境变量引用，不保存密钥值。</span></div><button data-action="open-connector-form" id="add-connector-btn" class="primary-button">添加连接</button></div>
+            <section class="tool-panel wide"><div id="connector-permission" class="permission-note" hidden></div><div id="connector-list" class="connector-list" aria-live="polite"></div></section>
+            <section class="accounts-ads-gates" aria-labelledby="ads-gates-title">
+              <div class="section-title-row"><div><h2 id="ads-gates-title">Amazon Ads 准入</h2><span>检查授权、Profile、Sponsored Products 读取权限与外部审批；不会创建、修改或暂停 Campaign。</span></div><button data-action="open-ads-capability-form" id="add-ads-capability-btn" class="primary-button">运行准入检查</button></div>
+              <div id="ads-capability-permission" class="permission-note" hidden></div>
+              <div id="ads-capability-list" class="ads-capability-list" aria-live="polite"></div>
+              <div class="ads-adapter-lock" aria-labelledby="ads-adapter-lock-title">
+                <div class="section-title-row"><div><h3 id="ads-adapter-lock-title">Adapter Lock</h3><span>写入适配器单独评估；当前版本只允许读取和展示状态。</span></div></div>
+                <div id="ads-adapter-status" aria-live="polite"></div>
+              </div>
+            </section>
           </section>
-          <section class="accounts-syncs" aria-labelledby="syncs-title">
-            <div class="section-title-row"><div><h2 id="syncs-title">Sync Activity</h2><span>由 L3 Worker 异步执行并轮询；排队不表示报表已完成。</span></div></div>
-            <div id="sync-list" class="sync-list" aria-live="polite"></div>
+
+          <section id="connection-panel-ai" class="connection-panel" data-connection-panel="ai" role="tabpanel" aria-labelledby="connection-tab-ai" hidden>
+            <section class="tool-panel wide ai-provider-panel">
+              <div class="panel-heading"><div><p class="kicker">AI Provider</p><h2>模型 API 准备度</h2><span>这里只读取部署环境中的配置存在性，不会接收、保存或回显模型密钥。</span></div><button data-action="refresh-pilot" class="secondary-button">重新检查</button></div>
+              <div id="ai-provider-status" class="ai-provider-status" aria-live="polite"></div>
+              <div class="deployment-guide">
+                <h3>部署环境配置</h3>
+                <p>在运行 Pilot 的 Secret Manager 或进程环境中设置以下变量，然后重启 Pilot 并重新检查：</p>
+                <dl><div><dt>API credential</dt><dd><code>OPENAI_API_KEY</code></dd></div><div><dt>Model</dt><dd><code>OPENAI_MODEL</code></dd></div></dl>
+                <p class="permission-note">Presence 只表示配置项存在，不代表模型访问已通过真实调用验证。当前版本没有浏览器端“测试 OpenAI”按钮。</p>
+                <button data-action="navigate" data-view="automations" class="text-button">查看 Pilot Runtime 详情</button>
+              </div>
+            </section>
+          </section>
+
+          <section id="connection-panel-reports" class="connection-panel" data-connection-panel="reports" role="tabpanel" aria-labelledby="connection-tab-reports" hidden>
+            <section class="accounts-recipes" aria-labelledby="recipes-title">
+              <div class="section-title-row"><div><h2 id="recipes-title">Report Recipes</h2><span>保存可复现的 Amazon 报告配置；远程采集由 L3 Sync 执行。</span></div><button data-action="open-recipe-form" id="add-recipe-btn" class="primary-button">添加 Recipe</button></div>
+              <div id="recipe-permission" class="permission-note" hidden></div>
+              <div id="recipe-list" class="recipe-list" aria-live="polite"></div>
+            </section>
+            <section class="accounts-syncs" aria-labelledby="syncs-title">
+              <div class="section-title-row"><div><h2 id="syncs-title">Sync Activity</h2><span>由 L3 Worker 异步执行并轮询；排队不表示报表已完成。</span></div></div>
+              <div id="sync-list" class="sync-list" aria-live="polite"></div>
+            </section>
           </section>
         </section>
 
         <section id="view-automations" class="view" data-view-panel="automations" aria-labelledby="automations-title">
           <div class="page-heading compact"><div><p class="kicker">Automation</p><h1 id="automations-title">计划与后台任务</h1><p class="heading-summary">Schedule 只选择最新真实 Evidence，Worker 使用持久化队列、租约和重试。</p></div></div>
           <section class="tool-panel wide pilot-runtime-panel" aria-labelledby="pilot-runtime-title">
-            <div class="panel-heading"><div><p class="kicker">One-command Pilot</p><h2 id="pilot-runtime-title">Pilot Runtime</h2><span>一条命令统一运行 API 与六个后台 Worker；此处只读取真实持久心跳，不从浏览器启动或停止进程。</span></div><button data-action="refresh-pilot" class="secondary-button">刷新运行状态</button></div>
+            <div class="panel-heading"><div><p class="kicker">One-command Pilot</p><h2 id="pilot-runtime-title">Pilot Runtime</h2><span>一条命令统一运行 API 与六个后台 Worker；此处只读取真实持久心跳，不从浏览器启动或停止进程。</span></div><div class="panel-heading-actions"><button data-action="open-connection-settings" data-connection-section="ai" class="text-button">连接设置</button><button data-action="refresh-pilot" class="secondary-button">刷新运行状态</button></div></div>
             <div id="pilot-runtime-summary" class="pilot-runtime-summary" aria-live="polite"></div>
             <div class="pilot-runtime-grid"><section><h3>Worker 心跳</h3><div id="pilot-worker-list" class="pilot-worker-list"></div></section><section><h3>当前租户准备度</h3><div id="pilot-readiness-list" class="pilot-readiness-list"></div></section></div>
           </section>
@@ -272,8 +319,8 @@
 
   <dialog id="connection-dialog" class="connection-dialog">
     <div class="dialog-head"><div><p class="kicker">Secure local session</p><h2>连接 Runtime</h2></div><button data-action="close-dialog" data-dialog="connection-dialog" class="icon-button" aria-label="关闭"><img src="/app/assets/icons/x.svg" alt=""></button></div>
-    <p>API Key 仅保存在当前页面内存，刷新或断开后立即清除。</p>
-    <label>API Key<input id="api-key" type="password" autocomplete="off" placeholder="eai_…" aria-label="API Key"></label>
+    <p>API 密钥仅保存在当前页面内存，刷新或断开后立即清除。</p>
+    <label>API 密钥<input id="api-key" type="password" autocomplete="off" placeholder="eai_…" aria-label="API 密钥"></label>
     <div class="dialog-actions"><button data-action="disconnect" id="disconnect-btn" class="secondary-button" disabled>断开</button><button data-action="connect" id="connect-btn" class="primary-button">安全连接</button></div>
   </dialog>
 
@@ -311,7 +358,7 @@
   </dialog>
 
   <dialog id="connector-dialog" class="connector-dialog">
-    <div class="dialog-head"><div><p class="kicker">Accounts Center</p><h2 id="connector-dialog-title">添加账户</h2></div><button data-action="close-dialog" data-dialog="connector-dialog" class="icon-button" aria-label="关闭"><img src="/app/assets/icons/x.svg" alt=""></button></div>
+    <div class="dialog-head"><div><p class="kicker">Marketplace connection</p><h2 id="connector-dialog-title">添加账户</h2></div><button data-action="close-dialog" data-dialog="connector-dialog" class="icon-button" aria-label="关闭"><img src="/app/assets/icons/x.svg" alt=""></button></div>
     <p class="dialog-copy">填写平台账户标识和环境变量名称。不要输入任何密钥值。</p>
     <form id="connector-form">
       <input id="connector-id" type="hidden">
@@ -359,6 +406,7 @@
     </form>
   </dialog>
 
+  <script src="/app/i18n.js" defer></script>
   <script src="/app/app.js" defer></script>
 </body>
 </html>

@@ -26,7 +26,7 @@ def test_l7_decision_workspace_visual_contract_is_complete() -> None:
     assert 'data-action="set-theme" data-theme-value="dark"' in html
     for region in ("navigation", "workspace", "scope-toolbar", "canvas", "contextual-detail"):
         assert f'data-ui-region="{region}"' in html
-    for label in ("今日简报", "Agents", "Evidence", "Approvals", "Accounts", "Automations", "Audit"):
+    for label in ("今日简报", "Agents", "Evidence", "Approvals", "Connections", "Automations", "Audit"):
         assert re.search(rf'<button[^>]+class="nav-item[^"]*"[^>]+aria-label="{re.escape(label)}"', html)
 
     expected_tokens = {
@@ -66,7 +66,8 @@ def test_l7_decision_workspace_visual_contract_is_complete() -> None:
     assert 'token("--line")' in script and 'token("--blue")' in script
     assert 'const THEME_STORAGE_KEY = "commerce-agent-theme"' in script
     assert 'localStorage.setItem(THEME_STORAGE_KEY, theme)' in script
-    assert 'case "set-theme": applyTheme(button.dataset.themeValue)' in script
+    assert 'case "set-theme":' in script
+    assert "applyTheme(button.dataset.themeValue)" in script
     assert 'document.documentElement.dataset.theme = theme' in script
     assert 'localStorage.setItem(THEME_STORAGE_KEY, state.apiKey)' not in script
     assert ':root[data-theme="dark"] .primary-button img{filter:brightness(0);opacity:.9}' in styles
@@ -118,10 +119,21 @@ def test_mission_control_assets_are_real_and_javascript_compiles() -> None:
     assert len(styles) > 1000 and len(script) > 5000
     assert "linear-gradient" not in styles and "radial-gradient" not in styles
     assert "data-view-panel=\"briefing\"" in html
+    assert '<script src="/app/i18n.js" defer>' in html
     assert "Agent Brief" in html and "需要你决定" in html
     assert 'data-view-panel="accounts"' in html
     assert 'id="connector-dialog"' in html
-    assert "Accounts Center" in html
+    assert "Connections Hub" in html
+    assert "Accounts Center" not in html
+    assert 'data-locale-value="zh-CN"' in html
+    assert 'data-locale-value="en"' in html
+    assert 'data-action="set-locale"' in html
+    assert 'data-action="open-connection-settings"' in html
+    for section in ("runtime", "marketplaces", "ai", "reports"):
+        assert f'data-connection-section="{section}"' in html
+        assert f'data-connection-panel="{section}"' in html
+    for short_label in ("简报", "智能体", "证据", "审批", "连接", "自动化", "审计"):
+        assert f'class="nav-label-short" aria-hidden="true">{short_label}</span>' in html
     assert "Report Recipes" in html
     assert 'id="recipe-dialog"' in html
     assert 'id="recipe-list"' in html
@@ -174,6 +186,9 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
         "connect",
         "disconnect",
         "set-theme",
+        "set-locale",
+        "select-connection-section",
+        "open-connection-settings",
         "refresh",
         "retry-live",
         "refresh-pilot",
@@ -261,6 +276,39 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
         "/v1/daily-ops-runs",
     ):
         assert endpoint in script
+
+
+def test_connections_i18n_actions_and_browser_secret_boundary() -> None:
+    html = (WEB / "mission-control.html").read_text(encoding="utf-8")
+    script = (WEB / "app.js").read_text(encoding="utf-8")
+    i18n = (WEB / "i18n.js").read_text(encoding="utf-8")
+
+    assert 'const SUPPORTED = ["zh-CN", "en"]' in i18n
+    assert 'data-locale-value="zh-CN"' in html and 'data-locale-value="en"' in html
+    assert 'data-action="set-locale"' in html
+    assert 'data-action="select-connection-section"' in html
+    assert 'data-action="open-connection-settings"' in html
+    assert 'case "set-locale"' in script
+    assert 'case "select-connection-section"' in script
+    assert 'case "open-connection-settings"' in script
+    assert 'data-view="accounts"' in html  # stable route/data-view contract
+    assert 'data-view-panel="accounts"' in html
+    for section in ("runtime", "marketplaces", "ai", "reports"):
+        assert f'data-connection-section="{section}"' in html
+        assert f'data-connection-panel="{section}"' in html
+
+    # Runtime credentials may be held in memory for the active session, but
+    # must not be persisted in browser storage or put into URL query strings.
+    assert "localStorage.setItem(THEME_STORAGE_KEY, state.apiKey)" not in script
+    assert "localStorage.setItem(\"api_key\"" not in script
+    assert "sessionStorage.setItem(\"api_key\"" not in script
+    assert "localStorage.setItem(\"secret\"" not in script
+    assert "sessionStorage.setItem(\"secret\"" not in script
+    assert "?api_key=" not in script and "?token=" not in script
+    assert '$("connect-btn").disabled = false' in script
+    assert "const previousKey = state.apiKey" in script
+    assert "state.apiKey = previousKey" in script
+    assert 'tr("原会话已保留。")' in script
 
 
 def test_proposal_workbench_uses_real_versioned_actions_and_safe_defaults() -> None:
@@ -406,6 +454,12 @@ def test_runtime_serves_ui_with_security_headers_and_live_catalog(tmp_path: Path
     assert b"Commerce Agent OS" in handler.wfile.getvalue()
     assert "script-src 'self'" in handler.response_headers["Content-Security-Policy"]
     assert handler.response_headers["Cache-Control"] == "no-store"
+
+    i18n_handler = StaticHandler("/app/i18n.js")
+    i18n_handler.do_GET()
+    assert i18n_handler.status == 200
+    assert i18n_handler.response_headers["Content-Type"] == "text/javascript; charset=utf-8"
+    assert b"CommerceI18n" in i18n_handler.wfile.getvalue()
 
     icon_handler = StaticHandler("/app/assets/icons/house.svg")
     icon_handler.do_GET()
