@@ -582,6 +582,7 @@ def main() -> int:
                     "/v1/schedules/{scheduleId}": {"patch"},
                     "/v1/approvals": {"get"},
                     "/v1/mission-control": {"get"},
+                    "/v1/mission-control/events": {"get"},
                     "/v1/briefing": {"get"},
                     "/v1/catalog": {"get"},
                 }
@@ -657,6 +658,7 @@ def main() -> int:
                     "Job",
                     "Schedule",
                     "MissionControl",
+                    "MissionEvent",
                     "OperatingBriefing",
                     "BriefingMetric",
                     "BriefingAgent",
@@ -851,6 +853,37 @@ def main() -> int:
                     problems.append(
                         "dist/openapi/runtime-api.yaml: L8 source gaps must be a closed schema"
                     )
+                sse_operation = paths.get("/v1/mission-control/events", {}).get("get", {})
+                sse_content = sse_operation.get("responses", {}).get("200", {}).get("content", {})
+                if "text/event-stream" not in sse_content:
+                    problems.append("dist/openapi/runtime-api.yaml: L10 SSE must return text/event-stream")
+                sse_parameters = {
+                    item.get("$ref", "").split("/")[-1]
+                    for item in sse_operation.get("parameters", []) if isinstance(item, dict)
+                }
+                if sse_parameters != {"lastEventId", "missionEventsAfter"}:
+                    problems.append("dist/openapi/runtime-api.yaml: L10 SSE must define header-first resume cursors")
+                event = schemas.get("MissionEvent", {})
+                if event.get("additionalProperties") is not False or event.get("required") != [
+                    "cursor", "event_type", "resource_type", "resource_id", "status",
+                    "previous_status", "metadata", "created_at",
+                ]:
+                    problems.append("dist/openapi/runtime-api.yaml: L10 MissionEvent must be a closed safe metadata schema")
+                if event.get("properties", {}).get("metadata", {}).get("additionalProperties") is not False:
+                    problems.append("dist/openapi/runtime-api.yaml: L10 MissionEvent metadata must be closed")
+                reset = schemas.get("MissionReset", {})
+                reconnect = schemas.get("MissionReconnect", {})
+                if reset.get("additionalProperties") is not False or reconnect.get("additionalProperties") is not False:
+                    problems.append("dist/openapi/runtime-api.yaml: L10 reset/reconnect controls must be closed")
+                cursor_parameters = contract.get("components", {}).get("parameters", {})
+                if any(cursor_parameters.get(name, {}).get("schema", {}).get("type") != "integer" for name in ("lastEventId", "missionEventsAfter")):
+                    problems.append("dist/openapi/runtime-api.yaml: L10 cursors must be tenant-local integers")
+                if not {"401", "403", "422", "429"} <= set(sse_operation.get("responses", {})):
+                    problems.append("dist/openapi/runtime-api.yaml: L10 SSE missing required auth/validation/limit responses")
+                if schemas.get("MissionControl", {}).get("additionalProperties") is not True:
+                    problems.append("dist/openapi/runtime-api.yaml: Mission Control snapshot must remain extension-compatible")
+                if "event_cursor" not in schemas.get("MissionControl", {}).get("required", []) or schemas.get("MissionEventCursor", {}).get("additionalProperties") is not False:
+                    problems.append("dist/openapi/runtime-api.yaml: L10 snapshot must expose a closed tenant cursor")
             except Exception as exc:
                 problems.append(f"dist/openapi/runtime-api.yaml: invalid YAML ({exc})")
         total = len(problems)

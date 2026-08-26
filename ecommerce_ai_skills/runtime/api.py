@@ -12,6 +12,8 @@ import ipaddress
 import logging
 import mimetypes
 import secrets
+import threading
+import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Any
@@ -41,6 +43,51 @@ log = logging.getLogger("ecommerce_ai_skills.api")
 WEB_ROOT = Path(__file__).resolve().parent / "web"
 
 
+class _MissionConnectionLimiter:
+    """Single-process SSE admission control for the stdlib HTTP server."""
+
+    def __init__(self, global_limit: int, tenant_limit: int):
+        self.global_limit = max(1, int(global_limit))
+        self.tenant_limit = max(1, int(tenant_limit))
+        self._lock = threading.Lock()
+        self._global_active = 0
+        self._tenant_active: dict[str, int] = {}
+
+    def acquire(self, tenant_id: str) -> None:
+        with self._lock:
+            tenant_active = self._tenant_active.get(tenant_id, 0)
+            if self._global_active >= self.global_limit:
+                log.warning("mission_stream_connection_rejected scope=global")
+                raise RateLimitError(
+                    "Mission Control SSE connection limit exceeded",
+                    retry_after=5,
+                )
+            if tenant_active >= self.tenant_limit:
+                log.warning("mission_stream_connection_rejected scope=tenant")
+                raise RateLimitError(
+                    "Mission Control SSE connection limit exceeded",
+                    retry_after=5,
+                )
+            self._global_active += 1
+            self._tenant_active[tenant_id] = tenant_active + 1
+
+    def release(self, tenant_id: str) -> None:
+        with self._lock:
+            active = self._tenant_active.get(tenant_id, 0)
+            if active <= 1:
+                self._tenant_active.pop(tenant_id, None)
+            else:
+                self._tenant_active[tenant_id] = active - 1
+            self._global_active = max(0, self._global_active - 1)
+
+    def snapshot(self) -> dict[str, Any]:
+        with self._lock:
+            return {
+                "global_active": self._global_active,
+                "tenant_active": dict(self._tenant_active),
+            }
+
+
 class RuntimeApplication:
     def __init__(
         self,
@@ -48,6 +95,13 @@ class RuntimeApplication:
         *,
         rate_limit_per_minute: int = 120,
         agent_provider: AgentProvider | None = None,
+        mission_event_poll_seconds: float = 1.0,
+        mission_event_heartbeat_seconds: float = 15.0,
+        mission_event_max_lifetime_seconds: float = 300.0,
+        mission_event_batch_size: int = 100,
+        mission_event_max_backlog: int = 500,
+        mission_event_max_connections: int = 20,
+        mission_event_max_connections_per_tenant: int = 4,
     ):
         self.db = db
         self.auth = AuthService(db)
@@ -79,6 +133,23 @@ class RuntimeApplication:
         self.evaluator = WorkflowEvaluator(db, self.auth)
         self.metrics = Metrics()
         self.rate_limiter = RateLimiter(rate_limit_per_minute)
+        self.mission_event_poll_seconds = max(0.01, float(mission_event_poll_seconds))
+        self.mission_event_heartbeat_seconds = max(
+            0.01, float(mission_event_heartbeat_seconds)
+        )
+        self.mission_event_max_lifetime_seconds = max(
+            0.01, float(mission_event_max_lifetime_seconds)
+        )
+        self.mission_event_batch_size = max(
+            1, min(int(mission_event_batch_size), 200)
+        )
+        self.mission_event_max_backlog = max(
+            1, min(int(mission_event_max_backlog), 10_000)
+        )
+        self.mission_connections = _MissionConnectionLimiter(
+            mission_event_max_connections,
+            mission_event_max_connections_per_tenant,
+        )
         self.demo_session: dict[str, str] | None = None
         self.demo_key_id: str | None = None
 
@@ -242,6 +313,179 @@ class _Handler(BaseHTTPRequestHandler):
     def _check_rate_limit(self) -> None:
         self.app.rate_limiter.check(self._client_key())
 
+    @staticmethod
+    def _mission_cursor(value: str, source: str) -> int:
+        if not value or not value.isascii() or not value.isdigit():
+            raise ValidationError(f"{source} must be a non-negative integer cursor")
+        cursor = int(value)
+        if cursor > 9_223_372_036_854_775_807:
+            raise ValidationError(f"{source} is outside the supported cursor range")
+        return cursor
+
+    def _mission_after(self, parsed: Any) -> int:
+        params = parse_qs(parsed.query, keep_blank_values=True)
+        unknown = set(params) - {"after"}
+        if unknown:
+            raise ValidationError(
+                "unknown query fields: " + ", ".join(sorted(unknown))
+            )
+        if len(params.get("after", [])) > 1:
+            raise ValidationError("after must be provided at most once")
+        query_after = 0
+        if "after" in params:
+            query_after = self._mission_cursor(params["after"][0], "after")
+
+        get_all = getattr(self.headers, "get_all", None)
+        if callable(get_all):
+            header_values = get_all("Last-Event-ID", [])
+        else:
+            header = self.headers.get("Last-Event-ID")
+            header_values = [header] if header is not None else []
+        if len(header_values) > 1:
+            raise ValidationError("Last-Event-ID must be provided at most once")
+        if header_values:
+            # The browser reconnect cursor is authoritative, but an explicitly
+            # supplied query cursor is still parsed and validated above.
+            return self._mission_cursor(header_values[0].strip(), "Last-Event-ID")
+        return query_after
+
+    @staticmethod
+    def _sse_frame(event_id: int, event_type: str, data: dict[str, Any]) -> bytes:
+        payload = json.dumps(
+            data, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+        )
+        return (
+            f"id: {event_id}\nevent: {event_type}\ndata: {payload}\n\n"
+        ).encode("utf-8")
+
+    def _mission_event_stream(
+        self, parsed: Any, principal: Principal, request_id: str
+    ) -> None:
+        self.app.auth.require(principal, "viewer")
+        marker = self._mission_after(parsed)
+        # Validate the tenant cursor and retention state before committing the
+        # response to an event stream, so all setup failures remain JSON.
+        page = self.app.db.read_mission_events(
+            principal.tenant_id,
+            after=marker,
+            limit=self.app.mission_event_batch_size,
+        )
+        self.app.mission_connections.acquire(principal.tenant_id)
+        established = False
+        try:
+            self.send_response(200)
+            self.send_header("Content-Type", "text/event-stream; charset=utf-8")
+            self.send_header("Cache-Control", "no-store")
+            self.send_header("Connection", "keep-alive")
+            self.send_header("X-Accel-Buffering", "no")
+            self.send_header("X-Content-Type-Options", "nosniff")
+            self.send_header("X-Request-ID", request_id)
+            self.end_headers()
+            established = True
+
+            started = time.monotonic()
+            last_write = started
+            delivered = 0
+            reconnect_reason = "lifetime_limit"
+            while time.monotonic() - started < self.app.mission_event_max_lifetime_seconds:
+                if page["reset_required"]:
+                    marker = int(page["reset_cursor"])
+                    self.wfile.write(
+                        self._sse_frame(
+                            marker,
+                            "mission.reset",
+                            {
+                                "reason": "retention_gap",
+                                "cursor": marker,
+                                "snapshot_url": "/v1/mission-control",
+                            },
+                        )
+                    )
+                    self.wfile.flush()
+                    last_write = time.monotonic()
+                    page = self.app.db.read_mission_events(
+                        principal.tenant_id,
+                        after=marker,
+                        limit=self.app.mission_event_batch_size,
+                    )
+                    continue
+
+                for event in page["events"]:
+                    event_id = int(event["cursor"])
+                    self.wfile.write(
+                        self._sse_frame(event_id, "mission.update", event)
+                    )
+                    marker = event_id
+                    delivered += 1
+                    last_write = time.monotonic()
+                    if delivered >= self.app.mission_event_max_backlog:
+                        reconnect_reason = "backlog_limit"
+                        break
+                if page["events"]:
+                    self.wfile.flush()
+                if delivered >= self.app.mission_event_max_backlog:
+                    break
+
+                if page["has_more"]:
+                    page = self.app.db.read_mission_events(
+                        principal.tenant_id,
+                        after=marker,
+                        limit=self.app.mission_event_batch_size,
+                    )
+                    continue
+
+                now = time.monotonic()
+                if now - last_write >= self.app.mission_event_heartbeat_seconds:
+                    self.wfile.write(b": heartbeat\n\n")
+                    self.wfile.flush()
+                    last_write = now
+                time.sleep(
+                    min(
+                        self.app.mission_event_poll_seconds,
+                        max(
+                            0.01,
+                            self.app.mission_event_max_lifetime_seconds
+                            - (time.monotonic() - started),
+                        ),
+                    )
+                )
+                page = self.app.db.read_mission_events(
+                    principal.tenant_id,
+                    after=marker,
+                    limit=self.app.mission_event_batch_size,
+                )
+            self.wfile.write(
+                self._sse_frame(
+                    marker,
+                    "mission.reconnect",
+                    {
+                        "reason": reconnect_reason,
+                        "retry_after_seconds": 1,
+                        "cursor": marker,
+                    },
+                )
+            )
+            self.wfile.flush()
+        except (BrokenPipeError, ConnectionResetError, OSError) as exc:
+            log.info(
+                "mission_stream_disconnected request_id=%s tenant_id=%s type=%s",
+                request_id,
+                principal.tenant_id,
+                type(exc).__name__,
+            )
+        except Exception:
+            if established:
+                log.exception(
+                    "mission_stream_failed request_id=%s tenant_id=%s",
+                    request_id,
+                    principal.tenant_id,
+                )
+            else:
+                raise
+        finally:
+            self.close_connection = True
+            self.app.mission_connections.release(principal.tenant_id)
+
     def do_GET(self) -> None:  # noqa: N802
         request_id = self._request_id()
         self.app.metrics.increment("http_requests_total")
@@ -270,6 +514,9 @@ class _Handler(BaseHTTPRequestHandler):
                 )
                 return
             principal = self._principal()
+            if parsed.path == "/v1/mission-control/events":
+                self._mission_event_stream(parsed, principal, request_id)
+                return
             if parsed.path == "/v1/me":
                 tenant = self.app.db.get_tenant(principal.tenant_id)
                 self._json(200, {"tenant_id": principal.tenant_id, "tenant_name": tenant["name"], "tenant_mode": tenant["mode"], "user_id": principal.user_id, "email": principal.email, "role": principal.role}, request_id)
@@ -1108,7 +1355,17 @@ class _Handler(BaseHTTPRequestHandler):
             self._error(exc, request_id)
 
     def log_message(self, fmt: str, *args: Any) -> None:
-        log.info("http %s", fmt % args)
+        # BaseHTTPRequestHandler's default format includes the full request
+        # target. Never place query values (including rejected credentials) in
+        # access logs.
+        request_path = urlparse(getattr(self, "path", "")).path or "/"
+        status = args[1] if len(args) > 1 else "unknown"
+        log.info(
+            "http method=%s path=%s status=%s",
+            getattr(self, "command", "unknown"),
+            request_path,
+            status,
+        )
 
 
 def serve(app: RuntimeApplication, host: str = "127.0.0.1", port: int = 8787, *, allow_public: bool = False) -> None:

@@ -380,6 +380,47 @@ retire the previous secret. Access tokens are short-lived and never persisted.
 
 ## Incident checks
 
+## Live Mission Control / SSE operations
+
+The L10 stream is `GET /v1/mission-control/events`, authenticated with a
+viewer-or-higher bearer key. It is a long-lived `fetch()` response, **not** a
+browser `EventSource` connection: the bearer key stays in the Authorization
+header and must never appear in a query string, browser storage, logs, or
+proxy access logs. The only resumable value is the non-sensitive, tenant-local
+integer event cursor. Send it as `Last-Event-ID` (preferred) or `after`
+(fallback only).
+
+Run the short smoke in the API guide after a deploy. Confirm a `200` response
+has `Content-Type: text/event-stream`, `Cache-Control: no-store`, frames with
+`id`, `event`, and JSON `data`, and periodic `: heartbeat` SSE comments. Confirm a
+viewer key works, a revoked/missing key returns `401`, an underprivileged
+principal returns `403`, and a malformed cursor returns `422`. Exercise the
+connection limiter from a controlled test tenant and verify either cap returns
+the same non-disclosing `429` with a positive `Retry-After`; do not
+load-test this limit against a shared production process.
+
+For a reverse proxy, disable response buffering on this route (for example,
+Nginx `proxy_buffering off;` and `X-Accel-Buffering: no`), preserve the
+`Last-Event-ID` and `Authorization` headers, keep streaming read timeouts above
+the documented stream lifetime, and do not cache or compress buffered frames.
+Terminate TLS at the proxy; the supplied `ThreadingHTTPServer` must remain
+loopback-only behind that proxy.
+
+When the UI reports a disconnected live feed, first check `/healthz`, then a
+fresh authenticated snapshot at `/v1/mission-control`, and then the stream
+smoke. A normal lifetime/backlog close reconnects from the latest id. A
+`mission.reset` or retention gap requires adopting the supplied current cursor
+and refetching the snapshot. `mission.reconnect` and `429` require waiting the
+advertised delay; `401` requires a new session/key and `403` requires a role
+review. Do not turn these failures into polling with an API key in a URL.
+
+This implementation boundary is intentionally single-process: SQLite plus
+`ThreadingHTTPServer` provides no cross-process event broker, shared connection
+counter, replay log, or fan-out guarantee. Run one runtime process per SQLite
+database. Horizontal scale, multi-process replay, and durable cross-instance
+SSE require a separately designed broker/connection coordinator and are not
+claimed by this release.
+
 - `401`: verify the caller still has the full `eai_...<key-id>` value and that
   the key has not been revoked.
 - `403`: verify the tenant role; do not work around authorization in the API.

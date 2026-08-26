@@ -43,6 +43,7 @@
         </div>
         <div class="topbar-meta">
           <span id="demo-badge" class="demo-badge" hidden>DEMO DATA</span>
+          <span id="live-indicator" class="live-indicator" data-status="disconnected">未连接</span>
           <span class="today"><img src="/app/assets/icons/calendar-dots.svg" alt=""><span id="today-label"></span></span>
           <button data-action="open-connection" id="connection-btn" class="quiet-button"><img src="/app/assets/icons/key.svg" alt=""><span>连接 Runtime</span></button>
         </div>
@@ -201,6 +202,10 @@
 
         <section id="view-automations" class="view" data-view-panel="automations" aria-labelledby="automations-title">
           <div class="page-heading compact"><div><p class="kicker">Automation</p><h1 id="automations-title">计划与后台任务</h1><p class="heading-summary">Schedule 只选择最新真实 Evidence，Worker 使用持久化队列、租约和重试。</p></div></div>
+          <section class="tool-panel wide live-mission-panel" aria-labelledby="live-mission-title">
+            <div class="panel-heading"><div><p class="kicker">Live Mission Control</p><h2 id="live-mission-title">实时运行状态</h2><span id="live-status-copy">连接 Runtime 后开始接收租户内的实时状态。</span></div><div class="live-heading-actions"><span id="live-status-label" class="live-status-label">未连接</span><button id="live-retry-btn" data-action="retry-live" class="secondary-button" hidden>立即重试</button></div></div>
+            <div id="live-event-list" class="live-event-list" aria-live="polite"></div>
+          </section>
           <div class="tool-layout">
             <section class="tool-panel form-panel">
               <form id="schedule-form">

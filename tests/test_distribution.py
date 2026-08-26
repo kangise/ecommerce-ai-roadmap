@@ -312,6 +312,57 @@ def test_source_runtime_api_l9_proposal_contract() -> None:
     assert "same durable execution" in paths["/v1/proposals/{proposalId}/retry"]["post"]["responses"]["201"]["description"]
 
 
+def test_source_runtime_api_l10_mission_control_sse_contract() -> None:
+    contract = yaml.safe_load((ROOT / "openapi" / "runtime-api.yaml").read_text(encoding="utf-8"))
+    operation = contract["paths"]["/v1/mission-control/events"]["get"]
+    assert contract["security"] == [{"bearerAuth": []}]
+    assert "text/event-stream" in operation["responses"]["200"]["content"]
+    assert {"401", "403", "422", "429"} <= set(operation["responses"])
+    parameters = {item["$ref"].split("/")[-1] for item in operation["parameters"]}
+    assert parameters == {"lastEventId", "missionEventsAfter"}
+    component_parameters = contract["components"]["parameters"]
+    assert component_parameters["lastEventId"]["in"] == "header"
+    assert component_parameters["lastEventId"]["name"] == "Last-Event-ID"
+    assert "takes precedence" in component_parameters["lastEventId"]["description"].lower()
+    assert component_parameters["lastEventId"]["schema"]["type"] == "integer"
+    assert component_parameters["missionEventsAfter"]["in"] == "query"
+    assert component_parameters["missionEventsAfter"]["schema"]["type"] == "integer"
+    schemas = contract["components"]["schemas"]
+    event = schemas["MissionEvent"]
+    assert event["additionalProperties"] is False
+    assert event["required"] == [
+        "cursor", "event_type", "resource_type", "resource_id", "status",
+        "previous_status", "metadata", "created_at",
+    ]
+    assert event["properties"]["cursor"]["type"] == "integer"
+    assert "job.status_changed" in event["properties"]["event_type"]["enum"]
+    assert "proposal_execution" in event["properties"]["resource_type"]["enum"]
+    assert event["properties"]["metadata"]["additionalProperties"] is False
+    assert schemas["MissionReset"]["additionalProperties"] is False
+    assert schemas["MissionReset"]["properties"]["reason"]["enum"] == ["retention_gap"]
+    assert schemas["MissionReconnect"]["additionalProperties"] is False
+    assert schemas["MissionReconnect"]["properties"]["reason"]["enum"] == [
+        "backlog_limit", "lifetime_limit"
+    ]
+    assert schemas["MissionControl"]["additionalProperties"] is True
+    assert "event_cursor" in schemas["MissionControl"]["required"]
+    assert schemas["MissionEventCursor"]["additionalProperties"] is False
+
+
+def test_generated_l10_sse_contract_and_operational_boundaries() -> None:
+    contract = yaml.safe_load((ROOT / "dist" / "openapi" / "runtime-api.yaml").read_text(encoding="utf-8"))
+    assert {"MissionEvent", "MissionReset", "MissionReconnect"} <= set(contract["components"]["schemas"])
+    assert "text/event-stream" in contract["paths"]["/v1/mission-control/events"]["get"]["responses"]["200"]["content"]
+    guide = (ROOT / "dist" / "integration" / "runtime-api.md").read_text(encoding="utf-8")
+    runbook = (ROOT / "dist" / "operations" / "runbook.md").read_text(encoding="utf-8")
+    threat_model = (ROOT / "dist" / "security" / "threat-model.md").read_text(encoding="utf-8")
+    for text in (guide, runbook, threat_model):
+        assert "Last-Event-ID" in text
+        assert "Authorization" in text
+    assert "not the browser `EventSource`" in guide
+    assert "ThreadingHTTPServer" in runbook
+
+
 def test_source_runtime_api_l8_daily_ops_contract() -> None:
     contract = yaml.safe_load((ROOT / "openapi" / "runtime-api.yaml").read_text(encoding="utf-8"))
     paths = contract["paths"]

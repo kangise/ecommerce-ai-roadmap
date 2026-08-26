@@ -109,6 +109,15 @@ operations. It also asserts that L9 adds no Amazon Ads or generic marketplace
 write surface. Fixtures remain test-only; `human.review` is a local audited
 decision, not an external marketplace approval.
 
+L10 contract coverage validates the viewer-authenticated Mission Control SSE
+route, `text/event-stream` media type, bearer-header-only authentication,
+header-first tenant-local integer cursor semantics, closed safe `MissionEvent`
+metadata, reset/reconnect controls, comment-only heartbeats, and `401`/`403`/`422`/`429`
+responses. It also checks the source and generated distribution retain the
+single-process SQLite/ThreadingHTTPServer and reverse-proxy limitations. It
+does not claim a distributed broker, multiprocess fan-out, or a live external
+SSE smoke; connection and parser behavior are runtime/UI tests.
+
 The production gate is broader than pytest:
 
 ```bash

@@ -13,6 +13,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 - Add package integrity metadata, automated tests, and PR quality checks.
 
 ### Added
+- L10 Mission Control streaming contract: viewer-authenticated tenant SSE with
+  header-first tenant-local cursors, closed safe event metadata, heartbeat/reset/
+  reconnect semantics, bounded replay/lifetime, global and tenant connection
+  limits, proxy guidance, and contract gates. This is a single-process
+  SQLite/ThreadingHTTPServer boundary; no distributed event broker is claimed.
 - L9 durable tenant-owned proposals derived from approved Daily Ops / Agent
   Graph priorities, with immutable source/graph/evidence/metric/payload hash
   lineage, optimistic revisions, auditable local human decisions, risk-based

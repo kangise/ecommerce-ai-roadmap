@@ -378,6 +378,61 @@ job state is tenant-owned, lease-safe, refresh-safe, and visible through
 runs/jobs, schedules, and the approval inbox. `GET /v1/approvals` is restricted
 to admin/owner roles and returns requested Actions awaiting a second actor.
 
+### Live Mission Control stream (L10)
+
+`GET /v1/mission-control/events` is an authenticated, tenant-scoped SSE stream
+for a **viewer or higher**. It complements—rather than replaces—the durable
+snapshot at `GET /v1/mission-control`: clients must tolerate additive snapshot
+fields and ignore fields they do not recognize. The snapshot's closed
+`event_cursor` reports the latest, earliest retained, and pruned-through
+tenant-local positions without exposing another tenant's activity.
+
+Use `fetch()` streaming, not the browser `EventSource` API. `EventSource`
+cannot attach the required bearer header safely. Send the API key only in
+`Authorization: Bearer <API_KEY>`; never place it in `after`, any URL query,
+browser storage, logs, telemetry, or referrers. Keep it in the existing
+in-memory session and abort the request when that session ends.
+
+The response is `text/event-stream`, with a tenant-local numeric `id`, an
+`event`, and JSON `data`:
+
+- `mission.update` contains the closed safe event projection: `cursor`, the
+  domain `event_type`, `resource_type`, `resource_id`, current and previous
+  status, bounded metadata, and `created_at`. It never contains the internal
+  global sequence, tenant id, a resource payload, Evidence rows, or secrets.
+  Re-read the snapshot (or update only already-held safe state).
+- `mission.reset` means retention was exceeded or a reset boundary occurred.
+  Adopt its current cursor and refetch `/v1/mission-control` instead of trying
+  to replay pruned history.
+- `mission.reconnect` means reconnect after its top-level
+  `retry_after_seconds`, using the last numeric event id.
+- Lines beginning with `: heartbeat` are SSE comments that only prove the
+  connection is alive; they are not business events and have no event id.
+
+Persist only the non-sensitive tenant-local last received event id in the current
+tenant session. On reconnect, send it as `Last-Event-ID`; when both are sent,
+the header takes priority over the `after` fallback cursor. Treat a `422` as an
+invalid cursor: clear it, refetch the snapshot, and reconnect. Treat `401` as
+an ended session and `403` as a role change: stop reconnecting and surface the
+real error. A `429` includes `Retry-After`; wait at least that many seconds.
+
+Streams have deliberately bounded server backlog and connection lifetime. A
+disconnect, an explicit `mission.reconnect`, or a normal lifetime close is
+recovered by reconnecting from the latest id. Do not retry a retention gap as a
+long replay; the server emits `mission.reset` and the client must refetch.
+Connection limits apply globally and per tenant; rejected connections return
+`429 Retry-After`, not a partially authorized stream.
+
+Minimal header-authenticated smoke (replace the key; do not save it in shell
+history or output):
+
+```bash
+curl --no-buffer --max-time 15 \
+  -H 'Accept: text/event-stream' \
+  -H 'Authorization: Bearer <VIEWER_API_KEY>' \
+  http://127.0.0.1:8787/v1/mission-control/events
+```
+
 `GET /v1/briefing?platform=amazon` is the evidence-backed read model for the
 designed daily brief. It calculates only metrics whose recognized fields exist
 in tenant-owned imports: sales, units, sessions, unit/session conversion, ad

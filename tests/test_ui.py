@@ -79,6 +79,7 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
         "connect",
         "disconnect",
         "refresh",
+        "retry-live",
         "close-dialog",
         "close-dialog",
         "view-json",
@@ -138,6 +139,7 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
         "/v1/briefing",
         "/v1/demo-session",
         "/v1/mission-control",
+        "/v1/mission-control/events",
         "/v1/evidence-imports",
         "/v1/agent-runs",
         "/v1/jobs",
@@ -183,6 +185,35 @@ def test_proposal_workbench_uses_real_versioned_actions_and_safe_defaults() -> N
     assert "content ${escapeHtml(item.content_hash" in script
     assert "Graph ${escapeHtml(item.graph_version_hash" in script
     assert "需要 admin 或 owner 角色" in script
+
+
+def test_live_mission_control_stream_is_authenticated_resumable_and_visible() -> None:
+    html = (WEB / "mission-control.html").read_text(encoding="utf-8")
+    script = (WEB / "app.js").read_text(encoding="utf-8")
+
+    assert 'id="live-indicator"' in html
+    assert 'id="live-event-list"' in html
+    assert 'data-action="retry-live"' in html
+    for state_label in (
+        "正在连接", "实时已连接", "正在重连", "实时连接异常", "认证已失效"
+    ):
+        assert state_label in script
+    assert 'fetch("/v1/mission-control/events", {headers' in script
+    assert 'Authorization: `Bearer ${state.apiKey}`' in script
+    assert 'headers["Last-Event-ID"]' in script
+    assert 'Accept: "text/event-stream"' in script
+    assert "TextDecoder" in script and 'body.getReader()' in script
+    assert 'frame.event === "mission.update"' in script
+    assert '"mission.reset"' in script
+    assert '"mission.reconnect"' in script
+    assert "sessionStorage.setItem(key, String(cursor))" in script
+    assert "sessionStorage.setItem(key, state.apiKey)" not in script
+    assert "EventSource" not in script
+    assert "?api_key=" not in script and "?token=" not in script
+    assert 'response.headers.get("Retry-After")' in script
+    assert 'window.addEventListener("pagehide", pauseLiveStream)' in script
+    assert 'document.addEventListener("visibilitychange"' in script
+    assert "300000" in script and "30000);" not in script
     assert "需要 operator、admin 或 owner 执行健康检查" in script
     assert "需要 operator、admin 或 owner 角色" in script
     assert "recipeCanManage" in script

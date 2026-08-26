@@ -2,6 +2,36 @@
 
 ## Assets
 
+### Live Mission Control stream (L10)
+
+`GET /v1/mission-control/events` adds an authenticated SSE boundary. The API
+key remains an Authorization header on a `fetch()` stream; it is never an SSE
+query parameter, cursor, event field, URL, browser-storage value, referrer, or
+loggable client-side token. The resumption cursor is a non-sensitive,
+tenant-local monotonic integer; the internal global sequence is never exposed,
+so cursor gaps cannot disclose another tenant's activity. `Last-Event-ID` takes
+precedence over `after` so a client cannot accidentally resume from an
+untrusted query fallback.
+
+Event data is deliberately a closed `MissionEvent` schema: tenant cursor,
+domain event type, resource id/type, current/previous status, timestamp, and
+bounded safe relationship metadata only. It excludes API keys, credentials, Authorization
+headers, evidence rows, action/proposal payloads, and tenant identifiers. Each
+connection is authenticated and tenant-scoped before it is admitted; viewers may
+read their own tenant stream, and unauthorized/forbidden requests fail with
+`401`/`403`. Global and per-tenant connection caps fail closed with `429` and
+`Retry-After`, mitigating connection-exhaustion attacks without silently
+downgrading authorization.
+
+Replay/backlog and stream lifetime are bounded. A retention gap yields
+`mission.reset` rather than an unsafe or unbounded replay; clients refetch the
+normal tenant-scoped snapshot. `mission.reconnect` carries only a bounded retry
+delay, and comment-only heartbeats carry no business data. Reverse proxies must disable SSE
+buffering, preserve Authorization and Last-Event-ID, terminate TLS, and avoid
+request/URL logging of credentials. The current SQLite/ThreadingHTTPServer
+runtime is single-process only: it has no distributed connection limiter or
+cross-instance event ordering guarantee.
+
 - Tenant identity, API keys, tenant-owned `MarketplaceAccount` records
   (provider details, credential-reference presence, and persisted health
   outcome), tenant-owned L2 report recipe configuration, synced product

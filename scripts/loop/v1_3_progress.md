@@ -15,7 +15,7 @@
 | L7 | Domain Agent Graph | done | Schema v16；163 tests；14 groups=0；wheel graph/Reviewer persistence smoke；browser metric-only run + refresh QA | `loop(v1.3): L7 ship tenant-safe domain agent graph` | canonical immutable DAG；dynamic Amazon/Shopify/ontology specialists；Manager + independent Reviewer；zero tools；non-approved downstream lock |
 | L8 | Daily Ops | done | Schema v17；184 tests；14 groups=0；wheel daily persistence + CLI smoke；browser Brief/toggle/refresh QA | `loop(v1.3): L8 ship fenced daily operations` | local-date cursor；scheduled cutoff；immutable config hash；fenced leases；approved parent-linked Brief；no external writes |
 | L9 | Proposals | done | Schema v18；204 tests；14 groups=0；Python 3.12 wheel cold install；Demo executed/blocked/submitted refresh persistence；browser console 0 | `loop(v1.3): L9 ship proposal approval control plane` | immutable source/version/hash；1/2-person quorum；atomic audit；fenced recovery worker；safe Action reuse；Ads zero-call block |
-| L10 | Live Mission Control/SSE | pending |  |  |  |
+| L10 | Live Mission Control/SSE | done | Schema v19；213 tests；14 groups=0；installed HTTP SSE smoke；browser event/resume/reconnect console 0 | `loop(v1.3): L10 stream tenant-safe mission control` | per-tenant cursor；1,000-event retention/reset；20 global/4 tenant connections；single-process boundary |
 | L11 | one-command Pilot | pending |  |  |  |
 | L12 | eval/security/restore | pending |  |  |  |
 | L13 | RC | pending |  |  |  |
@@ -141,6 +141,18 @@
 - Failure 1: adversarial review found pending/stale expiry races, reusable retry keys, execute-key aliases, non-atomic audit, role-demotion liveness, worker crash/hot-loop/FIFO, idempotent create replay, and UI run/priority mismatch. These were fixed with transaction-bound audit, immutable retry ledger, expiry-aware claims, active-role guards, bounded worker recovery, strict API/UI contracts, and regression tests.
 - Failure 2 / blocked reason: DB raw-write review found mutable idempotency/execution bindings, expired decision/execution insertion, Action misbinding, forged or reused retry ledgers, and deletable execution history. Schema v18 triggers now reject each PoC. Amazon Ads live write remains intentionally blocked by the unresolved L5 external capability gate; L9 makes no live Ads write claim.
 - Restore point and result: L8 `28ab04b`; L9 Schema v18/Proposal service/API/UI/worker can be reverted as one commit while preserving L0–L8 records. Proposal versions, decisions, retry requests, and execution history are immutable; operational recovery uses the same approved execution binding, never a new unapproved payload.
+
+### L10 — Live Mission Control / SSE
+
+- Date: 2026-08-26
+- Status: done
+- Evidence: `tests/test_live_mission_control.py` 6 persistence/isolation/wire/resource-boundary cases；全套 pytest 213 passed；`verify_all` 14 groups=0；OpenAPI numeric cursor + closed MissionEvent/Reset/Reconnect contracts；Python 3.12 wheel cold install + Schema v19 + installed authenticated HTTP SSE smoke；browser initial backlog、real `proposal.created` update、normal lifetime reconnect、reload cursor resume/no replay、console 0 errors；`artifacts/design-qa/l10-live-mission-control-final.jpg`。
+- Commit: `loop(v1.3): L10 stream tenant-safe mission control`（本记录所在提交）
+- Notes: immutable tenant-owned Mission Events are written by database triggers for Agent Run/Task, Report Sync, Job, Daily Ops, Proposal, and Proposal Execution insert/status transitions；only bounded status/relationship metadata is projected；internal global sequence and tenant id never leave storage；SSE uses bearer-header `fetch` streaming, tenant-local numeric `Last-Event-ID`, comment heartbeat, explicit retention reset and bounded reconnect；1,000 retained events/tenant；20 global and 4 per-tenant single-process connections；UI stores only the cursor in tenant-scoped sessionStorage and keeps API keys in memory.
+- Validator results: all repository/contract/install/browser gates passed；real transition reached the UI without polling, reload resumed from the saved cursor without replaying old events, and a subsequent Proposal event arrived live.
+- Failure 1: independent integration review found that a global AUTOINCREMENT cursor exposed other-tenant activity through sequence gaps, event/resource bindings were forgeable by raw SQL, query secrets could enter access logs, and the initial OpenAPI event envelope did not match the wire. Schema v19 now uses contiguous per-tenant cursors with a hidden internal sequence, real same-tenant resource/status binding, closed JSON metadata, query-free access logs, and exact `mission.update/reset/reconnect` contracts.
+- Failure 2 / blocked reason: the first browser stress pass deliberately ran multiple one-second streams and reached the real 120 requests/minute client limiter; the UI surfaced reconnect/429 rather than bypassing it. The final isolated one-tab smoke used the normal authenticated flow, verified cursor resume and zero console errors. No L10 blocker remains；the explicit limitation is single-process SQLite/ThreadingHTTPServer polling with no HA, broker, or multi-process fan-out claim.
+- Restore point and result: L9 `f52b72e`; L10 Schema v19/event projection/API/UI can be reverted as one commit while preserving L0–L9 state. Mission events are a bounded projection, not the audit source of truth；after retention or restore, clients refetch the durable Mission Control snapshot.
 
 ### Lx — 名称
 

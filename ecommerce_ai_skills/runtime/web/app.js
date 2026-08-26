@@ -36,6 +36,17 @@ const state = {
   adsAdapterLoading: false,
   adsAdapterError: null,
   proposals: [], proposalsLoading: false, proposalsError: null, proposalExecutions: [],
+  missionEvents: [],
+  liveStatus: "disconnected",
+  liveError: null,
+  liveCursor: null,
+  liveLastAt: null,
+  liveAbort: null,
+  liveRetryTimer: null,
+  liveRefreshTimer: null,
+  liveServerRetryMs: null,
+  liveAttempt: 0,
+  liveStopped: true,
   agentGraphs: [],
   agentGraphsLoading: false,
   agentGraphsError: null,
@@ -1030,6 +1041,46 @@ function renderApprovals() {
   target.innerHTML = items.map(item => approvalCard(item)).join("");
 }
 
+function liveStatusCopy() {
+  const copies = {
+    disconnected: ["未连接", "连接 Runtime 后开始接收租户内的实时状态。"],
+    connecting: ["正在连接", "正在建立经过身份验证的实时事件流。"],
+    empty: ["实时已连接", "当前还没有新的任务状态事件。"],
+    live: ["实时已连接", state.liveLastAt ? `最近更新 ${isoLocal(state.liveLastAt)}` : "正在接收真实任务状态。"],
+    reconnecting: ["正在重连", state.liveError || "连接已中断，将从最后游标继续。"],
+    error: ["实时连接异常", state.liveError || "无法建立实时事件流。"],
+    auth_failed: ["认证已失效", "API Key 已从页面内存清除，请重新连接 Runtime。"],
+  };
+  return copies[state.liveStatus] || copies.disconnected;
+}
+
+function renderLiveMissionControl() {
+  const indicator = $("live-indicator"), label = $("live-status-label"), copy = $("live-status-copy");
+  const list = $("live-event-list"), retry = $("live-retry-btn");
+  const [title, detail] = liveStatusCopy();
+  if (indicator) {
+    indicator.dataset.status = state.liveStatus;
+    indicator.textContent = title;
+  }
+  if (label) label.textContent = title;
+  if (copy) copy.textContent = detail;
+  if (retry) retry.hidden = !["error", "reconnecting"].includes(state.liveStatus) || !state.apiKey;
+  if (!list) return;
+  if (["connecting", "reconnecting"].includes(state.liveStatus) && !state.missionEvents.length) {
+    designedEmpty(list, title, detail, "pulse");
+    return;
+  }
+  if (state.liveStatus === "error" && !state.missionEvents.length) {
+    list.innerHTML = `<div class="agent-graph-failure" role="alert"><strong>${escapeHtml(title)}</strong><span>${escapeHtml(detail)}</span></div>`;
+    return;
+  }
+  if (!state.missionEvents.length) {
+    designedEmpty(list, state.apiKey ? "暂无实时活动" : "Runtime 未连接", detail, "pulse");
+    return;
+  }
+  list.innerHTML = state.missionEvents.slice(0, 20).map(event => `<div class="live-event-row"><span class="live-event-dot ${escapeHtml(event.status || "updated")}"></span><div><strong>${escapeHtml(event.event_type || "mission.update")}</strong><small>${escapeHtml(event.resource_type || "resource")} · ${escapeHtml(event.resource_id || "—")} · ${escapeHtml(event.status || "updated")} · ${escapeHtml(isoLocal(event.occurred_at || event.created_at))}</small></div></div>`).join("");
+}
+
 function proposalCanCreate() { return ["operator", "admin", "owner"].includes(state.me?.role); }
 function proposalCanApprove(item) { return ["admin", "owner"].includes(state.me?.role) && item.created_by !== state.me?.user_id && item.created_by !== state.me?.id; }
 const proposalPayloadTemplates = {
@@ -1125,6 +1176,7 @@ function renderAll() {
   renderJobs();
   renderSchedules();
   renderDailyOps();
+  renderLiveMissionControl();
   renderApprovals();
   renderProposals();
   renderAudit();
@@ -1165,9 +1217,12 @@ function renderDisconnected() {
   state.adsCapabilityError = null;
   state.adsAdapterStatus = null; state.adsAdapterLoading = false; state.adsAdapterError = null;
   state.proposals = []; state.proposalExecutions = []; state.proposalsLoading = false; state.proposalsError = null;
+  state.missionEvents = []; state.liveCursor = null; state.liveLastAt = null;
+  if (state.liveStatus !== "auth_failed") { state.liveStatus = "disconnected"; state.liveError = null; }
   state.agentGraphs = []; state.agentGraphsLoading = false; state.agentGraphsError = null;
   renderBriefing();
   renderDailyOps();
+  renderLiveMissionControl();
   renderProposals();
   renderEvidence();
   renderAgentGraphs();
@@ -1335,14 +1390,227 @@ function latestReport(bundle) {
   return [...(bundle.artifacts || [])].reverse().find(item => item.kind === "weekly_ops_report")?.content;
 }
 
+function liveCursorStorageKey() {
+  return state.me?.tenant_id ? `commerce-agent:mission-cursor:${state.me.tenant_id}` : null;
+}
+
+function loadLiveCursor() {
+  const key = liveCursorStorageKey();
+  if (!key) return null;
+  try {
+    const value = sessionStorage.getItem(key);
+    return value !== null && /^\d+$/.test(value) ? Number(value) : null;
+  } catch (error) {
+    console.warn("实时游标读取失败", error);
+    return null;
+  }
+}
+
+function rememberLiveCursor(cursor) {
+  if (!Number.isSafeInteger(cursor) || cursor < 0) return;
+  state.liveCursor = cursor;
+  const key = liveCursorStorageKey();
+  if (!key) return;
+  try { sessionStorage.setItem(key, String(cursor)); }
+  catch (error) { console.warn("实时游标保存失败", error); }
+}
+
+function clearLiveCursor() {
+  const key = liveCursorStorageKey();
+  state.liveCursor = null;
+  if (!key) return;
+  try { sessionStorage.removeItem(key); }
+  catch (error) { console.warn("实时游标清理失败", error); }
+}
+
+function scheduleLiveRefresh() {
+  if (state.liveRefreshTimer || !state.apiKey) return;
+  state.liveRefreshTimer = setTimeout(() => {
+    state.liveRefreshTimer = null;
+    refreshAll().catch(error => {
+      state.liveError = error.message;
+      renderLiveMissionControl();
+      notice(error.message, "error");
+    });
+  }, 350);
+}
+
+function handleMissionEvent(frame) {
+  if (frame.id !== null) rememberLiveCursor(frame.id);
+  const payload = {...(frame.data || {}), sequence: frame.data?.sequence ?? frame.id};
+  const isUpdate = frame.event === "mission.update" || (!frame.event.startsWith("mission") && frame.event !== "message");
+  if (isUpdate) {
+    state.missionEvents = [payload, ...state.missionEvents.filter(item => item.sequence !== payload.sequence)].slice(0, 50);
+    state.liveStatus = "live";
+    state.liveError = null;
+    state.liveLastAt = payload.occurred_at || new Date().toISOString();
+    scheduleLiveRefresh();
+  } else if (["mission.reset", "mission_control.reset"].includes(frame.event)) {
+    state.missionEvents = [];
+    state.liveStatus = "empty";
+    state.liveError = payload.reason || "历史实时游标已过期，已从当前状态重新同步。";
+    scheduleLiveRefresh();
+  } else if (["mission.reconnect", "mission_control.reconnect"].includes(frame.event)) {
+    state.liveStatus = "reconnecting";
+    const reasons = {
+      lifetime_limit: "实时连接正在按安全周期轮换，并从最后游标继续。",
+      backlog_limit: "待发送事件较多，正在分批从最后游标继续。",
+    };
+    state.liveError = reasons[payload.reason] || "服务端要求从最后游标重新连接。";
+    if (Number.isFinite(Number(payload.retry_after_seconds))) {
+      state.liveServerRetryMs = Math.max(1000, Number(payload.retry_after_seconds) * 1000);
+    }
+  }
+  renderLiveMissionControl();
+}
+
+async function consumeMissionStream(body) {
+  if (!body?.getReader) throw new Error("浏览器不支持经过身份验证的实时流读取");
+  const reader = body.getReader(), decoder = new TextDecoder();
+  let buffer = "";
+  while (true) {
+    const {done, value} = await reader.read();
+    buffer += decoder.decode(value || new Uint8Array(), {stream: !done});
+    buffer = buffer.replaceAll("\r\n", "\n");
+    if (done) buffer = buffer.replaceAll("\r", "\n");
+    if (buffer.length > 1_000_000) throw new Error("实时事件帧超过浏览器安全上限");
+    let boundary;
+    while ((boundary = buffer.indexOf("\n\n")) >= 0) {
+      const raw = buffer.slice(0, boundary); buffer = buffer.slice(boundary + 2);
+      let event = "message", id = null; const data = [];
+      for (const line of raw.split("\n")) {
+        if (!line || line.startsWith(":")) continue;
+        const split = line.indexOf(":");
+        const field = split < 0 ? line : line.slice(0, split);
+        const content = split < 0 ? "" : line.slice(split + 1).replace(/^ /, "");
+        if (field === "event") event = content;
+        else if (field === "id" && /^\d+$/.test(content)) id = Number(content);
+        else if (field === "data") data.push(content);
+      }
+      if (data.length) {
+        let parsed;
+        try { parsed = JSON.parse(data.join("\n")); }
+        catch { throw new Error("Runtime 返回了无效的实时事件 JSON"); }
+        handleMissionEvent({event, id, data: parsed});
+      }
+    }
+    if (done) break;
+  }
+}
+
+function scheduleLiveReconnect(delayMs = null) {
+  if (state.liveStopped || !state.apiKey || document.hidden || state.liveRetryTimer) return;
+  state.liveAttempt += 1;
+  const computed = Math.min(15000, 500 * (2 ** Math.min(state.liveAttempt - 1, 5))) + Math.floor(Math.random() * 250);
+  const delay = delayMs ?? computed;
+  state.liveStatus = state.liveAttempt >= 5 ? "error" : "reconnecting";
+  renderLiveMissionControl();
+  state.liveRetryTimer = setTimeout(() => {
+    state.liveRetryTimer = null;
+    void startLiveStream();
+  }, delay);
+}
+
+async function startLiveStream() {
+  if (state.liveStopped || !state.apiKey || !state.me || document.hidden || state.liveAbort) return;
+  state.liveStatus = state.liveAttempt ? "reconnecting" : "connecting";
+  state.liveError = null;
+  renderLiveMissionControl();
+  const controller = new AbortController();
+  state.liveAbort = controller;
+  const headers = {Authorization: `Bearer ${state.apiKey}`, Accept: "text/event-stream"};
+  if (Number.isSafeInteger(state.liveCursor)) headers["Last-Event-ID"] = String(state.liveCursor);
+  let retryDelay = null;
+  state.liveServerRetryMs = null;
+  try {
+    const response = await fetch("/v1/mission-control/events", {headers, cache: "no-store", signal: controller.signal});
+    if ([401, 403].includes(response.status)) {
+      stopPolling();
+      state.apiKey = "";
+      state.me = null;
+      state.liveStatus = "auth_failed";
+      state.liveError = "实时连接认证失败";
+      setConnected(false);
+      renderDisconnected();
+      renderLiveMissionControl();
+      notice("Runtime 认证已失效，请重新连接。", "error");
+      return;
+    }
+    if (response.status === 422) {
+      clearLiveCursor();
+      throw new Error("实时游标无效，已清理并准备重新同步");
+    }
+    if (response.status === 429) {
+      const retrySeconds = Number(response.headers.get("Retry-After"));
+      retryDelay = Number.isFinite(retrySeconds) ? Math.max(1000, retrySeconds * 1000) : 5000;
+      throw new Error("实时连接数已达上限");
+    }
+    if (!response.ok) throw new Error(`实时事件流请求失败 (${response.status})`);
+    if (!(response.headers.get("Content-Type") || "").includes("text/event-stream")) throw new Error("Runtime 未返回 text/event-stream");
+    state.liveAttempt = 0;
+    state.liveStatus = state.missionEvents.length ? "live" : "empty";
+    renderLiveMissionControl();
+    await consumeMissionStream(response.body);
+  } catch (error) {
+    if (error.name !== "AbortError") {
+      state.liveError = error.message;
+      state.liveStatus = "reconnecting";
+      renderLiveMissionControl();
+    }
+  } finally {
+    const wasCurrent = state.liveAbort === controller;
+    if (wasCurrent) state.liveAbort = null;
+    if (wasCurrent && !state.liveStopped && state.apiKey && !document.hidden) {
+      const serverDelay = state.liveServerRetryMs;
+      state.liveServerRetryMs = null;
+      scheduleLiveReconnect(retryDelay ?? serverDelay);
+    }
+  }
+}
+
+function retryLiveStream() {
+  if (!state.apiKey) { notice("请先连接 Runtime。", "error"); return; }
+  if (state.liveRetryTimer) clearTimeout(state.liveRetryTimer);
+  state.liveRetryTimer = null;
+  if (state.liveAbort) state.liveAbort.abort();
+  state.liveAbort = null;
+  state.liveAttempt = 0;
+  state.liveError = null;
+  state.liveStopped = false;
+  void startLiveStream();
+}
+
 function startPolling() {
   stopPolling();
-  state.timer = setInterval(() => refreshAll().catch(error => notice(error.message, "error")), 30000);
+  state.liveStopped = false;
+  state.liveCursor = loadLiveCursor();
+  state.timer = setInterval(() => refreshAll().catch(error => notice(error.message, "error")), 300000);
+  void startLiveStream();
 }
 
 function stopPolling() {
+  state.liveStopped = true;
   if (state.timer) clearInterval(state.timer);
+  if (state.liveRetryTimer) clearTimeout(state.liveRetryTimer);
+  if (state.liveRefreshTimer) clearTimeout(state.liveRefreshTimer);
+  if (state.liveAbort) state.liveAbort.abort();
   state.timer = null;
+  state.liveRetryTimer = null;
+  state.liveRefreshTimer = null;
+  state.liveAbort = null;
+}
+
+function pauseLiveStream() {
+  if (state.liveRetryTimer) clearTimeout(state.liveRetryTimer);
+  state.liveRetryTimer = null;
+  const active = state.liveAbort;
+  state.liveAbort = null;
+  if (active) active.abort();
+  if (!state.liveStopped && state.apiKey) {
+    state.liveStatus = "reconnecting";
+    state.liveError = "页面暂停后将从最后游标继续。";
+    renderLiveMissionControl();
+  }
 }
 
 document.body.addEventListener("click", event => {
@@ -1354,6 +1622,7 @@ document.body.addEventListener("click", event => {
     case "open-connection": $("connection-dialog").showModal(); break;
     case "close-dialog": $(button.dataset.dialog).close(); break;
     case "refresh": act(button, refreshAll, "今日简报已刷新。", false); break;
+    case "retry-live": retryLiveStream(); break;
     case "connect": connect(button); break;
     case "disconnect": disconnect(); break;
     case "select-platform": selectPlatform(button); break;
@@ -1660,6 +1929,15 @@ $("proposal-operation").addEventListener("change", setProposalPayloadTemplate);
 $("proposal-run").addEventListener("change", populateProposalPriorities);
 $("proposal-revision-operation").addEventListener("change", () => {
   $("proposal-revision-payload").value = proposalPayloadTemplate($("proposal-revision-operation").value);
+});
+
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) pauseLiveStream();
+  else if (!state.liveStopped && state.apiKey) void startLiveStream();
+});
+window.addEventListener("pagehide", pauseLiveStream);
+window.addEventListener("pageshow", () => {
+  if (!state.liveStopped && state.apiKey) void startLiveStream();
 });
 
 $("daily-ops-form").addEventListener("submit", event => {

@@ -1578,6 +1578,46 @@ paths:
               schema: {$ref: '#/components/schemas/MissionControl'}
         '401': {$ref: '#/components/responses/Unauthorized'}
         '403': {$ref: '#/components/responses/Forbidden'}
+  /v1/mission-control/events:
+    get:
+      summary: Stream tenant-scoped Mission Control changes
+      description: >-
+        Viewer-or-higher bearer authentication is required. This is a fetch-streaming
+        endpoint, not an EventSource endpoint: clients send `Authorization: Bearer`
+        and MUST NOT put an API key in a query string, URL, browser storage, logs, or
+        referrers. Resume position is a non-sensitive tenant-local integer cursor: `Last-Event-ID`
+        takes precedence over `after`; neither is a credential or tenant identifier.
+        The server emits SSE frames (`id`, `event`, `data`) with `mission.update`,
+        `mission.reset`, and `mission.reconnect` events, plus comment-only heartbeats. `mission.update`
+        is an incremental safe metadata update; `mission.reset` requires the client to
+        discard its cached stream state and refetch `/v1/mission-control`; and
+        `mission.reconnect` asks the client to reconnect after its advertised delay.
+        A retention gap also produces `mission.reset`. The server may end a stream at
+        its bounded backlog or lifetime; reconnect with the last received event id.
+      parameters:
+        - $ref: '#/components/parameters/lastEventId'
+        - $ref: '#/components/parameters/missionEventsAfter'
+      responses:
+        '200':
+          description: >-
+            A bounded `text/event-stream` response. Events contain safe metadata only;
+            event data never contains API keys, Authorization values, credentials,
+            evidence rows, action payloads, or cross-tenant identifiers.
+          headers:
+            Cache-Control: {schema: {type: string, enum: [no-store]}}
+            X-Accel-Buffering: {schema: {type: string, enum: [no]}}
+          content:
+            text/event-stream:
+              schema:
+                type: string
+                description: 'SSE frames with a numeric tenant cursor and JSON data matching MissionEvent, MissionReset, or MissionReconnect.'
+              examples:
+                update:
+                  value: "id: 42\nevent: mission.update\ndata: {\"cursor\":42,\"event_type\":\"job.status_changed\",\"resource_type\":\"job\",\"resource_id\":\"d58b74bb-0718-4cc5-b56d-9e5fdcad965d\",\"status\":\"failed\",\"previous_status\":\"running\",\"metadata\":{\"kind\":\"agent_run.execute\",\"attempt_count\":3},\"created_at\":\"2026-08-26T00:00:00Z\"}\n\n"
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+        '429': {$ref: '#/components/responses/RateLimited'}
   /v1/briefing:
     get:
       summary: Read an evidence-backed operating brief for one marketplace
@@ -1680,6 +1720,18 @@ components:
       name: Idempotency-Key
       required: true
       schema: {type: string, minLength: 1, maxLength: 200}
+    lastEventId:
+      in: header
+      name: Last-Event-ID
+      required: false
+      description: Non-sensitive tenant-local monotonic stream cursor. Takes precedence over `after` when both are supplied.
+      schema: {type: integer, format: int64, minimum: 0, maximum: 9223372036854775807}
+    missionEventsAfter:
+      in: query
+      name: after
+      required: false
+      description: Non-sensitive tenant-local fallback cursor used only if `Last-Event-ID` is absent.
+      schema: {type: integer, format: int64, minimum: 0, maximum: 9223372036854775807}
     proposalId:
       in: path
       name: proposalId
@@ -3351,16 +3403,93 @@ components:
         last_run_at: {type: string, format: date-time, nullable: true}
     MissionControl:
       type: object
-      required: [counts, approval_inbox, failed_runs, failed_jobs, recent_runs, schedules]
+      description: Snapshot fields may grow additively; clients must ignore unrecognized fields.
+      additionalProperties: true
+      required: [counts, event_cursor, approval_inbox, failed_runs, failed_jobs, recent_runs, schedules]
       properties:
         counts:
           type: object
           additionalProperties: true
+        event_cursor: {$ref: '#/components/schemas/MissionEventCursor'}
         approval_inbox: {type: array, items: {$ref: '#/components/schemas/Action'}}
         failed_runs: {type: array, items: {$ref: '#/components/schemas/AgentRun'}}
         failed_jobs: {type: array, items: {$ref: '#/components/schemas/Job'}}
         recent_runs: {type: array, items: {$ref: '#/components/schemas/AgentRun'}}
         schedules: {type: array, items: {$ref: '#/components/schemas/Schedule'}}
+    MissionEventCursor:
+      type: object
+      additionalProperties: false
+      required: [latest_cursor, retained_from_cursor, pruned_through_cursor]
+      properties:
+        latest_cursor: {type: integer, format: int64, minimum: 0, maximum: 9223372036854775807}
+        retained_from_cursor: {type: integer, format: int64, minimum: 1, maximum: 9223372036854775807, nullable: true}
+        pruned_through_cursor: {type: integer, format: int64, minimum: 0, maximum: 9223372036854775807}
+    MissionEvent:
+      type: object
+      description: Closed, tenant-safe `mission.update` data. It excludes the internal global sequence, tenant id, secrets, and resource payloads.
+      additionalProperties: false
+      required: [cursor, event_type, resource_type, resource_id, status, previous_status, metadata, created_at]
+      properties:
+        cursor: {type: integer, format: int64, minimum: 1, maximum: 9223372036854775807}
+        event_type:
+          type: string
+          enum:
+            - agent_run.created
+            - agent_run.status_changed
+            - agent_task.created
+            - agent_task.status_changed
+            - report_sync.created
+            - report_sync.status_changed
+            - job.created
+            - job.status_changed
+            - daily_ops_run.created
+            - daily_ops_run.status_changed
+            - proposal.created
+            - proposal.status_changed
+            - proposal_execution.created
+            - proposal_execution.status_changed
+        resource_type:
+          type: string
+          enum: [agent_run, agent_task, report_sync, job, daily_ops_run, proposal, proposal_execution]
+        resource_id: {type: string, minLength: 1, maxLength: 200}
+        status: {type: string, minLength: 1, maxLength: 80}
+        previous_status: {type: string, minLength: 1, maxLength: 80, nullable: true}
+        metadata:
+          type: object
+          additionalProperties: false
+          description: Bounded safe relationship/status metadata only, never a resource representation.
+          properties:
+            origin: {type: string, maxLength: 80}
+            review_status: {type: string, maxLength: 80}
+            attempt_count: {type: integer, minimum: 0}
+            run_id: {type: string, minLength: 1, maxLength: 200}
+            recipe_id: {type: string, minLength: 1, maxLength: 200}
+            connector_account_id: {type: string, minLength: 1, maxLength: 200}
+            kind: {type: string, minLength: 1, maxLength: 120}
+            schedule_id: {type: string, minLength: 1, maxLength: 200}
+            daily_ops_run_id: {type: string, minLength: 1, maxLength: 200}
+            agent_run_id: {type: string, minLength: 1, maxLength: 200}
+            current_version: {type: integer, minimum: 1}
+            priority_rank: {type: integer, minimum: 1, maximum: 5}
+            proposal_id: {type: string, minLength: 1, maxLength: 200}
+            proposal_version: {type: integer, minimum: 1}
+        created_at: {type: string, format: date-time}
+    MissionReset:
+      type: object
+      additionalProperties: false
+      required: [reason, cursor, snapshot_url]
+      properties:
+        reason: {type: string, enum: [retention_gap]}
+        cursor: {type: integer, format: int64, minimum: 0, maximum: 9223372036854775807}
+        snapshot_url: {type: string, enum: [/v1/mission-control]}
+    MissionReconnect:
+      type: object
+      additionalProperties: false
+      required: [reason, retry_after_seconds, cursor]
+      properties:
+        reason: {type: string, enum: [backlog_limit, lifetime_limit]}
+        retry_after_seconds: {type: integer, minimum: 1, maximum: 300}
+        cursor: {type: integer, format: int64, minimum: 0, maximum: 9223372036854775807}
     OperatingBriefing:
       type: object
       required: [platform, evidence, metrics, latest_run, brief_run_id, executive_summary, priorities, risks, limitations, agents, approvals]

@@ -29,7 +29,8 @@ class Principal:
 
 
 ROLE_LEVEL = {"viewer": 10, "operator": 20, "admin": 30, "owner": 40}
-SCHEMA_VERSION = 18
+SCHEMA_VERSION = 19
+MISSION_EVENT_RETENTION = 1_000
 
 
 class _Connection(sqlite3.Connection):
@@ -772,6 +773,56 @@ class Database:
                 );
                 CREATE INDEX IF NOT EXISTS idx_proposal_execution_retries_execution
                     ON proposal_execution_retries(tenant_id, execution_id, created_at);
+                CREATE TABLE IF NOT EXISTS mission_event_streams (
+                    tenant_id TEXT PRIMARY KEY REFERENCES tenants(id) ON DELETE CASCADE,
+                    latest_cursor INTEGER NOT NULL DEFAULT 0 CHECK (latest_cursor >= 0),
+                    retained_from_cursor INTEGER,
+                    pruned_through_cursor INTEGER NOT NULL DEFAULT 0
+                        CHECK (pruned_through_cursor >= 0),
+                    updated_at TEXT NOT NULL
+                );
+                CREATE TABLE IF NOT EXISTS mission_events (
+                    sequence INTEGER PRIMARY KEY AUTOINCREMENT,
+                    tenant_id TEXT NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
+                    cursor INTEGER NOT NULL CHECK (cursor >= 1),
+                    event_type TEXT NOT NULL CHECK (event_type IN (
+                        'agent_run.created','agent_run.status_changed',
+                        'agent_task.created','agent_task.status_changed',
+                        'report_sync.created','report_sync.status_changed',
+                        'job.created','job.status_changed',
+                        'daily_ops_run.created','daily_ops_run.status_changed',
+                        'proposal.created','proposal.status_changed',
+                        'proposal_execution.created','proposal_execution.status_changed'
+                    )),
+                    resource_type TEXT NOT NULL CHECK (resource_type IN (
+                        'agent_run','agent_task','report_sync','job',
+                        'daily_ops_run','proposal','proposal_execution'
+                    )),
+                    resource_id TEXT NOT NULL CHECK (
+                        length(resource_id) BETWEEN 1 AND 200
+                    ),
+                    status TEXT NOT NULL CHECK (length(status) BETWEEN 1 AND 80),
+                    previous_status TEXT CHECK (
+                        previous_status IS NULL
+                        OR length(previous_status) BETWEEN 1 AND 80
+                    ),
+                    metadata_json TEXT NOT NULL DEFAULT '{}'
+                        CHECK (
+                            json_valid(metadata_json)
+                            AND json_type(metadata_json)='object'
+                            AND length(metadata_json) <= 2048
+                        ),
+                    created_at TEXT NOT NULL,
+                    UNIQUE(tenant_id, cursor),
+                    CHECK (
+                        (event_type LIKE '%.created' AND previous_status IS NULL)
+                        OR (event_type LIKE '%.status_changed'
+                            AND previous_status IS NOT NULL
+                            AND previous_status != status)
+                    )
+                );
+                CREATE INDEX IF NOT EXISTS idx_mission_events_tenant_cursor
+                    ON mission_events(tenant_id, cursor);
                 CREATE TABLE IF NOT EXISTS runtime_meta (
                     key TEXT PRIMARY KEY,
                     value TEXT NOT NULL
@@ -793,6 +844,7 @@ class Database:
             self._install_v16_triggers(conn)
             self._install_v17_triggers(conn)
             self._install_v18_triggers(conn)
+            self._install_v19_triggers(conn)
 
     @staticmethod
     def _install_v16_triggers(conn: sqlite3.Connection) -> None:
@@ -1372,6 +1424,348 @@ class Database:
         )
 
     @staticmethod
+    def _install_v19_triggers(conn: sqlite3.Connection) -> None:
+        """Install the database-owned, state-only Mission Control ledger."""
+        conn.executescript(
+            f"""
+            CREATE TRIGGER IF NOT EXISTS mission_events_cursor_insert
+            BEFORE INSERT ON mission_events
+            WHEN NEW.cursor != COALESCE((
+                SELECT latest_cursor FROM mission_event_streams
+                 WHERE tenant_id=NEW.tenant_id
+            ),0)+1
+            BEGIN SELECT RAISE(ABORT, 'mission event cursor is not contiguous'); END;
+
+            CREATE TRIGGER IF NOT EXISTS mission_events_safe_metadata_insert
+            BEFORE INSERT ON mission_events
+            WHEN EXISTS (
+                SELECT 1 FROM json_each(NEW.metadata_json)
+                 WHERE key NOT IN (
+                    'origin','review_status','attempt_count','run_id','recipe_id',
+                    'connector_account_id','kind','schedule_id','daily_ops_run_id',
+                    'agent_run_id','current_version','priority_rank','proposal_id',
+                    'proposal_version'
+                 )
+            )
+            BEGIN SELECT RAISE(ABORT, 'mission event metadata is not safe'); END;
+
+            CREATE TRIGGER IF NOT EXISTS mission_events_resource_binding_insert
+            BEFORE INSERT ON mission_events
+            WHEN NOT (
+                (NEW.resource_type='agent_run'
+                 AND NEW.event_type IN ('agent_run.created','agent_run.status_changed')
+                 AND EXISTS (SELECT 1 FROM agent_runs r
+                     WHERE r.tenant_id=NEW.tenant_id AND r.id=NEW.resource_id
+                       AND r.status=NEW.status))
+                OR (NEW.resource_type='agent_task'
+                 AND NEW.event_type IN ('agent_task.created','agent_task.status_changed')
+                 AND EXISTS (SELECT 1 FROM agent_tasks r
+                     WHERE r.tenant_id=NEW.tenant_id AND r.id=NEW.resource_id
+                       AND r.status=NEW.status))
+                OR (NEW.resource_type='report_sync'
+                 AND NEW.event_type IN ('report_sync.created','report_sync.status_changed')
+                 AND EXISTS (SELECT 1 FROM report_syncs r
+                     WHERE r.tenant_id=NEW.tenant_id AND r.id=NEW.resource_id
+                       AND r.status=NEW.status))
+                OR (NEW.resource_type='job'
+                 AND NEW.event_type IN ('job.created','job.status_changed')
+                 AND EXISTS (SELECT 1 FROM jobs r
+                     WHERE r.tenant_id=NEW.tenant_id AND r.id=NEW.resource_id
+                       AND r.status=NEW.status))
+                OR (NEW.resource_type='daily_ops_run'
+                 AND NEW.event_type IN (
+                    'daily_ops_run.created','daily_ops_run.status_changed'
+                 )
+                 AND EXISTS (SELECT 1 FROM daily_ops_runs r
+                     WHERE r.tenant_id=NEW.tenant_id AND r.id=NEW.resource_id
+                       AND r.status=NEW.status))
+                OR (NEW.resource_type='proposal'
+                 AND NEW.event_type IN ('proposal.created','proposal.status_changed')
+                 AND EXISTS (SELECT 1 FROM proposals r
+                     WHERE r.tenant_id=NEW.tenant_id AND r.id=NEW.resource_id
+                       AND r.status=NEW.status))
+                OR (NEW.resource_type='proposal_execution'
+                 AND NEW.event_type IN (
+                    'proposal_execution.created','proposal_execution.status_changed'
+                 )
+                 AND EXISTS (SELECT 1 FROM proposal_executions r
+                     WHERE r.tenant_id=NEW.tenant_id AND r.id=NEW.resource_id
+                       AND r.status=NEW.status))
+            )
+            BEGIN SELECT RAISE(ABORT, 'mission event resource binding is invalid'); END;
+
+            CREATE TRIGGER IF NOT EXISTS mission_events_immutable_update
+            BEFORE UPDATE ON mission_events
+            BEGIN SELECT RAISE(ABORT, 'mission event is immutable'); END;
+
+            CREATE TRIGGER IF NOT EXISTS mission_events_bounded_delete
+            BEFORE DELETE ON mission_events
+            WHEN NOT (
+                (SELECT COUNT(*) FROM mission_events
+                 WHERE tenant_id=OLD.tenant_id) > {MISSION_EVENT_RETENTION}
+                AND OLD.cursor < (
+                    SELECT cursor FROM mission_events
+                    WHERE tenant_id=OLD.tenant_id
+                    ORDER BY cursor DESC LIMIT 1 OFFSET {MISSION_EVENT_RETENTION - 1}
+                )
+            )
+            BEGIN SELECT RAISE(ABORT, 'mission event is immutable'); END;
+
+            CREATE TRIGGER IF NOT EXISTS mission_events_track_prune
+            BEFORE DELETE ON mission_events
+            WHEN (SELECT COUNT(*) FROM mission_events
+                  WHERE tenant_id=OLD.tenant_id) > {MISSION_EVENT_RETENTION}
+            BEGIN
+                UPDATE mission_event_streams
+                   SET pruned_through_cursor=MAX(pruned_through_cursor, OLD.cursor),
+                       updated_at=strftime('%Y-%m-%dT%H:%M:%SZ','now')
+                 WHERE tenant_id=OLD.tenant_id;
+            END;
+
+            CREATE TRIGGER IF NOT EXISTS mission_events_stream_insert
+            AFTER INSERT ON mission_events
+            BEGIN
+                INSERT INTO mission_event_streams(
+                    tenant_id,latest_cursor,retained_from_cursor,
+                    pruned_through_cursor,updated_at
+                ) VALUES(
+                    NEW.tenant_id,NEW.cursor,NEW.cursor,0,NEW.created_at
+                )
+                ON CONFLICT(tenant_id) DO UPDATE SET
+                    latest_cursor=NEW.cursor,
+                    retained_from_cursor=COALESCE(
+                        mission_event_streams.retained_from_cursor, NEW.cursor
+                    ),
+                    updated_at=NEW.created_at;
+                DELETE FROM mission_events
+                 WHERE tenant_id=NEW.tenant_id
+                   AND cursor < (
+                       SELECT cursor FROM mission_events
+                        WHERE tenant_id=NEW.tenant_id
+                        ORDER BY cursor DESC LIMIT 1 OFFSET {MISSION_EVENT_RETENTION - 1}
+                   );
+                UPDATE mission_event_streams
+                   SET retained_from_cursor=(
+                       SELECT MIN(cursor) FROM mission_events
+                        WHERE tenant_id=NEW.tenant_id
+                   )
+                 WHERE tenant_id=NEW.tenant_id;
+            END;
+
+            CREATE TRIGGER IF NOT EXISTS agent_runs_mission_insert
+            AFTER INSERT ON agent_runs
+            BEGIN
+                INSERT INTO mission_events(
+                    tenant_id,cursor,event_type,resource_type,resource_id,status,
+                    previous_status,metadata_json,created_at
+                ) VALUES(
+                    NEW.tenant_id,COALESCE((SELECT latest_cursor FROM mission_event_streams WHERE tenant_id=NEW.tenant_id),0)+1,
+                    'agent_run.created','agent_run',NEW.id,NEW.status,NULL,
+                    json_object('origin',NEW.origin,
+                                'review_status',NEW.review_status),NEW.created_at
+                );
+            END;
+            CREATE TRIGGER IF NOT EXISTS agent_runs_mission_status
+            AFTER UPDATE OF status ON agent_runs
+            WHEN NEW.status != OLD.status
+            BEGIN
+                INSERT INTO mission_events(
+                    tenant_id,cursor,event_type,resource_type,resource_id,status,
+                    previous_status,metadata_json,created_at
+                ) VALUES(
+                    NEW.tenant_id,COALESCE((SELECT latest_cursor FROM mission_event_streams WHERE tenant_id=NEW.tenant_id),0)+1,
+                    'agent_run.status_changed','agent_run',NEW.id,
+                    NEW.status,OLD.status,
+                    json_object('origin',NEW.origin,'review_status',NEW.review_status,
+                                'attempt_count',NEW.attempt_count),NEW.updated_at
+                );
+            END;
+
+            CREATE TRIGGER IF NOT EXISTS agent_tasks_mission_insert
+            AFTER INSERT ON agent_tasks
+            BEGIN
+                INSERT INTO mission_events(
+                    tenant_id,cursor,event_type,resource_type,resource_id,status,
+                    previous_status,metadata_json,created_at
+                ) VALUES(
+                    NEW.tenant_id,COALESCE((SELECT latest_cursor FROM mission_event_streams WHERE tenant_id=NEW.tenant_id),0)+1,
+                    'agent_task.created','agent_task',NEW.id,NEW.status,NULL,
+                    json_object('run_id',NEW.run_id),NEW.created_at
+                );
+            END;
+            CREATE TRIGGER IF NOT EXISTS agent_tasks_mission_status
+            AFTER UPDATE OF status ON agent_tasks
+            WHEN NEW.status != OLD.status
+            BEGIN
+                INSERT INTO mission_events(
+                    tenant_id,cursor,event_type,resource_type,resource_id,status,
+                    previous_status,metadata_json,created_at
+                ) VALUES(
+                    NEW.tenant_id,COALESCE((SELECT latest_cursor FROM mission_event_streams WHERE tenant_id=NEW.tenant_id),0)+1,
+                    'agent_task.status_changed','agent_task',NEW.id,
+                    NEW.status,OLD.status,
+                    json_object('run_id',NEW.run_id,
+                                'attempt_count',NEW.attempt_count),
+                    COALESCE(NEW.completed_at,NEW.started_at,
+                             strftime('%Y-%m-%dT%H:%M:%SZ','now'))
+                );
+            END;
+
+            CREATE TRIGGER IF NOT EXISTS report_syncs_mission_insert
+            AFTER INSERT ON report_syncs
+            BEGIN
+                INSERT INTO mission_events(
+                    tenant_id,cursor,event_type,resource_type,resource_id,status,
+                    previous_status,metadata_json,created_at
+                ) VALUES(
+                    NEW.tenant_id,COALESCE((SELECT latest_cursor FROM mission_event_streams WHERE tenant_id=NEW.tenant_id),0)+1,
+                    'report_sync.created','report_sync',NEW.id,NEW.status,NULL,
+                    json_object('recipe_id',NEW.recipe_id,
+                                'connector_account_id',NEW.connector_account_id),
+                    NEW.created_at
+                );
+            END;
+            CREATE TRIGGER IF NOT EXISTS report_syncs_mission_status
+            AFTER UPDATE OF status ON report_syncs
+            WHEN NEW.status != OLD.status
+            BEGIN
+                INSERT INTO mission_events(
+                    tenant_id,cursor,event_type,resource_type,resource_id,status,
+                    previous_status,metadata_json,created_at
+                ) VALUES(
+                    NEW.tenant_id,COALESCE((SELECT latest_cursor FROM mission_event_streams WHERE tenant_id=NEW.tenant_id),0)+1,
+                    'report_sync.status_changed','report_sync',NEW.id,
+                    NEW.status,OLD.status,
+                    json_object('recipe_id',NEW.recipe_id,
+                                'connector_account_id',NEW.connector_account_id,
+                                'attempt_count',NEW.attempt_count),NEW.updated_at
+                );
+            END;
+
+            CREATE TRIGGER IF NOT EXISTS jobs_mission_insert
+            AFTER INSERT ON jobs
+            BEGIN
+                INSERT INTO mission_events(
+                    tenant_id,cursor,event_type,resource_type,resource_id,status,
+                    previous_status,metadata_json,created_at
+                ) VALUES(
+                    NEW.tenant_id,COALESCE((SELECT latest_cursor FROM mission_event_streams WHERE tenant_id=NEW.tenant_id),0)+1,
+                    'job.created','job',NEW.id,NEW.status,NULL,
+                    json_object('kind',NEW.kind),NEW.created_at
+                );
+            END;
+            CREATE TRIGGER IF NOT EXISTS jobs_mission_status
+            AFTER UPDATE OF status ON jobs
+            WHEN NEW.status != OLD.status
+            BEGIN
+                INSERT INTO mission_events(
+                    tenant_id,cursor,event_type,resource_type,resource_id,status,
+                    previous_status,metadata_json,created_at
+                ) VALUES(
+                    NEW.tenant_id,COALESCE((SELECT latest_cursor FROM mission_event_streams WHERE tenant_id=NEW.tenant_id),0)+1,
+                    'job.status_changed','job',NEW.id,NEW.status,OLD.status,
+                    json_object('kind',NEW.kind,'attempt_count',NEW.attempt_count),
+                    NEW.updated_at
+                );
+            END;
+
+            CREATE TRIGGER IF NOT EXISTS daily_ops_runs_mission_insert
+            AFTER INSERT ON daily_ops_runs
+            BEGIN
+                INSERT INTO mission_events(
+                    tenant_id,cursor,event_type,resource_type,resource_id,status,
+                    previous_status,metadata_json,created_at
+                ) VALUES(
+                    NEW.tenant_id,COALESCE((SELECT latest_cursor FROM mission_event_streams WHERE tenant_id=NEW.tenant_id),0)+1,
+                    'daily_ops_run.created','daily_ops_run',NEW.id,
+                    NEW.status,NULL,
+                    json_object('schedule_id',NEW.schedule_id),
+                    NEW.created_at
+                );
+            END;
+            CREATE TRIGGER IF NOT EXISTS daily_ops_runs_mission_status
+            AFTER UPDATE OF status ON daily_ops_runs
+            WHEN NEW.status != OLD.status
+            BEGIN
+                INSERT INTO mission_events(
+                    tenant_id,cursor,event_type,resource_type,resource_id,status,
+                    previous_status,metadata_json,created_at
+                ) VALUES(
+                    NEW.tenant_id,COALESCE((SELECT latest_cursor FROM mission_event_streams WHERE tenant_id=NEW.tenant_id),0)+1,
+                    'daily_ops_run.status_changed','daily_ops_run',NEW.id,
+                    NEW.status,OLD.status,
+                    json_object('schedule_id',NEW.schedule_id,
+                                'attempt_count',NEW.attempt_count),NEW.updated_at
+                );
+            END;
+
+            CREATE TRIGGER IF NOT EXISTS proposals_mission_insert
+            AFTER INSERT ON proposals
+            BEGIN
+                INSERT INTO mission_events(
+                    tenant_id,cursor,event_type,resource_type,resource_id,status,
+                    previous_status,metadata_json,created_at
+                ) VALUES(
+                    NEW.tenant_id,COALESCE((SELECT latest_cursor FROM mission_event_streams WHERE tenant_id=NEW.tenant_id),0)+1,
+                    'proposal.created','proposal',NEW.id,NEW.status,NULL,
+                    json_object('daily_ops_run_id',NEW.daily_ops_run_id,
+                                'agent_run_id',NEW.agent_run_id,
+                                'current_version',NEW.current_version,
+                                'priority_rank',NEW.priority_rank),NEW.created_at
+                );
+            END;
+            CREATE TRIGGER IF NOT EXISTS proposals_mission_status
+            AFTER UPDATE OF status ON proposals
+            WHEN NEW.status != OLD.status
+            BEGIN
+                INSERT INTO mission_events(
+                    tenant_id,cursor,event_type,resource_type,resource_id,status,
+                    previous_status,metadata_json,created_at
+                ) VALUES(
+                    NEW.tenant_id,COALESCE((SELECT latest_cursor FROM mission_event_streams WHERE tenant_id=NEW.tenant_id),0)+1,
+                    'proposal.status_changed','proposal',NEW.id,
+                    NEW.status,OLD.status,
+                    json_object('daily_ops_run_id',NEW.daily_ops_run_id,
+                                'agent_run_id',NEW.agent_run_id,
+                                'current_version',NEW.current_version,
+                                'priority_rank',NEW.priority_rank),NEW.updated_at
+                );
+            END;
+
+            CREATE TRIGGER IF NOT EXISTS proposal_executions_mission_insert
+            AFTER INSERT ON proposal_executions
+            BEGIN
+                INSERT INTO mission_events(
+                    tenant_id,cursor,event_type,resource_type,resource_id,status,
+                    previous_status,metadata_json,created_at
+                ) VALUES(
+                    NEW.tenant_id,COALESCE((SELECT latest_cursor FROM mission_event_streams WHERE tenant_id=NEW.tenant_id),0)+1,
+                    'proposal_execution.created','proposal_execution',
+                    NEW.id,NEW.status,NULL,
+                    json_object('proposal_id',NEW.proposal_id,
+                                'proposal_version',NEW.proposal_version),NEW.created_at
+                );
+            END;
+            CREATE TRIGGER IF NOT EXISTS proposal_executions_mission_status
+            AFTER UPDATE OF status ON proposal_executions
+            WHEN NEW.status != OLD.status
+            BEGIN
+                INSERT INTO mission_events(
+                    tenant_id,cursor,event_type,resource_type,resource_id,status,
+                    previous_status,metadata_json,created_at
+                ) VALUES(
+                    NEW.tenant_id,COALESCE((SELECT latest_cursor FROM mission_event_streams WHERE tenant_id=NEW.tenant_id),0)+1,
+                    'proposal_execution.status_changed',
+                    'proposal_execution',NEW.id,NEW.status,OLD.status,
+                    json_object('proposal_id',NEW.proposal_id,
+                                'proposal_version',NEW.proposal_version,
+                                'attempt_count',NEW.attempt_count),NEW.updated_at
+                );
+            END;
+            """
+        )
+
+    @staticmethod
     def _migrate(conn: sqlite3.Connection, version: int) -> None:
         """Apply additive migrations for databases created by earlier releases."""
         if version == 1:
@@ -1588,6 +1982,10 @@ class Database:
             # initialize() creates the proposal, versioned decision, and
             # fenced execution tables in this transaction.
             version = 18
+        if version == 18:
+            # initialize() creates the bounded tenant Mission Control ledger;
+            # triggers are installed only after the marker advances.
+            version = 19
         if version != SCHEMA_VERSION:
             raise ValidationError(f"no migration path from runtime schema version {version}")
         conn.execute("UPDATE runtime_meta SET value=? WHERE key='schema_version'", (str(SCHEMA_VERSION),))
@@ -4850,6 +5248,113 @@ class Database:
                 return None
         return self.get_daily_ops_run(row["tenant_id"], row["id"])
 
+    @staticmethod
+    def _mission_event_dict(row: sqlite3.Row) -> dict[str, Any]:
+        event = dict(row)
+        event.pop("tenant_id", None)
+        event.pop("sequence", None)
+        event["metadata"] = json.loads(event.pop("metadata_json"))
+        return event
+
+    def mission_event_cursor(self, tenant_id: str) -> dict[str, int | None]:
+        """Return the durable tenant stream bounds without exposing other tenants."""
+        with self.connect() as conn:
+            self.require_tenant(conn, tenant_id)
+            row = conn.execute(
+                """SELECT latest_cursor,retained_from_cursor,pruned_through_cursor
+                     FROM mission_event_streams WHERE tenant_id=?""",
+                (tenant_id,),
+            ).fetchone()
+        if row is None:
+            return {
+                "latest_cursor": 0,
+                "retained_from_cursor": None,
+                "pruned_through_cursor": 0,
+            }
+        return {
+            "latest_cursor": int(row["latest_cursor"]),
+            "retained_from_cursor": (
+                int(row["retained_from_cursor"])
+                if row["retained_from_cursor"] is not None
+                else None
+            ),
+            "pruned_through_cursor": int(row["pruned_through_cursor"]),
+        }
+
+    def read_mission_events(
+        self,
+        tenant_id: str,
+        *,
+        after: int | str | None = None,
+        limit: int = 100,
+    ) -> dict[str, Any]:
+        """Read a bounded page and explicitly signal a retention discontinuity."""
+        if after is None or after == "":
+            marker = 0
+        elif isinstance(after, int) and not isinstance(after, bool):
+            marker = after
+        elif isinstance(after, str) and after.isascii() and after.isdigit():
+            marker = int(after)
+        else:
+            raise ValidationError("mission event cursor must be a non-negative integer")
+        if marker < 0:
+            raise ValidationError("mission event cursor must be a non-negative integer")
+        if not isinstance(limit, int) or isinstance(limit, bool) or not 1 <= limit <= 200:
+            raise ValidationError("mission event limit must be between 1 and 200")
+
+        with self.connect() as conn:
+            # Keep bounds and rows on one SQLite read snapshot. Otherwise a
+            # concurrent writer could prune between the two reads and make a
+            # retention gap look like a valid partial backlog.
+            conn.execute("BEGIN")
+            self.require_tenant(conn, tenant_id)
+            stream = conn.execute(
+                """SELECT latest_cursor,retained_from_cursor,pruned_through_cursor
+                     FROM mission_event_streams WHERE tenant_id=?""",
+                (tenant_id,),
+            ).fetchone()
+            bounds: dict[str, int | None] = {
+                "latest_cursor": int(stream["latest_cursor"]) if stream else 0,
+                "retained_from_cursor": (
+                    int(stream["retained_from_cursor"])
+                    if stream and stream["retained_from_cursor"] is not None
+                    else None
+                ),
+                "pruned_through_cursor": (
+                    int(stream["pruned_through_cursor"]) if stream else 0
+                ),
+            }
+            latest = int(bounds["latest_cursor"] or 0)
+            pruned_through = int(bounds["pruned_through_cursor"] or 0)
+            if marker > latest:
+                raise ValidationError("mission event cursor is ahead of the tenant stream")
+            if marker < pruned_through:
+                return {
+                    "events": [],
+                    "cursor": latest,
+                    "has_more": False,
+                    "reset_required": True,
+                    "reset_cursor": latest,
+                    **bounds,
+                }
+            rows = conn.execute(
+                """SELECT * FROM mission_events
+                     WHERE tenant_id=? AND cursor>?
+                     ORDER BY cursor LIMIT ?""",
+                (tenant_id, marker, limit + 1),
+            ).fetchall()
+        page = rows[:limit]
+        events = [self._mission_event_dict(row) for row in page]
+        cursor = int(events[-1]["cursor"]) if events else marker
+        return {
+            "events": events,
+            "cursor": cursor,
+            "has_more": len(rows) > limit,
+            "reset_required": False,
+            "reset_cursor": None,
+            **bounds,
+        }
+
     def mission_control(self, tenant_id: str) -> dict[str, Any]:
         def grouped(conn: sqlite3.Connection, table: str) -> dict[str, int]:
             rows = conn.execute(
@@ -4875,9 +5380,57 @@ class Database:
                 "agent_runs": grouped(conn, "agent_runs"),
                 "jobs": grouped(conn, "jobs"),
                 "actions": grouped(conn, "actions"),
+                "report_syncs": grouped(conn, "report_syncs"),
+                "daily_ops_runs": grouped(conn, "daily_ops_runs"),
+                "proposals": grouped(conn, "proposals"),
+                "proposal_executions": grouped(conn, "proposal_executions"),
             }
+            report_syncs = [dict(row) for row in conn.execute(
+                """SELECT id,recipe_id,connector_account_id,status,
+                          processing_status,attempt_count,created_at,updated_at,completed_at
+                     FROM report_syncs WHERE tenant_id=?
+                     ORDER BY rowid DESC LIMIT 10""",
+                (tenant_id,),
+            ).fetchall()]
+            daily_ops_runs = [dict(row) for row in conn.execute(
+                """SELECT id,schedule_id,local_date,scheduled_for,status,agent_run_id,
+                          attempt_count,created_at,updated_at,completed_at
+                     FROM daily_ops_runs WHERE tenant_id=?
+                     ORDER BY rowid DESC LIMIT 10""",
+                (tenant_id,),
+            ).fetchall()]
+            proposals = [dict(row) for row in conn.execute(
+                """SELECT id,daily_ops_run_id,agent_run_id,priority_rank,
+                          current_version,status,expires_at,created_at,updated_at,completed_at
+                     FROM proposals WHERE tenant_id=?
+                     ORDER BY rowid DESC LIMIT 10""",
+                (tenant_id,),
+            ).fetchall()]
+            executions = [dict(row) for row in conn.execute(
+                """SELECT id,proposal_id,proposal_version,operation,status,attempt_count,
+                          created_at,updated_at,completed_at
+                     FROM proposal_executions WHERE tenant_id=?
+                     ORDER BY rowid DESC LIMIT 10""",
+                (tenant_id,),
+            ).fetchall()]
+            cursor = conn.execute(
+                """SELECT latest_cursor,retained_from_cursor,pruned_through_cursor
+                     FROM mission_event_streams WHERE tenant_id=?""",
+                (tenant_id,),
+            ).fetchone()
         return {
             "counts": counts,
+            "event_cursor": {
+                "latest_cursor": int(cursor["latest_cursor"]) if cursor else 0,
+                "retained_from_cursor": (
+                    int(cursor["retained_from_cursor"])
+                    if cursor and cursor["retained_from_cursor"] is not None
+                    else None
+                ),
+                "pruned_through_cursor": (
+                    int(cursor["pruned_through_cursor"]) if cursor else 0
+                ),
+            },
             "approval_inbox": self.list_actions(tenant_id, status="requested", limit=20),
             "failed_runs": [
                 run for run in self.list_agent_runs(tenant_id, limit=50)
@@ -4889,4 +5442,8 @@ class Database:
             ][:20],
             "recent_runs": self.list_agent_runs(tenant_id, limit=10),
             "schedules": self.list_schedules(tenant_id),
+            "report_syncs": report_syncs,
+            "daily_ops_runs": daily_ops_runs,
+            "proposals": proposals,
+            "proposal_executions": executions,
         }

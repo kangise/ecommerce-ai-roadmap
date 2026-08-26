@@ -145,7 +145,7 @@ def test_schema_v9_migrates_existing_tenants_to_production_mode(tmp_path: Path) 
             """
         )
     db = Database(path)
-    assert db.readiness()["schema_version"] == 18
+    assert db.readiness()["schema_version"] == 19
     assert db.get_tenant("tenant-1")["mode"] == "production"
 
 
