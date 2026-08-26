@@ -96,7 +96,7 @@ def test_v14_migration_installs_tenant_owned_ads_gate(tmp_path: Path) -> None:
         conn.execute("DROP TABLE ads_capability_gates")
         conn.execute("UPDATE runtime_meta SET value='14' WHERE key='schema_version'")
     migrated = Database(path)
-    assert migrated.readiness()["schema_version"] == 20
+    assert migrated.readiness()["schema_version"] == 21
     with migrated.connect() as conn:
         columns = {
             row["name"]

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import contextlib
+import hashlib
 import json
 import re
 import sqlite3
@@ -19,6 +20,38 @@ def utc_now() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
+def audit_event_hash(
+    previous_hash: str,
+    tenant_id: str,
+    event_id: str,
+    actor_user_id: str | None,
+    request_id: str,
+    action: str,
+    resource_type: str,
+    resource_id: str | None,
+    outcome: str,
+    metadata_json: str,
+    created_at: str,
+) -> str:
+    payload = {
+        "previous_hash": previous_hash,
+        "tenant_id": tenant_id,
+        "id": event_id,
+        "actor_user_id": actor_user_id,
+        "request_id": request_id,
+        "action": action,
+        "resource_type": resource_type,
+        "resource_id": resource_id,
+        "outcome": outcome,
+        "metadata": json.loads(metadata_json),
+        "created_at": created_at,
+    }
+    canonical = json.dumps(
+        payload, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+    )
+    return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+
+
 @dataclass(frozen=True)
 class Principal:
     tenant_id: str
@@ -29,7 +62,8 @@ class Principal:
 
 
 ROLE_LEVEL = {"viewer": 10, "operator": 20, "admin": 30, "owner": 40}
-SCHEMA_VERSION = 20
+SCHEMA_VERSION = 21
+AUDIT_GENESIS_HASH = "0" * 64
 MISSION_EVENT_RETENTION = 1_000
 PILOT_WORKERS = (
     "scheduler",
@@ -71,6 +105,7 @@ class Database:
         conn.execute("PRAGMA foreign_keys = ON")
         conn.execute("PRAGMA journal_mode = WAL")
         conn.execute("PRAGMA busy_timeout = 10000")
+        conn.create_function("eai_audit_hash", 11, audit_event_hash, deterministic=True)
         return conn
 
     @contextlib.contextmanager
@@ -247,13 +282,15 @@ class Database:
                     id TEXT PRIMARY KEY,
                     tenant_id TEXT NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
                     actor_user_id TEXT REFERENCES users(id),
-                    request_id TEXT NOT NULL,
-                    action TEXT NOT NULL,
-                    resource_type TEXT NOT NULL,
-                    resource_id TEXT,
-                    outcome TEXT NOT NULL,
-                    metadata_json TEXT NOT NULL,
-                    created_at TEXT NOT NULL
+                    request_id TEXT NOT NULL CHECK (length(request_id) BETWEEN 1 AND 200),
+                    action TEXT NOT NULL CHECK (length(action) BETWEEN 1 AND 200),
+                    resource_type TEXT NOT NULL CHECK (length(resource_type) BETWEEN 1 AND 100),
+                    resource_id TEXT CHECK (resource_id IS NULL OR length(resource_id) BETWEEN 1 AND 200),
+                    outcome TEXT NOT NULL CHECK (length(outcome) BETWEEN 1 AND 80),
+                    metadata_json TEXT NOT NULL CHECK (json_valid(metadata_json) AND json_type(metadata_json)='object' AND length(metadata_json)<=20000),
+                    created_at TEXT NOT NULL,
+                    previous_hash TEXT NOT NULL,
+                    event_hash TEXT NOT NULL
                 );
                 CREATE INDEX IF NOT EXISTS idx_audit_tenant_time ON audit_events(tenant_id, created_at);
                 CREATE TABLE IF NOT EXISTS connector_records (
@@ -881,6 +918,32 @@ class Database:
                     stopped_at TEXT,
                     PRIMARY KEY (boot_id, worker_name)
                 );
+                CREATE TABLE IF NOT EXISTS assurance_runs (
+                    id TEXT PRIMARY KEY,
+                    tenant_id TEXT NOT NULL REFERENCES tenants(id) ON DELETE CASCADE,
+                    kind TEXT NOT NULL CHECK (kind IN ('eval','security','restore')),
+                    idempotency_key TEXT NOT NULL,
+                    status TEXT NOT NULL CHECK (
+                        status IN ('running','passed','failed','blocked')
+                    ),
+                    actor_user_id TEXT REFERENCES users(id),
+                    checks_json TEXT NOT NULL CHECK (
+                        json_valid(checks_json) AND json_type(checks_json)='array'
+                        AND length(checks_json)<=20000
+                    ),
+                    summary_json TEXT NOT NULL CHECK (
+                        json_valid(summary_json) AND json_type(summary_json)='object'
+                        AND length(summary_json)<=4000
+                    ),
+                    created_at TEXT NOT NULL,
+                    lease_until TEXT,
+                    lease_token TEXT,
+                    attempt_count INTEGER NOT NULL DEFAULT 1 CHECK (attempt_count>=1),
+                    completed_at TEXT,
+                    UNIQUE(tenant_id,idempotency_key)
+                );
+                CREATE INDEX IF NOT EXISTS idx_assurance_runs_tenant_time
+                    ON assurance_runs(tenant_id, created_at DESC);
                 CREATE TABLE IF NOT EXISTS runtime_meta (
                     key TEXT PRIMARY KEY,
                     value TEXT NOT NULL
@@ -903,6 +966,7 @@ class Database:
             self._install_v17_triggers(conn)
             self._install_v18_triggers(conn)
             self._install_v19_triggers(conn)
+            self._install_v21_triggers(conn)
 
     @staticmethod
     def _install_v16_triggers(conn: sqlite3.Connection) -> None:
@@ -1824,6 +1888,129 @@ class Database:
         )
 
     @staticmethod
+    def _install_v21_triggers(conn: sqlite3.Connection) -> None:
+        conn.executescript(
+            f"""
+            CREATE TRIGGER IF NOT EXISTS audit_events_chain_insert
+            BEFORE INSERT ON audit_events
+            WHEN NEW.previous_hash != COALESCE((
+                    SELECT event_hash FROM audit_events
+                    WHERE tenant_id=NEW.tenant_id ORDER BY rowid DESC LIMIT 1
+                 ),'{AUDIT_GENESIS_HASH}')
+              OR NEW.event_hash != eai_audit_hash(
+                    NEW.previous_hash,NEW.tenant_id,NEW.id,NEW.actor_user_id,
+                    NEW.request_id,NEW.action,NEW.resource_type,NEW.resource_id,
+                    NEW.outcome,NEW.metadata_json,NEW.created_at
+                 )
+            BEGIN SELECT RAISE(ABORT, 'audit event chain is invalid'); END;
+            CREATE TRIGGER IF NOT EXISTS audit_events_actor_insert
+            BEFORE INSERT ON audit_events
+            WHEN NEW.actor_user_id IS NOT NULL AND NOT EXISTS (
+                SELECT 1 FROM users u WHERE u.tenant_id=NEW.tenant_id
+                  AND u.id=NEW.actor_user_id
+            )
+            BEGIN SELECT RAISE(ABORT, 'audit actor binding is invalid'); END;
+            CREATE TRIGGER IF NOT EXISTS audit_events_shape_insert
+            BEFORE INSERT ON audit_events
+            WHEN length(NEW.request_id) NOT BETWEEN 1 AND 200
+              OR length(NEW.action) NOT BETWEEN 1 AND 200
+              OR length(NEW.resource_type) NOT BETWEEN 1 AND 100
+              OR (NEW.resource_id IS NOT NULL AND length(NEW.resource_id) NOT BETWEEN 1 AND 200)
+              OR length(NEW.outcome) NOT BETWEEN 1 AND 80
+              OR NOT json_valid(NEW.metadata_json) OR json_type(NEW.metadata_json)!='object'
+              OR length(NEW.metadata_json)>20000
+              OR length(NEW.previous_hash)!=64 OR NEW.previous_hash GLOB '*[^0-9a-f]*'
+              OR length(NEW.event_hash)!=64 OR NEW.event_hash GLOB '*[^0-9a-f]*'
+            BEGIN SELECT RAISE(ABORT, 'audit event shape is invalid'); END;
+            CREATE TRIGGER IF NOT EXISTS audit_events_immutable_update
+            BEFORE UPDATE ON audit_events
+            BEGIN SELECT RAISE(ABORT, 'audit event is immutable'); END;
+            CREATE TRIGGER IF NOT EXISTS audit_events_immutable_delete
+            BEFORE DELETE ON audit_events
+            BEGIN SELECT RAISE(ABORT, 'audit event is immutable'); END;
+            CREATE TRIGGER IF NOT EXISTS assurance_runs_actor_insert
+            BEFORE INSERT ON assurance_runs
+            WHEN (NEW.kind!='restore' AND NEW.actor_user_id IS NULL)
+              OR (NEW.actor_user_id IS NOT NULL AND NOT EXISTS (
+                    SELECT 1 FROM users u WHERE u.tenant_id=NEW.tenant_id
+                      AND u.id=NEW.actor_user_id
+                      AND u.role IN ('admin','owner')
+                 ))
+            BEGIN SELECT RAISE(ABORT, 'assurance actor binding is invalid'); END;
+            CREATE TRIGGER IF NOT EXISTS assurance_runs_initial_insert
+            BEFORE INSERT ON assurance_runs
+            WHEN NEW.status!='running' OR json(NEW.checks_json)!=json('[]')
+              OR json(NEW.summary_json)!=json('{{}}') OR NEW.completed_at IS NOT NULL
+              OR NEW.lease_until IS NULL OR NEW.lease_token IS NULL OR NEW.attempt_count!=1
+            BEGIN SELECT RAISE(ABORT, 'assurance initial state is invalid'); END;
+            CREATE TRIGGER IF NOT EXISTS assurance_runs_terminal_transition
+            BEFORE UPDATE OF status,checks_json,summary_json,completed_at ON assurance_runs
+            WHEN OLD.status='running' AND (
+                NEW.status NOT IN ('passed','failed','blocked')
+                OR NEW.completed_at IS NULL OR json_array_length(NEW.checks_json)<1
+                OR NEW.lease_until IS NOT NULL OR NEW.lease_token IS NOT NULL
+                OR EXISTS (
+                    SELECT 1 FROM json_each(NEW.checks_json) c
+                    WHERE c.type!='object' OR EXISTS (
+                        SELECT 1 FROM json_each(c.value) p
+                        WHERE p.key NOT IN ('name','status','code','count','error_type')
+                    )
+                    OR json_type(c.value,'$.name')!='text'
+                    OR length(json_extract(c.value,'$.name')) NOT BETWEEN 1 AND 100
+                    OR json_extract(c.value,'$.status') NOT IN ('passed','failed','blocked')
+                    OR json_type(c.value,'$.code')!='text'
+                    OR length(json_extract(c.value,'$.code')) NOT BETWEEN 1 AND 100
+                    OR (json_type(c.value,'$.count') IS NOT NULL AND (
+                        json_type(c.value,'$.count')!='integer'
+                        OR json_extract(c.value,'$.count')<0
+                    ))
+                    OR (json_type(c.value,'$.error_type') IS NOT NULL AND (
+                        json_type(c.value,'$.error_type')!='text'
+                        OR length(json_extract(c.value,'$.error_type')) NOT BETWEEN 1 AND 100
+                    ))
+                )
+                OR EXISTS (
+                    SELECT 1 FROM json_each(NEW.summary_json)
+                    WHERE key NOT IN ('check_count','passed_count','backup_id','evidence_object_count')
+                )
+                OR json_type(NEW.summary_json,'$.check_count')!='integer'
+                OR json_type(NEW.summary_json,'$.passed_count')!='integer'
+                OR json_extract(NEW.summary_json,'$.check_count')!=json_array_length(NEW.checks_json)
+                OR json_extract(NEW.summary_json,'$.passed_count')!=(
+                    SELECT COUNT(*) FROM json_each(NEW.checks_json) c
+                    WHERE json_extract(c.value,'$.status')='passed'
+                )
+                OR (NEW.status='passed' AND EXISTS (
+                    SELECT 1 FROM json_each(NEW.checks_json) c
+                    WHERE json_extract(c.value,'$.status')!='passed'
+                ))
+                OR (NEW.status='failed' AND NOT EXISTS (
+                    SELECT 1 FROM json_each(NEW.checks_json) c
+                    WHERE json_extract(c.value,'$.status')='failed'
+                ))
+                OR (NEW.status='blocked' AND (
+                    EXISTS (SELECT 1 FROM json_each(NEW.checks_json) c
+                            WHERE json_extract(c.value,'$.status')='failed')
+                    OR NOT EXISTS (SELECT 1 FROM json_each(NEW.checks_json) c
+                                   WHERE json_extract(c.value,'$.status')='blocked')
+                ))
+            )
+            BEGIN SELECT RAISE(ABORT, 'assurance terminal state is invalid'); END;
+            CREATE TRIGGER IF NOT EXISTS assurance_runs_terminal_update
+            BEFORE UPDATE ON assurance_runs
+            WHEN OLD.status IN ('passed','failed','blocked')
+            BEGIN SELECT RAISE(ABORT, 'terminal assurance run is immutable'); END;
+            CREATE TRIGGER IF NOT EXISTS assurance_runs_identity_update
+            BEFORE UPDATE OF id,tenant_id,kind,idempotency_key,actor_user_id,created_at
+            ON assurance_runs
+            BEGIN SELECT RAISE(ABORT, 'assurance run identity is immutable'); END;
+            CREATE TRIGGER IF NOT EXISTS assurance_runs_delete
+            BEFORE DELETE ON assurance_runs
+            BEGIN SELECT RAISE(ABORT, 'assurance run is immutable'); END;
+            """
+        )
+
+    @staticmethod
     def _migrate(conn: sqlite3.Connection, version: int) -> None:
         """Apply additive migrations for databases created by earlier releases."""
         if version == 1:
@@ -2048,6 +2235,37 @@ class Database:
             # initialize() creates the runtime-scoped fenced Pilot boot and
             # worker heartbeat tables before the marker advances.
             version = 20
+        if version == 20:
+            for trigger in (
+                "audit_events_chain_insert","audit_events_actor_insert",
+                "audit_events_immutable_update","audit_events_immutable_delete",
+            ):
+                conn.execute(f"DROP TRIGGER IF EXISTS {trigger}")
+            columns = {
+                row["name"] for row in conn.execute("PRAGMA table_info(audit_events)")
+            }
+            if "previous_hash" not in columns:
+                conn.execute("ALTER TABLE audit_events ADD COLUMN previous_hash TEXT")
+            if "event_hash" not in columns:
+                conn.execute("ALTER TABLE audit_events ADD COLUMN event_hash TEXT")
+            previous_by_tenant: dict[str, str] = {}
+            rows = conn.execute(
+                "SELECT rowid,* FROM audit_events ORDER BY tenant_id,rowid"
+            ).fetchall()
+            for row in rows:
+                previous = previous_by_tenant.get(row["tenant_id"], AUDIT_GENESIS_HASH)
+                digest = audit_event_hash(
+                    previous,row["tenant_id"],row["id"],row["actor_user_id"],
+                    row["request_id"],row["action"],row["resource_type"],
+                    row["resource_id"],row["outcome"],row["metadata_json"],
+                    row["created_at"],
+                )
+                conn.execute(
+                    "UPDATE audit_events SET previous_hash=?,event_hash=? WHERE rowid=?",
+                    (previous,digest,row["rowid"]),
+                )
+                previous_by_tenant[row["tenant_id"]] = digest
+            version = 21
         if version != SCHEMA_VERSION:
             raise ValidationError(f"no migration path from runtime schema version {version}")
         conn.execute("UPDATE runtime_meta SET value=? WHERE key='schema_version'", (str(SCHEMA_VERSION),))
@@ -3398,15 +3616,29 @@ class Database:
             ).fetchone()
             if actor is None or actor["tenant_id"] != tenant_id:
                 raise ValidationError("audit actor does not belong to tenant")
+        metadata_json = json.dumps(
+            metadata, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+        )
+        created_at = utc_now()
+        previous = conn.execute(
+            """SELECT event_hash FROM audit_events
+               WHERE tenant_id=? ORDER BY rowid DESC LIMIT 1""",
+            (tenant_id,),
+        ).fetchone()
+        previous_hash = previous["event_hash"] if previous else AUDIT_GENESIS_HASH
+        event_hash = audit_event_hash(
+            previous_hash,tenant_id,event_id,actor_user_id,request_id,action,
+            resource_type,resource_id,outcome,metadata_json,created_at,
+        )
         conn.execute(
             """INSERT INTO audit_events(
                id,tenant_id,actor_user_id,request_id,action,resource_type,
-               resource_id,outcome,metadata_json,created_at
-               ) VALUES(?,?,?,?,?,?,?,?,?,?)""",
+               resource_id,outcome,metadata_json,created_at,previous_hash,event_hash
+               ) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)""",
             (
                 event_id, tenant_id, actor_user_id, request_id, action,
                 resource_type, resource_id, outcome,
-                json.dumps(metadata, ensure_ascii=False, sort_keys=True), utc_now(),
+                metadata_json, created_at, previous_hash, event_hash,
             ),
         )
         return event_id
@@ -3415,7 +3647,7 @@ class Database:
         limit = max(1, min(limit, 500))
         with self.connect() as conn:
             rows = conn.execute(
-                "SELECT * FROM audit_events WHERE tenant_id=? ORDER BY created_at DESC LIMIT ?",
+                "SELECT * FROM audit_events WHERE tenant_id=? ORDER BY rowid DESC LIMIT ?",
                 (tenant_id, limit),
             ).fetchall()
         events = []
@@ -3424,6 +3656,133 @@ class Database:
             event["metadata"] = json.loads(event.pop("metadata_json"))
             events.append(event)
         return events
+
+    def verify_audit_chain(self, tenant_id: str) -> dict[str, Any]:
+        with self.connect() as conn:
+            self.require_tenant(conn, tenant_id)
+            rows = conn.execute(
+                "SELECT * FROM audit_events WHERE tenant_id=? ORDER BY rowid",
+                (tenant_id,),
+            ).fetchall()
+        previous = AUDIT_GENESIS_HASH
+        for index, row in enumerate(rows, 1):
+            expected = audit_event_hash(
+                previous,row["tenant_id"],row["id"],row["actor_user_id"],
+                row["request_id"],row["action"],row["resource_type"],
+                row["resource_id"],row["outcome"],row["metadata_json"],row["created_at"],
+            )
+            if row["previous_hash"] != previous or row["event_hash"] != expected:
+                return {"valid": False, "event_count": len(rows), "broken_at": index}
+            previous = row["event_hash"]
+        return {"valid": True, "event_count": len(rows), "broken_at": None}
+
+    @staticmethod
+    def _assurance_dict(row: sqlite3.Row, *, include_lease_token: bool=False) -> dict[str, Any]:
+        value = dict(row)
+        if not include_lease_token: value.pop("lease_token",None)
+        value["checks"] = json.loads(value.pop("checks_json"))
+        value["summary"] = json.loads(value.pop("summary_json"))
+        return value
+
+    def create_assurance_run(
+        self, tenant_id: str, kind: str, idempotency_key: str,
+        actor_user_id: str | None,
+    ) -> tuple[dict[str, Any], bool]:
+        if kind not in {"eval","security","restore"}:
+            raise ValidationError("invalid assurance kind")
+        if not isinstance(idempotency_key,str) or not 1 <= len(idempotency_key) <= 200:
+            raise ValidationError("assurance idempotency key is required")
+        run_id, now = self._id(), utc_now()
+        try:
+            with self.transaction() as conn:
+                self.require_tenant(conn, tenant_id)
+                conn.execute(
+                    """INSERT INTO assurance_runs(
+                       id,tenant_id,kind,idempotency_key,status,actor_user_id,
+                       checks_json,summary_json,created_at,lease_until,lease_token
+                       ) VALUES(?,?,?,?,'running',?,'[]','{}',?,?,?)""",
+                    (run_id,tenant_id,kind,idempotency_key,actor_user_id,now,self._lease_until(300),self._id()),
+                )
+        except sqlite3.IntegrityError as exc:
+            with self.connect() as conn:
+                row = conn.execute(
+                    """SELECT * FROM assurance_runs
+                       WHERE tenant_id=? AND idempotency_key=?""",
+                    (tenant_id,idempotency_key),
+                ).fetchone()
+            if row is None:
+                raise ValidationError("assurance run binding is invalid") from exc
+            existing = self._assurance_dict(row,include_lease_token=True)
+            if existing["kind"] != kind:
+                raise ConflictError("assurance idempotency key is bound to another kind")
+            return existing, True
+        return self._get_assurance_run(tenant_id,run_id,include_lease_token=True), False
+
+    def finish_assurance_run(
+        self, tenant_id: str, run_id: str, status: str,
+        checks: list[dict[str, Any]], summary: dict[str, Any], *,
+        expected_attempt: int,
+        lease_token: str,
+        audit_actor_user_id: str | None = None,
+        audit_request_id: str | None = None,
+    ) -> dict[str, Any]:
+        if status not in {"passed","failed","blocked"}:
+            raise ValidationError("invalid assurance terminal status")
+        with self.transaction() as conn:
+            result = conn.execute(
+                """UPDATE assurance_runs SET status=?,checks_json=?,summary_json=?,completed_at=?,lease_until=NULL,lease_token=NULL
+                   WHERE tenant_id=? AND id=? AND status='running'
+                     AND attempt_count=? AND lease_token=?""",
+                (status,json.dumps(checks,sort_keys=True,separators=(",",":")),
+                 json.dumps(summary,sort_keys=True,separators=(",",":")),utc_now(),
+                 tenant_id,run_id,expected_attempt,lease_token),
+            )
+            if result.rowcount != 1:
+                raise ConflictError("assurance run is not running")
+            if audit_request_id is not None:
+                kind=conn.execute(
+                    "SELECT kind FROM assurance_runs WHERE tenant_id=? AND id=?",
+                    (tenant_id,run_id),
+                ).fetchone()["kind"]
+                self.append_audit_tx(
+                    conn,tenant_id,audit_actor_user_id,audit_request_id,
+                    "assurance.run","assurance_run",run_id,status,{"kind":kind},
+                )
+        return self.get_assurance_run(tenant_id,run_id)
+
+    def claim_assurance_run(self, tenant_id: str, run_id: str) -> dict[str,Any] | None:
+        now=utc_now()
+        token=self._id()
+        with self.transaction() as conn:
+            result=conn.execute(
+                """UPDATE assurance_runs SET lease_until=?,lease_token=?,attempt_count=attempt_count+1
+                   WHERE tenant_id=? AND id=? AND status='running'
+                     AND lease_until IS NOT NULL AND lease_until<=?""",
+                (self._lease_until(300),token,tenant_id,run_id,now),
+            )
+        return self._get_assurance_run(tenant_id,run_id,include_lease_token=True) if result.rowcount==1 else None
+
+    def get_assurance_run(self, tenant_id: str, run_id: str) -> dict[str, Any]:
+        return self._get_assurance_run(tenant_id,run_id,include_lease_token=False)
+
+    def _get_assurance_run(self, tenant_id: str, run_id: str, *, include_lease_token: bool) -> dict[str, Any]:
+        with self.connect() as conn:
+            row = conn.execute(
+                "SELECT * FROM assurance_runs WHERE tenant_id=? AND id=?",
+                (tenant_id,run_id),
+            ).fetchone()
+        if row is None:
+            raise NotFoundError("assurance run not found")
+        return self._assurance_dict(row,include_lease_token=include_lease_token)
+
+    def list_assurance_runs(self, tenant_id: str, limit: int = 100) -> list[dict[str, Any]]:
+        limit=max(1,min(int(limit),200))
+        with self.connect() as conn:
+            rows=conn.execute(
+                """SELECT * FROM assurance_runs WHERE tenant_id=?
+                   ORDER BY rowid DESC LIMIT ?""",(tenant_id,limit)
+            ).fetchall()
+        return [self._assurance_dict(row) for row in rows]
 
     def create_action(self, tenant_id: str, idempotency_key: str, operation: str, payload: dict[str, Any], requested_by: str) -> tuple[dict[str, Any], bool]:
         if not idempotency_key or len(idempotency_key) > 200:

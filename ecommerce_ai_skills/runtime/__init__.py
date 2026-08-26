@@ -5,6 +5,7 @@ from .agent_graphs import AgentGraphService
 from .accounts import MarketplaceAccountService
 from .ads_gates import AdsCapabilityGateService
 from .ads_adapter_status import AdsAdapterStatusService
+from .assurance import AssuranceService
 from .briefing import BriefingService
 from .daily_ops import DailyOpsService
 from .evidence import CSVIngestor, EvidenceImportService, EvidenceObjectStore, XLSXIngestor
@@ -15,6 +16,7 @@ from .proposals import ProposalService
 from .pilot import PilotService, PilotSupervisor
 from .report_recipes import ReportRecipeService
 from .report_syncs import ReportSyncService
+from .recovery import RecoveryService
 from .storage import Database, Principal
 
 __all__ = [
@@ -23,6 +25,7 @@ __all__ = [
     "AgentGraphService",
     "AdsCapabilityGateService",
     "AdsAdapterStatusService",
+    "AssuranceService",
     "Database",
     "DailyOpsService",
     "EvidenceImportService",
@@ -37,6 +40,7 @@ __all__ = [
     "ProposalService",
     "ReportRecipeService",
     "ReportSyncService",
+    "RecoveryService",
     "ScheduleService",
     "WeeklyOpsCouncil",
     "WorkflowEvaluator",

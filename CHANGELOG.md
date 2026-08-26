@@ -13,6 +13,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 - Add package integrity metadata, automated tests, and PR quality checks.
 
 ### Added
+- L12 audit hash-chain, durable Assurance run, and verified recovery contract:
+  admin-only eval/security checks, CLI-only restore evidence, blocked no-data
+  evaluations, online SQLite plus evidence-object atomic backup, SHA-256
+  manifests, and fail-closed restore verification. Backups contain sensitive
+  data and remain unencrypted by this tool; production encryption/access control
+  is external.
 - L11 one-command Pilot operations contract: viewer-safe tenant readiness and
   local worker heartbeat status, explicit stale/degraded/stopped states,
   credential-presence-only blockers, loopback/public-bind and one-time-key

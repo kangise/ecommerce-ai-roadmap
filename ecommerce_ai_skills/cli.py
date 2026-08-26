@@ -343,6 +343,11 @@ def main() -> int:
     pilot.add_argument(
         "--check", action="store_true", help="read-only readiness check; do not start"
     )
+    backup = sub.add_parser("backup",help="create a verified runtime backup")
+    backup.add_argument("--db",required=True); backup.add_argument("--output",required=True)
+    restore = sub.add_parser("restore",help="verify or restore a runtime backup")
+    restore.add_argument("--backup",required=True); restore.add_argument("--db",required=True)
+    restore.add_argument("--verify-only",action="store_true")
     args = parser.parse_args()
     if args.command == "mcp":
         module = _load_mcp_module()
@@ -386,6 +391,17 @@ def main() -> int:
         return 0
     if args.command == "pilot":
         return _run_pilot(args)
+    if args.command in {"backup","restore"}:
+        from .runtime.recovery import RecoveryService
+        try:
+            result=(RecoveryService.backup(args.db,args.output) if args.command=="backup"
+                    else RecoveryService.restore(args.backup,args.db,verify_only=args.verify_only))
+            safe=({"status":"succeeded","backup_id":result["backup_id"],"schema_version":result["schema_version"],"evidence_object_count":len(result["evidence_objects"])}
+                  if args.command=="backup" else {key:value for key,value in result.items() if key not in {"database","tenant_ids","manifest"}})
+            print(json.dumps(safe,ensure_ascii=False,sort_keys=True),flush=True); return 0
+        except Exception as exc:
+            print(json.dumps({"status":"failed","error_code":("BACKUP_FAILED" if args.command=="backup" else "RESTORE_FAILED"),"error_type":type(exc).__name__},sort_keys=True),flush=True)
+            return 2
     app = RuntimeApplication(Database(args.db))
     if args.command == "init":
         print(app.bootstrap(args.name, args.email))

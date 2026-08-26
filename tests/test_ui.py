@@ -81,6 +81,8 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
         "refresh",
         "retry-live",
         "refresh-pilot",
+        "run-assurance",
+        "view-assurance",
         "close-dialog",
         "close-dialog",
         "view-json",
@@ -142,6 +144,7 @@ def test_every_static_button_is_wired_to_a_real_action() -> None:
         "/v1/mission-control",
         "/v1/mission-control/events",
         "/v1/pilot-status",
+        "/v1/assurance-runs",
         "/v1/evidence-imports",
         "/v1/agent-runs",
         "/v1/jobs",
@@ -229,6 +232,15 @@ def test_live_mission_control_stream_is_authenticated_resumable_and_visible() ->
     assert "last_error_type" in script
     assert "api_key_present" not in html
     assert "从浏览器启动或停止进程" in html
+    assert 'id="assurance-list"' in html
+    assert 'data-action="run-assurance" data-kind="eval"' in html
+    assert 'data-action="run-assurance" data-kind="security"' in html
+    assert 'case "view-assurance"' in script
+    assert '"Idempotency-Key": idempotency(`ui-assurance-${kind}`)' in script
+    assert "assuranceCanRun" in script
+    assert "Restore 只允许本地 CLI" in html
+    assert 'data-kind="restore"' not in html
+    assert "item.event_hash.slice(0, 16)" in script
     assert "需要 operator、admin 或 owner 执行健康检查" in script
     assert "需要 operator、admin 或 owner 角色" in script
     assert "recipeCanManage" in script

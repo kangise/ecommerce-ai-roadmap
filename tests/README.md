@@ -128,6 +128,16 @@ failure, and single-process SQLite boundaries.
 It does not claim real Amazon authorization or OpenAI success without external
 credentials and live evidence.
 
+L12 coverage validates tenant audit `previous_hash`/`event_hash` tamper chains,
+immutable Assurance list/detail runs, viewer reads and admin-only idempotent
+eval/security creation, closed check/status contracts, 300-second lease/crash
+resume attempts, and blocked no-data evals.
+It also validates online SQLite/evidence-object backups, SHA-256 manifests,
+owner-only modes, atomic new-directory publish, verify-only/no-overwrite restore,
+path traversal/symlink/corruption rejection, and restore-generated Assurance
+evidence. Backup encryption and production storage access controls are external
+requirements, not claims made by the runtime.
+
 The production gate is broader than pytest:
 
 ```bash

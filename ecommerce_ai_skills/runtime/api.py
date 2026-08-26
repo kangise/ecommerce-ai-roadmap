@@ -22,6 +22,7 @@ from urllib.parse import parse_qs, urlparse
 from .actions import ActionService
 from .agent_graphs import AgentGraphService
 from .accounts import MarketplaceAccountService
+from .assurance import AssuranceService
 from .ads_gates import AdsCapabilityGateService
 from .ads_adapter_status import AdsAdapterStatusService
 from .agents import AgentProvider, OpenAIResponsesProvider, WeeklyOpsCouncil
@@ -106,6 +107,7 @@ class RuntimeApplication:
     ):
         self.db = db
         self.auth = AuthService(db)
+        self.assurance = AssuranceService(db,self.auth)
         self.agent_graphs = AgentGraphService(db, self.auth)
         self.accounts = MarketplaceAccountService(db, self.auth)
         self.ads_gates = AdsCapabilityGateService(db, self.auth)
@@ -772,6 +774,13 @@ class _Handler(BaseHTTPRequestHandler):
                 )
             elif parsed.path == "/v1/pilot-status":
                 self._json(200, self.app.pilot.status(principal), request_id)
+            elif parsed.path == "/v1/assurance-runs":
+                params=parse_qs(parsed.query,keep_blank_values=True)
+                unknown=set(params)-{"limit"}
+                if unknown: raise ValidationError("unknown query fields: "+", ".join(sorted(unknown)))
+                self._json(200,{"runs":self.app.assurance.list(principal,self._query_int(params,"limit",default=100,minimum=1,maximum=200))},request_id)
+            elif parsed.path.startswith("/v1/assurance-runs/") and len(parsed.path.split("/"))==4:
+                self._json(200,self.app.assurance.get(principal,parsed.path.split("/")[3]),request_id)
             elif parsed.path == "/v1/briefing":
                 platform = parse_qs(parsed.query).get("platform", ["amazon"])[0]
                 self._json(
@@ -815,6 +824,12 @@ class _Handler(BaseHTTPRequestHandler):
                 replacement = self.app.auth.rotate_current(principal)
                 self.app.db.append_audit(principal.tenant_id, principal.user_id, request_id, "api_key.rotate", "api_key", principal.api_key_id, "succeeded", {})
                 self._json(200, {"api_key": replacement}, request_id); return
+            if parsed.path == "/v1/assurance-runs":
+                principal=self._principal()
+                body=self._body_fields(required={"kind"},allowed={"kind"})
+                key=self.headers.get("Idempotency-Key","")
+                if not key: raise ValidationError("Idempotency-Key header is required")
+                self._json(201,self.app.assurance.run(principal,str(body["kind"]),key,request_id),request_id); return
             if parsed.path == "/v1/api-keys":
                 principal = self._principal()
                 body = self._body_fields(required={"user_id"})

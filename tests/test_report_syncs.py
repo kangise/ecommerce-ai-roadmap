@@ -105,7 +105,7 @@ def test_v12_migration_and_persistence(tmp_path: Path) -> None:
         conn.execute("DROP TABLE report_syncs")
         conn.execute("UPDATE runtime_meta SET value='12' WHERE key='schema_version'")
     migrated = Database(path)
-    assert migrated.readiness()["schema_version"] == 20
+    assert migrated.readiness()["schema_version"] == 21
     with migrated.connect() as conn:
         columns = {row["name"] for row in conn.execute("PRAGMA table_info(report_syncs)")}
     assert {"recipe_id", "amazon_report_id", "lease_until", "evidence_import_id"} <= columns

@@ -50,6 +50,9 @@ const state = {
   pilotStatus: null,
   pilotLoading: false,
   pilotError: null,
+  assuranceRuns: [],
+  assuranceLoading: false,
+  assuranceError: null,
   agentGraphs: [],
   agentGraphsLoading: false,
   agentGraphsError: null,
@@ -1222,13 +1225,36 @@ function renderProposals() {
   }).join("");
 }
 
+function assuranceCanRun() { return ["admin", "owner"].includes(state.me?.role); }
+function renderAssurance() {
+  const target = $("assurance-list"), reason = $("assurance-permission");
+  if (!target) return;
+  document.querySelectorAll('[data-action="run-assurance"]').forEach(button => {
+    button.disabled = !assuranceCanRun() || state.assuranceLoading;
+    button.title = button.disabled ? "需要 admin 或 owner 角色" : "";
+  });
+  if (reason) {
+    reason.hidden = assuranceCanRun();
+    reason.textContent = "当前角色只能查看；运行 Assurance 需要 admin 或 owner。";
+  }
+  if (state.assuranceLoading) { designedEmpty(target, "正在运行 Assurance", "正在执行真实评测与安全完整性检查。", "shield-check"); return; }
+  if (state.assuranceError) { target.innerHTML = `<div class="agent-graph-failure" role="alert"><strong>无法读取 Assurance</strong><span>${escapeHtml(state.assuranceError)}</span></div>`; return; }
+  if (!state.assuranceRuns.length) { designedEmpty(target, "尚无 Assurance 记录", "运行 Eval 或 Security 后，结果与检查项会持久保留。", "shield-check"); return; }
+  target.innerHTML = state.assuranceRuns.map(run => {
+    const checks = Array.isArray(run.checks) ? run.checks : [];
+    const passed = checks.filter(check => check.status === "passed").length;
+    const failure = checks.find(check => ["failed", "blocked"].includes(check.status));
+    return `<article class="assurance-card"><div class="assurance-card-head"><div><p class="kicker">${escapeHtml(run.kind || "assurance")}</p><strong>${escapeHtml(run.kind === "restore" ? "恢复演练" : run.kind === "security" ? "安全检查" : "工作流评测")}</strong></div>${badge(run.status || "running")}</div><div class="assurance-meta"><span>${passed}/${checks.length} checks passed</span><span>${escapeHtml(isoLocal(run.completed_at || run.created_at))}</span></div>${failure ? `<div class="review-guard">${escapeHtml(failure.code || "检查未通过")}</div>` : ""}<div class="row-actions"><button data-action="view-assurance" data-id="${escapeHtml(run.id)}" class="secondary-button">查看检查项</button></div></article>`;
+  }).join("");
+}
+
 function renderAudit() {
   const target = $("audit-list");
   if (!state.audit.length) {
     designedEmpty(target, "暂无审计事件", "Runtime 中的真实操作记录会按时间倒序显示。", "clipboard-text");
     return;
   }
-  target.innerHTML = state.audit.slice(0, 100).map(item => `<div class="data-row"><div class="data-main"><strong>${escapeHtml(item.action)}</strong><small>${badge(item.outcome)}${escapeHtml(item.resource_type)} · ${escapeHtml(isoLocal(item.created_at))}</small></div><div class="row-actions"><button data-action="view-json" data-json="${encodeURIComponent(JSON.stringify(item))}" class="secondary-button">查看</button></div></div>`).join("");
+  target.innerHTML = state.audit.slice(0, 100).map(item => `<div class="data-row"><div class="data-main"><strong>${escapeHtml(item.action)}</strong><small>${badge(item.outcome)}${escapeHtml(item.resource_type)} · ${escapeHtml(isoLocal(item.created_at))}</small>${item.event_hash ? `<span class="reviewer-task">chain ${escapeHtml(item.event_hash.slice(0, 16))}… · previous ${escapeHtml((item.previous_hash || "").slice(0, 16))}…</span>` : ""}</div><div class="row-actions"><button data-action="view-json" data-json="${encodeURIComponent(JSON.stringify(item))}" class="secondary-button">查看</button></div></div>`).join("");
 }
 
 function renderAll() {
@@ -1245,6 +1271,7 @@ function renderAll() {
   renderLiveMissionControl();
   renderApprovals();
   renderProposals();
+  renderAssurance();
   renderAudit();
   renderConnectors();
   renderReportRecipes();
@@ -1285,6 +1312,7 @@ function renderDisconnected() {
   state.proposals = []; state.proposalExecutions = []; state.proposalsLoading = false; state.proposalsError = null;
   state.missionEvents = []; state.liveCursor = null; state.liveLastAt = null;
   state.pilotStatus = null; state.pilotLoading = false; state.pilotError = null;
+  state.assuranceRuns = []; state.assuranceLoading = false; state.assuranceError = null;
   if (state.liveStatus !== "auth_failed") { state.liveStatus = "disconnected"; state.liveError = null; }
   state.agentGraphs = []; state.agentGraphsLoading = false; state.agentGraphsError = null;
   renderBriefing();
@@ -1292,6 +1320,7 @@ function renderDisconnected() {
   renderPilotStatus();
   renderLiveMissionControl();
   renderProposals();
+  renderAssurance();
   renderEvidence();
   renderAgentGraphs();
   renderRunMetricOptions();
@@ -1326,6 +1355,7 @@ async function refreshAll() {
   state.dailyOpsLoading = true; state.dailyOpsScheduleError = null; state.dailyOpsRunError = null;
   state.proposalsLoading = true; state.proposalsError = null;
   state.pilotLoading = true; state.pilotError = null;
+  state.assuranceLoading = true; state.assuranceError = null;
   renderReportRecipes();
   renderReportSyncs();
   renderMetricObservations();
@@ -1337,6 +1367,7 @@ async function refreshAll() {
   renderDailyOps();
   renderPilotStatus();
   renderProposals();
+  renderAssurance();
   const platform = encodeURIComponent(state.selectedPlatform);
   const recipes = api("/v1/report-recipes").then(value => ({value})).catch(error => ({error}));
   const syncs = api("/v1/report-syncs").then(value => ({value})).catch(error => ({error}));
@@ -1349,6 +1380,7 @@ async function refreshAll() {
   const proposals = api("/v1/proposals?limit=100").then(value => ({value})).catch(error => ({error}));
   const proposalExecutions = api("/v1/proposal-executions?limit=100").then(value => ({value})).catch(error => ({error}));
   const pilot = api("/v1/pilot-status").then(value => ({value})).catch(error => ({error}));
+  const assurance = api("/v1/assurance-runs?limit=100").then(value => ({value})).catch(error => ({error}));
   const graphs = api("/v1/agent-graphs").then(async value => {
     const listed = Array.isArray(value) ? value : value?.graphs || [];
     const detailed = await Promise.all(listed.map(async graph => {
@@ -1364,10 +1396,10 @@ async function refreshAll() {
     }));
     return {graphs: detailed};
   }).then(value => ({value})).catch(error => ({error}));
-  const [me, catalog, briefing, mission, imports, runs, jobs, schedules, audit, connectors, recipeResult, syncResult, observationResult, materializationResult, adsGateResult, adsAdapterResult, graphResult, dailyScheduleResult, dailyRunResult, proposalResult, executionResult, pilotResult] = await Promise.all([
+  const [me, catalog, briefing, mission, imports, runs, jobs, schedules, audit, connectors, recipeResult, syncResult, observationResult, materializationResult, adsGateResult, adsAdapterResult, graphResult, dailyScheduleResult, dailyRunResult, proposalResult, executionResult, pilotResult, assuranceResult] = await Promise.all([
     api("/v1/me"), api("/v1/catalog"), api(`/v1/briefing?platform=${platform}`), api("/v1/mission-control"),
     api("/v1/evidence-imports?limit=100"), api("/v1/agent-runs?limit=100"), api("/v1/jobs?limit=100"),
-    api("/v1/schedules"), api("/v1/audit?limit=100"), api("/v1/connectors"), recipes, syncs, observations, materializations, adsGates, adsAdapter, graphs, dailyOpsSchedules, dailyOpsRuns, proposals, proposalExecutions, pilot,
+    api("/v1/schedules"), api("/v1/audit?limit=100"), api("/v1/connectors"), recipes, syncs, observations, materializations, adsGates, adsAdapter, graphs, dailyOpsSchedules, dailyOpsRuns, proposals, proposalExecutions, pilot, assurance,
   ]);
   if (recipeResult.error) console.error("Report Recipes 加载失败", recipeResult.error);
   if (syncResult.error) console.error("Sync Activity 加载失败", syncResult.error);
@@ -1380,6 +1412,7 @@ async function refreshAll() {
   if (proposalResult.error) console.error("行动提案加载失败", proposalResult.error);
   if (executionResult.error) console.error("提案执行记录加载失败", executionResult.error);
   if (pilotResult.error) console.error("Pilot Runtime 状态加载失败", pilotResult.error);
+  if (assuranceResult.error) console.error("Assurance 状态加载失败", assuranceResult.error);
   Object.assign(state, {
     me, catalog, briefing, mission,
     imports: imports.imports || [], runs: runs.runs || [], jobs: jobs.jobs || [],
@@ -1403,6 +1436,7 @@ async function refreshAll() {
     proposals: Array.isArray(proposalResult.value) ? proposalResult.value : proposalResult.value?.proposals || [], proposalsLoading: false, proposalsError: proposalResult.error?.message || executionResult.error?.message || null,
     proposalExecutions: Array.isArray(executionResult.value) ? executionResult.value : executionResult.value?.executions || [],
     pilotStatus: pilotResult.value || null, pilotLoading: false, pilotError: pilotResult.error?.message || null,
+    assuranceRuns: Array.isArray(assuranceResult.value) ? assuranceResult.value : assuranceResult.value?.runs || [], assuranceLoading: false, assuranceError: assuranceResult.error?.message || null,
   });
   setConnected(true);
   renderAll();
@@ -1719,6 +1753,22 @@ document.body.addEventListener("click", event => {
     case "select-metric": state.chartMetric = button.dataset.metric; renderChartControls(); break;
     case "view-priority": showDetail("Agent Brief", {run_id: state.briefing?.brief_run_id, priority: state.briefing?.priorities?.[Number(button.dataset.index)]}); break;
     case "view-json": showDetail("审计事件", JSON.parse(decodeURIComponent(button.dataset.json))); break;
+    case "view-assurance": act(button, async () => showDetail("Assurance 检查项", await api(`/v1/assurance-runs/${id}`)), "Assurance 详情已加载。", false); break;
+    case "run-assurance": {
+      const kind = button.dataset.kind;
+      if (!assuranceCanRun()) { notice("运行 Assurance 需要 admin 或 owner。", "error"); break; }
+      if (!["eval", "security"].includes(kind)) { notice("不支持的 Assurance 类型。", "error"); break; }
+      act(button, async () => {
+        state.assuranceLoading = true; renderAssurance();
+        try {
+          await api("/v1/assurance-runs", {method: "POST", headers: {"Idempotency-Key": idempotency(`ui-assurance-${kind}`)}, json: {kind}});
+        } finally {
+          state.assuranceLoading = false;
+          renderAssurance();
+        }
+      }, kind === "eval" ? "工作流评测已保存。" : "安全检查已保存。");
+      break;
+    }
     case "view-import": act(button, async () => showDetail("Evidence Import", await api(`/v1/evidence-imports/${id}`)), "Evidence 详情已加载。", false); break;
     case "view-job": act(button, async () => showDetail("Job", await api(`/v1/jobs/${id}`)), "Job 详情已加载。", false); break;
     case "view-action": showDetail("待审批 Action", (state.mission?.approval_inbox || []).find(item => item.id === id) || (state.briefing?.approvals || []).find(item => item.id === id)); break;

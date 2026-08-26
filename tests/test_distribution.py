@@ -424,6 +424,43 @@ def test_generated_l11_pilot_contract_documents_real_boundaries() -> None:
     assert "OpenAI" in runbook
 
 
+def test_source_runtime_api_l12_assurance_and_audit_contract() -> None:
+    contract = yaml.safe_load((ROOT / "openapi" / "runtime-api.yaml").read_text(encoding="utf-8"))
+    paths = contract["paths"]
+    assert {"get", "post"} <= set(paths["/v1/assurance-runs"])
+    assert "get" in paths["/v1/assurance-runs/{assuranceRunId}"]
+    post = paths["/v1/assurance-runs"]["post"]
+    assert {"401", "403", "409", "422"} <= set(post["responses"])
+    assert any(item.get("$ref", "").endswith("/idempotencyKey") for item in post["parameters"])
+    schemas = contract["components"]["schemas"]
+    audit = schemas["AuditEvent"]
+    assert audit["additionalProperties"] is False
+    assert {"previous_hash", "event_hash"} <= set(audit["required"])
+    assert audit["properties"]["previous_hash"]["pattern"] == "^[a-f0-9]{64}$"
+    assert audit["properties"]["event_hash"]["pattern"] == "^[a-f0-9]{64}$"
+    for name in ("AssuranceRunRequest", "AssuranceCheck", "AssuranceSummary", "AssuranceRun"):
+        assert schemas[name]["additionalProperties"] is False
+    assert schemas["AssuranceRunRequest"]["properties"]["kind"]["enum"] == ["eval", "security"]
+    assert schemas["AssuranceRunKind"]["enum"] == ["eval", "security", "restore"]
+    assert schemas["AssuranceCheck"]["properties"]["status"]["enum"] == ["passed", "failed", "blocked"]
+    assert schemas["AssuranceRun"]["properties"]["status"]["enum"] == ["running", "passed", "failed", "blocked"]
+    assert {"lease_until", "attempt_count"} <= set(schemas["AssuranceRun"]["required"])
+    assert schemas["AssuranceRun"]["properties"]["attempt_count"]["minimum"] == 1
+
+
+def test_generated_l12_contract_documents_recovery_boundaries() -> None:
+    contract = yaml.safe_load((ROOT / "dist" / "openapi" / "runtime-api.yaml").read_text(encoding="utf-8"))
+    assert "restore" not in contract["components"]["schemas"]["AssuranceRunRequest"]["properties"]["kind"]["enum"]
+    guide = (ROOT / "dist" / "integration" / "runtime-api.md").read_text(encoding="utf-8")
+    runbook = (ROOT / "dist" / "operations" / "runbook.md").read_text(encoding="utf-8")
+    threat_model = (ROOT / "dist" / "security" / "threat-model.md").read_text(encoding="utf-8")
+    for text in (guide, runbook, threat_model):
+        assert "does **not** encrypt" in text or "does not encrypt" in text
+        assert "SHA-256" in text
+    assert "--verify-only" in guide and "path traversal" in guide and "ignores the supplied" in guide
+    assert "AUDIT_CHAIN_BROKEN" in runbook
+
+
 def test_source_runtime_api_l8_daily_ops_contract() -> None:
     contract = yaml.safe_load((ROOT / "openapi" / "runtime-api.yaml").read_text(encoding="utf-8"))
     paths = contract["paths"]

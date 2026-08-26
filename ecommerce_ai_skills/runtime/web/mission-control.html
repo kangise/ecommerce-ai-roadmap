@@ -254,7 +254,13 @@
 
         <section id="view-audit" class="view" data-view-panel="audit" aria-labelledby="audit-title">
           <div class="page-heading compact"><div><p class="kicker">Audit Trail</p><h1 id="audit-title">审计时间线</h1><p class="heading-summary">每次导入、Agent 执行、审批和外部动作都保留租户内可追溯记录。</p></div></div>
-          <section class="tool-panel wide"><div id="audit-list" class="data-list"></div></section>
+          <section class="tool-panel wide assurance-panel" aria-labelledby="assurance-title">
+            <div class="panel-heading"><div><p class="kicker">Eval · Security · Restore</p><h2 id="assurance-title">Assurance Center</h2><span>Eval 验证真实 Reviewer/评测覆盖；Security 验证数据库、租户约束和审计哈希链。</span></div><div class="assurance-actions"><button data-action="run-assurance" data-kind="eval" class="secondary-button">运行 Eval</button><button data-action="run-assurance" data-kind="security" class="primary-button">运行 Security</button></div></div>
+            <p id="assurance-permission" class="permission-reason" hidden></p>
+            <div class="recovery-cli-note"><strong>Restore 只允许本地 CLI</strong><span>浏览器不会覆盖数据库。使用经过校验的 `opc-ecommerce backup` / `restore` 后，恢复演练会作为真实 Assurance 记录出现。</span></div>
+            <div id="assurance-list" class="assurance-list" aria-live="polite"></div>
+          </section>
+          <section class="tool-panel wide audit-timeline-panel"><div class="panel-heading"><div><p class="kicker">Hash chained</p><h2>不可变审计事件</h2><span>每条事件绑定前一条哈希；完整性由 Security Assurance 复核。</span></div></div><div id="audit-list" class="data-list"></div></section>
         </section>
       </main>
     </div>

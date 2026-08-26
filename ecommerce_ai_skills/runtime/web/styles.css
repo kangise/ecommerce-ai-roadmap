@@ -285,6 +285,8 @@ pre{max-height:65vh;margin:18px 0 0;padding:17px;border:1px solid var(--line);bo
 .pilot-runtime-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:18px}.pilot-runtime-grid h3{margin:0 0 7px;font-size:14px}.pilot-worker-list,.pilot-readiness-list{display:grid}
 .pilot-worker-row,.pilot-check-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid var(--line)}.pilot-worker-row>div,.pilot-check-row>div{display:grid;min-width:0}.pilot-worker-row strong,.pilot-check-row strong{font-size:13px}.pilot-worker-row small,.pilot-check-row small{overflow:hidden;color:var(--muted);font-size:11px;text-overflow:ellipsis;white-space:nowrap}
 .badge.healthy,.badge.ready{background:var(--green-soft);color:var(--green)}.badge.degraded,.badge.attention,.badge.starting,.badge.stopping{background:var(--amber-soft);color:var(--amber)}.badge.stale,.badge.stopped,.badge.superseded{background:var(--coral-soft);color:var(--coral)}
+.assurance-panel{margin-bottom:20px}.assurance-panel .panel-heading>div:first-child{min-width:0}.assurance-panel .panel-heading span{display:block;margin-top:5px;color:var(--muted);font-size:13px}.assurance-actions{display:flex;gap:8px}.assurance-actions .primary-button,.assurance-actions .secondary-button{min-height:38px;padding:0 13px;font-size:12px;white-space:nowrap}.recovery-cli-note{display:flex;align-items:flex-start;gap:10px;margin-top:16px;padding:11px 12px;border:1px solid #d8e2f7;border-radius:8px;background:var(--blue-soft);color:var(--blue);font-size:12px}.recovery-cli-note strong{white-space:nowrap}.recovery-cli-note span{color:var(--muted)}
+.assurance-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}.assurance-card{display:grid;gap:11px;padding:15px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}.assurance-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.assurance-card-head .kicker{margin-bottom:2px}.assurance-card-head strong{font-size:15px}.assurance-meta{display:flex;flex-wrap:wrap;gap:7px;color:var(--muted);font-size:11px}.assurance-card .row-actions{justify-content:flex-start}.audit-timeline-panel .panel-heading{margin-bottom:6px}.audit-timeline-panel .panel-heading span{display:block;margin-top:5px;color:var(--muted);font-size:13px}
 .live-mission-panel{margin-bottom:20px;background:#f7faff}
 .live-mission-panel .panel-heading>div:first-child{min-width:0}
 .live-mission-panel .panel-heading span{display:block;margin-top:5px;color:var(--muted);font-size:13px}
@@ -323,6 +325,7 @@ pre{max-height:65vh;margin:18px 0 0;padding:17px;border:1px solid var(--line);bo
   .metric-observations-layout{grid-template-columns:1fr}
   .agent-graph-list{grid-template-columns:1fr}
   .pilot-runtime-grid{grid-template-columns:1fr}
+  .assurance-list{grid-template-columns:1fr}
   .live-event-list{grid-template-columns:1fr}
   .briefing-main{padding-right:0}.decision-rail{margin-top:26px;padding:26px 0 0;border-top:1px solid var(--line);border-left:0}
   .decision-rail{display:grid;grid-template-columns:1fr 1fr;gap:24px}.decision-section{padding:0 24px 0 0;border-right:1px solid var(--line);border-bottom:0}.agent-roster-section{padding:0}
@@ -344,6 +347,7 @@ pre{max-height:65vh;margin:18px 0 0;padding:17px;border:1px solid var(--line);bo
   .metric-observation-meta{grid-template-columns:1fr}
   .agent-graph-meta{grid-template-columns:1fr}
   .pilot-runtime-panel .panel-heading{align-items:flex-start;flex-direction:column}.pilot-runtime-panel .panel-heading .secondary-button{width:100%}
+  .assurance-panel .panel-heading{align-items:flex-start;flex-direction:column}.assurance-actions{width:100%}.assurance-actions>*{flex:1}.recovery-cli-note{flex-direction:column;gap:3px}
   .live-mission-panel .panel-heading{align-items:flex-start;flex-direction:column}.live-heading-actions{width:100%;justify-content:space-between}
   .data-row{grid-template-columns:1fr}.row-actions{justify-content:flex-start}
   .today span{display:none}

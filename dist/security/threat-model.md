@@ -4,6 +4,30 @@
 
 ### Pilot readiness and bootstrap (L11)
 
+### Assurance, audit integrity, and recovery (L12)
+
+Audit events form a per-tenant append-only hash chain (`previous_hash` and
+`event_hash`). Database triggers reject inconsistent inserts and mutation/deletion;
+security assurance recomputes the chain so direct tampering is detectable. The
+hash chain provides tamper evidence, not confidentiality or an external
+timestamp/notary service.
+
+Assurance reads remain tenant-scoped; only admins can create eval/security runs.
+Restore assurance is CLI-only and is created in a verified newly restored
+database, so an API caller cannot forge recovery evidence. No-data evals remain
+blocked rather than being passed from empty evidence. Running Assurance work has
+a bounded lease: only an expired lease may be resumed, with a visible incremented
+attempt count; a live lease and terminal result cannot be overwritten.
+
+Recovery validates SHA-256 manifests, SQLite integrity/schema, all referenced
+evidence objects, safe relative paths, and absence of symlinks before restoring
+only to a new destination. Backup includes sensitive business data and this
+tool does not encrypt it; encrypted storage, access control, retention, and key
+management are external production requirements.
+Verify-only restore validates only the backup and deliberately does not inspect
+or overwrite the requested target. CLI failure output carries a bounded error
+code/type, not filesystem paths or sensitive business contents.
+
 `GET /v1/pilot-status` keeps the existing bearer/viewer tenant boundary. Its
 closed schemas expose only current-tenant readiness, local worker heartbeat
 status, and actionable blockers. Credential reporting is presence/count metadata

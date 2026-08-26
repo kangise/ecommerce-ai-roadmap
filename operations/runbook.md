@@ -475,6 +475,43 @@ claimed by this release.
 
 ## Backup and recovery
 
+### L12 verified backup and restore
+
+Use `opc-ecommerce backup --db <DB> --output <NEW_DIRECTORY>`. The command uses
+SQLite online backup, includes `<DB>.evidence_objects`, writes SHA-256/size
+metadata to a strict manifest, applies owner-only permissions, and atomically
+publishes the new directory. It refuses an existing output or symlink path.
+
+First run `opc-ecommerce restore --backup <DIRECTORY> --db <NEW_DB>
+--verify-only`. It verifies manifest shape, SHA-256 values, SQLite quick/foreign
+key checks, schema marker, evidence ownership metadata, and path safety without
+creating the restore target. A real restore requires an absent target database
+and absent object directory; it rejects overwrite, traversal, symlinks, missing
+objects, corruption, and database/object mismatch. A successful target records
+its own immutable `restore` Assurance run—do not manufacture one through HTTP.
+`--verify-only` intentionally ignores the restore target, so it can safely check
+a backup even when a proposed target path already exists. CLI backup failures
+return `BACKUP_FAILED`; restore/verify failures return `RESTORE_FAILED`, with a
+safe error type rather than source paths or business data.
+
+Backups include sensitive business/evidence data. This utility does not encrypt
+them. Production operators must use externally encrypted storage, restrictive
+access control, retention policy, and a tested restore drill. Do not place a
+backup directory in a shared workspace or attach it to tickets.
+
+### L12 assurance operations
+
+Viewers may inspect `GET /v1/assurance-runs` and `/{id}`; only admins may create
+`eval` or `security` runs using `POST /v1/assurance-runs` and an
+`Idempotency-Key`. Read checks and hash-chain findings rather than treating the
+HTTP `201` as pass. `NO_ELIGIBLE_WORKFLOW_DATA` is an expected `blocked` eval
+when no real approved workflow data exists. Security checks validate the audit
+`previous_hash`/`event_hash` chain; preserve the database and investigate
+`AUDIT_CHAIN_BROKEN` rather than editing audit rows.
+Running Assurance rows have a 300-second lease. A repeat with the same key
+returns a live run unchanged, while an expired lease is claimed as a resumed
+attempt and increments `attempt_count`; terminal records remain immutable.
+
 Stop the service or use a filesystem-consistent snapshot of the SQLite file and
 its `-wal`/`-shm` companions plus `<database>.evidence_objects/`. Restore into a staging path, run the full test
 and package validation gates, then promote. Production deployments still need

@@ -584,6 +584,8 @@ def main() -> int:
                     "/v1/mission-control": {"get"},
                     "/v1/mission-control/events": {"get"},
                     "/v1/pilot-status": {"get"},
+                    "/v1/assurance-runs": {"get", "post"},
+                    "/v1/assurance-runs/{assuranceRunId}": {"get"},
                     "/v1/briefing": {"get"},
                     "/v1/catalog": {"get"},
                 }
@@ -664,6 +666,8 @@ def main() -> int:
                     "PilotBlocker", "PilotSchemaComponent", "PilotAmazonSpapiComponent",
                     "PilotCountComponent", "PilotOpenAIComponent", "PilotAdsComponent",
                     "PilotWorkerStatus", "PilotRuntimeStatus",
+                    "AssuranceRunKind", "AssuranceRunRequest", "AssuranceCheck",
+                    "AssuranceSummary", "AssuranceRun",
                     "OperatingBriefing",
                     "BriefingMetric",
                     "BriefingAgent",
@@ -927,6 +931,28 @@ def main() -> int:
                     "graceful_shutdown", "startup_failure", "worker_shutdown_timeout",
                 ]:
                     problems.append("dist/openapi/runtime-api.yaml: L11 runtime shutdown states must match the supervisor")
+                assurance_list = paths.get("/v1/assurance-runs", {})
+                assurance_detail = paths.get("/v1/assurance-runs/{assuranceRunId}", {})
+                if not {"get", "post"} <= set(assurance_list) or "get" not in assurance_detail:
+                    problems.append("dist/openapi/runtime-api.yaml: L12 assurance list/detail operations are missing")
+                assurance_post = assurance_list.get("post", {})
+                if not {"401", "403", "409", "422"} <= set(assurance_post.get("responses", {})):
+                    problems.append("dist/openapi/runtime-api.yaml: L12 assurance post must retain auth/idempotency failures")
+                audit = schemas.get("AuditEvent", {})
+                if audit.get("additionalProperties") is not False or not {"previous_hash", "event_hash"} <= set(audit.get("required", [])):
+                    problems.append("dist/openapi/runtime-api.yaml: L12 audit events must expose hash-chain links")
+                for schema_name in ("AssuranceRunRequest", "AssuranceCheck", "AssuranceSummary", "AssuranceRun"):
+                    if schemas.get(schema_name, {}).get("additionalProperties") is not False:
+                        problems.append(f"dist/openapi/runtime-api.yaml: L12 {schema_name} must be closed")
+                request_kind = schemas.get("AssuranceRunRequest", {}).get("properties", {}).get("kind", {}).get("enum")
+                if request_kind != ["eval", "security"]:
+                    problems.append("dist/openapi/runtime-api.yaml: L12 restore assurance must remain CLI-only")
+                assurance_status = schemas.get("AssuranceCheck", {}).get("properties", {}).get("status", {}).get("enum")
+                if assurance_status != ["passed", "failed", "blocked"]:
+                    problems.append("dist/openapi/runtime-api.yaml: L12 assurance checks must include blocked")
+                assurance_run = schemas.get("AssuranceRun", {})
+                if not {"lease_until", "attempt_count"} <= set(assurance_run.get("required", [])) or assurance_run.get("properties", {}).get("attempt_count", {}).get("minimum") != 1:
+                    problems.append("dist/openapi/runtime-api.yaml: L12 assurance runs must expose lease-resume attempts")
                 pilot_openai = schemas.get("PilotOpenAIComponent", {}).get("properties", {})
                 if set(pilot_openai) != {"required", "status", "api_key_present", "model_present"}:
                     problems.append("dist/openapi/runtime-api.yaml: L11 OpenAI status may expose presence only")

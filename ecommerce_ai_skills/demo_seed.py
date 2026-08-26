@@ -448,6 +448,9 @@ def seed_demo_database(path: str | Path) -> dict[str, Any]:
     evaluation = app.evaluator.evaluate(
         owner, str(run["id"]), "demo-weekly-ops-evaluate"
     )
+    daily_evaluation = app.evaluator.evaluate(
+        owner, str(daily_run["agent_run_id"]), "demo-daily-ops-evaluate"
+    )
     actions = []
     for index, report_id in enumerate(("DEMO-REPORT-1", "DEMO-REPORT-2"), start=1):
         actions.append(
@@ -482,6 +485,12 @@ def seed_demo_database(path: str | Path) -> dict[str, Any]:
         "demo-completed-run-job-request",
     )
     completed_job = app.jobs.run_once()
+    security_assurance = app.assurance.run(
+        owner, "security", "demo-assurance-security", "demo-assurance-security"
+    )
+    eval_assurance = app.assurance.run(
+        owner, "eval", "demo-assurance-eval", "demo-assurance-eval"
+    )
     app.db.append_audit(
         tenant_id,
         owner_id,
@@ -508,6 +517,10 @@ def seed_demo_database(path: str | Path) -> dict[str, Any]:
         ),
         "agent_run_id": run["id"],
         "evaluation_id": evaluation["id"],
+        "daily_evaluation_id": daily_evaluation["id"],
+        "assurance_count": 2,
+        "security_assurance_status": security_assurance["status"],
+        "eval_assurance_status": eval_assurance["status"],
         "approval_actions": len(actions),
         "marketplace_accounts": len(marketplace_accounts),
         "ads_capability_gate_id": ads_gate["id"],

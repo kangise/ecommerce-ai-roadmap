@@ -488,6 +488,46 @@ not a feature inventory; setup forms remain in their dedicated navigation views.
 
 ## Workflow evaluations
 
+## Assurance and recovery (L12)
+
+Audit events are append-only, tenant-scoped hash-chain records. Every returned
+`AuditEvent` carries `previous_hash` and `event_hash`; security assurance
+recomputes the tenant chain and reports `AUDIT_CHAIN_BROKEN` instead of accepting
+tampered history.
+
+Viewers may list and read `/v1/assurance-runs`. Only an admin may `POST` an
+idempotent assurance request with `kind: eval` or `kind: security` and an
+`Idempotency-Key`. Assurance runs/checks are closed, durable representations;
+checks end as `passed`, `failed`, or `blocked`. An eval with no eligible real,
+approved workflow data is explicitly `blocked` (`NO_ELIGIBLE_WORKFLOW_DATA`),
+not a fabricated pass. `restore` is deliberately absent from the HTTP request
+kind: only verified CLI restore writes its immutable restore-assurance record.
+An in-progress run has a bounded `lease_until` and `attempt_count`. Repeating the
+same idempotency key returns the terminal run, or resumes an expired running run
+as a new attempt; a live lease is never stolen.
+
+Use the recovery CLI, not an API route:
+
+```bash
+opc-ecommerce backup --db /secure/pilot.sqlite --output /secure/backups/pilot-2026-08-26
+opc-ecommerce restore --backup /secure/backups/pilot-2026-08-26 --db /staging/restored.sqlite --verify-only
+opc-ecommerce restore --backup /secure/backups/pilot-2026-08-26 --db /staging/restored.sqlite
+```
+
+Backup takes SQLite's online backup into a newly created directory, copies the
+tenant evidence-object tree, hashes every file in a strict manifest, then
+atomically publishes it. Directory/file permissions are owner-only. Verify and
+restore reject existing targets, symlinks, path traversal, malformed manifests,
+checksum corruption, schema/integrity failures, and evidence/database mismatch.
+`--verify-only` never creates a target. A successful restore writes `kind:
+restore` Assurance records only in the new target database.
+`--verify-only` validates the backup only and intentionally ignores the supplied
+target path, including whether it already exists.
+
+Backup data includes sensitive business data and evidence objects. This tool
+does **not** encrypt backups: production must provide encrypted storage and
+access control outside this tool, plus retention and restore-drill policy.
+
 `POST /v1/agent-runs/{id}/evaluate` runs deterministic graders against a
 completed Weekly Ops artifact and persists the result. The current evaluator
 checks completed tasks, priority shape, evidence references, platform isolation,

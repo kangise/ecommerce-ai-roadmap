@@ -1637,6 +1637,67 @@ paths:
               schema: {$ref: '#/components/schemas/PilotStatus'}
         '401': {$ref: '#/components/responses/Unauthorized'}
         '403': {$ref: '#/components/responses/Forbidden'}
+  /v1/assurance-runs:
+    get:
+      summary: List tenant-scoped durable assurance runs
+      description: Viewer-or-higher may read only the authenticated tenant's immutable Assurance runs.
+      parameters:
+        - in: query
+          name: limit
+          schema: {type: integer, minimum: 1, maximum: 200, default: 100}
+      responses:
+        '200':
+          description: Tenant-scoped assurance run history
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: false
+                required: [runs]
+                properties:
+                  runs: {type: array, items: {$ref: '#/components/schemas/AssuranceRun'}}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+    post:
+      summary: Run a tenant assurance evaluation or security check
+      description: >-
+        Admin-only and idempotent. Only `eval` and `security` can be created over
+        HTTP. `restore` Assurance runs are written only by a verified CLI restore
+        into its newly created target database; no API can forge a restore result.
+        An eval with no eligible real workflow data completes `blocked` with an
+        explicit check instead of inventing a passing evaluation.
+      parameters:
+        - $ref: '#/components/parameters/idempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/AssuranceRunRequest'}
+      responses:
+        '201':
+          description: Persisted immutable assurance run; replay returns the same run for the same key and kind
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/AssuranceRun'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/ValidationFailed'}
+  /v1/assurance-runs/{assuranceRunId}:
+    get:
+      summary: Read one tenant-scoped assurance run
+      parameters:
+        - $ref: '#/components/parameters/assuranceRunId'
+      responses:
+        '200':
+          description: Immutable tenant-scoped assurance result
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/AssuranceRun'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '404': {$ref: '#/components/responses/NotFound'}
   /v1/briefing:
     get:
       summary: Read an evidence-backed operating brief for one marketplace
@@ -1751,6 +1812,11 @@ components:
       required: false
       description: Non-sensitive tenant-local fallback cursor used only if `Last-Event-ID` is absent.
       schema: {type: integer, format: int64, minimum: 0, maximum: 9223372036854775807}
+    assuranceRunId:
+      in: path
+      name: assuranceRunId
+      required: true
+      schema: {type: string, format: uuid}
     proposalId:
       in: path
       name: proposalId
@@ -3742,7 +3808,8 @@ components:
           items: {$ref: '#/components/schemas/EvidenceReportType'}
     AuditEvent:
       type: object
-      required: [id, tenant_id, request_id, action, resource_type, outcome, metadata, created_at]
+      additionalProperties: false
+      required: [id, tenant_id, request_id, action, resource_type, outcome, metadata, created_at, previous_hash, event_hash]
       properties:
         id: {type: string, format: uuid}
         tenant_id: {type: string, format: uuid}
@@ -3752,8 +3819,54 @@ components:
         resource_type: {type: string}
         resource_id: {type: string, nullable: true}
         outcome: {type: string}
-        metadata: {type: object, additionalProperties: true}
+        metadata: {type: object, additionalProperties: true, description: Tenant audit metadata; runtime bounds its serialized object to 20,000 bytes.}
         created_at: {type: string, format: date-time}
+        previous_hash: {type: string, pattern: '^[a-f0-9]{64}$'}
+        event_hash: {type: string, pattern: '^[a-f0-9]{64}$'}
+    AssuranceRunKind:
+      type: string
+      enum: [eval, security, restore]
+    AssuranceRunRequest:
+      type: object
+      additionalProperties: false
+      required: [kind]
+      properties:
+        kind: {type: string, enum: [eval, security]}
+    AssuranceCheck:
+      type: object
+      additionalProperties: false
+      required: [name, status, code]
+      properties:
+        name: {type: string, minLength: 1, maxLength: 120}
+        status: {type: string, enum: [passed, failed, blocked]}
+        code: {type: string, minLength: 1, maxLength: 120}
+        count: {type: integer, minimum: 0}
+        error_type: {type: string, minLength: 1, maxLength: 100}
+    AssuranceSummary:
+      type: object
+      additionalProperties: false
+      properties:
+        check_count: {type: integer, minimum: 0}
+        passed_count: {type: integer, minimum: 0}
+        backup_id: {type: string, format: uuid}
+        evidence_object_count: {type: integer, minimum: 0}
+    AssuranceRun:
+      type: object
+      additionalProperties: false
+      required: [id, tenant_id, kind, idempotency_key, status, actor_user_id, checks, summary, created_at, lease_until, attempt_count, completed_at]
+      properties:
+        id: {type: string, format: uuid}
+        tenant_id: {type: string, format: uuid}
+        kind: {$ref: '#/components/schemas/AssuranceRunKind'}
+        idempotency_key: {type: string, minLength: 1, maxLength: 200}
+        status: {type: string, enum: [running, passed, failed, blocked]}
+        actor_user_id: {type: string, format: uuid, nullable: true}
+        checks: {type: array, maxItems: 100, items: {$ref: '#/components/schemas/AssuranceCheck'}}
+        summary: {$ref: '#/components/schemas/AssuranceSummary'}
+        created_at: {type: string, format: date-time}
+        lease_until: {type: string, format: date-time, nullable: true}
+        attempt_count: {type: integer, minimum: 1}
+        completed_at: {type: string, format: date-time, nullable: true}
     ConnectorRecord:
       type: object
       required: [id, tenant_id, provider, external_id, payload, synced_at]
