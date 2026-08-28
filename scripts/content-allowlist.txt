@@ -41,20 +41,6 @@ d-platforms/d5-temu-seller-guide.md:109
 d-platforms/d6-southeast-asia-ai-guide.md:44
 d-platforms/d6-southeast-asia-ai-guide.md:46
 #
-# d-platforms/platform-comparison.md
-d-platforms/platform-comparison.md:30
-d-platforms/platform-comparison.md:33
-d-platforms/platform-comparison.md:34
-d-platforms/platform-comparison.md:35
-d-platforms/platform-comparison.md:37
-d-platforms/platform-comparison.md:38
-d-platforms/platform-comparison.md:39
-d-platforms/platform-comparison.md:40
-d-platforms/platform-comparison.md:41
-d-platforms/platform-comparison.md:42
-d-platforms/platform-comparison.md:43
-d-platforms/platform-comparison.md:44
-#
 # d-platforms/tiktok-shop-ai-guide.md
 d-platforms/tiktok-shop-ai-guide.md:853
 d-platforms/tiktok-shop-ai-guide.md:862

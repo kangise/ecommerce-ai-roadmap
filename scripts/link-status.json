@@ -223,6 +223,10 @@
   "hard_fail": false,
   "status": 200
  },
+ "https://corporate.zalando.com/en/investor-relations/zalando-full-year-2025-results": {
+  "hard_fail": false,
+  "status": 200
+ },
  "https://datadome.co/agent-trust-management/agentic-commerce-readiness-checklist/": {
   "hard_fail": false,
   "status": 403
@@ -738,6 +742,10 @@
  "https://investors.ebayinc.com/investor-news/press-release-details/2026/eBay-Inc--Reports-Fourth-Quarter-and-Full-Year-2025-Results/default.aspx": {
   "hard_fail": false,
   "status": 403
+ },
+ "https://ir.aboutcoupang.com/news-events/news/news-details/2026/Coupang-Announces-Results-for-Fourth-Quarter-2025/default.aspx": {
+  "hard_fail": false,
+  "status": 200
  },
  "https://iterathon.tech/blog/rag-systems-production-guide-2025": {
   "hard_fail": false,
@@ -1383,6 +1391,14 @@
   "hard_fail": false,
   "status": 200
  },
+ "https://www.businesswire.com/news/home/20260224245400/en/MercadoLibre-Inc.-Reports-Fourth-Quarter-and-Full-Year-2025-Financial-Results": {
+  "hard_fail": false,
+  "status": 403
+ },
+ "https://www.businesswire.com/news/home/20260302039769/en/Sea-Limited-Reports-Fourth-Quarter-and-Full-Year-2025-Results": {
+  "hard_fail": false,
+  "status": 403
+ },
  "https://www.canva.com/": {
   "hard_fail": false,
   "status": 200
@@ -1504,6 +1520,10 @@
   "status": 403
  },
  "https://www.devopsschool.com/blog/top-10-ai-intellectual-property-tools-in-2025-features-pros-cons-comparison/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.ebayinc.com/stories/news/ebay-inc-reports-fourth-quarter-and-full-year-2025-results/": {
   "hard_fail": false,
   "status": 200
  },
@@ -1638,6 +1658,14 @@
  "https://www.marketbeat.com/instant-alerts/coupang-q4-earnings-call-highlights-2026-02-27/": {
   "hard_fail": false,
   "status": "The read operation timed out"
+ },
+ "https://www.marketplacepulse.com/articles/amazon-gmv-surpassed-800-billion-in-2025": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.marketplacepulse.com/articles/walmart-marketplace-growth-reaches-fastest-pace-in-years": {
+  "hard_fail": false,
+  "status": 200
  },
  "https://www.maxmerce.com/blog/amazon-ppc-acos-optimization-reduce-costs-boost-ro/": {
   "hard_fail": false,

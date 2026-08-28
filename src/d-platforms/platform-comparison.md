@@ -30,18 +30,22 @@
 | **Amazon** | GMV $830B | 稳定 | 全球 | 200万+ | | Path A-C |
 | **Shopify** | | 稳定 | 全球（DTC） | | | [D1](shopify-ai-guide.md) |
 | **TikTok Shop** | 快速增长 | 极高 | US/UK/东南亚 | | | [D2](tiktok-shop-ai-guide.md) |
-| **Walmart** | GMV $10B+ | 30%+ | 美国 | 25万+ | | [D4](d4-walmart-ai-guide.md) |
-| **Temu** | GMV $90-95B | 50%+ | 90+ 国家 | | | [D5](d5-temu-seller-guide.md) |
-| **Shopee** | GMV $127B | 25-29% | 东南亚 6 国 | | | [D6](d6-southeast-asia-ai-guide.md) |
+| **Walmart** | GMV ~$15B（估算） | 30%+ | 美国 | ~20万 | | [D4](d4-walmart-ai-guide.md) |
+| **Temu** | GMV $90-95B（估算，PDD 不单独披露） | 50%+ | 90+ 国家 | | | [D5](d5-temu-seller-guide.md) |
+| **Shopee** | GMV $127B | 27% | 东南亚 6 国 | | | [D6](d6-southeast-asia-ai-guide.md) |
 | **Lazada** | | 中等 | 东南亚 6 国 | | | [D6](d6-southeast-asia-ai-guide.md) |
-| **Mercado Libre** | GMV $65B | 35%+ | 拉美 4 国 | | | [D7](d7-mercado-libre-ai-guide.md) |
+| **Mercado Libre** | GMV ~$65B（估算；Q4 单季 $19.9B） | 37%（Q4） | 拉美 4 国 | | | [D7](d7-mercado-libre-ai-guide.md) |
 | **Rakuten** | GMV ~$31B | 中等 | 日本 | 5万+ | | [D8](d8-rakuten-japan-ai-guide.md) |
-| **eBay** | GMV $80B | 6-8% | 全球 | | | [D9](d9-ebay-ai-guide.md) |
+| **eBay** | GMV $79.6B | 7% | 全球 | | | [D9](d9-ebay-ai-guide.md) |
 | **AliExpress** | GMV $25B+ | 10-15% | 全球 | | | [D10](d10-aliexpress-ai-guide.md) |
-| **Coupang** | 收入 $36.8B | 14% | 韩国 | | | [D11](d11-coupang-korea-ai-guide.md) |
+| **Coupang** | 收入 $34.5B | 14% | 韩国 | | | [D11](d11-coupang-korea-ai-guide.md) |
 | **Faire** | GMV ~$3B | 40%+ | 美/欧（B2B） | | | [D12](d12-faire-wholesale-ai-guide.md) |
 | **Otto** | 收入 $9B | 5-10% | 德国 | | | [D13](d13-europe-marketplaces-guide.md) |
 | **Zalando** | GMV €17.6B | 5-10% | 欧洲 | | | [D13](d13-europe-marketplaces-guide.md) |
+
+> **来源：** 核验 2026-08 · [Amazon GMV $830B](https://www.marketplacepulse.com/articles/amazon-gmv-surpassed-800-billion-in-2025) · [Shopee $127B / +27%](https://www.businesswire.com/news/home/20260302039769/en/Sea-Limited-Reports-Fourth-Quarter-and-Full-Year-2025-Results) · [eBay $79.6B / +7%](https://www.ebayinc.com/stories/news/ebay-inc-reports-fourth-quarter-and-full-year-2025-results/) · [Coupang 营收 $34.5B](https://ir.aboutcoupang.com/news-events/news/news-details/2026/Coupang-Announces-Results-for-Fourth-Quarter-2025/default.aspx) · [Zalando GMV €17.6B](https://corporate.zalando.com/en/investor-relations/zalando-full-year-2025-results) · [Mercado Libre Q4 GMV $19.9B](https://www.businesswire.com/news/home/20260224245400/en/MercadoLibre-Inc.-Reports-Fourth-Quarter-and-Full-Year-2025-Financial-Results) · [Walmart 卖家数与 GMV 估算](https://www.marketplacepulse.com/articles/walmart-marketplace-growth-reaches-fastest-pace-in-years)
+>
+> 标"估算"的三项没有官方口径：Temu 由 PDD 控股但不单独披露 GMV（2024 年为 $70.8B，2025 目标 $100B）；Mercado Libre 只公布季度 GMV；Walmart 不公布 marketplace GMV。Rakuten、AliExpress、Faire、Otto、Shopify、Lazada 的数字尚未核证，已按 `maintenance/fact-review-plan.yaml` 排入 marketplace-platforms 批次。
 
 ### 1.2 社交媒体渠道（Path E）
 

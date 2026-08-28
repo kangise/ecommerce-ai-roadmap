@@ -30,18 +30,22 @@
 | **Amazon** | GMV $830B | Stable | Global | 2M+ | | Path A-C |
 | **Shopify** | | Stable | Global (DTC) | | | [D1](shopify-ai-guide.md) |
 | **TikTok Shop** | Fast growth | Extremely high | US/UK/Southeast Asia | | | [D2](tiktok-shop-ai-guide.md) |
-| **Walmart** | GMV $10B+ | 30%+ | US | 250K+ | | [D4](d4-walmart-ai-guide.md) |
-| **Temu** | GMV $90-95B | 50%+ | 90+ countries | | | [D5](d5-temu-seller-guide.md) |
-| **Shopee** | GMV $127B | 25-29% | 6 Southeast Asian countries | | | [D6](d6-southeast-asia-ai-guide.md) |
+| **Walmart** | GMV ~$15B (estimate) | 30%+ | US | ~200K | | [D4](d4-walmart-ai-guide.md) |
+| **Temu** | GMV $90-95B (estimate; PDD does not break it out) | 50%+ | 90+ countries | | | [D5](d5-temu-seller-guide.md) |
+| **Shopee** | GMV $127B | 27% | 6 Southeast Asian countries | | | [D6](d6-southeast-asia-ai-guide.md) |
 | **Lazada** | | Medium | 6 Southeast Asian countries | | | [D6](d6-southeast-asia-ai-guide.md) |
-| **Mercado Libre** | GMV $65B | 35%+ | 4 Latin American countries | | | [D7](d7-mercado-libre-ai-guide.md) |
+| **Mercado Libre** | GMV ~$65B (estimate; Q4 alone $19.9B) | 37% (Q4) | 4 Latin American countries | | | [D7](d7-mercado-libre-ai-guide.md) |
 | **Rakuten** | GMV ~$31B | Medium | Japan | 50K+ | | [D8](d8-rakuten-japan-ai-guide.md) |
-| **eBay** | GMV $80B | 6-8% | Global | | | [D9](d9-ebay-ai-guide.md) |
+| **eBay** | GMV $79.6B | 7% | Global | | | [D9](d9-ebay-ai-guide.md) |
 | **AliExpress** | GMV $25B+ | 10-15% | Global | | | [D10](d10-aliexpress-ai-guide.md) |
-| **Coupang** | Revenue $36.8B | 14% | South Korea | | | [D11](d11-coupang-korea-ai-guide.md) |
+| **Coupang** | Revenue $34.5B | 14% | South Korea | | | [D11](d11-coupang-korea-ai-guide.md) |
 | **Faire** | GMV ~$3B | 40%+ | US/Europe (B2B) | | | [D12](d12-faire-wholesale-ai-guide.md) |
 | **Otto** | Revenue $9B | 5-10% | Germany | | | [D13](d13-europe-marketplaces-guide.md) |
 | **Zalando** | GMV €17.6B | 5-10% | Europe | | | [D13](d13-europe-marketplaces-guide.md) |
+
+> **Sources:** verified 2026-08 · [Amazon GMV $830B](https://www.marketplacepulse.com/articles/amazon-gmv-surpassed-800-billion-in-2025) · [Shopee $127B / +27%](https://www.businesswire.com/news/home/20260302039769/en/Sea-Limited-Reports-Fourth-Quarter-and-Full-Year-2025-Results) · [eBay $79.6B / +7%](https://www.ebayinc.com/stories/news/ebay-inc-reports-fourth-quarter-and-full-year-2025-results/) · [Coupang revenue $34.5B](https://ir.aboutcoupang.com/news-events/news/news-details/2026/Coupang-Announces-Results-for-Fourth-Quarter-2025/default.aspx) · [Zalando GMV €17.6B](https://corporate.zalando.com/en/investor-relations/zalando-full-year-2025-results) · [Mercado Libre Q4 GMV $19.9B](https://www.businesswire.com/news/home/20260224245400/en/MercadoLibre-Inc.-Reports-Fourth-Quarter-and-Full-Year-2025-Financial-Results) · [Walmart seller count and GMV estimate](https://www.marketplacepulse.com/articles/walmart-marketplace-growth-reaches-fastest-pace-in-years)
+>
+> The three marked "estimate" have no official figure: Temu is owned by PDD, which does not break out its GMV ($70.8B in 2024; $100B was the 2025 target); Mercado Libre publishes quarterly GMV only; Walmart does not publish marketplace GMV. Rakuten, AliExpress, Faire, Otto, Shopify and Lazada are not yet verified and are queued in the marketplace-platforms batch of `maintenance/fact-review-plan.yaml`.
 
 ### 1.2 Social Media Channels (Path E)
 

@@ -30,18 +30,22 @@
 | **Amazon** | GMV $830B | 安定 | グローバル | 200万+ | | Path A-C |
 | **Shopify** | | 安定 | グローバル(DTC) | | | [D1](shopify-ai-guide.md) |
 | **TikTok Shop** | 急成長 | 極めて高い | US/UK/東南アジア | | | [D2](tiktok-shop-ai-guide.md) |
-| **Walmart** | GMV $10B+ | 30%+ | 米国 | 25万+ | | [D4](d4-walmart-ai-guide.md) |
-| **Temu** | GMV $90-95B | 50%+ | 90+ か国 | | | [D5](d5-temu-seller-guide.md) |
-| **Shopee** | GMV $127B | 25-29% | 東南アジア 6 か国 | | | [D6](d6-southeast-asia-ai-guide.md) |
+| **Walmart** | GMV ~$15B(推計) | 30%+ | 米国 | ~20万 | | [D4](d4-walmart-ai-guide.md) |
+| **Temu** | GMV $90-95B(推計、PDD は個別開示せず) | 50%+ | 90+ か国 | | | [D5](d5-temu-seller-guide.md) |
+| **Shopee** | GMV $127B | 27% | 東南アジア 6 か国 | | | [D6](d6-southeast-asia-ai-guide.md) |
 | **Lazada** | | 中程度 | 東南アジア 6 か国 | | | [D6](d6-southeast-asia-ai-guide.md) |
-| **Mercado Libre** | GMV $65B | 35%+ | 中南米 4 か国 | | | [D7](d7-mercado-libre-ai-guide.md) |
+| **Mercado Libre** | GMV ~$65B(推計；Q4 単体 $19.9B) | 37%(Q4) | 中南米 4 か国 | | | [D7](d7-mercado-libre-ai-guide.md) |
 | **Rakuten** | GMV ~$31B | 中程度 | 日本 | 5万+ | | [D8](d8-rakuten-japan-ai-guide.md) |
-| **eBay** | GMV $80B | 6-8% | グローバル | | | [D9](d9-ebay-ai-guide.md) |
+| **eBay** | GMV $79.6B | 7% | グローバル | | | [D9](d9-ebay-ai-guide.md) |
 | **AliExpress** | GMV $25B+ | 10-15% | グローバル | | | [D10](d10-aliexpress-ai-guide.md) |
-| **Coupang** | 収入 $36.8B | 14% | 韓国 | | | [D11](d11-coupang-korea-ai-guide.md) |
+| **Coupang** | 収入 $34.5B | 14% | 韓国 | | | [D11](d11-coupang-korea-ai-guide.md) |
 | **Faire** | GMV ~$3B | 40%+ | 米/欧(B2B) | | | [D12](d12-faire-wholesale-ai-guide.md) |
 | **Otto** | 収入 $9B | 5-10% | ドイツ | | | [D13](d13-europe-marketplaces-guide.md) |
 | **Zalando** | GMV €17.6B | 5-10% | 欧州 | | | [D13](d13-europe-marketplaces-guide.md) |
+
+> **出典：** 検証 2026-08 · [Amazon GMV $830B](https://www.marketplacepulse.com/articles/amazon-gmv-surpassed-800-billion-in-2025) · [Shopee $127B / +27%](https://www.businesswire.com/news/home/20260302039769/en/Sea-Limited-Reports-Fourth-Quarter-and-Full-Year-2025-Results) · [eBay $79.6B / +7%](https://www.ebayinc.com/stories/news/ebay-inc-reports-fourth-quarter-and-full-year-2025-results/) · [Coupang 収入 $34.5B](https://ir.aboutcoupang.com/news-events/news/news-details/2026/Coupang-Announces-Results-for-Fourth-Quarter-2025/default.aspx) · [Zalando GMV €17.6B](https://corporate.zalando.com/en/investor-relations/zalando-full-year-2025-results) · [Mercado Libre Q4 GMV $19.9B](https://www.businesswire.com/news/home/20260224245400/en/MercadoLibre-Inc.-Reports-Fourth-Quarter-and-Full-Year-2025-Financial-Results) · [Walmart のセラー数と GMV 推計](https://www.marketplacepulse.com/articles/walmart-marketplace-growth-reaches-fastest-pace-in-years)
+>
+> 「推計」と付した 3 項目には公式数値がありません。Temu は PDD 傘下ですが GMV を個別開示せず(2024 年は $70.8B、2025 年の目標は $100B)、Mercado Libre は四半期 GMV のみ公表、Walmart は marketplace GMV を公表していません。Rakuten、AliExpress、Faire、Otto、Shopify、Lazada は未検証で、`maintenance/fact-review-plan.yaml` の marketplace-platforms バッチに入れています。
 
 ### 1.2 ソーシャルメディアチャネル(Path E)
 
