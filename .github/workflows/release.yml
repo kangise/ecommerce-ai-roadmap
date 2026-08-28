@@ -173,3 +173,47 @@ jobs:
           test -f "$VERIFY_DIR/SHA256SUMS"
           (cd "$VERIFY_DIR" && sha256sum -c SHA256SUMS)
           gh release edit "$GITHUB_REF_NAME" --draft=false
+
+  # Publishes only after the release job's full gate suite, cold-wheel smoke
+  # test, and asset checksum verification have passed on this exact tag.
+  #
+  # Uses PyPI Trusted Publishing (OIDC) — no API token lives in this repo's
+  # secrets. One-time setup on PyPI: add a trusted publisher for this repo,
+  # workflow `release.yml`, environment `pypi`.
+  #
+  # A PyPI upload cannot be undone or overwritten: a version number is spent the
+  # moment it lands. The `pypi` environment is the stop button — add a required
+  # reviewer there and every publish waits for a human, even though the tag push
+  # is automatic.
+  pypi:
+    needs: release
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write        # OIDC identity for Trusted Publishing
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Build sdist and wheel
+        run: |
+          python3 -m pip install --upgrade pip build twine
+          python3 -m build
+          python3 -m twine check dist/*
+
+      - name: Refuse to publish a version that already exists
+        run: |
+          VERSION="$(python3 -c 'import tomllib; print(tomllib.load(open("pyproject.toml","rb"))["project"]["version"])')"
+          CODE="$(curl -s -o /dev/null -w '%{http_code}' "https://pypi.org/pypi/ecommerce-ai-skills/$VERSION/json")"
+          if [ "$CODE" = "200" ]; then
+            echo "::error::ecommerce-ai-skills $VERSION is already on PyPI. Bump the version in pyproject.toml."
+            exit 1
+          fi
+          echo "$VERSION is not yet published (HTTP $CODE); proceeding."
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1

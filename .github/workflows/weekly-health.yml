@@ -33,6 +33,15 @@ jobs:
         continue-on-error: true
         run: python3 scripts/fact_review.py --due-within 90
 
+      # Upstream API specs the runtime is written against. Reports only — an
+      # upstream commit is not by itself a problem, so this must not gate.
+      # --update lets the state land in the PR this workflow already opens.
+      - name: Upstream source watch
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/watch_sources.py --update
+
       # Open a PR if anything changed (dead links, probe cache)
       - uses: peter-evans/create-pull-request@v6
         with:

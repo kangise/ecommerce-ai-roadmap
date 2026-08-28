@@ -9,6 +9,7 @@
 | `gen_i18n_stubs.py` | 生成 EN/JA 章节骨架，并统计翻译覆盖率 |
 | `link-status.json` | 外链探测结果缓存，由 `verify_content.py --probe-links` 写入 |
 | `fact_review.py` | 事实复核队列：批次到期时间、余量、过期分布 |
+| `watch_sources.py` | 上游 API 规范巡检：变更时指出受影响的约束、代码和章节 |
 | `setup/setup_environment.sh` | 本地环境准备 |
 
 
@@ -39,6 +40,29 @@ python3 scripts/fact_review.py --json           # 机器可读
 > 当前状态：345 条事实均标注为 `2026-08`，将于 `2028-02` 集中过期；
 > `evidence-and-social` 批次余量为 0。两者均为排期问题，与内容质量无关。
 
+
+
+## watch_sources.py
+
+`fact_review.py` 按时间表安排人工复核平台**规则**，这是处理政策变化的正确方式——
+政策所在的页面无法抓取：Amazon Seller Central 帮助页跳转登录，Shopify 帮助中心对
+自动请求返回 403，OpenAI 文档由客户端渲染。对这些 URL 做哈希监控只会得到一个永不
+触发的监控器，并暗示了并不存在的覆盖范围。
+
+本脚本覆盖另一半：runtime 所依赖的**机器可读 API 接口**，变更既可检测也可操作。
+监控清单在 [`maintenance/source-watch.yaml`](../maintenance/source-watch.yaml)，
+每个条目必须声明变更后应复核哪些约束、代码和章节。
+
+```bash
+python3 scripts/watch_sources.py            # 与已记录状态比对
+python3 scripts/watch_sources.py --update   # 比对并记录新状态
+python3 scripts/watch_sources.py --list     # 不联网，查看监控清单
+```
+
+默认返回 0。上游有提交不等于有问题，需要人判断是否触及所声明的范围，因此不作为门禁；
+如需在 CI 中阻断，用 `--fail-on-change`。周检工作流以 `continue-on-error` 调用并写入状态。
+
+未认证的 GitHub API 限速 60 次/小时，设置 `GITHUB_TOKEN` 可提高。
 
 ## verify_content.py
 

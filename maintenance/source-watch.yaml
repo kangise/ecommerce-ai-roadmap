@@ -1,0 +1,58 @@
+schema_version: 1
+
+# Upstreams worth watching for changes that would invalidate content or code here.
+#
+# Scope note — read before adding an entry:
+#
+# The most authoritative sources cannot be watched this way. Amazon Seller Central
+# help pages redirect to login (302), Shopify's help centre blocks automated
+# requests (403), and OpenAI's docs render client-side. Hashing those URLs would
+# produce a watcher that looks like it works and never fires, which is worse than
+# no watcher in a repo whose premise is that every number is checked.
+#
+# So this list holds only machine-readable upstreams that answer reliably without
+# scraping: API specification repositories and published specs. Platform *policy*
+# changes still reach this repo through the human review batches in
+# fact-review-plan.yaml. This file covers the API surface; that file covers the rules.
+#
+# Every entry must say what it affects, or a change here is just noise.
+
+policy:
+  owner: repository-maintainers
+  # Unauthenticated GitHub API allows 60 requests/hour; the weekly job uses a
+  # handful. Set GITHUB_TOKEN in CI to raise it if this list grows.
+  user_agent: "opc-source-watch (+https://github.com/kangise/ecommerce-ai-skills)"
+
+sources:
+  - id: amazon-sp-api-models
+    kind: github
+    repo: amzn/selling-partner-api-models
+    why: >
+      The SP-API specification the runtime's Amazon connector is written against.
+      A change here can break report pulls or add fields the evidence mapper drops.
+    affects:
+      constraint_prefixes: [amazon]
+      code: [ecommerce_ai_skills/runtime/connectors/amazon_spapi.py]
+      chapters: [src/b-developers/b1-data-pipeline.md]
+
+  - id: openai-python
+    kind: github
+    repo: openai/openai-python
+    why: >
+      The agent layer speaks the OpenAI Responses API. Breaking changes here reach
+      the Weekly Ops Council before they reach anything else.
+    affects:
+      constraint_prefixes: []
+      code: [ecommerce_ai_skills/runtime/agents.py]
+      chapters: [src/0-foundations/f6-ai-tools-comparison.md]
+
+  - id: mcp-python-sdk
+    kind: github
+    repo: modelcontextprotocol/python-sdk
+    why: >
+      The MCP server pins mcp>=1.28,<2. The SDK moves faster than that pin, so a
+      change is the early warning that the ceiling needs revisiting.
+    affects:
+      constraint_prefixes: []
+      code: [integration/mcp-server.py]
+      chapters: [src/b-developers/b6-mcp-agentic-workflow.md]

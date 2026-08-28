@@ -25,16 +25,16 @@
       "tree_sha256": "4d9bad8607976d11ae9a4f5d68435a13023501863add4b32476023acdb062496"
     },
     "scripts": {
-      "byte_count": 340816,
-      "file_count": 21,
+      "byte_count": 350881,
+      "file_count": 22,
       "name": "scripts",
-      "tree_sha256": "3922ebee4a6acdf76868d7e6d6fa5c946c44e14cb5b580400eb574d5743edc10"
+      "tree_sha256": "db31b2319daf34b56a11170d889271267eb0c57f1cc2debc0b0f98e3417f1f41"
     },
     "tests": {
-      "byte_count": 514966,
-      "file_count": 30,
+      "byte_count": 520627,
+      "file_count": 31,
       "name": "tests",
-      "tree_sha256": "76f29ab94391887e516eb3fdc6a85aea1cb7f973abba9d1a28c08377fd03db99"
+      "tree_sha256": "2b2ab25bccb5b8c88873de56fb02eba0d413ef405e12dfeab4cee444688ef4f2"
     },
     "wheel_package_data": {
       "byte_count": 6564759,
@@ -45,8 +45,8 @@
   },
   "contracts": {
     ".github/workflows/release.yml": {
-      "sha256": "18fcd2c8f5f7e5336bd511812f063c0c27e6c92d9f3670dac77a8ecc381d0837",
-      "size": 8211
+      "sha256": "63a9b3bb425e8a38c005a7d7e522e7021589139645cf2bf6a8c9fdf4e9dc5ea6",
+      "size": 9984
     },
     ".gitignore": {
       "sha256": "6bd1f89283866a0e9c7dc6bad33a65046eae1463b841ddf0cfd4fe635648bbf1",
