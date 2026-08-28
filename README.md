@@ -41,7 +41,7 @@
 前两种用法是「把知识给到 AI」。第三种是**让它真的去干活**——同一套 ontology 和 skill 装进一个带审批、审计和故障恢复的运行时。
 
 ```bash
-pip install "ecommerce-ai-skills[mcp]"
+pip install "ecommerce-ai-skills[mcp] @ git+https://github.com/kangise/ecommerce-ai-skills"
 
 opc-ecommerce demo-seed --db ./demo.sqlite     # 造一个隔离的演示租户
 opc-ecommerce demo --db ./demo.sqlite --port 8788
@@ -132,7 +132,7 @@ opc-ecommerce demo --db ./demo.sqlite --port 8788
 先安装服务依赖：
 
 ```bash
-python3 -m pip install "ecommerce-ai-skills[mcp]"
+python3 -m pip install "ecommerce-ai-skills[mcp] @ git+https://github.com/kangise/ecommerce-ai-skills"
 ```
 
 ```json

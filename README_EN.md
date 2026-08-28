@@ -39,7 +39,7 @@ All three are held to the **same CI gates**. Gates fail, nothing ships.
 The first two uses hand knowledge to an AI. The third **puts it to work** — the same ontology and skills inside a runtime with approval, audit, and failure recovery.
 
 ```bash
-pip install "ecommerce-ai-skills[mcp]"
+pip install "ecommerce-ai-skills[mcp] @ git+https://github.com/kangise/ecommerce-ai-skills"
 
 opc-ecommerce demo-seed --db ./demo.sqlite     # isolated demo tenant
 opc-ecommerce demo --db ./demo.sqlite --port 8788
@@ -173,7 +173,7 @@ You get a listing with **platform hard constraints** baked in: title ≤200 char
 Install the server dependencies first:
 
 ```bash
-python3 -m pip install "ecommerce-ai-skills[mcp]"
+python3 -m pip install "ecommerce-ai-skills[mcp] @ git+https://github.com/kangise/ecommerce-ai-skills"
 ```
 
 ```json

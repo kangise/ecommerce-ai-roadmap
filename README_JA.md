@@ -41,7 +41,7 @@
 最初の 2 つは「AI に知識を渡す」使い方。3 つ目は**実際に働かせる**——同じ ontology と skill を、承認・監査・障害復旧を備えたランタイムに載せたもの。
 
 ```bash
-pip install "ecommerce-ai-skills[mcp]"
+pip install "ecommerce-ai-skills[mcp] @ git+https://github.com/kangise/ecommerce-ai-skills"
 
 opc-ecommerce demo-seed --db ./demo.sqlite     # 隔離されたデモテナントを作る
 opc-ecommerce demo --db ./demo.sqlite --port 8788
@@ -171,7 +171,7 @@ AI に「このカテゴリの月間販売数はどれくらい?」と聞けば�
 先にサーバー依存関係をインストールする:
 
 ```bash
-python3 -m pip install "ecommerce-ai-skills[mcp]"
+python3 -m pip install "ecommerce-ai-skills[mcp] @ git+https://github.com/kangise/ecommerce-ai-skills"
 ```
 
 ```json

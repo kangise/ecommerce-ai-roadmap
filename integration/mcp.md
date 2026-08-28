@@ -11,7 +11,7 @@ The Model Context Protocol (MCP) is the natural fit for this infrastructure. Thi
 Install the optional MCP extra with the pinned v1 SDK used by this server:
 
 ```bash
-python3 -m pip install "ecommerce-ai-skills[mcp]"
+python3 -m pip install "ecommerce-ai-skills[mcp] @ git+https://github.com/kangise/ecommerce-ai-skills"
 ```
 
 ```json

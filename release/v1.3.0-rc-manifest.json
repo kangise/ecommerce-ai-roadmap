@@ -7,10 +7,10 @@
       "tree_sha256": "5244a5085dc1631bd7aa4b9c79a522c3bd080ee7607b3b5be327b631ece1a17b"
     },
     "dist": {
-      "byte_count": 6557828,
+      "byte_count": 6557881,
       "file_count": 153,
       "name": "dist",
-      "tree_sha256": "975fa44ee651351a713c2528001db80f0a45bc22970d0926a9759704d4b28eeb"
+      "tree_sha256": "a284c74bf49ff60e456f29062ec9f06b59b947269956782da1f1d444af88faa8"
     },
     "package_sources": {
       "byte_count": 935817,
@@ -37,10 +37,10 @@
       "tree_sha256": "1c36359eddc0624324e32d9564b727328dd2a2af457cba138979d02ad6e344fd"
     },
     "wheel_package_data": {
-      "byte_count": 6557828,
+      "byte_count": 6557881,
       "file_count": 153,
       "name": "wheel_package_data",
-      "tree_sha256": "9f4202e957b444e20a08048cc88c0a64b63439a493d6b1fe0d0d47f6416dcec1"
+      "tree_sha256": "2c57e32037cbbaec45ccc6f7493d0598b6eb3d5c4072f16a282a6051295d56a8"
     }
   },
   "contracts": {
@@ -61,8 +61,8 @@
       "size": 6468
     },
     "README_EN.md": {
-      "sha256": "90273749f7b09b9cf6dbd24de1d41b92c5bb856d63ddeeb3152899a755d755eb",
-      "size": 27970
+      "sha256": "fb76fd0c7283817798ea3d08a951e36d6ff276968943025868a63c975f5a9e11",
+      "size": 28076
     },
     "design-qa.md": {
       "sha256": "86d1eb097b9aeeceda1e8f71d7b73a48b73a9c4cd36e7a62863e866ca67c30dd",
