@@ -33,6 +33,18 @@ CHECKS = [
     ("Sustain",   "python3", "scripts/verify_all.py", "--sustain"),
 ]
 
+
+def _interp(cmd):
+    """Run subchecks under the *same* interpreter as the parent.
+
+    The CHECKS table spells the interpreter as "python3" so it reads like the
+    documented command line, but a literal "python3" resolves via PATH — under a
+    venv or tox that can be a different interpreter than the one running this
+    file, and the subcheck then fails on imports the parent already has.
+    """
+    return [sys.executable if cmd[0] == "python3" else cmd[0], *cmd[1:]]
+
+
 # R1 combines domain keywords with reusable conversational intent patterns.
 # Every case is blocking; R1b and R2 prevent gaming it with copied fragments or
 # tautological tests.
@@ -227,7 +239,7 @@ def main() -> int:
     ap.add_argument("--d1", action="store_true", help="Documentation check")
     ap.add_argument("--d2", action="store_true", help="README number consistency")
     ap.add_argument("--r1b", action="store_true", help="Manifest triggers — sentence-fragment ban")
-    ap.add_argument("--r2", action="store_true", help="Natural-language routing probe (< 40% literal)")
+    ap.add_argument("--r2", action="store_true", help="Natural-language routing probe (< 40%% literal)")
     ap.add_argument("--s6", action="store_true", help="Constraint attribution: playbook refs, no foreign ids, fresh")
     args = ap.parse_args()
 
@@ -1227,10 +1239,10 @@ def main() -> int:
 
     grand_total = 0
     for label, *cmd in CHECKS:
-        result = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
+        result = subprocess.run(_interp(cmd), capture_output=True, text=True, timeout=120)
         if label == "Dist" and result.returncode == 0:
             release_result = subprocess.run(
-                ["python3", "scripts/build_release_manifest.py", "--check"],
+                _interp(["python3", "scripts/build_release_manifest.py", "--check"]),
                 capture_output=True,
                 text=True,
                 timeout=120,

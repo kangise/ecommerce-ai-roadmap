@@ -25,10 +25,10 @@
       "tree_sha256": "4d9bad8607976d11ae9a4f5d68435a13023501863add4b32476023acdb062496"
     },
     "scripts": {
-      "byte_count": 327532,
+      "byte_count": 328031,
       "file_count": 20,
       "name": "scripts",
-      "tree_sha256": "17baeea9c2b98dcd5946dcaa911c9c175187a1860c9d62c23a22a91616680641"
+      "tree_sha256": "3f240e5ba39b4b6822a4a7201823963aa20a391f4c6ed1204e614bbbcb79e437"
     },
     "tests": {
       "byte_count": 504860,
@@ -97,8 +97,8 @@
       "size": 37516
     },
     "scripts/verify_all.py": {
-      "sha256": "1e5b81c28630afa858b0bfb81d28fa7608421b80648c30d184d2e14a19d98748",
-      "size": 69254
+      "sha256": "7cd8aca579bc1eebb01041b6f6bac74f3e5acb1a4ad9eef0277e0009c5b60ad0",
+      "size": 69753
     }
   },
   "release": {
