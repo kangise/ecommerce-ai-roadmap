@@ -199,6 +199,10 @@ MCP Server 对外给 8 个 resource（ontology 五件套、知识索引、章节
 python3 integration/mcp-server.py --cli
 ```
 
+再给它一个跑着的 runtime（`OPC_RUNTIME_URL` + `OPC_RUNTIME_API_KEY`），会多出四个**只读**的运营 tool：简报、指标观测、待审批动作、已导入证据。这样 agent 不光知道「ACOS 涨到 40% 该怎么办」，还能直接看到 ACOS 现在到底是多少。
+
+审批不开放给 MCP。写操作必须走 proposal → 人点头 → 执行，把 approve 做成 tool 等于把守门的钥匙交给模型。agent 能看见有什么在等审批，点头这一下还得人来。
+
 <br>
 
 ## 为什么可以信这些内容

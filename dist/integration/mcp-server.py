@@ -44,8 +44,11 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import re
 import sys
+import urllib.error
+import urllib.request
 import yaml
 from pathlib import Path
 from typing import Any
@@ -65,10 +68,71 @@ class PackageValidationError(RuntimeError):
     """The generated distribution is missing, corrupt, or internally inconsistent."""
 
 
+RUNTIME_URL_ENV = "OPC_RUNTIME_URL"
+RUNTIME_KEY_ENV = "OPC_RUNTIME_API_KEY"
+
+
+class RuntimeBridge:
+    """Read-only window onto a running Commerce Agent OS instance.
+
+    The knowledge tools answer "what should I do about a 40% ACOS". They cannot
+    answer "what *is* my ACOS" — that lives in the runtime, behind a tenant and
+    an API key. This bridges the two so one agent can ask both.
+
+    Read-only on purpose. The runtime's whole safety story is that writes go
+    proposal -> human approval -> execution; exposing approve/execute over MCP
+    would hand an LLM the key to the gate that exists to keep it out. Tools here
+    can see what is pending. A person still has to approve it in the UI.
+
+    Unconfigured is the normal case: knowledge-only users never set the env vars,
+    and the ops tools simply do not appear for them.
+    """
+
+    TIMEOUT = 15
+
+    def __init__(self, url: str | None = None, api_key: str | None = None):
+        self.url = (url or os.environ.get(RUNTIME_URL_ENV) or "").rstrip("/")
+        self.api_key = api_key or os.environ.get(RUNTIME_KEY_ENV) or ""
+
+    @property
+    def configured(self) -> bool:
+        return bool(self.url and self.api_key)
+
+    def _get(self, path: str) -> Any:
+        req = urllib.request.Request(
+            f"{self.url}{path}",
+            headers={"Authorization": f"Bearer {self.api_key}",
+                     "Accept": "application/json"},
+        )
+        with urllib.request.urlopen(req, timeout=self.TIMEOUT) as resp:
+            return json.loads(resp.read().decode("utf-8"))
+
+    def fetch(self, path: str) -> tuple[Any | None, str | None]:
+        """Return (payload, error_message). Errors are for a human to act on."""
+        if not self.configured:
+            return None, (
+                f"No runtime configured. Set {RUNTIME_URL_ENV} and {RUNTIME_KEY_ENV} "
+                "to point at a running instance (`opc-ecommerce api` or `demo`)."
+            )
+        try:
+            return self._get(path), None
+        except urllib.error.HTTPError as exc:
+            if exc.code in (401, 403):
+                return None, (
+                    f"Runtime rejected the API key ({exc.code}). Check {RUNTIME_KEY_ENV}; "
+                    "keys are per-tenant and can be rotated."
+                )
+            return None, f"Runtime returned HTTP {exc.code} for {path}."
+        except urllib.error.URLError as exc:
+            return None, f"Cannot reach the runtime at {self.url} ({exc.reason})."
+        except (TimeoutError, json.JSONDecodeError) as exc:
+            return None, f"Runtime call failed: {exc}"
+
+
 class OPCServer:
     """OPC MCP Server — exposes e-commerce infrastructure to AI agents."""
 
-    def __init__(self, dist_path: str | Path):
+    def __init__(self, dist_path: str | Path, runtime: RuntimeBridge | None = None):
         self.dist = Path(dist_path).resolve()
         self._package_manifest = self._validate_package_files()
         self._ontology = self._load_json("ontology.json")
@@ -79,6 +143,7 @@ class OPCServer:
         self._skill_md = self._load_text("SKILL.md")
         self._routing_rules = self._build_routing_rules()
         self._validate_loaded_counts()
+        self.runtime = runtime or RuntimeBridge()
 
     def _validate_package_files(self) -> dict:
         manifest_path = self.dist / "package-manifest.json"
@@ -306,7 +371,48 @@ class OPCServer:
                 "description": "List all available domain skills with their manifests",
                 "inputSchema": {"type": "object", "properties": {}}
             },
+        ] + self._ops_tools()
+
+    # Ops tools are read-only and appear only when a runtime is wired up. See
+    # RuntimeBridge for why approve/execute are deliberately absent.
+    OPS_TOOLS = [
+        ("opc.ops_briefing", "/v1/briefing",
+         "Read this tenant's current operating briefing from the live runtime: "
+         "executive summary, priorities, risks, agent statuses, and what is "
+         "waiting on human approval. Use it to ground advice in real numbers "
+         "instead of asking the user to paste them."),
+        ("opc.ops_metrics", "/v1/metric-observations",
+         "Read real metric observations (sales, conversion, ad spend, stockouts) "
+         "materialized from imported evidence. Every observation carries its "
+         "provenance — the evidence import it came from."),
+        ("opc.ops_proposals", "/v1/proposals",
+         "Read proposed actions and their approval state. READ ONLY: this shows "
+         "what is pending or blocked; approving is a human action in the UI and "
+         "is not exposed as a tool."),
+        ("opc.ops_evidence", "/v1/evidence-imports",
+         "Read what real evidence has been imported (source file, platform, "
+         "row counts, observation window). Use it to check whether a question "
+         "is answerable from data on hand before answering it."),
+    ]
+
+    def _ops_tools(self) -> list[dict]:
+        if not self.runtime.configured:
+            return []
+        return [
+            {
+                "name": name,
+                "description": description,
+                "inputSchema": {"type": "object", "properties": {}},
+            }
+            for name, _path, description in self.OPS_TOOLS
         ]
+
+    def _call_ops_tool(self, name: str) -> str:
+        path = next(p for n, p, _d in self.OPS_TOOLS if n == name)
+        payload, error = self.runtime.fetch(path)
+        if error:
+            return error
+        return json.dumps(payload, ensure_ascii=False, indent=2)
 
     def call_tool(self, name: str, args: dict) -> str:
         if name == "opc.route_query":
@@ -319,6 +425,8 @@ class OPCServer:
             return self._read_chapter(args.get("chapter_id", ""))
         elif name == "opc.list_skills":
             return self._list_skills()
+        elif any(name == n for n, _p, _d in self.OPS_TOOLS):
+            return self._call_ops_tool(name)
         return f"Unknown tool: {name}"
 
     @staticmethod
@@ -648,6 +756,11 @@ def run_cli(server: OPCServer):
     print(f"  skills: {len(server._skills)}")
     print(f"  prompts: {len(server._prompts)}")
     print(f"  knowledge entries: {len(server._knowledge)}")
+    if server.runtime.configured:
+        print(f"  runtime: {server.runtime.url} (ops tools enabled, read-only)")
+    else:
+        print(f"  runtime: not configured — set {RUNTIME_URL_ENV} + {RUNTIME_KEY_ENV} "
+              "to enable the read-only ops tools")
     print(f"\nResources: {len(server.list_resources())}")
     for r in server.list_resources():
         print(f"  {r['uri']}: {r['description']}")
@@ -708,6 +821,9 @@ def main() -> int:
             f"dist package valid: {counts['chapters']} chapters, "
             f"{counts['prompts']} prompts, {counts['skills']} skills"
         )
+        print("runtime bridge: "
+              + (f"{server.runtime.url} (read-only ops tools enabled)"
+                 if server.runtime.configured else "not configured"))
         return 0
 
     if args.cli:

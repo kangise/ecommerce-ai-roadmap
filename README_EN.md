@@ -240,6 +240,10 @@ The MCP server exposes 8 resources (the five ontology files + knowledge index + 
 python3 integration/mcp-server.py --cli
 ```
 
+Point it at a running runtime (`OPC_RUNTIME_URL` + `OPC_RUNTIME_API_KEY`) and four **read-only** ops tools appear: briefing, metric observations, pending actions, imported evidence. The agent then knows not only what to do about a 40% ACOS, but what the ACOS actually is.
+
+Approval is not exposed. Writes go proposal → human approval → execution, and making `approve` a tool would hand the model the key to the gate. An agent can see what is waiting; a person still approves it.
+
 <br>
 
 ## Why Trust This Content

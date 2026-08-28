@@ -33,6 +33,48 @@ The dedicated server exposes:
 | **Tools** | 5 callable tools (route_query, constraints, search, chapter read, skills) |
 | **Prompts** | 9 domain skill prompt templates |
 
+### Connecting a live runtime (optional)
+
+The knowledge tools can tell an agent what to do about a 40% ACOS. They cannot
+tell it what the ACOS *is* — that lives in the runtime, behind a tenant and an
+API key. Point the server at a running instance and four read-only ops tools
+appear alongside the knowledge ones:
+
+```json
+{
+  "mcpServers": {
+    "opc-ecommerce": {
+      "command": "python3",
+      "args": ["/path/to/ecommerce-ai-skills/integration/mcp-server.py", "--dist", "/path/to/ecommerce-ai-skills/dist"],
+      "env": {
+        "OPC_RUNTIME_URL": "http://127.0.0.1:8788",
+        "OPC_RUNTIME_API_KEY": "eai_..."
+      }
+    }
+  }
+}
+```
+
+| Tool | Reads |
+|------|-------|
+| `opc.ops_briefing` | Executive summary, priorities, risks, agent status, what awaits approval |
+| `opc.ops_metrics` | Metric observations, each carrying the evidence import it came from |
+| `opc.ops_proposals` | Proposed actions and their approval state |
+| `opc.ops_evidence` | What real evidence has been imported, and its observation window |
+
+**Read-only, deliberately.** The runtime's safety story is that writes go
+proposal -> human approval -> execution. Exposing approve or execute over MCP
+would hand a model the key to the gate that exists to keep it out. An agent can
+see what is pending; a person still approves it in the UI.
+
+Leave the two variables unset and these tools do not appear at all — the
+knowledge surface is unchanged. Setting only one of them counts as unset, since
+a URL with no key would fail on every call. Check which mode you are in with:
+
+```bash
+python3 integration/mcp-server.py --validate
+```
+
 ### Option B: Filesystem Server (fallback)
 
 If you don't have Python in the MCP environment:

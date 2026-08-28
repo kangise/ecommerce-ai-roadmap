@@ -238,6 +238,10 @@ MCP Server は 8 つの resource（ontology 5 種 + 知識索引 + 章全文 + �
 python3 integration/mcp-server.py --cli
 ```
 
+稼働中の Runtime を指すと（`OPC_RUNTIME_URL` + `OPC_RUNTIME_API_KEY`）、**読み取り専用**の運用 tool が 4 つ増えます：ブリーフィング、指標観測、承認待ちのアクション、取り込み済み Evidence。ACOS が 40% のときどうするかだけでなく、いま ACOS がいくつなのかも agent が直接見られます。
+
+承認は公開しません。書き込みは proposal → 人の承認 → 実行を経るもので、`approve` を tool にするのは、その門を守る鍵をモデルに渡すのと同じです。何が承認待ちかは agent にも見えますが、承認するのは人です。
+
 <br>
 
 ## なぜ信頼できるのか
