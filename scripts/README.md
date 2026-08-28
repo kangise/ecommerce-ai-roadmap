@@ -8,37 +8,36 @@
 | `apply_indent.py` | 把手工重建好的代码块缩进按行套用到三语树 |
 | `gen_i18n_stubs.py` | 生成 EN/JA 章节骨架，并统计翻译覆盖率 |
 | `link-status.json` | 外链探测结果缓存，由 `verify_content.py --probe-links` 写入 |
-| `fact_review.py` | 事实复核队列：哪批该审、还剩多少余量、过期悬崖分布 |
+| `fact_review.py` | 事实复核队列：批次到期时间、余量、过期分布 |
 | `setup/setup_environment.sh` | 本地环境准备 |
 
 
 ## fact_review.py
 
-`M7` 管的是**纪律**：每条有时效的事实，必须挂在某一个评审批次下面，而且这批的到期日
-要早于时效红线（18 个月）减去 3 个月的提前量。但 M7 只在出事的时候才开口——批次已经
-逾期，或者事实已经过期。中间那一大段它不吭声，维护者想问一句"这季度该审哪些"，只能
-自己翻 YAML 手算日期。
+`M7` 负责纪律：每条有时效的事实必须归属于一个评审批次，批次到期日须早于时效红线
+（18 个月）减去 3 个月提前量。但 M7 只在失败状态下报错——批次已逾期，或事实已过期。
+两者之间没有输出，维护者无法直接查询本季度应复核的内容，只能手动查阅 YAML 并计算日期。
 
-这个脚本就是回答那句话的。顺带报两件 M7 结构上看不见的事：
+本脚本提供该查询，并报告 M7 无法呈现的两项信息：
 
-- **余量（slack）** — 从批次到期日，到这批里最老那条事实变质，中间还剩几个月。
-  M7 判定用的是 `>`，所以余量为 0 也合法，但那意味着**只要往后拖一个月，立刻变成门禁失败**。
-- **过期悬崖** — 同一个月盖的章，会在同一个月一起过期。批量复核一遍，等于给自己
-  又约了一次批量复核。
+- **余量（slack）** — 批次到期日与该批次最早事实失效日之间的间隔月数。M7 使用 `>` 判定，
+  余量为 0 仍然合法，但意味着任何延期都会直接导致门禁失败。
+- **过期悬崖** — 同一月份标注的事实会在同一月份集中过期。一次批量复核会使下一次复核
+  同样集中。
 
 ```bash
 python3 scripts/fact_review.py                  # 完整队列
-python3 scripts/fact_review.py --list           # 连每条事实一起列出来
-python3 scripts/fact_review.py --batch <id>     # 只看某一批
-python3 scripts/fact_review.py --due-within 90  # 90 天内有批次到期就 exit 1
+python3 scripts/fact_review.py --list           # 列出每条事实
+python3 scripts/fact_review.py --batch <id>     # 查看单个批次
+python3 scripts/fact_review.py --due-within 90  # 90 天内有批次到期则 exit 1
 python3 scripts/fact_review.py --json           # 机器可读
 ```
 
-只有 `--due-within` 会返回非零——**它是报告，不是门禁**。一个还没到的日子，不该让构建变红。
-周检工作流拿 `continue-on-error` 调它，把队列打进日志。
+只有 `--due-within` 返回非零——本脚本是报告，不是门禁。未到期的日期不应导致构建失败。
+周检工作流以 `continue-on-error` 方式调用，将队列输出到日志。
 
-> 眼下的情况：345 条事实全盖在 `2026-08`，`2028-02` 会一起过期；`evidence-and-social`
-> 这一批余量为 0。两件都是排期没排好，不是内容有问题。
+> 当前状态：345 条事实均标注为 `2026-08`，将于 `2028-02` 集中过期；
+> `evidence-and-social` 批次余量为 0。两者均为排期问题，与内容质量无关。
 
 
 ## verify_content.py

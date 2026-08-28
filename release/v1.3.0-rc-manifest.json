@@ -25,10 +25,10 @@
       "tree_sha256": "4d9bad8607976d11ae9a4f5d68435a13023501863add4b32476023acdb062496"
     },
     "scripts": {
-      "byte_count": 340924,
+      "byte_count": 340816,
       "file_count": 21,
       "name": "scripts",
-      "tree_sha256": "8e28afbe682a6d844e2c9fd83f52eeb4bd3de59652819fdd195537bbdc347bde"
+      "tree_sha256": "3922ebee4a6acdf76868d7e6d6fa5c946c44e14cb5b580400eb574d5743edc10"
     },
     "tests": {
       "byte_count": 514966,
