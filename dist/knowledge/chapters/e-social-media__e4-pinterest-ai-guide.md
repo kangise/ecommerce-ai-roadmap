@@ -304,6 +304,8 @@ Pinterest Shopping 依赖 Product Catalog（与 Shopify 原生集成）：
 | 受众规模 | 较小（6.19 亿 MAU） | 极大（30 亿 MAU） |
 | 建议 | 品类匹配时优先投放 | 规模化时主力投放 |
 
+> **来源：** 核验 2026-08 · Pinterest 2025 Q4 全球 MAU 6.19 亿（同比 +12%），见[官方业绩公告](https://s204.q4cdn.com/369458543/files/doc_earnings/2025/q4/earnings-result/Q425-PressRelease.pdf)。对比的 30 亿为 Meta 旗下应用家族口径，不是单一应用。
+
 ---
 
 ## 5. 数据分析
@@ -628,6 +630,8 @@ Shopify 自动支持
 | 内容寿命 | 长（Pin 可持续获得流量数月） | 短（广告停止即无流量） |
 | 再营销 | 支持（网站访客+Pin 互动者） | 支持（更成熟） |
 | AI 优化 | 基础（自动出价+受众扩展） | 成熟（Advantage+ 全自动） |
+
+> **来源：** 核验 2026-08 · [Pinterest 2025 Q4 业绩](https://s204.q4cdn.com/369458543/files/doc_earnings/2025/q4/earnings-result/Q425-PressRelease.pdf)：全球 MAU 6.19 亿。30 亿为 Meta 应用家族口径。
 
 > **预算分配建议**：如果你的品类在 Pinterest 强势品类中（家居/时尚/美妆/DIY），建议将 20-30% 的社交广告预算分配给 Pinterest。Pinterest 的 CPC 更低，用户购买意图更高，长期 ROI 通常优于 Meta Ads。
 

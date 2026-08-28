@@ -305,6 +305,8 @@ Coupang 在 2025-2026 年有几个重要战略方向：
 | $1B 股票回购 | 表明公司对未来增长的信心 | 平台稳定性 |
 | Rocket WOW 会员 | 1400 万会员（[AInvest](https://www.ainvest.com/news/coupang-global-scalability-assessing-tam-tech-moat-growth-investors-2601/)） | 高价值用户群体 |
 
+> **来源：** 核验 2026-08 · Coupang 董事会 2025 年 5 月授权最多 $10 亿股票回购，2025 年内回购 880 万股、金额 $2.43 亿（[Coupang IR](https://ir.aboutcoupang.com/news-events/news/news-details/2025/Coupang-Announces-Results-for-First-Quarter-2025/default.aspx)）
+
 Content rephrased for compliance with licensing restrictions.
 
 ### 5.6 韩国市场营销渠道

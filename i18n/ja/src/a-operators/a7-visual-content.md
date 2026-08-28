@@ -44,10 +44,12 @@ Content rephrased for compliance with licensing restrictions.
 |------|--------|--------|
 | AI 製品画像のコスト削減 | 80% | Entrepreneur 2026 |
 | ライフスタイル画像 vs 白背景画像の転換率向上 | 22-30% | A/B テスト研究 |
-| AI 動画生成市場規模(2025) | 71.68 億ドル | Fortune Business Insights |
-| AI 動画市場予測(2032) | 256 億ドル | Fortune Business Insights |
+| AI 動画生成市場規模(2025) | 7.168 億ドル | Fortune Business Insights |
+| AI 動画市場予測(2032) | 25.6 億ドル | Fortune Business Insights |
 | Amazon 製品動画の転換率への影響 | 通常はプラス。幅はカテゴリで大きく変わる | 自分で A/B すること |
 | 動画のある Listing の滞在時間 | +2x | 業界ベンチマーク |
+
+> **出典：** 検証 2026-08 · [Fortune Business Insights AI 動画生成市場レポート](https://www.fortunebusinessinsights.com/ai-video-generator-market-110060)：2025 年 $716.8M、2032 年予測 $2,562.9M
 
 ### 1.2 AI ビジュアルコンテンツの 3 つのレベル
 

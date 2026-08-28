@@ -849,7 +849,9 @@ Content rephrased for compliance with licensing restrictions. Sources: [KOL Spri
 | Posting frequency too low | Posting 1-2 a week, the algorithm doesn't have enough data to learn your content | At least 1 a day, ideally 3-5. AI helps you batch-produce |
 | Only doing organic traffic | Waiting for an organic breakout may take months with no results | Organic content + Spark Ads amplification is standard |
 | One-off creator collaboration | Finding new creators each time, not building long-term relationships | Build a creator matrix, long-term collaboration with core creators |
-| Ignoring livestreaming | Only doing short videos, not livestreaming | Livestreaming is TikTok Shop's main GMV source (40-60%) |
+| Ignoring livestreaming | Only doing short videos, not livestreaming | In the US, short video is 50% of GMV, the Shop tab 36%, livestream 14%; the livestream share is higher in Southeast Asia |
+
+> **Sources:** verified 2026-08 · US TikTok Shop GMV mix in 2025: short video 50%, Shop tab 36%, livestream 14% (livestream rose from 10% in 2024), per the [Momentum Works report](https://thelowdown.momentum.asia/new-report-tiktok-shop-u-s-gmv-grew-68-to-reach-us15-1b-in-2025/). The multiplier on a creator video's indirect value is a rule of thumb with no public source.
 
 ### 10.2 Data Pitfalls in TikTok Operations
 
@@ -860,6 +862,8 @@ Content rephrased for compliance with licensing restrictions. Sources: [KOL Spri
 | Stop running ads if ROAS is low | Feeling you've lost money when ad ROAS is 1.5 | TikTok ads' indirect value (brand-search-volume lift, organic-traffic growth) isn't counted. The true ROAS may be 1.5-2x the reported one |
 | Judging creator ROI only by direct GMV | Feeling a creator video with $200 GMV isn't worth it | A creator video's Spark Ads amplification value + brand-awareness value + content-asset value may be 3-5x the direct GMV |
 | High return rate means a product problem | Feeling a TikTok return rate of 15% is too high | TikTok's return rate is naturally higher than Amazon's (impulse purchase -> regret return). A category average of 10-15% is normal |
+
+> **Note:** the multipliers in this table (true ROAS 1.5-2x, a creator video's indirect value 3-5x) are operator rules of thumb with no public source. Calibrate them against your own data before relying on them.
 
 ### 10.3 Common Content-Creation Mistakes
 
@@ -935,7 +939,7 @@ Key success-factor analysis:
 | Content generation | Listing copy | Product page + blog | Short-video scripts + livestream talking points |
 | Advertising | PPC keyword optimization | Facebook/Google Ads | Spark Ads + GMV Max |
 | Customer reach | On-site messages (limited) | Email + SMS | Short videos + livestream + follower groups |
-| Creator collaboration | Almost none | Limited | Core strategy (40%+ of GMV) |
+| Creator collaboration | Almost none | Limited | Core strategy |
 | Data analysis | Seller Central | GA4 + Shopify | TikTok Seller Center |
 
 ---

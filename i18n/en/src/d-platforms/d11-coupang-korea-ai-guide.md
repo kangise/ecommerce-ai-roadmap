@@ -306,6 +306,8 @@ Coupang has several important strategic directions in 2025-2026:
 | $1B stock buyback | Shows the company's confidence in future growth | Platform stability |
 | Rocket WOW membership | 14 million members ([AInvest](https://www.ainvest.com/news/coupang-global-scalability-assessing-tam-tech-moat-growth-investors-2601/)) | High-value user base |
 
+> **Sources:** verified 2026-08 · Coupang's board authorized up to $1B in buybacks in May 2025; 8.8M shares were repurchased during 2025 for $243M ([Coupang IR](https://ir.aboutcoupang.com/news-events/news/news-details/2025/Coupang-Announces-Results-for-First-Quarter-2025/default.aspx))
+
 Content rephrased for compliance with licensing restrictions.
 
 ### 5.6 Korean Market Marketing Channels

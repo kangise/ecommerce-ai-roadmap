@@ -556,7 +556,7 @@
     "title": "A7. AI 图片与视频生成 | AI Visual Content Creation",
     "path": "a-operators/a7-visual-content.md",
     "body_path": "chapters/a-operators__a7-visual-content.md",
-    "body_chars": 12314,
+    "body_chars": 12487,
     "summary": "> **路径**: Path A: 运营人 · **模块**: A7 > **最后更新**: 2026-07-31 > **难度**: 中级 > **预计时间**: 每天 30 分钟，1-2 周 > **前置模块**: [A2 Listing 与内容创作](a2-listing-optimization.md) --- 1. [为什么 AI 视觉内容是 2026 年的必修课](#1-为什么-ai-视觉内容是-2026-年的必修课) 2. [AI 产品图片生成](#2-ai-产品图片生成) 3. [AI 产品视频生成](#3-ai-产品视频生成) 4. [各平台图片/视频规格](#4-各平台图片",
     "key_entities": [
       "brand_story",
@@ -601,7 +601,7 @@
     "title": "A9. AI SEO 与 GEO 优化 | AI SEO & Generative Engine Optimization",
     "path": "a-operators/a9-seo-geo.md",
     "body_path": "chapters/a-operators__a9-seo-geo.md",
-    "body_chars": 13162,
+    "body_chars": 13295,
     "summary": "> **路径**: Path A: 运营人 · **模块**: A9 > **最后更新**: 2026-07-31 > **难度**: 高级 > **预计时间**: 每天 30 分钟，2-3 周 > **前置模块**: [A2 Listing 优化](a2-listing-optimization.md) --- 1. [从 SEO 到 GEO](#1-从-seo-到-geo) · 2. [Amazon SEO](#2-amazon-seo) · 3. [Google SEO for Shopify](#3-google-seo-for-shopify) · 4. [GEO 优化实操](#4-",
     "key_entities": [
       "a_plus_content",
@@ -1123,7 +1123,7 @@
     "title": "D11. Coupang 韩国电商 AI 指南",
     "path": "d-platforms/d11-coupang-korea-ai-guide.md",
     "body_path": "chapters/d-platforms__d11-coupang-korea-ai-guide.md",
-    "body_chars": 9759,
+    "body_chars": 9988,
     "summary": "> **路径**: Path D: 多平台 · **模块**: D11 > **最后更新**: 2026-07-31 > **难度**: 中级 > **预计时间**: 1 小时 --- > 收入 $36.8B（2025），2460 万活跃用户。韩国电商市场 $230B+，预计 2027 达 $336B。被称为\"韩国的 Amazon\"，Rocket Delivery（次日达/当日达）是核心竞争力。跨境入驻门槛较高。 1. [Coupang 核心特征](#1-coupang-核心特征) · 2. [韩国市场特征](#2-韩国市场特征) · 3. [韩语 Listing AI 优化](#3-韩语-l",
     "key_entities": [
       "bullet_point",
@@ -1391,7 +1391,7 @@
     "title": "D2. TikTok Shop AI 实战指南 | TikTok Shop AI Playbook",
     "path": "d-platforms/tiktok-shop-ai-guide.md",
     "body_path": "chapters/d-platforms__tiktok-shop-ai-guide.md",
-    "body_chars": 45119,
+    "body_chars": 45449,
     "summary": "> **路径**: Path D: 多平台 · **模块**: D2 > **最后更新**: 2026-07-31 > **难度**: 中级 > **预计时间**: 2-3 小时 > **前置模块**: [Path 0 基础](../0-foundations/) · [AI 全景评估](../0-foundations/ai-landscape.md) --- **TL;DR**: 1600+ 行的 TikTok Shop 完整指南。核心看点：ch15 短视频 Hook 公式 + 3 幕脚本结构、ch16 达人量化评分模型、ch17 直播分钟级脚本、ch14 GMV Max 强制化后的应对策",
     "key_entities": [
       "a_plus_content",
@@ -1498,7 +1498,7 @@
     "title": "E4. Pinterest AI 运营指南 | Pinterest AI Playbook",
     "path": "e-social-media/e4-pinterest-ai-guide.md",
     "body_path": "chapters/e-social-media__e4-pinterest-ai-guide.md",
-    "body_chars": 14152,
+    "body_chars": 14537,
     "summary": "> **路径**: Path E: 社交媒体 · **模块**: E4 > **最后更新**: 2026-07-31 > **难度**: 中级 > **预计时间**: 1.5-2 小时 > **前置模块**: [Path 0 基础](../0-foundations/) --- 1. [Pinterest 的独特定位](#1-pinterest-的独特定位) 2. [Pinterest SEO 方法论](#2-pinterest-seo-方法论) 3. [AI 视觉内容创作](#3-ai-视觉内容创作) 4. [Pinterest Shopping Ads](#4-pinterest-shop",
     "key_entities": [
       "ad_group",

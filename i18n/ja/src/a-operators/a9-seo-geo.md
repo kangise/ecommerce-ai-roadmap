@@ -203,6 +203,8 @@ Agent 化した後、上で貼り付けを求めているデータはここか�
 | 50+ の顧客レビュー | AI 推薦確率 +2.5 倍 | レビューの数量と質が AI 推薦に直接影響 |
 | 競合比較コンテンツ | AI 引用率 +45-70% | 買い物シーンでは比較コンテンツが最も引用される |
 
+> **出典：** 検証 2026-08 · 小紅書公式資料：MAU 約 3 億、月間検索浸透率 70%（[新浪財経の報道](https://finance.sina.com.cn/tech/2025-04-10/doc-inesschw5906564.shtml)）
+
 Content rephrased for compliance with licensing restrictions.
 
 ### 4.3 GEO の 5 大支柱(EC 版)

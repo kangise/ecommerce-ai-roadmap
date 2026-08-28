@@ -371,6 +371,10 @@
   "hard_fail": false,
   "status": 200
  },
+ "https://finance.sina.com.cn/tech/2025-04-10/doc-inesschw5906564.shtml": {
+  "hard_fail": false,
+  "status": 200
+ },
  "https://finimize.com/content/meli-asset-snapshot": {
   "hard_fail": false,
   "status": 200
@@ -751,6 +755,10 @@
   "hard_fail": false,
   "status": 403
  },
+ "https://ir.aboutcoupang.com/news-events/news/news-details/2025/Coupang-Announces-Results-for-First-Quarter-2025/default.aspx": {
+  "hard_fail": false,
+  "status": 200
+ },
  "https://ir.aboutcoupang.com/news-events/news/news-details/2026/Coupang-Announces-Results-for-Fourth-Quarter-2025/default.aspx": {
   "hard_fail": false,
   "status": 200
@@ -1095,6 +1103,10 @@
   "hard_fail": false,
   "status": 200
  },
+ "https://s204.q4cdn.com/369458543/files/doc_earnings/2025/q4/earnings-result/Q425-PressRelease.pdf": {
+  "hard_fail": false,
+  "status": 200
+ },
  "https://scikit-learn.org/": {
   "hard_fail": false,
   "status": 200
@@ -1228,6 +1240,10 @@
   "status": 200
  },
  "https://thelowdown.momentum.asia/new-report-southeast-asias-platform-ecommerce-reaches-us157-6b-in-2025-with-top-platforms-expanding-share-to-98-8/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://thelowdown.momentum.asia/new-report-tiktok-shop-u-s-gmv-grew-68-to-reach-us15-1b-in-2025/": {
   "hard_fail": false,
   "status": 200
  },
@@ -1594,6 +1610,10 @@
  "https://www.forecastly.com/": {
   "hard_fail": false,
   "status": "_ssl.c:1112: The handshake operation timed out"
+ },
+ "https://www.fortunebusinessinsights.com/ai-video-generator-market-110060": {
+  "hard_fail": false,
+  "status": 403
  },
  "https://www.freecodecamp.org/news/how-to-guide-ai-with-rules-and-tests/": {
   "hard_fail": false,

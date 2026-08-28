@@ -401,6 +401,8 @@ GEO 讲的是"怎么被 AI 搜索引用进答案"。但还有第二类 AI 读者
 | Pinterest | 视觉搜索 | Pin 标题+描述+Board | [E4](../e-social-media/e4-pinterest-ai-guide.md) |
 | 小红书 | 站内搜索（70%渗透率） | 标题+正文前200字+标签 | [E3](../e-social-media/e3-xiaohongshu-ai-guide.md) |
 
+> **来源：** 核验 2026-08 · 小红书官方通案：月活约 3 亿，月均搜索渗透率 70%（[新浪财经报道](https://finance.sina.com.cn/tech/2025-04-10/doc-inesschw5906564.shtml)）
+
 ---
 
 ## 7. AI SEO 工具对比

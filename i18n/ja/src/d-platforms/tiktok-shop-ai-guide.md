@@ -849,7 +849,9 @@ Content rephrased for compliance with licensing restrictions. Sources: [KOL Spri
 | 投稿頻度が低すぎる | 週 1-2 本、アルゴリズムがあなたのコンテンツを学ぶ十分なデータがない | 最低毎日 1 本、理想は 3-5 本。AI がバッチ生産を手伝う |
 | 自然トラフィックだけやる | 自然のバズを待つ、数か月待っても結果がないかも | 自然コンテンツ + Spark Ads で拡大が標準装備 |
 | インフルエンサー協働が一度きり | 毎回新インフルエンサーを探し、長期関係を築かない | インフルエンサーマトリクスを築き、核心インフルエンサーと長期協働 |
-| ライブを軽視 | ショート動画だけでライブをしない | ライブは TikTok Shop GMV の主要な源(40-60% を占める) |
+| ライブを軽視 | ショート動画だけでライブをしない | 米国ではショート動画が GMV の 50%、Shop タブ 36%、ライブ 14%。ライブ比率は東南アジアで高い |
+
+> **出典：** 検証 2026-08 · 米国 TikTok Shop の 2025 年 GMV 構成：ショート動画 50%、Shop タブ 36%、ライブ 14%（ライブは 2024 年の 10% から上昇）。[Momentum Works レポート](https://thelowdown.momentum.asia/new-report-tiktok-shop-u-s-gmv-grew-68-to-reach-us15-1b-in-2025/)より。インフルエンサー動画の間接価値の倍率は経験則で、公開情報源はありません。
 
 ### 10.2 TikTok 運営のデータの落とし穴
 
@@ -860,6 +862,8 @@ Content rephrased for compliance with licensing restrictions. Sources: [KOL Spri
 | ROAS が低いと投下停止 | 広告 ROAS 1.5 で損したと思う | TikTok 広告の間接価値(ブランド検索量向上、自然トラフィック増加)が計上されていない。真の ROAS はレポートの 1.5-2 倍かも |
 | インフルエンサー ROI を直接 GMV だけで見る | インフルエンサー動画 GMV $200 で割に合わないと思う | インフルエンサー動画の Spark Ads 拡大価値 + ブランド認知価値 + コンテンツ資産価値は直接 GMV の 3-5 倍かも |
 | 返品率が高いと製品の問題 | TikTok 返品率 15% を高すぎると思う | TikTok の返品率は本来 Amazon より高い(衝動消費 -> 後悔返品)。品目平均 10-15% は正常 |
+
+> **注記：** 本表の倍率（実 ROAS 1.5〜2 倍、インフルエンサー動画の間接価値 3〜5 倍）はいずれも運用上の経験則で、公開情報源はありません。自社データで較正してから使ってください。
 
 ### 10.3 コンテンツ制作のよくある誤り
 
@@ -935,7 +939,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [KOL Spri
 | コンテンツ生成 | Listing コピー | 製品ページ + ブログ | ショート動画スクリプト + ライブトーク |
 | 広告 | PPC キーワード最適化 | Facebook/Google Ads | Spark Ads + GMV Max |
 | 顧客到達 | サイト内メッセージ(制限) | メール + SMS | ショート動画 + ライブ + フォロワーグループ |
-| インフルエンサー協働 | ほぼなし | 限定的 | 核心戦略(GMV の 40%+ を占める) |
+| インフルエンサー協働 | ほぼなし | 限定的 | 核心戦略 |
 | データ分析 | Seller Central | GA4 + Shopify | TikTok Seller Center |
 
 ---

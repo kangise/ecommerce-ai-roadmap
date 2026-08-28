@@ -403,6 +403,8 @@ With limited time, work down this list:
 | Pinterest | visual search | Pin title + description + Board | [E4](../e-social-media/e4-pinterest-ai-guide.md) |
 | Xiaohongshu | in-app search (70% penetration) | title + first 200 chars of body + tags | [E3](../e-social-media/e3-xiaohongshu-ai-guide.md) |
 
+> **Sources:** verified 2026-08 · Xiaohongshu official deck: about 300M MAU, 70% monthly search penetration ([Sina Finance report](https://finance.sina.com.cn/tech/2025-04-10/doc-inesschw5906564.shtml))
+
 ---
 
 ## 7. AI SEO Tool Comparison

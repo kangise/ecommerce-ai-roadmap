@@ -7,10 +7,10 @@
       "tree_sha256": "5244a5085dc1631bd7aa4b9c79a522c3bd080ee7607b3b5be327b631ece1a17b"
     },
     "dist": {
-      "byte_count": 6568160,
+      "byte_count": 6569962,
       "file_count": 153,
       "name": "dist",
-      "tree_sha256": "d8ce7c77793ec2b273b206663d71f4c23a4a28a3d9fb9ffe9ca977cdd7da29fe"
+      "tree_sha256": "e855111a4c8bc2bf77f769e9a653eb1d4a0af44927c83635146c21d07925804f"
     },
     "package_sources": {
       "byte_count": 941078,
@@ -25,10 +25,10 @@
       "tree_sha256": "4d9bad8607976d11ae9a4f5d68435a13023501863add4b32476023acdb062496"
     },
     "scripts": {
-      "byte_count": 372217,
+      "byte_count": 372989,
       "file_count": 24,
       "name": "scripts",
-      "tree_sha256": "cf5e13cd7620180b87da7599fd009c6bf5b571251eeffd1dd22aa30ec574231d"
+      "tree_sha256": "7ce4b9cffe8f307a1fa6d1ee71039635b81488184d12c60e94cc940a0118c6f7"
     },
     "tests": {
       "byte_count": 529136,
@@ -37,10 +37,10 @@
       "tree_sha256": "1062302e82301bc7d591b014c7918fa46d5354d97f30e82928d6d159e1a370cf"
     },
     "wheel_package_data": {
-      "byte_count": 6568160,
+      "byte_count": 6569962,
       "file_count": 153,
       "name": "wheel_package_data",
-      "tree_sha256": "b6c689ebe669b41d013cf3dc342094e9d4ea36129071521090ce27597cfc6554"
+      "tree_sha256": "5868db36ff051b2d774700a94ba2fbd990c66f9e0c20ec264c86bc03bf2a42ca"
     }
   },
   "contracts": {

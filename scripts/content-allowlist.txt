@@ -11,21 +11,18 @@
 # M8 — market figures in tables, unsourced
 #
 # a-operators/a7-visual-content.md
-a-operators/a7-visual-content.md:47  # names a source but does not link it
-a-operators/a7-visual-content.md:48  # names a source but does not link it
 #
 # a-operators/a9-seo-geo.md
-a-operators/a9-seo-geo.md:402
 #
 # d-platforms/d11-coupang-korea-ai-guide.md
-d-platforms/d11-coupang-korea-ai-guide.md:305
 #
 # d-platforms/tiktok-shop-ai-guide.md
-d-platforms/tiktok-shop-ai-guide.md:853
-d-platforms/tiktok-shop-ai-guide.md:862
-d-platforms/tiktok-shop-ai-guide.md:939
-d-platforms/tiktok-shop-ai-guide.md:1406
 #
 # e-social-media/e4-pinterest-ai-guide.md
-e-social-media/e4-pinterest-ai-guide.md:304
-e-social-media/e4-pinterest-ai-guide.md:627
+#
+# d-platforms/tiktok-shop-ai-guide.md
+# Operator rule of thumb, not a measured figure: a creator video's indirect
+# value is stated as 3-5x direct GMV. The table carries a note saying so.
+# No public source exists to cite; clearing this means finding real data or
+# dropping the multiplier.
+d-platforms/tiktok-shop-ai-guide.md:864

@@ -186,7 +186,11 @@ WORLD_FIGURE = re.compile(
 # worked examples, thresholds, targets. Checked before WORLD_FIGURE fires.
 NOT_A_WORLD_CLAIM = re.compile(
     r"[÷=]|计算公式|公式|阈值|告警|目标值|成功标准|例如|比如|而非|"
-    r"[\"“”]\s*[^|]*\d"
+    r"[\"“”]\s*[^|]*\d|"
+    # Benchmark tier rows: "<$10 | $10-$50 | $50-$200 | >$200". Threshold
+    # notation next to a number marks a grading scale, not a measured fact
+    # about the world.
+    r"[<>≤≥]\s*[$€£¥]?\s*\d"
 )
 
 BOUNDARY = {

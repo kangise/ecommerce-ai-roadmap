@@ -305,6 +305,8 @@ Coupang は 2025-2026 年にいくつかの重要な戦略方向がある:
 | $1B 株式買い戻し | 会社の将来の成長への自信を示す | プラットフォームの安定性 |
 | Rocket WOW 会員 | 1400 万会員([AInvest](https://www.ainvest.com/news/coupang-global-scalability-assessing-tam-tech-moat-growth-investors-2601/)) | 高価値ユーザー層 |
 
+> **出典：** 検証 2026-08 · Coupang 取締役会は 2025 年 5 月に最大 $10 億の自社株買いを承認。2025 年中に 880 万株・$2.43 億を取得（[Coupang IR](https://ir.aboutcoupang.com/news-events/news/news-details/2025/Coupang-Announces-Results-for-First-Quarter-2025/default.aspx)）
+
 Content rephrased for compliance with licensing restrictions.
 
 ### 5.6 韓国市場マーケティングチャネル

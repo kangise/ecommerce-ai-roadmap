@@ -304,6 +304,8 @@ Before delivering, verify each item and report the result:
 | Audience size | Smaller (619 million MAU) | Extremely large (3 billion MAU) |
 | Recommendation | Prioritize when category matches | Main spend when scaling |
 
+> **Sources:** verified 2026-08 · Pinterest reported 619M global MAU in Q4 2025 (+12% YoY) in its [official results](https://s204.q4cdn.com/369458543/files/doc_earnings/2025/q4/earnings-result/Q425-PressRelease.pdf). The 3 billion it is compared against is Meta's family-of-apps figure, not a single app.
+
 ---
 
 ## 5. Data Analysis
@@ -630,6 +632,8 @@ Before delivering, verify each item and report the result:
 | Content lifespan | Long (a Pin keeps getting traffic for months) | Short (no traffic once the ad stops) |
 | Remarketing | Supported (website visitors + Pin engagers) | Supported (more mature) |
 | AI optimization | Basic (auto-bidding + audience expansion) | Mature (Advantage+ fully automated) |
+
+> **Sources:** verified 2026-08 · [Pinterest Q4 2025 results](https://s204.q4cdn.com/369458543/files/doc_earnings/2025/q4/earnings-result/Q425-PressRelease.pdf): 619M global MAU. The 3 billion is Meta's family-of-apps figure.
 
 > **Budget-allocation suggestion**: If your category is among Pinterest's strong categories (home/fashion/beauty/DIY), allocate 20-30% of your social ad budget to Pinterest. Pinterest's CPC is lower, user purchase intent is higher, and the long-term ROI is usually better than Meta Ads.
 

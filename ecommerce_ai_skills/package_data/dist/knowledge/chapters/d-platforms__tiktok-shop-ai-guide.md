@@ -850,7 +850,9 @@ Content rephrased for compliance with licensing restrictions. Sources: [KOL Spri
 | 发布频率太低 | 一周发 1-2 条，算法没有足够数据学习你的内容 | 至少每天 1 条，理想 3-5 条。AI 帮你批量生产 |
 | 只做自然流量 | 等自然爆发，可能等几个月都没结果 | 自然内容 + Spark Ads 放大是标配 |
 | 达人合作一次性 | 每次找新达人，不建立长期关系 | 建立达人矩阵，核心达人长期合作 |
-| 忽略直播 | 只做短视频不做直播 | 直播是 TikTok Shop GMV 的主要来源（占 40-60%） |
+| 忽略直播 | 只做短视频不做直播 | 美国市场短视频占 GMV 50%、商城 tab 36%、直播 14%；直播占比在东南亚更高 |
+
+> **来源：** 核验 2026-08 · 美国 TikTok Shop 2025 年 GMV 构成：短视频 50%、商城 tab 36%、直播 14%（直播份额由 2024 年的 10% 升至 14%），见 [Momentum Works 报告](https://thelowdown.momentum.asia/new-report-tiktok-shop-u-s-gmv-grew-68-to-reach-us15-1b-in-2025/)。达人视频的间接价值倍数为经验估计，无公开数据源。
 
 ### 10.2 TikTok 运营的数据陷阱
 
@@ -861,6 +863,8 @@ Content rephrased for compliance with licensing restrictions. Sources: [KOL Spri
 | ROAS 低就停投 | 广告 ROAS 1.5 就觉得亏了 | TikTok 广告的间接价值（品牌搜索量提升、自然流量增长）没有算进去。真实 ROAS 可能是报告的 1.5-2 倍 |
 | 达人 ROI 只看直接 GMV | 达人视频 GMV $200 觉得不值 | 达人视频的 Spark Ads 放量价值 + 品牌认知价值 + 内容资产价值可能是直接 GMV 的 3-5 倍 |
 | 退货率高就是产品问题 | TikTok 退货率 15% 觉得太高 | TikTok 的退货率天然比 Amazon 高（冲动消费 -> 后悔退货）。品类平均 10-15% 是正常的 |
+
+> **说明：** 本表中的倍数（真实 ROAS 1.5-2 倍、达人视频间接价值 3-5 倍）均为运营经验法则，无公开数据源可核，按你自己的数据校准后再用。
 
 ### 10.3 内容创作的常见错误
 
@@ -936,7 +940,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [KOL Spri
 | 内容生成 | Listing 文案 | 产品页 + 博客 | 短视频脚本 + 直播话术 |
 | 广告 | PPC 关键词优化 | Facebook/Google Ads | Spark Ads + GMV Max |
 | 客户触达 | 站内消息（受限） | 邮件 + SMS | 短视频 + 直播 + 粉丝群 |
-| 达人合作 | 几乎没有 | 有限 | 核心策略（占 GMV 40%+） |
+| 达人合作 | 几乎没有 | 有限 | 核心策略 |
 | 数据分析 | Seller Central | GA4 + Shopify | TikTok Seller Center |
 
 ---

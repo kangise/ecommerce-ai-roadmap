@@ -44,10 +44,12 @@ Content rephrased for compliance with licensing restrictions.
 |--------|------|--------|
 | AI product-image cost reduction | 80% | Entrepreneur 2026 |
 | Lifestyle vs white-background conversion lift | 22–30% | A/B test studies |
-| AI video-generation market size (2025) | $7.168B | Fortune Business Insights |
-| AI video market projection (2032) | $25.6B | Fortune Business Insights |
+| AI video-generation market size (2025) | $716.8M | Fortune Business Insights |
+| AI video market projection (2032) | $2.56B | Fortune Business Insights |
 | Amazon product video's effect on conversion | Usually positive; size varies a lot by category | A/B it yourself |
 | Time-on-Listing with video | +2× | industry benchmark |
+
+> **Sources:** verified 2026-08 · [Fortune Business Insights AI video generator market report](https://www.fortunebusinessinsights.com/ai-video-generator-market-110060): $716.8M in 2025, projected $2,562.9M by 2032
 
 ### 1.2 The three levels of AI visual content
 

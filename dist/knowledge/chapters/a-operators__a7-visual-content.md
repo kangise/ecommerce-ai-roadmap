@@ -44,10 +44,12 @@ Content rephrased for compliance with licensing restrictions.
 |------|------|------|
 | AI 产品图片成本降低 | 80% | Entrepreneur 2026 |
 | 生活方式图 vs 白底图转化率提升 | 22-30% | A/B 测试研究 |
-| AI 视频生成市场规模（2025） | $71.68 亿 | Fortune Business Insights |
-| AI 视频市场预计（2032） | $256 亿 | Fortune Business Insights |
+| AI 视频生成市场规模（2025） | $7.168 亿 | Fortune Business Insights |
+| AI 视频市场预计（2032） | $25.6 亿 | Fortune Business Insights |
 | Amazon 产品视频对转化率的影响 | 通常为正，幅度按品类差异大 | 需自行 A/B |
 | 有视频的 Listing 停留时间 | +2x | 行业基准 |
+
+> **来源：** 核验 2026-08 · [Fortune Business Insights AI 视频生成市场报告](https://www.fortunebusinessinsights.com/ai-video-generator-market-110060)：2025 年 $716.8M，2032 年预计 $2,562.9M
 
 ### 1.2 AI 视觉内容的三个层次
 
