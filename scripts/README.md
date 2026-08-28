@@ -10,6 +10,7 @@
 | `link-status.json` | 外链探测结果缓存，由 `verify_content.py --probe-links` 写入 |
 | `fact_review.py` | 事实复核队列：批次到期时间、余量、过期分布 |
 | `watch_sources.py` | 上游 API 规范巡检：变更时指出受影响的约束、代码和章节 |
+| `audit_content.py` | 内容审计报告：有效性、完整性、友好度三个维度 |
 | `setup/setup_environment.sh` | 本地环境准备 |
 
 
@@ -63,6 +64,34 @@ python3 scripts/watch_sources.py --list     # 不联网，查看监控清单
 如需在 CI 中阻断，用 `--fail-on-change`。周检工作流以 `continue-on-error` 调用并写入状态。
 
 未认证的 GitHub API 限速 60 次/小时，设置 `GITHUB_TOKEN` 可提高。
+
+
+## audit_content.py
+
+门禁套件回答"有没有坏掉"，应当长期为 0。本脚本回答另一个问题——"内容是否够好"，
+**预期会有发现**。这些是判断题不是缺陷，因此不作为门禁，恒返回 0。
+
+它要补的洞：`M1` 要求正文里的数字带来源、核验日期或对冲词，但
+`prose_lines()` 会跳过所有以 `|` 开头的行——**表格豁免**。对规格表这是合理的
+（"标题上限 200 字符"不需要引用），但市场规模数字也在表格里，而那些恰恰是易变、
+高风险的：GMV、MAU、市场份额、增长率、效率提升百分比。`V1` 覆盖的正是这个盲区。
+
+```bash
+python3 scripts/audit_content.py             # 全部
+python3 scripts/audit_content.py --axis V    # 只看有效性
+python3 scripts/audit_content.py --only V1 --list
+python3 scripts/audit_content.py --json
+```
+
+| 维度 | 检查 |
+|------|------|
+| 有效性 | `V1` 表格中无来源的市场规模数字 · `V2` 大量数字但全篇零外链的章节 · `V3` 上次探测未返回 200 的引用链接，按应采取的动作分组 |
+| 完整性 | `C1` 参考类页面缺少局限性说明 · `C2` platforms.yaml 中无对应章节的平台 · `C3` 篇幅显著低于同路径中位数的章节 |
+| 友好度 | `F1` 无可运行 Prompt 的指南章 · `F2` 长章节缺页内导航 · `F3` 长小节无三级标题 |
+
+判断引用是否存在时必须**剔除代码围栏**：每个 Prompt 模板的数据纪律块都含有
+"标注来源"字样，按关键词匹配会让一个零引用的章节通过——56 个无源数字正是这样
+藏在绿色门禁背后的。
 
 ## verify_content.py
 
