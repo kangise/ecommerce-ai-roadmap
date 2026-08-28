@@ -24,44 +24,44 @@
 
 ## 这是什么
 
-跨境电商的 AI 实操知识库，**同一份内容有三种用法**：
+跨境电商的 AI 实操知识库，**同一份内容，三种用法**：
 
 | 用法 | 是什么 | 入口 |
 |---|---|---|
-| **当书读** | 69 章，从选品到增长，中/英/日三语完整 | [在线站点](https://kangise.github.io/ecommerce-ai-skills/) |
-| **给 agent 装** | 知识 + 领域模型 + 带护栏的能力，MCP 一行配置接进 Claude / Cursor | [`dist/`](dist/) |
-| **直接跑起来** | Commerce Agent OS — 接真实店铺数据、多 agent 协作、人工审批的运营运行时 | `opc-ecommerce demo` |
+| **当书读** | 69 章，从选品讲到增长，中英日三语都是全的 | [在线站点](https://kangise.github.io/ecommerce-ai-skills/) |
+| **给 agent 装** | 知识、领域模型、带护栏的能力打成一包，MCP 加一行配置就能接进 Claude / Cursor | [`dist/`](dist/) |
+| **直接开跑** | Commerce Agent OS：连上真实店铺数据，一群 agent 分头看，要动手先等人点头 | `opc-ecommerce demo` |
 
-三者由**同一套 CI 门禁**把关。门禁不过，三边都发不出去。
+三种用法共用**同一套 CI 门禁**。门禁过不了，哪一种都发不出去。
 
 <br>
 
-## 跑起来 — Commerce Agent OS
+## 开跑 — Commerce Agent OS
 
-前两种用法是「把知识给到 AI」。第三种是**让它真的去干活**——同一套 ontology 和 skill 装进一个带审批、审计和故障恢复的运行时。
+前两种是把知识喂给 AI，第三种是让它真的下场干活。同一套 ontology 和 skill，跑在一个能审批、能追溯、出了岔子能接着跑的运行时里。
 
 ```bash
 pip install "ecommerce-ai-skills[mcp] @ git+https://github.com/kangise/ecommerce-ai-skills"
 
-opc-ecommerce demo-seed --db ./demo.sqlite     # 造一个隔离的演示租户
+opc-ecommerce demo-seed --db ./demo.sqlite     # 起一个隔离的演示租户
 opc-ecommerce demo --db ./demo.sqlite --port 8788
 # 浏览器打开 http://127.0.0.1:8788/app
 ```
 
-演示租户全程标记 `DEMO DATA`，和真实数据物理隔离。
+演示租户从头到尾挂着 `DEMO DATA` 的标，和真实数据是两套库，碰不到一起。
 
-**它现在能做什么**
+**现在能干什么**
 
-| 能力 | 说明 |
+| | |
 |---|---|
-| 接真实数据 | Amazon SP-API / Amazon Ads / Shopify 三个连接器；Business Report、Ads、FBA、退货、Listing 的 CSV/XLSX 可导入为持久化 Evidence |
-| 多 agent 协作 | Weekly Ops Council：证据 Agent 与各平台专属 Agent 并行审查，再由跨平台 Controller 和店长 Agent 汇总优先事项 |
-| 人工审批闸门 | 写操作走 proposal → 审批 → 执行；广告类动作额外受 capability gate 约束，未授权直接 blocked |
-| durable 执行 | Job / Schedule / Report-sync / Daily-ops 四类 worker 可断点续跑，带幂等租约和恢复 |
-| 全链路审计 | 每条结论必须引用输入数据源；租户隔离、API key 轮换、操作审计流水 |
-| 运营界面 | `/app` 七个视图：简报、智能体、证据、审批、连接、自动化、审计；中英文偏好持久化，明暗主题 |
+| 真数据进得来 | Amazon SP-API / Amazon Ads / Shopify 三个连接器。Business Report、广告、FBA、退货、Listing 的 CSV/XLSX 导进来就是一条持久 Evidence，往后反复用 |
+| 一群 agent 分头看 | Weekly Ops Council：证据 agent 和各平台的专属 agent 各过一遍，再由跨平台 controller 和店长 agent 归拢出本周先干什么 |
+| 动手前先等人点头 | 凡是写操作，都得走 proposal → 审批 → 执行。广告类动作还多一道 capability gate，没授权就是 blocked |
+| 断了能接着跑 | job / schedule / report-sync / daily-ops 四类 worker，中途挂掉从断点续，靠幂等租约防重复执行 |
+| 全程留痕 | 每条结论都得说清数据打哪儿来。租户之间互不串门，API key 能轮换，操作有流水 |
+| 干活的界面 | `/app` 七个页面：简报、智能体、证据、审批、连接、自动化、审计。中英文记得住，明暗主题都有 |
 
-**它刻意不做什么** — 没有真实凭证或证据不完整时**明确失败**，不生成看起来合理的假结果。这和知识层的数据纪律是同一条原则。
+**有意不做的事** — 凭证不真、证据不全，它就直接报错停下，不会顺手编一个看着像模像样的结果糊弄过去。这跟知识层那条数据纪律，是一个道理。
 
 接入细节见 [`integration/runtime-api.md`](integration/runtime-api.md)。
 
@@ -177,9 +177,9 @@ tiktok_shop.product.title.max_length:   80  字符
 | **知识库** | 69 章，三语（中/英/日） | 69 章 | 人读 · agent 检索 |
 | **Ontology** | 电商领域模型 | 100 实体 · 322 约束 · 78 关系 · 8 流程 | agent 之间的共享契约 |
 | **Skills + Prompts** | 带护栏的可执行能力 | 878 条 Prompt · 9 个可安装 skill | agent 直接调用 |
-| **Runtime** | 多 agent 运营运行时 + 界面 | 54 个 API 端点 · 7 个视图 · 3 个平台连接器 | 真实店铺日常运营 |
+| **Runtime** | 一群 agent 干活的运行时，带界面 | 54 个 API 端点 · 7 个页面 · 3 个平台连接器 | 店铺日常运营 |
 
-上面三层是**知识**，第四层把它们**接到真实数据上执行**。前三层打包进 `dist/`，第四层是 `pip install` 的运行时包。
+前三层是**知识**，第四层负责**接上真实数据、真的执行**。前三层打包在 `dist/` 里，第四层是 `pip` 装的运行时。
 
 `dist/` 目录结构：
 
@@ -193,7 +193,7 @@ dist/
   integration/   ← MCP Server 接入指南
 ```
 
-MCP Server 暴露 8 个 resource（ontology 五件套 + 知识索引 + 章节全文 + 术语表）和 5 个 tool（`route_query` / `get_constraints` / `search_knowledge` / `read_chapter` / `list_skills`）。自检一遍：
+MCP Server 对外给 8 个 resource（ontology 五件套、知识索引、章节全文、术语表）和 5 个 tool（`route_query` / `get_constraints` / `search_knowledge` / `read_chapter` / `list_skills`）。想确认就自己跑一遍：
 
 ```bash
 python3 integration/mcp-server.py --cli
