@@ -2,7 +2,7 @@
 
 # 越境EC AI 知識基盤
 
-### 人が読める。agent にインストールできる。
+### 人が読める。agent にインストールできる。運用として動かせる。
 
 **すべての数字は CI で検証済み · すべてのプロンプトに幻覚防止のガードレール · すべての章に「効かないとき」を明記**
 
@@ -24,30 +24,46 @@
 
 ## これは何か
 
-越境EC の AI 実践知識ライブラリ。**同じコンテンツに 2 つの使い方がある**:
+越境EC の AI 実践知識ライブラリ。**同じコンテンツに 3 つの使い方がある**:
 
-- **本として読む** — 69 章、選品から成長まで、3 言語で完訳。[オンラインサイト](https://kangise.github.io/ecommerce-ai-skills/) でいつでも言語を切り替えられる
-- **agent にインストール** — [`dist/`](dist/) はプラグ・アンド・プレイの能力パック。MCP Server 一行の設定で Claude / Cursor に接続できる
+| 使い方 | 何か | 入口 |
+|---|---|---|
+| **本として読む** | 69 章、選品から成長まで、中/英/日 3 言語で完訳 | [オンラインサイト](https://kangise.github.io/ecommerce-ai-skills/) |
+| **agent にインストール** | 知識 + 領域モデル + ガード付き能力。MCP 一行の設定で Claude / Cursor に接続 | [`dist/`](dist/) |
+| **そのまま動かす** | Commerce Agent OS — 実店舗データに接続し、複数 agent が検証し、人が承認する運用ランタイム | `opc-ecommerce demo` |
 
-Python パッケージも提供しています。`pip install .` 後、`opc-ecommerce` で
-パッケージ検証、テナント初期化、認証付き Runtime API を起動できます。
-詳細は [`integration/runtime-api.md`](integration/runtime-api.md) を参照してください。
+3 つとも**同じ CI ゲート**が守る。ゲートを通らなければ、どれも出荷されない。
 
-Runtime には永続化対応の **Weekly Ops Council** も含まれます。証拠検証 Agent と
-対象マーケットプレイスごとの専門 Agent が実データを並列に確認し、クロスプラットフォーム
-Controller と店長 Agent が優先事項を統合します。Amazon には広告、Listing、在庫、価格、
-顧客対応、コンプライアンス、商品調査のインストール済み能力が自動で割り当てられ、
-他のマーケットプレイスは各 Skill manifest から構成されます。すべての結論は入力ソースの引用が必須で、実際の
-OpenAI 認証情報や有効な証拠がなければ、代替結果を生成せず明示的に失敗します。
-Amazon Business Report、広告、FBA、返品、Listing の CSV/XLSX は永続的な Evidence ID
-として一度取り込み、Agent チームから再利用できます。
-完了済みの非制限 SP-API Report も、二者承認後に同じ Evidence フローへ自動取得できます。
-永続 Worker と Scheduler は最新 Evidence で周次レビューを実行し、Mission Control が承認待ち、失敗、最近の処理を集約します。
-完了したレビューは永続 Evals で証拠、プラットフォーム分離、承認ポリシーの回帰を検査できます。
-Runtime 起動後に `/app` を開くと、Amazon-first のクロスプラットフォーム日次ブリーフを利用できます。実 Evidence のトレンド、Agent Brief、人的承認を同じ判断画面に集約し、インポート、実行、スケジュール、監査は専用ワークスペースに分離しています。
-製品デモは `opc-ecommerce demo --db ./commerce-agent-demo.sqlite --port 8788` で起動できます。loopback 専用セッションが独立 Demo テナントを自動読込し、`DEMO DATA` 警告を常時表示します。通常 API の認証は変更されません。
+<br>
 
-両側は同じ CI ゲートで守られている。**ゲートを通過しなければ、両方ともリリースされない。**
+## 動かす — Commerce Agent OS
+
+最初の 2 つは「AI に知識を渡す」使い方。3 つ目は**実際に働かせる**——同じ ontology と skill を、承認・監査・障害復旧を備えたランタイムに載せたもの。
+
+```bash
+pip install "ecommerce-ai-skills[mcp]"
+
+opc-ecommerce demo-seed --db ./demo.sqlite     # 隔離されたデモテナントを作る
+opc-ecommerce demo --db ./demo.sqlite --port 8788
+# ブラウザで http://127.0.0.1:8788/app を開く
+```
+
+デモテナントは全体を通して `DEMO DATA` と表示され、実データとは物理的に隔離されます。
+
+**現在できること**
+
+| 能力 | 説明 |
+|---|---|
+| 実データの取り込み | Amazon SP-API / Amazon Ads / Shopify の 3 コネクタ。Business Report、広告、FBA、返品、Listing の CSV/XLSX を永続 Evidence として取り込み |
+| 複数 agent の検証 | Weekly Ops Council：証拠検証 Agent と各マーケットプレイス専門 Agent が並列に確認し、クロスプラットフォーム Controller と店長 Agent が優先事項を統合 |
+| 人による承認ゲート | 書き込みは proposal → 承認 → 実行を経る。広告系の操作は capability gate が追加され、未認可なら blocked |
+| 永続的な実行 | job / schedule / report-sync / daily-ops の 4 種の worker が中断後に再開。冪等リースと復旧つき |
+| 全経路の監査 | すべての結論は入力ソースの引用が必須。テナント隔離、API キーのローテーション、操作監査ログ |
+| 運用 UI | `/app` の 7 ビュー：ブリーフィング、agent、証拠、承認、接続、自動化、監査。中英の設定を保持、ライト/ダークテーマ対応 |
+
+**あえてやらないこと** — 実際の認証情報がない、あるいは証拠が不完全なときは**明示的に失敗**し、もっともらしい代替結果を作りません。知識層のデータ規律と同じ原則です。
+
+接続の詳細は [`integration/runtime-api.md`](integration/runtime-api.md) を参照。
 
 <br>
 
@@ -193,13 +209,16 @@ tiktok_shop.product.title.max_length:   80  文字
 
 <br>
 
-## 本だけではない — 3 層構造
+## 本だけではない — 4 層構造
 
 | 層 | 内容 | 規模 | 対象 |
 |---|---|---|---|
 | **知識ベース** | 69 章、3 言語（中/英/日） | 69 章 | 人の読解 · agent 検索 |
 | **Ontology** | E コマース領域モデル | 100 実体 · 322 制約 · 78 関係 · 8 プロセス | agent 間の共有契約 |
 | **Skills + プロンプト** | ガード付きの実行可能能力 | 878 プロンプト · 9 つのインストール可能な skill | agent の直接呼び出し |
+| **Runtime** | 複数 agent の運用ランタイム + UI | 54 の API エンドポイント · 7 ビュー · 3 プラットフォームコネクタ | 実店舗の日常運用 |
+
+上の 3 層は**知識**、4 層目はそれを**実データに接続して実行する**。前 3 層は `dist/` に、4 層目は `pip install` するランタイムパッケージに入ります。
 
 `dist/` のディレクトリ構成:
 
@@ -211,6 +230,12 @@ dist/
   skills/        ← 9 つの domain skill。各 manifest + playbook + 境界
   knowledge/     ← 69 章の構造化索引
   integration/   ← MCP Server の導入ガイド
+```
+
+MCP Server は 8 つの resource（ontology 5 種 + 知識索引 + 章全文 + 用語集）と 5 つの tool（`route_query` / `get_constraints` / `search_knowledge` / `read_chapter` / `list_skills`）を公開します。自分で確認するには:
+
+```bash
+python3 integration/mcp-server.py --cli
 ```
 
 <br>

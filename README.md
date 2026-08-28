@@ -2,11 +2,11 @@
 
 # 跨境电商 AI 知识底座
 
-### 人可以读，agent 可以装。
+### 人可以读，agent 可以装，运营可以跑。
 
 **每个数字都经 CI 核验 · 每个 Prompt 都带反幻觉护栏 · 每章都写明什么时候不管用**
 
-🇨🇳 中文&nbsp;·&nbsp;[🇺🇸 English](README_EN.md)&nbsp;·&nbsp;[🇯🇵 日本語](README_JA.md)&nbsp;&nbsp;|&nbsp;&nbsp;📖 [在线阅读](https://kangise.github.io/ecommerce-ai-skills/)&nbsp;&nbsp;|&nbsp;&nbsp;📦 [给 agent 装](dist/)
+🇨🇳 中文&nbsp;·&nbsp;[🇺🇸 English](README_EN.md)&nbsp;·&nbsp;[🇯🇵 日本語](README_JA.md)&nbsp;&nbsp;|&nbsp;&nbsp;📖 [在线阅读](https://kangise.github.io/ecommerce-ai-skills/)&nbsp;&nbsp;|&nbsp;&nbsp;📦 [给 agent 装](dist/)&nbsp;&nbsp;|&nbsp;&nbsp;🖥️ [跑起来](#跑起来--commerce-agent-os)
 
 [![License: CC0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
 [![Stars](https://img.shields.io/github/stars/kangise/ecommerce-ai-skills?style=social)](https://github.com/kangise/ecommerce-ai-skills)
@@ -24,30 +24,46 @@
 
 ## 这是什么
 
-跨境电商的 AI 实操知识库，**同一份内容有两种用法**：
+跨境电商的 AI 实操知识库，**同一份内容有三种用法**：
 
-- **当书读** — 69 章，从选品到增长，三语完整，[在线站点](https://kangise.github.io/ecommerce-ai-skills/)随时切换语言
-- **给 agent 装** — [`dist/`](dist/) 是即插即用的能力包，MCP Server 一行配置接进 Claude / Cursor
+| 用法 | 是什么 | 入口 |
+|---|---|---|
+| **当书读** | 69 章，从选品到增长，中/英/日三语完整 | [在线站点](https://kangise.github.io/ecommerce-ai-skills/) |
+| **给 agent 装** | 知识 + 领域模型 + 带护栏的能力，MCP 一行配置接进 Claude / Cursor | [`dist/`](dist/) |
+| **直接跑起来** | Commerce Agent OS — 接真实店铺数据、多 agent 协作、人工审批的运营运行时 | `opc-ecommerce demo` |
 
-仓库同时提供可安装的运行时包。执行 `pip install .` 后可使用
-`opc-ecommerce` 完成包校验、租户初始化和受保护 Runtime API；详见
-[`integration/runtime-api.md`](integration/runtime-api.md)。
+三者由**同一套 CI 门禁**把关。门禁不过，三边都发不出去。
 
-Runtime 现在内置可持久化的 **Weekly Ops Council**：数据证据 Agent 与每个
-目标平台的专属 Agent 并行审查真实证据，再由跨平台 Controller 和店长 Agent
-汇总本周优先事项。Amazon 会自动加载广告、Listing、库存、定价、客服、合规和
-选品等已安装能力；其他平台按各自 Skill manifest 动态装配。每条结论
-必须引用输入数据源；缺少真实 OpenAI 凭证或证据不完整时明确失败，不生成假结果。
-Amazon Business Report、Ads、FBA、退货和 Listing 的 CSV/XLSX 可以先导入为持久化
-Evidence ID，再交给 Agent 团队重复使用。
-已完成的非受限 SP-API Report 也可以在双人审批后自动下载并进入同一 Evidence 流程。
-持久化 Worker 和 Scheduler 可以按最新 Evidence 自动运行周会，Mission Control 汇总待审批、失败和最近任务。
-每次完成的周会都可运行持久化 Evals，检查证据、平台隔离和审批策略是否回归。
-启动 Runtime 后打开 `/app`，即可进入 Amazon-first 跨平台经营简报：真实 Evidence 趋势、Agent Brief、人工审批位于同一决策界面，上传、运行、调度和审计保留在独立工作区。
-界面支持中英文偏好持久化，并提供统一的“连接与 API”中心，集中管理 Runtime 会话、Amazon/Shopify 连接、模型 API 准备度与报告同步；具备 operator 权限的用户可运行受冷却、幂等租约和审计保护的真实 Provider 连通性验证，密钥值仍只由页面内存或部署环境持有。
-产品演示可运行 `opc-ecommerce demo --db ./commerce-agent-demo.sqlite --port 8788`；浏览器会自动加载独立 Demo 租户，UI 持续显示 `DEMO DATA`，普通 API 认证不受影响。
+<br>
 
-两边由同一套 CI 门禁把关。**门禁不过，两边都发不出去。**
+## 跑起来 — Commerce Agent OS
+
+前两种用法是「把知识给到 AI」。第三种是**让它真的去干活**——同一套 ontology 和 skill 装进一个带审批、审计和故障恢复的运行时。
+
+```bash
+pip install "ecommerce-ai-skills[mcp]"
+
+opc-ecommerce demo-seed --db ./demo.sqlite     # 造一个隔离的演示租户
+opc-ecommerce demo --db ./demo.sqlite --port 8788
+# 浏览器打开 http://127.0.0.1:8788/app
+```
+
+演示租户全程标记 `DEMO DATA`，和真实数据物理隔离。
+
+**它现在能做什么**
+
+| 能力 | 说明 |
+|---|---|
+| 接真实数据 | Amazon SP-API / Amazon Ads / Shopify 三个连接器；Business Report、Ads、FBA、退货、Listing 的 CSV/XLSX 可导入为持久化 Evidence |
+| 多 agent 协作 | Weekly Ops Council：证据 Agent 与各平台专属 Agent 并行审查，再由跨平台 Controller 和店长 Agent 汇总优先事项 |
+| 人工审批闸门 | 写操作走 proposal → 审批 → 执行；广告类动作额外受 capability gate 约束，未授权直接 blocked |
+| durable 执行 | Job / Schedule / Report-sync / Daily-ops 四类 worker 可断点续跑，带幂等租约和恢复 |
+| 全链路审计 | 每条结论必须引用输入数据源；租户隔离、API key 轮换、操作审计流水 |
+| 运营界面 | `/app` 七个视图：简报、智能体、证据、审批、连接、自动化、审计；中英文偏好持久化，明暗主题 |
+
+**它刻意不做什么** — 没有真实凭证或证据不完整时**明确失败**，不生成看起来合理的假结果。这和知识层的数据纪律是同一条原则。
+
+接入细节见 [`integration/runtime-api.md`](integration/runtime-api.md)。
 
 <br>
 
@@ -154,13 +170,16 @@ tiktok_shop.product.title.max_length:   80  字符
 
 <br>
 
-## 不仅是书 — 三层结构
+## 不仅是书 — 四层结构
 
 | 层 | 内容 | 规模 | 给谁 |
 |---|---|---|---|
 | **知识库** | 69 章，三语（中/英/日） | 69 章 | 人读 · agent 检索 |
 | **Ontology** | 电商领域模型 | 100 实体 · 322 约束 · 78 关系 · 8 流程 | agent 之间的共享契约 |
 | **Skills + Prompts** | 带护栏的可执行能力 | 878 条 Prompt · 9 个可安装 skill | agent 直接调用 |
+| **Runtime** | 多 agent 运营运行时 + 界面 | 54 个 API 端点 · 7 个视图 · 3 个平台连接器 | 真实店铺日常运营 |
+
+上面三层是**知识**，第四层把它们**接到真实数据上执行**。前三层打包进 `dist/`，第四层是 `pip install` 的运行时包。
 
 `dist/` 目录结构：
 
@@ -172,6 +191,12 @@ dist/
   skills/        ← 9 个 domain skill，各含 manifest + playbook + 边界
   knowledge/     ← 69 章结构化索引
   integration/   ← MCP Server 接入指南
+```
+
+MCP Server 暴露 8 个 resource（ontology 五件套 + 知识索引 + 章节全文 + 术语表）和 5 个 tool（`route_query` / `get_constraints` / `search_knowledge` / `read_chapter` / `list_skills`）。自检一遍：
+
+```bash
+python3 integration/mcp-server.py --cli
 ```
 
 <br>

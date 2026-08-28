@@ -2,7 +2,7 @@
 
 # Cross-Border E-Commerce AI Knowledge Base
 
-### Read it as a book. Install it as agent capability.
+### Read it as a book. Install it as agent capability. Run it as operations.
 
 **Every number CI-verified · Every prompt carries anti-hallucination guardrails · Every chapter states when the method breaks**
 
@@ -22,41 +22,46 @@
 
 ## What This Is
 
-An AI operations knowledge base for cross-border e-commerce. **One source, two uses:**
+An AI operations knowledge base for cross-border e-commerce. **One source, three uses:**
 
-- **Read it** — 69 chapters, trilingual, [online site](https://kangise.github.io/ecommerce-ai-skills/) with language switching
-- **Install it for your agent** — [`dist/`](dist/) is a plug-and-play capability package, one MCP config line to Claude / Cursor
+| Use | What it is | Entry |
+|---|---|---|
+| **Read it** | 69 chapters, sourcing to growth, complete in zh/en/ja | [Online site](https://kangise.github.io/ecommerce-ai-skills/) |
+| **Install it for your agent** | Knowledge + domain model + guarded capabilities, one MCP config line to Claude / Cursor | [`dist/`](dist/) |
+| **Run it** | Commerce Agent OS — an operations runtime on real store data, with multi-agent review and human approval | `opc-ecommerce demo` |
 
-The repository also ships an installable runtime package. `pip install .` adds
-the `opc-ecommerce` command for package validation, tenant bootstrap, and the
-authenticated runtime API. See [`integration/runtime-api.md`](integration/runtime-api.md).
+All three are held to the **same CI gates**. Gates fail, nothing ships.
 
-The runtime now includes a durable **Weekly Ops Council**: an evidence agent and
-one specialist per target marketplace review real evidence in parallel, followed
-by a cross-platform controller and store manager. Amazon automatically receives
-the installed advertising, listing, inventory, pricing, service, compliance, and
-research capabilities; other marketplaces are assembled from their Skill manifests.
-Every conclusion must cite an input
-source; missing OpenAI credentials or invalid evidence fails explicitly instead
-of producing placeholder results.
-Amazon Business Report, Ads, FBA, returns, and listing CSV/XLSX files can be imported
-once as durable Evidence IDs and reused by the agent team.
-Completed non-restricted SP-API reports can also be downloaded into the same
-Evidence flow after second-actor approval.
-Durable workers and schedules can run against the latest Evidence, while Mission
-Control aggregates approvals, failures, and recent work.
-Completed councils can be graded with persisted Evals for evidence, platform
-isolation, and approval-policy regressions.
-After starting the Runtime, open `/app` for the Amazon-first cross-platform daily
-brief: real Evidence trends, Agent Brief priorities, and human approvals share
-one decision surface, while imports, runs, schedules, and audit stay in dedicated
-workspaces.
-For a product tour, run `opc-ecommerce demo --db
-./commerce-agent-demo.sqlite --port 8788`; the loopback-only browser session
-loads the isolated Demo tenant automatically while keeping the visible `DEMO
-DATA` warning and normal API authentication unchanged.
+<br>
 
-Both paths are guarded by the same CI gates. **Gates fail, neither ships.**
+## Run It — Commerce Agent OS
+
+The first two uses hand knowledge to an AI. The third **puts it to work** — the same ontology and skills inside a runtime with approval, audit, and failure recovery.
+
+```bash
+pip install "ecommerce-ai-skills[mcp]"
+
+opc-ecommerce demo-seed --db ./demo.sqlite     # isolated demo tenant
+opc-ecommerce demo --db ./demo.sqlite --port 8788
+# open http://127.0.0.1:8788/app
+```
+
+The demo tenant is marked `DEMO DATA` throughout and is physically isolated from real data.
+
+**What it does today**
+
+| Capability | Detail |
+|---|---|
+| Real data in | Amazon SP-API / Amazon Ads / Shopify connectors; Business Report, Ads, FBA, returns, and listing CSV/XLSX import once as durable Evidence |
+| Multi-agent review | Weekly Ops Council: an evidence agent and one specialist per marketplace review in parallel, then a cross-platform controller and store manager set priorities |
+| Human approval gate | Writes go through proposal → approval → execution; advertising actions carry an extra capability gate and are blocked without authorization |
+| Durable execution | Four worker classes (job / schedule / report-sync / daily-ops) resume after interruption, with idempotency leases and recovery |
+| Full audit trail | Every conclusion must cite its input source; tenant isolation, API key rotation, operation audit log |
+| Operations UI | `/app` with seven views — briefing, agents, evidence, approvals, connections, automation, audit; persisted zh/en preference, light and dark themes |
+
+**What it deliberately refuses to do** — without real credentials or complete evidence it **fails explicitly** rather than producing plausible-looking placeholder results. Same principle as the data discipline in the knowledge layer.
+
+Integration details in [`integration/runtime-api.md`](integration/runtime-api.md).
 
 <br>
 
@@ -206,13 +211,16 @@ When the team asks in the group chat again, just share the link. Or use the `eco
 
 <br>
 
-## Not Just a Book — Three Layers
+## Not Just a Book — Four Layers
 
 | Layer | Contents | Scale | For |
 |---|---|---|---|
 | **Knowledge Base** | 69 chapters, trilingual (zh/en/ja) | 69 chapters | Human reading · agent retrieval |
 | **Ontology** | E-commerce domain model | 100 entities · 322 constraints · 78 relations · 8 processes | Shared contract between agents |
 | **Skills + Prompts** | Guarded executable capabilities | 878 prompts · 9 installable skills | Agent direct invocation |
+| **Runtime** | Multi-agent operations runtime + UI | 54 API endpoints · 7 views · 3 platform connectors | Day-to-day operation of a real store |
+
+The first three layers are **knowledge**; the fourth **connects them to real data and executes**. The first three ship in `dist/`; the fourth is the `pip install` runtime package.
 
 `dist/` directory structure:
 
@@ -224,6 +232,12 @@ dist/
   skills/        ← 9 domain skills, each with manifest + playbook + boundaries
   knowledge/     ← Structured index of the 69 chapters
   integration/   ← MCP server setup guide
+```
+
+The MCP server exposes 8 resources (the five ontology files + knowledge index + full chapter text + glossary) and 5 tools (`route_query` / `get_constraints` / `search_knowledge` / `read_chapter` / `list_skills`). Check it yourself:
+
+```bash
+python3 integration/mcp-server.py --cli
 ```
 
 <br>
