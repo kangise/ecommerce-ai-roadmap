@@ -227,6 +227,10 @@
   "hard_fail": false,
   "status": 200
  },
+ "https://daoinsights.com/news/temu-s-global-surge-monthly-active-users-hit-416-5-million/": {
+  "hard_fail": false,
+  "status": 200
+ },
  "https://datadome.co/agent-trust-management/agentic-commerce-readiness-checklist/": {
   "hard_fail": false,
   "status": 403
@@ -312,6 +316,10 @@
   "status": 200
  },
  "https://echidna.co/blog/shopify-editions-winter-2026-guide/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://ecommercenews.eu/otto-increased-its-gmv-by-6/": {
   "hard_fail": false,
   "status": 200
  },
@@ -1191,6 +1199,10 @@
   "hard_fail": false,
   "status": 200
  },
+ "https://techbuzzchina.substack.com/p/temu-watch-9-temu-rebounds": {
+  "hard_fail": false,
+  "status": 200
+ },
  "https://techcrunch.com/2026/02/19/reddit-is-testing-a-new-ai-search-feature-for-shopping/": {
   "hard_fail": false,
   "status": 200
@@ -1212,6 +1224,10 @@
   "status": 200
  },
  "https://thekeyword.webflow.io/news/tiktok-makes-gmv-max-tool-mandatory-for-tiktok-shop-ads": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://thelowdown.momentum.asia/new-report-southeast-asias-platform-ecommerce-reaches-us157-6b-in-2025-with-top-platforms-expanding-share-to-98-8/": {
   "hard_fail": false,
   "status": 200
  },

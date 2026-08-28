@@ -8,7 +8,7 @@
 
 ---
 
-> The German e-commerce market is €92B+ (2026), Europe's second-largest e-commerce market. Otto revenue $9B, Zalando GMV €17.6B (2025). These two platforms are important channels for entering the German market besides Amazon.de, but the localization requirements are extremely high.
+> The German e-commerce market is €92B+ (2026), Europe's second-largest e-commerce market. Otto platform GMV about €7.5B, Zalando GMV €17.6B (2025). These two platforms are important channels for entering the German market besides Amazon.de, but the localization requirements are extremely high.
 
 ## Chapter Navigation
 
@@ -34,9 +34,12 @@ After this module you'll be able to:
 | Platform | Revenue/GMV | Positioning | Category advantage |
 |----------|-------------|-------------|--------------------|
 | Amazon.de | Largest | All categories | All categories |
-| Otto | $9B | General department store | Home, fashion, electronics |
+| Otto | GMV ~€7.5B | General department store | Home, fashion, electronics |
 | Zalando | €17.6B GMV | Fashion specialist | Apparel, shoes, accessories |
 | eBay.de | Large | Used + all categories | Used, collectibles, auto parts |
+
+> **Sources:** verified 2026-08 · [Otto platform GMV (FY2025/26, +6%, about €7.5B)](https://ecommercenews.eu/otto-increased-its-gmv-by-6/) · [Zalando FY2025 group figures](https://corporate.zalando.com/en/investor-relations/zalando-full-year-2025-results)
+
 
 ## 2. Otto Marketplace
 
@@ -54,6 +57,9 @@ Content rephrased for compliance with licensing restrictions.
 | Return rate | High (fashion >50%) | Medium |
 | Brand control | Strong (strict review) | Medium |
 | Ad system | Basic | Mature (PPC) |
+
+> **Sources:** verified 2026-08 · seller count and active buyers from [Unimall](https://unimall.ai/guides/sell-on-otto) and [Shoppingfeed](https://blog.shoppingfeed.com/en-us/otto-marketplace-what-brands-need-to-know-about-germanys-second-largest-platform) (secondary sources; Otto does not disclose these)
+
 
 ### 2.2 Onboarding Requirements (2026 Update)
 
@@ -136,8 +142,11 @@ Zalando performed strongly in 2025 ([Europawire](https://news.europawire.eu/zala
 | Group revenue | €12.3B | +16.8% |
 | GMV | €17.6B | Growth |
 | Adjusted EBIT | €591M | Significant improvement |
-| Active users | 52 million | Growth |
+| Active users | 62 million | Growth |
 | 2026 outlook | Continued growth + profit improvement | €300M stock buyback plan |
+
+> **Sources:** verified 2026-08 · [Zalando FY2025 official results](https://corporate.zalando.com/en/investor-relations/zalando-full-year-2025-results): GMV €17.56B (+14.7%), revenue €12.35B (+16.8%), adjusted EBIT €590.7M (+15.6%), 62 million active customers, buyback up to €300M
+
 
 Content rephrased for compliance with licensing restrictions.
 

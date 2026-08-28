@@ -8,7 +8,7 @@
 
 ---
 
-> ドイツの EC 市場は €92B+(2026)、欧州第二の EC 市場。Otto 収入 $9B、Zalando GMV €17.6B(2025)。この 2 つのプラットフォームは Amazon.de 以外でドイツ市場に参入する重要なチャネルだが、ローカライズ要件が極めて高い。
+> ドイツの EC 市場は €92B+(2026)、欧州第二の EC 市場。Otto プラットフォーム GMV 約 €7.5B、Zalando GMV €17.6B(2025)。この 2 つのプラットフォームは Amazon.de 以外でドイツ市場に参入する重要なチャネルだが、ローカライズ要件が極めて高い。
 
 ## 章ナビゲーション
 
@@ -34,9 +34,12 @@
 | プラットフォーム | 収入/GMV | ポジショニング | 品目の優位 |
 |------------------|----------|----------------|------------|
 | Amazon.de | 最大 | 全品目 | 全品目 |
-| Otto | $9B | 総合百貨 | ホーム、ファッション、電子 |
+| Otto | GMV ~€7.5B | 総合百貨 | ホーム、ファッション、電子 |
 | Zalando | €17.6B GMV | ファッション専門 | アパレル、靴、アクセサリー |
 | eBay.de | 大 | 中古+全品目 | 中古、コレクション、自動車部品 |
+
+> **出典：** 検証 2026-08 · [Otto プラットフォーム GMV(2025/26 年度 +6%、約 €7.5B)](https://ecommercenews.eu/otto-increased-its-gmv-by-6/) · [Zalando FY2025 グループ数値](https://corporate.zalando.com/en/investor-relations/zalando-full-year-2025-results)
+
 
 ## 2. Otto Marketplace
 
@@ -54,6 +57,9 @@ Content rephrased for compliance with licensing restrictions.
 | 返品率 | 高い(ファッション >50%) | 中程度 |
 | ブランド管理 | 強い(審査厳格) | 中程度 |
 | 広告システム | 基礎 | 成熟(PPC) |
+
+> **出典：** 検証 2026-08 · セラー数とアクティブ購入者は [Unimall](https://unimall.ai/guides/sell-on-otto) と [Shoppingfeed](https://blog.shoppingfeed.com/en-us/otto-marketplace-what-brands-need-to-know-about-germanys-second-largest-platform)(二次情報。Otto は非公開)
+
 
 ### 2.2 出店要件(2026 更新)
 
@@ -136,8 +142,11 @@ Zalando は 2025 年に力強いパフォーマンスを示した([Europawire](h
 | グループ収入 | €12.3B | +16.8% |
 | GMV | €17.6B | 成長 |
 | 調整後 EBIT | €591M | 大幅改善 |
-| アクティブユーザー | 5200 万 | 成長 |
+| アクティブユーザー | 6200 万 | 成長 |
 | 2026 見通し | 継続成長+利益改善 | €300M 株式買い戻し計画 |
+
+> **出典：** 検証 2026-08 · [Zalando FY2025 公式業績](https://corporate.zalando.com/en/investor-relations/zalando-full-year-2025-results)：GMV €17.56B(+14.7%)、収入 €12.35B(+16.8%)、調整後 EBIT €590.7M(+15.6%)、アクティブ顧客 6200 万、自社株買い上限 €300M
+
 
 Content rephrased for compliance with licensing restrictions.
 

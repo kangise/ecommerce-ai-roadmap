@@ -20,27 +20,6 @@ a-operators/a9-seo-geo.md:402
 # d-platforms/d11-coupang-korea-ai-guide.md
 d-platforms/d11-coupang-korea-ai-guide.md:305
 #
-# d-platforms/d13-europe-marketplaces-guide.md
-d-platforms/d13-europe-marketplaces-guide.md:37
-d-platforms/d13-europe-marketplaces-guide.md:38
-d-platforms/d13-europe-marketplaces-guide.md:51
-d-platforms/d13-europe-marketplaces-guide.md:136
-d-platforms/d13-europe-marketplaces-guide.md:137
-d-platforms/d13-europe-marketplaces-guide.md:138
-d-platforms/d13-europe-marketplaces-guide.md:139
-d-platforms/d13-europe-marketplaces-guide.md:140
-#
-# d-platforms/d5-temu-seller-guide.md
-d-platforms/d5-temu-seller-guide.md:45
-d-platforms/d5-temu-seller-guide.md:46
-d-platforms/d5-temu-seller-guide.md:48
-d-platforms/d5-temu-seller-guide.md:49
-d-platforms/d5-temu-seller-guide.md:109
-#
-# d-platforms/d6-southeast-asia-ai-guide.md
-d-platforms/d6-southeast-asia-ai-guide.md:44
-d-platforms/d6-southeast-asia-ai-guide.md:46
-#
 # d-platforms/tiktok-shop-ai-guide.md
 d-platforms/tiktok-shop-ai-guide.md:853
 d-platforms/tiktok-shop-ai-guide.md:862

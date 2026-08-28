@@ -43,9 +43,12 @@
 
 | 平台 | GMV (2025) | 买家数 | 市场份额 | 增长率 |
 |------|-----------|--------|----------|--------|
-| Shopee | $127B | ~4 亿 | 45% | 25-29% YoY |
-| Lazada | 未公开 | 1.5 亿+ | ~20% | 中等 |
-| TikTok Shop | 快速增长 | - | 正在缩小差距 | 极高 |
+| Shopee | $127B（全球，含巴西） | ~4 亿 | 53% | 27% YoY |
+| Lazada | 未公开 | 1.5 亿+ | ~15% | 中等 |
+| TikTok Shop | $45.6B（含 Tokopedia） | - | 正在缩小差距 | 翻倍 |
+
+> **来源：** 核验 2026-08 · 东南亚平台电商 2025 年总 GMV $157.6B（+22.8%），Shopee 53%、Lazada 约 15%，TikTok Shop（含 Tokopedia）平台 GMV 翻倍至 $45.6B（[Momentum Works 年度报告](https://thelowdown.momentum.asia/new-report-southeast-asias-platform-ecommerce-reaches-us157-6b-in-2025-with-top-platforms-expanding-share-to-98-8/)）。Shopee 的 $127B 与 4 亿买家为全球口径，出自 [Sea Limited FY2025 业绩](https://www.businesswire.com/news/home/20260302039769/en/Sea-Limited-Reports-Fourth-Quarter-and-Full-Year-2025-Results)，与上面的东南亚市场份额不是同一口径。Lazada 买家数未经核证。
+
 
 ### 1.2 各国市场特征
 

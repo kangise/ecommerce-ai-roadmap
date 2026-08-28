@@ -40,7 +40,7 @@
 | **AliExpress** | GMV $25B+ | 10-15% | 全球 | | | [D10](d10-aliexpress-ai-guide.md) |
 | **Coupang** | 收入 $34.5B | 14% | 韩国 | | | [D11](d11-coupang-korea-ai-guide.md) |
 | **Faire** | GMV ~$3B | 40%+ | 美/欧（B2B） | | | [D12](d12-faire-wholesale-ai-guide.md) |
-| **Otto** | 收入 $9B | 5-10% | 德国 | | | [D13](d13-europe-marketplaces-guide.md) |
+| **Otto** | GMV ~€7.5B | 6% | 德国 | | | [D13](d13-europe-marketplaces-guide.md) |
 | **Zalando** | GMV €17.6B | 5-10% | 欧洲 | | | [D13](d13-europe-marketplaces-guide.md) |
 
 > **来源：** 核验 2026-08 · [Amazon GMV $830B](https://www.marketplacepulse.com/articles/amazon-gmv-surpassed-800-billion-in-2025) · [Shopee $127B / +27%](https://www.businesswire.com/news/home/20260302039769/en/Sea-Limited-Reports-Fourth-Quarter-and-Full-Year-2025-Results) · [eBay $79.6B / +7%](https://www.ebayinc.com/stories/news/ebay-inc-reports-fourth-quarter-and-full-year-2025-results/) · [Coupang 营收 $34.5B](https://ir.aboutcoupang.com/news-events/news/news-details/2026/Coupang-Announces-Results-for-Fourth-Quarter-2025/default.aspx) · [Zalando GMV €17.6B](https://corporate.zalando.com/en/investor-relations/zalando-full-year-2025-results) · [Mercado Libre Q4 GMV $19.9B](https://www.businesswire.com/news/home/20260224245400/en/MercadoLibre-Inc.-Reports-Fourth-Quarter-and-Full-Year-2025-Financial-Results) · [Walmart 卖家数与 GMV 估算](https://www.marketplacepulse.com/articles/walmart-marketplace-growth-reaches-fastest-pace-in-years)

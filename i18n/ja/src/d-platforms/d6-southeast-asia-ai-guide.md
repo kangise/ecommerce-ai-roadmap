@@ -43,9 +43,12 @@
 
 | プラットフォーム | GMV (2025) | 買い手数 | 市場シェア | 成長率 |
 |------------------|------------|----------|------------|--------|
-| Shopee | $127B | ~4 億 | 45% | 25-29% YoY |
-| Lazada | 未公開 | 1.5 億+ | ~20% | 中程度 |
-| TikTok Shop | 急成長 | - | 差を縮めている | 極めて高い |
+| Shopee | $127B(グローバル、ブラジル含む) | ~4 億 | 53% | 27% YoY |
+| Lazada | 未公開 | 1.5 億+ | ~15% | 中程度 |
+| TikTok Shop | $45.6B(Tokopedia 含む) | - | 差を縮めている | 倍増 |
+
+> **出典：** 検証 2026-08 · 東南アジアのプラットフォーム EC は 2025 年に GMV $157.6B(+22.8%)。Shopee 53%、Lazada 約 15%、TikTok Shop(Tokopedia 含む)は $45.6B へ倍増([Momentum Works 年次レポート](https://thelowdown.momentum.asia/new-report-southeast-asias-platform-ecommerce-reaches-us157-6b-in-2025-with-top-platforms-expanding-share-to-98-8/))。Shopee の $127B と 4 億買い手は [Sea Limited FY2025 業績](https://www.businesswire.com/news/home/20260302039769/en/Sea-Limited-Reports-Fourth-Quarter-and-Full-Year-2025-Results)によるグローバル数値で、隣の東南アジア市場シェアとは基準が異なります。Lazada の買い手数は未検証。
+
 
 ### 1.2 各国市場の特徴
 

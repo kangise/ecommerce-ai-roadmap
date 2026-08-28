@@ -43,9 +43,12 @@ After this module you'll be able to:
 
 | Platform | GMV (2025) | Buyers | Market share | Growth rate |
 |----------|------------|--------|--------------|-------------|
-| Shopee | $127B | ~400 million | 45% | 25-29% YoY |
-| Lazada | Undisclosed | 150 million+ | ~20% | Medium |
-| TikTok Shop | Fast growth | - | Closing the gap | Extremely high |
+| Shopee | $127B (global, incl. Brazil) | ~400 million | 53% | 27% YoY |
+| Lazada | Undisclosed | 150 million+ | ~15% | Medium |
+| TikTok Shop | $45.6B (incl. Tokopedia) | - | Closing the gap | Doubled |
+
+> **Sources:** verified 2026-08 · Southeast Asian platform e-commerce reached $157.6B GMV in 2025 (+22.8%); Shopee 53%, Lazada about 15%, TikTok Shop (incl. Tokopedia) doubled to $45.6B ([Momentum Works annual report](https://thelowdown.momentum.asia/new-report-southeast-asias-platform-ecommerce-reaches-us157-6b-in-2025-with-top-platforms-expanding-share-to-98-8/)). Shopee's $127B and 400 million buyers are global figures from [Sea Limited FY2025 results](https://www.businesswire.com/news/home/20260302039769/en/Sea-Limited-Reports-Fourth-Quarter-and-Full-Year-2025-Results) — not the same basis as the Southeast Asian market share beside them. Lazada's buyer count is unverified.
+
 
 ### 1.2 Characteristics of Each Country's Market
 

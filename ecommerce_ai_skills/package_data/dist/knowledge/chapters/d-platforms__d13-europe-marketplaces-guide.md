@@ -8,7 +8,7 @@
 
 ---
 
-> 德国电商市场 €92B+（2026），欧洲第二大电商市场。Otto 收入 $9B，Zalando GMV €17.6B（2025）。这两个平台是 Amazon.de 之外进入德国市场的重要渠道，但本地化要求极高。
+> 德国电商市场 €92B+（2026），欧洲第二大电商市场。Otto 平台 GMV 约 €7.5B，Zalando GMV €17.6B（2025）。这两个平台是 Amazon.de 之外进入德国市场的重要渠道，但本地化要求极高。
 
 ## 章节导航
 
@@ -34,9 +34,12 @@
 | 平台 | 收入/GMV | 定位 | 品类优势 |
 |------|---------|------|----------|
 | Amazon.de | 最大 | 全品类 | 全品类 |
-| Otto | $9B | 综合百货 | 家居、时尚、电子 |
+| Otto | GMV ~€7.5B | 综合百货 | 家居、时尚、电子 |
 | Zalando | €17.6B GMV | 时尚专业 | 服装、鞋、配饰 |
 | eBay.de | 大 | 二手+全品类 | 二手、收藏、汽配 |
+
+> **来源：** 核验 2026-08 · [Otto 平台 GMV（2025/26 财年 +6%，约 €7.5B）](https://ecommercenews.eu/otto-increased-its-gmv-by-6/) · [Zalando FY2025 集团数据](https://corporate.zalando.com/en/investor-relations/zalando-full-year-2025-results)
+
 
 ## 2. Otto Marketplace
 
@@ -54,6 +57,9 @@ Content rephrased for compliance with licensing restrictions.
 | 退货率 | 高（时尚 >50%） | 中等 |
 | 品牌控制 | 强（审核严格） | 中等 |
 | 广告系统 | 基础 | 成熟（PPC） |
+
+> **来源：** 核验 2026-08 · 卖家数与活跃买家见 [Unimall](https://unimall.ai/guides/sell-on-otto) 与 [Shoppingfeed](https://blog.shoppingfeed.com/en-us/otto-marketplace-what-brands-need-to-know-about-germanys-second-largest-platform)（二手来源，Otto 未公开披露）
+
 
 ### 2.2 入驻要求（2026 更新）
 
@@ -136,8 +142,11 @@ Zalando 2025 年表现强劲（[Europawire](https://news.europawire.eu/zalando-r
 | 集团收入 | €12.3B | +16.8% |
 | GMV | €17.6B | 增长 |
 | 调整后 EBIT | €591M | 大幅改善 |
-| 活跃用户 | 5200 万 | 增长 |
+| 活跃用户 | 6200 万 | 增长 |
 | 2026 展望 | 继续增长+盈利改善 | €300M 股票回购计划 |
+
+> **来源：** 核验 2026-08 · [Zalando FY2025 官方业绩](https://corporate.zalando.com/en/investor-relations/zalando-full-year-2025-results)：GMV €17.56B（+14.7%）、收入 €12.35B（+16.8%）、调整后 EBIT €590.7M（+15.6%）、活跃客户 6200 万、回购上限 €300M
+
 
 Content rephrased for compliance with licensing restrictions.
 

@@ -42,13 +42,16 @@ After this module you'll be able to:
 
 | Metric | Data | Comparison |
 |--------|------|------------|
-| GMV | $90-95B (target $100B) | 24% share of Amazon's cross-border GMV |
+| GMV | $90-95B (estimate; PDD does not break it out) | $70.8B in 2024; $100B was the 2025 target |
 | Cross-border market share | 24% (on par with Amazon) | Only 1% in 2022, 24x growth in 3 years |
 | Markets covered | 90+ countries | The fastest global expansion in history |
-| MAU | 246 million | Third among global e-commerce Apps (after Amazon, Shopee) |
-| Growth speed | From $0.29B in 2022 → $70.8B GMV in 2024 | 4500x growth |
+| MAU | ~416 million (Q2 2025) | +68% year over year |
+| Growth speed | From $0.29B in 2022 → $70.8B GMV in 2024 | about 244x |
 | Average order value | ~$15-25 | Amazon average $40-60 |
 | Loss per order | Estimated ~$30/order | Subsidized by parent company PDD Holdings |
+
+> **Sources:** verified 2026-08 · [Temu MAU and growth](https://daoinsights.com/news/temu-s-global-surge-monthly-active-users-hit-416-5-million/) · [24% cross-border share and $70.8B GMV in 2024](https://techbuzzchina.substack.com/p/temu-watch-9-temu-rebounds). Temu is owned by PDD Holdings, which does not break out its GMV, so $90-95B is a third-party estimate. Per-order loss, average order value and category shares are estimates and not officially confirmed.
+
 
 ### 1.2 Fully Managed vs Semi-Managed Model Explained
 
@@ -106,7 +109,7 @@ Your competitiveness = your cost advantage + product quality.
 | Cables/chargers | ✅✅✅ | Standard product, mature supply chain | 5-10% |
 | Storage/small home items | ✅✅✅ | Low unit price, lightweight, high demand | 10-20% |
 | Beauty tools | ✅✅✅ | Low cost, high margin | 15-25% |
-| Apparel & accessories | ✅✅✅ | Temu's largest category (fashion is 30%+ of GMV) | 10-20% |
+| Apparel & accessories | ✅✅✅ | One of Temu's largest categories | 10-20% |
 | Kitchen gadgets | ✅✅ | Practical, low price, impulse purchase | 10-15% |
 | Pet supplies | ✅✅ | Growing fast but competition intensifying | 10-15% |
 | Toys | ✅✅ | Strongly seasonal, need safety certification | 10-20% |

@@ -1167,8 +1167,8 @@
     "title": "D13. 欧洲电商平台指南（Otto + Zalando）",
     "path": "d-platforms/d13-europe-marketplaces-guide.md",
     "body_path": "chapters/d-platforms__d13-europe-marketplaces-guide.md",
-    "body_chars": 12147,
-    "summary": "> **路径**: Path D: 多平台 · **模块**: D13 > **最后更新**: 2026-07-31 > **难度**: 中级 > **预计时间**: 1 小时 --- > 德国电商市场 €92B+（2026），欧洲第二大电商市场。Otto 收入 $9B，Zalando GMV €17.6B（2025）。这两个平台是 Amazon.de 之外进入德国市场的重要渠道，但本地化要求极高。 1. [德国电商市场概览](#1-德国电商市场概览) · 2. [Otto Marketplace](#2-otto-marketplace) · 3. [Zalando Partner Prog",
+    "body_chars": 12843,
+    "summary": "> **路径**: Path D: 多平台 · **模块**: D13 > **最后更新**: 2026-07-31 > **难度**: 中级 > **预计时间**: 1 小时 --- > 德国电商市场 €92B+（2026），欧洲第二大电商市场。Otto 平台 GMV 约 €7.5B，Zalando GMV €17.6B（2025）。这两个平台是 Amazon.de 之外进入德国市场的重要渠道，但本地化要求极高。 1. [德国电商市场概览](#1-德国电商市场概览) · 2. [Otto Marketplace](#2-otto-marketplace) · 3. [Zalando Part",
     "key_entities": [
       "bullet_point",
       "ce_marking",
@@ -1214,7 +1214,7 @@
     "title": "D5. Temu 卖家策略指南",
     "path": "d-platforms/d5-temu-seller-guide.md",
     "body_path": "chapters/d-platforms__d5-temu-seller-guide.md",
-    "body_chars": 12899,
+    "body_chars": 13198,
     "summary": "> **路径**: Path D: 多平台 · **模块**: D5 > **最后更新**: 2026-07-31 > **难度**: 中级 > **预计时间**: 1.5 小时 --- 1. [Temu 商业模式解析](#1-temu-商业模式解析) 2. [入驻决策框架](#2-入驻决策框架) 3. [Temu 运营的有限 AI 应用](#3-temu-运营的有限-ai-应用) 4. [Temu 对跨境电商格局的影响](#4-temu-对跨境电商格局的影响) 5. [常见陷阱](#5-常见陷阱) 6. [完成标志](#6-完成标志) --- Temu 的价格竞争强度和全托管模式，和你熟悉的",
     "key_entities": [
       "a_plus_content",
@@ -1239,7 +1239,7 @@
     "title": "D6. 东南亚电商 AI 指南（Shopee + Lazada）",
     "path": "d-platforms/d6-southeast-asia-ai-guide.md",
     "body_path": "chapters/d-platforms__d6-southeast-asia-ai-guide.md",
-    "body_chars": 13639,
+    "body_chars": 14167,
     "summary": "> **路径**: Path D: 多平台 · **模块**: D6 > **最后更新**: 2026-07-31 > **难度**: 中级 > **预计时间**: 2-3 小时 --- 1. [东南亚电商市场概览](#1-东南亚电商市场概览) 2. [Shopee vs Lazada 差异化运营](#2-shopee-vs-lazada-差异化运营) 3. [多语言 Listing AI 优化](#3-多语言-listing-ai-优化) 4. [东南亚广告与直播](#4-东南亚广告与直播) 5. [跨境入驻实操](#5-跨境入驻实操) 6. [Prompt 模板](#6-prompt-模板",
     "key_entities": [
       "a_plus_content",
@@ -1327,7 +1327,7 @@
     "title": "跨境电商平台全景对比 | Cross-Border E-Commerce Platform Comparison",
     "path": "d-platforms/platform-comparison.md",
     "body_path": "chapters/d-platforms__platform-comparison.md",
-    "body_chars": 15540,
+    "body_chars": 15541,
     "summary": "> **最后更新**: 2026-07-31 > **用途**: 快速了解每个平台的核心特征、与 Amazon 的差异、AI 应用重点，帮你决定优先进入哪个平台 --- 1. [平台全景矩阵](#1-平台全景矩阵) 2. [各平台 vs Amazon 核心差异速查](#2-各平台-vs-amazon-核心差异速查) 3. [AI 应用重点对比](#3-ai-应用重点对比) 4. [平台选择决策框架](#4-平台选择决策框架) 5. [佣金与费用对比](#5-佣金与费用对比) 6. [物流方案对比](#6-物流方案对比) 7. [广告系统对比](#7-广告系统对比) 8. [多平台扩展路线图](",
     "key_entities": [
       "a_plus_content",
