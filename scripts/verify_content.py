@@ -162,6 +162,33 @@ MARKER = re.compile(r"<!--\s*claims:\s*(illustrative|verified\s+\d{4}-\d{2}|benc
 # "Sources: [a](…), [b](…)" attributes the block above it, not just its own line.
 SOURCE_LINE = re.compile(r"(Sources?|来源|出典|參考|参考)\s*[:：]")
 
+# Figures that describe the world and therefore rot: market size, audience,
+# share, penetration, seller counts. M1 cannot see these because prose_lines()
+# skips table rows, and tables are exactly where comparison data lives.
+#
+# Kept deliberately narrow. A gate that fires on formula rows
+# ("ROAS | 广告销售额 ÷ 广告花费 | $400 ÷ $100 = 4.0"), dashboard thresholds, or
+# worked examples trains people to allowlist everything, and then it protects
+# nothing. Efficacy claims ("效率提升 50%+") are genuinely fuzzy — a goal, an
+# example and a measured result all look alike in a table cell — so they stay in
+# audit_content.py's V1 report for human triage rather than blocking a build.
+#
+# Two shapes qualify: a currency magnitude, or a named market metric with a number.
+WORLD_FIGURE = re.compile(
+    r"[$€£¥]\s?\d+(?:\.\d+)?\s*[BM]\b"
+    r"|[$€£¥]\s?\d+(?:\.\d+)?\s*(?:亿|万亿)"
+    r"|\d+(?:\.\d+)?\s*(?:亿|万亿)\s*(?:美元|欧元|人民币|元|美金)"
+    r"|(?:GMV|MAU|DAU|市场份额|市占率|渗透率|卖家数|用户数|买家数|活跃用户)"
+    r"[^|]{0,8}?[|\s]{0,4}[^|]{0,12}?\d"
+)
+
+# Rows that look quantitative but are not claims about the world: formulas,
+# worked examples, thresholds, targets. Checked before WORLD_FIGURE fires.
+NOT_A_WORLD_CLAIM = re.compile(
+    r"[÷=]|计算公式|公式|阈值|告警|目标值|成功标准|例如|比如|而非|"
+    r"[\"“”]\s*[^|]*\d"
+)
+
 BOUNDARY = {
     "src": re.compile(r"^#{2}\s.*什么时候这套不管用", re.M),
     "i18n/en/src": re.compile(r"^#{2}\s.*When this doesn't work", re.M | re.I),
@@ -333,6 +360,64 @@ def gate_m1() -> list[str]:
                 continue
             hits.append(f"{rel}:{ln}  {s[:90]}")
     return hits
+
+
+def gate_m8() -> list[str]:
+    """Market-scale figures in tables carry a source, a date, or an allowlist entry.
+
+    M1 covers prose and skips any line starting with "|". That exemption let
+    platform-comparison.md ship GMV for twelve marketplaces and MAU for seven
+    social platforms with nothing behind them — the numbers a reader would use to
+    pick a market. This closes that path for anything added from here on.
+
+    Clearing is per row, not per chapter: one citation somewhere in a file must
+    not buy a free pass for fifty unrelated figures.
+    """
+    allow = load_allowlist()
+    hits = []
+    for md in sorted((ROOT / "src").rglob("*.md")):
+        rel = str(md.relative_to(ROOT / "src"))
+        text = md.read_text(encoding="utf-8")
+        cited = cited_lines(text)
+        marked_sections = _marked_line_numbers(text)
+        fence = False
+        for ln, line in enumerate(text.split("\n"), 1):
+            s = line.strip()
+            if s.startswith(("```", "~~~")):
+                fence = not fence
+                continue
+            if fence or not s.startswith("|"):
+                continue
+            if NOT_A_WORLD_CLAIM.search(s) or not WORLD_FIGURE.search(s):
+                continue
+            if ln in cited or ln in marked_sections:
+                continue
+            if "](http" in s or VERIFIED.search(s):
+                continue
+            if f"{rel}:{ln}" in allow:
+                continue
+            hits.append(f"{rel}:{ln}  {s[:90]}")
+    return hits
+
+
+def _marked_line_numbers(text: str) -> set[int]:
+    """Lines under an active <!-- claims: ... --> marker, mirroring prose_lines()."""
+    covered: set[int] = set()
+    whole_file = bool(MARKER.search(text.split("\n## ", 1)[0]))
+    fence, marked = False, whole_file
+    for ln, line in enumerate(text.split("\n"), 1):
+        s = line.strip()
+        if s.startswith(("```", "~~~")):
+            fence = not fence
+            continue
+        if not fence and s.startswith("## ") and not whole_file:
+            marked = False
+        if not fence and MARKER.search(s):
+            marked = True
+            continue
+        if marked:
+            covered.add(ln)
+    return covered
 
 
 def gate_m2() -> list[str]:
@@ -846,6 +931,7 @@ GATES = [
     ("N5", "self-check uniqueness", gate_n5),
     ("N6", "trilingual prompt parity", gate_n6),
     ("M7", "expired verified facts", gate_m7),
+    ("M8", "market figures in tables sourced", gate_m8),
 ]
 
 

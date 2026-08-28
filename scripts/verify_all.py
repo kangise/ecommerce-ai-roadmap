@@ -353,7 +353,7 @@ def main() -> int:
     if args.d2:
         import json as _json, yaml as _yaml
         problems = []
-        expected_gate_count = 42
+        expected_gate_count = 43
 
         # Get actual counts
         with open(ROOT_V / "dist" / "prompts.json") as f:

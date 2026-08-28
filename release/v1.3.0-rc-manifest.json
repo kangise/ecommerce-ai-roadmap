@@ -25,16 +25,16 @@
       "tree_sha256": "4d9bad8607976d11ae9a4f5d68435a13023501863add4b32476023acdb062496"
     },
     "scripts": {
-      "byte_count": 365529,
-      "file_count": 23,
+      "byte_count": 371897,
+      "file_count": 24,
       "name": "scripts",
-      "tree_sha256": "615e5b8f518cbadaf0ed0383332cb0b284f673465279598280b047b655c1ea5c"
+      "tree_sha256": "7dcf2f1c09e4fe38c3bf3026a94fd6519cb05deae27d6cb7a8f06479d17404c4"
     },
     "tests": {
-      "byte_count": 524505,
-      "file_count": 32,
+      "byte_count": 529136,
+      "file_count": 33,
       "name": "tests",
-      "tree_sha256": "537de19e42d89151f208a2d136cfae3c88c16097577b2b2264b8fdf5c2650d0e"
+      "tree_sha256": "1062302e82301bc7d591b014c7918fa46d5354d97f30e82928d6d159e1a370cf"
     },
     "wheel_package_data": {
       "byte_count": 6564759,
@@ -61,7 +61,7 @@
       "size": 6468
     },
     "README_EN.md": {
-      "sha256": "9a84f2b70ade686c3e69bd7cbaa54296c68496d9b6041ab599ce3e6fd21b6238",
+      "sha256": "da220a0886daf50f24fb404a0ca8f344afc9d8dc3b1afb01515db0992195de97",
       "size": 28560
     },
     "design-qa.md": {
@@ -97,7 +97,7 @@
       "size": 37516
     },
     "scripts/verify_all.py": {
-      "sha256": "7cd8aca579bc1eebb01041b6f6bac74f3e5acb1a4ad9eef0277e0009c5b60ad0",
+      "sha256": "7bc2463edd7f0d780b302fab349be88d2af5ec5069f90957df29ecfd88bc3b20",
       "size": 69753
     }
   },

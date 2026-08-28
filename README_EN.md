@@ -248,7 +248,7 @@ Approval is not exposed. Writes go proposal → human approval → execution, an
 
 ## Why Trust This Content
 
-Not because "we're careful" — because of **42 CI gates**. Every gate must pass or the build stops:
+Not because "we're careful" — because of **43 CI gates**. Every gate must pass or the build stops:
 
 | Gate | What it checks |
 |---|---|

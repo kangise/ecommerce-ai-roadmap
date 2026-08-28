@@ -95,8 +95,8 @@ python3 scripts/audit_content.py --json
 
 ## verify_content.py
 
-当前共十七项检查，各自返回一个计数，全为 0 才算通过。全仓库的
-42 项门禁与 14 个分组见 [`CONTRIBUTING.md`](../CONTRIBUTING.md#gate-reference-42-gates-14-groups)。
+当前共十八项检查，各自返回一个计数，全为 0 才算通过。全仓库的
+43 项门禁与 14 个分组见 [`CONTRIBUTING.md`](../CONTRIBUTING.md#gate-reference-42-gates-14-groups)。
 
 ```bash
 python3 scripts/verify_content.py            # CI 跑的这个（全离线）
@@ -124,6 +124,7 @@ python3 scripts/verify_content.py --only M1  # 只跑一项
 - `N5` 自检内容不能机械重复
 - `N6` 三语 Prompt 结构保持一致
 - `M7` 有时效的事实在 18 个月后自动过期，并覆盖维护责任人
+- `M8` 表格里的市场规模数字（GMV/MAU/份额/用户数）必须带来源、核验日期或 allowlist 条目
 
 `N1` 的计数比看上去麻烦：`<角色>文字</角色>` 写在同一行，而纪律块正文会**提到**标签名（"只使用 <输入数据> 中出现的数字"）。规则是先消掉同行成对的，再只认行首——否则正确的写法会被大量误报。
 

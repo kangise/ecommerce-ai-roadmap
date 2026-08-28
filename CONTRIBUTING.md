@@ -18,12 +18,12 @@ python3 scripts/verify_all.py    # Run all gates — must return 0
 
 **Every path ends the same way: `python3 scripts/verify_all.py` must return 0.**
 
-## Gate Reference (42 gates, 14 groups)
+## Gate Reference (43 gates, 14 groups)
 
 | Group | Gates | Script |
 |-------|-------|--------|
 | Structure | anchors, xanchors, links, python, parity | verify_content.py |
-| Content | M1, M2, M4, M5, M6, M7, N1, N2, N3, N4, N5, N6 | verify_content.py |
+| Content | M1, M2, M4, M5, M6, M7, M8, N1, N2, N3, N4, N5, N6 | verify_content.py |
 | Ontology | P0, O1, O2, O3, O4, O5 | verify_ontology.py |
 | Skills | S1, S2, S3, S4, S5, M8 | verify_skills.py |
 | Knowledge | K1 | verify_all.py --k1 |
@@ -52,6 +52,22 @@ before anyone could tell which were real.
 `K2` fails if any index entry lacks `body_path`, points at a missing file, or
 carries a body no longer than its own summary or materially shorter than the
 `src/` original.
+
+## Market Figures in Tables (M8)
+
+M1 requires a prose figure to carry a source, a verification date, or a hedge —
+but it skips any line starting with `|`. That exemption is right for spec tables
+(a 200-character title limit needs no citation) and wrong for market-scale
+figures, which live in tables too and go stale fast.
+
+M8 covers the second case: GMV, MAU, market share, seller counts, and currency
+magnitudes in table rows must carry a link, a `claims: verified` marker, a
+`来源:` line covering the block, or an entry in `scripts/content-allowlist.txt`.
+
+That allowlist is a debt register, not an exemption list. Adding a line to it is
+how you defer sourcing a number, not how you avoid it. Formula rows, worked
+examples, thresholds and targets are excluded from the gate by design — firing
+on those would train everyone to allowlist reflexively.
 
 ## Fact Freshness (M7)
 

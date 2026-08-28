@@ -1,0 +1,66 @@
+# content-allowlist.txt — figures the gates let through, and why.
+#
+# One `path:line` per line. This is a debt register, not an exemption list: every
+# entry is a number a reader could act on that currently rests on nothing. The
+# right way to clear one is to add a source, not to add a line here.
+#
+# Seeded 2026-08-28 when M8 was introduced. M8 covers market-scale
+# figures in tables — the blind spot left by M1, which skips any line starting
+# with `|`. Everything below predates the gate; nothing new should join it.
+#
+# M8 — market figures in tables, unsourced
+#
+# a-operators/a7-visual-content.md
+a-operators/a7-visual-content.md:47  # names a source but does not link it
+a-operators/a7-visual-content.md:48  # names a source but does not link it
+#
+# a-operators/a9-seo-geo.md
+a-operators/a9-seo-geo.md:402
+#
+# d-platforms/d11-coupang-korea-ai-guide.md
+d-platforms/d11-coupang-korea-ai-guide.md:305
+#
+# d-platforms/d13-europe-marketplaces-guide.md
+d-platforms/d13-europe-marketplaces-guide.md:37
+d-platforms/d13-europe-marketplaces-guide.md:38
+d-platforms/d13-europe-marketplaces-guide.md:51
+d-platforms/d13-europe-marketplaces-guide.md:136
+d-platforms/d13-europe-marketplaces-guide.md:137
+d-platforms/d13-europe-marketplaces-guide.md:138
+d-platforms/d13-europe-marketplaces-guide.md:139
+d-platforms/d13-europe-marketplaces-guide.md:140
+#
+# d-platforms/d5-temu-seller-guide.md
+d-platforms/d5-temu-seller-guide.md:45
+d-platforms/d5-temu-seller-guide.md:46
+d-platforms/d5-temu-seller-guide.md:48
+d-platforms/d5-temu-seller-guide.md:49
+d-platforms/d5-temu-seller-guide.md:109
+#
+# d-platforms/d6-southeast-asia-ai-guide.md
+d-platforms/d6-southeast-asia-ai-guide.md:44
+d-platforms/d6-southeast-asia-ai-guide.md:46
+#
+# d-platforms/platform-comparison.md
+d-platforms/platform-comparison.md:30
+d-platforms/platform-comparison.md:33
+d-platforms/platform-comparison.md:34
+d-platforms/platform-comparison.md:35
+d-platforms/platform-comparison.md:37
+d-platforms/platform-comparison.md:38
+d-platforms/platform-comparison.md:39
+d-platforms/platform-comparison.md:40
+d-platforms/platform-comparison.md:41
+d-platforms/platform-comparison.md:42
+d-platforms/platform-comparison.md:43
+d-platforms/platform-comparison.md:44
+#
+# d-platforms/tiktok-shop-ai-guide.md
+d-platforms/tiktok-shop-ai-guide.md:853
+d-platforms/tiktok-shop-ai-guide.md:862
+d-platforms/tiktok-shop-ai-guide.md:939
+d-platforms/tiktok-shop-ai-guide.md:1406
+#
+# e-social-media/e4-pinterest-ai-guide.md
+e-social-media/e4-pinterest-ai-guide.md:304
+e-social-media/e4-pinterest-ai-guide.md:627
