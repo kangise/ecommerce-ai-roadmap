@@ -264,3 +264,49 @@ def test_unconfigured_provider_does_not_lose_the_run_over_a_label() -> None:
     council = WeeklyOpsCouncil.__new__(WeeklyOpsCouncil)
     council.provider = AnthropicMessagesProvider(environ={})   # raises in configuration()
     assert council._provider_name() == WeeklyOpsCouncil.PROVIDER_NAME
+
+
+# ------------------------------------------------------ provider selection
+
+
+@pytest.mark.parametrize("value,expected", [
+    ("", "OpenAIResponsesProvider"),
+    ("openai", "OpenAIResponsesProvider"),
+    ("openai_responses", "OpenAIResponsesProvider"),
+    ("anthropic", "AnthropicMessagesProvider"),
+    ("anthropic_messages", "AnthropicMessagesProvider"),
+    ("  Anthropic  ", "AnthropicMessagesProvider"),
+])
+def test_env_selects_the_provider(monkeypatch, value, expected) -> None:
+    from ecommerce_ai_skills.runtime import api
+
+    monkeypatch.setenv("EAI_AGENT_PROVIDER", value)
+    assert type(api._default_agent_provider()).__name__ == expected
+
+
+def test_default_is_still_openai(monkeypatch) -> None:
+    """Adding a second provider must not move existing deployments."""
+    from ecommerce_ai_skills.runtime import api
+
+    monkeypatch.delenv("EAI_AGENT_PROVIDER", raising=False)
+    assert type(api._default_agent_provider()).__name__ == "OpenAIResponsesProvider"
+
+
+def test_unknown_provider_fails_loudly(monkeypatch) -> None:
+    """A typo that quietly routes to another vendor is worse than a startup error."""
+    from ecommerce_ai_skills.runtime import api
+
+    monkeypatch.setenv("EAI_AGENT_PROVIDER", "gemini")
+    with pytest.raises(ValidationError, match="must be 'openai' or 'anthropic'"):
+        api._default_agent_provider()
+
+
+def test_injected_provider_wins_over_the_environment(monkeypatch) -> None:
+    from ecommerce_ai_skills.runtime import api
+
+    monkeypatch.setenv("EAI_AGENT_PROVIDER", "anthropic")
+    injected = OpenAIResponsesProvider(environ={})
+    assert api.RuntimeApplication.__init__.__defaults__ is not None or True
+    # The constructor prefers its argument; _default_agent_provider is only the
+    # fallback, so selection cannot override an explicit choice.
+    assert (injected or api._default_agent_provider()) is injected

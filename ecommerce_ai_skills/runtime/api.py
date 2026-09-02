@@ -11,6 +11,7 @@ import json
 import ipaddress
 import logging
 import mimetypes
+import os
 import secrets
 import threading
 import time
@@ -27,7 +28,12 @@ from .accounts import MarketplaceAccountService
 from .assurance import AssuranceService
 from .ads_gates import AdsCapabilityGateService
 from .ads_adapter_status import AdsAdapterStatusService
-from .agents import AgentProvider, OpenAIResponsesProvider, WeeklyOpsCouncil
+from .agents import (
+    AgentProvider,
+    AnthropicMessagesProvider,
+    OpenAIResponsesProvider,
+    WeeklyOpsCouncil,
+)
 from .auth import AuthService
 from .briefing import BriefingService
 from .daily_ops import DailyOpsService
@@ -93,6 +99,25 @@ class _MissionConnectionLimiter:
             }
 
 
+def _default_agent_provider() -> AgentProvider:
+    """Pick the provider from the environment, defaulting to OpenAI.
+
+    EAI_AGENT_PROVIDER selects; an explicitly injected provider always wins over
+    it. The default stays OpenAI so existing deployments are unaffected by the
+    Anthropic provider merely existing. An unknown value fails loudly rather than
+    silently falling back — a typo that quietly routes to a different vendor is
+    worse than a startup error.
+    """
+    name = os.environ.get("EAI_AGENT_PROVIDER", "").strip().lower()
+    if not name or name in {"openai", "openai_responses"}:
+        return OpenAIResponsesProvider()
+    if name in {"anthropic", "anthropic_messages"}:
+        return AnthropicMessagesProvider()
+    raise ValidationError(
+        f"EAI_AGENT_PROVIDER must be 'openai' or 'anthropic', got {name!r}"
+    )
+
+
 class RuntimeApplication:
     def __init__(
         self,
@@ -114,7 +139,7 @@ class RuntimeApplication:
         self.assurance = AssuranceService(db,self.auth)
         self.agent_graphs = AgentGraphService(db, self.auth)
         self.accounts = MarketplaceAccountService(db, self.auth)
-        resolved_agent_provider = agent_provider or OpenAIResponsesProvider()
+        resolved_agent_provider = agent_provider or _default_agent_provider()
         smoke_openai_provider = provider_smoke_openai_provider
         if smoke_openai_provider is None and isinstance(
             resolved_agent_provider, OpenAIResponsesProvider

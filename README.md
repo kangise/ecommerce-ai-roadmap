@@ -61,6 +61,8 @@ opc-ecommerce demo --db ./demo.sqlite --port 8788
 | 审计 | 每条结论必须标注数据来源。租户隔离，API key 可轮换，操作记录完整留存 |
 | 操作界面 | `/app` 提供七个页面：简报、智能体、证据、审批、连接、自动化、审计。中英文偏好持久化，支持明暗主题 |
 
+**模型接入**：默认 OpenAI，把 `EAI_AGENT_PROVIDER` 设为 `anthropic` 即切到 Claude。两个 provider 走同一套契约——凭证只存环境变量、端点锁死官方域名、审计记录写的是实际用的那个。取值无法识别时启动即报错，不会静默改道。
+
 **明确不做的事** — 凭证缺失或证据不完整时直接报错终止，不生成推测性结果。与知识层的数据纪律一致。
 
 接入细节见 [`integration/runtime-api.md`](integration/runtime-api.md)。

@@ -24,6 +24,34 @@ export OPENAI_API_KEY='<REAL_OPENAI_API_KEY>'
 export EAI_OPENAI_MODEL='<RESPONSES_API_MODEL_WITH_STRUCTURED_OUTPUTS>'
 ```
 
+### Choosing a provider
+
+Two providers ship. OpenAI is the default, so an existing deployment needs no
+change. Set `EAI_AGENT_PROVIDER` to switch:
+
+| `EAI_AGENT_PROVIDER` | Provider | Required variables |
+|---|---|---|
+| unset, `openai`, `openai_responses` | OpenAI Responses API | `OPENAI_API_KEY`, `EAI_OPENAI_MODEL` |
+| `anthropic`, `anthropic_messages` | Anthropic Messages API | `ANTHROPIC_API_KEY`, `EAI_ANTHROPIC_MODEL` |
+
+```bash
+export EAI_AGENT_PROVIDER='anthropic'
+export ANTHROPIC_API_KEY='<REAL_ANTHROPIC_API_KEY>'
+export EAI_ANTHROPIC_MODEL='<MESSAGES_API_MODEL>'
+```
+
+An unrecognised value fails at startup rather than falling back, so a typo
+cannot silently route traffic to a different vendor. Both providers hold
+credentials as environment references only, pin their endpoint to the official
+host, and never write the key into SQLite or audit metadata. The provider name
+recorded on each agent run is the one actually used.
+
+Structured output differs by necessity: OpenAI uses a strict `json_schema`
+response format, Anthropic a forced tool whose `input_schema` is the same
+schema. Both reject a reply that is not a valid object, and Anthropic
+additionally fails a response truncated at `max_tokens` rather than returning a
+partial result that would read as complete.
+
 The MCP SDK is optional: install `ecommerce-ai-skills[mcp]` only when the
 stdio MCP adapter is needed. The Runtime API itself does not require it.
 

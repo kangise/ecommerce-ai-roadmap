@@ -59,6 +59,8 @@ The demo tenant is marked `DEMO DATA` throughout and is physically isolated from
 | Full audit trail | Every conclusion must cite its input source; tenant isolation, API key rotation, operation audit log |
 | Operations UI | `/app` with seven views — briefing, agents, evidence, approvals, connections, automation, audit; persisted zh/en preference, light and dark themes |
 
+**Model providers**: OpenAI by default; set `EAI_AGENT_PROVIDER=anthropic` to run on Claude. Both providers share one contract — credentials stay environment-only, the endpoint is pinned to the official host, and the audit record names the provider actually used. An unrecognised value fails at startup rather than rerouting silently.
+
 **What it deliberately refuses to do** — without real credentials or complete evidence it **fails explicitly** rather than producing plausible-looking placeholder results. Same principle as the data discipline in the knowledge layer.
 
 Integration details in [`integration/runtime-api.md`](integration/runtime-api.md).
