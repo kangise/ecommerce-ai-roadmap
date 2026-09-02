@@ -1155,7 +1155,7 @@ def batch_analyze(
 | Resource | Type | Notes | Link |
 |----------|------|-------|------|
 | Ollama official docs | docs | free, deploy a local LLM in 5 minutes | [ollama.com](https://ollama.com/) |
-| DeepLearning.AI: Finetuning LLMs | free short course | by Andrew Ng's team, LoRA fine-tuning intro | [deeplearning.ai](https://www.deeplearning.ai/short-courses/finetuning-large-language-models/) |
+| DeepLearning.AI: Finetuning LLMs | free short course | by Andrew Ng's team, LoRA fine-tuning intro | [deeplearning.ai](https://www.deeplearning.ai/courses/finetuning-large-language-models) |
 | Coursera: Generative AI for Everyone | free audit | taught by Andrew Ng, AI landscape overview | [coursera.org](https://www.coursera.org/learn/generative-ai-for-everyone) |
 | HuggingFace PEFT docs | docs | LoRA/QLoRA official reference | [huggingface.co/docs/peft](https://huggingface.co/docs/peft) |
 | Unsloth GitHub | docs+tutorials | 2× fast fine-tuning, rich Colab examples | [github.com/unslothai/unsloth](https://github.com/unslothai/unsloth) |

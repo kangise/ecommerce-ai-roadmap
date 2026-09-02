@@ -446,7 +446,7 @@ After 12 months: AI maturity 2.5→3.8, prompt library of 80+ templates, 3 autom
 
 | Resource | Platform | Link |
 |----------|----------|------|
-| ChatGPT Prompt Engineering | DeepLearning.AI | [deeplearning.ai](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/) |
+| ChatGPT Prompt Engineering | DeepLearning.AI | [deeplearning.ai](https://www.deeplearning.ai/courses/chatgpt-prompt-eng) |
 | OpenAI Prompt Engineering Guide | OpenAI | [platform.openai.com](https://platform.openai.com/docs/guides/prompt-engineering) |
 | Anthropic Prompt Engineering Guide | Anthropic | [docs.anthropic.com](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering) |
 

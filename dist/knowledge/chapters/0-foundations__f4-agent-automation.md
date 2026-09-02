@@ -626,8 +626,8 @@ Month 5-6：Agent 优化
 
 | 资源 | 来源 | 为什么推荐 |
 |------|------|-----------|
-| [AI Agents in LangGraph](https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph/) | DeepLearning.AI | 免费课程，LangGraph Agent 入门 |
-| [Multi AI Agent Systems with CrewAI](https://www.deeplearning.ai/short-courses/multi-ai-agent-systems-with-crewai/) | DeepLearning.AI | 免费课程，多 Agent 协作 |
+| [AI Agents in LangGraph](https://www.deeplearning.ai/courses/ai-agents-in-langgraph) | DeepLearning.AI | 免费课程，LangGraph Agent 入门 |
+| [Multi AI Agent Systems with CrewAI](https://www.deeplearning.ai/courses/multi-ai-agent-systems-with-crewai) | DeepLearning.AI | 免费课程，多 Agent 协作 |
 | [MCP 官方文档](https://modelcontextprotocol.io/) | Anthropic | MCP 协议的权威参考 |
 
 ### 8.2 进阶推荐

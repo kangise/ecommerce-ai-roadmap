@@ -199,7 +199,7 @@ Agents aren't a panacea. Many scenarios can be solved with a simple Python scrip
 | [CrewAI](https://docs.crewai.com/) | multi-Agent collaboration | intermediate | multi-role collaboration tasks | `pip install crewai` |
 | [n8n](https://n8n.io/) | visual workflow | beginner | no-code/low-code automation | Docker deployment |
 | [Streamlit](https://streamlit.io/) | web UI | beginner | quickly build an Agent-interaction UI | `pip install streamlit` |
-| [LangChain](https://python.langchain.com/) | LLM-app framework | intermediate | Agent tool chains, prompt management | `pip install langchain` |
+| [LangChain](https://docs.langchain.com/oss/python/langchain/overview) | LLM-app framework | intermediate | Agent tool chains, prompt management | `pip install langchain` |
 | [OpenAI API](https://platform.openai.com/) | cloud LLM | beginner | highest-quality reasoning | `pip install openai` |
 | [Ollama](https://ollama.com/) | local LLM | beginner | data privacy, offline running | [ollama.com/download](https://ollama.com/download) |
 
@@ -1061,8 +1061,8 @@ def analyze_product_image(image_path: str) -> str:
 
 | Resource | Type | Notes | Link |
 |----------|------|-------|------|
-| AI Agents in LangGraph | free short course | by DeepLearning.AI, LangGraph intro | [deeplearning.ai](https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph/) |
-| Multi AI Agent Systems with crewAI | free short course | by DeepLearning.AI, CrewAI multi-Agent | [deeplearning.ai](https://www.deeplearning.ai/short-courses/multi-ai-agent-systems-with-crewai/) |
+| AI Agents in LangGraph | free short course | by DeepLearning.AI, LangGraph intro | [deeplearning.ai](https://www.deeplearning.ai/courses/ai-agents-in-langgraph) |
+| Multi AI Agent Systems with crewAI | free short course | by DeepLearning.AI, CrewAI multi-Agent | [deeplearning.ai](https://www.deeplearning.ai/courses/multi-ai-agent-systems-with-crewai) |
 | HuggingFace AI Agents Course | free course | systematic Agent course | [huggingface.co](https://huggingface.co/learn/agents-course) |
 | LangGraph official docs | docs | the most authoritative LangGraph reference | [langchain-ai.github.io](https://langchain-ai.github.io/langgraph/) |
 | CrewAI official docs | docs | complete CrewAI framework docs | [docs.crewai.com](https://docs.crewai.com/) |

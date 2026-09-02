@@ -30,7 +30,7 @@
 - 各プラットフォームの画像/動画規格要件を習得
 - AI ビジュアルコンテンツの一括生産ワークフローを構築
 
-> **核心理念**: 2026 年、AI 製品画像は撮影コストを 80% 削減でき、ライフスタイル画像の転換率は純白背景画像より 22-30% 高い([Entrepreneur](https://apac.entrepreneur.com/news-and-trends/how-smart-entrepreneurs-are-cutting-product-photography/501040))。AI 動画生成市場は 2025 年に 71.68 億ドルに達し、年 20% 成長([Fortune Business Insights](https://framepack.cc/articles/ai-video-tools-comparison-framepack))。AI でビジュアルコンテンツを作れないセラーは競争力を失っている。
+> **核心理念**: 2026 年、AI 製品画像は撮影コストを 80% 削減でき、ライフスタイル画像の転換率は純白背景画像より 22-30% 高い([Entrepreneur](https://apac.entrepreneur.com/news-and-trends/how-smart-entrepreneurs-are-cutting-product-photography/501040))。AI 動画生成市場は 2025 年に 7.168 億ドル、年平均約 19% で成長する見込み([Fortune Business Insights](https://www.fortunebusinessinsights.com/ai-video-generator-market-110060))。AI でビジュアルコンテンツを作れないセラーは競争力を失っている。
 
 Content rephrased for compliance with licensing restrictions.
 

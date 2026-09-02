@@ -29,7 +29,8 @@ Usage
   verify_content.py                     everything offline (what CI runs)
   verify_content.py --list              print each offending item, not just counts
   verify_content.py --only M1           one check by name
-  verify_content.py --probe-links       re-probe every external URL, refresh the cache
+  verify_content.py --probe-links       probe external URLs missing from the cache
+  verify_content.py --refresh-links     re-probe every URL, including cached ones
   verify_content.py --metrics           print reproducible convergence metrics
   verify_content.py --anchors-vs-build docs
                                         diff derived anchors against built HTML
@@ -944,13 +945,20 @@ GATES = [
 # --------------------------------------------------------------------------
 
 
-def probe_links() -> None:
+def probe_links(refresh: bool = False) -> None:
     """One network pass. Hard failure means 404, 410 or DNS.
 
     A HEAD failure is never trusted: Kaggle Learn and shopify.com/magic both
     answer HEAD with 404 while serving fine over GET, and treating those as dead
     sends you editing links that work in a browser. 403 and 429 are soft — plenty
     of sites simply refuse scripted requests.
+
+    By default only URLs missing from the cache are probed, which keeps the
+    common path cheap. That also means a cached entry is never revisited, so
+    entries recorded by an older run go stale invisibly: a batch of 3xx results
+    survived here from a Python that did not follow 308, and one of them had
+    since started landing on a 404 that nothing could see. `refresh=True`
+    re-probes everything, which is what a scheduled job should do.
     """
     import time
     import urllib.error
@@ -961,8 +969,9 @@ def probe_links() -> None:
     urls = external_urls()
     cache = json.loads(LINK_CACHE.read_text(encoding="utf-8")) if LINK_CACHE.exists() else {}
     cache = {u: v for u, v in cache.items() if u in urls}      # drop URLs no longer referenced
-    todo = [u for u in sorted(urls) if u not in cache]
-    print(f"probing {len(todo)} of {len(urls)} unique URLs ({len(urls) - len(todo)} cached)")
+    todo = sorted(urls) if refresh else [u for u in sorted(urls) if u not in cache]
+    scope = "re-probing all" if refresh else "probing"
+    print(f"{scope} {len(todo)} of {len(urls)} unique URLs ({len(urls) - len(todo)} cached)")
 
     for i, u in enumerate(todo, 1):
         req = urllib.request.Request(u, method="HEAD", headers={"User-Agent": ua})
@@ -989,7 +998,9 @@ def probe_links() -> None:
 
     LINK_CACHE.write_text(json.dumps(cache, ensure_ascii=False, indent=1, sort_keys=True), encoding="utf-8")
     hard = sum(1 for v in cache.values() if v.get("hard_fail"))
-    print(f"done: {len(cache)} cached, {hard} dead")
+    redirects = sum(1 for v in cache.values() if v.get("status") in (301, 302, 307, 308))
+    print(f"done: {len(cache)} cached, {hard} dead"
+          + (f", {redirects} still reporting a redirect" if redirects else ""))
 
 
 def anchors_vs_build(build_dir: str) -> int:
@@ -1089,13 +1100,15 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--list", action="store_true", help="print offending items, not just counts")
     ap.add_argument("--only", metavar="NAME", help="run one check (anchors, M1, …)")
-    ap.add_argument("--probe-links", action="store_true", help="re-probe external URLs")
+    ap.add_argument("--probe-links", action="store_true", help="probe external URLs missing from the cache")
+    ap.add_argument("--refresh-links", action="store_true",
+                    help="re-probe every external URL, including cached ones")
     ap.add_argument("--metrics", action="store_true", help="print convergence metrics")
     ap.add_argument("--anchors-vs-build", metavar="DIR", help="diff anchors against built HTML")
     args = ap.parse_args()
 
-    if args.probe_links:
-        probe_links()
+    if args.probe_links or args.refresh_links:
+        probe_links(refresh=args.refresh_links)
         return 0
     if args.metrics:
         return print_metrics()

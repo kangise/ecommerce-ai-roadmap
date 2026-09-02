@@ -620,8 +620,8 @@ Agent の能力を拡張(ツール増、シーン増)
 
 | リソース | ソース | おすすめ理由 |
 |----------|--------|--------------|
-| [AI Agents in LangGraph](https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph/) | DeepLearning.AI | 無料講座、LangGraph Agent 入門 |
-| [Multi AI Agent Systems with CrewAI](https://www.deeplearning.ai/short-courses/multi-ai-agent-systems-with-crewai/) | DeepLearning.AI | 無料講座、マルチ Agent 協業 |
+| [AI Agents in LangGraph](https://www.deeplearning.ai/courses/ai-agents-in-langgraph) | DeepLearning.AI | 無料講座、LangGraph Agent 入門 |
+| [Multi AI Agent Systems with CrewAI](https://www.deeplearning.ai/courses/multi-ai-agent-systems-with-crewai) | DeepLearning.AI | 無料講座、マルチ Agent 協業 |
 | [MCP 公式ドキュメント](https://modelcontextprotocol.io/) | Anthropic | MCP プロトコルの権威ある参考 |
 
 ### 8.2 さらに深く

@@ -1196,7 +1196,7 @@ Content rephrased for compliance with licensing restrictions. Source: [impakter.
 |----------|------------------|------|----------|--------|
 | Amazon Seller University Inventory Management | Amazon | 自習 | 全セラー(公式無料講座、FBA 在庫管理・IPI Score・補充ツールをカバー) | [sellercentral.amazon.com/learn](https://sellercentral.amazon.com/learn) |
 | Supply Chain Management Specialization | Coursera (Rutgers) | 16 週 | サプライチェーンを体系的に学びたいセラー(在庫理論、需要予測、サプライヤー管理) | [coursera.org](https://www.coursera.org/specializations/supply-chain-management) |
-| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5h | すべての人(良いプロンプトは AI 在庫分析の基礎) | [deeplearning.ai](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/) |
+| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5h | すべての人(良いプロンプトは AI 在庫分析の基礎) | [deeplearning.ai](https://www.deeplearning.ai/courses/chatgpt-prompt-eng) |
 | Prophet Quick Start Guide | Facebook/Meta | 1h | Python の基礎があるセラー(時系列予測入門) | [facebook.github.io/prophet](https://facebook.github.io/prophet/docs/quick_start.html) |
 
 ### 7.2 おすすめ YouTube チャンネル

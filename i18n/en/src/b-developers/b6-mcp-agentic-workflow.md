@@ -229,7 +229,7 @@ Format: Markdown, ready to send to the team"
 Claude: [aggregate all data] → generate a complete report
 ```
 
-> **Real data**: PPC-management-platform automation can save 10+ hours of manual work per week ([Maxmerce](https://www.maxmerce.com/blog/how-to-improve-amazon-ppc-performance-campaign-opt/)). Amazon PPC ACOS optimization can lower ad cost 30–50% while maintaining or increasing sales ([Maxmerce](https://www.maxmerce.com/blog/amazon-ppc-acos-optimization-reduce-costs-boost-ro/)).
+> **Real data**: AI-driven PPC automation saves 10-15 hours of manual tuning per week ([Helium 10](https://www.helium10.com/blog/blog-how-ai-powered-amazon-ppc-saves-10-plus-hours-weekly-and-boosts-performance/)). In an official Amazon Ads case study, STEADY JAPAN improved total ACOS by 25% within the first month of adopting automated bidding, while maintaining sales levels ([Amazon Ads case study](https://advertising.amazon.com/en-us/library/case-studies/flywheel-steady-japan-lowers-acos/)) — one seller's result, not a general range.
 
 Content rephrased for compliance with licensing restrictions.
 

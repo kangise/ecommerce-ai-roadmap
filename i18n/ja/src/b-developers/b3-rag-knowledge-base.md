@@ -140,7 +140,7 @@ AI に特定のスタイル/形式で出力させる → Fine-tuning
 | ツール | 種類 | 難度 | 最適シーン | インストール |
 |--------|------|------|------------|--------------|
 | [LlamaIndex](https://docs.llamaindex.ai/) | RAG フレームワーク | 入門 | RAG を素早く構築、文書 Q&A | `pip install llama-index` |
-| [LangChain](https://python.langchain.com/) | LLM アプリフレームワーク | 中級 | 複雑な LLM ワークフロー、Agent | `pip install langchain` |
+| [LangChain](https://docs.langchain.com/oss/python/langchain/overview) | LLM アプリフレームワーク | 中級 | 複雑な LLM ワークフロー、Agent | `pip install langchain` |
 | [Chroma](https://www.trychroma.com/) | ベクトルデータベース | 入門 | ローカル開発、小規模データ | `pip install chromadb` |
 | [Ollama](https://ollama.com/) | ローカル LLM | 入門 | OpenAI API を使いたくない、データプライバシー | [ollama.com/download](https://ollama.com/download) |
 | [OpenAI API](https://platform.openai.com/) | クラウド LLM | 入門 | 最高品質の回答、素早いプロトタイプ | `pip install openai` |
@@ -173,7 +173,7 @@ AI に特定のスタイル/形式で出力させる → Fine-tuning
 
 **結論**: 入門は LlamaIndex(よりシンプル)、複雑なワークフローが必要なとき LangChain を導入。本モジュールは LlamaIndex を主とする。
 
-参考ドキュメント: [LlamaIndex 公式ドキュメント](https://docs.llamaindex.ai/) | [LangChain 公式ドキュメント](https://python.langchain.com/)
+参考ドキュメント: [LlamaIndex 公式ドキュメント](https://docs.llamaindex.ai/) | [LangChain 公式ドキュメント](https://docs.langchain.com/oss/python/langchain/overview)
 
 ### 3.2 Embedding モデルの選択
 
@@ -1202,8 +1202,8 @@ def build_rag_agent(
 | リソース | プラットフォーム | 長さ | 向く相手 | リンク |
 |----------|------------------|------|----------|--------|
 | LlamaIndex 公式ドキュメント | LlamaIndex | 継続更新 | RAG 入門から上級 | [docs.llamaindex.ai](https://docs.llamaindex.ai/) |
-| Building Agentic RAG | DeepLearning.AI | 1h | RAG + Agent の組み合わせ | [deeplearning.ai](https://www.deeplearning.ai/short-courses/building-agentic-rag-with-llamaindex/) |
-| LangChain 公式ドキュメント | LangChain | 継続更新 | LLM アプリ開発 | [python.langchain.com](https://python.langchain.com/) |
+| Building Agentic RAG | DeepLearning.AI | 1h | RAG + Agent の組み合わせ | [deeplearning.ai](https://www.deeplearning.ai/courses/building-agentic-rag-with-llamaindex) |
+| LangChain 公式ドキュメント | LangChain | 継続更新 | LLM アプリ開発 | [python.langchain.com](https://docs.langchain.com/oss/python/langchain/overview) |
 | HuggingFace NLP Course | HuggingFace | 10h+ | NLP と Embedding の基礎 | [huggingface.co/learn/nlp-course](https://huggingface.co/learn/nlp-course) |
 | Chroma 公式ドキュメント | Chroma | 2h | ベクトルデータベース入門 | [trychroma.com](https://www.trychroma.com/) |
 | Ollama 公式ドキュメント | Ollama | 1h | ローカル LLM 配備 | [ollama.com](https://ollama.com/) |

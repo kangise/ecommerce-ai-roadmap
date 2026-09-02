@@ -214,14 +214,14 @@ WhatsApp Business APIにはメッセージ階層の制限があります（[Late
 | Zoko | マルチチャネル、チーム協働 | $34.99/月〜 | チーム利用 |
 | Interakt | インド市場に強い | $15/月〜 | インド/東南アジア |
 | SleekFlow | オムニチャネルカスタマーサービス＋CRM | 有料 | 中大型ブランド |
-| Qualimero | AIセールスコンサルタント、Shopifyと深く連携（[Qualimero](https://qualimero.com/en/blog/shopify-whatsapp-integration-ai-sales-consultant-guide)） | 有料 | AI駆動セールス |
+| Qualimero | AIセールスコンサルタント、Shopifyと深く連携（[Qualimero](https://qualimero.com/en/blog/shopify-whatsapp)） | 有料 | AI駆動セールス |
 | Respond.io | マルチチャネルメッセージングプラットフォーム | $79/月〜 | マルチチャネル管理 |
 
 ライセンス制限に準拠するため内容を言い換えています。
 
 ### 3.5 WhatsAppメッセージの開封率データ
 
-WhatsAppメッセージの効果は従来のマーケティングチャネルを大きく上回ります（[Qualimero](https://qualimero.com/en/blog/whatsapp-business-account-complete-guide-sales-consulting)）：
+WhatsAppメッセージの効果は従来のマーケティングチャネルを大きく上回ります（[Qualimero](https://qualimero.com/en/blog/whatsapp-business-account-create)）：
 
 | チャネル | 開封率 | 返信率 | コンバージョン率 |
 |----------|--------|--------|------------------|

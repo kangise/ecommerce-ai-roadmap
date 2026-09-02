@@ -229,7 +229,7 @@ You: 「今週の広告最適化レポートを生成、以下を含む:
 Claude: [すべてのデータを集約] → 完全なレポートを生成
 ```
 
-> **実データ**: PPC 管理プラットフォームの自動化は毎週 10+ 時間の手作業を節約できる([Maxmerce](https://www.maxmerce.com/blog/how-to-improve-amazon-ppc-performance-campaign-opt/))。Amazon PPC ACOS 最適化は販売を維持または増やしつつ広告コストを 30-50% 下げられる([Maxmerce](https://www.maxmerce.com/blog/amazon-ppc-acos-optimization-reduce-costs-boost-ro/))。
+> **実データ**: AI 駆動の PPC 自動化は毎週 10〜15 時間の手動調整を削減できる([Helium 10](https://www.helium10.com/blog/blog-how-ai-powered-amazon-ppc-saves-10-plus-hours-weekly-and-boosts-performance/))。Amazon Ads の公式事例では、STEADY JAPAN が自動入札の導入から 1 か月以内に売上を維持したまま総 ACOS を 25% 改善した([Amazon Ads 事例研究](https://advertising.amazon.com/en-us/library/case-studies/flywheel-steady-japan-lowers-acos/))——1 社の結果であり、一般的な幅ではない。
 
 Content rephrased for compliance with licensing restrictions.
 

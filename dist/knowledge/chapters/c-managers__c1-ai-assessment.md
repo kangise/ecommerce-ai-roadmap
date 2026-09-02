@@ -444,7 +444,7 @@ Content rephrased for compliance with licensing restrictions. Source: [McKinsey 
 
 | 资源 | 平台 | 链接 |
 |------|------|------|
-| ChatGPT Prompt Engineering | DeepLearning.AI | [deeplearning.ai](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/) |
+| ChatGPT Prompt Engineering | DeepLearning.AI | [deeplearning.ai](https://www.deeplearning.ai/courses/chatgpt-prompt-eng) |
 | OpenAI Prompt Engineering Guide | OpenAI | [platform.openai.com](https://platform.openai.com/docs/guides/prompt-engineering) |
 | Anthropic Prompt Engineering Guide | Anthropic | [docs.anthropic.com](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering) |
 

@@ -803,7 +803,7 @@ Track vertical e-commerce AI tools
 |----------|----------|--------|-----|
 | [But what is a GPT?](https://www.youtube.com/watch?v=wjZofJX0v4M) | 3Blue1Brown (YouTube) | 27 min | the most intuitive Transformer visualization |
 | [Intro to Large Language Models](https://www.youtube.com/watch?v=zjkBMFhNj_g) | Andrej Karpathy (YouTube) | 60 min | LLM intro from a former OpenAI researcher |
-| [ChatGPT Prompt Engineering](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/) | DeepLearning.AI | 1.5 h | free course, built with OpenAI |
+| [ChatGPT Prompt Engineering](https://www.deeplearning.ai/courses/chatgpt-prompt-eng) | DeepLearning.AI | 1.5 h | free course, built with OpenAI |
 | [AI for Everyone](https://www.coursera.org/learn/ai-for-everyone) | Coursera (Andrew Ng) | 6 h | AI for non-engineers, taught by Andrew Ng |
 
 ### 10.2 Going deeper

@@ -163,7 +163,7 @@ AI が苦手なこと:
 
 | ツール | 価格 | 中核能力 | 向く相手 | AI 機能 |
 |--------|------|----------|----------|---------|
-| [Helium 10 Adtomic](https://h10-wp.com/helium-10-adtomic/) | $229/月(Platinum に含む) | AI 駆動の入札自動化、ルールエンジン + AI 提案 | 自動入札管理が必要な上級セラー | AI 入札提案、自動除外語、予算最適化 |
+| [Helium 10 Ads(旧 Adtomic)](https://www.helium10.com/tools/adtomic/) | Diamond / Elite プランに含む | AI 駆動の入札自動化、ルールエンジン + AI 提案 | 自動入札管理が必要な上級セラー | AI 入札提案、自動除外語、予算最適化 |
 | Jungle Scout PPC Manager | $49-84/月 | 簡易版の広告管理、キーワード提案 | 初心者、UI がフレンドリー | 基本的な AI キーワード提案 |
 | Perpetua (by Ascential) | 広告費の % 課金 | 企業級 AI 広告最適化、自動入札+予算配分 | 月広告費 $5000+ のセラー | 全自動 AI 入札、目標 ACOS 最適化 |
 | Pacvue | 企業向け価格 | 複数プラットフォーム広告管理(Amazon+Walmart+Instacart) | 大手セラー/代理店 | AI 予算配分、クロスプラットフォーム最適化 |
@@ -1500,7 +1500,7 @@ Content rephrased for compliance with licensing restrictions. Source: [delivered
 |----------|------------------|------|----------|--------|
 | Amazon Advertising Learning Console | Amazon | 自習 | 全セラー(公式無料認証、SP/SB/SD 講座含む) | [learningconsole.amazonadvertising.com](https://learningconsole.amazonadvertising.com/) |
 | Fundamentals of Digital Marketing | Google | 40h | 広告初心者(デジタル広告の基礎、認証付き) | [learndigital.withgoogle.com](https://learndigital.withgoogle.com/digitalgarage) |
-| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5h | すべての人(良いプロンプトは AI 広告分析の基礎) | [deeplearning.ai](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/) |
+| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5h | すべての人(良いプロンプトは AI 広告分析の基礎) | [deeplearning.ai](https://www.deeplearning.ai/courses/chatgpt-prompt-eng) |
 
 ### 7.2 おすすめ YouTube チャンネル
 

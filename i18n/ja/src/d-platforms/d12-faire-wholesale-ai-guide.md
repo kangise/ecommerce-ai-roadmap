@@ -62,7 +62,7 @@ Faire は B2B 卸だ。顧客が小売店オーナーであるため、あらゆ
 
 ### 2.1 Faire アルゴリズムとランキング機構
 
-Faire の検索アルゴリズムがどのブランドが小売店に見られるか決める。以下は実操経験に基づくランキング要因([Smoothed.io](https://www.smoothed.io/blog/faire-account-settings-that-drive-sales)):
+Faire の検索アルゴリズムがどのブランドが小売店に見られるかを決める。以下のランキング要因は実務経験に基づくもので、一部は [MultiSellr の Faire SEO ガイド](https://multisellr.com/blog/how-to-rank-with-seo-on-faire)でも確認できる(Faire は完全なランキング規則を公開していない):
 
 ```
 Faire 検索ランキング要因:
@@ -91,11 +91,11 @@ Content rephrased for compliance with licensing restrictions.
 
 ### 2.2 Faire アカウント設定最適化(高レバレッジ操作)
 
-[Smoothed.io](https://www.smoothed.io/blog/faire-account-settings-that-drive-sales) の実操データに基づき、以下の設定調整が露出を著しく高められる:
+以下の設定調整は、小売店のフィルタに引っかかる範囲を広げる:
 
 **MOQ を $0 に設定(最高のレバレッジ)**
 
-Faire の小売店は MOQ でフィルタできる: $0、$100、$200。MOQ を $200 に設定すると、小売店が $200 フィルタを選んだときにしか出ない。$0 に設定すると 3 つすべてのフィルタに出る — 1 つの設定変更が 3 倍の露出をもたらす。
+Faire の小売店は MOQ でフィルタできる: $0、$100、$200。MOQ を $200 に設定すると、小売店が $200 フィルタを選んだときにしか出ない。$0 にすれば 3 つすべてのフィルタに出る。これはフィルタの被覆範囲が広がるということで、露出が 3 倍になるという意味ではない。
 
 小さな注文は問題ではない — それは評価をもたらし、アルゴリズムを訓練し、最終的に大口のリピートに転換する。
 
@@ -176,7 +176,7 @@ Gives back Small batch Made in [国]
 
 ### 2.4 Faire Ads(Promoted Listings)
 
-Faire の広告システムは CPC モデル。実操データ([Smoothed.io](https://www.smoothed.io/blog/faire-account-settings-that-drive-sales))に基づく: $570 の広告費が $1,979 の初回注文売上を生んだ(3.5x ROAS)、これらの小売店のその後のリピートは含まない。
+Faire の広告システムは CPC モデル。公開されたリターンのデータは乏しく、Faire 自身もベンチマークを公表していない。そのため以下は仕組みとして示し、具体的な ROAS 数値は付けない——効果は自社の配信データで判断すること。
 
 ```
 Faire Ads ベストプラクティス:

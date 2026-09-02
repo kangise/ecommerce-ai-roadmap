@@ -29,7 +29,7 @@
  },
  "https://agentskills.io": {
   "hard_fail": false,
-  "status": 308
+  "status": 200
  },
  "https://ai.google.dev/": {
   "hard_fail": false,
@@ -39,9 +39,9 @@
   "hard_fail": false,
   "status": 200
  },
- "https://aihaven.com/guides/best-open-source-ai-agent-frameworks-2026": {
+ "https://aihaven.com/guides/best-open-source-ai-agent-frameworks/": {
   "hard_fail": false,
-  "status": 308
+  "status": 200
  },
  "https://aijourn.com/amazon-ppc-optimization-tool/": {
   "hard_fail": false,
@@ -69,11 +69,11 @@
  },
  "https://andrewkushnerov.medium.com/amazon-sp-api-get-inventory-and-prices-with-python-3226b980bd79": {
   "hard_fail": false,
-  "status": 200
+  "status": 403
  },
  "https://andrewkushnerov.medium.com/amazon-sp-api-get-orders-with-python-7b7e913d87ea": {
   "hard_fail": false,
-  "status": 200
+  "status": 403
  },
  "https://apac.entrepreneur.com/news-and-trends/how-smart-entrepreneurs-are-cutting-product-photography/501040": {
   "hard_fail": false,
@@ -125,7 +125,7 @@
  },
  "https://badger.blue/blogs/ecommerce-unpacked/model-context-protocol-mcp-ecommerce": {
   "hard_fail": false,
-  "status": 429
+  "status": 200
  },
  "https://baregold.ca/resources/advanced-ip-protection-strategies-for-amazon-brands-in-2026": {
   "hard_fail": false,
@@ -145,7 +145,7 @@
  },
  "https://blackbearmedia.io/model-context-protocol-mcp-servers-for-digital-marketing/": {
   "hard_fail": false,
-  "status": 403
+  "status": 200
  },
  "https://blog.anyreach.ai/enterprise-ai-security-a-comprehensive-guide-to-data-protection-and-compliance-in-2025/": {
   "hard_fail": false,
@@ -193,7 +193,7 @@
  },
  "https://calculatecreator.com/blog/tiktok-shop-expansion-2026/": {
   "hard_fail": false,
-  "status": "EOF occurred in violation of protocol (_ssl.c:1129)"
+  "status": "[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violatio"
  },
  "https://canopymanagement.com/amazon-ads-mcp-server-ai/": {
   "hard_fail": false,
@@ -283,6 +283,10 @@
   "hard_fail": false,
   "status": 200
  },
+ "https://docs.langchain.com/oss/python/langchain/overview": {
+  "hard_fail": false,
+  "status": 200
+ },
  "https://docs.llamaindex.ai/": {
   "hard_fail": false,
   "status": 200
@@ -305,7 +309,7 @@
  },
  "https://duckdb.org/2021/05/14/sql-on-pandas.html": {
   "hard_fail": false,
-  "status": 308
+  "status": 200
  },
  "https://dvc.org/": {
   "hard_fail": false,
@@ -393,7 +397,7 @@
  },
  "https://gigabrands.ai/blog/lower-acos-negative-targeting": {
   "hard_fail": false,
-  "status": 308
+  "status": 200
  },
  "https://gist.github.com/boringmarketer/96192770df22ac2a9ff4aed72b4c20f4": {
   "hard_fail": false,
@@ -753,7 +757,7 @@
  },
  "https://investors.ebayinc.com/investor-news/press-release-details/2026/eBay-Inc--Reports-Fourth-Quarter-and-Full-Year-2025-Results/default.aspx": {
   "hard_fail": false,
-  "status": 403
+  "status": 200
  },
  "https://ir.aboutcoupang.com/news-events/news/news-details/2025/Coupang-Announces-Results-for-First-Quarter-2025/default.aspx": {
   "hard_fail": false,
@@ -765,15 +769,15 @@
  },
  "https://iterathon.tech/blog/rag-systems-production-guide-2025": {
   "hard_fail": false,
-  "status": 200
+  "status": "[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: "
  },
  "https://iterathon.tech/blog/tiktok-shop-instagram-shopping-automation-2026": {
   "hard_fail": false,
-  "status": 200
+  "status": "[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: "
  },
  "https://iterathon.tech/blog/vector-databases-ai-applications-guide": {
   "hard_fail": false,
-  "status": 200
+  "status": "[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: "
  },
  "https://jalammar.github.io/illustrated-transformer/": {
   "hard_fail": false,
@@ -813,7 +817,7 @@
  },
  "https://launchfast.ai/": {
   "hard_fail": false,
-  "status": "_ssl.c:1112: The handshake operation timed out"
+  "status": "_ssl.c:1064: The handshake operation timed out"
  },
  "https://learndevrel.com/blog/mcp-vs-a2a": {
   "hard_fail": false,
@@ -836,8 +840,8 @@
   "status": 200
  },
  "https://legalclarity.org/when-trading-with-more-developed-countries-key-compliance-rules/": {
-  "hard_fail": false,
-  "status": 200
+  "hard_fail": true,
+  "status": 404
  },
  "https://leonardo.ai/": {
   "hard_fail": false,
@@ -945,7 +949,7 @@
  },
  "https://modelcontextprotocol.io/": {
   "hard_fail": false,
-  "status": 308
+  "status": 200
  },
  "https://momentum.asia/insights/detail/tiktok-shop-in-the-us-2025": {
   "hard_fail": false,
@@ -1075,29 +1079,25 @@
   "hard_fail": false,
   "status": 200
  },
- "https://python.langchain.com/": {
-  "hard_fail": false,
-  "status": 308
- },
  "https://qdrant.tech/": {
   "hard_fail": false,
   "status": 200
  },
- "https://qualimero.com/en/blog/shopify-whatsapp-integration-ai-sales-consultant-guide": {
+ "https://qualimero.com/en/blog/shopify-whatsapp": {
   "hard_fail": false,
-  "status": 308
+  "status": 200
  },
- "https://qualimero.com/en/blog/whatsapp-business-account-complete-guide-sales-consulting": {
+ "https://qualimero.com/en/blog/whatsapp-business-account-create": {
   "hard_fail": false,
-  "status": 308
+  "status": 200
  },
  "https://ravecapture.com/playbooks/state-of-ecommerce-reviews-ugc-2026/chapter-9/": {
   "hard_fail": false,
   "status": 200
  },
- "https://revenuegeeks.com/chatgpt-for-amazon-seller": {
+ "https://revenuegeeks.com/guides/chatgpt-for-amazon-seller": {
   "hard_fail": false,
-  "status": 308
+  "status": 200
  },
  "https://robomotion.io/blog/mcp-explained-why-model-context-protocol-matters-in-2026": {
   "hard_fail": false,
@@ -1196,8 +1196,8 @@
   "status": 403
  },
  "https://stormy.ai/blog/automating-amazon-ads-claude-mcp": {
-  "hard_fail": false,
-  "status": 200
+  "hard_fail": true,
+  "status": 404
  },
  "https://stormy.ai/blog/ecommerce-ppc-automation-claude-code": {
   "hard_fail": false,
@@ -1277,7 +1277,7 @@
  },
  "https://tutorialq.com/ai/machine-learning/embeddings-and-vector-databases": {
   "hard_fail": false,
-  "status": 403
+  "status": 200
  },
  "https://uk.entrepreneur.com/technology/refurbished-tech-gains-traction-on-temu-as-recommerce/495821": {
   "hard_fail": false,
@@ -1297,7 +1297,7 @@
  },
  "https://virtuslab.com/blog/ai/how-to-write-rules-for-ai/": {
   "hard_fail": false,
-  "status": 308
+  "status": 200
  },
  "https://wearepresta.com/shopify-mcp-server-the-standardized-interface-for-agentic-commerce-2026/": {
   "hard_fail": false,
@@ -1519,29 +1519,29 @@
   "hard_fail": false,
   "status": 200
  },
- "https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph/": {
+ "https://www.deeplearning.ai/courses/ai-agents-in-langgraph": {
   "hard_fail": false,
-  "status": 308
+  "status": 200
  },
- "https://www.deeplearning.ai/short-courses/building-agentic-rag-with-llamaindex/": {
+ "https://www.deeplearning.ai/courses/building-agentic-rag-with-llamaindex": {
   "hard_fail": false,
-  "status": 308
+  "status": 200
  },
- "https://www.deeplearning.ai/short-courses/building-evaluating-advanced-rag/": {
+ "https://www.deeplearning.ai/courses/building-evaluating-advanced-rag": {
   "hard_fail": false,
-  "status": 308
+  "status": 200
  },
- "https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/": {
+ "https://www.deeplearning.ai/courses/chatgpt-prompt-eng": {
   "hard_fail": false,
-  "status": 308
+  "status": 200
  },
- "https://www.deeplearning.ai/short-courses/finetuning-large-language-models/": {
+ "https://www.deeplearning.ai/courses/finetuning-large-language-models": {
   "hard_fail": false,
-  "status": 308
+  "status": 200
  },
- "https://www.deeplearning.ai/short-courses/multi-ai-agent-systems-with-crewai/": {
+ "https://www.deeplearning.ai/courses/multi-ai-agent-systems-with-crewai": {
   "hard_fail": false,
-  "status": 308
+  "status": 200
  },
  "https://www.deeplearning.ai/the-batch/": {
   "hard_fail": false,
@@ -1731,9 +1731,9 @@
   "hard_fail": false,
   "status": 200
  },
- "https://www.mtechzilla.com/guides/how-to-develop-skill-md-production-guide-engineering-teams": {
+ "https://www.mtechzilla.com/blogs/how-to-develop-skill-md-production-guide-engineering-teams": {
   "hard_fail": false,
-  "status": 308
+  "status": 200
  },
  "https://www.netguru.com/blog/ecommerce-digital-transformation": {
   "hard_fail": false,

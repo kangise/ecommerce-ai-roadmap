@@ -214,14 +214,14 @@ Content rephrased for compliance with licensing restrictions.
 | Zoko | Multi-channel, team collaboration | From $34.99/month | Team use |
 | Interakt | Strong in the Indian market | From $15/month | India/Southeast Asia |
 | SleekFlow | Omnichannel customer service + CRM | Paid | Mid-to-large brands |
-| Qualimero | AI sales consultant, deep Shopify integration ([Qualimero](https://qualimero.com/en/blog/shopify-whatsapp-integration-ai-sales-consultant-guide)) | Paid | AI-driven sales |
+| Qualimero | AI sales consultant, deep Shopify integration ([Qualimero](https://qualimero.com/en/blog/shopify-whatsapp)) | Paid | AI-driven sales |
 | Respond.io | Multi-channel messaging platform | From $79/month | Multi-channel management |
 
 Content rephrased for compliance with licensing restrictions.
 
 ### 3.5 WhatsApp Message Open-Rate Data
 
-WhatsApp messages far outperform traditional marketing channels ([Qualimero](https://qualimero.com/en/blog/whatsapp-business-account-complete-guide-sales-consulting)):
+WhatsApp messages far outperform traditional marketing channels ([Qualimero](https://qualimero.com/en/blog/whatsapp-business-account-create)):
 
 | Channel | Open rate | Reply rate | Conversion rate |
 |---------|-----------|------------|-----------------|

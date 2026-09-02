@@ -960,7 +960,7 @@ Layer 3: 部門横断協働(Champion グループ)
 
 | リソース | プラットフォーム | 時間 | 誰向け | リンク |
 |----------|------------------|------|--------|--------|
-| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5h | 全員必修 | [deeplearning.ai](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/) |
+| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5h | 全員必修 | [deeplearning.ai](https://www.deeplearning.ai/courses/chatgpt-prompt-eng) |
 | OpenAI Prompt Engineering Guide | OpenAI | 自習 | 全員推奨 | [platform.openai.com](https://platform.openai.com/docs/guides/prompt-engineering) |
 | Anthropic Prompt Engineering Guide | Anthropic | 自習 | Claude ユーザー | [docs.anthropic.com](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering) |
 | Learn Prompting | オープンソースコミュニティ | 自習 | 深く学びたい人 | [learnprompting.org](https://learnprompting.org/) |

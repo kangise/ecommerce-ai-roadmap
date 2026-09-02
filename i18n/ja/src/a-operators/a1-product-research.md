@@ -1234,7 +1234,7 @@ US サイトの実績: 月販 [X]、売価 $[X]、Review [X] 件
 
 | リソース | プラットフォーム | 長さ | 向く相手 | リンク |
 |----------|------------------|------|----------|--------|
-| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5h | すべての人(良いプロンプトは基礎) | [deeplearning.ai](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/) |
+| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5h | すべての人(良いプロンプトは基礎) | [deeplearning.ai](https://www.deeplearning.ai/courses/chatgpt-prompt-eng) |
 | OpenAI Prompt Engineering Guide | OpenAI | 自習 | すべての人(公式ベストプラクティス) | [platform.openai.com](https://platform.openai.com/docs/guides/prompt-engineering) |
 | Kaggle: Pandas Course | Kaggle | 4h | コードでデータ分析したい人(Path B と併用) | [kaggle.com/learn/pandas](https://www.kaggle.com/learn/pandas) |
 | Amazon Seller University | Amazon | 自習 | 初心者セラー(公式チュートリアル) | [sellercentral.amazon.com](https://sellercentral.amazon.com/learn) |

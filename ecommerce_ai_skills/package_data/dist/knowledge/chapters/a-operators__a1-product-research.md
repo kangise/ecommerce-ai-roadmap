@@ -1251,7 +1251,7 @@ US 站表现：月销量 [X]，售价 $[X]，Review [X] 条
 
 | 资源 | 平台 | 时长 | 适合谁 | 链接 |
 |------|------|------|--------|------|
-| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5h | 所有人（学会写好 Prompt 是基础） | [deeplearning.ai](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/) |
+| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5h | 所有人（学会写好 Prompt 是基础） | [deeplearning.ai](https://www.deeplearning.ai/courses/chatgpt-prompt-eng) |
 | OpenAI Prompt Engineering Guide | OpenAI | 自学 | 所有人（官方最佳实践） | [platform.openai.com](https://platform.openai.com/docs/guides/prompt-engineering) |
 | Kaggle: Pandas Course | Kaggle | 4h | 想用代码分析数据的（配合 Path B） | [kaggle.com/learn/pandas](https://www.kaggle.com/learn/pandas) |
 | Amazon Seller University | Amazon | 自学 | 新手卖家（官方教程） | [sellercentral.amazon.com](https://sellercentral.amazon.com/learn) |

@@ -155,7 +155,7 @@ Content rephrased for compliance with licensing restrictions.
 | Amazon Bedrock Agents | 官方 | AWS 生态、企业级 | AWS 用户 | [AWS Docs](https://aws.amazon.com/bedrock/agents/) |
 | n8n | 开源 | 可视化工作流、无代码 | 非技术人员 | [n8n.io](https://n8n.io/) |
 
-Sources: [AgileSOFT Labs](https://www.agilesoftlabs.com/blog/2026/03/langchain-vs-crewai-vs-autogen-top-ai), [AI Haven](https://aihaven.com/guides/best-open-source-ai-agent-frameworks-2026), [Softcery](https://softcery.com/lab/top-14-ai-agent-frameworks-of-2025-a-founders-guide-to-building-smarter-systems).
+Sources: [AgileSOFT Labs](https://www.agilesoftlabs.com/blog/2026/03/langchain-vs-crewai-vs-autogen-top-ai), [AI Haven](https://aihaven.com/guides/best-open-source-ai-agent-frameworks/), [Softcery](https://softcery.com/lab/top-14-ai-agent-frameworks-of-2025-a-founders-guide-to-building-smarter-systems).
 
 Content rephrased for compliance with licensing restrictions.
 

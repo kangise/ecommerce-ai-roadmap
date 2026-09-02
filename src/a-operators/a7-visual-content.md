@@ -30,7 +30,7 @@
 - 掌握各平台的图片/视频规格要求
 - 建立一套 AI 视觉内容批量生产工作流
 
-> **核心理念**：2026 年，AI 产品图片可以降低 80% 的摄影成本，生活方式图片的转化率比纯白底图高 22-30%（[Entrepreneur](https://apac.entrepreneur.com/news-and-trends/how-smart-entrepreneurs-are-cutting-product-photography/501040)）。AI 视频生成市场 2025 年达 $71.68 亿，年增长 20%（[Fortune Business Insights](https://framepack.cc/articles/ai-video-tools-comparison-framepack)）。不会用 AI 做视觉内容的卖家，正在失去竞争力。
+> **核心理念**：2026 年，AI 产品图片可以降低 80% 的摄影成本，生活方式图片的转化率比纯白底图高 22-30%（[Entrepreneur](https://apac.entrepreneur.com/news-and-trends/how-smart-entrepreneurs-are-cutting-product-photography/501040)）。AI 视频生成市场 2025 年为 $7.168 亿，预计以约 19% 的复合年增长率增长（[Fortune Business Insights](https://www.fortunebusinessinsights.com/ai-video-generator-market-110060)）。不会用 AI 做视觉内容的卖家，正在失去竞争力。
 
 Content rephrased for compliance with licensing restrictions.
 

@@ -759,7 +759,7 @@ EC 垂直 AI ツールの発展を追う
 |----------|------------------|------|--------------|
 | [But what is a GPT?](https://www.youtube.com/watch?v=wjZofJX0v4M) | 3Blue1Brown (YouTube) | 27 分 | 最も直感的な Transformer の可視化解説 |
 | [Intro to Large Language Models](https://www.youtube.com/watch?v=zjkBMFhNj_g) | Andrej Karpathy (YouTube) | 60 分 | 元 OpenAI 研究者による LLM 入門講義 |
-| [ChatGPT Prompt Engineering](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/) | DeepLearning.AI | 1.5 時間 | 無料講座、OpenAI 公式協力 |
+| [ChatGPT Prompt Engineering](https://www.deeplearning.ai/courses/chatgpt-prompt-eng) | DeepLearning.AI | 1.5 時間 | 無料講座、OpenAI 公式協力 |
 | [AI for Everyone](https://www.coursera.org/learn/ai-for-everyone) | Coursera (Andrew Ng) | 6 時間 | 非技術者向け AI 入門、Andrew Ng 主講 |
 
 ### 10.2 さらに深く

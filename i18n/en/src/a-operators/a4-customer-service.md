@@ -1377,7 +1377,7 @@ Customer expectations and communication styles differ greatly by market. Underst
 |----------|----------|--------|----------|------|
 | Amazon Seller University — Customer Service | Amazon | self-paced | all sellers (official free courses on message management, returns, account health) | [sellercentral.amazon.com/learn](https://sellercentral.amazon.com/learn) |
 | Customer Service Fundamentals | Coursera (Google) | 20h | CS beginners (CS methodology, incl. communication skills and problem-solving frameworks) | [coursera.org](https://www.coursera.org/learn/customer-service-fundamentals) |
-| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5h | everyone (writing good prompts is the basis of AI CS analysis) | [deeplearning.ai](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/) |
+| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5h | everyone (writing good prompts is the basis of AI CS analysis) | [deeplearning.ai](https://www.deeplearning.ai/courses/chatgpt-prompt-eng) |
 
 ### 7.2 Recommended YouTube channels
 

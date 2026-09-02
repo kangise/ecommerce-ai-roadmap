@@ -62,7 +62,7 @@ Faire 是 B2B 批发，逻辑和所有 B2C 平台都不一样——你的客户�
 
 ### 2.1 Faire 算法与排名机制
 
-Faire 的搜索算法决定哪些品牌被零售商看到。以下是基于实操经验的排名因素（[Smoothed.io](https://www.smoothed.io/blog/faire-account-settings-that-drive-sales)）：
+Faire 的搜索算法决定哪些品牌被零售商看到。以下是基于实操经验的排名因素（部分可对照 [MultiSellr 的 Faire SEO 指南](https://multisellr.com/blog/how-to-rank-with-seo-on-faire)；Faire 未公开完整排序规则）：
 
 ```
 Faire 搜索排名因素：
@@ -91,11 +91,11 @@ Content rephrased for compliance with licensing restrictions.
 
 ### 2.2 Faire 账号设置优化（高杠杆操作）
 
-基于 [Smoothed.io](https://www.smoothed.io/blog/faire-account-settings-that-drive-sales) 的实操数据，以下设置调整可以显著提升曝光：
+以下设置调整可以扩大你在零售商筛选结果中的覆盖面：
 
 **MOQ 设为 $0（最高杠杆）**
 
-Faire 零售商可以按 MOQ 筛选：$0、$100、$200。如果你的 MOQ 设为 $200，你只在零售商选择 $200 筛选时出现。设为 $0 则在所有三个筛选中出现一个设置改变带来 3 倍曝光。
+Faire 零售商可以按 MOQ 筛选：$0、$100、$200。如果你的 MOQ 设为 $200，你只在零售商选择 $200 筛选时出现；设为 $0 则三个筛选条件下都出现。这扩大的是被筛到的覆盖面，不等于曝光量翻三倍。
 
 小订单不是问题它们带来评价、训练算法、最终转化为大额复购。
 
@@ -176,7 +176,7 @@ Gives back Small batch Made in [国家]
 
 ### 2.4 Faire Ads（Promoted Listings）
 
-Faire 的广告系统是 CPC 模式。基于实操数据（[Smoothed.io](https://www.smoothed.io/blog/faire-account-settings-that-drive-sales)）：$570 广告花费产生 $1,979 首单销售额（3.5x ROAS），且不包含这些零售商的后续复购。
+Faire 的广告系统是 CPC 模式。公开的投放回报数据很少，Faire 自身也未披露基准，因此下面的做法按机制给出，不附带具体 ROAS 数字——实际效果要用你自己的投放数据判断。
 
 ```
 Faire Ads 最佳实践：

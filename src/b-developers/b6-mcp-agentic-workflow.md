@@ -229,7 +229,7 @@ You: "生成本周广告优化报告，包含：
 Claude: [汇总所有数据] → 生成完整报告
 ```
 
-> **真实数据**：PPC 管理平台的自动化可以每周节省 10+ 小时的手动工作（[Maxmerce](https://www.maxmerce.com/blog/how-to-improve-amazon-ppc-performance-campaign-opt/)）。Amazon PPC ACOS 优化可以在保持或增加销售的同时降低广告成本 30-50%（[Maxmerce](https://www.maxmerce.com/blog/amazon-ppc-acos-optimization-reduce-costs-boost-ro/)）。
+> **真实数据**：AI 驱动的 PPC 自动化每周可节省 10-15 小时手工调优时间（[Helium 10](https://www.helium10.com/blog/blog-how-ai-powered-amazon-ppc-saves-10-plus-hours-weekly-and-boosts-performance/)）。Amazon Ads 官方案例中，STEADY JAPAN 采用自动竞价后一个月内总 ACOS 改善 25%，同时保持销售水平（[Amazon Ads 案例研究](https://advertising.amazon.com/en-us/library/case-studies/flywheel-steady-japan-lowers-acos/)）——这是单个卖家的结果，不是普遍幅度。
 
 Content rephrased for compliance with licensing restrictions.
 

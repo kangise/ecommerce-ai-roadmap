@@ -1155,7 +1155,7 @@ def batch_analyze(
 | 资源 | 类型 | 说明 | 链接 |
 |------|------|------|------|
 | Ollama 官方文档 | 文档 | 免费，5 分钟部署本地 LLM | [ollama.com](https://ollama.com/) |
-| DeepLearning.AI: Finetuning LLMs | 免费短课 | Andrew Ng 团队出品，LoRA 微调入门 | [deeplearning.ai](https://www.deeplearning.ai/short-courses/finetuning-large-language-models/) |
+| DeepLearning.AI: Finetuning LLMs | 免费短课 | Andrew Ng 团队出品，LoRA 微调入门 | [deeplearning.ai](https://www.deeplearning.ai/courses/finetuning-large-language-models) |
 | Coursera: Generative AI for Everyone | 免费旁听 | Andrew Ng 主讲，AI 全景概览 | [coursera.org](https://www.coursera.org/learn/generative-ai-for-everyone) |
 | HuggingFace PEFT 文档 | 文档 | LoRA/QLoRA 官方参考 | [huggingface.co/docs/peft](https://huggingface.co/docs/peft) |
 | Unsloth GitHub | 文档+教程 | 2x 快速微调，Colab 示例丰富 | [github.com/unslothai/unsloth](https://github.com/unslothai/unsloth) |

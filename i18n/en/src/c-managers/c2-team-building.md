@@ -968,7 +968,7 @@ Monthly AI usage report
 
 | Resource | Platform | Duration | Who it's for | Link |
 |----------|----------|----------|--------------|------|
-| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5h | Mandatory for all | [deeplearning.ai](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/) |
+| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5h | Mandatory for all | [deeplearning.ai](https://www.deeplearning.ai/courses/chatgpt-prompt-eng) |
 | OpenAI Prompt Engineering Guide | OpenAI | Self-study | Recommended for all | [platform.openai.com](https://platform.openai.com/docs/guides/prompt-engineering) |
 | Anthropic Prompt Engineering Guide | Anthropic | Self-study | Claude users | [docs.anthropic.com](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering) |
 | Learn Prompting | Open-source community | Self-study | Those who want to go deep | [learnprompting.org](https://learnprompting.org/) |

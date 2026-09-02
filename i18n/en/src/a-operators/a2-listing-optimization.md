@@ -1751,7 +1751,7 @@ Check each item before delivery and report the results:
 
 | Resource | Platform | Length | For whom | Link |
 |----------|----------|--------|----------|------|
-| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5 h | everyone (good prompts are foundational) | [deeplearning.ai](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/) |
+| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5 h | everyone (good prompts are foundational) | [deeplearning.ai](https://www.deeplearning.ai/courses/chatgpt-prompt-eng) |
 | Amazon Listing Optimization Guide | Amazon Seller University | self-paced | beginners (official best practices) | [sellercentral.amazon.com](https://sellercentral.amazon.com/learn) |
 | A+ Content Best Practices | Amazon Brand Registry | self-paced | brand sellers | [brandregistry.amazon.com](https://brandregistry.amazon.com/) |
 | Canva Design School | Canva | self-paced | those doing A+ Content design | [canva.com/designschool](https://www.canva.com/designschool/) |
@@ -1772,7 +1772,7 @@ Check each item before delivery and report the results:
 | [Best Amazon Listing Optimization Tools 2026](https://amazonfba.org/blog/tool-comparisons/best-amazon-listing-optimization-tools) | AmazonFBA.org | 2026 listing-tool comparison with AI-feature reviews |
 | [Best Amazon Listing Optimization Tools](https://www.voc.ai/blog/best-amazon-listing-optimization-tools) | VOC.AI | AI-driven listing-optimization tool landscape |
 | [ChatGPT Prompts for Amazon Listing](https://sellerise.com/blog/chat-gpt-prompts-to-build-a-winning-amazon-listing/) | Sellerise | a practical set of ChatGPT listing prompts |
-| [ChatGPT for Amazon Sellers](https://revenuegeeks.com/chatgpt-for-amazon-seller) | RevenueGeeks | a comprehensive guide to ChatGPT in Amazon operations |
+| [ChatGPT for Amazon Sellers](https://revenuegeeks.com/guides/chatgpt-for-amazon-seller) | RevenueGeeks | a comprehensive guide to ChatGPT in Amazon operations |
 | [Generative Engine Optimization for Amazon](https://www.bebolddigital.com/blog/generative-engine-optimization-for-amazon) | BeBold Digital | how GEO affects Amazon listing strategy |
 | [Amazon Rufus AI Shopping Assistant Playbook](https://azariangrowthagency.com/amazon-ads-ai-shopping-assistants-playbook/) | Azarian Growth Agency | a hands-on Rufus-optimization guide |
 

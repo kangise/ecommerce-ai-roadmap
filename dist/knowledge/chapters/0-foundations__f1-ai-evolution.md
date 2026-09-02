@@ -753,7 +753,7 @@ SEO 关键词优化（文本分析）
 |------|------|------|-----------|
 | [But what is a GPT?](https://www.youtube.com/watch?v=wjZofJX0v4M) | 3Blue1Brown (YouTube) | 27 min | 最直观的 Transformer 可视化解释 |
 | [Intro to Large Language Models](https://www.youtube.com/watch?v=zjkBMFhNj_g) | Andrej Karpathy (YouTube) | 60 min | 前 OpenAI 研究员的 LLM 入门讲座 |
-| [ChatGPT Prompt Engineering](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/) | DeepLearning.AI | 1.5h | 免费课程，OpenAI 官方合作 |
+| [ChatGPT Prompt Engineering](https://www.deeplearning.ai/courses/chatgpt-prompt-eng) | DeepLearning.AI | 1.5h | 免费课程，OpenAI 官方合作 |
 | [AI for Everyone](https://www.coursera.org/learn/ai-for-everyone) | Coursera (Andrew Ng) | 6h | 非技术人员的 AI 入门，吴恩达主讲 |
 
 ### 10.2 进阶推荐（想深入理解）

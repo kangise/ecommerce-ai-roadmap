@@ -1155,7 +1155,7 @@ def batch_analyze(
 | リソース | 種類 | 説明 | リンク |
 |----------|------|------|--------|
 | Ollama 公式ドキュメント | ドキュメント | 無料、5 分でローカル LLM を配備 | [ollama.com](https://ollama.com/) |
-| DeepLearning.AI: Finetuning LLMs | 無料短期講座 | Andrew Ng チーム制作、LoRA ファインチューニング入門 | [deeplearning.ai](https://www.deeplearning.ai/short-courses/finetuning-large-language-models/) |
+| DeepLearning.AI: Finetuning LLMs | 無料短期講座 | Andrew Ng チーム制作、LoRA ファインチューニング入門 | [deeplearning.ai](https://www.deeplearning.ai/courses/finetuning-large-language-models) |
 | Coursera: Generative AI for Everyone | 無料聴講 | Andrew Ng 講義、AI 全景概観 | [coursera.org](https://www.coursera.org/learn/generative-ai-for-everyone) |
 | HuggingFace PEFT ドキュメント | ドキュメント | LoRA/QLoRA 公式リファレンス | [huggingface.co/docs/peft](https://huggingface.co/docs/peft) |
 | Unsloth GitHub | ドキュメント+チュートリアル | 2x 高速ファインチューニング、Colab 例が豊富 | [github.com/unslothai/unsloth](https://github.com/unslothai/unsloth) |

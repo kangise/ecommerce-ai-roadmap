@@ -199,7 +199,7 @@ Agent は万能ではない。多くのシーンは簡単な Python スクリプ
 | [CrewAI](https://docs.crewai.com/) | マルチ Agent 協業 | 中級 | 複数ロールの協業タスク | `pip install crewai` |
 | [n8n](https://n8n.io/) | ビジュアルワークフロー | 入門 | ノーコード/ローコード自動化 | Docker 配備 |
 | [Streamlit](https://streamlit.io/) | Web UI | 入門 | Agent の対話 UI を素早く構築 | `pip install streamlit` |
-| [LangChain](https://python.langchain.com/) | LLM アプリフレームワーク | 中級 | Agent ツールチェーン、Prompt 管理 | `pip install langchain` |
+| [LangChain](https://docs.langchain.com/oss/python/langchain/overview) | LLM アプリフレームワーク | 中級 | Agent ツールチェーン、Prompt 管理 | `pip install langchain` |
 | [OpenAI API](https://platform.openai.com/) | クラウド LLM | 入門 | 最高品質の推論 | `pip install openai` |
 | [Ollama](https://ollama.com/) | ローカル LLM | 入門 | データプライバシー、オフライン実行 | [ollama.com/download](https://ollama.com/download) |
 
@@ -1061,8 +1061,8 @@ def analyze_product_image(image_path: str) -> str:
 
 | リソース | 種類 | 説明 | リンク |
 |----------|------|------|--------|
-| AI Agents in LangGraph | 無料短期講座 | DeepLearning.AI 制作、LangGraph 入門 | [deeplearning.ai](https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph/) |
-| Multi AI Agent Systems with crewAI | 無料短期講座 | DeepLearning.AI 制作、CrewAI マルチ Agent | [deeplearning.ai](https://www.deeplearning.ai/short-courses/multi-ai-agent-systems-with-crewai/) |
+| AI Agents in LangGraph | 無料短期講座 | DeepLearning.AI 制作、LangGraph 入門 | [deeplearning.ai](https://www.deeplearning.ai/courses/ai-agents-in-langgraph) |
+| Multi AI Agent Systems with crewAI | 無料短期講座 | DeepLearning.AI 制作、CrewAI マルチ Agent | [deeplearning.ai](https://www.deeplearning.ai/courses/multi-ai-agent-systems-with-crewai) |
 | HuggingFace AI Agents Course | 無料講座 | 体系的な Agent 講座 | [huggingface.co](https://huggingface.co/learn/agents-course) |
 | LangGraph 公式ドキュメント | ドキュメント | 最も権威ある LangGraph リファレンス | [langchain-ai.github.io](https://langchain-ai.github.io/langgraph/) |
 | CrewAI 公式ドキュメント | ドキュメント | CrewAI フレームワークの完全ドキュメント | [docs.crewai.com](https://docs.crewai.com/) |

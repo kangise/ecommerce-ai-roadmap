@@ -933,7 +933,7 @@ Content rephrased for compliance with licensing restrictions. Source: [Prompt En
 |----------|--------|-----|
 | [OpenAI Prompt Engineering Guide](https://platform.openai.com/docs/guides/prompt-engineering) | OpenAI | the official best practices — most authoritative |
 | [Anthropic Prompt Engineering Guide](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview) | Anthropic | Claude-specific techniques, XML tag usage |
-| [ChatGPT Prompt Engineering for Developers](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/) | DeepLearning.AI | free 1.5 h hands-on course |
+| [ChatGPT Prompt Engineering for Developers](https://www.deeplearning.ai/courses/chatgpt-prompt-eng) | DeepLearning.AI | free 1.5 h hands-on course |
 | [12 Advanced Prompt Engineering Techniques](https://www.aipromptlibrary.app/blog/advanced-prompt-engineering-techniques) | AI Prompt Library | a current roundup of advanced techniques |
 
 ### 9.2 Practice plan

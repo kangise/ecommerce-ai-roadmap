@@ -1204,7 +1204,7 @@ Content rephrased for compliance with licensing restrictions. Source: [impakter.
 |------|------|------|--------|------|
 | Amazon Seller University Inventory Management | Amazon | 自学 | 所有卖家（官方免费课程，覆盖 FBA 库存管理、IPI Score、补货工具） | [sellercentral.amazon.com/learn](https://sellercentral.amazon.com/learn) |
 | Supply Chain Management Specialization | Coursera (Rutgers) | 16 周 | 想系统学习供应链的卖家（库存理论、需求预测、供应商管理） | [coursera.org](https://www.coursera.org/specializations/supply-chain-management) |
-| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5h | 所有人（学会写好 Prompt 是 AI 库存分析的基础） | [deeplearning.ai](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/) |
+| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5h | 所有人（学会写好 Prompt 是 AI 库存分析的基础） | [deeplearning.ai](https://www.deeplearning.ai/courses/chatgpt-prompt-eng) |
 | Prophet Quick Start Guide | Facebook/Meta | 1h | 有 Python 基础的卖家（时间序列预测入门） | [facebook.github.io/prophet](https://facebook.github.io/prophet/docs/quick_start.html) |
 
 ### 7.2 YouTube 频道推荐

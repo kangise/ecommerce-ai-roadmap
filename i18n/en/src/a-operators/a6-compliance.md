@@ -1336,7 +1336,7 @@ Verify each of these before delivering and report the result:
 | Amazon Seller University — Product Compliance | Amazon | self-paced | all sellers (official compliance requirements by category) | [sellercentral.amazon.com/learn](https://sellercentral.amazon.com/learn) |
 | EU Product Safety & CE Marking Guide | European Commission | self-paced | sellers focused on Europe (official CE-mark guide) | [ec.europa.eu/growth](https://single-market-economy.ec.europa.eu/single-market/ce-marking_en) |
 | CPSC Business Education | CPSC | self-paced | sellers focused on the US (consumer-product safety requirements) | [cpsc.gov/Business](https://www.cpsc.gov/Business--Manufacturing) |
-| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5h | everyone (writing good prompts is the basis of AI compliance research) | [deeplearning.ai](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/) |
+| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5h | everyone (writing good prompts is the basis of AI compliance research) | [deeplearning.ai](https://www.deeplearning.ai/courses/chatgpt-prompt-eng) |
 | VAT for E-Commerce Sellers | Various | self-paced | sellers in Europe (VAT registration and filing basics) | search "VAT for Amazon sellers" |
 
 ### 8.2 Recommended YouTube channels

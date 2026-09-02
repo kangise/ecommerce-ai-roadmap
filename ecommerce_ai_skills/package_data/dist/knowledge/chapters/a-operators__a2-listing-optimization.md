@@ -1782,7 +1782,7 @@ Content rephrased for compliance with licensing restrictions. Source: [bebolddig
 
 | 资源 | 平台 | 时长 | 适合谁 | 链接 |
 |------|------|------|--------|------|
-| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5h | 所有人（学会写好 Prompt 是基础） | [deeplearning.ai](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/) |
+| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5h | 所有人（学会写好 Prompt 是基础） | [deeplearning.ai](https://www.deeplearning.ai/courses/chatgpt-prompt-eng) |
 | Amazon Listing Optimization Guide | Amazon Seller University | 自学 | 新手卖家（官方最佳实践） | [sellercentral.amazon.com](https://sellercentral.amazon.com/learn) |
 | A+ Content Best Practices | Amazon Brand Registry | 自学 | 品牌卖家 | [brandregistry.amazon.com](https://brandregistry.amazon.com/) |
 | Canva Design School | Canva | 自学 | 需要做 A+ Content 设计的 | [canva.com/designschool](https://www.canva.com/designschool/) |
@@ -1803,7 +1803,7 @@ Content rephrased for compliance with licensing restrictions. Source: [bebolddig
 | [Best Amazon Listing Optimization Tools 2026](https://amazonfba.org/blog/tool-comparisons/best-amazon-listing-optimization-tools) | AmazonFBA.org | 2026 年 Listing 工具对比，含 AI 功能评测 |
 | [Best Amazon Listing Optimization Tools](https://www.voc.ai/blog/best-amazon-listing-optimization-tools) | VOC.AI | AI 驱动的 Listing 优化工具全景 |
 | [ChatGPT Prompts for Amazon Listing](https://sellerise.com/blog/chat-gpt-prompts-to-build-a-winning-amazon-listing/) | Sellerise | 实用的 ChatGPT Listing Prompt 集合 |
-| [ChatGPT for Amazon Sellers](https://revenuegeeks.com/chatgpt-for-amazon-seller) | RevenueGeeks | ChatGPT 在 Amazon 运营中的全面应用指南 |
+| [ChatGPT for Amazon Sellers](https://revenuegeeks.com/guides/chatgpt-for-amazon-seller) | RevenueGeeks | ChatGPT 在 Amazon 运营中的全面应用指南 |
 | [Generative Engine Optimization for Amazon](https://www.bebolddigital.com/blog/generative-engine-optimization-for-amazon) | BeBold Digital | GEO 如何影响 Amazon Listing 策略 |
 | [Amazon Rufus AI Shopping Assistant Playbook](https://azariangrowthagency.com/amazon-ads-ai-shopping-assistants-playbook/) | Azarian Growth Agency | Rufus 优化的实操指南 |
 

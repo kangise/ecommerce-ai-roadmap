@@ -163,7 +163,7 @@ What AI is weak at:
 
 | Tool | Price | Core capability | For whom | AI features |
 |------|-------|-----------------|----------|-------------|
-| [Helium 10 Adtomic](https://h10-wp.com/helium-10-adtomic/) | $229/mo (incl. in Platinum) | AI-driven bid automation, rules engine + AI advice | advanced sellers needing automated bid management | AI bid advice, auto-negatives, budget optimization |
+| [Helium 10 Ads (formerly Adtomic)](https://www.helium10.com/tools/adtomic/) | included in Diamond / Elite | AI-driven bid automation, rules engine + AI advice | advanced sellers needing automated bid management | AI bid advice, auto-negatives, budget optimization |
 | Jungle Scout PPC Manager | $49–84/mo | simplified ad management, keyword suggestions | beginners, friendly UI | basic AI keyword suggestions |
 | Perpetua (by Ascential) | % of ad spend | enterprise AI ad optimization, auto-bidding + budget allocation | sellers spending $5000+/month | fully automated AI bidding, target-ACOS optimization |
 | Pacvue | enterprise pricing | multi-platform ad management (Amazon+Walmart+Instacart) | large sellers/agencies | AI budget allocation, cross-platform optimization |
@@ -1557,7 +1557,7 @@ Content rephrased for compliance with licensing restrictions. Source: [delivered
 |----------|----------|--------|----------|------|
 | Amazon Advertising Learning Console | Amazon | self-paced | all sellers (free official cert, incl. SP/SB/SD courses) | [learningconsole.amazonadvertising.com](https://learningconsole.amazonadvertising.com/) |
 | Fundamentals of Digital Marketing | Google | 40 h | ad beginners (digital-ad basics, with cert) | [learndigital.withgoogle.com](https://learndigital.withgoogle.com/digitalgarage) |
-| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5 h | everyone (good prompts are the basis of AI ad analysis) | [deeplearning.ai](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/) |
+| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5 h | everyone (good prompts are the basis of AI ad analysis) | [deeplearning.ai](https://www.deeplearning.ai/courses/chatgpt-prompt-eng) |
 
 ### 7.2 Recommended YouTube channels
 

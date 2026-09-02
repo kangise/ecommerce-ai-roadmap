@@ -1334,7 +1334,7 @@ GPSR 于 2024 年 12 月 13 日生效，替代了旧的通用产品安全指令�
 | Amazon Seller University Product Compliance | Amazon | 自学 | 所有卖家（官方合规要求说明，按品类分类） | [sellercentral.amazon.com/learn](https://sellercentral.amazon.com/learn) |
 | EU Product Safety & CE Marking Guide | European Commission | 自学 | 主攻欧洲市场的卖家（官方 CE 标志指南） | [ec.europa.eu/growth](https://single-market-economy.ec.europa.eu/single-market/ce-marking_en) |
 | CPSC Business Education | CPSC | 自学 | 主攻美国市场的卖家（消费品安全要求） | [cpsc.gov/Business](https://www.cpsc.gov/Business--Manufacturing) |
-| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5h | 所有人（学会写好 Prompt 是 AI 合规调研的基础） | [deeplearning.ai](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/) |
+| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5h | 所有人（学会写好 Prompt 是 AI 合规调研的基础） | [deeplearning.ai](https://www.deeplearning.ai/courses/chatgpt-prompt-eng) |
 | VAT for E-Commerce Sellers | Various | 自学 | 在欧洲销售的卖家（VAT 注册和申报基础） | 搜索 "VAT for Amazon sellers" |
 
 ### 8.2 YouTube 频道推荐

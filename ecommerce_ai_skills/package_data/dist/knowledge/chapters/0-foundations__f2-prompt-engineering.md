@@ -930,7 +930,7 @@ Content rephrased for compliance with licensing restrictions. Source: [Prompt En
 |------|------|-----------|
 | [OpenAI Prompt Engineering Guide](https://platform.openai.com/docs/guides/prompt-engineering) | OpenAI | 官方最佳实践，最权威 |
 | [Anthropic Prompt Engineering Guide](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview) | Anthropic | Claude 专用技巧，XML 标签用法 |
-| [ChatGPT Prompt Engineering for Developers](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/) | DeepLearning.AI | 免费课程，1.5 小时，实操为主 |
+| [ChatGPT Prompt Engineering for Developers](https://www.deeplearning.ai/courses/chatgpt-prompt-eng) | DeepLearning.AI | 免费课程，1.5 小时，实操为主 |
 | [12 Advanced Prompt Engineering Techniques](https://www.aipromptlibrary.app/blog/advanced-prompt-engineering-techniques) | AI Prompt Library | 2026 年最新的高级技巧汇总 |
 
 ### 9.2 实践建议

@@ -31,7 +31,7 @@
     "title": "F1. AI 的前世今生 | The Evolution of AI",
     "path": "0-foundations/f1-ai-evolution.md",
     "body_path": "chapters/0-foundations__f1-ai-evolution.md",
-    "body_chars": 20279,
+    "body_chars": 20249,
     "summary": "> **路径**: Path 0: AI 基础先行 · **模块**: F1 > **最后更新**: 2026-07-31 > **难度**: 入门 > **预计时间**: 2 小时 > **前提**: 无，零基础可学 --- --- 1. [第一性原理](#1-第一性原理llm-到底在做什么) · 2. [发展脉络](#2-发展脉络从规则到智能) · 3. [Transformer](#3-transformer-深入注意力就是一切) · 4. [大语言模型](#4-大语言模型从-gpt-到多模态) · 5. [多模态与推理](#5-多模态与推理ai-的感官升级) · 6. [Agent 时",
     "key_entities": [
       "asin",
@@ -54,7 +54,7 @@
     "title": "F2. Prompt 工程 | Prompt Engineering",
     "path": "0-foundations/f2-prompt-engineering.md",
     "body_path": "chapters/0-foundations__f2-prompt-engineering.md",
-    "body_chars": 19386,
+    "body_chars": 19356,
     "summary": "> **路径**: Path 0: AI 基础先行 · **模块**: F2 > **最后更新**: 2026-07-31 > **难度**: 入门 → 中级 > **预计时间**: 3 小时 > **前置模块**: [F1 AI 的前世今生](f1-ai-evolution.md) --- --- 1. [为什么 Prompt 重要](#1-为什么-prompt-重要) · 2. [CRISP 框架](#2-crisp-框架结构化-prompt-的方法论) · 3. [六种高级技巧](#3-六种高级-prompt-技巧) · 4. [本库写法约定](#4-本库的-prompt-写法约定) ·",
     "key_entities": [
       "a_plus_content",
@@ -80,7 +80,7 @@
     "title": "F3. 知识库与 RAG | Knowledge Base & RAG",
     "path": "0-foundations/f3-rag-knowledge.md",
     "body_path": "chapters/0-foundations__f3-rag-knowledge.md",
-    "body_chars": 13960,
+    "body_chars": 13953,
     "summary": "> **路径**: Path 0: AI 基础先行 · **模块**: F3 > **最后更新**: 2026-07-31 > **难度**: 中级 > **预计时间**: 2 小时 > **前置模块**: [F1 AI 的前世今生](f1-ai-evolution.md)、[F2 Prompt 工程](f2-prompt-engineering.md) --- --- 1. [为什么 AI 不知道你的产品信息](#1-为什么-ai-不知道你的产品信息) · 2. [Embedding 原理](#2-embedding-原理让-ai-理解语义) · 3. [向量数据库](#3-向量数据库存储和",
     "key_entities": [
       "cod",
@@ -100,7 +100,7 @@
     "title": "F4. 自动化与 Agent | Automation & AI Agents",
     "path": "0-foundations/f4-agent-automation.md",
     "body_path": "chapters/0-foundations__f4-agent-automation.md",
-    "body_chars": 14728,
+    "body_chars": 14714,
     "summary": "> **路径**: Path 0: AI 基础先行 · **模块**: F4 > **最后更新**: 2026-07-31 > **难度**: 中级 > **预计时间**: 2 小时 > **前置模块**: [F1 AI 的前世今生](f1-ai-evolution.md)、[F2 Prompt 工程](f2-prompt-engineering.md)、[F3 知识库与 RAG](f3-rag-knowledge.md) --- --- 1. [从 Prompt 到 Agent](#1-从-prompt-到-agentai-能力的四个层次) · 2. [自动化三层模型](#2-自动化三层模型",
     "key_entities": [
       "asin",
@@ -172,7 +172,7 @@
     "title": "A1. 选品与市场洞察 | Product Research & Market Insights",
     "path": "a-operators/a1-product-research.md",
     "body_path": "chapters/a-operators__a1-product-research.md",
-    "body_chars": 31013,
+    "body_chars": 30983,
     "summary": "> **路径**: Path A: 运营人 · **模块**: A1 > **最后更新**: 2026-07-31 > **难度**: 入门 > **预计时间**: 每天 30 分钟，1-2 周 --- --- 1. [选品方法论](#1-选品方法论ai-之前你需要理解的基础) · 2. [AI 工具全景](#2-ai-工具全景选品阶段用什么) · 3. [Prompt 模板库](#3-prompt-模板库选品专用) · 4. [选品 SOP](#4-选品实战工作流) · 5. [常见陷阱](#5-常见选品陷阱) · 6. [进阶技巧](#6-进阶技巧) · 7. [学习资源](#7-学习资源",
     "key_entities": [
       "acos",
@@ -335,7 +335,7 @@
     "title": "A2. Listing 与内容创作 | Listing & Content Creation",
     "path": "a-operators/a2-listing-optimization.md",
     "body_path": "chapters/a-operators__a2-listing-optimization.md",
-    "body_chars": 54007,
+    "body_chars": 53984,
     "summary": "> **路径**: Path A: 运营人 · **模块**: A2 > **最后更新**: 2026-07-31 > **难度**: 进阶 > **预计时间**: 每天 30 分钟，1-2 周 --- **TL;DR**: 1100+ 行的 Listing 优化完整指南。核心看点：Amazon 搜索算法从 A9 到 COSMO/Rufus 的演进、Listing 全套一键生成 Prompt、多语言本地化（不是翻译）、Q&A 预埋策略。如果时间有限，优先看 1.1（算法演进）+ 3（Prompt 模板）+ 5（多语言）。 --- 1. [Listing 方法论](#1-listing-方法论a",
     "key_entities": [
       "a_plus_content",
@@ -387,7 +387,7 @@
     "title": "A3. 广告优化 | Advertising Optimization",
     "path": "a-operators/a3-advertising.md",
     "body_path": "chapters/a-operators__a3-advertising.md",
-    "body_chars": 48016,
+    "body_chars": 47997,
     "summary": "> **路径**: Path A: 运营人 · **模块**: A3 > **最后更新**: 2026-07-31 > **难度**: 进阶 > **预计时间**: 每天 30 分钟，1-2 周 --- --- 1. [广告方法论](#1-广告方法论ai-之前你需要理解的基础) · 2. [AI 工具全景](#2-ai-工具全景广告阶段用什么) · 3. [Prompt 模板库](#3-prompt-模板库广告专用) · 4. [广告实战工作流](#4-广告实战工作流) · 5. [常见陷阱](#5-常见广告陷阱) · 6. [进阶技巧](#6-进阶技巧) · 7. [学习资源](#7-学习资",
     "key_entities": [
       "a_plus_content",
@@ -438,7 +438,7 @@
     "title": "A4. 客服与售后 | Customer Service & After-Sales",
     "path": "a-operators/a4-customer-service.md",
     "body_path": "chapters/a-operators__a4-customer-service.md",
-    "body_chars": 40972,
+    "body_chars": 40942,
     "summary": "> **路径**: Path A: 运营人 · **模块**: A4 > **最后更新**: 2026-07-31 > **难度**: 进阶 > **预计时间**: 每天 30 分钟，1-2 周 --- --- 1. [客服方法论](#1-客服方法论ai-之前你需要理解的基础) · 2. [AI 工具全景](#2-ai-工具全景客服阶段用什么) · 3. [Prompt 模板库](#3-prompt-模板库客服专用) · 4. [客服实战工作流](#4-客服实战工作流) · 5. [常见陷阱](#5-常见客服陷阱) · 6. [进阶技巧](#6-进阶技巧) · 7. [学习资源](#7-学习资",
     "key_entities": [
       "a_plus_content",
@@ -465,7 +465,7 @@
     "title": "A5. 库存与供应链 | Inventory & Supply Chain",
     "path": "a-operators/a5-inventory.md",
     "body_path": "chapters/a-operators__a5-inventory.md",
-    "body_chars": 35889,
+    "body_chars": 35859,
     "summary": "> **路径**: Path A: 运营人 · **模块**: A5 > **最后更新**: 2026-07-31 > **难度**: 进阶 > **预计时间**: 每天 30 分钟，1-2 周 --- --- 1. [库存方法论](#1-库存方法论ai-之前你需要理解的基础) · 2. [AI 工具全景](#2-ai-工具全景库存管理阶段用什么) · 3. [Prompt 模板库](#3-prompt-模板库库存专用) · 4. [库存实战工作流](#4-库存实战工作流) · 5. [常见陷阱](#5-常见库存陷阱) · 6. [进阶技巧](#6-进阶技巧) · 7. [学习资源](#7-学",
     "key_entities": [
       "aged_inventory",
@@ -513,7 +513,7 @@
     "title": "A6. 合规与风控 | Compliance & Risk Management",
     "path": "a-operators/a6-compliance.md",
     "body_path": "chapters/a-operators__a6-compliance.md",
-    "body_chars": 42415,
+    "body_chars": 42385,
     "summary": "> **路径**: Path A: 运营人 · **模块**: A6 > **最后更新**: 2026-07-31 > **难度**: 进阶 > **预计时间**: 每天 30 分钟，1-2 周 --- --- 1. [合规方法论](#1-合规方法论ai-之前你需要理解的基础) · 2. [AI 工具全景](#2-ai-工具全景合规阶段用什么) · 3. [Prompt 模板库](#3-prompt-模板库合规专用) · 4. [合规实战工作流](#4-合规实战工作流) · 5. [EU AI Act](#5-eu-ai-act你用-ai-这件事本身也要合规了) · 6. [常见陷阱](#6-",
     "key_entities": [
       "asin",
@@ -556,7 +556,7 @@
     "title": "A7. AI 图片与视频生成 | AI Visual Content Creation",
     "path": "a-operators/a7-visual-content.md",
     "body_path": "chapters/a-operators__a7-visual-content.md",
-    "body_chars": 12487,
+    "body_chars": 12505,
     "summary": "> **路径**: Path A: 运营人 · **模块**: A7 > **最后更新**: 2026-07-31 > **难度**: 中级 > **预计时间**: 每天 30 分钟，1-2 周 > **前置模块**: [A2 Listing 与内容创作](a2-listing-optimization.md) --- 1. [为什么 AI 视觉内容是 2026 年的必修课](#1-为什么-ai-视觉内容是-2026-年的必修课) 2. [AI 产品图片生成](#2-ai-产品图片生成) 3. [AI 产品视频生成](#3-ai-产品视频生成) 4. [各平台图片/视频规格](#4-各平台图片",
     "key_entities": [
       "brand_story",
@@ -682,7 +682,7 @@
     "title": "B3. RAG 知识库系统 | RAG Knowledge Base System",
     "path": "b-developers/b3-rag-knowledge-base.md",
     "body_path": "chapters/b-developers__b3-rag-knowledge-base.md",
-    "body_chars": 40546,
+    "body_chars": 40620,
     "summary": "> **路径**: Path B: 技术人 · **模块**: B3 > **最后更新**: 2026-07-31 > **难度**: 中级 → 进阶 > **前提**: B1 数据管道基础（Python、文件处理）、B2 基本 ML 概念 > **预计时间**: 每天 1 小时，2-3 周 --- --- 1. [RAG 方法论](#1-rag-方法论) · 2. [工具全景](#2-工具全景) · 3. [技术栈选择](#3-技术栈选择详解) · 4. [代码实战](#4-代码实战) · 5. [电商 RAG 应用](#5-电商-rag-应用场景) · 6. [常见陷阱](#6-常见陷阱)",
     "key_entities": [
       "asin",
@@ -704,7 +704,7 @@
     "title": "B4. AI Agent 与工作流自动化 | AI Agent & Workflow Automation",
     "path": "b-developers/b4-agent-workflow.md",
     "body_path": "chapters/b-developers__b4-agent-workflow.md",
-    "body_chars": 33232,
+    "body_chars": 33245,
     "summary": "> **路径**: Path B: 技术人 · **模块**: B4 > **最后更新**: 2026-07-31 > **难度**: 高级 > **前提**: B1 数据管道基础（Python、文件处理）、B3 RAG 基本概念 > **预计时间**: 每天 1 小时，2-3 周 --- --- 1. [Agent 方法论](#1-agent-方法论) · 2. [工具全景](#2-工具全景) · 3. [代码实战](#3-代码实战) · 4. [电商 Agent 应用](#4-电商-agent-应用场景) · 5. [常见陷阱](#5-常见陷阱) · 6. [Token 成本工程](#6-",
     "key_entities": [
       "asin",
@@ -729,7 +729,7 @@
     "title": "B5. 本地模型部署与微调 | Local Model Deployment & Fine-tuning",
     "path": "b-developers/b5-local-model-deploy.md",
     "body_path": "chapters/b-developers__b5-local-model-deploy.md",
-    "body_chars": 34392,
+    "body_chars": 34385,
     "summary": "> **路径**: Path B: 技术人 · **模块**: B5 > **最后更新**: 2026-07-31 > **难度**: 高级 > **前提**: B1 数据管道基础（Python）、B3 RAG 基本概念、B4 Agent 基础 > **预计时间**: 每天 1 小时，3-4 周 --- --- 1. [本地部署方法论](#1-本地部署方法论) · 2. [工具全景](#2-工具全景) · 3. [代码实战](#3-代码实战) · 4. [硬件选购指南](#4-硬件选购指南) · 5. [常见陷阱](#5-常见陷阱) · 6. [进阶技术](#6-进阶技术) · 7. [学习资",
     "key_entities": [
       "asin",
@@ -751,7 +751,7 @@
     "title": "B6. MCP 集成与 Agentic 电商工作流",
     "path": "b-developers/b6-mcp-agentic-workflow.md",
     "body_path": "chapters/b-developers__b6-mcp-agentic-workflow.md",
-    "body_chars": 31086,
+    "body_chars": 31176,
     "summary": "> **路径**: Path B: 技术人 · **模块**: B6 > **最后更新**: 2026-07-31 > **难度**: 高级 > **预计时间**: 每天 1 小时，2-3 周 > **前置模块**: [B4 AI Agent 与自动化](b4-agent-workflow.md) --- 1. [MCP 是什么](#1-mcp-是什么) · 2. [电商 MCP 生态](#2-电商-mcp-生态) · 3. [Amazon Ads MCP Server](#3-amazon-ads-mcp-server) · 4. [Shopify MCP 集成](#4-shopify-mc",
     "key_entities": [
       "acos",
@@ -841,7 +841,7 @@
     "title": "C1. AI 能力评估与规划 | AI Capability Assessment & Planning",
     "path": "c-managers/c1-ai-assessment.md",
     "body_path": "chapters/c-managers__c1-ai-assessment.md",
-    "body_chars": 14366,
+    "body_chars": 14336,
     "summary": "> **路径**: Path C: 管理者 · **模块**: C1 > **最后更新**: 2026-07-31 > **难度**: 入门 > **预计时间**: 1-2 小时 --- 1. [AI 落地方法论](#1-ai-落地方法论先想清楚再动手) · 2. [优先级矩阵](#2-ai-落地优先级矩阵) · 3. [Prompt 模板](#3-prompt-模板管理者专用) · 4. [评估工具](#4-评估工具) · 5. [实战工作流](#5-实战工作流ai-落地规划-sop) · 6. [常见陷阱](#6-常见陷阱) · 7. [案例分析](#7-案例分析不同规模团队的-ai-落地",
     "key_entities": [
       "acos",
@@ -861,7 +861,7 @@
     "title": "C2. 团队 AI 技能建设 | AI Team Upskilling & Enablement",
     "path": "c-managers/c2-team-building.md",
     "body_path": "chapters/c-managers__c2-team-building.md",
-    "body_chars": 24920,
+    "body_chars": 24890,
     "summary": "> **路径**: Path C: 管理者 · **模块**: C2 > **最后更新**: 2026-07-31 > **难度**: 入门 > **预计时间**: 1-2 小时 > **前置模块**: [C1 AI 能力评估与规划](c1-ai-assessment.md) --- --- 1. [培训方法论](#1-培训方法论为什么大多数-ai-培训都失败了) · 2. [按角色定制的培训课程](#2-按角色定制的培训课程) · 3. [团队 Prompt 库搭建](#3-团队-prompt-库搭建) · 4. [AI 使用规范制定](#4-ai-使用规范制定) · 5. [Prompt ",
     "key_entities": [
       "a_plus_content",
@@ -1145,7 +1145,7 @@
     "title": "D12. Faire 批发电商 AI 指南",
     "path": "d-platforms/d12-faire-wholesale-ai-guide.md",
     "body_path": "chapters/d-platforms__d12-faire-wholesale-ai-guide.md",
-    "body_chars": 9521,
+    "body_chars": 9401,
     "summary": "> **路径**: Path D: 多平台 · **模块**: D12 > **最后更新**: 2026-07-31 > **难度**: 入门 > **预计时间**: 45 分钟 --- > GMV ~$3B（2025），收入 $500M+（+40% YoY），700K+ 零售商。B2B 批发平台，连接品牌与独立零售商。与 B2C 电商完全不同的商业模式。 1. [Faire 商业模式](#1-faire-商业模式) · 2. [AI 应用场景](#2-ai-应用场景) · 3. [Faire 战略分析与 AI 应用](#3-faire-战略分析与-ai-应用) · 4. [常见陷阱](#4-",
     "key_entities": [
       "brand_story",
@@ -1521,7 +1521,7 @@
     "title": "E5. WhatsApp Business AI 客服与营销指南",
     "path": "e-social-media/e5-whatsapp-business-ai-guide.md",
     "body_path": "chapters/e-social-media__e5-whatsapp-business-ai-guide.md",
-    "body_chars": 11129,
+    "body_chars": 11066,
     "summary": "> **路径**: Path E: 社交媒体 · **模块**: E5 > **最后更新**: 2026-07-31 > **难度**: 中级 > **预计时间**: 1-1.5 小时 > **前置模块**: [A4 客服与售后](../a-operators/a4-customer-service.md) --- 1. [WhatsApp 在电商中的定位](#1-whatsapp-在电商中的定位) 2. [AI Chatbot 搭建方法论](#2-ai-chatbot-搭建方法论) 3. [WhatsApp 营销自动化](#3-whatsapp-营销自动化) 4. [售后自动化](#4-售后",
     "key_entities": [
       "cod",
@@ -1584,7 +1584,7 @@
     "title": "Awesome AI Skills & Rules | AI IDE 技能文件与规则集合",
     "path": "resources/awesome-ai-skills.md",
     "body_path": "chapters/resources__awesome-ai-skills.md",
-    "body_chars": 4856,
+    "body_chars": 4854,
     "summary": "> AI IDE（Kiro/Cursor/Windsurf/Claude Code）的 Skills、Steering Files、Rules 集合。 > 让 AI 按照你的规范工作，不再每次重复解释。 > 最后更新: 2026-03-15 --- - [什么是 AI Skills / Rules](#什么是-ai-skills--rules) - [外部 Awesome Lists 和资源](#外部-awesome-lists-和资源) - [Kiro Skills & Steering Files](#kiro-skills--steering-files) - [Cursor Rules",
     "key_entities": [
       "cod"
@@ -1597,7 +1597,7 @@
     "title": "Awesome MCP Servers & AI Agent 工具集 | Awesome MCP & Agent Tools for E-Commerce",
     "path": "resources/awesome-mcp-agents.md",
     "body_path": "chapters/resources__awesome-mcp-agents.md",
-    "body_chars": 9380,
+    "body_chars": 9376,
     "summary": "> 电商 AI 自动化必备的 MCP Server、Agent 框架和外部资源集合。 > 最后更新: 2026-03-15 --- - [外部 Awesome Lists 和目录网站](#外部-awesome-lists-和目录网站) - [电商 MCP Servers（推荐）](#电商-mcp-servers推荐) - [广告平台 MCP Servers](#广告平台-mcp-servers) - [SEO / 数据分析 MCP Servers](#seo--数据分析-mcp-servers) - [营销自动化 MCP Servers](#营销自动化-mcp-servers) - [通用工具",
     "key_entities": [
       "campaign",

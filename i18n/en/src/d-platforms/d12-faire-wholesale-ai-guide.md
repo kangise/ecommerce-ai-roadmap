@@ -62,7 +62,7 @@ After this module you'll be able to:
 
 ### 2.1 Faire Algorithm and Ranking Mechanism
 
-Faire's search algorithm decides which brands retailers see. Here are the ranking factors based on hands-on experience ([Smoothed.io](https://www.smoothed.io/blog/faire-account-settings-that-drive-sales)):
+Faire's search algorithm decides which brands retailers see. The ranking factors below come from hands-on experience; some are corroborated by [MultiSellr's Faire SEO guide](https://multisellr.com/blog/how-to-rank-with-seo-on-faire), though Faire does not publish its full ranking rules:
 
 ```
 Faire search-ranking factors:
@@ -91,11 +91,11 @@ Content rephrased for compliance with licensing restrictions.
 
 ### 2.2 Faire Account-Settings Optimization (High-Leverage Actions)
 
-Based on hands-on data from [Smoothed.io](https://www.smoothed.io/blog/faire-account-settings-that-drive-sales), the following setting adjustments can significantly boost exposure:
+The following setting adjustments widen the range of retailer filters you show up in:
 
 **Set MOQ to $0 (the highest leverage)**
 
-Faire retailers can filter by MOQ: $0, $100, $200. If your MOQ is set to $200, you only appear when a retailer selects the $200 filter. Setting it to $0 makes you appear in all three filters — one setting change brings 3x exposure.
+Faire retailers can filter by MOQ: $0, $100, $200. If your MOQ is set to $200 you only appear when a retailer selects the $200 filter; set it to $0 and you appear under all three. That widens filter coverage — it does not mean three times the impressions.
 
 Small orders aren't a problem — they bring reviews, train the algorithm, and eventually convert into large repurchases.
 
@@ -176,7 +176,7 @@ Please generate complete Faire brand-page content:
 
 ### 2.4 Faire Ads (Promoted Listings)
 
-Faire's ad system is a CPC model. Based on hands-on data ([Smoothed.io](https://www.smoothed.io/blog/faire-account-settings-that-drive-sales)): $570 in ad spend produced $1,979 in first-order sales (3.5x ROAS), and that doesn't include these retailers' subsequent repurchases.
+Faire's ad system is a CPC model. Little public return data exists and Faire publishes no benchmark, so the practices below are given by mechanism rather than attached to a ROAS figure — judge the effect from your own campaign data.
 
 ```
 Faire Ads best practices:

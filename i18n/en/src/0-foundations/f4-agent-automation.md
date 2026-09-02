@@ -620,8 +620,8 @@ Output: an agent system + team usage norms
 
 | Resource | Source | Why |
 |----------|--------|-----|
-| [AI Agents in LangGraph](https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph/) | DeepLearning.AI | free course, LangGraph agent intro |
-| [Multi AI Agent Systems with CrewAI](https://www.deeplearning.ai/short-courses/multi-ai-agent-systems-with-crewai/) | DeepLearning.AI | free course, multi-agent collaboration |
+| [AI Agents in LangGraph](https://www.deeplearning.ai/courses/ai-agents-in-langgraph) | DeepLearning.AI | free course, LangGraph agent intro |
+| [Multi AI Agent Systems with CrewAI](https://www.deeplearning.ai/courses/multi-ai-agent-systems-with-crewai) | DeepLearning.AI | free course, multi-agent collaboration |
 | [MCP official docs](https://modelcontextprotocol.io/) | Anthropic | the authoritative MCP reference |
 
 ### 8.2 Going deeper

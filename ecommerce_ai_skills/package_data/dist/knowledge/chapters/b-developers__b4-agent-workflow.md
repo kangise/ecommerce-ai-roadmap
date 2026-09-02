@@ -199,7 +199,7 @@ Agent 不是万能的。很多场景用简单的 Python 脚本就能解决，不
 | [CrewAI](https://docs.crewai.com/) | 多 Agent 协作 | 中级 | 多角色协作任务 | `pip install crewai` |
 | [n8n](https://n8n.io/) | 可视化工作流 | 入门 | 无代码/低代码自动化 | Docker 部署 |
 | [Streamlit](https://streamlit.io/) | Web 界面 | 入门 | 快速搭建 Agent 交互界面 | `pip install streamlit` |
-| [LangChain](https://python.langchain.com/) | LLM 应用框架 | 中级 | Agent 工具链、Prompt 管理 | `pip install langchain` |
+| [LangChain](https://docs.langchain.com/oss/python/langchain/overview) | LLM 应用框架 | 中级 | Agent 工具链、Prompt 管理 | `pip install langchain` |
 | [OpenAI API](https://platform.openai.com/) | 云端 LLM | 入门 | 最高质量推理 | `pip install openai` |
 | [Ollama](https://ollama.com/) | 本地 LLM | 入门 | 数据隐私、离线运行 | [ollama.com/download](https://ollama.com/download) |
 
@@ -1063,8 +1063,8 @@ def analyze_product_image(image_path: str) -> str:
 
 | 资源 | 类型 | 说明 | 链接 |
 |------|------|------|------|
-| AI Agents in LangGraph | 免费短课 | DeepLearning.AI 出品，LangGraph 入门 | [deeplearning.ai](https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph/) |
-| Multi AI Agent Systems with crewAI | 免费短课 | DeepLearning.AI 出品，CrewAI 多 Agent | [deeplearning.ai](https://www.deeplearning.ai/short-courses/multi-ai-agent-systems-with-crewai/) |
+| AI Agents in LangGraph | 免费短课 | DeepLearning.AI 出品，LangGraph 入门 | [deeplearning.ai](https://www.deeplearning.ai/courses/ai-agents-in-langgraph) |
+| Multi AI Agent Systems with crewAI | 免费短课 | DeepLearning.AI 出品，CrewAI 多 Agent | [deeplearning.ai](https://www.deeplearning.ai/courses/multi-ai-agent-systems-with-crewai) |
 | HuggingFace AI Agents Course | 免费课程 | 系统化 Agent 课程 | [huggingface.co](https://huggingface.co/learn/agents-course) |
 | LangGraph 官方文档 | 文档 | 最权威的 LangGraph 参考 | [langchain-ai.github.io](https://langchain-ai.github.io/langgraph/) |
 | CrewAI 官方文档 | 文档 | CrewAI 框架完整文档 | [docs.crewai.com](https://docs.crewai.com/) |

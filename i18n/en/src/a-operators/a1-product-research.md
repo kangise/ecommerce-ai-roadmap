@@ -1259,7 +1259,7 @@ Check each item before delivery and report the results:
 
 | Resource | Platform | Length | For whom | Link |
 |----------|----------|--------|----------|------|
-| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5 h | everyone (writing good prompts is foundational) | [deeplearning.ai](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/) |
+| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5 h | everyone (writing good prompts is foundational) | [deeplearning.ai](https://www.deeplearning.ai/courses/chatgpt-prompt-eng) |
 | OpenAI Prompt Engineering Guide | OpenAI | self-paced | everyone (official best practices) | [platform.openai.com](https://platform.openai.com/docs/guides/prompt-engineering) |
 | Kaggle: Pandas Course | Kaggle | 4 h | those analyzing data with code (pairs with Path B) | [kaggle.com/learn/pandas](https://www.kaggle.com/learn/pandas) |
 | Amazon Seller University | Amazon | self-paced | beginners (official tutorials) | [sellercentral.amazon.com](https://sellercentral.amazon.com/learn) |

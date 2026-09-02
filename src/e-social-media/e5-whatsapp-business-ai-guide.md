@@ -214,14 +214,14 @@ Content rephrased for compliance with licensing restrictions.
 | Zoko | 多渠道，团队协作 | $34.99/月起 | 团队使用 |
 | Interakt | 印度市场强 | $15/月起 | 印度/东南亚 |
 | SleekFlow | 全渠道客服+CRM | 付费 | 中大型品牌 |
-| Qualimero | AI 销售顾问，Shopify 深度集成（[Qualimero](https://qualimero.com/en/blog/shopify-whatsapp-integration-ai-sales-consultant-guide)） | 付费 | AI 驱动销售 |
+| Qualimero | AI 销售顾问，Shopify 深度集成（[Qualimero](https://qualimero.com/en/blog/shopify-whatsapp)） | 付费 | AI 驱动销售 |
 | Respond.io | 多渠道消息平台 | $79/月起 | 多渠道管理 |
 
 Content rephrased for compliance with licensing restrictions.
 
 ### 3.5 WhatsApp 消息打开率数据
 
-WhatsApp 消息的效果远超传统营销渠道（[Qualimero](https://qualimero.com/en/blog/whatsapp-business-account-complete-guide-sales-consulting)）：
+WhatsApp 消息的效果远超传统营销渠道（[Qualimero](https://qualimero.com/en/blog/whatsapp-business-account-create)）：
 
 | 渠道 | 打开率 | 回复率 | 转化率 |
 |------|--------|--------|--------|

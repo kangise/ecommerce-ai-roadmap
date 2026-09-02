@@ -1205,7 +1205,7 @@ Content rephrased for compliance with licensing restrictions. Source: [impakter.
 |----------|----------|--------|----------|------|
 | Amazon Seller University — Inventory Management | Amazon | self-paced | all sellers (official free courses on FBA inventory management, IPI Score, restock tools) | [sellercentral.amazon.com/learn](https://sellercentral.amazon.com/learn) |
 | Supply Chain Management Specialization | Coursera (Rutgers) | 16 weeks | sellers wanting to learn supply chain systematically (inventory theory, demand forecasting, supplier management) | [coursera.org](https://www.coursera.org/specializations/supply-chain-management) |
-| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5h | everyone (writing good prompts is the basis of AI inventory analysis) | [deeplearning.ai](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/) |
+| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5h | everyone (writing good prompts is the basis of AI inventory analysis) | [deeplearning.ai](https://www.deeplearning.ai/courses/chatgpt-prompt-eng) |
 | Prophet Quick Start Guide | Facebook/Meta | 1h | sellers with a Python basis (time-series forecasting intro) | [facebook.github.io/prophet](https://facebook.github.io/prophet/docs/quick_start.html) |
 
 ### 7.2 Recommended YouTube channels

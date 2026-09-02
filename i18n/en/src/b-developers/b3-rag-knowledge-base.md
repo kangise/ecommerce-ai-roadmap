@@ -140,7 +140,7 @@ user asks → question embedding → vector similarity search → retrieve Top-K
 | Tool | Type | Difficulty | Best scenario | Install |
 |------|------|------------|---------------|---------|
 | [LlamaIndex](https://docs.llamaindex.ai/) | RAG framework | beginner | quickly build RAG, document Q&A | `pip install llama-index` |
-| [LangChain](https://python.langchain.com/) | LLM-app framework | intermediate | complex LLM workflows, Agents | `pip install langchain` |
+| [LangChain](https://docs.langchain.com/oss/python/langchain/overview) | LLM-app framework | intermediate | complex LLM workflows, Agents | `pip install langchain` |
 | [Chroma](https://www.trychroma.com/) | vector database | beginner | local development, small data | `pip install chromadb` |
 | [Ollama](https://ollama.com/) | local LLM | beginner | don't want the OpenAI API, data privacy | [ollama.com/download](https://ollama.com/download) |
 | [OpenAI API](https://platform.openai.com/) | cloud LLM | beginner | highest-quality answers, quick prototyping | `pip install openai` |
@@ -173,7 +173,7 @@ These are the two most popular RAG frameworks, often compared:
 
 **Conclusion**: for beginners use LlamaIndex (simpler); bring in LangChain when you need complex workflows. This module is centered on LlamaIndex.
 
-Reference docs: [LlamaIndex official docs](https://docs.llamaindex.ai/) | [LangChain official docs](https://python.langchain.com/)
+Reference docs: [LlamaIndex official docs](https://docs.llamaindex.ai/) | [LangChain official docs](https://docs.langchain.com/oss/python/langchain/overview)
 
 ### 3.2 Embedding-model choice
 
@@ -1202,8 +1202,8 @@ def build_rag_agent(
 | Resource | Platform | Length | For whom | Link |
 |----------|----------|--------|----------|------|
 | LlamaIndex official docs | LlamaIndex | continuously updated | RAG beginner to advanced | [docs.llamaindex.ai](https://docs.llamaindex.ai/) |
-| Building Agentic RAG | DeepLearning.AI | 1h | RAG + Agent combination | [deeplearning.ai](https://www.deeplearning.ai/short-courses/building-agentic-rag-with-llamaindex/) |
-| LangChain official docs | LangChain | continuously updated | LLM-app development | [python.langchain.com](https://python.langchain.com/) |
+| Building Agentic RAG | DeepLearning.AI | 1h | RAG + Agent combination | [deeplearning.ai](https://www.deeplearning.ai/courses/building-agentic-rag-with-llamaindex) |
+| LangChain official docs | LangChain | continuously updated | LLM-app development | [python.langchain.com](https://docs.langchain.com/oss/python/langchain/overview) |
 | HuggingFace NLP Course | HuggingFace | 10h+ | NLP and embedding basics | [huggingface.co/learn/nlp-course](https://huggingface.co/learn/nlp-course) |
 | Chroma official docs | Chroma | 2h | vector-database intro | [trychroma.com](https://www.trychroma.com/) |
 | Ollama official docs | Ollama | 1h | local LLM deployment | [ollama.com](https://ollama.com/) |

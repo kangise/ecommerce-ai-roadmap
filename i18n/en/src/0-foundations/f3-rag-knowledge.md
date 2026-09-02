@@ -522,7 +522,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [RAG Arch
 
 | Resource | Source | Why |
 |----------|--------|-----|
-| [Building RAG from Scratch](https://www.deeplearning.ai/short-courses/building-evaluating-advanced-rag/) | DeepLearning.AI | free course, RAG from zero |
+| [Building RAG from Scratch](https://www.deeplearning.ai/courses/building-evaluating-advanced-rag) | DeepLearning.AI | free course, RAG from zero |
 | [LlamaIndex starter tutorial](https://docs.llamaindex.ai/en/stable/getting_started/starter_example/) | LlamaIndex | the simplest RAG intro — 10 lines |
 | [RAG Architecture Guide 2026](https://ztabs.co/blog/rag-architecture-guide) | ZTabs | the current RAG architecture landscape |
 | [Embeddings Guide](https://tutorialq.com/ai/machine-learning/embeddings-and-vector-databases) | TutorialQ | plain-language embeddings and vector DBs |

@@ -59,7 +59,7 @@ AI skills are persistent instructions for an AI assistant. Written once, followe
 | How to Guide AI With Rules and Tests | freeCodeCamp | Steering AI with rules and tests |
 | Beyond the Vibes: A Rigorous Guide | tedivm | A rigorous guide to AI coding assistants |
 
-Sources: [VirtusLab](https://virtuslab.com/blog/ai/how-to-write-rules-for-ai/), [MTechZilla](https://www.mtechzilla.com/guides/how-to-develop-skill-md-production-guide-engineering-teams), [freeCodeCamp](https://www.freecodecamp.org/news/how-to-guide-ai-with-rules-and-tests/), [tedivm](https://blog.tedivm.com/guides/2026/03/beyond-the-vibes-coding-assistants-and-agents/).
+Sources: [VirtusLab](https://virtuslab.com/blog/ai/how-to-write-rules-for-ai/), [MTechZilla](https://www.mtechzilla.com/blogs/how-to-develop-skill-md-production-guide-engineering-teams), [freeCodeCamp](https://www.freecodecamp.org/news/how-to-guide-ai-with-rules-and-tests/), [tedivm](https://blog.tedivm.com/guides/2026/03/beyond-the-vibes-coding-assistants-and-agents/).
 
 Content rephrased for compliance with licensing restrictions.
 
@@ -105,7 +105,7 @@ Cursor Rules define custom rules for AI code generation ([PatrickJS](https://git
 
 ## Claude Code SKILL.md
 
-SKILL.md is a structured instruction file for AI coding agents such as Claude Code, Roo Code, OpenAI Codex, and Cursor. Write it once; the agent reads and applies it automatically ([MTechZilla](https://www.mtechzilla.com/guides/how-to-develop-skill-md-production-guide-engineering-teams)).
+SKILL.md is a structured instruction file for AI coding agents such as Claude Code, Roo Code, OpenAI Codex, and Cursor. Write it once; the agent reads and applies it automatically ([MTechZilla](https://www.mtechzilla.com/blogs/how-to-develop-skill-md-production-guide-engineering-teams)).
 
 Content rephrased for compliance with licensing restrictions.
 

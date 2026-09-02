@@ -1336,7 +1336,7 @@ Agent 化した後、上で貼り付けを求めているデータはここか�
 | Amazon Seller University Product Compliance | Amazon | 自習 | 全セラー(公式のコンプライアンス要件説明、カテゴリ別) | [sellercentral.amazon.com/learn](https://sellercentral.amazon.com/learn) |
 | EU Product Safety & CE Marking Guide | European Commission | 自習 | 欧州市場を主攻するセラー(公式 CE マークガイド) | [ec.europa.eu/growth](https://single-market-economy.ec.europa.eu/single-market/ce-marking_en) |
 | CPSC Business Education | CPSC | 自習 | 米国市場を主攻するセラー(消費品安全要件) | [cpsc.gov/Business](https://www.cpsc.gov/Business--Manufacturing) |
-| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5h | すべての人(良いプロンプトは AI コンプライアンス調査の基礎) | [deeplearning.ai](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/) |
+| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5h | すべての人(良いプロンプトは AI コンプライアンス調査の基礎) | [deeplearning.ai](https://www.deeplearning.ai/courses/chatgpt-prompt-eng) |
 | VAT for E-Commerce Sellers | Various | 自習 | 欧州で販売するセラー(VAT 登録と申告の基礎) | "VAT for Amazon sellers" を検索 |
 
 ### 8.2 おすすめ YouTube チャンネル

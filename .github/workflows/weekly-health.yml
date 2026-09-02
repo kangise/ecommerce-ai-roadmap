@@ -19,8 +19,11 @@ jobs:
 
       - run: pip install -r tests/requirements.txt
 
-      # Re-probe all external links, refresh the cache
-      - run: python3 scripts/verify_content.py --probe-links
+      # Re-probe every link, not just newly added ones. --probe-links skips
+      # anything already cached, so stale entries used to survive here forever:
+      # a batch of 3xx results outlived the Python that could not follow 308,
+      # and one had started landing on a 404 that nothing could see.
+      - run: python3 scripts/verify_content.py --refresh-links
 
       # Full gate suite. A broken scheduled check must remain visible.
       - run: python3 -m pytest

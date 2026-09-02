@@ -522,7 +522,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [RAG Arch
 
 | 资源 | 来源 | 为什么推荐 |
 |------|------|-----------|
-| [Building RAG from Scratch](https://www.deeplearning.ai/short-courses/building-evaluating-advanced-rag/) | DeepLearning.AI | 免费课程，从零搭建 RAG |
+| [Building RAG from Scratch](https://www.deeplearning.ai/courses/building-evaluating-advanced-rag) | DeepLearning.AI | 免费课程，从零搭建 RAG |
 | [LlamaIndex 官方教程](https://docs.llamaindex.ai/en/stable/getting_started/starter_example/) | LlamaIndex | 最简单的 RAG 入门，10 行代码 |
 | [RAG Architecture Guide 2026](https://ztabs.co/blog/rag-architecture-guide) | ZTabs | 2026 年最新的 RAG 架构全景 |
 | [Embeddings Guide](https://tutorialq.com/ai/machine-learning/embeddings-and-vector-databases) | TutorialQ | Embedding 和向量数据库的通俗解释 |

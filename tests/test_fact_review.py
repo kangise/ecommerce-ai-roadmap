@@ -106,14 +106,29 @@ def test_zero_slack_batches_are_flagged() -> None:
 
 
 def test_due_within_is_a_usable_ci_signal() -> None:
-    soonest = min(b["days_remaining"] for b in queue()["batches"])
+    """A batch inside the window flags; one outside it does not.
+
+    Deliberately does not assume a clean window exists. An overdue batch enters
+    `soon` unconditionally, so once any batch passes its due date no --due-within
+    value can return 0 — the first assertion still holds, the second stops being
+    meaningful. The plan's earliest due date is 2027-02, so this would have begun
+    failing on that day rather than reporting anything real.
+    """
+    batches = queue()["batches"]
+    soonest = min(b["days_remaining"] for b in batches)
 
     inside = run("--due-within", str(soonest + 1))
     assert inside.returncode == 1, "a batch inside the window must be flagged"
     assert "due within" in inside.stdout
 
-    outside = run("--due-within", str(max(soonest - 1, 0)))
+    if soonest <= 0:
+        # Something is already overdue; a quiet window cannot exist by design.
+        assert run("--due-within", "0").returncode == 1
+        return
+
+    outside = run("--due-within", str(soonest - 1))
     assert outside.returncode == 0, outside.stdout + outside.stderr
+    assert "nothing due within" in outside.stdout
 
 
 def test_cliff_accounts_for_all_dated_facts() -> None:

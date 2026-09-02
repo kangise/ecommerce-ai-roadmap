@@ -524,7 +524,7 @@ Content rephrased for compliance with licensing restrictions. Sources: [RAG Arch
 
 | リソース | ソース | おすすめ理由 |
 |----------|--------|--------------|
-| [Building RAG from Scratch](https://www.deeplearning.ai/short-courses/building-evaluating-advanced-rag/) | DeepLearning.AI | 無料講座。ゼロから RAG を構築 |
+| [Building RAG from Scratch](https://www.deeplearning.ai/courses/building-evaluating-advanced-rag) | DeepLearning.AI | 無料講座。ゼロから RAG を構築 |
 | [LlamaIndex 公式チュートリアル](https://docs.llamaindex.ai/en/stable/getting_started/starter_example/) | LlamaIndex | 最も簡単な RAG 入門。コード 10 行 |
 | [RAG Architecture Guide 2026](https://ztabs.co/blog/rag-architecture-guide) | ZTabs | 最新の RAG アーキテクチャ全景 |
 | [Embeddings Guide](https://tutorialq.com/ai/machine-learning/embeddings-and-vector-databases) | TutorialQ | Embedding とベクトル DB の平易な解説 |

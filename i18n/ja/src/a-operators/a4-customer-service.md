@@ -1338,7 +1338,7 @@ Agent 化した後、上で貼り付けを求めているデータはここか�
 |----------|------------------|------|----------|--------|
 | Amazon Seller University Customer Service | Amazon | 自習 | 全セラー(公式無料講座、メッセージ管理・返品処理・アカウント健全性をカバー) | [sellercentral.amazon.com/learn](https://sellercentral.amazon.com/learn) |
 | Customer Service Fundamentals | Coursera (Google) | 20h | CS 初心者(CS の基礎方法論、コミュニケーション技術と問題解決フレーム含む) | [coursera.org](https://www.coursera.org/learn/customer-service-fundamentals) |
-| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5h | すべての人(良いプロンプトは AI CS 分析の基礎) | [deeplearning.ai](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/) |
+| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5h | すべての人(良いプロンプトは AI CS 分析の基礎) | [deeplearning.ai](https://www.deeplearning.ai/courses/chatgpt-prompt-eng) |
 
 ### 7.2 おすすめ YouTube チャンネル
 

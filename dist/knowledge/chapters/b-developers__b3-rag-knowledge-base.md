@@ -140,7 +140,7 @@ RAG 的核心优势是**数据新鲜度**和**可解释性**：你可以随时�
 | 工具 | 类型 | 难度 | 最佳场景 | 安装 |
 |------|------|------|----------|------|
 | [LlamaIndex](https://docs.llamaindex.ai/) | RAG 框架 | 入门 | 快速搭建 RAG，文档问答 | `pip install llama-index` |
-| [LangChain](https://python.langchain.com/) | LLM 应用框架 | 中级 | 复杂 LLM 工作流、Agent | `pip install langchain` |
+| [LangChain](https://docs.langchain.com/oss/python/langchain/overview) | LLM 应用框架 | 中级 | 复杂 LLM 工作流、Agent | `pip install langchain` |
 | [Chroma](https://www.trychroma.com/) | 向量数据库 | 入门 | 本地开发、小规模数据 | `pip install chromadb` |
 | [Ollama](https://ollama.com/) | 本地 LLM | 入门 | 不想用 OpenAI API、数据隐私 | [ollama.com/download](https://ollama.com/download) |
 | [OpenAI API](https://platform.openai.com/) | 云端 LLM | 入门 | 最高质量回答、快速原型 | `pip install openai` |
@@ -173,7 +173,7 @@ RAG 的核心优势是**数据新鲜度**和**可解释性**：你可以随时�
 
 **结论**：入门用 LlamaIndex（更简单），需要复杂工作流时再引入 LangChain。本模块以 LlamaIndex 为主。
 
-参考文档：[LlamaIndex 官方文档](https://docs.llamaindex.ai/) | [LangChain 官方文档](https://python.langchain.com/)
+参考文档：[LlamaIndex 官方文档](https://docs.llamaindex.ai/) | [LangChain 官方文档](https://docs.langchain.com/oss/python/langchain/overview)
 
 ### 3.2 Embedding 模型选择
 
@@ -1202,8 +1202,8 @@ def build_rag_agent(
 | 资源 | 平台 | 时长 | 适合谁 | 链接 |
 |------|------|------|--------|------|
 | LlamaIndex 官方文档 | LlamaIndex | 持续更新 | RAG 入门到进阶 | [docs.llamaindex.ai](https://docs.llamaindex.ai/) |
-| Building Agentic RAG | DeepLearning.AI | 1h | RAG + Agent 结合 | [deeplearning.ai](https://www.deeplearning.ai/short-courses/building-agentic-rag-with-llamaindex/) |
-| LangChain 官方文档 | LangChain | 持续更新 | LLM 应用开发 | [python.langchain.com](https://python.langchain.com/) |
+| Building Agentic RAG | DeepLearning.AI | 1h | RAG + Agent 结合 | [deeplearning.ai](https://www.deeplearning.ai/courses/building-agentic-rag-with-llamaindex) |
+| LangChain 官方文档 | LangChain | 持续更新 | LLM 应用开发 | [python.langchain.com](https://docs.langchain.com/oss/python/langchain/overview) |
 | HuggingFace NLP Course | HuggingFace | 10h+ | NLP 和 Embedding 基础 | [huggingface.co/learn/nlp-course](https://huggingface.co/learn/nlp-course) |
 | Chroma 官方文档 | Chroma | 2h | 向量数据库入门 | [trychroma.com](https://www.trychroma.com/) |
 | Ollama 官方文档 | Ollama | 1h | 本地 LLM 部署 | [ollama.com](https://ollama.com/) |

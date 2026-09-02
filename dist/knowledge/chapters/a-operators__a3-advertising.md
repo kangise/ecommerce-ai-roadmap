@@ -163,7 +163,7 @@ AI 不擅长的：
 
 | 工具 | 价格 | 核心能力 | 适合谁 | AI 功能 |
 |------|------|----------|--------|---------|
-| [Helium 10 Adtomic](https://h10-wp.com/helium-10-adtomic/) | $229/月 (Platinum 含) | AI 驱动的竞价自动化，规则引擎 + AI 建议 | 进阶卖家，需要自动化竞价管理 | AI 出价建议、自动否定词、预算优化 |
+| [Helium 10 Ads（原 Adtomic）](https://www.helium10.com/tools/adtomic/) | 含在 Diamond / Elite 套餐 | AI 驱动的竞价自动化，规则引擎 + AI 建议 | 进阶卖家，需要自动化竞价管理 | AI 出价建议、自动否定词、预算优化 |
 | Jungle Scout PPC Manager | $49-84/月 | 简化版广告管理，关键词建议 | 新手卖家，界面友好 | 基础 AI 关键词建议 |
 | Perpetua (by Ascential) | 按广告花费 % 收费 | 企业级 AI 广告优化，自动竞价+预算分配 | 月广告花费 $5000+ 的卖家 | 全自动 AI 竞价、目标 ACOS 优化 |
 | Pacvue | 企业定价 | 多平台广告管理（Amazon+Walmart+Instacart） | 大卖家/代理商 | AI 预算分配、跨平台优化 |
@@ -1545,7 +1545,7 @@ Content rephrased for compliance with licensing restrictions. Source: [delivered
 |------|------|------|--------|------|
 | Amazon Advertising Learning Console | Amazon | 自学 | 所有卖家（官方免费认证，含 SP/SB/SD 课程） | [learningconsole.amazonadvertising.com](https://learningconsole.amazonadvertising.com/) |
 | Fundamentals of Digital Marketing | Google | 40h | 广告新手（数字广告基础，含认证） | [learndigital.withgoogle.com](https://learndigital.withgoogle.com/digitalgarage) |
-| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5h | 所有人（学会写好 Prompt 是 AI 广告分析的基础） | [deeplearning.ai](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/) |
+| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5h | 所有人（学会写好 Prompt 是 AI 广告分析的基础） | [deeplearning.ai](https://www.deeplearning.ai/courses/chatgpt-prompt-eng) |
 
 ### 7.2 YouTube 频道推荐
 

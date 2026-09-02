@@ -1365,7 +1365,7 @@ Content rephrased for compliance with licensing restrictions. Source: [TraceFuse
 |------|------|------|--------|------|
 | Amazon Seller University Customer Service | Amazon | 自学 | 所有卖家（官方免费课程，覆盖消息管理、退货处理、账号健康） | [sellercentral.amazon.com/learn](https://sellercentral.amazon.com/learn) |
 | Customer Service Fundamentals | Coursera (Google) | 20h | 客服新手（客服基础方法论，含沟通技巧和问题解决框架） | [coursera.org](https://www.coursera.org/learn/customer-service-fundamentals) |
-| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5h | 所有人（学会写好 Prompt 是 AI 客服分析的基础） | [deeplearning.ai](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/) |
+| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5h | 所有人（学会写好 Prompt 是 AI 客服分析的基础） | [deeplearning.ai](https://www.deeplearning.ai/courses/chatgpt-prompt-eng) |
 
 ### 7.2 YouTube 频道推荐
 

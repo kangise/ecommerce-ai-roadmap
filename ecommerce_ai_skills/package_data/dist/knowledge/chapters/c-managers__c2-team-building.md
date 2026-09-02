@@ -966,7 +966,7 @@ Layer 3：跨部门协作（Champion 小组）
 
 | 资源 | 平台 | 时长 | 适合谁 | 链接 |
 |------|------|------|--------|------|
-| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5h | 全员必修 | [deeplearning.ai](https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/) |
+| ChatGPT Prompt Engineering for Developers | DeepLearning.AI | 1.5h | 全员必修 | [deeplearning.ai](https://www.deeplearning.ai/courses/chatgpt-prompt-eng) |
 | OpenAI Prompt Engineering Guide | OpenAI | 自学 | 全员推荐 | [platform.openai.com](https://platform.openai.com/docs/guides/prompt-engineering) |
 | Anthropic Prompt Engineering Guide | Anthropic | 自学 | Claude 用户 | [docs.anthropic.com](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering) |
 | Learn Prompting | 开源社区 | 自学 | 想深入学习的人 | [learnprompting.org](https://learnprompting.org/) |
