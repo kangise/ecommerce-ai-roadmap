@@ -107,7 +107,7 @@ AI Champion が毎日 15 分かけてチームの質問に答える
 成功基準: チーム AI 成熟度スコアが 1.0+ 点向上
 ```
 
-Content rephrased for compliance with licensing restrictions. Source: [Amplework AI Adoption Guide](https://www.amplework.com/blog/train-your-team-for-ai-adoption/)
+Content rephrased for compliance with licensing restrictions.
 
 ---
 
@@ -971,7 +971,6 @@ Layer 3: 部門横断協働(Champion グループ)
 |----------|------|----------|--------|
 | How to Successfully Upskill Talent for AI | TechNative | AI スキル構築の階層別戦略 | [technative.io](https://technative.io/how-to-successfully-upskill-talent-for-ai-integration-in-2025/) |
 | Best Practices for AI Training Across Departments | Auzmor | 部門横断 AI トレーニングのベストプラクティス | [auzmor.com](https://auzmor.com/blog/best-practices-for-implementing-ai-training) |
-| Step-by-Step Guide to Train Teams for AI | Amplework | 評価から実行までの完全なフレームワーク | [amplework.com](https://www.amplework.com/blog/train-your-team-for-ai-adoption/) |
 | AI Sales Training & Upskilling | CX Today | 販売チーム AI トレーニングの ROI 分析 | [cxtoday.com](https://www.cxtoday.com/marketing-sales-technology/ai-sales-training-upskilling/) |
 
 Content rephrased for compliance with licensing restrictions. Sources cited inline.

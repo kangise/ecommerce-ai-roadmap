@@ -7,10 +7,10 @@
       "tree_sha256": "5244a5085dc1631bd7aa4b9c79a522c3bd080ee7607b3b5be327b631ece1a17b"
     },
     "dist": {
-      "byte_count": 6571132,
+      "byte_count": 6570854,
       "file_count": 153,
       "name": "dist",
-      "tree_sha256": "2c14a79001ef376d07c28d3e31f64d98cf050643919a97af226cd58c3d7072e8"
+      "tree_sha256": "8345ff2a6ebd313a6964341a0128d47effce016e1236854b87189477d24b0612"
     },
     "package_sources": {
       "byte_count": 950436,
@@ -25,22 +25,22 @@
       "tree_sha256": "4d9bad8607976d11ae9a4f5d68435a13023501863add4b32476023acdb062496"
     },
     "scripts": {
-      "byte_count": 374553,
+      "byte_count": 374289,
       "file_count": 24,
       "name": "scripts",
-      "tree_sha256": "008c4a071663b65b69504e8c51e5ce8426ff0c964017cc556748f085ae3cd9e4"
+      "tree_sha256": "731a1c601737dd58e367de4a7188eddf40b00b56684282f2ec51d67515a422c5"
     },
     "tests": {
-      "byte_count": 543500,
+      "byte_count": 544327,
       "file_count": 34,
       "name": "tests",
-      "tree_sha256": "6b501f8abb054a17f508f7b17428d7a8eea3658c76192b495cf7f499cba0b7f2"
+      "tree_sha256": "5a6a43bc4b7eade7417fc5831305ff99be3143ddb3194c8b199e3fac9a80d57b"
     },
     "wheel_package_data": {
-      "byte_count": 6571132,
+      "byte_count": 6570854,
       "file_count": 153,
       "name": "wheel_package_data",
-      "tree_sha256": "e3413d72cece4916df7bf46ef29b3f7906165fe9f51a165b45d64a133e3e2abc"
+      "tree_sha256": "090e8b8ad1e82b9b0e299e7da479236e67b19f39bdfa3072cf7c6b63cdf2018c"
     }
   },
   "contracts": {

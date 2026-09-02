@@ -164,7 +164,7 @@ Zalando 在 AI 方面投入巨大，是欧洲时尚电商 AI 应用的领导者�
 | AI 尺码推荐 | 减少因尺码不合导致的退货 | 需要提供精确的尺码数据 |
 | 内容生产效率 | 营销活动制作时间从 6 周缩短到几天 | |
 
-> **关键洞察**：Zalando 正在与"欧洲最有雄心的 AI 实验室之一"合作（[DefenseWorld](https://www.defenseworld.net/2026/03/14/zalando-q4-earnings-call-highlights.html)），并将 AI 助手的"可购物性"（shoppability）集成到平台中。这意味着在 Zalando 上销售的品牌需要确保产品数据的结构化和完整性，以便被 AI 系统正确理解和推荐。
+> **关键洞察**：Zalando 正在与Qutwo（"欧洲最有雄心的 AI 实验室之一"）合作（[Zalando FY2025 官方业绩](https://corporate.zalando.com/en/investor-relations/zalando-full-year-2025-results)），并将 AI 助手的"可购物性"（shoppability）集成到平台中。这意味着在 Zalando 上销售的品牌需要确保产品数据的结构化和完整性，以便被 AI 系统正确理解和推荐。
 
 Content rephrased for compliance with licensing restrictions.
 

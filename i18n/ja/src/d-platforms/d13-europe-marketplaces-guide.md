@@ -164,7 +164,7 @@ Zalando は AI に巨大な投資をしており、欧州ファッション EC �
 | AI サイズ推薦 | サイズ不合による返品を減らす | 精確なサイズデータの提供が必要 |
 | コンテンツ生産効率 | マーケティング活動の制作時間を 6 週から数日に短縮 | |
 
-> **重要な洞察**: Zalando は「欧州で最も野心的な AI ラボの 1 つ」と提携しており([DefenseWorld](https://www.defenseworld.net/2026/03/14/zalando-q4-earnings-call-highlights.html))、AI アシスタントの「購入可能性」(shoppability)をプラットフォームに統合している。これは Zalando で販売するブランドが、AI システムが正しく理解し推薦できるよう製品データの構造化と完全性を確保する必要があることを意味する。
+> **重要な洞察**: Zalando は「欧州で最も野心的な AI ラボの 1 つ」である Qutwoと提携しており([Zalando FY2025 公式業績](https://corporate.zalando.com/en/investor-relations/zalando-full-year-2025-results))、AI アシスタントの「購入可能性」(shoppability)をプラットフォームに統合している。これは Zalando で販売するブランドが、AI システムが正しく理解し推薦できるよう製品データの構造化と完全性を確保する必要があることを意味する。
 
 Content rephrased for compliance with licensing restrictions.
 

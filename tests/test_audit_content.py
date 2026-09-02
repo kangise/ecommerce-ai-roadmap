@@ -9,6 +9,7 @@ fails a build, and that each axis measures what its name says.
 from __future__ import annotations
 
 import json
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -92,10 +93,25 @@ def test_navigation_check_sees_the_nav_section() -> None:
 
 
 def test_link_findings_are_grouped_by_required_action() -> None:
+    """Buckets are labelled by what the maintainer has to do about them.
+
+    Asserting that every bucket is populated would make the test fail the moment
+    the repository got healthier — it broke the first time the dead-link count
+    reached zero. What matters is that whatever is reported carries an action,
+    not that every category has an occupant.
+    """
     module = load_module()
-    joined = "\n".join(module.v3_link_probe_staleness())
-    for action in ("redirect", "bot-walled", "broken"):
-        assert action in joined
+    findings = module.v3_link_probe_staleness()
+    joined = "\n".join(findings)
+    known = ("redirect", "bot-walled", "broken", "probe failed")
+    # Match "[ 38] label", not any line opening with a bracket — an SSL detail
+    # line reads "[SSL: CERTIFICATE_VERIFY_FAILED] ..." and is not a header.
+    headers = [line for line in findings if re.match(r"^\[\s*\d+\]", line)]
+    assert headers, "no buckets reported at all"
+    for header in headers:
+        assert any(action in header for action in known), header
+    if "broken" in joined:
+        assert "replacement source" in joined
 
 
 def test_redirects_are_not_reported_as_healthy() -> None:

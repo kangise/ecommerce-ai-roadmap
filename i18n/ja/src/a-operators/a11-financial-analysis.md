@@ -285,7 +285,7 @@ Content rephrased for compliance with licensing restrictions.
 
 | ツール | 機能 | 価格 | 向く |
 |--------|------|------|------|
-| Iris Finance | AI 財務アナリスト、リアルタイム P&L、キャッシュフロー予測([Iris](https://www.irisfinance.co/products/finances)) | 有料 | 消費財ブランド |
+| Iris Finance | AI 財務アナリスト、リアルタイム P&L、キャッシュフロー予測([Iris](https://www.irisfinance.co/agenticsolution/fp-a-cfo)) | 有料 | 消費財ブランド |
 | Glew | SKU レベルの収益分析、マルチプラットフォーム統合 | $70-250/月 | 中規模 |
 | Daasity | 集中化データ+高度な指標 | $349/月〜 | 規模化ブランド |
 | Sellerboard | Amazon 利益分析 | $19/月〜 | Amazon セラー |

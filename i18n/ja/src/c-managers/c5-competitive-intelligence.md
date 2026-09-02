@@ -45,7 +45,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ### 1.2 2026 年競合インテリジェンスの新次元
 
-> **実データ**: マーケターはもはや誰が Google キーワードで 1 位かだけに頼れず、今や生成検索での「答えのシェア」、アプリストアの動向、AI 駆動エージェントでのブランド可視度を監視しなければならない([SimilarWeb](https://www.similarweb.com/blog/marketing/marketing-strategy/8-best-competitor-analysis-tools-in-2023/))。
+> **業界の見方**: マーケターはもはや誰が Google キーワードで 1 位かだけに頼れず、今や生成検索での「答えのシェア」、アプリストアの動向、AI 駆動エージェントでのブランド可視度を監視しなければならない([SimilarWeb](https://aisearch.similarweb.com/blog/best-competitor-analysis-tools/))。
 
 Content rephrased for compliance with licensing restrictions.
 

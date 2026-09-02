@@ -59,6 +59,10 @@
   "hard_fail": false,
   "status": 200
  },
+ "https://aisearch.similarweb.com/blog/best-competitor-analysis-tools/": {
+  "hard_fail": false,
+  "status": 200
+ },
  "https://alhena.ai/": {
   "hard_fail": false,
   "status": 200
@@ -1395,10 +1399,6 @@
   "hard_fail": false,
   "status": 200
  },
- "https://www.amplework.com/blog/train-your-team-for-ai-adoption/": {
-  "hard_fail": true,
-  "status": 404
- },
  "https://www.anthropic.com/research/building-effective-agents": {
   "hard_fail": false,
   "status": 200
@@ -1547,10 +1547,6 @@
   "hard_fail": false,
   "status": 200
  },
- "https://www.defenseworld.net/2026/03/14/zalando-q4-earnings-call-highlights.html": {
-  "hard_fail": true,
-  "status": 404
- },
  "https://www.devopsschool.com/blog/top-10-ai-intellectual-property-tools-in-2025-features-pros-cons-comparison/": {
   "hard_fail": false,
   "status": 200
@@ -1659,9 +1655,9 @@
   "hard_fail": false,
   "status": 200
  },
- "https://www.irisfinance.co/products/finances": {
-  "hard_fail": true,
-  "status": 404
+ "https://www.irisfinance.co/agenticsolution/fp-a-cfo": {
+  "hard_fail": false,
+  "status": 200
  },
  "https://www.junglescout.com/": {
   "hard_fail": false,
@@ -1838,10 +1834,6 @@
  "https://www.shopify.dev/docs/apps/build/storefront-mcp/servers/storefront": {
   "hard_fail": false,
   "status": 200
- },
- "https://www.similarweb.com/blog/marketing/marketing-strategy/8-best-competitor-analysis-tools-in-2023/": {
-  "hard_fail": true,
-  "status": 404
  },
  "https://www.socialchamp.com/blog/ecommerce-social-media-strategy/": {
   "hard_fail": false,

@@ -164,7 +164,7 @@ Zalando invests heavily in AI and is the leader in AI application in European fa
 | AI size recommendation | Reduces returns due to size mismatch | Need to provide precise size data |
 | Content-production efficiency | Marketing-campaign production time shortened from 6 weeks to a few days | |
 
-> **Key insight**: Zalando is partnering with "one of Europe's most ambitious AI labs" ([DefenseWorld](https://www.defenseworld.net/2026/03/14/zalando-q4-earnings-call-highlights.html)), and integrating the "shoppability" of AI assistants into the platform. This means brands selling on Zalando need to ensure the structuring and completeness of product data so AI systems can correctly understand and recommend it.
+> **Key insight**: Zalando is partnering with Qutwo, "one of Europe's most ambitious AI labs", ([Zalando FY2025 official results](https://corporate.zalando.com/en/investor-relations/zalando-full-year-2025-results)), and integrating the "shoppability" of AI assistants into the platform. This means brands selling on Zalando need to ensure the structuring and completeness of product data so AI systems can correctly understand and recommend it.
 
 Content rephrased for compliance with licensing restrictions.
 

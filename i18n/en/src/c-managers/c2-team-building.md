@@ -107,7 +107,7 @@ Output: at least 3 workflows officially incorporate AI assistance
 Success criterion: the team AI maturity score improves by 1.0+ points
 ```
 
-Content rephrased for compliance with licensing restrictions. Source: [Amplework AI Adoption Guide](https://www.amplework.com/blog/train-your-team-for-ai-adoption/)
+Content rephrased for compliance with licensing restrictions.
 
 ---
 
@@ -979,7 +979,6 @@ Monthly AI usage report
 |----------|--------|--------------|------|
 | How to Successfully Upskill Talent for AI | TechNative | Layered strategy for AI skill building | [technative.io](https://technative.io/how-to-successfully-upskill-talent-for-ai-integration-in-2025/) |
 | Best Practices for AI Training Across Departments | Auzmor | Best practices for cross-department AI training | [auzmor.com](https://auzmor.com/blog/best-practices-for-implementing-ai-training) |
-| Step-by-Step Guide to Train Teams for AI | Amplework | A complete framework from assessment to execution | [amplework.com](https://www.amplework.com/blog/train-your-team-for-ai-adoption/) |
 | AI Sales Training & Upskilling | CX Today | ROI analysis of AI training for sales teams | [cxtoday.com](https://www.cxtoday.com/marketing-sales-technology/ai-sales-training-upskilling/) |
 
 Content rephrased for compliance with licensing restrictions. Sources cited inline.

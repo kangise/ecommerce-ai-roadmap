@@ -45,7 +45,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ### 1.2 2026 年竞争情报的新维度
 
-> **真实数据**：营销人员不能再仅仅依赖谁在 Google 关键词排名第一，现在必须监控生成式搜索中的"答案份额"、应用商店动态和 AI 驱动代理中的品牌可见度（[SimilarWeb](https://www.similarweb.com/blog/marketing/marketing-strategy/8-best-competitor-analysis-tools-in-2023/)）。
+> **行业观点**：营销人员不能再仅仅依赖谁在 Google 关键词排名第一，现在必须监控生成式搜索中的"答案份额"、应用商店动态和 AI 驱动代理中的品牌可见度（[SimilarWeb](https://aisearch.similarweb.com/blog/best-competitor-analysis-tools/)）。
 
 Content rephrased for compliance with licensing restrictions.
 

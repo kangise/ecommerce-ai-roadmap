@@ -107,7 +107,7 @@ AI Champion 每天花 15 分钟回答团队问题
 成功标准：团队 AI 成熟度评分提升 1.0+ 分
 ```
 
-Content rephrased for compliance with licensing restrictions. Source: [Amplework AI Adoption Guide](https://www.amplework.com/blog/train-your-team-for-ai-adoption/)
+Content rephrased for compliance with licensing restrictions.
 
 ---
 
@@ -977,7 +977,6 @@ Layer 3：跨部门协作（Champion 小组）
 |------|------|----------|------|
 | How to Successfully Upskill Talent for AI | TechNative | AI 技能建设的分层策略 | [technative.io](https://technative.io/how-to-successfully-upskill-talent-for-ai-integration-in-2025/) |
 | Best Practices for AI Training Across Departments | Auzmor | 跨部门 AI 培训的最佳实践 | [auzmor.com](https://auzmor.com/blog/best-practices-for-implementing-ai-training) |
-| Step-by-Step Guide to Train Teams for AI | Amplework | 从评估到执行的完整框架 | [amplework.com](https://www.amplework.com/blog/train-your-team-for-ai-adoption/) |
 | AI Sales Training & Upskilling | CX Today | 销售团队 AI 培训的 ROI 分析 | [cxtoday.com](https://www.cxtoday.com/marketing-sales-technology/ai-sales-training-upskilling/) |
 
 Content rephrased for compliance with licensing restrictions. Sources cited inline.

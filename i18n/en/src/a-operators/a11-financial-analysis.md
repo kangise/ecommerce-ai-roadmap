@@ -285,7 +285,7 @@ Content rephrased for compliance with licensing restrictions.
 
 | Tool | Function | Price | Best for |
 |------|----------|-------|----------|
-| Iris Finance | AI financial analyst, real-time P&L, cash-flow forecasting ([Iris](https://www.irisfinance.co/products/finances)) | paid | consumer brands |
+| Iris Finance | AI financial analyst, real-time P&L, cash-flow forecasting ([Iris](https://www.irisfinance.co/agenticsolution/fp-a-cfo)) | paid | consumer brands |
 | Glew | SKU-level profitability analysis, multi-platform integration | $70–250/mo | mid-size |
 | Daasity | centralized data + advanced metrics | from $349/mo | scaling brands |
 | Sellerboard | Amazon profit analysis | from $19/mo | Amazon sellers |

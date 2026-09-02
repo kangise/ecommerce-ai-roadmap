@@ -285,7 +285,7 @@ Content rephrased for compliance with licensing restrictions.
 
 | 工具 | 功能 | 价格 | 适合 |
 |------|------|------|------|
-| Iris Finance | AI 财务分析师，实时 P&L、现金流预测（[Iris](https://www.irisfinance.co/products/finances)） | 付费 | 消费品牌 |
+| Iris Finance | AI 财务分析师，实时 P&L、现金流预测（[Iris](https://www.irisfinance.co/agenticsolution/fp-a-cfo)） | 付费 | 消费品牌 |
 | Glew | SKU 级别盈利分析，多平台集成 | $70-250/月 | 中等规模 |
 | Daasity | 集中化数据+高级指标 | $349/月起 | 规模化品牌 |
 | Sellerboard | Amazon 利润分析 | $19/月起 | Amazon 卖家 |

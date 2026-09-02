@@ -45,7 +45,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ### 1.2 The New Dimensions of Competitive Intelligence in 2026
 
-> **Real data**: Marketers can no longer rely solely on who ranks first for a Google keyword; they must now monitor "share of answer" in generative search, app-store dynamics, and brand visibility in AI-driven agents ([SimilarWeb](https://www.similarweb.com/blog/marketing/marketing-strategy/8-best-competitor-analysis-tools-in-2023/)).
+> **Industry view**: Marketers can no longer rely solely on who ranks first for a Google keyword; they must now monitor "share of answer" in generative search, app-store dynamics, and brand visibility in AI-driven agents ([SimilarWeb](https://aisearch.similarweb.com/blog/best-competitor-analysis-tools/)).
 
 Content rephrased for compliance with licensing restrictions.
 

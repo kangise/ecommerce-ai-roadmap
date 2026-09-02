@@ -222,7 +222,7 @@
     "title": "A11. AI 财务分析 | AI Financial Analysis for E-Commerce",
     "path": "a-operators/a11-financial-analysis.md",
     "body_path": "chapters/a-operators__a11-financial-analysis.md",
-    "body_chars": 13209,
+    "body_chars": 13216,
     "summary": "> **路径**: Path A: 运营人 · **模块**: A11 > **最后更新**: 2026-07-31 > **难度**: 中级 > **预计时间**: 每天 30 分钟，1 周 --- 1. [为什么卖家需要 AI 财务分析](#1-为什么卖家需要-ai-财务分析) 2. [AI 利润计算器](#2-ai-利润计算器) 3. [关税与 de minimis](#3-关税与-de-minimis重算你的落地成本) 4. [AI 成本分析与优化](#4-ai-成本分析与优化) 5. [AI 现金流预测](#5-ai-现金流预测) 6. [多平台财务对比](#6-多平台财务对比) 7",
     "key_entities": [
       "acos",
@@ -861,7 +861,7 @@
     "title": "C2. 团队 AI 技能建设 | AI Team Upskilling & Enablement",
     "path": "c-managers/c2-team-building.md",
     "body_path": "chapters/c-managers__c2-team-building.md",
-    "body_chars": 24890,
+    "body_chars": 24633,
     "summary": "> **路径**: Path C: 管理者 · **模块**: C2 > **最后更新**: 2026-07-31 > **难度**: 入门 > **预计时间**: 1-2 小时 > **前置模块**: [C1 AI 能力评估与规划](c1-ai-assessment.md) --- --- 1. [培训方法论](#1-培训方法论为什么大多数-ai-培训都失败了) · 2. [按角色定制的培训课程](#2-按角色定制的培训课程) · 3. [团队 Prompt 库搭建](#3-团队-prompt-库搭建) · 4. [AI 使用规范制定](#4-ai-使用规范制定) · 5. [Prompt ",
     "key_entities": [
       "a_plus_content",
@@ -924,7 +924,7 @@
     "title": "C5. AI 竞争情报与战略决策 | AI Competitive Intelligence",
     "path": "c-managers/c5-competitive-intelligence.md",
     "body_path": "chapters/c-managers__c5-competitive-intelligence.md",
-    "body_chars": 8097,
+    "body_chars": 8063,
     "summary": "> **路径**: Path C: 管理者 · **模块**: C5 > **最后更新**: 2026-07-31 > **难度**: 中级 > **预计时间**: 集中 3-4 小时 > **前置模块**: [C1 AI 能力评估](c1-ai-assessment.md) --- 1. [AI 竞争情报的新范式](#1-ai-竞争情报的新范式) · 2. [五大情报支柱](#2-五大情报支柱) · 3. [AI 工具矩阵](#3-ai-竞争情报工具矩阵) · 4. [AI 搜索可见度监控](#4-ai-搜索可见度监控) · 5. [战略决策框架](#5-ai-驱动的战略决策框架) · 6.",
     "key_entities": [
       "keyword",
@@ -1167,7 +1167,7 @@
     "title": "D13. 欧洲电商平台指南（Otto + Zalando）",
     "path": "d-platforms/d13-europe-marketplaces-guide.md",
     "body_path": "chapters/d-platforms__d13-europe-marketplaces-guide.md",
-    "body_chars": 12878,
+    "body_chars": 12894,
     "summary": "> **路径**: Path D: 多平台 · **模块**: D13 > **最后更新**: 2026-07-31 > **难度**: 中级 > **预计时间**: 1 小时 --- > 德国电商市场 €92B+（2026），欧洲第二大电商市场。Otto 平台 GMV 约 €7.5B，Zalando GMV €17.6B（2025）。这两个平台是 Amazon.de 之外进入德国市场的重要渠道，但本地化要求极高。 1. [德国电商市场概览](#1-德国电商市场概览) · 2. [Otto Marketplace](#2-otto-marketplace) · 3. [Zalando Part",
     "key_entities": [
       "bullet_point",
