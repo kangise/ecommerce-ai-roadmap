@@ -25,16 +25,16 @@
       "tree_sha256": "4d9bad8607976d11ae9a4f5d68435a13023501863add4b32476023acdb062496"
     },
     "scripts": {
-      "byte_count": 374085,
+      "byte_count": 374470,
       "file_count": 24,
       "name": "scripts",
-      "tree_sha256": "a6099e461188aff740cdc138eed7ac6d36f68f5891de8cf00827721275c81a82"
+      "tree_sha256": "9134f9c3968da331ec37f99c984f558a136cc8840ea6c963e7c062a17374b393"
     },
     "tests": {
-      "byte_count": 530619,
+      "byte_count": 531178,
       "file_count": 33,
       "name": "tests",
-      "tree_sha256": "7424c295d7b686e098675a56f2487f36deef6483cf30ce9e4b2d5d3f615ada4a"
+      "tree_sha256": "85f0f18151bb62bf7f1c3fdd8ff9034848c06fd076efb7b2c34dd39f59e12790"
     },
     "wheel_package_data": {
       "byte_count": 6569852,

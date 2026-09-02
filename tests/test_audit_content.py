@@ -94,8 +94,22 @@ def test_navigation_check_sees_the_nav_section() -> None:
 def test_link_findings_are_grouped_by_required_action() -> None:
     module = load_module()
     joined = "\n".join(module.v3_link_probe_staleness())
-    for action in ("moved", "bot-walled", "broken"):
+    for action in ("redirect", "bot-walled", "broken"):
         assert action in joined
+
+
+def test_redirects_are_not_reported_as_healthy() -> None:
+    """The cache holds one response, not the end of the chain.
+
+    A 308 that lands on a 404 is indistinguishable from a 308 that lands on a
+    live page, so this bucket must not claim the destination is fine —
+    smoothed.io sat in a "moved, page is fine" bucket while its target was dead.
+    """
+    module = load_module()
+    joined = "\n".join(module.v3_link_probe_staleness())
+    if "redirect" in joined:
+        assert "unverified" in joined
+        assert "refresh-links" in joined
 
 
 def test_only_and_axis_filters_narrow_the_run() -> None:

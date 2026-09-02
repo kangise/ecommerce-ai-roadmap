@@ -142,6 +142,12 @@ def v3_link_probe_staleness() -> list[str]:
     page that is perfectly alive, while 308 means the URL moved and the citation
     should be updated to where it now points. M4 treats both as non-fatal, which
     is right for a gate and useless for triage.
+
+    A cached 3xx is reported as "destination unverified" rather than "moved, page
+    is fine". The cache records one response, not the end of the chain, so a
+    redirect landing on a 404 is indistinguishable here — smoothed.io sat in the
+    "moved" bucket for exactly that reason while its target had been dead for
+    some time. Run --refresh-links to resolve them.
     """
     if not LINK_CACHE.exists():
         return ["link-status.json missing — run verify_content.py --probe-links"]
@@ -152,7 +158,7 @@ def v3_link_probe_staleness() -> list[str]:
         if status == 200:
             continue
         if status in (301, 302, 307, 308):
-            buckets["moved — update the citation to the new URL"].append(f"{status} {url}")
+            buckets["redirect — destination unverified, run --refresh-links"].append(f"{status} {url}")
         elif status in (403, 429):
             buckets["bot-walled — page is likely fine, cannot be re-verified"].append(f"{status} {url}")
         elif isinstance(status, int) and status >= 400:

@@ -25,33 +25,44 @@ jobs:
       # and one had started landing on a 404 that nothing could see.
       - run: python3 scripts/verify_content.py --refresh-links
 
-      # Full gate suite. A broken scheduled check must remain visible.
-      - run: python3 -m pytest
-      - run: python3 scripts/verify_all.py
+      # Everything below reports, then one final step decides the job colour.
+      # These used to block: when pytest failed on 2026-08-31 the audit, the
+      # source watch and the pull request were all skipped, so the refreshed
+      # link cache never landed and the reports nobody saw were the ones that
+      # would have explained why. A scheduled health check should say everything
+      # it knows and still go red.
+      - name: Tests
+        id: tests
+        continue-on-error: true
+        run: python3 -m pytest
+
+      - name: Gate suite
+        id: gates
+        continue-on-error: true
+        run: python3 scripts/verify_all.py
 
       # Review cadence. M7 only fires once a fact has already expired or a batch
       # is already overdue; this surfaces the queue while there is still time to
-      # act on it. Non-blocking: a batch coming due is a task, not a broken build.
+      # act on it. A batch coming due is a task, not a broken build.
       - name: Fact review queue
         continue-on-error: true
         run: python3 scripts/fact_review.py --due-within 90
 
-      # Upstream API specs the runtime is written against. Reports only — an
-      # upstream commit is not by itself a problem, so this must not gate.
-      # --update lets the state land in the PR this workflow already opens.
       # Content quality report. Expected to return findings — they are judgment
-      # calls, not defects, so this must never gate.
+      # calls, not defects.
       - name: Content audit
         continue-on-error: true
         run: python3 scripts/audit_content.py --list
 
+      # Upstream API specs the runtime is written against. An upstream commit is
+      # not by itself a problem. --update lets the new state land in the PR this
+      # workflow opens.
       - name: Upstream source watch
         continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 scripts/watch_sources.py --update
 
-      # Open a PR if anything changed (dead links, probe cache)
       - uses: peter-evans/create-pull-request@v6
         with:
           branch: chore/weekly-health
@@ -60,3 +71,11 @@ jobs:
             自动周检。链接缓存已刷新，门禁读数见 Actions 日志。
             **合并前先看死链是不是真死**——Kaggle Learn 和
             shopify.com/magic 都对 HEAD 返 404 但 GET 正常。
+
+      # The PR above carries the refreshed cache and watcher state regardless.
+      # This runs last so a real failure is still unmissable in the run list.
+      - name: Fail the run if tests or gates failed
+        if: steps.tests.outcome == 'failure' || steps.gates.outcome == 'failure'
+        run: |
+          echo "::error::weekly health: tests=${{ steps.tests.outcome }} gates=${{ steps.gates.outcome }}"
+          exit 1
