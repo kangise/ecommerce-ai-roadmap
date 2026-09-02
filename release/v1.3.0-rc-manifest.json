@@ -31,10 +31,10 @@
       "tree_sha256": "7ce4b9cffe8f307a1fa6d1ee71039635b81488184d12c60e94cc940a0118c6f7"
     },
     "tests": {
-      "byte_count": 529136,
+      "byte_count": 529921,
       "file_count": 33,
       "name": "tests",
-      "tree_sha256": "1062302e82301bc7d591b014c7918fa46d5354d97f30e82928d6d159e1a370cf"
+      "tree_sha256": "738d3d6dba195517681f02f96e7a027f095e736d54beb1a0e152fe96f9ac1609"
     },
     "wheel_package_data": {
       "byte_count": 6569962,
@@ -49,8 +49,8 @@
       "size": 9984
     },
     ".gitignore": {
-      "sha256": "6bd1f89283866a0e9c7dc6bad33a65046eae1463b841ddf0cfd4fe635648bbf1",
-      "size": 3072
+      "sha256": "00f3214dfd9850a2599c6f578c1bf5f7f4e11ef1678eda7e9b5499c78f062ed7",
+      "size": 3242
     },
     "CHANGELOG.md": {
       "sha256": "6e1108598965ad7fb7c04e250ddf964dd4cda6254410f773bb55a71f59983091",

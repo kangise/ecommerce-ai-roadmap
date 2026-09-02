@@ -64,8 +64,24 @@ def test_declared_paths_exist() -> None:
             assert (ROOT / path).exists(), f"{source['id']} -> missing {path}"
 
 
+def test_state_file_is_committed_not_just_present() -> None:
+    """Presence on disk is not the invariant — being in the repo is.
+
+    .gitignore carries a blanket `*.json`, so this file was silently untracked
+    while sitting in the working tree. Every local run passed and every CI run
+    failed, because CI clones. Assert what actually matters.
+    """
+    tracked = subprocess.run(
+        ["git", "ls-files", "--error-unmatch", str(STATE.relative_to(ROOT))],
+        cwd=ROOT, capture_output=True, text=True, check=False)
+    assert tracked.returncode == 0, (
+        f"{STATE.relative_to(ROOT)} is not tracked by git; a fresh clone will not "
+        "have it. Check .gitignore for a pattern swallowing it.")
+
+
 def test_state_file_covers_the_watchlist() -> None:
     """Committed state is the baseline; a missing id means the next run cries wolf."""
+    assert STATE.exists(), f"{STATE.relative_to(ROOT)} missing"
     state = json.loads(STATE.read_text())
     for source in yaml.safe_load(WATCHLIST.read_text())["sources"]:
         assert source["id"] in state, f"no recorded baseline for {source['id']}"

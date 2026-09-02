@@ -186,6 +186,9 @@ docs/build/
 *.csv
 *.json
 !scripts/link-status.json
+# Committed baseline for the upstream watcher: without it a fresh clone has
+# nothing to diff against and every source reads as new.
+!maintenance/source-watch-state.json
 !dist/knowledge/index.json
 !dist/ontology.json
 !dist/package-manifest.json
