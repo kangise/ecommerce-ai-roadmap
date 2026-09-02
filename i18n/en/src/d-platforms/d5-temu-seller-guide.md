@@ -38,6 +38,8 @@ After this module you'll be able to:
 
 ## 1. Temu Business Model Analysis
 
+<!-- claims: verified 2026-08 -->
+
 ### 1.1 Core Data (2025)
 
 | Metric | Data | Comparison |

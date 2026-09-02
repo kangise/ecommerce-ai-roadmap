@@ -31,6 +31,8 @@ After this module you'll be able to:
 
 ## 1. German E-Commerce Market Overview
 
+<!-- claims: verified 2026-08 -->
+
 | Platform | Revenue/GMV | Positioning | Category advantage |
 |----------|-------------|-------------|--------------------|
 | Amazon.de | Largest | All categories | All categories |

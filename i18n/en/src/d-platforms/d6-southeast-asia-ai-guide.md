@@ -39,6 +39,8 @@ After this module you'll be able to:
 
 ## 1. Southeast Asia E-Commerce Market Overview
 
+<!-- claims: verified 2026-08 -->
+
 ### 1.1 Core Data
 
 | Platform | GMV (2025) | Buyers | Market share | Growth rate |

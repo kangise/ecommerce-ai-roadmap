@@ -21,6 +21,8 @@
 
 ## 1. Platform Landscape Matrix
 
+<!-- claims: verified 2026-08 -->
+
 > **Related reading**: [AI Application Landscape Assessment](../0-foundations/ai-landscape.md) — the AI maturity in each area is detailed in the AI landscape
 
 ### 1.1 E-Commerce Platforms (Path D)

@@ -21,6 +21,8 @@
 
 ## 1. 平台全景矩阵
 
+<!-- claims: verified 2026-08 -->
+
 > **相关阅读**: [AI 应用全景评估](../0-foundations/ai-landscape.md) AI 在各环节的成熟度详见 AI 全景
 
 ### 1.1 电商平台（Path D）
