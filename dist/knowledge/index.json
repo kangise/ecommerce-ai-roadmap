@@ -513,7 +513,7 @@
     "title": "A6. 合规与风控 | Compliance & Risk Management",
     "path": "a-operators/a6-compliance.md",
     "body_path": "chapters/a-operators__a6-compliance.md",
-    "body_chars": 42385,
+    "body_chars": 42238,
     "summary": "> **路径**: Path A: 运营人 · **模块**: A6 > **最后更新**: 2026-07-31 > **难度**: 进阶 > **预计时间**: 每天 30 分钟，1-2 周 --- --- 1. [合规方法论](#1-合规方法论ai-之前你需要理解的基础) · 2. [AI 工具全景](#2-ai-工具全景合规阶段用什么) · 3. [Prompt 模板库](#3-prompt-模板库合规专用) · 4. [合规实战工作流](#4-合规实战工作流) · 5. [EU AI Act](#5-eu-ai-act你用-ai-这件事本身也要合规了) · 6. [常见陷阱](#6-",
     "key_entities": [
       "asin",
@@ -751,7 +751,7 @@
     "title": "B6. MCP 集成与 Agentic 电商工作流",
     "path": "b-developers/b6-mcp-agentic-workflow.md",
     "body_path": "chapters/b-developers__b6-mcp-agentic-workflow.md",
-    "body_chars": 31176,
+    "body_chars": 31166,
     "summary": "> **路径**: Path B: 技术人 · **模块**: B6 > **最后更新**: 2026-07-31 > **难度**: 高级 > **预计时间**: 每天 1 小时，2-3 周 > **前置模块**: [B4 AI Agent 与自动化](b4-agent-workflow.md) --- 1. [MCP 是什么](#1-mcp-是什么) · 2. [电商 MCP 生态](#2-电商-mcp-生态) · 3. [Amazon Ads MCP Server](#3-amazon-ads-mcp-server) · 4. [Shopify MCP 集成](#4-shopify-mc",
     "key_entities": [
       "acos",

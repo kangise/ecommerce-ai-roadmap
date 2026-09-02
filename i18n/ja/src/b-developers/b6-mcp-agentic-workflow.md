@@ -62,7 +62,7 @@ MCP は AI の汎用インターフェース
 
 ### 1.3 2026 年の MCP エコシステムの現状
 
-> **実データ**: Amazon は 2026 年 2 月 2 日に Ads MCP Server のオープンベータを正式発表した([Canopy Management](https://canopymanagement.com/amazon-ads-mcp-server-ai/))。Google も自身の MCP 実装をオープンソース化した。本番級の MCP Server は既に月 $4500 万超の広告支出を処理し、10,000+ 企業をカバーしている([HyperFX](https://www.hyperfx.ai/blog/meta-ads-mcp-guide-ai-advertising-agents))。中小企業の 74% が既に AI 広告ツールを積極的にテストまたは配備している([Stormy.ai](https://stormy.ai/blog/automating-amazon-ads-claude-mcp))。
+> **実データ**: Amazon は 2026 年 2 月 2 日に Ads MCP Server のオープンベータを正式発表した([Canopy Management](https://canopymanagement.com/amazon-ads-mcp-server-ai/))。Google も自身の MCP 実装をオープンソース化した。本番級の MCP Server は既に月 $4500 万超の広告支出を処理し、10,000+ 企業をカバーしている([HyperFX](https://www.hyperfx.ai/blog/meta-ads-mcp-guide-ai-advertising-agents))。中小企業の 74% が既に AI 広告ツールを積極的にテストまたは配備している([Amazon Ads による Opinium 調査](https://advertising.amazon.com/en-us/library/news/smb-ai-research))。
 
 Content rephrased for compliance with licensing restrictions.
 
@@ -148,7 +148,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ### 3.3 5 大 MCP 広告自動化戦略
 
-Stormy.ai の実戦ガイド([Stormy.ai](https://stormy.ai/blog/automating-amazon-ads-claude-mcp))によると、Claude MCP で Amazon 広告を管理する 5 つの核心戦略:
+Claude MCP で Amazon 広告を管理する 5 つの核心戦略:
 
 **戦略 1: 自動検索語収穫(Search Term Harvesting)**
 
@@ -259,7 +259,7 @@ You: 「今週の広告最適化レポートを生成、実行した操作と予
 Claude: [集約] → Markdown レポートを生成
 ```
 
-> **実事例**: Stormy.ai は Claude MCP で Amazon 広告を管理する 5 つの戦略を示し、ACOS を下げ年 30 日の作業時間を節約できるとした([Stormy.ai](https://stormy.ai/blog/automating-amazon-ads-claude-mcp))。
+> **試算例**: Stormy.ai は仮想の中堅ブランドを用いて Claude MCP で Amazon 広告を管理する 5 つの戦略を示し、ACOS を下げ年 30 日の作業時間を節約できるとした([Stormy.ai](https://web.archive.org/web/20260307090318/https://stormy.ai/blog/automating-amazon-ads-claude-mcp))。
 
 Content rephrased for compliance with licensing restrictions.
 

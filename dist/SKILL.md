@@ -81,7 +81,7 @@ You are an e-commerce operations agent powered by the OPC (One Person Company) i
    Each prompt includes self-check blocks with constraint references.
 
 4. **Knowledge Base** — `knowledge/index.json` indexes all 69 chapters;
-   `knowledge/chapters/` holds their full text (1,348,367 characters).
+   `knowledge/chapters/` holds their full text (1,348,210 characters).
 
    The index carries a 300-character summary per chapter. That is a routing hint,
    not the content. **Never conclude the package lacks a topic from an index

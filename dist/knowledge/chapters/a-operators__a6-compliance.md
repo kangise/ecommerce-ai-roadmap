@@ -117,7 +117,7 @@ classDef current fill:#ff9900,stroke:#333,color:#fff,font-weight:bold
 - **EU REACH/RoHS**：REACH 法规要求对化学物质进行注册、评估和授权。RoHS 指令限制电子电气设备中的有害物质（铅、汞、镉等）。两者都是强制要求。
 - **JP 化審法**：日本的化学物质审查法对新化学物质有严格的审查和注册要求。
 
-Content rephrased for compliance with licensing restrictions. Sources: [CE marking - Wikipedia](https://en.wikipedia.org/wiki/CE_marking), [legalclarity.org trading compliance](https://legalclarity.org/when-trading-with-more-developed-countries-key-compliance-rules/)
+Content rephrased for compliance with licensing restrictions. Sources: [CE marking - Wikipedia](https://en.wikipedia.org/wiki/CE_marking)
 
 ### 1.3 AI 在合规中的角色定位
 
@@ -1353,7 +1353,7 @@ GPSR 于 2024 年 12 月 13 日生效，替代了旧的通用产品安全指令�
 | [CE Marking Wikipedia](https://en.wikipedia.org/wiki/CE_marking) | Wikipedia | CE 标志的全面介绍，包括适用指令、标志要求和合规流程 |
 | [Amazon's New AI Agent Rules](https://ppc.land/amazons-new-ai-agent-rules-shake-up-sellers-before-march-4-deadline/) | PPC Land | Amazon 2026 年 BSA 更新对 AI Agent 和第三方工具的新合规要求 |
 | [Amazon Sellers BSA Compliance](https://www.ecommercebytes.com/2026/02/18/amazon-sellers-have-2-weeks-to-ensure-compliance-of-tools-they-use/) | eCommerce Bytes | 卖家需要在截止日期前确保工具合规的详细指南 |
-| [Key Compliance Rules for International Trade](https://legalclarity.org/when-trading-with-more-developed-countries-key-compliance-rules/) | Legal Clarity | 与发达国家贸易时的关键合规规则概述 |
+| [Comply with U.S. and Foreign Regulations](https://www.trade.gov/comply-us-and-foreign-regulations) | International Trade Administration | 与发达国家贸易时的关键合规规则概述 |
 | [CPSC Recalls Database](https://www.cpsc.gov/Recalls) | CPSC | 美国消费品召回数据库，了解哪些产品被召回及原因 |
 | [EU Safety Gate (RAPEX)](https://ec.europa.eu/safety-gate-alerts/screen/webReport) | European Commission | 欧盟产品安全快速预警系统，查看被通报的危险产品 |
 

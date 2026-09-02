@@ -19,6 +19,14 @@
   "hard_fail": false,
   "status": 200
  },
+ "https://advertising.amazon.com/en-us/library/case-studies/flywheel-steady-japan-lowers-acos/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://advertising.amazon.com/en-us/library/news/smb-ai-research": {
+  "hard_fail": false,
+  "status": 200
+ },
  "https://advertising.amazon.com/resources/ad-specs/sponsored-brands-video": {
   "hard_fail": false,
   "status": 200
@@ -383,10 +391,6 @@
   "hard_fail": false,
   "status": 200
  },
- "https://framepack.cc/articles/ai-video-tools-comparison-framepack": {
-  "hard_fail": false,
-  "status": 502
- },
  "https://futurumgroup.com/insights/amazon-ads-mcp-server-debuts-streamlining-ai-managed-campaign-execution/": {
   "hard_fail": false,
   "status": 200
@@ -695,10 +699,6 @@
   "hard_fail": false,
   "status": 200
  },
- "https://h10-wp.com/helium-10-adtomic/": {
-  "hard_fail": false,
-  "status": 468
- },
  "https://hexmos.com/freedevtools/mcp/ecommerce-and-retail/asaricorp--mcp-shopify/": {
   "hard_fail": false,
   "status": 403
@@ -839,10 +839,6 @@
   "hard_fail": false,
   "status": 200
  },
- "https://legalclarity.org/when-trading-with-more-developed-countries-key-compliance-rules/": {
-  "hard_fail": true,
-  "status": 404
- },
  "https://leonardo.ai/": {
   "hard_fail": false,
   "status": 403
@@ -960,6 +956,10 @@
   "status": 200
  },
  "https://mpost.io/new-ai-powered-shopping-feature-marks-reddits-first-major-step-toward-community-driven-commerce-integration/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://multisellr.com/blog/how-to-rank-with-seo-on-faire": {
   "hard_fail": false,
   "status": 200
  },
@@ -1195,10 +1195,6 @@
   "hard_fail": false,
   "status": 403
  },
- "https://stormy.ai/blog/automating-amazon-ads-claude-mcp": {
-  "hard_fail": true,
-  "status": 404
- },
  "https://stormy.ai/blog/ecommerce-ppc-automation-claude-code": {
   "hard_fail": false,
   "status": 200
@@ -1319,6 +1315,10 @@
   "hard_fail": false,
   "status": 200
  },
+ "https://web.archive.org/web/20260307090318/https://stormy.ai/blog/automating-amazon-ads-claude-mcp": {
+  "hard_fail": false,
+  "status": 200
+ },
  "https://web.archive.org/web/20260412055042/https://www.kontactic.com/blog/how-to-sell-on-coupang-foreign-brand": {
   "hard_fail": false,
   "status": 200
@@ -1341,7 +1341,7 @@
  },
  "https://worldofcalculator.com/aliexpress-fee-calculator/": {
   "hard_fail": false,
-  "status": 200
+  "status": "[SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error"
  },
  "https://www.aboutamazon.com/news/innovation-at-amazon/amazon-sellers-canvas-artificial-intelligence": {
   "hard_fail": false,
@@ -1349,7 +1349,7 @@
  },
  "https://www.accenor.com/blog/The-Complete-ROI-Framework-for-AI-Implementation-From-Cost-Analysis-to-Measurable-Outcomes.html": {
   "hard_fail": false,
-  "status": "EOF occurred in violation of protocol (_ssl.c:1129)"
+  "status": "[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violatio"
  },
  "https://www.adgully.com/post/12649/the-end-of-campaign-led-growth-why-ecommerce-leaders-are-rebuilding-around-ai-agents": {
   "hard_fail": false,
@@ -1396,8 +1396,8 @@
   "status": 200
  },
  "https://www.amplework.com/blog/train-your-team-for-ai-adoption/": {
-  "hard_fail": false,
-  "status": 200
+  "hard_fail": true,
+  "status": 404
  },
  "https://www.anthropic.com/research/building-effective-agents": {
   "hard_fail": false,
@@ -1545,11 +1545,11 @@
  },
  "https://www.deeplearning.ai/the-batch/": {
   "hard_fail": false,
-  "status": 308
+  "status": 200
  },
  "https://www.defenseworld.net/2026/03/14/zalando-q4-earnings-call-highlights.html": {
-  "hard_fail": false,
-  "status": 403
+  "hard_fail": true,
+  "status": 404
  },
  "https://www.devopsschool.com/blog/top-10-ai-intellectual-property-tools-in-2025-features-pros-cons-comparison/": {
   "hard_fail": false,
@@ -1605,11 +1605,11 @@
  },
  "https://www.forbes.com/sites/catherineerdly/2025/07/14/ai-is-fueling-a-100-billion-boom-in-social-commerce/": {
   "hard_fail": false,
-  "status": 200
+  "status": 403
  },
  "https://www.forecastly.com/": {
   "hard_fail": false,
-  "status": "_ssl.c:1112: The handshake operation timed out"
+  "status": "_ssl.c:1064: The handshake operation timed out"
  },
  "https://www.fortunebusinessinsights.com/ai-video-generator-market-110060": {
   "hard_fail": false,
@@ -1628,6 +1628,14 @@
   "status": 200
  },
  "https://www.helium10.com/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.helium10.com/blog/blog-how-ai-powered-amazon-ppc-saves-10-plus-hours-weekly-and-boosts-performance/": {
+  "hard_fail": false,
+  "status": 200
+ },
+ "https://www.helium10.com/tools/adtomic/": {
   "hard_fail": false,
   "status": 200
  },
@@ -1652,8 +1660,8 @@
   "status": 200
  },
  "https://www.irisfinance.co/products/finances": {
-  "hard_fail": false,
-  "status": 200
+  "hard_fail": true,
+  "status": 404
  },
  "https://www.junglescout.com/": {
   "hard_fail": false,
@@ -1693,7 +1701,7 @@
  },
  "https://www.marketbeat.com/instant-alerts/coupang-q4-earnings-call-highlights-2026-02-27/": {
   "hard_fail": false,
-  "status": "The read operation timed out"
+  "status": 200
  },
  "https://www.marketplacepulse.com/articles/amazon-gmv-surpassed-800-billion-in-2025": {
   "hard_fail": false,
@@ -1702,14 +1710,6 @@
  "https://www.marketplacepulse.com/articles/walmart-marketplace-growth-reaches-fastest-pace-in-years": {
   "hard_fail": false,
   "status": 200
- },
- "https://www.maxmerce.com/blog/amazon-ppc-acos-optimization-reduce-costs-boost-ro/": {
-  "hard_fail": false,
-  "status": 500
- },
- "https://www.maxmerce.com/blog/how-to-improve-amazon-ppc-performance-campaign-opt/": {
-  "hard_fail": false,
-  "status": 500
  },
  "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai": {
   "hard_fail": false,
@@ -1725,7 +1725,7 @@
  },
  "https://www.midjourney.com/": {
   "hard_fail": false,
-  "status": "[SSL: TLSV1_ALERT_PROTOCOL_VERSION] tlsv1 alert protocol ver"
+  "status": 403
  },
  "https://www.modernretail.co/technology/brands-at-etail-palm-springs-share-lessons-on-the-messy-middle-of-building-ai-tools/": {
   "hard_fail": false,
@@ -1765,7 +1765,7 @@
  },
  "https://www.pwc.com/gx/en/issues/data-and-analytics/publications/artificial-intelligence-study.html": {
   "hard_fail": false,
-  "status": 200
+  "status": "timed out"
  },
  "https://www.retailtouchpoints.com/features/how-amazons-anti-counterfeit-unit-keeps-fake-products-off-its-site/141899/": {
   "hard_fail": false,
@@ -1840,12 +1840,8 @@
   "status": 200
  },
  "https://www.similarweb.com/blog/marketing/marketing-strategy/8-best-competitor-analysis-tools-in-2023/": {
-  "hard_fail": false,
-  "status": 200
- },
- "https://www.smoothed.io/blog/faire-account-settings-that-drive-sales": {
-  "hard_fail": false,
-  "status": 308
+  "hard_fail": true,
+  "status": 404
  },
  "https://www.socialchamp.com/blog/ecommerce-social-media-strategy/": {
   "hard_fail": false,
@@ -1873,7 +1869,7 @@
  },
  "https://www.taskade.com/blog/mcp-your-ai-agents-superpower-for-real-world-context-and-automation": {
   "hard_fail": false,
-  "status": 308
+  "status": 200
  },
  "https://www.theregister.com/2026/03/09/ai_negative_reviews/": {
   "hard_fail": false,
@@ -1881,19 +1877,23 @@
  },
  "https://www.theretailbulletin.com/fashion/zalando-performance-boosted-by-ai-innovations-12-03-2026/": {
   "hard_fail": false,
-  "status": 403
+  "status": 200
  },
  "https://www.thoughtspot.com/data-trends/ecommerce-kpis-metrics": {
   "hard_fail": false,
   "status": 200
  },
- "https://www.trendos.io/blog/ecommerce-competitive-intelligence-guide": {
+ "https://www.trade.gov/comply-us-and-foreign-regulations": {
   "hard_fail": false,
   "status": 200
  },
+ "https://www.trendos.io/blog/ecommerce-competitive-intelligence-guide": {
+  "hard_fail": false,
+  "status": "The read operation timed out"
+ },
  "https://www.trendos.io/blog/ecommerce-competitive-intelligence-tools-2026": {
   "hard_fail": false,
-  "status": 200
+  "status": "The read operation timed out"
  },
  "https://www.triplewhale.com/blog/cross-channel-attribution": {
   "hard_fail": false,

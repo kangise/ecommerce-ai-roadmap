@@ -116,7 +116,7 @@ AI ツールでコンプライアンス調査を「法規を逐条で調べる�
 - **EU REACH/RoHS**: REACH は化学物質の登録、評価、認可を求める。RoHS は電気電子機器の有害物質(鉛、水銀、カドミウムなど)を制限。どちらも強制要件。
 - **JP 化審法**: 日本の化学物質審査法は新規化学物質に厳格な審査と登録要件を課す。
 
-Content rephrased for compliance with licensing restrictions. Sources: [CE marking - Wikipedia](https://en.wikipedia.org/wiki/CE_marking), [legalclarity.org trading compliance](https://legalclarity.org/when-trading-with-more-developed-countries-key-compliance-rules/)
+Content rephrased for compliance with licensing restrictions. Sources: [CE marking - Wikipedia](https://en.wikipedia.org/wiki/CE_marking)
 
 ### 1.3 コンプライアンスにおける AI の役割
 
@@ -1355,7 +1355,7 @@ Agent 化した後、上で貼り付けを求めているデータはここか�
 | [CE Marking Wikipedia](https://en.wikipedia.org/wiki/CE_marking) | Wikipedia | CE マークの包括的紹介、適用指令、マーク要件、コンプライアンスフローを含む |
 | [Amazon's New AI Agent Rules](https://ppc.land/amazons-new-ai-agent-rules-shake-up-sellers-before-march-4-deadline/) | PPC Land | Amazon 2026 年 BSA 更新の AI Agent と第三者ツールへの新コンプライアンス要件 |
 | [Amazon Sellers BSA Compliance](https://www.ecommercebytes.com/2026/02/18/amazon-sellers-have-2-weeks-to-ensure-compliance-of-tools-they-use/) | eCommerce Bytes | セラーが締切前にツールのコンプライアンスを確保する詳細ガイド |
-| [Key Compliance Rules for International Trade](https://legalclarity.org/when-trading-with-more-developed-countries-key-compliance-rules/) | Legal Clarity | 先進国との貿易時のキーなコンプライアンスルールの概要 |
+| [Comply with U.S. and Foreign Regulations](https://www.trade.gov/comply-us-and-foreign-regulations) | International Trade Administration | 先進国との貿易時のキーなコンプライアンスルールの概要 |
 | [CPSC Recalls Database](https://www.cpsc.gov/Recalls) | CPSC | 米国消費品リコールデータベース、どの製品がリコールされたか原因を把握 |
 | [EU Safety Gate (RAPEX)](https://ec.europa.eu/safety-gate-alerts/screen/webReport) | European Commission | EU 製品安全早期警戒システム、通報された危険製品を確認 |
 

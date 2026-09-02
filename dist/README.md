@@ -16,7 +16,7 @@
 | `ontology.json` | 100 entities, 78 relations, 322 constraints, 8 processes |
 | `prompts.json` | 878 production prompts (zh/en/ja) |
 | `knowledge/index.json` | 69-chapter index with entity references |
-| `knowledge/chapters/` | Full chapter text (1,348,367 chars) |
+| `knowledge/chapters/` | Full chapter text (1,348,210 chars) |
 | `skills/` | 9 domain skills with manifests, playbooks, constraints |
 | `integration/` | Framework-specific setup guides |
 | Runtime API | Durable tenant users, approvals, Shopify sync, and Weekly Ops multi-agent runs |

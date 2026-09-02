@@ -1,6 +1,6 @@
 """Dependency-light runtime for tenant-safe e-commerce workflows."""
 
-from .agents import OpenAIResponsesProvider, WeeklyOpsCouncil
+from .agents import AnthropicMessagesProvider, OpenAIResponsesProvider, WeeklyOpsCouncil
 from .agent_graphs import AgentGraphService
 from .accounts import MarketplaceAccountService
 from .ads_gates import AdsCapabilityGateService
@@ -33,6 +33,7 @@ __all__ = [
     "JobService",
     "MarketplaceAccountService",
     "MetricObservationService",
+    "AnthropicMessagesProvider",
     "OpenAIResponsesProvider",
     "Principal",
     "PilotService",

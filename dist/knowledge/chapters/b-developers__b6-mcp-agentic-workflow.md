@@ -62,7 +62,7 @@ MCP 是 AI 的通用接口
 
 ### 1.3 2026 年 MCP 生态现状
 
-> **真实数据**：Amazon 于 2026 年 2 月 2 日正式发布 Ads MCP Server 开放测试版（[Canopy Management](https://canopymanagement.com/amazon-ads-mcp-server-ai/)）。Google 也开源了自己的 MCP 实现。已有生产级 MCP Server 每月处理超过 $4500 万的广告支出，覆盖 10,000+ 企业（[HyperFX](https://www.hyperfx.ai/blog/meta-ads-mcp-guide-ai-advertising-agents)）。74% 的中小企业已在积极测试或部署 AI 广告工具（[Stormy.ai](https://stormy.ai/blog/automating-amazon-ads-claude-mcp)）。
+> **真实数据**：Amazon 于 2026 年 2 月 2 日正式发布 Ads MCP Server 开放测试版（[Canopy Management](https://canopymanagement.com/amazon-ads-mcp-server-ai/)）。Google 也开源了自己的 MCP 实现。已有生产级 MCP Server 每月处理超过 $4500 万的广告支出，覆盖 10,000+ 企业（[HyperFX](https://www.hyperfx.ai/blog/meta-ads-mcp-guide-ai-advertising-agents)）。74% 的中小企业已在使用或积极测试 AI 广告工具（[Amazon Ads 委托 Opinium 的调研](https://advertising.amazon.com/en-us/library/news/smb-ai-research)）。
 
 Content rephrased for compliance with licensing restrictions.
 
@@ -148,7 +148,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ### 3.3 5 大 MCP 广告自动化策略
 
-根据 Stormy.ai 的实战指南（[Stormy.ai](https://stormy.ai/blog/automating-amazon-ads-claude-mcp)），以下是用 Claude MCP 管理 Amazon 广告的 5 个核心策略：
+以下是用 Claude MCP 管理 Amazon 广告的 5 个核心策略：
 
 **策略 1：自动搜索词收割（Search Term Harvesting）**
 
@@ -259,7 +259,7 @@ You: "生成本周广告优化报告，包含执行的操作和预期影响"
 Claude: [汇总] → 生成 Markdown 报告
 ```
 
-> **真实案例**：Stormy.ai 展示了使用 Claude MCP 管理 Amazon 广告的 5 个策略，可以降低 ACOS 并每年节省 30 天工作时间（[Stormy.ai](https://stormy.ai/blog/automating-amazon-ads-claude-mcp)）。
+> **示例测算**：Stormy.ai 用一个假设的中型品牌演示了使用 Claude MCP 管理 Amazon 广告的 5 个策略，可以降低 ACOS 并每年节省 30 天工作时间（[Stormy.ai](https://web.archive.org/web/20260307090318/https://stormy.ai/blog/automating-amazon-ads-claude-mcp)）。
 
 Content rephrased for compliance with licensing restrictions.
 

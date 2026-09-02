@@ -116,7 +116,7 @@ Below is a compliance-requirement comparison of cross-border e-commerce's four m
 - **EU REACH/RoHS**: REACH requires registration, evaluation, and authorization of chemicals. RoHS restricts hazardous substances (lead, mercury, cadmium, etc.) in electrical and electronic equipment. Both are mandatory.
 - **JP Chemical Substances Control Act**: Japan's law imposes strict review and registration requirements on new chemical substances.
 
-Content rephrased for compliance with licensing restrictions. Sources: [CE marking - Wikipedia](https://en.wikipedia.org/wiki/CE_marking), [legalclarity.org trading compliance](https://legalclarity.org/when-trading-with-more-developed-countries-key-compliance-rules/)
+Content rephrased for compliance with licensing restrictions. Sources: [CE marking - Wikipedia](https://en.wikipedia.org/wiki/CE_marking)
 
 ### 1.3 AI's role in compliance
 
@@ -1355,7 +1355,7 @@ Verify each of these before delivering and report the result:
 | [CE Marking Wikipedia](https://en.wikipedia.org/wiki/CE_marking) | Wikipedia | full intro to the CE mark, incl. applicable directives, mark requirements, compliance process |
 | [Amazon's New AI Agent Rules](https://ppc.land/amazons-new-ai-agent-rules-shake-up-sellers-before-march-4-deadline/) | PPC Land | Amazon's 2026 BSA update and new compliance requirements for AI Agents and third-party tools |
 | [Amazon Sellers BSA Compliance](https://www.ecommercebytes.com/2026/02/18/amazon-sellers-have-2-weeks-to-ensure-compliance-of-tools-they-use/) | eCommerce Bytes | a detailed guide for sellers to ensure tool compliance before the deadline |
-| [Key Compliance Rules for International Trade](https://legalclarity.org/when-trading-with-more-developed-countries-key-compliance-rules/) | Legal Clarity | overview of key compliance rules when trading with developed countries |
+| [Comply with U.S. and Foreign Regulations](https://www.trade.gov/comply-us-and-foreign-regulations) | International Trade Administration | overview of key compliance rules when trading with developed countries |
 | [CPSC Recalls Database](https://www.cpsc.gov/Recalls) | CPSC | US consumer-product recall database, understand which products are recalled and why |
 | [EU Safety Gate (RAPEX)](https://ec.europa.eu/safety-gate-alerts/screen/webReport) | European Commission | EU rapid product-safety alert system, view reported dangerous products |
 

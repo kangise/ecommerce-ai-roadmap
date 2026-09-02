@@ -62,7 +62,7 @@ One MCP Server can be used by all MCP-supporting AI clients
 
 ### 1.3 The 2026 MCP-ecosystem status
 
-> **Real data**: Amazon officially released the Ads MCP Server open beta on February 2, 2026 ([Canopy Management](https://canopymanagement.com/amazon-ads-mcp-server-ai/)). Google also open-sourced its own MCP implementation. Production-grade MCP Servers already process over $45 million in ad spend monthly, covering 10,000+ businesses ([HyperFX](https://www.hyperfx.ai/blog/meta-ads-mcp-guide-ai-advertising-agents)). 74% of SMBs are actively testing or deploying AI ad tools ([Stormy.ai](https://stormy.ai/blog/automating-amazon-ads-claude-mcp)).
+> **Real data**: Amazon officially released the Ads MCP Server open beta on February 2, 2026 ([Canopy Management](https://canopymanagement.com/amazon-ads-mcp-server-ai/)). Google also open-sourced its own MCP implementation. Production-grade MCP Servers already process over $45 million in ad spend monthly, covering 10,000+ businesses ([HyperFX](https://www.hyperfx.ai/blog/meta-ads-mcp-guide-ai-advertising-agents)). 74% of SMBs are actively testing or deploying AI ad tools ([Amazon Ads / Opinium research](https://advertising.amazon.com/en-us/library/news/smb-ai-research)).
 
 Content rephrased for compliance with licensing restrictions.
 
@@ -148,7 +148,7 @@ Content rephrased for compliance with licensing restrictions.
 
 ### 3.3 Five major MCP ad-automation strategies
 
-Per Stormy.ai's hands-on guide ([Stormy.ai](https://stormy.ai/blog/automating-amazon-ads-claude-mcp)), here are 5 core strategies for managing Amazon ads with Claude MCP:
+Here are 5 core strategies for managing Amazon ads with Claude MCP:
 
 **Strategy 1: automated search-term harvesting**
 
@@ -259,7 +259,7 @@ You: "Generate this week's ad-optimization report, including actions taken and e
 Claude: [aggregate] → generate a Markdown report
 ```
 
-> **Real case**: Stormy.ai showed 5 strategies for managing Amazon ads with Claude MCP, lowering ACOS and saving 30 days of work per year ([Stormy.ai](https://stormy.ai/blog/automating-amazon-ads-claude-mcp)).
+> **Worked example**: Stormy.ai used a hypothetical mid-sized brand to show 5 strategies for managing Amazon ads with Claude MCP, lowering ACOS and saving 30 days of work per year ([Stormy.ai](https://web.archive.org/web/20260307090318/https://stormy.ai/blog/automating-amazon-ads-claude-mcp)).
 
 Content rephrased for compliance with licensing restrictions.
 
