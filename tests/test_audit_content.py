@@ -153,3 +153,24 @@ def test_link_labels_are_not_mistaken_for_figures() -> None:
     assert not module.WORLD_FIGURE.search(module.strip_link_text(row))
     real = "| Amazon | GMV $830B | [D1](d1.md) |"
     assert module.WORLD_FIGURE.search(module.strip_link_text(real))
+
+
+def test_index_pages_are_not_judged_as_guides() -> None:
+    """d0-amazon-index is short and prompt-free by design — it says so in its body.
+
+    Measuring it against a guide's yardstick reported one deliberate design
+    decision as three separate defects (C3, F1, and a V1 false positive).
+    """
+    module = load_module()
+    from pathlib import Path as _P
+    index = _P("src/d-platforms/d0-amazon-index.md")
+    if index.exists():
+        assert module.is_index(module.SRC / "d-platforms/d0-amazon-index.md")
+        assert not module.is_guide(module.SRC / "d-platforms/d0-amazon-index.md")
+
+
+def test_glossary_is_exempt_from_the_navigation_check() -> None:
+    """Its headings are entries, not sections; a contents list would restate all 100."""
+    module = load_module()
+    findings = "\n".join(module.f2_missing_navigation())
+    assert "glossary" not in findings

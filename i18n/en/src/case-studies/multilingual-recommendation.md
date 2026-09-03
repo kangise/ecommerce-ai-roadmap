@@ -4,6 +4,20 @@
 
 <!-- claims: illustrative -->
 
+## Chapter Navigation
+
+1. [Overview](#overview)
+2. [Business Background](#business-background)
+3. [Technical Design](#technical-design)
+4. [Implementation Details](#implementation-details)
+5. [Expected Performance](#expected-performance)
+6. [Optimization Strategies](#optimization-strategies)
+7. [Deployment and Monitoring](#deployment-and-monitoring)
+8. [Summary](#summary)
+9. [Related Resources](#related-resources)
+
+---
+
 ## Overview
 
 This design shows how to build a product recommendation system that supports multiple languages and cultures — a technical reference for personalization on a global e-commerce platform.

@@ -9,6 +9,20 @@
 
 ---
 
+## Chapter Navigation
+
+1. [AI × Cross-Border E-Commerce: the Hype-vs-Reality Gap Matrix](#ai--cross-border-e-commerce-the-hype-vs-reality-gap-matrix)
+2. [Priority Tiers: Where Should You Start?](#priority-tiers-where-should-you-start)
+3. [AI Before vs After: What Actually Changes in Each Step](#ai-before-vs-after-what-actually-changes-in-each-step)
+4. [Your AI Adoption Roadmap](#your-ai-adoption-roadmap)
+5. [Common Misjudgments](#common-misjudgments)
+6. [When this doesn't work](#when-this-doesnt-work)
+7. [Applying this assessment to yourself](#applying-this-assessment-to-yourself)
+8. [Where to Next?](#where-to-next)
+
+---
+
+
 > Before going deep on any module, spend 30 minutes building the big picture: for every step of cross-border e-commerce, how far can AI actually go today? What should you adopt *now*, and what should wait?
 
 > **Where the numbers in this chapter come from**

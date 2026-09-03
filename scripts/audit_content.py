@@ -78,7 +78,18 @@ def chapters() -> list[Path]:
 
 
 def is_guide(p: Path) -> bool:
-    return p.parent.name not in ("resources", "case-studies")
+    return p.parent.name not in ("resources", "case-studies") and not is_index(p)
+
+
+# An index page routes the reader elsewhere and deliberately holds no content of
+# its own. Judging one by a guide's yardstick — length, prompt count — reports
+# its design as three separate defects. d0-amazon-index says so in its own body:
+# "本页是指南，不是正文."
+INDEX_MARKER = re.compile(r"本页是指南，不是正文|This page is a guide, not content|索引 \| .*Index")
+
+
+def is_index(p: Path) -> bool:
+    return "index" in p.stem or bool(INDEX_MARKER.search(p.read_text(encoding="utf-8")))
 
 
 def outside_fences(text: str) -> str:
@@ -234,7 +245,7 @@ def c3_depth_outliers() -> list[str]:
     """Guide chapters far shorter than their track's median — likely stubs."""
     by_track = collections.defaultdict(list)
     for p in chapters():
-        if is_guide(p):
+        if is_guide(p) and not is_index(p):
             by_track[p.parent.name].append((p, p.read_text(encoding="utf-8").count("\n") + 1))
     out = []
     for track, items in sorted(by_track.items()):
@@ -257,11 +268,19 @@ def f1_guides_without_prompts() -> list[str]:
 
 
 def f2_missing_navigation() -> list[str]:
-    """Long chapters with no in-page table of contents."""
+    """Long chapters with no in-page table of contents.
+
+    A glossary is exempt. Its headings are entries, not sections, so a contents
+    list would restate all hundred of them — longer than the thing it indexes and
+    no easier to scan than the page itself.
+    """
     out = []
     for p in chapters():
         text = p.read_text(encoding="utf-8")
         if text.count("\n") < 300:
+            continue
+        headings = [l for l in text.split("\n") if l.startswith("## ")]
+        if len(headings) > 30:
             continue
         # The nav block is itself an H2 section, so slicing at the first "## "
         # cuts it off. Look at the opening of the document instead.

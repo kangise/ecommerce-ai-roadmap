@@ -4,6 +4,21 @@
 
 <!-- claims: illustrative -->
 
+## Chapter Navigation
+
+1. [Overview](#overview)
+2. [Business Background](#business-background)
+3. [Technical Design](#technical-design)
+4. [Implementation Details](#implementation-details)
+5. [Expected Performance](#expected-performance)
+6. [Optimization Strategies](#optimization-strategies)
+7. [Monitoring and Maintenance](#monitoring-and-maintenance)
+8. [Deployment and Operations](#deployment-and-operations)
+9. [Summary](#summary)
+10. [Related Resources](#related-resources)
+
+---
+
 ## Overview
 
 This design shows how to build a machine-learning-based automatic HS-code classification system, as a technical reference for cross-border e-commerce companies classifying customs codes automatically.
