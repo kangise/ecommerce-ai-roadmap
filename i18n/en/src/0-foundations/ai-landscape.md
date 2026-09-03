@@ -11,6 +11,22 @@
 
 > Before going deep on any module, spend 30 minutes building the big picture: for every step of cross-border e-commerce, how far can AI actually go today? What should you adopt *now*, and what should wait?
 
+> **Where the numbers in this chapter come from**
+>
+> The maturity scores, before/after timings and efficiency percentages here are
+> **hands-on estimates**. They are not survey data, and there is no public source
+> to check them against — nobody publishes this.
+>
+> Use them to judge **order of magnitude and priority**: which steps are worth
+> doing first, and roughly how much time comes back. Do not use them for budget
+> modelling or quote them onward. Your own figures will differ with category,
+> team fluency and tooling — a factor of two either way is unremarkable.
+>
+> For facts that *can* be checked — market size, platform share — this library
+> cites the source and records a verification date (see the
+> [platform comparison](../d-platforms/platform-comparison.md)). This chapter is
+> not that, so it says so rather than dressing an estimate in a citation.
+
 ---
 
 ## AI × Cross-Border E-Commerce: the Hype-vs-Reality Gap Matrix

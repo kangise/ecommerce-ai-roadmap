@@ -131,3 +131,25 @@ def test_redirects_are_not_reported_as_healthy() -> None:
 def test_only_and_axis_filters_narrow_the_run() -> None:
     assert set(json.loads(run("--only", "V1", "--json").stdout)) == {"V1"}
     assert all(k.startswith("C") for k in json.loads(run("--axis", "C", "--json").stdout))
+
+
+def test_disclosed_estimates_are_not_reported_as_missing_sources() -> None:
+    """"Presents unsourced numbers as fact" and "says these are estimates" are
+    opposite behaviours; reporting them identically buries the first in the second."""
+    module = load_module()
+    assert module.ESTIMATE_DISCLOSURE.search("本章的数字是基于实操的估算")
+    assert module.ESTIMATE_DISCLOSURE.search("these are hands-on estimates")
+    assert not module.ESTIMATE_DISCLOSURE.search("市场规模 $830B")
+
+
+def test_link_labels_are_not_mistaken_for_figures() -> None:
+    """A navigation cell is not a growth statistic.
+
+    "[A13 增长](../a-operators/a13-ai-growth-hack.md)" carries the word 增长 and a
+    digit; counting it teaches readers to skim past the report.
+    """
+    module = load_module()
+    row = "| [A13 增长](../a-operators/a13-ai-growth-hack.md) | 市场拓展 | 低 |"
+    assert not module.WORLD_FIGURE.search(module.strip_link_text(row))
+    real = "| Amazon | GMV $830B | [D1](d1.md) |"
+    assert module.WORLD_FIGURE.search(module.strip_link_text(real))

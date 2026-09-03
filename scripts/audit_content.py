@@ -59,6 +59,17 @@ WORLD_FIGURE = re.compile(
 # a chapter that cites nothing.
 CITATION = re.compile(r"\]\(https?://|claims:\s*verified")
 
+# A chapter that states its figures are practitioner estimates, with no public
+# source to check them against, is not the same failure as one that quietly
+# presents an estimate as a measurement. Reporting both identically buries the
+# second in the first. ai-landscape carries such a note: its timings are the
+# author's own, and saying so is the honest treatment, not a citation gap.
+ESTIMATE_DISCLOSURE = re.compile(
+    r"这一章的数字是怎么来的|基于实操的估算"
+    r"|numbers in this chapter come from|hands-on estimates"
+    r"|本章の数字の出どころ|実務にもとづく見積り"
+)
+
 # A chapter is a guide if it teaches a workflow; resources/case-studies are
 # reference material and are held to different expectations.
 def chapters() -> list[Path]:
@@ -84,6 +95,19 @@ def outside_fences(text: str) -> str:
         if not fence:
             out.append(line)
     return "\n".join(out)
+
+
+MD_LINK = re.compile(r"\[[^\]]*\]\([^)]*\)")
+
+
+def strip_link_text(row: str) -> str:
+    """Drop markdown links before scanning a row for figures.
+
+    A chapter-index cell like "[A13 增长](../a-operators/a13-ai-growth-hack.md)"
+    contains the word 增长 and the digit 13, which looks like a growth figure and
+    is a navigation label. Keeping it would train a reader to ignore the report.
+    """
+    return MD_LINK.sub(" ", row)
 
 
 def table_rows(text: str) -> list[tuple[int, str]]:
@@ -112,22 +136,26 @@ def v1_unsourced_world_figures() -> list[str]:
     hits = []
     for p in chapters():
         text = p.read_text(encoding="utf-8")
-        if CITATION.search(outside_fences(text)):
+        if CITATION.search(outside_fences(text)) or ESTIMATE_DISCLOSURE.search(text):
             continue
         rel = str(p.relative_to(SRC))
         for ln, row in table_rows(text):
-            if WORLD_FIGURE.search(row):
+            if WORLD_FIGURE.search(strip_link_text(row)):
                 hits.append(f"{rel}:{ln}  {row[:88]}")
     return hits
 
 
 def v2_quantitative_but_unsourced() -> list[str]:
-    """Chapters carrying many concrete figures with no external source anywhere."""
+    """Chapters carrying many concrete figures with no external source anywhere.
+
+    A chapter that discloses its figures as estimates is excluded: the finding is
+    "presents unsourced numbers as fact", and that chapter does the opposite.
+    """
     hits = []
     num = re.compile(r"\d+(?:\.\d+)?\s*(?:%|％|亿|万|美元|\$|倍)")
     for p in chapters():
         text = p.read_text(encoding="utf-8")
-        if CITATION.search(outside_fences(text)):
+        if CITATION.search(outside_fences(text)) or ESTIMATE_DISCLOSURE.search(text):
             continue
         count = len(num.findall(text))
         if count >= 10:
