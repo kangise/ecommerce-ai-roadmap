@@ -379,6 +379,9 @@ def _generate_glossary() -> str:
         "",
         "# Glossary / 术语表 / 用語集",
         "",
+        "> **适用边界**：本页由 `ontology/entities.yaml` 生成，定义与本库内部用法一致。"
+        "平台官方文档对同一术语的定义可能更窄或更宽——对外沟通时以平台口径为准。",
+        "",
     ]
     for e in entities:
         if not isinstance(e, dict):

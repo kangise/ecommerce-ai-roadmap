@@ -1,5 +1,7 @@
 # Skills Library — Plug-and-Play AI Skills & Rules
 
+> **Where this stops working**: the file format and loading rules for skills are defined by each AI tool and are still changing. This page gives the approach; take the exact syntax from your tool's own documentation.
+
 > Skills are how you freeze AI capability into reusable modules. Write one once, and everyone on the team invokes AI at the same quality bar.
 > Covers Kiro Skills, Claude Code SKILL.md, Cursor Rules, and Copilot Skills.
 

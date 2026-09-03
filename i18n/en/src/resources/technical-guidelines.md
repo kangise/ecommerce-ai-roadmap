@@ -1,5 +1,7 @@
 # Technical Implementation Guidelines for E-Commerce AI
 
+> **Where this stops working**: the architecture guidance and performance baselines here are for designing case-study solutions; treat the figures as orders of magnitude. Real projects should choose on their own data volume, stack and latency requirements rather than copying these.
+
 This document provides technical architecture patterns, performance benchmarks, and implementation guidance for cross-border e-commerce AI projects. It backs the technical design and evaluation in the case studies.
 
 ## Architecture Patterns

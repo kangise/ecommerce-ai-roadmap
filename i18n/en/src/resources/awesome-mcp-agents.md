@@ -1,5 +1,7 @@
 # Awesome MCP Servers & AI Agent Tools for E-Commerce
 
+> **Where this stops working**: the MCP ecosystem moves fast and this is a snapshot of one moment. Availability, protocol version and maintenance status may all have changed — check each project's own repository before integrating.
+
 > The MCP servers, agent frameworks, and external resources you need for e-commerce AI automation.
 > Last updated: 2026-03-15
 

@@ -3,6 +3,8 @@
 
 # Glossary / 术语表 / 用語集
 
+> **适用边界**：本页由 `ontology/entities.yaml` 生成，定义与本库内部用法一致。平台官方文档对同一术语的定义可能更窄或更宽——对外沟通时以平台口径为准。
+
 ## Listing / Listing
 > リスティング
 
@@ -591,3 +593,4 @@
 
 - **ZH**: 同一业务请求被安全重试时只产生一次预期效果的性质，常用于数据管道和外部 API 写操作。
 - **EN**: The property that safely retrying the same business request produces the intended effect only once.
+

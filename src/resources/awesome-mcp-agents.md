@@ -1,5 +1,7 @@
 # Awesome MCP Servers & AI Agent 工具集 | Awesome MCP & Agent Tools for E-Commerce
 
+> **适用边界**：MCP 生态变动极快，本页是某一时点的快照。条目的可用性、协议版本和维护状态都可能已经改变——接入前请查各项目自己的仓库。
+
 > 电商 AI 自动化必备的 MCP Server、Agent 框架和外部资源集合。
 > 最后更新: 2026-03-15
 

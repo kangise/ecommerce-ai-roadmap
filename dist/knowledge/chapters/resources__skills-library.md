@@ -1,5 +1,7 @@
 # Skills 库 — 即插即用的 AI Skills 与 Rules
 
+> **适用边界**：Skills 的文件格式和加载方式由各家 AI 工具定义，仍在变动中。本页给的是写法思路，具体语法以你所用工具的官方文档为准。
+
 > Skills 是把 AI 能力固化成可复用模块的方式。写一次，团队所有人都能用同样的质量标准调用 AI。
 > 支持 Kiro Skills、Claude Code SKILL.md、Cursor Rules、Copilot Skills。
 

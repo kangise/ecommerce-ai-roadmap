@@ -217,8 +217,18 @@ def v3_link_probe_staleness() -> list[str]:
 
 
 def c1_guides_without_boundary() -> list[str]:
-    """M2 covers guide chapters. This reports the rest, which it exempts."""
-    pat = re.compile(r"什么时候.*(不管用|不适用)|失效边界|局限|Limitations")
+    """Reference pages that state neither their limits nor their nature.
+
+    M2 requires guide chapters to carry a "when this stops working" section and
+    exempts reference material. This reports what M2 skips — but a page marked
+    `claims: illustrative` has already told the reader its numbers are
+    illustrative, which is the same disclosure in the form the repo uses for
+    worked examples. Counting those as missing hides the pages that genuinely
+    say nothing.
+    """
+    pat = re.compile(r"什么时候.*(不管用|不适用)|失效边界|适用边界|局限"
+                     r"|Limitations|Where this stops working|適用範囲"
+                     r"|claims:\s*illustrative")
     return [str(p.relative_to(SRC)) for p in chapters()
             if not is_guide(p) and not pat.search(p.read_text(encoding="utf-8"))]
 

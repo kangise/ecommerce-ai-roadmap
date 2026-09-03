@@ -1,5 +1,7 @@
 # Model Matrix
 
+> **Where this stops working**: model names, pricing and capabilities turn over every few months. This page carries a verification date; past it, re-check before relying on anything — especially prices, which should not be used for cost modelling straight from here.
+
 > **Verified**: 2026-07-31
 > **This page is the single source of truth for model ids across the whole book.** Every other chapter describes *capability tiers* and links back here for the actual model names.
 

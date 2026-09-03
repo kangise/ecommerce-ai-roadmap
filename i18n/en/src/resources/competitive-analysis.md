@@ -1,5 +1,7 @@
 # Competitive Landscape Analysis
 
+> **Where this stops working**: the competitive picture shifts quarterly. This records a judgement made at the time of writing, useful for understanding what kinds of players exist in a space — not for spend or pricing decisions, which need your own current data.
+
 > Last updated: 2026-04-13
 
 ---

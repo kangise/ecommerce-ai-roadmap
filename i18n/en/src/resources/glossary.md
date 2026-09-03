@@ -3,6 +3,8 @@
 
 # Glossary / 术语表 / 用語集
 
+> **Where this stops working**: generated from `ontology/entities.yaml`; definitions match this library's internal usage. A platform's own documentation may define the same term more narrowly or more broadly — defer to the platform when communicating externally.
+
 ## Listing / Listing
 > リスティング
 

@@ -1,5 +1,7 @@
 # Skills ライブラリ — すぐ使える AI Skills & Rules
 
+> **適用範囲**: Skills のファイル形式と読み込み方法は各 AI ツールが定義しており、まだ変動しています。本ページは考え方を示すもので、正確な構文は利用中のツールの公式ドキュメントに従ってください。
+
 > Skills は AI の能力を再利用可能なモジュールとして固定化する仕組みです。一度書けば、チーム全員が同じ品質基準で AI を呼び出せます。
 > Kiro Skills、Claude Code SKILL.md、Cursor Rules、Copilot Skills に対応。
 

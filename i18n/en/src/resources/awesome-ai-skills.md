@@ -1,5 +1,7 @@
 # Awesome AI Skills & Rules | Skill Files and Rule Sets for AI IDEs
 
+> **Where this stops working**: this is a list, not a review. Inclusion means someone uses it in a cross-border e-commerce context, not that each was tested. AI IDEs iterate fast and entries go stale — check the vendor's own docs before relying on one.
+
 > Skills, steering files, and rules for AI IDEs (Kiro/Cursor/Windsurf/Claude Code).
 > Make AI work to your standards instead of re-explaining them every session.
 > Last updated: 2026-03-15

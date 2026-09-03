@@ -1,5 +1,7 @@
 # Awesome AI Skills & Rules | AI IDE 技能文件与规则集合
 
+> **适用边界**：这是一份工具清单，不是评测。收录标准是「在跨境电商场景下有人真的用起来了」，不代表逐个试过。AI IDE 的功能迭代很快，条目可能失效——用之前先看官方文档确认现状。
+
 > AI IDE（Kiro/Cursor/Windsurf/Claude Code）的 Skills、Steering Files、Rules 集合。
 > 让 AI 按照你的规范工作，不再每次重复解释。
 > 最后更新: 2026-03-15

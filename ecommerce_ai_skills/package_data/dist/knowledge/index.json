@@ -1584,8 +1584,8 @@
     "title": "Awesome AI Skills & Rules | AI IDE 技能文件与规则集合",
     "path": "resources/awesome-ai-skills.md",
     "body_path": "chapters/resources__awesome-ai-skills.md",
-    "body_chars": 4854,
-    "summary": "> AI IDE（Kiro/Cursor/Windsurf/Claude Code）的 Skills、Steering Files、Rules 集合。 > 让 AI 按照你的规范工作，不再每次重复解释。 > 最后更新: 2026-03-15 --- - [什么是 AI Skills / Rules](#什么是-ai-skills--rules) - [外部 Awesome Lists 和资源](#外部-awesome-lists-和资源) - [Kiro Skills & Steering Files](#kiro-skills--steering-files) - [Cursor Rules",
+    "body_chars": 4950,
+    "summary": "> **适用边界**：这是一份工具清单，不是评测。收录标准是「在跨境电商场景下有人真的用起来了」，不代表逐个试过。AI IDE 的功能迭代很快，条目可能失效——用之前先看官方文档确认现状。 > AI IDE（Kiro/Cursor/Windsurf/Claude Code）的 Skills、Steering Files、Rules 集合。 > 让 AI 按照你的规范工作，不再每次重复解释。 > 最后更新: 2026-03-15 --- - [什么是 AI Skills / Rules](#什么是-ai-skills--rules) - [外部 Awesome Lists 和资源](#外部-aw",
     "key_entities": [
       "cod"
     ],
@@ -1597,8 +1597,8 @@
     "title": "Awesome MCP Servers & AI Agent 工具集 | Awesome MCP & Agent Tools for E-Commerce",
     "path": "resources/awesome-mcp-agents.md",
     "body_path": "chapters/resources__awesome-mcp-agents.md",
-    "body_chars": 9376,
-    "summary": "> 电商 AI 自动化必备的 MCP Server、Agent 框架和外部资源集合。 > 最后更新: 2026-03-15 --- - [外部 Awesome Lists 和目录网站](#外部-awesome-lists-和目录网站) - [电商 MCP Servers（推荐）](#电商-mcp-servers推荐) - [广告平台 MCP Servers](#广告平台-mcp-servers) - [SEO / 数据分析 MCP Servers](#seo--数据分析-mcp-servers) - [营销自动化 MCP Servers](#营销自动化-mcp-servers) - [通用工具",
+    "body_chars": 9450,
+    "summary": "> **适用边界**：MCP 生态变动极快，本页是某一时点的快照。条目的可用性、协议版本和维护状态都可能已经改变——接入前请查各项目自己的仓库。 > 电商 AI 自动化必备的 MCP Server、Agent 框架和外部资源集合。 > 最后更新: 2026-03-15 --- - [外部 Awesome Lists 和目录网站](#外部-awesome-lists-和目录网站) - [电商 MCP Servers（推荐）](#电商-mcp-servers推荐) - [广告平台 MCP Servers](#广告平台-mcp-servers) - [SEO / 数据分析 MCP Servers](",
     "key_entities": [
       "campaign",
       "cpm",
@@ -1614,8 +1614,8 @@
     "title": "竞品分析 | Competitive Landscape Analysis",
     "path": "resources/competitive-analysis.md",
     "body_path": "chapters/resources__competitive-analysis.md",
-    "body_chars": 3080,
-    "summary": "> 最后更新: 2026-04-13 --- | 仓库 | Star 数 | 内容类型 | 覆盖范围 | 更新频率 | |------|---------|----------|----------|----------| | `awesome-ecommerce` 类列表 | 1k-5k | 链接聚合 | 通用电商工具/SaaS 列表 | 低（季度级） | | `awesome-chatgpt-prompts` | 120k+ | Prompt 集合 | 通用 ChatGPT Prompt，非电商垂直 | 中等 | | `awesome-ai-tools` | 5k-20k | 工具列表 |",
+    "body_chars": 3164,
+    "summary": "> **适用边界**：竞品格局按季度就会变。本页记录的是编写时点的判断，用于理解「这个赛道有哪几类玩家」，不适合直接拿去做投放或定价决策——那需要你自己的实时数据。 > 最后更新: 2026-04-13 --- | 仓库 | Star 数 | 内容类型 | 覆盖范围 | 更新频率 | |------|---------|----------|----------|----------| | `awesome-ecommerce` 类列表 | 1k-5k | 链接聚合 | 通用电商工具/SaaS 列表 | 低（季度级） | | `awesome-chatgpt-prompts` | 120k+ ",
     "key_entities": [
       "listing",
       "review"
@@ -1628,8 +1628,8 @@
     "title": "Glossary / 术语表 / 用語集",
     "path": "resources/glossary.md",
     "body_path": "chapters/resources__glossary.md",
-    "body_chars": 22248,
-    "summary": "> リスティング - **ZH**: Amazon 商品上架信息的统称，包含标题、五点、产品描述、A+ Content、Search Terms 与图片等组成部分，是\"被搜索到\"与\"被点击购买\"的载体 - **EN**: The full set of product content fields on an Amazon listing (title, bullet points, description, A+ Content, Search Terms, images) that bridges search visibility and purchase conversion > 箇条",
+    "body_chars": 22342,
+    "summary": "> **适用边界**：本页由 `ontology/entities.yaml` 生成，定义与本库内部用法一致。平台官方文档对同一术语的定义可能更窄或更宽——对外沟通时以平台口径为准。 > リスティング - **ZH**: Amazon 商品上架信息的统称，包含标题、五点、产品描述、A+ Content、Search Terms 与图片等组成部分，是\"被搜索到\"与\"被点击购买\"的载体 - **EN**: The full set of product content fields on an Amazon listing (title, bullet points, description, A",
     "key_entities": [
       "a_plus_content",
       "acos",
@@ -1655,8 +1655,8 @@
     "title": "模型矩阵 | Model Matrix",
     "path": "resources/model-matrix.md",
     "body_path": "chapters/resources__model-matrix.md",
-    "body_chars": 4776,
-    "summary": "> **校验日期**: 2026-07-31 > **本页是全库唯一的模型型号来源。** 其余章节正文只写\"能力档位\"，具体型号一律回链到这里。 --- > 本节的工具价格核验日期: 2026-08。SaaS 定价变动频繁，下单前请到各家官网复核。 这个知识库里的方法论半衰期以年计，模型型号的半衰期以月计。举两个就发生在本页校验当周的例子：OpenAI 在 2026-07-30 把 Luna 档降价 80%、Terra 档降价 20%；Google 在 2026-07-21 一次放出三个新 Flash 型号。任何把型号写死在正文里的写法，都会在下一个季度变成错误信息。 所以本库的约定是： - ",
+    "body_chars": 4850,
+    "summary": "> **适用边界**：模型型号、定价和能力每几个月就变一轮。本页标注了校验日期，超过它就要重新核对——尤其是价格，不要直接拿本页数字做成本测算。 > **校验日期**: 2026-07-31 > **本页是全库唯一的模型型号来源。** 其余章节正文只写\"能力档位\"，具体型号一律回链到这里。 --- > 本节的工具价格核验日期: 2026-08。SaaS 定价变动频繁，下单前请到各家官网复核。 这个知识库里的方法论半衰期以年计，模型型号的半衰期以月计。举两个就发生在本页校验当周的例子：OpenAI 在 2026-07-30 把 Luna 档降价 80%、Terra 档降价 20%；Google ",
     "key_entities": [
       "listing",
       "review"
@@ -1669,8 +1669,8 @@
     "title": "Skills 库 — 即插即用的 AI Skills 与 Rules",
     "path": "resources/skills-library.md",
     "body_path": "chapters/resources__skills-library.md",
-    "body_chars": 5827,
-    "summary": "> Skills 是把 AI 能力固化成可复用模块的方式。写一次，团队所有人都能用同样的质量标准调用 AI。 > 支持 Kiro Skills、Claude Code SKILL.md、Cursor Rules、Copilot Skills。 --- | Skill | 说明 | 仓库 | |-------|------|------| | Awesome Claude Skills | Claude Skills 精选合集，覆盖开发、营销、分析 | [travisvn/awesome-claude-skills](https://github.com/travisvn/awesome-cla",
+    "body_chars": 5903,
+    "summary": "> **适用边界**：Skills 的文件格式和加载方式由各家 AI 工具定义，仍在变动中。本页给的是写法思路，具体语法以你所用工具的官方文档为准。 > Skills 是把 AI 能力固化成可复用模块的方式。写一次，团队所有人都能用同样的质量标准调用 AI。 > 支持 Kiro Skills、Claude Code SKILL.md、Cursor Rules、Copilot Skills。 --- | Skill | 说明 | 仓库 | |-------|------|------| | Awesome Claude Skills | Claude Skills 精选合集，覆盖开发、营销、分析",
     "key_entities": [
       "cod",
       "cvr",
@@ -1686,8 +1686,8 @@
     "title": "跨境电商AI技术实施指南",
     "path": "resources/technical-guidelines.md",
     "body_path": "chapters/resources__technical-guidelines.md",
-    "body_chars": 2740,
-    "summary": "本文档为跨境电商AI项目提供技术架构、性能基准和实施建议，适用于案例研究的技术方案设计和评估。 **数据采集层** - 多渠道数据接入（电商平台、ERP、CRM等） - 实时和批量数据处理 - 数据质量监控和清洗 **数据处理层** - ETL/ELT管道 - 数据仓库和数据湖 - 数据版本控制和血缘追踪 **特征工程层** - 特征提取和转换 - 特征存储和管理 - 特征监控和漂移检测 **模型训练层** - 模型开发和训练 - 超参数优化 - 模型验证和评估 **模型服务层** - 模型部署和推理 - 负载均衡和扩缩容 - A/B测试和灰度发布 **业务应用层** - API接口和SDK ",
+    "body_chars": 2818,
+    "summary": "> **适用边界**：本页的架构建议和性能基准面向案例研究的方案设计，数量级供参考。真实项目的选型要由你的数据规模、团队技术栈和延迟要求决定，不能照搬。 本文档为跨境电商AI项目提供技术架构、性能基准和实施建议，适用于案例研究的技术方案设计和评估。 **数据采集层** - 多渠道数据接入（电商平台、ERP、CRM等） - 实时和批量数据处理 - 数据质量监控和清洗 **数据处理层** - ETL/ELT管道 - 数据仓库和数据湖 - 数据版本控制和血缘追踪 **特征工程层** - 特征提取和转换 - 特征存储和管理 - 特征监控和漂移检测 **模型训练层** - 模型开发和训练 - 超参数优化",
     "key_entities": [
       "ctr",
       "demand_forecast"
